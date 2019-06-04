@@ -2,6 +2,8 @@ Zanardi from the University of Southern California.
 
 \section{Distances over quantum state spaces}
 
+\paragraph{What we will talk about}
+
 What is a metric? "Trace norm distance"
 
 Information theoretical protocol
@@ -17,20 +19,20 @@ We have \emph{states} and \emph{observables}. We call the system $S$, and its as
 A state \(\rho\) is a density matrix, an observable is a Hermitian operator over \(\H\).
 
 \begin{equation}
-  S(\H) = \qty{\rho | \rho \geq 0, \, \Tr \rho = 1}
+  S(\H) = \qty{\rho |\, \rho \geq 0, \, \Tr \rho = 1}
 \end{equation}
 
-Then \(\forall \phi \in \H: \braket{\phi}{\rho \phi} \geq 0\), \(\rho = \rho ^\dag\).
+Then \(\forall \phi \in \H: \ev{\rho}{\phi} \geq 0\), \(\rho = \rho ^\dag\).
 
-\(\delta (\rho) = \) spectrum of \(\rho\) \(= \qty{p_i}_i\). \(d = \dim (\H)\).
+\(\sigma (\rho) = \text{spectrum of } \rho = \qty{p_i}_i\). \(d = \dim (\H)\).
 
 \(p_i \geq 0\), \(\sum_i p_i = 1\).
 
-So quantum theory is just noncommutative probability theory.
+So quantum theory is just noncommutative probability theory. 
 
 \paragraph{Single qubit}.
 
-$\H \sim \mathbb{C}^2$, $\dim \H = 2$, $\rho = \frac{1}{2} (\mathbb{1} + \vec{\lambda} \cdot \vec{\sigma})$.
+$\H \sim \mathbb{C}^2$, $\dim \H = 2$, $\rho = \frac{1}{2} \qty(\mathbb{1} + \vec{\lambda} \cdot \vec{\sigma})$.
 
 $\lambda$ is the Bloch vector, $\sigma$ are the Pauli matrices.
 If $\abs{\vec{\lambda}} = 1$, we have a pure state.
@@ -42,7 +44,7 @@ Creating convex combinations of states should always be allowed,  and we see thi
 
 States are usually decomposable as probabilistic mixtures, which are convex combinations in "Bloch space".
 
-\paragraph{Problem} We are given two states \(\rho _{1, \, 2}\): what is the measurement which maximizes the probability we will be able to tell one from the other?
+\subsection{Telling states apart} We are given two states \(\rho _{1, \, 2}\): what is the measurement which maximizes the probability we will be able to tell one from the other?
 
 Probability vectors: \(\vec{p} = (p_i)\), \(\vec{q} = (q_i)\). We can use the \(\ell_1\) metric:
 
@@ -96,7 +98,7 @@ Generalized measurement: we have an ancillary system, mearure this system and th
 
 \paragraph{Positive Operator-Valued Measurement}
 
-We have finitely many \(\qty{E_i}_i\), \(E_i \geq =\),  \(\sum_i E_i = \mathbb{1}\).
+We have finitely many \(\qty{E_i}_i\), \(E_i \geq 0\),  \(\sum_i E_i = \mathbb{1}\).
 
 \(\rho \rightarrow p_i = \Tr (\rho E_i)\).
 
@@ -145,7 +147,6 @@ Claim: this is a distance.
   d_B (\vec{p}, \vec{q}) = \cos^{-1} \qty(\sum_i \sqrt{p_i q_i})
 \end{equation}
 
-
 \paragraph{Quantize it!}
 
 Let us focuse on the pure state case: \(\rho = \ketbra{\phi}\), \(\sigma = \ketbra{\psi}\).
@@ -173,4 +174,5 @@ this is the Fubini-Study metric over a projective Hilbert space.
 
 We can generalize this to differential geometry.
 
+This can
 \(\abs{\braket{\phi}{\psi}} = \sqrt{\Tr \qty(\rho\sigma)}\)

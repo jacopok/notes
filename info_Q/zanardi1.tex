@@ -12,6 +12,8 @@ Battacharya distance; its infinitesimal version: the Fischer metric, the Fubini-
 
 At zero temperature, we only have the ground state, there is no entropy, so how do transitions work?
 
+The statements preceded by the word "claim" are left as exercises.
+
 \subsection{Quantum theory recap}
 
 We have \emph{states} and \emph{observables}. We call the system $S$, and its associated Hilbert space \(\H\). (No real quantum system is going to be truly isolated).
@@ -28,25 +30,25 @@ Then \(\forall \phi \in \H: \ev{\rho}{\phi} \geq 0\), \(\rho = \rho ^\dag\).
 
 \(p_i \geq 0\), \(\sum_i p_i = 1\).
 
-So quantum theory is just noncommutative probability theory. 
+So quantum theory is just noncommutative probability theory.
 
 \paragraph{Single qubit}.
 
-$\H \sim \mathbb{C}^2$, $\dim \H = 2$, $\rho = \frac{1}{2} \qty(\mathbb{1} + \vec{\lambda} \cdot \vec{\sigma})$.
+\(\H \sim \mathbb{C}^2$, $\dim \H = 2$, $\rho = \frac{1}{2} \qty(\mathbb{1} + \vec{\lambda} \cdot \vec{\sigma})\).
 
-$\lambda$ is the Bloch vector, $\sigma$ are the Pauli matrices.
-If $\abs{\vec{\lambda}} = 1$, we have a pure state.
+\(\vec{\lambda}\) is the Bloch vector, \(\vec{\sigma}\) are the Pauli matrices.
+If \(\abs{\vec{\lambda}} = 1\), we have a pure state.
 
 \paragraph{Exercise}
-Prove that \(\rho\) being a density matrix is equivalent to $\abs{\lambda}\leq 1$, and that $\abs{\lambda} = 1 \iff \rho^2 = \rho \iff \rho = \ketbra{\psi}$.
+Prove that \(\rho\) being a density matrix is equivalent to \(\abs{\lambda}\leq 1\), and that \(\abs{\lambda} = 1 \iff \rho^2 = \rho \iff \rho = \ketbra{\psi}\).
 
 Creating convex combinations of states should always be allowed,  and we see this in the fact that the space of states is convex.
 
-States are usually decomposable as probabilistic mixtures, which are convex combinations in "Bloch space".
+States are usually decomposable as probabilistic mixtures, which are convex combinations in "Bloch space" (or its generalizations).
 
 \subsection{Telling states apart} We are given two states \(\rho _{1, \, 2}\): what is the measurement which maximizes the probability we will be able to tell one from the other?
 
-Probability vectors: \(\vec{p} = (p_i)\), \(\vec{q} = (q_i)\). We can use the \(\ell_1\) metric:
+Probability vectors: \(\vec{p} = (p_i)\), \(\vec{q} = (q_i)\). We can use the "\(\ell_1\)" metric:
 
 \begin{equation}
   d(p, q) = \sum_i \abs{p_i - q_i}
@@ -54,16 +56,15 @@ Probability vectors: \(\vec{p} = (p_i)\), \(\vec{q} = (q_i)\). We can use the \(
 
 Claim: this is a distance.
 
-Can we do the same for quantum states? In general, \([\rho_1,  \rho_2] \neq 0\), we do not have a common eigenbasis. Could we use the Frobenius metric? Eeh
+Can we do the same for quantum states? In general, \([\rho_1,  \rho_2] \neq 0\), we do not have a common eigenbasis. Could we use the Frobenius metric? Eeh, not really.
 
 We have a map from observables to numbers: \(A \rightarrow \Tr \qty(\rho A) = \langle A \rangle_\rho\).
 
 We can do \(\sup{\abs{{\langle A \rangle_{\rho_1} - \langle A \rangle_{\rho_2}}}}\) (Over \(\norm{A} = 1\)).
 
 \begin{equation}
-  \norm{A} = \sup_{\psi \neq 0} \frac{\norm{A\psi}}{\psi}
+  \norm{A} = \sup_{\psi \neq 0} \frac{\norm{A\psi}}{{\psi}}
 \end{equation}
-
 
 So our distance is
 
@@ -71,11 +72,17 @@ So our distance is
   d = \sup_{\norm{A}=1} \abs{\Tr \qty[A(\rho_1 - \rho_2)]}
 \end{equation}
 
-We know that \(\abs{\Tr \qty(AB)} = \sum_i b_i \ev{A}{i} \leq \sum_i \abs{b_i} \ev{A}{i} \leq \norm{A} \sum_i \abs{b_i} \leq \norm{A} \Tr \abs{B}\)
+We know that
 
-(\(B = \sum_i b_i \ketbra{i}\)).
+\begin{align}
+  \abs{\Tr \qty(AB)} &= \sum_i b_i \ev{A}{i} \\
+  &\leq \sum_i \abs{b_i} \ev{A}{i} \\
+  &\leq \norm{A} \sum_i \abs{b_i} \\
+  &\leq \norm{A} \Tr \abs{B}
+\end{align}
 
-and we call \(\norm{B}_1 = \Tr \abs{B}\), where the modulus of the operator can be thought of eigenvalue-wise.
+Where \(B = \sum_i b_i \ketbra{i}\)),
+and we call \(\norm{B}_1 = \Tr \abs{B}\), where the modulus of the operator can be thought of eigenvalue-wise (diagonalizing the operator, and then flipping the sign of all the negative eigenvalues).
 
 So
 
@@ -104,7 +111,7 @@ We have finitely many \(\qty{E_i}_i\), \(E_i \geq 0\),  \(\sum_i E_i = \mathbb{1
 
 2-element POVM: \(E_{1, \, 2} \geq 0\), we have our states \(\rho_{1, \, 2}\).
 
-Say we get the states with \(50\%\) probability each:
+Say we get the states with \(50\%\) probability each, and we wish to distinguish them:
 
 \begin{equation}
   P(\text{success}) = \frac{1}{2} \qty[\Tr(E_1 \rho_1) + \Tr(E_2 \rho_2)]
@@ -149,7 +156,7 @@ Claim: this is a distance.
 
 \paragraph{Quantize it!}
 
-Let us focuse on the pure state case: \(\rho = \ketbra{\phi}\), \(\sigma = \ketbra{\psi}\).
+Let us focus on the pure state case: \(\rho = \ketbra{\phi}\), \(\sigma = \ketbra{\psi}\).
 We have a POVM \(\mathbb{E} = \qty{E_i}\), and two probability distributions
 
 \begin{equation}
@@ -174,5 +181,6 @@ this is the Fubini-Study metric over a projective Hilbert space.
 
 We can generalize this to differential geometry.
 
-This can
+In this particular case this can be expressed as
 \(\abs{\braket{\phi}{\psi}} = \sqrt{\Tr \qty(\rho\sigma)}\)
+but the result does not generalize.

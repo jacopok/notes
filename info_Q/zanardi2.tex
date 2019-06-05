@@ -20,7 +20,7 @@ We wish to prove
 
 \begin{align}
   \abs{\braket{\phi}{\psi}} &= \abs{\sum_i \bra{\phi} E_i \ket{\psi}}  \\
-  &\leq \sum_i \abs{\bra{\phi} \sqrt{E _{i} } \sqrt{E _{i} }}  \\
+  &\leq \sum_i \abs{\bra{\phi} \sqrt{E _{i} } \sqrt{E _{i} \ket{\psi}}}  \\
   &= \sum _{i} \abs{\braket{\hat{\phi_i}}{\hat{\psi_i}}}  \\
   &\leq \sum_i \norm{\sqrt{E_i} \ket{\phi}}\norm{\sqrt{E_i} \ket{\psi}}  \\
   &= \sum_i \sqrt{\ev{E_i}{\phi}} \sqrt{\ev{E_i}{\psi}}  \\
@@ -30,19 +30,19 @@ We wish to prove
 so we just apply the \( \cos ^{-1} \) to both sides.
 
 \begin{equation}
-  \mathbb{E} = \qty{\ketbra{\phi} | , \qty{\ketbra{phi_i}} \text{span the } \ketbra{\psi}^{\perp}}
+  \mathbb{E} = \qty{\ketbra{\phi} | , \qty{\ketbra{\phi_i}} \text{span the } \ketbra{\phi}^{\perp}}
 \end{equation}
 
-so the first term just gives us the upper bound. We can just measure the projector associated with the state we want to know about.
+so the first term just gives us the upper bound, the other terms in the sum are 0: the inequality is saturated. We can just measure the projector associated with the state we want to know about.
 
 \paragraph{Infinitesimal distance}
 
 What is \( \dd _{B} \qty(\vec{p} , \vec{p} + \dd{\vec{p}}) \)?
 
 \begin{align}
-  \cos ^{-1} \qty{\sum_i \sqrt{p_i(p_i + \dd{p}_i \cdot p_i)}}
+  \cos ^{-1} \qty{\sum_i \sqrt{p_i(p_i + \dd{p}_i)}}
   &= \cos ^{-1} \qty{\sum_i p_i \sqrt{1 + \frac{\dd{p}_i }{p_i}}}  \\
-  &= \cos ^{-1} \qty(\sum_i p_i \qty(1 + \frac{1}{2} \frac{\dd{p}_i}{p_i} - \frac{1}{8} (\frac{\dd{p_i}}{p_i})^{2} ))
+  &\sim \cos ^{-1} \qty(\sum_i p_i \qty(1 + \frac{1}{2} \frac{\dd{p}_i}{p_i} - \frac{1}{8} \qty(\frac{\dd{p_i}}{p_i})^{2} ))
 \end{align}
 
 but the term \( \sum_i \dd{p}_i \) vanishes, so we have

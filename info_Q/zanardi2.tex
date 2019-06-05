@@ -2,3 +2,171 @@
 % Zanardi è uno iettatore come Pauli
 
 \paragraph{Questions}
+
+How do we implement the POVM we described last time? That is left to the experimentalists.
+
+\paragraph{Proof of the theorem}
+
+This is useful because it shows us technicques, tools.
+
+We have these \( E _{i}  \) from the POVM.
+
+We wish to prove
+
+\begin{equation}
+  \cos ^{-1} \abs{\braket{\phi}{\psi}}
+  = \cos ^{-1} \qty(\sqrt{p_i ^{\mathbb{E}} (\phi)} \sqrt{p_i(\psi)^{\mathbb{E}}})
+\end{equation}
+
+\begin{align}
+  \abs{\braket{\phi}{\psi}} &= \abs{\sum_i \bra{\phi} E_i \ket{\psi}}  \\
+  &\leq \sum_i \abs{\bra{\phi} \sqrt{E _{i} } \sqrt{E _{i} }}  \\
+  &= \sum _{i} \abs{\braket{\hat{\phi_i}}{\hat{\psi_i}}}  \\
+  &\leq \sum_i \norm{\sqrt{E_i} \ket{\phi}}\norm{\sqrt{E_i} \ket{\psi}}  \\
+  &= \sum_i \sqrt{\ev{E_i}{\phi}} \sqrt{\ev{E_i}{\psi}}  \\
+  &= \sum_i \sqrt{p_i ^{\mathbb{E}} (\phi)} \sqrt{p_i(\psi)^{\mathbb{E}}}
+\end{align}
+
+so we just apply the \( \cos ^{-1} \) to both sides.
+
+\begin{equation}
+  \mathbb{E} = \qty{\ketbra{\phi} | , \qty{\ketbra{phi_i}} \text{span the } \ketbra{\psi}^{\perp}}
+\end{equation}
+
+so the first term just gives us the upper bound. We can just measure the projector associated with the state we want to know about.
+
+\paragraph{Infinitesimal distance}
+
+What is \( \dd _{B} \qty(\vec{p} , \vec{p} + \dd{\vec{p}}) \)?
+
+\begin{align}
+  \cos ^{-1} \qty{\sum_i \sqrt{p_i(p_i + \dd{p}_i \cdot p_i)}}
+  &= \cos ^{-1} \qty{\sum_i p_i \sqrt{1 + \frac{\dd{p}_i }{p_i}}}  \\
+  &= \cos ^{-1} \qty(\sum_i p_i \qty(1 + \frac{1}{2} \frac{\dd{p}_i}{p_i} - \frac{1}{8} (\frac{\dd{p_i}}{p_i})^{2} ))
+\end{align}
+
+but the term \( \sum_i \dd{p}_i \) vanishes, so we have
+
+\begin{equation}
+  \cos \dd{s} = 1 - \frac{1}{8}\frac{\dd{p}_i ^{2} }{p_i}
+\end{equation}
+
+but \( \cos \dd{s} \sim 1 - 1/2 \dd{s}^{2} _{B}  \), so
+
+\begin{equation} \label{eq:fisher-metric}
+  \dd{s}^{2}_{B}  = \frac{1}{4} \sum_i  \frac{\qty(\dd{p}_i)^{2} }{p_i}
+\end{equation}
+
+This is the \emph{Fisher metric}. More differential-geometry-like: take some \( \lambda \in \mathcal{M} = \qty{\text{manifold of control parameters of dimension N}} \), such that \( p_i = p_i(\lambda) \) and  \( \dd{p}_i = \sum_\mu (\partial_\mu p_i) \dd{\lambda_\mu} \).
+
+Then
+
+\begin{equation}
+  g _{\mu \nu} = \frac{1}{4} \sum_i \frac{(\partial_\mu p_i)(\partial_\nu p_i)}{p_i}
+\end{equation}
+
+\begin{equation}
+  \dd{s}_B ^2 = g _{\mu \nu} \dd{\lambda}_\mu \dd{\lambda}_\nu
+\end{equation}
+
+\section{Parameter estimation}
+
+Take a \(P_\theta (x)\), where \( x \) is a random variable, \( \average{\Theta} = \theta = \int  p_\theta(x) \Theta(x) \dd{x}  \). \(\theta\) is our parameter.
+
+We prove a super-famous bound. Differentiate the previous equation wrt \( \theta \).
+
+\begin{align}
+  1 &= \int  p' _\theta (x) \Theta (x) \dd{x}  \\
+  &= \braket{\frac{p'_\theta}{p_\theta}}{\Theta}_p
+\end{align}
+
+Claim: the notation \( \braket{f}{g} = \int  p_\theta f g \dd{x}  \) defines a scalar product.
+
+We can always subtract \( \theta \) in the integrand (?).
+
+\begin{align}
+  1 &\leq \norm{\frac{p_\theta '}{p_\theta}}^{2}_p \norm{\Theta}^2_p  \\
+  &= \qty(\int  p_\theta \frac{(p_\theta ')^2}{p_\theta^2} \dd{x} )
+  \qty(\int p_\theta (\Theta(x) - \theta)^2 \dd{x} )  \\
+  &= F \var{\Theta}
+\end{align}
+
+Where \( F \) is just the Fischer metric. (To check: \( \bar{\Theta} = \Theta - \theta \) )
+
+But this means \(\var{\Theta} \geq F ^{-1} \): this is the \emph{Cramer-Rao} inequality.
+
+\subsection{Quantize it!}
+
+Unbiased estimator \( \Tr (\rho_\theta ' \hat{\Theta}) = 1 \).
+
+We can do \( \Tr (\rho_\theta \rho_\theta ^{-1} \rho_\theta ' \hat{\Theta}) = 1 \)
+
+But this is noncommutative! We can do
+
+\begin{equation} \label{eq:SLD-def}
+  L_\rho (x)  = \frac{1}{2} \qty(\rho X + X \rho) = \rho'
+\end{equation}
+
+This is the Symmetric Logarithmic Derivative, SLD.
+(recall the logarithmic derivative \( \rho' / \rho = \dv*{\log \rho}{x} \) ).
+
+Now
+
+\begin{equation}
+  \frac{1}{2} \Tr \qty[\qty(\rho x + x \rho) \bar{\Theta}] = \Re \Tr (\rho X \Theta)
+\end{equation}
+
+and we can take this equation in absolute value. Then,
+
+\begin{equation}
+  1 \leq \abs{\Tr (\rho X \bar{\Theta})}^{2} = \abs{\braket{X}{\bar{\Theta}}}^{2}_{\rho}
+\end{equation}
+
+And like before
+
+\begin{equation}
+  1 \leq \norm{X}^{2} _{\rho}  \norm{\bar{\Theta}}^{2} _{\rho}
+  = \Tr (\rho X^2 ) Tr(\rho (\Theta - \theta)^2)
+\end{equation}
+
+so then \( \var{\Theta} \geq 1/F_Q \).
+
+Claim: take \( \rho = \sum_i \ketbra{i} \), then \( X _{ij} = 2\bra{i}\rho' \ket{j}/\qty(p_i + p_j) \).
+
+So we can compute
+
+\begin{align}
+  F_Q &= \Tr(\rho X^2) = \sum_i p_i \ev{X^2}{i}  \\
+  &= \sum _{ij} p_i \bra{i} X \ketbra{j} X \ket{i}  \\
+  &= \sum _{ij} p_i \frac{2}{p_i + p_j} \bra{i} \rho' \ketbra{j} \rho' \ket{i} \frac{2}{p_i + p_j}  \\
+  &= 2 \sum _{ij} \frac{\abs{\bra{i} \rho' \ket{j}}^2 }{p_i + p_j}
+\end{align}
+
+This is Quantum Fischer. It really is the result of \emph{classical} optimization.
+
+The denominator diverges! but the numerator goes to zero quadratically (?).
+
+\paragraph{Fischer metric for pure states}
+
+Take \( \rho_\theta = \ketbra{\psi_\theta} \) gound-eigenstate of a many-body system.
+
+\begin{equation}
+  F_Q ^{\text{pure}} \sim \braket{\psi_\theta'}{\psi_\theta'} - \abs{\braket{\psi_\theta'}{\psi_\theta}}^2
+\end{equation}
+
+where \( \psi' = \partial_\theta \psi \). This is a way to solve the Lyapunov equation \( L_\theta (\rho) = \rho' \).
+
+\( \Pi = \ketbra{\psi} \). Then \(\Pi ^2 = \Pi\), we differentiate it.
+So \( \Pi' \Pi + \Pi \Pi' = \Pi' \): in the pure state case, the solution is then just \( \Pi ' = X \).
+
+Claim: if we do \( \Tr \qty(\rho F_Q^2)\)...
+
+\paragraph{First try}
+
+The derivative of \( \rho \) is \( \rho' = \ketbra{\psi}{\psi'} - \ketbra{\psi'}{\psi} \).
+
+Then computing \( \Tr(\rho \rho'\, ^\dag \rho') = - \Tr(\rho \rho' \rho'\, ^\dag)\) we get
+
+\begin{equation}
+  \Tr(\rho \rho'\, ^\dag \rho') = \braket{\psi'}{\psi'} - \abs{\braket{\psi'}{\psi}}^2
+\end{equation}

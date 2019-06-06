@@ -59,12 +59,12 @@ we prepare
 
 \paragraph{Step 2}
 
-We measure the second registry, and obtain \( \ket{\bar{f}} \). Then the first registry must contain all the combinations which generate that state: so:
+We measure the second registry, and obtain \( \ket{\overline{f}} \). Then the first registry must contain all the combinations which generate that state: so:
 
 \begin{align}
   \ket{\psi_2}
-  &= \frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} \ket{\bar{f(x_0)}}  \\
-  &= \qty[\frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} ] \otimes \ket{\bar{f(x_0)}}
+  &= \frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} \ket{\overline{f(x_0)}}  \\
+  &= \qty[\frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} ] \otimes \ket{\overline{f(x_0)}}
 \end{align}
 
 \paragraph{Step 3}
@@ -78,22 +78,22 @@ We want to find \( r \), so we can do a quantum Fourier transform. It can be slo
 \paragraph{Step 4}
 
 \begin{align}
-  P(\bar{y})
-  &= \frac{1}{Nm} \abs{\sum _{j=0} ^{m-1} \exp(2 \pi i (x_0 + jr) \bar{y}/N) }  \\
-  &= \frac{1}{r} \abs{\frac{1}{m} \sum_j \exp(2 \pi i j \bar{y} /m)}
+  P(\overline{y})
+  &= \frac{1}{Nm} \abs{\sum _{j=0} ^{m-1} \exp(2 \pi i (x_0 + jr) \overline{y}/N) }  \\
+  &= \frac{1}{r} \abs{\frac{1}{m} \sum_j \exp(2 \pi i j \overline{y} /m)}
 \end{align}
 
-Claim: the states with nonzero probability to be found are those with \( \bar{y} = km \), where \( k \in 0, \dots,  r \).
+Claim: the states with nonzero probability to be found are those with \( \overline{y} = km \), where \( k \in 0, \dots,  r \).
 
 \subparagraph{Example}
 
-\( P(\bar{y} = 0) = 1/r \abs{1/m \sum_j 1} = 1/r \). Our function is periodic with period
+\( P(\overline{y} = 0) = 1/r \abs{1/m \sum_j 1} = 1/r \). Our function is periodic with period
 
-So all the states we get are in the form \( \bar{y}=km = kN/r \). We know $N$, we measured \( \bar{y} \), so:
+So all the states we get are in the form \( \overline{y}=km = kN/r \). We know $N$, we measured \( \overline{y} \), so:
 
 \begin{itemize}
   \item if \( k=0 \), we failed;
-  \item if \( k\neq 0 \), we set \( \bar{y}/N = \bar{k}/r \) and find the solution in polynomial time.
+  \item if \( k\neq 0 \), we set \( \overline{y}/N = \overline{k}/r \) and find the solution in polynomial time.
 \end{itemize}
 
 \( P(\text{success}) \sim 1 \) dopo \( O(\log(\log(r))) \).
@@ -142,4 +142,4 @@ We map \( j \rightarrow \frac{1}{\sqrt{8}} \sum_k \exp(2 \pi i j k / 8) \ket{k} 
   &= \frac{1}{\sqrt{2}} \qty(\ket{0}+\ket{4} )
 \end{align}
 
-We either measure 0 or 4. So, if it is 0 we have failed, if it is 4 we have \( \bar{y} = 4 \), therefore \( k=1 \)  works and \( r=2 \).
+We either measure 0 or 4. So, if it is 0 we have failed, if it is 4 we have \( \overline{y} = 4 \), therefore \( k=1 \)  works and \( r=2 \).

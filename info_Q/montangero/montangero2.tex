@@ -123,7 +123,7 @@ We can do a Fourier transform, defining \(\omega_\alpha \hbar = E_\alpha\):
 but this is peaked only at \(\omega = \omega _{\overline{\alpha} } \) for large \(T\). We can measure \(a _{\overline{\alpha} } \phi _{\overline{\alpha} } T\) at different \(x\) positions, and find the eigenfunction at any point:
 
 \begin{equation}
-  \phi _{\overline{\alpha} }(x_2) = \frac{\widetilde{\psi}(x_2, \omega _{\overline{\alpha} } )}{\wtilde{\psi}(x_1, \omega _{\overline{\alpha} } )} \phi _{\overline{\alpha} }(x_1)
+  \phi _{\overline{\alpha} }(x_2) = \frac{\widetilde{\psi}(x_2, \omega _{\overline{\alpha} } )}{\widetilde{\psi}(x_1, \omega _{\overline{\alpha} } )} \phi _{\overline{\alpha} }(x_1)
 \end{equation}
 
 In some cases doing this is easier than diagonalizing the Hamiltonian.
@@ -140,7 +140,7 @@ Our function will then be \(\psi(i) = \psi(-L + i \Delta x)\), \(i \in \N\).
 
 We can already see that we will have exponentially less memory usage than in the classical case.
 
-We prepare \(\ket{\psi_{?}} = \overline{J} \). We need our infinitesimal evolution operator \(U = \exp(-i H \Delta t / \hbar) \).
+We prepare \(\ket{\psi_{0}} = \overline{J} \). We need our infinitesimal evolution operator \(U = \exp(-i H \Delta t / \hbar) \).
 
 Our ancilla qubits are initialized to
 
@@ -157,3 +157,94 @@ Our ancilla qubits are initialized to
 \end{align}
 
 We apply \( \text{QFT}^{-1}\), measure the ancillary registry, and get \(\phi_\alpha\).
+
+\section{Error mitigation}
+
+Redundancy is the key to error mitigation: if the probability of error is \(\varepsilon \ll 1\), if we have a duplicate the probability they both fail is proportional to \(\varepsilon^2 \ll \varepsilon\).
+
+\paragraph{Classical error correction}
+
+Redundancy + votation.
+
+Alice wants to send a bit of information to Bob. To prevent mistakes, she sends three. If there is a probability \(\varepsilon\) of error, and that error happens, Bob gets two equal bits and a third different bit: so he can assume that the different bit is wrong.
+
+We have several cases, if the sent message is \(0 \rightarrow 000\), shown in figure \ref{fig:error-correction}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{c|c|c|c}
+    Number & Received message & Probability & Failure \\
+    \hline
+    1 & 000 & \((1-\varepsilon)^3\) & No \\
+    2 & 001, 010, 100 & \(3\varepsilon (1-\varepsilon)^2\) & No \\
+    3 & 011, 101, 110  & \(3 \varepsilon ^2 (1-\varepsilon)\) & Yes \\
+    4 & 111 & \(\varepsilon^3\) & Yes
+  \end{tabular}
+  \caption{Error correction probabilities}
+  \label{fig:error-correction}
+\end{figure}
+
+The probability of failure is then \(O(\varepsilon^2)\).
+
+\paragraph{Trying to quantize it}
+
+\begin{enumerate}
+  \item We wish to do \(\ket{\psi} \rightarrow \ket{\psi}\ket{\psi}\ket{\psi}\): this is not allowed; it can be done if we can prepare the state \(\ket{\psi}\) (say, it is one of the base states), but we cannot do so in general.
+  \item We want to do a votation: but this means we have to measure it. Maybe we can do a projection?
+  \item For classical bits we want to correct \(\ket{0} \leftrightarrow \ket{1}\), but this is not the only possibility for quantum states.
+\end{enumerate}
+
+\subsection{3-qubit bit-flip code}
+
+We encode
+
+\begin{align}
+  \ket{0} \rightarrow \ket{\widetilde{0}} &= \ket{0}\ket{0}\ket{0} \\
+  \ket{1} \rightarrow \ket{\widetilde{1}} &= \ket{1}\ket{1}\ket{1}
+\end{align}
+
+and in general do
+
+\begin{equation}
+  \ket{\psi_1} = \alpha \ket{0} + \beta \ket{1} \rightarrow \alpha \ket{\widetilde{0}} + \beta \ket{\widetilde{1}} = \alpha \ket{0}\ket{0}\ket{0} + \beta \ket{1}\ket{1}\ket{1}
+\end{equation}
+
+We did not clone the state! That would have been \(\qty(\alpha \ket{0}+\beta \ket{1})^{\otimes 3}\).
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{c|c|c|c}
+    Number & Received message & Probability & Final state \\
+    \hline
+    1 & \(\alpha \ket{0}\ket{0}\ket{0} + \beta \ket{1}\ket{1}\ket{1}\) & \((1-\varepsilon)^3\) & \(\alpha \ket{0}\ket{0}\ket{0} + \beta \ket{1}\ket{1}\ket{1}\) \\
+    2 & perms. of \(\alpha \ket{1}\ket{0}\ket{0} + \beta \ket{0}\ket{1}\ket{1}\) & \(3\varepsilon (1-\varepsilon)^2\) & \(\alpha \ket{0}\ket{0}\ket{0} + \beta \ket{1}\ket{1}\ket{1}\) \\
+    3 & perms. of \(\alpha \ket{1}\ket{1}\ket{0} + \beta \ket{0}\ket{0}\ket{1}\)  & \(3 \varepsilon ^2 (1-\varepsilon)\) & \(\alpha \ket{1}\ket{1}\ket{1} + \beta \ket{0}\ket{0}\ket{0}\) \\
+    4 & \(\alpha \ket{1}\ket{1}\ket{1} + \beta \ket{0}\ket{0}\ket{0}\) & \(\varepsilon^3\) & \(\alpha \ket{1}\ket{1}\ket{1} + \beta \ket{0}\ket{0}\ket{0}\)
+  \end{tabular}
+  \caption{Error correction probabilities for the quantum version}
+  \label{fig:quantum-error-correction}
+\end{figure}
+
+We can do the correction by measuring correlations, without doing a projective measurement: \(x_0 = \expval{\sigma_z^1 \sigma_z^2}\), \(x_1 = \expval{\sigma_z^1 \sigma_z^3}\).
+
+We also get \(x_0 x_1 = 00\) for the case where all the bits are flipped, but it is all right since it is \(O(\varepsilon^3)\).
+
+\subsection{3-qubit phase-flip code}
+
+What if our error is a phase flip  instead of a bit flip? Something like that could be caused by an unknown magnetic field making our state rotate, like \(\ket{0} \rightarrow \ket{0}\), \(\ket{1} \rightarrow -\ket{1}\).
+This can be corrected with a Hadamard gate, and then applying the bit-flip code.
+
+\subsection{9-qubit Shor code}
+
+\begin{align}
+  \ket{0} &\rightarrow \ket{\widetilde{0}} = \frac{1}{\sqrt{8}} \qty(\ket{000} + \ket{111}) ^{\otimes 3} \\
+  \ket{1} &\rightarrow \ket{\widetilde{1}} = \frac{1}{\sqrt{8}} \qty(\ket{000} - \ket{111}) ^{\otimes 3}
+\end{align}
+
+moralmente, si crede di riuscire a fare un ragionevole fault-free computation avendo \(\varepsilon \sim 10 ^{-3 \divisionsymbol 4} \).
+
+\paragraph{Example}
+
+We have an error like \(\ket{0} \rightarrow \ket{0}\), \(\ket{1} \rightarrow \exp(i \varphi) \ket{1}\).
+
+We encode 1 of these qubits with two qubits, like \(\ket{01} \equiv \ket{0}\) and \(\ket{10} \equiv \ket{1}\): now these both take a phase of \(\exp(i \varphi) \): we moved to a smaller subspace which is invariant under this transformation.

@@ -28,19 +28,21 @@ We apply a QFT to the \(n\) control bits, and the result is \(\ket{\psi_2} \).
 
 What is the result of applying \(C-U ^{2^J} = W\)?
 
+\begin{subequations}
 \begin{align}
   \qty(C-U ^{2^J}) \qty[\frac{1}{\sqrt{2}} (\ket{0} + \ket{1} ) \otimes \ket{u} ]
   &= \frac{1}{\sqrt{2}} \qty[W \ket{0} \ket{u} + W \ket{1} \ket{u} ]  \\
   &= \frac{1}{\sqrt{2}} \qty[\ket{0} \ket{u} + \exp(i 2^J \varphi)  \ket{1} \ket{u} ]  \\
   &=   \frac{1}{\sqrt{2}} \qty[\ket{0} + \exp(i 2^J \varphi) \ket{1}  ] \otimes \ket{u}
 \end{align}
+\end{subequations}
 
 Now we can see what is the phase by measuring the ancillary qubits, for example if the phase is \(-1\) we can apply a Hadamard gate.
 
 So the state \(\ket{\psi_1}\) is
 
 \begin{equation}
-  \psi_1 = \frac{1}{\sqrt{2^n}} \qty(\bigotimes_{J=0}^{n-1} \qty(\ket{0} + \exp(i \varphi 2^J) ) ) \otimes \ket{u}
+  \ket{ \psi_1} = \frac{1}{\sqrt{2^n}} \qty(\bigotimes_{J=0}^{n-1} \qty(\ket{0} + \exp(i \varphi 2^J) \ket{1} ) ) \otimes \ket{u}
 \end{equation}
 
 
@@ -52,16 +54,20 @@ We recall
 
 therefore
 
+\begin{subequations}
 \begin{align}
   \ket{\psi_2} = \text{QFT} ^{-1} \ket{\psi_1} &= \frac{1}{2^n} \sum _{x=0}   ^{2^n-1} \sum _{y=0}   ^{2^n-1} \exp(2 \pi i (a-x) \frac{y}{2^n}) \exp(2 \pi i \delta y ) \ket{x} \ket{u}
 \end{align}
+\end{subequations}
 
 so
 
+\begin{subequations}
 \begin{align}
   \P{b} &= \abs{\bra{b}  \frac{1}{2^n} \sum _{x} \sum _{y}  \exp(2 \pi i (a-x) \frac{y}{2^n}) \exp(2 \pi i \delta y ) \ket{x} }^2  \\
   &= \abs{\frac{1}{2^n} \sum _{y}  \exp(\frac{-2 \pi i y (a-b)}{2^n}) \exp(2 \pi i \delta y)   }^2
 \end{align}
+\end{subequations}
 
 where \(\bra{b} = 011101...\) from the computational basis.
 
@@ -69,6 +75,7 @@ Now, if the potential error \(\delta =0\), the probability of measuring "\(b=a\)
 
 If, instead, \(\delta \neq 0\), we can ask the probability of measuring \(b=a\).
 
+\begin{subequations}
 \begin{align}
   \P{a} &= \frac{1}{2^{2n}} \abs{\sum _{y}  \exp(2 \pi i \delta y)  }  \\
   &= \frac{1}{2^{2n}} \abs{\sum _{y} \qty(\exp(2 \pi i \delta))^y }^2  \\
@@ -76,15 +83,15 @@ If, instead, \(\delta \neq 0\), we can ask the probability of measuring \(b=a\).
   &= \frac{1}{2^{2n}} \abs{\frac{1-\exp(2 \pi i \delta)^{2n}}{1-\exp(2 \pi i \delta)}}^2  \\
   &= \frac{1}{2^{2n}} \abs{ \frac{\sin(\pi 2^n \delta)}{\sin(\pi \delta)}}^2
 \end{align}
+\end{subequations}
 
 So, since \(\forall z \in [0, 1/2]: 2z \leq \sin(\pi z) \leq \pi z\), then \(\P {a} \geq 4/ \pi^2 \approx 0.4\).
 
-Actually we can prove \(\P{a} > 1-\varepsilon\) with \(n = l + O(\log(1/\varepsilon))\).
-
+Actually we can achieve \(\P{a} > 1-\varepsilon\) with \(n = l + O(\log(1/\varepsilon))\).
 
 \section{Eigensolver}
 
-We want to solve
+We want to solve the Schrödinger equation
 
 \begin{equation}
   i \hbar \pdv{\psi}{t} = H \psi
@@ -114,11 +121,13 @@ We can decompose our state like \(\psi_0(x )= \sum _{\alpha} a_\alpha \phi_\alph
 
 We can do a Fourier transform, defining \(\omega_\alpha \hbar = E_\alpha\):
 
+\begin{subequations}
 \begin{align}
   \widetilde{\psi_0}(x_0, \omega) &= \int \exp(i \omega t) \sum  a_\alpha \exp(-i \omega_\alpha t)  \dd{t}  \\
   &= \sum _{\alpha}  a_\alpha \int _{0} ^{T} \exp(i (\omega - \omega_\alpha) t) \phi_\alpha (x) \dd{t}  \\
   &\approx a _{\overline{\alpha} } \phi _{\overline{\alpha} } T + \dots
 \end{align}
+\end{subequations}
 
 but this is peaked only at \(\omega = \omega _{\overline{\alpha} } \) for large \(T\). We can measure \(a _{\overline{\alpha} } \phi _{\overline{\alpha} } T\) at different \(x\) positions, and find the eigenfunction at any point:
 
@@ -150,11 +159,13 @@ Our ancilla qubits are initialized to
 
 (mapping to times \(0, \Delta t, 2\Delta t, \dots 2^{n-1}\Delta t\) with the algorythm from before).
 
+\begin{subequations}
 \begin{align}
   \frac{1}{\sqrt{2^n}} \sum \ket{J} U^J \ket{\psi_0}
   &= \frac{1}{\sqrt{2^n}} \sum  \ket{J} \ket{\psi (J\Delta t)}  \\
   &= \frac{1}{\sqrt{2^n}} \sum  \ket{J} \sum a_\alpha \exp(-i \omega_\alpha J \Delta t) \ket{\phi_\alpha}
 \end{align}
+\end{subequations}
 
 We apply \( \text{QFT}^{-1}\), measure the ancillary registry, and get \(\phi_\alpha\).
 
@@ -198,10 +209,12 @@ The probability of failure is then \(O(\varepsilon^2)\).
 
 We encode
 
+\begin{subequations}
 \begin{align}
   \ket{0} \rightarrow \ket{\widetilde{0}} &= \ket{0}\ket{0}\ket{0} \\
   \ket{1} \rightarrow \ket{\widetilde{1}} &= \ket{1}\ket{1}\ket{1}
 \end{align}
+\end{subequations}
 
 and in general do
 
@@ -236,15 +249,23 @@ This can be corrected with a Hadamard gate, and then applying the bit-flip code.
 
 \subsection{9-qubit Shor code}
 
+To account for all kinds of (unitary) errors, we can use
+
+\begin{subequations}
 \begin{align}
   \ket{0} &\rightarrow \ket{\widetilde{0}} = \frac{1}{\sqrt{8}} \qty(\ket{000} + \ket{111}) ^{\otimes 3} \\
   \ket{1} &\rightarrow \ket{\widetilde{1}} = \frac{1}{\sqrt{8}} \qty(\ket{000} - \ket{111}) ^{\otimes 3}
 \end{align}
+\end{subequations}
 
-moralmente, si crede di riuscire a fare un ragionevole fault-free computation avendo \(\varepsilon \sim 10 ^{-3 \divisionsymbol 4} \).
+This of course is very resource-
+
+Experts think we should be able to achieve fault-free computation with \(\varepsilon \sim 10 ^{-3 \divisionsymbol 4} \).
 
 \paragraph{Example}
 
 We have an error like \(\ket{0} \rightarrow \ket{0}\), \(\ket{1} \rightarrow \exp(i \varphi) \ket{1}\).
 
 We encode 1 of these qubits with two qubits, like \(\ket{01} \equiv \ket{0}\) and \(\ket{10} \equiv \ket{1}\): now these both take a phase of \(\exp(i \varphi) \): we moved to a smaller subspace which is invariant under this transformation.
+
+\(\exp(2 \pi i x) \)

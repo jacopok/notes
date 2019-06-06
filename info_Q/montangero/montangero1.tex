@@ -61,11 +61,13 @@ we prepare
 
 We measure the second registry, and obtain \( \ket{\overline{f}} \). Then the first registry must contain all the combinations which generate that state: so:
 
+\begin{subequations}
 \begin{align}
   \ket{\psi_2}
   &= \frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} \ket{\overline{f(x_0)}}  \\
   &= \qty[\frac{1}{\sqrt{m}}\sum _{j=0} ^{m-1} \ket{x_0 + jr} ] \otimes \ket{\overline{f(x_0)}}
 \end{align}
+\end{subequations}
 
 \paragraph{Step 3}
 
@@ -77,11 +79,13 @@ We want to find \( r \), so we can do a quantum Fourier transform. It can be slo
 
 \paragraph{Step 4}
 
+\begin{subequations}
 \begin{align}
   P(\overline{y})
   &= \frac{1}{Nm} \abs{\sum _{j=0} ^{m-1} \exp(2 \pi i (x_0 + jr) \overline{y}/N) }  \\
   &= \frac{1}{r} \abs{\frac{1}{m} \sum_j \exp(2 \pi i j \overline{y} /m)}
 \end{align}
+\end{subequations}
 
 Claim: the states with nonzero probability to be found are those with \( \overline{y} = km \), where \( k \in 0, \dots,  r \).
 
@@ -135,11 +139,14 @@ So \( N = 2^3 = 8 \). \( r=2 \), \( m = N/r = 4 \).
 
 We map \( j \rightarrow \frac{1}{\sqrt{8}} \sum_k \exp(2 \pi i j k / 8) \ket{k} \)
 
+
+\begin{subequations}
 \begin{align}
   \ket{\psi_3}
   &= \frac{1}{2 \sqrt{8}} (\ket{0} + e^{i \pi/4} \ket{1} \\
   &+ \dots + \ket{0} + e^{3 i \pi /4}\ket{1})_1 \otimes \ket{0}_2 \\
   &= \frac{1}{\sqrt{2}} \qty(\ket{0}+\ket{4} )
 \end{align}
+\end{subequations}
 
 We either measure 0 or 4. So, if it is 0 we have failed, if it is 4 we have \( \overline{y} = 4 \), therefore \( k=1 \)  works and \( r=2 \).

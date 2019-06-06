@@ -1,0 +1,159 @@
+\section{Phase estimation algorithm}
+
+Take a unitary transformation \(U\) such that \(U \ket{u}  = \exp(i \varphi) \ket{u} \), where \(0 \leq \varphi \leq 2 \pi \).
+
+\paragraph{Hypotheses}
+
+We can prepare \(\ket{u} \), and \(\exists \text{black box} C-U ^{2^J} \forall J \geq 0\).
+
+We want to estimate \(\varphi\).
+
+We write it as
+
+\begin{equation}
+  \varphi = 2 \pi \qty(\frac{a}{2^n} + \delta) = \overline{\varphi} + \delta \varphi
+\end{equation}
+
+with \(0 \leq \delta \leq 2 ^{-n-1} \)
+and \(a = a _{n-1} a _{n-2} a _{n-3} \dots a_1 a_0 \).
+
+\paragraph{Method}
+
+We introduce an ancillary registry of \(n\) qubits initialized to \(\ket{0} \), while our main registry is made of \(m\) quibits, in which we encode \(\ket{u} \). Their product is \(\ket{\psi_0} \)
+
+[Scheme]
+
+the result of the first operation is \(\ket{\psi_1} \).
+We apply a QFT to the \(n\) control bits, and the result is \(\ket{\psi_2} \).
+
+What is the result of applying \(C-U ^{2^J} = W\)?
+
+\begin{align}
+  C-U ^{2^J} \qty[\frac{1}{\sqrt{2}} (\ket{0} + \ket{1} ) \otimes \ket{u} ]
+  &= \frac{1}{\sqrt{2}} \qty[W \ket{0} \ket{u} + W \ket{1} \ket{u} ]  \\
+  &= \frac{1}{\sqrt{2}} \qty[\ket{0} \ket{u} + \exp(i 2^J \varphi)  \ket{1} \ket{u} ]  \\
+  &=   \frac{1}{\sqrt{2}} \qty[\ket{0} + \exp(i 2^J \varphi) \ket{1}  ] \otimes \ket{u}
+\end{align}
+
+Now we can see what is the phase by measuring the ancillary qubits, for example if the phase is \(-1\) we can apply a Hadamard gate.
+
+So the state \(\ket{\psi_1}\) is
+
+\begin{equation}
+  \psi_1 = \frac{1}{\sqrt{2^n}} \qty(\bigotimes_{J=0}^{n-1} \qty(\ket{0} + \exp(i \varphi 2^J) ) ) \otimes \ket{u}
+\end{equation}
+
+
+We recall
+
+\begin{equation}
+  \text{QFT} ^{-1} = \frac{1}{\sqrt{2^n}} \sum _{x=0}   ^{2^n-1} \exp(\frac{2 \pi ixy}{2^n})
+\end{equation}
+
+therefore
+
+\begin{align}
+  \ket{\psi_2} = \text{QFT} ^{-1} \ket{\psi_1} &= \frac{1}{2^n} \sum _{x=0}   ^{2^n-1} \sum _{y=0}   ^{2^n-1} \exp(2 \pi i (a-x) \frac{y}{2^n}) \exp(2 \pi i \delta y ) \ket{x} \ket{u}
+\end{align}
+
+so
+
+\begin{align}
+  \P{b} &= \abs{\bra{b}  \frac{1}{2^n} \sum _{x} \sum _{y}  \exp(2 \pi i (a-x) \frac{y}{2^n}) \exp(2 \pi i \delta y ) \ket{x} }^2  \\
+  &= \abs{\frac{1}{2^n} \sum _{y}  \exp(\frac{-2 \pi i y (a-b)}{2^n}) \exp(2 \pi i \delta y)   }^2
+\end{align}
+
+where \(\bra{b} = 011101...\) from the computational basis.
+
+Now, if the potential error \(\delta =0\), the probability of measuring "\(b=a\)" is just 1.
+
+If, instead, \(\delta \neq 0\), we can ask the probability of measuring \(b=a\).
+
+\begin{align}
+  \P{a} &= \frac{1}{2^{2n}} \abs{\sum _{y}  \exp(2 \pi i \delta y)  }  \\
+  &= \frac{1}{2^{2n}} \abs{\sum _{y} \qty(\exp(2 \pi i \delta))^y }^2  \\
+  &= \frac{1}{2^{2n}} \abs{\frac{1-\alpha^{2n}}{1-\alpha}}^2  \\
+  &= \frac{1}{2^{2n}} \abs{\frac{1-\exp(2 \pi i \delta)^{2n}}{1-\exp(2 \pi i \delta)}}^2  \\
+  &= \frac{1}{2^{2n}} \abs{ \frac{\sin(\pi 2^n \delta)}{\sin(\pi \delta)}}^2
+\end{align}
+
+So, since \(\forall z \in [0, 1/2]: 2z \leq \sin(\pi z) \leq \pi z\), then \(\P {a} \geq 4/ \pi^2 \approx 0.4\).
+
+Actually we can prove \(\P{a} > 1-\varepsilon\) with \(n = l + O(\log(1/\varepsilon))\).
+
+
+\section{Eigensolver}
+
+We want to solve
+
+\begin{equation}
+  i \hbar \pdv{\psi}{t} = H \psi
+\end{equation}
+
+with our time evolution operator being \(U(t) = \exp(\frac{-i H t}{\hbar} ) \).
+
+The eigenvalues evolve like
+
+\begin{equation}
+  \exp(\frac{-iE_\alpha t}{\hbar}) \ket{E_\alpha}
+\end{equation}
+
+This is a phase! we can apply the methods from before.
+
+\paragraph{Spectroscopic method}
+
+This is a classical  method, implemented on a classical computer. There is no measurement involved, this is all done on a computer, our Hamiltonian is just a black box program.
+
+Starting from any state \(\ket{\psi_0} \), the eigenvalue equation is \(H \phi_\alpha = E_\alpha \phi_\alpha\).
+
+We can decompose our state like \(\psi_0(x )= \sum _{\alpha} a_\alpha \phi_\alpha \). Then it evolves like
+
+\begin{equation}
+  \psi_0 (t) = \sum _{\alpha}  a_\alpha \exp(\frac{-i E_\alpha t}{\hbar}) \phi_\alpha (x)
+\end{equation}
+
+We can do a Fourier transform, defining \(\omega_\alpha \hbar = E_\alpha\):
+
+\begin{align}
+  \widetilde{\psi_0}(x_0, \omega) &= \int \exp(i \omega t) \sum  a_\alpha \exp(-i \omega_\alpha t)  \dd{t}  \\
+  &= \sum _{\alpha}  a_\alpha \int _{0} ^{T} \exp(i (\omega - \omega_\alpha) t) \phi_\alpha (x) \dd{t}  \\
+  &\approx a _{\overline{\alpha} } \phi _{\overline{\alpha} } T + \dots
+\end{align}
+
+but this is peaked only at \(\omega = \omega _{\overline{\alpha} } \) for large \(T\). We can measure \(a _{\overline{\alpha} } \phi _{\overline{\alpha} } T\) at different \(x\) positions, and find the eigenfunction at any point:
+
+\begin{equation}
+  \phi _{\overline{\alpha} }(x_2) = \frac{\widetilde{\psi}(x_2, \omega _{\overline{\alpha} } )}{\wtilde{\psi}(x_1, \omega _{\overline{\alpha} } )} \phi _{\overline{\alpha} }(x_1)
+\end{equation}
+
+In some cases doing this is easier than diagonalizing the Hamiltonian.
+
+\paragraph{Quantizing it}
+
+How to quantum-digitalize the problem? We start  with a \(\psi(x)\) with \(x \in [-L, L]\). We can discretize the points: we divide the interval into \(\Delta x = 2L / (2^n -1)\) steps.
+
+Our function will then be \(\psi(i) = \psi(-L + i \Delta x)\), \(i \in \N\).
+
+\begin{equation}
+  \ket{\psi} = \sum _{i=0}   ^{2^n-1} \psi(i) \ket{i}
+\end{equation}
+
+We can already see that we will have exponentially less memory usage than in the classical case.
+
+We prepare \(\ket{\psi_{?}} = \overline{J} \). We need our infinitesimal evolution operator \(U = \exp(-i H \Delta t / \hbar) \).
+
+Our ancilla qubits are initialized to
+
+\begin{equation}
+  \sum _{J}  \frac{\ket{J}}{\sqrt{2^n}} = \ket{+} ^{\otimes n}
+\end{equation}
+
+(mapping to times \(0, \Delta t, 2\Delta t, \dots 2^{n-1}\Delta t\) with the algorythm from before).
+
+\begin{align}
+  \frac{1}{\sqrt{2^n}} \sum \ket{J} U^J \ket{\psi_0}
+  &= \frac{1}{\sqrt{2^n}} \sum  \ket{J} \ket{\psi (J\Delta t)}  \\
+  &= \frac{1}{\sqrt{2^n}} \sum  \ket{J} \sum a_\alpha \exp(-i \omega_\alpha J \Delta t) \ket{\phi_\alpha}
+\end{align}
+
+We apply \( \text{QFT}^{-1}\), measure the ancillary registry, and get \(\phi_\alpha\).

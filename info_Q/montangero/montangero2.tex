@@ -4,7 +4,7 @@ Take a unitary transformation \(U\) such that \(U \ket{u}  = \exp(i \varphi) \ke
 
 \paragraph{Hypotheses}
 
-We can prepare \(\ket{u} \), and \(\exists \text{ a black box } \qty(C-U ^{2^J}) \forall J \geq 0\).
+We can prepare \(\ket{u} \), and \(\exists \text{ a black box } \qty(C-U ^{2^J}) \forall J \geq 0\): that is, a "control - \(U\) applied \(2^J\) times", such that \(\qty(C-U ^{2^J})\ket{0}\ket{u} = \ket{0} \ket{u}  \) and \(\qty(C-U ^{2^J})\ket{1}\ket{u} = \exp(i 2^J \varphi)  \ket{1} \ket{u}  \).
 
 We want to estimate \(\varphi\).
 
@@ -37,7 +37,7 @@ What is the result of applying \(C-U ^{2^J} = W\)?
 \end{align}
 \end{subequations}
 
-Now we can see what is the phase by measuring the ancillary qubits, for example if the phase is \(-1\) we can apply a Hadamard gate.
+Now we can see what is the phase by measuring the ancillary qubits, for example if the phase was just \(-1\) we could apply a Hadamard gate and measure along the \(\pm\) .
 
 So the state \(\ket{\psi_1}\) is
 
@@ -245,7 +245,7 @@ We also get \(x_0 x_1 = 00\) for the case where all the bits are flipped, but it
 \subsection{3-qubit phase-flip code}
 
 What if our error is a phase flip  instead of a bit flip? Something like that could be caused by an unknown magnetic field making our state rotate, like \(\ket{0} \rightarrow \ket{0}\), \(\ket{1} \rightarrow -\ket{1}\).
-This can be corrected with a Hadamard gate, and then applying the bit-flip code.
+This can be corrected with a Hadamard gate, and then applying the 3 qubit-flip code.
 
 \subsection{9-qubit Shor code}
 
@@ -258,7 +258,7 @@ To account for all kinds of (unitary) errors, we can use
 \end{align}
 \end{subequations}
 
-This of course is very resource-
+This of course is very resource-heavy.
 
 Experts think we should be able to achieve fault-free computation with \(\varepsilon \sim 10 ^{-3 \divisionsymbol 4} \).
 

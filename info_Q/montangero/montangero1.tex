@@ -1,29 +1,29 @@
 \section{Shor's algorithm}
 
-We want to factor a product of large numbers.
+It is a method to factor a product of large numbers.
 
-Bob and Alice want to communicate, Bob generates a public key \( K _{\text{Pu}} \) and a private key \( K _{\text{Pr}}  \), he sends \( K _{\text{Pu}} \) to Alice, who encodes the message \( C \), sends it to Bob, who uses \( K _{\text{Pr}} \) to decode it.
+\paragraph{Motivation}
 
-Given a message \( P \), we encode it as
-
-\begin{equation}
-  C = E _{K _{\text{Pu}} } (P) = P ^e \mod n
-\end{equation}
-
-where \( n \) is chosen such that \( n = pq \), with \( p, q \in \Z_{\text{prime}} \), \(\Phi = (p-1) (q-1)\), \( 1<e<\Phi \) and \( \text{GCD}(\Phi, e) = 1 \).
-
-\( d \) is chosen such that \( de = 1 \mod \Phi \).
-The message is decoded as
+Alice wants to communicate a message \(P\) to Bob.
+Bob generates a public key \( K _{\text{Pu}} \) and a private key \( K _{\text{Pr}}  \), he sends the public key \( K _{\text{Pu}} \) to Alice, who encodes the message with an algorithm \(E\) which depends on the public key:
 
 \begin{equation}
-  D _{K _{\text{Pr}}} C^d \mod P (d, n)
+  C = E _{K _{\text{Pu}} } (P) = P ^e \mod N
 \end{equation}
 
-Factoring \( n \) is equivalent to finding the period of a function: the \emph{order} \( r \) is the number such that \( x ^{r} = 1 \mod N  \) , \( f(r) = x^r \mod N \).
+where \( N \) is chosen such that \( N = pq \), with \( p, q \in \Z_{\text{prime}} \), \(\Phi = (p-1) (q-1)\), \( 1<e<\Phi \),  and \( \text{GCD}(\Phi, e) = 1 \).
+
+She then sends \( C \) to Bob, who uses \( K _{\text{Pr}} \) to decode it with an algorithm \(D\):
+
+\begin{equation}
+  P = D _{K _{\text{Pr}}} C^d \mod N % P (d, N)??
+\end{equation}
+
+where \( d \) is chosen such that \( de = 1 \mod \Phi \).
+
+Factoring \( N \) is equivalent to finding the period of a function: the \emph{order} \( r \) is the number such that \( x ^{r} = 1 \mod N  \) , \( f(r) = x^r \mod N \).
 
 If \( r \) is even, then \( y = x ^{r/2}  \), so \( y^2 = 1 \mod N \) therefore \( (y+1)(y-1) = 0 \mod N \).
-
-(The new variable \( N \)  is actually \( n \), to fix later).
 
 Therefore \( (y+1)(y-1) = kN \) for some \( k \in \N \), so we have found the factors.
 
@@ -42,19 +42,19 @@ The quantum step is in step \ref{item:qft}.
 
 \paragraph{Step 1}
 
-\subparagraph{Hypotheses} These are not actually needed but they make treating the problem much simpler. \( N = 2^n \), \( N/r = m \in \N \).
+\subparagraph{Hypotheses} These are not actually needed but they make treating the problem much simpler, and there is not much to learn in generalizing: we assume \( N = 2^n \) and \( N/r = m \in \N \).
 
-we encode the function like
+As always we cannot directly encode our function as a unitary transformation since it will be periodic, therefore not injective, therefore not unitary. So we encode it taking the input along, as
 
 \begin{equation}
    U: \ket{x}\ket{0} \longmapsto \ket{x} \ket{f(x)}
 \end{equation}
 
-We start from \( \ket{0}^n \), apply many Hadamards and get \( \ket{x} \) = superposition of all possible states, and with this
+We start from \( \ket{0}^{\otimes n} \), apply \(N\) Hadamards and get \( \ket{\psi_0} \) = superposition of all possible states, and with this
 we prepare
 
 \begin{equation}
-  \ket{\psi} = \frac{1}{\sqrt{2^n}} \sum \ket{x} \ket{f(x)}
+  \ket{\psi_1} = \frac{1}{\sqrt{2^n}} \sum _{x=0} ^{N}   \ket{x} \ket{f(x)}
 \end{equation}
 
 \paragraph{Step 2}
@@ -71,7 +71,7 @@ We measure the second registry, and obtain \( \ket{\overline{f}} \). Then the fi
 
 \paragraph{Step 3}
 
-We want to find \( r \), so we can do a quantum Fourier transform. It can be slow for generic functions but in our case the transform is applied to a function which is actually periodic
+We want to find \( r \), so we can do a quantum Fourier transform. It can be slow  to actually measure the full transform for generic functions but in our case the transform is applied to a function which is already periodic
 
 \begin{equation}
   \ket{\psi _3} = \text{QFT}\qty{\ket{\psi_2}} = \frac{1}{\sqrt{mN}} \sum _{y=0} ^{N-1} \sum _{j=0} ^{m-1} \exp(2 \pi i (x_0 + jr) y/N) \ket{y}
@@ -79,9 +79,11 @@ We want to find \( r \), so we can do a quantum Fourier transform. It can be slo
 
 \paragraph{Step 4}
 
+We compute the probability of obtaining a specific value \(\overline{y} \) from a measure of the registry:
+
 \begin{subequations}
 \begin{align}
-  P(\overline{y})
+  \P{}\overline{y}}
   &= \frac{1}{Nm} \abs{\sum _{j=0} ^{m-1} \exp(2 \pi i (x_0 + jr) \overline{y}/N) }  \\
   &= \frac{1}{r} \abs{\frac{1}{m} \sum_j \exp(2 \pi i j \overline{y} /m)}
 \end{align}
@@ -91,7 +93,7 @@ Claim: the states with nonzero probability to be found are those with \( \overli
 
 \subparagraph{Example}
 
-\( P(\overline{y} = 0) = 1/r \abs{1/m \sum_j 1} = 1/r \). Our function is periodic with period
+\( P(\overline{y} = 0) = 1/r \abs{1/m \sum_j 1} = 1/r \). Our function is periodic with period \(r\), and there are \(r-1\) other analogous states. So, the probability is saturated and there is no other possible outcome.
 
 So all the states we get are in the form \( \overline{y}=km = kN/r \). We know $N$, we measured \( \overline{y} \), so:
 
@@ -102,9 +104,11 @@ So all the states we get are in the form \( \overline{y}=km = kN/r \). We know $
 
 \( P(\text{success}) \sim 1 \) dopo \( O(\log(\log(r))) \).
 
-Detto \( n = \log N \), Shor scala come \( O(n^2 \log n \log \log n) \), l'algoritmo classico scala come \( \exp(O(\sqrt[3]{n\log n})) \).
+Recall \( n = \log N \): the complexity of Shor's algorithm scales as \( O(n^2 \log n \log \log n) \), whereas the classical algorithm scales as \( \exp(O(\sqrt[3]{n\log n})) \).
 
-\paragraph{Example}
+It is important to emphasize that no classical algorithm has been found which runs in polynomial time, but it has \emph{not} been proven that it is impossible for one to be found.
+
+\paragraph{Example of period search}
 
 \begin{equation}
   f(x) = \frac{1}{2} \qty(\cos \pi x + 1)
@@ -120,6 +124,8 @@ Detto \( n = \log N \), Shor scala come \( O(n^2 \log n \log \log n) \), l'algor
   \end{array}
 \right.
 \]
+
+As always, we mix the notation for \(n\)-qubit states, \(n\)-bit numbers expressed in binary and in decimal.
 
 So \( N = 2^3 = 8 \). \( r=2 \), \( m = N/r = 4 \).
 

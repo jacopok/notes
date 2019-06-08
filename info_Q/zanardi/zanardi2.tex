@@ -20,7 +20,7 @@ We wish to prove
 
 \begin{align}
   \abs{\braket{\phi}{\psi}} &= \abs{\sum_i \bra{\phi} E_i \ket{\psi}}  \\
-  &\leq \sum_i \abs{\bra{\phi} \sqrt{E _{i} } \sqrt{E _{i} \ket{\psi}}}  \\
+  &\leq \sum_i \abs{\bra{\phi} \sqrt{E _{i} } \sqrt{E _{i}} \ket{\psi}}  \\
   &= \sum _{i} \abs{\braket{\hat{\phi_i}}{\hat{\psi_i}}}  \\
   &\leq \sum_i \norm{\sqrt{E_i} \ket{\phi}}\norm{\sqrt{E_i} \ket{\psi}}  \\
   &= \sum_i \sqrt{\ev{E_i}{\phi}} \sqrt{\ev{E_i}{\psi}}  \\
@@ -30,7 +30,7 @@ We wish to prove
 so we just apply the \( \cos ^{-1} \) to both sides.
 
 \begin{equation}
-  \mathbb{E} = \qty{\ketbra{\phi} | , \qty{\ketbra{\phi_i}} \text{span the } \ketbra{\phi}^{\perp}}
+  \mathbb{E} = \qty{\ketbra{\phi} | , \qty{\ketbra{\phi_i}} \text{span } \ketbra{\phi}^{\perp}}
 \end{equation}
 
 so the first term just gives us the upper bound, the other terms in the sum are 0: the inequality is saturated. We can just measure the projector associated with the state we want to know about.
@@ -75,19 +75,25 @@ Take a random variable \( x \) distributed according to \(p_\theta (x)\) (a one-
 
 We prove a super-famous bound. Differentiate the previous equation wrt \( \theta \).
 
+\begin{subequations}\label{eq:classical-crao-start}
 \begin{align}
-  1 &= \int  p' _\theta (x) \Theta (x) \dd{x}  \\
-  &= \braket{\frac{p'_\theta}{p_\theta}}{\Theta}_p
+  1 &= \int  p' _\theta (x) \Theta (x) \dd{x}   \\
+  &= \braket{\frac{p'_\theta}{p_\theta}}{\Theta}_p \label{eq:classical-crao-start-subeq}
 \end{align}
+\end{subequations}
 
-Claim: the notation \( \braket{f}{g}_p = \int  p_\theta f g \dd{x}  \) defines a scalar product.
+\textbf{Claim}: the notation \( \braket{f}{g}_p = \int  p_\theta f g \dd{x}  \) defines a scalar product.
 
-\expl{
-%\paragraph{Proof}
-Test
-}
+\begin{greenbox}
+  \textbf{Proof: }
+  The axioms for a real scalar product are symmetry, linearity, and positive definiteness. The first two come from the properties of the regular product \(fg\); the interesting one to prove is the third. It is true since \(p_ \theta \geq 0\), and then \(\forall f: \int  p_ \theta f^2  \dd{x} \geq 0 \), also (modulo equality almost everywhere) \(\braket{f}{f}=0 \iff f=0\).
+\end{greenbox}
 
-We can always subtract \( \theta \) in the integrand (?).
+We can subtract a fixed value \( \theta \) from \(\Theta \rightarrow \overline{\Theta} = \Theta - \theta \) leaving the result unchanged, since when differentiting in  \eqref{eq:classical-crao-start} the additional terms are
+
+\begin{equation}
+  -\partial _ \theta \int  p_ \theta \theta \dd{x} = - (1 + \theta) \int  p' _ \theta \dd{x} = 0
+\end{equation}
 
 \begin{align}
   1 &\leq \norm{\frac{p_\theta '}{p_\theta}}^{2}_p \norm{\Theta}^2_p  \\
@@ -136,7 +142,7 @@ And like before
 
 so then \( \var{\Theta} \geq 1/F_Q \).
 
-Claim: take \( \rho = \sum_i \ketbra{i} \), then \( X _{ij} = 2\bra{i}\rho' \ket{j}/\qty(p_i + p_j) \).
+\textbf{Claim}: take \( \rho = \sum_i \ketbra{i} \), then \( X _{ij} = 2\bra{i}\rho' \ket{j}/\qty(p_i + p_j) \).
 
 So we can compute
 
@@ -164,14 +170,15 @@ where \( \psi' = \partial_\theta \psi \). This is a way to solve the Lyapunov eq
 \( \Pi = \ketbra{\psi} \). Then \(\Pi ^2 = \Pi\), we differentiate it.
 So \( \Pi' \Pi + \Pi \Pi' = \Pi' \): in the pure state case, the solution is then just \( \Pi ' = X \).
 
-Claim: if we do \( \Tr \qty(\rho F_Q^2)\)...
+\textbf{Claim}: we can calculate  \( F_Q =  \Tr \qty(\rho \qty(\rho')^2)\)...
 
-\paragraph{First try}
+\begin{greenbox}
+  \textbf{Proof}
+  The derivative of \( \rho \) is \( \rho' = \ketbra{\psi}{\psi'} - \ketbra{\psi'}{\psi} \).
 
-The derivative of \( \rho \) is \( \rho' = \ketbra{\psi}{\psi'} - \ketbra{\psi'}{\psi} \).
+  Then computing \( \Tr(\rho \rho'\, ^\dag \rho') = - \Tr(\rho \rho' \rho'\, ^\dag)\) we get
 
-Then computing \( \Tr(\rho \rho'\, ^\dag \rho') = - \Tr(\rho \rho' \rho'\, ^\dag)\) we get
-
-\begin{equation}
-  \Tr(\rho \rho'\, ^\dag \rho') = \braket{\psi'}{\psi'} - \abs{\braket{\psi'}{\psi}}^2
-\end{equation}
+  \begin{equation}
+    \Tr(\rho \rho'\, ^\dag \rho') = \braket{\psi'}{\psi'} - \abs{\braket{\psi'}{\psi}}^2
+  \end{equation}
+\end{greenbox}

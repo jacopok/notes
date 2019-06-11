@@ -1,0 +1,121 @@
+\section{Quantum Fischer metric}
+
+\textbf{Missing bit}
+
+\begin{equation}
+  \sqrt{\qty(1+ \frac{1}{2} \Re(\braket{\psi}{\psi''} )^2) + \abs{\braket{\psi}{\psi'} }^2 \dd{\lambda^2} + O(\dd{\lambda^2}) }
+\end{equation}
+
+It seems like we're missing something but we are not.
+
+\begin{equation}
+  = \sqrt{\qty(1 - \frac{1}{2} \braket{\psi'}{\psi'} )^2 \dd{\lambda^2} + \abs{\braket{\psi}{\psi'} }^2 }
+  \propto \sqrt{1 - \braket{\psi'}{\psi'} )^2 \dd{\lambda^2}  + \abs{\braket{\psi}{\psi'} }^2 \dd{\lambda^2}}
+\end{equation}
+
+Therefore the fidelity is
+
+\begin{equation}
+  F \sim 1 - \frac{1}{2} \qty(\braket{\psi'}{\psi'} )^2 \dd{\lambda^2}  + \abs{\braket{\psi}{\psi'} }^2 \dd{\lambda^2})
+  \sim 1 - \frac{1}{2}\dd{s^2}
+\end{equation}
+
+so \(\dd{s^2} = \qty(\braket{\psi'}{\psi'} )^2  + \abs{\braket{\psi}{\psi'} }^2) \dd{\lambda^2}\)
+is the expression of the \textbf{Quantum Fisher Metric} in the \(\dim \qty[ \supp{\rho}] = 1\) case.
+
+Now \(\lambda\) is our control parameter and it lives on a smooth manifold, and \(\psi = \psi(\lambda)\) is the Ground State of a hamiltonian \(H\).
+
+We have a map like: \(\lambda \rightarrow H(\lambda) \rightarrow \text{Groundd State }  = \P H\).
+
+Let us consider a perturbative setting: \(H(\lambda) = H_0 + \lambda V\).
+
+We remember the perturbative expression
+
+\begin{equation}
+  \ket{\widetilde{\psi}_0 } = \ket{\psi_0} + \lambda \ket{\psi_0^{(1)}} + O(\lambda^2)
+\end{equation}
+
+where
+
+\begin{equation}
+  \ket{\psi_0 ^{(1)} } = \sum _{n>0} \frac{\dyad{\psi_n ^{(0)}} V \ket{\psi_0 ^{(0)} }}{E_n ^{(0)}  -  E_0 ^{(0)} } \perp \ket{\psi_0}
+\end{equation}
+
+and \(H_0 \ket{\psi_n} = E_n \ket{\psi_n}\).
+
+With this, we can get a new formula for the metric. We write \(\lambda V = \dd{H} \). Now, in the expression for the Fisher Metric the term  \(\braket{\psi_0}{\psi_0 '} = 0 \). So:
+
+\begin{equation}
+  \dd{s^2} = \norm{\ket{\psi_0 '}} = \sum _{n>0}  \frac{\abs{\bra{\psi_n} \dd{H} \ket{\psi_0}} }{(E_n - E_0)^2}
+\end{equation}
+
+This is different from regular second order perturbation theory because of the square in the denominator. It is the Fubini-Study metric pulled back over the parameter manifold.
+
+We want to do the "GR thing". We have a pseudorimannian parameter manifold, and the divergences of the metric are where the physics happens: if the metric is large, some very close events are distingishable by a very large measurement.
+
+If the first excited state is very close to the ground state, which happens in quantum phase transitions, we have a blow-up of the metric. (In the thermodinamical limit, where the system size \(N \rightarrow \infty\)).
+
+\begin{equation}
+   \lim _ {N \rightarrow \infty} \Delta_N(\lambda) = \begin{cases}
+     > 0: \qquad \text{Gapped}  \\
+     0: \qquad \text{Gap-less: a Quantum controlled Phase Transition}
+ \end{cases}
+\end{equation}
+
+\textbf{Claim}: if \(\lambda \in M \) is gapped, then the metric is at most extensive (\(\dd{s^2} \leq cN = O(N) \)).
+
+Then it follows that if \(\dd{s^2} = N^\alpha \) with \(\alpha>1\), then we can tell the system is gapless.
+
+\begin{greenbox}
+  \textbf{Proof}:
+
+  \begin{subequations}
+  \begin{align}
+    \dv{s^2}{\lambda^2}  &= \sum _{n>0}  \frac{\abs{\bra{\psi_n} V \ket{\psi_0}}}{(E_n - E_0)^2}  \\
+    &\leq \frac{1}{\Delta^2} \sum _{n>0} \abs{\bra{\psi_n} V \ket{\psi_0}}^2  \\
+    &=  \frac{1}{\Delta^2} \bra{\psi_0} V   \sum _{n>0} \dyad{\psi_n} V \ket{\psi_0}
+      - \ketbra{\psi_0}{\psi_0}
+  \end{align}
+  \end{subequations}
+
+  \textbf{TO CHECK}
+
+  So,
+
+  \begin{subequations}
+  \begin{align}
+    \qty(\dv{s}{\lambda})^2  &=  \frac{1}{\Delta^2} \qty(\ev{V^2}{\psi_0} - \ev{V^2}{\psi_0}^2)  \\
+    &= G \dd{V}
+  \end{align}
+  \end{subequations}
+
+  where we consider \(V = \sum _{j}  V_j \) and \(G _{ij} = \expval{V_i V_j} - \expval{V_i} \expval{V_j} = G(\abs{i-j} ) \).
+
+  So,
+
+  \begin{equation}
+    \qty(\dv{s}{\lambda} ) \leq \frac{1}{\Delta^2} N \sum _{k} G(k)
+  \end{equation}
+
+  but it is known that for gapped systems \(G\) decays eponentially; so
+
+  \begin{equation}
+    \qty(\dv{s}{\lambda} ) \leq \frac{1}{\Delta^2} N \sum _{k} \exp(-\frac{\abs{G}}{\text{something}}  )
+  \end{equation} 
+
+  the point is that those exponentials are finite:
+
+  \begin{equation}
+    \qty(\dv{s}{\lambda} ) \leq \frac{1}{\Delta^2} N \widetilde{C}
+  \end{equation}
+
+  which proves the theorem.
+\end{greenbox}
+
+We will use \(N\) qubits, and
+
+\begin{equation}
+  H_{xy} = -\frac{1}{2} \qty(\sum _{i=1}   ^{N} \frac{1 + \gamma}{2} \sigma_i ^x \sigma_{i+1}^x \frac{1-\gamma}{2} \sigma^y_i \sigma_{i+1}^y - h \sigma_i^{z} )
+\end{equation}
+
+this maps our system to free fermions which are exactly solvable: see Jordan Kahuma (?).

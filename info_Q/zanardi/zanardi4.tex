@@ -12,7 +12,7 @@
 
 \begin{equation}
     \qty(\dv{s}{\lambda} )^2
-    = \sum _{n>0}  \frac{\abs{\bra{\psi_n} \partial_ \lambda \ket{\psi_0}  } }{\qty(E_n - E_0)^2}
+    = \sum _{n>0}  \frac{\abs{\bra{\psi_n} \partial_ \lambda H \ket{\psi_0}  } }{\qty(E_n - E_0)^2}
     = \chi_F
 \end{equation}
 
@@ -33,7 +33,7 @@ our metric is
 
 \begin{equation}
     g _{\mu \nu} = \sum _{n>0}
-    \frac{\abs{\bra{\psi_0} \partial_ \mu \ket{\psi_n} \bra{\psi_n} \partial_ \nu \ket{\psi_0} } }{\qty(E_n - E_0)^2}
+    \frac{\abs{\bra{\psi_0} \partial_ \mu H \ket{\psi_n} \bra{\psi_n} \partial_ \nu  H \ket{\psi_0} } }{\qty(E_n - E_0)^2}
 \end{equation}
 
 We could  do \(g_{\mu \nu} \rightarrow g' _{\mu \nu}\): this will be linear, and this will not change the \(N\) dependence of \(\chi_F\) unless we do crazy things.
@@ -165,16 +165,18 @@ If \(\Delta_k \sim 0\) this becomes
     F \sim \prod_k \qty(1 - \frac{1}{2} \qty(\Delta \theta_k)^2) = \dots
 \end{equation}
 
+We look at the scaling of the metric element \(g _{hh} \), that is, we look at the distance between the eigenstates of Hamiltonians between which we change \(h\) while leaving \(\gamma\) constant. Let us use the shorthands \(S = \sin(2 \pi k /N)\) and \(C = \cos(2 \pi k /N)\)
+
 \begin{subequations}
 \begin{align}
-    \chi_F &= \frac{1}{2} \sum _{k}  \qty(\pdv{\theta_k}{k} \dd{k^2} )  \\
-    &= \frac{1}{2} \sum _{k}  \frac{\frac{-\gamma \sin (2 \pi k /N)}{\qty(h - \cos (2 \pi k /N))^2}}{1 + \qty(\frac{\gamma \sin (2 \pi k /N)}{h - \cos (2 \pi k /N)})^2}  \\
-    &= \sum _{k} \qty[ \frac{\frac{-\gamma \sin (2 \pi k /N)}
-    {\qty(h - \cos (2 \pi k /N))^2}}{1 + \qty(\frac{\gamma \sin (2 \pi k /N)}{h - \cos (2 \pi k /N)})^2}]
+    \dd{s^2} &= \frac{1}{2} \sum _{k}  \qty(\pdv{\theta_k}{h})^2 \dd{h^2}  \\
+    \qty(\dv{s}{h})^2 &= \frac{1}{2} \sum _{k}
+    \qty(\frac{\frac{-\gamma S}{\qty(h - C)^2}}{1 + \qty(\frac{\gamma S}{h - C})^2})^2  \\
+    &= \sum _{k} \qty( \frac{\gamma S}{\qty(h - C)^2 + \qty(\gamma S)^2})^2
 \end{align}
 \end{subequations}
 
-todo: finish calculation. We can replace the sums with integrals as \(N \rightarrow \infty\).
+We can replace the sums with integrals as \(N \rightarrow \infty\). We now call \(\widetilde{k}=2\pi k / N \).
 
 \begin{equation}
     \chi_F  \rightarrow \frac{N \gamma }{2 \pi} \int _{0}   ^{\pi} \dd{\widetilde{k}}

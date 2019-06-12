@@ -1,0 +1,208 @@
+\documentclass[main_montangero.tex]{subfiles}
+\begin{document}
+
+\section{Time-dependent perturbation theory}
+
+We have an atom or some quantum system, and we manipulate it by sending an EM pulse against it. How will it change?
+
+Say we have some discrete energy levels, and a continuous spectrum after some threshold energy.
+The photon can excite the ground state \(\ket{i} \) to some excited state \(\ket{f} \), or vice versa.
+This can happen between discrete energies, or with the continuous energies.
+
+We need to solve the time-dep Schrödinger equation:
+
+\begin{equation}
+    i \hbar \dv{}{t} \ket{\psi(t)} = \qty[H_0 + \lambda W(t)]\ket{\psi(t)}
+\end{equation}
+
+We work with the unperturbed eigenstates \(H_0 \ket{\varphi_n}  = E_n \ket{\varphi_n}  \), we assume \(\lambda \ll 1\),
+and we say that the starting state at \(t=0\) is an unperturbed eigenstate.
+
+What is the probability of getting a state \(f\)?
+
+\begin{equation}
+    \P _{if}(t) = \abs{\braket{\varphi_f}{\psi(t)} }^2
+\end{equation}
+
+we can get resonance.
+For continuous states this changes a bit but we can generalize.
+
+We expand
+
+\begin{equation}
+    \ket{\psi(t)} = \sum c_n(t) \ket{\varphi_n}   \qquad c_n(t) = \braket{\varphi_n}{\psi(t)}
+\end{equation}
+
+We can compute the matrix elements of the perturbation: \(\bra{\varphi_n} W(t) \ket{\varphi_k} = W_{nk}(t)\) and of the Hamiltonian:
+\(\bra{\varphi_n} H_0 \ket{\varphi_k} = \delta_{nk} E_n\). Putting these in the Schrödinger equation, we get
+
+\begin{equation}
+    i \hbar \dv{}{t} c_n(t) = E_n c_n(t) + \sum _{k} \lambda W_{nk} c_k (t)
+\end{equation}
+
+We go in interaction picture: \(b_n(t) = c_n(t) \exp(+i E_n t / \hbar) \), which nullifies the unperturbed evolution.
+Putting this inside the equation we get
+
+\begin{equation}
+    i \hbar \dot{b}_n(t) = \lambda \sum _k \exp(i \omega_{nk}) W_{nk} b_k (t)
+\end{equation}
+
+with \(\omega_{nk = (E_n - E_k) / \hbar}\). We can expand the \(b_n(t)\) in \(\lambda\):
+
+\begin{equation}
+    b_n(t) = \sum _{i}  b_n ^{(i)} \lambda^i (t)
+\end{equation}
+
+We know that for some \(i\) we must have \(b_n ^{(r)}(t=0) = \delta_{ni} \delta_{r0} \) and so:
+
+\begin{align}
+    i \hbar \dot{b}_n ^{(0)}(t) &= 0  \\
+    i \hbar \dot{b}_n ^{(r)}(t) &= \sum _{k} \exp(i \omega_{nk} t) W_{nk} b_n ^{r-1}(t)
+\end{align}
+
+Then to order \(\lambda^1\):
+
+\begin{equation}
+    i \hbar \dot{b}_n (t) = \exp(i \omega_{nk}t) W_{nk}(t)
+\end{equation}
+
+\begin{equation}
+    b_n^{(1)}(t) = \frac{1}{i \hbar} \int _{0}   ^{t} \dd{\tau} \exp(i \omega_{ni} \tau)W_{ni}(\tau)
+\end{equation}
+
+So \(\P _{if}(t) = \abs{c_f(t)}^2 = \abs{b_f(t)}^2\)
+
+\begin{equation}
+    \P _{if}(t) = \frac{\lambda^2}{\hbar^2} \abs{\int _{0}   ^{t} \dd{\tau} \exp(i \omega_{fi} \tau)W_{gi}(\tau)  }^2
+\end{equation}
+
+\paragraph{Example}
+
+Let us take a \(W(t) = - W \sin(\omega t)\). Then,
+
+\begin{equation}
+    b_n^{(1)}(t) = - \frac{W_{ni}}{2 \hbar} \int _{0}   ^{t} \dd{\tau} \qty(\exp(i (\omega_{ni} - \omega) \tau) - \exp(-i (\omega_{ni} - \omega) \tau))
+\end{equation}
+
+So,
+
+\begin{equation}
+    \P _{if} (t, \omega) = \frac{\abs{W_{if}}^2 }{4 \hbar^2} F(t, \omega - \omega_{fi})
+\end{equation}
+
+where
+
+\begin{equation}
+    F(\omega, t) = \qty(\frac{\sin(\omega t/2)}{\omega/2})^2
+\end{equation}
+
+This is a sinc squared.
+
+\subsection{Fermi's golden rule}
+
+Is applying what we saw to continuous spectrums. Now we have some \(\braket{\alpha}{\alpha'} = \delta(\alpha - \alpha') \). We want to see what is the probability of the final state being in a neighbourhood of \(\alpha\).
+
+We define the state density by \(\dd{\alpha} = \rho(\beta, E ) \dd{\beta} \dd{E} \) where the index \(\beta\) takes account of the degeneracy, which can be continuous.
+
+\begin{equation}
+    \delta \P \qty(\alpha_f, t) = \int   \dd{\alpha} \abs{\braket{\alpha}{\psi(t)} }^2
+\end{equation}
+
+where \(\alpha \in D_f\). So, we can change variable into
+
+\begin{equation}
+    \delta \P \qty(\alpha_f, t) = \int  \abs{\braket{\beta, E}{\psi(t)} }^2 \rho(E, \beta)  \dd{E} \dd{\beta}
+\end{equation}
+
+We can write
+
+\begin{equation}
+    \abs{\braket{\beta, E}{\psi(t)} }^2
+    = \frac{1}{\hbar^2} \abs{\bra{\beta, E} W \ket{\varphi_i}  }^2 F\qty(t, \frac{E-E_i}{\hbar})
+\end{equation}
+
+where \(\lim_{t \rightarrow \infty} F\qty(t, \frac{E-E_i}{\hbar}) = 2 \pi i \hbar \delta(E - E_i)\).
+Then
+
+\begin{equation}
+    \delta \P (\varphi_i, \alpha_f, t)
+    = \delta \beta_f \frac{2 \pi i t}{\hbar} \abs{\bra{\beta_f, E_f = E_i} W \ket{\varphi_i}}^2
+    \rho(\beta, E_f)
+\end{equation}
+
+Then
+
+\begin{equation}
+    W(\varphi_i, \alpha_f) = \dv{}{t} \fdv{\P}{\beta} = \frac{\pi}{2 \hbar}
+    \abs{\bra{\beta_f, E_f = E_i + \hbar \omega} W \ket{\varphi_i}}^2
+    \rho (\beta_f, E_f = E_i + \hbar \omega)
+\end{equation}
+
+The more states we have in the final configuration, the greater the probability. We are assuming here that the state density is constant in the degeneracy, and we can split the degeneracy and energy contributions.
+
+\section{How to build a quantum computer}
+
+Di Vincenzo criteria (2000): what is needed to have a true quantum computer.
+
+\begin{enumerate}
+    \item Scalability, well defined qubit;
+    \item Reset: we must be able to reset the computer surely into a state \(\ket{0} \);
+    \item Long coherence time wrt gate duration;
+    \item Universal set of gates;
+    \item Efficient readout;
+\end{enumerate}
+
+If our decoherence time is \(\tau_d\) and our gate time is \(\tau_g\), we need \(\tau_d / \tau_g \gtrsim 10^4\) in order to have time to do error correction.
+
+Proposals:
+
+\begin{itemize}
+    \item Cauidiy: QED;
+    \item Solid-state electron spins;
+    \item Cold atoms;
+    \item Trapped ions;
+    \item Superconductive circuits.
+\end{itemize}
+
+\subsection{Trapped ions}
+
+We can trap them with electric fields: Paul trap. We cannot do the intuitive thing, because of Gausses' law. We can work around it by making them time-dependent. Think of it like this: saddle which spins, an object in the saddle point will be stable if the rotation is fast enough.
+
+We get three harmonic oscillators, with \(\omega_{x,y} \gg \omega_z\). The \(z\) direction is the 'quantum' degree of freedom: the state comes from the atom state \(i\) and the oscillator state \(n\).
+
+Can we put many qubits in there? Our Hamiltonian will be
+
+\begin{equation}
+    H  = \sum  \frac{p_i^2}{2m} + \sum  \frac{1}{2} \omega_z^2 z_i^2
+    + \sum_i \sum_{j<i} \frac{q^2}{4 \pi \varepsilon_0 \abs{r_i - r_j} }
+\end{equation}
+
+They repel each other, we can diagonalize this matrix and get the modes of oscillation.
+
+So we have \(\ket{\alpha_1 \alpha_2 \dots \alpha_N n} \) where the \(n\) is the global oscillation. Our single qubit is \(\ket{\alpha_i n} \). We have the states \(\ket{g, 0} \), \(\ket{g, 1} \), \(\ket{g, 2} \) \dots and \(\ket{e, 0} \), \(\ket{e, 1} \) \dots
+
+We can use a laser to excite the ground state into a vibrational excited state... we choose the right frequency to go from \(\ket{g, k} \) to \(\ket{e, k-1} \) which spontaneously decays into \(\ket{g, k-1} \). This is \emph{side-band cooling}. This can prepare a state with \(\P > 99.9\%\).
+
+Cirac-Zoller Gate: allows us to entangle states with stuff like a CPHASE by interacting with the global vibration.
+
+\subsection{Superconductive qubit}
+
+Something like Bose-condensing electrons: Cooper pairs, with opposing momentums: so the entanglement is in the Fourier space, they are very delocalized in the position space.
+Cooper pair currents are the superconductive currents.
+
+We use Josephson juctions inside regular circuits:
+two superconductors, separated by a thin insulant. Cooper pairs can tunnel through the insulant.
+
+Charge qubit: quantum numbers inside the superconductor are \(n\), \(\varphi\), with \([n, \varphi] = i\).
+
+\begin{equation}
+    H = E_C \qty(n-n_g)^2 - E_J \cos \varphi
+\end{equation}
+
+with \(n_g - c_g V /(2e)\), and \(E_C = (2e)^2 / (2(C_J + C_g))\). We can write the eigenstates as \(\ket{n} \), and
+
+\begin{equation}
+    H = E_C \sum  (n-n_g) \dyad{n} - \frac{1}{2} E_J \sum \qty(\ketbra{n+1}{n} + \ketbra{n}{n+1}  )
+\end{equation}
+
+\end{document}

@@ -8,4 +8,192 @@
   how do the bounds we derived last time change if we perform a differentiable reparametrization from \(H(\lambda) \rightarrow H(\widetilde{\lambda} )\) ?
 \end{bluebox}
 
+\textbf{Answer}: we derived
+
+\begin{equation}
+    \qty(\dv{s}{\lambda} )^2
+    = \sum _{n>0}  \frac{\abs{\bra{\psi_n} \partial_ \lambda \ket{\psi_0}  } }{\qty(E_n - E_0)^2}
+    = \chi_F
+\end{equation}
+
+where \( \chi_F \) is the fidelity susceptibility.
+
+\begin{equation}
+    F = \abs{\braket{\psi_0 (\lambda)}{\psi_0(\lambda + \dd{\lambda} )}}
+    \approx 1 - \dd{\lambda^2} \chi_F + \dots
+\end{equation}
+
+\begin{equation}
+    F = \exp(- \dd{\lambda^2} \chi_F (\lambda) + \dots )
+\end{equation}
+
+We found \(\chi_F \leq c \xi^d N / \Delta^2\) where \(\xi\) is the correlation length, for a gapped and local Hamiltonian (short-range), where \(\Delta = \min_{n>0} E_n - E_0\).
+
+our metric is
+
+\begin{equation}
+    g _{\mu \nu} = \sum _{n>0}
+    \frac{\abs{\bra{\psi_0} \partial_ \mu \ket{\psi_n} \bra{\psi_n} \partial_ \nu \ket{\psi_0} } }{\qty(E_n - E_0)^2}
+\end{equation}
+
+We could  do \(g_{\mu \nu} \rightarrow g' _{\mu \nu}\): this will be linear, and this will not change the \(N\) dependence of \(\chi_F\) unless we do crazy things.
+
+For gap-less hamiltonians we have \(\chi_F = O(N^\alpha) \) with \(\alpha>1\).
+
+[Plot: \(F\) against \(\lambda\): we have a sharp decrease corresponding to \(\lambda \sim \lambda^*\)]
+
+\section{XY model}
+
+\(i\) labels our spin \(1/2\) particles,  \(\mathcal{H}_N \simeq \qty(\C^2)^{\otimes N} \)
+
+\begin{equation} \label{eq:xy-hamiltonian}
+  H_{xy} = -\frac{1}{2} \qty(\sum _{i=1}   ^{N} \frac{1 + \gamma}{2} \sigma_i ^x \sigma_{i+1}^x \frac{1-\gamma}{2} \sigma^y_i \sigma_{i+1}^y - h \sigma_i^{z} )
+\end{equation}
+
+So our parameter is \(\vec{\lambda} = (\gamma, h) \). \(\gamma\) is the anisotropy parameter, differentiating the \(x\) and \(y \) directions, while \(h\) is the magnetic field along the \(z\) direction.
+
+The hamiltonian \eqref{eq:xy-hamiltonian} is exactly solvable, using fermionic operators and second quantization. We try to do this in a way that is understandable.
+
+We introduce the operators
+
+\begin{equation}
+    c_i ^\dag = \qty(\prod _{l<i} \sigma_l^z) \sigma_i^+
+\end{equation}
+
+\begin{equation}
+    c_i  = \qty(\prod _{l<i} \sigma_l^z) \sigma_i^-
+\end{equation}
+
+Where \(\sigma^+  = \begin{pmatrix}
+    0 & 0 // 1 & 0
+\end{pmatrix}\) and \(\sigma^-  = \begin{pmatrix}
+    0 & 1 // 0 & 0
+\end{pmatrix}\).
+
+These are fermionic operators, which (\textbf{Claim})  satisfy the CAR (Commutation Anticommutation Relations) relations [Jordan-Wigner]
+
+\begin{subequations}
+\begin{align}
+  \qty{c_i, c_j^\dag} &= \delta _{ij}   \\
+  \qty{c_i, c_j} &= \qty{c_i^\dag, c_j^\dag} = 0
+\end{align}
+\end{subequations}
+
+We can define the occupation number \(n_i = c_i^\dag c_i = \sigma_i^+ \sigma_i^- = \qty(\mathbb{1} + \sigma_i^z)/2\): this is 0 if the spin is \(-\), and 1 if it is \(+\).
+
+So we moved from spin degrees of freedom to fermionic degrees of freedom. We define the kets \(\ket{\alpha_1 \alpha_2 \dots \alpha_N} \) and map them to \(\ket{n_1 n_2 \dots n_N} \), where \(\alpha_i = \pm 1\) are the spin eigenvalues while \(n_i = 0,1\) are the occupation eigenvalues.
+
+We want to invert this relation (\textbf{exercise}). Doing this, the Hamiltonian gets simpler. Going to the Fourier space makes it even simpler, if we add periodic boundary conditions, since then we get translational invariance.
+
+\begin{equation}
+    \widetilde{c_k} = \frac{1}{\sqrt{N} } \sum _{j=1}   ^{N} \exp(\frac{i 2 \pi k j}{N}) c_j  \qquad k = 0, \dots, N-1
+\end{equation}
+
+\textbf{claim}: this is a canonical transformation, the commutation relations stay the same (CAR) for the \(\widetilde{c_k} \).
+
+Then, we can show that the Hamiltonian \eqref{eq:xy-hamiltonian} becomes:
+
+\begin{equation}
+    H _{xy} = \sum _k \qty(\varepsilon_k \widetilde{c_k} ^\dag \widetilde{c_k} - i \gamma \sin(2 \pi k/N) \qty(\widetilde{c}_{-k}^\dag \widetilde{c_k}^\dag - \widetilde{c}_{-k} c_k))
+\end{equation}
+
+with \(\varepsilon_k = h - \cos(2 \pi k /N)\).
+
+So, the sequence is: spin dof \(\rightarrow\) (JW) Fermi dof \(\rightarrow\) (FT) Fermi dof \(\rightarrow\) (Bogoliubov) reciprocal lattice ground state energy.
+
+\begin{equation}
+    H _{xy} = \sum _{k}  \Lambda_k \Omega_k ^\dag \Omega_k + \vec{E_0}
+\end{equation}
+
+Where the \(\Omega\) is the new set of fermionic modes, \(n_k = \Omega_k ^\dag \Omega_k\), \([n_ k, n_{k'}]\). The spectrum then is
+
+\begin{equation} \label{eq:xy-spectrum}
+    \sigma(H _{xy} ) = \qty{\sum _{k}  \Lambda_k n_k + E_0 :  n_k = 0, 1 }
+\end{equation}
+
+while the
+
+\begin{equation}
+    \Lambda_k = \sqrt{\qty(h - \cos(2 \pi k /N))^2 + \gamma^2 \sin^2\qty(2 \pi k /N) }
+\end{equation}
+
+It can be shown that \([H _{xy}, \Omega_k ] = - \Lambda_k \Omega_k\) and  \([H _{xy}, \Omega_k^\dag ] = \Lambda_k \Omega_k ^\dag\), and for the ground state \(\Omega_k \ket{\psi_0} = 0 \).
+
+So it is like the harmonic oscillator: any eigenstate \(\ket{\psi } \) can be formed like
+
+\begin{equation}
+    \ket{\psi} = \Omega_{k_1}^\dag \Omega_{k_2}^\dag \dots \Omega_{k_N}^\dag \ket{\psi_0}
+\end{equation}
+
+and then its energy can be found by equation \eqref{eq:xy-spectrum}.
+
+Then we can see that the gap is given by \(\Delta = \min_k \Lambda_k\), since the \(E_0\) is a constant added to all the terms.
+
+\begin{equation}
+    \Delta = \min_k \sqrt{\qty(h - \cos(2 \pi k /N))^2 + \gamma^2 \sin^2\qty(2 \pi k /N) }
+\end{equation}
+
+can this get arbitrarily small?
+
+We can do a contour plot, over the plane \(h, \gamma\). We have three critical lines at \(h = \pm 1\) and \(\gamma = 0\) (as long as \(N \rightarrow \infty\)).
+
+If \(\abs{h} <1\), we have a ferromagnet aligned with the \(x\) or \(y\); if \(\abs{h}>1\) instead we have a paramagnet.
+
+There is a coupling between \(k\) and \(-k\).
+
+The ground state will be
+
+\begin{equation}
+    \bigotimes _{k>0}\qty( \cos \theta_k \ket{00}_{k, -k} + i \sin \theta_k \ket{11}_{k, -k} )
+\end{equation}
+
+where
+
+\begin{equation}
+    \theta_k = \frac{1}{2}\tan ^{-1} \qty(\frac{\gamma \sin (2 \pi k /N)}{h - \cos (2 \pi k /N)})
+\end{equation}
+
+Now, we move in the parameter space and see how the fidelity looks like.
+
+\begin{equation}
+    F = \abs{\braket{\psi_0 (\lambda)}{\psi_0 (\lambda')} } = \prod _k \abs{\cos(\theta_k - \theta_k ')}
+\end{equation}
+
+If \(\Delta_k \sim 0\) this becomes
+
+\begin{equation}
+    F \sim \prod_k \qty(1 - \frac{1}{2} \qty(\Delta \theta_k)^2) = \dots
+\end{equation}
+
+\begin{subequations}
+\begin{align}
+    \chi_F &= \frac{1}{2} \sum _{k}  \qty(\pdv{\theta_k}{k} \dd{k^2} )  \\
+    &= \frac{1}{2} \sum _{k}  \frac{\frac{-\gamma \sin (2 \pi k /N)}{\qty(h - \cos (2 \pi k /N))^2}}{1 + \qty(\frac{\gamma \sin (2 \pi k /N)}{h - \cos (2 \pi k /N)})^2}  \\
+    &= \sum _{k} \qty[ \frac{\frac{-\gamma \sin (2 \pi k /N)}
+    {\qty(h - \cos (2 \pi k /N))^2}}{1 + \qty(\frac{\gamma \sin (2 \pi k /N)}{h - \cos (2 \pi k /N)})^2}]
+\end{align}
+\end{subequations}
+
+todo: finish calculation. We can replace the sums with integrals as \(N \rightarrow \infty\).
+
+\begin{equation}
+    \chi_F  \rightarrow \frac{N \gamma }{2 \pi} \int _{0}   ^{\pi} \dd{\widetilde{k}}
+    \qty[\frac{\sin(\widetilde{k} ) }{\qty(1 - \cos(\widetilde{k} ) )^2 + \gamma^2 \sin^2(\widetilde{k} ) }]^2
+\end{equation}
+
+If there are no singularities, then this is of order \(N\). Let us consider the case \(h = 1\),
+as \(\widetilde{k} \rightarrow 0\) we get something of the order
+
+\begin{equation}
+    \frac{N}{\gamma^2 2 \pi } \int   _{k _{\text{min}}} ^{\pi }  \frac{\dd{\widetilde{k} }}{\widetilde{k}^2 }
+\end{equation}
+
+this diverges for \(k _{\text{min}} \rightarrow 0 \), but we can fix it to \(2 \pi / N\), then the leading term becomes
+
+\begin{equation}
+    \chi_F (h = 1) \sim \frac{N^2}{(2 \pi \gamma)^2}
+\end{equation}
+
+The many-body wavefunction is much more organized, and closed states are very distinguishable.
+
 \end{document}

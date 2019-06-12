@@ -1,6 +1,153 @@
+\documentclass[main_zanardi.tex]{subfiles}
+
+\begin{document}
+
 \section{Quantum Fischer metric}
 
-\textbf{Missing bit}
+Eravamo arrivati a definire la \textit{quantum Fisher information} \(F^Q\) come:
+
+\begin{align*}
+F^Q \propto \Tr (\rho L^2)
+\end{align*}
+
+dove \(L\) è la derivata logaritmica simmetrica, definita come la soluzione all'equazione di Lyapunov:
+
+\begin{align*}
+\frac{1}{2}\{ L,\rho\} = \rho' = \frac{1}{2}(L\rho + \rho L)
+\end{align*}
+
+Inserendo la rappresentazione spettrale di $\rho$:
+
+\begin{align*}
+\rho = \sum_i p_i \ket{i}\bra{i}
+\end{align*}
+
+Si trova:
+
+\begin{align*}
+F^Q \propto \sum_{ij=1}^d \frac{\abs{\bra{i}\rho'\ket{j}}^2}{p_i + p_j} = \sum_{\mathbb{E}} F^{\text{class}}
+\end{align*}
+
+Si trova che $F^Q$ è proprio la scelta ottimizza l'informazione di Fisher \textit{classica} su tutte le possibili POVM $\mathbb{E}=\{E_i\}$, dove la $F^{\mathrm{class}}$ è data da:
+
+\begin{align*}
+F^{\text{class}} = \int \dd{x} \frac{(p')^2}{p}
+\end{align*}
+
+Nel caso $\rho$ sia uno stato puro, si ha $\rho^2 = \rho = \ket{\psi}\bra{\psi}$, e differenziando tale relazione si ottiene $\rho'\rho + \rho \rho' = \rho'$, che ha la stessa forma dell'equazione di Lyapunov. Ma allora:
+
+\begin{align*}
+L \propto \rho' = \ket{\psi'}\bra{\psi} + \ket{\psi}\bra{\psi'}
+\end{align*}
+
+e si giunge a:
+
+\begin{align*}
+F^{Q}_{\mathrm{puro}} \propto \bra{\psi}L^2 \ket{\psi} &= \braket{\psi'|\psi'} - |\braket{\psi|\psi'}|^2 = \norm{\ket{\psi'}}
+-|\braket{\psi|\psi'}|^2 =\\
+&= \norm{\ket{\psi_\perp'}}^2
+\end{align*}
+
+dove $\ket{\psi_\perp'}=(1-\ket{\psi}\bra{\psi})\ket{\psi'}$.\\
+
+La formula per l'informazione di Fisher per stati puri può essere ottenuta in un altro modo, partendo dalla metrica di Fubini-Study:
+
+\begin{align*}
+d_{FS} ([\phi], [\psi]) = \cos^{-1}(|\braket{\psi|\phi}|)
+\end{align*}
+
+dove con $[\cdot]$ si intendono tutti i ket che rappresentano lo stesso stato quantistico - in altre parole la distanza di Fubini-Study è una distanza definita nello \textit{spazio proiettivo} $\mathcal{P}\mathcal{H}$.\\
+Il prodotto scalare $\mathcal{F}=|\braket{\psi|\phi}|$ che compare come argomento nel $\cos^{-1}$ è detto \textbf{Fidelity}. Si ha:
+
+\begin{align*}
+\mathcal{F} = \begin{cases}
+0 & \text{quando } \psi \perp \phi\\
+1 & \Leftrightarrow [\phi]=[\psi]
+\end{cases}
+\end{align*}
+
+Consideriamo due stati infinitamente vicini tra loro, nel senso $\phi = \psi + \Delta\psi$. Prendendo il $\cos$ di entrambi gli argomenti:
+
+\begin{align*}
+\cos \dd_{FS} = |\braket{\psi|\psi+\Delta\psi}|
+\end{align*}
+
+Dato che $\dd_{FS}\approx 0$, possiamo espandere entrambi i membri in serie, troncando al secondo ordine:
+
+\begin{align*}
+1-\frac{1}{2} ds^2 = \left|\braket{\psi|\psi + \psi'd\lambda + \frac{1}{2}\psi'' d\lambda^2}\right|
+\end{align*}
+
+Espandiamo per linearità il prodotto scalare:
+
+\begin{align}
+1-\frac{1}{2}ds^2 = \left| \underbrace{\braket{\psi|\psi} }_{=1}+ \braket{\psi|\psi'}d\lambda + \frac{1}{2} \braket{\psi|\psi''}d\lambda^2 \right|
+\label{eqn:espansione-metrica}
+ \end{align}
+
+Poiché l'evoluzione unitaria non cambia la norma di uno stato, differenziando:
+
+\begin{align*}
+\braket{\psi|\psi} = 1 \xRightarrow{\partial_t} \braket{\psi|\psi'} + \braket{\psi'|\psi} =0
+\end{align*}
+
+Ma allora, riarrangiando:
+
+\begin{align*}
+\braket{\psi|\psi'} = - \braket{\psi'|\psi} = - \overline{\braket{\psi|\psi'}}
+\end{align*}
+
+Ciò significa che $\braket{\psi|\psi'}$ deve essere puramente immaginario:
+
+\begin{align*}
+\braket{\psi|\psi'} = \pm i |\braket{\psi|\psi'}|
+\end{align*}
+
+Differenziando ancora una volta otteniamo:
+
+\begin{align*}
+ \braket{\psi|\psi'} + \braket{\psi'|\psi} =0 \xRightarrow{\partial_t} \braket{\psi'|\psi'} + \braket{\psi|\psi''} + \braket{\psi''|\psi} + \braket{\psi'|\psi'} = 0
+\end{align*}
+
+E riarrangiando:
+
+\begin{align*}
+\underbrace{\braket{\psi|\psi''} + \braket{\psi''|\psi}}_{2\op{Re}\braket{\psi|\psi''}} = -2\braket{\psi'|\psi'}
+\end{align*}
+
+E otteniamo un ulteriore vincolo:
+
+\begin{align*}
+\op{Re}\braket{\psi|\psi''} = -\braket{\psi'|\psi'}
+\end{align*}
+
+\textbf{Nota}: non è detto che $\ket{\psi'}$ sia normalizzato!
+
+Possiamo ora calcolare il valore assoluto in (\ref{eqn:espansione-metrica}), che sarà pari alla somma dei quadrati di parte reale e immaginaria. Rimuovendo subito gli ordini di $d\lambda$ maggiori di $2$ si ottiene:
+
+\begin{align*}
+\sqrt{\left(1+\frac{1}{2}\op{Re}\braket{\psi|\psi''}\right)^2 + |\braket{\psi|\psi'}|^2 d\lambda^2} + O(d\lambda^3)
+\end{align*}
+
+(verificare). Inserendo i calcoli appena visti:
+
+\begin{align*}
+= \sqrt{\left(1-\frac{1}{2}\braket{\psi'|\psi'} d\lambda^2\right)^2 + |\braket{\psi|\psi'}|^2 } \propto \sqrt{1-\braket{\psi'|\psi' }d\lambda^2 + |\braket{\psi|\psi'}|^2 d\lambda^2}
+\end{align*}
+
+Ed espandendo otteniamo finalmente:
+
+\begin{align*}
+\mathcal{F} \approx 1-\frac{1}{2}(\braket{\psi'|\psi'} - |\braket{\psi|\psi'}|^2) = 1-\frac{1}{2}ds^2
+\end{align*}
+
+E quindi:
+
+\begin{align*}
+\dd{s^2} = \braket{\psi'|\psi'}-|\braket{\psi|\psi'}|^2 d\lambda^2
+\end{align*}
+
+Ritroviamo allora nella metrica di Fubini-Study la Quantum Fisher Metric.
 
 \begin{equation}
   \sqrt{\qty(1+ \frac{1}{2} \Re(\braket{\psi}{\psi''} )^2) + \abs{\braket{\psi}{\psi'} }^2 \dd{\lambda^2} + O(\dd{\lambda^2}) }
@@ -101,7 +248,7 @@ Then it follows that if \(\dd{s^2} = N^\alpha \) with \(\alpha>1\), then we can 
 
   \begin{equation}
     \qty(\dv{s}{\lambda} ) \leq \frac{1}{\Delta^2} N \sum _{k} \exp(-\frac{\abs{G}}{\text{something}}  )
-  \end{equation} 
+  \end{equation}
 
   the point is that those exponentials are finite:
 
@@ -119,3 +266,4 @@ We will use \(N\) qubits, and
 \end{equation}
 
 this maps our system to free fermions which are exactly solvable: see Jordan Kahuma (?).
+\end{document}

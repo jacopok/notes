@@ -1,3 +1,7 @@
+\documentclass[main_zanardi.tex]{subfiles}
+
+\begin{document}
+
 
 % Zanardi è uno iettatore come Pauli
 
@@ -174,11 +178,29 @@ So \( \Pi' \Pi + \Pi \Pi' = \Pi' \): in the pure state case, the solution is the
 
 \begin{greenbox}
   \textbf{Proof}
-  The derivative of \( \rho \) is \( \rho' = \ketbra{\psi}{\psi'} - \ketbra{\psi'}{\psi} \).
+  The derivative of \( \rho \) is \( \rho' = \ketbra{\psi}{\psi'} + \ketbra{\psi'}{\psi} \).
+  We also know, by differentiating \(1 = \braket{\psi}{\psi} \), that \(\braket{\psi}{\psi'} = - \braket{\psi'}{\psi} \). Therefore \(\braket{\psi}{\psi'} = s\) is purely imaginary, \(s = -s^*\).
 
-  Then computing \( \Tr(\rho \rho'\, ^\dag \rho') = - \Tr(\rho \rho' \rho'\, ^\dag)\) we get
+  Then computing \( \Tr(\rho \rho' \rho')\) (in a basis consisting of \(\ket{\psi } \) and other perpendicular vectors, whose contribution is null because of the first term \(\rho\)) we get:
 
-  \begin{equation}
-    \Tr(\rho \rho'\, ^\dag \rho') = \braket{\psi'}{\psi'} - \abs{\braket{\psi'}{\psi}}^2
-  \end{equation}
+\begin{subequations}
+\begin{align}
+   \Tr(\rho \rho' \rho')
+   &= \bra{\psi} \qty(\ketbra{\psi}{\psi'} + \ketbra{\psi'}{\psi})^2 \ket{\psi}   \\
+   &= \cancelto{1}{\braket{\psi}{\psi}}\braket{\psi'}{\psi}\braket{\psi'}{\psi}
+   + \cancelto{1}{\braket{\psi}{\psi}}\braket{\psi'}{\psi'}\cancelto{1}{\braket{\psi}{\psi}} \nonumber \\
+   &+ \braket{\psi}{\psi'}\cancelto{1}{\braket{\psi}{\psi}}\braket{\psi'}{\psi}
+   + \braket{\psi}{\psi'}\braket{\psi}{\psi'}\cancelto{1}{\braket{\psi}{\psi}} \\
+   &= \braket{\psi'}{\psi}^2
+   + \braket{\psi'}{\psi'} + \braket{\psi}{\psi'}\braket{\psi'}{\psi}
+   + \braket{\psi}{\psi'}^2  \\
+   &= \braket{\psi'}{\psi'} + s^2 + (-s)^2 + s(-s)  \\
+   &= \braket{\psi'}{\psi'} + s^2  \\
+   &= \braket{\psi'}{\psi'} - \abs{\braket{\psi}{\psi'}}^2
+\end{align}
+\end{subequations}
+
+since \(s^2 \) must be real and negative.
+
 \end{greenbox}
+\end{document}

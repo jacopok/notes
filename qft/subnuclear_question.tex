@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\input{header.tex}
+
+\begin{document}
+
+%\section*{Resonances}
+
+{\centering Jacopo Tissino, 1152348, 22 June 2019}
+
+\textbf{Describe the concept of \emph{resonance} in particle physics, the Breit-Wigner distribution and its use in data analysis.}
+
+Many particles we would like to study are not stable, but are insteaad in shallow
+minima of their potential: they can tunnel or be excited easily through them, and
+thus decay before they can be observed moving through space.
+
+We can study them in the brief period of time between when they are formed and when
+they decay: suppose we have a process \(\ce{a} + \ce{b} \rightarrow \text{(metastable state)} \rightarrow \ce{c} + \ce{d} \).
+
+If we do a scattering experiment on the intermediate state of the reaction, we expect the cross section to be higher if a metastable resonance state is formed.
+
+This qualitative statement can be formalized:
+
+\begin{equation}
+    \sigma(E)  =
+    \frac{(2J+1)}{(2s_a + 1) (2s_b + 1)} \frac{4 \pi }{k^2}
+    \frac{\Gamma_i \Gamma_f}{(E-M_R)^2 + (\Gamma/2)^2}
+\end{equation}
+
+where
+
+\begin{itemize}
+    \item \(\sigma\) is the scattering integral cross section,
+    \item \(k = 2 \pi / \lambda\) is the angular wavenumber of the particle we are scattering off the resonance (or, since we are working in \(c=\hbar=1\), its energy),
+    \item \(E = \sqrt{s} \) is the center of mass energy,
+    \item \(J\) is the spin of the resonant state,
+    \item \(s_{a, b}\) are the spins of the reacting particles,
+    \item \(\Gamma_{i,f}\) are the initial and final partial widths of the reaction, respectively the width for \(\ce{a} + \ce{b} \rightarrow \text{(metastable state)}\) and \(\text{(metastable state)} \rightarrow \ce{c} + \ce{b} \),
+    \item \(\Gamma\) is the resonance width: the square modulus of the wavefunction of the resonance contains the term \(\exp(- \Gamma t) \),
+    \item \(M_R\) is the mass of the resonant state.
+\end{itemize}
+
+
+We derive this formula in the case \(\ce{a}, \ce{b} = \ce{c}, \ce{d}\).
+Recall the fact that, if the incoming wavefunction is a planar wave and the outgoing function is of the form \(\psi =  f(\theta, \varphi) \exp(pr/i \hbar) / r \), then the differential scattering cross section is
+
+\begin{equation}
+    \dv{\sigma}{\Omega} = \abs{f(\theta, \varphi)}^2
+\end{equation}
+
+
+
+\end{document}

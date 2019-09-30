@@ -2,7 +2,203 @@
 \begin{document}
 
 \section*{30 september 2019}
+\section{Introduction}
 
+Teachers: Paola Marigo, Michele Trabucchi.
 
+\url{paola.marigo@unipd.it} and
+\url{michele.trabucchi@unipd.it}
+
+\subsection{Topics}
+
+They are selected topics in stellar physics.
+%
+\begin{enumerate}
+    \item Stellar pulsations and Astroseismiology (dr. Michele Trabucchi);
+    \item stellar winds (dr. Paola Marigo);
+    \item final fates of massive \& very massive stars (dr. Paola Marigo).
+\end{enumerate}
+%
+Basics in Stellar Physics: ``astrophysics II'' inside the bachelor's degree in astronomy (second semester). It can be taken as an optional course.
+
+Material:
+
+\begin{enumerate}
+    \item \emph{Introduction to stellar winds} by Lamers, Cassinelli.
+    \item \emph{Stellar Atmospheres: Theory and observations} (lecture notes from 1996).
+\end{enumerate}
+%
+and more on Paola Marigo's site.
+
+\subsubsection{Stellar Winds}
+
+Moving flows of materials ejected by stars. 20 to \SI{2e3}{km/s}.
+
+See \emph{Bubble Nebula} in Cassiopea, there is a \(45 M_{\odot}\) star ejecting stellar wind at \SI{1700}{km/s}.
+
+Diagram: luminosity vs effective temperature. We see the \emph{main sequence}.
+We can also plot the \emph{mass loss rate}, \(\dot{M}>0 \) in solar masses/year.
+An other important parameter is \(v_\infty\).
+
+Diagram: mass loss (or gain) rate vs age of star.
+
+Stellar winds affect stellar evolution, the dynamics of the interstellar medium, the chemical evolution of galaxies.
+
+Momentum is approximately injected with \(\dot{M} v\), kinetic energy with \(\frac[i]{1}{2} \dot{M} v^2\).
+Within \SI{1e8}{yr} around half of the infalling matter is reemitted.
+
+\subsubsection{Contents}
+
+We will start with the basic theory of stellar winds, and then: \emph{coronal}, \emph{line-driven} and \emph{dust-driven} winds.
+
+\subsection{Final fates of massive \& very massive stars}
+
+Masses over \(10 M_{\odot}\).
+
+\subsection{Stellar oscillations}
+
+\dots see slides.
+
+Material: slides on moodle or Marigo's page.
+
+\begin{enumerate}
+    \item \emph{Pulsating stars} by Catelan \& Smith (introductory);
+    \item \emph{Theory of stellar pulsation} by Cox (harder).
+\end{enumerate}
+
+Written exam, partial exam on stellar pulsation.
+
+\section{Variability in Astronomy}
+
+First observations of variable stars: \(\sim\) 1600, omicron-Ceti. It changes in magnitude by 6 orders of magnitude.
+
+Others are found from the 1600 onwards, but since the XX century the reason is unknown. Is it \emph{rotation}, \emph{eclipses}?
+
+For some it sure are eclipses, but the Cepheids are different. See \(\delta\)-Cephei, asymmetric continuous curve.
+What if stars \emph{pulsate}?
+
+The \emph{light curve} is the luminosity curve over time.
+
+We can also look at the \emph{phased} light curve. Of course we need the period:
+the phase is
+
+\begin{equation}
+    \varphi = \frac{(t-t_0) \operatorname{mod} \Pi}{\Pi}
+\end{equation}
+%
+where \(\Pi\) is the period.
+\(E(t) = \lfloor (t-t_0 )/ \Pi \rfloor\) is the epoch.
+
+We can then measure the period, but if the light curve is multiperiodic we can subtract the model from the curve to see if there are additional periods: this is \emph{prewhitening}.
+
+We can also look at the luminosity in Fourier space.
+
+Of course there are issues with observational gaps (day-night, full moon): aliases; accuracy, duration of observations\dots
+
+Also, the period can change in time.
+
+Things have improved a great deal with large-scale surveys and space suveys.
+
+\subsection{Classification}
+
+By variability type: regular, semi-regular or irregular.
+
+By intrinsic variability: extrinsic, external to the star: eclipses, transits, microlensing, rotation; intrinsic: rotation, eclipses (self-occultation), eruptive and explosive variables, oscillations, secular variations (?).
+
+Whether rotation is to be considered intrinsic or extrinsic is a matter of taste.
+
+Oscillations can be classified by several criteria.
+
+The geometry can be  radial (classical pulsators) or non-radial.
+
+The restoring force can be the pressure gradient or the gravitational force (bouyancy, not gravitational waves).
+
+The excitation mechanism can be ***.
+
+The evolutionary phase and mass of the star can also be different.
+
+\section{Summary of stellar structure \& evolution}
+
+Eulerian: properties of a gas are fields, the position is the position of an observer.
+To differentiate position with respect to time is meaningless: position is an independent variable. \(f = f(r^i, t)\).
+
+Lagrangian: we follow an element of fluid: \(\dv*{r^i}{t} = v^i \). We can identify univocally these fluid elements.
+
+When treating stellar structure \& evolution, we look at mass layers \(\dd{m}\).  \(f = f(m, t)\).
+
+In the lagrangian case, we use the convective derivative \(\dv*{}{t} = \partial_t + v^i \partial_i\) where \(v^i\) is the velocity defined before.
+
+\subsection{Equations of stellar structure}
+
+We write these in the spherically symmetric case.
+
+The continuity equation is:
+%
+\begin{equation}
+    \pdv{r}{m} = \frac{1}{4 \pi r^2 \rho} \,.
+\end{equation}
+
+Momentum conservation is given by:
+%
+\begin{equation}
+    \dv{P}{m} = - \frac{Gm}{4 \pi r^4}\,,
+\end{equation}
+%
+where
+
+\begin{greenbox}
+There were some partial and some total derivatives wrt mass: is this meaningful?
+\end{greenbox}
+
+Energy conservation:
+%
+\begin{equation}
+    \dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g
+\end{equation}
+%
+where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear enery generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time.
+
+Energy transfer equation:
+%
+\begin{equation}
+    \pdv{T}{m} = - \frac{GmT}{4 \pi r^4 P} \nabla
+\end{equation}
+
+where \(\nabla = \pdv*{\log T}{\log P} \) is the temperature gradient, which has contributions from radiation, conduction, convection\dots
+
+With the diffusion approximation,
+
+\begin{equation}
+    \nabla = \nabla_{\text{rad}} = \frac{3}{16 \pi a c G} \frac{\kappa_R L P}{mT^4}
+\end{equation}
+%
+where \(\kappa_R\) is the Rosseland mean opacity, given by
+%
+\begin{equation}
+  \frac{1}{\kappa_{R}} =
+  \frac{ \displaystyle\int _{0}   ^{\infty}  \dv{B_\nu}{T} \frac{1}{\kappa_\nu} \dd{\nu}}
+  {  \displaystyle \int _{0}   ^{\infty} \dv{B_\nu}{T} \dd{\nu}}
+\end{equation}
+%
+and
+%
+\begin{equation}
+    L = - \frac{64 \pi^2 a c }{3} r^4 \frac{T^3}{\kappa} \pdv{T}{m}
+\end{equation}
+%
+where \(\kappa\) is a generalized opacity.
+
+If we need to deal with convection, this defies any simple modeling. There are instability criteria: where is it relevant? This is given by
+Ledoux's criterion,
+%
+\begin{equation}
+    \nabla_{\text{rad}} > \nabla_{\text{ad}} - \frac{\chi_\mu}{\chi_T} \nabla_\mu
+\end{equation}
+%
+where \(\nabla_\mu\) is the log gradient\dots (***)
+
+In the convective core, \(\nabla \approx \nabla_{\text{ad}}\), but outside of it we need something else.
+
+Mixed-length theory model convection with ``bubbles'':
 
 \end{document}

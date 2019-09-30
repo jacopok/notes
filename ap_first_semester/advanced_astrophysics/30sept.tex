@@ -141,36 +141,37 @@ The continuity equation is:
 Momentum conservation is given by:
 %
 \begin{equation}
-    \dv{P}{m} = - \frac{Gm}{4 \pi r^4}\,,
+    \pdv{P}{m} = - \frac{Gm}{4 \pi r^4}\,,
 \end{equation}
 %
 where
 
-\begin{greenbox}
-There were some partial and some total derivatives wrt mass: is this meaningful?
-\end{greenbox}
-
-Energy conservation:
+Energy conservation is given by:
 %
 \begin{equation}
-    \dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g
+    \dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g \,,
 \end{equation}
 %
-where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear enery generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time.
+where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear energy generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time.
 
-Energy transfer equation:
+The energy transfer equation is:
 %
 \begin{equation}
-    \pdv{T}{m} = - \frac{GmT}{4 \pi r^4 P} \nabla
+    \pdv{T}{m} = - \frac{GmT}{4 \pi r^4 P} \nabla \,,
 \end{equation}
 
 where \(\nabla = \pdv*{\log T}{\log P} \) is the temperature gradient, which has contributions from radiation, conduction, convection\dots
 
-With the diffusion approximation,
-
-\begin{equation}
-    \nabla = \nabla_{\text{rad}} = \frac{3}{16 \pi a c G} \frac{\kappa_R L P}{mT^4}
+With the diffusion approximation, we can write the gradient as
+%
+\begin{equation} \label{eq:diffusion-approx-gradient}
+    \nabla = \nabla_{\text{rad}} = \frac{3}{16 \pi a c G} \frac{\kappa_R L P}{mT^4} \,,
 \end{equation}
+
+\begin{greenbox}
+  I assume \(c\) is the speed of light, what is \(a\) though?
+\end{greenbox}
+
 %
 where \(\kappa_R\) is the Rosseland mean opacity, given by
 %
@@ -179,23 +180,42 @@ where \(\kappa_R\) is the Rosseland mean opacity, given by
   \frac{ \displaystyle\int _{0}   ^{\infty}  \dv{B_\nu}{T} \frac{1}{\kappa_\nu} \dd{\nu}}
   {  \displaystyle \int _{0}   ^{\infty} \dv{B_\nu}{T} \dd{\nu}}
 \end{equation}
-%
-and
+
+Substituting in the result in \eqref{eq:diffusion-approx-gradient} we get:
 %
 \begin{equation}
     L = - \frac{64 \pi^2 a c }{3} r^4 \frac{T^3}{\kappa} \pdv{T}{m}
 \end{equation}
 %
-where \(\kappa\) is a generalized opacity.
+where \(\kappa\) is a generalized opacity, the harmonic mean of the Rosseland opacity \(\kappa _R \) and the convective opacity \(\kappa_c = 4acT^3 / (3 \rho \lambda_c )\).
+
+\begin{greenbox}
+  Where \(\lambda_c\) is\dots  ?
+\end{greenbox}
 
 If we need to deal with convection, this defies any simple modeling. There are instability criteria: where is it relevant? This is given by
 Ledoux's criterion,
 %
 \begin{equation}
-    \nabla_{\text{rad}} > \nabla_{\text{ad}} - \frac{\chi_\mu}{\chi_T} \nabla_\mu
+    \nabla_{\text{rad}} > \nabla_{\text{ad}} - \frac{\chi_\mu}{\chi_T} \nabla_\mu\,,
 \end{equation}
 %
-where \(\nabla_\mu\) is the log gradient\dots (***)
+where:
+%
+\begin{subequations}
+\begin{align}
+  \nabla_\mu  &= \dv{\log \mu }{\log P} \\
+  \nabla_{\text{ad}}  &= \qty(\dv{\log T }{\log P} )_{\text{ad}} \\
+  \chi_{\mu}  &= \qty(\dv{\log P }{\log \mu} )_{\rho, T} \\
+  \chi_{T}  &= \qty(\dv{\log P }{\log T} )_{\rho, \mu} 
+\end{align}
+\end{subequations}
+%
+which are thermodynamic parameters called
+
+\begin{greenbox}
+  how are these called? What do they mean?
+\end{greenbox}
 
 In the convective core, \(\nabla \approx \nabla_{\text{ad}}\), but outside of it we need something else.
 

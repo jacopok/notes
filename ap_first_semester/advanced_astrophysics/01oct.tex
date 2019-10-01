@@ -44,4 +44,108 @@ See slides for figures. What are Hayashi lines?
 
 \subsubsection{Intermediate-mass star evolution}
 
+Idem
+
+\section{Stellar oscillations}
+
+Today we will look at typical time-scales, the period-mean density relation, the energy equation and perturbation theory w/ linearization.
+
+No derivations of the equations in the exam.
+
+\subsection{Time-scales}
+
+The \emph{free fall} time scale is:
+
+\begin{equation}
+  \tau_{\text{dyn}} \sim \qty(\frac{R}{g} )^{1/2} = \qty(\frac{R^3}{GM} )^{1/2}\,,
+\end{equation}
+%
+this is associated with pulsation. It is calculated using the travel time of a mass in free fall across the stellar radius accelerated by constant acceleration equal to surface acceleration.
+
+We note that \(\tau_{\text{dyn}} \propto \overline{\rho} ^{-1/2} \). For the Sun it is about \SI{25}{min}.
+
+The \emph{thermal} time scale is the relaxation time of deviations from thermal equilibrium:
+
+\begin{equation}
+  \tau_{\text{th}} \sim E_{\text{th}} / L\,.
+\end{equation}
+
+It is calculated as the time required for a star to irradiate all its energy.
+
+\begin{proof}
+    Roughly, \(3 \int_V P \dd{V} = - \Omega\) with  \(\Omega = - \int_M \) \dots
+\end{proof}
+
+Typically, \(\tau_{\text{th}} \sim G M^2 /(LR) \sim 10^7 \) \dots
+It is much larger than the dynamic time scale.
+
+The \emph{nuclear} time scale is even longer.
+
+This allows us to say that oscillations will not be heavily affected by thermal conduction, and even less by nuclear processes: the pulsations will be almost \emph{adiabatic}.
+
+The best candidate for these oscillations are \emph{sound waves}: is the adiabatic speed of sound roughly right?
+
+The speed of sound is:
+%
+\begin{equation}
+  v_s^2 = \Gamma_1 \frac{P}{\rho}
+\end{equation}
+
+If the gas follows the perfect equation of state
+
+\begin{equation}
+  \frac{P}{\rho} = \frac{k_B}{m_H} \frac{T}{\mu}  \,,
+\end{equation}
+
+we get
+
+\begin{equation}
+  v_s^2 = \frac{\Gamma_1 k_B T}{m_H \mu}  \,.
+\end{equation}
+
+Typical values are \(\mu \sim \qty(2X + 3Y/4 + Z/2)^{-2} \sim 0.6\), \(\Gamma_1 = 5/3\), and \(T_{\text{He}} \sim \SI{4.5e4}{K} \).
+
+So we get \(v_s \sim \SI{32.2}{km/s}\).
+
+The timescale is \(\Pi \sim 2R/v_s \sim \SI{22}{d}\), while \(\Pi_{\text{obs}} = \SI{5.336}{d} \), in terms of orders of magnitude it works.
+
+We can use the equation for the sound speed in the virial theorem, and get:
+
+\begin{equation}
+  \Omega = - 3 \frac{\int _{M}  v_s^2 / \Gamma_1 \dd{m}}{\int_M \dd{m}}M = -3 \expval{\frac{v_s^2}{\Gamma_1}} M
+\end{equation}
+
+If \(\Gamma_1 \) and \(v_s\) are independent, we can compute their averages separately.
+
+This allows us to write \(\Pi  \) wrt the moment of inertia, \(I = \int_r r^2 \dd{m}(r)\):
+
+\begin{equation}
+  \Pi \sim \qty(\frac{I_{\text{osc}}}{-\Omega} )^{1/2}
+\end{equation}
+
+This is further evidence that we are dealing with a dynamical phenomenon.
+
+Of course the speed of sound changes throughout the interior of the star.
+We compute the period as the travel time of sound waves throughout the diameter:
+%
+\begin{equation}
+  \Pi = 2 \int _{0}   ^{R} \dd{t(r)} = 2 \int_0^R \frac{\dd{r} }{\sqrt{\Gamma_1(r) P(r) / \rho(r)}}\,,
+\end{equation}
+%
+since \(\dd{t} = \dd{r} / v_s\).
+
+We also rewrite the differential equation for \(P\) substituting \(m=\rho r\). Doing this we get
+
+\begin{equation}
+  \Pi = \overline{\rho}^{-1/2} \sqrt{\frac{3 \pi}{2 \Gamma_1 G}}
+\end{equation}
+
+Which confirms Ritter's relation \(\Pi \propto \overline{\rho}^{1/2} \) .
+
+This works for acoustic modes, but if we consider non-radial g-modes it stops working, such as variables of type ZZ Ceti.
+
+\subsection{The energy equations}
+
+Just an overview for now: we will consider the star as a thermodynamic engine.
+
 \end{document}

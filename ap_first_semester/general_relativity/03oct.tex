@@ -3,4 +3,91 @@
 
 \section*{3 October 2019}
 
+Marco Peloso, \url{marco.peloso@pd.infn.it}
+
+\section{Special relativity}
+
+\begin{definition}
+    An inertial frame is one in which Newton's laws hold: a free body moves with acceleration \(a^{i} = 0\).
+\end{definition}
+
+Newton's first law establishes the \emph{existence} of inertial frames.
+
+\begin{proposition}
+    The frames \(O\) and \(O'\) are both inertial frames iff \(O'\) moves with constant velocity wrt \(O\).
+\end{proposition}
+
+\begin{proposition}
+    Coordinate transformations between inertial frames are Lorentz boosts, which in some coordinate frame can be written as
+    %
+    \begin{subequations}
+    \begin{align}
+      t' &= \gamma_v \qty(t - \frac{vx}{c^2})  \\
+      x' &= \gamma_v \qty(x - vt)  \\
+      y' &= y \\
+      z' &= z\,,
+    \end{align}
+    \end{subequations}
+    %
+    where \(\gamma_v = 1/ \sqrt{1 - v^2 / c^2} \).
+\end{proposition}
+
+If \(v \ll c\), so \(v/c \sim 0\), they simplify to the identity for \(t\), \(y\), \(z\) and \(x' = x -vt\): these are Galilean transformations.
+
+If we have two events, \(x^\mu\) and \(y^\mu\), they occur with some time and space separation \(\Delta x^\mu = x^\mu - y^\mu\). We can compute \(\Delta s^2 = \eta_{\mu\nu} \Delta x^\mu \Delta x^\nu \), where
+%
+\begin{equation}
+  \eta_{\mu \nu} = \diag{-c^2, 1, 1, 1} \,.
+\end{equation}
+
+\begin{proposition}
+Under Lorentz transformations \(\Delta s^2\) is invariant.
+\end{proposition}
+
+We can classify separations between events as
+%
+\begin{itemize}
+    \item time-like when \(\Delta s^2 <0\);
+    \item null-like when \(\Delta s^2 =0\);
+    \item space-like when \(\Delta s^2 >0\).
+\end{itemize}
+
+We can draw spacetime diagrams. A light cone is the set of points which are null-like separated from a select point. Things can be only causally related to events inside the light-cone (with \(\Delta s^2 \geq 0\)).
+
+\subsection{Time dilation}
+
+Take two events which occur at the same location for \(O'\). In the primed frame they will have coordinates \(x^{\mu} = (t_0, x_0)\) and \(y^\mu = (t_1, x_0)\).
+
+\begin{definition}
+    The \emph{proper time} between these two events is \(t_1 - t_0 \defeq \Delta \tau\).
+\end{definition}
+
+We now see that \(\Delta s'\,^2 = -c^2 \Delta \tau^2\). Then, any other observer will see the same  \(\Delta s^2 = - c^2 \Delta t^2 + \Delta x^2 = \Delta s'\,^2\).
+
+This directly implies that \(\Delta \tau \leq \Delta t\) for any observer, since \(\Delta \tau^2 = \Delta t^2 - \Delta x^2 / c^2\). This effect is called \emph{time dilation}.
+
+By how much exacly is time dilated? Of course \(\Delta x = v \Delta t\), therefore \(\Delta t = \gamma_v \Delta \tau\).
+
+-> Muon problem.
+
+Inverse Lorentz transformation have the same expression, but with \(v \rightarrow -v\).
+This can be proved both mathematically by solving the equations and phisically by reasoning about their meaning. There is no preferential inertial frame.
+
+A Lorentz transformation can be written in matrix form in the \((ct, x)\) plane as:
+
+\begin{equation}
+  \Lambda = \begin{bmatrix}
+    \gamma & -\gamma \beta \\
+    -\gamma \beta & \gamma
+  \end{bmatrix}
+  = \begin{bmatrix}
+  \cosh \theta & -\sinh \theta \\
+    -\sinh \theta &  \cosh \theta
+  \end{bmatrix}
+\end{equation}
+%
+since there is an angle \(\theta\) such that \(\gamma = \cosh \theta\) and \(\gamma \beta = \sinh \theta\): the angle \(\theta\) will be \(\theta = \tanh^{-1} \qty(v/c)\). This is true because \(\gamma^2 - \beta^2 \gamma^2 = 1\).
+
+After a boost the \(ct'\) and \(x'\) axes are respectively the lines \(ct=x/\beta\) and \(ct = \beta x\).  
+
 \end{document}

@@ -7,7 +7,7 @@ Sabino Matarrese \(\heartsuit\).
 There is a dropbox folder with notes by a student from the previous years.
 Also, there are handwritten notes by Sabino.
 
-Textbooks: there are many. One by Lucchini (?): ``Cosmology''.
+Textbooks: there are many. One by Lucchin (?): ``Cosmology''.
 
 On the astroparticle side, there is another book\dots
 
@@ -68,6 +68,112 @@ The parameter \(r\) is not a length: we choose our variables so that \(a(t)\)  i
 
 The set of flat universes with \(k=0\) has zero measure.
 
+In a 4D flat spacetime we have the 10 degrees of freedom of Lorentz transformations: Minkowski spacetime is \emph{maximally symmetric}.
 
+Other geometries are De Sitter and Anti de Sitter spacetimes.
+
+For the actual universe, however, not all of these symmetries hold: the universe seems not to be symmetric under time translation, and we have a preferential velocity.
+4 symmetries are broken (time translation and Lorentz boosts), 6 hold (rotations and spatial translations): our assumption is that there is a 3D maximally symmetric space.
+
+Under these assumptions, we can derive the RW line element.
+
+Say we have a cartesian flat 2D plane: the flat metric for this is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
+The constant \(a\) is included since we want \(r\) to be adimensional.
+
+The surface of a sphere has the following line element:
+\(\dd[]{l^2} = a^2 \qty(\dd[]{\theta^2} + \sin^2 \theta \dd[]{\varphi^2}) \),
+where \(a^2 = R^2\), the square radius of the sphere.
+
+For a hyperboloid, we will have:
+\(\dd[]{l^2} = a^2 \qty(\dd[]{\theta^2} + \sinh^2 \theta \dd[]{\varphi^2}) \),
+therefore the only difference is that trigonometric functions become hyperbolic ones.
+
+For both of these, let us define the variable: \(r = \sin\theta \) in the spherical case, and \(r = \sinh \theta \)  in the hyperbolic case.
+Then, these line elements become respectively:
+
+\begin{subequations}
+\begin{align}
+    \dd[]{l^2}_{\text{sphere}} &= a^2 \qty(\frac{\dd[]{r^2}}{1 - r^2}  + r^2 \dd{\varphi^2}  )\\
+    \dd[]{l^2}_{\text{hyperboloid}} &= a^2 \qty(\frac{\dd[]{r^2}}{1 + r^2} + r^2 \dd{\varphi^2}  )\,.
+\end{align}
+\end{subequations}
+
+We can rewrite the RW element as:
+
+\begin{equation}
+  \dd{l^2} = c^2 \dd{t^2} - a^2 \begin{cases}
+      \dd{\chi^2} + \sin^2 \chi \dd{\Omega^2} \\
+      \dd{\chi^2} + \chi^2\dd{\Omega^2} \\
+      \dd{\chi^2} + \sinh^2 \chi \dd{\Omega^2}
+\end{cases}
+\end{equation}
+
+where if \(k = +1\)  then \(r = \sin \chi\), if \(k=0\)  then \(r=\chi\), and if \(k = -1\) then \(r = \sinh \chi\).
+
+If we wish to use cartesian coordinates we will have:
+
+\begin{equation}
+  \dd{s^2} = c^2 \dd{t^2} - a^2 (t) \qty(1 + \frac{k \abs{x}^2}{4} )^{-2} \qty(\dd{x^2} + \dd{y^2} + \dd{z^2}) \,.
+\end{equation}
+
+Universes in which \(a\) is a constant are called \emph{Einstein spaces}.
+We can change time variable, defining \(\dd{t} = a(\eta) \dd{\eta} \), where \(a(\eta) \defeq a(t(\eta))\):  so, we will have
+
+\begin{equation}
+  \dd{s^2} = a^2 (\eta) \qty(c^2 \dd{\eta^2} - \qty(\frac{\dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega})) \,.
+\end{equation}
+
+The parameter \(\eta\) is called \emph{conformal time}: RW is said to be \emph{conformal} to Minkowski.
+Conformal geometry is particularly useful for systems which have no characteristic length.
+
+Photons do not have a characteristic length: they do not perceive the expansion of spacetime.
+
+The photons of the CMB look like they are thermal: they were thermal originally, and remained such despite the expansion of the universe.
+
+For now we did not use any dynamics, but we will insert them later.
+
+The Friedmann equations are:
+
+\begin{subequations}
+\begin{align}
+    \dot{a}^2 &= \frac{8 \pi G }{3} \rho a^2 - kc^2  \\
+    \ddot{a} &= - \frac{4 \pi G }{3}  \qty(\rho  + \frac{3P}{c^2} )  \\
+    \dot{\rho} &= \frac{-3 \dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
+\end{align}
+\end{subequations}
+%
+where dots denote differentiation with respect to the proper time of a consmological observer, \(t\).
+These imply that the energy density \(\rho = \rho( t)\) and the isotropic pressure \(P = P(t)\) only depend on \(t\).
+
+An important parameter is \(H(t) \defeq \dot{a} / a\), the \emph{Hubble parameter}.
+We can write an equation from it from the Friedmann ones:
+
+\begin{equation}
+  H^2 = \frac{-8 \pi G}{3} \rho - \frac{kc^2}{a^2}
+\end{equation}
+
+If \(k=0\), then there we have a critical energy density \(\rho_C (t) = 3 H^2 (t) / (8 \pi G)\): we call \(\Omega(t) = \rho(t) / \rho_C(t)\).
+Is \(\Omega\) larger or smaller than 1? This tells us about the sign of \(k\); while measuring \(k\) directly is \emph{very} hard. The former is a ``Newtonian'' measurement, while the latter is a ``GR'' measurement.
+
+We define:
+\begin{equation}
+  H_0 = H(t_0) = 100 h \times \SI{}{\kilo\metre\per\second\per\mega\parsec}
+\end{equation}
+%
+where \(h\) is a number: around \(0.7\), while  \(t_0\) just means \emph{now}.
+
+\subsection{Energy density}
+
+How do we measure it? We want the energy density \emph{today} of \emph{galaxies}: \(\rho_{0g}\).
+This is \(\mathscr L_g \expval{M/L} \), where \(\mathscr L _g\) is the mean (intrinsic, bolometric) luminosity of galaxies per unit volume, while \(M/L\) is the mass to light ratio of galaxies.
+It is measured in units of \(M_{\odot} / L_{\odot}\). Reference values for these are \(M_{\odot} \sim \SI{1.99e33}{g}\), while \(L_\odot \sim \SI{3.9e33}{\erg\per\second} \).
+
+How do we measure this? We have a trick:
+
+\begin{equation}
+  \mathscr L _g = \int_0^\infty \dd{L} L \Phi(L)
+\end{equation}
+
+where \(\Phi(L)\) is the number of galaxies per unit volume and unit luminosity. With of our observations we estimate the shape of \(\Phi(L)\). We know that the integral must converge, so we can bound the shape of \(\Phi\) (?).
 
 \end{document}

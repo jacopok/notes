@@ -1,12 +1,73 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+We set $c=1$.
+
 \section{Sheet 1}
 
-\subsection{Problem 1}
+\subsection{Lorentz transformations }
 
-\subsection{Problem 2}
+\subsubsection{Inverses}
 
-\subsection{Problem 3}
+We can consider a Lorentz boost with velocity $v$ in the $x$ direction, and we look at its representation in the $(t, x)$ plane (since the $y$ and $z$ directions are unchanged). Its matrix expression looks like:
+%
+\begin{equation}
+    \Lambda = \begin{bmatrix}
+        \gamma & -v \gamma \\
+        -v \gamma & \gamma 
+    \end{bmatrix}\,,
+\end{equation}
+%
+where $\gamma = 1 / \sqrt{1 - v^2}$. The inverse of this matrix can be computed using the general formula for a 2x2 matrix:
+
+\begin{equation}
+    A^{-1}=
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}^{-1}
+    =
+    \frac{1}{\det(A)}
+        \begin{bmatrix}
+        d & -b \\
+        -c & a
+    \end{bmatrix}\,.
+\end{equation}
+
+The determinant of $\Lambda $ is equal to $\gamma^2 (1-v^2) = 1$, therefore the inverse matrix is:
+%
+\begin{equation}
+    \Lambda = \begin{bmatrix}
+        \gamma & v \gamma \\
+        v \gamma & \gamma 
+    \end{bmatrix}\,.
+\end{equation}
+
+\subsubsection{Invariance of the spacetime interval}
+
+Our Lorentz transformation is 
+
+\begin{subequations}
+\begin{align}
+    \dd{t}' &= \gamma (\dd{t} - v \dd{x}) \\
+    \dd{x}' &= \gamma (-v\dd{t} + \dd{x}) \\
+    \dd{y}' &= \dd{y} \\
+    \dd{z}' &= \dd{z}
+\end{align}
+\end{subequations}
+%
+and we wish to prove that the spacetime interval, defined by $\dd{s^2} = \eta_{\mu\nu} \dd{x^\mu}\dd{x^\nu}$ is preserved: $\dd{s'\,^2} = \dd{s^2}$.
+Let us write the claimed equality explicitly:
+%
+\begin{subequations}
+\begin{align}
+    -\dd{t^2} + \dd{x^2}+ \dd{y^2}+ \dd{z^2}
+    &= \gamma (\dd{t} - v \dd{x})
+\end{align}
+\end{subequations}
+
+\subsection{Muons}
+
+\subsection{Radiation}
 
 \end{document}

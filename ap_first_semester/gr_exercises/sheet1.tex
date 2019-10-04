@@ -14,7 +14,7 @@ We can consider a Lorentz boost with velocity $v$ in the $x$ direction, and we l
 \begin{equation}
     \Lambda = \begin{bmatrix}
         \gamma & -v \gamma \\
-        -v \gamma & \gamma 
+        -v \gamma & \gamma
     \end{bmatrix}\,,
 \end{equation}
 %
@@ -39,13 +39,13 @@ The determinant of $\Lambda $ is equal to $\gamma^2 (1-v^2) = 1$, therefore the 
 \begin{equation}
     \Lambda = \begin{bmatrix}
         \gamma & v \gamma \\
-        v \gamma & \gamma 
+        v \gamma & \gamma
     \end{bmatrix}\,.
 \end{equation}
 
 \subsubsection{Invariance of the spacetime interval}
 
-Our Lorentz transformation is 
+Our Lorentz transformation is
 
 \begin{subequations}
 \begin{align}
@@ -62,11 +62,110 @@ Let us write the claimed equality explicitly:
 \begin{subequations}
 \begin{align}
     -\dd{t^2} + \dd{x^2}+ \dd{y^2}+ \dd{z^2}
-    &= \gamma (\dd{t} - v \dd{x})
+    &\overset{?}{=}  - \gamma^2 (\dd{t} - v \dd{x})^2
+    + \gamma^2 (-v\dd{t} + \dd{x}) ^2
+    +  \dd{y^2}+ \dd{z^2} \\
+    (1-v^2) (-\dd{t^2} + \dd{x^2})
+    &\overset{?}{=} - (\dd{t} - v \dd{x})^2
+    + (-v\dd{t} + \dd{x}) ^2 \\
+    -\dd{t^2} + \dd{x^2}
+    +v^2\dd{t^2} -v^2 \dd{x^2}
+    &\overset{?}{=}  - \dd{t}^2 - v^2 \dd{x}^2 +2v\dd{t} \dd{x}
+    + v^2\dd{t}^2 + \dd{x}^2 -2v\dd{x}\dd{t} \\
+    -\dd{t^2} + \dd{x^2}
+    +v^2\dd{t^2} -v^2 \dd{x^2}
+    &= - \dd{t}^2 - v^2 \dd{x}^2
+    + v^2\dd{t}^2 + \dd{x}^2
 \end{align}
 \end{subequations}
+%
+where we simplified the \(y\) and \(z\) differentials, multiplied by \(1/\gamma^2 = 1-v^2\),  expanded the squares of the binomials and simplified the mixed terms.
+
+\subsubsection{Tensor notation pseudo-orthogonality}
+
+The invariance of the spacetime interval $\dd{s'\,^2} = \dd{s^2}$ can be also written as \(\eta_{\mu\nu} \dd{x^\mu} \dd{x^\nu} = \eta_{\mu\nu} \dd{x'\,^\mu} \dd{x'\,^\nu}\). By making the primed differentials explicit we have:
+%
+\begin{equation}
+  \eta_{\mu\nu} \dd{x^\mu} \dd{x^\nu}
+  =
+  \eta_{\mu\nu} \tensor{\Lambda}{^\mu_\rho} \dd{x^\rho} \tensor{\Lambda}{^\nu_\sigma} \dd{x^\sigma} \,,
+\end{equation}
+%
+but the dummy indices on the LHS can be changed to \(\rho\) and \(\sigma\), so that both sides are proportional to  \(\dd{x^\rho}\dd{x^\sigma}\). Doing this we get:
+%
+\begin{equation}
+  \eta_{\rho\sigma}
+  =
+  \eta_{\mu\nu} \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma}
+  =\tensor{(\Lambda^\top)}{_\rho^\mu} \eta_{\mu\nu} \tensor{\Lambda}{^\nu_\sigma} \,,
+\end{equation}
+%
+or, in matrix form, \(\eta = \Lambda^\top \eta \Lambda\).
+
+\subsubsection{Explicit pseudo-orthogonality}
+
+For simplicity but WLOG we consider a boost in the \(x\) direction with velocity \(v\) and Lorentz factor \(\gamma\). The matrix expression to verify is:
+%
+\begin{subequations}
+\begin{align}
+  \begin{bmatrix}
+  \gamma    & - v \gamma  \\
+    -v \gamma & \gamma
+  \end{bmatrix}
+  \begin{bmatrix}
+    -1 & 0 \\
+    0 & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    \gamma & -v \gamma \\
+     -v \gamma&  \gamma
+  \end{bmatrix}
+  &\overset{?}{=}
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix} \\
+  \begin{bmatrix}
+  \gamma    & - v \gamma  \\
+    -v \gamma & \gamma
+  \end{bmatrix}
+  \begin{bmatrix}
+    -\gamma & v \gamma \\
+    -v \gamma&  \gamma
+  \end{bmatrix}
+  &\overset{?}{=}
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix} \\
+  \begin{bmatrix}
+  -\gamma^2 + \gamma^2 v^2    & v \gamma^2 - v \gamma^2  \\
+    v \gamma^2 -v \gamma^2 & -v\gamma^2 +\gamma^2
+  \end{bmatrix}
+  &=
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix}\,,
+\end{align}
+\end{subequations}
+%
+which by \(\gamma^2 = 1/ (1-v^2)\) confirms the validity of the expression.
 
 \subsection{Muons}
+
+\subsubsection{Nonrelativistic approximation}
+
+The survival probability is given by \(\P (t) = \exp(-t/ \SI{2.2e-6}{s})\). If the ground is \( h =\SI{15}{km} \) away, then the muon will reach it in \(t = h/v = \SI{15}{km} / (0.995c) \approx \SI{5.03e-05}{s}\), therefore \(\P(t) \approx \num{1.2e-10} \).
+
+\subsubsection{Relativistic effects: ground perspective}
+
+The observer on the ground will see the muon having to traverse the whole \(h = \SI{15}{km} \), but the muon's time will be dilated for them by a factor \(\gamma_v \approx 10\): therefore the survival probability
+will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\).
+
+\subsubsection{Relativistic effects: muon perspective}
+
+
 
 \subsection{Radiation}
 

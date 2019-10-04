@@ -3,4 +3,97 @@
 
 \section*{4 October 2019}
 
+Last lecture we saw the fact that the \(ct'\) and \(x'\) axes are rotated by equal angles from the \(ct\) and \(x\) axes towards the \(ct=x\) axis.
+
+\subsection{Relativity of simultaneity}
+
+Consider two events which are simultaneous in the \(O'\) frame. Their times in this frame are \(t'_A = t'_B\).
+
+In the \(O\) frame, instead, we have
+
+\begin{equation}
+ct_{A, B} = \frac{v}{c} x_{A, B} + \underbrace{\sqrt{1- \frac{v^2}{c^2} } c t_{A, B}'}_{\text{a constant}}\,,
+\end{equation}
+%
+so the events are not simultaneous in the \(O\) frame.
+
+\subsection{Length contraction}
+
+If in the \(O\) frame, if \(A\) occurs at \(t, x = 0\) while \(B\) occurs at \(t=0\), \(x=L\), then \(L\) is the measured length of their spatial interval by \(O\).
+
+In the primed frame their coordinates will be:
+
+\begin{subequations}
+\begin{align}
+  x'_A &= \gamma_v \qty(x_A - \frac{v}{c} c t_A) \\
+  x'_B &= \gamma_v \qty(x_B - \frac{v}{c} c t_B) \,,
+\end{align}
+\end{subequations}
+%
+therefore \(x'_B - x'_A = \gamma_v (x_B - x_A)\): the length is contracted in the \(O\) frame, since \(\gamma\geq 1\).
+
+% \begin{greenbox}
+%   No, wait: what we need to do is to show that \emph{when \(t'_A = t'_B\)} then \(x'_B - x'_A = (x_B - x_A) / \gamma\)\dots
+% \end{greenbox}
+
+\subsection{Addition of velocities}
+
+Two observers see an object moving with \(v' = \dv*{x'}{t'}\) and  \(v = \dv*{x}{t}\) respectively. Their relative velocity is \(u\).
+Differentiating we get:
+%
+\begin{equation}
+  v' = \frac{\gamma (\dd{x} - v \dd{t})}{\gamma \qty(\dd{t} - \frac{u\dd{x}}{c^2} )} = \frac{v - u}{1 - \frac{uv}{c^2}}  \,.
+\end{equation}
+
+Two interesting limits of this formula are: \(v' = v - u\) if \(u \ll c\) or \(v \ll c\); and \(v'=c\) if \(v=c\) for whatever \(u\).
+
+\subsection{Tensor notation}
+
+The position four-vector is \(x^\mu = (ct, x, y, z)\).\
+The Euclidean scalar product is given by \(x \cdot y = \delta_{\mu\nu} x^\mu x^\nu \).
+If we substitute the identity \(\delta_{\mu\nu}\) with another metric we can find a more general metric space.
+
+The Minkowski metric is \(\eta_{\mu\nu} = \diag{-1, 1, 1, 1}\).
+The separation 4-vector is \(\dd{x^\mu} = (c\dd{t}, \dd{x}, \dd{y}, \dd{z})\).
+
+Using Einstein summation notation, we can write the spacetime interval as \(\dd{s^2} = \eta_{\mu\nu} \dd{x^\mu} \dd{x^\nu}\).
+
+Specifically for the Minkowski metric we have the relation \(\eta_{\mu\nu} = \eta^{\mu\nu}\): it is its own inverse.
+For a general metric \(g_{\mu\nu}\) this will not hold.
+
+How do we express the Lorentz boosts? They preserve \(\dd{s^2} \), therefore they look like \(x'\,^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu\), with the \((1, 1)\) tensors \(\tensor{\Lambda}{_\mu^\nu}\)  satisfying   \(\tensor{\Lambda}{_\mu^\nu}\tensor{\Lambda}{_\rho^\sigma} \eta_{\nu\sigma} = \eta_{\mu\rho}\). This is called the \emph{pseudo-orthogonality} relation.
+
+The metric allows us to raise and lower indices. Raising an index in the pseudo-orthogonality relation gives us: \(\tensor{\Lambda}{^\mu_\alpha} \eta_{\mu\nu} \tensor{\Lambda}{^\nu_\beta} \eta^{\beta\sigma} =\tensor{\delta}{_\alpha ^\sigma}\), therefore  \(\eta_{\mu\nu} \tensor{\Lambda}{^\nu_\beta} \eta^{\beta\sigma}\) is the inverse of a Lorentz transformation.
+
+Four-vectors can also have their indices down, and they will transform according to the inverse of Lorentz transformations:
+
+\begin{subequations}
+\begin{align}
+  (\eta_{\alpha\mu} x^\mu)' &=  \eta_{\alpha \mu} \tensor{\Lambda}{^\mu_\nu}x^\nu  \\
+  &= \tensor{\Lambda}{_\alpha_\sigma} \tensor{\delta}{^\sigma_\nu} x^\nu  \\
+  &= \tensor{\Lambda}{_\alpha_\sigma} \eta^{\sigma \beta} \eta_{\beta \nu} x^\nu  \\
+  &= \tensor{\Lambda}{_\alpha^\beta} x_\beta\,.
+\end{align}
+\end{subequations}
+
+We will write our laws as tensorial equations, which are covariant.
+
+By pseudo-orthogonality, the scalar product \(A_\mu B^\mu\) is a covariant (that is, invariant) scalar. Of course it is equal to \(A^\mu B_\mu\).
+
+\begin{definition}[Tensor]
+    A \((p, q)\) \emph{tensor} is an object \(M_{\mu_1 \dots \mu_p}^{\nu_1 \dots \nu_q}\) with many components indexed by several indices, which transforms as:
+
+    \begin{equation}
+        M_{\mu_1 \dots \mu_p}^{\nu_1 \dots \nu_q}
+        \rightarrow
+        \tensor{\Lambda}{_{\mu_1}^{\mu'_1}}\dots
+        \tensor{\Lambda}{_{\mu_p}^{\mu'_p}}
+        \tensor{\Lambda}{^{\nu_1}_{\nu'_1}}\dots
+        \tensor{\Lambda}{^{\nu_q}_{\nu'_q}}
+        M_{\mu_1' \dots \mu_p'}^{\nu_1' \dots \nu_q'}
+    \end{equation}
+    %
+    under Lorentz transformations \(\tensor{\Lambda}{_\mu^\nu}\).
+\end{definition}
+
 \end{document}

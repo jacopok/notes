@@ -11,7 +11,7 @@ We set $c=1$.
 
 We can consider a Lorentz boost with velocity $v$ in the $x$ direction, and we look at its representation in the $(t, x)$ plane (since the $y$ and $z$ directions are unchanged). Its matrix expression looks like:
 %
-\begin{equation}
+\begin{equation}\label{LorBoost}
     \Lambda = \begin{bmatrix}
         \gamma & -v \gamma \\
         -v \gamma & \gamma 
@@ -66,8 +66,157 @@ Let us write the claimed equality explicitly:
 \end{align}
 \end{subequations}
 
+
+\subsubsection{Tensor notation pseudo-orthogonality}
+
+The invariance of the spacetime interval $\dd{s'\,^2} = \dd{s^2}$ can be also written as \(\eta_{\mu\nu} \dd{x^\mu} \dd{x^\nu} = \eta_{\mu\nu} \dd{x'\,^\mu} \dd{x'\,^\nu}\). By making the primed differentials explicit we have:
+%
+\begin{equation}
+  \eta_{\mu\nu} \dd{x^\mu} \dd{x^\nu}
+  =
+  \eta_{\mu\nu} \tensor{\Lambda}{^\mu_\rho} \dd{x^\rho} \tensor{\Lambda}{^\nu_\sigma} \dd{x^\sigma} \,,
+\end{equation}
+%
+but the dummy indices on the LHS can be changed to \(\rho\) and \(\sigma\), so that both sides are proportional to  \(\dd{x^\rho}\dd{x^\sigma}\). Doing this we get:
+%
+\begin{equation}
+  \eta_{\rho\sigma}
+  =
+  \eta_{\mu\nu} \tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma}
+  =\tensor{(\Lambda^\top)}{_\rho^\mu} \eta_{\mu\nu} \tensor{\Lambda}{^\nu_\sigma} \,,
+\end{equation}
+%
+or, in matrix form, \(\eta = \Lambda^\top \eta \Lambda\).
+\subsubsection{Pseudo orthogonality}
+Defining $dx^\mu=(cdt,dx,dy,dz)^T$, and $dx_\mu=(cdt,dx,dy,dz)=\eta_{\mu\nu}dx^\nu$, we will have
+\begin{align}
+&ds^2=dx^\mu dx_\mu=dx^\mu\eta_{\mu\nu}dx^\nu\nonumber\\
+&ds^2'=dx^\mu' dx_\mu'=dx^\mu'\eta_{\mu\nu}dx^\nu'=dx^\rho\Lambda_\rho^\mu\eta_{\mu\nu}dx^\sigma\Lambda_\sigma^\nu
+\end{align} and $ds^2=ds^2'$ is equivalent to our thesis.
+
+\subsubsection{Pseudo orthogonality by matrix product}
+
+Let $\Lambda$ be the Lorentz transformation in \eqref{LorBoost}.bIn this case we have
+\begin{align}
+    \Lambda ^T\eta\Lambda=& \begin{bmatrix}
+        \gamma & -v \gamma & 0 & 0\\
+        -v \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}\cdot \begin{bmatrix}
+        -1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}\cdot \begin{bmatrix}
+        \gamma & -v \gamma & 0 & 0\\
+        -v \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}=\nonumber\\
+     =&\begin{bmatrix}
+        -\gamma & -v \gamma & 0 & 0\\
+        v \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+        \gamma & -v \gamma & 0 & 0\\
+        -v \gamma & \gamma & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}=\nonumber\\
+    =& \begin{bmatrix}
+        -\gamma^2+v^2\gamma^2 & 0 & 0 & 0\\
+        0 & -v^2\gamma^2+\gamma^2 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}=\begin{bmatrix}
+        -1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1\\
+    \end{bmatrix}=\eta
+\end{align}
+Where we used the fact that $\gamma^2(1-v^2)=\frac{\gamma^2}{\gamma^2}=1$.
+\subsubsection{Explicit pseudo-orthogonality}
+
+For simplicity but WLOG we consider a boost in the \(x\) direction with velocity \(v\) and Lorentz factor \(\gamma\). The matrix expression to verify is:
+%
+\begin{subequations}
+\begin{align}
+  \begin{bmatrix}
+  \gamma    & - v \gamma  \\
+    -v \gamma & \gamma
+  \end{bmatrix}
+  \begin{bmatrix}
+    -1 & 0 \\
+    0 & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    \gamma & -v \gamma \\
+     -v \gamma&  \gamma
+  \end{bmatrix}
+  &\overset{?}{=}
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix} \\
+  \begin{bmatrix}
+  \gamma    & - v \gamma  \\
+    -v \gamma & \gamma
+  \end{bmatrix}
+  \begin{bmatrix}
+    -\gamma & v \gamma \\
+    -v \gamma&  \gamma
+  \end{bmatrix}
+  &\overset{?}{=}
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix} \\
+  \begin{bmatrix}
+  -\gamma^2 + \gamma^2 v^2    & v \gamma^2 - v \gamma^2  \\
+    v \gamma^2 -v \gamma^2 & -v\gamma^2 +\gamma^2
+  \end{bmatrix}
+  &=
+  \begin{bmatrix}
+  -1   & 0 \\
+  0   & 1
+\end{bmatrix}\,,
+\end{align}
+\end{subequations}
+%
+which by \(\gamma^2 = 1/ (1-v^2)\) confirms the validity of the expression.
+
 \subsection{Muons}
 
+\subsubsection{Nonrelativistic approximation}
+
+The survival probability is given by \(\P (t) = \exp(-t/ \SI{2.2e-6}{s})\). If the ground is \( h =\SI{15}{km} \) away, then the muon will reach it in \(t = h/v = \SI{15}{km} / (0.995c) \approx \SI{5.03e-05}{s}\), therefore \(\P(t) \approx \num{1.2e-10} \).
+
+\subsubsection{Relativistic effects: ground perspective}
+
+The observer on the ground will see the muon having to traverse the whole \(h = \SI{15}{km} \), but the muon's time will be dilated for them by a factor \(\gamma_v \approx 10\): therefore the survival probability
+will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\).
+
+
+\subsubsection{Relativistic effects: muons perspective}
+
+The muons in their system will observe lenght contraction, with respect to Lorentz boost, by a factor by a factor \(\gamma_v \approx 10\): therefore the survival probability
+will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\). This result is the same of the one predicted by ground observer, with respect to relativity principle.
 \subsection{Radiation}
 
+\subsubsection{New angle}
+Radiation travels at light speed for each inertial system. Now, $v_y=v_y'=\sin\theta'$, while $v_x=\frac{v_x'+v}{1+vv_x'}=\frac{\cos\theta'+v}{1+v\cos\theta'}$. So,
+\begin{equation}
+\theta=\arctan\frac{v_y}{v_x}=\arctan\left(\frac{\sin\theta'}{\frac{\cos\theta'+v}{1+v\cos\theta'}}\right).
+\end{equation}
+\subsubsection{Angle plot and relevant limits}
+For $v=0$ we have $\theta'=\theta$ as we expected, while for $v=1$ we find the natural relation: $\tan\theta=\sin\theta'$.
+\subsubsection{Radiation speed invariance}
+It sounds like an hypothesis...
+\subsubsection{Isotropic emission}
+
+Since we had that angle emission vary when varying inertial system we obtain that for every system in relative motion respect to $O$ with $v\neq 0$ observs a nonisotropic emission. For $v\simeq 1$ we have that in the observer system there is no emission at $\theta=\frac{\pi}{2}$.
 \end{document}

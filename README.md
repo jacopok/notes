@@ -9,6 +9,7 @@ This repo is also synced with an Overleaf folder, however I think it is best if 
 
 The idea for these notes is that they will be complete if somewhat untidy, while in the revision phase I will try to make them into a customized explaination, which will be put in the repository [Handbooks](https://github.com/jacopok/handbooks).
 
-Besides the lecture notes, solutions for the exercises (for now, in the General Relativity class) are also present in this repository. Some python visualization of parts of the exercises will also be present when applicable, thanks to @AlessandroLovo.
+Besides the lecture notes, solutions for the exercises (for now, in the General Relativity class) are also present in this repository. Some python visualization of parts of the exercises will also be present when applicable, thanks to [Alessandro Lovo](https://github.com/AlessandroLovo).
+Corrections and work on the exercises and notes is also done with the collaboration of Giorgio Mentasti.
 
 Any observations,  suggestions and corrections are welcome.

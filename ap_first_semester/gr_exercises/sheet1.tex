@@ -91,8 +91,8 @@ or, in matrix form, \(\eta = \Lambda^\top \eta \Lambda\).
 Defining $dx^\mu=(cdt,dx,dy,dz)^T$, and $dx_\mu=(cdt,dx,dy,dz)=\eta_{\mu\nu}dx^\nu$, we will have
 \begin{align}
 &ds^2=dx^\mu dx_\mu=dx^\mu\eta_{\mu\nu}dx^\nu\nonumber\\
-&ds^2'=dx^\mu' dx_\mu'=dx^\mu'\eta_{\mu\nu}dx^\nu'=dx^\rho\Lambda_\rho^\mu\eta_{\mu\nu}dx^\sigma\Lambda_\sigma^\nu
-\end{align} and $ds^2=ds^2'$ is equivalent to our thesis.
+&\dd{s,^{2\prime}}=dx^{\mu\prime} dx_\mu'=dx^{\mu\prime}\eta_{\mu\nu}dx^{\nu\prime}=dx^\rho\Lambda_\rho^\mu\eta_{\mu\nu}dx^\sigma\Lambda_\sigma^\nu
+\end{align} and $\dd{s'\,^2} = \dd{s^2}$ is equivalent to our thesis.
 
 \subsubsection{Pseudo orthogonality by matrix product}
 
@@ -205,18 +205,26 @@ will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\).
 
 The muons in their system will observe lenght contraction, with respect to Lorentz boost, by a factor \(\gamma_v \approx 10\): therefore the survival probability
 will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\). This result is the same of the one predicted by ground observer, with respect to relativity principle.
+
+
 \subsection{Radiation}
 
 \subsubsection{New angle}
-Radiation travels at light speed for each inertial system. Now, $v_y=v_y'=\sin\theta'$, while $v_x=\frac{v_x'+v}{1+vv_x'}=\frac{\cos\theta'+v}{1+v\cos\theta'}$. So,
-\begin{equation}
-\theta=\arctan\frac{v_y}{v_x}=\arctan\left(\frac{\sin\theta'}{\frac{\cos\theta'+v}{1+v\cos\theta'}}\right).
-\end{equation}
+In the source frame the radiation velocity components are \( u_x' = \cos\theta', u_y' = \sin\theta' \). From the composition of velocities we obtain:
+\[ \sin\theta = \frac{\dd{y}}{\dd{t}} = \frac{\dd{y'}}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\sin\theta'}{\gamma_v(1+v\cos\theta')}\]
+\[ \cos\theta = \frac{\dd{x}}{\dd{t}} = \frac{\gamma_v(\dd{x'} + v\dd{t'})}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\cos\theta' + v}{1+v\cos\theta'}\]
+Hence
+\[ \frac{1}{\tan\theta} = \frac{1}{\tan\theta'} + \frac{\gamma_vv}{\sin\theta'} \]
+
 \subsubsection{Angle plot and relevant limits}
-For $v=0$ we have $\theta'=\theta$ as we expected, while for $v=1$ we find the natural relation: $\tan\theta=\sin\theta'$.
+See jupyter-notebook for plots
+For $v=0$ we have $\theta=\theta'$ as we expected, while for $v=1$, $\theta = 0$.
 \subsubsection{Radiation speed invariance}
-It sounds like an hypothesis...
+\[ \sin^2\theta + \cos^2\theta = \frac{(\frac{\sin\theta'}{\gamma_v})^2 + (\cos\theta' + v)^2}{(1 + v\cos\theta')^2} = \frac{(1-v^2)\sin^2\theta' + \cos^2\theta' + v^2 + 2v\cos\theta'}{(1 + v\cos\theta')^2} \]
+\[ = \frac{1+v^2(1-\sin\theta')+2v\cos\theta'}{(1 + v\cos\theta')^2} = 1 \]
 \subsubsection{Isotropic emission}
 
-Since we had that angle emission vary when varying inertial system we obtain that for every system in relative motion respect to $O$ with $v\neq 0$ observs a nonisotropic emission. For $v\simeq 1$ we have that in the observer system there is no emission at $\theta=\frac{\pi}{2}$.
+Since we had that angle emission vary when varying inertial system we obtain that every system in relative motion respect to $O$ with $v\neq 0$ observs a nonisotropic emission. For $v\simeq 1$ we have that in the observer system there is almost only $\theta = 0$ emission.\\
+See jupyter-notebook for iteractive plots :)
+
 \end{document}

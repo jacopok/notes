@@ -87,58 +87,60 @@ but the dummy indices on the LHS can be changed to \(\rho\) and \(\sigma\), so t
 \end{equation}
 %
 or, in matrix form, \(\eta = \Lambda^\top \eta \Lambda\).
-\subsubsection{Pseudo orthogonality}
-Defining $dx^\mu=(cdt,dx,dy,dz)^T$, and $dx_\mu=(cdt,dx,dy,dz)=\eta_{\mu\nu}dx^\nu$, we will have
-\begin{align}
-&ds^2=dx^\mu dx_\mu=dx^\mu\eta_{\mu\nu}dx^\nu\nonumber\\
-&\dd{s,^{2\prime}}=dx^{\mu\prime} dx_\mu'=dx^{\mu\prime}\eta_{\mu\nu}dx^{\nu\prime}=dx^\rho\Lambda_\rho^\mu\eta_{\mu\nu}dx^\sigma\Lambda_\sigma^\nu
-\end{align} and $\dd{s'\,^2} = \dd{s^2}$ is equivalent to our thesis.
 
-\subsubsection{Pseudo orthogonality by matrix product}
+% \subsubsection{Pseudo orthogonality}
+% Defining $dx^\mu=(cdt,dx,dy,dz)^T$, and $dx_\mu=(cdt,dx,dy,dz)=\eta_{\mu\nu}dx^\nu$, we will have
+% \begin{align}
+% &ds^2=dx^\mu dx_\mu=dx^\mu\eta_{\mu\nu}dx^\nu\nonumber\\
+% &\dd{s,^{2\prime}}=dx^{\mu\prime} dx_\mu'=dx^{\mu\prime}\eta_{\mu\nu}dx^{\nu\prime}=dx^\rho\Lambda_\rho^\mu\eta_{\mu\nu}dx^\sigma\Lambda_\sigma^\nu
+% \end{align} and $\dd{s'\,^2} = \dd{s^2}$ is equivalent to our thesis.
 
-Let $\Lambda$ be the Lorentz transformation in \eqref{LorBoost}.bIn this case we have
-\begin{align}
-    \Lambda ^T\eta\Lambda=& \begin{bmatrix}
-        \gamma & -v \gamma & 0 & 0\\
-        -v \gamma & \gamma & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}\cdot \begin{bmatrix}
-        -1 & 0 & 0 & 0\\
-        0 & 1 & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}\cdot \begin{bmatrix}
-        \gamma & -v \gamma & 0 & 0\\
-        -v \gamma & \gamma & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}=\nonumber\\
-     =&\begin{bmatrix}
-        -\gamma & -v \gamma & 0 & 0\\
-        v \gamma & \gamma & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}\cdot
-    \begin{bmatrix}
-        \gamma & -v \gamma & 0 & 0\\
-        -v \gamma & \gamma & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}=\nonumber\\
-    =& \begin{bmatrix}
-        -\gamma^2+v^2\gamma^2 & 0 & 0 & 0\\
-        0 & -v^2\gamma^2+\gamma^2 & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}=\begin{bmatrix}
-        -1 & 0 & 0 & 0\\
-        0 & 1 & 0 & 0\\
-        0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1\\
-    \end{bmatrix}=\eta
-\end{align}
-Where we used the fact that $\gamma^2(1-v^2)=\frac{\gamma^2}{\gamma^2}=1$.
+% \subsubsection{Pseudo orthogonality by matrix product}
+
+% Let $\Lambda$ be the Lorentz transformation in \eqref{LorBoost}.bIn this case we have
+% \begin{align}
+%     \Lambda ^T\eta\Lambda=& \begin{bmatrix}
+%         \gamma & -v \gamma & 0 & 0\\
+%         -v \gamma & \gamma & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}\cdot \begin{bmatrix}
+%         -1 & 0 & 0 & 0\\
+%         0 & 1 & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}\cdot \begin{bmatrix}
+%         \gamma & -v \gamma & 0 & 0\\
+%         -v \gamma & \gamma & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}=\nonumber\\
+%      =&\begin{bmatrix}
+%         -\gamma & -v \gamma & 0 & 0\\
+%         v \gamma & \gamma & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}\cdot
+%     \begin{bmatrix}
+%         \gamma & -v \gamma & 0 & 0\\
+%         -v \gamma & \gamma & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}=\nonumber\\
+%     =& \begin{bmatrix}
+%         -\gamma^2+v^2\gamma^2 & 0 & 0 & 0\\
+%         0 & -v^2\gamma^2+\gamma^2 & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}=\begin{bmatrix}
+%         -1 & 0 & 0 & 0\\
+%         0 & 1 & 0 & 0\\
+%         0 & 0 & 1 & 0\\
+%         0 & 0 & 0 & 1\\
+%     \end{bmatrix}=\eta
+% \end{align}
+% Where we used the fact that $\gamma^2(1-v^2)=\frac{\gamma^2}{\gamma^2}=1$.
+
 \subsubsection{Explicit pseudo-orthogonality}
 
 For simplicity but WLOG we consider a boost in the \(x\) direction with velocity \(v\) and Lorentz factor \(\gamma\). The matrix expression to verify is:
@@ -211,6 +213,7 @@ will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\). Th
 
 \subsubsection{New angle}
 In the source frame the radiation velocity components are \( u_x' = \cos\theta', u_y' = \sin\theta' \). From the composition of velocities we obtain:
+
 \[ \sin\theta = \frac{\dd{y}}{\dd{t}} = \frac{\dd{y'}}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\sin\theta'}{\gamma_v(1+v\cos\theta')}\]
 \[ \cos\theta = \frac{\dd{x}}{\dd{t}} = \frac{\gamma_v(\dd{x'} + v\dd{t'})}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\cos\theta' + v}{1+v\cos\theta'}\]
 Hence

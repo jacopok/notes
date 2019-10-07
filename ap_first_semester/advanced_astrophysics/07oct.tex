@@ -1,6 +1,87 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{7 October 2019}
 
+Reference books can be found in the Moodle:
+they are ordered by difficulty, Catelan to Aerts to Salaris.
+
+The exam for this part of the course: it might be around the end of october.
+
+The subscripts on last lecture \emph{were} inverted after all.
+
+The \emph{mirror principle}: when the core contracts or expands, the envelope does the opposite.
+
+The shell must remain at around the same temperature to maintain equilibrium: contracting the core would increase the temperature, therefore the envelope exapands.
+This heuristic argument is actually derived from simulations.
+
+The relevant time scale for oscillations is the free-fall, dynamical time scale.
+
+We come back to the energy equation
+
+\begin{equation}
+  \pdv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g
+\end{equation}
+
+we incorporate \(\varepsilon - \varepsilon_\nu = \varepsilon_{\text{eff}} \) and call \( \varepsilon_g = \dv{Q}{t} = \varepsilon_{\text{eff}} - \pdv{L}{m}\).
+
+This makes the meaning of this transfer equation clearer.
+Using the first and second laws of thermodynamics, and recalling some thermodynamical values \(c_V = \qty(\pdv{Q}{t})_V \), \(\chi_T \), \(\chi_\rho
+\), \(\Gamma_{1,2,3}\).
+These are all \emph{exponents} in some power law.
+We use log values since our variables change by orders of magnitude.
+
+The final result we get from manipulations is:
+
+\begin{subequations}
+\begin{align}
+  \dv{Q}{t}  &= \frac{P}{\rho (\Gamma_3 -1)} \qty(\pdv{\log P }{t} - \pdv{\log \rho}{t}  )  \\
+  \pdv{\log P }{t} &=  \\
+  \dv{Q}{t} &=  \\
+  \pdv{\log T }{t} &=
+\end{align}
+\end{subequations}
+
+The second and fourth of these equations substitute our equation of energy conservation.
+
+Say we have a solution for these equations, we look at linear perturbations of them.
+This makes sense: the main solution is basically static on the pulsation time-scales.
+
+The perturbed model is \(f = f(m)\),  the unperturbed one is \(f_0(m)\).
+The Lagrangian perturbation is \(\delta f (m, t) = f(m, t) - f_0(m, t)\).
+
+Let us consider specific cases for \(r\): the radial displacement is \(\delta r (m, t)\). The position of the layer at time \(t\) is \(r = r_0 + \delta r\).
+
+We can write:
+%
+\begin{equation}
+  r = r_0 \qty(1 + \frac{\delta r}{r_0} ) = r_0 (1+ \zeta)\,.
+\end{equation}
+
+In general the fractional perturbation \(\delta f / f_0\) is assumed to be \(\ll 1 \). So, \(\delta f / f_0 \sim \delta_f / f\).
+We will insert expressions which are functions of perturbations of all our variables, and thus get linear differential equations.
+
+Let us try the continuity equation: \(r = r_0 (1+\zeta)\) and \(\rho = \rho_0 (1 + \delta \rho / \rho_0)\).
+
+\begin{equation}
+  \pdv{}{m} \qty(r_0 (1+\zeta)) =
+  \frac{1}{4 \pi r_0^2} \qty(1+\zeta)^{-2} \qty(1 + \frac{\delta \rho}{\rho_0})^{-1}
+\end{equation}
+
+and we use \((1+x)^n \approx 1 + nx\):
+
+\begin{equation}
+  4 \pi \rho_0^2 \qty(\pdv{r_0}{m} (1+\zeta) + r_0 \pdv{\zeta}{m})
+  = (1-2 \zeta) -\frac{\delta \rho}{\rho_0}
+\end{equation}
+
+We can collapse the equation into:
+
+\begin{equation}
+  \frac{\delta \rho}{\rho_0} =
+  - 3 \zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta}{m}
+\end{equation}
+
+or, the density perturbation is proportional with a negative constant to the radial perturbation, plus a term proportional to \(\pdv*{\zeta}{m}\).
 
 \end{document}

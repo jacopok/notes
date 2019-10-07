@@ -83,5 +83,61 @@ We can collapse the equation into:
 \end{equation}
 
 or, the density perturbation is proportional with a negative constant to the radial perturbation, plus a term proportional to \(\pdv*{\zeta}{m}\).
+If there is a positive gradient of radial perturbation, the corresponding layer expands.
+
+Let us also perturb the momentum conservation equation, assuming hydrostatic equilibrium \(\pdv*[2]{r_0}{t} \).
+
+We have a purely geometric term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\): when a layer moves outwards it expands.
+There is a restoring force toward equilibrium.
+
+Let us also consider the \(\log P\) form of the energy conservation equation.
+We also perturb the adiabatic exponents and the \(\dv*{Q}{t} \) term.
+
+After difficult manipulations we get back an equation which relates the changes in density and pressure to the change in energy: we manipulate until we get something which is similar to the original equation.
+
+In general for a Lagrangian perturbation \(\delta (f^n) = n f_0^{n-1} \delta f\).
+We have rules for the perturbation of product which work just like logarithmic derivatives. \(\delta\) commutes with partial derivatives.
+
+In the radiative case with the diffusion approximation we can perturb the luminosity: \(L  \propto r^4 T^4 \kappa_R^{-1} \pdv{\log T}{m}\).
+
+\begin{equation}
+  \frac{\delta L}{L_0} = 4 \zeta + 4 \frac{\delta T}{T_0} - \frac{\delta \kappa_R}{\kappa_{R,0}} + \frac{\pdv{}{m}  \frac{\delta T}{T}}{\pdv{\log T}{m}}
+\end{equation}
+
+In the end, we have a set of four linear PDE equations (written as a 5-equation system).
+
+These describe implicitly how the properties of the star change over time.
+
+Pulsation usually affects mostly the outer layers of a star.
+
+Moving on to
+
+\section{Adiabatic oscillations}
+
+Explioting the adiabatic approximation we will get the LAWE: Linear Adiabatic Wave Equation: a single equation which summarizes the 4.
+
+This can be solved explicitly.
+
+We suppose that each layer does not lose nor gain heat: \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )=0\).
+
+Is this approximation justified? The term multiplying \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )\) in the perturbed energy equation is \(\rho/P (\Gamma_3-1) = \chi_T / (c_V T)\).
+Usually \(\chi_T \sim 1\), \(\Gamma_1 \sim 1\).
+
+This term,  \( \chi_T / (c_V T) \delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )\), is of the order \(1/\tau_{\text{th}}\), the thermal time scale of this layer, while the term before, \(\Gamma_1 \pdv*{}{t} (\delta \rho / \rho)\), is of the order \(1/\tau_{\text{dyn}}\), the dynamical time scale.
+
+Therefore, we neglect the second part.
+This only works for the star as a whole, not for single layers.
+There are stellar layers which are \emph{strongly} non-adiabatic (driving layers). We will need some non-adiabatic theory to explain how pulsations \emph{start}.
+
+[Insert derivation of the LAWE, which can be found in the slides].
+
+\begin{equation}
+  r \pdv[2]{\zeta}{t} =
+  4 \pi r^2 \zeta \pdv{}{m} \qty((3 \Gamma_1 - 4)P)+
+  \frac{1}{r} \pdv{}{m} \qty(16 \pi^2 \Gamma_1 P \rho r^6 \pdv{\zeta}{m} )
+\end{equation}
+
+We decompose: \(\zeta(m, r) = \eta(m) e^{i \sigma t}\) with a constant \(\sigma\): putting this into the LAWE we simplify the exponentials and get the space dependent form of the LAWE.
+It is a Storm-Liouville equation.
 
 \end{document}

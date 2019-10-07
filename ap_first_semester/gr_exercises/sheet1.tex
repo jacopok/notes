@@ -214,10 +214,18 @@ will be \(\P(t) = \exp(- t / (\gamma_v \times \SI{2.2e-6}{s})) \approx 0.1\). Th
 \subsubsection{New angle}
 In the source frame the radiation velocity components are \( u_x' = \cos\theta', u_y' = \sin\theta' \). From the composition of velocities we obtain:
 
-\[ \sin\theta = \frac{\dd{y}}{\dd{t}} = \frac{\dd{y'}}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\sin\theta'}{\gamma_v(1+v\cos\theta')}\]
-\[ \cos\theta = \frac{\dd{x}}{\dd{t}} = \frac{\gamma_v(\dd{x'} + v\dd{t'})}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\cos\theta' + v}{1+v\cos\theta'}\]
-Hence
-\[ \frac{1}{\tan\theta} = \frac{1}{\tan\theta'} + \frac{\gamma_vv}{\sin\theta'} \]
+\begin{subequations}
+\begin{align}
+    u_y = \sin\theta &= \frac{\dd{y}}{\dd{t}} = \frac{\dd{y'}}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\sin\theta'}{\gamma_v(1+v\cos\theta')} \\
+    u_x = \cos\theta &= \frac{\dd{x}}{\dd{t}} = \frac{\gamma_v(\dd{x'} + v\dd{t'})}{\gamma_v(\dd{t'} + v\dd{x'})} = \frac{\cos\theta' + v}{1+v\cos\theta'}\,,
+\end{align}
+\end{subequations}
+%
+hence:
+%
+\begin{equation}
+\frac{1}{\tan\theta} = \frac{\gamma_v}{\tan\theta'} + \frac{\gamma_vv}{\sin\theta'} \,.
+\end{equation}
 
 \subsubsection{Angle plot and relevant limits}
 See the jupyter notebook in the \texttt{python} folder for plots.
@@ -238,7 +246,10 @@ therefore the square modulus of the speed of the radiation is still \(c\), as we
 
 \subsubsection{Isotropic emission}
 
-Since we had that angle emission vary when varying inertial system we obtain that every system in relative motion respect to $O$ with $v\neq 0$ observs a nonisotropic emission. For $v\simeq 1$ we have that in the observer system there is almost only $\theta = 0$ emission.
+Since the angular distribution of emission varies when changing inertial reference, we might suppose that every system in relative motion respect to $O$ with $v\neq 0$ observes nonisotropic emission.
+
+This can be seen by noticing that for $v\simeq 1$ we have that in the observer system there is almost only emission at an angle $\theta = 0$.
+In general, since there is a Lorentz \(\gamma\) factor multiplying a function of the angle in the radiation emission frame \(O'\), the cotangent of the angle in the observation frame \(O\) must get larger and larger as the relative velocity \(v\) increases, therefore the radiation gets compressed towards angles with large cotangents: \(\theta\sim 0\). 
 
 See the jupyter notebook in the \texttt{python} folder for interactive plots :)
 

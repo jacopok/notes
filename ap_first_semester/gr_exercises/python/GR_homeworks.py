@@ -228,20 +228,18 @@ def plot_distribution(relative_velocity):
     theta_primes = np.linspace(1e-10, np.pi-1e-10)
     thetas = theta(theta_primes, relative_velocity)
 
-    f_3d_times_sin = lambda x : f_3d(x) * np.sin(theta(x, relative_velocity))
-
     plt.ylabel("dtheta_prime/dtheta")
     plt.xlabel("theta")
-    plt.plot(thetas, f(theta_primes), label="2d")
-    #plt.plot(thetas, f_3d(theta_primes), label="3d")
-    plt.plot(thetas, f_3d_times_sin(theta_primes), label="3d corrected")
+    plt.semilogy(thetas, f(theta_primes), label="2d")
+    plt.semilogy(thetas, f_3d(theta_primes), label="3d")
     plt.legend()
+    plt.suptitle(f"relative velocity = {relative_velocity:.4f}")
     plt.show()
 
 def log_plot(log_velocity):
     plot_distribution(1-10**(-log_velocity))
 
-#ipywidgets.interact(plot_distribution, relative_velocity=(0,0.99,0.01))
-ipywidgets.interact(log_plot, log_velocity=(0,2.5,0.05))
+# ipywidgets.interact(plot_distribution, relative_velocity=(0,0.99,0.01), continuous_update=False)
+ipywidgets.interact(log_plot, log_velocity=(0,2.5,0.05), continuous_update=False)
 
 # %%

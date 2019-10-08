@@ -22,20 +22,40 @@ it is defined as
 \begin{equation}
   I_\nu = \frac{\dd{E_\nu}}{\dd{A} \dd{\Omega} \dd{\nu} \dd{t} \cos \theta}
   = \frac{h\nu\dd{N_\nu}}{\dd{A} \dd{\Omega} \dd{\nu} \dd{t} \cos \theta}
+  = nh\nu\,,
 \end{equation}
+%
+where \(n\) is the \emph{photon intensity}.
 
 We also define \emph{flux density}, measured in \SI{}{\erg\per\square\centi\meter\per\hertz\per\second}:
 %
 \begin{equation}
-  F_\nu = \int_{\text{source}} I_\nu \cos \theta \dd{\Omega}
+  F_\nu = \int_{\text{source}} I_\nu \cos \theta \dd{\Omega} = \dv{N}{E}
 \end{equation}
 %
 and \emph{flux}, measured in \SI{}{\erg\per\square\centi\meter\per\second}:
 %
 \begin{equation}
-  F = \int_{\nu_1}^{\nu_2} F_\nu
+  F = \int_{\nu_1}^{\nu_2} F_\nu \dd{\nu}\,.
 \end{equation}
 
+All detectors are just energy-dependents photon counters.
 
+Sometimes, the flux density follows a power law: \(F_\nu = k E^{-\Gamma}\).
+
+\subsection{The Earth's atmosphere}
+
+From Earth we can observe visible, near infrared \& radio light.
+
+Far infrared, long radio waves, and from ultraviolet onwards the light is blocked.
+
+If \(z\) is the angle between the zenith and the observation angle, we say that we have \(1 / \cos z \) airmasses to see through.
+The intensity is:
+%
+\begin{equation}
+  I(z) = I_0 e^{-\tau} = I_0 e^{\tau_0 \sec z}
+\end{equation}
+
+We can distinguish stars from planets: stars twinkle because of the seeing effect, while planets are extended for us so they do not.
 
 \end{document}

@@ -1,6 +1,169 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{8 October 2019}
 
+Last lecture we started talking about linearization \& perturbation theory.
+
+We will have analytic solutions for the adiabatic case, with the additional hypotheses of either \(\Gamma_1 = 4/3\) or \(\Gamma_1 > 4/3\) and homogeneity.
+
+The justification of the adiabatic approx might be asked at the exam.
+
+After plugging our ansatz in the LAWE we should take the real part.
+
+What are the boundary conditions we should set?
+
+\begin{enumerate}
+    \item \(\delta r = 0\) at \(r = 0\);
+    \item \(\pdv*{\eta}{r} = 0 \) at \(r=0\), which allows us to fix many divergences at the center;
+    % \item \(\pdv*{\zeta}{r} < + \infty \) or, equivalently (from the continuity equation) \(3 \zeta + \delta \rho / \rho = 0\);
+    \item \((4 + R^3 \sigma^2 / (GM)) \eta + \delta P / P = 0\) at \(r =R\);
+    \item \(\eta = \delta r / r = 1\) at \(r = R\).
+\end{enumerate}
+
+\begin{greenbox}
+  What is the \(\pdv[2]{\eta}{r} \) stuff about?
+\end{greenbox}
+
+We use the Eulerian form of the LAWE to figure out the surface boundary conditions.
+We assume that all perturbation are in phase, and write them all as proportional to \(\exp(i \sigma t)\).
+The pressure scale height is defined as:
+
+\begin{equation}
+  H_P = - \qty(\pdv{\log P }{r} )^{-1}
+\end{equation}
+
+and represents ``how far we should move in the star for the pressure to change \(e\)-fold''.
+By inserting this in the equation we see that \(H_P \rightarrow 0\) when \(r \rightarrow R\): the pressure changes very quickly in the photosphere of the star. Therefore, the term multiplying it must also go to zero.
+
+The last condition comes from the fact that we want our study to give us \emph{periods}, not \emph{amplitudes}: we cannot find those out, so we normalize. The LAWE is 1-homogeneous!
+
+The LAWE can be written compactly with a linear operator \(\mathcal L\):
+
+\begin{equation}
+  \mathcal L (\eta) = \sigma^2 \eta\,,
+\end{equation}
+
+therefore the eigenvalue is the square of the pulsation.
+There are infinitely many solutions to the LAWE, only (finitely many?) fulfill the boundary condition.
+The eigenvalues are real [\(\mathcal L\) is Hermitian], have a wavefunction associated: \(\eta_m (r)\) corresponding to \(\sigma_m ^2\).
+
+If \(\sigma^2 > 0\) we have an oscillating solution, if \(\sigma^2 <0 \) we have an exponential collapse or explosion since the solution is proportional to \(\exp(i \sigma t)\).
+
+We label solutions by \emph{radial order} \(m \in \N\): \(m=0\) has the lowest frequency, and then we have overtones.
+We choose the labels so that \(\sigma_{m_1} < \sigma_{m_2} \iff m_1 < m_2\).
+
+The radial order \(m\) is also the number of nodes.
+
+The eigenfunctions are orthogonal wrt the scalar product
+
+\begin{equation}
+  \braket{\eta_m}{\eta_n} = \int _{0}   ^{R} \eta_m \eta_n \rho r^4 \dd{r}
+\end{equation}
+
+\begin{greenbox}
+  Possibly there is a \(4 \pi\) missing in order for this to be consistent with the following?
+\end{greenbox}
+
+The functions \(\zeta_m\) are orthogonal wrt the same product. The system is linear: we can write a general solution as a superposition.
+
+We can define the moment of inertia:
+
+\begin{equation}
+  J_m = \int _{0}   ^{M} \abs{\zeta_m}^2 r^2 \dd{m}
+\end{equation}
+
+and the following holds:
+
+\begin{equation}
+  \sigma_m^2 = \frac{1}{J_m} \int_0^M \zeta_m ^* \mathcal L \zeta_m r^2 \dd{m}
+\end{equation}
+
+\subsection{Simplifications}
+
+\subsubsection{Period-mean density relation}
+
+If \(\eta = \const\), and \(\rho \) and \(\Gamma_1\) are also constanst, we immediately get:
+
+\begin{equation}
+  \sigma^2 = (3 \Gamma_1 - 4) \frac{GM}{r^3}
+\end{equation}
+
+and by inserting the mean density formula we get the period-mean density relation: this is consistent with our previous assumptions.
+
+\subsubsection{Polytropic model}
+
+It is a gas sphere with the following constitutive equaition:
+
+\begin{equation}
+  P = K_n \rho^{1 + 1/n} = K_n \rho^{\frac{n+1}{n}}
+\end{equation}
+%
+with varying \emph{polytropic} index \(n\).
+It models spheres with different mass distributions:
+\(n=0\) is constant density, \(n=5\) is infinite central density, \(n=3\) is the Eddington standard model, which is reasonable for the Sun and stars on the main sequence.
+
+With these assumptions we can explicitly solve for the wavefunctions, and make predictions of the fractional modulus of the oscillations at a certain radius wrt the modulus at the surface (which can be found only experimentally).
+
+The overtones die out toward the center even faster than the fundamental: these oscillations are very much a \emph{surface phenomenon}.
+
+Beyond the \(\eta\)s we can also plot the pressure perturbations: these will not be normalized.
+
+\subsubsection{A concrete example}
+
+This is done looking at an RR Lyrae variable.
+We integrate the stellar structure equations numerically.
+We can see that \(\sigma_m - \sigma_{m-1} \approx \const\) when \(m\) gets large.
+
+The wavefunctions die out faster than the polytropic model when \(r \rightarrow 0\).
+
+There are ``bumps'' in the pressure plot: these are the partial ionization regions of \ce{H} and \ce{He}.
+
+These appear because we start from a solution of the stellar structure equations, where all the properties of stellar matter were used, to start off with the LAWE.
+
+\section{Non-adiabatic oscillations}
+
+How can we tell, theoretically, how stable and how wide the various modes are?
+We expect to see the stable modes, and not to see the unstable ones.
+
+Let us start from the Lagrangian momentum conservation:
+
+\begin{equation}
+    \pdv[2]{r}{t} = - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r}
+\end{equation}
+
+and apply to it the identity: \(\frac[i]{1}{2} \pdv{}{t} v^2 = \pdv{r}{t} \pdv[2]{r}{t}\), by multiplying everything by \(\pdv*{r}{t} \).
+
+We then integrate everything with respect to \(m\) and apply some manipulations [see slides].
+
+\begin{equation}
+  \pdv{}{t} \int_M \frac{v^2}{2} \dd{m} =
+  - \dv{\Omega}{t} + \int_M P \pdv{}{t} \frac{1}{\rho} \dd{m}
+\end{equation}
+
+We integrate a pulsation period, which cancels out the gravitational potential term which is conservative.
+
+\begin{equation}
+  \expval{\dv{W}{t}}_\Pi = \frac{1}{\Pi} \int_\Pi \int_M   P \pdv{}{t} \frac{1}{\rho} \dd{m} \dd{t}
+\end{equation}
+
+Some layers will provide energy to the oscillation motion (\emph{drive} it), some others will \emph{damp} it.
+These are characterized by the sign of the RHS of this equation.
+
+If it is positive, we have instability; if it is negative the pulsations will tend to die out, giving stability.
+
+The average time scale of change of the perturbations is
+
+\begin{equation}
+  \kappa \defeq \frac{1}{\tau} = -\frac{1}{2} \frac{\expval{\dv*{W}{t}}_\Pi}{\expval{ \delta \psi}_\Pi }
+\end{equation}
+
+The term \(\expval{\dv*{W}{t}}_\Pi \) can also be interpreted as the net heat gain fed into mechanical work during a pulsation cycle.
+
+In the adiabatic case, we had \(\pdv{}{t}\qty( \frac{\delta P}{P} - \Gamma_1 \frac{\delta \rho}{\rho}) =0 \): the perturbations were in phase.
+
+Now we add a term to the time derivatives: the pressure and density perturbations will stop being in phase. The sign of the heat variation term gives us the difference between \emph{driving} heat transfer and \emph{damping} heat transfer.
+
+In a PV diagram, we can see that these correspond to right and left oriented loops.
 
 \end{document}

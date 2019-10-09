@@ -3,4 +3,26 @@
 
 \section*{9 October 2019}
 
+Clarification from last lecture.
+Dithering is caused by the fact that any single pixel in an X-ray CCD may be arbitrarily noisy, and if the telescope only looks at an astronomical object from a certain viewpoint without rotation a certain region of the object will always be imaged by the same pixel, therefore the errors between images will be correlated.
+So, we move our telescope around in order to have a certain region of the astronomical object be imaged by several uncorrelated pixels.
+
+Normal distribution: the pdf is
+%
+\begin{equation}
+  \mathcal N (x; \mu, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp(\frac{-(x-\mu)^2}{2\sigma^2} ) \,.
+\end{equation}
+
+Poisson distribution: the probability of getting \(m\) events if they happen independently at a rate \(\lambda\) is
+%
+\begin{equation}
+\P (m ; \lambda) = \frac{e^{-\lambda} \lambda^m}{m!} \,,
+\end{equation}
+%
+and it is easy to prove that for a Poisson distribution \(\mu = \sigma^2 = \lambda\).
+
+If the rate is, say, a temporal rate like \([\alpha] = \SI{}{\hertz}\) then we substitute \(\lambda = \alpha t_{\text{obs}}\).
+
+We discuss detectors: semiconductors, NP junctions.
+
 \end{document}

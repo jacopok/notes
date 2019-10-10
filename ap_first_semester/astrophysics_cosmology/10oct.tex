@@ -1,0 +1,164 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 10 2019}
+
+Today at 17 there is a colloquium at Aula Rostagni.
+
+Next week, also at 17, there is a meeting at San Gaetano (for the general public).
+
+We just had a Nobel prize in cosmology: he predicted the existence of the CMB, and two in astrophysics, they found the first exoplanet.
+
+Send the professor an e-mail to get access to his Dropbox folder with many relevant texts.
+
+We come back to the RW metric:
+
+\begin{equation}
+  \dd{s^2} = c^{2} \dd{t^{2}} - a^2(t) \qty(\frac{\dd{r^2}}{1-kr^2} + r^2 \dd{\Omega^2})\,,
+\end{equation}
+%
+where \(k=0, \pm 1\) and \(r\) is the dimensionless comoving radius.
+
+The distance can be calculated as:
+%
+\begin{equation}
+  d_P (t) = a(t)\frac{r}{\sqrt{1-kr^2}}\,.
+\end{equation}
+
+We are allowed to consider radial trajectories, however this does not account for the fact that we cannot actually measure with a space-like measuring stick.
+
+A better definition is
+%
+\begin{equation}
+  d_P = a(t) \int_0^r \frac{\dd{\widetilde{r}}}{\sqrt{1-k \widetilde{r}^2}}\,.
+\end{equation}
+
+This is called the \emph{proper distance} (the subscript \(P\) is for ``proper''): the integration, at zero \(\dd{\Omega}\) and zero \(\dd{t}\), of the radial part of the metric.
+
+On the other hand (OTOH), the flux of photons can give us the \emph{luminosity distance}, which is actually measurable.
+
+We want to derive the Hubble law (\(v = H_0 d\)) mathematically. It can also be restated as \(cz = H_0 d\). 
+
+\begin{greenbox}
+  why?
+\end{greenbox}
+
+For a fixed source at \(d = ar\), naïvely we would have:
+%
+\begin{equation}
+  \dot{d} = \dot{a} r = \frac{\dot{a} }{a} ar = H_0  d
+\end{equation}
+
+We can ``move away from the current epoch by Taylor expanding''.
+
+The scale factor \(a(t)\) can be written as
+
+\begin{subequations}
+\begin{align}
+    a(t) &\simeq a_0 + \dot{a}_0 (t-t_0 ) + \frac[i]{1}{2} \ddot{a}(t-t_0)^2\\
+    &= a_0 \qty(1 + \frac{\dot{a} }{a_0}|_{t_0 } (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))\,,
+\end{align}
+\end{subequations}
+%
+where \(q_0 \defeq - \ddot{a_0 } a_0 / (\dot{a_0 } )^2\) is called the \emph{deceleration parameter} by historical reasons: people thought they would see deceleration when first writing this.
+
+(the Hubble \emph{constant} is not constant wrt \emph{time} , but wrt \emph{direction}!)
+
+The deceleration parameter is actually measured to be negative.
+
+Now, \(1 + z = a_0 / a\) can be expressed as:
+
+\begin{equation}
+    1+ z \simeq \qty(1 + \frac{\dot{a} }{a_0}|_{t_0 } (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))^{-1}\,.
+\end{equation}
+
+Do note that this is derived by using at most second order in the distance interval: when expanding we cannot trust terms of order higher than second. Expanding with this in mind we get:
+%
+\begin{equation}
+  1+ z \simeq
+  1 - H_0 \Delta t + \frac{q_0 }{2} H_0^2 \Delta t^2 + H_0^2 \Delta t^2\,,
+\end{equation}
+%
+therefore
+%
+\begin{equation}
+  z = H_0 (t_0 - t) + \qty(1 + \frac{q_0}{2}) H_0^2 (t_0 - t)^2\,.
+\end{equation}
+
+Rearranging the equation we get
+%
+\begin{equation}
+  t_0 - t = z \qty(H_0 + \qty(1+\frac{q_0}{2})H_0 z)^{-1}\,,
+\end{equation}
+%
+but as before we must expand to get only the relevant orders:
+\begin{equation}
+  t_0 - t = H_0 (t_0 - t) + \qty(1+ \frac{q_0}{2}H_0^2 (t_0 - t)^2)
+\end{equation}
+
+We would like the time interval to disappear: for photons \(\dd{s^2} =0\), therefore in that case \(c^2 \dd{t^2} = a^2 (t) \dd{r^2} / (1-kr^2) \). Taking a square root and integrating:
+\begin{equation}
+  \int_{t}^{t_0 } \frac{c \dd{t}}{a(t)}
+  = \pm \int_r^0 \frac{\dd{\widetilde{r}}}{\sqrt{1-kr^2}}\,,
+\end{equation}
+%
+where the plus or minus sign comes from\dots
+
+The integral on the RHS can be solved analytically: it is 
+
+\begin{equation}
+  \begin{cases}
+      \arcsin r \qquad k=1 \\
+      r \qquad k=0 \\
+      \operatorname{arcsinh} r \qquad k = -1
+  \end{cases}
+\end{equation}
+%
+in all cases, it is just \(r\) up to \emph{second} order (since the next term in the expansion of an arcsine or hyperbolic arcsine etc is of third order).
+
+On the other side, we have:
+\begin{equation}
+  \frac{1}{a_0 }
+  \int_{t_0 }^t c\dd{\widetilde{t}} \qty(1 + H_0 (\widetilde{t} - t_0) - \frac{q_0}{2}H_0^2 (\widetilde{t} - t_0)^2)^{-1}
+\end{equation}
+%
+therefore, neglecting \emph{third} and higher order terms, we have:
+\begin{equation}
+  \frac{c}{a_0 } \qty((t_0 - t) + \frac{1}{2} H_0 (t_0 - t)^2 + o(\abs{t_0 - t} ^2)) = r \,,
+\end{equation}
+%
+since the term proportional to \(q_0 \) only gives a third order contribution.
+
+The explicit form of the luminosity distance was
+\begin{equation}
+  d_L = a_0^2 \frac{r}{a} = a_0 (1+z) r\,.
+\end{equation}
+
+The term \(a_0 \) should disappear at the end of every calculation: it is a bookkeeping parameter.
+Moving on:
+\begin{equation}
+  d_L = a_0 (1+z) \frac{c}{a_0 H_0 } \qty(z - \frac{1}{2} (1+ q_0 )z^2)\,,
+\end{equation}
+%
+but this also contains cubic terms:
+\begin{equation}
+  d_L \simeq \frac{c}{H_0} \qty(z + \frac{1}{2} (1-q_0 ) z^2 + o(z^2))\,.
+\end{equation}
+
+Therefore:
+\begin{equation}
+  cz = H_0 \qty(d_L + \frac{1}{2} (q_0 -1 ) \frac{H_0}{c} d_L^2)\,,
+\end{equation}
+%
+and we can notice that the relation is approximately linear and independent of acceleration for low redshift, but we can detect the acceleration at higher redshift.
+Typically we need to go at around \SI{10}{\mega\parsec}.
+
+The parameter \(q_0 \) appears to be negative now.
+
+We can do better than that if we go from \emph{cosmography} to \emph{cosmology}, by understanding what causes the acceleration of the expansion of the universe.
+
+Let us expand on the concept of reshift:
+
+
+
+\end{document}

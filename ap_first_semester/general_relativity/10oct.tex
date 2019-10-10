@@ -83,7 +83,7 @@ To express this in an easier way we introduce the 4-acceleration:
   a^{\mu} \defeq \dv{u^{\mu}}{\tau} = \dv[2]{x^{\mu}}{\tau}
 \end{equation}
 
-We now with to introduce the concept of a path minimizing proper time. Recall Snell's law, which allows us to relate the angles of incidence of light when passes between one medium to another, if they have different indices of refraction:
+We now with to introduce the concept of a path minimizing proper time. Recall Snell's law, which allows us to relate the angles of incidence of light when it passes between one medium to another, if they have different indices of refraction:
 
 \begin{equation}
   \frac{\sin(\theta_{2})}{\sin(\theta_{1})} = \frac{n_1}{n_2 } = \frac{v_2}{v_1 }\,.
@@ -93,6 +93,73 @@ This can be shown to be equivalent to light minimizing the time it takes to move
 
 Analogously, saying that a massive particle travels along the worldline which minimizes \(\tau\) is equivalent to Newton's first principle.
 
+We want to perturb a generic  worldline \(x^{\mu}\) with some \(\dd{x^{\mu}}\), and consider the proper time functional \(\tau\) which gives the proper time of a generic trajectory: we impose
 
+\begin{equation}
+  \frac{\tau \qty[x^{\mu} + \varepsilon^\mu] - \tau \qty[x^{\mu}]}{\abs{\varepsilon ^\mu} } = \frac{\delta \tau}{\delta x^\mu} \overset{!}{=}  0\,,
+\end{equation}
+%
+where a limit \(\abs{\varepsilon^{\mu}} \rightarrow 0 \) is implied, and only the linear terms are considered.
+
+The proper time functional for paths between \(A\) and \(B\) is given \(\tau = \int _A^B \dd{\tau}\).  
+We can rewrite it as:
+
+\begin{equation}
+  \tau = \int_A^B \dd{\tau} \frac{\dd{\tau^2}}{\dd{\tau^2}}
+  = \int_A^B \dd{\tau} \frac{-\eta_{\mu \nu}\dd{x^{\mu} \dd{x^{\nu}}}}{\dd{\tau^2}}\,.
+\end{equation}
+
+We now consider a perturbation \(\varepsilon^{\mu} = \delta^{\mu}_1 \delta x\):
+
+\begin{equation}
+  \tau_{AB}[x + \varepsilon] = \int_A^B \dd{\tau}
+  \qty[\qty(\dv{t}{\tau})^2 
+  - \frac{1}{c^{2}} \qty(\dv{t}{\tau} + \dv{\delta x}{\tau})^2 
+  - \frac{1}{c^{2}} \qty(\dv{y}{\tau})^2
+  - \frac{1}{c^{2}} \qty(\dv{z}{\tau})^2]\,.
+\end{equation}
+
+We can discard a second order term \(\qty(\dv*{\delta x}{\tau})^2\), and subtract off \(\tau_{AB}[x]\): we are left with 
+
+\begin{equation}
+  \delta \tau = - \frac{2}{c^{2}} \int_A^B \dd{\tau} \dv{x}{\tau} \dv{\delta x}{\tau} 
+\end{equation}
+
+Now, we integrate by parts, disregard the boundary terms since the endpoints of the path cannot be deformed, and get:
+
+\begin{equation}
+  \frac{\delta \tau_{AB}}{\delta x} = + \frac{2}{c^{2}} \int_A^B \dd{\tau} \dv[2]{x}{\tau} \,,
+\end{equation}
+
+which proves the equivalence for this type of perturbation, the others are analogous.
+
+The generalization of Newton's second law, which at low speeds is \(F^{i} = m a^{i}\), can be similarly restated as \(\delta S = 0\), for the action \(S = \int \dd{\tau}\).
+
+\subsection{Motion of light rays}
+
+For light we cannot compute \(u^{\mu}\) with the previous definition, since its proper time is always zero.
+
+Instead, we \emph{define} \(u^{\mu}\) to be a normalized null-like vector, such that \(x^{\mu} = \lambda u^{\mu}\) for some \(\lambda\).
+
+We know from quantum mechanics that \(E = \hbar \omega\), where \(\hbar = h / (2 \pi)\) and \(\omega = 2 \pi / T = 2 \pi f\). 
+
+The momentum is proportional to the wavevector \(k^{i}\): \(p^{i} = \hbar k^{i} / c\). The relativistic generalization of this fact is 
+
+\begin{equation}
+  p^{\mu} = \qty(\frac{\hbar \omega}{c}, \frac{\hbar k^{i}}{c}) = \frac{\hbar k^{\mu}}{c}\,.
+\end{equation}
+
+Since the momentum of light must be null we have that necessarily \(\omega = \abs{k} \).
+
+\subsection{Doppler effect}
+
+We take a special case: radiation goes in the same direction as the observer.
+In the \(O\) frame we have \(k^{\mu} = (\omega, \omega,0,0)\).
+
+The observer, moving with velocity \(v\), measures \(k^{\prime, \mu}\). This can be easily computed with a Lorentz transformation: \(k^{\prime, \mu} = \tensor{\Lambda}{^\mu_\nu} k^\nu\).
+
+We are mostly interested in \(k^{\prime, 0} = \omega'\): it comes out to be \(\omega' = \gamma \omega + (- \gamma \beta)\omega = (1- v/c) \gamma \omega\).
+
+Some notes: at slow speeds \(\omega' \approx (1-v/c) \omega\); we have \(f'<f\) when source and observer are moving away from each other. 
 
 \end{document}

@@ -1,0 +1,72 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 10 2019}
+
+Last lecture we introduced tensors.
+
+An example of those is the EM tensor \(F_{\mu \nu}\):
+
+\begin{equation}
+  F_{\mu \nu} = \left[\begin{array}{cccc}
+  0 & E_{x}/c & E_y/c & E_z/c \\ 
+  -E_x/c & 0 & -B_x & B_y \\ 
+  -E_y/c & B_x & 0 & -B_z \\ 
+  -E_z/c & -B_y & B_z & 0
+  \end{array}\right]\,,
+\end{equation}
+%
+which, it can be checked, transforms as a \((0,2)\) tensor. Also, we can define the current vector \(j^{\mu} = (c \rho, j^{i})\). Then, the Maxwell equations read:
+
+\begin{equation}
+  \partial_{\mu} F^{\mu \nu }= \mu_0 j^{\nu}
+  \qquad \text{and} \qquad
+  \partial_{[\mu} F_{\nu \rho]}\,.
+\end{equation}
+
+They are covariant!
+
+\subsection{Particles in motion}
+
+In Newtonian mechanics, the motion of a particle is described by a function of time \(x^{i} = x^{i}(t)\).
+
+In special relativity, we introduce the concept of \emph{worldline}.
+It must be parametrized with respect to some parameter \(\lambda\), such that \(x^{\mu} = x^{\mu}(\lambda)\). A preferred choice for \(\lambda\) is the proper time of the particle, \(\lambda = \tau\).
+
+We then define the 4-velocity:
+%
+\begin{equation}
+  u^\mu = \dv{x ^\mu}{\tau} \,.
+\end{equation}
+
+It is a tensor since it is the product of a scalar and a tensor.
+
+Multiplying \(u^\mu u_{\mu}\) we always get \(-c^{2}\), since:
+
+\begin{equation}
+  u^{\mu} u_{\mu} = \frac{\dd{x^{\mu}} \dd{x_{\mu}}}{\dd{\tau^{2}}} = -c^2 \frac{\dd{s^{2}}}{\dd{s^2}}
+\end{equation}
+
+
+We can make the expression explicit using \(\dd{\tau} = \gamma \dd{t}\), which gives us \(u^{\mu} = (\gamma c, \gamma v^{i})\).
+In the frame of the particle, \(u^{\mu} = (c, 0)\).   
+
+The \emph{four-momentum} of a particle is defined as: 
+
+\begin{equation}
+  p^{\mu} = m u^{\mu} = (m \gamma c, m \gamma v^{i})\,.
+\end{equation}
+
+The component \(p^{0}\) is \(mc\) at \(v=0\). What does it mean? we can expand it for small \(v\):
+
+\begin{equation}
+  \frac{mc}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} \sim
+  mc \qty(1 + \frac{v^{2}}{2 c^{2} } )
+  = mc + \frac{1}{c} \frac{mv^{2}}{2}\,.
+\end{equation}
+
+We get the mass, plus a kinetic energy term: more explicitly, \(cp^0 = mc^{2} + \frac[i]{1}{2} m v^{2}\).
+
+
+
+\end{document}

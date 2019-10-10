@@ -158,7 +158,96 @@ The parameter \(q_0 \) appears to be negative now.
 We can do better than that if we go from \emph{cosmography} to \emph{cosmology}, by understanding what causes the acceleration of the expansion of the universe.
 
 Let us expand on the concept of reshift:
+photons are emitted with a certain wavelength \(\lambda_{e}\), at a comoving radius \(r\) from us, and detected at \(\lambda_{o}\).
+The line element for the photon is \(\dd{s^2} =0\), therefore \(c\dd{t}/ a(t) = \pm \dd{r} \sqrt{1-kr^2} \).
 
+As before, we can integrate this relation from the emission to the absorption: we call it \(f(r)\) (it can be any of the functions shown before).
 
+\begin{equation}
+  \int_{t}^{t_0 } = \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})} = f(r)
+\end{equation}
+
+If we map \(t \rightarrow t + \delta t\) and \(t_0 \rightarrow \delta t_0 \) in the integration limits, the integral must be constant since it only depends on \(r\).
+
+This can be written as:
+\begin{equation}
+  \int_{t}^{t + \delta t} \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})} = \int_{t_0 }^{t_0 + \delta t_0 } \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})}\,,
+\end{equation}
+%
+which can we cast into
+\begin{equation}
+  \frac{c \delta t}{a(t)} =   \frac{c \delta t_0 }{a(t_0 )}\,.
+\end{equation}
+
+Since the frequency must be proportional to the inverse of the time intervals \(\delta t\) or \(\delta t_0 \), we have
+\begin{equation}
+  \nu_{e} a(t_{e}) = \nu_{o} a(t_{o})\,,
+\end{equation}
+%
+therefore 
+%
+\begin{equation}
+  1 + z = \frac{\lambda_{o}}{\lambda_{e}}
+  = \frac{a_0 }{a}\,.
+\end{equation}
+
+\subsection{A Newtonian derivation of the Friedmann equations}
+
+It is useful to do it first this way, pedagocically.
+
+Let us take a uniform spacetime with density \(\rho\). We consider a sphere, and take all the mass inside the sphere away.
+
+Consider Birkoff's theorem: the gravitational field of a spherically symmetric body is always described by the Schwarzschild metric.
+This can also be applied to a hole: in this case, it tells us that the metric inside the cavity is the Minkowski metric.
+
+The mass taken away will be \(M(\ell) = \frac[i]{4 \pi}{3} \rho \ell^{3}\).
+
+Say that the gravitational field is \emph{weak}:
+\begin{equation}
+  \frac{GM(\ell)}{\ell c^2} \ll 1\,.
+\end{equation}
+
+We put a test mass on the surface of the sphere. What is the motion of the mass due to the gravitational field from the center? It will surely be radial, therefore
+\begin{equation}
+  \ddot{\ell} = - \frac{GM(\ell)}{l^2} = - \frac{4 \pi G}{3} \rho \ell\,.
+\end{equation}
+
+Then, we have
+\begin{equation}
+  \ddot{a} r = - \frac{4 \pi G}{3} \rho a r
+  \to
+  \ddot{a} = - \frac{4 \pi G}{3} \rho a\,.
+\end{equation}
+
+This is part of a Friedmann equation: the isotropic pressure term cannot be recovered, it's like the speed of light is infinite now.
+
+Now consider 
+\begin{equation}
+  \dot{\ell} \ddot{\ell} = - \frac{GM}{\ell^2} \dot{\ell}\,,
+\end{equation}
+%
+therefore 
+%
+\begin{equation}
+  \frac{1}{2}\dot{\ell}^2 = \frac{4 \pi}{3} G \rho \ell^{3} + \const\,,
+\end{equation}
+%
+and integrating we get
+%
+\begin{equation}
+  \dot{a}^2 r^2 = \frac{8 \pi G}{3} \rho a^2 r^2 + \const
+\end{equation}
+%
+or, removing the \(r^2\) term, which is a constant,
+%
+\begin{equation}
+    \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 + \const\,.
+\end{equation}
+
+We know that this new constant is related to the energy per particle. 
+
+A universe with negative \(k\) expands forever and so on.
+
+The number \(k\) was badly defined to be only \(\pm 1\) or 0: its newtonian version is much better represented by \(k_N = kc^2\).
 
 \end{document}

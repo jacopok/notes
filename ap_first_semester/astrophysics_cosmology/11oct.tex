@@ -1,0 +1,162 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Fri Oct 11 2019}
+
+On Oct 31 Marco Peloso will not give his lecture, so Sabino will do both lectures.
+
+Recalling last lecture: 
+we consider a universe with constant density \(\rho\)\dots
+
+We can also recover the third Friedmann equation 
+
+\begin{equation}
+  \dot{\rho} = -3 \frac{\dot{a}}{a} \qty(\rho + \frac{P}{c^2})\,,
+\end{equation}
+
+without the last term, which yet again will come from the relativistic consideration.
+
+We will consider \emph{ideal fluids}. From thermodynamics we have:
+
+\begin{equation}
+  \dd{E} + p\dd{V} = 0\,.
+\end{equation}
+
+We can write \(E = \rho c^2 a^{3}\). Then, this becomes \(\dd{(\rho c^2 a^3)} + p \dd{a^3} = 0\); expanding:
+\begin{equation}
+  c^2 \dd \rho a^3 + c^2 \rho \dd{a^3} + p \dd{a^3} = 0\,.
+\end{equation}
+
+This amounts to the third Friedmann equation, exactly.
+
+\begin{subequations}
+    \begin{align}
+        \dot{a}^2 &= \frac{8 \pi G }{3} \rho a^2 - kc^2  \\
+        \ddot{a} &= - \frac{4 \pi G }{3} a  \qty(\rho  + \frac{3P}{c^2} )  \\
+        \dot{\rho} &= -\frac{3\dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
+    \end{align}
+\end{subequations}    
+
+The equations are in terms of the three parameters \(a\), \(\rho\) and \(p\), which are all functions of time.
+
+The third equation comes from the Bianchi identities \(\nabla_{\mu} G^{\mu \nu}=0\).
+
+Rewriting the first equation:
+\begin{equation}
+  \ddot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k c^2
+\end{equation}
+and
+\begin{equation}
+  2 \dot{a} \ddot{a} = 
+  \frac{8 \pi G}{3} \dot{\rho} a^2 + \frac{16 \pi G}{3} \rho \dot{a} a 
+\end{equation}
+
+We then substitute in the expression we have for \(\dot{\rho} \) from the third FE.
+Everything is multiplied by \(\dot{a} \): if it is not zero we have
+\begin{equation}
+  \frac{\ddot{a}}{a} = - 4 \pi G \rho - \frac{4 \pi G p}{c^2} + \frac{8 \pi G}{3} \rho= 
+  - 4 \pi G \qty(\frac{\rho}{3} + \frac{P}{c^2})\,.
+\end{equation}
+
+The equation system is underdetermined. We have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid: \(p \overset{!}{=} p(\rho)\).
+
+Very often this equation of state will look like \(p = w \rho c^2\), for a constant \(w\) (not \(\omega\)!). This is related to the adiabatic constant \(\gamma\) by \(\gamma = w+1\).
+
+We are going to assume homogeneity and isotropicity.
+
+Some possible equations of state are \(p \equiv 0\), or \(w =0\): this means \(\gamma =1 \). This is a \emph{dust pressureless fluid}.
+
+What is the speed of sound of our fluid? We only have the adiabatic speed of sound \(c_s^2 = \pdv*{p}{\rho}\), where the derivative is to be taken at constant entropy and is just a total derivative in the barotropic case.
+
+Also in the baryionic case \(p=0\) is a good approximation.
+
+If \(p=0\) we can simplify:
+\begin{equation}
+  \dot{\rho} = -3 \frac{\dot{a} }{a} \rho \implies 
+  \rho \propto a^{-3}\,.
+\end{equation}
+
+More generally, not assuming \(w=0\) we get:
+\begin{equation}
+  \dot{\rho} = -3 (1+w) \rho \frac{\dot{a} }{a} \implies \rho \propto a^{-3 (1+w)} = a^{-3 -3\gamma}
+\end{equation}
+
+Another case is a \emph{gas of photons}: in that case \(p = \rho c^2 / 3\), so \(w=\frac[i]{1}{3} \), \(\gamma = \frac[i]{4}{3} \), \(c_{s}^2 = c^2 / 3 \): the speed of sound is \(c / \sqrt{3} \). These photons are thermal: perturbations can propagate (even without interactions with matter\dots). 
+
+In this case we get \(\rho \propto p \propto a^{-4}\).
+
+Stiff matter is \(p = \rho c^2\), \(w=1\), \(\gamma=2\) and \(c_s = c\). This is an incompressible fluids: it is so difficult to set this matter in motion that once one does it travels at the speed of light. Now, \(\rho \propto p \propto a^{-6}\).
+
+A possible case is \(p = - \rho c^2\): \(w = -1\) and \(\gamma = 0\): we cannot compute a speed of sound. Now \(\rho\) and \(p\) are constants. This is the case of dark energy (?).
+
+This can be interpreted as an interpretation of the cosmological constant \(\Lambda\).
+
+Now we relace the last FE with \(w = \const\), \(\rho(t) = \rho_{*} \qty(a(t) / a_{*})^{-3(1+w)}  \).
+
+Now, if we substitute into the second FE we get that gravity is attractive (\(\ddot{a} < 0 \)) iff \(w > -1/3\). 
+
+[Plot: \(\rho\) vs \(a\): the cosmological constant is constant, matter is decreasing, radiation is decreasing faster].
+
+In this plot, \(a\) can be interpreted as the time.
+We can insert the spatial curvature in the plot: it decreases, but slower than matter. 
+Now, the dark energy in the universe is more important than the curvature. 
+
+Let us solve the first FE: inserting the third one we get
+\begin{equation}
+  \qty(\frac{\dot{a} }{a})^2 = 
+  \frac{8 \pi G}{3} \rho_* \qty(\frac{a}{a_*}) ^{-3 (1+w)} - \frac{kc^2}{a^2}\,.
+\end{equation}
+
+We defined the parameter \(\Omega = \frac{8 \pi G \rho}{3 H^2} = \rho / \rho_C\).
+Experimentally this is very close to 1.
+The Einstein-de Sitter model is one where we take \(\Omega \equiv 1\): negligible spatial curvature. This amounts to making \(k=0\).
+\begin{equation}
+  \dot{a}^2 = \frac{8 \pi G}{3} \rho_* a_{*}^{3 (1+w)} a^{-(1+3w)}
+\end{equation}
+
+therefore \(\dot{a} = \pm A a^{\frac{1+3w}{2}}\), or \(a ^{\frac{1+3w}{2}}\dd{a} = A \dd{t}\). A solution is:
+\begin{equation}
+  a(t)= a_{*} \qty(
+    1 + \frac{3}{2} (1+w) H_{*} (t - t_{*})
+  )^{\frac{2}{3(1+w)}}
+\end{equation}
+where \(H_{*}^2 = \frac{8 \pi G}{3} \rho_{*}\), coupled to:
+\begin{equation}
+  \rho(t) = \rho_{*} \qty(1 + \frac{3}{2}(1+w H_* (t-t_*)))^{-2}
+\end{equation}
+
+There is a time where the bracket in \(a(t)\) is zero: we call it as \(t_{\text{BB}}\) define it by
+\begin{equation}
+  1 + \frac{3}{2} (1+w) H_{*} (t_{\text{BB}} - t_* ) = 0\,.
+\end{equation}
+
+Since the curvature scalar is \(R \propto H^2\), at \(t_{\text{BB}}\)  the curvature is diverges.
+
+Hakwing \& Ellis proved that if \(w>-1/3\) we unavoidably must have a Big Bang.
+
+We can define a new time variable by \(t_{\text{new}} \equiv (t - t_{*}) + 2 H_*^{-1} / (3 (1+w))\). Then, we can just write:
+\begin{equation}
+  a \propto t_{\text{new}}\,^{\frac{2}{3(1+w)}}
+\end{equation}
+and this allows us to get rid of \(t_{*}\).
+
+Inserting this new time variable, we get
+\begin{equation}
+  \rho(t) = \frac{1}{6 (1+w)^2 \pi 4 t^2}
+\end{equation}
+and the Hubble parameter is:
+\begin{equation}
+  H(t) = \frac{2}{3(1+w) t}
+\end{equation}
+Some cases are:
+\begin{equation}
+  \begin{cases}
+      w = 0 \implies a \propto t^{2/3}  \\
+      w=1/3 \implies a \propto t^{1/2} \\  
+      w=1 \implies a \propto t^{1/3}  
+  \end{cases}
+\end{equation}
+
+The \emph{De Sitter} universe is one where \(w \rightarrow 1\): \(a(t) \propto \exp(Ht) \) and \(H = \const\). (CHECK) 
+
+\end{document}

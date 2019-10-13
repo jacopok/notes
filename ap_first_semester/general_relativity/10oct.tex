@@ -1,0 +1,165 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 10 2019}
+
+Last lecture we introduced tensors.
+
+An example of those is the EM tensor \(F_{\mu \nu}\):
+
+\begin{equation}
+  F_{\mu \nu} = \left[\begin{array}{cccc}
+  0 & E_{x}/c & E_y/c & E_z/c \\ 
+  -E_x/c & 0 & -B_x & B_y \\ 
+  -E_y/c & B_x & 0 & -B_z \\ 
+  -E_z/c & -B_y & B_z & 0
+  \end{array}\right]\,,
+\end{equation}
+%
+which, it can be checked, transforms as a \((0,2)\) tensor. Also, we can define the current vector \(j^{\mu} = (c \rho, j^{i})\). Then, the Maxwell equations read:
+
+\begin{equation}
+  \partial_{\mu} F^{\mu \nu }= \mu_0 j^{\nu}
+  \qquad \text{and} \qquad
+  \partial_{[\mu} F_{\nu \rho]}\,.
+\end{equation}
+
+They are covariant!
+
+\subsection{Particles in motion}
+
+In Newtonian mechanics, the motion of a particle is described by a function of time \(x^{i} = x^{i}(t)\).
+
+In special relativity, we introduce the concept of \emph{worldline}.
+It must be parametrized with respect to some parameter \(\lambda\), such that \(x^{\mu} = x^{\mu}(\lambda)\). A preferred choice for \(\lambda\) is the proper time of the particle, \(\lambda = \tau\).
+
+We then define the 4-velocity:
+%
+\begin{equation}
+  u^\mu = \dv{x ^\mu}{\tau} \,.
+\end{equation}
+
+It is a tensor since it is the product of a scalar and a tensor.
+
+Multiplying \(u^\mu u_{\mu}\) we always get \(-c^{2}\), since:
+
+\begin{equation}
+  u^{\mu} u_{\mu} = \frac{\dd{x^{\mu}} \dd{x_{\mu}}}{\dd{\tau^{2}}} = -c^2 \frac{\dd{s^{2}}}{\dd{s^2}}
+\end{equation}
+
+
+We can make the expression explicit using \(\dd{\tau} = \gamma \dd{t}\), which gives us \(u^{\mu} = (\gamma c, \gamma v^{i})\).
+In the frame of the particle, \(u^{\mu} = (c, 0)\).   
+
+The \emph{four-momentum} of a particle is defined as: 
+
+\begin{equation}
+  p^{\mu} = m u^{\mu} = (m \gamma c, m \gamma v^{i})\,.
+\end{equation}
+
+The component \(p^{0}\) is \(mc\) at \(v=0\). What does it mean? we can expand it for small \(v\):
+
+\begin{equation}
+  \frac{mc}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} \sim
+  mc \qty(1 + \frac{v^{2}}{2 c^{2} } )
+  = mc + \frac{1}{c} \frac{mv^{2}}{2}\,.
+\end{equation}
+
+We get the mass, plus a kinetic energy term: more explicitly, \(cp^0 = mc^{2} + \frac[i]{1}{2} m v^{2}\).
+
+We can rewrite Newton's first law in SR:
+
+\begin{proposition}[Newton I]
+A free particle moves with constant \(u^{\mu}\), or 
+
+\begin{equation}
+  \dv{u^{\mu}}{\tau} = 0 
+\end{equation}
+\end{proposition}
+
+To express this in an easier way we introduce the 4-acceleration:
+
+\begin{equation}
+  a^{\mu} \defeq \dv{u^{\mu}}{\tau} = \dv[2]{x^{\mu}}{\tau}
+\end{equation}
+
+We now with to introduce the concept of a path minimizing proper time. Recall Snell's law, which allows us to relate the angles of incidence of light when it passes between one medium to another, if they have different indices of refraction:
+
+\begin{equation}
+  \frac{\sin(\theta_{2})}{\sin(\theta_{1})} = \frac{n_1}{n_2 } = \frac{v_2}{v_1 }\,.
+\end{equation}
+
+This can be shown to be equivalent to light minimizing the time it takes to move from a point in one medium to a point in the other.
+
+Analogously, saying that a massive particle travels along the worldline which minimizes \(\tau\) is equivalent to Newton's first principle.
+
+We want to perturb a generic  worldline \(x^{\mu}\) with some \(\dd{x^{\mu}}\), and consider the proper time functional \(\tau\) which gives the proper time of a generic trajectory: we impose
+
+\begin{equation}
+  \frac{\tau \qty[x^{\mu} + \varepsilon^\mu] - \tau \qty[x^{\mu}]}{\abs{\varepsilon ^\mu} } = \frac{\delta \tau}{\delta x^\mu} \overset{!}{=}  0\,,
+\end{equation}
+%
+where a limit \(\abs{\varepsilon^{\mu}} \rightarrow 0 \) is implied, and only the linear terms are considered.
+
+The proper time functional for paths between \(A\) and \(B\) is given \(\tau = \int _A^B \dd{\tau}\).  
+We can rewrite it as:
+
+\begin{equation}
+  \tau = \int_A^B \dd{\tau} \frac{\dd{\tau^2}}{\dd{\tau^2}}
+  = \int_A^B \dd{\tau} \frac{-\eta_{\mu \nu}\dd{x^{\mu} \dd{x^{\nu}}}}{\dd{\tau^2}}\,.
+\end{equation}
+
+We now consider a perturbation \(\varepsilon^{\mu} = \delta^{\mu}_1 \delta x\):
+
+\begin{equation}
+  \tau_{AB}[x + \varepsilon] = \int_A^B \dd{\tau}
+  \qty[\qty(\dv{t}{\tau})^2 
+  - \frac{1}{c^{2}} \qty(\dv{t}{\tau} + \dv{\delta x}{\tau})^2 
+  - \frac{1}{c^{2}} \qty(\dv{y}{\tau})^2
+  - \frac{1}{c^{2}} \qty(\dv{z}{\tau})^2]\,.
+\end{equation}
+
+We can discard a second order term \(\qty(\dv*{\delta x}{\tau})^2\), and subtract off \(\tau_{AB}[x]\): we are left with 
+
+\begin{equation}
+  \delta \tau = - \frac{2}{c^{2}} \int_A^B \dd{\tau} \dv{x}{\tau} \dv{\delta x}{\tau} 
+\end{equation}
+
+Now, we integrate by parts, disregard the boundary terms since the endpoints of the path cannot be deformed, and get:
+
+\begin{equation}
+  \frac{\delta \tau_{AB}}{\delta x} = + \frac{2}{c^{2}} \int_A^B \dd{\tau} \dv[2]{x}{\tau} \,,
+\end{equation}
+
+which proves the equivalence for this type of perturbation, the others are analogous.
+
+The generalization of Newton's second law, which at low speeds is \(F^{i} = m a^{i}\), can be similarly restated as \(\delta S = 0\), for the action \(S = \int \dd{\tau}\).
+
+\subsection{Motion of light rays}
+
+For light we cannot compute \(u^{\mu}\) with the previous definition, since its proper time is always zero.
+
+Instead, we \emph{define} \(u^{\mu}\) to be a normalized null-like vector, such that \(x^{\mu} = \lambda u^{\mu}\) for some \(\lambda\).
+
+We know from quantum mechanics that \(E = \hbar \omega\), where \(\hbar = h / (2 \pi)\) and \(\omega = 2 \pi / T = 2 \pi f\). 
+
+The momentum is proportional to the wavevector \(k^{i}\): \(p^{i} = \hbar k^{i} / c\). The relativistic generalization of this fact is 
+
+\begin{equation}
+  p^{\mu} = \qty(\frac{\hbar \omega}{c}, \frac{\hbar k^{i}}{c}) = \frac{\hbar k^{\mu}}{c}\,.
+\end{equation}
+
+Since the momentum of light must be null we have that necessarily \(\omega = \abs{k} \).
+
+\subsection{Doppler effect}
+
+We take a special case: radiation goes in the same direction as the observer.
+In the \(O\) frame we have \(k^{\mu} = (\omega, \omega,0,0)\).
+
+The observer, moving with velocity \(v\), measures \(k^{\prime, \mu}\). This can be easily computed with a Lorentz transformation: \(k^{\prime, \mu} = \tensor{\Lambda}{^\mu_\nu} k^\nu\).
+
+We are mostly interested in \(k^{\prime, 0} = \omega'\): it comes out to be \(\omega' = \gamma \omega + (- \gamma \beta)\omega = (1- v/c) \gamma \omega\).
+
+Some notes: at slow speeds \(\omega' \approx (1-v/c) \omega\); we have \(f'<f\) when source and observer are moving away from each other. 
+
+\end{document}

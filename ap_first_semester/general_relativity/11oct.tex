@@ -1,0 +1,112 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Fri Oct 11 2019}
+
+\subsection{Bases}
+
+In Euclidean 2D geometry we can choose,  for example, the basis \(e_1 = (1,0)^\top\) and \(e_2 = (0,1)^\top\). This basis is  orthonormal with respect to the scalar product \(g_{\mu \nu} = \delta_{\mu \nu}\): \(e_{(\alpha)} \cdot e_{(\beta)} = e_{(\alpha)}^{\mu} e_{(\beta)}^{\nu} g_{\mu \nu} =  g_{(\alpha) (\beta)}\).
+
+
+I use parentheses around indices to denote the fact that they are not tensorial indices, but instead denote which basis vector we are considering.
+We express our vectors in components with respect to this basis.
+
+In SR, we can do the same: our coordinate basis can be given by \(e_{(\alpha)}^{\mu} = \delta_{(\alpha)}^{\mu}\).
+Now, the orthonormality \(e_{(\alpha)} \cdot e_{(\beta)} = g_{(\alpha) (\beta)}\) holds with respect to \(g_{\mu \nu} = \eta_{\mu \nu}\).
+
+% what's your name? my name is $e_1$...
+
+\subsection{Observers \& observations} 
+
+Every observer will be characterized by their trajectory \(x^{\mu}(\tau)\).
+We can associate a coordinate system with the observer: the one in which the observer's own  4-velocity \(u^{\mu}\) is the time-like unit vector (rescaled by a factor of \(c\): \(u^{\mu} = ce_{(0)}\)).
+
+When the observer sees a particle with \(p^{\mu} = (E_p / c, p^i)\) they measure the energy of the particle to be \(p^{0}c\): in this frame this is \(E_{\text{measured}} = - e_{(0)}^\mu p_{\mu} c = - u^{\mu} p_{\mu} c\). 
+Do note that this is a covariant expression, while \(p^{0}\) is not: the energy of a particle with 4-momentum \(p^{\mu}\) measured by an observer with 4-velocity \(u^{\mu}\) is an invariant. 
+
+In the rest frame of the observer, their own 4-velocity is \((c, \vec{0}) = c (1, \vec{0})\).
+In the rest frame of the particle, its own energy is measured to be \(mc^2\).
+The measured energy by an observer such that the product of the 4-velocities of the particle and of the observer is \(-\gamma c^2\) is \(m \gamma c^2\).
+
+The Earth moves with speed \(\num{e-4}  c\) around the Sun.
+
+% wooooo
+
+Now we can start using \(c=1\). We can put the \(c\) back whenever we want with dimensional analysis.
+
+\section{Gravity}
+
+\subsection{The Equivalence Principle}
+
+Just like Newton supposedly thought about universal gravity when, while looking at the sky, an apple fell on his head; Einstein supposedly thought up the equivalence principle when he saw a man falling from a rooftop.
+
+\begin{proposition}[Equivalence principle]
+Experiments in a small free falling system over a short amount of time give the same result as experiments in an inertial frame in empty space.
+\end{proposition}
+
+Why ``small''? The gravitational field is not really homogeneous.
+The idea is that gravity can only be removed \emph{locally}.
+
+If we were to see that objects fall differently even in the same neighbouhood then we would lose the EP.
+
+\begin{definition}
+The \emph{inertial} mass is an object's resistance to motion: \(m _{\text{inertial}} = F^{i}/ a^{i}\).
+\end{definition}
+
+\begin{definition}
+The \emph{gravitational} mass is the one which defines the gravitational force on an object: \(m _{\text{gravitational}} = \abs{F} r^2 / (G M)\).
+\end{definition}
+
+These are \emph{a priori} different, but experimentally equal: in general the gravitational acceleration is given by
+\begin{equation}
+a^{i} = \frac{GM r^{i} }{r^3} \frac{m _{\text{gravitational}}}{m _{\text{inertial}}}  
+\end{equation}
+
+If the ratio of masses depended on the material, this could vary.
+
+We can do a torsion pendulum experiment: the torsion applied by the Coriolis effect on a pendulum depends on the inertial mass, while its restoring force depends on the gravitational mass.
+Experimentally we have measured them to be equal with an accuracy of \(\num{e-12} \).
+
+A person on a rocket accelarating at \(g\) experiences the same acceleration as a person standing on Earth.
+
+\subsection{Gravitational redshift}
+
+We treat it now in a weak field approximation.
+
+% now with gender roles!
+
+Alice sends radiation to Bob from a higher altitude on Earth. Alice sends it with frequency \(f\), Bob receives it with \(f'\). They are at rest with respect to one another: there is no kinematic Doppler effect here.
+
+We do this by applying the equivalence principle! We imagine A and B to be standing in a rocket which is accelerating at \(g\):
+there is no more gravity.
+
+Bob will receive a greater frequency: \(f'>f\). This can be seen by imagining two consecutive wavefronts as two particles. Alice sends them \(\Delta t_A = 1/f\) apart, Bob receives them as \(\Delta t_B=1/f'\) apart.
+
+If the rocket is at rest, the time for the radiation to reach B is \(h/c\); if the rocket is moving then the time is \(<h/c\).
+
+When the second wavefront starts moving the rocket is already going: the second wave starts later but it has less distance to travel. Therefore \(\Delta t_A > \Delta t_B\), which implies \(f'>f\).
+
+\begin{claim}
+    The first terms in the expansion are:
+    \begin{equation}
+        f' = f \qty(1+ \frac{gh}{c^2} + O \qty(\qty(\frac{gh}{c^2})^2))\,.
+    \end{equation}
+\end{claim}
+    
+\subsection{Potentials}
+
+In electromagnetism, the potential energy between a charge \(Q\) and a test charge \(q\) is \(U = k Qq/r\): then we define the electromagnetic potential \(V = U/q\) which has the advantage of being test-charge independent.
+
+Similarly, we define the gravitational potential \(\Phi = U/m = gh\).
+Then, the second order term in the formula for the redshift becomes \(\Delta \Phi c^{-2}\): now we can properly say that this \emph{weak field} means \(\Delta \Phi c^{-2} \ll 1\).
+
+This is surely the case for the cases we can treat concretely.
+If two people are separated by \SI{1}{km} of difference in altitude, they have \(\Delta \Phi c^{-2} \approx \num{e-13} \): the difference they will experience is one second in a million years.
+
+Our expression from \(\Phi \) in the newtonian approximation is \(\Phi = GM /r\).
+
+We can say even now by dimensional analysis that \(GM / (rc^2)\) is the parameter which tells us how relevant the gravitational effects are: if it is similar to 1 we must consider GR.
+
+This is very close to the expression for the Schwarzschild radius: it is \(r=M\) in natural units \(c=G=1\), while the correct expression is \(r= 2M\): that one can actually be recovered exactly if we calculate the radius at which the escape velocity is equal to \(c\).
+
+\end{document}

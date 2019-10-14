@@ -76,7 +76,28 @@ lp(sp.simplify)
 
 #%%
 
-atimesu = -a0*u0 + a1*u1
+atimesu = - (a0*u0) + a1*u1
 lp(atimesu)
 lp(sp.simplify(atimesu))
+#%%
+
+a = sp.Matrix([a0, a1, 0, 0])
+
+Lambda = sp.Matrix(
+    [
+        [u0, -u1, 0,0],
+        [-u1, u0, 0,0],
+        [0,0,1,0],
+        [0,0,0,1]
+    ])
+
+sp.simplify(Lambda * a)
+
+#%%
+
+v = sp.symbols('v')
+g = 1/sp.sqrt(1-v**2)
+
+
+
 #%%

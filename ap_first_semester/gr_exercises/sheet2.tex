@@ -112,7 +112,7 @@ which is a bit unwieldy but it can be used to check two important facts: \(a^{\m
 %
 which tells us that the constant acceleration \(\sqrt{a^{\mu }a_{\mu }} = \kappa \).
 
-On the other hand, we have 
+Also, we verify the orthogonality to the four-velocity: 
 %
 \begin{equation}
   a^{\mu }u_{\mu } = 
@@ -120,7 +120,135 @@ On the other hand, we have
   = 0
 \,.
 \end{equation}
+
+\subsubsection{Local velocity \& acceleration}
+
+We can apply a Lorentz boost corresponding to this velocity:
+it will be given by the matrix:
 %
+\begin{equation}
+  \left[\begin{array}{cccc}
+  \gamma  & -v \gamma  & 0 & 0 \\ 
+  -v \gamma  & \gamma  & 0 & 0 \\ 
+  0 & 0 & 1 & 0 \\ 
+  0 & 0 & 0 & 1
+  \end{array}\right]
+\,,
+\end{equation}
+%
+where \(v\) and \(\gamma \) are those found before.
+Without doing any calculations we could already say that the transformed velocity will be equal to the time-like unit vector, while the acceleration will be equal to \(\kappa \) times the unit \(x\)-directed vector.
+
+The velocity becomes:
+%
+\begin{equation}
+  \qty(u^{\mu})' =
+  \left[\begin{array}{cccc}
+    \sqrt{\kappa^2 t^2 + 1}  & -\kappa t  & 0 & 0 \\ 
+    -\kappa t  & \sqrt{\kappa^2 t^2 + 1}  & 0 & 0 \\ 
+    0 & 0 & 1 & 0 \\ 
+    0 & 0 & 0 & 1
+    \end{array}\right]
+    \begin{bmatrix}
+      \sqrt{\kappa^2 t^2 + 1}  \\
+      \kappa t \\
+      0 \\
+      0
+    \end{bmatrix} 
+  = 
+  \begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  0
+  \end{bmatrix}
+\,,
+\end{equation}
+%
+as we expected.
+
+The acceleration instead becomes:
+%
+\begin{equation}
+  \qty(a^{\mu})' =
+  \left[\begin{array}{cccc}
+    \sqrt{\kappa^2 t^2 + 1}  & -\kappa t  & 0 & 0 \\ 
+    -\kappa t  & \sqrt{\kappa^2 t^2 + 1}  & 0 & 0 \\ 
+    0 & 0 & 1 & 0 \\ 
+    0 & 0 & 0 & 1
+    \end{array}\right]
+    \begin{bmatrix}
+      \frac{\sqrt{2} \kappa \sinh{\left(2 \kappa \tau \right)}}{2 \sqrt{\cosh{\left(2 \kappa \tau \right)} + 1}}
+      \\
+      \kappa \cosh \left(\kappa \tau \right)\\
+      0 \\
+      0
+    \end{bmatrix}
+  = 
+  \begin{bmatrix}
+  0 \\
+  \kappa  \\
+  0 \\
+  0
+  \end{bmatrix}
+\,,
+\end{equation}
+%
+
+\subsection{Fixed target collision}
+
+\subsubsection{Center of mass momenta}
+
+In the CoM frame, the momenta of the two protons are respectively \((E_p, \pm p, 0,0)^\top = m_p (\gamma, \pm v, 0, 0)\), where \(E_p^2 = m_p^2 + p^2\).
+The total CoM energy is \(-(p^\mu _A + p^\mu _B )^2 = 2 m_p^2\).
+
+\subsubsection{Center of mass velocity}
+
+The momentum of particle \(B\) will be given by \(p^{\mu } = m_p u^{\mu } = (m_p \gamma , m_p \gamma v, 0, 0)^\top\). Therefore, \(\gamma v = p / m_p\). Solving this we get: 
+%
+\begin{equation}
+  v = \frac{p}{m_p} \sqrt{\frac{1}{(p/m_p)^{2} + 1}} = \frac{p}{E_p}
+\,,
+\end{equation}
+%
+
+\subsubsection{Lab frame momenta}
+
+The momentum of particle \(B\) in its own rest frame will just be \((m_p, 0, 0, 0)^\top\).
+The momentum of particle \(A\) instead will be given by a boost in the \(x\) direction with velocity \(-v\):
+%
+\begin{equation}
+  (p_A^\mu) _{\text{lab}} = 
+  \left[\begin{array}{cccc}
+  \gamma  & v \gamma  & 0 & 0 \\ 
+  v \gamma  & \gamma  & 0 & 0 \\ 
+  0 & 0 & 1 & 0 \\ 
+  0 & 0 & 0 & 1
+  \end{array}\right]
+  \left[\begin{array}{c}
+  E_p  \\ 
+  p \\ 
+  0 \\ 
+  0
+  \end{array}\right]  
+  = \left[\begin{array}{c}
+    \gamma E_p + v \gamma p  \\ 
+    v \gamma E_p + \gamma p \\ 
+    0 \\ 
+    0
+    \end{array}\right]  
+  = \left[\begin{array}{c}
+    m_p \frac{1+v^2}{\sqrt{1-v^2}}  \\ 
+    2 \gamma p\\ 
+    0 \\ 
+    0
+    \end{array}\right]
+\,,
+\end{equation}
+%
+
+\subsection{Weak field gravitational time dilation}
+
 
 
 \end{document}

@@ -5,6 +5,8 @@
 
 \subsection{Constant acceleration}
 
+\subsubsection{Coordinate velocity}
+
 We are given the position as a function of time, 
 \begin{equation}
   x(t) = \frac{\sqrt{1 + \kappa^2 t^2} -1 }{\kappa }\,,
@@ -25,6 +27,8 @@ It is clear from the expression that \(\abs{v} < 1\) for all times, while \(v\) 
     \caption{Velocity as a function of coordinate time \(t\)}
     \label{fig:velocity-constant-acceleration}
 \end{figure}
+
+\subsubsection{Components of \(u^{\mu }\)}
 
 The Lorentz factor \(\gamma \) is given by
 %
@@ -53,6 +57,8 @@ therefore the four-velocity is given by:
   \end{bmatrix}\,.
 \end{equation}
 
+\subsubsection{Proper time}
+
 The relation between coordinate and proper time is given by the definition of the first component of the four-velocity: \(u^{0} = \dv*{t}{\tau} = \gamma \), therefore \(\dd{\tau } = \dd{t} / \gamma \).
 Integrating this relation we get:
 %
@@ -71,7 +77,50 @@ The inverse relation is given by \(t = \sinh (\kappa \tau ) / \kappa \). Using t
   x (t(\tau ))  =\frac{\cosh{\left(\kappa \tau \right)} - 1}{\kappa}\,.
 \end{equation}
 
-Now, we wish to compute the four-
+\subsubsection{Four-acceleration}
+
+Now, we wish to compute the four-acceleration. There are many ways to approach this: an easy one is to simply find the explicit expression \(u^{\mu } (\tau )\) and to differentiate it. The expression we get is:
+%
+\begin{equation}
+    a^{\mu } = \dv{}{\tau } u^{\mu } = \dv{}{\tau }   
+  \begin{bmatrix}
+    \sqrt{\sinh^{2}{\left(\kappa \tau \right)} + 1}
+        \\
+    \frac{\sqrt{\kappa^{2} t^{2} + 1} \sinh{\left(\kappa \tau \right)}}{\sqrt{\sinh^{2}{\left(\kappa \tau \right)} + 1}} \\
+    0 \\
+    0
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{\sqrt{2} \kappa \sinh{\left(2 \kappa \tau \right)}}{2 \sqrt{\cosh{\left(2 \kappa \tau \right)} + 1}}
+    \\
+    \kappa \cosh \left(\kappa \tau \right)\\
+    0 \\
+    0
+  \end{bmatrix}
+\,,
+\end{equation}
+%
+which is a bit unwieldy but it can be used to check two important facts: \(a^{\mu } a_{\mu } = \const \) and \(a^{\mu }u_{\mu } = 0\). The first of the two is:
+%
+\begin{equation}
+    a^{\mu }a_{\mu } = -(a_0 )^2 + (a_1 )^2 =
+    \kappa^{2} \cosh^{2}{\left(\kappa \tau \right)} - \frac{\kappa^{2} \sinh^{2}{\left(2 \kappa \tau \right)}}{2 \left(\cosh{\left(2 \kappa \tau \right)} + 1\right)}
+    = \kappa^2 
+\,,
+\end{equation}
+%
+which tells us that the constant acceleration \(\sqrt{a^{\mu }a_{\mu }} = \kappa \).
+
+On the other hand, we have 
+%
+\begin{equation}
+  a^{\mu }u_{\mu } = 
+  - \frac{\sqrt{2} \kappa \sqrt{\sinh^{2}{\left(\kappa \tau \right)} + 1} \sinh{\left(2 \kappa \tau \right)}}{2 \sqrt{\cosh{\left(2 \kappa \tau \right)} + 1}} + \kappa \sinh{\left(\kappa \tau \right)} \cosh{\left(\kappa \tau \right)}
+  = 0
+\,.
+\end{equation}
+%
 
 
 \end{document}

@@ -34,13 +34,13 @@ v = sp.diff(x, t)
 # using kappa = 1
 # this does not work in vscode, don't know why
 
-times = np.arange(-5,5, step=0.1)
-velocity = sp.lambdify(t, v.subs(kappa, 1), 'numpy')
+# times = np.arange(-5,5, step=0.1)
+# velocity = sp.lambdify(t, v.subs(kappa, 1), 'numpy')
 
-plt.plot(times, velocity(times))
-plt.xlabel("Time [$1/\kappa$]")
-plt.ylabel("Velocity [c]")
-plt.savefig(fname='../figures/velocity.pdf', format = 'pdf')
+# plt.plot(times, velocity(times))
+# plt.xlabel("Time [$1/\kappa$]")
+# plt.ylabel("Velocity [c]")
+# plt.savefig(fname='../figures/velocity.pdf', format = 'pdf')
 
 #%%
 
@@ -58,4 +58,25 @@ tau = sp.symbols('tau', real=True)
 
 lp(sp.simplify(x.subs(t, sp.sinh(kappa*tau)/kappa)))
 
+#%%
+u0 = gamma.subs(t, sp.sinh(kappa*tau)/kappa)
+u1 = (gamma*v).subs(t, sp.sinh(kappa*tau)/kappa)
+
+a0 = sp.simplify(sp.diff(u0, tau))
+a1 = sp.simplify(sp.diff(u1, tau))
+
+#%%
+lp(a1)
+
+#%%
+
+asquare = -a0**2 + a1**2
+lp(asquare)
+lp(sp.simplify)
+
+#%%
+
+atimesu = -a0*u0 + a1*u1
+lp(atimesu)
+lp(sp.simplify(atimesu))
 #%%

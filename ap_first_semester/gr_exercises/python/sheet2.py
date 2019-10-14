@@ -5,13 +5,13 @@ import sympy as sp
 import matplotlib.pyplot as plt
 sp.init_printing()
 lp = lambda x: print(sp.latex(x))
-from matplotlib import rc
-rc('font',**{'family':'serif','serif':['Palatino']})
-rc('text', usetex=True)
-rc('text.latex', preamble=r'''\usepackage{amsmath}
-          \usepackage{physics}
-          \usepackage{siunitx}
-          ''')
+# from matplotlib import rc
+# rc('font',**{'family':'serif','serif':['Palatino']})
+# rc('text', usetex=True)
+# rc('text.latex', preamble=r'''\usepackage{amsmath}
+#           \usepackage{physics}
+#           \usepackage{siunitx}
+#           ''')
 
 # %%
 
@@ -99,5 +99,38 @@ v = sp.symbols('v')
 g = 1/sp.sqrt(1-v**2)
 
 sp.series(1/g)
+
+#%%
+
+gh, g, h, gt1, gt2, gDeltatA = sp.symbols('gh g h gt1 gt2 gD', positive=True)
+
+first_beam = sp.Eq(gt1, sp.sqrt(1+(gt1)**2) -1+h*g).subs(h, gh/g)
+second_beam = sp.Eq(gt2 - gDeltatA, h*g + sp.sqrt(1+(gt2)**2) - sp.sqrt(1+(gDeltatA)**2)).subs(h, gh/g)
+
+#%%
+
+sols = sp.simplify(sp.solve([first_beam, second_beam], [gt1, gt2]))
+
+for x in sols:
+    # g*time interval for B
+    # in A's frame
+    DtB = sp.simplify(x[1]-x[0])/g
+    
+    # factor to trasform
+    # into B's frame when he receives
+    # the signal
+    factor = sp.sqrt(gh**2+1) - gh**2 / sp.sqrt(gh**2 + 1)
+    DtBforB = sp.simplify(DtB * factor)
+
+    series1 = sp.simplify(sp.series(DtBforB, x=gDeltatA, n=2).removeO())
+    series2 = sp.simplify(sp.series(series1, x=gh, n=2).removeO())
+    print(series2)
+
+#%%
+
+#%%
+
+gh = np.linspace(-1,1)
+plt.plot(gh, np.sqrt(gh**2+1) - gh**2 / np.sqrt(gh**2 + 1))
 
 #%%

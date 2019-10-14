@@ -243,3 +243,4 @@ def log_plot(log_velocity):
 ipywidgets.interact(log_plot, log_velocity=(0,2.5,0.05), continuous_update=False)
 
 # %%
+

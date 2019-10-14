@@ -98,6 +98,6 @@ sp.simplify(Lambda * a)
 v = sp.symbols('v')
 g = 1/sp.sqrt(1-v**2)
 
-
+sp.series(1/g)
 
 #%%

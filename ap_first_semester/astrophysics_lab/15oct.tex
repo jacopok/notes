@@ -1,0 +1,58 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Tue Oct 15 2019}
+
+We come back to the signal-to-noise ratio. 
+The SNR is dimensionless.
+
+What happens to the SNR if we increase pixel size?
+It improves. However, if we normalize for the area the thing is different: \(D\) and \(R_N^2\) go up with pixel size. Overall there is more noise with bigger pixels.
+
+Background-limited instruments: if \(B\) is negligible then \(\text{SNR} \propto \sqrt{F _{\text{src}} t} \), if it is dominant then \(\text{SNR} \sim F _{\text{src}}/ F _{\text{bkg}} \sqrt{t} \).
+
+The \emph{Quantum efficiency} is the fraction of photons we can detect. The human eye is around 1\%, CCDs can get up to 90\%.
+
+A bit of lesson on telescopes, it can be found on the slides.
+
+CHANDRA has good angular resolution while XMM has good spectral resolution.
+
+INTEGRAL stops at \SI{100}{keV}, Fermi starts at \SI{100}{MeV}.
+
+Now, \emph{inverse Compton emission}.
+In the rest frame of the electron, which we will use throughout, it loses energy like 
+%
+\begin{equation}
+  - \qty(\dv{E}{t} )' = \sigma _T c U' _{\text{rad}}
+\,,
+\end{equation}
+%
+where \(U' _{\text{rad}}\) is the energy density of radiation,  while \(\sigma _T\) is the Thomson scattering cross section.
+
+Depending on the temperature of the electrons, we can have regions with mostly Compton scattering or inverse Compton scattering: 
+%
+\begin{equation}
+  \frac{\Delta E}{E_0} = \frac{4 k_B T_e - E_0 }{m_e c^2}
+\,,
+\end{equation}
+%
+depending on the sign of the numerator on the RHS we can see whether energy is transferred to or from electrons.
+
+\begin{greenbox}
+  What is \(E_0 \)?
+\end{greenbox}
+
+In the Kompaneets equation we impose \(\pdv*{n}{t} = 0\), since \(n\) is frequency integrated and Compton scattering conserves photon number.
+
+Now, follow the instructions in the slides. Open \texttt{ISGR-EBDS-MOD}: ``all'', you can then see the conversion of energy to channel.
+
+The quantity measured in 
+%
+\begin{equation}
+  \SI{}{keV}^2 \qty(\SI{}{photon / cm^2 / s / keV})
+\,,
+\end{equation}
+%
+describes the energy output of the source at each energy.
+
+\end{document}

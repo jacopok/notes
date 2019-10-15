@@ -8,13 +8,13 @@
 \subsubsection{Coordinate velocity}
 
 We are given the position as a function of time, 
-\begin{equation}
+\begin{equation} \label{eq:constant-acceleration} 
   x(t) = \frac{\sqrt{1 + \kappa^2 t^2} -1 }{\kappa }\,,
 \end{equation}
 %
 and we can directly compute its derivative
 %
-\begin{equation}
+\begin{equation} \label{eq:constant-acceleration-velocity} 
   v(t) = \dv{x}{t} =
   \frac{\kappa t}{\sqrt{\kappa^2 t^2  + 1} }\,.
 \end{equation}
@@ -28,11 +28,11 @@ It is clear from the expression that \(\abs{v} < 1\) for all times, while \(v\) 
     \label{fig:velocity-constant-acceleration}
 \end{figure}
 
-\subsubsection{Components of \(u^{\mu }\)}
+\subsubsection{Components of the 4-velocity}
 
 The Lorentz factor \(\gamma \) is given by
 %
-\begin{equation}
+\begin{equation} \label{eq:constant-acceleration-gamma}
   \gamma = \frac{1}{\sqrt{1-v^2}}
   = \frac{1}{\sqrt{1 - \frac{\kappa^{2} t^{2}}{\kappa^{2} t^{2} + 1} }}
   = \sqrt{\kappa^2 t^2 + 1} \,,
@@ -251,18 +251,103 @@ The momentum of particle \(A\) instead will be given by a boost in the \(x\) dir
 
 \subsubsection{Time dilation expression}
 
-We say: for the first pulse the rocket is \(h\) long, therefore it will take a time \(h\) to reach it. After \(\Delta t _A\), the rocket's speed will be \(v_1 = g \Delta t_A\). 
-Therefore, if we boost, the second beam will only have a distance \(h \sqrt{1 - v_1^2} \) to travel.
-
-The time difference will therefore be 
+It is more intuitive geometrically to deal with a pulse sent from \(A\) to \(B\), for which we expect the time dilation to work in the opposite sense: 
 %
 \begin{equation}
-  h - h \sqrt{1- v_1^2} \approx h \qty(\frac{v_1 ^2}{2}) 
+  \Delta t_B = \Delta t_A \qty(1 + gh)
 \,,
 \end{equation}
 %
+up to first order in \(gh\) and \(g\Delta t_A\), since \((1+gh )(1-gh) = 1-(gh)^2 = 1\) to first order in \(gh\).
 
-(Work in progress...)
+We know that the paths of the observers are two curves of constant acceleration: we know their explicit expression from equation \eqref{eq:constant-acceleration}, and additionally we assume that they are separated by a space interval \(h\): 
+%
+\begin{subequations}
+\begin{align}
+  x_A(t) &= \frac{\sqrt{1 + (gt)^2} -1}{g} \\ 
+  x_B(t) &= \frac{\sqrt{1 + (gt)^2} -1}{g} + h
+  \,.
+\end{align}
+\end{subequations}
 
+At \(t=0\) Alice sends a pulse, which then reaches Bob at a time \(t_1\). After a time \(\Delta t_A\), she sends another, which then reaches Bob at a time \(t_2 \). 
+Right now, we are referring to all times as measured in the rest frame of Alice at \(t=0\).
+These times can be found by imposing that the space and time separation between the events of the pulse being sent and received are equal, since it travels at light speed: the equations which represent this are \(x_B(t_1) = t_1\) and \(x_B(t_2 ) -x_A (\Delta t_A) = t_2 - \Delta t_A\). Substituting the expressions for the positions:
+%
+\begin{subequations}
+\begin{align}
+  t_1 &= \frac{\sqrt{1+(g t_1 )^2} -1}{g} +h \\
+  t_2 - \Delta t_A &= \frac{\sqrt{1+(gt_2 )^2} -1}{g} + h - \qty(\frac{\sqrt{1+(g \Delta t_A )^2} -1}{g})\,.
+\end{align}
+\end{subequations}
+
+Now, it is just a matter of calculation to solve these equations, expand up to first order in the adimensional parameters \(gh\) and \(g \Delta t_A\) and one recovers the desidered expression for  \(\Delta t_B = t_2 - t_1\).
+
+There is one more consideration to make though: what about the Lorentz time dilation for Bob? This it actually a \emph{second order effect}.
+
+\begin{claim}
+The time interval measured by Bob in his frame at \(t \sim t_1\) is the same as the one measured in the rest frame of Alice at \(t=0\) up to first order in \(gh\) and \(g \Delta t_B\).
+\end{claim}
+
+\begin{proof}
+We perform a Lorentz boost to the velocity of Bob at \(t=t_1 \): this is given by equation \eqref{eq:constant-acceleration-velocity}, and is equal to:
+%
+\begin{equation}
+  v = \frac{gt }{\sqrt{(gt)^2 + 1}}
+\,,
+\end{equation}
+%
+with a Lorentz factor of \(\gamma = \sqrt{(gt)^2 +1} \) (see equation \eqref{eq:constant-acceleration-gamma}).
+
+The temporal separation between the two events is \(\Delta t_B\), while the spatial separation is \(\Delta x_B \approx  v \Delta t_B\) to first order. The boost, in the \((t, x)\) plane, looks like: 
+%
+\begin{equation}
+  \left[\begin{array}{c}
+  \Delta t_B \\ 
+  \Delta x_B
+  \end{array}\right]'
+  =
+  \left[\begin{array}{cc}
+  \gamma  & -v \gamma  \\ 
+  -v \gamma  & \gamma 
+  \end{array}\right]  
+  \left[\begin{array}{c}
+  \Delta t_B \\ 
+  \Delta x_B
+  \end{array}\right] 
+  =
+  \left[\begin{array}{c}
+  \Delta t_B \qty(\sqrt{(gt)^2+1} - (gt)^2/\sqrt{(gt)^2+1}) \\ 
+  -gt \Delta t_B + \sqrt{(gt)^2+1} gt \Delta t / \sqrt{(gt)^2+1}
+  \end{array}\right]
+\,,
+\end{equation}
+%
+therefore as we would expect the spatial separation is eliminated, while expanding the factor multiplying the temporal one near \(gt = 0\) we get: 
+%
+\begin{equation}
+  \sqrt{(gt)^2+1} - (gt)^2/\sqrt{(gt)^2+1} = 1+O((gt)^2)
+\,,
+\end{equation}
+%
+which proves our result.
+\end{proof}
+
+\subsubsection{Gravitational time dilation}
+
+By the equivalence principle, the effects measured in a uniformly accelerating frame at \(g\) are the same as those measured in a gravitational field with constant acceleration \(g\).
+The gravitational field in such a frame is given by \(\Phi  = gh\), where \(h\) is the height (with arbitrary zero point): the result follows.
+
+\subsubsection{Twins and gravitation}
+
+The gravitational time dilation is given by: 
+%
+\begin{equation}
+  \Delta t = t _{\text{elapsed}} \frac{g \Delta h}{c^2}
+  \approx \SI{1}{yr} \frac{\SI{10}{m/s} \times \SI{100}{m}}{(\SI{3e8}{m/s})^2} \approx \SI{3.5e-7}{s} 
+\,.
+\end{equation}
+
+Therefore, the twin will 
 
 \end{document}

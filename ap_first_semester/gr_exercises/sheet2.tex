@@ -16,7 +16,7 @@ and we can directly compute its derivative
 %
 \begin{equation} \label{eq:constant-acceleration-velocity} 
   v(t) = \dv{x}{t} =
-  \frac{\kappa t}{\sqrt{\kappa^2 t^2  + 1} }\,.
+  \frac{\kappa t}{\sqrt{\kappa^2 t^2  + 1} }=\frac{1}{\sqrt{\frac{1}{\kappa^2 t^2}+1 }}\,.
 \end{equation}
 
 It is clear from the expression that \(\abs{v} < 1\) for all times, while \(v\) approaches 1 at positive temporal infinity and \(-1\) at negative temporal infinity.
@@ -63,13 +63,13 @@ The relation between coordinate and proper time is given by the definition of th
 Integrating this relation we get:
 %
 \begin{equation}
-    \tau = \int \dd{\tau } 
-    = \int \frac{\dd[]{t} }{\gamma }
+    \tau = \int_0^{\tau} \dd{\tau'} 
+    = \int_0^{t} \frac{\dd[]{t'} }{\gamma(t')}
     = \displaystyle \frac{\operatorname{arcsinh}{\left(\kappa t \right)}}{\kappa}\,,
 \end{equation}
 %
 where the constant of integration is selected by imposing \(t = 0 \iff \tau = 0\).
-Notice that, as we would expect, when expanding up to second order near \(t = \tau = 0 \) we have \(t \sim \tau \), since in that region the velocity is much less than unity.
+Notice that, as we would expect, when expanding up to first order near \(t = \tau = 0 \) we have \(t \sim \tau \), since in that region the velocity is much less than unity.
 
 The inverse relation is given by \(t = \sinh (\kappa \tau ) / \kappa \). Using this, we can write:
 %
@@ -194,7 +194,7 @@ The acceleration instead becomes:
 \,,
 \end{equation}
 %
-
+At small speeds the Lorentz boost matrix reduces to the identity matrix: this implies $kt\simeq k\tau\simeq 0$. In this case we obtain the same results of the rest frame of the particle for both acceleration and speed.
 \subsection{Fixed target collision}
 
 \subsubsection{Center of mass momenta}

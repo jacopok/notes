@@ -1,0 +1,168 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 17 2019}
+
+If we neglect spatial curvature, which is small, we can write the luminosity distance as an integral which we can compute:
+%
+\begin{equation}
+  d_L \equiv \qty(\frac{L}{4 \pi \ell})^{1/2}
+\,.
+\end{equation}
+%
+
+Our metric is the FLRW line element. Then, we can write \(d_L\) as: 
+%
+\begin{equation}
+  d_L = a_0 (1+z) r(z)
+\,.
+\end{equation}
+%
+
+We now define the \emph{conformal time} \(\tau\): we want to impose \(a^2(\tau ) \dd{\tau^2} = \dd{t^2}  \).
+Then, the RW line element becomes: 
+%
+\begin{equation}
+  \dd{s^2} = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \frac{\dd{r^2} }{1 - k r^2} - r^2 \dd{\Omega^2} )
+\,.
+\end{equation}
+
+This is very important when we talk about zero-mass particles, with no intrinsic length scale.
+Using the variable \(\chi\), we have: 
+%
+\begin{equation}
+  \dd{s^2}  = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \dd{\chi^2} - f^2_k (\chi ) \dd{\Omega^2})
+\,,
+\end{equation}
+%
+where \(f_k(\chi )=r\) is equal to \(\sin(\chi ) \), \(\chi \) or \(\sinh(\chi )\) if \(k\) is equal to \(1\), \(0\) or \(-1\).
+
+If we look at photons moving radially, we get 
+%
+\begin{equation}
+  \dd{s^2} = 0 = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \dd{\chi^2})
+\,,
+\end{equation}
+%
+therefore \(c^2 \dd{\tau^2} = \dd{\chi^2}\): setting \(c=1\), we get \(\tau (t_0 ) - \tau (t_e) = \chi (r_e) - \chi (0)\), where a subscript \(e\) means ``emission''. 
+
+\begin{equation}
+  \dd{r} = \frac{\dd{t} }{a}  = \frac{\dd{a} }{a \dot{a} }
+\,,
+\end{equation}
+%
+therefore: 
+%
+\begin{equation}
+  \dd{a} = - \frac{a_0 }{(1+z)^2} \dd{z}
+\,,
+\end{equation}
+%
+
+%
+\begin{equation}
+  \frac{\dd{a}}{a^2} = \frac{\dd{a} (1+z)^2}{a^2} = - \frac{\dd{z}}{ a_0 }
+\,,
+\end{equation}
+%
+which means 
+%
+\begin{equation}
+  \dd{e} = - \frac{\dd{z}}{a_0 H(z)}
+  \,.
+\end{equation}
+
+\todo[inline]{???}
+
+The Hubble parameter is given by 
+%
+\begin{equation}
+  H^2= \frac{8 \pi G}{3} \rho - \frac{k c^2}{a^2}
+\,,
+\end{equation}
+%
+with density \(\rho (t) = \rho _r (t) + \rho _m (t) + \rho _\Lambda \), where the first term scales like \(a^{-4}\), the second \(a^{-3}\), the third is constant. Thus they scale like \((1+z)^{4}\), \((1+z)^{3}\) and so on.
+
+Then we can write a law for the evolution of \(H(z) = H_0 E(z)\).
+Recall the definitiion of \(\Omega (t)\): we can look at the \(\Omega_i (t)\) for \(i\) corresponding to matter, radiation and so on: 
+%
+\begin{equation}
+  \Omega _i (z) = \frac{8 \pi G \rho _i (t)}{3 H^2(z)}
+  = \frac{8 \pi G }{3 H^2} \frac{\rho _i (z)}{E^2(z)}
+  \overset{\text{def}}{=} \Omega _{i,0} \frac{(1+z)^{\alpha }}{E^2(z)}
+\,.
+\end{equation}
+
+In the case of radiation, \(p = \rho c^2 /3\), and then \(\alpha = 4\). 
+
+For matter \(p=0\): \(\alpha = 3\).
+
+For the cosmological constant \(\Lambda \): \(\alpha =0\).
+
+For spatial curvature we have \(\alpha = 2\).
+
+For the \(\Omega )\) corresponding to the curvature we define: \(\Omega _k = - t c^2/(a^2 H^2)\).
+
+We must have 
+%
+\begin{equation}
+  1 = \Omega _r + \Omega _m + \Omega _\Lambda + \Omega _k
+\,.
+\end{equation}
+
+Recall the definition of \(E^2(z)\): 
+%
+\begin{equation}
+  E^2(z) = \frac{H^2}{H_0^2} = 
+  \Omega _{k, 0} + \Omega_{r, 0} (1+z)^4 + \Omega_{m, 0} (q+z)^{3}
+\,.
+\end{equation}
+
+and to get \(E\) we just take the square root.
+We have \(\tau (t_0 ) - \tau (t_e) = \chi (r_e)\).
+Integrating: 
+%
+\begin{equation}
+  \chi (r) = c \int_{a_t}^{a} \frac{\dd{a}  }{a \dot{a} }
+  = \int \frac{\dd{z'} }{E(z')}
+\,,
+\end{equation}
+%
+
+therefore 
+%
+\begin{equation}
+  r = f_k \qty(\frac{c}{a_0 H_0 } \int_0^z \frac{\dd{z'}   }{E(z')})
+\,.
+\end{equation}
+%
+
+Two weeks ago we defined the luminosity distance: now we can compute it.
+
+\todo[inline]{How do we decide which \(k\) to use?}
+
+Now,  suppose we are looking at a certain far-away object with angular size \(\Delta \theta \): we fix \(r\) in the RW line element, and look at a constant time: then we get a linear size corresponding to the angular one of 
+%
+\begin{equation}
+  \dd{s}  = a(t) r \Delta \theta 
+\,,
+\end{equation}
+%
+which, when divided by \(\Delta \theta \), is called angular diameter \(D_A = a r = a_0 r(z) / (1+z)\).
+This changes with distance... (?) 
+
+\begin{equation}
+ d_L = a_0 (1+z) r
+\,,
+\end{equation}
+%
+then 
+%
+\begin{equation}
+  \frac{d_L}{d_A} = (1+z)^2
+\,,
+\end{equation}
+%
+
+
+\end{document}

@@ -47,18 +47,16 @@ If we look at photons moving radially, we get
 therefore \(c^2 \dd{\tau^2} = \dd{\chi^2}\): setting \(c=1\), we get \(\tau (t_0 ) - \tau (t_e) = \chi (r_e) - \chi (0)\), where a subscript \(e\) means ``emission''. 
 
 \begin{equation}
-  \dd{r} = \frac{\dd{t} }{a}  = \frac{\dd{a} }{a \dot{a} }
+  \dd{\tau} = \frac{\dd{t} }{a}  = \frac{\dd{a} }{a \dot{a} }
 \,,
 \end{equation}
 %
-therefore: 
+and now recall \(a = a_0 /(1+z)\): differentiating this we get
 %
 \begin{equation}
   \dd{a} = - \frac{a_0 }{(1+z)^2} \dd{z}
 \,,
 \end{equation}
-%
-
 %
 \begin{equation}
   \frac{\dd{a}}{a^2} = \frac{\dd{a} (1+z)^2}{a^2} = - \frac{\dd{z}}{ a_0 }
@@ -72,7 +70,7 @@ which means
   \,.
 \end{equation}
 
-\todo[inline]{???}
+\todo[inline]{??? probabily there is wrong stuff here}
 
 The Hubble parameter is given by 
 %
@@ -160,9 +158,94 @@ then
 %
 \begin{equation}
   \frac{d_L}{d_A} = (1+z)^2
+\,.
+\end{equation}
+
+Einstein thought that the universe had to be static.
+
+Recall the Friedmann equations \eqref{eq:friedmann-equations}. Now, if we look at static solutions for matter (\(p=0\)): the third equation becomes the identity, the derivatives of \(a\) are zero: therefore the second equation gives us \(\rho \equiv 0\): there cannot be matter.
+
+Now we know that the universe is neither static nor stationary.
+
+Einstein modified his equations in order to get a static non-empty solution.
+
+The Einstein equations read 
+%
+\begin{equation}
+  G_{\mu \nu } = 8 \pi G T_{\mu \nu }
+\,,
+\end{equation}
+%
+when \(c=1\), where the Einstein tensor \(G_{\mu \nu }\) can be defined with 
+%
+\begin{equation}
+  G_{ \mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu }R
+\,.
+\end{equation}
+
+Einstein added a term \(- \Lambda g_{\mu \nu }\) to the LHS of the Einstein equations. This is allowed since 
+
+\begin{enumerate}
+    \item it is symmetric;
+    \item it has zero covariant divergence, since \(\Lambda \) is constant while \(\nabla_{\mu } g^{\mu \nu } = 0\).
+\end{enumerate}
+
+Then, we can rewrite the EE with a modified stress-energy tensor, to which we add \(\Lambda g_{\mu \nu } / 8 \pi G\). Comparing this to an ideal fluid tensor 
+%
+\begin{equation}
+  T_{\mu \nu } = \left[\begin{array}{cccc}
+  \rho & 0 & 0 & 0 \\ 
+  0 & p & 0 & 0 \\ 
+  0 & 0 & p & 0 \\ 
+  0 & 0 & 0 & p
+  \end{array}\right]
+\,,
+\end{equation}
+%
+we get \(\rho \rightarrow \rho + \Lambda/ 8 \pi G \) and \(p \rightarrow p + \Lambda  / 8 \pi G\).
+
+Inserting this into the Friedmann equations we get: 
+%
+\begin{equation}
+  \qty(\frac{\dot{a} }{a})^2= 
+  \frac{8 \pi G}{3} \rho + \frac{\Lambda }{3}
+  - \frac{k}{a^2}
 \,,
 \end{equation}
 %
 
+%
+\begin{equation}
+  \frac{\ddot{a}}{a} = - \frac{4 \pi G}{3} \rho + \Lambda 
+\,,
+\end{equation}
+%
+while in the third equation, in the contribution \(\widetilde{\rho }  + \widetilde{p} \) the two \(\Lambda \) terms cancel. Then for the first equation we get 
+%
+\begin{equation}
+  \frac{8 \pi G}{3} \rho + \frac{\Lambda}{3} = \frac{k}{a^2}
+\,,
+\end{equation}
+%
+and for the second: 
+%
+\begin{equation}
+  4 \pi G \rho = \Lambda 
+\,.
+\end{equation}
+
+Then, 
+%
+\begin{equation}
+  \Lambda \qty(\frac{1}{3}+ \frac{2}{3}) = \Lambda = \frac{k}{a^2}
+\,,
+\end{equation}
+%
+and we want a solution with \(k=1\), \(\Lambda > 0\).
+
+A candidate for the cosmological constant term is the vacuum energy in QFT: however the estimate given there is around \num{e120} times off.
+
+The next topic is a solution of the Friedmann equations.
+We will try to do it with \(p=0\): \(\rho \propto a^{-3}\).
 
 \end{document}

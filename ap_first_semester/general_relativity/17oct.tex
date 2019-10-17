@@ -1,0 +1,178 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 17 2019}
+
+\section{The mathematical description of curved spacetime}
+
+The metric describes the spacetime. It depends on the coordinates.
+
+\paragraph{Euclidean metric}
+
+In 2D, it is \(\dd{s^2}  = \dd{x^2} + \dd{y^2} \). We can express it as 
+%
+\begin{equation}
+  \dd{s^2} = \dd{x^{\mu }} \dd{x_{\mu }} = \dd{x^{\mu}} \dd{x^{\mu }} g_{\mu \nu } 
+\,,
+\end{equation}
+%
+computed with \(g_{\mu \nu } = \delta_{\mu \nu }\).
+
+\paragraph{Polar coordinates}
+
+Let us see how this changes when we change coordinates: for example, we can go to polar coordinates: 
+%
+\begin{equation}
+    \begin{cases}
+        x = r \cos(\theta ) \\
+        y = r \sin(\theta ) 
+    \end{cases}
+    \qquad \qquad
+    \begin{cases}
+        r = \sqrt{x^2+y^2} \\
+        \theta = \arctan(y/x)
+    \end{cases}
+\,.
+\end{equation}
+%
+
+Let us compute the differentials \(\dd{x} \)   and \(\dd{y}\): 
+%
+\begin{equation}
+  \dd{x} = \dd{r} \cos(\theta ) - r \sin(\theta ) \dd{\theta } 
+\,,
+\end{equation}
+%
+and 
+%
+\begin{equation}
+  \dd{y} = \dd{r} \sin(\theta ) + r \cos(\theta ) \dd{\theta } 
+\,.
+\end{equation}
+%
+
+Plugging these into the metric and simplifying we get 
+%
+\begin{equation}
+  \dd{s^2}  = \dd{r^2} + r^2 \dd{\theta^2} 
+\,.
+\end{equation}
+%
+
+It is not clear to see that these are equivalent.
+We then want to compute scalar quantities to characterize them.
+
+Another issue is the fact that the polar metric is singular at the origin: we'd have to invert 
+%
+\begin{equation}
+  g_{\mu \nu } = \left[\begin{array}{cc}
+  1 & 0 \\ 
+  0 & r^2
+  \end{array}\right]
+\,
+\end{equation}
+%
+at \(r=0\): we cannot do it! This is a \emph{coordinate singularity}. There is nothing wrong with the space; \(\mathbb{R}^{2} \) is perfectly regular at \((0,0)\), but our coordinate description fails: what value of \(\theta \) should we assign to that point? 
+
+\paragraph{Spherical coordinates}
+In \(\mathbb{R}^3 \) we have the same issue. We use: 
+%
+\begin{equation}
+  \begin{cases}
+      x = \cos(\theta ) \cos(\varphi ) \\
+      y = \cos(\theta ) \sin(\varphi)  \\
+      z = \sin(\theta ) 
+  \end{cases}
+\,,
+\end{equation}
+%
+and it is a simple computation as before to see that 
+%
+\begin{equation}
+  g_{\mu \nu }= \left[\begin{array}{ccc}
+  1 & 0 & 0 \\ 
+  0 & r^2 & 0 \\ 
+  0 & 0 & r^2 \sin(\theta )^2
+  \end{array}\right]
+\,,
+\end{equation}
+%
+therefore these coordinates are not defined on the \emph{whole \(z\) axis}!
+
+\paragraph{General coordinate transformations}
+
+Now we consider a general transformation of space, which we denote by \(x^{\prime \mu } (x^{\mu })\): we see how the metric should change in order for the spacetime distance to be invariant: we define \(g_{\mu \nu }'\) by 
+%
+\begin{equation}
+    g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}
+    \overset{!}{=}  
+    g_{\mu \nu }' \dd{x^{\prime \mu }} \dd{x^{\prime \nu }}
+\,.
+\end{equation}
+%
+
+This means that the metric changes as a tensor: 
+%
+\begin{equation}
+  g_{\mu \nu } \rightarrow
+  g_{\mu \nu }' = 
+  \pdv{x^{ \alpha }}{x^{\prime \mu }} 
+  \pdv{x^{ \beta  }}{x^{\prime \nu  }} 
+  g_{\alpha \beta }
+\,,
+\end{equation}
+%
+and we can see that it transforms as a \((0,2)\) tensor since the primes are in the denominator: it transforms with the \emph{inverse} of the Jacobian matrix.
+
+The inverse metric transforms as: 
+%
+\begin{equation}
+  g^{\mu \nu } \rightarrow
+  g^{\prime \mu \nu } =
+  \pdv{x^{\prime \mu  }}{x^{\alpha  }} 
+  \pdv{x^{\prime \nu   }}{x^{\beta }}
+  g^{\alpha \beta } 
+\,,
+\end{equation}
+%
+which we can check by proving that \(g^{\mu \nu }g_{\nu \rho  } = \delta^{\mu }_{\rho }\) is conserved when we transform both the metric and the inverse metric. We get: 
+%
+\begin{equation}
+    g^{\prime \mu \nu } g_{\sigma \tau  }' \delta_{\nu }^{\sigma } =
+    \pdv{x^{\prime \mu  }}{x^{\alpha  }} 
+    \pdv{x^{\prime \nu   }}{x^{\beta }}
+    g^{\alpha \beta } 
+    \delta_{\nu }^{\sigma }
+    \pdv{x^{ \pi  }}{x^{\prime \sigma  }} 
+    \pdv{x^{ \lambda   }}{x^{\prime \tau  }} 
+    g_{\pi  \lambda  }
+\,,
+\end{equation}
+%
+which can be simplified using the relations between the partial derivatives: 
+%
+\begin{equation}
+    \pdv{x^{\prime \nu   }}{x^{\beta }}
+    \delta_{\nu }^{\sigma }
+    \pdv{x^{ \pi  }}{x^{\prime \sigma  }} 
+    = \pdv{x^{\pi }}{x^{\beta }}
+    = \delta^{\pi }_{\beta }
+\,,
+\end{equation}
+%
+since we are multiplying the Jacobian with its inverse, thus we get the identity. One can make this reasoning more explicit by seeing it as an application of the chain rule: \(x^{\mu }\) is a function of \(x^{\prime \mu }\) which is a function of \(x^{\mu } \).
+Plugging this in we get 
+%
+\begin{equation}
+    g^{\prime \mu \nu } g_{\sigma \tau  }' \delta_{\nu }^{\sigma } =
+    \pdv{x^{\prime \mu  }}{x^{\alpha  }} 
+    g^{\alpha \beta } 
+    \delta^{\pi }_{\beta }
+    \pdv{x^{ \lambda   }}{x^{\prime \tau  }} 
+    g_{\pi  \lambda  }
+\,,
+\end{equation}
+%
+and now we can apply our hypothesis that \(g^{\alpha \beta }g_{\beta \lambda } = \delta^{\alpha }_{\lambda }\) to contract some more indices, get one more multiplication of a Jacobian with its inverse, which we can simplify in the same way as before to finally get the identity.
+This proves that the inverse metric is a \((2,0)\) tensor.
+\end{document}

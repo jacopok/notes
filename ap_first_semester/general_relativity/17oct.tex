@@ -175,4 +175,100 @@ Plugging this in we get
 %
 and now we can apply our hypothesis that \(g^{\alpha \beta }g_{\beta \lambda } = \delta^{\alpha }_{\lambda }\) to contract some more indices, get one more multiplication of a Jacobian with its inverse, which we can simplify in the same way as before to finally get the identity.
 This proves that the inverse metric is a \((2,0)\) tensor.
+
+\subsection{Lengths, areas, volumes and so on}
+
+In 4D space, if we fix \(x^{0}\) and \(x^{3}\), we can consider an area element like \(\dd{A} = \sqrt{g_{11}} \dd{x^{}} \sqrt{g_{22}} \dd{x^{2}} \).
+
+Similarly, the 4-volume is just 
+%
+\begin{equation}
+  \dd{v} 
+  = \sqrt{-g_{00}g_{11}g_{22}g_{33}}
+  \dd{x^{0}} \dd{x^{1}} \dd{x^{2}} \dd{x^{3}} 
+  = \sqrt{-g}
+  \dd[4]{x} 
+\,,
+\end{equation}
+%
+where \(g = \det g_{\mu \nu }\). We have shown it for a diagonal metric, but it can be shown that it holds for any general metric. The minus sign comes from the fact that our metric has signature \(-1\) (and, as we will see, this holds in general): the determinant is then negative, and to take the square root we need a positive number.
+
+\begin{claim}[Unproven]
+    A metric can be always diagonalized, at least locally.
+\end{claim}
+
+When it is diagonal, then \(\dd{v} = \sqrt{-g} \dd[4]{x} \). Then the quantity \(\sqrt{-g} \dd[4]{x} \) is a scalar.
+
+Intuitively, the claim follows from the equivalence principle: we put a free-falling observer in our space. They will perceive spacetime as being flat.
+
+Under a diffeomorphism with the determinant of the jacobian equal to \(J\) we have the following transformation law for the determinant: 
+%
+\begin{equation}
+  g' = J^{-2} g
+  \qquad \implies \qquad
+  \sqrt{-g'}  = J^{-1} \sqrt{-g} 
+\,.
+\end{equation}
+%
+
+This can be expressed by saying that \(\sqrt{-g} \) is a \emph{tensor density} of weight \(-1\).
+
+\begin{definition}
+A tensor density of weight \(w\) transforms just like a tensor, except we need to multply by a factor \(J^{w}\) in the transformation, where \(J\) is the determinant of the Jacobian of the transformation.
+
+A \((p, q)\) \emph{tensor density} of weight \(w\) is an object \(M_{\mu_1 \dots \mu_p}^{\nu_1 \dots \nu_q}\) with many components indexed by \(p+q\) indices, which transforms as:
+
+\begin{equation}
+    M_{\mu_1 \dots \mu_p}^{\nu_1 \dots \nu_q}
+    \rightarrow
+    J^{w}
+    \tensor{\Lambda}{_{\mu_1}^{\mu'_1}}\dots
+    \tensor{\Lambda}{_{\mu_p}^{\mu'_p}}
+    \tensor{\Lambda}{^{\nu_1}_{\nu'_1}}\dots
+    \tensor{\Lambda}{^{\nu_q}_{\nu'_q}}
+    M_{\mu_1' \dots \mu_p'}^{\nu_1' \dots \nu_q'}
+\end{equation}
+%
+under diffeomorphisms with Jacobian matrix \(\tensor{\Lambda}{_\mu^\nu}\), with determinant \(J\).
+\end{definition}
+
+When we transform the 4-volume element \(\dd[4]{x'} = J \dd[4]{x} \), we get a Jacobian: the element \(\dd[4]{x} \) is a \emph{tensor density of weight 1}.
+
+Then we see that the volume element \(\sqrt{-g} \dd[4]{x} \) is a \emph{scalar}, since when multiplying tensor densities their weights are added.
+
+\subsection{Vectors in curved spacetime}
+
+They are not objects \emph{in spacetime}: instead they belong to the \emph{tangent space}.
+
+For each point \(x\) in the manifold we define a basis at that point: \(\qty{e^{\mu }_{(\alpha )}}(x)\), where \(\mu \) is a vector index while \((\alpha )\) denotes which vector we are considering.
+
+Any vector \(a^{\mu }(x)\) can be then decomposed as  
+%
+\begin{equation}
+  a^{\mu }(x) = a^{(\alpha) }(x) e^{\mu }_{(\alpha )}(x)
+\,.
+\end{equation}
+%
+
+Since spacetime is not flat, the dependence on \(x\) is not trivial.
+
+The scalar product between the vectors can be expressed with respect to the basis: 
+%
+\begin{equation}
+  a(x) \cdot b(x) = a^{(\alpha )} b^{(\beta )} e_{(\alpha )}\cdot e_{(\beta )}
+\,,
+\end{equation}
+%
+and we can select our basis so that at every point it is orthonormal: 
+%
+\begin{equation}
+    e_{(\alpha )}\cdot e_{(\beta )} = \eta_{(\alpha ) (\beta )}
+\,.
+\end{equation}
+%
+
+We \emph{cannot sum vectors in different tangent spaces}.
+But we want to: we need to define derivatives!
+To solve this issue, we will introduce the notion of \emph{parallel transport}.
+
 \end{document}

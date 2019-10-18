@@ -3,6 +3,241 @@
 
 \section*{Fri Oct 18 2019}
 
+\section{Covariant differentiation}
 
+We want to do derivatives, as in: 
+%
+\begin{equation}
+  f(x + \dd{x} ) = f(x) + \pdv{f}{x} \dd{x} 
+\,,
+\end{equation}
+%
+which allow us to ``move around''. In more dimensions,  the rule will be 
+%
+\begin{equation}
+  f(x + \dd{x} ) - f(x) = \dd{x^{\mu }} \partial_\mu f
+\,.
+\end{equation}
+%
+
+Now, we want to prove that, in Minkowski spacetime, \(\partial_\mu f\) is a rank (0,1) tensor if \(f\) is a function.
+
+Under a change of variables \(f \rightarrow f'\) we have 
+%
+\begin{equation}
+  \pdv{f(x)}{x^{\mu }} \rightarrow \pdv{f' (x')}{x^{\prime \mu }} = \pdv{x^{\alpha }}{x^{\prime \mu }} \pdv{}{x^{\alpha }} f(x) 
+\,,
+\end{equation}
+%
+which is the transformation law of a covariant vector, or (0,1) tensor.
+
+However, for a vector \(\dd{x^{\nu }} \partial_\nu A^{\mu }\) is \emph{not} a tensor!
+
+Under a change of coordinates, 
+%
+\begin{subequations}
+\begin{align}
+  \pdv{A^{\mu}(x)}{x^{\nu }}  &= \pdv{}{x^{\prime \nu }} A^{\mu }(x')   \\
+  &= \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{}{x^{\alpha }} \qty(\pdv{x^{\prime \mu }}{x^{\beta }} A^{\beta  }(x))    \\
+  &= \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\alpha }}{x^{\beta }} +
+  \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\beta }} \pdv{A^{\beta }}{x^{\alpha }}    
+\end{align}
+\,,
+\end{subequations}
+%
+and we can see that the second term is the transformation we want, but the first term spoils the transformation. 
+
+This is not an issue in SR: there, the second derivative vanishes:
+%
+\begin{equation}
+    \pdv[2]{x^{\prime \mu }}{x^{\alpha }}{x^{\beta }}
+    = \pdv{}{x^{\alpha }} \Lambda^{\mu }_{\beta } = 0 
+\,,
+\end{equation}
+%
+since Lorentz matrices are constant.
+
+So, we construct a \emph{Covariant Derivative} which transforms as a tensor under diffeomorphisms.
+
+We denote it as \(\nabla_\nu A^{\mu }\).
+For any tensor \(T\) of arbitrary rank \((p, q)\) we request \(\nabla_\nu T\) to be a tensor of rank \((p, q+1)\).
+Also, we request \(\nabla_\mu \rightarrow \partial_\mu\) for flat spacetime.
+
+We define the Christoffel symbols: 
+%
+\begin{equation}
+  \Gamma_{\mu \nu }^{\alpha } =
+  \frac{1}{2} g^{\alpha \lambda } \qty(g_{\lambda \mu , \nu }+ g_{\lambda \nu , \mu } - g_{\mu \nu , \lambda })
+\,,
+\end{equation}
+%
+where we introduced comma notation for partial non-covariant differentiation.
+They are symmetric in the two lower indices and they are not tensors. Their transformation law is: 
+%
+\begin{equation}
+  \Gamma_{\nu \kappa }^{\mu }\rightarrow
+  \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \mu }} \Gamma^{\alpha }_{\beta \gamma } + 
+  \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{\prime \mu }}{x^{\prime \nu }}{x^{\prime \kappa }}  
+\,,
+\end{equation}
+%
+which we note is \emph{not tensorial}!
+
+We define 
+%
+\begin{equation}
+    \nabla_{\nu }V_{\mu } = \partial_{\nu } V_\mu - \Gamma_{\nu \mu }^{\alpha } V_{\alpha }
+\,,
+\end{equation}
+%
+and 
+%
+\begin{equation}
+    \nabla_{\nu }V^{\mu} = \partial_{\nu } V_\mu + \Gamma_{\nu \alpha  }^{\mu  } V^{\alpha }
+\,.
+\end{equation}
+%
+
+How does it transform? For the covariant derivative, we have:
+%
+\begin{subequations}
+\begin{align}
+  \nabla_{\nu }' V_{\kappa }' &= \pdv{}{x^{\prime \nu }} V'_\kappa - \Gamma^{\prime \mu }_{\nu \kappa } V_{\kappa }'  \\
+  &= \partial_\nu \qty(\pdv{x^{\lambda }}{x^{\prime \kappa}}V_{\lambda }) -  \qty(\pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \mu }} \Gamma^{\alpha }_{\beta \gamma } + 
+  \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{\prime \mu }}{x^{\prime \nu }}{x^{\prime \kappa }} ) 
+  \qty(\pdv{x^{\lambda }}{x^{\prime \mu }} V_{\lambda })  \\
+  &= \pdv[2]{x^{\lambda }}{x^{\prime \nu }}{x^{\prime \mu }} V_{\lambda }
+  + \pdv{x^{\lambda }}{x^{\prime \mu}} \pdv{V_{\lambda }}{x^{\prime \nu }} - 
+  \pdv{x^{\prime \mu }}{x^{\alpha }} \qty(\pdv{x^{\beta }}{x^{\prime \nu }}\pdv{x^{\gamma }}{x^{\prime \kappa }} \Gamma^{\alpha }_{\beta \gamma }  + \pdv[2]{x^{\alpha }}{x^{\prime \nu }}{x^{\prime \kappa }} ) \pdv{x^{\lambda }}{x^{\prime \mu }} V_{\lambda }   \\
+  &=\pdv[2]{x^{\lambda }}{x^{\prime \nu }}{x^{\prime \mu }} V_{\lambda }
+  + \pdv{x^{\lambda }}{x^{\prime \kappa }} \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{V_{\lambda } }{x^{\alpha }}
+  - \qty(\pdv{x^{\beta }}{x^{\prime \nu }}\pdv{x^{\gamma }}{x^{\prime \kappa }} \Gamma^{\alpha }_{\beta \gamma }  + \pdv[2]{x^{\alpha }}{x^{\prime \nu }}{x^{\prime \kappa }} ) \delta^{\lambda }_{\alpha }V_{\lambda }   \\
+  &= \pdv[2]{x^{\lambda }}{x^{\prime \nu }}{x^{\prime \kappa }} V_{\lambda } 
+  + \pdv{x^{\lambda }}{x^{\prime \kappa }} \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{V_{\lambda } }{x^{\alpha }}
+  - \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \kappa }} \Gamma^{\alpha }_{\beta \gamma }V_{\alpha }
+  -\pdv[2]{x^{\lambda }}{x^{\prime \nu }}{x^{\prime \kappa }} V_{\lambda }   \\
+  &= \pdv{x^{\lambda }}{x^{\prime \kappa }} \pdv{x^{\alpha }}{x^{\prime \nu }}
+  \qty(\pdv{V_{\lambda }}{x^{\alpha } } - \Gamma^{\sigma }_{\alpha \lambda }V_{\sigma })  \\
+  &= \pdv{x^{\lambda }}{x^{\prime \kappa }} \pdv{x^{\alpha }}{x^{\prime \nu }}
+  \nabla_{\alpha }V_{\lambda }
+  \,,
+\end{align}
+\end{subequations}
+%
+where we used: relabeling of indices, contraction of the Jacobian matrix with its inverse, the chain rule, the product rule, the transformation law of the Christoffel symbols.
+
+The derivative of a contravariant tensor is a tensor: this can be proven by noticing that \(\nabla_\mu (A^{\alpha }B_{\alpha }) = \partial_\mu (A^{\alpha }B_{\alpha }) = B_{\alpha } \nabla_{\mu }A^{\alpha } + A^{\alpha }\nabla_{\mu }B_{\alpha }\). 
+%
+\begin{subequations}
+\begin{align}
+  \nabla_{\nu }' V^{\prime \mu }  &= \pdv{V^{\prime \mu }}{x^{\prime \nu }} + \Gamma^{\prime \mu }_{\nu \kappa }V^{\prime \kappa }  \\
+  &= \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{}{x^{\lambda }} \qty(\pdv{x^{\prime \mu }}{x^{\alpha }} V^{\alpha }) 
+  +   \qty(\pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \mu }} \Gamma^{\alpha }_{\beta \gamma } 
+  + \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{\prime \mu }}{x^{\prime \nu }}{x^{\prime \kappa }}) \qty(\pdv{x^{\prime \kappa }}{x^{\sigma }} V^{\sigma })  \\
+  &= \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\lambda }}{x^{\alpha }} V^{\alpha }
+  + \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{V^{\alpha }}{x^{\lambda }}
+  + \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \delta^{\gamma}_{\sigma } \Gamma^{\alpha }_{\beta \gamma } V^{\gamma }+ \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{\prime \alpha }}{x^{\nu }}{x^{\mu }} \pdv{x^{\prime \kappa }}{x^{\sigma}} V^{\sigma }    \\
+  &= \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\lambda }}{x^{\alpha }} V^{\alpha }
+  + \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\alpha }} \qty(\pdv{V^{\alpha }}{x^{\lambda }} + \Gamma^{\alpha }_{\lambda \gamma } V^{\gamma })  \\
+  & = \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\alpha }} \nabla_{\lambda }V^{\alpha }
+  + \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\lambda }}{x^{\alpha }}V^{\alpha }
+  + \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{ \alpha }}{x^{\prime \sigma }}{x^{\prime \kappa }} \pdv{x^{\prime \kappa }}{x^{ \sigma }} V^{\sigma }  
+  \,,
+\end{align}
+\end{subequations}
+%
+and we would like to see that the two last terms cancel: is 
+%
+\begin{equation}
+    \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\lambda }}{x^{\alpha }}V^{\alpha }
+    + \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{ \alpha }}{x^{\prime \sigma }}{x^{\prime \kappa }} \pdv{x^{\prime \kappa }}{x^{ \sigma }} V^{\sigma }  \overset{?}{=} 0 
+\,,
+\end{equation}
+%
+for all \(V^{\mu }\)? Let us factor the vector, changing the indices: 
+%
+\begin{equation}
+    \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\lambda }}{x^{\alpha }}
+    + \pdv{x^{\prime \mu }}{x^{\sigma }} \pdv[2]{x^{ \sigma }}{x^{\prime \alpha }}{x^{\prime \kappa }} \pdv{x^{\prime \kappa }}{x^{ \alpha }} \overset{?}{=} 0
+\,,
+\end{equation}
+%
+we can rewrite it as 
+%
+\begin{equation}
+    \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{}{x^{\alpha }}  \pdv{x^{\prime \mu }}{x^{\lambda }}
+    + \pdv{x^{\prime \mu }}{x^{\lambda  }} 
+    \pdv{}{x^{\prime \kappa }} 
+    \pdv{x^{ \lambda }}{x^{\prime \nu }}
+    \pdv{x^{\prime \mu }}{x^{ \alpha }} \overset{?}{=} 0
+\,,
+\end{equation}
+%
+which can be recombined into: 
+%
+\begin{equation}
+    \pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{}{x^{\alpha }}  \pdv{x^{\prime \mu }}{x^{\lambda }}
+    + \pdv{x^{\prime \mu }}{x^{\lambda  }} 
+    \pdv{}{x^{\alpha  }} 
+    \pdv{x^{ \lambda }}{x^{\prime \nu }}
+    \overset{?}{=} 0
+\,,
+\end{equation}
+%
+and becomes 
+%
+\begin{equation}
+  \pdv{}{x^{\alpha }} \qty(\pdv{x^{\lambda }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\lambda }} ) 
+  = \pdv{}{x^{\alpha }} \delta^{\mu}_{\nu }
+  = 0
+\,.
+\end{equation}
+%
+
+For any order tensor,  we add a Christoffel symbol for every index, such as in: 
+%
+\begin{equation}
+  \nabla_{\mu }V_{\alpha \beta }   
+  = \partial_\mu V_{\alpha \beta } - \Gamma^{\lambda}_{\mu \alpha }V_{\lambda \beta }- \Gamma^{\lambda }_{\mu \beta }V_{\alpha \lambda }
+\,,
+\end{equation}
+%
+or 
+%
+\begin{equation}
+    \nabla_{\mu }V_{\alpha}^{\beta }   
+    = \partial_\mu V_{\alpha}^{\beta }
+    - \Gamma^{\lambda}_{\mu \alpha }V_{\lambda}^{\beta }
+    + \Gamma^{\beta }_{\mu \lambda  }V_{\alpha}^{\lambda }
+\,.
+\end{equation}
+%
+
+\subsection{Properties of the covariant derivative}
+
+\begin{itemize}
+    \item The covariant derivative of a tensor is a tensor;
+    \item the covariant derivative obeys the Leibniz rule: \(\nabla_{\mu} (AB) = B \nabla_{\mu }A + A \nabla_{\mu }B\);
+    \item the metric is covariantly constant: \(\nabla_{\mu }g_{\alpha \beta }=0\).
+\end{itemize}
+
+Notice that covariant derivatives do \emph{not} commute!
+
+We can check that \(\partial_{\mu} (A^{\alpha }B_{\alpha }) = \nabla_{\mu } (A^{\alpha }B_{\alpha })\). It is 
+%
+\begin{equation}
+  \qty(\partial_{\mu }A_{\alpha } - \Gamma^{\lambda }_{\mu \alpha }A_{\lambda })B^{\alpha } 
+  + A_{\alpha }\qty(\partial_{\mu }B^{\alpha } + \Gamma_{\mu \lambda }^{ \alpha }B^{\lambda })
+\,,
+\end{equation}
+%
+expanding and relabeling indices we get the desired cancellation. Now, for parallel transport:
+
+\subsection{Parallel transport}
+
+Take a curve \(x^{\alpha }(\lambda )\) and a vector \(V^{\mu }\) defined at a certain point along the curve.
+For infinitesimal displacement we will have \(\dd{V} = \dd{x} \cdot \nabla V\): in components \(\dd{V^{\mu }} = \dd{x^{\alpha }} \nabla_{\alpha }V^{\mu }\).
+
+Parallel transport means that the vector does not change when it is transported: \(\nabla_t V^{\mu }=0\) where the index \(t \) indicates derivation along the curve's tangent vector \(t^{\alpha }= \dv*{x^{\alpha }}{\lambda } \). 
 
 \end{document}

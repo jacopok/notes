@@ -1,4 +1,286 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Oct 18 2019}
+
+From yesterday: other consequences of inserting \(\Lambda \).
+Now we have a different approach from Einstein's: we insert the constant not in order to get a static universe but just as a measurable parameter of our theory. 
+%
+\begin{equation}
+  \qty(\frac{\dot{a} }{a})^2 = \frac{8 \pi G }{3} \rho +\frac{\Lambda}{3} + \frac{k}{a^2}
+\,,
+\end{equation}
+%
+with \(\rho = \rho_0 (a_0 / a)^3\). The more the universe expands, the more the cosmological constant term dominates, since the other terms are inversely dependent on \(a\).
+
+The asymptotic state, neglecting spatial curvature, gives us a steady-state solution: 
+%
+\begin{equation}
+  a(t) \propto \exp(\sqrt{\frac{\Lambda}{3}} t) 
+\,.
+\end{equation}
+
+This is called a \emph{de Sitter} solution. An alternative is found if we \emph{do} consider the spatial curvature, with \(k = \pm 1\). The two other solutions are also called \emph{de Sitter} and look like cosines (?): they can be mapped into each other.
+
+\todo[inline]{How?}
+
+These belong to the maximally symmetric solutions: Minkowski, dS and Anti de Sitter: the latter has \(\Lambda < 0\).
+
+\todo[inline]{In AdS, do we have \(a \propto \exp(i k t) \)?}
+
+The \emph{no-hair cosmic theorem} is actually a conjecture: it states that asymptotically only the dark energy contribution is relevant: all the matter and everything else is forgotten. 
+%
+\begin{equation}
+  a \propto \qty(\sinh(At))^{2/3}
+\,,
+\end{equation}
+%
+
+where we define \(2A/3 = \sqrt{\Lambda /3} \) is a solution which \emph{interpolates} between the current --- matter dominated --- universe and the asymptotic one, since the hyperbolic sine is locally a simple exponential.
+
+We can rewrite the Friedmann equation as 
+%
+\begin{equation}
+  \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k
+\,,
+\end{equation}
+%
+and now we will solve it with \(k = \pm 1\).
+In general, for an ODE like \(y = f(y')\) with \(f'\) continuous we introduce \(y' \equiv p\) with \(p \neq 0\): then \(y = f(p)\), which implies 
+%
+\begin{equation}
+  y' = \dv{f}{p} p'
+\,,
+\end{equation}
+%
+and then 
+%
+\begin{equation}
+  p = \dv{f}{p} p' \implies \dv{x}{p} = \frac{1}{p} \dv{f}{p}
+\,,
+\end{equation}
+%
+which gives by integration the solution: 
+%
+\begin{equation}
+  x = \int  \dd{p} \frac{1}{p} \dv{f}{p}
+  \qquad \text{with} \qquad
+  y = f(p)
+\,.
+\end{equation}
+
+Using this for our problem, we get \(\dot{a}^2 = A a^{-1} - k \), where \(A \equiv 8 \pi G a_0^3 \rho_0 /3\). We can rewrite this as 
+%
+\begin{equation}
+  a = \frac{A}{p^2+k} 
+  \qquad \text{where} \qquad
+  p = \dot{a} 
+\,.
+\end{equation}
+
+Then we get: 
+%
+\begin{equation}
+  \dot{a} = p = -2A  p \dot{p} \frac{1}{(p^2+k)^2}
+\,,
+\end{equation}
+%
+and using our formula 
+%
+\begin{equation}
+  t = -2A \int \frac{\dd{p} }{(p^2+k)^2}
+\,.
+\end{equation}
+
+In order to go forward, we distinguish the cases: it \(k = +1\), then \(p = \tan(\theta ) \), therefore \(1 + p^2= \sec^2 \theta \) which implies \(\dd{p} = \dd{\theta } \sec^2 \theta  \).
+
+For the time: 
+%
+\begin{equation}
+  t = \int -2A \dd{\theta } \cos^2(\theta ) = -A \qty(\theta + \sin(\theta ) \cos(\theta ) ) + \const
+\,,
+\end{equation}
+%
+and we apply the trigonometric identity \(\sin(\theta ) \cos(\theta ) = \sin(2 \theta ) \):
+%
+\begin{equation}
+  t = -\frac{A}{2} \qty(2 \theta  + \sin(2 \theta ) ) + \const
+\,,
+\end{equation}
+%
+now we can define \(2 \theta  = \pi - \alpha \), therefore \(\sin(2\theta ) = \sin(\alpha )  \): this gives us
+\(t = A/2 (\alpha - \sin(\alpha ) )\) and \(p = 1/\tan(\alpha /2) = \tan(\pi /2 - \alpha /2) \).
+
+So we almost have our solution: 
+%
+\begin{equation}
+  a = \frac{A}{1 + \tan^2(\pi /2 - \alpha /2)} = A \cos^2(\frac{\pi}{2} - \frac{\alpha}{2})  = \frac{A}{2} \qty(1+\cos(\pi - \alpha ) ) = \frac{A}{2} \qty(1- \cos(\alpha ) )
+\,,
+\end{equation}
+which should be complemented with the equation we found for \(t\).
+
+Reinserting the constants we have:
+%
+\begin{equation}
+  a = a_0 \frac{\Omega_0}{2 (\Omega_0 -1)} \qty(1- \cos(\alpha ) ) 
+\,,
+\end{equation}
+%
+and
+%
+\begin{equation}
+  t = \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\alpha - \sin(\alpha ) )
+\,,
+\end{equation}
+%
+but now we switch from \(\alpha \) to \(\theta \) for historical reasons.
+
+[Plot: \(a(\theta )\) vs \(\theta \)].
+
+We have \(\dot{a} > 0 \)   when \(0 \leq \theta \leq \theta_m = \pi \), while \(\dot{a} < 0\) when \(\theta _m \leq \theta \leq 2 \pi \).
+This is the \emph{turn-around} angle. The angles \(0\) and \(2 \pi \) correspond to the Big Bang and the Big Crunch.
+
+At \(\theta _m\) we have: 
+%
+\begin{equation}
+  a = a_0 \frac{\Omega_0}{\Omega_0 -1} 
+\,,
+\end{equation}
+%
+and 
+%
+\begin{equation}
+  t = \frac{\pi}{2 H_0 } \frac{\Omega_0}{(\Omega_0 -1)^{3/2}}
+\,,
+\end{equation}
+%
+therefore if we set \(a=1\) at the current time we get 
+%
+\begin{equation}
+  t_0 = \frac{1}{2H_0 } \frac{\Omega_0  }{(\Omega_0 -1)^{3/2}} \qty(\arccos (\frac{2}{\Omega_0 }-1) - \frac{2}{\Omega_0 } (\Omega_0 -1 )^{1/2})
+\,,
+\end{equation}
+%
+In a pure matter model we would have \(a \propto t^{2/3}\), which would imply \(H_0 = 2/(3 t_0 )\) or \(t_0 = 2 / (3 H_0 )\): this does not make sense! It would give us an age of the universe of the order \SI{e9}{yr}, while the measured age of the universe is \SI{1.4e10}{yr}.
+This is for a flat universe.
+
+For a given \(H_0 \), we would have a smaller \(t_0 \) with a closed universe.
+
+For \(k = -1\) we do exactly the same steps with hyperbolic functions instead of trigonometric ones: we get 
+%
+\begin{equation}
+  a ( \psi ) = a \frac{\Omega_0 }{2 (1-\Omega_0)} \qty(\cosh \psi -1)
+\,,
+\end{equation}
+%
+with \(\cosh\psi = 2/\Omega_0 -1\) and 
+%
+\begin{equation}
+  t (\psi ) =  \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\sinh \psi - \psi  )
+\,.
+\end{equation}
+%
+
+The same reasoning as before gives us a \(t_0 > 2 / (3 H_0 )\)! This is then more attractive.
+
+Radiation's energy density \(\rho _r (a)\) can be seen as a function of the redshift: \(\rho _r (z ) = \rho _{0r} (1+z)^{4}\), since \((1+z) = a_0 / a\).
+
+For matter \(\rho _m (z) = \rho_{0m} (1+z)^{3}\), for \(\Lambda \) instead \(\rho _\Lambda (z) = \rho _{0 \Lambda }\).
+
+Let us define a moment called the \emph{equality redshift} \(z _{\text{eq}}\). This is when \(\rho _r (z _{\text{eq}}) = \rho _m (z _{\text{eq}})\). This means that 
+%
+\begin{equation}
+  (1+z _{\text{eq}}) = \frac{\rho _{0,m}}{\rho _{0,r}} 
+  = \frac{\Omega_{0,m}}{\Omega_{0,r}}
+\,,
+\end{equation}
+%
+where we divided and multiplied by the critical density.
+
+We know that \(\Omega_{0,m}\) is around \num{0.3}, while for the radiation it would be easier to measure the density.
+Neutrinos are matter now but they were radiation at the time of equality (???).
+
+Accounting for everything, we think that 
+%
+\begin{equation}
+  1 + z _{\text{eq}} \simeq \num{2.3e4} \Omega_{0, m} h^2
+\,.
+\end{equation}
+
+This means that the recombination of electrons and protons into Hydrogen happened when the universe was already \emph{matter dominated}.
+
+Another time is \(z_\Lambda \), defined by: \(\rho _m (z_{\Lambda }) = \rho _\Lambda (z_\Lambda )\). 
+%
+\begin{equation}
+  1+ z_\Lambda = \qty(\frac{\rho_{0, \Lambda }}{\rho_{0,m}})^{1/3} \simeq \qty(\frac{0.7}{0.3})^{1/3}
+\,,
+\end{equation}
+%
+which implies that \(z_\Lambda \approx \num{0.33}\).
+
+\section{The thermal history of the universe}
+
+The model which won out is the \emph{hot Big Bang} model.
+
+Consider radiation: we know from Stefan's law that \(\rho _r \propto T^{4}\), while \(\rho _r \propto a^{-4}\). Therefore we would expect \emph{Tolman's law} to hold: \(T \propto 1/a\).
+
+By \emph{total number of galaxies} we mean the galaxies in our past light cone.
+
+When (in natural units) we get temperature of the order of a certain elementary particle, then statistically that type of particle will usually be ultra-relativistic.
+
+The number density of particles is: 
+%
+\begin{equation}
+  n = \frac{g}{(2 \pi )^3} \int \dd[3]{q} f(\vec{q})
+\,,
+\end{equation}
+%
+in units where \(c= \hbar = k_B = 1\). The parameter \(g\) is the number of helicity states, \(q\) is the three-momentum. The function \(f(\vec{q})\) is a pdf in phase space.
+We will have to integrate  over position and momentum: the metric we will get in the end must not depend on anything but time, by the cosmological principle.
+
+There is no general rule for \(g\): for photons, we only have two spin states; the ``rule'' \(g = 2s +1 \) is not actually applied, for photons \(\vec{s} = 0\) is unphysical, for gravitons \(\abs{\vec{s}} \leq 1 \) is unphysical.
+\(g\) accounts for all internal degrees of freedom: for atoms we also have vibration, rotation\dots
+
+The energy density is 
+%
+\begin{equation}
+  \rho = \frac{g}{(2 \pi )^3} \int \dd[3]{\vec{q}} E(q) f(\vec{q}) 
+\,,
+\end{equation}
+%
+where \(E^2 = q^2 + m^2\). For photons \(E = q\), for nonrelativistic particles \(E \approx m + q^2 / 2m\).
+
+The adiabatic pressure is 
+%
+\begin{equation}
+  P = \frac{g}{(2 \pi )^3} \int \dd[3]{\vec{q}} \frac{q^2 f(\vec{q})}{3E} 
+\,,
+\end{equation}
+%
+which comes from a consideration of the diagonal components \(T_{ii}\) of the stress energy tensor of particles. Alternatively, we can say that this comes from imposing \(\dd{E} = P \dd{V} + \dd{Q} \).
+
+This definition gives us \(P = \rho /3\) for photons directly.
+
+In full generality the distribution is 
+%
+\begin{equation}
+  f(\vec{q}) = \qty(\exp(\frac{E- \mu }{T}) \pm 1 )^{-1}
+\,,
+\end{equation}
+%
+where we have a plus for fermions, and a minus for bosons. Here, \(\mu \) is the chemical potential: is becomes relevant when the gas becomes hot and dense.
+It can be introduced as a Lagrange multiplier for changes in number of particles.
+
+The Planck distribution is given by: 
+%
+\begin{equation}
+  f_k(\vec{q}) = \qty(\exp(\frac{q}{T}) -1 )^{-1}
+\,,
+\end{equation}
+%
+since they are bosons with no chemical potential:
+
+In general we can say that if for some species we have the reaction \(i+j \leftrightarrow k+l\), then \(\mu _i + \mu _j = \mu _k + \mu _l\). We can deduce them by the known relations: for example, from the annihilation of electron and positron we can derive \(\mu _{e^{+}} = - \mu_{e^{-}}\).
+This rule is not trivial; it is an ansatz of thermodynamical equilibrium to get a solution of the Boltzmann equation which allows us to write the Saha equations.
+
 \end{document}

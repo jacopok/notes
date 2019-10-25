@@ -6,11 +6,29 @@
 
 \usepackage{subfiles}
 
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}   % The style of the section title
+  {}                             % a prefix
+  {0pt}                          % How much space exists between the prefix and the title
+  {}    % How the section is represented
+
+% Starred variant
+\titleformat{name=\section,numberless}
+  {\normalfont\Large\bfseries}
+  {}
+  {0pt}
+  {}
+
+\numberwithin{equation}{section}
+
 \begin{document}
 
 \maketitle
 
 \subfile{sheet1}
 \subfile{sheet2}
+\subfile{sheet3}
 
 \end{document}

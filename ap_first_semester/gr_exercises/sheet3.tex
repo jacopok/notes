@@ -1,0 +1,51 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 3}
+
+\subsection{Changes of coordinate system}
+
+We denote by \(x^{\mu } = (x, y)\) and \(x^{\prime \mu } = (r, \theta)\). Then, we have the following Jacobian matrices: 
+%
+\begin{subequations}
+\begin{align}
+  \pdv{x^{\mu }}{x^{\prime \nu }}  &= \left[\begin{array}{cc}
+  \cos(\theta )  & -r \sin(\theta )  \\ 
+  \sin(\theta )  & r \cos(\theta ) 
+  \end{array}\right]  \\
+  \pdv{x^{\prime \nu }}{x^{\rho }} &= \left[\begin{array}{cc}
+  \displaystyle\frac{x}{\sqrt{x^2+y^2} } &\displaystyle \frac{y}{\sqrt{x^2+y^2} } \\ 
+  \displaystyle -\frac{y}{x^2+y^2} &\displaystyle \frac{x}{x^2+y^2}
+  \end{array}\right] 
+  =
+  \left[\begin{array}{cc}
+  \cos(\theta )  & \sin(\theta )  \\ 
+  \displaystyle- \frac{\sin( \theta ) }{r} & \displaystyle \frac{\cos(\theta ) }{r}
+  \end{array}\right]
+\,,
+\end{align}
+\end{subequations}
+%
+which can be found by plain differentiation of the change of coordinates, recalling \((\arctan x)' = 1/ (1+x^2)\). Then, we can compute the product of these two matrices: it comes out to be 
+%
+\begin{equation} \label{eq:inverse-jacobian-matrix-relation} 
+  \pdv{x^{\mu }}{x^{\prime \nu }} \pdv{x^{\prime \nu }}{x^{\rho }} = \delta^{\mu }_{\nu }
+\,,
+\end{equation}
+%
+since on the diagonal we get \(\cos^2(\theta ) + \sin^2(\theta ) = 1\), while on the off-diagonal terms we get a multiple of \(\sin(\theta ) \cos(\theta ) - \sin(\theta ) \cos(\theta ) =0\).
+
+Note that relation \eqref{eq:inverse-jacobian-matrix-relation} is just the chain rule written in more generality: substituting the explicit coordinates for \(x^{\mu }\) and \(x^{\prime \mu }\) we get the desired expression.
+
+\subsection{Properties of covariant differentiation}
+
+We wish to show that \(\nabla_{\alpha } g_{\mu \nu } = 0\). To this end, we define the \emph{Christoffel symbols of the first kind} (while the regular ones are of the second kind): 
+%
+\begin{equation}
+  \Gamma_{\mu \nu \rho } = g_{\mu \sigma }\Gamma^{\sigma }_{\nu \rho } = \frac{1}{2} \qty(g_{\mu \nu, \rho } + g_{\mu \rho , \nu } - g_{\nu \rho,  })
+\,,
+\end{equation}
+%
+
+
+\end{document}

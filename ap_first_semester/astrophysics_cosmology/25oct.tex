@@ -1,0 +1,284 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Fri Oct 25 2019}
+
+Do we wish to have a part on stellar astrophysics right now, before going on with cosmology? Let him know.
+
+Are we in thermal equilibrium?
+In general, no.
+This must be considered when dealing with CMB anisotropies.
+
+QFT must be dealt with not only at zero temperature, but also at finite temperatures.
+People started doing this in the seventies.
+
+The time variable is then periodic, with period \(2 \pi \beta \), where \(\beta  = 1/(k_B T)\).
+
+\todo[inline]{Is this connected to imaginary time?}
+
+This is ``in-in'' instead of ``in-out'': there are no equilibrium states before or after the interaction.
+
+We will simplify: we assume thermal equilibrium at any time in the evolution.
+A key point in cosmologi is the \emph{absence} of time translation invariance, therefore energy is not conserved.
+
+This part will come from Weinberg's book.
+
+We use units where \(c = k_B = \hbar = 1\). The number density of a certain species is 
+%
+\begin{equation}
+  n(\dots ) = \frac{g}{(2\pi )^{3}} \int  \dd[3]{q} f(\vec{q})
+\,,
+\end{equation}
+%
+where \(f(\vec{q})\) is the phase space distribution of the particles, while \(g\) is the number of helicity states of that species.
+The dots will be explained later: they are about the parametrization of the phase space distribution.
+
+For any species, \(E = \sqrt{m^2 + \abs{q}^2} \): this applies \emph{on shell}, for the classical equations of motion: when there are quantum fluctuations it does not hold.
+The energy density is 
+%
+\begin{equation}
+  \rho (\dots) = \frac{g}{(2\pi )^3} \int  \dd[3]{q} E(\vec{q}) f(\vec{q}) 
+\,,
+\end{equation}
+%
+while the pressure is 
+%
+\begin{equation}
+  P (\dots) = \frac{g}{(2\pi )^3} \int  \dd[3]{q} f(\vec{q}) \frac{q^2}{3E}
+\,.
+\end{equation}
+
+Because of isotropy, in the cases we need to consider, the dependence on \(\vec{q}\) is actually a dependence on \(\abs{\vec{q}} \equiv q \).
+
+What is our ansatz for the phase space distribution?  
+%
+\begin{equation}
+  f(q) = \frac{1}{\exp(\frac{E-\mu }{T}) \mp 1 }
+\,,
+\end{equation}
+%
+where the sign is \(-\) for bosons, \(+\) for fermions.
+
+The chemical potential deals with the flux of particles.
+We recover the Planck distribution when \(E = q\) and \(\mu = 0\): this tells us that photons do not have any chemical potential.
+If we measured \(\mu \neq 0 \) that would be called a \emph{spectral distortion}, but is seems like that is not the case.
+
+The rule for the sum of the chemical potentials only holds at equilibrium.
+
+We can relate some chemical potentials by reactions, and this tells us about the conserved quantities which follow from the symmetry group of our theory.
+
+If there was a global charge, phenomenologically we'd expect global magnetic fields, but we see them only of the order of the \SI{10}{\micro G}.
+
+So we have an upper bound on the global charge density (?)
+
+We can estimate the orders of magnitude for the various species in the universe.
+
+In the end: very often, \(\mu / T \ll 1\).
+Therefore, the dependence of the number density, energy density and pressure would be also on \(\mu \) but we forget it, and keep only the temperature dependence: we write \(n(T)\), \(\rho (T)\) and \(P(T)\).
+
+From the second principle of thermodynamics we know that the entropy in a certain volume \(V\) at temperature \(T\), \(S(V, T)\) is given by: 
+%
+\begin{equation}
+  \dd{S}  = \frac{1}{T} \qty(\dd{\rho (T, V)}  + P(T) \dd{V} )
+\,.
+\end{equation}
+%
+ 
+Then we have 
+%
+\begin{equation}
+  \pdv{S}{V} = \frac{1}{T} \qty(\rho (T) + P(T))
+\,,
+\end{equation}
+%
+and 
+%
+\begin{equation}
+  \pdv{S}{T} = \frac{V}{T} \dv{\rho (T)}{T} 
+\,.
+\end{equation}
+%
+
+Recall the Pfaff relations: in order for the differential to be exact it needs to be closed, which means that the second partial derivatives need to commute: 
+%
+\begin{equation}
+  \pdv{}{T}  \qty(\frac{1}{T}\qty(\rho (T) + P(T))) 
+  = \pdv{}{V} \qty(\frac{V}{T} \dv{\rho (T)}{T} ) 
+\,.
+\end{equation}
+
+We can proceed with the calculation, to get: 
+%
+\begin{equation}
+  \dv{P}{T} = \frac{1}{T} \qty(\rho (T ) + P(T))
+\,.
+\end{equation}
+%
+
+Cosmology has not entered into the picture yet, but it can by the third Friedmann equation, which can be rewritten as 
+%
+\begin{equation}
+  a^3 \dv{P}{t} =\dv{}{t} \qty(a^3 (P + \rho ))
+\,,
+\end{equation}
+%
+and these two, when put together, are equivalent (check!) to 
+%
+\begin{equation}
+  \dv{}{t} \qty(\frac{a^3}{T} (\rho + P ))=0
+\,,
+\end{equation}
+%
+therefore this quantity is a constant of motion. 
+
+
+(For the RW line element, the square of the determinant \(\sqrt{-g} =  a^3 \), so we get 
+%
+\begin{equation}
+  \dv{}{t} \qty(\sqrt{-g }  \frac{\rho + P}{T}) = 0
+\,,
+\end{equation}
+)
+
+So the quantity which is differentiated is constant. If we plug this back into the differential expression for the entropy, we get: 
+%
+\begin{equation}
+  \dd{S} = \dd \qty(\frac{(\rho + P) V}{T})
+\,,
+\end{equation}
+%
+therefore the differentiated quantities are equal up to a constant, but since \(V \propto a^3\) we get that the \emph{entropy is constant}.
+
+\begin{equation}
+  S \equiv S(a^3, T) 
+  = \frac{a^3}{T} \qty(\rho + P)
+  = \const
+\,.
+\end{equation}
+
+Since \(\rho \propto T^{4}\) and \(\rho \propto a^{-4}\), we expect Tolman's law: \(Ta \sim 1\).
+
+Also, for photons \(P  = \rho / 3\): so we get \(S \propto \frac[i]{4}{3} (a^3/T) T^{4} \propto T^3 a^3 = \const\).
+
+We only consider photons since they have a much larger number density.
+
+\todo[inline]{Is this because the suppression is exponential while the ratio of energies is somehow polynomial?}
+
+Now we wish to do the integrals for the thermodynamical quantities: 
+%
+\begin{equation}
+  \int  \dd[3]{\vec{q}} = 4 \pi \int_0^{\infty}  \dd{q} q^2 
+\,,
+\end{equation}
+%
+so we get 
+%
+\begin{subequations}
+\begin{align}
+  n(T) &= \frac{g}{(2\pi^2} \int  \dd{q} q^2 f(q) \\ 
+  \rho (T) &= \frac{g}{2\pi^2} \int  \dd{q} q^2 f(q) E(q) \\ 
+  P (T) &= \frac{g}{(6\pi^2} \int  \dd{q} q^2 f(q) \frac{q^2}{E(q)} 
+\,,
+\end{align}
+\end{subequations}
+%
+which can be solved analytically in the ultrarelativistic and nonrelativistic approximations.
+
+Ultrarelativistic means \(q \gg m\): actually we compare these to the temperature: we define \(x = q/T\), and then the energy is \(\sqrt{x^2+ m^2/T^2} \): we suppose \( m/T \ll 1\).
+
+The momentum will not always be large, but the cases in which it is large give a much greater contribution if the temperature is large.
+
+\paragraph{Ultrarelativistic}
+
+We approximate \(E(q) \sim q\), so  
+%
+\begin{equation}
+  n(T) = \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^2 \qty(\exp(q/T) \mp 1 )^{-1} 
+\,,
+\end{equation}
+%
+%
+\begin{equation}
+    \rho (T) = \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1} 
+  \,,
+\end{equation}
+%
+\begin{equation}
+    P (T) = \frac{g}{6 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1} 
+\,,
+\end{equation}
+%
+so we can see that in this approximation, which is equivalent to \(m \approx 0\), we get matter behaving like radiation: \(P = \rho /3\).  
+The result of the integrals depends on the type of the particles, and it is 
+%
+\begin{equation}
+  n(T) = \begin{cases}
+      \frac{\xi (3)}{\pi^2} g T^3 & BE  \\
+      \frac{3}{4}\frac{\xi (3)}{\pi^2} g T^3 & FD  
+  \end{cases}
+\,,
+\end{equation}
+%
+and we get the proportionality to \(T^3\).
+For the energy density:
+\begin{equation}
+    \rho (T) = \begin{cases}
+        \frac{\pi^2}{30} g T^4 & BE  \\
+        \frac{7}{8}\frac{\pi^2}{30} g T^4 & FD  
+    \end{cases}
+  \,,
+\end{equation}
+and for the pressure we just divide by 3.
+For photons, \(g=2\) and they are bosons, so we get 
+%
+\begin{equation}
+  \rho _\gamma  = \frac{\pi^2}{15} T^{4}
+\,.
+\end{equation}
+
+\paragraph{Nonrelativistic}
+
+Now \(m \gg T\), so we get \(E \approx m + \frac{q^2}{2m} + O((q/\sqrt{m})^{4})\) by expanding.
+
+So, can we just substitute this? It would seem like this makes the exponential very large, so the difference between bosons and fermions becomes negligible. So, to zeroth order in (\(q^2/m\)) we get 
+%
+\begin{equation}
+  f \approx \exp(-\frac{m- \mu }{T}) 
+\,,
+\end{equation}
+%
+and then 
+%
+\begin{equation}
+  n = \frac{g}{2 \pi^2} \exp(-\frac{m- \mu }{T}) \int _{\mathbb{R}^{+}} \dd{q}q^2 
+\,,
+\end{equation}
+%
+which diverges. This is the ultraviolet catastrophe: we need the \emph{Planckian}, by considering the first order in \(q^2/m\): then
+%
+\begin{equation}
+    n = \frac{g}{2 \pi^2} \exp(-\frac{m- \mu }{T}) \int _{\mathbb{R}^{+}} \dd{q}q^2 \exp(-\frac{q^2}{2mT}) 
+    = g \qty(\frac{mT}{2 \pi })^{3/2} \exp(\frac{\mu - m}{T}) 
+  \,,
+\end{equation}
+where we applied the identity 
+%
+\begin{equation}
+  \int _{\mathbb{R}} \dd{x} x^2 \exp(-\alpha x^2) = \frac{\sqrt{\pi } }{2 \alpha^{3/2}} 
+\,.
+\end{equation}
+%
+
+To recover the energy density and pressure we could do \(\rho = m n\) and \(P = n T\). 
+
+\todo[inline]{Do these come out of doing the other two integrals?}
+
+Therefore, \(P = T \rho / m\), so \(P \ll \rho \): for nonrelativistic particles, we can deal with them as \emph{noninteracting dust}.
+
+\(P = nT\) is just the ideal gas law.
+
+If we compare relativistic particles to nonrelativistic ones, the former dominate the latter in terms of all of these three quantities.
+
+
+
+\end{document}

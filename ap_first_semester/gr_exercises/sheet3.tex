@@ -42,10 +42,24 @@ Note that relation \eqref{eq:inverse-jacobian-matrix-relation} is just the chain
 We wish to show that \(\nabla_{\alpha } g_{\mu \nu } = 0\). To this end, we define the \emph{Christoffel symbols of the first kind} (while the regular ones are of the second kind): 
 %
 \begin{equation}
-  \Gamma_{\mu \nu \rho } = g_{\mu \sigma }\Gamma^{\sigma }_{\nu \rho } = \frac{1}{2} \qty(g_{\mu \nu, \rho } + g_{\mu \rho , \nu } - g_{\nu \rho,  })
+  \Gamma_{\mu \nu \rho } = g_{\mu \sigma }\Gamma^{\sigma }_{\nu \rho } = \frac{1}{2} \qty(g_{\mu \nu, \rho } + g_{\mu \rho , \nu } - g_{\nu \rho, \mu })
+\,
+\end{equation}
+
+Note that if we symmetrize the first and last index, we get \(\Gamma_{[\mu | \nu | \rho]} = \frac[i]{1}{2} g_{\mu \rho, \nu }\) since the first and last terms in the sum cancel (in the latter we must invert the indices \(\nu \) and \(\rho \) in order to see this, but this can always be done by the symmetry of the metric).
+
+Then, we write the expression for the covariant derivative of the metric: 
+%
+\begin{equation}
+  \nabla_{\alpha }g_{\mu \nu }= \partial_\alpha g_{\mu \nu }
+  - \Gamma^{\rho }_{\mu \alpha }g_{\rho \nu } 
+  - \Gamma^{\rho }_{\nu \alpha  }g_{\mu \rho  } 
+  = g_{\mu \nu , \alpha } 
+  - \Gamma_{\nu \alpha \mu }
+  - \Gamma_{\mu \alpha \nu }
 \,,
 \end{equation}
 %
-
+which is just \(g_{\mu \nu , \alpha } - 2 \Gamma_{[\nu | \alpha | \mu ]} = g_{\mu \nu , \alpha } - g_{\nu \mu , \alpha } = 0\), again by the symmetry of the metric.
 
 \end{document}

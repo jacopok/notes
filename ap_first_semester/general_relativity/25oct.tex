@@ -1,4 +1,143 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Oct 25 2019}
+
+We define \(\Delta N = N^{\mu }n_{\mu } \Delta V\), where \(N^{\mu }\) is the current density from last time while \(n^{\mu } \) is the normal to the surface of a 3-volume.
+
+Now, we define the energy-momentum-stress tensor \(T^{\mu \nu }\).
+
+We define it by \(\Delta p^{\alpha } = T^{\alpha \beta }n_{\beta }\Delta V\), where \(\Delta p^{\mu}\) is the momentum in the volume.
+
+Let us consider an inertial frame in which \(\Delta V\) is at rest, and take \(n_{\mu }\) to be its 4-velocity.
+
+Then the energy density is given by: 
+%
+\begin{equation}
+  \epsilon  = \frac{\Delta p^{0}}{\Delta V} = T^{00}
+\,,
+\end{equation}
+%
+while the momentum density is: 
+%
+\begin{equation}
+  \Pi^{i} = \frac{\Delta p^{i}}{\Delta V} = T^{i0}
+\,.
+\end{equation}
+
+Now let us consider a frame moving with velocity \(\vec{v}  \), in this frame each particle has energy \(m \gamma \) and momentum \(m \gamma \vec{v}\), and the energy density is \(n_{*} \gamma \).
+
+The moving observer sees exacly the energy density \(\epsilon = m \gamma n_{*} \gamma  = T^{00}\), and the momentum density \(T^{i0} = m \gamma \vec{v}^{i} n_{*}\gamma \).
+
+In general, for particles which do not interact with each other, we have 
+%
+\begin{equation}
+  T^{\alpha \beta } = n_{*} m u^{\alpha }u^{\beta }
+\,.
+\end{equation}
+
+The stress energy tensor is in general symmetric.
+
+What is \(T^{0i}\)? We have \(\Delta p^{\alpha } = T^{\alpha 1} \Delta y \Delta z \Delta t\) (if we select the normal \(n_{\mu }\) parallel to the \(x\) axis).
+
+For \(\alpha = 0\), this is the flux of energy in time (power) along the \(x\) direction.
+
+For \(\alpha = i\), we can use the same relation: 
+%
+\begin{equation}
+  T^{i1} = \frac{\Delta p^{i}}{\Delta y \Delta z \Delta t}
+  = \frac{F^{i}}{\Delta y \Delta z} = \frac{F^{i}}{\text{Area}}
+\,.
+\end{equation}
+
+Do note that \(i\) can be either \(x\), \(y\) or \(z\): we can consider the \emph{pressure}, which is the force along the \(x\) axis across the \(x\) axis, but also the \emph{deviatoric stresses} along the \(y\) or \(z\) axes but across the \(x\) axis.
+
+Do also note that the stress tensor from fluid dynamics, \(\sigma^{ij}\), is not equal to \(T^{ij}\): it is its opposite.
+
+The energy density measured by an observer with 4-velocity \(u^{\mu }\) is \(T_{\mu \nu } u^{\mu }u^{\nu }\).
+
+\begin{claim}
+Energy momentum is conserved.
+\end{claim}
+
+\begin{proof}
+In the LIF \(\partial_{\beta }T^{\alpha \beta }= 0\) (in perfect analogy to the current number density) therefore in any frame \(\nabla_{\beta }T^{\alpha \beta }= 0\).
+\end{proof}
+
+\todo[inline]{Is this true even in the absence of translational symmetry?}
+
+\begin{definition}[Perfect fluid]
+A fluid is perfect if it has no dissipative effects: heat conduction, viscosity.
+\end{definition}
+
+\begin{claim}
+The stress-energy tensor of a perfect fluid is 
+%
+\begin{equation}
+  T^{\alpha \beta } = \diag{\rho , p, p, p }
+\,.
+\end{equation}
+%
+in its own rest frame; in any frame \(T^{\alpha \beta } = \rho u^{\alpha } u^{\beta } + P h^{\alpha \beta }\),  where \(h^{\mu \nu } = g^{ \mu \nu }+u^{\mu } u^{\nu }\).
+\end{claim}
+
+\begin{definition}[Equation of state]
+It is \(P = \omega \rho \).
+\end{definition}
+
+\subsection{The Einstein equations}
+
+We require them to be \emph{mathematically consistent} and \emph{physically correct}.
+
+We have the principle of covariance: this tells us that the law should be a tensorial expression.
+
+We know that energy is described by the tensor \(T_{\mu \nu }\), while for the curvature part we have the various contractions of the metric and the Riemann tensor.
+
+Our ansatz is 
+%
+\begin{equation}
+  R_{\mu \nu } + c_1 R g_{\mu \nu } = c_2 T_{\mu \nu }
+\,.
+\end{equation}
+
+Symmetry is all right: \(R_{\mu \nu }\) is symmetric, and so is the metric.
+The stress energy tensor is also conserved: therefore we impose 
+%
+\begin{equation}
+  \nabla^{\mu } \qty(R_{\mu \nu } + c_1 R g_{\mu \nu })= 0
+\,.
+\end{equation}
+
+By the contracted Bianchi identies, this implies \(c_1 = -1/2\).
+
+To get \(c_2 \), we can look at the Newtonian limit: they should simplify to \(\square \phi \propto \rho \). This will imply \(c_2 = 8 \pi G \).
+
+\subsection{The Newtonian limit}
+
+We start by tracing the equations: we get \(R-2R = c_2 T \), where \(g^{\mu \nu }T_{\mu \nu }= T\).
+Note that \(g^{ \mu \nu }g_{ \mu \nu }=4\): it is not the trace of the metric, but its Frobenius norm.
+
+We can then rewrite the EFE as 
+%
+\begin{equation}
+  R_{\mu \nu } = c_2 \qty(T_{\mu \nu } - \frac{T}{2}g_{\mu \nu })
+\,.
+\end{equation}
+%
+
+Let us consider a slowly moving perfect fluid: \(p \ll \rho \), and \(v \approx  0\), so \(u^{\mu } = (1, \vec{0})\).
+
+We consider a weak gravitational field: \(g_{\mu \nu } \approx \eta_{\mu \nu } \).
+
+Our stress energy tensor is approximately \(\rho u^{\mu } u^{\nu }\). We have \(T = - \rho \).
+
+Then, we will get: 
+%
+\begin{equation}
+  R_{00} \approx c_2 \qty(\rho - \frac{\rho}{2} (-)^2)
+\,.
+\end{equation}
+
+Therefore we get \(R_{00} \approx c_2 \rho /2\).
+
 \end{document}

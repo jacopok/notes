@@ -3,6 +3,24 @@
 
 We set $c=1$.
 
+Here we will often use (anti)symmetrization of indices, which makes some calculations much easier. The idea of symmetrization is to sum over all permutation of the selected indices, with a minus sign for the odd permutation if the case of anti symmetrization. So, for instance, \(F_{\mu \nu }\) can be antisymmetrized into \(F_{[\mu \nu ]} = \frac[i]{1}{2} \qty(F_{\mu \nu }- F_{\nu \mu })\) and symmetrized into \(F_{(\mu \nu )}= \frac[i]{1}{2} \qty(F_{\mu \nu } + F_{\nu \mu })\).
+
+The factor \(\frac[i]{1}{2} \) is in general \(1/n!\), where \(n\) is the number of antisymmetrized indices. This is include because in general we will be summing \(n!\) terms, and we want to write things like: ``\(F_{\mu \nu }\) is antisymmetric means \(F_{\mu \nu} = F_{[\mu \nu ]}\)'', so we need to rescale the sum to make it into an average.
+
+The general formulas are then: 
+%
+\begin{subequations}
+\begin{align}
+  F_{[\mu_{1} \dots \mu_{n}]} &= \frac{1}{n!} \sum _{\sigma  \in \mathfrak{S}_n} \sign{\sigma} F_{\sigma (\mu_1)\dots \sigma(\mu_n)} \\
+  F_{(\mu_{1} \dots \mu_{n})} &= \frac{1}{n!} \sum _{\sigma  \in \mathfrak{S}_n}F_{\sigma (\mu_1)\dots \sigma(\mu_n)}
+\,,  
+\end{align}
+\end{subequations}
+%
+where \(\mathfrak{S}_n\) is the \emph{symmetric group} of permutations of \(n\) elements, and the sign of a permutation \(\sigma \in \mathfrak S_n\) is \(\pm 1\), depending on the parity of pair swaps that are needed to get that configuration (we fix (\(\sign{\mathbb{1}} = 1\))). 
+
+If we want to symmetrize indices which are not next to each other, we will denote the end of the (anti)symmetrized indices by a vertical bar.
+
 \section{Sheet 1}
 
 \subsection{Lorentz transformations }

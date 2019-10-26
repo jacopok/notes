@@ -55,7 +55,7 @@ To this end, we define the \emph{Christoffel symbols of the first kind} (while t
 
 These are useful since, as all their indices are down, it is easier to study their symmetry properties.
 
-Note that if we symmetrize the first and last index, we get \(\Gamma_{[\mu | \nu | \rho]} = \frac[i]{1}{2} g_{\mu \rho, \nu }\) since the first and last terms in the sum cancel (in the latter we must invert the indices \(\nu \) and \(\rho \) in order to see this, but this can always be done by the symmetry of the metric).
+Note that if we antisymmetrize the first and last index, we get \(\Gamma_{[\mu | \nu | \rho]} = \frac[i]{1}{2} g_{\mu \rho, \nu }\) since the first and last terms in the sum cancel (in the latter we must invert the indices \(\nu \) and \(\rho \) in order to see this, but this can always be done by the symmetry of the metric).
 
 Then, we write the expression for the covariant derivative of the metric: 
 %
@@ -71,8 +71,44 @@ Then, we write the expression for the covariant derivative of the metric:
 %
 which is just \(g_{\mu \nu , \alpha } - 2 \Gamma_{[\nu | \alpha | \mu ]} = g_{\mu \nu , \alpha } - g_{\nu \mu , \alpha } = 0\), again by the symmetry of the metric.
 
+One could argue that this is the opposite way round: we should \emph{assume} \(\nabla_{\mu } g_{\rho \sigma } = 0   \) and derive from it the formula that was given for the Christoffel symbols in terms of the partial derivatives of the metric.
+
 \subsubsection{Leibniz rule}
 
-As before, this can be proved in the LIF but we shall compute away in a general frame.
+As before, this can be proved in the LIF from the Leibniz rule of regular partial derivatives.
+
+As before, we like to calculate therefore we show this explicitly in any frame.
+
+The derivative of the tensor product looks like: 
+%
+\begin{equation}
+    \nabla_{\mu } \qty(A_{\nu \lambda } B_{ \rho }) = 
+    \partial_{\mu }\qty(A_{\nu \lambda }B_{\rho }) 
+    -\Gamma_{\mu \nu }^{\sigma }A_{\sigma \lambda }B_{\rho }
+    -\Gamma_{\mu \lambda  }^{\sigma }A_{\nu \sigma }B_{\rho }
+    -\Gamma_{\mu \rho }^{\sigma }A_{\nu \lambda }B_{\sigma }
+\,,
+\end{equation}
+%
+while the sum of derivatives looks like: 
+%
+\begin{equation}
+  \begin{split}
+  B_{\rho }\nabla_{\mu }A_{\nu \lambda } 
+  + A_{\nu \lambda }\nabla_{\mu }B_{\rho }=
+  &B_{\rho }\partial_{\mu }A_{\nu \lambda }
+  -\Gamma_{\mu \nu }^{\sigma }A_{\sigma \lambda }B_{\rho }
+  -\Gamma_{\mu \lambda  }^{\sigma }A_{\nu \sigma }B_{\rho } \\
+  + & A_{\nu \lambda }\partial_{\mu }B_{\rho }
+  -\Gamma_{\mu \rho }^{\sigma }A_{\nu \lambda }B_{\sigma }
+  \end{split}
+  \,,
+\end{equation}
+%
+so we can see that the Christoffel terms are equal, and the partial derivative terms also are since we have the Leibniz rule for partial derivatives.
+
+\subsection{2D Christoffel symbols}
+
+
 
 \end{document}

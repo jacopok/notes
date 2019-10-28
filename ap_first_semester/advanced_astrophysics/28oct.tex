@@ -1,0 +1,222 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Mon Oct 28 2019}
+
+\section{Stellar Winds}
+
+With Paola Marigo, now.
+
+One should be able to follow this part even without a strong background in stellar astrophysics.
+
+Bubble Nebula in Cassiopeia: a 45 \(M_{\odot}\) star is ejecting mass at \SI{1.7e6}{m\per\second}.
+
+Some important quantities: we introduce 
+
+\begin{enumerate}
+    \item \(\dot{M}\) is the mass loss rate: 
+    %
+    \begin{equation}
+      \dot{M} = - \dv{M}{t} >0
+    \,;
+    \end{equation}
+    %
+    \item \(v_{\infty}\) is the terminal wind velocity, in the limit of radial infinity.
+\end{enumerate}
+
+The gas initially escapes from the star at low (subsonic, \SI{1}{km/s}) velocity; then it is accelerated.
+It is accelerated, and in the far field when no more forces are acting on it it approaches \(v_{\infty}\).
+We describe it with a \emph{velocity law}: \(v(r)\), and physically since the force is always radial we have 
+%
+\begin{equation}
+  \dv{v}{r} > 0
+\,
+\end{equation}
+%
+for any \(r\). A typical law is something like: 
+%
+\begin{equation}
+  v(r) = v_0 + \qty(v_{\infty}-v_{0} ) \qty(1 - \frac{R_{*}}{r})^{\beta }
+\,,
+\end{equation}
+%
+where \(\beta \approx 0.8\), and \(R_{*}\) is the radius of the photosphere (where, from infinity, we have an opacity of \(\tau = 1\)).
+
+In an H-R diagram we can plot the mass loss rate.
+
+\todo[inline]{The relation \(\dot{M} (M)\) seems to be something like a power law: what is it?}
+
+We have Massive, Cool Luminous and Solar-type stars. 
+
+The momentum input can come either from a force, like radiation pressure; or from heating.
+
+We have:
+\begin{enumerate}
+    \item coronal winds: driven by gas pressure;
+    \item line driven winds: driven by radiation pressure on highly ionized atoms, O and B stars;
+    \item dust driven winds: due to radiation pressure on dust grains, solid particles, which are very opaque.
+\end{enumerate}
+
+\todo[inline]{Are ionized atoms more opaque to radiation?}
+
+We will not consider winds driven by pulsation, sound waves and Alfvèn waves (magnetic winds).
+
+We will assume:
+\begin{enumerate}
+    \item spherical symmetry;
+    \item stationarity;
+    \item no magnetic fields.
+\end{enumerate}
+
+The equation of continuity with the hypothesis of stationarity is given by \(\dot{M} = 4 \pi r^2 \rho (r) v(r) \equiv \const\).
+
+If we differentiate \(\dot{M} \) with respect to \(t\) we get 0 on the LHS, and on the RHS: 
+%
+\begin{equation}
+  0 = 2 \rho v + rv \dv{\rho }{r} + r \rho \dv{v}{r} 
+\,,
+\end{equation}
+%
+where we simplified the \(4 \pi \). If we divide by \(\rho v r \) we get: 
+%
+\begin{equation}
+  \frac{2}{r} + \frac{1}{\rho }\dv{\rho }{r} + \frac{1}{v} \dv{v}{r} =0     
+\,,
+\end{equation}
+%
+and then this gives us 
+%
+\begin{equation}
+  2\log(r)^{\prime } + \log(v)^{\prime } + \log(\rho)^{\prime } =0
+\,,
+\end{equation}
+%
+where the prime denotes derivatives with respect to \(r\).
+The gradients of the velocity and density are related.
+
+The force per unit volume is given by 
+%
+\begin{equation}
+  F = \rho \dv{v}{t} 
+\,,
+\end{equation}
+%
+and if we divide by \(\rho \) we get the force per unit mass: 
+%
+\begin{equation}
+  f = \frac{F}{\rho } = \dv{v}{t}  
+\,.
+\end{equation}
+
+Under stationarity (\(\partial_t = 0\)), we have: 
+%
+\begin{equation}
+  \dv{v}{t} = v(r) \dv{v}{r} 
+\,.
+\end{equation}
+%
+
+The conservation of momentum gives us the Euler equation: 
+%
+\begin{equation}
+  v \dv{v}{t} = - \frac{1}{\rho } \dv{P}{r} - \frac{GM}{r^2} + f(r)
+\,,
+\end{equation}
+%
+where \(f(r)\) is a generic unspecified external force, which we assume to be \emph{outward} (no dissipative effects!).
+
+\begin{bluebox}
+    The projection of \(\nabla_{\mu }T^{\mu \nu }= 0\) along the flow of the fluid \(u^{\nu }\), which is a timelike Killing vector field, gives us the conservation of the energy: the 1st law of thermodynamics. 
+\end{bluebox}
+
+%
+\begin{equation}
+  \dv{Q}{t} = \dv{u}{t} + P \dv{\rho^{-1}}{t} 
+\,,
+\end{equation}
+%
+where \(Q\) is the specific heat, \(u \) is the specific internal energy.
+
+The internal energy, for an ideal gas, scales linearly with the temperature: 
+%
+\begin{equation}
+  u = \frac{3}{2} \frac{k_B T}{\mu m_u} = \frac{3}{2} \frac{R T}{\mu }
+\,,
+\end{equation}
+%
+where \(\mu \) is the molar mass (?), while \(m_u\) is the atomic unit of mass: \(R = k_B / m_u\).
+
+We will also assume that the gas pressure follows the ideal gas law: 
+%
+\begin{equation}
+  P = \frac{k_B T \rho }{\mu m_u} = \frac{RT \rho }{\mu }
+\,.
+\end{equation}
+%
+
+All time derivatives can be written as \(\dv{}{t} = v \dv{}{r} \).
+
+We define 
+%
+\begin{equation}
+  q(r) = \dv{Q}{r} 
+\,,
+\end{equation}
+%
+the heat input or loss per unit mass per unit distance in the wind. Inserting in the previous equation, we get: 
+%
+\begin{equation}
+  q = \frac{3}{2} \frac{R}{\mu } \dv{T}{r} + P \dv{\rho^{-1}}{r} 
+\,.
+\end{equation}
+
+These can be incorporated in the global energy equation: 
+%
+\begin{equation} \label{eq:energy-conservation-differential} 
+  \dv{}{r} \qty(\frac{v^2}{2} + \frac{5}{2} \frac{RT}{\mu }- \frac{GM}{r}) = f(r) + q(r)
+\,,
+\end{equation}
+%
+where the expression inside the brackets is the total internal energy. The terms are called A, B, C.
+This clarifies the claim from before: we can change the internal energy by applying a force.
+
+\todo[inline]{Was the claim from before not the reverse?}
+
+Equation \eqref{eq:energy-conservation-differential} can be written in integral form, by integrating from a generic radius \(r_0 \), we could choose the photospheric radius. 
+
+Near the photosphere \(\abs{C} \gg A+B\), so  \(e(r_0 ) \approx GM / r_0 < 0 \).
+
+At large radii \(B, C \to 0\): \(e(r_{\infty}) \approx v_{\infty}^2 /2\).
+
+If we integrate from \(r_0 \) at the photosphere to infinity then we get: 
+%
+\begin{equation}
+  \frac{v^2_{\infty}}{2} = - \frac{GM}{r_0 } + \int _{r_0 }^{\infty} f(r) + q(r) \dd{r} 
+\,,
+\end{equation}
+%
+so the sum of the two integrals must be large enough for the gas to escape the gravitational well.
+
+\todo[inline]{Can't this be made stronger by simply swapping the equality with a less than sign, and integrating not only from \(r_0 \) but from any radius?}
+
+Now we will treat isothermal winds. 
+These calculations were first done by Parker.
+
+The assumption of constant temperature already gives us \(T(r) \equiv T\), and then we do not need the energy equation: there must be an energy input.
+
+\todo[inline]{So we do not consider the energy equation because energy \emph{is not conserved?}}
+
+This is a good model for low \(\dot{M} \), which does not affect the total mass of the star.
+
+Tomorrow we will discuss full solutions in this case.
+
+Now, let us talk about the corona.
+It is very hot: it goes to \(\num{e6}\) degrees,  but with very low density.
+We see this experimentally by seeing highly ionized 
+elements like \(\ce{Fe}^{+5 \divisionsymbol 13}\).
+
+Why is this the case? We \emph{do not know}. Magnetism?
+
+
+
+\end{document}

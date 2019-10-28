@@ -109,6 +109,73 @@ so we can see that the Christoffel terms are equal, and the partial derivative t
 
 \subsection{2D Christoffel symbols}
 
+\subsubsection{Polar coordinates}
 
+The metric and inverse metric are respectively given by \(g_{\mu \nu } = \diag{1, r^2}\) and \(g^{\mu \nu }= \diag{1, r^{-2}}\). We only care about the partial derivatives of the lower-indices one, and the only nonvanishing derivative is \(g_{11,0} = 2r\), where we mean \((x^{0}, x^{1}) = (r, \theta )\).
+
+Then it is tedious but straightforward to perform the direct computation.
+Things that make it faster are discarding immediately terms which cannot contribute (such as \(g_{\alpha \beta ,\gamma }\) where at least one of \(\alpha \) and \(\beta \) is not 1 or \(\gamma \) is not \(0\), and only looking at the six independent symbols instead of the eight total ones (since \(\Gamma^{\alpha }_{01} = \Gamma^{\alpha }_{10}\) for any \(\alpha \)).
+
+Then one can see that the nonvanishing symbols are
+%
+\begin{subequations}
+\begin{align}
+  \Gamma^{0}_{11} &= \frac{1}{2} g^{0\alpha}\qty(g_{\alpha 1, 1}  + g_{\alpha 1, 1} - g_{11, \alpha }) 
+  = \frac{1}{2} g^{00}(-g_{11, 0}) = - \frac{2r}{2} = -r  \\
+  \Gamma^{1}_{01} &= \frac{1}{2} g^{1 \alpha }\qty(g_{\alpha 0, 1} + g_{\alpha 1, 0} - g_{01, \alpha })
+  = \frac{1}{2} g^{11} g_{11, 0} = \frac{1}{2} \frac{1}{r^2} 2r = \frac{1}{r}
+\,.
+\end{align}
+\end{subequations}
+%
+
+\subsubsection{Spherical surface}
+
+Now we have the following metric and inverse metric: 
+%
+\begin{equation}
+  g_{\mu \nu } = \left[\begin{array}{cc}
+  R^2 & 0 \\ 
+  0 & R^2 \sin^2(\theta ) 
+  \end{array}\right]\,,
+  \qquad
+  g^{\mu \nu } = \left[\begin{array}{cc}
+  R^{-2} & 0 \\ 
+  0 & R^{-2}\sin^{-2}(\theta ) 
+  \end{array}\right]
+\,,
+\end{equation}
+%
+but do note that \(R\) is a constant: given \((x^{0}, x^{1}) = (\theta, \varphi)\), we have as before that the only nontrivial derivative is \(g_{11,0} = R^2 2 \sin(\theta ) \cos(\theta) \).
+
+Then this case is exactly analogous to the previous one: we can skip almost all of the computation and jump straight to: 
+%
+\begin{subequations}
+\begin{align}
+  \Gamma^{0}_{11} &= -\frac{1}{2} g^{0}g_{11,0} = - \sin(\theta ) \cos(\theta ) \\
+  \Gamma^{1}_{01} &= \frac{1}{2} g^{11}g_{11,0} = \frac{\cos(\theta ) } {\sin(\theta ) }
+\,.
+\end{align}
+\end{subequations}
+
+\subsection{Parallel transport}
+
+We know from the last exercise the metric and Christoffel symbols of 2D space and of the surface of a sphere.
+
+
+We want to determine the behaviour of a vector field \(V^{\mu }(\theta )\) defined on a curve \(x^{\mu }(\theta ) = (R, \theta)\) with fixed \(R\), such that \(V^{ \mu } (\theta = 0 ) = (0,1/R)\) (a unit vector: \(V^{\mu } (0) V^{\nu }(0) g_{\mu \nu }(0) = 1\)).
+
+The equations of parallel transport are in general \(u^{\mu }\nabla_{\mu }V^{\nu } = 0\).
+
+\subsubsection{Flat space}
+
+In our case the tangent vector of the curve is \(u^{\mu }= (0,1)\). Therefore the equations simplify to: 
+%
+\begin{equation}
+  \nabla_{1}V^{\mu }= \partial_{1}V^{\mu }+\Gamma^{\mu }_{1 \alpha }V^{\alpha } = 0
+\,,
+\end{equation}
+%
+which are two coupled differential equations; we can make them explicit and substitute the Christoffel symbols found earlier.
 
 \end{document}

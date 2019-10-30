@@ -1,0 +1,86 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 3}
+
+\subsection{Riemann tensor computations}
+
+\subsubsection{LIF form}
+
+In the LIF, we have \(g_{\mu \nu } = \eta_{\mu \nu }\) and \(= g_{\mu \nu , \alpha }=0\). Therefore, the Christoffel symbols are all zero. 
+In the explicit expression of the Riemann tensor, which looks like \(R = \partial \Gamma  + \Gamma \Gamma\) we can drop the second term and keep only the derivatives of the Christoffel symbols, which are nonzero since they depend on the second derivatives of the metric.
+
+If the Christoffel symbols are zero, the computation of the curvature tensor is significantly easier: 
+%
+\begin{subequations}
+\begin{align}
+  R^{\mu }_{\nu \rho \sigma }
+  &=  2 \partial_{[\nu }\Gamma^{\mu }_{\rho] \sigma }  \\
+  &= 2 \partial_{[\nu} \qty(\frac{1}{2} g^{\mu \alpha } \qty(g_{\alpha |\rho], \sigma } + g_{\alpha \sigma , |\rho ]} - g_{\sigma |\rho], \alpha }))  \\
+  &= g^{\mu \alpha }\qty(g_{\alpha [\rho|, \sigma | \nu     ]} + \cancelto{}{g_{\alpha \sigma, [\rho \nu ]}}-g_{\sigma [\rho |, \alpha | \nu ]})
+\,.
+\end{align}
+\end{subequations}
+
+So, if we lower the index of the Riemann tensor we get the desired expression for the all-lower tensor: 
+%
+\begin{equation}
+  R_{\mu \nu \rho \sigma} = g_{\mu [\rho|, \sigma | \nu ]} - g_{\sigma [\rho|, \mu | \nu ]} 
+\,.
+\end{equation}
+
+\subsubsection{Ricci tensor and scalar}
+
+The Ricci tensor is given by: 
+%
+\begin{equation}
+  R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu } 
+  = g^{\alpha \beta }R_{\alpha \mu \beta \nu }
+  = g^{\alpha \beta }\qty(g_{\alpha [\beta |, \nu | \mu ]} - g_{\nu  [\beta |, \alpha  | \mu ]})
+\,.
+\end{equation}
+%
+% where we can simplify all the antisymmetric terms in \(\alpha \beta \), since they are contracted with a symmetric tensor.
+
+Now, of the four terms in the sum one simplifies immediately: we know that the Frobenius norm of the metric is constant: \(g^{\alpha \beta }g_{\alpha \beta } \equiv 4\), so \(g^{\alpha \beta }g_{\alpha \beta , \nu \mu }\) is one of the two equal terms we get by expanding \(\frac[i]{1}{2} (g^{\alpha \beta }g_{\alpha \beta })_{,\nu \mu } = 0\).
+
+So we have 
+%
+\begin{subequations}
+    \begin{align}
+    R_{\mu \nu }
+    &= g^{\alpha \beta }\qty(
+        \cancelto{}{g_{\alpha \beta , \nu \mu }}
+        - g_{\alpha \mu  , \nu \beta  }
+        - g_{\nu  \beta , \alpha  \mu }
+        + g_{\nu  \mu  , \alpha  \beta }      
+        )  \\
+    &= g^{\alpha \beta }g_{\mu \nu, \alpha \beta }
+    - 2 g^{\alpha \beta } g_{\alpha (\mu, \nu) \beta }
+\,,
+\end{align}
+\end{subequations}
+%
+but \(g^{\alpha \beta }g_{\alpha \mu } = \delta^{\beta }_{\mu }\), therefore the second term is proportional to \(\delta^{\beta }_{(\mu, \nu ) \beta }\), but the entries of the identity are constants, therefore this term is zero.
+Also, recall that in the LIF the metric is just the Minkiwski one:
+So in the end we get: 
+%
+\begin{equation}
+  R_{\mu \nu } = \eta^{\alpha \beta }g_{\mu \nu, \alpha \beta   }
+\,,
+\end{equation}
+%
+which also proves the symmetry of the Ricci tensor by the symmetry of the metric.
+
+The Ricci scalar is then just given by 
+%
+\begin{equation}
+  R = \eta ^{\mu \nu }\eta ^{\alpha \beta }g_{\mu \nu , \alpha \beta }
+\,.
+\end{equation}
+
+\subsubsection{Contracted Bianchi identities}
+
+
+
+\end{document}

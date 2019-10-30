@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
@@ -256,3 +257,263 @@ Therefore the vector is constant in these coordinates.
 Specifically, at \(\theta = \pi /2\) we get \(V^{\mu } = (1/R, 0)\).
 
 \end{document}
+=======
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 3}
+
+\subsection{Changes of coordinate system}
+
+We denote by \(x^{\mu } = (x, y)\) and \(x^{\prime \mu } = (r, \theta)\). Then, we have the following Jacobian matrices: 
+%
+\begin{subequations}
+\begin{align}
+  \pdv{x^{\mu }}{x^{\prime \nu }}  &= \left[\begin{array}{cc}
+  \cos(\theta )  & -r \sin(\theta )  \\ 
+  \sin(\theta )  & r \cos(\theta ) 
+  \end{array}\right]  \\
+  \pdv{x^{\prime \nu }}{x^{\rho }} &= \left[\begin{array}{cc}
+  \displaystyle\frac{x}{\sqrt{x^2+y^2} } &\displaystyle \frac{y}{\sqrt{x^2+y^2} } \\ 
+  \displaystyle -\frac{y}{x^2+y^2} &\displaystyle \frac{x}{x^2+y^2}
+  \end{array}\right] 
+  =
+  \left[\begin{array}{cc}
+  \cos(\theta )  & \sin(\theta )  \\ 
+  \displaystyle- \frac{\sin( \theta ) }{r} & \displaystyle \frac{\cos(\theta ) }{r}
+  \end{array}\right]
+\,,
+\end{align}
+\end{subequations}
+%
+which can be found by plain differentiation of the change of coordinates, recalling \((\arctan x)' = 1/ (1+x^2)\). Then, we can compute the product of these two matrices: it comes out to be 
+%
+\begin{equation} \label{eq:inverse-jacobian-matrix-relation} 
+  \pdv{x^{\mu }}{x^{\prime \nu }} \pdv{x^{\prime \nu }}{x^{\rho }} = \delta^{\mu }_{\nu }
+\,,
+\end{equation}
+%
+since on the diagonal we get \(\cos^2(\theta ) + \sin^2(\theta ) = 1\), while on the off-diagonal terms we get a multiple of \(\sin(\theta ) \cos(\theta ) - \sin(\theta ) \cos(\theta ) =0\).
+
+Note that relation \eqref{eq:inverse-jacobian-matrix-relation} is just the chain rule written in more generality: substituting the explicit coordinates for \(x^{\mu }\) and \(x^{\prime \mu }\) we get the desired expression.
+
+\subsection{Properties of covariant differentiation}
+
+\subsubsection{Metric compatibility of the connection}
+
+We wish to show that \(\nabla_{\alpha } g_{\mu \nu } = 0\).
+A very simple way to prove this is by going in the LIF: there, the equation reads \(\partial_{\alpha }\eta_{\mu \nu } = 0\), which is immediately satisfied since the components of the Minkowski metric are constants.
+Then, since the equation is tensorial, the result extends to any frame.
+
+This was not the spirit of the exercise, however: let us prove it in a different generic frame.
+To this end, we define the \emph{Christoffel symbols of the first kind} (while the regular ones are of the second kind): 
+%
+\begin{equation}
+  \Gamma_{\mu \nu \rho } = g_{\mu \sigma }\Gamma^{\sigma }_{\nu \rho } = \frac{1}{2} \qty(g_{\mu \nu, \rho } + g_{\mu \rho , \nu } - g_{\nu \rho, \mu })
+\,.
+\end{equation}
+
+These are useful since, as all their indices are down, it is easier to study their symmetry properties.
+
+Note that if we antisymmetrize the first and last index, we get \(\Gamma_{[\mu | \nu | \rho]} = \frac[i]{1}{2} g_{\mu \rho, \nu }\) since the first and last terms in the sum cancel (in the latter we must invert the indices \(\nu \) and \(\rho \) in order to see this, but this can always be done by the symmetry of the metric).
+
+Then, we write the expression for the covariant derivative of the metric: 
+%
+\begin{equation}
+  \nabla_{\alpha }g_{\mu \nu }= \partial_\alpha g_{\mu \nu }
+  - \Gamma^{\rho }_{\mu \alpha }g_{\rho \nu } 
+  - \Gamma^{\rho }_{\nu \alpha  }g_{\mu \rho  } 
+  = g_{\mu \nu , \alpha } 
+  - \Gamma_{\nu \alpha \mu }
+  - \Gamma_{\mu \alpha \nu }
+\,,
+\end{equation}
+%
+which is just \(g_{\mu \nu , \alpha } - 2 \Gamma_{[\nu | \alpha | \mu ]} = g_{\mu \nu , \alpha } - g_{\nu \mu , \alpha } = 0\), again by the symmetry of the metric.
+
+One could argue that this is the opposite way round: we should \emph{assume} \(\nabla_{\mu } g_{\rho \sigma } = 0   \) and derive from it the formula that was given for the Christoffel symbols in terms of the partial derivatives of the metric.
+
+\subsubsection{Leibniz rule}
+
+As before, this can be proved in the LIF from the Leibniz rule of regular partial derivatives.
+
+As before, we like to calculate therefore we show this explicitly in any frame.
+
+The derivative of the tensor product looks like: 
+%
+\begin{equation}
+    \nabla_{\mu } \qty(A_{\nu \lambda } B_{ \rho }) = 
+    \partial_{\mu }\qty(A_{\nu \lambda }B_{\rho }) 
+    -\Gamma_{\mu \nu }^{\sigma }A_{\sigma \lambda }B_{\rho }
+    -\Gamma_{\mu \lambda  }^{\sigma }A_{\nu \sigma }B_{\rho }
+    -\Gamma_{\mu \rho }^{\sigma }A_{\nu \lambda }B_{\sigma }
+\,,
+\end{equation}
+%
+while the sum of derivatives looks like: 
+%
+\begin{equation}
+  \begin{split}
+  B_{\rho }\nabla_{\mu }A_{\nu \lambda } 
+  + A_{\nu \lambda }\nabla_{\mu }B_{\rho }=
+  &B_{\rho }\partial_{\mu }A_{\nu \lambda }
+  -\Gamma_{\mu \nu }^{\sigma }A_{\sigma \lambda }B_{\rho }
+  -\Gamma_{\mu \lambda  }^{\sigma }A_{\nu \sigma }B_{\rho } \\
+  + & A_{\nu \lambda }\partial_{\mu }B_{\rho }
+  -\Gamma_{\mu \rho }^{\sigma }A_{\nu \lambda }B_{\sigma }
+  \end{split}
+  \,,
+\end{equation}
+%
+so we can see that the Christoffel terms are equal, and the partial derivative terms also are since we have the Leibniz rule for partial derivatives.
+
+\subsection{2D Christoffel symbols}
+
+\subsubsection{Polar coordinates}
+
+The metric and inverse metric are respectively given by \(g_{\mu \nu } = \diag{1, r^2}\) and \(g^{\mu \nu }= \diag{1, r^{-2}}\). We only care about the partial derivatives of the lower-indices one, and the only nonvanishing derivative is \(g_{11,0} = 2r\), where we mean \((x^{0}, x^{1}) = (r, \theta )\).
+
+Then it is tedious but straightforward to perform the direct computation.
+Things that make it faster are discarding immediately terms which cannot contribute (such as \(g_{\alpha \beta ,\gamma }\) where at least one of \(\alpha \) and \(\beta \) is not 1 or \(\gamma \) is not \(0\), and only looking at the six independent symbols instead of the eight total ones (since \(\Gamma^{\alpha }_{01} = \Gamma^{\alpha }_{10}\) for any \(\alpha \)).
+
+Then one can see that the nonvanishing symbols are
+%
+\begin{subequations}
+\begin{align}
+  \Gamma^{0}_{11} &= \frac{1}{2} g^{0\alpha}\qty(g_{\alpha 1, 1}  + g_{\alpha 1, 1} - g_{11, \alpha }) 
+  = \frac{1}{2} g^{00}(-g_{11, 0}) = - \frac{2r}{2} = -r  \\
+  \Gamma^{1}_{01} &= \frac{1}{2} g^{1 \alpha }\qty(g_{\alpha 0, 1} + g_{\alpha 1, 0} - g_{01, \alpha })
+  = \frac{1}{2} g^{11} g_{11, 0} = \frac{1}{2} \frac{1}{r^2} 2r = \frac{1}{r}
+\,.
+\end{align}
+\end{subequations}
+%
+
+\subsubsection{Spherical surface}
+
+Now we have the following metric and inverse metric: 
+%
+\begin{equation} \label{eq:spherical-metric} 
+  g_{\mu \nu } = \left[\begin{array}{cc}
+  R^2 & 0 \\ 
+  0 & R^2 \sin^2(\theta ) 
+  \end{array}\right]\,,
+  \qquad
+  g^{\mu \nu } = \left[\begin{array}{cc}
+  R^{-2} & 0 \\ 
+  0 & R^{-2}\sin^{-2}(\theta ) 
+  \end{array}\right]
+\,,
+\end{equation}
+%
+but do note that \(R\) is a constant: given \((x^{0}, x^{1}) = (\theta, \varphi)\), we have as before that the only nontrivial derivative is \(g_{11,0} = 2 R^2  \sin(\theta ) \cos(\theta) \).
+
+Then this case is exactly analogous to the previous one: the same symbols are zero, so we can skip almost all of the computation and jump straight to: 
+%
+\begin{subequations} \label{eq:spherical-christoffel} 
+\begin{align}
+  \Gamma^{0}_{11} &= -\frac{1}{2} g^{00}g_{11,0} = - \sin(\theta ) \cos(\theta ) \\
+  \Gamma^{1}_{01} &= \frac{1}{2} g^{11}g_{11,0} = \frac{\cos(\theta ) } {\sin(\theta ) }
+\,.
+\end{align}
+\end{subequations}
+
+\subsection{Parallel transport}
+
+We know from the last exercise the metric and Christoffel symbols of 2D space and of the surface of a sphere.
+
+
+
+The equations of parallel transport are in general \(u^{\mu }\nabla_{\mu }V^{\nu } = 0\).
+
+\subsubsection{Flat space}
+
+We want to determine the behaviour of a vector field \(V^{\mu }(\theta )\) defined on a curve \(x^{\mu }(\theta ) = (R, \theta)\) with fixed \(R\), such that \(V^{ \mu } (\theta = 0 ) = (0,1/R)\) (a unit vector: \(V^{\mu } (0) V^{\nu }(0) g_{\mu \nu }(0) = 1\)).
+
+In our case the tangent vector of the curve is \(u^{\mu }= (0,1)\). Therefore the equations simplify to: 
+%
+\begin{equation}
+  \nabla_{1}V^{\mu }= \partial_{1}V^{\mu }+\Gamma^{\mu }_{1 \alpha }V^{\alpha } = 0
+\,,
+\end{equation}
+%
+which are two coupled differential equations; we can make them explicit and substitute the Christoffel symbols found earlier. 
+%
+\begin{subequations}
+\begin{align}
+  \nabla_{1}V^{0} &= \partial_1 V^{0} + \cancelto{}{\Gamma^{0}_{10}V^{0}} + \Gamma^{0}_{11}V^{1}
+  = \partial_1 V^{0} - r V^{1}  \\
+  \nabla_{1}V^{1} &= \partial_1 V^{1} + \Gamma^{1}_{10}V^{0} + \cancelto{}{\Gamma^{1}_{11}V^{1}} 
+  = \partial_{1}V^{1} + \frac{1}{r} V^{0}
+\,,
+\end{align}
+\end{subequations}
+%
+so we can write this linear system like: 
+%
+\begin{equation}
+  \partial_{1} \left[\begin{array}{c}
+  V^{0} \\ 
+  V^{1}
+  \end{array}\right]
+  =
+  \left[\begin{array}{cc}
+  0 & r \\ 
+  -r^{-1} & 0
+  \end{array}\right]
+  \left[\begin{array}{c}
+  V^{0} \\ 
+  V^{1}
+  \end{array}\right]
+\,.
+\end{equation}
+%
+
+The eigenvalues of this matrix are \(\pm i\), so its exponential is a pure rotation matrix: 
+%
+\begin{equation}
+  \exp(\theta \left[\begin{array}{cc}
+  0 & r \\ 
+  -r^{-1} & 0
+  \end{array}\right]) =
+  \left[\begin{array}{cc}
+  \cos(\theta )  & \sin(\theta )  \\ 
+  -\sin(\theta )  & \cos(\theta ) 
+  \end{array}\right] = R(-\theta )
+\,,
+\end{equation}
+%
+so the solution is 
+%
+\begin{equation}
+  V^{\mu }(\theta ) = R(-\theta )V^{\mu }(0)
+\,.
+\end{equation}
+
+This means that our vector is rotating clockwise with unit angular velocity in the \((r, \theta )\) plane, just as the point it is defined at moves counterclockwise with unit angular velocity: therefore, if we look at the vector in Cartesian coordinates, we will see it always aligned with its initial direction and the same modulus.
+
+Specifically, when \(\theta = \pi /2\) we get \(V^{\mu }=(1/R, 0)\).
+
+\subsubsection{Curved space: spherical surface}
+
+Now our curve is \(x^{\mu } (\theta ) = (\theta , 0)\) in the spherical coordinates \(x^{\mu } = (\theta, \varphi )\). The metric is the one given in \eqref{eq:spherical-metric}, the Christoffel symbols are the ones given in \eqref{eq:spherical-christoffel}.
+
+The parallel transport equations are now: 
+%
+\begin{subequations}
+\begin{align}
+  \nabla_{1}V^{0} &= \partial_0 V^{0} + \cancelto{}{\Gamma^{0}_{00}V^{0}} + \cancelto{}{\Gamma^{0}_{01}V^{1} }  \\
+  \nabla_{1}V^{1} &= \partial_0 V^{1} + \cancelto{}{\Gamma^{1}_{00}V^{0}} + \Gamma^{1}_{01}V^{1}
+  = \partial_0 V^{1} + \frac{V^{1}}{\tan(\theta )}
+\,.
+\end{align}
+\end{subequations}
+
+The first equation gives us \(V^{1} = \const\), while we do not need to actually solve the second one: our initial condition is \(V^{\mu}(\theta = 0) = (R^{-1}, 0)\), and \(V^{1} \equiv 0\) is a solution to that first-order equation, so by the uniqueness we have found the whole solution.
+
+Therefore the vector is constant in these coordinates.
+
+Specifically, at \(\theta = \pi /2\) we get \(V^{\mu } = (1/R, 0)\).
+
+\end{document}
+>>>>>>> 479b93e532806801a1b3379a09e8ec39791c20c4

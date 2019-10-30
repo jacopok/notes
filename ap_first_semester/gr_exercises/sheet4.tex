@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section{Sheet 3}
+\section{Sheet 4}
 
 \subsection{Riemann tensor computations}
 
@@ -42,7 +42,7 @@ The Ricci tensor is given by:
 %
 % where we can simplify all the antisymmetric terms in \(\alpha \beta \), since they are contracted with a symmetric tensor.
 
-Now, of the four terms in the sum one simplifies immediately: we know that the Frobenius norm of the metric is constant: \(g^{\alpha \beta }g_{\alpha \beta } \equiv 4\), so if we expand we get \(0=\frac[i]{1}{2} (g^{\alpha \beta }g_{\alpha \beta })_{,\nu \mu } = g^{\alpha \beta }g_{\alpha \beta , \nu \mu } + g^{\alpha \beta }\,_{,\nu }g_{\alpha \beta , \mu }\), but the first derivatives of the metric vanish in the LIF so we only keep the first term, therefore \(g^{\alpha \beta }g_{\alpha \beta , \nu \mu }=0\).
+% Now, of the four terms in the sum one simplifies immediately: we know that the Frobenius norm of the metric is constant: \(g^{\alpha \beta }g_{\alpha \beta } \equiv 4\), so if we expand we get \(0=\frac[i]{1}{2} (g^{\alpha \beta }g_{\alpha \beta })_{,\nu \mu } = g^{\alpha \beta }g_{\alpha \beta , \nu \mu } + g^{\alpha \beta }\,_{,\nu }g_{\alpha \beta , \mu }\), but the first derivatives of the metric vanish in the LIF so we only keep the first term, therefore \(g^{\alpha \beta }g_{\alpha \beta , \nu \mu }=0\).
 
 So we have 
 %
@@ -51,31 +51,39 @@ So we have
     R_{\mu \nu }
     &= g^{\alpha \beta }\qty(
       g_{\alpha \nu , \mu \beta }
-      -\cancelto{}{g_{\alpha \beta , \mu \nu }}
+      -g_{\alpha \beta , \mu \nu }
       - g_{\mu \nu , \alpha \beta }
       + g_{\mu \beta , \alpha \nu }
     )  \\
     &=g^{\alpha \beta }\qty(
       2 g_{\alpha (\nu , \mu ) \beta }
       - g_{\mu \nu , \alpha \beta }
+      - g_{\alpha \beta , \mu \nu }
     )  \\
-    &= 2 g_{\alpha (\nu , \mu )}\,\!^{\alpha } - \square g_{\mu \nu } \label{eq:Ricci-tensor-LIF}
+    &= 2 g_{\alpha (\nu , \mu )}\,\!^{\alpha } 
+    - \square g_{\mu \nu }
+    - g^{\alpha \beta }g_{\alpha \beta , \mu \nu }
+    \label{eq:Ricci-tensor-LIF}
 \,,
 \end{align}
 \end{subequations}
 %
-where\footnote{All the indices after the comma are derivatives, even when they become upper.} the square \(\square\) denotes the D'alambert operator, \(\square = \partial_{\beta }\partial^{\beta }\).
+where\footnote{All the indices after the comma are derivatives, even when they become upper.} the square \(\square\) denotes the D'alambert operator, \(\square = \partial_{\beta }\partial^{\beta } = g^{\alpha \beta }\partial_{\alpha }\partial_{\beta }\).
 
 The Ricci scalar, on the other hand, is given by 
 %
 \begin{equation} \label{eq:ricci-scalar-LIF} 
   R = g^{\mu \nu }R_{\mu \nu }
-  = 2 g^{\mu \nu }g_{\alpha (\nu , \mu )}\,\!^{\alpha } - \cancelto{}{g^{\mu \nu }\square g_{\mu \nu }}
-  = 2 \tensor{g}{_{\alpha \nu }^{, \alpha \nu }}
+  = 2 g^{\mu \nu }g_{\alpha (\nu , \mu )}\,\!^{\alpha }
+  -  g^{\mu \nu }\square g_{\mu \nu }
+  - g^{\alpha \beta } \square g_{\alpha \beta }
+  = 2 (\tensor{g}{_{\alpha \nu }^{, \alpha \nu }}
+   -g^{\mu \nu } \square g_{\mu \nu })
 \,,
 \end{equation}
 %
-where the last term vanished since \(\square \qty(g^{\mu \nu }g_{\mu \nu })=0\), and while expanding we get twice \(g^{\mu \nu }\square g_{\mu \nu }\) since the first derivatives are zero.
+where we identified the two terms containing the metric contracted with its dalambertian, since they are equal up to a relabeling of indices.
+% where the last term vanished since \(\square \qty(g^{\mu \nu }g_{\mu \nu })=0\), and while expanding we get twice \(g^{\mu \nu }\square g_{\mu \nu }\) since the first derivatives are zero.
 
 We neglected the symmetrization in the first term since when contracting with the metric the indices \(\mu \nu \) are automatically symmetrized.
 
@@ -98,24 +106,42 @@ The first term is
 %
 \begin{equation}
   \eta^{\beta \mu }R_{\mu \nu, \beta } = 
-  \eta^{\beta \mu }\qty(2 \tensor{g}{_{\alpha (\nu , \mu )}^{,\alpha }} - \square g_{\mu \nu })_{, \beta}
+  \eta^{\beta \mu }\qty(2 
+  \tensor{g}{_{\alpha (\nu , \mu )}^{,\alpha }} 
+  - \square g_{\mu \nu }
+  - g^{\alpha \beta }g_{\alpha \beta, \mu \nu }
+  )_{, \beta}
 \,,
 \end{equation}
 %
-which we can expand out: the Minkowski metric raises the derivative with respect to \(x^{\beta }\), and we can also expand the Dalambertian and the symmetrization: we get
+which we can expand out: the Minkowski metric raises the derivative with respect to \(x^{\beta }\) and turns it into a derivative with respect to \(x_{\mu }\), and we can also expand the Dalambertian and the symmetrization: we get
 %
-\begin{equation}
+
+%
+\begin{subequations}
+\begin{align}
+  \eta^{\beta \mu } R_{\mu \nu , \beta } &=
   \tensor{g}{_{\alpha \nu , \mu }^{ \alpha \mu }}
   + \tensor{g}{_{\alpha \mu , \nu }^{ \alpha \mu }}
   - \tensor{g}{_{\mu \nu, \alpha }^{ \alpha \mu }}
-  =   + \tensor{g}{_{\alpha \mu , \nu }^{ \alpha \mu }}
-  = \partial_{\nu }\qty( \tensor{g}{_{\mu \alpha}^{,\mu \alpha }})
+  - g^{\alpha \beta }\tensor{g}{_{\alpha \beta , \mu \nu }^{\mu }} \label{eq:bianchi-identities-computation-step} \\
+  &=   + \tensor{g}{_{\alpha \mu , \nu }^{ \alpha \mu }}
+  - \qty(g^{\alpha \beta } \square g_{\alpha \beta })_{,\nu } \\
+  &= \partial_{\nu }\qty( \tensor{g}{_{\mu \alpha}^{,\mu \alpha }} - g^{\alpha \beta }\square g_{\alpha \beta })
+\,,
+\end{align}
+\end{subequations}
+%
+since, up to a relabeling of indices, the first and third term in \eqref{eq:bianchi-identities-computation-step} are equal.
+
+The derivative \(\partial_{\nu }R\), on the other hand, is twice that:
+%
+\begin{equation}
+  \partial_{\nu }R = \partial_{\nu }\qty(2 \tensor{g}{_{\mu \alpha }^{, \mu \alpha }} - 2 g^{\alpha \beta }\square g_{\alpha \beta })
 \,,
 \end{equation}
 %
-since, up to a relabeling of indices, the first and last term are equal.
-
-The derivative \(\partial_{\nu }R\), on the other hand, is twice that: \(\partial_{\nu }R = \partial_{\nu }\qty(2 \tensor{g}{_{\mu \alpha }^{, \mu \alpha }})\), as can be directly gathered from \eqref{eq:ricci-scalar-LIF}.
+as can be directly gathered from \eqref{eq:ricci-scalar-LIF}.
 
 Therefore, the quantity in \eqref{eq:contracted-Bianchi-LIF} is zero.
 
@@ -263,5 +289,6 @@ The only remaining term is the first one: using the expression \eqref{eq:weak-fi
 \end{equation}
 %
 which is what we wanted to prove.
+
 
 \end{document}

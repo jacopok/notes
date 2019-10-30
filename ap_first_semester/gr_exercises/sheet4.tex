@@ -146,7 +146,93 @@ Therefore, the Ricci tensor is symmetric in any frame.
 
 \subsection{Weak field Einstein equations}
 
-First of all, let me recall here the general expression for the Riemann tensor: 
+We consider the \emph{weak field} case, when \(g_{\mu \nu }= \eta_{\mu \nu } + h_{\mu \nu }\) with \(\abs{h_{\mu \nu }} \ll 1 \). We will then neglect second and higher order terms in \(h_{\mu \nu }\).
+
+\subsubsection{The gravitational potential}
+
+We want to work towards Newton's equation, which is \(\nabla^2 \Phi = 4 \pi G_N \rho \), where \(\Phi \) is the gravitational potential.
+What defines the gravitational potential is its effect on test masses: they accelerate with \(\vec{a} = - \vec{\nabla} \Phi \).
+
+What is the relativistic equivalent of this?
+A particle in GR follows a geodesic, a curve without proper acceleration.
+Proper acceleration is a four-vector defined by \(a^{\mu }=u^{\nu }\nabla_{\nu }^{\mu }\). If the four-velocity of a particle is \(u^{\mu }\), then for it the equation of geodesic motion reads: 
+%
+\begin{equation}
+  0 = a^{\mu }= u^{\nu }\partial_{\nu }u^{\mu } + \Gamma^{\mu }_{\nu \alpha }u^{\nu} u^{\alpha }
+\,,
+\end{equation}
+%
+which can be written in terms of derivatives with respect to proper time: 
+%
+\begin{equation}
+  0 = \dv[2]{x^{ \mu }}{s} + \Gamma^{\mu }_{\nu \alpha } u^{\mu } u^{\alpha }
+\,.
+\end{equation}
+
+If the speeds are much less than that of light, this can be approximated: \(s \approx t\), and the only terms which contributes to order 0 in \(v\) in the Christoffel symbol sum is the one with \(u^{0} u^{0}\approx 1\): in the end then we get for the spatial components: 
+%
+\begin{equation}
+  0 = \dv[2]{x^{i}}{t} + \Gamma^{i}_{00}
+\,,
+\end{equation}
+%
+so we can see that the main contribution in the low-speed limit to the (coordinate!) acceleration of the particle are the symbols \(\Gamma^{i}_{00}\).
+The expression for these in terms of the perturbed metric is: 
+%
+\begin{equation} \label{eq:weak-field-Christoffel}
+  \Gamma^{i}_{00} 
+  = \frac{1}{2} \eta^{i \alpha } \qty(2 h_{\alpha 0, 0} - h_{00, \alpha }) 
+  = -\frac{1}{2} \tensor{h}{_{00}^{,i}}= -\frac{1}{2} \vec{\nabla}^{i} h_{00}
+\,,
+\end{equation}
+%
+if we assume stationarity of the metric (which is justified if we are treating a problem such as the gravitational pull on a body on the surface of the Earth) at least up to first order in \(h\).
+
+Putting everything together: we found that 
+%
+\begin{equation}
+  \dv[2]{x^{i}}{t} = \frac{1}{2}\vec{\nabla}^{i}h_{00}
+\,,
+\end{equation}
+%
+but the equation which defines the gravitational field is 
+%
+\begin{equation}
+  \dv[2]{x^{i}}{t} = - \vec{\nabla}^{i} \Phi 
+\,,
+\end{equation}
+%
+therefore, in the low-gravitational field and low-speed limit, we must identify \(h_{00} = -2 \Phi \).
+
+\subsubsection{Reframing the EFE}
+
+We can contract the EFE with the inverse metric, recalling that \(g^{\mu \nu }g_{\mu \nu }= 4\), to get \(-R = 8 \pi G_N T\). Therefore, they can be reframed by substituting the curvature scalar term with the trace of the stress-energy tensor: 
+%
+\begin{equation}
+  R_{\mu \nu } = 8 \pi G_N \qty(T_{ \mu \nu }- \frac{1}{2} T g_{\mu \nu }) 
+\,.
+\end{equation}
+
+This will aid us by reducing the number of difficult curvature tensors to compute.
+
+In the low-speed, weak-field limit matter has negligible pressure and is mostly just travelling in the time direction. Therefore, we approximate the stress energy tensor as that of noninteracting dust: \(T^{\mu \nu } = \rho u^{\mu } u^{\nu }\). In our frame matter is almost stationary, therefore we have that \(T_{00} \approx T^{00} \eta_{00} \eta_{00} \approx \rho\).
+The trace of the curvature tensor is instead approximately \(T \approx T^{00 } \eta_{00} \approx - \rho\). 
+
+In the end, the 00 component of the equations reads: 
+%
+\begin{equation}
+  R_{00 } = 8 \pi G_N \qty(\rho - \frac{1}{2} (-\rho) \eta_{00 } ) = 4 \pi G_N \rho 
+\,.
+\end{equation}
+%
+
+Now we only need to show that \(R_{00 } = \nabla^2 \Phi \).
+
+\subsubsection{The derivatives in the curvature tensor}
+
+The component we need to calculate is \(R_{00 } = R^{\mu }_{0 \mu 0} = R^{i}_{0i0}\) by antisymmmetry.
+
+Let us recall here the general expression for the Riemann tensor: 
 %
 \begin{equation}
   R^{\mu }_{\nu \rho \sigma } =
@@ -154,11 +240,28 @@ First of all, let me recall here the general expression for the Riemann tensor:
 \,.
 \end{equation}
 
-We want to work towards Newton's equation, which is \(\nabla^2 \Phi = 4 \pi G_N \rho \), where \(\Phi \) is the gravitational potential.
+In our case, this simplifies to 
+%
+\begin{equation}
+  R^{i}_{0i0} = 
+  \Gamma^{i}_{00, i} 
+  - \Gamma^{i}_{i0, 0}
+  + \Gamma^{\alpha }_{00} \Gamma^{i}_{i \alpha }
+  - \Gamma^{\alpha }_{0i} \Gamma^{i}_{0 \alpha }
+\,.
+\end{equation}
+%
 
-We put ourselves in the \emph{weak field} case, when \(g_{\mu \nu }= \eta_{\mu \nu } + h_{\mu \nu }\) with \(\abs{h_{\mu \nu }} \ll 1 \). We will then neglect second and higher order terms in \(h_{\mu \nu }\).
+The second term contains time derivatives, which we decided to neglect by dealing with the stationary case.
+The third and fourth term are of second order in \(h\).
 
-What defines the gravitational potential is its effect on test masses: they accelerate as if pushed with a force \(\vec{F} = m \vec{a} = - \vec{\nabla} \Phi \).
-
+The first term, using the expression \eqref{eq:weak-field-Christoffel} and the identification \(h_{00} = -2 \Phi \), is
+%
+\begin{equation}
+  \Gamma^{i}_{00, i} = \qty(-\frac{1}{2}\partial^{i}h_{00})_{,i} = \partial_{i}  \partial^{i} \Phi 
+\,,
+\end{equation}
+%
+which is what we wanted to prove.
 
 \end{document}

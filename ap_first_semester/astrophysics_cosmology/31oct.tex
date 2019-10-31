@@ -1,0 +1,213 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 31 2019}
+
+Neutrinos have very low mass: therefore they become relativistic very quickly.
+
+We saw last time the case of either bosons' or fermions' number density, energy density and pressure. 
+
+In the nonrelativistic case instead we must consider the second order in \(q / \sqrt{m} \), and we get the Boltzmann suppression factor out of the integral: \(\exp(-m/T) \).
+
+In the nonrelativistic case there is no distinction between bosons and fermions.
+
+What happens in the part of the history of the universe where all the particles were in thermal equilibrium?
+
+If the timescales of the interactions are much larger than the cosmological events timescales (such as the energy of the universe), then those interactions do not happen.
+These are called \emph{decoupled}.
+
+Let us consider ultrarelativistic particles which are not \emph{decoupled}, in the early universe which is radiation dominated (here ``radiation'' refers to all kinds of ultrarelativistic particles). 
+
+In this case, from the ``conservation of the stress-energy tensor'' we know that \(\rho \propto a^{-4}\).
+
+Our equation is 
+%
+\begin{equation}
+  H^2= \frac{8 \pi G}{3} \rho - \frac{k}{a^2}
+\,,
+\end{equation}
+%
+and we want to neglect the last term. The equation becomes 
+%
+\begin{subequations}
+\begin{align}
+  \qty(\frac{\dot{a} }{a})^2 &= \frac{8 \pi G }{3} \rho_{*} \qty(\frac{a}{a_{*}})^{-4} - \frac{k}{a^2} 
+\,,
+\end{align}
+\end{subequations}
+%
+but it is not enough to look at the slopes: we can, however, have information about the normalization as well from present-day observations.
+If the second term is much smaller than the first today, then it was even more so in the far past. We can rewrite the equation as
+%
+\begin{equation}
+  1 = \Omega_{\text{tot}} - \frac{k}{a^2 H^2} \equiv \Omega _{\text{tot}} + \Omega_{\text{curvature}}
+\,,
+\end{equation}
+%
+where \(\Omega _{\text{curvature}} \equiv -k / (a^2 H^2)\).
+
+So we neglect the second term: approximately we then have 
+%
+\begin{equation}
+  \qty(\frac{\dot{a } }{a})^2 = \frac{8 \pi  G }{3} \rho _{\text{rad}}
+\,.
+\end{equation}
+%
+We know that \(a(t) \propto t^{1/2}\), therefore \(\dot{a} / a = H = 1/2t\). 
+
+\todo[inline]{Wait, how does this work?}
+
+So, we have 
+%
+\begin{equation}
+  \frac{1}{4 t^2} = \frac{8 \pi G}{3} g_{*} \frac{\pi^2}{30} T^{4}
+\,,
+\end{equation}
+%
+where 
+%
+\begin{equation}
+  g_{*} = g_{*}(T) = \sum _{i \in BE } g_i \qty(\frac{T_{i}}{T})^{4} + \frac{7}{8} \sum _{i \in FD } g_i \qty(\frac{T_{i}}{T})^{4}
+\,,
+\end{equation}
+%
+where we insert a correction factor in order to not consider particles which are nonrelativistic (?).
+\(BE\) and \(FD\) denote the bosonic and fermionic degrees of freedom respectively.
+
+The \(i\) spans the different types of particles in the SM.
+The \(T_i\) are the thermalization temperatures of the various species.
+
+The plot of \(g_{*}\) in terms of the temperature goes ``down in steps'', as more and more species become nonrelativistic.
+
+Then we have a formula for temperature in terms of time: 
+%
+\begin{equation}
+  \frac{1}{2t} = \qty(\frac{8 \pi G}{3})^{1/2} g_{*}^{1/2} \qty(\frac{\pi^2}{30})^{1/2} T^2
+\,,
+\end{equation}
+%
+therefore we get: 
+%
+\begin{equation}
+  t \approx 0.301 g_{*}^{-1/2} \frac{m_P}{T^2} \approx \qty(\frac{T}{\SI{}{MeV}})^{-2}s
+\,,
+\end{equation}
+%
+where \(m_P  = G^{-1/2}\) is the Planck mass. Beware: there are different conventions for this!
+The factor \(g_{*}^{-1/2}\) is of order 1 around \(T \approx \SI{1}{MeV}\), so we ignore it.
+
+The number is found by:
+%
+\begin{equation}
+  0.301 \approx \frac{1}{2 \sqrt{\frac{8 \pi \pi^2}{3 \times 30}}}
+\,.
+\end{equation}
+%
+
+The Planck mass is approximately \SI{1.2e19}{GeV}.
+It is the scale at which we need to account for quantum gravitational effects.
+
+When the universe is 1 second old, weak interactions decouple.
+
+Why are we allowing different thermalization temperatures?
+
+A hypothesis is that the particles exit the Planck epoch, \(t \approx m_P\), thermalized.
+When decoupling occurs, they can stop being thermalized.
+
+Another hypothesis is that they stop being thermalized at a certain temperature during inflation.
+
+Some time ago we discussed entropy conservation.
+
+The entropy density is given by 
+%
+\begin{equation}
+    s \equiv S/V = (P + \rho ) / T = \frac{4}{3} \frac{\rho}{T} = (2 \pi^2 / 45) g_{* s} T^{3} 
+\,;
+\end{equation}
+%
+since \(V \propto a^{3}\) we have \(s a^3 = \const\).
+
+We defined a new \(g_{*}\) to account for the different species: 
+%
+\begin{equation}
+  g_{* s} \equiv \sum _{i \in BE} g_i \qty(\frac{T_i}{T})^3
+  + \frac{7}{8} \sum _{i \in FD} g_i \qty(\frac{T_i}{T})^3
+\,,
+\end{equation}
+%
+so our new Tolman's law is \(T a g_{* s }^{1/3} = \const\).
+
+When the neutrinos decouple, their temperature keeps scaling like \(1/a\): they keep being thermalized with the photons even though they do not react.
+
+When we reach \(T \approx \SI{0.5}{MeV}\) electrons and positrons become thermalized: they decay into photons: the photon temperature \(T\) increases with respect to what would happen without this process (it actually just decreases slower).
+
+The neutrinos are not updated when this process happens: their temperature then becomes consistently less than the one of the photons, but they keep scaling the same: one of their temperatures is a constant multiple of the other after this event.
+
+Now we will calculate this multiple.
+
+First, at \SI{1}{MeV}, neutrinos decouple. Then, at \SI{0.5}{MeV}, electrons and positrons decouple.
+
+We require continuity at this transition: \(T_{>}\) and \(T_{<}\) must both be \(T_{e}\).  
+%
+\begin{equation}
+  s a^3 = 
+  \frac{2 \pi^2}{45} g_{*s>}T^{3}_{>} a^{3}_{>} = 
+  \frac{2 \pi^2}{45} g_{*s<}T^{3}_{<} a^{3}_{<}
+\,,
+\end{equation}
+%
+but we can drop all the factors we know to be continuous on the boundary:
+\todo[inline]{isn't \(a\) different on either side of the boundary, if it is not instant?}
+we are left with 
+%
+\begin{equation}
+  T_{<} = \qty(\frac{g_{*s>}}{g_{*s<}})^{1/3} T_{<}
+\,,
+\end{equation}
+%
+where we can compute 
+%
+\begin{equation}
+  g_{* s>} = 2 + \frac{7}{8}\qty(4) = \frac{11}{2}
+\,,
+\end{equation}
+%
+where we considered photons, electrons but not neutrinos (since they are separated). On the other hand, 
+%
+\begin{equation}
+  g_{*s<} = 2
+\,,
+\end{equation}
+%
+since electrons are not thermalized anymore. Therefore 
+%
+\begin{equation}
+  T_{<} = \qty(\frac{11}{4})^{1/3} T_{>}
+\,,
+\end{equation}
+%
+which allows us to compute the neutrino temperature at any time: 
+%
+\begin{equation}
+  T_{\nu } = T_{\gamma } \qty(\frac{4}{11})^{1/3}
+\,,
+\end{equation}
+%
+since they scale the same.
+
+Now let us compute \(\rho_{r} (T = \SI{0.1}{MeV})\).
+Let us assume that the global temperature is the one of the photons: we get 
+%
+\begin{subequations}
+\begin{align}
+  g_{*} &=  \sum _{i \in BE} g_i \qty(\frac{T_i}{T})^{4} + 
+  \frac{7}{8}\sum _{i \in FD} g_i \qty(\frac{T_i}{T})^{4}  \\
+  &= 2 + \frac{7}{8} \qty(3 \times 2 \qty(\frac{T_{\nu }}{T_{\gamma }})^{4})  \\
+  &= 2 + \frac{21}{4} \qty(\frac{4}{11})^{4/3} \approx 3.36
+\,,
+\end{align}
+\end{subequations}
+%
+since we need to consider neutrinos, which contribute to the total energy density, but not electrons which are not relativistic.
+
+\end{document}

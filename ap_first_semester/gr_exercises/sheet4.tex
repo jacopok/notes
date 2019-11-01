@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section{Sheet 3}
+\section{Sheet 4}
 
 \subsection{Riemann tensor computations}
 
@@ -15,17 +15,17 @@ If the Christoffel symbols are zero, the computation of the curvature tensor is 
 \begin{subequations}
 \begin{align}
   R^{\mu }_{\nu \rho \sigma }
-  &=  2 \partial_{[\nu }\Gamma^{\mu }_{\rho] \sigma }  \\
-  &= 2 \partial_{[\nu} \qty(\frac{1}{2} g^{\mu \alpha } \qty(g_{\alpha |\rho], \sigma } + g_{\alpha \sigma , |\rho ]} - g_{\sigma |\rho], \alpha }))  \\
-  &= g^{\mu \alpha }\qty(g_{\alpha [\rho|, \sigma | \nu     ]} + \cancelto{}{g_{\alpha \sigma, [\rho \nu ]}}-g_{\sigma [\rho |, \alpha | \nu ]})
+  &=  2 \partial_{[\rho }\Gamma^{\mu }_{\sigma ] \nu}  \\
+  &= 2 \partial_{[\rho } \qty(\frac{1}{2} g^{\mu \alpha } \qty(g_{\alpha |\sigma ], \nu } + g_{\alpha \nu  , |\sigma  ]} - g_{\nu  |\sigma], \alpha }))  \\
+  &= g^{\mu \alpha }\qty(g_{\alpha [\sigma |, \nu | \rho      ]} + \cancelto{}{g_{\alpha \nu, [\sigma \rho]}}-g_{\nu [\sigma |, \alpha | \rho  ]})
 \,.
 \end{align}
 \end{subequations}
 
-So, if we lower the index of the Riemann tensor we get the desired expression for the all-lower tensor: 
+So, if we lower the index of the (1, 3) Riemann tensor we get the desired expression for the all-lower (0, 4) Riemann tensor: 
 %
 \begin{equation}
-  R_{\mu \nu \rho \sigma} = g_{\mu [\rho|, \sigma | \nu ]} - g_{\sigma [\rho|, \mu | \nu ]} 
+  R_{\mu \nu \rho \sigma} = g_{\mu [\sigma |, \nu |\rho ]} - g_{\nu  [\sigma |, \mu | \rho ]} 
 \,.
 \end{equation}
 
@@ -36,13 +36,13 @@ The Ricci tensor is given by:
 \begin{equation}
   R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu } 
   = g^{\alpha \beta }R_{\alpha \mu \beta \nu }
-  = g^{\alpha \beta }\qty(g_{\alpha [\beta |, \nu | \mu ]} - g_{\nu  [\beta |, \alpha  | \mu ]})
+  = g^{\alpha \beta }\qty(g_{\alpha [\nu|, \mu | \beta ]} - g_{\mu [\nu|, \alpha | \beta ]})
 \,.
 \end{equation}
 %
 % where we can simplify all the antisymmetric terms in \(\alpha \beta \), since they are contracted with a symmetric tensor.
 
-Now, of the four terms in the sum one simplifies immediately: we know that the Frobenius norm of the metric is constant: \(g^{\alpha \beta }g_{\alpha \beta } \equiv 4\), so \(g^{\alpha \beta }g_{\alpha \beta , \nu \mu }\) is one of the two equal terms we get by expanding \(\frac[i]{1}{2} (g^{\alpha \beta }g_{\alpha \beta })_{,\nu \mu } = 0\).
+% Now, of the four terms in the sum one simplifies immediately: we know that the Frobenius norm of the metric is constant: \(g^{\alpha \beta }g_{\alpha \beta } \equiv 4\), so if we expand we get \(0=\frac[i]{1}{2} (g^{\alpha \beta }g_{\alpha \beta })_{,\nu \mu } = g^{\alpha \beta }g_{\alpha \beta , \nu \mu } + g^{\alpha \beta }\,_{,\nu }g_{\alpha \beta , \mu }\), but the first derivatives of the metric vanish in the LIF so we only keep the first term, therefore \(g^{\alpha \beta }g_{\alpha \beta , \nu \mu }=0\).
 
 So we have 
 %
@@ -50,37 +50,245 @@ So we have
     \begin{align}
     R_{\mu \nu }
     &= g^{\alpha \beta }\qty(
-        \cancelto{}{g_{\alpha \beta , \nu \mu }}
-        - g_{\alpha \mu  , \nu \beta  }
-        - g_{\nu  \beta , \alpha  \mu }
-        + g_{\nu  \mu  , \alpha  \beta }      
-        )  \\
-    &= g^{\alpha \beta }g_{\mu \nu, \alpha \beta }
-    - 2 g^{\alpha \beta } g_{\alpha (\mu, \nu) \beta }
+      g_{\alpha \nu , \mu \beta }
+      -g_{\alpha \beta , \mu \nu }
+      - g_{\mu \nu , \alpha \beta }
+      + g_{\mu \beta , \alpha \nu }
+    )  \\
+    &=g^{\alpha \beta }\qty(
+      2 g_{\alpha (\nu , \mu ) \beta }
+      - g_{\mu \nu , \alpha \beta }
+      - g_{\alpha \beta , \mu \nu }
+    )  \\
+    &= 2 g_{\alpha (\nu , \mu )}\,\!^{\alpha } 
+    - \square g_{\mu \nu }
+    - g^{\alpha \beta }g_{\alpha \beta , \mu \nu }
+    \label{eq:Ricci-tensor-LIF}
 \,,
 \end{align}
 \end{subequations}
 %
-but \(g^{\alpha \beta }g_{\alpha \mu } = \delta^{\beta }_{\mu }\), therefore the second term is proportional to \(\delta^{\beta }_{(\mu, \nu ) \beta }\), but the entries of the identity are constants, therefore this term is zero.
-Also, recall that in the LIF the metric is just the Minkiwski one:
-So in the end we get: 
+where\footnote{All the indices after the comma are derivatives, even when they become upper.} the square \(\square\) denotes the D'alambert operator, \(\square = \partial_{\beta }\partial^{\beta } = g^{\alpha \beta }\partial_{\alpha }\partial_{\beta }\).
+
+The Ricci scalar, on the other hand, is given by 
 %
-\begin{equation}
-  R_{\mu \nu } = \eta^{\alpha \beta }g_{\mu \nu, \alpha \beta   }
+\begin{equation} \label{eq:ricci-scalar-LIF} 
+  R = g^{\mu \nu }R_{\mu \nu }
+  = 2 g^{\mu \nu }g_{\alpha (\nu , \mu )}\,\!^{\alpha }
+  -  g^{\mu \nu }\square g_{\mu \nu }
+  - g^{\alpha \beta } \square g_{\alpha \beta }
+  = 2 (\tensor{g}{_{\alpha \nu }^{, \alpha \nu }}
+   -g^{\mu \nu } \square g_{\mu \nu })
 \,,
 \end{equation}
 %
-which also proves the symmetry of the Ricci tensor by the symmetry of the metric.
+where we identified the two terms containing the metric contracted with its dalambertian, since they are equal up to a relabeling of indices.
+% where the last term vanished since \(\square \qty(g^{\mu \nu }g_{\mu \nu })=0\), and while expanding we get twice \(g^{\mu \nu }\square g_{\mu \nu }\) since the first derivatives are zero.
 
-The Ricci scalar is then just given by 
+We neglected the symmetrization in the first term since when contracting with the metric the indices \(\mu \nu \) are automatically symmetrized.
+
+\subsubsection{LIF identities}
+
 %
-\begin{equation}
-  R = \eta ^{\mu \nu }\eta ^{\alpha \beta }g_{\mu \nu , \alpha \beta }
-\,.
-\end{equation}
+\begin{subequations}
+\begin{align}
+  \nabla_{\alpha }\qty(R^{ \alpha }_{\beta } - \frac{R}{2} \delta^{\alpha }_{\beta }) &=  \partial_{\alpha }\qty(g^{\alpha \lambda }R_{\lambda \beta } - \frac{R}{2} \delta^{\alpha }_{\beta })  \\
+  &= \eta^{\alpha \lambda }R_{\lambda \beta, \alpha} - \frac{1}{2} R_{,\beta } \label{eq:contracted-Bianchi-LIF}
+\,,
+\end{align}
+\end{subequations}
+%
+since in the LIF the metric is the Minkowski one, and the Christoffel symbols are zero therefore \(\nabla_{\alpha }= \partial_{\alpha }\).
 
 \subsubsection{Contracted Bianchi identities}
 
+The first term is
+%
+\begin{equation}
+  \eta^{\beta \mu }R_{\mu \nu, \beta } = 
+  \eta^{\beta \mu }\qty(2 
+  \tensor{g}{_{\alpha (\nu , \mu )}^{,\alpha }} 
+  - \square g_{\mu \nu }
+  - g^{\alpha \beta }g_{\alpha \beta, \mu \nu }
+  )_{, \beta}
+\,,
+\end{equation}
+%
+which we can expand out: the Minkowski metric raises the derivative with respect to \(x^{\beta }\) and turns it into a derivative with respect to \(x_{\mu }\), and we can also expand the Dalambertian and the symmetrization: we get
+%
+
+%
+\begin{subequations}
+\begin{align}
+  \eta^{\beta \mu } R_{\mu \nu , \beta } &=
+  \tensor{g}{_{\alpha \nu , \mu }^{ \alpha \mu }}
+  + \tensor{g}{_{\alpha \mu , \nu }^{ \alpha \mu }}
+  - \tensor{g}{_{\mu \nu, \alpha }^{ \alpha \mu }}
+  - g^{\alpha \beta }\tensor{g}{_{\alpha \beta , \mu \nu }^{\mu }} \label{eq:bianchi-identities-computation-step} \\
+  &=   + \tensor{g}{_{\alpha \mu , \nu }^{ \alpha \mu }}
+  - \qty(g^{\alpha \beta } \square g_{\alpha \beta })_{,\nu } \\
+  &= \partial_{\nu }\qty( \tensor{g}{_{\mu \alpha}^{,\mu \alpha }} - g^{\alpha \beta }\square g_{\alpha \beta })
+\,,
+\end{align}
+\end{subequations}
+%
+since, up to a relabeling of indices, the first and third term in \eqref{eq:bianchi-identities-computation-step} are equal.
+
+The derivative \(\partial_{\nu }R\), on the other hand, is twice that:
+%
+\begin{equation}
+  \partial_{\nu }R = \partial_{\nu }\qty(2 \tensor{g}{_{\mu \alpha }^{, \mu \alpha }} - 2 g^{\alpha \beta }\square g_{\alpha \beta })
+\,,
+\end{equation}
+%
+as can be directly gathered from \eqref{eq:ricci-scalar-LIF}.
+
+Therefore, the quantity in \eqref{eq:contracted-Bianchi-LIF} is zero.
+
+\subsubsection{Alternative expression}
+
+Since the metric is covariantly constant, we can just bring it inside the derivative:
+%
+\begin{equation}
+  0 = g^{\beta \mu }\nabla_{\alpha }\qty(\tensor{R}{^{\alpha }_{\mu }} - \frac{1}{2} R \delta^{\alpha }_{\mu })
+  = \nabla_{\alpha }\qty(R^{\alpha \beta } - \frac{1}{2} R g^{\alpha \beta })
+\,.
+\end{equation}
+%
+
+These are called the \emph{Contracted Bianchi identities}, and can be alternatively derived from the Bianchi identities of the Riemann tensor, \(R_{\mu \nu [\rho \sigma ; \alpha ]} = 0\).
+
+\subsection{Properties of the Ricci tensor}
+
+\subsubsection{Symmetry generality}
+
+The fact that \(T^{\mu \nu } = T^{\nu \mu }\) is frame invariant could be derived plainly from the fact that it is a tensor equation; to be more explicit we can say that under a change of coordinates with Jacobian matrix \(\Lambda \) we have \(\widetilde{T}^{\mu \nu } = \tensor{\Lambda }{^{\mu }_{\alpha }} \tensor{\Lambda }{^{\nu }_{\beta }} T^{\alpha \beta }\); when written in components like this the Jacobians commute, therefore we can just interchange them for both \(\widetilde{T}^{\mu \nu }\) and \(\widetilde{T}^{\nu \mu }\) to recover their equality. 
+
+\subsubsection{Symmetry of the Ricci tensor.}
+
+The expression \eqref{eq:Ricci-tensor-LIF} is manifestly symmetric: part of it is explicitly symmetrized, part is proportional to the metric, which is symmetric.
+
+Therefore, the Ricci tensor is symmetric in any frame.
+
+\subsection{Weak field Einstein equations}
+
+We consider the \emph{weak field} case, when \(g_{\mu \nu }= \eta_{\mu \nu } + h_{\mu \nu }\) with \(\abs{h_{\mu \nu }} \ll 1 \). We will then neglect second and higher order terms in \(h_{\mu \nu }\).
+
+\subsubsection{The gravitational potential}
+
+We want to work towards Newton's equation, which is \(\nabla^2 \Phi = 4 \pi G_N \rho \), where \(\Phi \) is the gravitational potential.
+What defines the gravitational potential is\footnote{In the lecture notes this is solved differently: instead of finding the gravitational potential from the equation of geodesic motion, there it is found by identification of the gravitational redshift.} its effect on test masses: they accelerate with \(\vec{a} = - \vec{\nabla} \Phi \).
+
+What is the relativistic equivalent of this?
+A particle in GR follows a geodesic, a curve without proper acceleration.
+Proper acceleration is a four-vector defined by \(a^{\mu }=u^{\nu }\nabla_{\nu } u^{\mu }\). If the four-velocity of a particle is \(u^{\mu }\), then for it the equation of geodesic motion reads: 
+%
+\begin{equation}
+  0 = a^{\mu }= u^{\nu }\partial_{\nu }u^{\mu } + \Gamma^{\mu }_{\nu \alpha }u^{\nu} u^{\alpha }
+\,,
+\end{equation}
+%
+which can be written in terms of derivatives with respect to proper time: 
+%
+\begin{equation}
+  0 = \dv[2]{x^{ \mu }}{s} + \Gamma^{\mu }_{\nu \alpha } u^{\mu } u^{\alpha }
+\,.
+\end{equation}
+
+If the speeds are much less than that of light, this can be approximated: \(s \approx t\), and the only terms which contributes to order 0 in \(v\) in the Christoffel symbol sum is the one with \(u^{0} u^{0}\approx 1\): in the end then we get for the spatial components: 
+%
+\begin{equation}
+  0 = \dv[2]{x^{i}}{t} + \Gamma^{i}_{00}
+\,,
+\end{equation}
+%
+so we can see that the main contribution in the low-speed limit to the (coordinate!) acceleration of the particle are the symbols \(\Gamma^{i}_{00}\).
+The expression for these in terms of the perturbed metric is: 
+%
+\begin{equation} \label{eq:weak-field-Christoffel}
+  \Gamma^{i}_{00} 
+  = \frac{1}{2} \eta^{i \alpha } \qty(2 h_{\alpha 0, 0} - h_{00, \alpha }) 
+  = -\frac{1}{2} \tensor{h}{_{00}^{,i}}= -\frac{1}{2} \vec{\nabla}^{i} h_{00}
+\,,
+\end{equation}
+%
+if we assume stationarity of the metric (which is justified if we are treating a problem such as the gravitational pull on a body on the surface of the Earth) at least up to first order in \(h\).
+
+Putting everything together: we found that 
+%
+\begin{equation}
+  \dv[2]{x^{i}}{t} = \frac{1}{2}\vec{\nabla}^{i}h_{00}
+\,,
+\end{equation}
+%
+but the equation which defines the gravitational field is 
+%
+\begin{equation}
+  \dv[2]{x^{i}}{t} = - \vec{\nabla}^{i} \Phi 
+\,,
+\end{equation}
+%
+therefore, in the low-gravitational field and low-speed limit, we must identify \(h_{00} = -2 \Phi \).
+
+\subsubsection{Reframing the EFE}
+
+We can contract the EFE with the inverse metric, recalling that \(g^{\mu \nu }g_{\mu \nu }= 4\), to get \(-R = 8 \pi G_N T\). Therefore, they can be reframed by substituting the curvature scalar term with the trace of the stress-energy tensor: 
+%
+\begin{equation}
+  R_{\mu \nu } = 8 \pi G_N \qty(T_{ \mu \nu }- \frac{1}{2} T g_{\mu \nu }) 
+\,.
+\end{equation}
+
+This will aid us by reducing the number of difficult curvature tensors to compute.
+
+In the low-speed, weak-field limit matter has negligible pressure and is mostly just travelling in the time direction. Therefore, we approximate the stress energy tensor as that of noninteracting dust: \(T^{\mu \nu } = \rho u^{\mu } u^{\nu }\). In our frame matter is almost stationary, therefore we have that \(T_{00} \approx T^{00} \eta_{00} \eta_{00} \approx \rho\).
+The trace of the curvature tensor is instead approximately \(T \approx T^{00 } \eta_{00} \approx - \rho\). 
+
+In the end, the 00 component of the equations reads: 
+%
+\begin{equation}
+  R_{00 } = 8 \pi G_N \qty(\rho - \frac{1}{2} (-\rho) \eta_{00 } ) = 4 \pi G_N \rho 
+\,.
+\end{equation}
+%
+
+Now we only need to show that \(R_{00 } = \nabla^2 \Phi \).
+
+\subsubsection{The derivatives in the curvature tensor}
+
+The component we need to calculate is \(R_{00 } = R^{\mu }_{0 \mu 0} = R^{i}_{0i0}\) by antisymmmetry.
+
+Let us recall here the general expression for the Riemann tensor: 
+%
+\begin{equation}
+  R^{\mu }_{\nu \rho \sigma } =
+  2 \Gamma^{\mu }_{[\nu| \sigma, |\rho]} + 2 \Gamma^{\alpha }_{\sigma [\nu} \Gamma^{\mu }_{\rho ] \alpha }
+\,.
+\end{equation}
+
+In our case, this simplifies to 
+%
+\begin{equation}
+  R^{i}_{0i0} = 
+  \Gamma^{i}_{00, i} 
+  - \Gamma^{i}_{i0, 0}
+  + \Gamma^{\alpha }_{00} \Gamma^{i}_{i \alpha }
+  - \Gamma^{\alpha }_{0i} \Gamma^{i}_{0 \alpha }
+\,.
+\end{equation}
+%
+
+The second term contains time derivatives, which we decided to neglect by dealing with the stationary case.
+The third and fourth term are of second order in \(h\).
+
+The only remaining term is the first one: using the expression \eqref{eq:weak-field-Christoffel} and the identification \(h_{00} = -2 \Phi \), it is
+%
+\begin{equation}
+  R_{00} = \Gamma^{i}_{00, i} = \qty(-\frac{1}{2}\partial^{i}h_{00})_{,i} = \partial_{i}  \partial^{i} \Phi 
+\,,
+\end{equation}
+%
+which is what we wanted to prove.
 
 
 \end{document}

@@ -1,6 +1,181 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Tue Oct 29 2019}
 
+Recall the equations from last time: continuity, momentum and energy conservation in the isothermal case:
+%
+\begin{subequations}
+\begin{align}
+  \dot{M}  &= 4 \pi r^2 \rho v  \\
+  v \dv{v}{r} &= - \frac{1}{\rho } \dv{P}{r} - \frac{GM}{r^2} \\
+  T(r) &\equiv T 
+\,.
+\end{align}
+\end{subequations}
+
+The term \(\rho^{-1} \dv*{P}{r} \) is equal to 
+%
+\begin{equation}
+  \frac{RT}{\mu } \frac{1}{\rho } \dv{\rho }{r} 
+\,,
+\end{equation}
+%
+so we manipulate the equation into 
+%
+\begin{align}
+  v \dv{v}{r}  &= - \frac{1}{\rho } \frac{RT}{\mu } \dv{\rho }{r} - \frac{GM}{r^2} 
+\,,
+\end{align}
+%
+but we know by the continuity equation that 
+%
+\begin{equation}
+  - \frac{1}{\rho } \dv{\rho }{r} = \frac{1}{v} \dv{v}{r} + \frac{2}{r}     
+\,,
+\end{equation}
+%
+which we can substitute into the equation: we get
+%
+\begin{align}
+    v \dv{v}{r}  &= - \frac{RT}{\mu } \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) - \frac{GM}{r^2} 
+  \,.
+\end{align}
+
+The isothermal speed of sound is given by 
+%
+\begin{equation}
+  a^2 = \pdv{P}{\rho } =\pdv{}{\rho } \qty(\frac{R \rho T}{\mu }) = \frac{RT }{\mu }
+\,,
+\end{equation}
+%
+so 
+%
+\begin{align}
+    v \dv{v}{r}  &= - a^2 \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) - \frac{GM}{r^2} 
+  \,.
+\end{align}
+
+Now we put all the terms which are proportional to the velocity gradient on the LHS: 
+%
+\begin{equation}
+  \dv{v}{r} \qty(v - \frac{a^2}{v}) = \frac{2a^2 }{r }-\frac{GM}{r^2}
+\,,
+\end{equation}
+%
+which is just 
+%
+\begin{equation}
+    \frac{1}{v}\dv{v}{r} \qty(v^2 - a^2) = \frac{2a^2 }{r }-\frac{GM}{r^2}
+  \,,
+\end{equation}
+%
+so the Jacobian of the differential equation is zero is singular in \(v=a\): if \(v=a\) we must have \(2a^2r = GM\), which fixes the radius to the Parker radius: \(r_P = GM / 2 a^2\).
+Close to the star, the speed is subsonic and the numerator is negative in 
+%
+\begin{equation}
+  \frac{1}{v} \dv{v}{r} = \frac{N}{D}
+\,,
+\end{equation}
+%
+which is consistent with our assumption \(\dv*{v}{r} > 0 \), which we make since we are considering winds, as opposed to accretion.
+
+Far from the star the numerator is positive, so the speed must still be supersonic.
+
+The critical velocity \emph{must} be attained at the Parker radius in order to have a phyisically meaningful solution.
+
+The velocity gradient at the critical point can be found by de l'Hôpital's rule to be 
+%
+\begin{equation}
+  \dv{v}{r} \bigg|_{r_P} = \pm \frac{a^3}{GM}
+\,.
+\end{equation}
+
+So, the only physical solution is transsonic.
+
+\begin{claim}[Exercise]
+The speed of sound at the critical point equals half of the escape velocity at that radius.
+\end{claim}
+
+The boundary condition is the velocity at some \(r_0 \).
+
+There are other solutions, but if we trace a cross in the \(r, v\) plane centered on the critical point and speed of sound we see that all solutions meet it perpendicular to it.
+
+Accretion solutions are also found in this diagram: what is plotted is the \emph{absolute value} of the velocity. They have always-negative absolute velocity gradient.
+
+Always-supersonic solutions and always-subsonic ones are also found, but they do not obey the monotonicity of the velocity.
+
+The choice we make for \(v_0  = v(r_0)\) is key, and nontrivial.
+
+If we have the density, velocity and radius of the lower boundary we have fixed the accretion rate: \(\dot{M}  = 4 \pi r_0^2 \rho_0 v_0 \).
+We can fix these by fixing the constant temperature \(T\) and the velocity \(v_0 \) at the critical radius \(r_0\) and assuming our solution is transsonic.
+
+\todo[inline]{What is stated in the slides seems different. What are we fixing?}
+
+We can solve the momentum equation analytically: we get 
+%
+\begin{equation}
+  \frac{v}{v_0 } \exp( \frac{-v^2}{2 a^2}) = \qty(\frac{r_0}{r})^2 \exp(\frac{GM}{a^2} \qty(\frac{1}{r_0 } - \frac{1}{r}))  
+\,.
+\end{equation}
+%
+
+At large distances, we get \(v \rightarrow 2 a \ln(r/r_0)\).
+
+Now we look at the structure of the wind in the subcritical region.
+
+In the corresponding slide: the dashed line in the density profile is the density we'd expect in a hydrostatic atmosphere, while the solid one is the solution.
+
+The hydrostatic density structure is given by 
+%
+\begin{subequations}
+\begin{align}
+  \frac{1}{\rho } \dv{P}{r}  +\frac{GM }{r^2}  &= 0 
+\,,
+\end{align}
+\end{subequations}
+%
+manipulating this we get 
+%
+\begin{equation}
+  \frac{r^2}{\rho } \dv{\rho }{r} = - \frac{GM}{a^2}
+\,,
+\end{equation}
+%
+So the density profile follows a decreasing exponential law: 
+%
+\begin{equation}
+  \frac{\rho (r)}{\rho_0 } = \exp(\frac{-(r-r_0 )}{H_0 } \frac{r_0}{r} ) 
+\,,
+\end{equation}
+%
+where \(H_0 \) is the scale height, \(H_0 = RT / \qty(\mu g_0 )\) with \(g_0 = GM / r_0^2\).
+The length scale at which this decreases is defined by \(H_0 \). 
+
+The density profile in the subsonic region is very well approximated by this hydrostatic profile.
+
+The mass loss rate is our main prediction: we have \(\dot{M } = 4 \pi r^2_0 \rho_0 v_0 = 4 \pi r_c^2\rho_c a\).
+
+Then, we can use the density profile equation: 
+%
+\begin{equation}
+  \dot{M} = 4 \pi r_c^2 a \rho_0 \exp(\frac{-(r_c - r_0 )}{H_0 } \frac{r_0 }{r}) 
+\,.
+\end{equation}
+%
+
+If we consider this numerically, we find that the exponential is the dominant part.
+The mass loss rate is lower when the critical point moves outward.
+We can specify it by fixing 
+%
+\begin{enumerate}
+    \item the temperature at the corona, \(T_C\);
+    \item the radius at the bottom of the corona, \(r_0 \);
+    \item the stellar mass \(M\);
+    \item the density at the bottom of the corona \(\rho_0 \).
+\end{enumerate}
+
+In the slides there are numerical estimates. 
+As \(H_0 \) increases, the density profile is less steep: the density remains high at larger radii.
 
 \end{document}

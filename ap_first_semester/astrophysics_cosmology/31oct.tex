@@ -1,0 +1,392 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Thu Oct 31 2019}
+
+Neutrinos have very low mass: therefore they become relativistic very quickly.
+
+We saw last time the case of either bosons' or fermions' number density, energy density and pressure. 
+
+In the nonrelativistic case instead we must consider the second order in \(q / \sqrt{m} \), and we get the Boltzmann suppression factor out of the integral: \(\exp(-m/T) \).
+
+In the nonrelativistic case there is no distinction between bosons and fermions.
+
+What happens in the part of the history of the universe where all the particles were in thermal equilibrium?
+
+If the timescales of the interactions are much larger than the cosmological events timescales (such as the energy of the universe), then those interactions do not happen.
+These are called \emph{decoupled}.
+
+Let us consider ultrarelativistic particles which are not \emph{decoupled}, in the early universe which is radiation dominated (here ``radiation'' refers to all kinds of ultrarelativistic particles). 
+
+In this case, from the ``conservation of the stress-energy tensor'' we know that \(\rho \propto a^{-4}\).
+
+Our equation is 
+%
+\begin{equation}
+  H^2= \frac{8 \pi G}{3} \rho - \frac{k}{a^2}
+\,,
+\end{equation}
+%
+and we want to neglect the last term. The equation becomes 
+%
+\begin{subequations}
+\begin{align}
+  \qty(\frac{\dot{a} }{a})^2 &= \frac{8 \pi G }{3} \rho_{*} \qty(\frac{a}{a_{*}})^{-4} - \frac{k}{a^2} 
+\,,
+\end{align}
+\end{subequations}
+%
+but it is not enough to look at the slopes: we can, however, have information about the normalization as well from present-day observations.
+If the second term is much smaller than the first today, then it was even more so in the far past. We can rewrite the equation as
+%
+\begin{equation}
+  1 = \Omega_{\text{tot}} - \frac{k}{a^2 H^2} \equiv \Omega _{\text{tot}} + \Omega_{\text{curvature}}
+\,,
+\end{equation}
+%
+where \(\Omega _{\text{curvature}} \equiv -k / (a^2 H^2)\).
+
+So we neglect the second term: approximately we then have 
+%
+\begin{equation}
+  \qty(\frac{\dot{a } }{a})^2 = \frac{8 \pi  G }{3} \rho _{\text{rad}}
+\,.
+\end{equation}
+%
+We know that \(a(t) \propto t^{1/2}\), therefore \(\dot{a} / a = H = 1/2t\). 
+
+\todo[inline]{Wait, how does this work?}
+
+So, we have 
+%
+\begin{equation}
+  \frac{1}{4 t^2} = \frac{8 \pi G}{3} g_{*} \frac{\pi^2}{30} T^{4}
+\,,
+\end{equation}
+%
+where 
+%
+\begin{equation}
+  g_{*} = g_{*}(T) = \sum _{i \in BE } g_i \qty(\frac{T_{i}}{T})^{4} + \frac{7}{8} \sum _{i \in FD } g_i \qty(\frac{T_{i}}{T})^{4}
+\,,
+\end{equation}
+%
+where we insert a correction factor in order to not consider particles which are nonrelativistic (?).
+\(BE\) and \(FD\) denote the bosonic and fermionic degrees of freedom respectively.
+
+The \(i\) spans the different types of particles in the SM.
+The \(T_i\) are the thermalization temperatures of the various species.
+
+The plot of \(g_{*}\) in terms of the temperature goes ``down in steps'', as more and more species become nonrelativistic.
+
+Then we have a formula for temperature in terms of time: 
+%
+\begin{equation}
+  \frac{1}{2t} = \qty(\frac{8 \pi G}{3})^{1/2} g_{*}^{1/2} \qty(\frac{\pi^2}{30})^{1/2} T^2
+\,,
+\end{equation}
+%
+therefore we get: 
+%
+\begin{equation}
+  t \approx 0.301 g_{*}^{-1/2} \frac{m_P}{T^2} \approx \qty(\frac{T}{\SI{}{MeV}})^{-2}s
+\,,
+\end{equation}
+%
+where \(m_P  = G^{-1/2}\) is the Planck mass. Beware: there are different conventions for this!
+The factor \(g_{*}^{-1/2}\) is of order 1 around \(T \approx \SI{1}{MeV}\), so we ignore it.
+
+The number is found by:
+%
+\begin{equation}
+  0.301 \approx \frac{1}{2 \sqrt{\frac{8 \pi \pi^2}{3 \times 30}}}
+\,.
+\end{equation}
+%
+
+The Planck mass is approximately \SI{1.2e19}{GeV}.
+It is the scale at which we need to account for quantum gravitational effects.
+
+When the universe is 1 second old, weak interactions decouple.
+
+Why are we allowing different thermalization temperatures?
+
+A hypothesis is that the particles exit the Planck epoch, \(t \approx m_P\), thermalized.
+When decoupling occurs, they can stop being thermalized.
+
+Another hypothesis is that they stop being thermalized at a certain temperature during inflation.
+
+Some time ago we discussed entropy conservation.
+
+The entropy density is given by 
+%
+\begin{equation}
+    s \equiv S/V = (P + \rho ) / T = \frac{4}{3} \frac{\rho}{T} = (2 \pi^2 / 45) g_{* s} T^{3} 
+\,;
+\end{equation}
+%
+since \(V \propto a^{3}\) we have \(s a^3 = \const\).
+
+We defined a new \(g_{*}\) to account for the different species: 
+%
+\begin{equation}
+  g_{* s} \equiv \sum _{i \in BE} g_i \qty(\frac{T_i}{T})^3
+  + \frac{7}{8} \sum _{i \in FD} g_i \qty(\frac{T_i}{T})^3
+\,,
+\end{equation}
+%
+so our new Tolman's law is \(T a g_{* s }^{1/3} = \const\).
+
+When the neutrinos decouple, their temperature keeps scaling like \(1/a\): they keep being thermalized with the photons even though they do not react.
+
+When we reach \(T \approx \SI{0.5}{MeV}\) electrons and positrons become thermalized: they decay into photons: the photon temperature \(T\) increases with respect to what would happen without this process (it actually just decreases slower).
+
+The neutrinos are not updated when this process happens: their temperature then becomes consistently less than the one of the photons, but they keep scaling the same: one of their temperatures is a constant multiple of the other after this event.
+
+Now we will calculate this multiple.
+
+First, at \SI{1}{MeV}, neutrinos decouple. Then, at \SI{0.5}{MeV}, electrons and positrons decouple.
+
+We require continuity at this transition: \(T_{>}\) and \(T_{<}\) must both be \(T_{e}\).  
+%
+\begin{equation}
+  s a^3 = 
+  \frac{2 \pi^2}{45} g_{*s>}T^{3}_{>} a^{3}_{>} = 
+  \frac{2 \pi^2}{45} g_{*s<}T^{3}_{<} a^{3}_{<}
+\,,
+\end{equation}
+%
+but we can drop all the factors we know to be continuous on the boundary:
+\todo[inline]{isn't \(a\) different on either side of the boundary, if it is not instant?}
+we are left with 
+%
+\begin{equation}
+  T_{<} = \qty(\frac{g_{*s>}}{g_{*s<}})^{1/3} T_{<}
+\,,
+\end{equation}
+%
+where we can compute 
+%
+\begin{equation}
+  g_{* s>} = 2 + \frac{7}{8}\qty(4) = \frac{11}{2}
+\,,
+\end{equation}
+%
+where we considered photons, electrons but not neutrinos (since they are separated). On the other hand, 
+%
+\begin{equation}
+  g_{*s<} = 2
+\,,
+\end{equation}
+%
+since electrons are not thermalized anymore. Therefore 
+%
+\begin{equation}
+  T_{<} = \qty(\frac{11}{4})^{1/3} T_{>}
+\,,
+\end{equation}
+%
+which allows us to compute the neutrino temperature at any time: 
+%
+\begin{equation}
+  T_{\nu } = T_{\gamma } \qty(\frac{4}{11})^{1/3}
+\,,
+\end{equation}
+%
+since they scale the same.
+
+Now let us compute \(\rho_{r} (T = \SI{0.1}{MeV})\).
+Let us assume that the global temperature is the one of the photons: we get 
+%
+\begin{subequations}
+\begin{align}
+  g_{*} &=  \sum _{i \in BE} g_i \qty(\frac{T_i}{T})^{4} + 
+  \frac{7}{8}\sum _{i \in FD} g_i \qty(\frac{T_i}{T})^{4}  \\
+  &= 2 + \frac{7}{8} \qty(3 \times 2 \qty(\frac{T_{\nu }}{T_{\gamma }})^{4})  \\
+  &= 2 + \frac{21}{4} \qty(\frac{4}{11})^{4/3} \approx 3.36
+\,,
+\end{align}
+\end{subequations}
+%
+since we need to consider neutrinos, which contribute to the total energy density, but not electrons which are not relativistic.
+
+\medskip
+\begin{center}
+    ***
+\end{center}
+\medskip
+
+Last hour we discussed the Planck mass \(m_P \approx \SI{1.2e19}{GeV}\): it also defines a wavelength, \(\lambda_{P} \approx \SI{e-33}{cm}\) and a timescale \(t_{P} \approx \SI{e-43}{s}\) (both of these are \(1/m_P\) in natural units).
+
+When the age of the universe is of this order, our theories are not guaranteed to work. 
+
+\subsection{The cosmological horizon}
+
+Let us consider null geodesics in a De Sitter universe with a RW metric: we can take them as radial, and find 
+%
+\begin{align}
+  c^2 \dd{t^2} = a^2(t) \frac{1}{1-kr^2} \dd{r^2} 
+\,,
+\end{align}
+%
+therefore we get: 
+%
+\begin{align}
+  \int^{t} \frac{c \dd{t}}{a(t)} = \int^r \frac{ \dd{\widetilde{r}} }{\sqrt{1-k \widetilde{r}^2}} = f(r)
+\,,
+\end{align}
+%
+but in order to get something which has the dimensions of a length we need to multiply by \(a\): 
+%
+\begin{align}
+  d _{\text{Hor}} (t) = a(t) \int_0^{t} \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})}
+\,.
+\end{align}
+
+``If this integral is convergent, we should be worried''.
+
+If we integrate from the beginning of time to now, we get the spatial (current) distance elapsed by a photon which started at the start of time. This is the radius of the largest region we could in principle observe. It is of the order of \SI{3}{\giga\parsec}.
+
+This is not the case, for example, in Minkowski spacetime.
+
+If there is an end of time, there is also a future horizon.
+
+The quantity \(d _{\text{Hor}} (t) \) is increasing in time: this causes the Cosmological Horizon problem.
+
+\todo[inline]{What is the problem?}
+
+An important moment is the \emph{recombination of hydrogen}: the formation of the first Hydrogen atoms, so the first moment at which Compton scattering can occur.
+This causes the decoupling of radiation and baryionic matter.
+This is the moment at which the radiation in the CMB was emitted.
+
+The CMB is very close to being uniform. It was emitted something like \(t = \SI{3.8e5}{yr}\) after the BB.
+
+Let us consider the past light cones from two points diametrically opposite with respect to us, at this point in time: they do not overlap, so the CMB cannot be causally correlated. However, it seems like it is!
+
+\todo[inline]{What is the angular scale at which the light cones overlap?}
+
+We have a classification by Bianchi of non-isotropic universes (in 9 classes).
+
+There is the Mixed Master Universe.
+
+Let us consider 
+%
+\begin{align}
+  R _{\text{Hor}} = \int_0^{t} \frac{c \dd{\widetilde{t}} }{a(\widetilde{t})}
+\,.
+\end{align}
+
+We can hypothesize that there was a period where the comoving radius was decreasing with time. This would solve the problem. 
+We can approximate 
+%
+\begin{align}
+  d _{\text{Hor}} (t) = a(t) \int_0^{t} \frac{c \dd{\widetilde{t}} }{a(\widetilde{t})} \approx ct \sim \frac{c}{H} \equiv
+  d _{\text{H}}
+\,,
+\end{align}
+%
+where we defined the new \emph{Hubble distance}.
+We also define the comoving Hubble radius: \(r_H = c/(Ha) = c / \dot{a} \).
+
+For it to be decreasing, the condition is 
+%
+\begin{align}
+  \dot{r}_H = - \frac{ \ddot{a} }{\dot{a}^2} <0
+\,,
+\end{align}
+%
+therefore we need \(\ddot{a} >0\) for at least some time.
+We know that 
+%
+\begin{align}
+  \ddot{a} = -\frac{4 \pi G }{3} \qty(\rho + \frac{3P}{c^2})
+\,,
+\end{align}
+%
+therefore we need to have \(\rho + 3P/c^2 <0\).
+So, since the energy density is positive, the condition is \(P < - \rho /3\).
+
+Let us consider the paramter \(\ddot{a}\): it is 
+%
+\begin{align}
+  \ddot{a} = \dot{a}H + a \dot{H} = a (H^2 + \dot{H})>0
+\,,
+\end{align}
+%
+so the condition is \(H^2+ \dot{H} >0\). In terms of \(P/ \rho = w\) we have:
+
+\begin{enumerate}
+    \item \(\dot{H} < 0\) while \(\dot{H} + H^2 >0\): this corresponds to \(-1 < w < -1/3\);
+    \item \(\dot{H} =0\): this is De Sitter: \(a(t) = \exp(Ht) \), corresponding to \(w = -1\);
+    \item \(\dot{H} >0\): here the solution is 
+    %
+    \begin{align}
+      a(t) = a_{*} \qty(1 + \frac{3}{2}\qty((1+w)H_{*}\qty(t-t_{*})))^{2/ (3(1+w))}
+    \,,
+    \end{align}
+    %
+    which corresponds to \(= w<-1\) and means \(a(t) \propto t^{p}\) for some \(p>1\). This is called power-law inflation.
+\end{enumerate}
+
+Big Rip singularity: with \(a(t) = \abs{t - t_{as}}^{- \alpha } \) with \(\alpha >0\). This is called poli-inflation.
+
+\todo[inline]{What is this about?}
+
+The third condition is very hard to achieve.
+The boundary at \(w = -1\) is called the \emph{phantom divide}.
+
+Now, let us consider the \emph{flatness problem}:
+this was first proposed bt Dick and Peebles in 1986.
+
+The parameter \(\Omega = \frac{8 \pi G \rho(z) }{3 H^2(z)} \) diverges from 1 as time increases.
+Measurements of \(\Omega _{\text{tot}}\) gave approximately 0.1.
+
+How is it possible that the universe is still so flat, even when the universe is so old? Oldness and flatness seem incompatible.
+
+This is a type of \emph{fine-tuning} problem. Typically, if there is a fine-tuning problem then it signals that we should improve our theory.
+
+Let us assume that \(w\) is constant. Then, \(\rho (z) = \rho_{0} (1+z)^{3(1+w)}\). Recall that 
+%
+\begin{align}
+  H^2(z) &= \frac{8 \pi G }{3} \rho (z) - \frac{k}{a^2}  \\
+  H_0^2 &= \frac{8 \pi G}{3}\rho_0 - \frac{k}{a_0^2}
+\,,
+\end{align}
+%
+the latter of which implies \(1 = \Omega - k / (a_0^2 H_0^2)\). So, 
+%
+\begin{align}
+  H^2(z) &= H_0^2 \qty(\frac{8 \pi G }{3 H_0^2} \rho (z) - \frac{k}{a^2 H_0^2}) \\
+  &= H_0^2 \qty(\frac{\rho (t)}{\rho_0 }\Omega_0 \frac{a_0^2}{a} (1-\Omega_0 ))  \\
+  &= H^2(z) = H_0^2 (1+z)^2 \qty(\Omega_0 (1+z)^{1+3w} + (1-\Omega_0 ))
+\,,
+\end{align}
+%
+so in the end 
+%
+\begin{align}
+  \Omega (z) &= \frac{8 \pi G \rho_0 }{3 H_0^2 } \frac{\rho (z)}{\rho_0 } \frac{H_0^2}{H^2(z)} \\
+  &=\Omega_0 (1+z)^{1+3w} \qty(1-\Omega_0 + \Omega_0 (1+z)^{1+3w}) 
+\,,
+\end{align}
+%
+and since \(\rho (z) = \rho_0 (1+z)^{3(1+w)}\) we get 
+%
+\begin{align}
+  \Omega^{-1} (z) -1 &= \frac{\Omega_0 \qty((1-\Omega_0 ) + \Omega_0 (1+z)^{1+3w}) - (1+z)^{1+3w} }{(1+z)^{1+3w}}  \\
+  &= (\Omega_0^{-1} -1) (1+z)^{-(1+3w)}
+\,.
+\end{align}
+
+If we assume \(w = 1/3\) for all times (which is false, but we do it to get a result that is close enough) we get 
+%
+\begin{align}
+  \Omega ^{-1} (z) -1= (\Omega_0 ^{-1} -1) \qty(\frac{T_0 }{T(z)})^{2}
+\,.
+\end{align}
+
+If we compute \(T _{\text{Planck}} / T_0 \) we get approximately \num{4.5e32}. Then when squaring we get \num{e-64}, without the approximation \(w=1/3\) we get \num{e-60}.
+
+Then, we see that there is something deeply unnatural in the Friedmann model.
+
+\end{document}

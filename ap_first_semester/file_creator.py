@@ -42,7 +42,7 @@ def next_monday():
         return now + datetime.timedelta(7 - weekday)
 
 def date_filename(date):
-    return (date.strftime("%b%d").lower())
+    return (date.strftime("%d%b").lower())
     
 def create_file(folder, filename):
     main_path = os.path.join(folder, "main.tex")

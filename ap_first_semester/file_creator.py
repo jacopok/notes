@@ -50,6 +50,7 @@ def create_file(folder, filename):
 
     with open(file_path, "x") as f:
         f.write(subfile_heading)
+        print("Creating file at " + file_path)
 
     with open(main_path, "r") as f:
         buf = f.readlines()
@@ -58,6 +59,7 @@ def create_file(folder, filename):
         for line in buf:
             if line == end_doc:
                 line = subfile_include(filename) + line
+                print("Adding subfile to main at " + main_path)
             f.write(line)
 
 for i in schedule:

@@ -1,4 +1,135 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Wed Nov 06 2019}
+
+Now, we consider the possibility that our winds are \emph{not isothermal}.
+This will change the structure of the wind, by the introduction of an additional pressure gradient.
+
+It will change the speed of sound and thus the Mach number.
+
+We use the energy per unit mass \(e\): 
+%
+\begin{align}
+  e(r) = \frac{v^2(r)}{2} - \frac{GM}{r} + \frac{\gamma }{\gamma -1} \frac{RT}{\mu }
+\,,
+\end{align}
+%
+where \(\gamma / (\gamma -1) = 5/2\) for a monoatomic gas, which has \(\gamma = 3/2\).
+
+In the lower boundary of the wind the velocity is much less than the escape velocity (\(v \ll v _{\text{esc}}\)), while far from the star we have \(v \gg v _{\text{esc}}\).
+
+
+If we have an isothemal wind, some energy must be added in order to prevent the adiabatic cooling of the gas, lift it from the potential well, and to increase its potential energy.
+
+If a force is applied it increases the momentum, but the heat transmission \(q\) does not appear in the momentum equation, which is \(\Delta e = \int f + q \dd{r} \).
+This is how it would seem, but heat transmission changes the pressure profile, which affects the momentum.
+
+The most general momentum equation is given by: 
+%
+\begin{align}
+  \frac{1}{v} \dv{v}{r} = \qty(2 \frac{c_s^2}{r} - \frac{GM}{r} + f -(\gamma - 1) q) / \qty(v^2- c_s^2)
+\,,
+\end{align}
+%
+where we introduce the adiabatic speed of sound \(c_s = \sqrt{\gamma a^2} \). In general \(- (\gamma - 1)<0\), therefore if we add heat this is equivalent to pushing \emph{inward}.
+
+If either \(f\) or \(q\) depend on the velocity gradient \(\dv*{v}{r}\) then the sonic point can \emph{decouple} from the critical point.
+
+There are cases in which we have multiple critical points (specifically, multiple zeros of the denominator).
+
+The momentum equation plus the energy equation 
+%
+\begin{align}
+  \dv{}{r} \qty(\frac{v^2}{2} + \frac{5}{2} \frac{RT}{\mu } - \frac{GM}{r}) = f(r) + q(r)
+\,,
+\end{align}
+%
+can be solved numerically, and if we impose smooth passage through the critical point this yields the mass loss rate.
+
+Qualitatively, the results are the same as in the isothermal case.
+
+This ends our general introduction to stellar winds.
+
+Now we will do a couple of exercises to get familiar with the theory. 
+
+\begin{greenbox} \textbf{Exercise}
+
+The wind is isothermal.
+The solar wind has a mean coronal temperature of \SI{1.5e6}{K} and a mass loss rate of \num{2e-14} solar masses per year.
+The bottom of the corona is at \(r_0 \approx 1.003 R_{\odot}\), where the density is \(\rho (r_0 ) = \SI{e-14}{g\per\centi\metre\cubed}\).
+
+Calculate the potential energy, the kinetic energy and the enthalpy of the gas at \(r_0 \).
+
+Calculate the same quantities at the critical point. Which of these energies has absorbed the largest fraction of the energy input?
+\end{greenbox}
+
+\begin{bluebox}
+We can use the continuity equation \(\dot{M} = 4 \pi \rho_0 r_0^2 v_0 \) to get 
+%
+\begin{align}
+  v_0 = \frac{\dot{M}}{4 \pi r_0^2 \rho_0 }
+\,,
+\end{align}
+%
+and with this we can calculate 
+%
+\begin{align}
+  e(r_0 ) = - \frac{GM}{r_0 } + \frac{1}{2} v_0^2 + \frac{5}{2} \frac{RT}{\mu }
+\,.
+\end{align}
+
+The mean molecular weight of the gas for the Sun is something like \(\mu = 0.62\) (we count electrons in it).
+
+The values at the critical radius are calculated with the same formula. The velocity will be the speed of sound \(a = \sqrt{RT / \mu } \).
+
+The enthalpy is the same, since the flow is isothermal.
+
+We look at the ratios of the terms in the energy equation at these two radii.
+
+Recall: the critical radius is given by \(r_c = GM / (2 a^2)\).
+
+\end{bluebox}
+
+\begin{greenbox}
+    \textbf{Exercise}
+
+  A star with \(T _{\text{eff}} = \SI{3200}{K}\), \(R_{*} = 30 R_{\odot}\), \(L_{*} = 85 L_{\odot}\) and \(M_{*} = 6 M_{\odot}\) has an isothermal corona of \(T = \SI{e6}{K}\) with a density at the lower boundary of \SI{e-13}{g \per\centi\metre\cubed}.
+
+  Calculate the energy per unit mass at the bottom of the corona at \(r_0 = R_{*}\).
+
+  Calculate the location of the critical point, \(r_c\), and the mass loss rate.
+
+  Calculate the energy per gram gained by the wind between \(r_0 \) and \(r\). What fraction of the stellar luminosity is used to drive the wind up to the critical point?
+\end{greenbox}
+
+Lamers-Cassinelli: chap 4, section 3: multiple critical points.
+
+Next Tuesday, the 12th, after the lecture, we will likely move to the DFA in Via Marzolo until 14.30.
+
+Now, we introduce the next topic.
+We deal with hot, luminous stars: at the top left of the HR diagram.
+
+[Picture from the slides]
+
+We talk of line-driven winds for hot stars.
+These are winds driven by \emph{spectral lines}. 
+The blackbody emission for these stars is mainly at high frequencies, like the UV.
+
+One may ask: hydrogen is much more abundant than heavier elements like carbon, nitrogen\dots why do we see the spectral lines for these heavier elements?
+
+This is because hydrogen is completely ionized at these temperatures, and helium is also.
+
+The strongest lines are far in the UV, where the stellar flux is low: only few atoms are hit, the rest of the gas is dragged along.
+
+A peculiar characteristic of the spectrum is the so-called P-Cygni profile.
+
+Now, an overview of the formation of spectral lines:
+there are 5 processes \begin{enumerate}
+    \item Line scattering: if it comes from the ground state of the atom, it is called \emph{resonance scattering}, which is the main phenomenon.
+    \item Emission by recombination: the ion recombines to an excited state.
+    \item Emissional from collisional or photo-excitation. A photon is absorbed, it excites the atom which then descends to a lower energy level.
+\end{enumerate}
+
+
 \end{document}

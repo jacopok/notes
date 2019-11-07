@@ -1,4 +1,149 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 07 2019}
+
+We are trying to fix the last coefficient in the Einstein equations: 
+%
+\begin{align}
+  R_{\mu \nu } - \frac{R}{2} g_{ \mu \nu } = c_2 T_{\mu \nu }
+\,.
+\end{align}
+
+The \(\frac[i]{1}{2} \) on the LHS is fixed by the conservation of the stress-energy tensor.
+
+We look at a low-energy scenario: \(\rho \ll P\), \(u^{\mu } = (1, \vec{0})^\top\). Then the EFE become \(R_{00} = c_2 \rho /2\).
+
+We consider a stationary metric \(g_{\mu \nu } (\vec{x})\), which does not depend on time. This is consistent with the stuff we usually see: planetary dynamics are quasi-static with respect to the speed of light.
+
+In a LIF we have shown that the Riemann tensor is:
+%
+\begin{align}
+  R_{\gamma \sigma \mu \nu } = \frac{1}{2} \qty(g_{\gamma \nu , \sigma \mu } - g_{\sigma \nu , \gamma \mu } - g_{\gamma \mu , \sigma \nu } + g_{\sigma \mu , \gamma \nu })
+\,.
+\end{align}
+
+To get the Ricci tensor we need \(R^{\alpha }_{\sigma \mu \nu } = \eta^{\alpha \gamma }R_{\gamma \sigma \mu \nu }\) since we are in the LIF.
+
+We get the Ricci tensor:
+%
+\begin{align}
+  R_{\sigma \nu } &=  \eta^{\alpha \gamma } \qty(g_{\gamma \nu , \sigma \alpha } - g_{\sigma \nu , \gamma \alpha } - g_{\gamma \alpha , \sigma \nu } + g_{\sigma \alpha , \gamma \nu })
+\,,
+\end{align}
+%
+from which we can calculate \(R_{00}\):
+%
+\begin{align}
+    R_{0 0 } &= \frac{1}{2} \eta^{\alpha \gamma } \qty(g_{\gamma 0 , 0 \alpha } - g_{0 0 , \gamma \alpha } - g_{\gamma \alpha , 0 0 } + g_{0 \alpha , \gamma 0 })  \\
+    &= -\frac{1}{2}\eta^{i j }g_{00, ij} 
+    = - \frac{1}{2} \sum _{i} g_{00, ii} = -\frac{1}{2} \nabla^2 g_{00}
+    \,,
+\end{align}
+%
+where only the second term survives since the metric is time-independent, its time derivatives all vanish.
+
+Therefore, our equation becomes \(\nabla^2 g_{00} = c_2 \rho \). We just need to find out what the meaning of \(g_{00}\) is, how it is related to the gravitational potential.
+We do it with gravitational redshift: we found that 
+%
+\begin{align}
+  \Delta \tau_{A} \approx \Delta \tau_{B} (1 - \Phi_{A} + \Phi_{B})
+  \,,
+\end{align}
+%
+if Alice, on the top of a building, is sending photons to Bob who is on the ground. To first order in the field, the expression is equivalent to 
+%
+\begin{align}
+    \Delta \tau_{A} \approx \Delta \tau_{B} (1 - \Phi_{A}) (1+ \Phi_{B}) \approx \Delta \tau_{B} \frac{1 + \Phi_{B}}{1 + \Phi_{A}}
+\,,
+\end{align}
+%
+which is equivalent to the constancy of 
+%
+\begin{align}
+  \frac{\Delta \tau}{1 + \Phi }
+\,.
+\end{align}
+
+The \(\Delta \tau \) are proper times measured by the observers \(A\) and \(B\) at rest. 
+For an observer at rest, the spacetime interval is 
+%
+\begin{align}
+  -\dd{\tau }^2 = \dd{s}^2 = g_{00} \dd{t^2} 
+\,,
+\end{align}
+%
+since the \(\dd{x^{i}} \) are null. Therefore, \(\dd{\tau } = \sqrt{-g_{00}}  \dd{t} \).
+
+We have 
+%
+\begin{align}
+  \Delta \tau_{A} = \sqrt{-g_{00}(A)} \Delta t
+    \qquad \text{and} \qquad
+  \Delta \tau_{B} = \sqrt{-g_{00}(B)} \Delta t
+\,,
+\end{align}
+%
+but the \(\Delta t\) are the same, because the metric is constant with respect to time! so we get that \(\Delta t = \const\) and specifically it is equal to 
+%
+\begin{align}
+  \frac{\Delta \tau }{\sqrt{-g_{00}}}
+\,,
+\end{align}
+%
+so we can finally identify \(\sqrt{-g_{00}} \approx 1 + \Phi \), or \(g_{00} = - (1+\Phi )^2 = - (1+ 2 \Phi )\).
+
+We can now bring the Laplacian inside the \(g_{00}\): we get 
+%
+\begin{align}
+  \nabla^2 \Phi = \frac{c_2}{2} \rho  
+\,,
+\end{align}
+%
+Poisson's equation for the gravitational potential.
+
+We know the gravitational potential to be defined by \(- \nabla \Phi = \vec{F_G}\).
+
+We can find Gauss' law for the gravitational field just like we did for the electromagnetic field, substituting \(Q \rightarrow M\) and \(1 / (4 \pi \epsilon_{0}) \rightarrow -G\).
+I will also denote the electric and gravitational charges with subscripts \(E\) and \(G\).
+
+The integral form of this equation is 
+%
+\begin{align}
+  \int _{\partial V} \dd{\vec{A}} \cdot \vec{E} = \int_V \dd[3]{x} \rho_E
+\,,
+\end{align}
+%
+but it can be expressed differentially with the divergence theorem as 
+%
+\begin{align}
+  \vec{\nabla} \cdot \vec{E} = \frac{\rho_E}{\epsilon_0 }
+\,.
+\end{align}
+
+For the gravitational field \(\vec{F_G}\) then we can just substitute: 
+%
+\begin{align}
+  \vec{\nabla} \cdot \vec{F_G} = - 4 \pi G \rho_G
+\,,
+\end{align}
+%
+and then we can substutite the gravitational potential: 
+%
+\begin{align}
+  \vec{\nabla} \cdot ( - \vec{\nabla} \Phi ) = - \nabla^2 \Phi  = - 4 \pi G \rho_G
+\,,
+\end{align}
+%
+or \(\nabla^2 \Phi = 4 \pi G \rho_G\).
+So this is what we found before, with \(c_2/2 = 4 \pi G \).
+So, our constant is \(c_2 = 8 \pi G\). So we get Einstein's equations: 
+%
+\begin{align}
+  R_{\mu \nu } - \frac{R}{2} g_{\mu \nu } = 8 \pi G T_{\mu \nu }
+\,,
+\end{align}
+
+
+
 \end{document}

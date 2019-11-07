@@ -1,4 +1,147 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 07 2019}
+
+We talk about inflation again.
+The comoving horizon increases with time: 
+%
+\begin{align}
+  d_H (t) = a(t) \int_0^t \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})} \sim ct \sim \frac{c}{H} \equiv \text{Hubble horizon}
+\,,
+\end{align}
+%
+it is also called the \emph{past event horizon}.
+The reason why we can plot the history of the universe in a single spacetime diagram is because there is a well-defined transformation which brings an infinite interval to a finite one, using a hyperbolic arctangent: this gives us a \emph{Penrose diagram}.
+
+The comoving Hubble radius is \(r_H = c / aH = c/ \dot{a}\). This can grow.
+
+If we have positive pressure \(p>0\), than the scale factor goes like \(a \propto t^{2/(3(1+w))}\) with \(w>0\), then the comoving radius increases with time.
+
+We can actually still get increasing comoving radii with a weaker condition: \(p> -\frac{1}{3} \rho c^2\). This is the actual boundary (it can be checked looking at the derivative of \(a\)).
+
+This is directly connected to the sign of the acceleration in the Friedmann equation.
+
+If these conditions are always met, Hawking and Ellis proved that a Big Bang is inevitable. 
+
+The inflation hypothesis is that, even though now we have \(\ddot{a}<0\) now (or, it was so for some time: now the expansion seems to be accelerating), there was a period in which we had \(\ddot{a}>0\).
+
+These are drawn as straight lines, but it is only qualitative: we are looking at the sign of the slope.
+
+Then, there was a time in the past at which the comoving horizon was as large as it is now: now we will see how much inflation there must have been in order to solve the horizon problem up to now, ignoring the fact that now the universe's expansion is accelerating.
+
+The inequality we want to impose is 
+%
+\begin{align}
+  r_H (t_i) \geq r_H (t_0 )
+\,,
+\end{align}
+%
+where \(t_0 \) is now while \(t_i\) is the beginning of inflation.
+
+A sphere with comoving radius \(d_H (t_i)\) will expand after inflation up to 
+%
+\begin{align}
+    d_H (t_i) \frac{a (t_f)}{a (t_i)}
+    \,,
+\end{align}
+%
+where \(t_f\) is the time of the end of inflation. 
+%
+\begin{align}
+    d_H (t_i) \frac{a (t_f)}{a (t_i)} \geq d_H (t_0 ) \frac{a(t_f)}{a(t_0 )}
+    \,.
+\end{align}
+%
+We want to see what the limiting condition is. 
+%
+\begin{align}
+  Z _{\text{min}} = \frac{d_H (t_0 )}{d_H (t_i)} \frac{a_f}{a_0} = \frac{H_i}{H_0 } \frac{a_f}{a_0}
+\,,
+\end{align}
+%
+\todo[inline]{is \(Z\) a redshift?}
+%
+\begin{align}
+  z _{\text{min}} \frac{H_i}{H_0 } \frac{a_f}{a_0} = \frac{H_i}{H_f} \frac{H_f}{H_0 } \frac{a_f}{a_0 }
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+  \frac{H_f}{H_i} z _{\text{min}} = \frac{H_f}{H_0} \frac{a_f}{a_0}
+\,,
+\end{align}
+%
+in which we can insert our solution to the Friedmann equations, for the scale factor and Hubble parameter in function of time: 
+%
+\begin{align}
+  H(t) = H_{*} \qty(\frac{a(t)}{a_{*}})^{-\frac{3(1+w)}{2}}
+\,.
+\end{align}
+
+This can be found using the results we found some time ago: the expressions for \(a\) and \(H\) were equal up to a different thing multiplying the parenthesis, and a different exponent.
+
+This is of course an approximation, but it works. A better number can be found by integrating numerically over different more realistic equations of state.
+We find: 
+%
+\begin{align}
+  z = \frac{a_f}{a_i} = 
+\,,
+\end{align}
+%
+\todo[inline]{Put earlier}
+
+
+%
+\begin{align}
+  \frac{H_f}{H_i} = z _{\text{min}}^{- \frac{3 (1+w)}{2}}
+\,,
+\end{align}
+%
+therefore we get 
+%
+\begin{align}
+  z _{\text{min}} = 
+  \qty(\frac{H_f}{H_0 } \frac{a_f}{a_0})^{- \frac{2}{(1+3w _{\text{inf}})}}
+\,,
+\end{align}
+%
+where \(w _{\text{inf}} \) is calculated at the time of matter-radiation equality.
+
+So we get: 
+%
+\begin{align}
+  \frac{H_f}{H_0} 
+  = \frac{H_f}{H _{\text{eq}}} \frac{H _{\text{eq}}}{H_0 } 
+  = \qty(\frac{a_f}{a _{\text{eq}}})^{-2} \qty(\frac{a _{\text{eq}}}{a_0 })^{-3/2} 
+  = \qty(\frac{a_f}{a_0 })^{-2} \qty(\frac{a_0}{a _{\text{eq}}})^{-1/2}
+\,,
+\end{align}
+%
+which means that the minimum inflation redshift must be 
+%
+\begin{align}
+  z _{\text{min}} = \qty(\qty(\frac{a_f}{a_0 })^{-1} \qty(\frac{a_0 }{a _{\text{eq}}})^{1/2} )^{\frac{-2}{1 + 3 w _{\text{inf}}}}
+\,,
+\end{align}
+%
+so the result can be expressed in terms of temperatures: 
+%
+\begin{align}
+  \frac{a_0}{a_f} = \frac{T_f}{T_0 } = \frac{T_f}{T _{\text{pl}}} \frac{T _{\text{pl}}}{T_0 }  
+\,,
+\end{align}
+%
+where the \(T _{\text{pl}}\) is the Planck temperature,
+and \(a_0 / a _{\text{eq}} = 1 + z _{\text{eq}}\): in the end our result is 
+%
+\begin{align}
+  z _{\text{min}} = \qty(\frac{T _{\text{pl}}}{T_0 } (1+ z _{\text{eq}}) \frac{T_f}{T _{\text{pl}}})^{- \frac{2}{1 + 3 w _{\text{inf}}}}
+\,.
+\end{align}
+%
+
+
 \end{document}

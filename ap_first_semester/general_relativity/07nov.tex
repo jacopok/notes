@@ -141,9 +141,114 @@ So, our constant is \(c_2 = 8 \pi G\). So we get Einstein's equations:
 %
 \begin{align}
   R_{\mu \nu } - \frac{R}{2} g_{\mu \nu } = 8 \pi G T_{\mu \nu }
-\,,
+\,.
 \end{align}
 
+The LHS of these is called the Einstein tensor, \(G_{\mu \nu } \equiv R_{\mu \nu } - \frac[i]{R}{2} g_{\mu \nu }\).
 
+Why do we not write an equation with more derivatives, more indices? We may, but we'd detect these only in the regime of very strong curvature: the relativistic effects are already hard to detect as is!
+For now the vanilla EFE have always agreed with experiment.
+
+\section{Geodesics}
+
+In flat spacetime, we know that the curve with \(\dv*[2]{x^{\mu }}{\tau }=0\) stationarizes \(\tau = \int \dd{\tau }\).
+
+Now we will do the exact same thing, except that \(\dd{\tau }\) will be calculated with \(g_{\mu \nu }\) instead of \(\eta_{\mu \nu } \).
+
+We perturb our path \(x^{ \mu }(\lambda )\) as \(x^{\mu } + \delta x^{\mu }\), and we want to set to zero the first functional derivative \(\fdv*{\tau_{AB}}{x^{\mu }}\). This means that to first order 
+%
+\begin{align}
+  \delta \qty(\int _{0}^{1} \dd{\sigma }\sqrt{-g_{\alpha \beta } \dv{x^{\alpha }}{\sigma }\dv{x^{\beta }}{\sigma }} )=0
+\,,
+\end{align}
+%
+where we performed a reparametrization of the curve. Computing away, with the notation \(u^{\mu } = \dv*{x^{\mu }}{\sigma }\): 
+%
+\begin{subequations}
+\begin{align}
+  \delta \tau_{AB} &= \int_0^{1} \dd{\sigma} \qty(
+    \frac{{ -\delta g_{ \alpha \beta } u^{\alpha  } u^{\beta }}}{2 \sqrt{\dots}} +
+      \frac{-g_{\alpha \beta } u^{\alpha } \dv{ \delta x^{\beta }}{\sigma } }{\sqrt{\dots}}
+    )  \\
+    &= - \frac{1}{2} \int_0^1  \dd{\sigma } \qty(
+        \delta g_{\alpha \beta } \dv{x^{\alpha }}{\sigma }
+        \dv{x^{\beta }}{\tau }
+        + 2 g_{ \alpha \beta } \dv{x^{\alpha }}{\tau }
+        \dv{ \delta x^{\beta }}{\sigma }
+    )  \\
+    &= - \frac{1}{2} \int_0^1 \dd{\sigma } \qty(
+        \partial_{\gamma } g_{\alpha \beta } \delta x^{\gamma } \dv{x^{\alpha }}{\sigma }
+        \dv{x^{\beta }}{\tau }
+        -2 \dv{}{\sigma } \qty(g_{\alpha \beta } \dv{x^{\alpha }}{\tau }) \delta x^{\beta }
+    )  \\
+    &= - \frac{1}{2} \int_0^1 \dd{\tau } \qty(
+        \partial_{\gamma } g_{\alpha \beta } \delta x^{\gamma } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } +
+        \dv{}{\tau } \qty(g_{ \alpha \beta } \dv{x^{\alpha }}{\tau } \delta x^{ \beta } )
+    )  \\
+    & \int \dd{\tau } \qty(
+        -\frac{1}{2} \partial_{\gamma }g_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } + 
+        \dv{}{\tau } \qty(g_{\alpha \gamma } \dv{x^{\alpha }}{\tau }) \delta x^{\gamma }
+    )
+\,,
+\end{align}
+\end{subequations}
+%
+where we applied the product rule, identified two symmetric terms in the velocity, used the identity 
+%
+\begin{align}
+  \frac{1}{\sqrt{\dots}} \dv{}{ \sigma } = \dv{}{\tau }
+\,,
+\end{align}
+%
+expanded the metric using: 
+%
+\begin{align}
+  \delta g_{\alpha \beta } = \partial_{\gamma } g_{ \alpha \beta } \delta x^{\gamma }
+\,,
+\end{align}
+%
+where we did not need to introduce a covariant derivative since we are just Taylor expanding.
+
+Also, we integrated by parts (without boundary terms since the path variation vanishes at the path boundary), changed variables, and finally gotten an expression which must vanish for any path, therefore we get that 
+%
+\begin{align}
+    -\frac{1}{2} \partial_{\gamma }g_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } 
+    + \dv{}{\tau } \qty(g_{\alpha \gamma } \dv{x^{\alpha }}{\tau }) = 0
+\,,
+\end{align}
+%
+so we can expand the derivative: we get 
+%
+\begin{align}
+  0= - \frac{1}{2} \partial_{\gamma }g_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } + 
+  \partial_{\beta }g_{\alpha \gamma } \dv{x^{\beta }}{\tau } \dv{x^{\alpha }}{\tau } + g_{\alpha \gamma } \dv[2]{x^{\alpha }}{\tau }
+\,,
+\end{align}
+%
+where the second term can be symmetrized in \(\alpha \beta \): 
+%
+\begin{align}
+  0= g_{\alpha \gamma } \dv[2]{x^{\alpha }}{\tau } +
+  \qty(\frac{1}{2} \partial_{\beta }g_{\alpha \gamma } + \frac{1}{2}\partial_{\alpha } g_{\beta \gamma }) - \frac{1}{2}\partial_{\gamma }g_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau }
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+  0= g_{\alpha \gamma } \dv[2]{x^{\alpha }}{\tau } +
+  \frac{1}{2}\qty(g_{\alpha \gamma , \beta } + g_{\beta \gamma , \alpha } - g_{\alpha \beta , \gamma })
+  \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau }
+\,,
+\end{align}
+%
+which, raising an index and identifying the Christoffel symbols, gives us 
+%
+\begin{align}
+  0 = \dv[2]{x^{\gamma }}{\tau } + \Gamma^{\gamma }_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau }
+\,,
+\end{align}
+%
+the \emph{geodesic equation}.
 
 \end{document}

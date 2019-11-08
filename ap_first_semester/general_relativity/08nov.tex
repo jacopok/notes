@@ -1,4 +1,178 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Nov 08 2019}
+
+It can be shown that the equation 
+%
+\begin{align}
+  \dv[2]{x^{\mu }}{\tau } + \Gamma^{\mu }_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } = 0
+\,,
+\end{align}
+%
+in the low-field limit gives the regular acceleration in a gravitational field.
+
+If we define \(u^{\mu }\) as \(\dv*{x^{\mu }}{\tau }\), we get that the equation is equivalent to 
+%
+\begin{align}
+  u^{\alpha } \qty(\pdv{u^{\mu } }{x^{\alpha }} + \Gamma^{\mu }_{\alpha \beta }u^{\beta }) = u^{\alpha } \nabla_{\alpha } u^{\mu } = a^{\mu } = 0
+\,.
+\end{align}
+
+The acceleration we feel corresponds to the difference between our motion and geodesic motion.
+
+The four-velocity has constant square modulus: either 0, or \(\pm 1\), if we choose an appropriate parametrization. Therefore we can classify geodesics.
+
+\paragraph{Timelike geodesics} have \(u^{\mu } u_{\mu } = -1\), and are related to the motion of a particle. They minimize the proper time \(\dd{\tau} = \sqrt{-\dd{s^2}}\), which is real in this case. We parametrize them by \(\tau \).
+
+\paragraph{Spacelike geodesics} have \(u^{\mu } u_{\mu } = +1\) and can be seen as the shortest path between two points: for them, the integral of \(\dd{s}\) is stationary. We parametrize them by \(s\).
+
+\paragraph{Null geodesics} have \(u^{\mu } u_{\mu } = 0\) are characterized by \(\dd{s}=0\). We parametrize them with some parameter of our choosing, \(\lambda \), which must be independent of proper time or space.
+
+\subsection{Solutions of the geodesic equation}
+
+We treat the problem in the case of a two-dimensional Euclidean plane, using polar coordinates: we know we should find straight lines, but in these coordinates the problem is nontrivial.
+
+The metric is \(\dd{s^2} = \dd{r^2} + r^2 \dd{\theta^2}\), and the nonzero Christoffel symbols are (see exercise 3.3): 
+%
+\begin{align}
+  \Gamma^{r}_{\theta \theta } = -r 
+  \qquad \text{and} \qquad 
+  \Gamma^{\theta }_{\theta r } = 
+  \Gamma^{\theta }_{r \theta } = \frac{1}{r} 
+\,.
+\end{align}
+
+Our equation for the \(r\) coordinate is then: 
+%
+\begin{align}
+  \dv[2]{r}{s} - r \qty(\dv{\theta }{s})^2 = 0
+\,,
+\end{align}
+%
+while for the \(\theta \) coordinate by symmetry we can identify the two terms: 
+%
+\begin{align}
+  \dv[2]{\theta }{s} + \frac{2}{r} \dv{r}{s} \dv{\theta }{s} =0
+\,.
+\end{align}
+
+In general, in an \(n\) dimensional space, motion is defined by \(n\) scalar functions, which can be determined by our \(n\) differential equations with \(2n\) initial conditions.
+
+It is in general useful to find \emph{first integrals}, quantities which are constant along the geodesic.
+
+It can be shown that the second equation can be written as
+%
+\begin{align}
+  \frac{1}{r^2} \dv[]{}{s} \qty(r^2 \dv{\theta }{s}) =0
+\,,
+\end{align}
+%
+which gives us the first integral \(A = r^2 \dv*{\theta }{s}\).
+We can always also use the definition of the differential: 
+%
+\begin{align}
+    \dd{s^2} = \dd{r^2} + r^2 \dd{\theta } 
+    \,,
+\end{align}
+%
+so we can insert our integral: 
+%
+\begin{align}
+    \dd{s^2} = \dd{r^2} + r^2 \frac{A^2}{r^{4}} \dd{s^2}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \dd{s^2} \qty(1- \frac{A^2}{r^2}) = \dd{r^2}
+\,.
+\end{align}
+
+This has two solutions, but it can be shown that they give the same solution.
+
+We want the trajectory: the locus of the points the geodesic passes through, \(r(\theta )\) or \(\theta (r)\).
+
+We do: 
+%
+\begin{align}
+  \dv[]{\theta }{r} = \dv[]{\theta }{s} \dv[]{s}{r} = \frac{A}{r^2} \frac{1}{\sqrt{1- \frac{A^2}{r^2}}}
+\,,
+\end{align}
+%
+so we can integrate this: 
+%
+\begin{align}
+  \theta  = \int \dd{\theta } = \int
+  \frac{A}{r^2} \qty(1 - \frac{A^2}{r^2})^{-1/2} \dd{r}
+\,,
+\end{align}
+%
+which comes out to be \(\Delta \theta  = \arccos (A/r)\): \(r\cos(\Delta \theta ) = A \): this is equivalent to 
+%
+\begin{align}
+  r \cos(\theta ) \cos(\theta_0 ) + r \sin(\theta ) \sin(\theta_0 ) = A
+\,,
+\end{align}
+%
+therefore this can be written as \(y = \alpha x + \beta \).
+
+\section{Euler-Lagrange equations}
+
+The time interval can be written as 
+%
+\begin{align}
+  \tau_{AB} &= \int \dd{\tau } = \int \sqrt{-\dd{s^2}}  \\
+  &= \int  \dd{\sigma } \mathscr{L} \qty(x^{\alpha }, \dv{x^{\alpha }}{\sigma }) 
+\,,
+\end{align}
+%
+so under a perturbation we get: 
+%
+\begin{align}
+  0 &= \delta \tau \\
+  &= \int  \dd{\sigma } \qty(
+      \pdv{\mathscr{L}}{x^{\alpha }} \delta x^{\alpha } 
+      + \pdv{\mathscr{L}}{\dv{x^{\alpha }}{\sigma }} 
+      \dv{ \delta x^{\alpha }}{\sigma }
+  )  \\
+  &= \int  \dd{\sigma } 
+  \qty(
+      \pdv{\mathscr{L}}{x^{\alpha }} - \dv{}{\sigma } \qty(\pdv[]{\mathscr{L}}{\dv{x^{\alpha }}{\sigma }})
+  ) \delta x^{\alpha } =0
+\,,
+\end{align}
+%
+therefore the integrand must vanish identically: this gives us the Euler-Lagrange equations 
+%
+\begin{align}
+  \pdv{\mathscr{L}}{x^{\alpha }} 
+  - \dv{}{\sigma } 
+  \pdv{\mathscr{L}}{\dv{x^{\alpha}}{\sigma }}=0
+\end{align}
+
+\subsection{Killing vectors}
+
+Symmetries of the metric correspond to conserved quantities if our Lagrangian only depends on the metric.
+If the metric does not depend on a coordinate, then the unit vector in that direction is a Killing vector field. 
+
+If we have a Killing vector field, then the momentum along the Killing vector is conserved.
+
+If the Killing coordinate is \(x^{1}\), it can be expressed as 
+%
+\begin{align}
+  \pdv{\mathscr L}{\dv{x^{1}}{\sigma }} = \frac{1}{2 \mathscr L} \qty(-2 g_{1 \beta } \dv{x^{\beta }}{\sigma }) = - g_{1 \beta } \dv{x^{\beta }}{\tau }
+\,,
+\end{align}
+%
+where we performed a change of variable from the derivation with respect to \(\sigma \) to one with respect to \(\tau \).
+
+This is usually written as \(\xi^{\mu } u_{\mu } = \const\), which is actually more general.
+However, we can write it as \(p^{\mu } \xi_{\mu }\) since we are considering a constant-mass particle.
+
+We can apply this to our 2D example: the metric does not depend on \(\theta \), therefore \(\xi = (0,1)\) is a Killing vector, so \(g_{\theta \mu  } u^{\mu } = r^2 \dv*{\theta }{s} = \const\).
+
+
+
 \end{document}

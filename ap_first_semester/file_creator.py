@@ -85,5 +85,5 @@ for i in schedule:
         folder = folder_names[lesson]
         create_file(folder, filename)
     
-    for folder in folder_names:
-        add_line_main(folder_names[folder])
+for folder in folder_names:
+    add_line_main(folder_names[folder])

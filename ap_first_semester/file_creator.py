@@ -62,6 +62,19 @@ def create_file(folder, filename):
                 print("Adding subfile to main at " + main_path)
             f.write(line)
 
+def add_line_main(folder):
+    main_path = os.path.join(folder, "main.tex")
+
+    with open(main_path, "r") as f:
+        buf = f.readlines()
+
+    with open(main_path, "w") as f:
+        for line in buf:
+            if line == end_doc:
+                line = "\n" + line
+                print("Adding white line to main at " + main_path)
+            f.write(line)
+
 for i in schedule:
     day = next_monday() + datetime.timedelta(i)
     filename = date_filename(day)
@@ -71,3 +84,6 @@ for i in schedule:
     for lesson in lessons:
         folder = folder_names[lesson]
         create_file(folder, filename)
+    
+    for folder in folder_names:
+        add_line_main(folder_names[folder])

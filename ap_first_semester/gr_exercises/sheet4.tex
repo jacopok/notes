@@ -5,12 +5,12 @@
 
 \subsection{Riemann tensor computations}
 
-\subsubsection{LIF form}
+\subsubsection{LIF form} \label{sec:LIF-form-Riemann-tensor}
 
-In the LIF, we have \(g_{\mu \nu } = \eta_{\mu \nu }\) and \(= g_{\mu \nu , \alpha }=0\). Therefore, the Christoffel symbols are all zero. 
+In the LIF, we have \(g_{\mu \nu } = \eta_{\mu \nu }\) and \( g_{\mu \nu , \alpha }=0\). Therefore, the Christoffel symbols are all zero. 
 In the explicit expression of the Riemann tensor, which looks like \(R = \partial \Gamma  + \Gamma \Gamma\) we can drop the second term and keep only the derivatives of the Christoffel symbols, which are nonzero since they depend on the second derivatives of the metric.
 
-If the Christoffel symbols are zero, the computation of the curvature tensor is significantly easier: 
+If the Christoffel symbols are zero, the computation of the curvature tensor is significantly easier, since we do not have the \(\Gamma \Gamma \): we just need to account for the terms \(\partial \Gamma \). The computation gives: 
 %
 \begin{subequations}
 \begin{align}
@@ -18,9 +18,11 @@ If the Christoffel symbols are zero, the computation of the curvature tensor is 
   &=  2 \partial_{[\rho }\Gamma^{\mu }_{\sigma ] \nu}  \\
   &= 2 \partial_{[\rho } \qty(\frac{1}{2} g^{\mu \alpha } \qty(g_{\alpha |\sigma ], \nu } + g_{\alpha \nu  , |\sigma  ]} - g_{\nu  |\sigma], \alpha }))  \\
   &= g^{\mu \alpha }\qty(g_{\alpha [\sigma |, \nu | \rho      ]} + \cancelto{}{g_{\alpha \nu, [\sigma \rho]}}-g_{\nu [\sigma |, \alpha | \rho  ]})
-\,.
+\,,
 \end{align}
 \end{subequations}
+%
+where a term was cancelled since it contained the antisymmetrization of partial derivatives, which commute.
 
 So, if we lower the index of the (1, 3) Riemann tensor we get the desired expression for the all-lower (0, 4) Riemann tensor: 
 %

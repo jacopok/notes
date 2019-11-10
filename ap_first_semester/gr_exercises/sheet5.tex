@@ -1,0 +1,39 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 5}
+
+\subsection{Alternative derivation of the contracted Bianchi identities}
+
+The form of the Riemann tensor in a LIF was derived in section \ref{sec:LIF-form-Riemann-tensor}.
+
+\subsubsection{Bianchi identities of the Riemann tensor}
+
+In the LIF, given that \(  R_{\mu \nu \rho \sigma} = g_{\mu [\sigma |, \nu |\rho ]} - g_{\nu  [\sigma |, \mu | \rho ]} \), we want to show that \(R_{\mu \nu [\rho \sigma ; \alpha  ]} = R_{\mu \nu [\rho \sigma , \alpha ]} =0\).
+
+This is equivalent to the formulation of the Bianchi identities given in the problem sheet, because of the antisymmetry of the Riemann tensor in its last two indices: there are six terms in the antisymmetrization of \(R_{\mu \nu [\rho \sigma , \alpha ]}\), but they are pairwise equal: the term \(R_{\mu \nu \rho \sigma , \alpha }\) is equal to \(- R_{\mu \nu \sigma \rho , \alpha }\) by antisymmetry, and these are exactly the pairs of terms which appear in the three-index antisymmetrization.
+
+What we need to do is to take the derivative of the Riemann tensor in the LIF: 
+%
+\begin{align}
+    g_{\mu [\sigma |, \nu |\rho ] \alpha } - g_{\nu  [\sigma |, \mu | \rho ] \alpha }
+\,,
+\end{align}
+%
+and permute the three indices \(\nu \rho \alpha \) cyclically. Writing all the terms out we get (up to a factor \(2\), which is irrelevant since we will find that all the terms cancel and everything is equal to 0):  
+%
+\begin{align}
+    \begin{split}
+         &g_{\mu \sigma , \nu \rho \alpha } - g_{\nu  \sigma , \mu  \rho  \alpha }
+        - g_{\mu \rho  , \nu \sigma \alpha } + g_{\nu  \rho  , \mu  \sigma  \alpha } + \\
+        + &g_{\mu \sigma , \rho \alpha \nu } - g_{\rho   \sigma , \mu  \alpha  \nu  }
+        - g_{\mu \alpha , \rho  \sigma \nu  } + g_{\rho   \alpha   , \mu  \sigma  \nu  } + \\
+        + &g_{\mu \sigma , \alpha \nu \rho  } - g_{\alpha  \sigma , \mu  \nu \rho }
+        - g_{\mu \nu   , \alpha  \sigma \rho  } + g_{\alpha   \nu   , \mu  \sigma  \rho  }
+        \,,
+    \end{split}
+\end{align}
+%
+
+
+\end{document}

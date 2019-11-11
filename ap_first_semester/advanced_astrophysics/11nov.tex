@@ -3,6 +3,103 @@
 
 \section*{Mon Nov 11 2019}
 
+Tomorrow we have the meeting at 13.30 in room C.
 
+On the 19th the lecture is in room A (still @ Specola).
+
+Now we deal with line driven winds.
+The main mechanism is line scattering.
+
+\subsection{P-Cygni profiles}
+
+They are spectra characterized  by a blue-shifted absorption and a red-shifted emission.
+
+We consider a source which emits a spherically symmetric wind.
+The region of the wind which is directed at us corresponds to a blue-shifted absorption.
+We basically have emission which is symmetric centered at \(v=0\) (since most of the radiation comes from the photosphere), and absorption which is caused by atoms moving towards us at velocities \(0 \leq v \leq + v_\infty\): so the absorption is something like \(- k [0 \leq v \leq v_\infty]\).
+
+We can gather data from these profiles: for example, the maximum Doppler shift of the absorption corresponds to the maximum velocity.
+
+We can also infer the number densities of the chemical species in the wind: 
+%
+\begin{align}
+  n_i  = \frac{X_i \rho }{A_i m_u}
+\,,
+\end{align}
+%
+assuming some parametric velocity profile \(v(r)\) and density profile \(\rho (r)\), by this we derive the mass loss rate.
+
+The opacity of the spectral lines is several orders of magnitude larger than the continuum opacity: for example, the opacity of the IV line of Carbon is \(\sim \num{e6} \kappa_{es}\).
+
+When a photon is absorbed, the momentum increases by \(\Delta p = h \nu / c \). 
+The increase in velocity when a typical metal absorbs an UV photon with wavelength \SI{e-7}{m} is of the order \(\Delta v \approx \SI{20}{cm/s}\). Typically, due to the redistribution of momentum among atoms, this is something like four orders of magnitude less.
+All the gas is then accelerated by the radiation.
+
+In order to accelerate the gas to \SI{2000}{km/s} we'd need \num{e11} photons.
+If the distance to accelerate to terminal velocity is about three sun radii, the time to accelerate is of the order \SI{e4}{s}.
+So we need around \num{e7} photons per second: the typical lifetime of the transition is of the order \SI{e-7}{s}, 
+
+So only transitions with oscillator strengths \(f \gtrsim 0.01\) will contribute significantly.
+
+\todo[inline]{What is oscillator strength? for \(\Delta t \approx \SI{e-7}{s}\) we have \(\Delta E = \hbar / \Delta t \approx \SI{6}{neV}\)...}
+
+The largest contribution is not the energy of the photons, but their momentum input.
+
+Let us calculate the radiation pressure due to one line. The momentum equation is 
+%
+\begin{align}
+  v \dv[]{v}{r} = - \frac{1}{\rho } \dv[]{P}{r} - \frac{GM}{r^2} + f(r)
+\,,
+\end{align}
+%
+and we want to compute the line-driven \(f(r)\).
+
+Say we have a line @ wavelength \(\lambda_0 \),  which we assume coincides with the peak of the Planckian function for the star.
+We also assume that the line is so strong that it absorbs or scatters \emph{all} the photons at its wavelength.
+
+\todo[inline]{So, photons at that wavelength have 0 mean free path?}
+
+How much mass loss can one optically thick line produce? 
+
+The emitted wavelengths which are absorbed are all the ones between \(\lambda_0\) and \(\lambda_0 (1 - v_{\infty}/c)\).
+
+If our velocity range goes from \(v=0\) ar \(r = R\) to \(v = v_{\infty}\) at \(r = \infty\), then the total energy absorbed is: 
+%
+\begin{align}
+  L _{\text{line}} = \int _{\nu_0 }^{\nu_0 (1 + v_{\infty}/c)} \underbrace{F_\nu 4 \pi R^2}_{{L_{\nu}}} \dd{\nu } \approx L_{\nu_0 } \Delta \nu = L_{\nu_0 } \nu_0 v_{\infty} /c
+\,,
+\end{align}
+%
+where \(F_{\nu }\) is the monochromatic flux (specific spectral intensity in \(\SI{}{\erg\per\square\centi\metre\per\second\per\hertz}\)) at the photosphere, whose radius is \(R\).
+We approximate the flux to be almost constant with respect to \(\nu \).
+
+\(L_{\nu_0 }\) is the specific luminosity per unit frequency at \(\nu_0 \).
+
+The variation of radiative momentum is 
+%
+\begin{align}
+  \dv[]{p _{\text{rad}}}{t} = \frac{L _{\text{line}}}{c}
+  = \frac{L_{\nu_0 } \nu_0 v_{\infty}}{c^2}
+\,,
+\end{align}
+%
+and the total momentum loss in the wind per second is 
+%
+\begin{align}
+  \dv[]{p _{\text{wind}}}{t} = \dot{M} v_{\infty} 
+\,,
+\end{align}
+%
+so if we approximate the wind to be momentum wind, we can equate these two terms: then we get 
+%
+\begin{align}
+  \frac{L_{\nu_0 } \nu_0}{c^2} = \dot{M} 
+\,.
+\end{align}
+
+Now, the Planck function has the property that \(L_{\nu_0  } \nu_0 = 0.62 L\).
+Then we see that the mass loss rate of one strong line is linear in the luminosity of the star.
+
+These are additive: if we can approximate the mass loss rate and luminosity with other means, we can find the total number of spectral lines.
 
 \end{document}

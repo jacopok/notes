@@ -42,10 +42,31 @@ so we have \(6 \) terms with a + sign, and \(6\) with a \(-\) sign: they cancel 
 We start by contracting \(2 R_{\mu \nu [ \rho \sigma ; \alpha ]}\) with \(g^{\mu \rho }\): we get 
 %
 \begin{align}
+    0=
   g^{\mu \rho } \qty(R_{\mu \nu \rho \sigma ; \alpha } + R_{\mu \nu \alpha \rho ; \sigma } + R_{\mu \nu \sigma \alpha ; \rho }) = R_{\nu \sigma ; \alpha } - R_{\nu \alpha ; \sigma } + g^{\mu \rho } R_{\mu \nu \sigma \alpha ; \rho }
 \,,
 \end{align}
 %
-where, in the second term, we used the antisymmetry of the first two indices of the Riemann tensor in order to get the form which allowed us to  
+where, in the second term, we used the antisymmetry of the first two indices of the Riemann tensor in order to get the form which allowed us to use the definition of the Ricci tensor \(R_{\mu \nu } = g^{\rho \sigma } R_{\rho \mu \sigma \nu }\).
+Also, we brought the metric inside the covariant derivatives since it is covariantly constant.
+Then, we contract the expression we found with \(g^{\nu \sigma }\): 
+%
+\begin{align} 
+  0=
+  g^{\nu \sigma } \qty(R_{\nu \sigma ; \alpha } - R_{\nu \alpha ; \sigma } + g^{\mu \rho } R_{\mu \nu \sigma \alpha ; \rho })
+  &= R_{;\alpha  } - \tensor{R}{^{\sigma }_{\alpha; \sigma  }} - g^{\mu \rho} R_{\mu \alpha ; \rho }  \\
+  &= R_{;\alpha  } - \tensor{R}{^{\sigma }_{\alpha; \sigma  }} - \tensor{R}{^{\sigma }_{\alpha ; \sigma }}
+\,,
+\end{align}
+%
+where we used the same properties as before and the definition of the scalar curvature \(R = g^{\mu \nu }R_{\mu \nu }\). So, we have the contracted Bianchi identities \(0 = R_{;\alpha } - 2 \tensor{R}{^{\sigma }_{\alpha ; \sigma }}\).
+Raising an index, these can be written as 
+%
+\begin{align}
+  \nabla_{\beta } \qty(R g^{\alpha \beta } - 2R^{\alpha \beta })
+\,.
+\end{align}
+%
+
 
 \end{document}

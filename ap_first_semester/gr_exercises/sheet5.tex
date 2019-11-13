@@ -133,6 +133,51 @@ The velocity vector is
 whose Euclidean norm is just (the absolute value of) \(\dv*{y}{s}\). 
 So, we must impose the condition \(y = \dv*{y}{s}\), which can be solved by separation of variables to yield \(s = \log y\), or \(y = e^{s}\). 
 
-So our parametrization for the curve is \(s \rightarrow x^{i} = (x_0, e^{s})\), the velocity is \(u^{i} = (0, e^{s})\) and the acceleration is again found by differentiating with zrespect to \(s\).
+So our parametrization for the curve is \(s \rightarrow x^{i} = (x_0, e^{s})\), the velocity is \(u^{i} = (0, e^{s})\) and the derivative of velocity with respect to \(s\) is again 
+%
+\begin{align}
+  \dv[]{u^{i}}{s} = (0, e^{s})
+\,.
+\end{align}
+
+Now we can plug these into our geodesic equation, which is simplified by the fact that \(u^{0} = 0\), therefore there is only one relevant term in the Christoffel sum: 
+%
+\begin{align}
+  \dv[]{ u^{i}}{s} + \Gamma^{i}_{11} u^{1} u^{1} = 0
+\,,
+\end{align}
+%
+whose components are 
+%
+\begin{align}
+  \underbrace{\dv{ u^{0}}{s}}_{0} + \underbrace{\Gamma^{0}_{11}}_{0} y^2 = 0
+\,
+\end{align}
+%
+and 
+%
+\begin{subequations}
+  \begin{align}
+    \dv{ u^{1}}{s} + \Gamma^{1}_{11} u^{1} u^{1} &= 0  \\
+    y + \qty(- \frac{1}{y}) y^2 &=0
+    \,,
+  \end{align}
+\end{subequations}
+%
+which are identities, therefore vertical lines are indeed geodesics in this hyperbolic plane.
+
+\subsubsection{More solutions}
+
+Inserting the Christoffel symbols into the geodesic equations and dividing through by \(y\) we get the following system, in which we denote differentiation with respect to \(s\) by a dot: 
+%
+\begin{subequations}
+\begin{align}
+  \frac{\ddot{y}}{y} &= \qty(\frac{\dot{y}}{y})^2 - \qty(\frac{\dot{x}}{y})^2  \\
+  \frac{\ddot{x}}{y} &= 2 \frac{\dot{x}}{y} \frac{\dot{y}}{y} 
+\,.
+\end{align}
+\end{subequations}
+
+
 
 \end{document}

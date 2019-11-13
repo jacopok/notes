@@ -60,10 +60,10 @@ Then, we contract the expression we found with \(g^{\nu \sigma }\):
 \end{align}
 %
 where we used the same properties as before and the definition of the scalar curvature \(R = g^{\mu \nu }R_{\mu \nu }\). So, we have the contracted Bianchi identities \(0 = R_{;\alpha } - 2 \tensor{R}{^{\sigma }_{\alpha ; \sigma }}\).
-Raising an index, these can be written as 
+Raising an index with the inverse metric \(g^{\alpha \beta }\) and relabeling \(\sigma \) to \(\alpha \) in the second term (after having raised the index), these can be written as 
 %
 \begin{align}
-  \nabla_{\beta } \qty(R g^{\alpha \beta } - 2R^{\alpha \beta })
+  \nabla_{\alpha } \qty(R g^{\alpha \beta } - 2R^{\alpha \beta })
 \,.
 \end{align}
 %
@@ -83,6 +83,56 @@ So, we can calculate the Christoffel symbols as:
 \,,
 \end{align}
 %
+this calculation is simplified by the fact that the only nonvanishing derivatives of the metric are \(g_{00,1}=g_{11,1} = -2 y^{-3} \). If the index \(i\) in \(\Gamma^{i}_{jk}\) is zero, then the last term in the sum vanishes since it corresponds to a derivative with respect to \(x\).
+With these we get: 
+%
+\begin{subequations}
+\begin{align}
+  \Gamma^{0}_{00} &=  \frac{1}{2} y^2 \qty(2g_{00,0})= 0 \\
+  \Gamma^{0}_{01} &=  \frac{1}{2} y^2 \qty(g_{00,1})= - \frac{1}{y}  \\
+  \Gamma^{0}_{11} &=  \frac{1}{2} y^2 \qty(g_{01,1} + g_{01,1})= 0  \\
+  \Gamma^{1}_{00} &=  \frac{1}{2} y^2 \qty(- g_{00,1})= \frac{1}{y}  \\
+  \Gamma^{1}_{01} &=  \frac{1}{2} y^2 \qty(g_{10,0} + g_{11,0} - g_{01,1})= 0   \\
+  \Gamma^{1}_{11} &=  \frac{1}{2} y^2 \qty(g_{11,1}+g_{11,1}-g_{11,1})= -\frac{1}{y}  
+\,,
+\end{align}
+\end{subequations}
+%
+and the geodesic equation \(u^{\mu } \nabla_{\mu } u^{\nu }= 0 \) is written with respect to these.
 
+\subsubsection{Vertical lines}
+
+First of all we want to parametrize these vertical lines: we choose our parameter so that the length of the velocity vector is everywhere equal to one.
+
+Since the lines are vertical, we want the position \(x^{i}\) with respect to the parameter \(s\) to look something like \(x^{i}(s) = (x_0, y(s))\).
+
+We use the arclength parameter: 
+%
+\begin{align}
+  s = \int \sqrt{g_{ij} u^{i} u^{j}} \dd{\lambda }
+\,,
+\end{align}
+%
+where \(u^{i} = \dv*{x^{i}}{\lambda }\) and \(\lambda \) is an arbitrary parameter.
+
+We can rewrite this integral with respect to the Euclidean norm \(\norm{u}_E^2 = \delta_{ij} u^{i} u^{j}\): we get 
+%
+\begin{align}
+  s = \int \frac{1}{y} \norm{u}_E \dd{\lambda }
+\,,
+\end{align}
+%
+so we can see that we get \(s = \int \dd{\lambda }\), or \(s = \lambda \), iff \(\norm{u}_E = y\): so, let us drop the distinction between \(s\) and \(\lambda \) and apply this condition.
+The velocity vector is 
+%
+\begin{align}
+  u^{i} = \dv{x^{i}}{s} = \qty(0, \dv{y}{s})
+\,,
+\end{align}
+%
+whose Euclidean norm is just (the absolute value of) \(\dv*{y}{s}\). 
+So, we must impose the condition \(y = \dv*{y}{s}\), which can be solved by separation of variables to yield \(s = \log y\), or \(y = e^{s}\). 
+
+So our parametrization for the curve is \(s \rightarrow x^{i} = (x_0, e^{s})\), the velocity is \(u^{i} = (0, e^{s})\) and the acceleration is again found by differentiating with zrespect to \(s\).
 
 \end{document}

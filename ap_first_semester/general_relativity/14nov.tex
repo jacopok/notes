@@ -1,4 +1,97 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 14 2019}
+
+\subsection{Riemann normal coordiates}
+
+We want to actually build a LIF, in which \(g_{\mu \nu } (P ) = \eta_{\mu \nu }\) and \(g_{\mu \nu , \rho } (P)= 0\).
+
+We can choose a set of vectors \(e_{(\mu )} (P)\) which are orthonormal: \(e_{(\mu )} \cdot e_{(\nu )} = \eta_{(\mu )(\nu )}\). 
+
+If we choose this \emph{tetrad} as a basis, then the metric becomes the Minkowski one at that point.
+
+Take a vector \(n^{\mu }\) at \(P\), and consider all possible geodesics which start from \(P\) with initial tangent vector \(n^{\mu }\).
+
+Then, the coordinates of a point \(Q\) we get by moving for a time \(\tau \) along this geodesic are \(x^{\alpha } = \tau n^{\alpha }\) if \(n^{\alpha }\) is timelike, \(x^{\alpha } = s n^{\alpha }\) if it is spacelike, where 
+%
+\begin{align}
+  \tau = \int _{P}^{Q} \dd{\tau } 
+\,.
+\end{align}
+
+Since these lines are geodesics, they satisfy the geodesic equation: 
+%
+\begin{align}
+  \dv[2]{x^{\alpha }}{\tau } + \Gamma^{\alpha }_{\beta \gamma } \dv{x^{\beta }}{\tau } \dv{x^{\gamma }}{\tau } = 0
+\,,
+\end{align}
+%
+but we can insert the relation \(x^{\alpha } = \tau n^{\alpha }\) here, to get \(\Gamma^{\alpha }_{\beta \gamma } n^{\beta } n^{\gamma }=0\): but this can be written for any \(n^{\alpha }\), therefore we immediately get that all the Christoffel symbols vanish: \(\Gamma^{ \alpha }_{\beta \gamma } \equiv 0\). 
+
+Therefore, we have \(4^{3}\) equations of sums of derivatives of the metric which vanish: but the gradient of the metric only has \(4^{3}\) independent components, therefore the solution \(g_{\mu \nu , \alpha } \equiv 0\) is the only one.
+
+Can the geodesics cross each other far from the starting point? \emph{Yes}, so the Riemann normal coordinates are only defined in a neighbourhood.
+
+Let us consider an example: Riemann normal coordinates around the north pole of a sphere.
+
+We can map every point on the sphere but the south pole by specifying the meridian and the distance to travel along the meridian.
+
+So in our case, if \(R\) is the radius of the sphere, we get \(x^{\alpha } = (R \theta \cos(\phi ), R \theta \sin(\phi ))\), where then \(R \theta = \tau \) and \(n^{\alpha } = (\cos(\theta ), \sin(\theta ))\).
+The angles \(\phi \) and \(\theta \) are the usual spherical coordinate angles: \(\phi \) specifies the meridian, while \(R\theta \) gives us the distance travelled away from the north pole (since \(\theta \) is in radians).
+
+The second order expansion of the metric is 
+%
+\begin{align}
+  g_{ij} = \left[\begin{array}{cc}
+  1 - \frac{2y^2}{3R^2} & \frac{2xy}{3R^2} \\ 
+  \frac{2xy}{3R^2} & 1-\frac{2x^2}{3R^2}
+  \end{array}\right]
+\,,
+\end{align}
+%
+where \(x^{\alpha } = (x, y)\).
+
+We can see that the metric is \(\delta_{ij}\) at the north pole, and its derivatives are \(g_{ij,k}= 0\) there.
+
+\section{The Schwarzschild solution}
+
+It descrives the geometry outside a stationary, spherically symmetric object which is not rotating and not electrically charged, such as a star, planet or BH.
+
+In general \(\dd{s^2} = -A(r) \dd{t^2} + B(r) \dd{r^2} + C(r)^2 \qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi })\) is our line element.
+
+We can define \(\widetilde{r} = C(r)\), and then express \(A\), \(B\) with respect to to this, and recalling 
+%
+\begin{align}
+    \dd{r^2} = 
+  \frac{\dd{\widetilde{r}^2} }{(\dv*{C}{r})^2}
+\,,
+\end{align}
+%
+which is what multiplies \(B\), so we redefine \(B(\widetilde{r}) \) as \(B(\widetilde{r}) / (\dv*{C}{r})^2\).
+
+So, we can just relabel \(B\) as this: the expression 
+%
+\begin{align}
+    \dd{s^2} = -A(r) \dd{t^2} + B(r) \dd{r^2} + r^2\qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi })
+\,
+\end{align}
+%
+is fully general. So far we have used the hypothesis of stationarity by writing everything only as a function of \(r\).
+
+Recall the inverted Einstein equations: 
+%
+\begin{align}
+  \frac{1}{8 \pi G} \qty(T_{\mu \nu } - \frac{T}{2} g_{\mu \nu }) = R_{\mu \nu }
+\,.
+\end{align}
+%
+
+We want to solve these outside of our source: we look for \emph{vacuum solutions}. Then the equations are just \(R_{\mu \nu } =0\).
+A trivial solution to these is \(g_{\mu \nu } = \eta_{\mu \nu }\), but we will show that it is not the only one!
+As a matter of fact, we know that the solution to a differential equation is determined by the boundary conditions: in our case, the mass of the object which sits at the origin.
+The Minkowski metric respects these boundary conditions if \(M=0\). In general, it does not.
+
+
+
 \end{document}

@@ -83,7 +83,7 @@ This must then have been the case also in the matter dominated epoch, during whi
 
 In order to generate a baryon-antibaryon asymmetry we need \begin{enumerate}
     \item ?
-    \item \(C\) and \(CP\) violation;
+    \item \(C\) and \(CP\) violation (while \(CPT\) symmetry must hold for any well-behaved QFT);
     \item out-of-equilibrium processes.
 \end{enumerate}
 
@@ -95,5 +95,126 @@ The Hubble rate \(H = \dot{a} / a \) is also an inverse time: baryons and antiba
 
 When are particles actually coupled or decoupled?
 \(\Gamma \) can be calculated as \(\Gamma = n \expval{\sigma v}\), where \(n\) is the number density, \(v\) is the velocity of the particles, and \(\sigma \) is the cross section of the interaction.
+
+We need to distinguish the types of interactions we are dealing with.
+In general interactions are carried by gauge bosons. 
+Either they are massless (like the photon) or they are massive (like the the \(W^{\pm}\) and \(Z\) bosons, as long we are below the scale of electroweak symmetry breaking \(\sim \SI{e2}{GeV}\)).
+
+At larger energies than those, the weak interaction also becomes long-range.
+
+In the massless case, the cross-section is \(\sigma \sim \alpha^2 / T^2\), where \(g = \sqrt{4 \pi \alpha }\).
+
+In the massive case, for temperatures \(T \leq m_{x}\), the cross section is of the order \(\sigma \sim G_x^2 T^2\).
+
+There is an inversion in the \(T\) dependence between long and short range interactions.
+
+Typically \(G_x = \alpha / m_x^2\).  Then, \(\sigma \sim \alpha^2 T^2 / m_x^{4}\).
+
+This difference is because in general the formula is like 
+%
+\begin{align}
+  \sigma \sim \frac{T^{2}}{E^{4}}
+\,,
+\end{align}
+%
+and we either have \(E \sim m\) in the low-speed case, or \(E \sim T\) in the high-speed case.
+
+So, we know that \(\Gamma = n \expval{\sigma v}\). In the massless case this is something like \(\Gamma \sim T^3 \sigma \sim T^{3} \sim \alpha^2 T\) since \(T \sim 1/ a\).
+
+Then, we get 
+%
+\begin{align}
+  H = \sqrt{\frac{8 \pi G }{3}} g_{*}^{1/2} \qty(\frac{\pi^2}{30})^{1/2} T^2 \sim \frac{T^2}{m _{\text{pl}}}
+\,,
+\end{align}
+%
+since \(G \sim 1/m _{\text{pl}}^2\). Then, 
+%
+\begin{align}
+  \frac{\Gamma}{H} \sim \frac{\alpha^2 T m _{\text{pl}}}{T^2} \sim \alpha^2 m _{\text{pl}} \frac{1}{T}
+\,,
+\end{align}
+%
+so we have decoupling when \(T > \alpha^2 m _{\text{pl}}\).
+Essentially, at temperatures larger than \(T = \SI{e16}{GeV}\) this massless photon is decoupled.
+
+``Above the Planck epoch, even gravitational interactions are decoupled''.
+
+What about the massive interactions? We have \(\Gamma \sim T^2 G_x^2 T^2\), to compare with \(H \sim T^2/ m _{\text{pl}}\): we get 
+%
+\begin{align}
+  \frac{\Gamma}{H} \sim \frac{T^3 G_x^2}{T^2 / m _{\text{pl}}} \sim G_x^2 m _{\text{pl}} T^3 \leq 1
+\,,
+\end{align}
+%
+equivalently, \(T < m _{\text{pl}}^{-1/3} G_x^{-2/3}\).
+
+Suppose that we are considering the gravitational interaction: in that case, we get \(T < m _{\text{pl}}\) since \(G_x\) is related to \( G_N\) 
+
+\todo[inline]{What is the relation?}
+
+For the weak interaction, we have 
+%
+\begin{align}
+    T < \qty(\frac{m_x}{\SI{100}{GeV}})^{4/3} \SI{}{MeV}
+\,,
+\end{align}
+%
+which is why below \(\SI{1}{MeV}\) neutrinos are decoupled.
+
+Let us now consider the consequences of these decoupling conditions.
+First of all we look at the recombination of hydrogen.
+At very high temperatures, there are free electrons and free protons.
+Protons first appeared in the universe as non-relativistic, at \(T \sim \SI{1}{MeV}\) while \(m_p \sim \SI{1}{GeV}\).
+
+At a certain point, it becomes possible to create neutral H atoms from these free particles.
+We will use a special case of the Boltzmann formula, which governs this and many other phenomena: the Saha equation.
+
+The reaction is \(e + p \leftrightarrow H + \gamma \). We want to look at a density in phase space.
+We'd need all the scattering matrices, and all the phase space densities of the particles.
+The Saha equation is basically an ansatz at thermal and chemical equilibrium: \(\mu _e + \mu_p = \mu_H + \mu_\gamma \). The chemical potential \(\mu \) entered in the exponent of the FD and BE expressions.
+
+We know that \(\mu_{\gamma }=0\).
+At thermal equilibrium the number density of the electrons is: 
+%
+\begin{align}
+  n_e = g_e \qty(\frac{m_e T}{2 \pi })^{3/2} \exp(\frac{\mu _e - m_e }{T}) 
+\,,
+\end{align}
+%
+and an exactly analogous formula holds for \(n_p\) and \(n_H\): for protons we have 
+%
+\begin{align}
+    n_p = g_p \qty(\frac{m_p T}{2 \pi })^{3/2} \exp(\frac{\mu _p - m_p }{T}) 
+  \,.
+\end{align}
+Degeneracy is not an issue, since we are talking about cosmology.
+
+The number density of photons is given by 
+%
+\begin{align}
+  n_{\gamma } = \frac{2 \xi(3) T^3}{\pi^2}
+\,,
+\end{align}
+%
+
+The binding energy of the hydrogen is \(B=m_p+m_e-m_H=\SI{13.6}{eV}\). Instead of \(m_H\) we write \(+m_p+m_E-B\). So the number density of hydrogen atoms is given by: 
+%
+\begin{align}
+  n_H = g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu_p - \mu_e - m_p - m_e + B}{T})
+\,,
+\end{align}
+%
+and we can simplify things since \(m_p, m_H \ll m_e\), and substitute in the number densities for electrons and protons.
+We get approximately
+%
+\begin{align}
+  n_H = \frac{g_H}{g_e g_p} n_e n_p \qty(\frac{m_e T}{2 \pi })^{-3/2}\exp(B/T)
+\,,
+\end{align}
+%
+but the universe is locally and globally neutral: \(n_e = n_p\), and \(n_b = n_p + n_H\). 
+
+We will see that most of the hydrogen we produce will not be when the temperature is of the order of the binding energy, but much later.
 
 \end{document}

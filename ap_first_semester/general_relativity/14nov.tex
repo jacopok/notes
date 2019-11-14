@@ -33,6 +33,36 @@ Therefore, we have \(4^{3}\) equations of sums of derivatives of the metric whic
 As long as \(\Gamma^{\alpha }_{\beta \gamma } (g_{\alpha \beta , \gamma })\) is an invertible system, which is nontrivial to show.
 It is equivalent to \(\Gamma_{\alpha \beta , \gamma } (g_{\alpha \beta , \gamma })\) being invertible.
 
+The following code shows this invertibility: 
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+# linear transformation between
+# metric derivatives and Christoffel symbols
+M = np.zeros((4**3, 4**3))
+
+# three indices run from 0 to 3:
+# we incorporate them into one
+# from 0 to 4**3-1
+d = lambda i,j,k: 4**2*i+4*j+k
+
+# we populate the metric with the relevant coefficients,
+# starting from the formula for the metric
+# in terms of the Christoffel symbols
+# we neglect the 1/2 in order to have
+# less numerical noise, and a clearer view
+# of the fact that the determinant is nonzero
+for i in range(4):
+    for j in range(4):
+        for k in range(4):
+            M[d(i, j, k), d(i, j ,k)] += 1
+            M[d(i, j, k), d(i, k, j)] += 1
+            M[d(i, j, k), d(k, j, i)] += -1
+
+print(np.linalg.det(M))
+\end{lstlisting}
+
 Can the geodesics cross each other far from the starting point? \emph{Yes}, so the Riemann normal coordinates are only defined in a neighbourhood.
 
 Let us consider an example: Riemann normal coordinates around the north pole of a sphere.

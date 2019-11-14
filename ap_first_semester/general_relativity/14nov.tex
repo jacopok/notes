@@ -30,6 +30,8 @@ Since these lines are geodesics, they satisfy the geodesic equation:
 but we can insert the relation \(x^{\alpha } = \tau n^{\alpha }\) here, to get \(\Gamma^{\alpha }_{\beta \gamma } n^{\beta } n^{\gamma }=0\): but this can be written for any \(n^{\alpha }\), therefore we immediately get that all the Christoffel symbols vanish: \(\Gamma^{ \alpha }_{\beta \gamma } \equiv 0\). 
 
 Therefore, we have \(4^{3}\) equations of sums of derivatives of the metric which vanish: but the gradient of the metric only has \(4^{3}\) independent components, therefore the solution \(g_{\mu \nu , \alpha } \equiv 0\) is the only one.
+As long as \(\Gamma^{\alpha }_{\beta \gamma } (g_{\alpha \beta , \gamma })\) is an invertible system, which is nontrivial to show.
+It is equivalent to \(\Gamma_{\alpha \beta , \gamma } (g_{\alpha \beta , \gamma })\) being invertible.
 
 Can the geodesics cross each other far from the starting point? \emph{Yes}, so the Riemann normal coordinates are only defined in a neighbourhood.
 
@@ -92,6 +94,124 @@ A trivial solution to these is \(g_{\mu \nu } = \eta_{\mu \nu }\), but we will s
 As a matter of fact, we know that the solution to a differential equation is determined by the boundary conditions: in our case, the mass of the object which sits at the origin.
 The Minkowski metric respects these boundary conditions if \(M=0\). In general, it does not.
 
+A homework exercise will be to show that, denoting \(\dv*{}{r}\) with a prime: 
+%
+\begin{subequations}
+\begin{align}
+    R_{00} &= \frac{A''}{2B} - \frac{A' B'}{4B^2} - \frac{A^{\prime 2}}{4AB} + \frac{A'}{rB}  \\
+    R_{11} &= -\frac{A''}{2A} + \frac{A' B'}{4B^2} - \frac{A^{\prime 2}}{4A^2} + \frac{B'}{rB} \\
+    R_{22} &= 1 - \frac{1}{B} - \frac{r A' }{2 AB} + \frac{rB'}{2 B^2}  \\
+    R_{33} &= \sin^2 \theta  R_{22} \\
+    R_{ij} &= 0 \qquad \text{ if } i \neq j
+\,.
+\end{align}
+\end{subequations}
 
+If we compute \(BR_{00} + A R_{11}\) we get many simplifications:
+%
+\begin{align}
+  0 = A'B + AB' = (AB)'
+\,,
+\end{align}
+%
+therefore \(AB\) is a constant with respect to \(r\).
+
+Also, we can write \(A' / A = - B' / B\): we substitute it into \(R_{22}\): we get 
+%
+\begin{align}
+  0= 1 - \frac{1}{B} - \frac{r}{2B} \qty(\frac{B'}{B}) + \frac{rB'}{2B^2}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  0 = 1 - \frac{1}{B} + \frac{rB'}{2B^2}
+\,,
+\end{align}
+%
+which is first order in terms of \(B\). We can solve it by separating the variables.
+
+We get 
+%
+\begin{align}
+  \frac{\dd{r}}{r} = \frac{ \dd{B}}{B(1-B)}
+\,,
+\end{align}
+%
+from which we find that, if at \(r_{*}\) the variable \(B = B_{*}\), then 
+%
+\begin{align}
+    \int _{r_{*}}^{r}\frac{\dd{r}}{r} = 
+    \int _{B_{*}}^{B}  \frac{ \dd{B}}{B(1-B)}
+\,,
+\end{align}
+%
+where we can rewrite the term 
+%
+\begin{align}
+  \frac{1}{B(1-B)} = \frac{1}{B} + \frac{1}{1-B}
+\,.
+\end{align}
+
+So, 
+%
+\begin{align}
+  \log \frac{r}{r_{*}} = \log \frac{B}{B_{*}} - \log \frac{1-B}{1-B_{*}}
+\,,
+\end{align}
+%
+or, exponentiating: 
+%
+\begin{align}
+  \frac{r}{r_{*}} = \frac{B}{1-B} \frac{1-B_{*}}{B}
+\,,
+\end{align}
+%
+from which we can find \(B(r)\): first we write 
+%
+\begin{align}
+  \frac{1-B}{B} = \frac{1-B_{*}}{B} \frac{r_{*}}{r} = \frac{\gamma }{r}
+\,,
+\end{align}
+%
+where we collected the integration constants into \(\gamma \).
+
+So, 
+%
+\begin{align}
+  \frac{1}{B} = \frac{\gamma}{r} + 1 \implies B = \qty(1 + \frac{ \gamma }{r})^{-1}
+\,.
+\end{align}
+%
+and because of \(AB = k\) we also get 
+%
+\begin{align}
+  A = k \qty(1 - \frac{\gamma}{r})
+\,.
+\end{align}
+
+We are almost at the full solution: by continuity with the large-\(r\) limit, for which we have the Minkowski metric with \(A = B = 1\), we have that \(k=1\). Now we have 
+%
+\begin{align}
+  \dd{s^2} = - \qty(1 + \frac{\gamma }{r}) \dd{t^2} 
+  + \qty(1 + \frac{\gamma}{r}) \dd{r^2}
+  + r^2 \qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi^2})
+\,,
+\end{align}
+%
+and \(\gamma \) can only be found by continuity with the weak-field approximation: else, every value for it solves the equations. 
+We know that \(g_{00} = - (1+2 \Phi )\).
+In the weak-field limit we have \(\Phi = -GM/r\), so we identify \(\gamma = - 2GM\).
+
+\subsection{Gravitational redshift}
+
+Now we can do the exact calculation for the gravitational redshift:
+Alice, at \(r_A\), sends photons to Bob at \(r_B\). The motion of the photons need not be radial.
+Alice and Bob are not following geodesics, we consider them to be stationary in this metric.
+
+We know the metric to be independent of time: \(\xi^{\mu } = (1,\vec{0})\) is a Killing vector field.
+Light has momentum \(p^{\mu }\) and moves along a geodesic.
+We will use the relation \(p^{\mu } \xi_{\mu } = \const\) to solve our problem.
 
 \end{document}

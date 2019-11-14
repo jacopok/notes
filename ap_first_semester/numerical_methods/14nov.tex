@@ -3,7 +3,32 @@
 
 \section*{Thu Nov 14 2019}
 
-Not much to say today.
-TODO: insert new algorithms.
+\subsection{Gauss-Seidel}
+
+We can rewrite \(\sum _{j} A_{ij} x_{j} = b_i\) as 
+%
+\begin{align}
+  x_{i} = \frac{1}{A_{ii}} \qty(b_{i} - \sum _{j \neq i} A_{ij}x_{j}) 
+\,,
+\end{align}
+%
+and the algorithm works by starting with and \emph{ansatz}, updating it with this formula, and iterating.
+The update can be written more generally as 
+%
+\begin{align}
+    x_{i}^{n+1} = \frac{\omega }{A_{ii}} \qty(b_{i} - \sum _{j \neq i} A_{ij}x_{j}^{n}) + (1-\omega) x_{i}^{n} 
+  \,,
+  \end{align}
+%
+with the \emph{relaxation parameter} \(\omega \).
+
+A good choice for \(\omega \) after the \(5\)th iteration: 
+%
+\begin{align}
+  \omega _{\text{opt}} = \frac{2}{1 + \sqrt{1- (\Delta x^{k+p} / \Delta x^{k})^{1/p}}}
+\,,
+\end{align}
+%
+
 
 \end{document}

@@ -168,16 +168,123 @@ which are identities, therefore vertical lines are indeed geodesics in this hype
 
 \subsubsection{More solutions}
 
-Inserting the Christoffel symbols into the geodesic equations and dividing through by \(y\) we get the following system, in which we denote differentiation with respect to \(s\) by a dot: 
+I find the solution which follows quite ugly and unjustified, I have yet to find a geometric justification for these manipulations, which were derived by reverse-engineering the first integral.
+Anyhow, these manipulations work\dots
+
+We insert the Christoffel symbols into the geodesic equations and multiplying through by \(y\) we get the following system, in which we denote differentiation with respect to \(s\) by a dot: 
 %
 \begin{subequations}
 \begin{align}
-  \frac{\ddot{y}}{y} &= \qty(\frac{\dot{y}}{y})^2 - \qty(\frac{\dot{x}}{y})^2  \\
-  \frac{\ddot{x}}{y} &= 2 \frac{\dot{x}}{y} \frac{\dot{y}}{y} 
+  y \ddot{y} &= \dot{y}^2 - \dot{x}^2  \\
+  y \ddot{x} &= 2 \dot{x} \dot{y} 
 \,.
 \end{align}
 \end{subequations}
 
+Now, we will denote the derivative of \(y \) with respect to \(x\) as 
+%
+\begin{align}
+  y' = \dv[]{y}{x} = \frac{\dot{y}}{\dot{x}}
+\,.
+\end{align}
 
+We want to find a first integral. We start with the definition of \(y'\): 
+%
+\begin{align}
+  \dot{y} - y^{\prime } \dot{x} = 0
+\,,
+\end{align}
+%
+and add and subtract the quantity \(\dot{y} y^{\prime 2}\): 
+%
+\begin{align}
+  \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } - \dot{y} y^{\prime 2} =0
+\,,
+\end{align}
+%
+which can also be written as 
+%
+\begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step1}
+  \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } + \dot{y} y^{\prime 2} - 2 \dot{y} y^{\prime 2} = 0
+\,.
+\end{align}
+
+Now, we want to substitute in our equations of motion: we will need them in the form \(y \ddot{y} / \dot{x} = \dot{y} y^{\prime } - \dot{x}\) and \(y \ddot{x} / \dot{x} = 2 \dot{y}\).
+We recognize the LHS of both of these in \eqref{eq:hyperbolic-plane-geodesics-integral-step1} and plug them in: it becomes
+%
+\begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step2}
+  \dot{y} + \frac{y \ddot{y}}{\dot{x}} y^{\prime } + \dot{y} y^{\prime 2} - \frac{y \ddot{x}}{\dot{x}} y^{\prime 2} = 0
+\,.
+\end{align}
+
+We can recognize that the second derivative terms look similar to the derivative of \(y'\), which is:
+%
+\begin{align}
+  \dv[]{}{s} y^{\prime } 
+  = \frac{\ddot{y}}{\dot{x}} - \frac{\dot{y}}{\dot{x}
+  } \ddot{x}
+  = \frac{\ddot{y}}{\dot{x}} - y^{\prime } \ddot{x}
+\,,
+\end{align}
+%
+so equation \eqref{eq:hyperbolic-plane-geodesics-integral-step2} becomes:
+%
+\begin{align}
+  \dot{y} + \dot{y} y^{\prime 2} + y y^{\prime } \dv{y'}{s}=0
+\,,
+\end{align}
+%
+which is \(1/(2y)\) times the derivative of \(y^2 (y^{\prime 2} + 1)\), which comes out to be: 
+%
+\begin{align}
+  \frac{1}{2y}
+  \dv{}{s} \qty(y^2 (y^{\prime 2} + 1))
+  = \frac{1}{2y}\qty(2 y \dot{y} 
+  (y^{\prime 2} + 1)
+  + y^2 2 y^{\prime } \dv{}{s} y^{\prime })
+\,,
+\end{align}
+%
+exactly what we had before.
+
+So, \(y^2 (y^{\prime 2} + 1) = \const\), and we can call this constant \(R^2\) (which is \(1/A^2\) in the homework notation: I find this notation to be more suggestive).
+
+\subsubsection{Solving the equation}
+
+The equation \(y^2 (y^{\prime 2}+1) = R^2\) can be rewritten as 
+%
+\begin{align}
+  \dv{y}{x} = \pm \sqrt{\frac{R^2}{y^2} - 1}
+\,,
+\end{align}
+%
+which means that if we fix \(R\) the value of the derivative of the curve can only attain two opposite values. Do note that we can go from one branch to the other with the transformation \(x \rightarrow -x\), a mirror symmetry around some center.
+Then, we can just make the gauge choice \(y^{\prime }>0\) and integrate by separation of varibles: 
+%
+\begin{align}
+  \int \frac{y \dd{y}}{\sqrt{R^2-y^2}} = \int \dd{x}
+\,,
+\end{align}
+%
+which can be solved with the substitution \( y = R \sin(\theta )\), with \(\dd{y} = R \cos(\theta ) \dd{\theta }\). Inserting this, we find: 
+%
+\begin{align}
+  x - x_0  = \int \frac{R \sin\theta R \cos\theta  \dd{\theta }}{R \sqrt{1 - \sin^2 \theta }} 
+  = R \int \sin \theta  \dd{\theta } = R \cos \theta 
+\,,
+\end{align}
+%
+which can be squared to find \((x- x_0 )^2 = R^2 (1 - \cos^2 \theta ) = R^2 - y^2\), or 
+%
+\begin{align}
+  R^2 = (x-x_0  )^2 + y^2
+\,,
+\end{align}
+%
+the equation of a circle.
+We can then confirm that this solution also holds in the other branch, up to a change of integration constant, by rewriting \((x- x_0 )^2 = ((-x) - x_1 )^2\): this is solved by \(x_0 = - x_1 \). 
+
+Geometrically, we are looking at circles with origins on the \(x\) axis and radius \(R\). If \(y\) and \(R\) are fixed, then there are only two possible circles, which can be found by connecting a certain point at height \(y\) to the \(x\) axis with a segment of length \(R\).
+One can then see that the right halves of the circles we found can be found from the left halves by symmetry.
 
 \end{document}

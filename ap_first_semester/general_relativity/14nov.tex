@@ -29,11 +29,9 @@ Since these lines are geodesics, they satisfy the geodesic equation:
 %
 but we can insert the relation \(x^{\alpha } = \tau n^{\alpha }\) here, to get \(\Gamma^{\alpha }_{\beta \gamma } n^{\beta } n^{\gamma }=0\): but this can be written for any \(n^{\alpha }\), therefore we immediately get that all the Christoffel symbols vanish: \(\Gamma^{ \alpha }_{\beta \gamma } \equiv 0\). 
 
-Therefore, we have \(4^{3}\) equations of sums of derivatives of the metric which vanish: but the gradient of the metric only has \(4^{3}\) independent components, therefore the solution \(g_{\mu \nu , \alpha } \equiv 0\) is the only one.
-As long as \(\Gamma^{\alpha }_{\beta \gamma } (g_{\alpha \beta , \gamma })\) is an invertible system, which is nontrivial to show.
-It is equivalent to \(\Gamma_{\alpha \beta , \gamma } (g_{\alpha \beta , \gamma })\) being invertible.
-
-The following code shows this invertibility: 
+Therefore, we have \(4^{3}\) equations of sums of derivatives of the metric which vanish: but the gradient of the metric only has \(4^{3}\) independent components, therefore the solution \(g_{\mu \nu , \alpha } \equiv 0\) is the only one, as long as \(\Gamma^{\alpha }_{\beta \gamma } (g_{\alpha \beta , \gamma })\) is an invertible system, which is nontrivial to show.
+This invertibility is equivalent to the system \(2\Gamma_{\alpha \beta , \gamma } (g_{\alpha \beta , \gamma })\) being invertible. 
+The following code shows this: 
 
 \begin{lstlisting}[language=Python]
 import numpy as np
@@ -47,12 +45,9 @@ M = np.zeros((4**3, 4**3))
 # from 0 to 4**3-1
 d = lambda i,j,k: 4**2*i+4*j+k
 
-# we populate the metric with the relevant coefficients,
+# we populate the matrix with the relevant coefficients,
 # starting from the formula for the metric
 # in terms of the Christoffel symbols
-# we neglect the 1/2 in order to have
-# less numerical noise, and a clearer view
-# of the fact that the determinant is nonzero
 for i in range(4):
     for j in range(4):
         for k in range(4):

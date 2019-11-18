@@ -5,6 +5,81 @@
 
 \subsection{Sphere pole Riemann coordinates}
 
+Recall from section \ref{sec:spherical-surface-curvature} the spherical surface metric in the coordinates \((\theta,  \varphi )\): 
+%
+\begin{align}
+  g_{\mu \nu } = \left[\begin{array}{cc}
+  R^2 & 0 \\ 
+  0 & R^2 \sin^2 \theta 
+  \end{array}\right]
+\,,
+\end{align}
+%
+and the Christoffel symbols, which are all zero except for \(\Gamma^{0}_{11}= - \sin \theta \cos \theta \) and \(\Gamma^{1}_{01} = \Gamma^{1}_{10} = 1/ \tan \theta \).
+
+We can plug these into the geodesic equation \(u^{\mu } \nabla_{\mu } u^{\nu }\), which comes out to be 
+%
+\begin{subequations}
+\begin{align}
+  \ddot{\theta } &= + \dot{\varphi }^2 \sin \theta \cos \theta  \\
+  \ddot{\varphi } &= - 2 \frac{\dot{\varphi } \dot{\theta } }{\tan(\theta )} 
+\,,
+\end{align}
+\end{subequations}
+%
+for a trajectory \((\theta (s), \varphi (s))\) with velocity \((\dot{\theta }, \dot{\varphi })\): dots denote derivatives with respect to \(s\).
+
+Now, we want to check whether parallels and meridians are geodesics. First of all, we want to choose a parameter such that the velocity is of constant norm \(1\): the equation to satisfy is 
+%
+\begin{align}
+  R^2 \left[\begin{array}{cc}
+  \dot{\theta} & \dot{\varphi}
+  \end{array}\right]
+  \left[\begin{array}{cc}
+  1 & 0 \\ 
+  0 & \sin^2 \theta 
+  \end{array}\right]
+  \left[\begin{array}{c}
+  \dot{\theta} \\ 
+  \dot{\varphi}
+  \end{array}\right]
+  \equiv 1
+\,,
+\end{align}
+%
+or \(\dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta = R^{-2}\).
+Meridians have constant \(\varphi \): for them, then, \(\dot{\theta}^2 = R^{-2} \), so an appropriate parametrization is \((\theta(s), \varphi(s)) = (s/R, \varphi_0 )\).
+Parallels have constant \(\theta \): by an analogous line of reasoning, we parametrize them as \((\theta (s), \varphi (s) )= (\theta_0, s / R \sin\theta  )\). 
+
+One can readily check that for meridians both of the geodesic equations are identities, while for parallels the second one is an identity but the first reads \(0= \cos \theta  / \sin \theta \): it can only be satisfied if \(\theta = \pi /2\).
+This makes sense: geodesics on a sphere are great circles, and the only parallel which is a great circle is the equator. 
+
+\subsubsection{Riemann coordinates}
+
+The coordinates we wish to use are 
+%
+\begin{subequations}
+\begin{align}
+  x &= R \theta \cos \varphi   \\
+  y &= R \theta \sin \varphi 
+\,,
+\end{align}
+\end{subequations}
+%
+% whose tangent vectors at the north pole (i.e. \(\theta = 0\)) are:
+% %
+% \begin{subequations}
+% \begin{align}
+%   \dv[]{}{x} &= R \cos \varphi \dv[]{}{\theta } 
+%   - R \theta \sin \varphi \dv[]{}{\varphi } 
+%   = R \cos \varphi \dv[]{}{\theta } \\ 
+%   \dv[]{}{y} &= R \sin \varphi \dv[]{}{\theta } 
+%   + R \theta \cos \varphi \dv[]{}{\varphi }
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+
 \subsection{Schwarzschild metric curvature}
 
 \subsection{Schwarzschild geometry orbits}

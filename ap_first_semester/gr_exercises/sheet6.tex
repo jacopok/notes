@@ -97,7 +97,7 @@ The metric transforms as
 \,,
 \end{align}
 %
-so we need the inverse Jacobian, which is expressed in terms of the coordinates \(x^{\prime \mu } = \)
+so we need the inverse Jacobian, which is expressed in terms of the new coordinates \(x^{\prime \mu } = (x, y)\) and the old ones \(x^{\mu } = (\theta , \varphi )\):
 %
 \begin{align}
   \pdv{x^{\alpha }}{x^{\prime \mu }}
@@ -110,9 +110,188 @@ so we need the inverse Jacobian, which is expressed in terms of the coordinates 
 \,,
 \end{align}
 %
+so we get, using the expansion \(\sin^2\theta \sim \theta^2 - \theta^{4} /3 + O (\theta^{6})\) and the identification \(R^2\theta^2 = x^2+y^2\):
+%
+\begin{subequations}
+\begin{align}
+  g_{00}^{\prime } &= R^2 \qty(\pdv{x^{0}}{x^{\prime 0}})^2
+  + R^2 \sin^2 \theta \qty(\pdv{x^{1}}{x^{\prime 0}})^2  \\
+  &= \frac{x^2}{x^2+y^2} + R^2 \sin^2 \theta \frac{y^2}{x^{4} \qty(1 + (y/x)^2)}  \\
+  &=\frac{1}{x^2+y^2} \qty(x^2 + \frac{R^2 \sin^2\theta y^2}{x^2+y^2})  \\
+  &= 1 - \frac{y^2}{3R^2} + O((x^2+y^2)y^2)
+\,,
+\end{align}
+\end{subequations}
+%
+while for the off-diagonal elements \(g_{01}^{\prime } = g_{10}^{\prime }\): 
+%
+\begin{subequations}
+\begin{align}
+  g_{01}^{\prime } &= R^2 \pdv{x^{0}}{x^{\prime 0}} \pdv{x^{0}}{x^{\prime 1}} 
+  + R^2 \sin^2 \theta \pdv{x^{1}}{x^{\prime 0}} \pdv{x^{1}}{x^{\prime 1}}  \\
+  &= \frac{xy}{x^2+y^2} + R^2 \sin^2\theta \qty(- \frac{xy}{(x^2+y^2)^2})  \\
+  &= \frac{xy}{x^2+y^2} \qty(1 - \frac{R^2 \sin^2\theta }{x^2+y^2})  \\
+  &= \frac{xy}{x^2+y^2} \qty(\frac{(x^2+y^2)^2}{3R^2 (x^2+y^2)}) + O(x^2+y^2) \\
+  &= \frac{xy}{3R^2} + O(x^2+y^2)
+\,,
+\end{align}
+\end{subequations}
+%
+and lastly for the element \(g_{11}^{\prime }\): 
+%
+\begin{subequations}
+\begin{align}
+  g_{11}^{\prime } &=  R^2 \qty(\pdv{x^{0}}{x^{\prime 1}})^2
+  + R^2 \sin^2 \theta \qty(\pdv{x^{1}}{x^{\prime 1}})^2  \\
+  &= \frac{y^2}{x^2+y^2} + R^2 \sin^2 \theta \frac{1}{x^{2} \qty(1 + (y/x)^2)^2}  \\
+  &= \frac{1}{x^2+y^2} \qty(y^2 +  R^2 \sin^2\theta \frac{x^2}{x^2+y^2})  \\
+  &= 1 - \frac{x^2}{3R^2} + O ((x^2+y^2) x^2)
+  \,.
+\end{align}
+\end{subequations}
 
+At the north pole \(x=y=0\), so there \(g^{\prime }_{\mu \nu }= \delta_{\mu \nu }\), and all the first derivatives calculated there vanish since there are no first order terms.
+
+\subsubsection{Scalar curvature calculation}
+
+The expression we have for the scalar curvature in a LIF is given in equation \eqref{eq:ricci-scalar-LIF}.
+
+We can evaluate it for \(g_{\mu \nu }^{\prime }\). Do note  that the non-differentiated metric can be identified with the identity, and derivatives with upper and lower indices are the same. So, we get:
+%
+\begin{align}
+  R _{\text{Ric}} = \tensor{g}{_{\alpha \nu , }^{\alpha \nu }} - \delta^{\mu \nu } \square g_{\mu \nu }
+\,,
+\end{align}
+%
+where the only nonvanishing terms are: 
+%
+\begin{align}
+  \tensor{g}{_{\alpha \nu,}^{\alpha \nu }} = 2 \pdv[2]{}{x}{y} \qty(\frac{xy}{3R^2}) = \frac{2}{3R^2}
+\,
+\end{align}
+%
+and what was denoted as the Dalambertian before is just the Laplacian: \(\square = \delta^{\mu \nu }\partial_{\mu } \partial_{\nu }= \partial^2_{xx} + \partial^2_{yy}\):
+%
+\begin{align}
+  \delta^{\mu \nu } \square g_{\mu \nu }
+  = \partial_{xx}^2 g_{11} + \partial_{yy}^2 g_{00}
+  = - 2 \frac{2}{3R^2} 
+\,,
+\end{align}
+%
+so in the end we get 
+%
+\begin{align}
+  R _{\text{Ric}} = \frac{2}{3R^2} + \frac{4}{3R^2} = \frac{2}{R^2}
+\,,
+\end{align}
+%
+which means that the curvature decreases as the radius increases, as we might expect.
 
 \subsection{Schwarzschild metric curvature}
+
+\subsubsection{Christoffel symbols}
+
+The computation is tedious and not particularly enlightening: we start from the metric
+\footnote{There is a typo in the homework assignment: the coefficients are written as functions of time.}
+%
+\begin{align}
+  \dd{s^2} = - A(r) \dd{t^2}
+  + B(r) \dd{r^2}
+  + r^2 \qty(\dd{\theta^2} + \sin^2\theta \dd{\varphi^2})
+\,,
+\end{align}
+%
+and compute the Christoffel symbols with the usual formula: 
+%
+\begin{align}
+  \Gamma^{\mu }_{\nu \rho } =
+  \frac{1}{2} g^{\mu \alpha }\qty(g_{\alpha \nu , \rho }
+  + g_{\alpha \rho, \nu } - g_{\nu \rho , \alpha })
+\,,
+\end{align}
+%
+where fortunately, since the metric is diagonal, we only need to compute one term in the sum (that is, \(\mu \equiv \alpha \) always), and the two indices in the metric must be equal in order for the term to not vanish. 
+
+The metric only depends on \(\theta \) and \(r\), so any derivatives with respect to \(t\) and \(\varphi \) are to be discarded. 
+
+With this out of the way, we start computing the \(40\) independent symbols and find that the nonzero ones are (denoting differentiation with respect to \(r\) with a prime): 
+%
+\begin{subequations}
+\begin{align}
+  \Gamma^{t}_{rt} &= \frac{A^{\prime }}{2A}  &
+  \Gamma^{r}_{rr} &= \frac{B^{\prime }}{2B}  \\
+  \Gamma^{r}_{tt} &= \frac{A^{\prime }}{2B}  &
+  \Gamma^{\theta }_{r \theta } &= \frac{1}{r}  \\
+  \Gamma^{r}_{\theta \theta } &= -\frac{r}{B}  &
+  \Gamma^{\varphi }_{r \varphi } &= \frac{1}{r}  \\
+  \Gamma^{r}_{\varphi \varphi } &= - \frac{r}{B} \sin^2 \theta  &
+  \Gamma^{\theta }_{\varphi \varphi } &= - \sin \theta \cos \theta  \\
+  \Gamma^{\varphi }_{\theta \varphi } &= \frac{\cos \theta }{\sin \theta }
+\,.
+\end{align}
+\end{subequations}
+
+\subsubsection{Ricci component}
+
+We want to compute \(R^{\mu }_{t \mu t }\), and in order to do so we must find the three components \(R^{i}_{tit}\) with varying \(i\) and sum them (here \(i = r, \theta,\varphi \)), since \(R^{t}_{ttt}\) vanishes by antisymmetry. 
+
+In general we have: 
+%
+\begin{subequations}
+\begin{align}
+  R^{i}_{tit} &= 2 \qty( \Gamma^{i}_{[t| t, |i]}  + \Gamma^{\alpha }_{t[t} \Gamma^{i}_{i] \alpha })  \\
+  &= \Gamma^{i}_{tt, i} - \cancelto{}{\Gamma^{i}_{it,t}}
+  + \Gamma^{\alpha }_{tt} \Gamma^{i}_{i\alpha }
+  - \Gamma^{\alpha }_{ti} \Gamma^{i}_{t\alpha }
+\,.
+\end{align}
+\end{subequations}
+
+Note that the index \(i\) is consider not to be summed here, we are writing a formula for the components of the Riemann tensor; although the expression holds when summing over \(i\) as well. 
+
+So, we can compute this for the specific values of \(i\): for \(i=r\) we have 
+%
+\begin{subequations}
+\begin{align}
+  R^{r}_{trt} &= \Gamma^{r}_{tt, r} + \Gamma^{\alpha}_{tt} 
+  \Gamma^{r}_{r \alpha } - \Gamma^{\alpha }_{tr} \Gamma^{r}_{t \alpha }  \\
+  &= \qty(\frac{A^{\prime }}{2B})^{\prime } + \frac{A^{\prime }}{2B} \frac{B^{\prime }}{2B} - \frac{A^{\prime }}{2A} \frac{A^{\prime }}{2B}  \\
+  &= \frac{A^{\prime }}{4B} \qty(\frac{A^{\prime }}{B} + \frac{B^{\prime }}{B} + \frac{A^{\prime}}{A})
+  \,,
+\end{align}
+\end{subequations}
+%
+for \(i= \theta \) instead 
+%
+\begin{subequations}
+\begin{align}
+  R^{\theta }_{t \theta  t} &= \cancelto{}{\Gamma^{\theta}_{tt, \theta}} + \Gamma^{\alpha}_{tt} 
+  \Gamma^{\theta}_{\theta \alpha } - \cancelto{}{\Gamma^{\alpha }_{t\theta} \Gamma^{i}_{t \alpha }}  \\
+  &= \frac{A^{\prime }}{2B} \frac{1}{r}
+  \,,
+\end{align}
+\end{subequations}
+%
+and for \(i = \varphi \):  
+%
+\begin{subequations}
+  \begin{align}
+    R^{\varphi }_{t \varphi t} &= \cancelto{}{\Gamma^{\varphi}_{tt, \varphi}} + \Gamma^{\alpha}_{tt} 
+    \Gamma^{\varphi}_{\varphi \alpha } - \cancelto{}{\Gamma^{\alpha }_{t\varphi} \Gamma^{i}_{t \alpha }}  \\
+    &= \frac{A^{\prime }}{2B} \frac{1}{r}
+    \,,
+  \end{align}
+\end{subequations}
+%
+so our final solution is 
+%
+\begin{align}
+  R_{00} = R^{i}_{0i0} = \frac{A^{\prime }}{2B} 
+  \qty(\frac{A^{\prime }}{B} + \frac{B^{\prime }}{B} + \frac{A^{\prime}}{A} + \frac{4}{r})
+\,.
+\end{align}
+%
 
 \subsection{Schwarzschild geometry orbits}
 

@@ -1,4 +1,194 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Tue Nov 19 2019}
+
+Yesterday we introduced the CAK formalism. 
+
+We consider a spherically symmetric, stationary problem, and we assume that the star looks pointlike to us. 
+Also, we assume that the process is isothermal: \(\forall r: T = \const \). 
+
+The momentum conservation equation is 
+%
+\begin{align}
+v \dv{v}{r} = - \frac{GM}{r^2} - \frac{1}{r} \dv{P}{r} 
++ g_{c} + g_{L} 
+\,,
+\end{align}
+%
+where we distinguished the continuum acceleration \(g_{c}\) and the line acceleration \(g_{L}\). 
+
+We assume that the gas follows the ideal gas law: 
+%
+\begin{align}
+  P = \frac{R \rho T}{\mu }
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+  - \frac{1}{\rho } \dv{P}{r} = - \frac{1}{\rho }
+  \dv{}{r} \qty(\frac{R T \rho }{\mu })
+  = - \frac{1}{\rho } \frac{RT}{\mu } \dv{\rho }{r}
+\,,
+\end{align}
+%
+where we can recognize the square speed of sound \(a^2 = RT / \mu \). Using the continuity equation then we get 
+%
+\begin{align}
+  - \frac{1}{\rho } \dv{P}{r} = a^2 \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r})
+\,.
+\end{align}
+
+For the continuum and line acceleration we use the CAK formalism: 
+%
+\begin{align}
+  g_{c} = \frac{GM}{r^2} \Gamma_{e}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  g_{L} = \frac{\kappa_{e}}{c} \frac{L}{4 \pi r^2} k t^{-\alpha } s^{ \delta }
+\,,
+\end{align}
+%
+so in the end we get: 
+%
+\begin{align}
+    v \dv{v}{r} = - \frac{GM}{r^2} + a^2 \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) 
+    + \frac{GM}{r^2} \Gamma_{c} + \frac{\kappa_{e}}{c} \frac{L}{4 \pi r^2} k t^{-\alpha } s^{ \delta }     
+\,.
+\end{align}
+
+Now recall 
+%
+\begin{align}
+  t = C^{\prime } \rho \dv{r}{v} = C^{\prime } \qty(r^2 v \dv{v}{r})^{-1}
+\,,
+\end{align}
+%
+where the constant \(C^{\prime } = \kappa_{e} \sqrt{2 k_B T _{\text{eff}} / m_H}\) encodes all the physical constants.
+
+We plug this into the momentum conservation equation and multiply by \(r^2\): 
+%
+\begin{align}
+    v r^2 \dv{v}{r} =
+    - GM (1 - \Gamma_{e})
+    + a^2 r^2 \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) 
+    + C \qty(r^2 v \dv{v}{r})^{\alpha } 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+  C = \frac{\kappa_{e}}{c} \frac{L}{4 \pi} k \qty(\kappa_e \sqrt{\frac{2 k_B T _{\text{eff}}}{m_H}} \frac{\dot{M}}{4 \pi })^{-\alpha } \qty(\frac{\num{e11} \rho }{m_H W })^{ \delta }
+\,. 
+\end{align}
+
+Also, we can bring a term to the RHS: we get 
+%
+\begin{align}
+    \qty(1 - \frac{a^2}{v^2}) v r^2 \dv{v}{r} =
+    - GM (1 - \Gamma_{e})
+    + 2a^2 r 
+    + C \qty(r^2 v \dv{v}{r})^{\alpha } 
+\,.
+\end{align}
+%
+
+Now, we make a simplifying assumption: we neglect the gas pressure. This is reasonable at large distances from the star.
+It also can be shown that the physical main points we will find are the same as we would find if we did consider the gas pressure. 
+Since the speed of sound is \(a^2 = \pdv*{P}{\rho }\) neglecting the pressure gradient means \(a=0\): removing  the terms with \(a\) we get 
+%
+\begin{align}
+  r^2 v \dv{v}{r} - C \qty(r^2 v \dv{v}{r})^{\alpha } 
+  = - GM (1 - \Gamma_{e}) = \const
+\,,
+\end{align}
+%
+and if we denote \(r^2  v \dv*{v}{r} = D\), the equation can be written as 
+%
+\begin{align}
+  D - C D^{\alpha } = - GM \qty(1 - \Gamma_e)
+\,.
+\end{align}
+
+Our parameters here are \(D\) and \(C \propto \dot{M}^{-\alpha }\).
+
+The system is equivalent to \(CD^{\alpha } = D + GM(1-\Gamma_{e})\): so the solutions, when plotted with respect to \(D\), are the intersections between a slope-1 straight line and a powerlaw. 
+
+There are values of \(C\) such that there is no solution. 
+
+We select the value of \(C\) such that the system has a unique solution --- we do this because, inspecting the equation more closely, we find that it is also a critical-point equation, and if we want a monotonic velocity gradient we must have the solution passing through the critical point.
+
+So we differentiate \(D - C D^{\alpha } + GM (1-\Gamma_{e})\) with respect to \(D\), set it equal to \(0\) and find \(C = D^{1-\alpha } / \alpha \).
+
+Plugging the solution in we find a differential equation: 
+%
+\begin{align}
+  r^2 v \dv{v}{r} = D = \frac{\alpha }{1 - \alpha } GM_{*} (1-\Gamma_{e})
+\,,
+\end{align}
+%
+which can be solved by separation of variables.
+
+The solution is 
+%
+\begin{align}
+  v(r) = \qty(\frac{\alpha }{1-\alpha } 2GM_{*} \qty(1-\Gamma_{e} ) \qty(\frac{1}{R_{*}} - \frac{1}{r}))^{1/2}
+  = v_{ \infty } \sqrt{1 - \frac{R_{*}}{r}}
+\,. 
+\end{align}
+%
+this is a \(\beta \)-type law, with \(\beta = \num{.5}\) and 
+%
+\begin{align}
+  v_{ \infty } = \sqrt{\frac{\alpha }{1-\alpha } 2GM_{*} \qty(\frac{1-\Gamma_{e} }{R_{*}})}
+  = v _{\text{esc}} \sqrt{\frac{\alpha }{1 - \alpha }}
+\,,
+\end{align}
+%
+since the escape velocity (at the photosphere) is 
+%
+\begin{align}
+  v _{\text{esc}} = \sqrt{\frac{2 G M_{*} (1 - \Gamma_{e })}{R_{*}}}
+\,,
+\end{align}
+%
+and we include \(\Gamma_{e} \) in the escape velocity since there is electron scattering there.
+
+This gives us a rather complicated but well-defined expression for the mass loss rate. 
+
+The main dependences are \(\dot{M} \propto L_{*}^{ 1/ \alpha } M_{*}^{(\alpha - 1 ) / \alpha }\).
+
+\todo[inline]{Copy formula for \(\dot{M}\).}
+
+For Main Sequence stars \(L_{*} \sim M_{*}^{2.5}\), so we can turn the luminosity dependence into a mass dependence: \(\dot{M} \sim M^{(3.5 \alpha  - 1 ) / \alpha }\).
+For \(\alpha = 0.52\) we get approximately \(\dot{M} \sim M^{1.58}\).
+
+Now, we talk about the corrections due to the finite size of a star. Near the star, we cannot approximate it as a point source.
+This is in general hard to do, the result is: we get a lower mass loss rate, and a higher terminal velocity. 
+The line acceleration formula picks up a correction factor \(D_f\), which is derived geometrically. 
+
+\todo[inline]{Copy formula for \(D_f\).}
+
+The correction factor can be both below and above unity, depending on the distance from the star and on \(\beta \). 
+As we'd expect in the \(r \rightarrow \infty \) limit we have \(\beta \rightarrow 1\). 
+
+Typically, the mass loss rate variation due to this correction is similar to multiplying it by \(1/2\), while the escape velocity is approximately multiplied by 2. 
+
+Phenomena which are not accounted for by this model are: 
+\begin{enumerate}
+    \item X-ray emission;
+    \item superionization (beyond the sixth line);
+    \item discrete absorption components \& variability.
+\end{enumerate}
+
+In general these winds are unstable: they will feel shocks. 
+These can be simulated: the time-averaged \(v_{ \infty }\) and \(\dot{M}\) are similar to those found in stationary models. 
+
 \end{document}

@@ -187,92 +187,92 @@ Then, the conserved quantity can be rewritten as
 \,,
 \end{align}
 %
-which we can call \(1/R\), with \(R = y \sqrt{y^{\prime 2}+1}\). 
+which the exercise sheet calls \(A\) but I will call it \(1/R\): so \(R = y \sqrt{y^{\prime 2}+1}\). 
 
-\subsubsection{Old, ugly solution}
+% \subsubsection{Old, ugly solution}
 
-Before finding the aforementioned derivation of the first integral, here is what I wrote. 
+% Before finding the aforementioned derivation of the first integral, here is what I wrote. 
 
-I find the solution which follows quite ugly and unjustified, I have yet to find a geometric justification for these manipulations, which were derived by reverse-engineering the first integral.
-Anyhow, these manipulations work\dots
+% I find the solution which follows quite ugly and unjustified, I have yet to find a geometric justification for these manipulations, which were derived by reverse-engineering the first integral.
+% Anyhow, these manipulations work\dots
 
-We insert the Christoffel symbols into the geodesic equations and multiplying through by \(y\) we get the following system, in which we denote differentiation with respect to \(s\) by a dot: 
-%
-\begin{subequations}
-\begin{align}
-  y \ddot{y} &= \dot{y}^2 - \dot{x}^2  \\
-  y \ddot{x} &= 2 \dot{x} \dot{y} 
-\,.
-\end{align}
-\end{subequations}
+% We insert the Christoffel symbols into the geodesic equations and multiplying through by \(y\) we get the following system, in which we denote differentiation with respect to \(s\) by a dot: 
+% %
+% \begin{subequations}
+% \begin{align}
+%   y \ddot{y} &= \dot{y}^2 - \dot{x}^2  \\
+%   y \ddot{x} &= 2 \dot{x} \dot{y} 
+% \,.
+% \end{align}
+% \end{subequations}
 
-Now, we will denote the derivative of \(y \) with respect to \(x\) as 
-%
-\begin{align}
-  y' = \dv[]{y}{x} = \frac{\dot{y}}{\dot{x}}
-\,.
-\end{align}
+% Now, we will denote the derivative of \(y \) with respect to \(x\) as 
+% %
+% \begin{align}
+%   y' = \dv[]{y}{x} = \frac{\dot{y}}{\dot{x}}
+% \,.
+% \end{align}
 
-We want to find a first integral. We start with the definition of \(y'\): 
-%
-\begin{align}
-  \dot{y} - y^{\prime } \dot{x} = 0
-\,,
-\end{align}
-%
-and add and subtract the quantity \(\dot{y} y^{\prime 2}\): 
-%
-\begin{align}
-  \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } - \dot{y} y^{\prime 2} =0
-\,,
-\end{align}
-%
-which can also be written as 
-%
-\begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step1}
-  \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } + \dot{y} y^{\prime 2} - 2 \dot{y} y^{\prime 2} = 0
-\,.
-\end{align}
+% We want to find a first integral. We start with the definition of \(y'\): 
+% %
+% \begin{align}
+%   \dot{y} - y^{\prime } \dot{x} = 0
+% \,,
+% \end{align}
+% %
+% and add and subtract the quantity \(\dot{y} y^{\prime 2}\): 
+% %
+% \begin{align}
+%   \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } - \dot{y} y^{\prime 2} =0
+% \,,
+% \end{align}
+% %
+% which can also be written as 
+% %
+% \begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step1}
+%   \dot{y} + (\dot{y} y^{\prime } - \dot{x}) y^{\prime } + \dot{y} y^{\prime 2} - 2 \dot{y} y^{\prime 2} = 0
+% \,.
+% \end{align}
 
-Now, we want to substitute in our equations of motion: we will need them in the form \(y \ddot{y} / \dot{x} = \dot{y} y^{\prime } - \dot{x}\) and \(y \ddot{x} / \dot{x} = 2 \dot{y}\).
-We recognize the LHS of both of these in \eqref{eq:hyperbolic-plane-geodesics-integral-step1} and plug them in: it becomes
-%
-\begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step2}
-  \dot{y} + \frac{y \ddot{y}}{\dot{x}} y^{\prime } + \dot{y} y^{\prime 2} - \frac{y \ddot{x}}{\dot{x}} y^{\prime 2} = 0
-\,.
-\end{align}
+% Now, we want to substitute in our equations of motion: we will need them in the form \(y \ddot{y} / \dot{x} = \dot{y} y^{\prime } - \dot{x}\) and \(y \ddot{x} / \dot{x} = 2 \dot{y}\).
+% We recognize the LHS of both of these in \eqref{eq:hyperbolic-plane-geodesics-integral-step1} and plug them in: it becomes
+% %
+% \begin{align} \label{eq:hyperbolic-plane-geodesics-integral-step2}
+%   \dot{y} + \frac{y \ddot{y}}{\dot{x}} y^{\prime } + \dot{y} y^{\prime 2} - \frac{y \ddot{x}}{\dot{x}} y^{\prime 2} = 0
+% \,.
+% \end{align}
 
-We can recognize that the second derivative terms look similar to the derivative of \(y'\), which is:
-%
-\begin{align}
-  \dv[]{}{s} y^{\prime } 
-  = \frac{\ddot{y}}{\dot{x}} - \frac{\dot{y}}{\dot{x}
-  } \ddot{x}
-  = \frac{\ddot{y}}{\dot{x}} - y^{\prime } \ddot{x}
-\,,
-\end{align}
-%
-so equation \eqref{eq:hyperbolic-plane-geodesics-integral-step2} becomes:
-%
-\begin{align}
-  \dot{y} + \dot{y} y^{\prime 2} + y y^{\prime } \dv{y'}{s}=0
-\,,
-\end{align}
-%
-which is \(1/(2y)\) times the derivative of \(y^2 (y^{\prime 2} + 1)\), which comes out to be: 
-%
-\begin{align}
-  \frac{1}{2y}
-  \dv{}{s} \qty(y^2 (y^{\prime 2} + 1))
-  = \frac{1}{2y}\qty(2 y \dot{y} 
-  (y^{\prime 2} + 1)
-  + y^2 2 y^{\prime } \dv{}{s} y^{\prime })
-\,,
-\end{align}
-%
-exactly what we had before.
+% We can recognize that the second derivative terms look similar to the derivative of \(y'\), which is:
+% %
+% \begin{align}
+%   \dv[]{}{s} y^{\prime } 
+%   = \frac{\ddot{y}}{\dot{x}} - \frac{\dot{y}}{\dot{x}
+%   } \ddot{x}
+%   = \frac{\ddot{y}}{\dot{x}} - y^{\prime } \ddot{x}
+% \,,
+% \end{align}
+% %
+% so equation \eqref{eq:hyperbolic-plane-geodesics-integral-step2} becomes:
+% %
+% \begin{align}
+%   \dot{y} + \dot{y} y^{\prime 2} + y y^{\prime } \dv{y'}{s}=0
+% \,,
+% \end{align}
+% %
+% which is \(1/(2y)\) times the derivative of \(y^2 (y^{\prime 2} + 1)\), which comes out to be: 
+% %
+% \begin{align}
+%   \frac{1}{2y}
+%   \dv{}{s} \qty(y^2 (y^{\prime 2} + 1))
+%   = \frac{1}{2y}\qty(2 y \dot{y} 
+%   (y^{\prime 2} + 1)
+%   + y^2 2 y^{\prime } \dv{}{s} y^{\prime })
+% \,,
+% \end{align}
+% %
+% exactly what we had before.
 
-So, \(y^2 (y^{\prime 2} + 1) = \const\), and we can call this constant \(R^2\) (which is \(1/A^2\) in the homework notation: I find this notation to be more suggestive).
+% So, \(y^2 (y^{\prime 2} + 1) = \const\), and we can call this constant \(R^2\) (which is \(1/A^2\) in the homework notation: I find this notation to be more suggestive).
 
 \subsubsection{Solving the equation}
 

@@ -1,4 +1,306 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 21 2019}
+
+Let's start the show. 
+
+The effective potential equation is 
+%
+\begin{align}
+  \frac{1}{2} \qty(\dv{r}{t})^2 + V _{\text{eff}} (r)
+  = E = \frac{e^2-1}{2} 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+  V _{\text{eff}}(r) 
+  = - \frac{GM}{r} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3}
+\,,
+\end{align}
+%
+and the timelike Killing vector gives us \(e\), while the azimuthal Killing vector gives us \(l\). 
+
+We can satisfy the equation with \(V _{\text{eff}} \equiv E\) (eq1), and \(\dv*{r}{t}\) (eq2). These are circular orbits; the equations are, explicitly, 
+%
+\begin{align}
+  -\frac{GM}{l} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3} = \frac{e^2-1}{2} & \text{eq1}
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \frac{GM}{r^2} - \frac{l^2}{r^3} + \frac{3GMl^2}{r^{4}}=0
+  & \text{eq2}
+\,.
+\end{align}
+%
+
+Let us compute \(\text{eq1} + r \qty(1 - r/2GM) \text{eq2}\): after some algebra, we get 
+%
+\begin{align}
+  \frac{l}{e} = \sqrt{GMr} \qty(1 - \frac{2GM}{r})^{-1}
+\,.
+\end{align}
+
+The angular velocity \(\Omega \) is defined as a derivative with respect to coordinate time: 
+%
+\begin{align}
+  \Omega = \dv{\varphi }{t}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \Omega = \frac{\dv{\varphi }{\tau }}{\dv{t}{\tau }}
+  = \frac{l/r^2}{e \qty(1 - \frac{2GM}{r})^{-1}}
+  = \frac{\sqrt{GMr} \qty(1- \frac{2GM}{r})^{-1} \frac{1}{r^2}}{\qty(1 - \frac{2GM}{r})^{-1}} = \frac{\sqrt{GMr}}{r^2}
+\,,
+\end{align}
+%
+so \(\Omega^2= GM/ r^3\) or \(\Omega^2 r = GM / r^2\), a relation which is the same as in Newtonian physics. 
+
+Now, review of the equation for \(u = r^{-1}\). When we perturbed it, we got a harmonic oscillator. Our equation then is solved by cosinusoidal waves \(u = u_c (1+\cos(\omega \varphi ))\), with \(\omega = \sqrt{1 - 6GMu_c}\): 
+%
+\begin{align}
+  r(\varphi) = \frac{r_C}{1 + A \cos(\sqrt{1 - \frac{6GM}{r_c}}\varphi )}
+\,,
+\end{align}
+%
+so \(\Delta \varphi \) in one orbit is 
+%
+\begin{align}
+  2 \pi \qty(1 + \frac{3GM}{r_c})
+\,,
+\end{align}
+%
+and then \(\delta \varphi  = 6 \pi GM / r_c\). But \(r_c = l^2/ GM\): so we get 
+%
+\begin{align}
+  \delta \varphi = 6 \pi \qty(\frac{GM}{l})^2
+\,. 
+\end{align}
+%
+
+We can plug numbers into this: we know that \(G = \SI{6.67408e-11}{m^3 kg^{-1} s^{-2}}\), and our \(l\) has units of \(\SI{}{m^2s^{-1}}\), so we need to insert a \(c\): the calculation then is 
+%
+\begin{align}
+  \delta \varphi = 6 \pi \times \frac{180 \times 3600}{\pi }  \qty(\frac{G M_{\odot}}{r _{\text{merc}} v _{\text{merc}} c}) \times \frac{\SI{100}{yr}}{\SI{.241}{yr}} \approx 43''
+\,,
+\end{align}
+%
+where the radius and velocity of the orbit of Mercury must be \emph{both} calculated at the perihelion, or at the aphelion, or one can take the average velocity and the semimajor axis of the ellipse. 
+The factor \(\SI{100}{yr} / \SI{.241}{yr}\) was inserted to account for the number of orbits of Mercury in a century.
+
+\begin{lstlisting}[language=Python]
+from numpy import rad2deg, pi
+from scipy.constants import G, c
+
+sun_mass = 2e30
+mercury_orbital_velocity = 4.7e4
+mercury_semimajor_axis = 57.9e9
+mercury_angular_momentum = mercury_orbital_velocity * mercury_semimajor_axis
+mercury_period_yr = .241
+delta_phi = 6*pi*(G*sun_mass/mercury_angular_momentum/c)**2
+
+print(rad2deg(delta_phi) * 3600 * 100/mercury_period_yr)
+
+\end{lstlisting}
+
+\todo[inline]{Finish}
+
+\subsection{Radial orbit}
+
+We treat motion with \(l=0\) of an object which is at rest at infinity. 
+
+The equation becomes 
+%
+\begin{align}
+  \frac{1}{2} \qty(\dv{r}{\tau })^2 - \frac{GM}{r} = \frac{e^2 - 1}{2}
+\,,
+\end{align}
+%
+and if the object is at rest at infinity we can calculate \(e\) for \(r \rightarrow \infty\): 
+%
+\begin{align}
+  e = \qty(1 - \frac{2GM}{r}) \dv{t}{\tau } = 1
+\,. 
+\end{align}
+
+Then, our equation is 
+%
+\begin{align}
+\frac{1}{2} \qty(\dv{r}{\tau })^2 - \frac{GM}{r} =0
+\,. 
+\end{align}
+%
+
+The time component of the velocity is 
+%
+\begin{align}
+  u^{t} = \dv{t}{\tau } = \frac{e}{1 - \frac{2GM}{r}} = \frac{1}{1 - \frac{2GM}{r}} 
+\,,
+\end{align}
+%
+the radial component is given by our equation of motion: 
+%
+\begin{align}
+  \dv{r}{\tau } = \pm \sqrt{\frac{2GM}{r}} = - \sqrt{\frac{2GM}{r}} 
+\,,
+\end{align}
+%
+where we choose the minus sign since we are falling in. The components \(v^{\theta }\) and \(v^{\varphi }\) are zero since the motion is radial.  
+
+Let us compute \(\vec{u} \cdot \vec{u}\): we get 
+%
+\begin{align}
+  g_{00} \qty(u^{0})^2 + g_{11} \qty(u^{1})^2
+  &= - \qty(1 - \frac{2GM}{r})\qty(1 - \frac{2GM}{r})^{-2}
+  + \qty(1 - \frac{2GM}{r})^{-1} \frac{2GM}{r}  \\
+  &= \qty(1 - \frac{2GM}{r})^{-1} \qty(-1 + \frac{2GM}{r})= -1 
+\,.
+\end{align}
+%
+
+We can integrate 
+%
+\begin{align}
+  \dv{r}{\tau } = - \sqrt{\frac{2GM}{r}}
+\,,
+\end{align}
+%
+we get 
+%
+\begin{align}
+  \int _{0}^{r} \sqrt{r} \dd{r} =- \int _{0}^{\tau } \sqrt{2GM} \dd{\tau }   
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  r(\tau ) = \qty(\frac{3}{2})^{2/3} \sqrt[3]{2GM} \sqrt[3]{- \tau } 
+\,.
+\end{align}
+
+Do keep in mind that we set \(\tau =0\) at \(r=0\). 
+It seems like nothing bad really happens at \(r=2GM\). 
+This solution only makes sense for negative \(\tau \). 
+
+At \(r = 2GM\), a finite \(\Delta \tau \) corresponds to an infinite \(\Delta t\) since \(\dv*{t}{\tau }\) diverges  there. 
+
+So, the coordinates \(t\) and \(r\) seem like a bad choice at the horizon: they vary infinitely for a finite time as measured in the frame of the infalling particle. 
+
+The horizon is a \emph{coordinate singularity}. 
+
+The 4-velocity for a particle going \emph{outward} is: 
+%
+\begin{align}
+  u^{\alpha } = \left[\begin{array}{c}
+    \qty(1 - \frac{2GM}{r})^{-1} \\ 
+  + \sqrt{\frac{2GM}{r}} \\ 
+  0 \\ 
+  0
+  \end{array}\right]
+\,,
+\end{align}
+%
+\emph{if it reaches radial infinity at rest}. 
+
+What is the escape velocity? What is  the three-velocity as measured by an observer at rest at constant \(r\)?
+
+The 4-momentum of the particle is \(p^{\alpha } = m u^{\alpha }\), while the observer's 4-velocity will be 
+%
+\begin{align}
+  u _{\text{obs}}^{\alpha } = \left[\begin{array}{c}
+  \frac{1}{\sqrt{-g_{00} }} \\ 
+  0 \\ 
+  0 \\ 
+  0
+  \end{array}\right]
+\,.
+\end{align}
+
+The energy measured by the observer is \(E = - \vec{p} \cdot \vec{u}_{\text{obs}}\). It is 
+%
+\begin{align}
+  E = - g_{00} u^{0} _{\text{obs}} p^{0}
+  = \qty(1 - \frac{2GM}{r}) \qty(1 - \frac{2GM}{r})^{-1/2}
+  m \qty(1 - \frac{2GM}{r})^{-1}
+  = \frac{m}{\sqrt{1 - \frac{2GM}{r}}}
+\,. 
+\end{align}
+%
+
+However, any observer sees \(E = m \gamma \), so they identify \(\gamma = 1 / \sqrt{1 - \frac{2GM}{r}}\). 
+
+Then, the escape velocity is \(\sqrt{\frac{2GM}{r}}\), just like the Newtonian case. 
+
+Now, we will look at the motion of light: by how much is it deflected? 
+
+We still have the Killing vector \(\xi^{\mu } = (1, \vec{0})\): so 
+%
+\begin{align}
+  - \xi \cdot u = e = \qty(1 - \frac{2GM}{r}) \dv{t}{\lambda } 
+\,
+\end{align}
+%
+is constant, and from \(\xi^{\mu }= (\vec{0}, 1)\) we have 
+%
+\begin{align}
+  \xi \cdot u =  l =
+  r^2 \dv{\varphi }{\lambda }
+\,,
+\end{align}
+%
+where \(\lambda \) is the parameter of the light trajectory, and we set \(\theta = \pi /2\). 
+
+The square modulus of the light's velocity is zero, so 
+%
+\begin{align}
+  0 =
+  - \qty(1 - \frac{2GM}{r}) \qty(\frac{e}{1-\frac{2GM}{r}})^2
+  + \qty(1 - \frac{2GM}{r})^{-1} \qty(\dv{r}{\lambda })^2 + r^2 \qty(\frac{l}{r^2})
+\,. 
+\end{align}
+
+This can be rewritten as 
+%
+\begin{align}
+  0= - \frac{e^2}{l^2} + \frac{1}{l^2} \qty(\dv{r}{\lambda })^2 + \frac{1}{r^2} \qty(1 - \frac{2GM}{r})
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+  \frac{1}{l^2} \qty(\dv{r}{\lambda })^2 + W _{\text{eff}}(r) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+where \(b^2 = l^2 / e^2\) and 
+%
+\begin{align}
+  W _{\text{eff}} (r) = \frac{1}{r^2} \qty(1 - \frac{2GM}{r})
+\,.
+\end{align}
+
+A note: \(\lambda \) is a parameter, but we can do affine transformations to it: \(\lambda \rightarrow a \lambda + b\). Actually we can do any \(\lambda' = \lambda' (\lambda )\) which is monotonic. 
+We can check that all physical quantities which appear in the equation are invariant, since all the factors \(\dv*{\lambda ' }{\lambda }\) cancel. 
+
+Also, the equation is even in \(l\), since it must be invariant under \(\varphi \rightarrow - \varphi \) (which corresponds to \(P\) symmetry).
+Then, we choose \(l\) to be positive as our gauge.
+
+At \(r = 3GM\) we have a maximum of \(W _{\text{eff}}\), which attains the value \(1 / 27 G^2M^2\) there.
+Since it is a maximum, the orbit is unstable. 
+
+If a photon approaches the BH with energy \(1/ b^2\) larger than \(W _{\text{eff}}(3GM)\) then it ``bounces back'': \(r\) decreases, there is a minimum \(r\) and then \(r\) increases. 
+
+The critical equation is \(b^{-2} > (27 G^2M^2)\), which means \(l > \sqrt{27} GM e\). It is actually a critical \emph{angular momentum}.
+The parameter \(e \) is actually \(\hbar \omega / c\) at infinity. 
+
 \end{document}

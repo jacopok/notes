@@ -75,4 +75,139 @@ The decouplig temperature for HDM is larger than the temperature at which they b
 
 For CDM, instead, the decoupling temperature is \emph{smaller} than the temperature at which they become relativistic. 
 
+Now, we discuss the Boltzmann equation: there is an operator acting in phase space, the Liouville operator, which is equal to the collision operator.
+%
+\begin{align}
+  \mathbb{L} [f] = \mathbb{C} [f]
+\,,
+\end{align}
+%
+where all the scattering operators live on the RHS. 
+
+We start with a Newtonian description: the phase space has position, momentum and time as coordinates, and on it we define a density function \(f(\vec{q}, \vec{p}, t)\). 
+
+The Einstein equations are blind to the momentum distribution, since \(T_{\mu \nu }\) does not depend on the momentum. We can say that all of the momentum has been marginalized. 
+
+We define the operator 
+%
+\begin{align}
+  \hat{\mathbb{L}} = \frac{D}{Dt} &= \pdv{}{t} + \dv{\vec{x}}{t} \cdot \nabla_x + \dv{\vec{p}}{t} \cdot \nabla_p   \\
+  &= \pdv{}{t} + \vec{v} \cdot \nabla_x + \frac{\vec{F}}{m} \cdot \nabla_p 
+\,. 
+\end{align}
+
+In GR, we geometrize the gravitational force: it is included in the inertial motion of the particles. 
+
+The relativistic version of this is 
+%
+\begin{align}
+  \hat{\mathbb{L}} = p^{\alpha } \partial_{\alpha } - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }}
+\,.
+\end{align}
+%
+
+This is because \(p^{\alpha } = \dv*{x^{\alpha }}{\lambda }\) satisfies the geodesic equation: 
+%
+\begin{align}
+  \dv{p^{\alpha }}{\lambda } + \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma }=0
+\,,
+\end{align}
+%
+or \(\frac{Dp^{\alpha }}{Dt } =0\). We can then write down the Christoffel bit of the geodesic equation instead of the derivative \(\dv*{p^{\alpha }}{\lambda }\). This is because, \emph{on shell}: 
+%
+\begin{align}
+  g^{\alpha \beta } p_{\alpha } p_{\beta } = m^2
+\,. 
+\end{align}
+
+We want to describe the \emph{abundance} of dark matter, in phase space: the number of DM particle per EM-interacting particle. 
+
+We then make the Liouville operator explicit, with the Christoffel symbols of the RW metric. Acting on \(f\), we get 
+%
+\begin{align}
+  \hat{\mathbb{L}}  = p^{0} \partial_t f - \frac{\dot{a}}{a} \abs{\vec{p}}^2 \pdv{f}{E}
+\,,
+\end{align}
+%
+which we will not prove. 
+
+The derivative with respect to the momentum must be \(\partial_{p^{0}}\),
+
+\todo[inline]{because of isotropy?}
+
+the Christoffel symbols of RW are 
+%
+\begin{align}
+  \Gamma^{0}_{\beta \gamma } = \frac{\dot{a}}{a} \delta_{\beta \gamma }
+\,.
+\end{align}
+%
+Recall the definition of the number density 
+%
+\begin{align}
+  n(t) = \frac{g}{(2\pi )^3} \int  \dd[3]{\vec{p}} f(\abs{\vec{p}}, t) 
+\,,
+\end{align}
+%
+so in the end the equation becomes: 
+%
+\begin{align}
+  \hat{\mathbb{L}} = \dot{n} + 3 \frac{\dot{a}}{a} n 
+\,. 
+\end{align}
+%
+
+Conventionally we divide by \(p^{0}\): we get for the Boltzmann equation: 
+%
+\begin{align}
+  \pdv{f}{t} - \frac{\dot{a}}{a } \frac{p^2}{E} \pdv{f}{E} = \frac{1}{E} \hat{\mathbb{C}} [f]
+\,.
+\end{align}
+
+Now we integrate in \(\dd[3]{\vec{p}}\). We get 
+%
+\begin{align}
+  \pdv{n}{t} - \frac{\dot{a}}{a } \int  \dd[3]{\vec{p}} \frac{p^2}{E} \dv{f}{E} = \frac{g }{(2\pi )^3} \int  \dd[3]{p} \frac{1}{E} \mathbb{C} [f]  
+\,.
+\end{align}
+%
+More properly, we are doing \(\mathbb{L} \expval{f}\). 
+
+We manipulate: 
+%
+\begin{align}
+  \int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} 
+  &= 2 \int \dd[3]{p} p^2 \pdv{f}{E^2} \\
+  = 2 \int \dd[3]{p} p^2 \pdv{f}{p^2} 
+  &= \int \dd[3]{p} p \pdv[]{f}{p} \\
+  = 2 \pi \int_{0}^{ \infty } \dd{p} p^3 \pdv{f}{p} 
+  &= -3 \int \dd[3]{p} f
+\,.
+\end{align}
+%
+
+Here, we integrated by parts in the second to last step, and set to zero the boudary term \(4 \pi p^3 f\), calculated from 0 to infinity, since at \(0\) we have \(p=0\), and at (momentum) infinity we have \(f=0\).
+
+So, we can see that the LHS is equal to \(\dot{n} + 3 \dot{a}n/a \): so we find 
+%
+\begin{align}
+  \dot{n} + 3 \frac{\dot{a}}{a} n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{1}{E} \hat{\mathbb{C}} [f]
+\,.
+\end{align}
+
+This is the cosmological version of the Boltzmann equation. 
+
+We model the RHS as something like 
+%
+\begin{align}
+  \hat{\mathbb{C}}[f] = \Psi - \expval{\sigma v } n^2
+\,,
+\end{align}
+%
+where we have \(\Gamma_A = \expval{\sigma v} n\) times \(n\), where \(\Gamma \) is the rate of annihilation. 
+
+At equilibrium the LHS is equal to zero: so we can write \(\Psi = \expval{\sigma v} n^2 _{\text{eq}}\), and the RHS becomes \(\expval{\sigma v} \qty(n^2 _{\text{eq}} - n^2)\).
+
+
+
 \end{document}

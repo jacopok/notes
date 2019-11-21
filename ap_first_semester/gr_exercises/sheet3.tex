@@ -191,7 +191,7 @@ which are two coupled differential equations; we can make them explicit and subs
 %
 so we can write this linear system like: 
 %
-\begin{equation}
+\begin{equation}\label{diffeqes3}
   \partial_{1} \left[\begin{array}{c}
   V^{0} \\ 
   V^{1}
@@ -234,6 +234,11 @@ This means that our vector is rotating clockwise with unit angular velocity in t
 
 Specifically, when \(\theta = \pi /2\) we get \(V^{\mu }=(1, 0)\): this has the same modulus as \((0,1/R)\) since we compute lengths with respect to the metric of our space, as \(\norm{V}^2 = V^{\mu } V^{\nu } g_{\mu \nu }\).
 
+Another way to solve \eqref{diffeqes3} is to explicit from the second equation $V^0=-r\partial_1V^1$ and plug it into the second, so that it becomes
+\begin{equation}
+\partial_1(-r\partial_1V^1)=V^1,
+\end{equation}
+which leads to the same result.
 \subsubsection{Curved space: spherical surface}
 
 Now our curve is \(x^{\mu } (\theta ) = (\theta , 0)\) in the spherical coordinates \(x^{\mu } = (\theta, \varphi )\). The metric is the one given in \eqref{eq:spherical-metric}, the Christoffel symbols are the ones given in \eqref{eq:spherical-christoffel}.

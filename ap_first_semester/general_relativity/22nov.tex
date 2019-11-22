@@ -1,4 +1,362 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Nov 22 2019}
+
+We found the equation 
+%
+\begin{align}
+  \frac{1}{l^2} \qty(\dv{r}{\lambda })^2 + W _{\text{eff}}(r) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+  W _{\text{eff}} = \frac{1}{r^2} \qty(1 - \frac{2GM}{r})
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+  b^2 = \frac{l^2}{e^2}
+\,,
+\end{align}
+%
+\(l\) and \(e\) being the integrals corresponding to the Killing vectors of time translations and azimuthal angle rotations. 
+
+Now, we want to give the interpretation of \(b\) as the impact parameter. 
+We consider a BH at the origin of the \(x, y\) axes, and a photon approaching parallel to the \(x\) axis with impact parameter \(d\). The impact parameter is the distance between the two lines: the trajectory of the photon far away from the BH and the line parallel to the trajectory and passing through the BH. 
+
+The parameter 
+%
+\begin{align}
+  \dv{\varphi }{t} = \underbrace{\dv{r}{t}}_{-1} \dv{\varphi }{r} = - \qty(-\frac{d}{r^2})
+\,,
+\end{align}
+%
+where we used a small angle approximation: \(\varphi \approx d/r\), which can be differentiated with respect to \(r\). 
+So 
+%
+\begin{align}
+  b = \frac{l}{e} = \frac{r^2 \dv*{\varphi }{\lambda }}{\dv*{t}{\lambda }} = r^2 \dv{\varphi }{t} = d 
+\,,
+\end{align}
+%
+which means that \(b=d\): the ratio of \(l\) to \(e\) is the impact parameter. 
+
+So, the photon interacts with the BH and the angle of deflection of the path compared to a straight path is denote as \(\delta \varphi \). 
+The total deflection angle is \(\Delta \varphi  = \pi + \delta \varphi \). 
+
+The paramter \(l\) is 
+%
+\begin{align}
+  l = r^2 \dv{\varphi }{\lambda } 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \dv{}{\lambda } = \frac{l}{r^2} \dv{}{\varphi }
+\,.
+\end{align}
+
+This allows us to change variables in our 1D equation, and we get 
+%
+\begin{align}
+\frac{1}{l^2} \frac{l^2}{r^2} \qty(\dv{r}{\varphi })^2 + \frac{1}{r^2}\qty(1 - \frac{2GM}{r}) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+so if we change variables to \(u = r^{-1}\), with 
+%
+\begin{align}
+  \dv{r}{\varphi } = -\frac{1}{u^2} \dv{u }{\varphi }
+\,,
+\end{align}
+%
+we  get 
+%
+\begin{align}
+  u^{4} u^{-4} \qty(\dv{u}{\varphi } )^2+ u^2 \qty(1-2GMu) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+and then, differentiating, we find 
+%
+\begin{align}
+  2 \dv{u}{\varphi } \dv[2]{u}{\varphi } + 2 u \dv{u}{\varphi } - 6GM u^2 \dv{u}{\varphi }= 0
+\,,
+\end{align}
+%
+and we can simplify as long as \(\dv*{u}{\varphi } \neq 0\), which only fails at one point. So in the end our equation is 
+%
+\begin{align}
+  \dv[2]{u}{\varphi } + u = 3GMu^2
+\,.
+\end{align}
+%
+
+We solve it perturbatively. 
+If \(GM=0\), there is no BH and we have a straight line: the impact parameter is constant and equal to  \(b = r \sin(\varphi )\), therefore 
+%
+\begin{align}
+  u = \frac{1}{b} \sin(\varphi )
+\,,
+\end{align}
+%
+is the most general solution to the harmonic oscillator which satisfies the boundary conditions. 
+So, we hypothesize that our solution satisfies 
+%
+\begin{align}
+  u (\varphi ) = \frac{1}{b} \qty(\sin(\varphi ) + W(\varphi ))
+\,,
+\end{align}
+%
+where \(W\) is small. 
+
+Then, we insert this: 
+%
+\begin{align}
+  -\frac{1}{b} \sin(\varphi ) + \frac{1}{b} \dv[2]{W}{\varphi } + \frac{1}{b} W \approx 3GM \frac{\sin^2(\varphi )}{b}
+\,,
+\end{align}
+%
+but since the zeroth order equation is satisfied we find: 
+%
+\begin{align}
+  \dv[2]{W}{\varphi } + W \approx \frac{3GM}{b} \sin^2(\varphi )
+\,. 
+\end{align}
+
+Our ansatz is then: 
+%
+\begin{align}
+  W = A + B \sin^2 \varphi 
+\,,
+\end{align}
+%
+which looks like it might solve the equation. Its second derivative is 
+%
+\begin{align}
+  \dv[2]{W}{\varphi } = 2B \qty(\cos^2 \varphi  - \sin^2 \varphi ) = 2B - 4B \sin^2\varphi 
+\,.
+\end{align}
+
+Inserting this we get:
+%
+\begin{align}
+  2B - 4B \sin^2\varphi + A + B \sin^2\varphi 
+  = \frac{3GM}{b} \sin^2\varphi 
+\,,
+\end{align}
+%
+which implies \(2B+A = 0\) and \(-3B = 3GM/b\). Then, 
+%
+\begin{align}
+  W = \frac{2GM}{b} - \frac{GM}{b} \sin^2\varphi 
+  = \frac{2GM}{b} \qty(1 - \frac{\sin^2\varphi}{2} )
+\,
+\end{align}
+%
+solves the perturbed equation. 
+We can see that our condition of \(W \ll 1\) is actually the physically meaningful \(GM \ll b\), or the impact parameter being much larger than the Schwarzschild radius. 
+
+Our complete solution is 
+%
+\begin{align}
+  u (\varphi ) = \frac{1}{b} \qty(\sin \varphi + \frac{2GM}{b} \qty(1 - \frac{\sin^2\varphi}{2}))
+\,,
+\end{align}
+%
+and we are interested in the asymptotic past and future, which correspond to \(u =0\). 
+Now, \(\varphi _{\text{in}}= 0\) and \(\varphi _{\text{out}} = \pi\) will not be a solution anymore. However, the deflection is small so we write the solution as \(\varphi _{\text{in}} = \epsilon _{\text{in}}\) and \(\varphi _{\text{out}} = \pi + \epsilon _{\text{out}}\).
+We substitute these in to the equation \(u = 0\): 
+%
+\begin{align}
+  0 = \sin(\epsilon _{\text{in}}) + \frac{2GM}{b}
+\,,
+\end{align}
+%
+or \(\epsilon _{\text{in}} \approx - 2GM/b\), since the deflection is small. 
+
+For \(\epsilon _{\text{out}}\) we will have 
+%
+\begin{align}
+  0= \sin(\pi + \epsilon _{\text{out}}) + \frac{2GM}{b} \approx - \epsilon _{\text{out}} + \frac{2GM}{b}
+\,,
+\end{align}
+%
+so \(\delta \varphi = 2 \varphi _{\text{in}} = 2 \varphi _{\text{out}} = 4GM/b\). 
+
+This was one of the first tests of GR by Sir Eddington in 1919: during an eclipse he saw a shift in the apparent position of the stars. reinserting \(c\) we find that we must divide \(4GM/b\) by \(c^2\). 
+Our \(b\) is approximately the radius of the Sun: the calculation is
+\begin{lstlisting}[language=Python]
+from scipy.constants import *
+sun_mass = 2e30
+sun_radius = 696e6
+rad2arcsec = 3600 * 180 / pi
+4*G*sun_mass/c**2 /sun_radius * rad2arcsec
+\end{lstlisting}
+
+For the rest of today, we will talk about the Schwarzschild horizon: recall the line element 
+%
+\begin{align}
+  \dd{s^2} = - \qty(1- \frac{2GM}{r}) \dd{t^2}
+  + \qty(1 - \frac{2GM}{r})^{-1} \dd{r^2} 
+  + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+%
+
+It is useful to plot light cones in order to understand the structure of the spacetime. 
+We restrict ourselves to radial motion of light. So, we have 
+%
+\begin{align}
+  0 = - \qty(1- \frac{2GM}{r}) \dd{t^2}
+  + \qty(1 - \frac{2GM}{r})^{-1} \dd{r^2} 
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+  \dv{t}{r} = \pm \qty(1 - \frac{2GM}{r})^{-1}
+\,.
+\end{align}
+%
+
+The light cones become slimmer and slimmer as we approach the horizon, they are straight lines at \(r = 2GM\): the photon appears to cover less and less \(\dd{r}\) for a fixed \(\dd{t}\) as it approaches the horizon. 
+Massive particles are even slower. 
+Let us integrate this relation: 
+%
+\begin{align}
+  \int_0^t \dd{t} = - \int_{r_0}^{r(t)} \frac{\dd{r}}{1 - \frac{2GM}{r}} 
+\,,
+\end{align}
+%
+which comes out, by a separation of fractions, to be 
+%
+\begin{align}
+  t = r_0 - r(t) + 2GM \log \qty(r_0 - 2GM) - 2GM \log \qty(r(t) - 2GM)
+\,,
+\end{align}
+%
+which diverges as \(r(t)\) approaches \(2GM\). 
+
+What do we really mean by \(t\)? 
+An observer which is far away and at rest has \(g_{\mu \nu } = \eta_{\mu \nu }\), and \(t = \tau \): \(t\) is the proper time, as measured on the clock of an observer who is far away. 
+They will measure the photon as going slower and slower, and becoming redder and redder. 
+
+Let us neglect Doppler redshift, which is due to motion. 
+The formula for gravitational redshift is 
+%
+\begin{align}
+  f _{\text{obs}} = f _{\text{emit}} \sqrt{\frac{- g_{00} (\text{emit})}{-g_{00} (\text{obs})}}
+\,.
+\end{align}
+%
+
+In our case we have 
+%
+\begin{align}
+  f _{\text{obs}} = f _{\text{emit}} \sqrt{1 - \frac{2GM}{r}}
+\,,
+\end{align}
+%
+which approaches zero as \(r \rightarrow 2GM\). 
+We see the infalling observer becoming redder and ultimately freezing. 
+
+We should use different coordinates to describe the infalling observer who passes through the event horizon. 
+
+First of all, we discuss Minkowski spacetime as seen by an accelerating observer: Rindler spacetime and the Riddler horizon. 
+
+Recall the exercise in sheet 2, about an accelerating observer: we now consider an observer moving with the position law 
+%
+\begin{align}
+  x(t) = \frac{1}{\kappa } \sqrt{1 + \kappa^2t^2}
+\,,
+\end{align}
+%
+(as opposed to the homework, we remove the constant added to this position).
+Like in the homework we compute the proper time for the observer: 
+%
+\begin{align}
+  \dd{s^2} = - \dd{t^2} \qty(1 - \qty(\dv{x}{t})^2)
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \dd{\tau} = \frac{ \dd{t}}{\sqrt{1 + \kappa^2t^2}}
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+t = \frac{1}{\kappa } \operatorname{sinh} (\kappa \tau )
+    \qquad 
+\tau  = \frac{1}{\kappa } \operatorname{arcsinh} (\kappa \tau )
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+  x = \frac{1}{\kappa } \cosh(\kappa \tau )
+\,.
+\end{align}
+%
+
+We want a coordinate system in which 
+\begin{enumerate}
+    \item the observer is at constant spatial position;
+    \item where, up to a constant, the time is equal to the proper time.
+\end{enumerate}
+
+Our change of variable is 
+%
+\begin{align}
+  \begin{cases}
+      t = \rho \sinh \eta  \\
+      x = \rho \cosh \eta 
+  \end{cases}
+\,.
+\end{align}
+%
+
+the observer is at fixed spatial coordinate \(\rho_{*} = 1 / \kappa \), and the proper time measured is \(\tau = \eta / \kappa = \eta \rho_{*}\). 
+
+Let us consider a family of observers at different spatial locations in the new frame: each has a constant acceleration, this means varying \(\kappa \) or \(\rho \).
+
+If instead we vary \(\eta \) we have: 
+%
+\begin{align}
+  \frac{t}{x} = \tanh \eta \implies 
+  \eta = \tanh^{-1} \qty(\frac{t}{x})
+\,,
+\end{align}
+%
+and we can see that since \(\tanh 0 = 0 \) we have that the \(t=0\) axis has \(\eta = 0\), while the lightspeed observers are at \(\eta = \pm \infty\). 
+
+These coordinates cover one quadrant of Minkowski spacetime. 
+The line element in these new coordinates is 
+%
+\begin{align}
+  \dd{s^2} &= - \dd{t^2} + \dd{x^2}   \\
+  &= - \qty(\dd{\rho^2} \sinh \eta  + \rho \cosh \eta \dd{\eta })^2
+  + \qty( \dd{\rho^2} \cosh \eta + \rho \sinh \eta \dd{\eta })^2  \\
+  &= - \rho^2 \dd{\eta^2} + \dd{\rho^2}
+\,.
+\end{align}
+%
+
+This is \emph{Rindler geometry}. 
+
+If we have an observer staying at \(x_0 >0\), and there is a Rindler observer, then after a time \(x_0\) the observer exits the quarter of the plane covered by the Rindler coordinates: if event \(A\) is at \((0, x_0 )\), and \(B\) is at \((x_0 , x_0 )\) then the \(\eta \) of event \(A\) is zero, while the \(\eta \) of event \(B\) is infinite. 
+
 \end{document}

@@ -1,0 +1,168 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 7}
+
+\subsection{Photons travelling in the Schwarzschild metric}
+
+\subsubsection{A different proof for the conservation of the component of the velocity of a geodesic along a Killing vector field}
+
+Here I present a different proof to what was done in the lectures for the fact that the component of the 4-velocity along the Killing vector field is conserved. 
+If the metric does not depend on the coordinate \(\widetilde{\alpha }\), then \(\partial_{\widetilde{\alpha }} g_{\mu \nu } = 0\). So, let us differentiate covariantly the vector \(\xi_{\mu } = g_{\mu \nu } \delta^{\nu}_{\widetilde{\alpha }}\).
+It will be apparent later that differentiating the lower-index vector field gives us the interesting property.
+We get 
+%
+\begin{align}
+  \nabla_{\mu } \xi_{\nu } =
+  g_{\nu \sigma } \nabla_{\mu } \xi^{\sigma }
+  =  g_{\nu \sigma }
+  \qty(\cancelto{}{\partial_{\mu } \xi^{\sigma }} + \Gamma^{\sigma }_{\mu \rho } \xi^{\rho })
+  = \Gamma_{\nu \mu \widetilde{\alpha }}
+\,,
+\end{align}
+%
+since the only component which survives the contraction with \(\xi \) is the one along \(\widetilde{\alpha} \); also, we lowered an index of the Christoffel symbols with the metric. 
+
+The explicit expression for the lower indices Christoffel symbols is 
+%
+\begin{align}
+  \Gamma_{\nu \mu \widetilde{\alpha }}
+  = \frac{1}{2} \qty(\cancelto{}{g_{\mu \nu , \widetilde{\alpha }}} +
+  g_{\mu \widetilde{\alpha }, \nu }
+  - g_{\mu \widetilde{\alpha }, \nu })
+\,,
+\end{align}
+%
+since by hypothesis any derivative of the metric along \(\widetilde{\alpha}\) is zero. So, we can directly see that the object \(\nabla_{\mu } \xi_{\nu }\) is antisymmetric in its indices: this can be written as 
+%
+\begin{align}
+  \nabla_{(\mu } \xi_{\nu )} = 0
+\,,
+\end{align}
+%
+and is called \emph{Killing's equation}. We have shown that is equivalent to the metric not depending on the coordinate \(x^{\widetilde{\alpha}}\).
+
+Now, we can quickly prove the conservation a component of the 4-velocity of a geodesic along the Killing vector field: we just need to differentiate \(u^{\mu } \xi_{\mu }\) with respect to the arc parameter. 
+Recall that geodesics are defined by the equation 
+%
+\begin{align}
+ a^{\mu } =  \dv[]{}{s} u^{\mu } = u^{\nu } \nabla_{\nu } u^{\mu } = 0 
+\,.
+\end{align}
+%
+
+We find 
+%
+\begin{align}
+  u^{\nu }\nabla_{\nu }\qty(u^{\mu } \xi_{\mu })
+  = u^{\nu } u^{\mu } \nabla_{\nu } \xi_{\mu } + \xi_{\mu } u^{\nu } \nabla_{\nu } u^{\mu } = 0
+\,,
+\end{align}
+%
+where both terms are zero: the first because it is the contraction of an antisymmetric object with a symmetric one, and the second one because of the geodesic equation. 
+
+\subsubsection{Conserved quantities in Schwarzschild motion}
+
+The Schwarzschild metric is given by 
+%
+\begin{align}
+  g_{\mu \nu } = \left[\begin{array}{cccc}
+  -(1-\frac{2GM}{r}) & 0 & 0 & 0 \\ 
+  0 & (1-\frac{2GM}{r})^{-1} & 0 & 0 \\ 
+  0 & 0 & r^2 & 0 \\ 
+  0 & 0 & 0 & r^2 \sin^2\theta 
+  \end{array}\right]
+\,
+\end{align}
+%
+in the coordinates \((t, r, \theta , \varphi )\). The vector fields \(\xi_{(t)}^{\mu } = (1, \vec{0})\) and \(\xi_{(\varphi )}^{\mu } = (0,0,0,1)\) in these coordinates are Killing vector fields, since the metric does not depend on \(t\) or \(\varphi \). 
+
+So, the following quantities are conserved in geodesic motion parametrized as \(x^{\mu }(\lambda )\): \footnote{There is a typo in the exercise sheet: a \(G\) is missing in the definition of \(e\).}
+%
+\begin{align}
+  e = -u^{\mu } g_{\mu \nu } \xi^{\nu }_{(t)}
+  = -u^{t} g_{tt } \times 1
+  = \dv{t}{\lambda } \qty(1 - \frac{2GM}{r})
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+  l = u^{\mu } g_{\mu \nu } \xi^{\nu }_{(\varphi )}
+  = u^{\varphi } g_{\varphi \varphi } \times 1
+  = \dv{\varphi }{\lambda } r^2 \sin^2\theta 
+\,,
+\end{align}
+%
+which for motion on the \(xy\) plane, for which \(\theta = \pi /2\), reduces to \(l = r^2 \dv*{\varphi }{\lambda }\).
+
+\subsubsection{Photons escaping a black hole}
+
+The equation of motion can be derived from the normalization of the photon's four velocity: The equation \(u^{ \mu } u_{\mu }= 0 \) can be  written as 
+%
+\begin{align}
+    \qty(\dv{t}{\lambda })^2 g_{tt} +
+    \qty(\dv{r}{\lambda })^2 g_{rr} +
+    \qty(\dv{\theta }{\lambda })^2 g_{\theta \theta } +
+    \qty(\dv{\varphi }{\lambda })^2 g_{\varphi \varphi } = 0
+\,,
+\end{align}
+%
+but the term \(\dv*{\theta }{\lambda }\) is zero if we assume the motion to be in the \(xy \) plane, while the velocity components along \(t\) and \(\varphi \) can be written in terms of the integrals of motion: \(\dv*{t}{\lambda } = e \qty(1 - 2GM/r)^{-1}\) and \(\dv*{\varphi }{\lambda } = l r^{-2}\). So, we find 
+%
+\begin{align}
+  - \qty(1 - \frac{2GM}{r})^{-2+1} e^2 + \qty(1 - \frac{2GM}{r})^{-1} \qty(\dv{r}{\lambda })^2 + l^2 r^{-4} r^2 = 0
+\,,
+\end{align}
+%
+we divide through by \(-g_{tt}\) and find: 
+%
+\begin{align}
+    -e^2 + \qty(\dv{r}{\lambda })^2+ \frac{l^2}{r^2} \qty(1 - \frac{2GM}{r}) = 0
+    \,,
+\end{align}
+%
+or, dividing through by \(l\):
+%
+\begin{align}
+    -\frac{e^2}{l^2} + \frac{1}{l^2}\qty(\dv{r}{\lambda })^2+ \frac{1}{r^2} - \frac{2GM}{r^3} = 0
+\,.
+\end{align}
+
+We can give names to the terms in this equation: we call 
+%
+\begin{align}
+  V _{\text{eff}} (r) \equiv \frac{1}{r^2} - \frac{2GM}{r^3}
+\,
+\end{align}
+%
+the \emph{effective potential}, and 
+%
+\begin{align}
+  b^2 = \frac{l^2}{e^2}
+\,
+\end{align}
+%
+the \emph{impact parameter} (unjustified for now). Then, the equation is in the form 
+%
+\begin{align}
+  \frac{\dot{r}^2}{l^2}  + V _{\text{eff}} (r) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+where we denoted derivation with respect to \(\lambda \) with a dot. 
+So, we can study the motion of the photon as if it were 1-dimensional. 
+
+To study the problem, it is convenient to use the rescaled adimensional radial coordinate \(R = r / 2GM\). In this variable, the effective potential (which I will denote as just \(V\) hereafter) looks like: 
+%
+\begin{align}
+  V (R) = (2GM)^2 \qty(R^{-2} - R^{-3})
+\,,
+\end{align}
+%
+so we can readily differentiate it to find its stationary points: there is only one, the equation is  \(V^{\prime }(R) = -2R^{-1} + 3R^{-2} =0 \), which is satisfied by \(R = 3 / 2\).
+
+
+
+\end{document}

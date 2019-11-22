@@ -1,4 +1,192 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Nov 22 2019}
+
+Yesterday we arrived at the following equation: 
+%
+\begin{align}
+  \dot{n} + 3 \frac{\dot{a}}{a} n = \Psi - \expval{\sigma_A v} n^2
+\,,
+\end{align}
+%
+where the term \(\Psi \) is the source of new particles, while the next term accounts for the annihilation of particles. 
+
+Under decoupling, the equation reduces to 
+%
+\begin{align}
+  \dot{n} + 3 \frac{\dot{a}}{a} n = 0 \implies \dv{}{t} \qty(n a^3) = 0 
+\,.
+\end{align}
+%
+
+Under equilibrium, \(\Gamma > H\).
+
+Therefore \(\Psi = \expval{\sigma _A v} n^2 _{\text{eq}}\). 
+Recall that the \(\Gamma \) of annihilation is equal to \(\Gamma  = \expval{\sigma _A v} n\). 
+
+If the timescale of the collisions is longer than the age of the universe, \(\Gamma < H\), then once again we have \(a^3n = \const\). 
+
+We can see thermal \emph{relics}, thermal distributions of objects which are not coupled anymore. 
+
+We define 
+%
+\begin{align}
+  n_C = n \qty(\frac{a}{a_0 })^3
+\,,
+\end{align}
+%
+so we can simplify the expression: 
+%
+\begin{align}
+  \dot{n} + 3 \frac{\dot{a}}{a} n = \dot{n} \qty(\frac{a_0 }{a})^3
+\,.
+\end{align}
+
+We want to factor our a parameter \(H\). We get: 
+%
+\begin{align}
+  \dot{n}_C = - \qty(\frac{a }{a_0 })^3
+  \expval{\sigma _A v } \qty(\frac{a_0 }{a})^6 \qty(n_C^2-n^2 _{\text{eq}})
+\,,
+\end{align}
+%
+which can be written as 
+%
+\begin{align}
+  \frac{a}{n _{\text{C, eq}}} \dv{n_C}{a} = - \frac{\expval{\sigma _A v }n _{\text{eq}}}{\dot{a}/a} \qty(\qty(\frac{n}{n _{\text{eq}}})^2- 1)
+\,,
+\end{align}
+%
+so, if we define \(\tau _{\text{coll}}\) as \(1 / (\expval{\sigma _A v} n _{\text{eq}})\) and \(\tau _{\text{exp}} = 1/H\), we get 
+%
+\begin{align}
+  n _{\text{C, eq}} a \dv{n_C}{a}
+  = - \frac{\tau _{\text{exp}}}{\tau _{\text{coll}}} \qty(\qty(\frac{n}{n _{\text{eq}}})^2 -1 )
+\,,
+\end{align}
+%
+so if \(\Gamma \gg H\), then \(\tau _{\text{exp}} / \tau _{\text{coll}} \gg 1\), therefore \(n = n _{\text{eq}}\), which also implies \(n _{\text{C}} = n _{\text{C, eq}}\). This is the equilibrium case. 
+
+On the other hand, if \(\Gamma \ll H\), then \(\tau _{\text{exp}} / \tau _{\text{coll}} \ll 1\) we have decoupling, therefore \(n_C = \const\).
+
+We know that at temperatures below \SI{1.5}{MeV} (after decoupling), the following holds: 
+%
+\begin{align}
+  T_{\nu } = \qty(\frac{4}{11})^{1/3} T_{\gamma }
+\,,
+\end{align}
+%
+and we want to do the same for dark matter. 
+
+Neutrinos are nonrelativistic today, but they became so at a relatively low redshift, a short time ago. 
+We can parametrize the number density of neutrinos by the temperature. 
+
+The formula for the temperature of neutrinos is a special case of the following formula: 
+%
+\begin{align}
+  T_{0 \nu } = \qty(\frac{g_{*0}}{g_{*d}})^{1/3} T_{0 \gamma }
+\,,
+\end{align}
+%
+where \(0\) means \emph{now}, while  \(d\) means \emph{decoupling}. This can be applied to any species. 
+
+Let us compute this for a generic species \(x\): we find 
+%
+\begin{align}
+  n_{0x} = B g_{*} \frac{\zeta (3)}{\pi^2} T_{0x}^3
+\,,
+\end{align}
+%
+where the factor \(B\) accounts for the statistics: it is 1 for bosons, \(3/4\) for fermions. 
+It is important to note that the temperature is a parameter, but these particles are \emph{not thermal} anymore! 
+
+So, we get, using equation \eqref{eq:n-gamma}:
+%
+\begin{align}
+  n_{0x} = \frac{B}{2} n_{0 \gamma } g_x \frac{g_{*0}}{g_{*dx}}
+\,. 
+\end{align}
+%
+
+The energy density in general is given by \(\rho_{0x} = m_x n_{0x}\). We get: 
+%
+\begin{align}
+  \rho_{0x} = \frac{B}{2} m_x n_{0 \gamma } g_x \frac{g_{0x}}{g_{*gx}}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+  \Omega_{0x} h^2 = \frac{m_x n_{0x}}{\rho_{0x}} h^2 
+  = 2B g_x \frac{g_{*0}}{g_{*dx}} \frac{m_x}{\SI{e2}{eV}}
+\,.
+\end{align}
+
+CDM is made of particles which were already nonrelativistic when they decoupled. 
+
+Then, in the formula
+%
+\begin{align}
+  n_x (T_{dx}) = g_{x} \qty(\frac{m_x T_{dx}}{2 \pi })^{3/2} \exp(- \frac{m_x}{T_{dx}})
+\,,
+\end{align}
+%
+we can assume that \(T_{dx} \ll m_x\). So, 
+%
+\begin{align}
+  n_{0x} = n_x (T_{dx}) \qty(\frac{a(T_{dx})}{a_0 })^3
+  = n(T_{dx}) \frac{g_{*0}}{g_{*x}} \qty(\frac{T_{0 \gamma }}{T_{dx}})^3
+\,,
+\end{align}
+%
+but it is difficult to compute \(T_{dx}\), which is the solution to the equation \(\Gamma (T_{dx}) = H (T_{dx})\). 
+
+We know that 
+%
+\begin{align}
+  H^2 (T_{dx}) = \frac{8 \pi G}{3} g_{*x} \frac{\pi^2}{30} T_{dx}^{4}
+\,,
+\end{align}
+%
+or, in terms of the quantity \(\tau_{\text{exp}}= 1/H\):
+%
+\begin{align}
+  \tau_{\text{exp}} = 0.3 g_{*}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
+\,.
+\end{align}
+%
+On the other hand, \(\Gamma = n \expval{\sigma _A v}\), and \(\tau _{\text{coll}} ( T_{dx})\), and in terms of \(\tau _{\text{coll}}\) we get 
+%
+\begin{align}
+  \tau _{\text{coll}} (T_{dx}) = \qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})
+\,,
+\end{align}
+%
+where \(N = 0,1\): it is a fact from particle physics that the average has this kind of dependence: 
+%
+\begin{align}
+  \expval{\sigma _A v} = \sigma_0 \qty(\frac{T}{m_x})^{N}
+\,.
+\end{align}
+
+So, equaling the two \(\tau \) we get: 
+%
+\begin{align}
+\qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})= 0.3 g_{*}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
+\,,
+\end{align}
+%
+which can be solved iteratively. We solve it in terms of the parameter \(x = m_x / T_{dx}\), which must be much larger than one: this allows us to select the physical solution to the equation among the nonphysical ones. 
+
+The solution is found to be something like: 
+%
+\begin{align}
+  x_{dx} = \log \qty(\num{.038} \frac{g_{*}}{g_{*x}^{1/2}} m _{\text{pl}}  m_x \sigma_0 ) - \qty(N - \frac{1}{2}) \log \log \qty(\dots)
+\,. 
+\end{align}
+%
+
+
 \end{document}

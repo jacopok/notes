@@ -97,21 +97,19 @@ where the radius and velocity of the orbit of Mercury must be \emph{both} calcul
 The factor \(\SI{100}{yr} / \SI{.241}{yr}\) was inserted to account for the number of orbits of Mercury in a century.
 
 \begin{lstlisting}[language=Python]
-from numpy import rad2deg, pi
-from scipy.constants import G, c
+from scipy.constants import G, c, pi
 
 sun_mass = 2e30
 mercury_orbital_velocity = 4.7e4
 mercury_semimajor_axis = 57.9e9
 mercury_angular_momentum = mercury_orbital_velocity * mercury_semimajor_axis
 mercury_period_yr = .241
+rad2arcsec = 3600*180/pi
+
 delta_phi = 6*pi*(G*sun_mass/mercury_angular_momentum/c)**2
 
-print(rad2deg(delta_phi) * 3600 * 100/mercury_period_yr)
-
+print(delta_phi * rad2arcsec * 100/mercury_period_yr)
 \end{lstlisting}
-
-\todo[inline]{Finish}
 
 \subsection{Radial orbit}
 

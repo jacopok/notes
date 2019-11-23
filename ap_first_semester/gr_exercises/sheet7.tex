@@ -157,7 +157,7 @@ So, we can study the motion of the photon as if it were 1-dimensional.
 To study the problem, it is convenient to use the rescaled adimensional radial coordinate \(R = r / 2GM\). In this variable, the effective potential (which I will denote as just \(V\) hereafter) looks like: 
 %
 \begin{align}
-  V (R) = (2GM)^2 \qty(R^{-2} - R^{-3})
+  V (R) = (2GM)^{-2} \qty(R^{-2} - R^{-3})
 \,,
 \end{align}
 %
@@ -170,6 +170,29 @@ so we can readily differentiate it to find its stationary points: there is only 
     \label{fig:effective-potential}
 \end{figure}
 
+The term \(b^{-2}\) is the maximum value which can be attained by the LHS: we can call it the total energy, the kinetic and potential contributions must add up to it. 
+Also, the kinetic term is always positive. 
+So, if the total energy is less than the maximum of the potential, the photon is constrained to stay on either side of the potential barrier around \(R = 3/2\). The potential there equals 
+%
+\begin{align}
+  V(3/2) = (2GM)^{-2} \qty((3/2)^{-2} - (3/2)^{-3}) 
+  = \frac{4/27}{(2GM)^2} = \frac{1}{27 (GM)^2}
+\,,
+\end{align} 
+%
+so the condition of the photon being above the potential barrier is 
+%
+\begin{align}
+  E _{\text{tot}} &> V _{\text{max}}  \\
+  \frac{e^2}{l^2} &> \frac{1}{27 G^2M^2}  \\
+  \frac{l^2}{e ^2} &< 27G^2M^2
+\,,
+\end{align}
+%
+and under this condition, if the photon initially has positive \(\dv*{r}{\lambda }\) it will remain as such, since everything is continuous and (if the strict inequality is satisfied) we can never have \(\dv*{r}{\lambda }=0\). 
 
+If instead we had \(l^2/e^2 < 27G^2M^2\) and the photon was initially travelling away from the black hole, there would come a point for which \(\dv*{r}{\lambda }\) would equal zero, and then it would become negative, since the photon could not go away from the center anymore. 
+
+This can be understood graphically by drawing horizontal lines of constant total energy in the potential diagram. 
 
 \end{document}

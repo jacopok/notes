@@ -316,8 +316,15 @@ or
 %
 \begin{align}
   r_{*}^2 \sin^2 \psi \leq 27G^2M^2 \qty(1 - 2GM/r_{*}) 
-\,,
+  \,,
 \end{align}
+%
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/critical_psi.pdf}
+  \caption{Critical angle \(\psi \) in terms of the adimensional radial coordinate \(R = r/ 2GM\).}
+  \label{fig:critical-psi}
+\end{figure}
 %
 which once again can be expressed in terms of the adimensional radial coordinate \(R = r/2GM\): we find 
 %
@@ -334,11 +341,119 @@ so the critical angle can be computed by making the relation explicitly in terms
 \end{align}
 %
 
+So, as we move closer to the horizon, the range of angles at which we can throw our photon and still have it escape decreases, until finally we can only throw it straight forward otherwise it will fall back in. After \(r = 2GM\), not even that is enough.  
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.7\textwidth]{figures/critical_psi.pdf}
-  \caption{Critical angle}
-  \label{fig:critical-psi}
-\end{figure}
+All communication with the outside world is lost. 
+
+\subsection{Light motion in a Schwarzschild geometry}
+
+This was done during the lectures, but I will recall it here. 
+
+We start from the equation of motion of a photon, a reframing of \(u^2=0\): 
+%
+\begin{align}
+  \frac{1}{l^2} \qty(\dv{r}{\lambda })^2 + V _{\text{eff}} (r) = \frac{1}{b^2} = \frac{e^2}{l^2}
+\,.
+\end{align}
+
+We want to write this as a differential equation for the radius in terms of the angle \(\varphi \): so, we use the expression of the first integral 
+%
+\begin{align}
+  l = \dv{\varphi }{\lambda } r^2 \implies \dv{\varphi }{\lambda } = \frac{l}{r^2} \implies \dv{}{\lambda } = \frac{l}{r^2} \dv{}{\varphi }
+\,.
+\end{align}
+%
+
+So, we can rewrite 
+%
+\begin{align}
+  \qty(\dv{r}{\lambda })^2= \frac{l^2}{r^{4}} \qty(\dv{r}{\varphi })^2
+\,,
+\end{align}
+%
+which allows us to write the equation as 
+%
+\begin{align}
+  \frac{1}{r^{4}} \qty(\dv{r}{\varphi })^2 + V _{\text{eff}}(r) = \frac{1}{b^2}
+\,,
+\end{align}
+%
+since the \(l^2\) simplifies. 
+
+Now, notice that if we define \(u = 1/r\) we find
+%
+\begin{align}
+  \dv{u}{\varphi } = - \frac{1}{r^2} \dv{r}{\varphi }
+\,,
+\end{align}
+%
+which conveniently simplifies the \(r^{-4}\): expressing everything with respect to \(u\) we get 
+%
+\begin{align}
+  \qty(\dv{u}{\varphi })^2 +  \qty(u^2-2GMu^3) = \frac{1}{b^2}
+\,.
+\end{align}
+
+Now, we just need to differentiate everything to eliminate the constant term and find 
+%
+\begin{align}
+  2 u' u'' + 2 u u' - 6 GM u^2 u' = 0
+\,,
+\end{align}
+%
+where we denoted derivatives with respect to \(\varphi \) with primes.
+One solution is \(u'=0\): a circular orbit, which we are not interested in now (and which is unstable\dots).
+
+Otherwise, we can simplify a factor \(2 u'\): we find 
+%
+\begin{align}
+  u'' + u = 3 GMu^2
+\,
+\end{align}
+%
+as we wanted to show. 
+
+\subsubsection{Zero mass solution}
+
+If \(M=0\), our diffential equation is simply \(u''+u=0\), a harmonic oscillator.
+Our boundary condition is \(r (\varphi = 0, \pi ) \rightarrow \infty \), which means \(u \rightarrow 0\) in those cases. 
+
+Also, one can geometrically see that \(\sin \varphi = b/r\) where \(b\) is the impact parameter.
+Therefore, \(bu = \sin \varphi \) or \(u = \sin(\varphi ) / b \). This actually is already a solution to our differential equation! 
+
+We are giving two boundary conditions, therefore the solution \(u = \sin(\varphi ) / b \) is unique. 
+
+\subsubsection{Small mass deflection}
+
+We now insert a mass \(M\), and consider a solution which is a perturbation to the sinusoidal one: our proposed solution is \(u = \sin \varphi + w\), and we will only look at the first order in \(w\). Substituting into \(u'' + u = 3GM u^2\) we get 
+%
+\begin{align}
+  - \sin \varphi + w'' + \sin \varphi + w = 3GM \qty(\sin^2 \varphi + 2w  \sin \varphi + \cancelto{}{w^2})
+\,,
+\end{align}
+%
+so the differential equation for \(w\) is 
+%
+\begin{align}
+  w'' + w \qty(1 - 6GM \sin \varphi ) = 3GM \sin^2 \varphi 
+\,.
+\end{align}
+
+This can be solved with an \emph{ansatz} in the form \(w = A + B \sin^2\varphi\).
+Its derivatives are \(w' = 2B \sin \varphi \cos \varphi = B \sin(2\varphi )\), and \(w'' = 2B \cos(2 \varphi )= B \qty(1 - 2\sin^2\varphi )\). 
+
+\todo[inline]{I'm getting odd terms in \(\varphi \): these disappear if we ignore the \(2 w  \sin(\varphi )\) term, but how can we ignore a first order term there and not on the LHS?}
+
+\subsection{Orbit at 7GM}
+
+The radius of a \(7G M_{\odot}\) orbit is equal to 
+%
+\begin{align}
+  7 \times \SI{6.67408e-11}{kg m^{3} s^{-2}} \times \SI{1.989e30}{kg} \times \qty(\SI{2.998e8}{ms^{-1}})^{-2} = \\
+  = \SI{1.034e4}{m}
+\,,
+\end{align}
+%
+or around \SI{10}{km}. 
+
 \end{document}

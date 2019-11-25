@@ -428,32 +428,122 @@ We are giving two boundary conditions, therefore the solution \(u = \sin(\varphi
 We now insert a mass \(M\), and consider a solution which is a perturbation to the sinusoidal one: our proposed solution is \(u = \sin \varphi + w\), and we will only look at the first order in \(w\). Substituting into \(u'' + u = 3GM u^2\) we get 
 %
 \begin{align}
-  - \sin \varphi + w'' + \sin \varphi + w = 3GM \qty(\sin^2 \varphi + 2w  \sin \varphi + \cancelto{}{w^2})
+  - \sin \varphi + w'' + \sin \varphi + w = 3GM \qty(\sin^2 \varphi + \cancelto{}{2w  \sin \varphi} + \cancelto{}{w^2})
 \,,
 \end{align}
 %
-so the differential equation for \(w\) is 
+where we kept only terms which are of first order in either \(GM\) or \(w\), since both are small relative to the scale of the problem.
+So the differential equation for \(w\) is 
 %
 \begin{align}
-  w'' + w \qty(1 - 6GM \sin \varphi ) = 3GM \sin^2 \varphi 
+  w'' + w = 3GM \sin^2 \varphi 
 \,.
 \end{align}
 
 This can be solved with an \emph{ansatz} in the form \(w = A + B \sin^2\varphi\).
 Its derivatives are \(w' = 2B \sin \varphi \cos \varphi = B \sin(2\varphi )\), and \(w'' = 2B \cos(2 \varphi )= B \qty(1 - 2\sin^2\varphi )\). 
 
-\todo[inline]{I'm getting odd terms in \(\varphi \): these disappear if we ignore the \(2 w  \sin(\varphi )\) term, but how can we ignore a first order term there and not on the LHS?}
+Plugging this in we find 
+%
+\begin{align}
+  B(1 - 2 \sin^2 \varphi) + A + B \sin^2 \varphi = 3GM \sin^2 \varphi 
+\,,
+\end{align}
+%
+so equating the terms in \(\sin^2\varphi  \) and the constant ones we get 
+%
+\begin{align}
+  \begin{cases}
+    B+A = 0 \\
+    -B = 3GM
+  \end{cases}
+\,,
+\end{align}
+%
+so our solution is \(w = 3GM (1- \sin^2 \varphi )\). 
 
 \subsection{Orbit at 7GM}
 
 The radius of a \(7G M_{\odot}\) orbit is equal to 
 %
 \begin{align}
-  7 \times \SI{6.67408e-11}{kg m^{3} s^{-2}} \times \SI{1.989e30}{kg} \times \qty(\SI{2.998e8}{ms^{-1}})^{-2} = \\
-  = \SI{1.034e4}{m}
+  7GM_{\odot}/c^2 \approx\\
+  7 \times \SI{6.67e-11}{kg m^{3} s^{-2}} \times \SI{2e30}{kg} \times \qty(\SI{3e8}{ms^{-1}})^{-2} \approx \\
+  \approx \SI{1.0e4}{m}
 \,,
 \end{align}
 %
 or around \SI{10}{km}. 
 
+The equation governing a circular orbit around a BH can be derived from the normalization of the 4-velocity \(u \cdot u = -1\): in terms of \(u = 1/r\) it is 
+%
+\begin{align}
+  u_c = \frac{GM}{l^2} + 3 GM u_c^2
+\,,
+\end{align}
+%
+and in our case we know that \(u_c = 1/7GM\), substituting in we find 
+%
+\begin{align}
+  \frac{1}{7GM} = \frac{GM}{l^2} + \frac{3GM}{49 (GM)^2}
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+  l^2 = (GM)^2 \qty(\frac{1}{7} - \frac{3}{49})^{-1}
+  = 7 (GM)^2 \qty(1 - \frac{3}{7})^{-1} = \frac{49}{4} (GM)^2
+\,, 
+\end{align}
+%
+so \(l = 7GM/2\). Now, recall the definition of this first integral: 
+%
+\begin{align}
+  l = \dv{\varphi }{\tau } r^2
+\,,
+\end{align}
+%
+into which we can substitute the expression we found: 
+%
+\begin{align}
+  \frac{7GM}{2} (7GM)^{-2} = \frac{1}{14GM} =  \dv{\varphi }{\tau } = \omega_{\text{proper}}
+\,,
+\end{align}
+%
+which gives us the angular velocity as measured by the orbiting observer. We actually have it in units of $1/\SI{}{m^3 s^{-2}}$, so we will need to multiply by \(c^3\) to get inverse seconds.
+
+This gives us a pulsation of 
+%
+\begin{align}
+  \omega _{\text{proper}} = \frac{c^3}{14GM_{\odot}} \approx 
+  \SI{1.44e5}{rad/s}
+\,,
+\end{align}
+%
+which corresponds to a period of 
+%
+\begin{align}
+  T _{\text{proper}} = \frac{2\pi}{\omega _{\text{proper}}} \approx \SI{4.36e-4}{s} = \SI{436}{\micro s}
+\,.
+\end{align}
+
+If we want to compute the period as observed far away, the Doppler effects of the radiation average out over a rotation, so we only need to compute the gravitational redshift effect. The ratio between the times computed in two different places is given by the square root of the ratio between the \(g_{tt}\) metric coefficients. 
+So we have 
+%
+\begin{align}
+  \frac{T_{ \infty }}{T_{\text{proper}}} = \sqrt{\frac{-g_{tt}(r = \infty )}{-g_{tt }(r=7GM)}} = \sqrt{\frac{1}{1-\frac{2GM}{7GM}}} = \sqrt{7/5} \approx \num{1.18}
+\,,
+\end{align}
+%
+so the period as observed from outside is longer, specifically it becomes 
+%
+\begin{align}
+  T_{ \infty } = \SI{516}{\micro s}
+\,. 
+\end{align}
+
+The orbit is a geodesic, so a pointlike observer feels no acceleration. 
+It would be interesting to compute the tidal forces on a human-sized observer, however\dots
+ 
 \end{document}

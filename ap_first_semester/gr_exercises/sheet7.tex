@@ -195,4 +195,75 @@ If instead we had \(l^2/e^2 < 27G^2M^2\) and the photon was initially travelling
 
 This can be understood graphically by drawing horizontal lines of constant total energy in the potential diagram. 
 
+\subsubsection{A basis for a stationary observer}
+
+If our observer's coordinates are \((t, r_{*}, \pi /2 , \varphi_{*} )\), that is, it is at rest with respect to our spatial coordinates but it is not following geodesic motion, then it will have nonzero 4-acceleration. So, since we know that velocity and acceleration are orthogonal, we can form our coordinate system as \((u^{\mu }, a^{\mu } / \sqrt{ a^{\rho } a_{\rho }}, e_{\theta }, e_{\varphi })\), where the angular basis vectors are simply normalized vectors in the \(\theta \) and \(\varphi \) directions.
+
+This method has the advantage of being easily generalizable to find a comoving basis for any non-geodesic motion of our observer. 
+
+Their 4-velocity must be normalized so that \(u^{\mu } u_{\mu }= -1\): so 
+%
+\begin{align}
+  u^{\mu } = \left[\begin{array}{c}
+  \dv{t}{\tau } \\ 
+  0 \\ 
+  0 \\ 
+  0
+  \end{array}\right]
+  = 
+  \left[\begin{array}{c}
+  1/\sqrt{1 - \frac{2GM}{r}} \\ 
+  0 \\ 
+  0 \\ 
+  0
+  \end{array}\right]
+\,,
+\end{align}
+%
+then we can compute the 4-acceleration: it will be 
+%
+\begin{align}
+  a^{\mu } &= u^{\nu } \nabla_{\nu } u^{\mu }
+  = u^{\nu } \qty(\partial_{\nu } u^{\mu } + \Gamma^{\mu }_{\nu \rho } u^{\rho })  \\
+  &= \frac{1}{\sqrt{1 - \frac{2GM}{r}}} \qty(\cancelto{}{\partial_{t} u^{\mu }} + \Gamma^{\mu }_{tt} u^{t})  \\
+  &= \frac{1}{\sqrt{1-\frac{2GM}{r}}}
+  \frac{1}{\sqrt{1-\frac{2GM}{r}}} \frac{A'}{2B} \delta^{\mu }_{r}
+\,,
+\end{align}
+%
+where \(A = 1/B = (1 - 2GM/r)\) are the coefficients of the Schwarzschild metric, with respect to which the Christoffel symbols are expressed in \eqref{eq:schwarzschild-christoffel}. 
+The \(\delta^{\mu }_{r}\) signifies that the only component which survives is the radial one.
+The two square root terms simplify the \(B\), so we get that the only nonzero component of the 4-acceleration is:
+%
+\begin{align}
+  a^{r} = \frac{A^{\prime }}{2} =
+  \frac{1}{2} \dv{}{r} \qty(1 - \frac{2GM}{r})
+  = \frac{GM}{r^2}
+\,.
+\end{align}
+%
+The actual value of this component is not actually useful to us --- except as an illustration of the equivalence principle: it is the precise value of the Newtonian pseudo-force of acceleration --- since we need a normalized basis. Therefore, we will use a vector parallel to \(a^{\mu }\) but of length defined by the normalization \(e_{r} \cdot e_{r} = 1\). So, we get for our basis: 
+%
+\begin{align}
+  \begin{cases}
+    (e_{t})^{\mu } = u^{\mu } = \left[\begin{array}{cccc}
+    (1-2GM/r)^{-1/2}, & 0, & 0, & 0
+  \end{array}\right]^{\top} \\ 
+    (e_{r})^{\mu } = a^{\mu } / \sqrt{a_{\rho } a^{\rho }}
+  = \left[\begin{array}{cccc}
+    0, & (1-2GM/r)^{1/2}, & 0, & 0
+  \end{array}\right]^{\top}  \\
+  (e_{\theta })^{\mu } = \left[\begin{array}{cccc}
+  0, & 0, & 1/r, & 0
+  \end{array}\right]^{\top} \\
+  (e_{\varphi })^{\mu } = \left[\begin{array}{cccc}
+  0, & 0, & 0, & 1/(r \sin \theta )
+  \end{array}\right]^{\top}
+\end{cases} 
+\,,
+\end{align}
+%
+where the last vector is written for a generic angle \(\theta \), but the sine is equal to one if \(\theta = \pi /2\). 
+This basis satisfies the property \(e_{\alpha } \cdot e_{\beta } = \eta_{\alpha \beta }\). 
+
 \end{document}

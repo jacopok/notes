@@ -425,28 +425,28 @@ We are giving two boundary conditions, therefore the solution \(u = \sin(\varphi
 
 \subsubsection{Small mass deflection}
 
-We now insert a mass \(M\), and consider a solution which is a perturbation to the sinusoidal one: our proposed solution is \(u = \sin \varphi + w\), and we will only look at the first order in \(w\). Substituting into \(u'' + u = 3GM u^2\) we get 
+We now insert a mass \(M\), and consider a solution which is a perturbation to the sinusoidal one: our proposed solution is \(u = b^{-1} (\sin \varphi + w)\), and we will only look at the first order in \(w\). Substituting into \(u'' + u = 3GM u^2\) we get 
 %
 \begin{align}
-  - \sin \varphi + w'' + \sin \varphi + w = 3GM \qty(\sin^2 \varphi + \cancelto{}{2w  \sin \varphi} + \cancelto{}{w^2})
+  - \sin \varphi + w'' + \sin \varphi + w = \frac{3GM}{b} \qty(\sin^2 \varphi + \cancelto{}{2w  \sin \varphi} + \cancelto{}{w^2})
 \,,
 \end{align}
 %
-where we kept only terms which are of first order in either \(GM\) or \(w\), since both are small relative to the scale of the problem.
+where we kept only terms which are of first order in either \(GM\) or \(w\), since both are small relative to the scale of the problem. Also, we simplified a common factor of \(b\).
 So the differential equation for \(w\) is 
 %
 \begin{align}
-  w'' + w = 3GM \sin^2 \varphi 
+  w'' + w = \frac{3GM}{b} \sin^2 \varphi 
 \,.
 \end{align}
 
 This can be solved with an \emph{ansatz} in the form \(w = A + B \sin^2\varphi\).
-Its derivatives are \(w' = 2B \sin \varphi \cos \varphi = B \sin(2\varphi )\), and \(w'' = 2B \cos(2 \varphi )= B \qty(1 - 2\sin^2\varphi )\). 
+Its derivatives are \(w' = 2B \sin \varphi \cos \varphi = B \sin(2\varphi )\), and \(w'' = 2B \cos(2 \varphi )= 2 B \qty(1 - 2\sin^2\varphi )\). 
 
 Plugging this in we find 
 %
 \begin{align}
-  B(1 - 2 \sin^2 \varphi) + A + B \sin^2 \varphi = 3GM \sin^2 \varphi 
+  2 B (1 - 2 \sin^2 \varphi) + A + B \sin^2 \varphi = \frac{3GM}{b} \sin^2 \varphi 
 \,,
 \end{align}
 %
@@ -454,13 +454,44 @@ so equating the terms in \(\sin^2\varphi  \) and the constant ones we get
 %
 \begin{align}
   \begin{cases}
-    B+A = 0 \\
-    -B = 3GM
+    2B+A = 0 \\
+    -3B = 3GMb^{-1}
   \end{cases}
 \,,
 \end{align}
 %
-so our solution is \(w = 3GM (1- \sin^2 \varphi )\). 
+so our perturbation is \(w = 2 GM b^{-1} (1- \sin^2 \varphi / 2)\), therefore the full solution is 
+%
+\begin{align}
+  u(\varphi ) = \frac{1}{b} \qty(\sin \varphi + \frac{2GM}{b} \qty(1 - \frac{\sin^2 \varphi }{2}))
+\,.
+\end{align}
+%
+
+We want to solve the equation of the particle coming in from radial infinity at an angle \(\varphi _{\text{in}}\), and leaving at an angle \(\varphi _{\text{out}}\) towards radial infinity. This means that we are seeking two solutions to \(r = \infty \implies u = 0\), respectively near \(\varphi = 0\) and \(\varphi = \pi \). This can be written as a second degree equation in terms of the variable \(x = \sin \varphi \), and the adimensionalized impact parameter \(b/ 2GM = d\), by which we multiply everything to get:  
+%
+\begin{align}
+  x^2 - 2dx - 2 = 0
+\,,
+\end{align}
+%
+which can be solved as 
+%
+\begin{align}
+  x =d \pm \sqrt{d^2 -2}
+  = d \qty(1 \pm \sqrt{1 - \qty(\frac{2}{d})^2})
+\,,
+\end{align}
+%
+so we have two solutions: one near \(x=0\), one near \(x=2d\). The second is meaningless, since \(d \gg 1 \) but \(x \leq 1\). Expanding around \(d = \infty\) we find: 
+%
+\begin{align}
+  x = d \qty(1 - \qty(1 - \frac{1}{2} \qty(\frac{2}{d})^2)) = \frac{d}{2}  \qty(\frac{2}{d})^2 = \frac{2}{d} = \frac{4GM}{b} = \sin \varphi 
+\,. 
+\end{align}
+%
+
+\todo[inline]{Is this right? We should find \(2GM/b\), I'd think\dots}
 
 \subsection{Orbit at 7GM}
 
@@ -574,6 +605,8 @@ The orbit is a geodesic, so a pointlike observer feels no acceleration.
 \subsubsection{Tidal acceleration}
 
 A pointlike particle would feel no acceleration, however it would be quite unconfortable to be in that orbit if one happens not to be poitlike. 
+As for the first part of the exercise, this is not in the exercise sheet, so do skip it if you are in a hurry. I think it is quite interesing though.
+
 Let us compute the tidal effects on an extended observer. 
 
 They are described by the equation 
@@ -589,7 +622,7 @@ We can restrict ourselves to radial geodesic deviation: then we only need to com
 I might do the full computation, but I found a source\footnote{\url{https://physics.stackexchange.com/questions/295814/non-zero-components-of-the-riemann-tensor-of-the-schwarzschild-metric}} which gives the nonzero components: 
 %
 \begin{align}
-  R^{r}_{ttr} &= (2 G M (-2 G M + r))/( r^4) \\
+  R^{r}_{ttr} &= \frac{2GM}{r^3} \qty(1 - \frac{2GM}{r}) \\
   R^{r}_{\theta \theta r} &= \frac{GM}{r} \\
   R^{r}_{\varphi \varphi r} &= \frac{G M \sin^2\theta}{r} 
 \,,
@@ -625,13 +658,74 @@ The acceleration which would be experienced from one side of the other of a mete
 
 \subsubsection{A proof for the geodesic deviation formula}
 
-The starting separation between geodesics is not, properly speaking, a \emph{vector} since it does not belong to the tangent space, however we can be sloppy and approximate it as a tangent vector. So, we take it to be a basis vector \(\xi^{ \mu } = (e_{\widetilde{\alpha} })^{\mu }\): then it is a fact from differential geometry that under our assumptions 
+The starting separation between geodesics is not, properly speaking, a \emph{vector} since it does not belong to the tangent space, however we can be sloppy and approximate it as a tangent vector. So, we take it to be a basis vector \(\xi^{ \mu } = (e_{\widetilde{\alpha} })^{\mu }\): then it is a fact from differential geometry that under an assumption of vanishing torsion (which we always make anyways in GR) and assuming that the vector fields \(u^{\mu }\) and \(\xi^{\mu }\) commute the following holds: 
+%
+\begin{align} \label{eq:lie-bracket-commutation}
+  \xi^{\mu } \nabla_{\mu } u^{\nu } = u^{\mu } \nabla_{\mu } \xi^{\nu }
+\,.
+\end{align}
+
+\todo[inline]{We can have commuting vector fields if we choose a basis; can we say that we derive the formula for geodesic deviation for the basis vectors and extend by linearity?}
+
+So, we want to see by how much the two initially-close geodesics diverge: in order to do this, we compute the second derivative of \(\xi^{\mu }\) with respect to proper time: recall that the derivative with respect to proper time is also the Lie derivative along the 4-velocity: \(\dv*{}{t} = u^{\mu } \nabla_{\mu }\). 
+
+So, this second derivative looks like 
 %
 \begin{align}
-  \xi^{\mu } \nabla_{\mu } u^{\nu } = u^{\mu } \nabla_{\mu } \xi^{\nu }
+  \dv[2]{\xi^{ \mu } }{\tau } = u^{\alpha } \nabla_{\alpha } \qty(u^{\beta } \nabla_{\beta } \xi^{\mu })
+  = u^{\alpha } \nabla_{\alpha } \qty( \xi^{\beta }\nabla_{\beta } u^{\mu } )
+\,
+\end{align}
+%
+by the formula shown above. Now, we can apply the Leibniz rule: we find 
+%
+\begin{align}
+  \dv[2]{\xi^{\mu }}{\tau } = u^{\alpha } \qty( \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu })  
+  + \xi^{\beta } \nabla_{\alpha } \nabla_{\beta } u^{\mu } )
 \,,
 \end{align}
 %
+and using the fact that\footnote{A trick for remembering this: it would be intuitive to just write the lower indices as \(\alpha \beta \gamma \), but the last two are antisymmetric and must correspond to the antisymmetrization of the covariant derivatives in the LHS.} \([\nabla_{\alpha }, \nabla_{\beta }] V^{\mu } = R^{\mu }_{ \gamma \alpha \beta  } V^{\gamma }\) we can commute the covariant derivatives by inserting a Riemann tensor: we get 
+%
+\begin{align}
+  \dv[2]{\xi^{\mu }}{\tau } = u^{\alpha } \qty( \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu })  
+  + \xi^{\beta } \nabla_{\beta }\nabla_{\alpha } u^{\mu }
+  + \xi^{\beta } R^{\mu }_{ \gamma \alpha \beta  } u^{\gamma } )
+\,,
+\end{align}
+%
+and now we have gotten the term which will remain in the end: let us bring it to the front, then we will show that the rest of the expression is null. We get 
+%
+\begin{align}
+  \dv[2]{\xi^{\mu }}{\tau } =
+  R^{\mu }_{ \gamma \alpha \beta  } u^{\gamma } u^{\alpha } \xi^{\beta } 
+  + 
+  u^{\alpha } \qty( \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu })  
+  + \xi^{\beta } \nabla_{\beta }\nabla_{\alpha } u^{\mu } )
+\,.
+\end{align}
+%
 
- 
+To show that the rest of the expression is zero, the thing to remember is that we want to use the fact that our curve is a geodesic, which is expressed as 
+%
+\begin{align}
+  u^{\alpha } \nabla_{\alpha } u^{\mu } = \dv{}{\tau } u^{\mu } = 0 
+\,,
+\end{align}
+%
+so we apply the Leibniz rule backward, to find: 
+%
+\begin{align}
+  & u^{\alpha } \qty( \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu })  
+  + \xi^{\beta } \nabla_{\beta }\nabla_{\alpha } u^{\mu } )= \\
+  =& u^{\alpha } \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu }) 
+  + \xi^{\beta } \nabla_{ \beta } \qty( \cancelto{}{u^{\alpha } \nabla_{\alpha } u^{\mu }}) 
+  - \xi^{\beta } \qty(\nabla_{\alpha } u^{\mu } ) (\nabla_{\beta } u^{\alpha })  \\
+  =& u^{\alpha } \qty(\nabla_{\alpha } \xi^{\beta }) \qty(\nabla_{\beta } u^{\mu }) 
+  - u^{\beta } \nabla_{\beta }\xi^{\alpha } ( \nabla_{\alpha } u^{\mu }) = 0
+\,,
+\end{align}
+%
+where in the last step we applied again the commutation relation \eqref{eq:lie-bracket-commutation}, and finally recognised that the terms were equal up to a relabeling of indices. 
+
 \end{document}

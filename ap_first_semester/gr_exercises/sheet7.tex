@@ -528,28 +528,55 @@ which corresponds to a period of
 \,.
 \end{align}
 
-If we want to compute the period as observed far away, the Doppler effects of the radiation average out over a rotation, so we only need to compute the gravitational redshift effect. The ratio between the times computed in two different places is given by the square root of the ratio between the \(g_{tt}\) metric coefficients. 
-So we have 
+Now, to compute the period for an observer at infinity: from the regular equation of motion of a massive observer we have 
 %
 \begin{align}
-  \frac{T_{ \infty }}{T_{\text{proper}}} = \sqrt{\frac{-g_{tt}(r = \infty )}{-g_{tt }(r=7GM)}} = \sqrt{\frac{1}{1-\frac{2GM}{7GM}}} = \sqrt{7/5} \approx \num{1.18}
+  \frac{e^2-1}{2} = \frac{1}{2} \qty(\dv{r}{\tau })^2+ \underbrace{\qty(-\frac{GM}{r} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3})}_{V _{\text{eff}}}
 \,,
 \end{align}
 %
-so the period as observed from outside is longer, specifically it becomes 
+but since the orbit is circular \(r\) is constant, and we can substitute in our expressions for \(r\) and \(l\) to find out what \(e\) is: we get 
 %
 \begin{align}
-  T_{ \infty } = \SI{516}{\micro s}
-\,. 
+  \frac{e^2-1}{2} &= - \frac{GM}{7GM} + \frac{(7GM/2)^2}{2\times (7GM)^2} - \frac{GM (7GM/2)^2}{(7GM)^3}  \\
+&= - \frac{1}{7}+ \qty(\frac{7}{2})^2 \frac{1}{2\times 7^2} - \qty(\frac{7}{2})^2 \frac{1}{7^3}  \\
+&= -\frac{3}{56}
+\,,
 \end{align}
+%
+therefore \(e = 5 \sqrt{7} / 14\). Now recall the definition of \(e\): 
+%
+\begin{align}
+  e = \dv{t}{\tau } \qty(1 - \frac{2GM}{r}) 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \frac{T_{ \infty }}{T _{\text{proper}}} = 
+  \dv{t}{\tau } = \frac{5 \sqrt{7}}{14} \qty(1 - \frac{2GM}{7GM})^{-1} = \frac{\sqrt{7}}{2} \approx 1.323 
+\,,
+\end{align}
+%
+therefore the period as measured by the outside observer is 
+%
+\begin{align}
+  T_{ \infty } \approx \SI{577}{\micro s}
+\,.
+\end{align}
+%
 
-\todo[inline]{Is this actually the case? Have to check by writing out the 4-velocity and computing \(\dv*{t}{\tau }\): this way might not be correct.}
+Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period. 
 
 The orbit is a geodesic, so a pointlike observer feels no acceleration. 
 
 \subsubsection{Tidal acceleration}
 
-It would be interesting to compute the tidal forces on a human-sized observer, however: it is a difficult computation, but it comes from the geodesic deviation equation: 
+A pointlike particle would feel no acceleration, however it would be quite unconfortable to be in that orbit if one happens not to be poitlike. 
+Let us compute the tidal effects on an extended observer. 
+
+They are described by the equation 
 %
 \begin{align}
   \dv[2]{\xi^{\mu }}{\tau } = R^{\mu }_{\nu \rho \sigma } u^{\nu } u^{\rho } \xi^{\sigma }
@@ -557,5 +584,45 @@ It would be interesting to compute the tidal forces on a human-sized observer, h
 \end{align}
 %
 where \(u^{\mu }\) is the 4-velocity of a geodesic, \(\xi^{ \mu } \) is a small deviation in starting position for the geodesic such that the geodesic starting from there almost has the same tangent vector.
+
+\todo[inline]{Insert proof of geodesic deviation formula}
+
+We can restrict ourselves to radial geodesic deviation: then we only need to compute the \(R^{r}_{\nu \rho r}\) components of the Riemann tensor. 
+I might do the full computation, but I found a source\footnote{\url{https://physics.stackexchange.com/questions/295814/non-zero-components-of-the-riemann-tensor-of-the-schwarzschild-metric}} which gives the nonzero components: 
+%
+\begin{align}
+  R^{r}_{ttr} &= (2 G M (-2 G M + r))/( r^4) \\
+  R^{r}_{\theta \theta r} &= \frac{GM}{r} \\
+  R^{r}_{\varphi \varphi r} &= \frac{G M \sin^2\theta}{r} 
+\,,
+\end{align}
+%
+and since the orbital motion is assumed to happen on the \(\theta = \pi /2\) plane, the formula simplifies to 
+%
+\begin{align}
+  \dv[2]{\xi^{r}}{\tau } &= R^{r}_{ttr} u^{t} u^{t} \xi^{r} 
+  + R^{r }_{\varphi \varphi r} u^{\varphi } u^{\varphi } \xi^{r}  \\
+  &= \qty(\frac{e^2}{(1-2GM/r)^2} \frac{2GM}{r^{3}}\qty(1 - \frac{2GM}{r}) +  \frac{l^2}{r^{4}} \frac{GM}{r}) \xi^{r}  \\
+  &= \qty(\frac{e^2}{1-2GM/r} + \frac{l^2}{r^2} ) \frac{2GM}{r^3} \xi^{r}
+\,,
+\end{align}
+%
+which holds in general: in our specific case, at \(r = 7GM \) we find 
+%
+\begin{align}
+  \dv[2]{\xi^{r}}{\tau } &= \qty(\frac{7}{5} \qty(\frac{5 \sqrt{7}}{14})^2 + \qty(\frac{7GM/2}{7GM})^2 ) \frac{2GM}{(7GM)^3}  \xi^{r}  \\
+  &= \frac{3}{343} \frac{1}{(GM)^2} \xi^{r}
+\,,
+\end{align}
+%
+so the object multiplying \(\xi^{r}\), in units of inverse square seconds, is 
+%
+\begin{align}
+  \frac{3}{343} \frac{c^{6}}{(GM)^2} \approx \SI{356e6}{s^{-2}}
+  \approx \qty(\SI{18.9}{kHz})^2
+\,. 
+\end{align}
+
+The acceleration which would be experienced from one side of the other of a meter-long observer would then be of around \SI{36}{M}\(g\). 
  
 \end{document}

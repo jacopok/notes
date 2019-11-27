@@ -161,9 +161,32 @@ while at the critical point they are similar, and specifically
   \,,
   \end{align}
   %
-  
+but we cannot use this formula since we do not have \(v_0 \) nor \(\dot{M}\). However, we can approximate the density profile as an exponential, applying the formula 
+%
+\begin{subequations}
+\begin{align}
+  \dot{M} &= 4 \pi r_c^2 a \rho_{c}  \\
+  &= 4 \pi r_c^2 a \rho_0 \exp(- \frac{r_c - r_0 }{H_0 } \frac{r_0 }{r_c})  
+\,,
+\end{align}
+\end{subequations}
+%
+where we have: the length scale \(H_0 = RT r_0^2 / (GM \mu )\), the critical velocity \(a = \sqrt{RT/\mu }\), and the critical radius \(r_c = GM/(2a^2)\).
 
-  \todo[inline]{Finish}
+Plugging these in, we find: 
+%
+\begin{align}
+  \dot{M} &= 4 \pi \qty(\frac{GM \mu }{2 RT})^2 \sqrt{\frac{RT}{\mu }} \rho_0 
+  \exp(\frac{\mu GM}{RT} \qty(\frac{2RT}{GM \mu } - \frac{1}{r_0 }))  \\
+  &= \pi (GM)^2 \qty(\frac{\mu }{RT})^{3/2} \rho_0 
+  \exp(2 - \frac{\mu GM}{RT r_0 })
+\,.
+\end{align}
+%
+\todo[inline]{One temperature should probably be the effective temperature, but I do not really know what that means. }
+
+Then, the mass loss rate can be calculated, since we have all of these quantities. It comes out to be barely anything, since \(\mu GM / RT r_0 \) is very large and we have a negative exponential of it\dots
+
 \end{bluebox}
 
 Lamers-Cassinelli: chap 4, section 3: multiple critical points.

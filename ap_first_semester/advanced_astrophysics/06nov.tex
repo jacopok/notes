@@ -80,15 +80,64 @@ and with this we can calculate
 \,.
 \end{align}
 
+We get: 
+%
+\begin{align}
+  E _{\text{kin, 0}} = \frac{v_0^2}{2} \approx \SI{212}{J/kg}
+\,,
+\end{align}
+%
+while for the gravitational energy we'd need the mass of the star. Assuming it is equal to the solar mass, we find 
+%
+\begin{align}
+  E _{\text{grav, 0}} = -\frac{GM}{r_0 } \approx \SI{-1.9e11}{J/kg}
+\,.
+\end{align}
+%
+
 The mean molecular weight of the gas for the Sun is something like \(\mu = 0.62\) (we count electrons in it).
+Then we get 
+%
+\begin{align}
+  E _{\text{chem, 0}} = E _{\text{\text{chem, crit}}} = \frac{5}{2} \frac{RT}{\mu } \approx \SI{5.0e7}{J/kg}  
+\,.
+\end{align}
+%
 
-The values at the critical radius are calculated with the same formula. The velocity will be the speed of sound \(a = \sqrt{RT / \mu } \).
+The enthalpy is the same everywhere in the flow, since the flow is isothermal.
 
-The enthalpy is the same, since the flow is isothermal.
+The values at the critical radius are calculated with the same formula. The velocity will be the speed of sound \(a = \sqrt{RT / \mu } \approx \SI{4.5e3}{m/s} \).
 
-We look at the ratios of the terms in the energy equation at these two radii.
+Then we find: 
+%
+\begin{align}
+  E _{\text{kin, crit}} = \frac{a^2}{2} \approx \SI{1.0e7}{J/kg} \approx \num{5e4} \times E _{\text{kin, 0}} 
+\,.
+\end{align}
+%
 
-Recall: the critical radius is given by \(r_c = GM / (2 a^2)\).
+The critical radius is given by \(r_c = GM / (2 a^2)\): so, we get 
+%
+\begin{align}
+  E _{\text{grav, crit}} = - \frac{GM}{r_{c}} = -2 a^2 \approx - \SI{4.0e7}{J/kg} \approx \num{2.1e-4} \times E _{\text{grav, 0}}
+\,.
+\end{align}
+%
+
+Qualitatively, at the corona we have 
+%
+\begin{align}
+   \abs{ E _{\text{grav, 0}}} \gg E _{\text{chem, 0}} \gg E _{\text{kin, 0}}
+\,,
+\end{align}
+%
+while at the critical point they are similar, and specifically 
+%
+\begin{align}
+  E _{\text{chem, crit}} \gtrsim \abs{E _{\text{grav, crit}}} \gtrsim E _{\text{kin, crit}}
+\,.
+\end{align}
+%
 
 \end{bluebox}
 
@@ -103,6 +152,19 @@ Recall: the critical radius is given by \(r_c = GM / (2 a^2)\).
 
   Calculate the energy per gram gained by the wind between \(r_0 \) and \(r\). What fraction of the stellar luminosity is used to drive the wind up to the critical point?
 \end{greenbox}
+
+\begin{bluebox}
+  The energy per unit mass at the bottom of the corona is given by 
+  %
+  \begin{align}
+    e(r) = - \frac{GM}{r_0 } + \frac{1}{2} v_0^2 + \frac{5}{2} \frac{RT}{\mu }
+  \,,
+  \end{align}
+  %
+  
+
+  \todo[inline]{Finish}
+\end{bluebox}
 
 Lamers-Cassinelli: chap 4, section 3: multiple critical points.
 

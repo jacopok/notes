@@ -5,7 +5,7 @@
 
 \subsection{Photons travelling in the Schwarzschild metric}
 
-\subsubsection{A different proof for the conservation of the component of the velocity of a geodesic along a Killing vector field}
+\subsubsection{A different proof for the conservation of the component of the velocity of a geodesic along a Killing vector field (complement)}
 
 Here I present a different proof to what was done in the lectures for the fact that the component of the 4-velocity along the Killing vector field is conserved. 
 This is not necessary to know for the exam, do skip this section if it does not interest you. 
@@ -468,6 +468,8 @@ so our perturbation is \(w = 2 GM b^{-1} (1- \sin^2 \varphi / 2)\), therefore th
 \end{align}
 %
 
+What follows is an alternative derivation, more complicated than plainly discarding the second-order \(\sin^2  \varphi  \) term and expanding the sine to first order, which gives \(\varphi \sim -2GM/b\) right away. I did it in this way mostly to check that it still works. 
+
 We want to solve the equation of the particle coming in from radial infinity at an angle \(\varphi _{\text{in}}\), and leaving at an angle \(\varphi _{\text{out}}\) towards radial infinity. This means that we are seeking two solutions to \(r = \infty \implies u = 0\), respectively near \(\varphi = 0\) and \(\varphi = \pi \). This can be written as a second degree equation in terms of the variable \(x = \sin \varphi \), and the adimensionalized impact parameter \(b/ 2GM = d\), by which we multiply everything to get:  
 %
 \begin{align}
@@ -478,20 +480,63 @@ We want to solve the equation of the particle coming in from radial infinity at 
 which can be solved as 
 %
 \begin{align}
-  x =d \pm \sqrt{d^2 -2}
-  = d \qty(1 \pm \sqrt{1 - \qty(\frac{2}{d})^2})
+  x =d \pm \sqrt{d^2 + 2}
+  = d \qty(1 \pm \sqrt{1 + \frac{2}{d^2}})
 \,,
 \end{align}
 %
 so we have two solutions: one near \(x=0\), one near \(x=2d\). The second is meaningless, since \(d \gg 1 \) but \(x \leq 1\). Expanding around \(d = \infty\) we find: 
 %
 \begin{align}
-  x = d \qty(1 - \qty(1 - \frac{1}{2} \qty(\frac{2}{d})^2)) = \frac{d}{2}  \qty(\frac{2}{d})^2 = \frac{2}{d} = \frac{4GM}{b} = \sin \varphi 
+  x = d \qty(1 - \qty(1 + \frac{1}{2} \frac{2}{d^2})) = -\frac{d}{2}  \frac{2}{d^2} = -\frac{1}{d} = - \frac{2GM}{b} = \sin \varphi 
 \,. 
 \end{align}
 %
 
-\todo[inline]{Is this right? We should find \(2GM/b\), I'd think\dots}
+So, we want solutions to this near \(\varphi = 0\) and \(\varphi = \pi \), and we are working up to first order in \(\varphi \). Then, we have 
+%
+\begin{align}
+  \varphi _{\text{in}} = - \arcsin \qty(\frac{2GM}{b}) 
+  \sim - \frac{2GM}{b}
+\,
+\end{align}
+%
+and  
+%
+\begin{align}
+  \varphi _{\text{out}}  = \pi + \arcsin \qty( \frac{2GM}{b}) \sim \pi + \frac{2GM}{b}
+\,.
+\end{align}
+%
+The deflection can be calculated by assuming \( \varphi _{\text{out}} - \varphi _{\text{in}} = \pi + \delta \varphi \), which gives 
+%
+\begin{align}
+  \delta \varphi \approx \frac{4GM}{b}
+\,.
+\end{align}
+%
+
+The Newtonian prediction, which is computed using the Keplerian formula for eccentricity (and, notably, simplifying the ``mass'' of a light particle) one finds instead:\footnote{\url{https://arxiv.org/pdf/physics/0508030.pdf}}
+%
+\begin{align}
+  \delta \varphi \approx \frac{2GM}{b}
+\,.
+\end{align}
+
+During the solar eclipse of 1919, Sir Eddington\footnote{\url{https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1920.0009}} made two observations: one gave 
+%
+\begin{align}
+  \delta \varphi = \qty(\SI{4.5(3)}{}) \frac{GM}{b}
+\,,
+\end{align}
+%
+and another gave 
+%
+\begin{align}
+  \delta \varphi = \qty(\SI{3.7(7)}{}) \frac{GM}{b}
+\,.
+\end{align}
+%
 
 \subsection{Orbit at 7GM}
 
@@ -566,7 +611,7 @@ Now, to compute the period for an observer at infinity: from the regular equatio
 \,,
 \end{align}
 %
-but since the orbit is circular \(r\) is constant, and we can substitute in our expressions for \(r\) and \(l\) to find out what \(e\) is: we get 
+but since the orbit is circular \(r\) is constant so the derivative vanishes, and we can substitute in our expressions for \(r\) and \(l\) to find out what \(e\) is: we get 
 %
 \begin{align}
   \frac{e^2-1}{2} &= - \frac{GM}{7GM} + \frac{(7GM/2)^2}{2\times (7GM)^2} - \frac{GM (7GM/2)^2}{(7GM)^3}  \\
@@ -598,13 +643,13 @@ therefore the period as measured by the outside observer is
 \end{align}
 %
 
-Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period. 
+Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period, it seems. 
 
 The orbit is a geodesic, so a pointlike observer feels no acceleration. 
 
-\subsubsection{Tidal acceleration}
+\subsubsection{Tidal acceleration (complement)}
 
-A pointlike particle would feel no acceleration, however it would be quite unconfortable to be in that orbit if one happens not to be poitlike. 
+A pointlike particle would feel no acceleration, however it would be quite unconfortable to be in that orbit if one happens not to be pointlike. 
 As for the first part of the exercise, this is not in the exercise sheet, so do skip it if you are in a hurry. I think it is quite interesing though.
 
 Let us compute the tidal effects on an extended observer. 
@@ -616,7 +661,7 @@ They are described by the equation
 \,,
 \end{align}
 %
-where \(u^{\mu }\) is the 4-velocity of a geodesic, \(\xi^{ \mu } \) is a small deviation in starting position for the geodesic such that the geodesic starting from there almost has the same tangent vector.
+where \(u^{\mu }\) is the 4-velocity of a geodesic, \(\xi^{ \mu } \) is a small deviation in starting position for the geodesic such that the geodesic starting from there almost has the same tangent vector. For now we assume it to be true, in the next section we give justification for it. 
 
 We can restrict ourselves to radial geodesic deviation: then we only need to compute the \(R^{r}_{\nu \rho r}\) components of the Riemann tensor. 
 I might do the full computation, but I found a source\footnote{\url{https://physics.stackexchange.com/questions/295814/non-zero-components-of-the-riemann-tensor-of-the-schwarzschild-metric}} which gives the nonzero components: 
@@ -656,9 +701,10 @@ so the object multiplying \(\xi^{r}\), in units of inverse square seconds, is
 
 The acceleration which would be experienced from one side of the other of a meter-long observer would then be of around \SI{36}{M}\(g\). 
 
-\subsubsection{A proof for the geodesic deviation formula}
+\subsubsection{A proof for the geodesic deviation formula (complement)}
 
-The starting separation between geodesics is not, properly speaking, a \emph{vector} since it does not belong to the tangent space, however we can be sloppy and approximate it as a tangent vector. So, we take it to be a basis vector \(\xi^{ \mu } = (e_{\widetilde{\alpha} })^{\mu }\): then it is a fact from differential geometry that under an assumption of vanishing torsion (which we always make anyways in GR) and assuming that the vector fields \(u^{\mu }\) and \(\xi^{\mu }\) commute the following holds: 
+The starting separation between geodesics is not, properly speaking, a \emph{vector} since it does not belong to the tangent space, however we can be sloppy and approximate it as a tangent vector.
+Then it is a fact from differential geometry that under an assumption of vanishing torsion (which we always make anyways in GR) and if the vector fields \(u^{\mu }\) and \(\xi^{\mu }\) commute the following holds: 
 %
 \begin{align} \label{eq:lie-bracket-commutation}
   \xi^{\mu } \nabla_{\mu } u^{\nu } = u^{\mu } \nabla_{\mu } \xi^{\nu }

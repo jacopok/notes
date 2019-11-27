@@ -653,7 +653,7 @@ therefore the period as measured by the outside observer is
 \end{align}
 %
 
-Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period, it seems. 
+Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period: this is treated in more depth in section \ref{sec:general-time-dilation}. 
 
 \subsubsection{Proper acceleration}
 
@@ -725,7 +725,7 @@ Then it is a fact from differential geometry that under an assumption of vanishi
 
 \todo[inline]{We can have commuting vector fields if we choose a basis; can we say that we derive the formula for geodesic deviation for the basis vectors and extend by linearity?}
 
-So, we want to see by how much the two initially-close geodesics diverge: in order to do this, we compute the second derivative of \(\xi^{\mu }\) with respect to proper time: recall that the derivative with respect to proper time is also the Lie derivative along the 4-velocity: \(\dv*{}{t} = u^{\mu } \nabla_{\mu }\). 
+So, we want to see by how much the two initially-close geodesics diverge: in order to do this, we compute the second derivative of \(\xi^{\mu }\) with respect to proper time: recall that the derivative with respect to proper time is also the Lie derivative along the 4-velocity: \(\dv*{}{\tau } = u^{\mu } \nabla_{\mu }\). 
 
 So, this second derivative looks like 
 %
@@ -785,5 +785,59 @@ so we apply the Leibniz rule backward, to find:
 \end{align}
 %
 where in the last step we applied again the commutation relation \eqref{eq:lie-bracket-commutation}, and finally recognised that the terms were equal up to a relabeling of indices. 
+
+\subsubsection{Adimensionalized parameters of motion and a general formula for time dilation (complement)} \label{sec:general-time-dilation}
+
+We can make the expressions above more clear in terms of adimensionalized coordinates: we will use \(R = r/(2GM)\), \(L = l / (2GM)\), while \(e\) is already adimensional. 
+Under the assumption of circularity for the orbit, the expression for \(L\) can be calculated to be:
+%
+\begin{align}
+  L  =\frac{R}{\sqrt{2 R - 3}}
+\,,
+\end{align}
+%
+while the one for \(e\), is: 
+%
+\begin{align}
+  e^2 = \qty(1 + \frac{L^2}{R^2}) \qty(1 - \frac{1}{R})
+\,.
+\end{align}
+
+Also, the definition for \(e\) is 
+%
+\begin{align}
+  e = \dv{t}{\tau } \qty(1 - \frac{1}{R})
+\,,
+\end{align}
+%
+therefore we can write 
+%
+\begin{align}
+  \dv{t}{ \tau } = e \qty(1-\frac{1}{R})^{-1} &= \qty(1 - \frac{1}{R})^{-1+1/2} \qty(1+ \frac{1}{2 R - 3})^{1/2} \\
+  &= \frac{\sqrt{1 + \displaystyle \frac{1}{2R-3}}}{\sqrt{ 1- \displaystyle \frac{1}{R}}}
+\,.
+\end{align}
+
+With this, we can see that in the limit of \(R \rightarrow \infty\) we have the following effect: 
+%
+\begin{align}
+  \dv{t}{\tau } \sim \sqrt{1 + \frac{1}{R} + \frac{1}{2R-3} }
+  \sim 1 + \underbrace{\frac{1}{2R}}_{\text{gravitational}} + \underbrace{\frac{1}{R}}_{\text{Doppler}} = 1 + \frac{3}{2R}
+\,,
+\end{align}
+%
+where we have a contribution both from the angular momentum, and from the gravitational redshift; the gravitational contribution is larger than the Doppler one in the limit (specifically for any \(R>2\)), and the ratio between the contributions approaches \(2\).
+
+Also, we can see that we have a divergence of this time dilation at \(R \rightarrow 3/2\): 
+I suspect that this corresponds to the velocity needed to stay in orbit at constant \(R\) diverges towards 1 as \(R \rightarrow 3/2\).
+
+In our specific case, the formula comes out to be 
+%
+\begin{align}
+  \dv{t}{\tau } = \underbrace{\sqrt{\frac{7}{5}}}_{\text{grav}} \underbrace{\sqrt{\frac{5}{4}}}_{\text{Dopp}} = \sqrt{\frac{7}{4}}
+\,.
+\end{align}
+%
+
 
 \end{document}

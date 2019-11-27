@@ -659,6 +659,58 @@ Do note that this is \emph{not} the same as plainly applying the gravitational r
 
 The orbit is a geodesic, so a pointlike observer feels no acceleration. 
 
+\subsubsection{Adimensionalized parameters of motion and a general formula for time dilation (complement)} \label{sec:general-time-dilation}
+
+We can make the expressions above more clear in terms of adimensionalized coordinates: we will use \(R = r/(2GM)\), \(L = l / (2GM)\), while \(e\) is already adimensional. 
+Under the assumption of circularity for the orbit, the expression for \(L\) can be calculated to be:
+%
+\begin{align}
+  L  =\frac{R}{\sqrt{2 R - 3}}
+\,,
+\end{align}
+%
+while the one for \(e\), is: 
+%
+\begin{align}
+  e^2 = \qty(1 + \frac{L^2}{R^2}) \qty(1 - \frac{1}{R})
+\,.
+\end{align}
+
+Also, the definition for \(e\) is 
+%
+\begin{align}
+  e = \dv{t}{\tau } \qty(1 - \frac{1}{R})
+\,,
+\end{align}
+%
+therefore we can write 
+%
+\begin{align}
+  \dv{t}{ \tau } = e \qty(1-\frac{1}{R})^{-1} &= \qty(1 - \frac{1}{R})^{-1+1/2} \qty(1+ \frac{1}{2 R - 3})^{1/2} \\
+  &= \frac{\sqrt{1 + \displaystyle \frac{1}{2R-3}}}{\sqrt{ 1- \displaystyle \frac{1}{R}}}
+\,.
+\end{align}
+
+With this, we can see that in the limit of \(R \rightarrow \infty\) we have the following effect: 
+%
+\begin{align}
+  \dv{t}{\tau } \sim \sqrt{1 + \frac{1}{R} + \frac{1}{2R-3} }
+  \sim 1 + \underbrace{\frac{1}{2R}}_{\text{gravitational}} + \underbrace{\frac{1}{R}}_{\text{Doppler}} = 1 + \frac{3}{2R}
+\,,
+\end{align}
+%
+where we have a contribution both from the angular momentum, and from the gravitational redshift; the gravitational contribution is larger than the Doppler one in the limit (specifically for any \(R>2\)), and the ratio between the contributions approaches \(2\).
+
+Also, we can see that we have a divergence of this time dilation at \(R \rightarrow 3/2\): 
+I suspect that this corresponds to the velocity needed to stay in orbit at constant \(R\) diverges towards 1 as \(R \rightarrow 3/2\).
+
+In our specific case, the formula comes out to be 
+%
+\begin{align}
+  \dv{t}{\tau } = \underbrace{\sqrt{\frac{7}{5}}}_{\text{grav}} \underbrace{\sqrt{\frac{5}{4}}}_{\text{Dopp}} = \sqrt{\frac{7}{4}}
+\,.
+\end{align}
+
 \subsubsection{Tidal acceleration (complement)}
 
 A pointlike particle would feel no acceleration, however it would be quite unconfortable to be in that orbit if one happens not to be pointlike. 
@@ -786,58 +838,6 @@ so we apply the Leibniz rule backward, to find:
 %
 where in the last step we applied again the commutation relation \eqref{eq:lie-bracket-commutation}, and finally recognised that the terms were equal up to a relabeling of indices. 
 
-\subsubsection{Adimensionalized parameters of motion and a general formula for time dilation (complement)} \label{sec:general-time-dilation}
-
-We can make the expressions above more clear in terms of adimensionalized coordinates: we will use \(R = r/(2GM)\), \(L = l / (2GM)\), while \(e\) is already adimensional. 
-Under the assumption of circularity for the orbit, the expression for \(L\) can be calculated to be:
-%
-\begin{align}
-  L  =\frac{R}{\sqrt{2 R - 3}}
-\,,
-\end{align}
-%
-while the one for \(e\), is: 
-%
-\begin{align}
-  e^2 = \qty(1 + \frac{L^2}{R^2}) \qty(1 - \frac{1}{R})
-\,.
-\end{align}
-
-Also, the definition for \(e\) is 
-%
-\begin{align}
-  e = \dv{t}{\tau } \qty(1 - \frac{1}{R})
-\,,
-\end{align}
-%
-therefore we can write 
-%
-\begin{align}
-  \dv{t}{ \tau } = e \qty(1-\frac{1}{R})^{-1} &= \qty(1 - \frac{1}{R})^{-1+1/2} \qty(1+ \frac{1}{2 R - 3})^{1/2} \\
-  &= \frac{\sqrt{1 + \displaystyle \frac{1}{2R-3}}}{\sqrt{ 1- \displaystyle \frac{1}{R}}}
-\,.
-\end{align}
-
-With this, we can see that in the limit of \(R \rightarrow \infty\) we have the following effect: 
-%
-\begin{align}
-  \dv{t}{\tau } \sim \sqrt{1 + \frac{1}{R} + \frac{1}{2R-3} }
-  \sim 1 + \underbrace{\frac{1}{2R}}_{\text{gravitational}} + \underbrace{\frac{1}{R}}_{\text{Doppler}} = 1 + \frac{3}{2R}
-\,,
-\end{align}
-%
-where we have a contribution both from the angular momentum, and from the gravitational redshift; the gravitational contribution is larger than the Doppler one in the limit (specifically for any \(R>2\)), and the ratio between the contributions approaches \(2\).
-
-Also, we can see that we have a divergence of this time dilation at \(R \rightarrow 3/2\): 
-I suspect that this corresponds to the velocity needed to stay in orbit at constant \(R\) diverges towards 1 as \(R \rightarrow 3/2\).
-
-In our specific case, the formula comes out to be 
-%
-\begin{align}
-  \dv{t}{\tau } = \underbrace{\sqrt{\frac{7}{5}}}_{\text{grav}} \underbrace{\sqrt{\frac{5}{4}}}_{\text{Dopp}} = \sqrt{\frac{7}{4}}
-\,.
-\end{align}
-%
 
 
 \end{document}

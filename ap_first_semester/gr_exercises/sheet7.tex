@@ -730,6 +730,8 @@ therefore we can write
 \begin{align}
   \dv{t}{ \tau } = e \qty(1-\frac{1}{R})^{-1} &= \qty(1 - \frac{1}{R})^{-1+1/2} \qty(1+ \frac{1}{2 R - 3})^{1/2} \\
   &= \frac{\sqrt{1 + \displaystyle \frac{1}{2R-3}}}{\sqrt{ 1- \displaystyle \frac{1}{R}}}
+  = \sqrt{ \frac{2R-3+1}{2R-3} \frac{R}{R-1}} 
+  = \sqrt{\frac{R}{R - 3/2}}
 \,.
 \end{align}
 
@@ -810,14 +812,12 @@ The acceleration which would be experienced from one side of the other of a mete
 \subsubsection{A proof for the geodesic deviation formula (complement)}
 
 The starting separation between geodesics is not, properly speaking, a \emph{vector} since it does not belong to the tangent space, however we can be sloppy and approximate it as a tangent vector.
-Then it is a fact from differential geometry that under an assumption of vanishing torsion (which we always make anyways in GR) and if the vector fields \(u^{\mu }\) and \(\xi^{\mu }\) commute the following holds: 
+Then it is a fact from differential geometry that under an assumption of vanishing torsion (which we always make anyways in GR) and if the vector fields \(u^{\mu }\) and \(\xi^{\mu }\) commute (which they do) the following holds: 
 %
 \begin{align} \label{eq:lie-bracket-commutation}
   \xi^{\mu } \nabla_{\mu } u^{\nu } = u^{\mu } \nabla_{\mu } \xi^{\nu }
 \,.
 \end{align}
-
-\todo[inline]{We can have commuting vector fields if we choose a basis; can we say that we derive the formula for geodesic deviation for the basis vectors and extend by linearity?}
 
 So, we want to see by how much the two initially-close geodesics diverge: in order to do this, we compute the second derivative of \(\xi^{\mu }\) with respect to proper time: recall that the derivative with respect to proper time is also the Lie derivative along the 4-velocity: \(\dv*{}{\tau } = u^{\mu } \nabla_{\mu }\). 
 

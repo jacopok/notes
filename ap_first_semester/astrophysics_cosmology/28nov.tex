@@ -1,4 +1,399 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 28 2019}
+
+We derived 
+%
+\begin{align}
+  \expval{T} = -\frac{1}{3} \frac{E _{\text{grav}}}{V}
+\,,
+\end{align}
+%
+so now we proceed: we want a relation between kinetic and gravitational energy densities. 
+
+We use a statistical mechanics approach. 
+
+The rate of momentum transfer in the direction \(x\) is given by 
+%
+\begin{align}
+  \frac{N}{L^3} p_x v_x
+\,,
+\end{align}
+%
+and this will be true for either direction by isotropicity: so 
+%
+\begin{align}
+  P = \frac{n}{3} \expval{\vec{p} \cdot \vec{v}}
+\,,
+\end{align}
+%
+in full generality. 
+
+Let us consider the two cases of nonrelativistic and fully relativistic. In the nonrelativistic case we have 
+%
+\begin{align}
+  \epsilon_{p} = mc^2 + \frac{p^2}{2m}
+\,,
+\end{align}
+%
+where \(p = mv\). In the ultrarelativistic case we have 
+%
+\begin{align}
+  \epsilon_{p} = pc
+\,,
+\end{align}
+%
+and the velocity is approximately the speed of light. 
+
+Then, for a gas of nonrelativistic particles, we have 
+%
+\begin{align}
+  P = \frac{1}{3} n mv^2 = \frac{2}{3} n \expval{\frac{1}{2}m v^2} = \frac{2}{3} \times \text{translational KE density}
+\,,
+\end{align}
+%
+while in the relativistic case we have: 
+%
+\begin{align}
+  P = \frac{1}{2} n \expval{pc} = \frac{1}{3} \times \text{translational KE density}
+\,.
+\end{align}
+
+We will show that, if a star is made of a gas of classical nonrelativistic particles it tends to be stable, if the particles are relativistic then it tends not to be stable.
+
+The virial theorem tells us that 
+%
+\begin{align}
+  2 E _{\text{K}} + E _{\text{grav}} = 0
+\,,
+\end{align}
+%
+in the nonrelativistic approximation. 
+
+We define: \(\Delta E _{\text{tot}} = - \Delta E _{\text{K}} = \frac{1}{2} \Delta E _{\text{grav}}\). 
+
+We know that 
+%
+\begin{align}
+  \expval{P} = \frac{1}{3} \frac{E _{\text{K}}}{V} = -\frac{1}{3} \frac{E _{\text{grav}}}{V}
+\,
+\end{align}
+%
+by the virial theorem: so the total binding energy is equal to zero, since this gives us 
+%
+\begin{align}
+  E _{\text{grav}} + E _{\text{K}} = E _{\text{tot}} = 0
+\,.
+\end{align}
+%
+
+Now we differentiate the law \(\dd \qty(P V^{\gamma }) = 0\), since it is a constant for an adiabatic transformation: it gives us, using logarithmic derivatives, 
+%
+\begin{align}
+  \gamma \frac{ \dd{V}}{V} + \frac{ \dd{P}}{P} = 0
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \dd{(PV)} = - (\gamma -1 ) P \dd{V}
+\,,
+\end{align}
+%
+and we know that for an adiabatic transformation 
+%
+\begin{align}
+  \dd{E _{\text{in}}} + P \dd{V} = 0
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+  \dd{E _{\text{in}}} = \frac{1}{\gamma -1} \dd{(PV)}
+\,,
+\end{align}
+%
+and let us assume that \(\gamma \) is approximately constant in the transformation: this means 
+%
+\begin{align}
+  E _{\text{in}} = \frac{PV}{\gamma -1}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  P = (\gamma -1 ) \frac{E _{\text{in}}}{V}
+\,,
+\end{align}
+%
+which justifies the relations we used in cosmology, \(P = w \rho \) with \(w = \gamma -1\). 
+
+We can rewrite the equation from before as 
+%
+\begin{align}
+  3(\gamma -1 ) E _{\text{in}} + E _{\text{gr}} = 0
+\,,
+\end{align}
+%
+which, together with \(E _{\text{tot}} = E _{\text{in}} + E _{\text{gr}}\), give us 
+%
+\begin{align}
+  E _{\text{tot}} = - (3 \gamma - 4) E _{\text{in}}
+\,,
+\end{align}
+%
+which means that \(\gamma > 4/3\) characterizes a bound system, while \(\gamma < 4/3\) characterizes a free system. 
+
+There are two dangers: one is the fight against the pressure forces, one is the fight against the quantum forces (the Pauli exclusion principle) which do not allow the compression to happen further. 
+
+Now we discuss Jeans instability: 
+%
+\begin{align}
+  E _{\text{grav}} = - f \frac{GM^2}{R}
+\,,
+\end{align}
+%
+where \(f\) is a numerical factor of the order \(1\), depending on the mass distribution. If the distribution is uniform, it is \(3/2\).
+\todo[inline]{3/2?} 
+
+The kinetic energy is 
+%
+\begin{align}
+  E _{\text{K}} = \frac{3}{2} N k_B T
+\,,
+\end{align}
+%
+and we want to impose the condition 
+%
+\begin{align}
+  f \frac{GM^2}{R} > \frac{3}{2} N k_B T 
+\,,
+\end{align}
+%
+and the Jeans criterion is this boundary of the stability region: 
+%
+\begin{align}
+  f \frac{gM_J^2}{R} = \frac{3}{2} \frac{M_J}{\bar{m}} k_B T
+\,,
+\end{align}
+%
+where \(\bar{m} = M / N\). 
+The \(J\) denotes the fact that we are considering the specific boundary mass on both sides. Simplifying the formula we find: 
+%
+\begin{align}
+  M_J = \frac{3}{2} \frac{k_B T }{G \bar{m}} R
+\,,
+\end{align}
+%
+and we can reframe this in terms of the density, which is defined by 
+%
+\begin{align}
+  M_J = \frac{4 \pi }{3} \rho _J R^3
+\,.
+\end{align}
+%
+We cube and multiply on both sides: 
+%
+\begin{align}
+  \rho_J M_J^3 = \qty(\frac{3 k_B T}{2 G \bar{m}})^3R^3 \rho_J
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+  \rho_J = \frac{1}{M_J^3} \qty(\frac{3 k_B T}{G \bar{m}})^3 \qty( \frac{4 \pi }{3} \rho_J R^3) \frac{1}{4 \pi }
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  \rho _J = \frac{3}{4 \pi M_J^2} \qty(\frac{3 k_B T}{2 G \bar{m}})^3
+\,,
+\end{align}
+%
+and we will habe stability if the density is larger than this. So, if we want a collapse, we must decrease the mass\dots
+
+When the last scattering happens, the pions are decoupled from the photons. Dark matter behaves differently from conventional matter. 
+
+We have 
+%
+\begin{align}
+  \dot{\rho}_r = - 3H \qty(\rho _r + P_r)
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \dot{\rho}_m = -3H \qty(\rho _m + P_m )
+\,,
+\end{align}
+%
+and \(P_r = \rho_r / 3\), which scale like \(a^{-4} \) and also as \(T^{4}\), which means \(T \sim 1/a\).  
+%
+\begin{align}
+  \dd \qty(\rho _m c^2 a^3) + P_m d a^3 = 0
+\,,
+\end{align}
+%
+where we usually approximate \(\rho _m c^2 = m_p n_b c^2\), but we can include more terms: 
+%
+\begin{align}
+  \rho _m c^2 = m_p n_b c^2 \qty(1 + (\gamma -1 )^{-1} \frac{k_B T}{m_p c^2})
+\,,
+\end{align}
+%
+while the pressure is given by \(P = n_b k_B T\): so in the end we find 
+%
+\begin{align}
+  \dd \qty(\qty(m_p n_b c^2 + \frac{3}{2} m_p n_b \frac{k_BT}{m_p})a^3) = - n_b k_B T \dd{a^3}
+\,,
+\end{align}
+%
+which after some computation gives us 
+%
+\begin{align}
+  \frac{1}{2} \dd{T } = - T \frac{ \dd{a}}{a}
+\,,
+\end{align}
+%
+which implies \(T_m \propto a^{-2}\) after baryogenesis. 
+
+\todo[inline]{This is for monoatomic baryonic matter, right?}
+
+Let us start writing equations for the stellar interior. The continuity equation is 
+%
+\begin{align}
+  \partial_{t} \rho + \nabla \cdot \qty(\rho \vec{v}) = 0
+\,,
+\end{align}
+%
+and also we have the Euler equation 
+%
+\begin{align}
+  \partial_{t} \vec{v} + \qty(\vec{v} \cdot \vec{\nabla}) \vec{v}
+  = - \frac{1}{\rho } \vec{\nabla} P - \vec{\nabla} \Phi 
+\,,
+\end{align}
+%
+which can be written using the convective time derivative: 
+%
+\begin{align}
+  \frac{ \mathrm{D} }{\mathrm{D}t} = \partial_{t} + \vec{v} \cdot \nabla_{x} = u^{\mu } \partial_{\mu }
+\,,
+\end{align}
+%
+which allows us to write 
+%
+\begin{align}
+  \frac{ \mathrm{D} }{\mathrm{D}t} \rho + \rho \nabla \cdot \vec{v} = 0
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \frac{ \mathrm{D} }{\mathrm{D}t} \vec{v} 
+  = - \frac{1}{\rho } - \nabla \Phi 
+\,.
+\end{align}
+
+What happens to the entropy? we define the entropy density \(s \) by \(S  = s \rho \). 
+
+An isentropic process is one in which 
+%
+\begin{align}
+  \frac{ \mathrm{D} S}{\mathrm{D}t} = 0
+\,,
+\end{align}
+%
+which in terms of the entropy density is 
+%
+\begin{align}
+  \partial_{t} s + \vec{v} \cdot \vec{\nabla} s = 0 
+\,.
+\end{align}
+%
+
+The external force is provided by the gravitational field: 
+%
+\begin{align}
+  \nabla^2 \Phi = 4 \pi G \rho 
+\,.
+\end{align}
+
+Jeans looked for a simple solution, an ansatz, called the background solution and then tried to perturb it: if it is stable than it was a good solution. 
+
+He started with \(\rho = \const\), \(\vec{v} = 0\), \(s = \const\), \(\Phi = \const\). 
+
+It is obviously wrong! It cannot satisfy the Poisson equation. 
+
+However, we start from it and add some \(\delta \rho \), \(\delta \vec{v}\) (which we just call \(\vec{v}\)), \(\delta s\) and \(\delta \Phi \); then we only keep the linear terms in these perturbations. 
+
+We find: 
+%
+\begin{align}
+  \partial_{t} \delta \rho  +
+  \rho_0 \vec{\nabla} \cdot \vec{v} = 0 
+\,,
+\end{align}
+%
+%
+\begin{align}
+  \partial_{t} \vec{v} = - \frac{1}{\rho_0 } \nabla \delta P - \nabla \delta \Phi 
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \nabla^2 \delta \Phi = 4 \pi G \delta \rho 
+\,,
+\end{align}
+%
+and finally 
+%
+\begin{align}
+  \partial_{t} \delta s = 0
+\,.
+\end{align}
+
+We can expand
+%
+\begin{align}
+  \delta P = \pdv{P}{\rho } \delta \rho + \pdv{P}{s} \delta s
+\,,
+\end{align}
+%
+and here we define 
+%
+\begin{align}
+  c_s^2 = \pdv{P}{\rho }
+\,. 
+\end{align}
+
+We will then consider an exponential solution: 
+%
+\begin{align}
+  \delta \rho = \delta \rho_0 \exp(i \qty(\vec{k} \cdot \vec{x} - \omega r))
+\,,
+\end{align}
+%
+and similarly for \(\vec{v}\), \(s\), \(\Phi \). 
+
+We will see that we will need to stick to \(\delta s =0\), and find a dispersion relation with \(\omega \) and \(\vec{k}\): it will be 
+%
+\begin{align}
+  \omega^2 = c_s^2 \vec{k}^2 - 4 \pi G \rho 
+\,,
+\end{align}
+%
+so if the wavenumber is small enough we will have an imaginary \(\omega \). 
+
 \end{document}

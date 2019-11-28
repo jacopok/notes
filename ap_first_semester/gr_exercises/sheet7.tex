@@ -655,6 +655,48 @@ therefore the period as measured by the outside observer is
 
 Do note that this is \emph{not} the same as plainly applying the gravitational redshift formula as \(T_1 / T_2 = \sqrt{ g_{tt}^{1}/ g_{tt}^{2}}\): that gives a smaller ratio. The Doppler effects of the orbital speed do not average out over a period: this is treated in more depth in section \ref{sec:general-time-dilation}. 
 
+An alternative way to derive \(\dv*{t}{\tau }\) is to use \(\Omega \): we defined it as \(\dv*{\varphi }{t}\), and proved that it is given by 
+%
+\begin{align}
+  \Omega^2 = \qty(\dv{\varphi }{\tau } \dv{\tau }{t})^2
+  = \frac{GM}{r^3}
+\,.
+\end{align}
+
+It allows us to write the 4-velocity as 
+%
+\begin{align}
+  u^{\alpha } = \qty(\dv{t}{\tau }, 0, 0, \dv{\varphi}{\tau })^{\top} = \dv{t}{\tau } \qty(1, 0, 0, \Omega )^{\top}
+\,.
+\end{align}
+
+Now, we can write the proper time interval starting from the line element: 
+%
+\begin{align}
+  - \dd{s^2} = \dd{\tau^2} 
+  = g_{00} \dd{t^2} - g_{33} \dd{\varphi^2}
+  = \dd{t^2} \qty(g_{00} - g_{33} \Omega^2)
+\,,
+\end{align}
+%
+which we can calculate, since we know all the parameters: we find
+%
+\begin{align}
+  \frac{\dd{\tau^2 }}{ \dd{t^2}} = \qty(1 - \frac{2GM}{r} - r^2 \frac{GM}{r^3})
+  = \qty(1 - \frac{3GM}{r})
+\,.
+\end{align}
+
+This gives 
+%
+\begin{align}
+  \dd{t}  = \frac{\dd{\tau }}{\sqrt{1 - \frac{3GM}{r}}}
+  \sim \dd{\tau } \qty(1 + \frac{3GM}{2r})
+\,,
+\end{align}
+%
+
+
 \subsubsection{Proper acceleration}
 
 The orbit is a geodesic, so a pointlike observer feels no acceleration. 
@@ -695,7 +737,7 @@ With this, we can see that in the limit of \(R \rightarrow \infty\) we have the 
 %
 \begin{align}
   \dv{t}{\tau } \sim \sqrt{1 + \frac{1}{R} + \frac{1}{2R-3} }
-  \sim 1 + \underbrace{\frac{1}{2R}}_{\text{gravitational}} + \underbrace{\frac{1}{R}}_{\text{Doppler}} = 1 + \frac{3}{2R}
+  \sim 1 + \frac{1}{2} \bigg( \underbrace{\frac{1}{2R}}_{\text{gravitational}} + \underbrace{\frac{1}{R}}_{\text{Doppler}} \bigg)  = 1 + \frac{3}{4R}
 \,,
 \end{align}
 %

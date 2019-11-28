@@ -1,4 +1,65 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Nov 28 2019}
+
+We want to generate random numbers in order to draw samples from known distributions. 
+We can only really generate \emph{pseudo}-random numbers: for example, we vary the integer\(x\) in the formula 
+%
+\begin{align}
+  x' = \qty(ax+c) \mod m
+\,,
+\end{align}
+%
+with constant integer \(a\), \(c\) and \(m\). 
+
+Importantly, the values of the constants and the starting value of \(x\) constitute a \emph{seed} which can be used to reproduce our results. 
+
+If we want to produce numbers distributed according to an arbitrary pdf, we first produce uniformly distributed numbers, and then use the laws of probability. 
+Say we have a desired pdf, \(p(x)\), and numbers uniformly distributed from 0 to 1, then 
+%
+\begin{align}
+  \int_{ - \infty }^{y(x)} p(\widetilde{y}) \dd{\widetilde{y}} = \int_{0}^{x} \dd{\widetilde{x}} = x 
+\,,
+\end{align}
+%
+so if we are able to solve this and make \(y(x)\) explicit as a function of \(x\) we are done! The final expression is given in terms of the cumulative pdf: 
+%
+\begin{align}
+  y = P^{-1} (x)
+\,.
+\end{align}
+%
+We want to generate numbers \(m\) between 0.1 and 150 distributed according to \(p(m) = m^{-\alpha }\). 
+
+The cdf is 
+%
+\begin{align}
+\frac{1}{N}\int_{0.1}^{m} m^{-\alpha } \dd{m} = \frac{1}{N}\qty(-\frac{0.1^{-\alpha }}{1-\alpha } +  \frac{1}{1-\alpha } m^{1-\alpha }  )
+\,,
+\end{align}
+%
+where the normalization is 
+%
+\begin{align}
+  N = \int_{0.1}^{150} p(m) \dd{m} = \frac{1}{1-\alpha } \qty(150^{1-\alpha } - 0.1^{1-\alpha })
+\,,
+\end{align}
+%
+therefore we have 
+%
+\begin{align}
+  Nx = \qty(-\frac{0.1^{-\alpha }}{1-\alpha } +  \frac{1}{1-\alpha } m^{1-\alpha }  )
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  m = \qty(\qty(0.1^{1-\alpha } +  (1-\alpha ) Nx))^{1/(1-\alpha )}
+\,,
+\end{align}
+%
+
+
 \end{document}

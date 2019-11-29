@@ -1,6 +1,32 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Nov 29 2019}
+
+The Plummer sphere is defined by 
+%
+\begin{align}
+  \rho (r) \dd{r} = \frac{3M}{4 \pi a^3} \qty(1 + \frac{r^2}{a^2})^{-5/2} \dd{r}
+\,,
+\end{align}
+%
+and it models the mass density in a star cluster; the velocities are isotropically distributed, with the probability of their moduli being described by a Maxwellian density: 
+%
+\begin{align}
+  p(v) \dd{v} = \sqrt{\frac{2}{\pi }} \frac{v^2}{\sigma^3}
+  \exp( -\frac{v^2}{2 \sigma^2})
+\,.
+\end{align}
+
+The parameters are given by: \(M = \num{e4} M_{\odot}\), \(a = \SI{5}{\parsec}\), \(\sigma = \SI{5}{km/s}\).
+
+Here is my approach to the problem without reading the suggestions, it might not be the most efficient way to do it. 
+
+We need to be able to draw samples from three distributions: the Plummer sphere, the Maxwell distribution and the angular distribution; since both the star's positions and their velocities are isotropically distributed on the 2-sphere. 
+The volume element on the sphere \(S^{2}\) is given by \(\dd{A} = \sin \theta \dd{\theta } \dd{\varphi }\); so we can draw our \(\varphi \) from a uniform distribution on \([0, 2 \pi ]\), while our \(\theta \) will need to be distributed according to \(p(\theta ) \dd{\theta }= \sin \theta \dd{\theta }  \). 
+
+Since we are computing angles spanning the whole \(2\)-sphere, for both the radius \(r\) and the velocity \(v\) we do not need to simulate negative values.
 
 
+ 
 \end{document}

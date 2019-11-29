@@ -1,4 +1,278 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Nov 29 2019}
+
+Yesterday we talked about Kruskal diagrams and coordinates. 
+
+There is a 1-to-1 map between \(U^2 - V^2\) and \(R = r/2GM\): 
+%
+\begin{align}
+  U^2 - V^2 = \qty(R-1) \exp(R)
+\,,
+\end{align}
+%
+and if we fix \(V = V_0 \), we can vary \(U, \theta \): each point in the manifold parametrized by \(U, \theta \) is a circle of radius \(r(U^2-V^2) \sin \theta \), parametrized by the coordinate we left out, \(\varphi \). 
+
+What if we vary \(V_0 \)? there opens up a ``breach'', but it is only ever spacelike: no timelike curves can cross it. 
+
+White holes would have existed ``before'', but they appear as solutions to a stationary problem: real black holes form from the collapse of a star, there is a time after which the BH exists and before which it does not. 
+
+There is some more material at the end of the lecture notes on geodesics. 
+
+An observer in geodesic motion feels no acceleration: \(a^{\mu } = 0\). 
+
+What is the acceleration felt by an observer, \(a^{i}\), moving with \(4\)-acceleration \(a^{\mu }\) in general (non-geodesic) motion? 
+
+A noncontroversial fact is \(-1 = \const\): this directly implies \(u^{\mu } a_{\mu } = 0\), since the metric is covariantly constant and \(u^{\mu } u_{\mu } = 0\). 
+
+The acceleration felt by \(A\) is his acceleration measured in a LIF defined as having the same \(4\)-velocity as \(A\). There, 
+%
+\begin{align}
+  a^{\mu } = u^{\nu } \nabla_{\nu } u^{\mu } = \dv{ u^{\mu }}{\tau } + \cancelto{}{\Gamma^{\mu }_{\alpha \beta } u^{\alpha } u^{\beta }}
+\,,
+\end{align}
+%
+but \(t = \tau \), and the 4-velocity in the LIF is \(u^{\mu } = (1, 0,0,0)\): this implies that 
+%
+\begin{align}
+  a^{ \mu } = \dv{ u^{\mu }}{t} = \left[\begin{array}{cc}
+  0 & a^{i}
+  \end{array}\right]^{\top}
+\,,
+\end{align}
+%
+and the invariant quantity \(a^{\mu } a_{\mu } = \abs{\vec{a}}^{2}\) is the modulus of the 3-acceleration felt. 
+Then, we are able to compute the norm of \(a^{i}\) in any frame using \(\sqrt{a^{\mu } a_{\mu }}\). 
+
+Let us see this in some examples. 
+
+The uniformly accelerating observer in Minkowski spacetime has a law of motion which looks like 
+%
+\begin{align}
+  x(t) = \frac{\sqrt{1 + \kappa^2 t^2   }}{\kappa }
+\,,
+\end{align}
+%
+and we showed that \(t = \sinh (\kappa \tau ) / \kappa \) and \(x = \cosh( \kappa \tau ) / \kappa \). 
+
+The three-velocity is 
+%
+\begin{align}
+  u^{\mu } = \dv{x^{\mu }}{\tau } = \left[\begin{array}{c}
+  \cosh(\kappa t) \\ 
+  \sinh(\kappa t)
+  \end{array}\right]
+\,,
+\end{align}
+%
+with the metric \(\eta_{\mu \nu } = \left[\begin{array}{cc}
+-1 & 0 \\ 
+0 & 1
+\end{array}\right]\), so we find \(u^{ \mu } u_{\mu } = -1\); also 
+%
+\begin{align}
+  a^{\mu } = \left[\begin{array}{c}
+  \kappa \sinh(\kappa \tau ) \\ 
+  \kappa \cosh(\kappa \tau )
+  \end{array}\right]
+\,,
+\end{align}
+%
+which means \(a \cdot u = 0\). 
+Also, we compute \(a \cdot a = \kappa^2\). 
+
+We also consider an observer at rest in the Schwarzschild geometry: \(x^{\mu } = (t, r_0 , \theta_0 , \varphi_0 )\). The 4-velocity is \(u^{\mu } = \qty(1/\sqrt{-g_{00} }, 0, 0, 0)\). 
+
+The 4-acceleration is given by 
+%
+\begin{align}
+  a^{\mu } = u^{\nu } \qty( \partial_{\nu } u^{\mu } + \Gamma^{\mu }_{\nu \beta } u^{\nu } u^{\beta })
+  = \Gamma^{\mu }_{tt} \qty(u^{0})^2
+\,,
+\end{align}
+%
+and also \(\Gamma^{\mu }_{tt} = 0\) for any \(\mu \neq r\), while 
+%
+\begin{align}
+    \Gamma^{r}_{tt} =  \frac{1}{2} \qty(1 - \frac{2GM}{r}   ) (-1) \pdv{}{r} \qty(-1 + \frac{2GM}{r})
+    = \frac{1}{2} \qty(1 - \frac{2GM}{r}) \frac{2GM}{r^2}
+\,.
+\end{align}
+
+So, 
+%
+\begin{align}
+  a^{r} = \qty(1 - \frac{2GM}{r}) \frac{GM}{r^2} \qty(1 - \frac{2GM}{r})^{-1} = \frac{GM}{r^2}
+\,.
+\end{align}
+
+We have recovered the 4-acceleration felt by an observer: its modulus is 
+%
+\begin{align}
+  \abs{\vec{a}} = \sqrt{g_{rr} a^{r} a^{r}} = \frac{GM}{r^2} \qty(1 - \frac{2GM}{r})^{-1/2} \overset{r \gg 2GM}{\rightarrow} \frac{GM}{r^2}
+\,,
+\end{align}
+% 
+while if we are at \(r = 2GM + \epsilon \), the acceleration looks like 
+%
+\begin{align}
+  \abs{\vec{a}} \sim \frac{1}{\sqrt{ \epsilon }}
+\,.
+\end{align}
+
+\section{Spin}
+
+The object \(u^{\nu } \nabla_{\nu } u^{\mu  } = a^{\mu } \) describes only the variation of the velocity \emph{along} the four-momentum. 
+
+Let us consider a gyroscope: an object which has net angular momentum. 
+
+In the rest frame of the object, we introduce the spin four-vector \(s^{\mu } = (0, \vec{s})\). 
+In the rest frame \(s \cdot u = 0\), so this holds in any frame. 
+
+A free object in Minkowski spacetime in its own rest frame has a constant \(\vec{s}\): so \(\dv{s^{\mu }}{t} = 0\). 
+So in a LIF, for a moving object, 
+%
+\begin{align}
+  \dv{s^{\mu }}{\tau } = u^{\nu } \partial_{\nu } s^{\mu } = 0
+\,,
+\end{align}
+%
+so in a general frame 
+%
+\begin{align}
+  u^{\nu } \nabla_{\nu } s^{\mu } = 0
+\,.
+\end{align}
+
+We can so the following computation: \( u^{\nu } \nabla_{\nu } \qty(s \cdot s )= 2 s_{\mu } u^{\nu } \nabla_{\nu } s^{\mu } = 0\). 
+
+Also, the product of two different spins is conserved by the same reasoning. 
+
+Now we consider three specific examples: first, a gyroscope moving around a Schwarzschild mass. 
+This effect is called \emph{geodetic precession}. 
+The other effect we will treat is a gyroscope in a slowly rotating geometry: we will use the gyroscope as a probe for the rotating geometry.
+This effect is called \emph{frame dragging} or \emph{Lense Thirring precession}. 
+Then, we will discuss a generic rotating black hole: the \emph{Kerr} metric. 
+
+\subsection{Geodesic precession}
+
+We consider a slice of Schwarzschild geometry: we will have \(r , \varphi \) coordinates for space and \(t\) coordinate for time, while \(\theta = \pi / 2\). 
+
+We will consider an observer moving along a geodesic orbit. 
+
+The 4-velocity is given by 
+%
+\begin{align}
+  u^{\mu } = \dv{t}{\tau } \qty(1, 0, 0, \dv{\varphi }{t})
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \dv{\varphi }{t} = \Omega = \sqrt{\frac{GM}{r^3}}
+\,,
+\end{align}
+%
+so we can write 
+%
+\begin{align}
+-1 = u^{\mu } u_{\mu }  =  - \qty(u^{t})^2 \qty(g_{00} - r^2\Omega^2) 
+ = - \qty(u^{t})^2 \qty(1 - \frac{2GM}{r} - \frac{GM}{r})
+\,,
+\end{align}
+%
+so we have 
+%
+\begin{align}
+  u^{t} = \frac{1}{\sqrt{1 - \frac{3GM}{r}}}
+\,.
+\end{align}
+%
+
+Initially we have a vector \(s^{\mu } = \qty(s^{t}, s^{r }, s^{\theta }, s^{\varphi })\). \(s^{\theta }\) starts out zero in our coordinates, and it remains so by symmetry. 
+
+We know that \(0= g_{\mu \nu } s^{\mu } u^{\nu }\), but the metric is diagonal so this is 
+%
+\begin{align}
+  0= g_{00} s^{t} u^{t} + g_{33 } s^{\varphi } u^{\varphi }
+\,,
+\end{align}
+%
+which is 
+%
+\begin{align}
+  0= u^{t} \qty(-\qty(1 - \frac{2GM}{r} ) s^{t} + r^2 s^{\varphi } \Omega )
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  s^{t} = \qty(1 - \frac{2GM}{r})^{-1} r^2 \Omega s^{\varphi }
+\,.
+\end{align}
+
+Consistently with our assumptions, as \(r \rightarrow \infty \) we have \(s^{t} \rightarrow 0\). 
+
+The evolution of the spin is described by 
+%
+\begin{align}
+  \dv{s^{\alpha }}{\tau } + \Gamma^{\alpha }_{\beta \gamma } u^{\beta } s^{\gamma } =0 
+\,.
+\end{align}
+
+One can start by \(\alpha = r\): then we must look at the symbols \(\Gamma^{r}_{\beta \gamma }\): potentially, by the nonzero components of \(u\) and \(s\), we should compute the symbols with \(\beta = 0, 3 \) and \(\gamma = 0, 1, 3\). 
+
+Since the metric is diagonal, the Christoffel symbols with three different indices are automatically zero.
+Also, if two components are the same and one is different the different one has to be the one with respect to which one computes the derivatives. 
+
+So our equation is 
+%
+\begin{align}
+  \dv{s^{1}}{\tau } + \Gamma^{1}_{00} u^{0} s^{0} 
+  + \Gamma^{1}_{33} u^{3} s^{3} = 0
+\,,
+\end{align}
+%
+and the relavant Christoffel symbols are: 
+%
+\begin{align}
+  \Gamma^{1}_{00} = \qty(1 - \frac{2GM}{r}) \frac{GM}{r^2}
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \Gamma^{1}_{33} = - \qty(1 - \frac{2GM}{r})r
+\,.
+\end{align}
+
+We find that the equation is 
+%
+\begin{align}
+  \dv{s^{1}}{\tau } + \Gamma^{1}_{00} \dv{t}{\tau } s^{t}
+  + \Gamma^{1}_{33} \dv{t}{\tau } \Omega s^{\varphi } = 0
+\,,
+\end{align}
+%
+which becomes, changing variable in the derivative from \(\tau \) to \(t\) everywhere: 
+%
+\begin{align}
+\dv{s^{1}}{t} + \Gamma^{1}_{00}  s^{t}
++ \Gamma^{1}_{33}  \Omega s^{\varphi } = 0
+  \,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+  \dv{s^{r}}{t} + \qty(2GM - r)\Omega s^{\varphi }= 0
+\,.
+\end{align}
+
+
+
 \end{document}

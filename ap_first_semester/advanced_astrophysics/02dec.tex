@@ -1,4 +1,185 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Mon Dec 02 2019}
+
+Coming back to concepts from last time: the cross section is given by the product of the geometrical cross section times an adimensional efficiency; we define it both for absorption and scattering. 
+
+\begin{align}
+  C^{\text{A, S}} (a, \lambda )
+  = \pi a^2 Q^{\text{A, S}} (a, \lambda )
+\,,
+\end{align}
+%
+while for the total cross section we have 
+%
+\begin{align}
+  C^{\text{TOT}} (a, \lambda )
+  = \pi a^2 \qty(Q^{\text{A}}(a, \lambda ) + Q^{\text{S}}(a, \lambda ))
+\,.
+\end{align}
+
+We are speaking about dust grains. 
+If \(\lambda \gg a\), then the following holds: 
+%
+\begin{align}
+  Q^{A} \propto a \lambda^{-p}   
+\,,
+\end{align}
+%
+where \(p\) depends on the grain composition, and approaches \(2\) for increasing \(\lambda \) for any composition.
+
+At infrared wavelengths, we have \(Q^{S} \sim \lambda^{-4}\), so \(Q^{S}\ll Q^{A}\) there. 
+
+% The opacity per unit mass is given by 
+% %
+% \begin{align}
+%   \kappa_{l}(a) = \rho^{-1} \int_{a _{\text{min}}}^{a _{\text{max}}}
+%    \pi a^2 Q(\lambda , a) \dd{a}
+% \,,
+% \end{align}
+% %
+%  \todo[inline]{is this true?}
+
+The values of \(p\) are not the result of any theoretical model, they are observed. 
+
+Today we will speak more about mean opacities. 
+
+We define 
+%
+\begin{align}
+  Q^{A}_{p} (a, T) = \frac{\int_{0}^{ \infty } Q^{A} (a, \lambda ) B_{\lambda } (T) \dd{\lambda }}{\int_{0}^{\infty} B_{\lambda } (T) \dd{\lambda }}
+\,,
+\end{align}
+%
+where we use the Planck function \(B_{\lambda }(T)\); with it we define 
+%
+\begin{align}
+  \kappa_{p} (T) = \int_{a _{\text{min}}}^{a _{\text{max}}} Q^{A}_{p} (a, T) \pi a^2 n(a) \dd{a}
+\,,
+\end{align}
+%
+which is called the Planck mean absorption coefficient. 
+This quantity will enter into the balance between cooling and heating of the single grain. We are effectively doing a mean over energy, since 
+%
+\begin{align}
+ B_{\lambda } \dd{\lambda } = \dd{E}
+\,
+\end{align}
+%
+for a blackbody. 
+
+For hydrodynamical calculations instead we use the radiation pressure mean efficiency: 
+%
+\begin{align}
+  Q _{\text{rp}} (a ) = \frac{\int_{0}^{ \infty  } \qty(Q^{A} (a, \lambda) + (1- g_{\lambda }) Q^{S} (a, \lambda ) ) F_{\lambda } \dd{\lambda }}{\int_{0}^{ \infty } F_{\lambda } \dd{\lambda }}
+\,.
+\end{align}
+%
+Here we are accounting for both the absorption efficiency and the scattering efficiency. Similarly, we can define the radiation pressure mean opacity \(\kappa _{\text{rp}}\): 
+%
+\begin{align}
+  \kappa _{\text{rp}} = \frac{\int_{0}^{ \infty  } \qty(\kappa_{\lambda } + (1-g_{\lambda }) \sigma_{\lambda }) F_{\lambda } \dd{\lambda }}{\int_{0}^{ \infty } F_{\lambda } \dd{\lambda }}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+  F_{\lambda } = \frac{L_{\lambda }}{4 \pi r^2}
+\,
+\end{align}
+%
+is the monochromatic flux. 
+
+Also, \(g_{\lambda }\) is the \emph{mean cosine} of the scattering angle: if it is equal to 1 we have forward scattering, if it is equal to $-1$ we have backward scattering, while if it is equal to 0 we have isotropic scattering. 
+
+We are shown a plot of \(g_{\lambda } \) in terms of the wavelength: it decreases from \num{.8} to 0 as \(\lambda \) goes from \SI{0.1}{\micro\metre} to \SI{10}{\micro\metre}.
+
+Do note that the \(F_{\lambda }\) is not generally known \emph{a priori}: it is a solution to the radiative transfer equation.
+
+The temperaure of the grain is determined by the balance of the heating and cooling rates: heating occurs because of collisions with fast-moving gas particles or because of the absorption of radiation. 
+
+Cooling, on the other hand, occurs because of collisional energy transfer or by emission of thermal radiation. 
+
+\todo[inline]{Are we modelling the dust grain as a black body?}
+
+We make an approximation: we only consider radiative processes, and estimate the temperature of the dust grain with the radiative equilibrium temperature. 
+
+The equilibrium equation is 
+%
+\begin{align}
+  \int_{0}^{ \infty } \kappa_{\lambda } B_{\lambda }(T_d) \dd{\lambda }
+  = \int_{0}^{ \infty } \kappa_{\lambda } y_{\lambda } \dd{\lambda }
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+  y_{\lambda } = \frac{1}{4 \pi } \int_{0}^{4 \pi } I_{\lambda } \dd{\Omega } = W(r) B( T _{\text{eff}})
+\,,
+\end{align}
+%
+where \(W(r)\) is the geometrical dilution factor: 
+%
+\begin{align}
+  W(r ) = \frac{1}{2} \qty(1 - \sqrt{1 - \qty(\frac{R}{r})^2}) \sim \qty(\frac{R}{2r})^2
+\qquad \text{ as } r \gg R
+\,,
+\end{align}
+%
+where \(R\) is the radius of the star, \(r\) is our considered radial position.
+
+This allows us to fix \(r\) and compute \(T_d (r)\). 
+
+The LHS of the balance equation corresponds to the radiative cooling, while the RHS corresponds to the radiative heating. 
+
+In both terms we make the dependence on \(Q_p^{A}\) explicit: 
+%
+\begin{align}
+  \int_{0}^{ \infty } \pi a^2 Q_p^{A} (a, T_d) B_\lambda (T_d) \dd{\lambda } =
+  \int_{0}^{ \infty } \pi a^2 Q_p^{A} (a, T _{\text{eff}}) B_\lambda (T _{\text{eff}}) W(r) \dd{\lambda }
+\,.
+\end{align}
+
+We are assuming that diffusion of heat between gas grains is negligible: we simplify some terms. 
+%
+\begin{align}
+  Q_p^{A} (a, T_d ) \int_{0}^{ \infty } B_\lambda(T_d) \dd{\lambda }
+  = W(r) Q_p^{A} (a, T _{\text{eff}}) \int_{0}^{ \infty }
+  B_\lambda (T _{\text{eff}}) \dd{\lambda }
+\,,
+\end{align}
+%
+and we know that the integral of the Planck function is given by \(\sigma _{\text{SB}} T^{4}\), where \(\sigma \) is the Stefan-Boltzmann constant. In the end then our expression is 
+%
+\begin{align}
+  Q_p^{A} (a, T_d) T_d^{4} = T^{4} _{\text{eff}} Q^{A}(a, T _{\text{eff}}) W(r)
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+  T_d(r) \sim T _{\text{eff}} \qty(\frac{R}{2r})^{1/2} \qty(\frac{Q^{A}_{p} (a, T _{\text{eff}})}{Q^{A}_{p} (a,T_{d})})^{1/4}
+\,.
+\end{align}
+
+An immediate application is to find the condensation radius: what is the radius at which the temperature becomes low enough so that the grains are not broken up by thermal motion? 
+
+Typically the condensation temperature is \(T_c \sim 1 \divisionsymbol  \SI{1.5e3}{K} \). 
+
+The equation is 
+%
+\begin{align}
+  r_c \sim \frac{R}{2} \qty(\frac{T _{\text{eff}}}{T_c})^2
+  \sqrt{\frac{Q^{A}_p (a, T _{\text{eff}})}{Q^{A}_p (a,  T_c)}}
+\,,
+\end{align}
+%
+and this allows us to see that typically the condensation radius is around \(2 \divisionsymbol 4\) star radii, for stars at a few thousand Kelvin.
+
+Tomorrow we will speak of the combined dust \& wind equation. 
+
 \end{document}

@@ -57,9 +57,16 @@ so
 %
 \begin{align}
   m = \qty(\qty(0.1^{1-\alpha } +  (1-\alpha ) Nx))^{1/(1-\alpha )}
+\,.
+\end{align}
+
+This works; a note of caution: when using a linear axis the histogram (plot of the number ``\(\dd{N}\)'' of counts in a bin of constant width ``\(\dd{m}\)'') looks (up to a proportionality constant) like the probability density function, however if we plot the logarithm of our random variable we get 
+%
+\begin{align}
+  \dv{N}{ \log m}  = \dv{N}{m} \dv{m}{\log m} = \dv{N}{m} m
 \,,
 \end{align}
 %
-
+so if we want somthing which is proportional to the pdf we need to normalize the bin counts by multiplying them by \(1/m\).
 
 \end{document}

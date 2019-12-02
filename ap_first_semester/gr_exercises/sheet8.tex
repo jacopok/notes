@@ -148,12 +148,14 @@ The modulus of the acceleration is given by \(\abs{\vec{a}}^2 = a^{r} a^{r} g_{r
 which can be written in terms of the adimensionalized variables \(R = r / 2GM\) and \(\widetilde{\omega} = 2GM \omega \): 
 %
 \begin{align}
-  \abs{\vec{a}}^2 = \frac{1}{(4 GM)^2} \frac{R_{*}}{R_{*} - 1}
-  \qty(\frac{1}{R_{*}^2} + \frac{\widetilde{\omega}^2}{4} \qty(3 - 2 R_{*}))^2
+  \abs{\vec{a}}^2 = \frac{1}{(4GM)^2} \frac{R_{*}}{R_{*} - 1}
+  \qty(\frac{1}{R_{*}^2} + \widetilde{\omega}^2 \qty(3 - 2R_{*}))^2
 \,.
 \end{align}
 %
-This diverges as \(R_{*} \rightarrow 1\); if we set \(\omega = 0\) it becomes 
+This diverges as \(R_{*} \rightarrow 1\), as we might expect: a \emph{stationary} observer with respect to the Schwarzschild radial coordinate must have ever more acceleration in order to stay on their non-geodesic path. 
+
+Of we set \(\omega = 0\) it becomes 
 %
 \begin{align}
   \abs{\vec{a}}^2 = \frac{1}{(4GM)^2} \frac{R_{*}}{R_{*}- 1} \frac{1}{R_{*}^4}
@@ -164,10 +166,110 @@ while for \(R_{*} \gg 1\) it becomes
 %
 \begin{align}
   \abs{\vec{a}}^2 \sim \frac{1}{(4GM)^2} \qty(\frac{1}{R_{*}^2}
-   - \frac{\widetilde{\omega}^2 R_{*}}{2})^2
+   - 2\widetilde{\omega}^2 R_{*})^2
 \,,
 \end{align}
 %
-which can become 0 if we set \(\widetilde{\omega}^2 R_{*}^3= 2\), or \(\omega^2 r_{*}^3 = 4GM\)
+which can become 0 (that is, we have an orbit, a geodesic) if we set \(2\widetilde{\omega}^2 R_{*}^3= 1\), or \(\omega^2 r_{*}^3 = GM\), (the spherical orbit formulation of) Kepler's third law. 
+
+We neglected only the \(3 \widetilde{\omega}^2 \) term since it is the smallest one: in terms of powers of \((GM)\) and of \(c\) we have: \(R_{*}^{-2} \sim (GM)^{-2}\), \(\widetilde{\omega}^2\sim (GM)^{-2} c^{-2}\) while \(\widetilde{\omega}^2 R_{*}^2 \sim (GM) c^{-2}\).
+
+\subsubsection{Some comments on orbits (complement)}
+
+Another interesting thing to note is the fact that at \(R_{*} = 3/2\) the acceleration becomes independent of \(\omega \), and at \(R_{*} < 3/2\) the effect of the rotation is to \emph{increase} the acceleration instead of decreasing it; this corresponds to the fact that there are no orbits (not even unstable ones) for \(R_{*}<3/2\). 
+
+An interesting fact which was not mentioned in class: there exist orbits for any \(R_{*}\) between \(3/2\) and \(3\), although they are unstable. 
+
+We found that the radius of a circular orbit is given by  
+%
+\begin{align}
+  R = L^2 \qty(1 \pm \qty(\sqrt{1 - \frac{3}{L^2}}))
+\,,
+\end{align}
+%
+where \(L = l / 2GM\) and \(R = r / 2GM\). 
+
+The two branches of this expression correspond to stable and unstable orbits: in both cases we have \(\sqrt{3} < L < \infty \), and for the stable (plus sign) branch we find \(R > 3\) and \(\dv*{R}{L} > 0\) everywhere, while for the unstable branch we have \(3/2 < R < 3\) and \(\dv*{R}{L} < 0 \) everywhere. 
+
+\subsection{Perturbed rotating metrics}
+
+We want to prove that, to first order in \(\delta g_{\mu \nu }\), the inverse of \(g_{\mu \nu } = \overline{g}_{\mu \nu } + \delta g_{\mu \nu }\) is 
+%
+\begin{align}
+  g^{\mu \nu } = 
+  \overline{g}^{\mu \nu } + \overline{g}^{\mu \alpha } \overline{g}^{\nu \beta } \delta g_{\alpha \beta } + O((\delta g_{\mu \nu })^2)
+\,.
+\end{align}
+
+This can be proved directly by verifying \(g_{ \mu \nu } g^{\nu \rho } = \delta_{\mu }^{\rho } + O((\delta g)^2)\): it comes out to be 
+%
+\begin{align}
+  &\qty(\overline{g}_{\mu \nu } + \delta g_{\mu \nu })
+  \qty(\overline{g}^{\nu \rho } - \overline{g}^{\nu  \alpha } \overline{g}^{\rho  \beta } \delta g_{\alpha \beta } + O((\delta g)^2)) \\
+  &= \delta_{\mu }^{\rho } + \delta g_{\mu \nu } \overline{g}^{\nu \rho } - \overline{g}_{\mu \nu }\overline{g}^{\nu \alpha } \overline{g}^{\rho \beta } \delta g_{\alpha \beta } + O((\delta g)^2)  \\
+  &=  \delta_{\mu }^{\rho } + \delta g_{\mu \nu } \overline{g}^{\nu \rho } - \delta_{\mu}^{\alpha } \delta g_{\alpha \beta } \overline{g}^{\rho \beta }  + O((\delta g)^2)
+\,,
+\end{align}
+%
+so we can notice that the first order terms cancel: we have the inverse, up to first order. 
+
+\subsubsection{Inverse perturbed Schwarzschild}
+
+The Schwarzschild metric is 
+%
+\begin{align}
+  \overline{g}_{\mu \nu } = \left[\begin{array}{cccc}
+  -\qty(1 - \frac{2GM}{r}) & 0 & 0 & 0 \\ 
+  0 & \qty(1 - \frac{2GM}{r})^{-1} & 0 & 0 \\ 
+  0 & 0 & r^2 & 0 \\ 
+  0 & 0 & 0 & r^2 \sin^2 \theta 
+  \end{array}\right]
+\,,
+\end{align}
+%
+and its inverse is 
+%
+\begin{align}
+  \overline{g}^{\mu \nu } = \left[\begin{array}{cccc}
+  -\qty(1 -\frac{2GM}{r})^{-1}  & 0 & 0 & 0 \\ 
+  0 & \qty(1- \frac{2GM}{r}) & 0 & 0 \\ 
+  0 & 0 & r^{-2} & 0 \\ 
+  0 & 0 & 0 & r^{-2} \sin^{-2} \theta 
+  \end{array}\right]
+\,.
+\end{align}
+
+We want to compute \(\overline{g}^{\mu \alpha } \overline{g}^{\nu \beta } \delta g_{\alpha \beta }\), and we know that \(\delta g_{\alpha \beta } \) has only one independent component: 
+%
+\begin{align}
+  \delta g_{t \varphi } = - \frac{2 GJ  \sin^2\theta }{r}
+\,.
+\end{align}
+
+This, combined with the fact that the background metric is diagonal, gives us the result that we only have one entry in the sum: 
+%
+\begin{align}
+  \overline{g}^{\mu \alpha } \overline{g}^{\nu \beta } \delta g_{\alpha \beta }
+  = \overline{g}^{tt} \overline{g}^{\varphi \varphi }
+  \delta g_{\varphi  t}
+  = \frac{2GJ \sin^2 \theta /r }{(1 - \frac{2GM}{r}) r^2 \sin^2 \theta }
+  = \frac{2GJ}{(r - 2GM) r^2}
+  \,,
+\end{align}
+%
+so the  full inverse metric to first order in \(J\) is given by subtracting this off of the regular Schwarzschild inverse's \(t \varphi \) components: 
+%
+\begin{align}
+  g^{\mu \nu } = \left[\begin{array}{cccc}
+    -\qty(1 -\frac{2GM}{r})^{-1}  & 0 & 0 & -\frac{2GJ}{(r - 2GM)r^2} \\ 
+    0 & \qty(1- \frac{2GM}{r}) & 0 & 0 \\ 
+    0 & 0 & r^{-2} & 0 \\ 
+    -\frac{2GJ}{(r - 2GM)r^2} & 0 & 0 & r^{-2} \sin^{-2} \theta 
+    \end{array}\right]  
+\,,
+\end{align}
+%
+
+
 
 \end{document}

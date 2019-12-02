@@ -20,9 +20,56 @@ The metric is given by
 \begin{align}
   \dd{s^2} = - \dd{t^2} + \dd{x^2} =
   - \rho^2 \dd{\eta^2} + \dd{\rho^2}
+\,.
+\end{align}
+
+We defined Rindler coordinates so that our uniformly accelerated observer would have velocity only along \(\eta \), so we can find the general expression of the 4-velocity by computing the normalization: since it will look like \(u^{\alpha } = (N, 0)\) for some \(N\) and we want \(u^{\alpha } u_{\alpha } = -1\), we get that \(N^2(-\rho^2) = -1 \), which means \(N = 1/ \rho \). 
+
+The only nonzero Christoffel symbols are \(\Gamma^{\eta }_{\eta \rho } = 1/\rho \) and \(\Gamma^{\rho }_{\eta \eta }= \rho \). 
+
+The computation of the acceleration then can be started: 
+%
+\begin{align}
+  \dv{}{\tau } u^{\mu } &= u^{\nu } \nabla_{\nu } u^{\mu }  \\
+  &= u^{\eta } \qty(\cancelto{}{\partial_{\eta } u^{\mu }} + \Gamma^{\mu }_{\eta \nu } u^{\nu })  \\
+  &= \frac{1}{\rho^2} \Gamma^{\mu }_{\eta \eta }
 \,,
 \end{align}
 %
+so the only nonzero component is the one where \(\mu = \rho \), which is \(a^{\rho } = 1/\rho \), or in other words
+%
+\begin{align}
+  a^{\mu } = \left[\begin{array}{c}
+  0 \\ 
+  \kappa 
+  \end{array}\right]
+\,,
+\end{align}
+%
+where \(\kappa = 1/ \rho \) is the modulus of the 4-acceleration. Indeed 
+%
+\begin{align}
+  a^{\mu } a^{\nu } g_{\mu \nu } = \kappa^2 g_{\rho \rho } = \kappa^2
+\,.
+\end{align}
+%
 
+\subsection{Acceleration in Schwarzschild motion}
 
+The acceleration is given by 
+%
+\begin{align}
+  a^{\mu } = u^{\nu } \qty(\partial_{\nu } + \Gamma^{\mu  }_{\nu \rho } u^{\rho })
+\,,
+\end{align}
+%
+and we can see that in this formula we can only have a nonzero result if \(\mu = t, r, \varphi \), \(\nu = t, \varphi \) and \(\rho = t, \varphi \). 
+This, combined with the fact that velocity is both stationary and rotationally symmetric, gives us that the only nonzero component of the acceleration is 
+%
+\begin{align}
+  a^{r } = (u^{\nu })^2 \Gamma^{r}_{\nu \nu }
+\,.
+\end{align}
+%
+ 
 \end{document}

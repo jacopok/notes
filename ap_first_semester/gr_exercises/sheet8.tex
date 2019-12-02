@@ -56,20 +56,118 @@ where \(\kappa = 1/ \rho \) is the modulus of the 4-acceleration. Indeed
 
 \subsection{Acceleration in Schwarzschild motion}
 
-The acceleration is given by 
+\subsubsection{Acceleration computation}
+
+The acceleration is given in general by 
 %
 \begin{align}
-  a^{\mu } = u^{\nu } \qty(\partial_{\nu } + \Gamma^{\mu  }_{\nu \rho } u^{\rho })
+  a^{\mu } = u^{\nu } \qty(\partial_{\nu } u^{\mu } + \Gamma^{\mu  }_{\nu \rho } u^{\rho })
 \,,
 \end{align}
 %
 and we can see that in this formula we can only have a nonzero result if \(\mu = t, r, \varphi \), \(\nu = t, \varphi \) and \(\rho = t, \varphi \). 
-This, combined with the fact that velocity is both stationary and rotationally symmetric, gives us that the only nonzero component of the acceleration is 
+
+Now we use the following facts: the velocity is both stationary (\(\partial_{t} u^{\mu } = 0\)), rotationally symmetric (\(\partial_{\varphi } u^{\mu } = 0\)), and the the Christoffel symbols with the upper index different from \(r\) must have at least one \(r\) between the lower ones in order to be nonzero, therefore the terms containing them must be zero since they must then be contracted with \(u^{r} =0 \).
+This gives us that the only nonzero component of the acceleration is 
 %
 \begin{align}
-  a^{r } = (u^{\nu })^2 \Gamma^{r}_{\nu \nu }
+  a^{r } = u^{\nu } u^{\nu } \Gamma^{r}_{\nu \nu }
+  = \qty(u^{t})^2 \Gamma^{r}_{tt} + \qty(u^{\varphi })^2 \Gamma^{r}_{\varphi \varphi }
+\,.
+\end{align}
+
+This already confirms that \(u^{\mu } a_{\mu } =0\), since the Schwarzschild metric is diagonal.
+
+The symbols which appear are 
+%
+\begin{align}
+  \Gamma^{r}_{tt} = \frac{1}{2} g^{rr} \qty(- g_{tt, r})
+  = \qty(1 - \frac{2GM}{r_{*}}) \frac{GM}{r^2_{*}}
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \Gamma^{r}_{\varphi  \varphi } = 
+  \frac{1}{2} g^{rr} \qty(-g_{\varphi \varphi , r})
+  = - \qty(1 - \frac{2GM}{r_{*}}) r_{*} 
+\,.
+\end{align}
+
+What are the components of the \(4-\)velocity? We can use the normalization \(u^{\mu } u_{\mu } = -1\); inserting the variable name \(u^{\varphi } = \omega \) this gives us 
+%
+\begin{align}
+  u^{t} u^{t} g_{tt} + \omega^2 g_{\varphi \varphi } = -1
+\,,
+\end{align}
+%
+which can be written as 
+%
+\begin{align}
+  u^{t} u^{t} = \frac{1 + \omega^2 r_{*}^2}{1 - \frac{2GM}{r_*}}
 \,.
 \end{align}
 %
- 
+Let us plug this expression into the acceleration one: 
+%
+\begin{align}
+  a^{r} = \frac{1 + \omega^2 r_{*}^2}{1 - \frac{2GM}{r_*}}
+  \qty(1 - \frac{2GM}{r_{*}}) \frac{GM}{r_{*}^2} - \omega^2 \qty(1 - \frac{2GM}{r_{*}}) r_{*}
+\,,
+\end{align}
+%
+which simplifies to 
+%
+\begin{align}
+  a^{r} &= \frac{GM}{r_{*}^2} + \omega^2 GM - \omega^2 r_{*} + 2GM \omega^2  \\
+  &= \frac{GM}{r_{*}^2} + 3GM \omega^2 - \omega^2 r_{*}
+\,.
+\end{align}
+%
+If we set it to zero we find a relation which we can express in terms of \(l = g_{\varphi \varphi } u^{\varphi } = r^2_{*} \omega \). We get 
+%
+\begin{align}
+  0 &= \frac{GM}{r_{*}^2} + 3GM \frac{l^2}{r^{4}} - \frac{l^2}{r_{*}^{3}}  \\
+  &= GMr_{*}^2 +3GMl^2 - l^2 r_{*}
+\,,
+\end{align}
+%
+which  is the relation we know for the angular momentum in circular orbits. 
+
+\subsubsection{Acceleration modulus limits}
+
+The modulus of the acceleration is given by \(\abs{\vec{a}}^2 = a^{r} a^{r} g_{rr}\), so we will have 
+%
+\begin{align}
+  \abs{\vec{a}}^2 = \frac{1}{1- \frac{2GM}{r_{*}}} \qty(
+  \frac{GM}{r_{*}^2} + 3GM \omega^2 - \omega^2 r_{*})^2
+\,,
+\end{align}
+%
+which can be written in terms of the adimensionalized variables \(R = r / 2GM\) and \(\widetilde{\omega} = 2GM \omega \): 
+%
+\begin{align}
+  \abs{\vec{a}}^2 = \frac{1}{(4 GM)^2} \frac{R_{*}}{R_{*} - 1}
+  \qty(\frac{1}{R_{*}^2} + \frac{\widetilde{\omega}^2}{4} \qty(3 - 2 R_{*}))^2
+\,.
+\end{align}
+%
+This diverges as \(R_{*} \rightarrow 1\); if we set \(\omega = 0\) it becomes 
+%
+\begin{align}
+  \abs{\vec{a}}^2 = \frac{1}{(4GM)^2} \frac{R_{*}}{R_{*}- 1} \frac{1}{R_{*}^4}
+\,,
+\end{align}
+%
+while for \(R_{*} \gg 1\) it becomes 
+%
+\begin{align}
+  \abs{\vec{a}}^2 \sim \frac{1}{(4GM)^2} \qty(\frac{1}{R_{*}^2}
+   - \frac{\widetilde{\omega}^2 R_{*}}{2})^2
+\,,
+\end{align}
+%
+which can become 0 if we set \(\widetilde{\omega}^2 R_{*}^3= 2\), or \(\omega^2 r_{*}^3 = 4GM\)
+
 \end{document}

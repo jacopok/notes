@@ -21,6 +21,29 @@ where \(\mathfrak{S}_n\) is the \emph{symmetric group} of permutations of \(n\) 
 
 If we want to symmetrize indices which are not next to each other, we will denote the end of the (anti)symmetrized indices by a vertical bar.
 
+A useful mnemonic for the Riemann tensor: we'd like to write the formula \(R = \partial \Gamma  + \Gamma \Gamma \) keeping the indices in the same order on either side: the way to do it is this: 
+%
+\begin{align}
+  R^{\mu }_{\alpha \beta \gamma } = -2 \qty(
+    \Gamma^{\mu }_{\alpha [\beta , \gamma ]}
+    + \Gamma^{\sigma }_{\alpha [\beta } \Gamma^{\mu }_{\gamma ], \sigma }
+  )
+\,,
+\end{align}
+%
+which is much easier to remember: one writes down the indices in the same order, adds a dummy index in the second Christoffel symbol on the last term, which must be contracted with the upper index on the other symbol. 
+
+Then, since the Riemann tensor is antisymmetric in the last two indices, we antisymmetrize in those. 
+
+Another useful relation is given by 
+%
+\begin{align}
+  R_{\mu \nu } = \partial_{\gamma } \Gamma^{\gamma }_{\mu \nu } - \Gamma^{\alpha }_{\mu \beta } \Gamma^{\beta }_{\mu \alpha } - \nabla_{\mu } \qty(\partial_{\nu } \log \sqrt{ \abs{g}})
+\,,
+\end{align}
+%
+where \(g\) is the determinant of the metric. 
+
 \section{Sheet 1}
 
 \subsection{Lorentz transformations }

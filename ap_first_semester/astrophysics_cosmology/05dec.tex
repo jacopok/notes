@@ -286,6 +286,79 @@ and now we are assuming that \(\rho > \rho _J\).
 
 Stars are made of baryons. 
 
+Molecular hydrogen: 
+%
+\begin{align}
+  H + e &\leftrightarrow H^{-} + \gamma  \\
+  H^{-} + H &\leftrightarrow H_2 + e  \\
+   H+ p &\leftrightarrow H_2^{+} + \gamma  \\
+  H_2^{+} + H &\leftrightarrow H_2 + p
+\,,
+\end{align}
+%
+and these processes are generally not very efficient: they start to be efficient at redshifts of about \(z \sim 200\). 
 
+It is easier to get the Jeans density if the mass is high and the temperature is low. 
+
+The formation of stars is somewhat top-down: larger structures form first. 
+
+The critical energy density today is  \(\rho_{0c} \sim \SI{e-29}{g cm^{-3}}\), while for baryons we have \(\rho_{0b} \sim \SI{1e-31}{g cm^{-3}}\). 
+
+On the other hand, at \(z \sim 200 \) we must multiply the density by a factor \((1+z)^3\) we get a density of \(\rho_{b} (z \sim 200) \sim \SI{e-22}{kg m^{-3}}\). 
+
+If we take \(M = 1000 M_{\odot}\) and \(T \approx \SI{20}{K}\), we have a Jeans critical density of around \(\SI{e-20}{kg m^{-3}}\). 
+
+\todo[inline]{Is \SI{20}{K} a typical temperature then?}
+
+The matter starts free-falling: then the kinetic energy increases. 
+However, it is used in chemical processes. That way matter can become opaque. 
+
+We have the equation 
+%
+\begin{align}
+  \frac{1}{2} \qty(\dv{r}{t})^2 = \frac{G m_0 }{r} - \frac{G m_0 }{r_0 }
+\,,
+\end{align}
+%
+which gives us a typical free-fall time of \SI{2e4}{yr}. 
+
+The energy needed to ionize all the hydrogen is 
+%
+\begin{align}
+  E = \frac{M}{2 m_H} \epsilon_{D} + \frac{M}{m_H} \epsilon_{I}
+\,,
+\end{align}
+%
+where \(M\) is the mass of the star, \(m_H\) is the mass of a hydrogen atom, while \(\epsilon_{D} \approx \SI{4.5}{eV}\) and \(\epsilon_{U} \approx \SI{13.6}{eV}\). 
+
+We are going from a radius \(R_1 \) to a radius \(R_2 \): we get \(R_1 \sim \sqrt[3]{3 M / 4 \pi \rho _J}\), since that is the radius at which the collapse starts. 
+
+However, the \(R_1 \) term hardly contributes: the term \(R_2 \) is typically 4 orders of magnitude smaller. 
+
+Our objects must still become hotter and smaller in order to reach the \SI{e7}{K} needed for ignition. 
+
+The final equation we  get comes from the  virial theorem:
+%
+\begin{align}
+  2E_{k} + E _{\text{gr}} =0
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  E_k = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{\overline{m}} k_B T \approx \frac{3M}{m_H} k_B T
+\,,
+\end{align}
+%
+since \(\overline{m} = 0.5 m_H\): so in the end, equating the energies, we have 
+%
+\begin{align}
+  2 \times 3 k_B T \frac{M}{m_H }
+  = \frac{M}{m_H} \qty(\frac{\epsilon_{D}}{2} + \epsilon_{I})
+\,,
+\end{align}
+%
+which means that \(k_B T = \frac{1}{12} \qty(\epsilon_{D} + 2 \epsilon_{I}) \sim \SI{2.6}{eV}\), which is still very low compared to the temperature we need. 
 
 \end{document}

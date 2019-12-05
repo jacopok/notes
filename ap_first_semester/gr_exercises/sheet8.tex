@@ -283,26 +283,58 @@ We want to compute the 00 component of the Ricci tensor, \(R_{00} = R^{\alpha }_
 \,,
 \end{align}
 %
-and we will show that each of these 4 terms is zero at \(O(J)\). 
+and we will show that each of these 4 terms is either constant with respect to \(J\) or quadratic in \(J\), when computed with respect to the metric 
+%
+\begin{align}
+  g_{\mu \nu } = 
+  \left[\begin{array}{cccc}
+  -\qty(1- \frac{2GM}{r}) & 0 & 0 & - \frac{2GJ}{r} \sin^2\theta  \\ 
+  0 & \qty(1 - \frac{2GM}{r})^{-1} & 0 & 0 \\ 
+  0 & 0 & r^2 & 0 \\ 
+  - \frac{2GJ}{r} \sin^2\theta  & 0 & 0 & r^2 \sin^2 \theta 
+  \end{array}\right]
+\,.
+\end{align}
 
-The sum \(\Gamma^{\alpha }_{00, \alpha } \) is independent of \(J\): the only terms which can contribute in the sum are \(\alpha = r, \theta \) and then the three indices in the Christoffel symbol are either \(001\) or \(002\): in either case we cannot form the \(J\)-dependent metric component \(g_{03}\). 
+First of all, note that the only derivatives of the metric which can give \(J\)-dependent contributions are \(g_{03,1}\), \(g_{03, 2}\) or these terms with \(0\) and \(3\) exchanged. 
+
+The sum \(\Gamma^{\alpha }_{00, \alpha } \) is independent of \(J\): the only terms which can contribute in the sum are \(\alpha = r, \theta \) and then the three indices in the Christoffel symbol are either \(001\) or \(002\): in either case we cannot form the \(J\)-dependent metric component \(g_{03}\).
+
+More explicitly: the expression is 
+%
+\begin{align}
+  \Gamma^{\alpha }_{00} = \frac{1}{2} g^{\alpha \beta } \qty(2g_{\beta 0,0}- g_{00, \beta } )
+\,,
+\end{align}
+%
+and the time derivatives vanish, terms with \(\beta = 1, 2\) could contribute but in neither case would we have the possibility to form the \(g^{03}\) component. 
 
 The term \(\partial_{0} \Gamma^{\alpha }_{0\alpha }\) is zero by stationarity: the metric is \(t\)-independent. 
 
-In the term \(\Gamma^{\alpha }_{\alpha \lambda } \Gamma^{\lambda }_{00}\) we ask ourselves: where can the metric component \(g_{03}\) appear? Certainly not in the second symbol, while for it to appear in the first symbol we would need to have \(\alpha, \lambda = 0, 3\) (in either order), but then the third index in that symbol would also be \(0\) or \(3\), so the metric component \(g_{03}\) would be differentiated with respect to \(t\) or \(\varphi \), and it is independent of both. 
+In the term \(\Gamma^{\alpha }_{\alpha \lambda } \Gamma^{\lambda }_{00}\) we ask ourselves: where can the metric component \(g_{03}\) or \(g^{03}\) appear? As we saw above it cannot appear in the second symbol, while for it to appear in the first symbol we would need to have \(\alpha, \lambda = 0, 3\) (in either order), but then the third index in that symbol would also be \(0\) or \(3\), so the metric component \(g_{03}\) would be differentiated with respect to \(t\) or \(\varphi \), and it is independent of both. So, in order to have the symbol \(\Gamma^{\lambda }_{00} \) not be zero we need to have \(\lambda = 1, 2\). 
+Then, in the expression 
+%
+\begin{align}
+  \Gamma^{\alpha }_{\alpha \lambda }  = \frac{1}{2}
+  g^{\alpha \beta } \qty(g_{\beta \alpha , \lambda }
+  + g_{\beta \lambda , \alpha }
+  - g_{ \alpha \lambda , \beta })
+\,
+\end{align}
+%
+the last two terms of the sum cannot depend on \(J\) since they have an index which is neither 0 nor 3. 
+Terms such as those with \(\alpha , \beta = 0,3\) or the inverse can contribute: however in these terms we have to multiply a \(g^{03}\), which is linear in \(J\), with a \(g_{03}\), which also is. So in the end the term is quadratic in \(J\). 
 
-The term \(\Gamma^{\alpha }_{0 \lambda } \Gamma^{\lambda}_{0 \alpha }\) is the only \(J\)-dependent one: however it is \(O(J^2)\). 
+The term \(\Gamma^{\alpha }_{0 \lambda } \Gamma^{\lambda}_{0 \alpha }\) is also \(O(J^2)\). 
 
-This is because in order for one of these symbols to be nonzero and \(J\)-dependent we need to have \(\alpha = 1\), \(\lambda = 3\) or the reverse, since the only nonvanishing \(O(J)\) derivatives are \(g_{03,1}\) and \(g_{03, 2}\). 
+This is because in order for one of these symbols to be nonzero and \(J\)-dependent we need to have one of the indices \(\alpha \) and \(\lambda \) equal to \(3\) and the other equal to \(1\) or \(2\), since the only nonvanishing \(O(J)\) derivatives are \(g_{03,1}\) and \(g_{03, 2}\). 
 
-\todo[inline]{Check for \(\theta \) dependence.}
-
-However in the three terms in the sum which gives us the Christoffel symbol components the other two are zero: therefore the whole symbol is linear in \(J\), and this holds for both the symbols which are multiplied together since they have (permutations of) the same indices. 
+Now the thing to notice is this one: since in either of these four cases we have three different indices, there is no way for us to form the diagonal elements of the metric: each Christoffel symbol is then at least linear in the metric, therefore the product of two of them is at least quadratic. 
 
 In the end then the sum, when expressed as a function of \(J\), looks like: 
 %
 \begin{align}
-  R_{00} = \const - 0 + 0 - O(J^2)
+  R_{00} = \const(J)+  O(J^2)
 \,,
 \end{align}
 %

@@ -1,4 +1,291 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Dec 05 2019}
+
+There will be a section on gravitational waves in cosmology in January. 
+
+We found the relation: 
+%
+\begin{align}
+  \vec{r}  = a(\lambda ) \vec{x}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \vec{\dot{r}} = \vec{u} = \dot{a} \vec{x} + a \dot{\vec{x}} = H \vec{r} + \vec{v}
+\,,
+\end{align}
+%
+since \(H = \dot{a} / a\). 
+
+An issue we have is the \emph{redshift space distortion}, caused by \emph{peculiar velocities} which cause the light we see to have redshift beyond the one caused by cosmology alone. 
+
+In comoving coordinates, we can use the regular Newtonian fluid dynamics equations. 
+
+Since we know that the gravitational instability is relevant when the gravitational force overcomes the pressure forces, we set the pressure gradient to be equal to zero. We have 
+%
+\begin{align}
+  \pdv{\rho }{t} |_{\vec{r}} + \nabla_{\vec{r}} \qty(\rho \vec{u}) &= 0  \\
+  \dv{\vec{u}}{t} + \qty(\vec{u} \cdot \vec{\nabla_{\vec{r}}}) \vec{u} &=0  \\
+  \nabla_{\vec{r}}^2 \Phi &= 4 \pi G \rho 
+\,,
+\end{align}
+%
+and we consider a background \(\Phi_b (\vec{r}, t)\), and \(\rho = \overline{\rho}(t)\): we have a peculiar gravitational field beyond the Robertson-Walker background: we define 
+%
+\begin{align}
+  \phi  = \Phi - \Phi_b
+\,,
+\end{align}
+%
+and analogously we define by 
+%
+\begin{align}
+  \delta \rho = \rho - \overline{\rho} = \overline{\rho} \qty(1 + \delta )
+\,,
+\end{align}
+%
+with \(-1 \leq \delta \leq \infty\). 
+
+The Laplace equation for \(\phi \) is given by 
+%
+\begin{align}
+  \nabla^2_{\vec{x}} \phi (\vec{x}, t) = 4 \pi G a^2(t) \overline{\rho} (t) \delta (\vec{x}, t)
+\,,
+\end{align}
+%
+and we actually \emph{can} have negative quantities on the RHS. Not repulsive gravity, but kind of. 
+
+The relation between the derivatives is 
+%
+\begin{align}
+  \pdv{}{r} = \frac{1}{a } \pdv{}{x}
+\,,
+\end{align}
+%
+therefore the continuity equation becomes:
+%
+\begin{align}
+  \pdv{\rho }{t} + 3H \rho + \frac{1}{a} \nabla_{x} \qty(\rho \vec{v}) = 0
+\,,
+\end{align}
+%
+we get that the density scales like \(a^{-3}\) if there is no velocity: then it becomes 
+%
+\begin{align}
+  \frac{\dot{\rho}}{\rho } + 3 \frac{\dot{a}}{a} =0 
+\,.
+\end{align}
+%
+
+For the momentum equation the calculation is longer, but in the end we find: 
+%
+\begin{align}
+  \pdv{\vec{v}}{t} + H \vec{v} +
+  \frac{1}{a} \qty(\vec{v} \cdot \nabla_{x}) \vec{v}
+  = - \frac{1}{a} \nabla_{x} \phi 
+\,,
+\end{align}
+%
+and once again we remark that we are not using GR because, in the absence of symmetry, that is definitely too difficult. 
+
+If we perturb, we will find that plane waves are not solutions anymore, because we will have time-dependent coefficients. 
+
+The perturbation of the density is: 
+%
+\begin{align}
+  \rho (\vec{x}, t) = \overline{\rho}(t) \qty(1 + \delta (\vec{x}, t))
+\,,
+\end{align}
+%
+and for the field: 
+%
+\begin{align}
+  \phi (\vec{x}, t) = \Phi - \Phi_b
+\,.
+\end{align}
+
+The derivative is: 
+%
+\begin{align}
+  \pdv{\rho }{t} = \pdv{\overline{\rho}}{t} \qty(1 + \delta ) + \overline{\rho} \pdv{ \delta }{t}
+\,,
+\end{align}
+%
+and we can discard higher-order terms: simplifying the zeroth-order equation we find for the  continuity equation: 
+%
+\begin{align}
+  \pdv{ \delta }{t} + \frac{1}{a} \vec{\nabla} \cdot \vec{v} = 0
+\,.
+\end{align}
+
+On the other hand, for the momentum equation we find: 
+%
+\begin{align}
+  \pdv{\vec{v}}{t} + H \vec{v} = - \frac{1}{a} \nabla \phi 
+\,,
+\end{align}
+%
+and in order to solve these we can expand in Fourier space: 
+%
+\begin{align}
+  \delta (\vec{x} , t) = 
+  \frac{1}{(2 \pi )^3} \int \dd[3]{\vec{k}} \widetilde{\delta} (t) \exp(i \vec{k} \cdot \vec{x})
+\,,
+\end{align}
+%
+and similarly for \(\vec{v}\) and \(\phi \). 
+
+The actual quantities must be real: therefore we know that \(\widetilde{\delta}^{*}_{\vec{k}} (t) = \widetilde{\delta}_{-\vec{k}} (t)\).
+
+Any vector field \(\vec{V}\) can be decomposed by the Helmholtz theorem into a gradient and a divergence: 
+%
+\begin{align}
+  \vec{V} = \nabla \Psi + \vec{T}
+\,,
+\end{align}
+%
+where \(\nabla \cdot \vec{T} = 0\).
+
+Using the convective time derivative, we have 
+%
+\begin{align}
+  \frac{\mathrm{D} \vec{v}}{\mathrm{d}t} 
+  + H \vec{v} = - \frac{1}{a} \nabla \phi 
+\,.
+\end{align}
+
+Inserting here the Helmholtz decomposition applied to the velocity, we find 
+%
+\begin{align}
+  \frac{\mathrm{D} \vec{T}}{\mathrm{D}t} + H \vec{T} = 0
+\,,
+\end{align}
+%
+which means that vorticity is conserved in fluid motion. 
+
+This means that any vorticity which might have been there at the beginning would have been diluted out over time.
+
+We project the equations along the versor \(\vec{u}_{\vec{k}} = \vec{k} / \abs{\vec{k}}\). 
+
+Then the equation becomes 
+%
+\begin{align}
+  \dot{\delta}_{\vec{k}} + \frac{ik}{a} v_{\vec{k}} =0
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  \dot{v}_{\vec{k}} + H v_{\vec{k}} = - \frac{\vec{ik}}{a} \phi_{\vec{k}}
+  \,,
+\end{align}
+%
+and finally 
+%
+\begin{align}
+  - k^2 \phi_{\vec{k}} = 4 \pi G a^2 \overline{\rho} \delta_{\vec{k}}
+\,.
+\end{align}
+
+Now, by differentiating in one single step we will get a linear second order differential equation for \(\delta \) which is separated from the others. 
+
+Differentiating one more time and making the \(\vec{k}\) implicit we get: 
+%
+\begin{align}
+  \ddot{\delta} + \frac{ik}{a} \dot{v} - \frac{ik}{a^2}\dot{a} &= 0  \\
+  \ddot{\delta} + \frac{ik}{a} \qty(-Hv - \frac{ik}{a} \phi ) - \frac{ik}{a} Hv &=0  \\
+  \ddot{\delta} - \frac{2ik}{a} Hv + \frac{k^2 \phi }{a^2} &=0
+\,,
+\end{align}
+%
+but the last term is \(- 4 \pi G a^2 \overline{\rho} \delta \): then in the end we find 
+%
+\begin{align}
+  \ddot{\delta} + 2 H \dot{\delta} - 4 \pi G \overline{\rho} \delta = 0 
+\,,
+\end{align}
+%
+
+and we use the following solutions of the background equations: 
+%
+\begin{align}
+  a(t ) &\propto t^{2/3}  \\
+  H &= \frac{2}{3t}  \\
+\overline{\rho} &= \qty(6 \pi G t^2)^{-1}
+\,,
+\end{align}
+%
+and plugging these in we find 
+%
+\begin{align}
+  \ddot{\delta} + \frac{4}{3t} \dot{\delta} - \frac{2}{3t^2} \delta = 0
+\,,
+\end{align}
+%
+which will be a power of \(t\): plugging \(t^{\alpha }\) we find the equation 
+%
+\begin{align}
+  \alpha (\alpha -1) + \frac{4}{3} \alpha - \frac{2}{3} =0 
+\,,
+\end{align}
+%
+which gives \(\alpha = -1, 2/3\). 
+
+The solution with \(\alpha = 2/3\) is called the growing mode, while the one with \(\alpha = -1\) is called the decaying mode. 
+When the inflaton field becomes classical we lose a degree of freedom: this removes the decaying solutions. 
+Another way to see it is to see that the decaying mode explodes as \(t \rightarrow 0\). 
+
+Thus, we usually remove the decaying solution. 
+
+An interesting observation is the fact that the growing mode grows just as fast as the scale factor. 
+
+Inserting this into the other equations we find \(v \propto t^{\beta } \) with \(\beta = 1/3\) or \(-4/3\), while \(\phi \propto t^{\gamma }\) with \(\gamma = 0, -5/2\). 
+
+\todo[inline]{understand what the equation }
+%
+\begin{align}
+    \chi_{J} = c_s \sqrt{\frac{\pi}{4 \overline{\rho}}}
+  \,,
+  \end{align}
+%
+The Jeans density is given by 
+%
+\begin{align}
+  \rho_{J} = \frac{3}{4 \pi M^2} \qty(\frac{3k_B T}{2G \overline{m}})^{3}
+\,.
+\end{align}
+%
+
+%
+\begin{align}
+  \chi_J = c_s \qty(\frac{\pi}{4 \overline{\rho}})^{1/2}
+\,,
+\end{align}
+%
+
+%
+\begin{align}
+  M_J = \frac{4 \pi }{3} \overline{\rho} \qty(\frac{\lambda}{2})^{3}
+\,,
+\end{align}
+%
+
+%
+\begin{align}
+  c_s^2 \sim \frac{k_B T}{\overline{m}}
+\,,
+\end{align}
+%
+
+and now we are assuming that \(\rho > \rho _J\). 
+
+Stars are made of baryons. 
+
+
+
 \end{document}

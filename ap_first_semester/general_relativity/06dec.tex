@@ -3,6 +3,383 @@
 
 \section*{Fri Dec 06 2019}
 
+From last time we have the metric 
+%
+\begin{align}
+  \dd{s^2} = \eta_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}  - \frac{4GJ}{r} \sin^2 \theta \dd{t} \dd{\varphi }
+\,,
+\end{align}
+%
+and since in polar coordinates the \(z\) axis is singular we use cartesian ones: 
+%
+\begin{align}
+  x &= r \sin \theta \cos \varphi  \\
+  y &= r \sin \theta \sin \varphi 
+\,,
+\end{align}
+%
+which means \(\varphi = \arctan (y/x)\). Then 
+%
+\begin{align}
+  \dd{\varphi } = \frac{1}{1 + y^2 / x^2} \dd{\qty(y/x)}
+  = \frac{x \dd{y} - y \dd{x}}{r^2 \sin^2\theta } \dd{\varphi }
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+  \dd{s^2} = \eta_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}  
+  - \frac{4GJ}{r^2} \frac{x \dd{y} - y \dd{x}}{r} \dd{t} 
+\,,
+\end{align}
+%
+since the \(\sin^2 \theta\) simplified. 
+So our metric is Minkowski plus a perturbation: 
+%
+\begin{align}
+  \delta g_{01} = \delta g_{10} = \frac{2GJy}{(x^2+ y^2+z^2)^{3/2}}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+    \delta g_{02} = \delta g_{20} = \frac{-2GJx}{(x^2+ y^2+z^2)^{3/2}}
+  \,,
+\end{align}
+%
+which means that our Christoffel symbols are 
+%
+\begin{align}
+  \Gamma^{\mu }_{\alpha \beta } = \frac{1}{2} \eta^{\mu \gamma } \qty(\delta g_{\gamma \beta, \alpha } + g_{\gamma \alpha , \beta } - g_{\alpha \beta , \gamma })
+  + O(J^2)
+\,.
+\end{align}
 
+The 4-velocity is \(u^{ \alpha } = (u^{t}, 0, 0, u^{z})\), and the spin vector initially is \(s^{\alpha } _{\text{in}} = (0, s^{x} _{\text{in}}, 0,0)\).
+
+We want to show that \(s^{z}\) is zero at all times. 
+
+The equation is 
+%
+\begin{align}
+  \dv{s^{z}}{\tau } + \Gamma^{z}_{\alpha \beta } u^{\alpha } s^{\beta }= 0
+\,,
+\end{align}
+%
+but the velocity has only two components: then 
+%
+\begin{align}
+  \dv{s^{z}}{\tau } + \Gamma^{3}_{0 \beta } u^{0} s^{\beta } + \Gamma^{3}_{3 \beta } u^{3} s^{\beta } = 0
+\,,
+\end{align}
+%
+but 
+%
+\begin{align}
+  \Gamma^{3}_{0 \beta } = \frac{1}{2} \eta^{3 3 } \qty(
+      \delta g_{3 \beta , 0 }
+      + \delta g_{03, \beta }
+      - \delta g_{0 \beta , 3}
+  )
+\,,
+\end{align}
+%
+but the first two are zero since they contain an index \(3\). The last is also zero: 
+%
+\begin{align}
+  \delta g_{0 \beta , 3} = \pdv{}{z} \qty(\frac{2GJy}{r^{3}}) \quad \text{or}\quad 
+  \pdv{}{z} \qty(-\frac{2GJx}{r^{3}})
+\,,
+\end{align}
+%
+and in either case we need to calculate the derivative on the \(x=y=0\) axis, therefore since the terms are proportional to \(x\) or \(y\) they will vanish. 
+
+For the other term we also have
+%
+\begin{align}
+  \Gamma^{3}_{3 \beta } = \frac{1}{2} \eta^{33} \qty(\delta g_{3 \beta , 3} + \delta g_{33, \beta } - \delta g_{\beta 3, 3}) =0 
+\,,
+\end{align}
+%
+so \(s^{z} = 0\) for all times. 
+
+Now let us write the evolution for the \(s^{t}\) component. 
+%
+\begin{align}
+  \dv{s^{t}}{\tau } + \Gamma^{0}_{\alpha \beta } u^{\alpha } s^{\beta } = 0
+\,,
+\end{align}
+%
+and then we must look at the Christoffels: 
+%
+\begin{align}
+\Gamma^{0}_{0 \beta } &= \frac{1}{2} \eta^{00} \qty(
+    \delta g_{0 0, \beta } +
+    \delta g_{0 \beta , 0} 
+    - \delta g_{0 \beta ,0 } 
+) =0 \\
+\Gamma^{0}_{3 \beta } &= \frac{1}{2} \eta^{00} \qty(
+    \delta g_{0 \beta , 3 } +
+    \delta g_{3 0 , \beta } 
+    - \delta g_{3 \beta ,0 } 
+) =0
+\,,
+\end{align}
+%
+so the only components which evolve are 
+%
+\begin{align}
+  \dv{s^{1}}{\tau } + \Gamma^{1}_{\alpha \beta } u^{\alpha } s^{\beta } &= 0 \\
+  \dv{s^{2}}{\tau } + \Gamma^{2}_{\alpha \beta } u^{\alpha } s^{\beta } &= 0
+\,,
+\end{align}
+%
+and now we notice this: since we need to form \(\delta g_{01}\) or \(\delta g_{02}\), one of the lowe two indices in the Christoffels must be zero: but it cannot be \(\beta \) since \(s^{t}=0\): so we set \(\alpha =0\), and consider only \(\Gamma^{1}_{0 \beta } u^{0} s^{\beta }\) and \(\Gamma^{2}_{0 \beta } u^{0} s^{\beta }\). Also, \(\beta \) can only be \(1\) or \(2\). Then the equations become: 
+%
+\begin{subequations}
+\begin{align}
+    \dv{s^{1}}{\tau } + \Gamma^{1}_{0 1 } u^{0 } s^{1 } + \Gamma^{1}_{0 2 } u^{0 } s^{2 } &= 0 \\
+  \dv{s^{2}}{\tau } + \Gamma^{2}_{0 1} u^{0 } s^{1}  + \Gamma^{2}_{0 2} u^{0 } s^{2} &= 0
+\,,
+\end{align}
+\end{subequations}
+%
+and as yesterday we can use \(u^{0} = \dv*{t}{\tau }\) to get derivatives with respect to \(t\): we then get 
+%
+\begin{subequations}
+    \begin{align}
+        \dv{s^{1}}{t } + \Gamma^{1}_{0 1 }  s^{1 } + \Gamma^{1}_{0 2 }  s^{2 } &= 0 \\
+      \dv{s^{2}}{t } + \Gamma^{2}_{0 1}  s^{1}  + \Gamma^{2}_{0 2}  s^{2} &= 0
+    \,.
+    \end{align}
+\end{subequations}
+
+Now we can compute the Christoffels: 
+%
+\begin{align}
+  \Gamma^{1}_{01} = \frac{1}{2} \eta^{11} \qty(
+      \delta g_{11, 0} + \delta g_{01, 1}
+  ) = 0
+\,,
+\end{align}
+%
+and similarly for \(\Gamma^{2}_{02}=0\). 
+
+On the other hand: 
+%
+\begin{align}
+  \Gamma^{1}_{02} &= \frac{1}{2} \eta^{11} \qty(
+      \delta g_{12, 0} + \delta g_{01, 2} 
+      - \delta g_{02, 1}
+  ) \\
+  \Gamma^{2}_{01} &= \frac{1}{2} \eta^{22} \qty(
+    \delta g_{21, 0} + \delta g_{02, 1} 
+    - \delta g_{01, 2}
+) = - \Gamma^{1}_{02}
+\,,
+\end{align}
+%
+and the time derivative vanishes: so in the end we get 
+%
+\begin{align}
+  \Gamma^{1}_{02} = \frac{1}{2} \qty(\pdv{}{y} \qty(\frac{2GJy}{(x^2+y^2+z^2)^{3/2}}) - \pdv{}{x} \qty(- \frac{2GJx}{(x^2+y^2+z^2)^{3/2}}))
+\,,
+\end{align}
+%
+which we must calculate at \(x=y=0\): therefore the only relevant contribution to the derivative is the one in which the derivative acts on the numerator, since otherwise we get a term proportional to either \(x\) or \(y\). So in the end we get: 
+%
+\begin{align}
+  \Gamma^{1}_{02} = - \Gamma^{2}_{01} = \frac{2GJ}{z^3}
+\,.
+\end{align}
+
+In the end then 
+%
+\begin{align}
+  \dv{}{t} \left[\begin{array}{c}
+  s^{x} \\ 
+  s^{y}
+  \end{array}\right] =
+  \frac{2GJ}{z^3}
+  \left[\begin{array}{cc}
+  0 & 1 \\ 
+  -1 & 0
+  \end{array}\right]
+  \left[\begin{array}{c}
+    s^{x} \\ 
+    s^{y}
+\end{array}\right]
+\,,
+\end{align}
+%
+which, if \(z\) were constant, would be an angular precession with angular velocity \(\Omega = 2GJ/z^3\), called the Lense-Thirring precession. 
+
+\(z\) is not actually a constant: however this describes the instantaneous angular velocity. 
+
+In general, one finds: 
+%
+\begin{align}
+  \vec{\Omega}_{LT} = \frac{GJ}{c^2r^3} \qty(3 (\vec{J} \cdot e^{\hat{r}}) e^{\hat{r}} - \vec{J})
+\,,
+\end{align}
+%
+which notably has the samme factor as the electric field of a dipole. It reduces to our formula if \(\vec{J}\) is parallel to \(e^{\hat{r}}\). 
+
+Now we treat Kerr geometry: from 1963, the vacuum solution of a rotating spherical mass. It is: 
+%
+\begin{align}
+    \begin{split}    
+    \dd{s^2} = 
+    &- \qty(1 - \frac{2GMr}{\rho^2}) \dd{t^2} - 
+    \frac{4GMar \sin^2\theta }{\rho^2} \dd{t} \dd{\varphi }
+    + \frac{l^2}{\Delta } \dd{r^2} \\
+    &+ \rho^2 \dd{\theta^2} + \qty(r^2+a^2 + \frac{2GMr a^2 \sin^2\theta }{\rho^2}) \sin^2 \theta \dd{\varphi^2}
+    \end{split}
+\,,
+\end{align}
+%
+where \(a = J/M\), \(\rho^2= r^2+a^2 \cos^2\theta  \) and \(\Delta = r^2 - 2GMr +a^2\). 
+
+Recall that in \(c=1\) velocities are dimensionless, so the units of angular momentum are mass times length, therefore the term \(a = J/M\) is a length. 
+
+At \(O(a^{0})\) we recover the Schwarzschild metric. 
+
+At \(O(a^{1})\) we have the slowly rotating geometry. 
+
+At \(r \gg GM\) we have 
+%
+\begin{align}
+  \begin{split}    
+  \dd{s^2} = &- \qty(1 - \frac{2GM}{r}) \dd{t^2}
+  - \frac{4GMa}{r} \sin^2 \theta \dd{t} \dd{\varphi } \\
+  &+ \qty(1 + \frac{2GM}{r}) \dd{r^2} 
+  + r^2 \qty(\dd{\theta^2} + \sin^2 \theta \dd{\varphi })
+  \end{split}
+\,,
+\end{align}
+%
+where we approximated \(r^2/(r^2-2GMr) \sim 1 + \frac{2GM}{r}\). 
+
+Then, we can orbit far away with a gyroscope and measure \(M\) and \(J\). 
+
+We still have the Killing vectors \(\xi^{\mu } = (1, \vec{0})\) and \(\xi^{\mu }= (0,0,0,1)\). 
+
+Notice that we have the symmetry \(\theta \rightarrow \pi - \theta \). We have a real singularity at \(\rho =0\): this means \(r =0 \) and \(\cos \theta =0\). 
+
+\(r=0\) is not a single point! This can be seen from the fact that to go from \((r, \theta ) = (0, \theta_0 )\) to \((0, \theta_1 )\) we have a positive distance since the \(\dd{\theta^2} \) metric element is nonzero if \(a^2 \cos^2\theta \neq 0\). 
+
+We have a coordinate singularity, an horizon, when \(\Delta = 0\): this means 
+%
+\begin{align}
+  r^2 - 2GMr + a^2 = 0 \implies r_{\pm} =GM \pm \sqrt{G^2M^2-a^2}
+\,,
+\end{align}
+%
+which means that we have an outer horizon and an inner horizon. As \(a=0\) we have \(r_+ = 2GM\), which is fine.
+However if \(a> GM\) we have a \emph{naked singularity}: there is a postulate called the \emph{cosmic censorship} postulate which states that naked singularities do not exist. 
+This is not a theorem: it is just something which is suggested by black hole formation. 
+
+The case in which \(a = GM\) is called the extreme Kerr solution. 
+
+We are going to focus our attention on \(r_{+}\), the largest horizon. 
+
+First of all: \emph{$r_{+}$ is a null surface}. 
+
+It is a boundary which separates the region where light can go to \(r \rightarrow \infty \) from the one in which light eventually always goes to \(r \rightarrow 0\). 
+
+Then light is ``trapped inside this surface''.
+
+The simplest case of a null surface  is a light cone in Minkowski: in polar coordinates, the set of vectors in the form \(x^{\mu } = (\alpha , \alpha , \beta , \gamma )\).
+
+We can write this as 
+%
+\begin{align}
+  x^{\mu } = \alpha l^{\mu } + \beta m^{\mu } + \gamma n^{\mu }
+\,,
+\end{align}
+%
+and then we can see that \(l^{\mu } l_{\mu } = \alpha^2 - \alpha^2 = 0\). \(m^{\mu } \) and \(n^{\mu }\) are instead spacelike vectors. 
+
+The set \((l, m, n)\) is  a basis for the tangent space of the light cone. 
+So, not all the vectors tangent to the surface are null. 
+
+For the Schwarzschild horizon instead we can select 
+%
+\begin{align}
+  l^{\mu } &= (1, 0, 0, 0)  \\
+  m^{\mu } &= (0,0,1, 0)  \\
+  n^{\mu } &= (0,0,0, 1)
+\,,
+\end{align}
+%
+and as before \(m\) and \(n\) are spacelike, while 
+%
+\begin{align}
+  l \cdot l = - \qty(1 - \frac{2GM}{r}) (l^{0})^2 = 0 
+\,,
+\end{align}
+%
+since we are precisely at \(r = 2GM\). 
+
+At the Kerr horizon instead we have: 
+%
+\begin{align}
+  l^{\alpha } = (1, 0, 0, \Omega_{H})
+\,,
+\end{align}
+%
+where  \(\Omega_{H}= a / (2GMr_+)\): light will rotate along the Kerr black hole, while in the Schwarzschild case the light is stationary with respect to the spatial coordinates. 
+
+Now let us take a picture of the horizon at fixed \(t\): 
+it does not matter which time by stationarity. It will be homework to show that in that case on the horizon the metric will be 
+%
+\begin{align}
+\dd{s^2} = \rho_{+}^2 \dd{\theta^2} + \qty(\frac{2GMr_+}{\rho_{+}})^2 \sin \theta \dd{\varphi }
+\,.
+\end{align}
+
+This is not a spherical surface, since \(\rho_{+}\) depends on \(\theta \). 
+
+It can be shown that it looks like an ellipsoid. The equator is larger than the corresponding equator for a sphere. To show this we will compute the length of the equator: \(\theta = \pi /2\) and \(\varphi \in [0, 2 \pi ]\), and also we will compute the length of a north-south-north path: \(\varphi = \const\) and \(\theta \in [0, \pi ]\) and then \(\theta \in [\pi , 0]\).
+
+For the equator we get 
+%
+\begin{align}
+  L _{\text{equator}} = \int_{0}^{2 \pi } \dd{\varphi } \sqrt{g_{33}}
+\,,
+\end{align}
+%
+calculated at \(\theta = \pi /2\). This becomes 
+%
+\begin{align}
+  L _{\text{equator}} = \int_{0}^{2 \pi } \dd{\varphi } 2GM = 4 \pi GM
+\,,
+\end{align}
+%
+since the \(\sin \theta = 1\) while \(\cos \theta = 0\). The harder one is the length of the circle: it comes out to be 
+%
+\begin{align}
+  L _{\text{NSN}} = 2 \int_{0}^{\pi } \dd{\theta } \dd{\theta } \sqrt{g_{\theta \theta }}
+  = 2 \int_{0}^{\pi } \dd{\theta } \sqrt{r^2 + a^2 \cos^2\theta }
+\,,
+\end{align}
+%
+which we will expand for small \(a\) since we do not like elliptic integrals. This becomes 
+%
+\begin{align}
+  L _{\text{NSN}} \approx 2 \int_{0}^{\pi } \dd{\theta } \qty(2GM + \frac{a^2}{4GM} \qty(-2 + \cos^2 \theta )  + O(a^2))
+\,,
+\end{align}
+%
+and since we are integrating over a period of \(\cos^2\theta\) we can substitute its average of \(1/2\): then the result is 
+%
+\begin{align}
+L _{\text{NSN}}  = 4\pi GM - \frac{3a^2 \pi }{4GM}
+\,,
+\end{align}
+%
+so the length is less than the equatorial one. 
 
 \end{document}

@@ -205,6 +205,141 @@ which does not fit the data. Why is this?
 
 We must consider a photon which comes from the interior of the Sun and goes towards the outside: it will follow a random walk scattering many times. However, depending on the density of electron in the outer regions (electron scattering dominates in the outside), the last scattering is in the outermost regions of the star. 
 
+We need to deal with the Fourier equation. 
+First of all, we need to write the Langevin equation: this is connected to the work by Einstein on Browinan motion. 
 
+These are processes in which there is a ``random'' force (due to the fact that our description of the microscopic state is probabilistic), and possibly deterministic forces. 
+
+\todo[inline]{What is the stuff about viscosity?}
+
+The equation in the end is like: 
+%
+\begin{align}
+  \dot{\vec{x}} = \vec{\eta}
+\,,
+\end{align}
+\todo[inline]{What? }
+%
+with \(\expval{\eta _i (t) \eta_j (t')} = 2 D \delta_{ij} \delta (t - t')\): there is complete uncorrelation. This is the Markov property: the process has no memory.
+
+This gives us a Gaussian distribution of the positions of the particles, and we get the equation: 
+%
+\begin{align}
+  \pdv{P}{t} = D \nabla^2 P 
+\,,
+\end{align}
+%
+where \(P = P( \vec{x}, t)\). This is a \emph{parabolic equation}, the \emph{Fokker-Planck} formula. 
+We need to give it both initial conditions and boundary conditions. 
+
+\todo[inline]{What is \(P\)?}
+
+There are three kinds of boundary conditions: 
+\begin{enumerate}
+  \item nothing: free boundary, the solution can diverge;
+  \item a reflective boundary: particles ``bounce back'', in order to deal with this we use the images method, as in electromagnetism;
+  \item an absorbing boundary: particles disappear if they reach the boundary. 
+\end{enumerate}
+
+This is equivalent to the Fourier transport equation. 
+
+The solution without boundary is a Gaussian with variance \(\expval{x^2} =  2 D t\) and centered around zero. 
+
+If \(\sigma = \sqrt{\expval{x^2}}\) becomes greater than the boundary then most of the particles have escaped. 
+
+\(\vec{D}\) is the displacement vector of the Sun: it is 
+%
+\begin{align}
+  \vec{D} = \sum _{i} \vec{l}_{i}
+\,,
+\end{align}
+%
+where the \(\vec{l}_i\) are the displacement vectors of its various steps. 
+%
+\begin{align}
+  \expval{\vec{D}^2} = \sum _{i} \expval{\vec{l}_{i}^2} 
+  + \sum _{i<j} \expval{\vec{l}_i \cdot \vec{l}_j}
+\,,
+\end{align}
+%
+but if we have isotropy then the scalar products have mean zero. This might be unphysical since the steps are larger at the boundary than at the center\dots
+
+Then we find: 
+%
+\begin{align}
+  \expval{\vec{D}^2} = N l^2 = R _{\odot}^2
+\,,
+\end{align}
+%
+where \(N = R _{\odot}^2 / l^2\). 
+
+The time it takes for a photon to cover a distance \(l\) is \(t= l/c\). 
+Then we have \(t_{RW} = Nt = R^2 _{\odot} l / (l^2 c)\), which means 
+%
+\begin{align}
+  t_{RW} = \frac{R _{\odot}^2}{cl}
+\,,
+\end{align}
+%
+while in direct flight the photon would take \(t_0 = R _{\odot}/ c\): their ratio is 
+%
+\begin{align}
+  \frac{t_{RW}}{t_0 } = \frac{R _{\odot}}{l}
+\,,
+\end{align}
+%
+and then 
+%
+\begin{align}
+  L _{\odot} = L _{\odot}^{\prime } \frac{l}{R _{\odot}}
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+  T_E = \qty(\frac{l}{R _{\odot}})^{1/4} T_I
+\,,
+\end{align}
+%
+so we can gather \(l\) by knowing the other three parameters: we get \(l = \SI{1}{mm}\). This is actually an average of the mean free paths. 
+
+\begin{align}
+  L = L' \frac{l}{R} = 4 \pi R _{\odot}^2 \sigma T_I^{4} \frac{l}{R}
+\,,
+\end{align}
+%
+and we know that \(k_B T_I = \frac{GM \overline{m}}{3 \hbar}\): replacin this we find 
+%
+\begin{align}
+  L = 4 \pi R^2 _{\odot}\sigma  \qty(\frac{GM \overline{m}}{3 R k_B})^{4} \frac{l}{R}
+  = \frac{(4 \pi )^2}{3^{5}} \frac{\sigma }{k_B^4} G^{4} \overline{m}^{4} \overline{\rho} l M^3  
+\,.
+\end{align}
+
+What is the typical lifespan of a star? This gives us \(L \sim M^3\), which means \(\tau \sim M/L \sim M^{-2}\). 
+Observationally, this matches the data pretty well. 
+
+Now we discuss thermonuclear fusion. The reactions we need are 
+%
+\begin{align}
+  \ce{p + p} &\rightarrow \ce{d + e+ +} \nu_e  \\
+  \ce{p + d} &\rightarrow \ce{^3He +} \gamma  \\
+  \ce{^3He + ^3He} &\rightarrow \ce{^4He + p + p} 
+\,,
+\end{align}
+%
+which involves the weak interaction, EM interaction and strong interaction. On the other hand, the process 
+%
+\begin{align}
+  \ce{n + p} &\rightarrow \ce{d} + \gamma   \\
+  \ce{d + d} &\rightarrow \ce{^3He + n}  \\
+  \ce{^3He + d}  &\rightarrow \ce{^4He + p}
+\,,
+\end{align}
+%
+which does not use the weak interactions. However, later there are no more free neutrons: this means that even if it is slower the first process is the only one which can happen. 
+
+The net balance is 4 protons in, 1 \ce{^4 He} out. 
 
 \end{document}

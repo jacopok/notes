@@ -325,13 +325,22 @@ Then, in the expression
 the last two terms of the sum cannot depend on \(J\) since they have an index which is neither 0 nor 3. 
 Terms such as those with \(\alpha , \beta = 0,3\) or the inverse can contribute: however in these terms we have to multiply a \(g^{03}\), which is linear in \(J\), with a \(g_{03}\), which also is. So in the end the term is quadratic in \(J\). 
 
-The term \(\Gamma^{\alpha }_{0 \lambda } \Gamma^{\lambda}_{0 \alpha }\) is also \(O(J^2)\). 
+The term \(\Gamma^{\alpha }_{0 \lambda } \Gamma^{\lambda}_{0 \alpha }\) is also \(O(J^2)\); to see this, let us write a symbol \(\Gamma^{\alpha }_{0 \lambda }\): it is 
+%
+\begin{align}
+  \Gamma^{\alpha }_{0 \lambda } = 
+  \frac{1}{2} g^{\alpha \beta } \qty(g_{\beta 0, \lambda } +  \cancelto{}{g_{\beta \lambda, 0 } }
+  - g_{0 \lambda , \beta })
+\,,
+\end{align}
+%
+and we ask ourselves: how can this depend on \(J\)?
+We could have \(\alpha , \beta = 0, 3\): then the term \(g_{0 \lambda , \beta }\) vanishes and we have \(g^{03} g_{30, \lambda }\) which is already quadratic in \(J\). 
 
-This is because in order for one of these symbols to be nonzero and \(J\)-dependent we need to have one of the indices \(\alpha \) and \(\lambda \) equal to \(3\) and the other equal to \(1\) or \(2\), since the only nonvanishing \(O(J)\) derivatives are \(g_{03,1}\) and \(g_{03, 2}\). 
+We could have \(\alpha , \beta = 3, 0\): then \(g_{0 \lambda , \beta }\) vanishes. We could have a nonzero term \(g^{30} g_{00, \lambda }\) if \(\lambda = 1, 2\): in this case the whole term would look like \(\Gamma^{3}_{0 1} \Gamma^{1}_{03}\) or  \(\Gamma^{3}_{0 2} \Gamma^{2}_{03}\). In either case, in both symbols the sum of derivatives of the metric the only nonvanishing term will be necessarily linear in \(J\) since it will be differentiated with respect to the 1 or 2 index. Therefore, the product of the two Christoffels will be at least quadratic in \(J\). 
 
-\todo[inline]{Not the case! we can have \(g^{03}\) still. To fix. }
-
-Now the thing to notice is this one: since in either of these four cases we have three different indices, there is no way for us to form the diagonal elements of the metric: each Christoffel symbol is then at least linear in the metric, therefore the product of two of them is at least quadratic. 
+The final case for the single Christoffel is \(\alpha = \beta \): in that case, to have \(J\)-dependence we need to have either \(\beta =3\) which means \(\alpha = 3\) or \(\lambda =3\). When we set one of the two indices \(\alpha , \lambda \) to \(3\) the other one must necessarily be \(1\) or \(2\), since otherwise the derivatives would vanish.
+Then we get back to the case in which only one term in the sum of the three derivatives of the metric survives, which means that the symbol is linear in \(J\) as a whole, but we have two symbols for which this holds multiplied together, so on the whole the term is quadratic in \(J\). 
 
 In the end then the sum, when expressed as a function of \(J\), looks like: 
 %
@@ -340,6 +349,6 @@ In the end then the sum, when expressed as a function of \(J\), looks like:
 \,,
 \end{align}
 %
-and we know that if \(J=0\) then \(R_{00} = 0\), so we are done: \(R_{00} = O(J^2)\). 
+and we know that if \(J=0\) then \(R_{00} = 0\), so we are done: \(R_{00} = O(J^2)\).
 
 \end{document}

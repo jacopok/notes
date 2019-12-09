@@ -5,7 +5,66 @@
 
 \subsection{Censorship principle justification}
 
+\subsubsection{Boundary condition}
 
+We assume that the Kerr black hole starts off as \emph{critical}: so initially we have \(a = GM\), and that the particle's addition makes it so that \(a' \geq G M'\): this can be written by making the dependence on \(J = aM\) explicit: when we add the particle we get \(J'= J + lm\) and \(M' = M + me\). So the condition reads: 
+%
+\begin{subequations}
+\begin{align}
+  J' &\geq G M^{\prime 2}  \\
+  J + lm &\geq G \qty(M^2 + 2mMe + (me)^2)  \\
+  l &\gtrsim 2GM e
+  \,,
+\end{align}
+\end{subequations}
+%
+where we used the fact that \(J = G M^2\) and we ignored the \(O(m^2)\) term, which is negligible. 
+Hereafter, we assume that we have exactly the boundary condition \(l = 2GMe\). 
+
+\subsubsection{Effective potential barrier}
+
+We write the potential with respect to the adimensional coordinates \(R = r/2GM\) and \(L= l/2GM = e\), and we  use the fact that \(a = GM\), which implies \(a/2GM = 1/2\). With these substitutions, we find: 
+%
+\begin{align}
+  V _{\text{eff}} (R, e, L) &= 
+  - \frac{1}{2R} 
+  + \frac{L^2 -  (e^2 - 1) / 4 }{2R^2}
+  - \frac{(L - e/2)^2}{2R^3}  \\
+  &=   - \frac{1}{2R} 
+  + \frac{e^2 -  (e^2 - 1) / 4 }{2R^2}
+  - \frac{e^2}{8R^3}  \\
+  &= e^2 \qty(\frac{3}{8R^2} - \frac{1}{8R^3}) - \frac{1}{2R} + \frac{1}{8R^2}
+\,.
+\end{align}
+
+We want to see, then, whether the potential barrier is as high as \((e^2- 1) /2\). Where is this potential barrier? 
+The photon is absorbed when it gets inside the event horizon (which then should disappear), and we know that the locations of the horizons are given by \(r_{\pm} = GM \pm \sqrt{(GM)^2 - a^2} = GM\), so in our case they are situated at \(R = 1/2\). 
+
+Plugging this into the formula we find 
+%
+\begin{align}
+  V _{\text{eff}} = e^2 \qty(\frac{3}{2} - 1) - 1 + \frac{1}{2} = \frac{e^2 -1}{2}
+\,,
+\end{align}
+%
+so at \(R = 1/2\) we must have \(\dv*{r}{\tau } = 0\).
+This is actually enough for our purposes, but it is interesting to see the global shape of the effective potential, so I made a plot of it. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/potential_barrier}
+  \caption{Effective potential \(V _{\text{eff}} (R, e) - (e^2 -1) / 2\).}
+  \label{fig:residual-potential}
+\end{figure}
+
+\subsubsection{Comments on the possibility of undressing a singularity (complement)}
+
+We have shown that the potential barrier will prevent a particle with angular momentum \(l\) with respect to the BH from being absorbed. 
+There are some things to consider: one of these is the fact that we assumed \(m^2\) is negligible: what if we threw a \emph{really massive} object into our Kerr black hole?
+In that case we would have \(L = e + m e^2 / 2M > e\), and since \(\dv*{V}{L} > 0\) everywhere the potential barrier would be even higher. This is not the way to go. 
+
+However, we neglected \emph{intrinsic} spin: what if we threw lots of, say, electrons aligned with the rotation axis down on the BH? 
+They may have angular momentum with respect to the hole which allows them to go in, but increase its angular momentum by a little bit more through their intrinsic spin in order to make the singularity naked\dots
 
 \subsection{Kerr geometry null surfaces}
 

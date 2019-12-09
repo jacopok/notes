@@ -4,6 +4,47 @@
 \section*{Tue Dec 03 2019}
 
 (Based on few Giorgio notes)
-
-
+Following the lecture of the day before, now we consider the flow of a mixture of gas and dust. To do this, we have to implement some assumptions:
+\begin{enumerate}
+    \item a fixed radius $a$ of dust grains
+    \item a radial profile of flow velocity $u(r)$
+    \item the existence of a drag force $f_{drag}(r)$
+\end{enumerate}
+In this case the equation for the momentum can be written as
+\begin{equation}
+    u \frac{\partial u}{\partial r}=-\frac{GM}{r^2}+Q_{RP}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{drag}}{m_d}
+\end{equation}
+Now, considering the fact that the thermal speed of sound is defined by
+\begin{equation}
+    \frac{m a_{th}^2}{2}=K_b T
+\end{equation}
+we want to study flows for which the drift velocity $w_{drift}=u-v$ is much higher than this $a_{th}$. In this case the drag force, postulated to be
+\begin{equation}
+    f_{drag}=\pi a^2\rho w \sqrt{w_{drift}^2+a_{th}^2}
+\end{equation}
+reduces to $f_{drag}=\pi a^2\rho w_{drift}^2$.
+Imposing now that at infinity the velocity gradient is null, we have
+\begin{equation}
+    0=Q_{RP}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{drag}}{m_d}
+\end{equation}
+that leads to an expression for the drift velocity
+\begin{equation}
+    w_{drift}=\sqrt{Q_{RP}\frac{L}{4\pi r^2\rho c}}
+\end{equation}
+and remembering that $\rho$ scales as $\dot M$ in the mass loss equation,
+\begin{equation}
+    w_{drift}=\sqrt{Q_{RP}\frac{L v}{\dot M c}}
+\end{equation}
+We know from momentum equation
+\begin{equation}
+    v \frac{\partial v}{\partial r}=-\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}+n_d\frac{f_{drag}}{\rho}= -\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}+n_d\frac{Q_{RP}\pi a^2 v}{\rho 4\pi c}=-\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}(1-\Gamma_d)
+\end{equation}
+where we defined the corrective factor, $\Gamma_d$ that encodes the pull against gravity driven by the drag force. The physical interpretation of this solution is that radiation transfers momentum to dust, that can transfer it to the gas, reaching a terminal velocity.
+We know from previous lectures that mass loss rate is lower for static atmosphere, because the scale factor $H_r$ is very small in this cases, implying an higher density than the hydrostatic case.
+From mass loss equation we have
+\begin{align}
+    \dot M&= 4\pi r^2 \rho v\\
+    \dot M_d&=4\pi r^2 n_d m_d u_{dust}
+\end{align}
+This implies a lower limit on the luminosity $L$ in the case $\Gamma_d>1$
 \end{document}

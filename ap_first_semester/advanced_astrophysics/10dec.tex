@@ -1,4 +1,163 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Tue Dec 10 2019}
+
+We continue with the evolution of a \(15 M_{\odot}\) star. 
+We use Kippenhahn diagrams. 
+There are four major burning phases: 
+\begin{enumerate}
+    \item Hydrogen;
+    \item Helium;
+    \item Carbon;
+    \item Silicon.
+\end{enumerate}
+\todo[inline]{Check}
+
+There can be different burning stages simultaneously, in different shells. 
+
+Stellar winds are of general application in the study of stellar evolution. 
+
+We can make an H-R diagram using, instead of the luminosity \(L\), the bolometric magnitude 
+%
+\begin{align}
+  M _{\text{bol}} = -2.5 \log L + 4.73
+\,,
+\end{align}
+%
+where the luminosity is measured in solar luminosities. 
+
+The Eddington luminosity is calculated by  setting
+%
+\begin{align}
+  \Gamma_{\text{Edd}} = \frac{a _{\text{rad}}}{g} = \frac{\kappa L}{4 \pi R^2 c} \frac{R^2}{GM} =1
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+  L _{\text{Edd}} = \frac{cGM 4 \pi }{\kappa_e}
+\,.
+\end{align}
+
+Wolf-Rayet stars have high effective temperatures and high luminosities, they expel a great quantity off mass through stellar winds. 
+
+The spectra of WR stars have little of no \ce{H}, and have an abundance of either \ce{He + N} or \ce{C + O}.
+
+We distinguigh them into 
+\begin{enumerate}
+    \item WNL;
+    \item WNE;
+    \item WC;
+    \item WO.
+\end{enumerate}
+
+These are actually evolutionary stages: the outer layers are successively stripped by winds, and the inner ones are exposed.
+We observe lots of \ce{^{14}N} in WNE stars, since the Nitrogen burning phase since that is the slowest process. 
+
+We have these stars when \(\log T _{\text{eff}} > 4\), and \(M > 30 M_{\odot}\). 
+
+Depending on the mass of the progenitor red supergiant, we have different behaviours: below \(30 M_{\odot} \) the star explodes as a red supergiant; more massive stars will experience more mass loss and explode as blue supergiants, further left on the HR diagram. 
+
+We see a simulation, a \(15 M_{\odot}  \) star starts off on the high part of the Main Sequence, then quickly moves right becoming a red supergiant when its core collapses.
+
+A \(3 M_{\odot}\) star instead moves away from the MS more slowly, and then after having moved right it quickly moves far left and cools, as a white dwarf. 
+
+Now, let us discuss the engine of the explosion of these massive stars. The explosion is triggered by an implosion: we are at the end of the Silicon-burning phase. 
+The pressure of the core is mantained by the degenerate electrons. 
+
+The degenerate iron core starts off with \(\rho \approx
+\SI{e9}{g cm^{-3}}\), \(T \approx \SI{e10}{K}\), \(M _{\text{Fe}} \approx \num{1.5} M_{\odot}\). 
+
+What triggers the collapse of the iron core? The adiabatic exponent 
+%
+\begin{align}
+  \gamma _{\text{ad}} = \qty(\pdv{\log P}{\log \rho })_{\text{ad}}
+\,
+\end{align}
+%
+falls below the critical value of \(4/3\). 
+In general, if it falls below this value we expect a dynamical instability. It is a local quantity, it can be defined for each layer; we can use a global parameter to measure the instability: 
+%
+\begin{align}
+  \int \qty(\gamma _{\text{ad}} - \frac{4}{3}) \frac{P}{\rho } \dd{m}
+\,,
+\end{align}
+%
+which will tell us whether the system as a whole is stable. 
+\todo[inline]{Why the factor \(P/\rho \) in the average?}
+
+There is a very important weak process: electron capture, or \emph{neutronization}: \(\ce{p+ + e- \rightarrow n +} \nu_{e}\). This decreases the electron pressure!
+
+The Chandrasekar mass scales as the square of the mean molecular weight: 
+%
+\begin{align}
+  M _{\text{ch}} = \frac{5.83}{\mu_{e}^2} \sim 1.26 M_{\odot}
+\,
+\end{align}
+%
+for the iron core. A huge amount of neutrinos are produced. 
+Now we follow a work by Janka et al (2007) at the Max Planck, which outlines the steps of the collapse. 
+
+As the density of the core increases, it becomes opaque to neutrinos: we have the scattering cross section 
+%
+\begin{align}
+  \sigma_{\nu } \approx \num{e-49} A^2 \qty(\frac{\rho }{\mu_{e}})^{2/3} \SI{}{cm^2}
+\,,
+\end{align}
+%
+and in the meantime the collapse is proceding, until it reaches values of \(\rho \sim \SI{e14}{g cm^{-3}}\), comparable to the nuclear density, at which point the material becomes incompressible. 
+
+A proto-neutron star is formed, and a shock front travels back. 
+
+\todo[inline]{What triggers the initial infall and compression in the first place? }
+
+It is unclear whether the energy of the shock is enough to blow off the envelope. The energy of the delayed neutrinos which are still trapped in the nucleus will contribute\dots
+
+Now we start an interesting new part: the advanced burning stages, after the \ce{He}-burning phases. 
+
+As the initial mass increases, the fraction of carbon produced decreases from around \num{.35} to \num{.15} as \(M\) goes from 10 to 120 solar masses. 
+
+What about the density structure in the pre-supernova phase? 
+The starting mass of the iron core increases with the stellar mass: as it goes from 10 to 120 solar masses it goes from 1.2 to 1.8 solar masses. 
+
+As the total mass increases, at a fixed radius we have more internal mass: the density \emph{increases} with mass. 
+
+Some of the material near the core, when the shock occcurs, falls back on it if it is inside a certain critical radius, if it is outside that radius it is thrown out. 
+How much of it depends on the physical properties of the core. 
+
+What does the remnant look like? It can either be a black hole or a neutron star. The possibilities 
+\begin{enumerate}
+    \item Explosion and Neutron Star;
+    \item Implosion and Black Hole;
+    \item (rarely) Explosion and Black Hole.
+\end{enumerate}
+
+There is no clear-cut law. One thing to look at is the bounce-compactness parameter: 
+%
+\begin{align}
+  \xi_{M^*} = \abs{\frac{M^{*} / M_{\odot}}{R(M^{*}) / \SI{e7}{m}}}_{t = t _{\text{bounce}}}
+\,,
+\end{align}
+%
+and it seems like this paramter being high is correlated to a black hole being formed. 
+We have also the parameter 
+%
+\begin{align}
+  \mu_{4}  = \abs{\frac{ \dd{m} / M_{\odot}}{ \dd{\tau } / \SI{e7}{m}}}_{s=4}
+\,,
+\end{align}
+%
+the normalized mass inside a dimensionless entripy per nucleon of \(s=4\). 
+We can make a plot of the various final fates of the parts of the initial mass: some of it is expelled by winds, some of it is expelled through the supernova explosion, some of it ends up in the final remnant.
+
+The mass of the iron core is never very much larger than a couple of solar masses, but BHs can become more massive through fallback. 
+
+Then it seems that WR stars of more than \(30 M_{\odot}\) will not explode: they will not eject material as supernovas. 
+
+\todo[inline]{Simulations show that there is not a clear-cut boundary between neutron star and BH formation, but then we go on as if there were\dots}
+
+The behaviour of LA89 massive stars is quite different, NS are more favoured towards higher masses. 
+
 \end{document}

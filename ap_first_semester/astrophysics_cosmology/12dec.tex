@@ -1,4 +1,114 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Dec 12 2019}
+
+\todo[inline]{Check room availability for the first week of January.}
+
+Tomorrow / next week we will discuss some black holes and neutron stars. 
+
+Last week we discussed the nuclear processes which occur in the center of the Sun when \(T \sim \SI{e7}{K}\) is reached. 
+
+The minimum mass for a star in order to ignite fusion, as we found, is around \(\num{.08} M_{\odot}\). 
+
+The most important difference between the processes outlined last week is in the first equation of each: there are very few free neutrons.
+
+So, the weak interaction process dominates: since it is so slow, it has a very low power density: \(P = \SI{4e26}{W}\), but we need to take its ratio to the volume of the Sun. This gives a density lower than that of a human. 
+
+For each \ce{^{4}He} nucleus we get \SI{26}{MeV}, and we need 4 protons to make it. Then, this gives us the number of protons per second the Sun uses in order to produce the power it does. 
+We will use the following relation: 
+%
+\begin{align}
+  \SI{1}{MeV} \approx \SI{1.78e-30}{kg} \approx \SI{1.6e-13}{J}
+\,,
+\end{align}
+%
+and then, in SI units: we get 
+%
+\begin{align}
+  \frac{\num{4e26}}{\num{2.6e-13} / 4} \approx \num{4e38} \frac{\text{protons}}{\SI{}{s}}
+\,.
+\end{align}
+
+For each process we also emit one electron neutrino, and we need to do the first two steps of the process twice for each \ce{^{4}He} nucleus, so we are producing \num{2e38} neutrinos per second. 
+
+A proton's mass is around \(m_p \approx \SI{1}{GeV} \approx \SI{1.78e-27}{kg}\), so in the Sun there are around \num{e56} of them: this means that the typical lifetime of the Sun is around \num{e10} years. 
+
+What is the final state of the Sun? After hydrogen runs out, the Sun should start the next process: helium burning. The core contracts and heats. However we also have the degeneracy pressure. 
+
+There is a boundary, the Chandrasekar mass \(M_C \approx \num{1.4} M_{\odot}\), between the final fate of the star being a white dwarf or a neutron star. 
+
+From the point of view of the state of matter, brown dwarves and white dwarves are very similar. 
+
+So the core becomes denser and hotter and starts burning helium. The external parts, by the virial theorem, must then expand. 
+
+So the possibilities, in order of mass, are white dwarf, neutron star, black hole. 
+
+The matter which is expelled can form a \emph{planetary nebula}. 
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{ccccc}
+     Process & Fuel & Products & \(T_{\text{min}}\) & \(M _{\text{min}}\) \\
+     \hline
+     Hydrogen burning & Hydrogen & Helium & \SI{e7}{K} & \(\num{.08} M_{\odot}\) \\
+     Helium burning & Helium & Carbon, Oxygen & \SI{e8}{K} & \(\num{.5} M_{\odot}\) \\
+     Carbon burning & Carbon & Oxygen, Neon, Sodium & \SI{5e8}{K} & \(8 M_{\odot}\) \\
+     Neon burning & Neon & Magnesium, Oxygen & \SI{e9}{K} & \(9 M_{\odot}\) \\
+     Oxygen burning & Oxygen & Magnesium to Sulphur & \SI{2e9}{K} & \(10 M_{\odot}\) \\
+     Silicon burning & Silicon  & Iron and nearby elements & \SI{3e9}{K} & \(11 M_{\odot}\) 
+    \end{tabular}
+    \caption{Solar processes.}
+    \label{tab:solar-processes}
+\end{figure}    
+
+A plot of the binding energy per nucleon \(B = E - M _{\text{nucleons}}\) shows that it is maximum for iron. 
+
+Something about the possibility to have \ce{^{8}Be} be stable in order for potassium to be formed. 
+
+When the nucleus cannot reach the temperature needed for the next process, the collapse is stopped by electron degeneracy. 
+
+The final radius of the red giant phase of the Sun is around \(70\) times the radius of the Sun, while the white dwarf phase is \(70\) times smaller. \todo[inline]{Is this correct? I couldn't quite hear.}
+
+Our equation of hydrostatic equilibrium is:
+%
+\begin{align}
+  \dv{P}{r} = - \frac{G m(r) \rho (r)}{r^2}
+\,,
+\end{align}
+%
+and the equation giving the variation of the mass is \(\dv{m}{r} = 4 \pi r^2 \rho (r)\).
+So we get 
+%
+\begin{align}
+  \frac{r^2}{\rho (r)} \dv{P}{r} = - G m(r)
+\,,
+\end{align}
+%
+which can be restated as 
+%
+\begin{align}
+  \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{P}{r}) = - G \dv{m}{r} = - 4 \pi G \rho (r) r^2
+\,,
+\end{align}
+%
+more commonly stated as 
+%
+\begin{align}
+  \frac{1}{r^2} \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{P}{r}) = -4 \pi G \rho (r)
+\,,
+\end{align}
+%
+which holds if we have hydrostatic equilibrium. 
+
+Commonly the equation of state used for this is called \emph{polytropic}: 
+%
+\begin{align}
+  P = k \rho^{\frac{n+1}{n}}
+\,,
+\end{align}
+%
+where \(k = \const\) and \(n = 1/ (\gamma -1)\): so if \(\gamma = 5/3\), which holds for a monoatomic gas, then \(n = 3/2\) while if \(\gamma = 4/3\), which holds for an ultrarelativistic gas, then \(n = 3\). 
+
 \end{document}

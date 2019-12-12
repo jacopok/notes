@@ -1,4 +1,241 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Dec 12 2019}
+
+We discuss orbits in Kerr geometry. 
+
+In general, orbits are nonplanar. Say we have an orbit which is not aligned with the rotation plane: frame dragging will change its spin and make it precess around, so it will span a bidimensional region. 
+
+An exceptional case is a planar orbit with \(\theta \equiv \pi /2\). 
+We will treat this case. Here, we have \(\rho^2 = r^2 + a^2 \cos^2 \theta \) but \(\cos \theta =0\) and \(\sin \theta = 1\): so \(\rho^2 = r^2\). Then the line element becomes 
+%
+\begin{align}
+  \begin{split}
+      \dd{s^2} = - \qty(1 - \frac{2GM}{r}) \dd{t^2} 
+      - \frac{4GMa}{r} \dd{t} \dd{\varphi } + \\
+      + \frac{r^2}{\Delta } \dd{r^2} + \qty(r^2+ a^2 + \frac{2GMa^2}{r}) \dd{\varphi^2}
+      \,,
+  \end{split}
+\end{align}
+%
+where \(\Delta = r^2 - 2GMr + a^2\). We do not even write the \(\dd{\theta^2}\) term since \(\theta \) is constant. 
+
+We only outline the steps: first of all we introduce a 4-velocity 
+
+
+%
+\begin{align}
+    u^{\alpha } = \left[\begin{array}{cccc}
+        u^{t} & u^{r} & 0 & u^{\varphi }
+    \end{array}\right]^{\top}
+\,.
+\end{align}
+
+We have 
+%
+\begin{align}
+  e = - \xi_{t} \cdot u = - g_{00} u^{t} - g_{03} u^{\varphi }
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+  l = \xi_{\varphi } \cdot u = g_{00} u^{t} + g_{30} u^{\varphi }
+\,.
+\end{align}
+
+These are conserved in the motion, and they represent the energy and the angular momentum of the particle per unit mass as observed by a far away observer.
+We insert these into \(u \cdot u = -1\): this gives us 
+%
+\begin{align}
+ \frac{1}{2} \qty(\dv{r}{\tau })^2 + V _{\text{eff}} (r, e, l) = \frac{e^2 - 1}{2}
+\,,
+\end{align}
+%
+with 
+%
+\begin{align}
+  V _{\text{eff}} (r, e, l)  = -\frac{GM}{r} + \frac{l^2 - a^2 (e^2-1)}{2r^2} - \frac{GM(l - ae)^2}{r^3} 
+\,,
+\end{align}
+%
+which, as we can see, reduces to Schwarzschild for \(a=0\). 
+
+Now we will consider circular orbits. These are characterized by \(r = \const\): therefore \(\dv*{r}{\tau }=0\). So the equation reduces to 
+%
+\begin{align}
+    -\frac{GM}{r} + \frac{l^2 - a^2 (e^2-1)}{2r^2} - \frac{GM(l - ae)^2}{r^3} = \frac{e^2-1}{2}
+\,,
+\end{align}
+%
+which must certainly hold, but we also should require to be in an extremum of the potential: we impose 
+%
+\begin{align}
+  \dv{V}{r} = 0
+\,.
+\end{align}
+%
+This equation looks like: 
+%
+\begin{align}
+  r^2 GM - r \qty(l^2 - a^2(e^2-1)) + 3GM (l-ae)^2=0
+\,,
+\end{align}
+%
+
+and we should look at the solution of this where \(\dv*[2]{V}{r}>0\), so that our orbit is stable. 
+
+We are interested in the Kerr ISCO: the infimum of the set of \(r\)s defined by the conditions 
+%
+\begin{align}
+  \begin{cases}
+      V _{\text{eff}} (r) &= \frac{e^2-1}{2}  \\
+      \dv{V _{\text{eff}}}{r} (r)&= 0  \\
+      \dv[2]{V _{\text{eff}}}{r} (r) &\geq 0
+  \end{cases}
+\,,
+\end{align}
+%
+which is characterized by the second derivative actually being \emph{equal} to 0. We solve these for the variables \(r, e, l\).
+The algebra is extremely involved, and will not be an exam requirement. We plot the solutions in a plane \(R _{\text{ISCO}} / GM\) versus \(a/GM \in [0,1]\). When \(a \neq 0\) we actually have two separate solutions, for the different signs of \(l\) (the difference is really between the relative signs of \(l\) and \(a\): we can alternatively write \(a \in [-1, 1]\) and \(l \geq 0\)). 
+
+As \( a \rightarrow 1\) we get \(r _{\text{ISCO}} \rightarrow GM\) if we are corotating, and \(r _{\text{ISCO}} \rightarrow 9GM\) if we are counterrotating. 
+
+\subsection{Ergosphere}
+
+As we get closer to the BH, we \emph{must} spin in the same direction it is. 
+This holds for \emph{any} motion, not just geodesic motion. A stationary person has \(u^{\mu } = (1, \vec{0})\); we can show that below a certain \(r\) this cannot have \(u^{\mu } g_{\mu \nu } u^{\nu } = -1\). This is 
+%
+\begin{align}
+  u^2 = - \qty(1 - \frac{2GMr}{\rho^2}) (u^{t})^2 = -1
+\,,
+\end{align}
+%
+which means that, since \(\dv{t}{\tau }\geq 0\), we must have 
+%
+\begin{align}
+  1 - \frac{2GMr}{r^2 + a^2 \cos^2 \theta } \geq 0
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+  r^2 + a^2 \cos^2 \theta \geq 2GMr
+\,,
+\end{align}
+%
+and unlike Schwarzschild this is not inside the horizon: the solutions are 
+%
+\begin{align}
+  r_{E\pm } = GM \pm \sqrt{(GM)^2 - a^2 \cos^2 \theta }
+\,,
+\end{align}
+%
+and the sign is positive outside of the two solutions. Recall that the horizon is given by  
+%
+\begin{align}
+  r_{H \pm } = GM \pm \sqrt{(GM)^2 - a^2}
+\,,
+\end{align}
+%
+so we can see that since \(0 \leq \cos^2 \theta \leq 1\) the horizon radii are \emph{inner} with respect to the ergo radii: the inequality is 
+%
+\begin{align}
+    r_{E-} \leq r_{H-} \leq r_{H+} \leq r_{E+}
+\,.
+\end{align}
+%
+so we have a region \emph{outside the horizons}: \(r_{H+} \leq r \leq r_{E+}\) in which one \emph{cannot stay at rest}. The full inequalities defining the out-of-horizon ergoregion are: 
+%
+\begin{align}
+    GM + \sqrt{(GM)^2 - a^2} \leq r \leq GM + \sqrt{(GM)^2 - a^2 \cos^2 \theta }
+\,,
+\end{align}
+%
+and to see what this looks like, we fix things: if \(\theta = 0\) we have \(r_{E+}= r_{H+}\), while on the equator \(\theta = \pi /2\) we have \(r_{E+} = 2GM\), while \(r_{H+} = GM + \sqrt{(GM)^2-a^2} < 2GM\). So, the maximum extension of the ergoregion is given by 
+%
+\begin{align}
+  \Delta r(\theta = \pi /2) = GM - \sqrt{(GM)^2 - a^2} = GM \qty(1 - \sqrt{1 - \qty(\frac{a}{GM})^2})
+  \sim \frac{a^2}{2GM}
+\,
+\end{align}
+if \(a \ll GM\), otherwise we must do the full calculation. 
+
+\subsection{Penrose process}
+
+It is possible to extract energy and momentum from a black hole. 
+We have a particle, called ``in'', which comes from infinity, reaches the ergosphere, goes inside of it, decays into a particle which we call ``out'' which goes to infinity plus a second particle which we call ``BH'' which goes inside the BH. 
+All of these move with geodesic motion. 
+
+For simplicicty, we consider the process in the equatorial plane although this is not necessary. 
+
+In a LIF, energy and momentum are conserved on decay: 
+%
+\begin{align}
+  p^{\mu }_{\text{in}} = p^{\mu }_{\text{out}} + p^{\mu } _{\text{BH}}
+\,,
+\end{align}
+%
+but since this is tensorial it holds in all frames. 
+
+A stationary observer at infinity observes \(E _{\text{in}} = -p _{\text{in}}^{0}\) and \(E _{\text{out}} = - p^{0} _{\text{out}}\), where the components of the momentum are written in the usual Schwarzschild coordinates. 
+
+Recall: \(\xi^{\alpha }= (1, \vec{0})\) is a Killing vector of this geometry. Therefore, \(E _{\text{in}} = - \xi \cdot p _{\text{in}}\) is conserved along the trajectory and the same holds for \(E _{\text{out}}\). 
+
+Projecting the conservation of momentum along \(- \xi \), we get 
+%
+\begin{align}
+  E _{\text{in}} = E _{\text{out}} - \xi \cdot p_{\text{BH}}
+\,,
+\end{align}
+%
+which tells us how we can compare the infalling energy to the energy we get out. 
+If the particle BH reached infinity, then, \(- \xi \cdot p _{\text{BH}}\) would be its energy as measured by the observer and it would need to be positive. 
+However, it does not. 
+
+So, we can arrange our system so that \(-\xi \cdot p _{\text{BH}} < 0 \): then we have \(E _{\text{out}} > E _{\text{in}}\). 
+
+The ergoregion is precisely the one in which \(g_{tt} >0 \) instead of \(g_{tt}<0\) as usual. 
+
+So if the decay happens inside the ergoregion, the projection of the conservation of momentum along \(\xi = (1, \vec{0})\) is actually the conservation of a \emph{spatial} component of the momentum, which can have any sign. 
+
+From the POV of an outside observer, this energy must come from the BH: so the BH must have lost energy. 
+
+We cannot actually model this directly: we consider the geometry as fixed, since it almost is. 
+This is analogous to the angular momentum transferred in a gravitational slingshot. 
+
+We take an observer in the ergosphere at fixed \(r, \theta \) with velocity \(u^{\alpha } = \qty(1, 0, 0, \Omega )^{\top}\) with \(\dv{\varphi }{t }= \Omega >0\). 
+
+% \todo[inline]{The derivative with respect to \(t\) or \(\tau \)?}
+
+For this observer the measured energy of the is 
+%
+\begin{align}
+  E _{\text{obs}} = - u _{\text{obs}} \cdot p _{\text{BH}}>0
+\,.
+\end{align}
+%
+We have that 
+%
+\begin{align}
+  u^{\alpha } _{\text{obs}} = u^{t} _{\text{obs}} \xi_{t} + u^{t} _{\text{obs}} \Omega _{\text{obs}} \xi_{\varphi }
+\,,
+\end{align}
+%
+so the measured energy is given by 
+%
+\begin{align}
+E _{\text{obs}} = - u^{t} _{\text{obs}} \xi_{t} \cdot p _{\text{BH}} - u^{t} _{\text{obs}} \Omega _{\text{obs}} \xi_{\varphi } \cdot p _{\text{BH}} 
+= + u^{t} _{\text{obs}} \qty( e _{\text{BH}}  - \Omega _{\text{obs}} l _{\text{BH}} )
+> 0 
+\,,
+\end{align}
+%
+but \(e _{\text{BH}} <0\) so this means that we \emph{must have} \(l _{\text{BH}}<0\). 
+
+
+
 \end{document}

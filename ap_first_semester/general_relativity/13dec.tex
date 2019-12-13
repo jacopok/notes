@@ -1,4 +1,342 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Dec 13 2019}
+
+There are two topics left: cosmology and gravitational waves. 
+Today and Thursday we do cosmology. 
+
+Now we introduce the Planck scale: the Compton wavelength is defined by  
+%
+\begin{align}
+  \lambda = \frac{\hbar c }{E}
+\,,
+\end{align}
+%
+while the Schwarzschild radius is of the order of 
+%
+\begin{align}
+  r_s \sim \frac{GM}{c^2} = \frac{GE}{c^{4}}
+\,.
+\end{align}
+
+So, we have a quantum gravity regime when \(\lambda < r_S\): when the particle is so localized that it will form a BH by itself. We get: 
+%
+\begin{align}
+  \frac{\hbar c}{E} \approx \frac{GE}{c^{4}} \implies
+  E \approx \sqrt{\frac{\hbar c^{5}}{G}} \approx \SI{1.96e9}{J} \approx \SI{1.22e19}{GeV}
+\,.
+\end{align}
+
+In \(c=1\) units, this is also the Planck mass.
+It is also useful to define the reduced Planck mass:
+%
+\begin{align}
+  M_p = \frac{E_p}{\sqrt{8 \pi }} = \SI{2.43e18}{GeV}
+\,.
+\end{align}
+
+Natural units are ones in which 
+\begin{enumerate}
+    \item \(c=1\): velocities are dimensionless: then the unit of length is equal to the unit of time; 
+    \item \(\hbar = 1\): then angular momenta are also dimensionless: then length and time have the dimensions of \(1/\text{mass}\) or \(1/\text{energy}\). 
+\end{enumerate}
+
+In natural units the Einstein equations look like: 
+%
+\begin{align}
+  G_{\mu \nu } = 8 \pi G T_{\mu \nu }
+\,,
+\end{align}
+%
+but \(M_P = \frac{1}{\sqrt{8 \pi G}}\): therefore \(8 \pi G = 1 / M_P^2\), so 
+%
+\begin{align}
+  G_{\mu \nu } = \frac{1}{M_P^2} T_{\mu \nu }
+\,.
+\end{align}
+
+We are going to discuss the Friedmann-Lemaître-Robertson-Walker metric, which describes a homogeneous and isotropic universe. 
+
+Homogeneous means symmetry with respect to translations, isotropic means symmetry with respect to rotations. 
+
+Something which is \emph{homogeneous but not isotropic} is, for example, the inside of a capacitor. Also, the surface of a cylinder can be an example. 
+
+We can have a space which is \emph{isotropic but not homogeneous} only around one point, \emph{global isotropy implies homogeneity}. 
+
+We will also require the condition that the universe be \emph{spatially flat}. 
+If a triangle has angles \(\alpha , \beta , \gamma \) then \(\sign ( \alpha + \beta +\gamma -\pi ) = k\) is a constant along the space and it measures the curvature of the space. 
+
+The smaller the curvature (and the larger the length scale of the curvature) the more difficult it is to measure what \(k\) is. 
+
+The line element in this kind of space is particularly simple, since we can : 
+%
+\begin{align}
+  \dd{s^2} = - \dd{t^2} + a^2(t) \dd{\vec{x}^2}
+\,.
+\end{align}
+
+Since the metric is diagonal, the only nonvanishing Christoffel symbols are \(\Gamma^{0}_{ij}\) and \(\Gamma^{i}_{0j}\), and both must be proportional to \(\delta_{ij}\). 
+These symbols are
+%
+\begin{align}
+  \Gamma^{0}_{ij} = \frac{1}{2} g^{00} \qty(-g_{ij,0}) = \delta_{ij} a \dot{a}
+\,,
+\end{align}
+%
+where \(\dot{a}\) denotes the derivative of \(a\) with respect to coordinate time, while 
+%
+\begin{align}
+  \Gamma^{i}_{0j} = \frac{1}{2} g^{ik} \qty(g_{jk,0}) = \delta_{ij} a \dot{a} \times \frac{1}{a^2} = \delta_{ij} \frac{\dot{a}}{a}
+\,.
+\end{align}
+
+The trace of the Christoffels are \(\Gamma^{0}_{ii} = 3a \dot{a}\), and \(\Gamma^{i}_{0i} = 3 \dot{a} / a\). We want to calculate \(R_{00} \), \(R_{0i}\) and \(R_{ij}\). 
+We have \(R_{0i} = 0\) since nothing on the indices depends on space. We also have \(R_{ij} \propto \delta_{ij}\), since all the Christoffels depend only on \(\delta_{ij}\). 
+
+We have 
+%
+\begin{align}
+  R_{\mu \nu } = \partial_{\alpha} \Gamma^{\alpha }_{ \mu \nu } + \Gamma^{\lambda }_{\mu \nu } \Gamma^{\alpha }_{\lambda \alpha } - \partial_{\nu }\Gamma^{\alpha }_{\mu \alpha } - \Gamma^{\lambda }_{\mu \alpha } \Gamma^{\alpha }_{\nu \lambda }
+\,.
+\end{align}
+
+Specializing to the \(R_{00} \) case: 
+\begin{align}
+    R_{0 0 } = \partial_{\alpha} \Gamma^{\alpha }_{ 0 0 } + \Gamma^{\lambda }_{0 0 } \Gamma^{\alpha }_{\lambda \alpha } - \partial_{0 }\Gamma^{\alpha }_{0 \alpha } - \Gamma^{\lambda }_{0 \alpha } \Gamma^{\alpha }_{0 \lambda }
+  \,.
+\end{align}
+
+The \(\Gamma^{\alpha }_{00}\) must vanish. So we get 
+%
+\begin{align}
+  R_{00} &= - \partial_{0} \Gamma^{i}_{0i} - \Gamma^{i}_{0j} \Gamma^{j}_{0i}  \\
+  &= - \partial_{0} \qty(\frac{3 \dot{a}}{a}) - \frac{\dot{a}}{a} \delta_{ij} \frac{\dot{a}}{a} \delta_{ij}  \\
+  &= - \frac{3 \ddot{a}}{a} + \frac{3 \dot{a}^2}{a^2} 
+  - 3 \frac{\dot{a}^2}{a^2} = - 3 \frac{\ddot{a}}{a}
+\,.
+\end{align}
+
+On the other hand we have 
+%
+\begin{align}
+R_{i j } &= \partial_{\alpha} \Gamma^{\alpha }_{ i j } + \Gamma^{\lambda }_{i j } \Gamma^{\alpha }_{\lambda \alpha } - \cancelto{}{\partial_{j }\Gamma^{\alpha }_{i \alpha }} - \Gamma^{\lambda }_{i \alpha } \Gamma^{\alpha }_{j \lambda }  \\
+&= \partial_{0} \Gamma^{0 }_{ i j } 
++ \Gamma^{\lambda }_{i j } \Gamma^{\alpha }_{\lambda \alpha }
+- \Gamma^{\lambda }_{i \alpha } \Gamma^{\alpha }_{j \lambda }
+\\
+&= \qty(a \ddot{a} - \dot{a}^2)  \delta_{ij}
++ 3 a^2 \delta_{ij} - \dot{a}^2 \delta_{ij} - \dot{a}^2 \delta_{ij}  \\
+&= a^2 \delta_{ij} \qty(\frac{\ddot{a}}{a} + 2 \frac{\dot{a}^2}{a^2})
+\,.
+\end{align}
+
+So we have the whole of the Ricci tensor. 
+The scalar curvature is given by 
+%
+\begin{align}
+  R &= g^{00} R_{00} + g^{ij} R_{ij}  \\
+  &= + 3 \frac{\ddot{a}}{a} + \delta_{ij} \frac{a^2}{a^2} \delta_{ij}  \qty( 2 \frac{\dot{a}^2}{a^2} + \frac{\dot{a}}{a})  \\
+  &= 6 \frac{\dot{a}^2}{a^2} + \frac{6 \ddot{a}}{a}
+\,,
+\end{align}
+%
+and we have 
+%
+\begin{align}
+  G_{00 } = R_{00} - R g_{00} = - 3\frac{\ddot{a}}{a}
+  + 3 \frac{\dot{a}^2}{a^2} + 3 \frac{\ddot{a}}{a} = \frac{3 \dot{a}^2}{a^2}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+  G_{ij} &= R_{ij} - Rg_{ij} \\
+  &= a^2 \delta_{ij} \qty(\frac{\ddot{a}}{a} + 2 \frac{\dot{a}^2}{a^2}) - \frac{3 \dot{a}^2}{a^2} a^2  \\
+  &= a^2 \delta_{ij} \qty(- \frac{\dot{a}^2}{a^2} - \frac{2 \ddot{a}}{a})
+\,.
+\end{align}
+
+For the SEM tensor we choose a perfect fluid: \(T^{\mu \nu } = \rho u^{\mu } u^{\nu }  + p h^{ \mu \nu }\), where \(h^{\mu \nu } = u^{ \mu }  u^{\nu } + g^{ \mu \nu }\) is the projector on the space orthogonal to the velocity. 
+
+We know that, in the expression of 
+%
+\begin{align}
+  u^{\mu } = \qty(\dv{t}{\tau }, \dv{\vec{x}}{\tau })^{\top}
+\,,
+\end{align}
+%
+the compontent \(u^{0}\) must be positive. We have 
+%
+\begin{align}
+  0 = G_{0i} = \frac{T_{0i} }{M_P^2}
+\,,
+\end{align}
+%
+but this means that \(u^{i}\) must be zero. \emph{The cosmic fluid is at rest}. This means that we are selecting a special frame: the rest frame of the cosmic fluid, the rest frame of the CMB. 
+
+When we look at the CMB we see a large dipolar contribution, due to the motion of the Earth with respect to the cosmic fluid. 
+The theory is globally Lorenz-invariant, however its realization is not. This means that \(u^{0} = 1\), since \(g_{00} = -1\). 
+
+This means that \(h^{\mu \nu } = a^2 \delta^{ij}\) (informal, I mean that the only nonzero components are the spatial ones.)
+
+Then \(T_{00} = \rho \), and \(T_{ij} = a^2 \delta_{ij} P\). 
+
+So the EFE are: 
+%
+\begin{align}
+  \frac{3 \dot{a}^2}{a^2} &= \frac{\rho }{M_P^2}  & \text{00 equation}\\
+  - 2 \frac{\ddot{a}}{a} - \frac{\dot{a}^2}{a^2} &=
+  \frac{P}{M_P^2} & \text{ij equations}
+\,,
+\end{align}
+%
+where we factored out the \(a^2 \delta_{ij}\) in the \(ij\) equations. 
+``Just for fun'' we discuss the Bianchi identities: \(\nabla_{\mu } G^{\mu \nu }=0\). 
+If \(\nu =0\) we have 
+%
+\begin{align}
+  \partial_{\mu } G^{\mu 0} + \Gamma^{\mu }_{\mu \lambda } G^{\lambda 0} + \Gamma^{0}_{\mu \lambda } G^{\mu \lambda } = 0
+\,,
+\end{align}
+%
+but simplifying the indices we get 
+%
+\begin{align}
+  \partial_{0} G^{00} + \Gamma^{i}_{i0} G^{00} + \Gamma^{0}_{ij} G^{ij} =0
+\,,
+\end{align}
+%
+and substituting in the expressions we have we get 
+%
+\begin{align}
+  &\partial_{0} \qty(\frac{3 \dot{a}^2}{a^2})
+  + \frac{3 \dot{a}}{a} \frac{3 \dot{a}^2}{a^2}
+  + a \dot{a} \delta_{ij} \frac{1}{a^2} \delta_{ij}
+  \qty(- \frac{2 \ddot{a}}{a} - \frac{\dot{a}^2}{a^2}) \\
+  = & 6 \frac{\dot{a}}{a} \qty(\frac{\ddot{a}}{a} - \frac{\dot{a}^2}{a^2})
+  + 9 \frac{\dot{a}^3}{a^3} - 6 \frac{\dot{a}}{a} \frac{\ddot{a}}{a} - 3 \frac{\ddot{a}^3}{a^3} = 0 
+\,,
+\end{align}
+%
+which confirms what we already knew. Verifying \(\nabla_{\mu} G^{\mu i } = 0\) is easier:  
+%
+\begin{align}
+    \partial_{\mu } G^{\mu i} + \Gamma^{\mu }_{\mu \lambda } G^{\lambda i} + \Gamma^{i}_{\mu \lambda } G^{\mu \lambda } = 0
+\,,
+\end{align}
+%
+because all three of the terms vanish immediately. 
+
+Correspongingly, we have \(\nabla_{\mu } T^{\mu \nu } =0 \). 
+This is a local conservation law, not a global one generally since we do not have 4 Killing vectors. 
+If \(\nu =0\) we have 
+%
+\begin{align}
+  &\partial_{\mu } T^{\mu 0} + \Gamma^{\mu }_{\lambda \lambda  } T^{\lambda 0} + \Gamma^{0}_{\mu \lambda } T^{\mu \lambda } = \\
+  =& \partial_{0} T^{00} +
+  \Gamma^{i}_{i0} T^{i0} + \Gamma^{0}_{ij} T^{ij} \\
+  =& \partial_{0} \rho 
++ 3 \frac{\dot{a}}{a} \rho + \dot{a} a \delta_{ij} \frac{1}{a^2} \delta_{ij} P 
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+  \dot{\rho} + 3 \frac{\dot{a}}{a} ( \rho +P) = 0
+\,,
+\end{align}
+%
+which we can add to the other equations. 
+
+It is easier to study the case \(\nu = i\): we get 
+%
+\begin{align}
+    &\partial_{\mu } T^{\mu i} + \Gamma^{\mu }_{\lambda \lambda  } T^{\lambda i} + \Gamma^{i}_{\mu \lambda } T^{\mu \lambda } = 0
+\,,
+\end{align}
+%
+since all three terms vanish immediately. Since the conservation  equation \(\nabla_{\mu } T^{\mu 0}\) comes from the Einstein equations, we should be able to derive it from the first two Friedmann equations: differentiating the 00 one we get 
+%
+\begin{align}
+  6 \qty(\frac{\dot{a}}{a} - \frac{\dot{a}^2}{a^2}) = \dot{\rho} M_P^{-2} 
+\,,
+\end{align}
+%
+while for the second one, multiplying by \(3 \dot{a} / a\), we get 
+%
+\begin{align}
+  - 6 \frac{\dot{a}}{a} \frac{\ddot{a}}{a}
+  - 3 \frac{\dot{a}^3}{a^3} = \frac{3 \dot{a}}{a } P M_P^{-2}
+\,.
+\end{align}
+
+Adding them together we find 
+%
+\begin{align}
+  - 9 \frac{\dot{a}^3}{a^3} = M_P^{-2} \qty( \dot{\rho} + 3 \frac{\dot{a}}{a }P )
+\,,
+\end{align}
+%
+and from the first FE we have 
+%
+\begin{align}
+  9 \frac{\dot{a}^3}{a^3} = 3 \frac{\dot{a}}{a} \rho M_P^{-2}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+  \dot{\rho}
+ + 3 \frac{\dot{a}}{a} \qty(\rho +P) = 0  
+\,.
+\end{align}
+
+So, since the equations are not independent, we consider  only two of the three. It is convenient to use the first and the third since they have no second derivatives.  
+
+What sources do we put for the equations? First of all, commonly we do \(w = P / \rho \), and sometimes we do \(w = -1\): this means \(\rho = \const\). 
+This corresponds to \emph{vacuum energy}, associated with the space itself: it does not scale inversely with the volume. 
+
+We can have vacuum energy: ``vacuum'' just means we are in a minimum of the potential. Mexican hats and stuff. 
+
+In principle, the EFE can be modified in a simple way: 
+%
+\begin{align}
+  G_{\mu \nu } + \Lambda g_{\mu  \nu } = \frac{T_{\mu \nu }}{M_P^2}
+\,,
+\end{align}
+%
+since the metric is covariantly constant. This can be interpreted as a \emph{constant negative energy density}: It would look like 
+%
+\begin{align}
+  T_{\mu \nu } \rightarrow T_{\mu \nu } + \Lambda M_P^2 g_{\mu \nu }
+\,.
+\end{align}
+
+Then we have 
+%
+\begin{align}
+  G_{00} = \frac{1}{M_P^2} \qty(\rho + \Lambda M_P^2)
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+  G_{ij} = \frac{1}{M_P^2} \qty(a^2 \delta_{ij} p - \Lambda M_P^2a^2 \delta_{ij})
+\,.
+\end{align}
+
+So, we have 
+%
+\begin{align}
+  \frac{P_{\Lambda }}{\rho_{\Lambda }} = w_{\Lambda } = -1
+\,.
+\end{align}
+
+This ratio between pressure and density is characteristic of a cosmological constant. 
+
 \end{document}

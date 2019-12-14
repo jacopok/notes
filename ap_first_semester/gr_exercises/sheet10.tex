@@ -103,8 +103,8 @@ These are given by the quadratic formula
 which gives: 
 %
 \begin{align}
-  \Omega_{1,2} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^2 \sin^{4}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2+2GMra^2 \sin^2\theta ))}  \\
-  &= \frac{2GMra \mp \rho \sqrt{ \qty(r^2+a^2-2GMr)}}{\rho^2(r^2+a^2+2GMra^2 \sin^2\theta )}
+\Omega_{1,2} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^4 \sin^{2}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta )}  \\
+&= \frac{2GMra \mp \rho^2 \sqrt{ \qty(r^2+a^2-2GMr) / \sin^2 \theta }}{\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta }
 \,,
 \end{align}
 %
@@ -112,8 +112,49 @@ which I do not think can be simplified further.
 Do note that we did not use the hypothesis of being in the ergosphere: the bounds for the angular velocity are general, it's just that in the ergosphere they preclude \(\Omega = 0\). 
 
 Do these solutions actually exist? They do if \(r^2+a^2-2GMr = \Delta >0\) (the \(\Delta \) from the definition of the Kerr geometry). Recall that this \(\Delta \) is positive outside the outer horizon and inside the inner horizon: in the region between the outer horizon and the ergosphere the solutions are well defined. 
+This region is precisely the ergoregion. 
 
 \subsubsection{Corotation necessity}
+
+We want to show that in the ergoregion, which is defined by \(\rho^2 < 2GMr\), we have that \(\Omega > 0 \) for any solution for our inequality. This is equivalent to saying that the lower of the two solutions for the equality (let us say the lower one is \(\Omega_{1}\)) must be \(>0 \) in this case. The denominator is always positive, so we can discard it. Then we want to show that 
+%
+\begin{align}
+2GMra - \rho^2 \sqrt{(r^2+a^2-2GMr) / \sin^2\theta }  > 0
+\,,
+\end{align}
+%
+which can be rephrased as 
+%
+\begin{align}
+\abs{\sin(\theta )} 2GMra > \rho^2 \sqrt{r^2+a^2-2GMr}
+\,,
+\end{align}
+%
+
+
+\subsubsection{Single allowed speed}
+
+If \(\Delta = 0\), then the two solutions to the quadratic equation collapse: only one speed is allowed, and it is equal to 
+%
+\begin{align}
+\Omega = \frac{2GMra}{\rho^2 \qty(r^2+a^2) + 2GMr a^2 \sin^2\theta }
+\,,
+\end{align}
+%
+which we can simplify using \(r^2+a^2 = 2GMr\) (which is  precisely \(\Delta = 0\)): 
+%
+\begin{align}
+\Omega = \frac{2GMra}{2GMr \qty( \rho^2 + a^2 \sin^2 \theta )} = \frac{a}{r^2 + a^2 \qty(\cos^2\theta +\sin^2\theta )} = \frac{a}{2GMr}
+\,,
+\end{align}
+%
+where the radius is precisely that of the (outer) horizon, the greatest solution  to \(\Delta = 0\). 
+
+\todo[inline]{Work in progress, there might still be some mistakes around.}
+
+\subsubsection{Extreme Kerr equatorial orbit}
+
+
 
 \subsection{Natural units}
 

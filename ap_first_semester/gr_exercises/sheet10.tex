@@ -5,7 +5,115 @@
 
 \subsection{Allowed Kerr orbits}
 
-The condition we want to impose is \(u^{\mu } g_{\mu \nu } u^{\nu } = -1\). 
+\subsubsection{\(\Omega \) inequality}
+
+The condition we want to impose is \(u^{\mu } g_{\mu \nu } u^{\nu } = -1\). Explicitly, since the four-velocity is  \(u^{\mu } = u^{t} \qty(1, 0, 0, \Omega )\), this means that 
+%
+\begin{align}
+  (u^{t})^2 \qty(g_{00} + 2 g_{03} \Omega + g_{33} \Omega^2 ) = -1
+\,.
+\end{align}
+
+We can work up to a positive multiplicative factor, at the price of weakening our equality to an equality: since \((u^{t})^2 > 0\), we can also write 
+%
+\begin{align}
+  g_{00} + 2 g_{03} \Omega + g_{33} \Omega^2 < 0
+\,,
+\end{align}
+%
+and since many of the terms contain divisions by \(\rho^2\) we can also multiply by \(\rho^2>0\) which will not change the sign; also we flip the sign of the inequality since we have more negative terms than positive ones (both of these really are for consistency with the assignment):
+%
+\begin{align}
+ - \rho^2 \qty(g_{00} + 2 g_{03} \Omega + g_{33} \Omega^2 ) > 0 
+\,.
+\end{align}
+
+Now we can substitute in the Kerr metric components (which we will not need to remember by heart): 
+%
+\begin{align}
+  \rho^2 - 2GMr 
+  + \qty(4 GMra \sin^2\theta ) \Omega 
+  - \qty(\rho^2 (r^2 + a^2 ) + 2GMra^2 \sin^2\theta ) \sin^2(\theta)  \Omega^2 > 0
+\,,
+\end{align}
+%
+so we can read off the values of the coefficients \(c_{n}\) as everything multiplying \(\Omega^{n}\), for \(n = 0, 1, 2\): 
+%
+\begin{subequations}
+\begin{align}
+    c_0 &= \rho^2 - 2GM r   \\
+    c_1 &= 4 GMra \sin^2\theta   \\
+    c_2 &= - \qty(\rho^2 (r^2 + a^2 ) + 2GMra^2 \sin^2\theta ) \sin^2(\theta)
+\,.
+\end{align}
+\end{subequations}
+
+\subsubsection{Ergosphere characterization}
+
+The ergosphere, as was discussed during the lectures, is defined as the region in which there are no timelike worldlines which are stationary with respects to the spatial coordinates, that is to say, with velocity parallel to the vector \((1, \vec{0})\).
+This is equivalent to saying that the metric component \(g_{00} > 0\), which corresponds to a region which extends beyond the horizon, and is shaped like an ellipsoid for low \(a/GM\) and like a donut without the hole for high \(a/ GM\).\footnote{See the python folder (or, possibly, the notes later) for visualizations of this.}
+
+Now, \(c_0 = - \rho^2 g_{00} \), so \(c_0 < 0\) is equivalent to \(g_{00} > 0\). 
+The characterization of the ergoregion is a special case of the prolem we are discussing now, where we fix \(\Omega = 0\).
+
+\subsubsection{Inequality discriminant}
+
+We start by writing everything out the pieces separately: 
+%
+\begin{align}
+  \frac{c_1^2}{4} = 
+  \frac{16}{4} \qty(GMar \sin^2\theta)^2 
+\,,
+\end{align}
+%
+while
+%
+\begin{align}
+\begin{split}
+    - c_0 c_2  = 
+    + \sin^2\theta  \big(&\rho^{4} \qty(r^2+a^2) + \rho^2 2 GMa^2 r \sin^2\theta +\\
+    &- 2GMr \rho^2 (r^2+a^2) - 4 \qty(GMra \sin \theta )^2\big)
+    \,,
+\end{split}
+\end{align}
+%
+so we can see that the last term in \(- c_0 c_2 \) precisely cancels \(c_1 ^2 /4\): we are then left with 
+%
+\begin{align}
+  \frac{c_1^2}{4}-c_0 c_2 &= \sin^2 \theta \qty(\rho^{4} \qty(r^2+a^2) + \rho^2 2 GMa^2 r \sin^2\theta 
+  - 2GMr \rho^2 (r^2+a^2))  \\
+  &= \rho^{4} \sin^2\theta \qty(\qty(r^2+a^2) - 2GMr \qty(\frac{r^2+a^2 - a^2 \sin^2\theta }{\rho^2}))  \\
+  &= \rho^{4} \sin^2\theta \qty(r^2+a^2-2GMr)
+\,,
+\end{align}
+%
+where in the last step we used the fact that \(r^2+a^2 \qty(1 - \sin^2\theta ) = r^2+a^2 \cos^2\theta = \rho^2\). 
+
+\subsubsection{Allowed angular velocities}
+
+We have a second degree polynomial inequality, and the quadratic coefficient \(c_2 \) is negative: therefore as \(\abs{\Omega } \rightarrow \infty \) the parabola in \(\Omega \) goes to \(- \infty \), so if there are any solutions they are those in between the two solutions of the equation \(\sum c_{n} \Omega^{n} = 0\).\footnote{This is just the way I like to remember which solutions to select, but in the end it's just a quadratic inequality, solve it however you like.}
+
+These are given by the quadratic formula 
+%
+\begin{align}
+  \Omega_{1, 2} = \frac{- c_1/2 \pm \sqrt{c_1^2/4- c_0 c_2  }}{c_2 }
+\,,
+\end{align}
+%
+which gives: 
+%
+\begin{align}
+  \Omega_{1,2} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^2 \sin^{4}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2+2GMra^2 \sin^2\theta ))}  \\
+  &= \frac{2GMra \mp \rho \sqrt{ \qty(r^2+a^2-2GMr)}}{\rho^2(r^2+a^2+2GMra^2 \sin^2\theta )}
+\,,
+\end{align}
+%
+which I do not think can be simplified further. 
+Do note that we did not use the hypothesis of being in the ergosphere: the bounds for the angular velocity are general, it's just that in the ergosphere they preclude \(\Omega = 0\). 
+
+Do these solutions actually exist? They do if \(r^2+a^2-2GMr = \Delta >0\) (the \(\Delta \) from the definition of the Kerr geometry). Recall that this \(\Delta \) is positive outside the outer horizon and inside the inner horizon: in the region between the outer horizon and the ergosphere the solutions are well defined. 
+
+\subsubsection{Corotation necessity}
 
 \subsection{Natural units}
 

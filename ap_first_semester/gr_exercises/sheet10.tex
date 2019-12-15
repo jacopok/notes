@@ -91,19 +91,19 @@ where in the last step we used the fact that \(r^2+a^2 \qty(1 - \sin^2\theta ) =
 
 \subsubsection{Allowed angular velocities}
 
-We have a second degree polynomial inequality, and the quadratic coefficient \(c_2 \) is negative: therefore as \(\abs{\Omega } \rightarrow \infty \) the parabola in \(\Omega \) goes to \(- \infty \), so if there are any solutions they are those in between the two solutions of the equation \(\sum c_{n} \Omega^{n} = 0\).\footnote{This is just the way I like to remember which solutions to select, but in the end it's just a quadratic inequality, solve it however you like.}
+We have a second degree polynomial inequality, and the quadratic coefficient \(c_2 \) is negative: therefore as \(\abs{\Omega } \rightarrow \infty \) the parabola in \(\Omega \) goes to \(- \infty \), so if there are any solutions to the inequality they are an interval between the two solutions of the equation \(\sum c_{n} \Omega^{n} = 0\).\footnote{This is just the way I like to remember which solutions to select, but in the end it's just a quadratic inequality, solve it however you like.}
 
 These are given by the quadratic formula 
 %
 \begin{align}
-  \Omega_{1, 2} = \frac{- c_1/2 \pm \sqrt{c_1^2/4- c_0 c_2  }}{c_2 }
+  \Omega_{+, -} = \frac{- c_1/2 \pm \sqrt{c_1^2/4- c_0 c_2  }}{c_2 }
 \,,
 \end{align}
 %
 which gives: 
 %
 \begin{align}
-\Omega_{1,2} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^4 \sin^{2}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta )}  \\
+\Omega_{-,+} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^4 \sin^{2}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta )}  \\
 &= \frac{2GMra \mp \rho^2 \sqrt{ \qty(r^2+a^2-2GMr) / \sin^2 \theta }}{\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta }
 \,,
 \end{align}
@@ -116,7 +116,7 @@ This region is precisely the ergoregion.
 
 \subsubsection{Corotation necessity}
 
-We want to show that in the ergoregion, which is defined by \(\rho^2 < 2GMr\), we have that \(\Omega > 0 \) for any solution for our inequality. This is equivalent to saying that the lower of the two solutions for the equality (let us say the lower one is \(\Omega_{1}\)) must be \(>0 \) in this case. The denominator is always positive, so we can discard it. Then we want to show that 
+We want to show that in the ergoregion, which is defined by \(\rho^2 < 2GMr\) and \(\Delta >0\), we have that \(\Omega > 0 \) for any solution for our inequality. This is equivalent to saying that the lower of the two solutions for the equality (let us say the lower one is \(\Omega_-\)) must be \(>0 \) in this case. The denominator is always positive, so we can discard it. Then we want to show that 
 %
 \begin{align}
 2GMra - \rho^2 \sqrt{(r^2+a^2-2GMr) / \sin^2\theta }  > 0
@@ -127,6 +127,13 @@ which can be rephrased as
 %
 \begin{align}
 \abs{\sin(\theta )} 2GMra > \rho^2 \sqrt{r^2+a^2-2GMr}
+\,.
+\end{align}
+
+In adimensional units \(A = a/GM\), \(R = r / GM\) and \(P^2 = R^2+A^2 \cos^2\theta \) this becomes 
+%
+\begin{align}
+\sin^2\theta R^2A^2 > P^2 \qty(R^2-2R + A^2)
 \,,
 \end{align}
 %
@@ -150,14 +157,102 @@ which we can simplify using \(r^2+a^2 = 2GMr\) (which is  precisely \(\Delta = 0
 %
 where the radius is precisely that of the (outer) horizon, the greatest solution  to \(\Delta = 0\). 
 
-\todo[inline]{Work in progress, there might still be some mistakes around.}
-
 \subsubsection{Extreme Kerr equatorial orbit}
 
+We set \(a = GM\) and \(\theta  = 0\). Then we have \(\rho^2= r^2\), \(\cos \theta = 0\) and \(\sin \theta =1\), so
+%
+\begin{align}
+\Omega_{1, 2} &= \frac{2 (GM)^2 r \mp r^2\sqrt{r^2 + (GM)^2 - 2GMr}}{r^2 \qty(r^2 +(GM)^2) + 2 (GM)^3 r}  \\
+&= \frac{2 (GM)^2 \mp r \abs{r - GM}}{r^3+(GM)^2r + 2 (GM)^3} \\
+O_{1,2}&= \frac{2 \mp R (R-1)}{R^3+R + 2}
+\,,
+\end{align}
+%
+where the absolute value is redundant since we are working at \(r > GM\).
+We introduced adimensionalized variables \(O = GM \Omega \) and \(R = r/GM\), which make the expressions way simpler. Using these is equivalent to setting \(GM = 1\). 
 
+The upper bound is given by the solution with the plus sign: 
+%
+\begin{align}
+O_{+} = \frac{R^2 - R + 2}{R^3+ R  + 2} = \frac{1}{1 + R}
+\,;
+\end{align}
+%
+to check that this is indeed the case one can simply multiply the polynomials together. 
+How might one guess or calculate this? If we want to divide the denominator by the numerator, we could use the algorithm of polynomial division, but there is a faster way. By inspection of the exponents we might guess that the result is a first degree polynomial in \(R\), and looking at the coefficients one can see that both the coefficient of \(R\) and the constant in this first order polynomial must be 1. This ansatz can then be checked by multiplication. Reinserting \(GM\), we get 
+%
+\begin{align}
+\Omega_{+} = \frac{1}{GM + r}
+\,.
+\end{align}
+%
+
+For the lower bound we get: 
+%
+\begin{align}
+O_{- } = \frac{- R^2 + R + 2 }{R^3 + R + 2} 
+= - \frac{(R+1) (R-2)}{(R+1) (R^2-R+2)} 
+= \frac{2-R}{R^2-R+2}
+\,,
+\end{align}
+%
+where we used the decomposition of the denominator we had derived in the last paragraph, and the regular quadratic decomposition for the numerator. Reinserting \(GM\), this is 
+%
+\begin{align}
+\Omega_{-} = \frac{2GM-r}{r^2- rGM +2 (GM)^2}
+\,,
+\end{align}
+%
+which I find to be simpler than the equivalent decomposition proposed in the assignment, which is 
+%
+\begin{align}
+\frac{1}{GM} \qty(1 - \frac{r^2}{2(GM)^2-GMr +r^2}) 
+&= \frac{1}{GM} \qty(\frac{2(GM)^2-GMr +r^2 - r^2}{2(GM)^2-GMr +r^2})  \\
+&= \frac{2GM - r}{2(GM)^2-GMr +r^2}
+\,.
+\end{align}
+%
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/allowed_velocities.pdf}
+  \caption{Allowed angular velocities.}
+  \label{fig:allowed-velocities}
+\end{figure}
+
+A plot of these limiting velocities is shown in figure \ref{fig:allowed-velocities}: we can see that for \(R<2\) we must have a positive \(\Omega \).
 
 \subsection{Natural units}
 
+Let us denote the numeric value of the time in seconds by \(\mathtt{t}\), so that \(t = \mathtt{t} \SI{}{s}\). It will be given by 
+%
+\begin{align}
+\mathtt{t} = \frac{1}{\SI{}{GeV s}} \times \hbar^{\alpha } c^{\beta } = \frac{\SI{}{J}}{\SI{}{GeV}} \times \frac{1}{\SI{}{Js}} \times \hbar^{\alpha } c^{\beta }  
+\,,
+\end{align}
+%
+where we inserted some generic powers of \(\hbar\) and \(c\), to be determined through dimensional analysis.
+We should write a system of linear equations for the exponents, but since the units of the reduced Planck constants are \SI{}{Js} we can already say that the solution will be \(\alpha = 1\), \(\beta =0\). 
+So, the value will be 
+%
+\begin{align}
+\mathtt{t}  = \frac{\SI{}{J}}{\SI{}{GeV}} \times \frac{\hbar}{\SI{}{Js}} = \SI{6.58e-25}{}
+\,.
+\end{align}
+
+We can use the exact same procedure to get the value of the length in meters, as defined by \(L = \mathtt{L} \SI{}{m}\). We find \(\alpha = \beta = 1\): 
+%
+\begin{align}
+\mathtt{L} = \frac{\SI{}{J}}{\SI{}{GeV}} 
+\times \frac{\hbar}{\SI{}{Js}} \times \frac{c }{\SI{}{m s^{-1}}} = \num{1.97e-16}
+\,.
+\end{align}
+
+If everything we have is in SI units, we can drop them so the computations become quite fast: up to SI units we have \(t  = \hbar / (\num{e9}e) \) and \(L = \hbar c / (\num{e9} e)\).
+
+The number of seconds in a year is approximately given by \(3600 \times 24 \times 365.25 = 31557600 \approx \pi \times \num{e7}\).
+
 \subsection{Friedmann equations derivation}
+
+This was done during lectures, I will copy it here sometime. 
 
 \end{document}

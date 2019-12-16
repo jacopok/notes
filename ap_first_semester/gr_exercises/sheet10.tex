@@ -116,6 +116,21 @@ This region is precisely the ergoregion.
 
 \subsubsection{Corotation necessity}
 
+We want to show that \(\Omega>0\) in the ergoregion: this is implied by \(\Omega_{-} > 0\), because \(\Omega_{-} < \Omega < \Omega_{+}\). The condition reads: 
+%
+\begin{align}
+\frac{c_1}{2} - \sqrt{(c_1 /2)^2 - c_0 c_2 } &> 0  \\
+\qty(\frac{c_1}{2})^2 &> \qty(\frac{c_1}{2})^2 - c_0 c_2   \\
+0 &> -c_0 c_2 
+\,,
+\end{align}
+%
+but we have shown before that \(c_0 < 0\) in the ergoregion, while \(c_2 \) is always negative: so we have proven the statement. 
+
+\subsubsection{Corotation necessity - the long way (complement)}
+
+This is the way I originally did it, I think it is quite illustrative so I will keep it here.
+
 We want to show that in the ergoregion, which is defined by \(\rho^2 < 2GMr\) and \(\Delta >0\), we have that \(\Omega > 0 \) for any solution for our inequality. This is equivalent to saying that the lower of the two solutions for the equality (let us say the lower one is \(\Omega_-\)) must be \(>0 \) in this case. The denominator is always positive, so we can discard it. Then we want to show that 
 %
 \begin{align}
@@ -160,7 +175,7 @@ R^2 - 2R + A^2 (1 - \sin^2 \theta ) < 0
 %
 which is precisely the condition of being inside the ergosphere. 
 
-\subsubsection{Single allowed speed}
+\subsubsection{Horizon angular velocity}
 
 If \(\Delta = 0\), then the two solutions to the quadratic equation collapse: only one speed is allowed, and it is equal to 
 %
@@ -172,11 +187,13 @@ If \(\Delta = 0\), then the two solutions to the quadratic equation collapse: on
 which we can simplify using \(r^2+a^2 = 2GMr\) (which is  precisely \(\Delta = 0\)): 
 %
 \begin{align}
-\Omega = \frac{2GMra}{2GMr \qty( \rho^2 + a^2 \sin^2 \theta )} = \frac{a}{r^2 + a^2 \qty(\cos^2\theta +\sin^2\theta )} = \frac{a}{2GMr}
+\Omega = \frac{2GMra}{2GMr \qty( \rho^2 + a^2 \sin^2 \theta )} = \frac{a}{r^2 + a^2 \qty(\cos^2\theta +\sin^2\theta )} = \frac{a}{2GMr} = \frac{a}{r_{+}^2 + a^2}
 \,,
 \end{align}
 %
 where the radius is precisely that of the (outer) horizon, the greatest solution  to \(\Delta = 0\). 
+
+An observer reaching the horizon must spin with exactly this frequency: then we are justified in thinking that this is the \emph{angular velocity of the horizon}. 
 
 \subsubsection{Extreme Kerr equatorial orbit}
 
@@ -280,10 +297,61 @@ We can use the exact same procedure to get the value of the length in meters, as
 
 If everything we have is in SI units, we can drop them so the computations become quite fast: up to SI units we have \(t  = \hbar / (\num{e9}e) \) and \(L = \hbar c / (\num{e9} e)\).
 
+Alternatively, we can adimensionalize any physical dimensional quantity by its Planck-units counterpart: 
+%
+\begin{align}
+\frac{t}{t_P} = \frac{E_P}{\SI{}{GeV}} \qquad \text{and} \qquad \frac{L}{L_P} = \frac{E_P}{\SI{}{GeV}}
+\,,
+\end{align}
+%
+and since the Planck units are formed from combinations of \(\hbar, c, G, k_B\) and \(k_e\) we must have \(t_P E_P = \hbar\) and \(L_P E_P = \hbar c\). 
+
 The number of seconds in a year is approximately given by \(3600 \times 24 \times 365.25 = 31557600 \approx \pi \times \num{e7}\).
 
 \subsection{Friedmann equations derivation}
 
-This was done during lectures, I will copy it here sometime. 
+% This was done during lectures, I will copy it here sometime. 
+
+We start off by computing the Christoffel symbols for the FRLW line element \(\dd{s^2} = - \dd{t^2} + a^2(t) \dd{\vec{x}}^2\): for \(\Gamma^{\mu }_{\nu \rho }\) to be nonzero it must have one temporal index and two spatial indices, since the only nonconstant element in the metric is \(a\), which only depends on time. By symmetry we can write just two of the Christoffel symbols: 
+%
+\begin{align}
+\Gamma^{0}_{ij} = \frac{1}{2} g^{00} \qty(\cancelto{}{g_{0i,j}} + \cancelto{}{g_{0j,i}} - g_{ij, 0}) = (-)^2 \frac{2}{2} \dot{a} a \delta_{ij} = \dot{a} a \delta_{ij} 
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+\Gamma^{i}_{0j} = \frac{1}{2} g^{ik} \qty(\cancelto{}{g_{k0,j}} + g_{kj,0} - \cancelto{}{g_{0j,k}}) = \frac{1}{2a^2} \delta_{jk} g_{jk,0} \delta_{ik}  = \frac{\dot{a}}{a}  \delta_{ij} 
+\,.
+\end{align}
+
+The Ricci tensor is given by 
+%
+\begin{align}
+R_{\mu \nu } = R^{\beta }_{\mu \beta \nu } 
+= \Gamma^{\beta }_{\mu \nu  , \beta } 
+- \Gamma^{\beta }_{\mu \beta , \nu } 
++ \Gamma^{\alpha }_{\mu \nu } \Gamma^{\beta }_{\alpha \beta } 
+- \Gamma^{\alpha }_{\mu \beta } \Gamma^{\beta }_{\nu \alpha }
+\,,
+\end{align}
+%
+and we can see, term by term, that the nonzero Christoffels cannot contribute in the \(R_{0i}\) expression (for example, in the third term we have that if \(\mu = 0\) and \(\nu = i\) then \(\alpha \) must be spatial, but then we have a symbol like \(\Gamma^{\beta }_{j \beta }\), which is always zero). 
+
+So, we only compute \(R_{00} \) and \(R_{ij}\). 
+
+\begin{align}
+  R_{0 0 } &= R^{\beta }_{0 \beta 0 } 
+  = \cancelto{}{\Gamma^{\beta }_{0 0  , \beta } }
+  - \Gamma^{i }_{0 i , 0 } 
+  + \cancelto{}{\Gamma^{\alpha }_{0 0 }} \Gamma^{\beta }_{\alpha \beta } 
+  - \Gamma^{i }_{0 j } \Gamma^{j }_{0 i }  \\
+  &= -3 \dv{}{t} \qty(\frac{\dot{a}}{a}) - 3 \qty(\frac{\dot{a}}{a})^2  \\
+  &= -3 \qty(\frac{\ddot{a}}{a} - \frac{\dot{a}^2}{a^2} + \frac{\dot{a}^2}{a^2})  \\
+  &= - 3 \frac{\ddot{a}}{a}
+  \,.
+\end{align}
+
 
 \end{document}

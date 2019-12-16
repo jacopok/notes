@@ -257,7 +257,7 @@ which I find to be simpler than the equivalent decomposition proposed in the ass
   \label{fig:allowed-velocities}
 \end{figure}
 %
-\begin{figure}[ht]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{figures/refined_limiting_angle_a_0_6838.pdf}
   \includegraphics[width=\textwidth]{figures/refined_limiting_angle_a_0_9968.pdf}
@@ -341,6 +341,7 @@ and we can see, term by term, that the nonzero Christoffels cannot contribute in
 
 So, we only compute \(R_{00} \) and \(R_{ij}\). 
 
+We have:
 \begin{align}
   R_{0 0 } &= R^{\beta }_{0 \beta 0 } 
   = \cancelto{}{\Gamma^{\beta }_{0 0  , \beta } }
@@ -350,8 +351,141 @@ So, we only compute \(R_{00} \) and \(R_{ij}\).
   &= -3 \dv{}{t} \qty(\frac{\dot{a}}{a}) - 3 \qty(\frac{\dot{a}}{a})^2  \\
   &= -3 \qty(\frac{\ddot{a}}{a} - \frac{\dot{a}^2}{a^2} + \frac{\dot{a}^2}{a^2})  \\
   &= - 3 \frac{\ddot{a}}{a}
-  \,.
+  \,
 \end{align}
+%
+while for the spatial components we have: 
+%
+\begin{align}
+R_{ij} &= R^{\beta }_{i \beta j}  \\
+&= \Gamma^{0 }_{i j  , 0 } 
+- \cancelto{}{\Gamma^{\beta }_{i \beta , j }} 
++ \Gamma^{0 }_{i j } \Gamma^{k }_{0 k } 
+- \Gamma^{0 }_{i k } \Gamma^{k }_{j 0 }
+- \Gamma^{k }_{i 0 } \Gamma^{0 }_{j k }
+\,,
+\end{align}
+%
+where we split the last term in two based on whether the upper index of the first symbol was 0 or spatial. 
+Anytime two spatial indices appear we have a \(\delta \), so we bring it forward; also we have a term containing \(\Gamma^{k}_{0k} = 3 \dot{a} / a \). We find: 
+%
+\begin{align}
+R_{ij} = \delta_{ij} \qty(\partial_{0}\qty(
+  \dot{a} a 
+) 
++ a \dot{a} \times 3 \frac{\dot{a}}{a}
+- 2 \dot{a}^2)
+= \delta_{ij} \qty(\dot{a}^2 + a \ddot{a} + 3 \dot{a}^2 - 2 \dot{a}^2 )  
+= \delta_{ij} \qty( a \ddot{a} +2 \dot{a}^2)
+\,,
+\end{align}
+%
+so now we can compute 
+%
+\begin{align}
+R = g^{\mu \nu } R_{\mu \nu } &= - R_{00} + 3 a^{-2} \qty(R_{11} ) = + 3 \frac{\ddot{a}}{a} + 3 a^{-2} \qty(a \ddot{a} + 2 \dot{a}^2) \\
+&= 6 \frac{\ddot{a}}{a} + 6 \qty(\frac{\dot{a}}{a})^2
+\,,
+\end{align}
+%
+which allows us to compute the full Einstein tensor, which is given by 
+%
+\begin{align}
+G_{\mu \nu } &= R_{\mu \nu }- \frac{1}{2} g_{\mu \nu }  R 
+\,,
+\end{align}
+%
+so we have 
+%
+\begin{align}
+G_{00} = - 3 \frac{\ddot{a}}{a} + (-)^2 \frac{1}{2}  \qty(6 \frac{\ddot{a}}{a} + 6 \qty(\frac{\dot{a}}{a})^2)
+= 3 \frac{\dot{a}^2}{a^2}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+G_{ij} &= \delta_{ij} \qty( a \ddot{a} +2 \dot{a}^2
+- \frac{1}{2} a^2 \qty(6 \frac{\ddot{a}}{a} + 6 \qty(\frac{\dot{a}}{a})^2))  \\
+&= \delta_{ij} \qty(a \ddot{a} + 2 \dot{a}^2 - 3 a \ddot{a} - 3 \dot{a}^2) \\
+&= \delta_{ij} \qty(-2 a \ddot{a} - \dot{a}^2)
+\,.
+\end{align}
+%
+Now we can write the Einstein Field equations: we just need a stress-energy tensor. We choose a perfect fluid: 
+%
+\begin{align}
+T^{\mu \nu } = (p + \rho ) u^{\mu } u^{\nu } + p g^{\mu \nu } = \rho u^{\mu } u^{\nu } + p h^{\mu \nu }
+\,,
+\end{align}
+%
+where we define the \emph{projection tensor} onto the subspace orthogonal to the 4-velocity at each point: \(h^{\mu \nu } = u^{\mu } u^{\nu } + g^{\mu \nu }\). 
+What should its velocity be? 
+by isotropy it \emph{must} be \(u^{\mu } = \delta^{\mu }_{0}\) in the frame where we assumed isotropy and homogeneity.
+
+Then, we can write the time and space components of the EFE: 
+%
+\begin{align}
+G_{\mu \nu } = \frac{1}{M_P^2} T_{\mu \nu }
+\,,
+\end{align}
+%
+for which we need the lower-index \(T_{\mu \nu }\): it is defined by 
+%
+\begin{align}
+T_{\mu \nu } = \rho u_{\mu} u_{\nu } + p h_{\mu \nu }
+\,,
+\end{align}
+%
+and since \(g_{00} = g^{00 } = -1\) while \(u_{\mu } = (1, \vec{0})^{\top}\) we have \(h_{00} = h_{0i} =  0\) and \(h_{ij} = g_{ij} =  a^2 \delta_{ij}\).
+
+So we get 
+%
+\begin{align}
+3 \frac{\dot{a}^2}{a^2} = \frac{\rho}{M_P^2}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+-2 a \ddot{a} - \dot{a}^2 = \frac{p a^2}{M_P^2}
+\qquad \implies \qquad
+2 \frac{\ddot{a}}{a} + \frac{\dot{a}^2}{a^2} = \frac{p}{M_P^2}
+\,.
+\end{align}
+
+Now we need to treat the conservation of the stress-energy tensor: we start with the equations \(\nabla_{\mu } T^{\mu  i } = 0 \). These, written explicitly, are: 
+%
+\begin{align}
+\partial_{\mu } T^{\mu i} + \Gamma^{\mu }_{\mu \nu } T^{\nu i } + \Gamma^{i}_{\mu \nu } T^{\mu \nu } =0 
+\,,
+\end{align}
+%
+but recall the fact that the only dependence is time-dependence: so \(\partial_{\mu } T^{\mu i} = \partial_{0} T^{0i}=0\) always since \(T^{0i}= 0\). 
+Similarly, in the second term we must have \(\mu =i\) and \(\nu = 0\) for the symbol to be nonzero, but then it vanishes, and in the third term we would need one of \(\mu \) and \(\nu \) to be 0 ant the other to be spatial. So, the whole equation is zero with no conditions, since the stress-energy tensor is diagonal.\footnote{A comment: we assumed the velocity field to be uniformly timelike, so it should come as no surprise that the conservation of the stress energy tensor along the spatial directions is an identity.}
+
+So we only need to treat 
+%
+\begin{align}
+0=\nabla_{\mu } T^{\mu 0 }
+= \partial_{\mu } T^{\mu 0} 
++ \Gamma^{\mu }_{\mu \nu } T^{\nu 0}
++ \Gamma^{0}_{\mu \nu } T^{\mu \nu }
+\,,
+\end{align}
+%
+and like before we have some semplifications: \(\partial_{\mu } T^{\mu 0} = \partial_{0} T^{00} = \dot{\rho}\); while in the second term we must have \(\nu = 0\) and \(\mu =i\), so we get a term depending on \(\rho = T^{00}\) and the contraction of the Christoffel symbols \(\Gamma^{i}_{i0} = 3 \dot{a} / a\). The last term must have \(\mu = \nu = j\) in order to be nonzero, and it comes out to be \(\Gamma^{0}_{jj} T^{jj} = 3 \dot{a} a p/ a^2 = 3 \dot{a} p / a\).
+This is because \(T^{ij} = h^{ij} p\), but \(h^{ij} = g^{ij} = a^{-2}\). 
+
+In the end, we have 
+%
+\begin{align}
+\dot{\rho} + 3 \frac{\dot{a}}{a}\qty( \rho + p ) = 0 
+\,.
+\end{align}
+%
 
 
 \end{document}

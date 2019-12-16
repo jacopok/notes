@@ -310,7 +310,7 @@ The number of seconds in a year is approximately given by \(3600 \times 24 \time
 
 \subsection{Friedmann equations derivation}
 
-% This was done during lectures, I will copy it here sometime. 
+\subsubsection{Christoffel symbols computation}
 
 We start off by computing the Christoffel symbols for the FRLW line element \(\dd{s^2} = - \dd{t^2} + a^2(t) \dd{\vec{x}}^2\): for \(\Gamma^{\mu }_{\nu \rho }\) to be nonzero it must have one temporal index and two spatial indices, since the only nonconstant element in the metric is \(a\), which only depends on time. By symmetry we can write just two of the Christoffel symbols: 
 %
@@ -325,6 +325,8 @@ and
 \Gamma^{i}_{0j} = \frac{1}{2} g^{ik} \qty(\cancelto{}{g_{k0,j}} + g_{kj,0} - \cancelto{}{g_{0j,k}}) = \frac{1}{2a^2} \delta_{jk} g_{jk,0} \delta_{ik}  = \frac{\dot{a}}{a}  \delta_{ij} 
 \,.
 \end{align}
+
+\subsubsection{Ricci and Einstein tensor computation}
 
 The Ricci tensor is given by 
 %
@@ -413,7 +415,10 @@ G_{ij} &= \delta_{ij} \qty( a \ddot{a} +2 \dot{a}^2
 \,.
 \end{align}
 %
-Now we can write the Einstein Field equations: we just need a stress-energy tensor. We choose a perfect fluid: 
+
+\subsubsection{Stress-energy tensor characterization and the Einstein Field Equations}
+
+Now we can almost write the Einstein Field equations: we just need a stress-energy tensor. We choose a perfect fluid: 
 %
 \begin{align}
 T^{\mu \nu } = (p + \rho ) u^{\mu } u^{\nu } + p g^{\mu \nu } = \rho u^{\mu } u^{\nu } + p h^{\mu \nu }
@@ -438,11 +443,13 @@ T_{\mu \nu } = \rho u_{\mu} u_{\nu } + p h_{\mu \nu }
 \,,
 \end{align}
 %
-and since \(g_{00} = g^{00 } = -1\) while \(u_{\mu } = (1, \vec{0})^{\top}\) we have \(h_{00} = h_{0i} =  0\) and \(h_{ij} = g_{ij} =  a^2 \delta_{ij}\).
+and since \(g_{00} = g^{00 } = -1\) while \(u_{\mu } = (1, \vec{0})\) we have \(h_{00} = h_{0i} =  0\) and \(h_{ij} = g_{ij} =  a^2 \delta_{ij}\).
 
 So we get 
 %
 \begin{align}
+G_{00} = \frac{T_{00} }{M_P^2}
+\qquad \implies \qquad
 3 \frac{\dot{a}^2}{a^2} = \frac{\rho}{M_P^2}
 \,,
 \end{align}
@@ -450,11 +457,15 @@ So we get
 and 
 %
 \begin{align}
+G_{ij} = \frac{T_{ij}}{M_P^2}
+\qquad \implies \qquad
 -2 a \ddot{a} - \dot{a}^2 = \frac{p a^2}{M_P^2}
 \qquad \implies \qquad
 2 \frac{\ddot{a}}{a} + \frac{\dot{a}^2}{a^2} = \frac{p}{M_P^2}
 \,.
 \end{align}
+
+\subsubsection{Conservation of the stress-energy tensor}
 
 Now we need to treat the conservation of the stress-energy tensor: we start with the equations \(\nabla_{\mu } T^{\mu  i } = 0 \). These, written explicitly, are: 
 %
@@ -486,6 +497,38 @@ In the end, we have
 \,.
 \end{align}
 %
+\subsubsection{Keeping only two of the equations (complement)}
+
+We want to be able to say that the only two independent Friedmann equations are 
+%
+\begin{align}
+3\frac{\dot{a}^2}{a^2} = \frac{\rho }{M_P^2}
+\qquad \text{and} \qquad
+\dot{\rho} + 3 \frac{\dot{a}}{a} \qty(\rho + p) = 0
+\,,
+\end{align}
+%
+since from this we can show that \(2 \ddot{a} / a + \frac{\dot{a}^2}{a^2} = p / M_P^2\). Let us do it explicitly (unlike, as was done in class, showing that the two EFE imply the conservation of the stress-energy tensor). We differentiate the first equation and substitute the second to find: 
+%
+\begin{align}
+6 \frac{\dot{a}}{a} \qty(\frac{\ddot{a}}{a } - \frac{\dot{a}^2}{a^2}) = \frac{\dot{\rho}}{M_P^2}
+= \frac{3}{M_P^2} \frac{\dot{a}}{a} \qty(\rho +p)
+\,,
+\end{align}
+%
+so we can divide by \(3 \dot{a} / a\) everything: we get 
+%
+\begin{align}
+2 \frac{\ddot{a}}{a} - 2 \frac{\dot{a}^2}{a^2} = \frac{\rho +p}{M_P^2} 
+\,,
+\end{align}
+%
+so substituting in the first equation for \(\rho / M_P^2\) again we get: 
+%
+\begin{align}
+2 \frac{\ddot{a}}{a} + (3-2) \frac{\dot{a}^2}{a^2} = \frac{p}{M_P^2}
+\,.
+\end{align}
 
 
 \end{document}

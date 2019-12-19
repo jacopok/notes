@@ -5,4 +5,359 @@
 
 The lessons on gravitational waves will be on the 8th and 9th of January, from 14:30 to 16:30, in rooms LUF2 and P2B respectively. 
 
+We want to find the Chandrasekhar limit in a more precise manner. 
+
+The number density of electrions is given by 
+%
+\begin{align}
+n_e = Y_{e} \frac{\rho_c}{m_H}
+\,,
+\end{align}
+%
+in the nonrelativistic case the pressure is given by 
+%
+\begin{align}
+P_c = k _{\text{NR}} n_e^{5/3} = k _{\text{NR}} \qty(\frac{Y_e \rho_{c}}{m_H})^{5/3}
+\,,
+\end{align}
+%
+but we can also derive it by 
+%
+\begin{align}
+P_c = k _{\text{NR}} n_e^{5/3} = k _{\text{NR}} \qty(\frac{Y_e \rho_{c}}{m_H})^{5/3}
+\,,
+\end{align}
+%
+and equating these we find: 
+%
+\begin{align}
+ k _{\text{NR}} \qty(\frac{Y_e \rho_{c}}{m_H})^{5/3}
+ = k _{\text{NR}} n_e^{5/3} = k _{\text{NR}} \qty(\frac{Y_e \rho_{c}}{m_H})^{5/3}
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+\rho_{c} = \frac{3.1}{Y_e^{5}} \qty(\frac{M}{M_{*}})^2 \frac{m_H}{(h / m_e c^2)^3}
+\,,
+\end{align}
+%
+where \(\alpha_{G} = G m_H^2 / (\hbar c) \approx \SI{5.9e-30}{}\), while 
+%
+\begin{align}
+m_{*} = \alpha_{G}^{-3 /2 } m_H = 1.85 M_{\odot}
+\,,
+\end{align}
+%
+while for the ultrarelativistic case we get 
+%
+\begin{align}
+P_C = k _{\text{UR}} n_e^{4/3} = k _{\text{UR}} \qty(\frac{Y_e \rho_{c} }{m_H})^{4/3}
+\,,
+\end{align}
+%
+so in this particular case the density \(\rho_{c}\) simplifies from the equations: we get a critical mass 
+%
+\begin{align}
+M _{\text{CHANDRA}} = \qty(\frac{36}{\pi })^{1/2} 
+\qty(\frac{Y_e}{m_H})^2
+\qty(\frac{k _{\text{UR}}}{G})^{3/2} \approx 
+2.3 Y_e^2 m_{*} \approx 4.3 Y_e^2 M_{\odot}
+\,,
+\end{align}
+%
+and we assume that we are in the fully degenerate case: in the integration over momenta of the phase space distribution we insert a cutoff at the Fermi energy.
+
+We find: 
+%
+\begin{align}
+P = \frac{4 \pi }{3 h^3} g_{*} \int_{0}^{p_F} \dd{p} p^2 \frac{p^2 c^2}{\epsilon_{p}}
+\,,
+\end{align}
+%
+where \(\epsilon_{p} = \qty(p^2c^2 + m^2c^{4})^{1/2}\). We integrate with the adimensional variable \(x = p / (m_e c)\): we get 
+%
+\begin{align}
+P = \frac{8 \pi }{3 h^3} m_e^4 c^{5} \int_{0}^{x_F} \frac{x^{4}}{(1+x^2)^{1/2}} \dd{x}
+\,,
+\end{align}
+%
+so we get \(P = k _{\text{UR}} n_e^{4/3}I(x_F)\), where we incorporated the integral in the term \(I(x_F)\): this is given by 
+%
+\begin{align}
+I_(x) = \frac{3}{2 x^{4}} \qty( x (1+x^2)^{1/2} \qty(\frac{2x^2}{3} -1) + \log \qty(x + (1+x^2)^{1/2}))
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+x_F = \frac{p_F}{m_ec} = 
+\qty(\frac{3 n_e}{8 \pi })^{1/3} \frac{h}{m_e c} =
+\qty(\frac{3 Y_e \rho_{c}}{8 \pi m_H})^{1/3} \frac{h}{m_e c}
+\,,
+\end{align}
+%
+so if \(x_F \gg 1\) we have \(I(x_F) \sim 1\), the ultrarelativistic case, while if \(x_F \ll 1\) we have \(I(x_F) \sim 4 x_F / 5\). 
+This then interpolates between our different cases.  
+%
+\begin{align}
+k _{\text{UR}} \qty(\frac{Y_e \rho_{c}}{m_H})^{4/3} I(x_F)
+\approx \qty(\frac{\pi }{36})^{1/3} G M^{4/3} \rho_{c}^{4/3}
+\,,
+\end{align}
+%
+so we can extract the mass: 
+%
+\begin{align}
+M = I(x_F)^{3/2} M _{\text{CH}}
+\,,
+\end{align}
+%
+and the important thing is that \(x_F \propto n_e^{1/3} \propto \rho_{c}^{1/3}\). 
+
+[Graph: on the \(x\) axis \(M/ M _{\text{CHANDRA}}\), on the \(y \) axis \(\rho_{c}\).]
+
+If we increase the mass, the star is not able to support itself by the pressure due to being a gas of degenerate electrons. 
+
+This gives us 
+%
+\begin{align}
+M _{\text{CHANDRA }} = 3.1 Y_e^2 m_{*}
+= 5.8 Y_e^2 M_{\odot} = 1.4 M_{\odot}
+\,.
+\end{align}
+
+It can be shown that the mean density is around 
+%
+\begin{align}
+\expval{\rho } = \frac{1}{6} \rho_{c}
+= \frac{\num{.51}}{Y_e^2} \qty(\frac{M}{m_{*}})^2
+\frac{m_H}{( h / m_e c)^3}
+\,,
+\end{align}
+%
+so we can estimate the radius as 
+%
+\begin{align}
+R = \qty(\frac{3 M }{4 \pi \expval{\rho }})^{1/3} 
+\approx \num{.77} Y_e^{5/3} \qty(\frac{M}{m_{*}})^{1/3} \alpha_{G}^{-1/2} \frac{h}{m_e c} 
+\,,
+\end{align}
+%
+and the object at the end is 
+%
+\begin{align}
+    \alpha_{G}^{-1/2} \frac{h}{m_e c} \approx \SI{3e7}{m}
+\,,
+\end{align}
+%
+so if we take \(Y_e = 0.5\) we find:
+%
+\begin{align}
+R = \frac{R_{\odot}}{74} \qty(\frac{M_{\odot}}{M})^{1/3}
+\,.
+\end{align}
+
+The luminosity is given by 
+%
+\begin{align}
+L = 4 \pi R^2 \sigma T_E^{4}
+= \frac{1}{74^2} \qty(\frac{M_{\odot}}{M})^{4/3}
+\qty(\frac{T_E }{\SI{6000}{K}}) L_{\odot}
+\,,
+\end{align}
+%
+so if we take a typical effective temperature of around \SI{e4}{K} (recall that neutron stars are in the blue part of the HR diagram), \(M = \num{.4} M_{\odot}\) we get \(L \approx \num{3e-3} L_{\odot}\). 
+
+We deal with degenerate stars: the Pauli exclusion principle plays a critical role, and the process 
+%
+\begin{align}
+\ce{n} \rightarrow \ce{p} + \ce{e-} + \overline{\nu}_{e}
+\,
+\end{align}
+%
+is inhibited, since there is no more room for electrons. On the other hand, the process 
+%
+\begin{align}
+\ce{e-} + \ce{p} \rightarrow \ce{n} + \nu_{e}
+\,
+\end{align}
+%
+is favoured. We can look at the Saha formula to get numerical estimates for this. The chemical potential of neutrinos can be neglected, therefore we find 
+%
+\begin{align}
+\mu_{\ce{n}} = \mu_{\ce{p}} + \mu_{\ce{e}} 
+\,,
+\end{align}
+%
+and the same equation holds for their Fermi energies. 
+
+This means that a certain point we will have only neutrons. 
+
+We need to exploit the Fermi exclusion principle. Why does the equation 
+%
+\begin{align}
+\epsilon_{F, \ce{n}} = \epsilon_{F, \ce{p}} + \epsilon_{F, \ce{e}}
+\,,
+\end{align}
+%
+favour neutrons? we have the constraint that the number of protons must equal the number of electrons, but the Fermi energy depends on the number density of these. typical numbers then become 
+%
+\begin{align}
+n_{\ce{p}} = n_{\ce{e}} = \frac{n_{\ce{n}}}{200}
+\,.
+\end{align}
+
+We will have 
+%
+\begin{align}
+n_{\ce{n}} = Y_n \frac{\rho_{c}}{m_{\ce{n}}} \approx \frac{\rho_{c}}{m_{\ce{n}}} \qquad \text{since} \qquad Y_n \approx 1
+\,.
+\end{align}
+
+For a neutron star we have 
+%
+\begin{align}
+\rho_{c} \approx 3.1 \qty(\frac{M}{M_{*}})^2 \frac{m_n}{\qty(h / m_n c)^3}
+\,,
+\end{align}
+%
+while for a white dwarf we have 
+%
+\begin{align}
+\rho_{c} \approx \frac{3.1}{Y_e^{5}} \qty(\frac{M}{M_{*}})^2 \frac{m_H}{(h / m_e c^2)^{3}}
+\,,
+\end{align}
+% \todo[inline]{why is the  \(c\), right?}
+%
+the mass is given by \(M_{*} = \alpha_{G}^{-3 /5 } m_n \approx 1.85 M_{\odot}\) and for the radius we get 
+%
+\begin{align}
+R = \num{.77} \qty(\frac{M_{*}}{M})^{1/3} \alpha_{G}^{-1/2}  \frac{h}{m_n c}
+\,,
+\end{align}
+%
+where the characteristic length is given by 
+%
+\begin{align}
+L_n = \alpha_{G}^{-1/2} \frac{h}{m_n c} \approx \SI{17}{km} \approx \frac{1}{1200} L_e
+\,,
+\end{align}
+%
+1200 times smaller than the corresponding length scale for electrons: \(L_n\) is the characteristic length scale for a NS, \(L_e\) is the characteristic length for a white dwarf.
+The maximum mass is \(M _{\text{max}}^{\text{NS}} = 3.1 M_{*} = 5.8 M_{\odot}\). 
+This is the mass of a star \emph{remnant}, which encompasses mass from the core only: the initial star will be much larger. 
+
+Can this NS become a BH? we need to compute 
+%
+\begin{align}
+\frac{GM}{Rc^2} \approx \num{.2} \qty(\frac{M}{M_{*}})^{4/3}
+\,,
+\end{align}
+%
+so if the mass is large enough we can reach the critical value of \(GM / Rc^2 = 2\). 
+
+Neutron stars were first detected as rotating objects: \emph{pulsars}. We have 
+%
+\begin{align}
+\frac{GM}{R^2} \approx R \omega^2 _{\text{max}}
+\,,
+\end{align}
+%
+the maximum angular velocity which can be supported gravitationally: it comes out to be 
+%
+\begin{align}
+\tau _{\text{min}} = \frac{2 \pi }{\omega _{\text{max}}} 
+\approx 2 \pi \qty(\frac{R^3}{GM})^{1/2}
+\,,
+\end{align}
+%
+which is of the order 
+%
+\begin{align}
+    \tau _{\text{min}} \approx 
+    11 \qty(\frac{M_{*}}{M}) \alpha_{G}^{-1/2} \frac{h}{m_n c^2}
+    \approx \num{.6} \frac{M_{*}}{M} \SI{}{ms}
+    \,.
+\end{align}
+
+This gives us a bound for gravitational waves of astrophysical origin. 
+\todo[inline]{no comment on the GR corrections to this formula: however I'd expect them to be significant}
+
+We move on to \emph{the GR issue}. 
+
+In a star, the classical equation of hydrostatic balance is:
+%
+\begin{align}
+\dv{P}{r} = - \frac{Gm \rho }{r^2}
+\,,
+\end{align}
+%
+while the GR equations for this are the TOV equation: Tolman-Oppenheimer-Volkov: 
+%
+\begin{align}
+\dv{P}{r} = - \frac{Gm  \rho }{r^2} \qty(1 + \frac{P}{\rho c^2}) \qty(1 + \frac{4 \pi r^3 P}{m c^2}) \qty(1 - \frac{2Gm}{rc^2})^{-1}
+\,,
+\end{align}
+%
+and the first correction is reminiscent of cosmology: \emph{the pressure itself contributes to the inertia of the system}. 
+
+If we have constant density, in the Newtonian case we get 
+%
+\begin{align}
+m(r) = \frac{4 \pi }{3} \rho_0 r^3
+\,,
+\end{align}
+%
+so than we can integrate and get 
+%
+\begin{align}
+P(r) = \frac{2 \pi G}{3}  \rho_0^2 \qty(R^2 - r_0^2)
+\,,
+\end{align}
+%
+where we inserted the boundary condition \(P(R) = 0\). In the first-order GR case, this can still be solved analytically! We get 
+%
+\begin{align}
+P(r) = \rho_0 c^2 \qty(\frac{(1 - 2GM r^2 / R^3 c^2)^{1/2} - (1 - 2GM / Rc^2)^{1/2}}{3 \qty(1 - 2GM / Rc^2)^{1/2} - \qty(1 - 2GM r^2 / R^3c^2)^{1/2}})
+\,,
+\end{align}
+%
+\todo[inline]{Check exponents}
+so we get 
+%
+\begin{align}
+P_c = \frac{2 \pi }{3} G \rho_0^2R^2 = \qty(\frac{\pi }{6})^{1/3} GM^{2/3} \rho_{c}^{4/3}
+\,,
+\end{align}
+%
+so we can look at what happens when we consider \(r=0\): we get 
+%
+\begin{align}
+P_c = \rho_0 c^2 \qty(\frac{1 - \sqrt{1 - 2GM / Rc^2}}{3 \sqrt{1 - 2GM / Rc^2} - 1})
+\,,
+\end{align}
+%
+so we can see that the central pressure is finite as long as 
+%
+\begin{align}
+\frac{GM}{Rc^2} < \frac{4}{9}
+\,,
+\end{align}
+%
+which is not \(1/2\) since we have made some approximations. 
+
+Then we have a bound 
+%
+\begin{align}
+M _{\text{max}} \approx \qty(\frac{8 \pi f}{9})^{3/2} M_{*}
+\,,
+\end{align}
+%
+with \(f \sim 1\). This means than the objects becomes contained inside its Schwarzschild radius, \(R = 2GM/c^2\). 
+
+Tomorrow we will speak of galaxy formation. 
+
 \end{document}

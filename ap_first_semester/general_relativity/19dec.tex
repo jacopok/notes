@@ -1,4 +1,405 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Dec 19 2019}
+
+We found the equation 
+%
+\begin{align}
+\dot{\rho}  + 3 \frac{\dot{a}}{a} \rho (1 + w)=0
+\,,
+\end{align}
+%
+where \(w = p / \rho \), and we found that for
+vacuum energy, with constant \(\rho \), we get \(w = -1\). 
+
+Now we will derive the fact that \(w = 1/3\) for radiation.
+This can be derived from Maxwell's equations, but it also can come from a more illustrative argument: we consider photons in a box. 
+
+If they travel along the \(x\) axis, they have wavevectors \(k^{\mu } = (\omega ,  \omega , 0, 0)\) and momenta \(p^{\mu } = \omega \hbar (1, 1, 0, 0,)\).
+
+In general they will travel in a different direction, of course, but we treat this case. 
+Each photon hits a wall every \(\Delta t = 2L\), and transfers momentum equal to \(2 \hbar \omega \). So, the average force exerted is \(\Delta p / \Delta t = \hbar \omega /L\). 
+
+In the cavity there is an energy \(\rho V = \rho AL\), where \(\rho \) is the photons' energy density, \(L\) is the length along \(x\) while \(A\) is the area normal to the \(x\) direction. 
+
+Each photon has energy \(\hbar \omega \), so there are \(\rho A L / \hbar \omega \). We assume for simplicity (but it gives the exact correct answer) that \(1/3\) of the photons travel along each spatial direction. 
+
+So there are \(\rho A L / 3 \hbar \omega \) photons travelling in the \(x\) direction. So the average force exerted on the wall is given by 
+%
+\begin{align}
+F_{x} = \frac{\hbar \omega }{L} \times \frac{\rho A L}{3 \hbar \omega } = \frac{\rho A}{3}
+\,,
+\end{align}
+%
+so the average pressure is \(\rho /3\), so \(w = 1/3\). 
+
+Now let us consider nonrelativistic particles: if \(v \ll 1\) then the 4-momentum looks like 
+%
+\begin{align}
+p^{\mu } = (m, mv, 0, 0)
+\,,
+\end{align}
+%
+so the force along the \(x\) axis is given by 
+%
+\begin{align}
+F_{\text{one particle}} = \frac{\Delta p_{x}}{\Delta t} = \frac{2mv}{2L / v} = \frac{mv^2}{L}
+\,,
+\end{align}
+%
+and as before the total energy is \(\rho L A\), so the number of particles travelling along the \(x\) direction is \(\rho L A /3 m\), since the momentum contribution to the particle's energy is negligible: therefore 
+%
+\begin{align}
+F_{x, \text{tot}} = \frac{mv^2}{L} \times \frac{\rho LA}{3m} 
+= \frac{\rho A v^2}{3} \approx 0
+\,,
+\end{align}
+%
+which we can neglect since it is quadratic in \(v\) which is very small. So we say that for relativistic matter \(w = 0\). 
+
+We have the differential equation 
+%
+\begin{align}
+\dv{\rho }{t} + 3 \frac{1}{a} \dv{a}{t} (1+w)\rho =0
+\,,
+\end{align}
+%
+so we can integrate: 
+%
+\begin{align}
+\int \frac{ \dd{\rho }}{\rho } = - 3 (1+w) \int \frac{ \dd{a}}{a}
+\,,
+\end{align}
+%
+wihch is readily solved by integrating from \(\rho =\rho_0 \) and \(a=a_0 \):
+%
+\begin{align}
+\rho = \rho_0 \qty(\frac{a_0 }{a})^{3 (1+w)}
+\,.
+\end{align}
+%
+
+From the square root of the 00 EFE we get: 
+%
+\begin{align}
+\frac{\dot{a}}{a} = \frac{1}{\sqrt{3}M_P} \rho^{1/2}
+\,,
+\end{align}
+%
+into which we can put the solution we found: 
+%
+\begin{align}
+\frac{\dot{a}}{a} = \frac{1}{\sqrt{3}M_P} \rho_0^{1/2} \qty(\frac{a_0 }{a})^{\frac{3(1+w)}{2}}
+\,,
+\end{align}
+%
+and if we define \(x = a / a_0 \) this becomes: 
+%
+\begin{align}
+\dv{x}{t} x^{\frac{3(1+w)}{2} - 1} = \frac{\rho_0 ^{1/2}}{\sqrt{3}M_P}
+\,,
+\end{align}
+%
+so we integrate: 
+%
+\begin{align}
+\int_{1}^{a / a_0 } \dd{x} x^{\frac{3(1+w)}{2}} = 
+\frac{\rho_0^{1/2}}{\sqrt{3}M_P} (t-t_0 )
+\,,
+\end{align}
+%
+so we need to integrate \(\int x^{\alpha } \dd{x}\): this can be \(\log x\) if \(\alpha = -1\) or \(x^{\alpha +1} / (\alpha +1)\) if \(\alpha \neq -1\). 
+
+We get the logarithm when \(w = -1\): then 
+%
+\begin{align}
+\log \frac{a}{a_0 }  = \frac{\rho_0}{\sqrt{3}M_P} \qty(t - t_0 )
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+a = a_0 \exp(\frac{\rho_0^{1/2}}{\sqrt{3}M_P} \qty(t - t_0 ))
+\,,
+\end{align}
+%
+which is called \emph{De Sitter spacetime}. Notice that in this case \(\rho \equiv \rho_0 \) since the density of vacuum energy is constant. In all other cases 
+%
+\begin{align}
+\frac{2}{3 (1+w)} \qty(\qty(\frac{a}{a_0 })^{3\frac{1+w}{2}} -1) = \frac{r_0^{1/2}}{\sqrt{3}M_P} \qty(t - t_0 )
+\,,
+\end{align}
+%
+and notice that \(t_0 \) is an arbitrary choice: we usually choose 
+%
+\begin{align}
+t_0 = \frac{2}{3 (1+w)} \frac{\sqrt{3}M_P}{\rho_0^{1/2}}
+\,,
+\end{align}
+%
+which then gives: 
+%
+\begin{align}
+\qty(\frac{a}{a_0 })^{\frac{3 (1+w)}{2}} = \frac{3 (1+w)}{2} \frac{\rho_0^2 }{\sqrt{3}M_P} t = \frac{t}{t_0 }
+\,.
+\end{align}
+%
+Then we get an ``easy'' answer: 
+%
+\begin{align}
+\frac{a}{a_0 } = \qty(\frac{t}{t_0 })^{\frac{2}{3 (1+w)}} 
+\,.
+\end{align}
+
+Some cases are: 
+\begin{enumerate}
+    \item Matter: \(w=0\) implies \(\rho \sim a^{-3}\), \(a \sim t^{2/3}\);
+    \item Radiation: \(w=1/3\) implies \(\rho \sim a^{-4}\) and \(a \sim t^{1/2}\);
+    \item Vacuum energy: \(w = -1\) implies \(\rho = \const\) and \(a \sim \exp t\).
+\end{enumerate}
+
+If \(a = \overline{a} \equiv \const\) then we can rescale the spatial coordinated \(\vec{x} \rightarrow \overline{a} \vec{x}\), so we recover Minkowski spacetime. 
+
+This implies that, in a flat Friedmann - Robertson - Lemaître - Walker universe, the normalization of the scale factor is unphysical. 
+
+This can be noticed from the equations: only the \emph{logarithmic} derivative of the scale factor enters them. 
+
+If we have a universe which is \emph{not} flat, we get an additional factor \(k / a^2\), with \(k = \pm 1\) in the Friedmann equations: then the normalization of the scale factor becomes physical. 
+
+Let us characterize expansion: let us consider two galaxies, one at the spatial coordinates \(\vec{x}_{1} = \vec{0}\) and the other at \(\vec{x}_{1} = (\overline{x}, 0,0)\). 
+
+The distance between them is given  by 
+%
+\begin{align}
+d_{P} (t) = \int_{0}^{\overline{x}} \dd{x} \sqrt{g_{11} } = a(t) \overline{x}
+\,.
+\end{align}
+
+How much does the distance change between two times \(t_1 \) and \(t_2 \)? Their ratio is 
+%
+\begin{align}
+\frac{  d_{P}(t_1 )}{d_{P}(t_2 )} = \frac{\overline{x} a(t_1 )}{\overline{x} a(t_2 )} = \frac{a(t_1 )}{a(t_2 )}
+\,.
+\end{align}
+
+These are called \emph{comoving coordinates}: the coordinates on a grid which is expanding. 
+
+So the distance can change both because of this comoving expansion, and because of \emph{proper motion}: things actually moving through the grid. 
+
+We can write the FRLW metric with respect to spherical coordinates: 
+%
+\begin{align}
+\dd{s^2} = - \dd{t^2} + a^2(t) \qty(\dd{r^2} + r^2 \dd{\Omega^2})
+\,.
+\end{align}
+
+A photon moves with \(\dd{s^2} =0\), which implies 
+%
+\begin{align}
+\dd{r} = \frac{ \dd{t}}{a(t)}
+\,.
+\end{align}
+
+Say we have an emitter Alice and an observer Bob, both at fixed radial coordinates. Alice sends two photons (or wavecrests, whatever) at a time difference  \(\Delta t_A\) apart, and Bob receives them at a time difference \(\Delta t_B\) apart. 
+
+In general \(\Delta t_A \neq \Delta t_B\). We have 
+%
+\begin{align}
+\int_{r_A}^{r_B} \dd{r} = \int_{t_A}^{t_B}  \frac{ \dd{t}}{a(t)} 
+= \int_{t_A + \Delta t_A}^{t_B + \Delta t_B}  \frac{ \dd{t}}{a(t)} 
+\,.
+\end{align}
+
+This then implies that 
+%
+\begin{align}
+\int_{ t_A }^{ t_A + \Delta t_A} \frac{ \dd[]{t}}{a(t)} = 
+\int_{ t_B }^{ t_B  + \Delta t_B} \frac{ \dd[]{t}}{a(t)} 
+\,.
+\end{align}
+
+The \(\Delta t\) are \emph{very} small with respect to the total times: then this means 
+%
+\begin{align}
+\frac{\Delta t_A}{a(t_A)} \approx \frac{ \Delta t_B}{ a(t_B)}
+\,,
+\end{align}
+%
+which can be written as 
+%
+\begin{align}
+\Delta t_B = \Delta t_A \frac{a(t_B)}{a(t_A)}
+\,,
+\end{align}
+%
+or, equivalently, 
+%
+\begin{align}
+\omega_{B} = \omega_{A} \frac{a(A)}{a(B)}
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+\lambda_{B} = \lambda_{A} \frac{a(B)}{a(A)}
+\,,
+\end{align}
+%
+since \(\omega \lambda = 2 \pi \). Since \(a(B) > a(A)\) we get \(\lambda_{B} > \lambda_{A}\): this is a \emph{redshift}. 
+
+Since \(E_{\gamma } = \hbar \omega \propto a^{-1}\), while the volume density \(N_{\gamma } \propto a^{-3}\), we get the global effect of \(\rho_{\gamma } \propto a^{-4}\). 
+
+We define 
+%
+\begin{align}
+z = \frac{\lambda_{B}}{\lambda_{A}} - 1 = \frac{a(t_{B})}{a(t_{A})} - 1
+\,,
+\end{align}
+%
+fixing \(t_B = \text{now} = t_0 \). 
+
+\emph{Hubble's law} is a relation between redshift and distance of nearby objects. 
+
+Since we are nearby, we Taylor expand the scale factor: we say 
+%
+\begin{align}
+a(t) = a_0 + \dot{a}_{0} (t - t_0 ) + \mathcal{O}(t^2)
+\,,
+\end{align}
+%
+where by \(\dot{a}_{0}\) we mean the derivative of the scale factor computed at the present time.
+
+We have 
+%
+\begin{align}
+d_{P}(t) = a(t) \int_{t_{A}}^{t_B} \dd{t} = a(t) \int_{t_A}^{t_B} \frac{ \dd{\widetilde{t}}}{a (\widetilde{t})}
+\,,
+\end{align}
+%
+so this, at the time \(t_0\) gives us 
+%
+\begin{align}
+d_P (t_0 ) = a_0 \int \frac{\dd{t}}{a_0 } = t_B - t_A + \mathcal{O}(t^2)
+\,,
+\end{align}
+%
+if we consider the lowest possible order (at which the universe is not expanding).
+We can identify \(B = 0\), that is, we observe now.
+
+We can write the first order expansion of the scale factor as 
+%
+\begin{align}
+a_0 - a(t_A) = \dot{a}_{0} (t_0 - t_A) \implies
+t_{0} - t_A = \frac{a_0 - a(t_A)}{\dot{a}_{0}}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+d_P = t_0 - t_A = \frac{a_0 }{\dot{a}_{0}} \qty(1 - \frac{a(t_A)}{a_0 }) 
+= \frac{a_0 }{\dot{a}_{0}} \qty(1 - \frac{1}{1+z})
+\approx \frac{a_0 }{ \dot{a}_{0}} z + \mathcal{O} (z^2)
+\,,
+\end{align}
+%
+since \(z / (1+z) \sim z \) if \(z \sim 0\). 
+
+The (inverse of the) constant multiplying \(z\) is called the \emph{Hubble Constant}: 
+%
+\begin{align}
+H_0 = \frac{\dot{a}_{0}}{a_0 }
+\,.
+\end{align}
+
+There is also the fact we neglected: what is actually measurable is not the comoving distance but the luminosity distance. 
+The value of this constant is around 
+%
+\begin{align}
+H_0 \approx \SI{70}{km s^{-1} Mpc^{-1}}
+\,.
+\end{align}
+
+There is a disagreement between the measurement of \(H_0 \) from the CMB and the one using standard candels. 
+
+We finish off the topic by discussing the relationship between time and energy. We discuss the present age of the universe and the time of the Big Bang nucleosynthesis. 
+
+As long as \(w \neq 1\) we can immediately derive a relation for \(\dot{a} / a \) by differentiating: 
+%
+\begin{align}
+\frac{\dot{a}}{a} = \frac{2 }{3 (1+w) t}
+\,,
+\end{align}
+%
+so the ratio does depend on \(w\), but the \(t\)-dependence is always \(H \sim 1/t\). To get an order of magnitude, we can use a matter-dominated universe, so the prefactor becomes \(2/3\): 
+%
+\begin{align}
+t_0 \sim \frac{1}{H_0} \approx  \SI{4.4e17}{s} \sim \SI{1.4e10}{yr}
+\,.
+\end{align}
+%
+
+At which time did the universe have a temperature of \SI{1 }{MeV}? We know that the energy density looks like 
+%
+\begin{align}
+\rho_{\gamma } = c (k_B T)^{4}
+\,,
+\end{align}
+%
+which follows from integrating the Planck distribution. 
+
+In natural units (\(c = \hbar = k_B =1\)), an energy density has dimensions of an energy to the fourth power, since it is energy divided by length cubed, but lengths are inverse energies. Then, 
+%
+\begin{align}
+\rho_{\gamma } \propto T^{4}
+\,,
+\end{align}
+and the proportionality constant is approximately equal to 1. 
+We know that 
+%
+\begin{align}
+H^2 = \frac{1}{3 M_P^2} \rho 
+\,,
+\end{align}
+%
+which  means that, neglecting the order-1 factor of 3:
+%
+\begin{align}
+H = \frac{T^2}{M_P}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+t \sim \frac{M_P}{T^2}
+\,,
+\end{align}
+%
+which is the relation between time and temperature in a radiation-dominated universe. In natural units, \(M_P \sim \SI{2e18 }{GeV}\), so 
+%
+\begin{align}
+t \sim \frac{\SI{2e18}{GeV}}{\qty(\SI{1}{MeV})^2} = \SI{2e24}{GeV^{-1}}
+\,,
+\end{align}
+%
+so this can be transformed in seconds by multiplying by 
+%
+\begin{align}
+\hbar = \SI{6.6e25}{GeV s}
+\,,
+\end{align}
+%
+so \(\SI{}{GeV^{-1}} = \SI{6.6e25}{s}\): then 
+%
+\begin{align}
+t  = \SI{2e24}{GeV^{-1}} \times \SI{6.6e25}{GeV s} \approx \SI{1.2}{s}
+\,.
+\end{align}
+
+This holds for a radiation-dominated universe. 
+
 \end{document}

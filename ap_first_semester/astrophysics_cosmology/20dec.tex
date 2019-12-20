@@ -1,4 +1,347 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Dec 20 2019}
+
+The lectures in january will be about \emph{cosmological} gravitational waves mainly. 
+
+Write to him if you do not have access to the dropbox. 
+
+On the exam: a traditional oral exam, with questions on the main topics dealt with in class. 
+The days on the calendar do not mean anything. 
+The exams should be agreed upon by email. 
+
+Now we talk about the formation of dark matter halos. 
+This is in Sabino's notes in the dropbox. 
+
+We say we have a spherical object in the universe, focus on it and apply Birkoff's theorem: we can study it independently of the surroundings. 
+
+We can consider halos of different densities to account for over and under densities. 
+In the real world, we will not have spheres, but three-axial ellipsoids: it is known that if we have over-densities the non-sphericity will increase, if we have under-densities it will decrease. 
+
+However we treat spherical models because it is simple.
+Historically the Americans supported the spherical models, the Russians supported the ``pancake model''. 
+Now we know that we have pancakes with spheres inside (?). 
+
+We consider a sphere. We define: 
+%
+\begin{align}
+\delta (\vec{x}, t) = \frac{\rho (\vec{x}, t) - \overline{\rho}(t)}{\overline{\rho}(t)} 
+\,,
+\end{align}
+%
+and we assume \(0<\delta \ll 1\) (a \emph{small over-density}), although in general we could have \(-1 < \delta < + \infty \). 
+
+We found in previous lessons that we have a growing mode \(\delta \propto t^{2/3}\) and a decaying mode \(\delta \propto t^{-1}\), for which we had \(v \propto t^{1/3} \) and \(v \propto t^{-4/3}\) respectively. 
+
+So we choose a time \(t_i\) such that 
+%
+\begin{align}
+\delta (t) = \delta_+ (t_i) \qty(\frac{t}{t_i})^{2/3}
++ \delta_- (t_i) \qty(\frac{t}{t_i})^{-1}
+\,.
+\end{align}
+
+The linearized continuity equation was: 
+%
+\begin{align}
+v = i \frac{ \dot{\delta}}{k} a 
+\propto \qty(\frac{2}{3} \delta_{+} (t_i) \qty(\frac{t}{t_i})^{1/3} - \delta_{-} (t_i) \qty(\frac{t}{t_i})^{-4/3})
+\,,
+\end{align}
+%
+since \(a \propto t^{2/3}\). This is in order to write explicitly the fact that we need two initial conditions. 
+
+We suppose that at \(t=t_i\) we have \emph{unperturbed Hubble flow}: \(v(t_i) = 0\), which means 
+%
+\begin{align}
+\delta_{-} (t_i) = \frac{2}{3} \delta_{+}(t_i)
+\,,
+\end{align}
+%
+and we can have a generic initial density, which we can express as: 
+%
+\begin{align}
+\delta (t_i) = \delta_{i} = \delta_{+} + \delta_{-} = \frac{5}{3} \delta_{+} 
+\,.
+\end{align}
+
+Our perturbation can be dealt with cosmologically as being a \emph{local FRLW closed universe}. 
+Say our sphere has a radius \(R\): then if we have \( \delta = \delta_i\) then 
+%
+\begin{align}
+\Omega (t_i) = 1 + \delta_{i}
+\,.
+\end{align}
+
+We have then, from the Friedmann equations: 
+%
+\begin{align}
+\dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k 
+\,,
+\end{align}
+%
+where \(k = +1\) if \(\delta_{i} > 0\), because of the fact that our sphere is locally a closed universe. 
+This then means: 
+%
+\begin{align}
+- k = (1 - \Omega ) a^2 H^2
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\frac{\dot{a}^2 }{a_i^2} = H_i^2 \qty(
+    \Omega_{p} (t_i) \frac{a_i}{a} + (1 - \Omega_{p}(t_i))
+)
+\,,
+\end{align}
+%
+where the index \(p\) denotes the fact that we are talking about the perturbation. We have: 
+%
+\begin{align}
+\rho_{p} (t) &= \rho_{p}(t_i) \qty(\frac{a_{pi}}{a_p})^3  \\
+&= \rho_{c} (t_i) \Omega_{p} (t_i) \qty(\frac{a_{pi}}{a})^3
+\,.
+\end{align}
+
+We want to derive a time for the \emph{turnaround time} \(t_m\): 
+%
+\begin{align}
+\rho_{p} (t_m) &= \rho_{c} (t_i) \Omega_{p}(t_i) \qty(\frac{\Omega_{p}(t_i) - 1}{\Omega_{p} (t_i)})^3  \\
+&= \rho_{c}(t_i) \frac{\qty(\Omega_{p}(t_i) - 1)^3}{\Omega_{p}(t_i)^2}
+\,,
+\end{align}
+%
+since at \(t = t_m\) we have \(\frac{\dot{a}^2}{a_{i}^2} = 0\). 
+\todo[inline]{since \(\dot{a}(t_m) = 0\)? }
+
+Some time ago we had found: 
+%
+\begin{align}
+t (\theta_{m} = \pi ) = t_m = \frac{\pi }{2 H_0 } \frac{\Omega_0 }{(\Omega_0 - 1)^{3/2}}
+\,,
+\end{align}
+%
+but calculating this \emph{now} is arbitrary: the same formula holds replacing \(0\) with \(i\). 
+
+Then we have 
+%
+\begin{align}
+t_m = \frac{\pi }{2 H_i} \qty(\frac{\rho_{c}(t_i)}{\rho_{p}(t_m)})^{3/2}
+\,,
+\end{align}
+%
+since we have found that in the relation from a few lessons ago we have exactly the inverse of the relation we just derived connecting \(\Omega \) and \(\rho \). 
+
+It is convenient to consider unperturbed Hubble flow so that the Hubble parameter inside and outside is the same. 
+
+Then we have 
+%
+\begin{align}
+H^2(t_i) = \frac{8 \pi G}{3} \rho_{c}(t_i)
+\,,
+\end{align}
+%
+so we have a cancellation: we find 
+%
+\begin{align}
+t_m = \frac{\pi }{2 H_i} \qty(\frac{\rho_{c}(t_i)}{\rho_{p}(t_i)})^{1/2} = \qty(\frac{3 \pi }{32 G \rho_{p}(t_m)})^{1/2}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\rho_{p} (t_m) = \frac{3 \pi }{32 G t_m^2}
+\,,
+\end{align}
+%
+which holds inside the sphere, while the critical density \emph{outside} is 
+%
+\begin{align}
+\rho_{c}(t_m) = \frac{1}{6 \pi G t_m^2}
+\,.
+\end{align}
+
+We are implicitly using the \emph{synchronous gauge}, and we are finding an exact solution to the EFE: The Lemaître-Tolman-Bondi solution. 
+
+We can ask: at a certain given time, how much is the interior density larger than the exterior one? this is given by 
+%
+\begin{align}
+1 + \delta_{p}(t_m) = \chi (t_m) = \frac{\rho_{p}(t_m)}{\rho_{c}(t_m)} = \frac{3 \pi }{32 G } 6 \pi G = \qty(\frac{3 \pi }{4})^{2} \approx 5.6 
+\,.
+\end{align}
+
+Then we have \(\delta_{p}(t_m) \approx 4.6\). 
+How does this compare to linear theory? 
+%
+\begin{align}
+\delta_p (t_m) = \delta_{t}(t_i) \qty(\frac{t_m }{t_i})^{2/3} + \delta_{-}(t_i) \qty(\frac{t_m}{t_i})^{-1}
+\approx \frac{3}{5} \delta_{p}(t_i) \qty(\frac{t_m}{t_i})^{2/3} 
+\,,
+\end{align}
+%
+since the second term vanishes. 
+
+We know that \(H_i = 2/ (3 t_i)\), so 
+%
+\begin{align}
+t_m = \frac{3 \pi t_i}{4} \times \qty(\frac{1 + \delta_{i}}{ \delta_{i}^{3/2}}) \approx \frac{3 \pi t_i}{4} \delta_{i}^{-3/2}
+\,,
+\end{align}
+%
+which comes from the equation from the perturbation density at \(t_m\), in which we substitute \(\Omega_{p} - 1 = (\delta_{p} + 1)  - 1 = \delta_{p}\), and we approximate \(1 + \delta \approx 1\) since \(\delta \) is small. 
+
+So we have 
+%
+\begin{align}
+\frac{t_m}{t_i} 
+=\frac{3 \pi }{4} \delta_{i}^{-3/2}
+\,,
+\end{align}
+%
+which gives us a correction 
+%
+\begin{align}
+\delta_{p}(t_m) =
+\frac{3}{5} \delta_{i} \qty( \frac{3 \pi }{4} \delta_{i}^{-3/2})^{2/3}
+=\frac{3}{5} \qty(\frac{3 \pi }{4})^{2/3} \approx 1.87
+\,.
+\end{align}
+
+So linear theory would have given us a wrong answer, as we should expect: we are very far from the \(\delta \ll 1\) regime in which we expect linearization to hold. 
+
+We speak of the virialization time (the time after which the VT starts applying?). It is hard to calculate, different books give different values. 
+%
+\begin{align}
+t _{\text{vir}} \approx t_c = 2 t_m
+\,.
+\end{align}
+
+Then we have 
+%
+\begin{align}
+E _{\text{tot}} = T + E _{\text{gr}} = \frac{1}{2} E _{\text{gr}} = - T  
+\,,
+\end{align}
+%
+since \(2 T + E _{\text{gr}} = 0\).
+
+The total energy at virialization is given by 
+%
+\begin{align}
+E _{\text{eq}} = - \frac{1}{2} \frac{3}{5} \frac{GM^2}{R _{\text{eq}}}
+\,,
+\end{align}
+%
+where the factor \(3/5\) is given by the geometry of the system, we are assuming constant density for our sphere, while the \(1/2\) comes from the VT.  
+At the time of collapse instead the energy is given by 
+%
+\begin{align}
+E_m =- \frac{3}{5} \frac{GM^2}{R_m}
+\,,
+\end{align}
+%
+This then means that the radius at virialization, \(R _{\text{eq}}\), is twice the radius at the start of the collapse, \(R_m\): 
+%
+\begin{align}
+2 R _{\text{eq}} = R_{m}
+\,.
+\end{align}
+
+This also means, by mass conservation, that \(\rho _{\text{vir}} = 8 \rho_{m}\) since the volume shrinks by \(2^{3}\). 
+
+We want to know the density at collapse:: 
+%
+\begin{align}
+\frac{\rho_{p}(t_c)}{\rho_{c}(t_c)} = \underbrace{\frac{\rho_{p}(t_c)}{\rho_{p}(t_m)}}_{8} \underbrace{\frac{\rho_{p}(t_m)}{\rho_{c}(t_m)}}_{\chi \approx 5.6} \underbrace{\frac{\rho_{c}(t_m)}{\rho_{c} (t_c)}}_{2^2}
+\approx 180
+\,.
+\end{align}
+
+This object is called \(1 + \delta(t_c) \), so \(\delta (t_c) \approx 179\). 
+
+What would happen if we were to use linear theory at this time? Then we would find 
+%
+\begin{align}
+\delta_{+} (t_c) = \delta_{+}(t_m) \qty(\frac{t_c}{t_m})^{2/3}
+\,,
+\end{align}
+%
+which gives us
+%
+\begin{align}
+\delta_+ (t_c) \approx \frac{3}{5} \qty(\frac{3 \pi }{4})^{2/3} 2^{2/3} \approx 1.686 
+\,,
+\end{align}
+%
+which is a kind of ``clock'': how long can we use linear theory for? 
+
+We deal with *** theory: we introduce 
+%
+\begin{align}
+n(M) = \dv{N}{M} = \text{\# of objects per unit volume with mass in } [M, M + \dd{M}]
+\,.
+\end{align}
+
+Let us consider linear perturbations \(\delta(\vec{x}, t)\): perturbations in the matter density dealt with using linear theory only. 
+
+These tend to fluctuate a lot. We need a \emph{filter}: we use a \emph{low-pass} filter, ignoring the high-frequency modes. It is \(W_R(\vec{x})\): \(R\) is a spatial radius, we ignore modes with spatial frequency larger than \(1/R\). 
+
+We use a filter labelled by a mass \(M\), which we find by assuming a certain density, and then using \(M \propto R^3\). 
+
+It is generally a good idea to assume gaussianity. In the Planck data it was found by Sabino's team that the bounds on non-gaussianity are very low, the data are almost gaussian. So, we have 
+%
+\begin{align}
+p(\delta_{M}) \dd{ \delta_{M}} = \frac{1}{\sqrt{2 \pi \sigma_{M}^2}} \exp( - \frac{ \delta_{M}^2}{2 \sigma_{M}^2}) \dd{ \delta_{M}}
+\,,
+\end{align}
+%
+where the variance is typically diverging if we do not apply the filter: we have 
+%
+\begin{align}
+\sigma_{M}^2    = \expval{ \delta_{M}^2 } \propto M^{-2 \alpha }
+\,,
+\end{align}
+%
+and typically \(\alpha \sim 1/2\). 
+
+We define a threshold for the value of \(\delta_{M}\), and we want to compute the probability of the value becoming larger than it. 
+We use for the critical value \(\rho_{c} = 1.686   \) from before. 
+We have 
+%
+\begin{align}
+\mathbb{P}_{> \delta_{c}}(M) = \int_{ \delta_{c}}^{ \infty } \dd{ \delta_{M}} p( \delta_{M})
+\,.
+\end{align}
+%
+so we have 
+%
+\begin{align}
+n(M) M \dd{M} 
+&= \rho_{m} \qty(\mathbb{P}_{ > \delta_{c}} (M) - \mathbb{P}_{ > \delta_{c}} (M + \dd{M})) \\
+&= \rho_{m} \abs{ \dv{\mathbb{P}_{> \delta_{c}}}{M}} \dd{M}  \\
+&= \rho_{m} \abs{ \dv{\mathbb{P}_{> \delta_{c}}}{ \sigma_{M}}} \abs{ \dv{\sigma_{M}}{M}} \dd{M}
+\,.
+\end{align}
+
+Integrating \( \dv{\mathbb{P}_{> \delta_{c}}}{M}\) we expect to find the matter density again, but we find \(1/2\) of it. 
+
+This comes from a miscount: as the mass we are considering shrinks, we might me already including smaller objects inside the gravitational influence of larger ones. Properly accounting for this one gets precisely a factor 2. 
+
+Integrating we get 
+%
+\begin{align}
+n(M) = \frac{2}{\sqrt{\pi }} \frac{\rho_{m}}{M_{*}^2}
+\alpha \qty(\frac{M}{M_{*}})^{\alpha }
+\exp(- \qty(\frac{M}{M_{*}})^{2 \alpha })
+\,,
+\end{align}
+%
+where \(M_{*} = \qty(2 / \delta_{c})^{ 1/ 2 \alpha } M_0 \). 
+
+Accounting for non spherical collapse we get much better estimates.
+
 \end{document}

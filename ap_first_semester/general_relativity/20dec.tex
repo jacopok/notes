@@ -1,4 +1,192 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Dec 20 2019}
+
+\section{Gravitational waves}
+
+They are solutions of the linearized EFE on a given fixed background. Today we only treat GW on a Minkowski background, but we could do it for any number of other (cosmological) background. 
+
+So, we say: 
+%
+\begin{align}
+g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }
+\,,
+\end{align}
+%
+with \(h_{\mu \nu } \ll 1\), so we neglect anything which is \(\mathcal{O}(h^2)\). 
+
+GW are very topical today: they could allow us to see beyond the last scattering surface, when the universe stopped being opaque to EM radiation: then, it had been transparent to gravitational radiation from a long time before. 
+
+We can do statistics to the stochastic GW background, for now however we have only detected GW from localized event. 
+
+We must start to write down the EFE from the Christoffel symbols: in general they are 
+%
+\begin{align}
+\Gamma^{\alpha }_{\mu \nu } = \frac{1}{2} g^{\alpha \lambda } \qty(g_{\lambda \nu , \mu } + g_{\mu \lambda , \nu } - g_{\mu \nu , \lambda })
+\,,
+\end{align}
+%
+but in the derivatives of the metric we only have \(\mathcal{O}(h)\) terms, so in the inverse metric we neglect all the \(\mathcal{O}(h)\) terms since their global contribution would be \(\mathcal{O}(h^2)\): so we get 
+%
+\begin{align}
+    \Gamma^{\alpha }_{\mu \nu } = \frac{1}{2} \eta ^{\alpha \lambda } \qty(h_{\lambda \nu , \mu } + h_{\mu \lambda , \nu } - h_{\mu \nu , \lambda })
+\,,
+\end{align}
+%
+and when we compute the Ricci tensor we will only keep the \(\partial \Gamma \) terms, since the \(\Gamma \Gamma \) terms are \(\mathcal{O}(h^2)\). So our expression becomes 
+%
+\begin{align}
+R_{\mu \nu } &= \partial_{\alpha } \Gamma^{\alpha }_{\mu \nu } - \partial_{\nu } \Gamma^{\alpha }_{\mu \alpha }  \\
+&= \frac{1}{2} \eta^{\alpha \lambda } \partial_{\alpha } \qty(h_{\lambda \nu , \mu } + \cancelto{}{h_{\mu \lambda , \nu }} - h_{\mu \nu , \lambda }) - \frac{1}{2} \eta^{\alpha \lambda } \partial_{\nu  }\qty(h_{\lambda \alpha , \mu } + \cancelto{}{h_{\mu \lambda , \alpha }} - h_{\mu \alpha , \lambda })  \\
+&= \frac{1}{2} \eta^{\alpha \lambda } \qty(h_{\lambda \nu , \mu \alpha } - h_{\mu \nu , \alpha \lambda } - \frac{1}{2} h_{\lambda \alpha , \mu \nu } - \frac{1}{2} h_{\lambda \alpha , \mu \nu } + h_{\mu \alpha , \lambda \nu } )
+\,,
+\end{align}
+%
+where we split a term in two in order to collect, so we get 
+%
+\begin{align}
+R_{\mu \nu } = \frac{1}{2} \eta^{\alpha \lambda } \partial_{\mu } \qty(h_{\lambda \nu , \alpha } - \frac{1}{2} h_{\lambda \alpha , \nu })
++ \frac{1}{2} \eta^{\alpha \lambda } \partial_{\nu } 
+\qty(h_{\mu \alpha , \lambda } - \frac{1}{2} h_{\lambda \alpha , \mu })- \frac{1}{2} \eta^{\alpha \lambda } \partial_{\alpha } \partial_{\lambda } h_{\mu \nu }
+\,,
+\end{align}
+%
+where we recognize the Dalambertian \(\square = \eta^{\alpha \lambda  }  \partial_{\alpha } \partial_{\lambda }\) and the trace of \(h_{\mu \nu }\): \(h \equiv h^{\mu }_{\mu }\). So we get 
+%
+\begin{align}
+R_{\mu \nu } = - \frac{1}{2} \square h_{\mu \nu } 
++ \frac{1}{2} \partial_{\mu } \qty(\partial_{\lambda } h^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu }h)
++ \frac{1}{2} \partial_{\nu }\qty(\partial_{\lambda}  h^{\lambda }_{\mu } - \frac{1}{2} \partial_{\mu} h)
+\,,
+\end{align}
+%
+so we need to solve \(R_{\mu \nu }  =0 \) with some initial conditions, since we need to solve the EFE \(G_{\mu \nu } = M_P^{-2} T_{\mu \nu } = 0\), which implies \(R_{\mu \nu }= 0 \). 
+The problem is that the solution is not unique: we have the freedom of choosing a gauge, since different metrics connected to each other through changes of coordinates represent the same physical scenario: \(h_{\mu \nu } \) \emph{has no direct physical meaning}. 
+
+In general we have a change of coordinates \(x \to \widetilde{x}\), and if we do this 
+%
+\begin{align}
+g_{\mu \nu } \to \widetilde{g}_{\mu \nu } = \pdv{x^{\alpha }}{\widetilde{x}^{\mu  }} \pdv{x^{\beta }}{\widetilde{x}^{\nu }} g_{\alpha \beta }
+\,,
+\end{align}
+%
+but we can only do changes of coordinates which leave the Minkowski part of the metric invariant, that is \(\widetilde{g}_{\mu \nu } = \eta_{\mu \nu } + \widetilde{h}_{\mu \nu }\). We can actually restrict ourselves to infinitesimal changes of coordinates: \(x \to \widetilde{x} = x + \epsilon \). So we do 
+%
+\begin{align}
+\pdv{\widetilde{x}^{\mu }}{x^{\alpha }} = \partial_{\alpha } \qty( x^{ \mu } + \epsilon^{\mu })
+= \delta_{\alpha }^{\mu } + \pdv{\epsilon^{\mu }}{x^{\alpha }} = \delta_{\mu }^{\alpha } + \partial_{\alpha } \epsilon^{\mu }
+\,.
+\end{align}
+
+Inserting this inside the inverse change of coordinates formula for the metric (the one for \(g_{\mu \nu }\) in terms of \(\widetilde{g}_{\mu \nu }\), the inverse of the one we wrote down before) we get 
+%
+\begin{align}
+\qty(\delta^{\mu}_{\alpha } + \partial_{\alpha } \epsilon^{\mu }) \qty(\partial^{\nu }_{\beta } + \partial_{\beta } \epsilon^{\nu }) \qty(\eta_{\mu \nu } + \widetilde{h}_{\mu \nu }) &= \eta_{\alpha \beta } +h_{\alpha \beta }  \\
+\qty(\delta^{\mu }_{\alpha } \delta^{\nu }_{\beta } + \delta^{\mu }_{\alpha } \partial_{\beta } \epsilon^{\nu } 
++ \delta^{\nu  }_{\beta  } \partial_{\alpha  } \epsilon^{\mu  } + \mathcal{O} (\epsilon^2))  \qty(\eta_{\mu \nu } + \widetilde{h}_{\mu \nu }) &= \eta_{\alpha \beta }  + h_{\alpha \beta }  \\
+\widetilde{h}_{\alpha \beta }+
+\partial_{\alpha } \epsilon_{\beta } + \partial_{\beta } \epsilon_{\alpha } &= h_{\alpha \beta } 
+\,.
+\end{align}
+
+This freedom of changing \(h_{\mu \nu }\) is called gauge freedom: if \(h_{\alpha \beta }\) solves the linearized EFE, then \(\widetilde{h}_{\alpha \beta } = h_{\alpha \beta } + \partial_{(\alpha } \epsilon_{\beta )}\) also does (there is a factor 2 missing, but it does not matter since \(\epsilon \) is generic and still infinitesimal). 
+
+We can solve \(R_{\mu \nu } \) together with some extra conditions: this means \emph{choosing a gauge}. 
+We can do this as long as, starting from a generic \(h_{\mu \nu }\), we can find a transformation \(\epsilon_{\mu }\) which leaves \(\eta_{\mu \nu } \) invariant and for which \(\widetilde{h}_{\mu \nu } = h_{\mu \nu } - \partial_{(\mu } \epsilon_{\nu )}\). 
+
+For example, a condition which cannot be imposed is \(h_{\mu \nu } =0\): if we could impose it, then it would be equivalent to have a wave or not to have it. 
+This can be shown from degrees of freedom: we only have 4 degrees of gauge freedom. 
+
+So when we set a condition we must prove that we \emph{can actually} do so. 
+
+Then, any gauge we are actually allowed to impose will give the same results for any physical experiment. 
+
+An electromagnetic analogy: since \(\vec{\nabla} \cdot \vec{B} = 0\), we know that we can locally choose a potential \(\vec{A} \) such that \(\vec{B} = \vec{\nabla} \times \vec{A}\). This has no intrinsic physical meaning, as any \(\vec{A}' = \vec{A} + \vec{\nabla} \lambda \) for a scalar function \(\lambda \) also gives the exact same magnetic field. 
+Some gauge fixing choices are \(\vec{\nabla} \cdot \vec{A} = 0\) (Coulomb), \(A_{3} = 0\) (axial). 
+
+We do, however, use potentials since they are convenient. 
+Analogously, \(h_{\mu \nu }\) is convenient to use but it is not measurable nor unique. 
+
+\todo[inline]{Is there a gauge-independent tensorial quantity we can define starting from \(h_{\mu \nu }\), a gravitational ``field strength''?}
+
+The last parentheses in the expression for \(R_{\mu \nu } \) is annoying: so we choose the gauge 
+%
+\begin{align}
+\partial_{\lambda } h^{\lambda  }_{\nu } - \frac{1}{2} \partial_{\nu } h = 0
+\,,
+\end{align}
+%
+and then in this gauge we have \(R_{\mu \nu } = - \frac{1}{2}  \square h_{\mu \nu }\). 
+There are two questions we must ask: can we actually impose this condition, and why is it called harmonic? 
+% The answers are yes, and because it gives a harmonic equation \(\square h_{\mu \nu } = 0\). 
+
+Let us prove the first one: 
+%
+\begin{align}
+0 \overset{?}{=} \partial_{\lambda } \widetilde{h}^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu }\widetilde{h}
+&= \partial_{\lambda } \qty( h^{\lambda }_{\nu } - \partial^{\lambda } \epsilon_{\nu } - \cancelto{}{\partial^{\nu } \epsilon_{\lambda }} ) - \frac{1}{2} \partial_{\nu } \qty(h - 2 \cancelto{}{\partial_{\lambda } \epsilon^{\lambda }})  \\
+&= \partial_{\lambda } h^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu } h  - \square \epsilon_{\nu }
+\,,
+\end{align}
+%
+which can be solved by setting an \(\epsilon_{\nu }\) such that:
+%
+\begin{align}
+  \square  \epsilon_{\nu } = \partial_{\lambda } h^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu } h
+\,.
+\end{align}
+
+Notice that in this gauge \(\square \widetilde{h}_{\mu \nu } = 0 \): the wave equation, for a wave which propagates with velocity 1. 
+
+We have residual gauge freedom! As long as \(\square \widetilde{\epsilon}_{\mu} = 0\), we can still change \(h_{\mu \nu }\) .
+So the solution is not unique. The gauge is called harmonic because we can do harmonic residual gauge fixing. 
+We have 4 more degrees of freedom: we choose \(h_{0 \mu } \equiv 0\). Now we prove that this can be done. 
+
+We do not prove this in general (although it can be done), because we want to move towards a more specific example. 
+
+We then consider plane wave solutions: waves that only depend on one spatial coordinate, and are constant with respect to both other spatial coordinates. 
+
+If the direction of motion is the \(z\) axis, then the solution looks like 
+%
+\begin{align}
+h_{\mu \nu } (t, x, y, z) = C_{\mu \nu } \exp(-i (k t - k z ))
+\,.
+\end{align}
+
+For a wave propagating in a generic direction we will have 
+%
+\begin{align}
+h_{\mu \nu } (t, \vec{x}) = C_{\mu \nu } \exp(i k_{\alpha } x^{\alpha })
+\,,
+\end{align}
+%
+where \(k^{\alpha } k_{\alpha } = 0\) (which comes from the Fourier expression of the Dalambertian: \(\square = -k^{\alpha } k_{\alpha }\)) is a constant vector. The scalar product in the exponent must be computed with the Minkowski metric since we are working at  first order in \(h\) and \(C_{\mu \nu }\) is already first order.  
+%
+\begin{align}
+\square h_{\mu \nu } &= \eta^{\alpha \beta } \partial_{\alpha } \partial_{\beta } \qty(C_{\mu \nu } \exp(i k_{\alpha }x^{\alpha }))  \\
+&= \eta^{\alpha  \beta } C_{\mu \nu } \partial_{\alpha } \qty(\exp(i k_{\alpha } x^{\alpha }) \partial_{\beta } \qty(i k_{\alpha } x^{\alpha }))  \\
+&= \eta^{\alpha  \beta } C_{\mu \nu } i k_{ \beta } \partial_{\alpha } \qty(\exp(i k \cdot x )) \\
+&= \eta^{\alpha \beta } (i k_{ \beta }) (ik_{\alpha }) C_{\mu \nu } \exp(i k \cdot x) = - k^2 C_{\mu \nu } \exp(i k \cdot x)
+\,,
+\end{align}
+%
+then we see that this is always zero as long as \(k^2=0\), which is what we impsed for \(k^{\alpha }\). 
+
+What is the particle analog of a gravitational wave? it is a so-called \emph{graviton}. 
+For it we will have a momentum operator \(\vec{p} = - i \hbar \vec{\nabla}\) and an energy operator \(E = i \hbar \partial_{t}\). We can apply both of these to our wave to find that it is an eigenvector of both: 
+%
+\begin{align}
+E h_{\mu \nu } = i \hbar \partial_{t} \qty(C_{\mu \nu } \exp(i k \cdot x))= \hbar k^{t} h_{\mu \nu } 
+\,,
+\end{align}
+%
+and we know that \(k^{t} = \abs{\vec{k}}\). 
+
+If we compute the momentum, analogously we find \(\vec{p} h_{\mu \nu } = \hbar \vec{k}\). 
+
+This means that \(p \cdot p  = 0\), which means that the mass of the graviton is equal to zero. 
+
+
+
 \end{document}

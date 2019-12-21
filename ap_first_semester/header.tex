@@ -13,7 +13,7 @@
 \usepackage{bbold}
 \usepackage{xcolor}
 \usepackage{physics}
-\usepackage[margin=3cm]{geometry}
+\usepackage[right=4cm,left=2cm,top=3cm,bottom=3.0cm]{geometry}
 \usepackage{mdframed}
 \usepackage[version=4]{mhchem}
 
@@ -33,6 +33,10 @@
 \usepackage{cancel}
 \usepackage{mathrsfs}
 \usepackage{tensor}
+\usepackage{marginnote}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\scriptsize}
+% \usepackage{fancybox}
 
 \usepackage[sc]{mathpazo}
 \linespread{1.05}         % Palladio needs more leading (space between lines)
@@ -44,11 +48,6 @@
 \renewcommand{\H}{\mathcal{H}}
 \renewcommand{\dim}{\text{dim}}
 \newcommand{\supp}[1]{\text{supp} \qty(#1)}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\renewcommand{\P}{\mathbb{P}}
 
 \usepackage{nicefrac}
 \usepackage{ifthen}
@@ -107,5 +106,13 @@
 \definecolor{uququq}{rgb}{0.25,0.25,0.25}
 
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=10,shrink=10]{microtype}
+
+\newcommand{\boxalign}[2][0.97\textwidth]{
+  \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
+  \begin{center}\begin{tikzpicture}
+   \node [mybox] (box){%
+    \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
+   };
+\end{tikzpicture}\end{center}}
 
 \author{Jacopo Tissino, Giorgio Mentasti}

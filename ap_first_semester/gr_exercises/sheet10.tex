@@ -68,6 +68,7 @@ We start by writing everything out the pieces separately:
 %
 while
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
     - c_0 c_2  = 
@@ -76,9 +77,11 @@ while
     \,,
 \end{split}
 \end{align}
+\end{subequations}
 %
 so we can see that the last term in \(- c_0 c_2 \) precisely cancels \(c_1 ^2 /4\): we are then left with 
 %
+\begin{subequations}
 \begin{align}
   \frac{c_1^2}{4}-c_0 c_2 &= \sin^2 \theta \qty(\rho^{4} \qty(r^2+a^2) + \rho^2 2 GMa^2 r \sin^2\theta 
   - 2GMr \rho^2 (r^2+a^2))  \\
@@ -86,6 +89,7 @@ so we can see that the last term in \(- c_0 c_2 \) precisely cancels \(c_1 ^2 /4
   &= \rho^{4} \sin^2\theta \qty(r^2+a^2-2GMr)
 \,,
 \end{align}
+\end{subequations}
 %
 where in the last step we used the fact that \(r^2+a^2 \qty(1 - \sin^2\theta ) = r^2+a^2 \cos^2\theta = \rho^2\). 
 
@@ -102,11 +106,13 @@ These are given by the quadratic formula
 %
 which gives: 
 %
+\begin{subequations}
 \begin{align}
 \Omega_{-,+} &= \frac{-2GMra \sin^2\theta \pm \sqrt{\rho^4 \sin^{2}\theta \qty(r^2+a^2-2GMr)}}{- \sin^2\theta \qty(\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta )}  \\
 &= \frac{2GMra \mp \rho^2 \sqrt{ \qty(r^2+a^2-2GMr) / \sin^2 \theta }}{\rho^2(r^2+a^2)+2GMra^2 \sin^2\theta }
 \,,
 \end{align}
+\end{subequations}
 %
 which I do not think can be simplified further. 
 Do note that we did not use the hypothesis of being in the ergosphere: the bounds for the angular velocity are general, it's just that in the ergosphere they preclude \(\Omega = 0\). 
@@ -118,12 +124,14 @@ This region is precisely the ergoregion.
 
 We want to show that \(\Omega>0\) in the ergoregion: this is implied by \(\Omega_{-} > 0\), because \(\Omega_{-} < \Omega < \Omega_{+}\). The condition reads: 
 %
+\begin{subequations}
 \begin{align}
 \frac{c_1}{2} - \sqrt{(c_1 /2)^2 - c_0 c_2 } &> 0  \\
 \qty(\frac{c_1}{2})^2 &> \qty(\frac{c_1}{2})^2 - c_0 c_2   \\
 0 &> -c_0 c_2 
 \,,
 \end{align}
+\end{subequations}
 %
 but we have shown before that \(c_0 < 0\) in the ergoregion, while \(c_2 \) is always negative: so we have proven the statement. Notice that we are allowed to square both sides only because \(c_1 \) is always positive. 
 
@@ -199,12 +207,14 @@ An observer reaching the horizon must spin with exactly this frequency: then we 
 
 We set \(a = GM\) and \(\theta  = 0\). Then we have \(\rho^2= r^2\), \(\cos \theta = 0\) and \(\sin \theta =1\), so
 %
+\begin{subequations}
 \begin{align}
 \Omega_{1, 2} &= \frac{2 (GM)^2 r \mp r^2\sqrt{r^2 + (GM)^2 - 2GMr}}{r^2 \qty(r^2 +(GM)^2) + 2 (GM)^3 r}  \\
 &= \frac{2 (GM)^2 \mp r \abs{r - GM}}{r^3+(GM)^2r + 2 (GM)^3} \\
 O_{1,2}&= \frac{2 \mp R (R-1)}{R^3+R + 2}
 \,,
 \end{align}
+\end{subequations}
 %
 where the absolute value is redundant since we are working at \(r > GM\).
 We introduced adimensionalized variables \(O = GM \Omega \) and \(R = r/GM\), which make the expressions way simpler. Using these is equivalent to setting \(GM = 1\). 
@@ -243,12 +253,14 @@ where we used the decomposition of the denominator we had derived in the last pa
 %
 which I find to be simpler than the equivalent decomposition proposed in the assignment, which is 
 %
+\begin{subequations}
 \begin{align}
 \frac{1}{GM} \qty(1 - \frac{r^2}{2(GM)^2-GMr +r^2}) 
 &= \frac{1}{GM} \qty(\frac{2(GM)^2-GMr +r^2 - r^2}{2(GM)^2-GMr +r^2})  \\
 &= \frac{2GM - r}{2(GM)^2-GMr +r^2}
 \,.
 \end{align}
+\end{subequations}
 %
 \begin{figure}[ht]
   \centering
@@ -344,6 +356,7 @@ and we can see, term by term, that the nonzero Christoffels cannot contribute in
 So, we only compute \(R_{00} \) and \(R_{ij}\). 
 
 We have:
+\begin{subequations}
 \begin{align}
   R_{0 0 } &= R^{\beta }_{0 \beta 0 } 
   = \cancelto{}{\Gamma^{\beta }_{0 0  , \beta } }
@@ -355,9 +368,11 @@ We have:
   &= - 3 \frac{\ddot{a}}{a}
   \,
 \end{align}
+\end{subequations}
 %
 while for the spatial components we have: 
 %
+\begin{subequations}
 \begin{align}
 R_{ij} &= R^{\beta }_{i \beta j}  \\
 &= \Gamma^{0 }_{i j  , 0 } 
@@ -367,6 +382,7 @@ R_{ij} &= R^{\beta }_{i \beta j}  \\
 - \Gamma^{k }_{i 0 } \Gamma^{0 }_{j k }
 \,,
 \end{align}
+\end{subequations}
 %
 where we split the last term in two based on whether the upper index of the first symbol was 0 or spatial. 
 Anytime two spatial indices appear we have a \(\delta \), so we bring it forward; also we have a term containing \(\Gamma^{k}_{0k} = 3 \dot{a} / a \). We find: 
@@ -384,11 +400,13 @@ R_{ij} = \delta_{ij} \qty(\partial_{0}\qty(
 %
 so now we can compute 
 %
+\begin{subequations}
 \begin{align}
 R = g^{\mu \nu } R_{\mu \nu } &= - R_{00} + 3 a^{-2} \qty(R_{11} ) = + 3 \frac{\ddot{a}}{a} + 3 a^{-2} \qty(a \ddot{a} + 2 \dot{a}^2) \\
 &= 6 \frac{\ddot{a}}{a} + 6 \qty(\frac{\dot{a}}{a})^2
 \,,
 \end{align}
+\end{subequations}
 %
 which allows us to compute the full Einstein tensor, which is given by 
 %
@@ -407,6 +425,7 @@ G_{00} = - 3 \frac{\ddot{a}}{a} + (-)^2 \frac{1}{2}  \qty(6 \frac{\ddot{a}}{a} +
 %
 while 
 %
+\begin{subequations}
 \begin{align}
 G_{ij} &= \delta_{ij} \qty( a \ddot{a} +2 \dot{a}^2
 - \frac{1}{2} a^2 \qty(6 \frac{\ddot{a}}{a} + 6 \qty(\frac{\dot{a}}{a})^2))  \\
@@ -414,6 +433,7 @@ G_{ij} &= \delta_{ij} \qty( a \ddot{a} +2 \dot{a}^2
 &= \delta_{ij} \qty(-2 a \ddot{a} - \dot{a}^2)
 \,.
 \end{align}
+\end{subequations}
 %
 
 \subsubsection{Stress-energy tensor characterization and the Einstein Field Equations}

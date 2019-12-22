@@ -7,6 +7,7 @@
 
 Rindler coordinates for the Minkowski (1, 1) space, originally parametrized with \((t, x)\), are defined by 
 %
+\begin{subequations}
 \begin{align}
   \begin{cases}
       t = \rho \sinh \eta \\
@@ -14,6 +15,7 @@ Rindler coordinates for the Minkowski (1, 1) space, originally parametrized with
   \end{cases}
 \,.
 \end{align}
+\end{subequations}
 
 The metric is given by 
 %
@@ -29,15 +31,18 @@ The only nonzero Christoffel symbols are \(\Gamma^{\eta }_{\eta \rho } = 1/\rho 
 
 The computation of the acceleration then can be started: 
 %
+\begin{subequations}
 \begin{align}
   \dv{}{\tau } u^{\mu } &= u^{\nu } \nabla_{\nu } u^{\mu }  \\
   &= u^{\eta } \qty(\cancelto{}{\partial_{\eta } u^{\mu }} + \Gamma^{\mu }_{\eta \nu } u^{\nu })  \\
   &= \frac{1}{\rho^2} \Gamma^{\mu }_{\eta \eta }
 \,,
 \end{align}
+\end{subequations}
 %
 so the only nonzero component is the one where \(\mu = \rho \), which is \(a^{\rho } = 1/\rho \), or in other words
 %
+\begin{subequations}
 \begin{align}
   a^{\mu } = \left[\begin{array}{c}
   0 \\ 
@@ -45,6 +50,7 @@ so the only nonzero component is the one where \(\mu = \rho \), which is \(a^{\r
   \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 where \(\kappa = 1/ \rho \) is the modulus of the 4-acceleration. Indeed 
 %
@@ -119,19 +125,23 @@ Let us plug this expression into the acceleration one:
 %
 which simplifies to 
 %
+\begin{subequations}
 \begin{align}
   a^{r} &= \frac{GM}{r_{*}^2} + \omega^2 GM - \omega^2 r_{*} + 2GM \omega^2  \\
   &= \frac{GM}{r_{*}^2} + 3GM \omega^2 - \omega^2 r_{*}
 \,.
 \end{align}
+\end{subequations}
 %
 If we set it to zero we find a relation which we can express in terms of \(l = g_{\varphi \varphi } u^{\varphi } = r^2_{*} \omega \). We get 
 %
+\begin{subequations}
 \begin{align}
   0 &= \frac{GM}{r_{*}^2} + 3GM \frac{l^2}{r^{4}} - \frac{l^2}{r_{*}^{3}}  \\
   &= GMr_{*}^2 +3GMl^2 - l^2 r_{*}
 \,,
 \end{align}
+\end{subequations}
 %
 which  is the relation we know for the angular momentum in circular orbits. 
 
@@ -203,6 +213,7 @@ We want to prove that, to first order in \(\delta g_{\mu \nu }\), the inverse of
 
 This can be proved directly by verifying \(g_{ \mu \nu } g^{\nu \rho } = \delta_{\mu }^{\rho } + O((\delta g)^2)\): it comes out to be 
 %
+\begin{subequations}
 \begin{align}
   &\qty(\overline{g}_{\mu \nu } + \delta g_{\mu \nu })
   \qty(\overline{g}^{\nu \rho } - \overline{g}^{\nu  \alpha } \overline{g}^{\rho  \beta } \delta g_{\alpha \beta } + O((\delta g)^2)) \\
@@ -210,6 +221,7 @@ This can be proved directly by verifying \(g_{ \mu \nu } g^{\nu \rho } = \delta_
   &=  \delta_{\mu }^{\rho } + \delta g_{\mu \nu } \overline{g}^{\nu \rho } - \delta_{\mu}^{\alpha } \delta g_{\alpha \beta } \overline{g}^{\rho \beta }  + O((\delta g)^2)
 \,,
 \end{align}
+\end{subequations}
 %
 so we can notice that the first order terms cancel: we have the inverse, up to first order. 
 
@@ -217,6 +229,7 @@ so we can notice that the first order terms cancel: we have the inverse, up to f
 
 The Schwarzschild metric is 
 %
+\begin{subequations}
 \begin{align}
   \overline{g}_{\mu \nu } = \left[\begin{array}{cccc}
   -\qty(1 - \frac{2GM}{r}) & 0 & 0 & 0 \\ 
@@ -226,9 +239,11 @@ The Schwarzschild metric is
   \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 and its inverse is 
 %
+\begin{subequations}
 \begin{align}
   \overline{g}^{\mu \nu } = \left[\begin{array}{cccc}
   -\qty(1 -\frac{2GM}{r})^{-1}  & 0 & 0 & 0 \\ 
@@ -238,6 +253,7 @@ and its inverse is
   \end{array}\right]
 \,.
 \end{align}
+\end{subequations}
 
 We want to compute \(\overline{g}^{\mu \alpha } \overline{g}^{\nu \beta } \delta g_{\alpha \beta }\), and we know that \(\delta g_{\alpha \beta } \) has only one independent component: 
 %
@@ -259,6 +275,7 @@ This, combined with the fact that the background metric is diagonal, gives us th
 %
 so the  full inverse metric to first order in \(J\) is given by subtracting this off of the regular Schwarzschild inverse's \(t \varphi \) components: 
 %
+\begin{subequations}
 \begin{align}
   g^{\mu \nu } = \left[\begin{array}{cccc}
     -\qty(1 -\frac{2GM}{r})^{-1}  & 0 & 0 & -\frac{2GJ}{(r - 2GM)r^2} \\ 
@@ -268,6 +285,7 @@ so the  full inverse metric to first order in \(J\) is given by subtracting this
     \end{array}\right]  
 \,.
 \end{align}
+\end{subequations}
 
 \subsubsection{Ricci component computation}
 
@@ -285,6 +303,7 @@ We want to compute the 00 component of the Ricci tensor, \(R_{00} = R^{\alpha }_
 %
 and we will show that each of these 4 terms is either constant with respect to \(J\) or quadratic in \(J\), when computed with respect to the metric 
 %
+\begin{subequations}
 \begin{align}
   g_{\mu \nu } = 
   \left[\begin{array}{cccc}
@@ -295,6 +314,7 @@ and we will show that each of these 4 terms is either constant with respect to \
   \end{array}\right]
 \,.
 \end{align}
+\end{subequations}
 
 First of all, note that the only derivatives of the metric which can give \(J\)-dependent contributions are \(g_{03,1}\), \(g_{03, 2}\) or these terms with \(0\) and \(3\) exchanged. 
 

@@ -12,9 +12,10 @@ folder_names = [
 "astrophysics_lab",
 "general_relativity",
 "numerical_methods",
-"astrophysics_cosmology"
+"astrophysics_cosmology",
+"gr_exercises"
 ]
-filenames_regex = "\\d{2}\\w{3}\\.tex"
+filenames_regex = "(\\d{2}\\w{3}|\\w{5}\\d{1,2})\\.tex"
 
 def make_subeq_align(filename):
     

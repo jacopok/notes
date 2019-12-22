@@ -36,12 +36,14 @@ but in the derivatives of the metric we only have \(\mathcal{O}(h)\) terms, so i
 %
 and when we compute the Ricci tensor we will only keep the \(\partial \Gamma \) terms, since the \(\Gamma \Gamma \) terms are \(\mathcal{O}(h^2)\). So our expression becomes 
 %
+\begin{subequations}
 \begin{align}
 R_{\mu \nu } &= \partial_{\alpha } \Gamma^{\alpha }_{\mu \nu } - \partial_{\nu } \Gamma^{\alpha }_{\mu \alpha }  \\
 &= \frac{1}{2} \eta^{\alpha \lambda } \partial_{\alpha } \qty(h_{\lambda \nu , \mu } + \cancelto{}{h_{\mu \lambda , \nu }} - h_{\mu \nu , \lambda }) - \frac{1}{2} \eta^{\alpha \lambda } \partial_{\nu  }\qty(h_{\lambda \alpha , \mu } + \cancelto{}{h_{\mu \lambda , \alpha }} - h_{\mu \alpha , \lambda })  \\
 &= \frac{1}{2} \eta^{\alpha \lambda } \qty(h_{\lambda \nu , \mu \alpha } - h_{\mu \nu , \alpha \lambda } - \frac{1}{2} h_{\lambda \alpha , \mu \nu } - \frac{1}{2} h_{\lambda \alpha , \mu \nu } + h_{\mu \alpha , \lambda \nu } )
 \,,
 \end{align}
+\end{subequations}
 %
 where we split a term in two in order to collect, so we get 
 %
@@ -81,6 +83,7 @@ but we can only do changes of coordinates which leave the Minkowski part of the 
 
 Inserting this inside the inverse change of coordinates formula for the metric (the one for \(g_{\mu \nu }\) in terms of \(\widetilde{g}_{\mu \nu }\), the inverse of the one we wrote down before) we get 
 %
+\begin{subequations}
 \begin{align}
 \qty(\delta^{\mu}_{\alpha } + \partial_{\alpha } \epsilon^{\mu }) \qty(\partial^{\nu }_{\beta } + \partial_{\beta } \epsilon^{\nu }) \qty(\eta_{\mu \nu } + \widetilde{h}_{\mu \nu }) &= \eta_{\alpha \beta } +h_{\alpha \beta }  \\
 \qty(\delta^{\mu }_{\alpha } \delta^{\nu }_{\beta } + \delta^{\mu }_{\alpha } \partial_{\beta } \epsilon^{\nu } 
@@ -89,6 +92,7 @@ Inserting this inside the inverse change of coordinates formula for the metric (
 \partial_{\alpha } \epsilon_{\beta } + \partial_{\beta } \epsilon_{\alpha } &= h_{\alpha \beta } 
 \,.
 \end{align}
+\end{subequations}
 
 This freedom of changing \(h_{\mu \nu }\) is called gauge freedom: if \(h_{\alpha \beta }\) solves the linearized EFE, then \(\widetilde{h}_{\alpha \beta } = h_{\alpha \beta } + \partial_{(\alpha } \epsilon_{\beta )}\) also does (there is a factor 2 missing, but it does not matter since \(\epsilon \) is generic and still infinitesimal). 
 
@@ -123,12 +127,14 @@ There are two questions we must ask: can we actually impose this condition, and 
 
 Let us prove the first one: 
 %
+\begin{subequations}
 \begin{align}
 0 \overset{?}{=} \partial_{\lambda } \widetilde{h}^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu }\widetilde{h}
 &= \partial_{\lambda } \qty( h^{\lambda }_{\nu } - \partial^{\lambda } \epsilon_{\nu } - \cancelto{}{\partial^{\nu } \epsilon_{\lambda }} ) - \frac{1}{2} \partial_{\nu } \qty(h - 2 \cancelto{}{\partial_{\lambda } \epsilon^{\lambda }})  \\
 &= \partial_{\lambda } h^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu } h  - \square \epsilon_{\nu }
 \,,
 \end{align}
+\end{subequations}
 %
 which can be solved by setting an \(\epsilon_{\nu }\) such that:
 %
@@ -163,6 +169,7 @@ h_{\mu \nu } (t, \vec{x}) = C_{\mu \nu } \exp(i k_{\alpha } x^{\alpha })
 %
 where \(k^{\alpha } k_{\alpha } = 0\) (which comes from the Fourier expression of the Dalambertian: \(\square = -k^{\alpha } k_{\alpha }\)) is a constant vector. The scalar product in the exponent must be computed with the Minkowski metric since we are working at  first order in \(h\) and \(C_{\mu \nu }\) is already first order.  
 %
+\begin{subequations}
 \begin{align}
 \square h_{\mu \nu } &= \eta^{\alpha \beta } \partial_{\alpha } \partial_{\beta } \qty(C_{\mu \nu } \exp(i k_{\alpha }x^{\alpha }))  \\
 &= \eta^{\alpha  \beta } C_{\mu \nu } \partial_{\alpha } \qty(\exp(i k_{\alpha } x^{\alpha }) \partial_{\beta } \qty(i k_{\alpha } x^{\alpha }))  \\
@@ -170,6 +177,7 @@ where \(k^{\alpha } k_{\alpha } = 0\) (which comes from the Fourier expression o
 &= \eta^{\alpha \beta } (i k_{ \beta }) (ik_{\alpha }) C_{\mu \nu } \exp(i k \cdot x) = - k^2 C_{\mu \nu } \exp(i k \cdot x)
 \,,
 \end{align}
+\end{subequations}
 %
 then we see that this is always zero as long as \(k^2=0\), which is what we impsed for \(k^{\alpha }\). 
 

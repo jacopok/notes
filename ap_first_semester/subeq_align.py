@@ -36,8 +36,8 @@ def make_subeq_align(filename):
             if (not newline):
                 pass
             else:
-                lines[i] = subeq_start + '\n' + align_start + '\n'
-                lines[j] = align_end + '\n' + subeq_end + '\n'
+                lines[i] = subeq_start + '\n' + lines[i]
+                lines[j] = lines[j] + subeq_end + '\n'
     
     with open(filename, 'w') as f:
         f.writelines(lines)

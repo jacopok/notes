@@ -69,7 +69,7 @@ looks like a rescaled Gaussian, centered around \(z = vt\). As \(t\) increases i
 \label{fig:moving-gaussian-pulse}
 \end{figure}
 
-\subsection{Harmonic wave solution}
+\subsubsection{Harmonic wave solution}
 
 We consider the harmonic solution 
 %
@@ -131,7 +131,8 @@ First of all we need to compute the Christoffel symbols: they are given by
 \Gamma^{\mu }_{\nu \rho } 
 &= \frac{1}{2} g^{\mu \alpha } \qty(g_{\alpha \nu , \rho } + g_{\alpha \rho , \nu } - g_{\nu \rho , \alpha })  \\
 &= \frac{1}{2} g^{\mu \alpha } \qty(h_{\alpha \nu , \rho } + h_{\alpha \rho , \nu } - h_{\nu \rho , \alpha })  \marginnote{\(\eta_{\mu \nu }  \) is constant}  \\
-&= \frac{1}{2} \eta^{\mu \alpha } \qty(h_{\alpha \nu , \rho } + h_{\alpha \rho , \nu } - h_{\nu \rho , \alpha })   + \mathcal{O}(h^2) \marginnote{We only consider the first order in \(h\)}
+&= \frac{1}{2} \eta^{\mu \alpha } \qty(h_{\alpha \nu , \rho } + h_{\alpha \rho , \nu } - h_{\nu \rho , \alpha })   + \mathcal{O}(h^2) \marginnote{We only consider the first order in \(h\)}  \\
+&= \frac{1}{2} \qty(h^{\mu }_{\nu , \rho } + h^{\mu }_{\rho , \nu } - \tensor{h}{_{\nu \rho , }^{\alpha }}) + \mathcal{O}(h^2) 
 \,.
 \end{align}
 \end{subequations}
@@ -143,11 +144,117 @@ Now, let us look at the Ricci tensor: it is given
 R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu } 
 &= -2 \qty(\Gamma^{\alpha }_{\mu [\alpha , \nu ]}
 + \Gamma^{\beta }_{\mu [\alpha } \Gamma^{\alpha }_{\nu ], \beta })  \\
-&= \Gamma^{\alpha }_{\mu \nu , \alpha } - \Gamma^{\alpha }_{\mu \alpha , \nu } + \mathcal{O}(h^2) 
+&= \Gamma^{\alpha }_{\mu \nu , \alpha } - \Gamma^{\alpha }_{\mu \alpha , \nu } + \mathcal{O}(h^2)  \\
+&= \frac{1}{2} \qty(\partial_{\alpha } \qty(h^{\alpha }_{\mu , \nu } + h^{\alpha }_{\nu , \mu } - \tensor{h}{_{\mu \nu , }^{\alpha }}) - \partial_{\nu } \qty(h^{\alpha }_{\mu , \alpha } + h^{\alpha }_{\alpha , \mu } - \tensor{h}{_{\mu \alpha ,}^{\alpha }}))  \\
+&= \frac{1}{2} \qty(\cancelto{}{h^{\alpha }_{\mu , \nu \alpha }} + h^{\alpha }_{\nu , \mu \alpha } - \tensor{h}{_{\mu \nu , }^{\alpha }_{\alpha }} - \cancelto{}{h^{\alpha }_{\mu , \alpha \nu }} - h^{\alpha }_{\alpha , \mu \nu } + \tensor{h}{_{\mu \alpha ,}^{\alpha }_{\nu }}) \marginnote{Commuting derivatives}  \\
+&= - \frac{1}{2} \square h_{\mu \nu } + \frac{1}{2} \qty(h^{\alpha }_{\nu , \mu \alpha } + \tensor{h}{_{\mu \alpha, }^{\alpha }_{\nu }} - h_{,\mu \nu } ) \marginnote{Introduced \(\square = \partial^{\alpha } \partial_{\alpha }\) and  \(h = h^{\alpha }_{\alpha }\)}  \\
+&= - \frac{1}{2} \square h_{\mu \nu } + \frac{1}{2} 
+\partial_{\mu } \qty(h_{\nu, \alpha  }^{\alpha } - \frac{1}{2} h_{, \nu } ) 
++ \frac{1}{2 } \partial_{\nu } \qty(h_{\mu, \alpha  }^{\alpha } - \frac{1}{2} h_{, \mu }) \marginnote{Split \(h_{, \mu \nu } \) in two, swapped the positions of two contracted indices}
 \,,
 \end{align}
 \end{subequations}
 %
-\todo[inline]{To be continued\dots}
+which is our final expression. 
+
+For brevity\footnote{Which is the formal way to say that I do not feel like writing it all out.} I omit the proof of the fact that setting \(2 h^{\alpha }_{\nu , \alpha } - h_{, \nu } = 0\) (the harmonic gauge condition) is actually a valid gauge choice, it can be found in the lecture notes. Making this gauge choice, the two terms in parentheses cancel so we find 
+%
+\boxalign{
+\begin{align}
+R_{\mu \nu } = - \frac{1}{2} \square h_{\mu \nu }
+\,,
+\end{align}}
+%
+which means that, if \(T_{\mu \nu } = 0\), the Einstein Field Equations read \(\square h_{\mu \nu } = 0\), which is precisely the wave equation for a wave propagating with speed \(c\). 
+
+\subsubsection{Gravitational waves polarizations}
+
+We are considering a wave in the form 
+%
+\begin{align}
+h_{\mu \nu } = \exp(i k_{\beta } x^{\beta }) \epsilon_{\mu \nu } = \exp(i \qty(- k t + kz)) \epsilon_{\mu \nu }
+\,,
+\end{align}
+%
+for a constant matrix \(\epsilon_{\mu \nu }\) and for \(k_{\mu } = (-k, 0,0,k)\). We have already shown in the exercise before that this satisfies the wave equation. We want to impose the conditions: 
+\begin{enumerate}
+    \item \(\epsilon_{0 \nu } = 0\);
+    \item \(2\partial_{\alpha } h^{\alpha }_{\nu } - \partial_{\nu } h = 0\). 
+\end{enumerate}
+
+The first of these also implies \(\epsilon_{\nu 0} = 0\) by symmetry (the symmetry of \(g_{\mu \nu } \) implies the symmetry of \(h_{\mu \nu }\), which in turn implies the symmetry of \(\epsilon_{\mu \nu }\), since the exponential is a scalar).
+
+So, we can write the trace of \(h_{\mu \nu }\) as 
+%
+\begin{align}
+h= \eta^{\mu \nu } h_{\mu \nu } &= \exp(i k_{\beta } x^{\beta } ) \epsilon_{\mu \nu } \eta^{\mu \nu }  \\
+&= \exp(i k_{\beta } x^{\beta } ) \epsilon_{ij} \delta^{ij} \marginnote{The components with a 0 vanish, and \(\eta_{ij} = \delta_{ij}\)}
+\,,
+\end{align}
+%
+so \(h\) depends on the sum of the diagonal entries of \(\epsilon_{ij}\), which is a constant, we will denote it as \(\epsilon = \epsilon_{ij} \delta^{ij}\). 
+Let us now think through the possible values of \(\nu \) in the second condition. If \(\nu =0\) we find: 
+%
+\begin{align}
+2 \partial_{\alpha } h^{\alpha }_{0} - \partial_{0} h = 0
+\,,
+\end{align}
+%
+but the first term vanishes since all the components of \(\epsilon_{\mu \nu }\) with an index \(0\) vanish, so the same holds for \(h_{\mu \nu }\). Therefore we get \(\partial_{0} h = 0\), which can be expanded into 
+%
+\begin{align}
+- i k \exp(ik_{\beta } x^{\beta }  ) \epsilon = 0
+\,,
+\end{align}
+%
+but \(k \) cannot be 0 for a nontrivial solution, and the exponential always has norm 1, so we must conclude that \(\epsilon = 0\); this implies \(h = 0\).  
+
+Moving on to \(\nu = j \): we get 
+%
+\begin{align}
+0 = \partial_{\alpha } h_{\alpha j} = \partial_{i } h_{ij} = \partial_{3} h_{3 j} = ik \exp(ik_{\beta } x^{\beta } ) \epsilon_{3j}
+\,,
+\end{align}
+%
+but, similarly to before, nor \(k\) nor the exponential can be zero, therefore \(h_{3j}=0\), and by symmetry also \(h_{j3}=0\). This means that the matrix \(\epsilon_{\mu \nu }\) looks like 
+%
+\begin{align}
+\epsilon_{\mu \nu } = \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & \epsilon_{11} & \epsilon_{12} & 0 \\ 
+0 & \epsilon_{21} & \epsilon_{22} & 0 \\ 
+0 & 0 & 0 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+so at this point we are left with two possible degrees of freedom: \(\epsilon_{12} = \epsilon_{21}\), and we found before that \(\epsilon_{\mu \nu }\) must be traceless, which means \(\epsilon_{11} = - \epsilon_{22}\). 
+
+For simplicity I will now write only the smaller \(2 \times 2\) matrix \(\widetilde{\epsilon}_{mn}\), where \(m\) and \(n\) range from 1 to 2. Two possible real matrices which satisfy our conditions are the Pauli matrices \(\widetilde{\epsilon}=   \sigma_{x} \) and \( \widetilde{\epsilon} = \sigma_{z}\): 
+%
+\begin{align}
+\sigma_{x} = \left[\begin{array}{cc}
+0 & 1 \\ 
+1 & 0
+\end{array}\right] \qquad \text{and} \qquad
+\sigma_{z} = \left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\,.
+\end{align}
+
+Since we are considering complex superpositions of wave solutions, it should make sense to also include 
+%
+\begin{align}
+\sigma_{y} = \left[\begin{array}{cc}
+0 & -i \\ 
+i & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+but I'm not sure whether this is actually done. 
+
 
 \end{document}

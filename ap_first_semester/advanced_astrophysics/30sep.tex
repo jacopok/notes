@@ -4,8 +4,9 @@
 \section*{30 september 2019}
 \section{Introduction}
 
-Teachers: Paola Marigo, Michele Trabucchi.
+The course is held by Paola Marigo, Michele Trabucchi.
 
+Their adresses are:
 \url{paola.marigo@unipd.it} and
 \url{michele.trabucchi@unipd.it}
 
@@ -18,8 +19,8 @@ They are selected topics in stellar physics.
     \item stellar winds (dr. Paola Marigo);
     \item final fates of massive \& very massive stars (dr. Paola Marigo).
 \end{enumerate}
-%
-Basics in Stellar Physics: ``astrophysics II'' inside the bachelor's degree in astronomy (second semester). It can be taken as an optional course.
+
+For information about the basics in stellar physics refer to the course ``astrophysics II'' inside the bachelor's degree in astronomy (second semester). It can be taken as an optional course.
 
 Material:
 
@@ -30,32 +31,7 @@ Material:
 %
 and more on Paola Marigo's site.
 
-\subsubsection{Stellar Winds}
-
-Moving flows of materials ejected by stars. 20 to \SI{2e3}{km/s}.
-
-See \emph{Bubble Nebula} in Cassiopea, there is a \(45 M_{\odot}\) star ejecting stellar wind at \SI{1700}{km/s}.
-
-Diagram: luminosity vs effective temperature. We see the \emph{main sequence}.
-We can also plot the \emph{mass loss rate}, \(\dot{M}>0 \) in solar masses/year.
-An other important parameter is \(v_\infty\).
-
-Diagram: mass loss (or gain) rate vs age of star.
-
-Stellar winds affect stellar evolution, the dynamics of the interstellar medium, the chemical evolution of galaxies.
-
-Momentum is approximately injected with \(\dot{M} v\), kinetic energy with \(\frac[i]{1}{2} \dot{M} v^2\).
-Within \SI{1e8}{yr} around half of the infalling matter is reemitted.
-
-\subsubsection{Contents}
-
-We will start with the basic theory of stellar winds, and then: \emph{coronal}, \emph{line-driven} and \emph{dust-driven} winds.
-
-\subsection{Final fates of massive \& very massive stars}
-
-Masses over \(10 M_{\odot}\).
-
-\subsection{Stellar oscillations}
+\subsubsection{Stellar oscillations}
 
 \dots see slides.
 
@@ -68,30 +44,63 @@ Material: slides on moodle or Marigo's page.
 
 Written exam, partial exam on stellar pulsation.
 
-\section{Variability in Astronomy}
 
-First observations of variable stars: \(\sim\) 1600, omicron-Ceti. It changes in magnitude by 6 orders of magnitude.
 
-Others are found from the 1600 onwards, but since the XX century the reason is unknown. Is it \emph{rotation}, \emph{eclipses}?
+\subsubsection{Stellar Winds}
 
-For some it sure are eclipses, but the Cepheids are different. See \(\delta\)-Cephei, asymmetric continuous curve.
+They are moving flows of materials ejected by stars, with speeds generally between 20 to \SI{2e3}{km/s}.
+
+See, for example, the \emph{Bubble Nebula} in Cassiopea, there is a \(45 M_{\odot}\) star ejecting stellar wind at \SI{1700}{km/s}.
+
+Diagram: luminosity vs effective temperature. We see the \emph{main sequence}.
+We can also plot the \emph{mass loss rate}, \(\dot{M}>0 \) in solar masses/year.
+Another important parameter is \(v_\infty\), the asymptotic terminal velocity of the wind.
+
+Diagram: mass loss (or gain) rate vs age of star.
+
+Stellar winds affect stellar evolution, the dynamics of the interstellar medium, the chemical evolution of galaxies.
+
+Momentum is approximately injected with \(\dot{M} v\), kinetic energy with \(\frac[i]{1}{2} \dot{M} v^2\).
+Within \SI{1e8}{yr} around half of the infalling matter is reemitted.
+
+We will start with the basic theory of stellar winds, and then discuss \emph{coronal}, \emph{line-driven} and \emph{dust-driven} winds.
+
+\subsubsection{Final fates of massive \& very massive stars}
+
+Masses over \(10 M_{\odot}\).
+
+\section{Stellar oscillations}
+
+\subsection{Variability in Astronomy}
+
+The first observations of variable stars happended around the year 1600: Fabritius observed the star omicron-Ceti, in the constellation of Cetus. It changes in magnitude by 6 orders of magnitude: several authors report it as a ``new star'' in the 16-hundreds, before finally in 1667 Bullialdus puts the pieces together and figures out that the star is periodic, with a period of 333 days. 
+
+The star \(o\)-Ceti was also called Mira, and it is considered a prototype for these long-period variables: they are called \emph{Miras}.
+
+Others are found from the 1600 onwards, but up to the XX century the reason is still unknown. Is it \emph{rotation}, \emph{eclipses}? 
+
+For some the cause was discovered to be indeed eclipses, but the Cepheids are different. See for example the \(\delta\)-Cephei type: we have an asymmetric continuous curve, with no clearly recognizable \emph{dip}, which we would expect to see if there was an eclipsing system. 
 What if stars \emph{pulsate}?
 
-The \emph{light curve} is the luminosity curve over time.
+In order to investigate these phenomena, we need to define the \emph{light curve}: it is the luminosity curve over time.
 
-We can also look at the \emph{phased} light curve. Of course we need the period:
-the phase is
+We can also look at the \emph{phased} light curve: in order to plot it however we need the period. 
+The phase is defined as 
 
 \begin{equation}
-    \varphi = \frac{(t-t_0) \operatorname{mod} \Pi}{\Pi}
+    \varphi = \frac{(t-t_0) \operatorname{mod} \Pi}{\Pi} \in [0,1)
 \end{equation}
 %
 where \(\Pi\) is the period.
 \(E(t) = \lfloor (t-t_0 )/ \Pi \rfloor\) is the epoch.
 
+So, we can plot the magnitude against \(\varphi \): we will get several curves in the same plot.
+
 We can then measure the period, but if the light curve is multiperiodic we can subtract the model from the curve to see if there are additional periods: this is \emph{prewhitening}.
 
-We can also look at the luminosity in Fourier space.
+We can also look at the luminosity in Fourier space, or more generally use other period measuring techniques, such as the Lomb-Scargle periodogram or \emph{phase dispersion minimization}.
+
+\todo[inline]{A curiosity: how is phase dispersion minimization actually implemented? Minimizing the area of the convex hull of the data seems error-prone, and it would be nice to have an algorithm which did not rely on the residuals from a \emph{model}. Maybe: for each point compute the distance to the \(k\) nearest neighbours, add all of these together and minimize this?}
 
 Of course there are issues with observational gaps (day-night, full moon): aliases; accuracy, duration of observations\dots
 
@@ -99,25 +108,31 @@ Also, the period can change in time.
 
 Things have improved a great deal with large-scale surveys and space suveys.
 
-\subsection{Classification}
+We also have to account for the Nyquist frequency: if we have \(n\) observations spaced with a constant interval \(\Delta t\) we will only be able to measure the frequency with a resolution of \(\Delta f = (n \Delta t)^{-1}\). 
+
+A useful technique for the assessment of a true period is to plot the observed luminosity at a fixed phase with varying (integer) epoch: if the period was assessed exactly, we expect this to be constant. 
+If we see a straight line, then we know we are under or overestimating the period. If we see some other curve, with this diagram we can start to figure out how the period is changing. 
+
+\subsubsection{Classification of variable stars}
 
 By variability type: regular, semi-regular or irregular.
 
-By intrinsic variability: extrinsic, external to the star: eclipses, transits, microlensing, rotation; intrinsic: rotation, eclipses (self-occultation), eruptive and explosive variables, oscillations, secular variations (?).
+By variability class: \emph{extrinsic}, external to the star: eclipses, transits, microlensing, rotation; \emph{intrinsic}: rotation, eclipses (self-occultation), eruptive and explosive variables, oscillations, secular variations.
 
 Whether rotation is to be considered intrinsic or extrinsic is a matter of taste.
 
 Oscillations can be classified by several criteria.
 
-The geometry can be  radial (classical pulsators) or non-radial.
+The geometry can be \emph{radial} (classical pulsators, such as cepheids, RR Lyrae, Miras) or \emph{non-radial}.
 
-The restoring force can be the pressure gradient or the gravitational force (bouyancy, not gravitational waves).
+The restoring force can be the pressure gradient (\emph{p}-modes) or the gravitational force (so, bouyancy) (\emph{g}-modes).
 
 The excitation mechanisms can be different.
 
-The evolutionary phase and mass of the star can also be different.
+The evolutionary phase and mass of the oscillating star can also be different. We distinguish these populations by the sky region in which we see them. 
 
-\section{Summary of stellar structure \& evolution}
+\subsection{Summary of stellar structure \& evolution}
+
 
 Eulerian: properties of a gas are fields, the position is the position of an observer.
 To differentiate position with respect to time is meaningless: position is an independent variable. \(f = f(r^i, t)\).

@@ -133,49 +133,56 @@ The evolutionary phase and mass of the oscillating star can also be different. W
 
 \subsection{Summary of stellar structure \& evolution}
 
+In the \emph{Eulerian} view, properties of a gas are fields, the position is the position of an observer.
+To differentiate position with respect to time is meaningless: position is an independent variable. Any function is a function of position and time: \(f = f(r^i, t)\).
 
-Eulerian: properties of a gas are fields, the position is the position of an observer.
-To differentiate position with respect to time is meaningless: position is an independent variable. \(f = f(r^i, t)\).
+In this case, then, the mass underneath a certain layer is
 
-Lagrangian: we follow an element of fluid: \(\dv*{r^i}{t} = v^i \). We can identify univocally these fluid elements.
+In the \emph{Lagrangian} view, we follow an element of fluid, which has a velocity \(\dv*{r^i}{t} = v^i \). We can identify univocally these fluid elements (since the time-evolution is deterministic). 
 
-When treating stellar structure \& evolution, we look at mass layers \(\dd{m}\).  \(f = f(m, t)\). Do note that \(m\) is the mass of the whole full sphere under a certain layer, not the mass of the shell.
+When treating stellar structure \& evolution, we identify the fluid elements as mass layers \(\dd{m}\). Any function is then a function of mass and time: \(f = f(m, t)\). Do note that \(m\) is the mass of the whole full sphere under a certain layer, not the mass of the shell.
 
-In the lagrangian case, we use the convective derivative \(\dv*{}{t} = \partial_t + v^i \partial_i\) where \(v^i\) is the velocity defined before.
+In the lagrangian case, the expression for the total derivative with respect to time is given by the convective derivative \(\dv*{}{t} = \partial_t + v^i \partial_i\) where \(v^i\) is the velocity defined before.
 
-\subsection{Equations of stellar structure}
+\subsubsection{Equations of stellar structure}
 
-We write these in the spherically symmetric case.
+We write these in the spherically symmetric case, using the Lagrangian formalism. 
 
-The continuity equation is:
+The \emph{continuity equation} is:
 %
-\begin{equation}
-    \pdv{r}{m} = \frac{1}{4 \pi r^2 \rho} \,.
-\end{equation}
-
-Momentum conservation is given by:
+\boxalign{
+\begin{align}
+    \pdv{r}{m} = \frac{1}{4 \pi r^2 \rho} 
+\,.
+\end{align}}
 %
-\begin{equation}
+
+\emph{Momentum conservation} is given by:
+%
+\boxalign{
+\begin{align}
     \pdv{P}{m} = - \frac{Gm}{4 \pi r^4}\,,
-\end{equation}
+\end{align}}
 %
-where
+which is the equation for hydrostatic equilibrium: \(P\) is the pressure. 
 
-Energy conservation is given by:
+\emph{Energy conservation} is given by:
 %
-\begin{equation}
-    \dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g \,,
-\end{equation}
+\boxalign{
+\begin{align}
+\dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g \,,
+\end{align}}
 %
 where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear energy generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time.
 
-The energy transfer equation is:
+The \emph{energy transfer} equation is:
 %
-\begin{equation}
-    \pdv{T}{m} = - \frac{GmT}{4 \pi r^4 P} \nabla \,,
-\end{equation}
-
-where \(\nabla = \pdv*{\log T}{\log P} \) is the temperature gradient, which has contributions from radiation, conduction, convection\dots
+\boxalign{
+\begin{align} \label{eq:general-energy-transfer}
+\pdv{T}{m} = - \frac{GmT}{4 \pi r^4 P} \nabla \,,
+\end{align}}
+%
+where \(\nabla = \pdv*{\log T}{\log P} \) is the temperature gradient, which has contributions from radiation, conduction, and convection.
 
 With the diffusion approximation, we can write the gradient as
 %
@@ -191,20 +198,30 @@ where \(\kappa_R\) is the Rosseland mean opacity, given by
 \begin{equation}
   \frac{1}{\kappa_{R}} =
   \frac{ \displaystyle\int _{0}   ^{\infty}  \dv{B_\nu}{T} \frac{1}{\kappa_\nu} \dd{\nu}}
-  {  \displaystyle \int _{0}   ^{\infty} \dv{B_\nu}{T} \dd{\nu}}
+  {  \displaystyle \int _{0}   ^{\infty} \dv{B_\nu}{T} \dd{\nu}}\,,
 \end{equation}
+%
+where \(B_{\nu }\) is the Planck function: 
+%
+\begin{align}
+B_{\nu } (T) = \frac{2 h \nu^3}{ c^2} \qty(\exp(\frac{h \nu }{k_B T}) - 1)^{-1}
+\,,
+\end{align}
+%
 
-Substituting in the result in \eqref{eq:diffusion-approx-gradient} we get:
+
+Substituting in the result in \eqref{eq:general-energy-transfer} we get:
 %
 \begin{equation}
-    L = - \frac{64 \pi^2 a c }{3} r^4 \frac{T^3}{\kappa} \pdv{T}{m}
+    L = - \frac{64 \pi^2 a c }{3} r^4 \frac{T^3}{\kappa_R} \pdv{T}{m}
+\,.
 \end{equation}
-%
-where \(\kappa\) is a generalized opacity, the harmonic mean of the Rosseland opacity \(\kappa _R \) and the convective opacity \(\kappa_c = 4acT^3 / (3 \rho \lambda_c )\).
 
-\begin{greenbox}
-  Where \(\lambda_c\) is\dots  ?
-\end{greenbox}
+This can be improved by substituting \(\kappa_{R}   \) with \(\kappa\), a generalized opacity, the harmonic mean of the Rosseland opacity \(\kappa _R \) and the convective opacity \(\kappa_c = 4acT^3 / (3 \rho \lambda_c )\).
+
+\todo[inline]{
+    Where \(\lambda_c\) is\dots  ?
+}
 
 If we need to deal with convection, this defies any simple modeling. There are instability criteria: where is it relevant? This is given by
 Ledoux's criterion,

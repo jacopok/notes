@@ -157,6 +157,8 @@ The \emph{continuity equation} is:
 \end{align}}
 %
 
+In order to switch between the Lagrangian view, in which the derivatives are done with respect to the mass \(m\), and the Eulerian one, in which we differentiate with respect to the radius \(r\), we use the continuity relation.
+
 \emph{Momentum conservation} is given by:
 %
 \boxalign{
@@ -165,6 +167,14 @@ The \emph{continuity equation} is:
 \end{align}}
 %
 which is the equation for hydrostatic equilibrium: \(P\) is the pressure. 
+In the absence of hydrostatic equilibrium, the equation reads: 
+%
+\begin{align}
+\pdv[2]{r}{t} = - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r^2}  
+\,.
+\end{align}
+%
+
 
 \emph{Energy conservation} is given by:
 %
@@ -173,7 +183,14 @@ which is the equation for hydrostatic equilibrium: \(P\) is the pressure.
 \dv{L}{m} = \varepsilon - \varepsilon_\nu - \varepsilon_g \,,
 \end{align}}
 %
-where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear energy generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time.
+where \(L\) is the luminosity, \(\varepsilon\) is the rate of nuclear energy generation per unit mass, while \(\varepsilon_\nu\) is the rate of energy loss due to neutrino emission per unit mass, and \(\varepsilon_g \) is the work done by the gas per unit mass \& time, which can be written as 
+%
+\begin{align}
+\epsilon_{g} = \pdv{u}{t} - \frac{P}{\rho^2} \pdv{\rho }{t}
+\,,
+\end{align}
+%
+
 
 The \emph{energy transfer} equation is:
 %
@@ -208,7 +225,7 @@ B_{\nu } (T) = \frac{2 h \nu^3}{ c^2} \qty(\exp(\frac{h \nu }{k_B T}) - 1)^{-1}
 \,,
 \end{align}
 %
-
+which can be written like this or multiplied by \(4 \pi  \), if we wish to integrate over all solid angles. It does not matter here, since any constant factor simplifies. 
 
 Substituting in the result in \eqref{eq:general-energy-transfer} we get:
 %
@@ -219,11 +236,9 @@ Substituting in the result in \eqref{eq:general-energy-transfer} we get:
 
 This can be improved by substituting \(\kappa_{R}   \) with \(\kappa\), a generalized opacity, which is given by the harmonic mean of the Rosseland opacity \(\kappa _R \) and the convective opacity \(\kappa_c = 4acT^3 / (3 \rho \lambda_c )\).
 
-\todo[inline]{
-    Where \(\lambda_c\) is somthing like the conductivity: will edit this when I finish the 5th chapter of the Theoretical Astrophysics notes.
-}
+The term \(\lambda_{c}\) here is the proportionality factor in the equation for the conductive energy flux in terms of the temperature gradient: \(\vec{F}_{c} = - \lambda_{c} \vec{\nabla} T\). 
 
-If we need to deal with convection, this defies any simple modeling. There are instability criteria: where is it relevant? This is given by
+If we need to deal with convection, this defies any simple modeling. There are instability criteria: where is conduction relevant? This is given by
 Ledoux's criterion,
 %
 \begin{equation}
@@ -236,8 +251,8 @@ where:
 \begin{align}
   \nabla_\mu  &= \dv{\log \mu }{\log P} \\
   \nabla_{\text{ad}}  &= \qty(\pdv{\log T }{\log P} )_{\text{ad}} \\
-  \chi_{\mu}  &= \qty(\pdv{\log P }{\log \mu} )_{\rho, T} \\
-  \chi_{T}  &= \qty(\pdv{\log P }{\log T} )_{\rho, \mu}
+  \chi_{\mu}  &= \qty(\dv{\log P }{\log \mu} )_{\rho, T} \\
+  \chi_{T}  &= \qty(\dv{\log P }{\log T} )_{\rho, \mu}
 \end{align}
 \end{subequations}
 %
@@ -248,5 +263,15 @@ which are thermodynamic parameters.
 In the convective core, \(\nabla \approx \nabla_{\text{ad}}\), but outside of it we need something else.
 
 Mixed-length theory models convection with ``bubbles''.
+
+Beyond these equations, we need the constitutive equations for:
+\begin{enumerate}
+    \item the density \(\rho \);
+    \item the heat capacity of stellar matter \(c_P\);
+    \item the opacities (radiative and conductive) \(\kappa \);
+    \item the transformation rates between nuclear species \(i\) and \(j\): \(r_{ij}\);
+    \item the generation rate of nuclear energy \(\epsilon \)
+\end{enumerate}
+in terms of the pressure \(P\), temperature \(T\) and chemical potential \(\mu \).
 
 \end{document}

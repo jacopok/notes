@@ -3,5 +3,127 @@
 
 \section*{Wed Jan 08 2020}
 
+Course given for the SGSS by professors Paolo Villoresi and Giuseppe (Pino) Vallone. 
+
+The work of the team on quantum communication started in 2003, now there is a lot of interest on it.
+
+The aim of this course is to discuss the \emph{implementation} of the concepts in quantum information. 
+The field is relatively young: anyone working on it needs to work with both theory and experiment. 
+
+Quantum information comes from merging information theory and quantum theory. 
+
+References: 
+\begin{enumerate}
+  \item ``Introductory quantum optics'', Gerry \& Knight;
+  \item ``Quantum metrology, imaging, and communication'', Simon, Jaeger, \dots
+  \item Lebellac, ``Quantum Physics''
+\end{enumerate}
+\todo[inline]{add references from slides}
+
+Bell inequalities: 1964, no physical theory of local hidden variables can ever reproduce all the predictions of quantum mecnanics.
+
+There are quantum experiments with relativistic distances and speeds.
+
+In 2016 there was a Quantum Manifesto. 
+
+\section{Meet the photon}
+
+A complete explanation of the photoelectric effect was given by Einstein.
+He pointed out the difference in approaches at his time between the atomic theory of matter and the continuous functions representing light in Maxwell's theory. 
+
+We follow Gerry \& Knight for the quantization of the EM field. 
+
+We start from the vacuum Maxwell equations: 
+%
+\begin{align}
+\nabla \times E &= - \pdv{B}{t}  \\
+\nabla \times B &= \mu_0 \epsilon_0 \pdv{E}{t}  \\
+\nabla \cdot B &= 0  \\
+\nabla \cdot E &= 0  
+\,,
+\end{align}
+%
+and seek trigonometric solutions in a box-shaped cavity: they look like 
+%
+\begin{align}
+E_x (z, t) = \qty(\frac{2 \omega^2}{V \epsilon_0 })^{1/2} \sin(kz) q(t)
+\,,
+\end{align}
+%
+where \(k = \omega /c\). If we fix the boundary conditions of \(E_x (0, t) = E_x (L,t) = 0\) we find \(k = m \pi /L\). 
+
+Here \(V\) is the volume of our cavity. The magnetic field corresponding to this is 
+%
+\begin{align}
+B_y (z, t) = \qty(\frac{\mu_0 \epsilon_0  }{k}) \qty(\frac{2 \omega^2}{V \epsilon_0 })^{1/2} \dot{q}(t) \cos(kz)
+\,,
+\end{align}
+%
+where \(\dot{q}\) corresponds precisely to the conjugate momentum to \(q\): \(\dot{q} = p\). 
+
+Then, the Hamiltonian can be shown to be 
+%
+\begin{align}
+H =\frac{1}{2} \int \dd{V} \qty(\epsilon_0 E^2 + \frac{B^2}{\mu_0 }) 
+= \frac{1}{2} \qty(p^2 + \omega^2 q^2)
+\,.
+\end{align}
+
+In order to quantize the field, we use the correspondence principle to replace \(p \rightarrow \hat{p}\) and \(q \rightarrow \hat{q}\). These are Hermitian operators and thus correspond to observables, their commutator is \([\hat{q}, \hat{p}] = i \hbar\). 
+
+Now, we can introduce the creation and annnihilation operators: 
+%
+\begin{align}
+\hat{a} &= \frac{1}{\sqrt{2 \hbar \omega }} \qty(\omega \hat{q} + i \hat{p})  \\
+\hat{a}^\dag &= \frac{1}{\sqrt{2 \hbar \omega }} \qty(\omega \hat{q} - i \hat{p})  
+\,,
+\end{align}
+%
+and their product will give the number operator: \(\hat{N} = \hat{a}^\dag \hat{a}\). These are not Hermitian and thus not observable. 
+
+Then, we have 
+%
+\begin{align}
+\hat{E}_{x} &= \mathcal{E}_{0} \qty(\hat{a} + \hat{a}^\dag) \sin(kz) \\
+\hat{B}_{y} &= -i \mathcal{B}_{0} \qty(\hat{a} - \hat{a}^\dag) \cos(kz)
+\,,
+\end{align}
+%
+for some normalization.
+
+The Hamiltonian is given by \(\hat{H} = \hat{N} + 1/2\). 
+
+The time-evolution in the Heisenberg picture of the creation and annihilation operators can be shown to be given by 
+%
+\begin{align}
+\dv{\hat{a} }{t} = \frac{i}{\hbar} [\hat{H}, \hat{a}] = - i \omega \hat{a}
+\,,
+\end{align}
+%
+so the evolution is given by circular motion. 
+
+If \(\ket{n} \) is an eigenvector of \(\hat{H}\) with energy \(E_n\), then \(\hat{a}^\dag \ket{k} \) is an eigenvector with energy \(E_n + \hbar \omega \). Then it is clear why this operator is called a creation operator: it \emph{creates} a quantum of energy. 
+
+\todo[inline]{Is the Hilbert space on which these operators act \(L^{2} (V)\)?}
+
+Similarly, \(\hat{a}\) decreases the energy by \(\hbar \omega \).  The ground state is the one for which \(\hat{a} \ket{\psi }= 0 \), it is called \(\ket{0} \) and has energy \(\hbar \omega /2\). This is \emph{zero-point energy}. 
+
+This ground state must exist since the eigenvalues of \(\hat{N}\) must be positive.
+
+The interpretation for this is then the fact that the excitation number gives us the number of photons in the cavity. We can do some calculations to show that the normalization we need when applying the creation operator is \(1 / \sqrt{N+1}\), so we get: 
+%
+\begin{align}
+\ket{n}  = \frac{(\hat{a}^\dag)}{\sqrt{n!}} \ket{0} 
+\,.
+\end{align}
+
+We can find eigenbases from these operators, and write completeness relations:
+%
+\begin{align}
+\sum _{i} \ketbra{i}{i} = \mathbb{1}
+\,.
+\end{align}
+
+The only nonzero matrix elements of the creation and annihilation operators are the ones which are just off-diagonal by one in the basis of the Hamiltonian. 
 
 \end{document}

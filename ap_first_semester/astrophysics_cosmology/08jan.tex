@@ -3,8 +3,182 @@
 
 \section*{Wed Jan 08 2020}
 
-\section{Gravitational waves and interferometry: guest lecture}
+\section{Gravitational waves and interferometry}
 
+Guest lecture by Angelo Ricciardone.
 
+An outline: 
+\begin{enumerate}
+  \item introduction about gravitational waves;
+  \item frequency bands \(\iff\) sources of GW \(\iff\) detectors;
+  \item GWs and observables;
+  \item stochastic background of GW: characterization, sources, detection (here we discuss \emph{cosmological} sources).
+\end{enumerate}
+
+References: 
+
+\begin{enumerate}
+  \item Book: ``Gravitational Waves - theory and experiments'' by Michele Maggiore (Oxford University Press, 2007);
+  \item Book: ``Gravitational Waves - Astrophysical sources'' (2018);
+  \item Paper: ``The basics of gravitational wave theory'', F.\ Flannagan (\url{https://arxiv.org/abs/gr-qc/0501041});
+  \item Review: ``Gravitational waves from inflation'', (\url{https://arxiv.org/abs/1605.01615});
+  \item Review: ``Cosmological background of gravitational waves'', (\url{https://arxiv.org/abs/1801.04268});
+  \item Kind of unrelated review: ``Inflation and the Theory of Cosmological Perturbations'' \url{https://arxiv.org/abs/hep-ph/0210162}.
+\end{enumerate}
+
+We start with some general facts.
+
+Gravitational waves appear naturally in GR: they are 
+propagating oscillations of the gravitational field.
+
+The gravitational interaction is \emph{weak}: this implies that GWs travel freely, but they are also hard to detect.
+
+The frequencies we see for the EM spectrum are in the range \(f_{EM} \sim \SI{e4}{Hz} \divisionsymbol \SI{e20}{Hz}\), radio waves to \(\gamma \) rays.
+
+The typical frequencies of GWs are, instead, in  the range \(f_{GW} \sim \SI{e-16}{Hz} \divisionsymbol \SI{e4}{Hz}\), the lower end of this range is the frequency of the CMB GWs while the higher end is given off by astrophysical sources. 
+Ground-based detectors can detect the higher end of this spectrum. 
+
+\todo[inline]{But the CMB is electromagnetic! Is there gravitational radiation corresponding to it?}
+
+The wavelength and frequency are typically comparable to the size of the object which is emitting the GWs. 
+
+Let us consider astrophysical sources:
+%
+\begin{align}
+T = 2 \pi \sqrt{\frac{R^3}{GM}} \implies f = \sqrt{\frac{G \rho }{4 \pi^2}}
+\,,
+\end{align}
+%
+and since the mass is related to the density by \(M = \rho V= \frac{4}{3} \pi R^3 \rho \), then we have 
+%
+\begin{align}
+f_{GW} \approx \frac{1}{2 \pi } \sqrt{\frac{3GM}{4 \pi R^3}}
+\,.
+\end{align}
+%
+We know that the radius of the object must be greated than the Schwarzschild radius \(R_s = 2 GM / c^2\): substituting this in we get 
+%
+\begin{align}
+f_{GW} \approx \frac{1}{4 \pi } \frac{c^3}{GM}
+\,,
+\end{align}
+%
+which means, substituting the numbers, that 
+%
+\begin{align}
+f_{GW} \approx \SI{e4}{Hz} \frac{M_{\odot}}{M}
+\,,
+\end{align}
+%
+
+\todo[inline]{Is the difference between the formulas coming from different geometries of the problem? Like, a rotating objects versus two inspiralling ones?}
+
+We make some estimates for neutron stars. Typically they have \(M \sim 1.4 M_{\odot}\) and \(R \sim \SI{e4}{m}\). So, we have \(f \sim \SI{e4}{Hz}\).
+
+For small BHs, we have \(M \sim 30 M_{\odot}\), so \(f_{GW} \sim \SI{300}{Hz}\). This is the band in which LIGO/VIRGO works: these interferometers cannot measure GWs with frequency smaller than \SI{1}{Hz}.
+
+If we increase the mass, if we use \(M \sim \num{e7} M_{\odot}\), we get \(f_{GW} \sim \SI{e-3}{Hz}\): this is the band in which LISA will work.
+
+There are indirect evidences of GW emission.
+
+Pulsars slow down: this is the Hulse-Taylor binary pulsar, two neutron stars which are rotating around each other emit gravitational waves. The GW emission back-reacts on the dynamics of the binary, on a timescale which is observable.  
+
+A reference for this is \url{https://arxiv.org/abs/astro-ph/0407149}. 
+
+We can make a plot: radius of the system vs mass of the system. Since  \(f \propto M^{1/2} R^{-3/2}\), constant frequency means a powerlaw in this plot, so a straight line in \(\log R \) vs \( \log M\). 
+
+The chirp of the inspiral is \emph{also} a powerlaw. 
+The GR predictions for the period decrease of the Hulse-Taylor binary NS match observations very precisely.
+
+On the 14/09/2015, we had the first direct evidence of GWs with the first detection. 
+
+On 17/08/2017 we had the first detection of a NS/NS merger: this was the birth of multimessenger astronomy, since we saw the event with optical telescopes also. This meant that the signal got to us with a speed which is the same as the electromagnetic speed of light. 
+
+Now, there is an app: the ``GW events app'' \url{https://apps.apple.com/us/app/gravitational-wave-events/id1441897107}. 
+
+In GR, gravitational waves can be polarized in two different ways. These are called ``plus'' and ``cross'' polarizations. 
+
+\todo[inline]{Can one of these be rotated into the other? There might be some issue since one is a pseudotensor\dots}
+
+We distinguish: the High Frequency band goes from \SI{e4}{Hz} to \SI{1}{Hz}; the Low Frequency band goes from \SI{1}{Hz} to \SI{e-4}{Hz}; the Very Low Frequency band goes from \SI{e-7}{Hz} to \SI{e-9}{Hz}; the Extremely Low frequency badn goes from \SI{e-15}{Hz} to \SI{e-18}{Hz}. 
+
+There are gaps since in certain frequency regions the methods we have on either side fail for different reasons leaving a gap.
+
+Let us start from HF: it is the domain of Earth-based interferometers: LIGO (Livingstone \& Hanford), which has \SI{4}{km} arms, the two detectors are separated by \SI{3000}{km}. Also, there is VIRGO near Pisa: an arm is \SI{3}{km} long. 
+
+There is also Geo600 in Hannover, Germany: it has \SI{600}{m} arms. In Japan there is Kagra: it has \SI{4}{km} arms.
+
+There are several reasons to have more than one detector: we can identify the position of the source, we can verify signals.
+
+There will be the new Einstein Telescope, in a triangular configuration, in Italy or the Netherlands. 
+There will be the Cosmic Explorer, with \SI{40}{km} arms. 
+
+Now, let us discuss the main sources in the HF band. 
+We have: 
+\begin{enumerate}
+  \item coalescence of stellar-mass BH binaries and NSs, for these we have an upper bound of \(M \lesssim \num{e3}M_{\odot} \);
+  \item rotation of neutron stars (pulsar);
+  \item stellar collapse: supernova to BH or NS.
+\end{enumerate}
+
+In the LF band, the domain of space-based interferometers, we will have LISA, in a triangular shape with \SI{2.5e6}{km}, and the Japanese DECIGO, with \(L \sim \SI{1000}{km}\). 
+
+In the LF band, the sources are: 
+\begin{enumerate}
+  \item white dwarves merging;
+  \item NS merging;
+  \item inspiral and coalescence of SMBH (masses from 100 to \num{e8} \(M_{\odot}\)). 
+\end{enumerate}
+
+In the VLF band, we can use Pulsar-Time Array. The sources in this frequency range are:
+\begin{enumerate}
+  \item GWs from SMBH with \(M > \num{11} M_{\odot}\), but it seems like there are no black holes this large;
+  \item GWs from cosmic strings \& from phase transitions;
+\end{enumerate}
+
+In the ELF band, we have cosmological sources: 
+\begin{enumerate}
+  \item primordial GWs: here we have \(h \sim (E _{\text{infl}} / M_P)^2\). 
+\end{enumerate}
+
+Typically we have amplitudes increasing as the frequency decreases. 
+
+For scalar perturbations we have 
+%
+\begin{align}
+\frac{\Delta T}{T} \propto \delta \phi 
+\,.
+\end{align}
+
+Vector perturbations decay with the expansion of the universe. We do have tensor perturbations.  B mode polarizations correspond to primordial gravitational waves. 
+
+\todo[inline]{What are B modes?}
+
+In a simple MM interferometry, \(\Delta L \propto h\). 
+
+LISA will orbit the Sun at \SI{20}{\degree} from the Earth. 
+The astrophysical targets for LISA are MBHBs, EMRIs and compact WDs. 
+
+Also, there are potential cosmological sources. We have first order phase transitions around the \SI{}{TeV}, inflationary GWs, cosmic strings and using MBHBs as standard sirens. 
+
+We put powerlaw amplitude spectra in a graph. What is \(\Omega \)? 
+\todo[inline]{We saw powerlaw spectra with \(\Omega \) increasing with \(f\): do they not have a UV problem since the energy density increased with the frequency?}
+
+Cosmological sources are stochastic: they give a background. 
+
+If we will have a detector with high sensitivity, we will see many events: they will form a stochastic background. 
+
+\todo[inline]{Can we not correlate the signals in such a way that we only look at GWs from a specific angular region?}
+
+A stochastic background of GW comes from a large number of independent uncorrelated sources that are not individually resolvable.
+
+CSGWB is a candidate source for LISA. 
+
+For tomorrow, we can either give an overview of cosmological sources for GWs or we can derive the relation 
+%
+\begin{align}
+\frac{\Delta L}{L} \propto h
+\,,
+\end{align}
 
 \end{document}

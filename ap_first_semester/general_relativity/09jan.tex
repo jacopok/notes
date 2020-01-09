@@ -1,4 +1,160 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Jan 09 2020}
+
+In the last four hours we will finish the discussion on GWs. 
+
+We solved the vacuum equations \(R_{\mu \nu }=0\) for a perturbed Minkowski spacetime \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu } \) for small \(h_{\mu \nu }\). 
+
+We found that these are equivalent to 
+%
+\begin{align}
+R_{\mu \nu }  = - \frac{1}{2} \square h_{\mu \nu } + \partial_{(\mu } \qty(h^{\lambda }_{\nu) , \lambda } - \frac{1}{2} \partial_{\nu) }h )  =0
+\,,
+\end{align}
+%
+which can become the wave equation \(\square h_{\mu \nu } = 0\) in the harmonic gauge 
+%
+\begin{align}
+\partial_{\lambda } h^{\lambda }_{\nu } - \frac{1}{2} \partial_{\nu } h =0
+\,.
+\end{align}
+
+Our gauge transformations are 
+%
+\begin{align}
+h_{\mu \nu } \rightarrow h_{\mu \nu } - \partial_{(\nu  } \epsilon_{\mu )}
+\,,
+\end{align}
+%
+where \(x^{\mu } \rightarrow x^{\mu } + \epsilon^{\mu }(x)\)
+
+The solutions to the wave equation are 
+%
+\begin{align}
+h_{\mu \nu } = C_{\mu \nu } \exp(i k \cdot x)
+\,,
+\end{align}
+%
+where \(k^2=0\), since \(p^{\mu } = \hbar k^{\mu }\) and the wave travels at the speed of light \(p^2=0\). 
+
+\begin{claim}
+If \(h_{\mu \nu }\) satisfies the harmonic gauge and \(\epsilon_{\mu }\) satisfies \(\square \epsilon_{\mu } = 0\) then \(\widetilde{h}_{\mu \nu } =  h_{\mu \nu } - \partial_{(\mu } \epsilon_{\nu )}\) also satisfies the harmonic gauge. 
+\end{claim}
+
+\begin{proof}
+The equation we want to show is true is 
+%
+\begin{align}
+0 = \partial_{\lambda } \widetilde{h}^{\lambda }_{\mu } - \frac{1}{2} \partial_{\mu } \widetilde{h}
+\,,
+\end{align}
+%
+where \(\widetilde{h} = \widetilde{h}^{\mu }_{\mu }\). 
+We can expand it into 
+%
+\begin{align}
+0 &= \partial_{\lambda } \qty(\cancelto{}{h^{\lambda }_{\mu }} - \partial^{\lambda } \epsilon_{\mu } - \partial_{\mu } \epsilon^{\lambda }) - \frac{1}{2} \partial_{\mu } \qty(\cancelto{}{h} - 2 \partial^{\nu } \epsilon_{\nu } )  \marginnote{Harmonic gauge for \(h_{\mu \nu }\)}\\
+&= - \square \epsilon_{\mu } - \partial_{\mu } \qty(\partial_{\nu } \epsilon^{\nu }) + \partial_{\mu } \qty(\partial^{\nu } \epsilon_{\nu }) = 0 \,. \marginnote{\(\square \epsilon_{\mu } = 0\) and commuting derivatives}
+\end{align}
+\end{proof}
+
+Now, we want to impose 4 additional conditions that remove the residual freedom \(x^{\mu } \rightarrow x^{\mu } + \epsilon^{\mu }\) with \(\square \epsilon^{\mu } = 0\). 
+
+This is a wave equation for \(\epsilon^{\mu }\), so the solutions will look like 
+%
+\begin{align}
+\epsilon_{\mu } = \gamma_{\mu } \exp( i k \cdot
+ x ) 
+\,,
+\end{align}
+%
+with \(\gamma_{\mu }\) constant and \(k^2=0\). 
+
+Under this transformation, the coefficient \(C_{\mu \nu }\) changes into 
+%
+\begin{align}
+\widetilde{C}_{\mu \nu } = C_{\mu \nu } - 2i k_{(\mu } \gamma_{\nu )} 
+\,,
+\end{align}
+%
+as can be seen by substitutin in our expression for \(\gamma_{\mu } \) into the transformation law for \(h_{\mu \nu }\). 
+Do note that these correspond to the same physical fields. 
+
+We further require \(\widetilde{C}_{00 } = \widetilde{C}_{0i}= 0 \). This fixes the residual gauge freedom completely. 
+
+We need to show that from a generic \(C_{\mu \nu }\) we can find a \(\gamma_{\mu }\) such that this condition holds. 
+
+We write out the conditions: 
+%
+\begin{align}
+\widetilde{C}_{00} = C_{00} - 2 i k_0 \gamma_0 
+\,,
+\end{align}
+%
+so setting \(\widetilde{C}_{00} =0 \) fixes 
+%
+\begin{align}
+\gamma_0 = \frac{C_{00} }{2ik_0 }
+\,,
+\end{align}
+%
+while  in order to set 
+%
+\begin{align}
+0=\widetilde{C}_{0i} &= C_{0i} - ik_0 \gamma_{i} - i k_{i} \gamma_0  \\
+&= C_{0i} - i k_0 \gamma_{i} - i k_{i} \frac{C_{00} }{2 i k_0 }  \\
+\gamma_{i } &= \frac{1}{i k_0 } \qty(C_{0i} - \frac{k_{i} C_{00} }{2 k_0 })
+\,.
+\end{align}
+
+With these choices for \(\gamma_{\mu }\) we can impose the desired condition.
+
+There is no issue if \(k_0 = 0\), since that would correspond to a GW of zero frequency, which can be shown to be equivalent to flat spacetime. 
+
+In the end, we need to solve the system 
+%
+\boxalign{
+\begin{align}
+\square h_{\mu \nu } &=0  \label{eq:gw-wave-equation} \\
+\partial_{\lambda } h^{\lambda }_{\mu } - \frac{1}{2} \partial_{\mu } h&=0  \label{eq:gw-harmonic-gauge}\\
+h_{0\mu } &=0 \label{eq:gw-residual-gauge}
+\,,
+\end{align}}
+%
+since \(C_{\mu \nu }= 0\) for some \(\mu \nu \) implies \(h_{\mu \nu }=0\) for those indices.
+
+\emph{A priori}, we have 10 degrees of freedom for our metric \(h_{\mu \nu }\) since it is symmetric. Equation \eqref{eq:gw-harmonic-gauge} eliminates 4 of them, and equation \eqref{eq:gw-residual-gauge} eliminates 4 more.
+
+So, in the end we have 2 independent degrees of freedom. 
+
+Let us write the harmonic gauge condition explicitly: for \(\mu =0\) we get
+%
+\begin{align}
+\partial_{\lambda } h^{\lambda }_{0} - \frac{1}{2} \partial_{0} h &= 0  \\
+- \partial_{0} h_{00} + \partial_{i} h_{i0} - \frac{1}{2} \partial_{0} h &= 0
+\,,
+\end{align}
+%
+but the first two vanish if \(h_{0\mu } =0\): so we get \(\partial_{0} h = 0\): this, when it is written explicitly, is 
+%
+\begin{align}
+\partial_{0} \qty(C^{\mu }_{\mu } \exp(i k \cdot x)) = 0
+\,,
+\end{align}
+%
+which means that \(C^{ \mu }_{\mu } = C = 0\): so the gravitational wave is traceless, this can be written as \(h_{ii}=0\) since \(h_{00} =0  \). 
+
+So, for \(\mu = j\) we can write the harmonic gauge condition as 
+%
+\begin{align}
+\partial_{\lambda } h^{\lambda }_{j} &= 0 \marginnote{\(h = 0\)}  \\
+\partial_{i} h_{ij} &=0 \marginnote{\(\eta_{ij} = \delta_{ij}\) and \(h_{0j} = 0\)} 
+\,.
+\end{align}
+%
+
+This implies that the GW is \emph{transverse}: it oscillates only in the directions perpendicular to the motion.
+
 \end{document}

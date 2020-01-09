@@ -57,7 +57,7 @@ The \emph{free fall} time scale is:
 
 It is associated with pulsation. It is calculated using the travel time of a mass in free fall across the stellar radius accelerated by constant acceleration equal to surface acceleration.
 
-We note that \(\tau_{\text{dyn}} \propto \overline{\rho} ^{-1/2} \), since \(\overline{\rho} \propto M / R^3\). For the Sun it is about \SI{27}{min}.
+We note that \(\tau_{\text{dyn}} \propto \overline{\rho} ^{-1/2} \), since \(\overline{\rho} \propto M / R^3\). For the Sun it is about \SI{1.6e3}{s}.
 
 The \emph{thermal} time scale is the relaxation time of deviations from thermal equilibrium:
 %
@@ -65,16 +65,39 @@ The \emph{thermal} time scale is the relaxation time of deviations from thermal 
   \tau_{\text{th}} \sim E_{\text{th}} / L\,.
 \end{equation}
 
-It is calculated as the time required for a star to irradiate all its energy.
+It is calculated as the time required for a star to irradiate all its energy. 
 
 \begin{proof}
-    Roughly, \(3 \int_V P \dd{V} = - \Omega\) with  \(\Omega = - \int_M \) \dots
+We use the virial theorem to estimate the thermal (so, local kinetic) energy \(T\): we know that \(T = - V/2\) where \(V\) is the total potential energy of the star. \(V\) can be computed as 
+%
+\begin{align}
+V = - \int \frac{Gm}{r(m)} \dd{m}
+\,,
+\end{align}
+%
+and since \(r(m) \approx \sqrt[3]{3m / 4 \pi \rho }\) if the density is constant, we get 
+%
+\begin{align}
+V &= - \int Gm \sqrt{\frac{4 \pi \rho }{3}} m^{-1/3} \dd{m}  \\
+&=- \frac{3}{5} G \sqrt[3]{\frac{4 \pi \rho }{3}} M^{5/3} = -\frac{3}{5} \frac{GM^2}{R} \sim - \frac{GM^2}{R}
+\,.
+\end{align}
+
+Therefore, \(T \sim - GM^2 / 2 R\).  
 \end{proof}
 
-Typically, \(\tau_{\text{th}} \sim G M^2 /(LR) \sim 10^7 \) \dots
+Typically, \(\tau_{\text{th}} \sim G M^2 /(LR) \sim 10^7 M^2/(LR) \) years.  
+For the Sun we have \(\tau_{\text{th}} \sim \SI{5e14}{s}\). 
 It is much larger than the dynamic time scale.
 
-The \emph{nuclear} time scale is even longer.
+The \emph{nuclear} time scale is even longer: it is calculated using the efficiency of nuclear fusion of \ce{H} to \ce{He}, which is about \(\epsilon \sim \num{.7} \% \), and the fraction of hydrogen in the star, which is about \(M_H = \num{10} \% \times M_{\odot} \). Using these numbers, we get for the Sun:
+%
+\begin{align}
+\tau_{\text{nuc}} = \frac{\epsilon c^2  M_H}{L_{\odot}} \approx \SI{3e17}{s}
+\,,
+\end{align}
+%
+
 
 This allows us to say that oscillations will not be heavily affected by thermal conduction, and even less by nuclear processes: the pulsations will be almost \emph{adiabatic}.
 

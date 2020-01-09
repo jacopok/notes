@@ -1,4 +1,187 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Thu Jan 09 2020}
+
+Many of these topics will be discussed in more details in the course by Nicola Bartolo on cosmological perturbations and in the course by Giacomo Ciani on gravitational waves. 
+
+Today we will focus on the LISA detector, which works for frequencies \(f \sim \num{e-5} \divisionsymbol \SI{e-1}{Hz}\), and on the cosmological stochastic background of GWs (CSGWB). 
+
+We can make an analogy with the CMB: we expect to see a background of gravitational radiation coming from all directions. 
+
+The stochastic background can have different origins: 
+\begin{enumerate}
+  \item astrophysical origin: a coherent superposition of a large number of astrophysical sources, which are too weak to be detected separately;
+  \item cosmological origin: it is generated in the early universe by a variety of mechanisms: 
+  \begin{enumerate}
+    \item amplification of primordial tensor fluctuations via inflation; 
+    \item GWs from phase transition around the \SI{}{TeV} scale (this is not the only energy scale at which they can be emitted, but it is the energy we'd need in order to detect them with LISA);
+    \item GWs from topological defects.
+  \end{enumerate}
+\end{enumerate}
+
+A stochastic background of cosmological origin is expected to be 
+\begin{enumerate}
+  \item isotropic;
+  \item stationary;
+  \item unpolarized, which means that the cross and plus polarizations will have the same amplitude. 
+\end{enumerate}
+
+Let us discuss the main properties of the frequency spectrum: it is characterized 
+\begin{enumerate}
+  \item in terms of (normalized) energy density per unit logarithmic interval of frequency: this is called \(h_0^2 \Omega_{GW} (f)\);
+  \item in terms of the spectral density of the ensemble average of the Fourier component of the metric \(S_{h}(f)\);
+  \item more on the experimental side: in terms of a characteristic amplitude of the stochastic background \(h_{c} (f)\).
+\end{enumerate}
+
+Let us define these three quantities. The energy density is given by 
+%
+\begin{align}
+\Omega_{GW} = \frac{1}{\rho_{c}} \dv{\rho_{GW} }{\log f}
+\,,
+\end{align}
+%
+where \(\rho_{GW}\) is the energy density of SGWB, \(f\) is the frequency, while \(\rho_{c}\) is the present value of the critical energy density, defined as 
+%
+\begin{align}
+\rho_{c} = \frac{3 H_0^2}{8 \pi G }
+\,,
+\end{align}
+%
+where we usually write \(H_0 = h_0 \times \SI{100}{km / (s Mpc)}\). 
+
+So, usually we plot \(h_0^2 \Omega_{GW}\) in order to ignore the uncertainties on the measurements of \(H_0 \). 
+
+We write stochastic GW at a given point \(\vec{x} = 0 \) in the transverse traceless (TT) gauge: \(h_{ii} = 0\) and \(\partial_{i} h^{ij}\): we get 
+%
+\begin{align}
+h_{ab}(t) = \sum _{A = +, \times } \int_{\mathbb{R}} \dd{f} \int_{S^{2}} \dd{\Omega } \hat{h}_A (f, \Omega ) \exp( - 2 \pi i f t ) e^{A}_{ab} (\hat{\Omega})
+\,,
+\end{align}
+%
+where we must have the condition \(\hat{h}_A (f, \Omega ) = \hat{h}^{*}_{A} (-f, \Omega )\). Here \(\hat{\Omega}\) is a unit vector representing the direction of propagation of the wave, and \(\dd{\hat{\Omega}} = \dd{\cos(\theta )} \dd{\phi }\), \(e^{A}_{ab}\) are the polarization tensors: 
+\begin{enumerate}
+  \item \(e^{+}_{ab} (\hat{\Omega}) = 2\hat{m}_{[a} \hat{m}_{b]}\) ;
+  \item \(e^{ \times }_{ab} (\hat{\Omega}) = 2\hat{m}_{(a} \hat{m}_{b)}\);
+\end{enumerate}
+where \(\hat{m}_{a, b}\) are unit vectors orthogonal to each other and to the propagation direction.
+
+We have the condition \(e^{A}_{ab} e^{B ab} = 2 \delta^{AB}\). 
+
+Then, assuming a SGWB which is isotropic, unpolarized and stationary we will have 
+%
+\begin{align}
+\expval{\hat{h}^{*}_{A} (f, \hat{\Omega}) \hat{h}_{A'} (f',  \hat{\Omega }' )} = \delta (f- f') \frac{1}{4 \pi } \delta^{(2)}( \hat{\Omega}, \hat{\Omega }' ) \delta_{A A'} \frac{1}{2} S_{h}(f)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\delta^{(2)} (\hat{\Omega}, \hat{\Omega}')= \delta(\phi - \phi') \delta(\cos(\theta ) - \cos(\theta' ))
+\,.
+\end{align}
+
+The factors of \(1 / 4 \pi \) and \(1 / 2\) are for convention, for normalization, so that \(\int S_{h} (f) \dd{f} = 1\). 
+
+Then the remaining bit, \(S_{h}(f)\), is called the spectral density. 
+
+So, using the equaitions we found so far, we get 
+%
+\begin{align}
+\expval{h_{ab}(t) h^{ab}(t)} &= 2 \int_{\mathbb{R}} \dd{f} S_h (f)  \\
+&= 4 \int_{f=0}^{f= \infty } \dd{\log f} f S_h (f)
+\,.
+\end{align}
+
+We define the characteristic amplitude \(h_{c}(f)\) as 
+%
+\begin{align}
+\expval{h_{ab} (t) h^{ab } (t)} = 2 \int_{f=0}^{f = \infty} \dd{\log f} h_c^2 (f)
+\,,
+\end{align}
+%
+which means that \(h_c^2(f) = 2 f S_h(f)\). 
+
+The last step is to relate \(h_c(f)\) and \(h_0^2 \Omega_{GW}(f)\). 
+
+The energy density is defined as:
+%
+\begin{align}
+\rho_{GW} =  \frac{1}{32 \pi G} \expval{\dot{h}_{ab} \dot{h}^{ab} }
+\,,
+\end{align}
+%
+where the average is performed over a wavelength, but by the ergodic theorem it can also be performed over a period.
+So, 
+%
+\begin{align}
+\rho_{GW} = \frac{4}{32 \pi G} \int_{f=0}^{f= \infty } \dd{(\log f)} f (2 \pi f)^2 S_h (f)
+\,,
+\end{align}
+%
+whicm means that 
+%
+\begin{align}
+\dv{\rho_{GW}}{\log f} &= \frac{\pi }{4 G} f^2 h_c^2(f)  \\
+&= \frac{\pi}{2G} f^3 S_h (f)
+\,,
+\end{align}
+%
+so in the end we have 
+%
+\begin{align}
+\Omega_{GW} (f) = \frac{2 \pi^2}{3 H_0^2} f^2 h_c^2 (f)
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\Omega_{GW}(f) = \frac{4 \pi^2}{3 H_0^2} f^3 S_h (f)
+\,.
+\end{align}
+
+The \emph{strain} is the quantity \(S_h\). 
+
+An advantage of GWs is the fact that they decouple right after emission: they maintain the spectral shape. 
+
+If we start from the Einstein-Hilbert action 
+%
+\begin{align}
+S = \int \dd[4]{x} F g \frac{M_P^2}{2} R
+\,,
+\end{align}
+%
+and plug in a tensor-perturbed FRLW metric: 
+%
+\begin{align}
+\dd{s^2} = - a^2 \qty(\dd{\eta^2  } + (\delta_{ij} + h_{ij}) \dd{\vec{x}}^2)
+\,,
+\end{align}
+%
+we get the equations of motion for gravitational waves. 
+The scenario of slow-roll inflation gives rise to an energy spectrum which is unobservable with LISA as well as ground-based detectors. 
+
+If we add an axion to the inflaton Lagrangian: 
+%
+\begin{align}
+\mathcal{L} = \frac{1}{2} \partial_{\mu } \phi \partial^{\mu }\phi + V(\phi ) + \underbrace{\frac{\phi}{\Lambda } F_{\mu \nu } \widetilde{F}^{\mu \nu }}_{\text{Additional term}} 
+\,,
+\end{align}
+%
+we can see enhanced gravitational waves, which we hope would be detectable with LISA! However the enhancement is very small, we cannot see it. 
+
+Chaotic preheating models predict higher amplitudes, however they are at very high frequencies. 
+
+We can get observable signals by fine-tuning the parameters, unlikely scenario. 
+
+What about phase transition, the collisions of primordial vacuum bubbles? We can get numerical estimates on the spectral shape of this signal, and they seem promising and detectable. 
+
+What about cosmic defects? We can have Domain Walls, Cosmic Strings and Cosmic Monopoles. 
+
+The prediction here is a flat spectrum at observable frequencies, at possibly observable amplitudes depending on the emission time. 
+
+
+
 \end{document}

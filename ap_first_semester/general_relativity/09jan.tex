@@ -157,4 +157,150 @@ So, for \(\mu = j\) we can write the harmonic gauge condition as
 
 This implies that the GW is \emph{transverse}: it oscillates only in the directions perpendicular to the motion.
 
+Then, our system becomes  
+%
+\boxalign{
+\begin{align}
+\square h_{\mu \nu } &= 0  \\
+h_{0\mu } &= 0  \\
+\partial_{i} h_{ij} &= 0  \\
+h_{ii} &= 0
+\,.
+\end{align}}
+%
+
+In terms of the matrix \(C_{\mu \nu }\) these conditions mean: 
+%
+\begin{align}
+C_{00} = C_{0i} = C_{ii} = k_{i} C_{ij} = 0 
+\,,
+\end{align}
+%
+since the condition \(\partial_{i} h_{ij} =0\) means \(i k_{i} C_{ij} \exp(i k \cdot x ) = 0\). 
+
+Without  loss of generality we can write a coordinate system in which our gravitational wave is travelling along  the \(z\) direction: therefore \(\vec{k} = [0,0,k]^{\top}\). 
+Then, we get the conditions: \(C_{i 3}=0\), \(C_{11}+ C_{22} = 0\) and \(C_{0 \mu } = 0\). 
+
+So we have two conditions: \(C_{12} = C_{21} \neq 0\) and the rest of the matrix is zero, and \(C_{11} = - C_{22} \neq 0\) and the rest of the matrix is zero. Then, the basis tensors are 
+%
+\begin{align}
+e_{ij,+} = \left[\begin{array}{ccc}
+1 & 0 & 0 \\ 
+0 & -1 & 0 \\ 
+0 & 0 & 0
+\end{array}\right]  
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+e_{ij, \times } = \left[\begin{array}{ccc}
+0 & 1 & 0 \\ 
+1 & 0 & 0 \\ 
+0 & 0 & 0
+\end{array}\right] 
+\,.
+\end{align}
+%
+
+The Frobenius norm of these matrices is \(e_{ij,+} e_{ij, +} = e_{ij, \times} e_{ij, \times } = 2\), which can also be written as \(\tr (e_{+} e_{+}) = \tr (e_{ \times  } e_{ \times }) = 2\). Also, in this sense they are orthogonal: \(\tr (e_{+} e_{ \times }) = 0\). 
+
+So, we can write \(\tr (e_{r} e_{s}) = 2 \delta_{rs}\), where  \(r\) and \(s\) are either \(+\) or \( \times \). 
+
+Then, any GW \(h_{ij}\) can be written as 
+%
+\begin{align}
+h_{ij} (x) = \qty(h_{+} e_{ij, +} + h_{ \times } e_{ij, \times }) \exp(i k \cdot x)
+\,,
+\end{align}
+%
+with \(k^2 = 0\). Do note that \(h_{+} \) and \(h_{ \times }\) are two independent complex numbers. 
+
+The solutions we want have real \(h_{\mu \nu }\), so if \(h_{\mu \nu } \in \mathbb{C}\) is a solution then \(h_{\mu \nu }^{*}\) also is a solution. So, we are allowed to take the real part with \((h_{\mu \nu } + h_{\mu \nu }^{*}) / 2\). This will then give us 
+%
+\begin{align}
+\Re (C_{ij} \exp(i k \cdot
+ x ) ) = C_{ij}  \cos (i k \cdot x  + \varphi )
+\,,
+\end{align}
+%
+for some real \(C_{ij}\). So, in general we will have 
+%
+\begin{align}
+h_{ij}^{k} (x) = \sum_{r = +, \times } h_{r} e_{ij, r} \cos(kt - kz + \varphi_{r} )
+\,,
+\end{align}
+%
+do note that we changed the sign of the argument of the cosine, which we can do since the cosine is even. 
+
+Do also note that the phase can in principle depend on the polarization. 
+
+We can then recover any general solution travelling along the \(z\) direction by having \(h_r\) depend on \(k\): then  we will have 
+%
+\begin{align}
+h_{ij} = \int  \dd{k} \sum_{r = +, \times } h_{r} (k) e_{ij, r} \cos(kt - kz + \varphi_{r}(k) ) 
+\,.
+\end{align}
+
+Also, note that the frequency of the gravitational waves can be found by \(f = k / 2\pi \); this can be seen from the periodicity of the waves. 
+
+What do these polarizations physically entail? 
+
+Recall that the distance along a certain direction, say \(x\), is given by the integral \(\int \dd{x} \sqrt{g_{xx}}\). 
+
+So, if \(g_{xx}\) changes than the physical distance also changes. 
+
+Let us consider the point \(z=0\), at \(t=0\), with zero phase \(\varphi \) for the polarization \(e_{ij, +}\): then the component \(g_{xx}\) has increased, since the cosine is equal to one, while the component \(g_{yy}\) has decreased
+
+After half a wavelength, when the cosine is equal to \(-1\), this effect reverses. Then, \(g_{xx}\) decreases while \(g_{yy} \) increases. 
+
+The wave is travelling along the \(z\) axis, but because of the transversality condition it stretches the \(x\) and \(y\) directions. 
+
+What happens if we perform a \SI{45}{\degree} rotation? the spatial rotation matrix is 
+%
+\begin{align}
+R = \frac{1}{\sqrt{2}} \left[\begin{array}{ccc}
+1 & 1 & 0 \\ 
+-1 & 1 & 0 \\ 
+0 & 0 & \sqrt{2}
+\end{array}\right]
+\,,
+\end{align}
+%
+so, for example, \([1,1,0]^{\top} \rightarrow [\sqrt{2},0,0]^{\top}\). 
+
+The transformation law with this matrix is \(\widetilde{x}^{i} = R_{j}^{i} x^{j}\).
+
+It is known that a rotation matrix satisfies \(R^{\top} R = \mathbb{1}\). 
+
+The line element changes as 
+%
+\begin{align}
+\dd{\ell^2} = \dd{x^{i}} g_{ij} \dd{x^{j}} = \dd{\widetilde{x}^{i} } \widetilde{g}_{ij} \dd{\widetilde{x}^{j}}
+\,,
+\end{align}
+%
+which means that \(g = R^{\top} \widetilde{g} R\), since \(\dd{\widetilde{x}} = R \dd{x}\). This is coherent with the tensor transformation law. Inverting it, we find \(\widetilde{g} = R g R^{\top}\). 
+
+How does the perturbed metric change? 
+%
+\begin{align}
+\mathbb{1} + \widetilde{h} &= R (\mathbb{1} + h) R^{\top}  \\
+&= R \mathbb{1} R^{\top} + R h R^{\top}  \\
+&= \mathbb{1} + R h R^{\top} 
+\,,
+\end{align}
+%
+so \(\widetilde{h} = R h R^{\top}\). 
+
+Let us suppose that \(h = e_{ \times }\): what is then \(\widetilde{h}\)? It can be shown that 
+%
+\begin{align}
+\widetilde{h} = R e_{ \times } R^{\top} = e_{+}
+\,,
+\end{align}
+%
+so the cross-polarization is equivalent to the plus-polarization, rotated by \SI{45}{\degree}. 
+
 \end{document}

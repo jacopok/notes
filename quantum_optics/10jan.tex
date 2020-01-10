@@ -3,4 +3,182 @@
 
 \section*{Fri Jan 10 2020}
 
+The energy of the states \(\ket{n}\) is well defined, but there are still issues to sort out: for instance, the expectation value of the electric field is zero \emph{at each point}, 
+%
+\begin{align}
+\bra{n} E_x(z, t) \ket{n} \propto \bra{n} \hat{a} \ket{n} + \bra{n} \hat{a}^\dag  \ket{n} = 0 
+\,.
+\end{align}
+
+However, the expectation value of the \emph{square} of the electric field is nonzero: 
+%
+\begin{align}
+\expval{E^2_{x} (z, t) } = 2 \mathcal{E}_{0}^2 \sin^2(kz) \qty(n+ \frac{1}{2})
+\,.
+\end{align}
+
+This is in accordance with the uncertainty principle, since the operator \(\hat{n} \) does not commute with the electric field operator \(\hat{E}_{x}\). We can write the undetermination relation 
+%
+\begin{align}
+\Delta n \Delta E \geq \frac{1}{2} \mathcal{E}_{0} \abs{\sin(kz)} \abs{\expval{\hat{a}^\dag - \hat{a}}}
+\,.
+\end{align}
+
+We expect to be able to find a notion of phase such that there is a number-phase uncertainty relation, similarly to the time-energy uncertainty relation. 
+
+The time evolution of the electric field operator is given by 
+%
+\begin{align}
+E_{x} = \mathcal{E}_{0} \qty(\hat{a} e^{-i \omega t}  + \hat{a}^\dag e^{i \omega t} )\sin(kz)
+\,,
+\end{align}
+%
+and we define the quadrature operators: 
+%
+\begin{align}
+X_{1} = \frac{1}{2} \qty(\hat{a} + \hat{a}^\dag) \qquad \text{and} \qquad
+X_{2} = \frac{1}{2i} \qty(\hat{a} - \hat{a}^\dag)
+\,.
+\end{align}
+
+We have effectively decomposed the electric field into two oscillating parts, out of phase with each other by \SI{90}{\degree}. We have the commutator \([\hat{X}_{1}, \hat{X}_{2}] = i/2\).
+Even for the vacuum state the fluctuations of these operators are nonzero. 
+
+We will now distinguish two different kinds of radiation: blackbody radiation and coherent (laser-like) radiation. 
+
+For the first case, we know that the distribution of the energy levels is given by the Boltzmann distribution,
+%
+\begin{align}
+P(n) = \frac{1}{Z} \exp(- \frac{E_n}{k_B T})
+\,,
+\end{align}
+%
+where \(Z\) is a normalization factor. 
+We now give an intuitive justification. 
+
+Let us suppose that we have a system of four particles, with three quanta of energy, which we  write as \(\Delta E\). How can this energy be distributed? 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc|c}
+0 & \(\Delta E\) & \(2 \Delta E\)& \(3 \Delta E\)& \(4 \Delta E\)  & Possibilities\\
+3 & 0 & 0 & 1 & 0 & 4 \\
+2 & 1 & 1 & 0 & 0 & 12  \\
+1 & 3 & 0 & 0 & 0 & 4 
+\end{tabular}
+\end{table} 
+
+So, for \(0 \Delta E\) we have \(12+24+4 = 40\) total possibilities, for \(1 \Delta E\) we have \(12 +12 = 24\) total possibilities, for \(2 \Delta E\) we have \(12\) possibilities, for \(3 \Delta E\) we have \(4\) possibilities. The total is then 80. 
+
+This kiind of looks like an exponential decrease, I guess if we were to do a more precise calculation we would get an exponential exactly. 
+
+In a quantum setting, we will have a density matrix looking like 
+%
+\begin{align}
+\rho = \frac{1}{\tr \exp(- \hat{H} / k_B T)} \exp(- \hat{H} / k_B T)
+\,;
+\end{align}
+%
+which gives a familiar result: 
+%
+\begin{align}
+\rho = \sum _{n} \frac{\exp(- E_n / k_B T)}{Z} \dyad{n} 
+\,.
+\end{align}
+
+The average number of photons can be found to be given by 
+%
+\begin{align}
+\expval{n} = \frac{1}{\exp(\hbar \omega / k_B T) - 1}
+\,.
+\end{align}
+
+In the limits \(\hbar \omega / k_B T\) going to either infinity or zero we get \(\expval{n} \rightarrow \hbar \omega / k_B T\) or its inverse. 
+
+We can write the relation 
+%
+\begin{align}
+\exp(- \hbar \omega /k_B T) = \frac{\overline{n}}{1 + \overline{n}
+}
+\,,
+\end{align}
+%
+where \(\overline{n} = \expval{n}\). Then we will have 
+%
+\begin{align}
+\rho = \frac{1}{1 + \overline{n}} \sum _{n} \qty(\frac{\overline{n}}{1 + \overline{n}})^{n} \dyad{n} 
+\,.
+\end{align}
+
+It can be shown that 
+%
+\begin{align}
+\expval{\hat{n}^2 } = \overline{n}  +2 \overline{n}^2
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+\Delta n = \qty(\overline{n} + \overline{n}^2)^{1/2}
+\,,
+\end{align}
+%
+so we have \(\Delta n \sim \overline{n} + \frac{1}{2}\) asymptotically. Therefore, there never is a well-defined number of photons in the box. 
+
+We can write an expression for the average energy density \(U(\omega )\): 
+%
+\begin{align}
+U(\omega ) = \frac{\hbar \omega^3}{\pi^2c^3} \frac{1}{\exp(\hbar \omega / k_B T) - 1}
+\,.
+\end{align}
+
+The average energy of these photons is given by \(\hbar
+ \omega \overline{n}\). 
+
+From these expressions we can recover Wien's law and Stefan-Boltzmann's law. 
+
+How do we represent a plane wave in a QFT? 
+If we want a nonzero electric field we need a superposition of number states differing by \(\pm 1\). 
+
+Another way to put it is: are there eigenstates \(\ket{\alpha }\) of the annihilation operator \(\hat{a}\)? 
+
+They will look like 
+%
+\begin{align}
+\ket{\alpha } = C_0 \sum _{n} \frac{\alpha^{n}}{\sqrt{n!}} \ket{n}
+\,.
+\end{align}
+
+By normalization, \(C_0 = \exp( - \abs{\alpha }^2 / 2)\). This gives us a coherent state, which like we wanted has a nonzero expected electric field. It looks precisely like a plane wave: 
+%
+\begin{align}
+\expval{\hat{E}_{x}}_{\alpha } = i \sqrt{\frac{\hbar \omega }{2 \epsilon_0 V }} \qty(\alpha \exp(i \vec{k} \cdot \vec{x} - i \omega t) - \alpha^{*} \exp(-i \vec{k} \cdot \vec{x} + i \omega t))
+\,.
+\end{align}
+
+We find also the expectation value of the \emph{square} of the electric field 
+%
+\begin{align}
+\expval{E^2_{x} }_{\alpha } = \frac{\hbar \omega }{2 \epsilon_0 V} \qty(1 + 4 \abs{\alpha }^2 \sin^2 (\omega t - \vec{k} \cdot \vec{r} - \theta ))
+\,,
+\end{align}
+%
+where \(\alpha = \abs{\alpha } \exp(i \theta )\). 
+
+This means that not even in the vacuum state we can have a zero expected electric field. The vectors \(\ket{\alpha }\) are \emph{over-complete}, since they are bidimensional while a one-dimensional continuous basis would be enough to span the Hilbert space.
+
+The average of the number of photons \(\hat{n}\) for an eigestate \(\ket{\alpha }\) is quickly calculated to be \(\abs{\alpha }^2\): then we can see that \(\abs{\alpha }^2 = \overline{n}\). 
+
+So, with these states we have \(\expval{\hat{n}^2}_{\alpha } = \overline{n}^2 + \overline{n}\). Therefore \(\Delta n = \sqrt{\overline{n}}\). The probability of detecting \(n\) photons is given by \(\abs{\braket{n}{\alpha }}^2\): 
+%
+\begin{align}
+P_{\alpha }(n) = \exp(- \overline{n} ) \frac{\overline{n}^{n}}{n!}
+\,,
+\end{align}
+%
+a Poissonian distribution. If the number of photons gets large then the Poissonian approaches a Gaussian. 
+
+
+
 \end{document}

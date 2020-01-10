@@ -1,4 +1,192 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Fri Jan 10 2020}
+
+Why does the photon have two degrees of freedom? 
+
+We know that we can express 
+%
+\begin{align}
+\vec{B} = \nabla \times \vec{A} \qquad \text{and} \qquad
+\vec{E} = - \vec{\nabla} \phi - \pdv{}{t} \vec{A} 
+\,,
+\end{align}
+%
+and if we define the 4-vector \(A^{\mu } = (\phi , \vec{A})\) then this potential is invariant under the gauge transformation \(A_{\mu } \rightarrow A_{\mu } + \partial_{\mu } \xi\) for any function \(\xi \). 
+
+This is the defining property of electromagnetism! If we have a potential \(A_{\mu }\) we can define the covariant derivative \(D_{\mu } = \partial_{\mu } + ie A_{\mu }\): then the Lagrangian is written as 
+%
+\begin{align}
+\mathcal{L} = D_{\mu } \phi  D^{\mu } \phi^{*} - m^2 \phi^2 - F_{\mu \nu } F^{\mu \nu }
+\,,
+\end{align}
+%
+and this field theory has \(U(1)\) symmetry, \(\phi \rightarrow e^{i \xi } \phi \), which corresponds to \(A_{\mu } \rightarrow A_{\mu } + \partial_{\mu } \xi \)! This is actually the defining property of electromagnetism in the QED formulation.
+
+Similarly, GR follows from the invariance under a certain kind od gauge transformation: in this case, the gauge transformations are \emph{diffeomorphisms} \(x \rightarrow x' (x)\). 
+
+In electromagnetism, we have the 4 component for the potential, but we can fix the gauge by setting \(\partial_{\mu }  A^{\mu } = 0\) and the residual gauge by setting \(A^{0} = 0\): then we are left with 2 degrees of freedom. 
+
+This is completely analogous to the way we found the graviton to have 2 degrees of freedom, that is, two polarizations. 
+
+Now we discuss how we actually detected the presence of gravitons. 
+
+\subsection{Interferometric GW detection}
+
+GWs are detected interferometrically since interferometers are our most accurate way to measure distances. 
+
+The setup is a Michelson-Morley interferometer. 
+Call \(\Delta L\) the difference in the two paths the light takes, if \(\Delta L = n \lambda \) with \(n \in \mathbb{N} \) and \(\lambda \) begin the wavelength of light, then we have perfectly constructive interference. 
+If instead \(\Delta L = (n + 1/ 2) \lambda \) we have perfectly destructive interference. 
+
+In actual GW experiments we will have \(\Delta L \ll \lambda \), so we will not go from in-phase to counter-phase, but there will be a slight decrease of power, by which we will be able to detect the GW.
+
+We take the mirrors to be suspended and free to move in the horizontal direction. So, for our purposes (to linear order in the displacement), the mirrors are free particles which move along geodesics. 
+
+So we have two mirrors at \(\vec{x}_{1} \) and \(\vec{x}_{2}\): let us say that the \(x\) axis is along their distance. 
+
+Then, their distance will be given by 
+%
+\begin{align}
+d = \int_{x_1 }^{x_2 } \dd{x} \sqrt{g_{11} }
+\,.
+\end{align}
+
+In principle, the GW can change \(d\) by changing \(x_1 \) and \(x_2 \) and \emph{also} by changing the metric element \(\sqrt{g_{11} }\) in the space between them. 
+
+\begin{claim}
+The effect of the change of the positions \(x_1 \) and \(x_2 \) is at most \(\mathcal{O}(h^2)\). 
+\end{claim}
+
+\begin{proof}
+First, let us assume that there is no GW and we have just one mirror in a fixed position in Minkowski spacetime. 
+Then, the initial 4-velocity of the mirror (before the arrival of the GW) is \(u^{\alpha }_{\tau =0} = [1, \vec{0}]\). 
+
+Then, the GW arrives and the mirror will follow the geodesic equation: 
+%
+\begin{align}
+\dv{ u^{\alpha }  }{\tau } + \Gamma^{\alpha }_{\beta \gamma } u^{\beta } u^{\gamma } = 0
+\,.
+\end{align}
+
+We want to consider this at first order in \(h\). 
+The Christoffel sybols at order \(h^{0}\) are zero since in Minkowski spacetime there is no curvature. 
+
+So, if we want a nonzero first-order Christoffel term, we need to consider the zeroth order in the 4-velocity. 
+
+Then, we are left with \(u^{\alpha } = u^{\alpha }_{\tau =0}\), or 
+%
+\begin{align}
+\dv{ u^{i }}{\tau } = - \Gamma^{i }_{00}
+\,,
+\end{align}
+%
+since the \(\Gamma^{0}_{00}\) is zero. Now we can compute 
+%
+\begin{align}
+\Gamma^{i}_{00} = \frac{1}{2} \eta^{i \lambda } \qty(h_{\lambda 0, 0} + h_{\lambda 0,0} - h_{00 , \lambda }) = 0 
+\,,
+\end{align}
+%
+because in our gauge \(h_{0 \mu } = 0\). 
+\end{proof}
+
+A note: this is only true in our gauge. In other gauges, the result is the same but there is also a first-order contribution to the change in the distance between the mirrors from the change in their coordinate positions. 
+
+We set the mirrors at \(\vec{x}_{1}\) and \(\vec{x}_{2} = \vec{x}_{1} + T \hat{L}_{12}\), where \(\hat{L}_{12}\) is a unit vector while \(T\) is the (unperturbed) travel time (or distance, since \(c=1\)) between the two mirrors. 
+
+The worldline of the laser light is given by \(t = t_1 + \lambda \) and \(\vec{x} = \vec{x}_{1} \hat{L}_{12} \lambda \), for \(\lambda \in [0,T]\). 
+
+The photons move with \(\dd{s^2} =0\), which means 
+%
+\begin{align}
+0 &= - \dd{t^2} + \qty(\delta_{ij} + h_{ij}) \dd{x^{i}} \dd{x^{j}}  \\
+&= - \dd{t^2} + \qty(\delta_{ij} + h_{ij}) \hat{L}_{12}^{i} \hat{L}_{12}^{j} \dd{\lambda^2} 
+\,,
+\end{align}
+%
+but \(\hat{L}_{12}^{i} \hat{L}_{12}^{j} \delta_{ij} = 1\) since it is a unit vector, so we get 
+%
+\begin{align}
+0 &= - \dd{t^2} + \qty(1 + \hat{L}_{12}^{i} \hat{L}_{12}^{j} h_{ij})  \dd{\lambda^2}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\dd{t} &= \sqrt{1 + \hat{L}_{12}^{i} \hat{L}_{12}^{j} h_{ij}} \dd{\lambda }  \\
+& \approx \qty(1 + \frac{1}{2} \hat{L}_{12}^{i} \hat{L}_{12}^{j} h_{ij}) \dd{\lambda }
+\,.
+\end{align}
+
+So, we need to evaluate this along the trajectory: we find 
+%
+\begin{align}
+T_{12} = \int_{0}^{T} \dd{\lambda } \qty(1 + \frac{1}{2} \hat{L}_{12}^{i} \hat{L}_{12}^{j} \sum _{r = +, \times } h_{r} e_{ij, r} \cos(k (t_1 + \lambda t) - \vec{k} \cdot \qty(\vec{x}_{1} + \hat{L}_{12} \lambda )))
+\,,
+\end{align}
+%
+which just amounts to plugging in our expressions for \(t\) and \(\vec{x}\) into the formula for \(h_{ij} (t, \vec{x})\). 
+
+We set the phase to zero for brevity, a more general consideration will include it. 
+
+The first term is the unperturbed travel time  \(T\). Then, we can bring the constants outside the integral: 
+%
+\begin{align}
+T_{12} = T + \frac{1}{2} \hat{L}_{12}^{i} \hat{L}_{12}^{j} \sum _{r = +, \times } h_{r} e_{ij, r}  \int_{0}^{T} \dd{\lambda }  \cos(k (t_1 + \lambda ) - \vec{k} \cdot \qty(\vec{x}_{1} + \hat{L}_{12} \lambda ))
+\,.
+\end{align}
+
+Now, we can make an approximation which is applicable to ground-based interferometers: the \emph{short-arm} approximation. The arguments of the cosine depend on \(\lambda \), but we can assume \(k \lambda  < kT \ll 1\). This means that the travel time of the laser is much smaller than the period of the GW. Then, the cosine is approximately \(\lambda \)-independent and can be brought outside of the integral. So we find 
+%
+\begin{align}
+T_{12} = T + \frac{1}{2} \hat{L}_{12}^{i} \hat{L}_{12}^{j} \sum _{r = +, \times } h_{r} e_{ij, r} \cos(k t_1 - \vec{k} \cdot \vec{x}_{1}) T
+\,.
+\end{align}
+
+Let us justify the approximation: \(k \sim \SI{100}{Hz}\), while \(L \sim \SI{4}{km}\). So, \(kT \approx 2 \pi \times \SI{4}{km} \times \SI{100}{km} / c \approx \num{8e-3}\), which is small. 
+
+We have three points in the interferometer: \(\vec{x}_{1}\) is the beamsplitter, \(\vec{x}_{2}\) and \(\vec{x}_{3}\) are the ends of the arms. We need to compute the difference between the times \(\vec{x}_{1} \rightarrow \vec{x}_{2} \rightarrow \vec{x}_{1}\) and \(\vec{x}_{1} \rightarrow \vec{x}_{3} \rightarrow \vec{x}_{1}\), repeated a few hundred times (the number of bounces of the beam is called the \emph{finesse factor}). Let us just compute \(\Delta T = T_{12} - T_{13} \) for a single ``bounce'', to see what the effect looks like. We actually compute \(\Delta T / T\), in order to see what fraction of difference of travel time we are looking at. It will be given by 
+%
+\begin{align}
+\frac{\Delta T}{T} = \cos(kt - \vec{k} \vec{x}) \sum _{r = + , \times } h_{r} e_{ij, r} \frac{\hat{L}_{12}^{i}\hat{L}_{12}^{j} - \hat{L}_{13}^{i}\hat{L}_{13}^{j}}{2}
+\,.
+\end{align}
+
+Writing it this way is convenient, since we do not need to consider a single geometry: there are \SI{90}{\degree} interferometers such as LIGO, and \SI{60}{\degree} ones such as LISA, or the Einstein telescope. 
+
+Let us say that 
+%
+\begin{align}
+\hat{L}_{12} = [\cos \alpha , \sin \alpha , 0]^{\top} \qquad \text{and} \qquad \hat{L}_{13} = [\cos(\alpha + \pi /2), \sin(\alpha + \pi /2) , 0]^{\top}
+\,.
+\end{align}
+
+We need to compute the following products: 
+%
+\begin{align}
+\hat{L}_{12}^{\top} e_{+} \hat{L}_{12} &= \cos^2\alpha - \sin^2\alpha =  2\cos(2 \alpha )
+\\
+\hat{L}_{12}^{\top} e_{ \times } \hat{L}_{12} &= 2 \sin \alpha \cos \alpha = \sin(2 \alpha )
+\,,
+\end{align}
+%
+and similarly for \(\hat{L}_{13} \), where we can substitute \(\alpha \rightarrow \alpha + \pi /2\). The factors of \(2\) simplify, so we get 
+%
+\begin{align}
+\frac{\Delta T}{T} &= \cos(kt - \vec{k} \cdot \vec{x}) 
+h_{+}\qty(  \qty(\cos(2 \alpha ) - \cos(2 \alpha  + \pi ))) + 
+h_{ \times } \qty(  \qty(\sin(2 \alpha ) - \sin(2 \alpha  + \pi )))  \\
+&= \cos(kt - \vec{k} \cdot \vec{x}) \qty(
+h_{+}\cos(2 \alpha ) + 
+h_{\times} \sin(2 \alpha ))
+\,.
+\end{align}
+
+So, this is a \(\mathcal{O}(h)\) effect, with \(h \sim \num{e-21}\), which means \(\Delta L  \sim \SI{4}{km} \times \num{e-21} \sim \SI{4e-18}{m}\). 
+
+The fact that we have many photons in the laser helps, 
+
 \end{document}

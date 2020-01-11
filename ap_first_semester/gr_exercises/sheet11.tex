@@ -184,7 +184,67 @@ for a constant matrix \(\epsilon_{\mu \nu }\) and for \(k_{\mu } = (-k, 0,0,k)\)
 
 The first of these also implies \(\epsilon_{\nu 0} = 0\) by symmetry (the symmetry of \(g_{\mu \nu } \) implies the symmetry of \(h_{\mu \nu }\), which in turn implies the symmetry of \(\epsilon_{\mu \nu }\), since the exponential is a scalar).
 
-So, we can write the trace of \(h_{\mu \nu }\) as 
+Can we actually impose these conditions? Recall: our gauge transformations are \(h_{\mu \nu } \rightarrow h_{\mu \nu } - \partial_{(\mu  } \xi_{\nu )}\) for some covector \(\xi_{ \nu }\). 
+First of all, we impose the harmonic gauge condition. We need to show that we can use a gauge transformation to transform a generic perturbed metric \(\widetilde{h}_{\mu \nu }\) into a perturbed metric \(h_{\mu \nu }\) such that \(2 \partial^{\alpha } h_{\alpha\nu } - \partial_{\nu }  h = 0\).
+
+Writing out the condition, we have 
+%
+\begin{align}
+2 \partial^{\alpha } \qty(\widetilde{h}_{ \alpha  \nu } - \partial_{(\alpha } \xi_{\nu )}) - \partial_{\nu } \qty(\eta^{\rho \sigma } \qty(\widetilde{h}_{\rho \sigma } - \partial_{ (\rho } \xi_{\sigma )}))  &\overset{?}{=}  0  \marginnote{The symmetrization in the second term is redundant since \(\eta_{\mu \nu }\) is already symmetric}\\
+2 \partial^{\alpha } \widetilde{h}_{\alpha \nu } - \partial_{\nu } \widetilde{h} &\overset{?}{=} 
+\square \xi_{\nu } + \partial_{\nu } \qty(\partial^{\alpha } \xi_{\alpha }) - \partial_{\nu }\qty( \partial \cdot \xi )  \\
+2 \partial^{\alpha } \widetilde{h}_{\alpha \nu } - \partial_{\nu } \widetilde{h} &\overset{?}{=} 
+\square \xi_{\nu }
+\,,
+\end{align}
+%
+so we can use the value of \(2 \partial^{\alpha } \widetilde{h}_{\alpha \nu } - \partial_{\nu } \widetilde{h}\) as a source term \(\rho_{\nu } \) for the four PDEs \(\rho_{\nu } = \square \xi_{\nu }\). These always have a solution, which can be written explicitly using the Green function \(G(x)\), which is defined by 
+%
+\begin{align}
+\square G(x - x') = \delta (x - x')
+\,,
+\end{align}
+%
+where \(x\) and \(x'\) are generic points in spacetime and \(\delta \) is a 4-dimensional Dirac delta function. Then, the solution will be written as 
+%
+\begin{align}
+\xi_{\nu } (x) = \int_{ \mathbb{R}^{4}} G(x - y) \rho_{\nu }(y) \dd[4]{y}
+\,.
+\end{align}
+
+Then, we know that we can fix the harmonic gauge: for an arbitrary \(\widetilde{h}_{\mu \nu }\) we can choose an appropriate \(\xi_{\nu }\) which gives the appropriate vector field \(\square \xi_{\nu }\). A thing to notice is the fact that if we change \(\xi_{\nu } \rightarrow \xi_{\nu } + r_{\nu }\), where \(\square r_{\nu } =0\), then the Dalambertian of the gauge vector field does not change, therefore the vector field we have \emph{still} allows us to set the harmonic gauge condition for our starting metric \(\widetilde{h}_{\mu \nu }\). Then, we say the \(r_{\nu }\) is our residual gauge freedom. 
+
+So, we assume to have already fixed the primary gauge, and we restrict ourselves to the residual one. We can use this residual gauge freedom to impose the conditions \(h_{0 \mu } =0\): let us start with \(h_{00} =0\). 
+We assume to start from 
+%
+\begin{align}
+h_{00} = \widetilde{h}_{00} - \partial_{0} r_{0} \overset{!}{=} 0 
+\,,
+\end{align}
+%
+so if we set \(\partial_{0} r_{0} = \widetilde{h}_{00}\) we can set this gauge condition. This is compatible with \(\square r_0 = 0\): we will need to also have \(\nabla^2 r_0 = 0\), and we note that this fixes \(r_0 \) to be the integral in \(\dd{x^{0}}\) of \(\widetilde{h}_{00}\).  
+
+Now, we show that we can also set \(h_{0i}=0\): it amounts to 
+%
+\begin{align}
+h_{0i} = \widetilde{h}_{0i} - \frac{1}{2} \qty(\partial_{i} r_0 + \partial_0 r_{i}) \overset{!}{=}  0
+\,,
+\end{align}
+%
+so if we set each of the spatial components \(r_{i}\) to 
+%
+\begin{align}
+r_{i} = \int \dd{x^{0}} \qty(2 \widetilde{h}_{0i} - \partial_{i} r_0 )
+\,
+\end{align}
+%
+we will have the desired gauge. 
+
+% We can show this for plane wave solutions: we do not actually lose generality since they form a basis for any solution, the so-called Fourier basis. 
+
+
+What do these conditions actually mean for the matrix \(\epsilon_{\mu \nu }\)?
+We can write the trace of \(h_{\mu \nu }\) as 
 %
 \begin{align}
 h= \eta^{\mu \nu } h_{\mu \nu } &= \exp(i k_{\beta } x^{\beta } ) \epsilon_{\mu \nu } \eta^{\mu \nu }  \\

@@ -49,6 +49,35 @@ and satisfy
 These are all \emph{exponents} in some power law.
 We use log values since our variables change by orders of magnitude.
 
+We start with  the definition of the entropy differential: \(\dd{Q}\) is not an exact differential but \(\dd{Q} / T = \dd{S}\) is. So, we express it using the first law of thermodynamics: \(\dd{Q} = \dd{E} + P \dd{V}\). 
+We assume the internal energy \(E\) to be a function of the volume \(V\) and of the temperature \(T\), so we will have: 
+%
+\begin{align}
+\dd{E} = \pdv{E}{V} \dd{V} + \pdv{E}{T} \dd{T}
+\,,
+\end{align}
+%
+which we can substitute into the expression for the entropy differential: 
+%
+\begin{align}
+\dd{S} &= \frac{1}{T} \qty(\pdv{E}{V} \dd{V} + \pdv{E}{T} \dd{T} + P \dd{V})  \\
+&= \qty(\frac{1}{T} \pdv{E}{V} + \frac{P}{T}) \dd{V} 
++ \frac{1}{T} \pdv{E}{T} \dd{T}  \\
+&= \pdv{S}{V} \dd{V} + \pdv{S}{T} \dd{T}
+\,,
+\end{align}
+%
+so we have identified the partial derivatives of the entropy. By Schwarz's lemma, we then have the equality: 
+%
+\begin{align}
+\pdv[2]{S}{T}{V} &= \pdv[2]{S}{V}{T}  \\
+\pdv{}{T} \qty(\frac{1}{T} \pdv{E}{V} + \frac{P}{T})&=
+\pdv{}{V} \qty(\frac{1}{T} \pdv{E}{T})
+\,,
+\end{align}
+%
+
+
 The final result we get from manipulations is:
 
 \begin{subequations}

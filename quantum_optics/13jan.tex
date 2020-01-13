@@ -1,0 +1,150 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Mon Jan 13 2020}
+
+The distribution for a thermal source is more irregular than the Poissonian we get for the coherent light. 
+
+Recall: our coherent states are given by 
+%
+\begin{align}
+\ket{\alpha } = \exp(- \frac{1}{2} \abs{\alpha}^2) \sum _{n} \frac{\alpha^{n}}{\sqrt{n!}} \ket{n}
+\,
+\end{align}
+%
+where \(\ket{n}\) are the number eigenstates. 
+
+We can define the displacement operator: 
+%
+\begin{align}
+\hat{D} (\alpha ) = \exp( \alpha \hat{a}^\dag - \alpha^{*} \hat{a})
+\,,
+\end{align}
+%
+which, it can be proven, can give us the state \(\ket{\alpha }\) starting from the vacuum \(\ket{0}\): \(\hat{D} (\alpha ) \ket{0} = \ket{\alpha }\). 
+
+We discuss interactions with an electromagnetic field: we have the interaction term in the Hamiltonian: 
+%
+\begin{align}
+\hat{V}(t) = \int \dd[3]{r} \vec{j} (\vec{r},t) \cdot \hat{A} (\vec{r}, t)
+\,,
+\end{align}
+%
+where \(\hat{A}\) is the operator corresponding to the vector potential, and is given by 
+%
+\begin{align}
+\hat{A} = 
+\,.
+\end{align}
+
+In certain cases, we can only consider the dipole contribution since on the length scales of the problem the field is approximately constant. 
+
+\dots
+
+We can find an expression for \(\alpha \) by integrating a coupling term. 
+The coherent states are not orthonormal: we have 
+%
+\begin{align}
+\braket{\beta }{\alpha } = \exp( \frac{1}{2} \qty(\beta ^{*} \alpha - \beta \alpha^{*} -\abs{\beta -\alpha }^2 ))
+\,,
+\end{align}
+%
+which can never be zero: its square norm is \(\exp(-\abs{\beta- \alpha }^2)\) there are no orthogonal vectors here. Nevertheless, we are in a Hilbert space so we can write a completeness relation, even though we do \emph{not} have a basis. 
+
+We have a distribution in the space of \(\alpha \): it is constrained by the uncertainty principle. We can use \emph{homodyne} detectors to select a quadrature to ``squeeze'' and get more resolution on. \emph{Heterodyne} means we split the signal and use both. 
+
+We can use our QFT of light to solve the problem of the interaction of an EM field with an atom: the transformed Hamiltonian is 
+%
+\begin{align}
+H' = \frac{1}{2m} \qty(\vec{P} + e \vec{A})^2 + V - e \Phi 
+\,,
+\end{align}
+%
+which is an operator equation, even though I omit the hats. 
+
+If we consider both the Hilbert spaces, we will have a transition from an initial state \(\ket{a} \ket{n}\)  to either \(\ket{b} \ket{n+1}\) if a photon is emitted or to \(\ket{b} \ket{n-1}\) if a photon is absorbed. 
+
+We compute the probability amplitudes of these by sandwitching the interaction Hamiltonian. 
+
+The zero-point energy cannot be harvested for a transition: however, spontaneous emission can happen by interaction with the vacuum of the EM field. 
+
+The interaction Hamiltonian is separable: its EM part is either \(\hat{a} \) or \(\hat{a}^\dag\), so we immediately get the result that 
+%
+\begin{align}
+\frac{\abs{\expval{\text{emission}}}^2}{\abs{\expval{\text{absorption}}}^2} = \frac{n+1}{n}
+\,,
+\end{align}
+%
+so emission is slightly more probable. 
+
+In the interaction Hamiltonian we need to consider the actual shapes of the orbitals of the atoms: it is a difficult search. 
+
+\subsection{A crash course in LASER}
+
+For this part, see the Saleh-Teich. 
+
+Let us say we have two states with energies \(E_{1, 2}\) with \(E_2 - E_1 = \hbar \omega \). 
+We can either have emission, absorption or stimulated emission, as we were discussing. 
+
+The dipole term is approximately constant. 
+The probability density of thhe deexcitation is given by 
+%
+\begin{align}
+w_{i} = \frac{\overline{n}  }{t _{\text{sp}}} 
+\,,
+\end{align}
+%
+where \(t _{\text{sp}}\) is such that \(\mathbb{P} = 1 / t _{\text{sp}}\). 
+\todo[inline]{What? what are the units here?}
+
+We'd like to have amplification of the emission between the states 2 and 1: however the emission is always more likely than the absorption, asymptotically they have the same probability. 
+
+The way to solve this is introducing more states: the easy way to do it is to introduce two of them, call them 0 and 3, one below and one above our 1 and 2. These are still excitation states of a certain atom. 
+
+The \emph{pumping} is the temporal and spatial density of the \(0 \to 3\) transitions, then the state descends through 2, 1, and finally 0. 
+
+We need to choose the atom appropriately, with a good probability of the atom absorbing the pumping, and a high probability of doing \(3 \to 2\). The \(2 \to 1\) transition must have a reasonably low probability. 
+Neodymium is a good candidate. For it, the characteristic time of state \(2\) is of the order of the hundreds of \SI{}{\micro \second}. 
+
+Recall the law of Boltzmann statistics: 
+%
+\begin{align}
+\frac{N_2 }{N_1 } = \exp(-\frac{E_2 - E_1 }{k_B T})
+\,.
+\end{align}
+
+The construction we made creates an \emph{inversion} of this population: the population of state \(2\) becomes larger than that of state \(1\). 
+
+We are interested in \(N = N_2 - N_1 \): in the thermodynamical equilibrium case this is almost \(-N_1 \) since \(N_2 \) is negligible. 
+In our case, instead, it becomes \(N = W t _{\text{sp}}\). 
+
+It is useful to introduce the concept of \emph{optical gain}: 
+let's say we have a cavity of length \(d\), then the frequency corresponding to the lowest mode is \(\nu_{f} = c / 2d \) and we can consider modes like \(\nu = q \nu_{f}\). 
+
+The number flux is 
+%
+\begin{align}
+\Phi = \frac{I}{h \nu }
+\,,
+\end{align}
+%
+where \(I\) is the light intensity; 
+ we are interested in \(\dv*{\Phi }{z}\), where \(z \) is the coordinate along our cavity. 
+ It will look like: 
+ %
+ \begin{align}
+ \dv{\Phi }{z} = \gamma(\nu ) \Phi(z) 
+ \,,
+ \end{align}
+ %
+where \(\gamma = N \sigma (\nu )\), \(N\) being the one from above, \(N_2 - N_1 \). If this is positive, then we have optical gain. 
+
+We want our laser to create a \emph{ray} of light: this is not trivial, the simplest thing is to create a cavity where one of the mirrors actually has a non-1 reflectivity, so that a certain portion of light escapes. 
+
+This can be summarized with the average permanence time of a photon in the cavity: 
+if the intensity in terms of the position looks like \(I(z)= I_0 \exp(-\alpha_{r} z)\) for some coefficient \(\alpha_{r}\), then we can also write \(\alpha_{r} = 1 / c \tau \), where we introduced the characteristic time \(\tau \).  
+
+The rule will then be \(\gamma > \alpha_{r}\): if this is the case, then the radiation is amplified more than it gets out. 
+If this is not the case, we basically have a thermal source. 
+
+\end{document}

@@ -77,35 +77,132 @@ so we have identified the partial derivatives of the entropy. By Schwarz's lemma
 \begin{align}
 \pdv[2]{S}{T}{V} &= \pdv[2]{S}{V}{T}  \\
 \pdv{}{T} \qty(\frac{1}{T} \pdv{E}{V} + \frac{P}{T})&=
-\pdv{}{V} \qty(\frac{1}{T} \pdv{E}{T})
+\pdv{}{V} \qty(\frac{1}{T} \pdv{E}{T})  \\
+\frac{1}{T} \qty(\cancelto{}{\pdv[2]{E}{T}{V}} + \pdv{P}{T} ) 
+- \frac{1}{T^2} \qty(\pdv{E}{V} + P) &=
+\cancelto{}{\frac{1}{T} \pdv[2]{E}{V}{T}}  \\
+ \pdv{E}{V} &= T \pdv{P}{T} - P 
 \,,
 \end{align}
 \end{subequations}
 %
+but we can turn the derivatives with respect to \(V\) with ones with respect to \(\rho \propto V^{-1}\), by 
 %
-\boxalign{
-\begin{subequations}
 \begin{align}
- &this \\
- &that
+\pdv{}{V} = \pdv{\rho }{V} \pdv{}{\rho } = - \rho^2 \pdv{}{\rho }
 \,,
 \end{align}
-\end{subequations}}
+%
+so after dividing through by \(\rho \) we find: 
+%
+\begin{align}
+\rho \pdv{E}{\rho } &= -\frac{T}{\rho } \pdv{P}{T} + \frac{P}{\rho }  \\
+&= - \frac{P}{\rho } \pdv{\log P }{\log T} + \frac{P}{\rho }  \\
+\rho \pdv{E}{\rho }&= - \frac{P}{\rho } \qty(\pdv{\log P }{\log T} -1 )  \\
+\pdv{E}{\log \rho }&= -\frac{P}{\rho } \qty(\chi_{T} - 1)
+\,.
+\end{align}
+%
+
+We used the fact that 
+%
+\begin{align}
+\pdv{}{\log x} = \pdv{x}{\log x} \pdv{}{x}= x \pdv{}{x} 
+\,.
+\end{align}
+
+Now, we can write the first law of thermodynamics for the specific energy density \(E(\rho, T)\): 
+%
+\begin{align}
+\dd{Q} &= \dd{E} - \frac{P}{\rho^2} \dd{\rho }  \label{eq:heat-differential}\\
+&= \pdv{E}{\log \rho } \dd{\log \rho } 
++ \pdv{E }{\log T} \dd{\log T} - \frac{P}{\rho}  \dd{\log \rho }  \\
+&= \qty(- \frac{P}{\rho } \qty(\chi_{T} -1) - \frac{P}{\rho }) \dd{\log \rho } + \pdv{E}{\log T} \dd{\log T}  \\
+&= - \frac{P \chi_T }{\rho } \dd{\log \rho } + \pdv{E}{\log T} \dd{\log T} 
+\,,
+\end{align}
+%
+which in the adiabatic (\(\dd{Q} = 0\)) case reduces to 
+%
+\begin{align}
+\Gamma_3 - 1 \overset{\text{def}}{=} \pdv{\log T }{\log \rho } &= - \frac{P \chi_{T}  }{\rho } \pdv{\log T}{E} = - \frac{P \chi_T }{\rho T c_V}  \\
+&=- \frac{1}{\rho } \times \underbrace{\frac{P \chi_T}{T}}_{\pdv{P}{T}} \times \underbrace{\frac{1}{c_V}}_{\pdv{T}{E}}  \\
+&= - \frac{1}{\rho } \pdv{P}{E}
+\,,
+\end{align}
+%
+where we used the fact that \(c_V = \pdv*{E}{T}\). This can also be written as 
+%
+\begin{align}
+\pdv{E}{P} = \frac{1}{\rho (\Gamma_3 -1)}
+\,.
+\end{align}
+
+If we drop the hypothesis of adiabaticity, we can study the variation with respect to time of \(Q\), both when writing \(E = E(\rho , T)\) and when writing \(E = E(\rho , P)\). 
+In the first case we can use equation \eqref{eq:heat-differential}, ``dividing through by \(\dd{t}\)'' (more formally, applying the differential covector equation to the vector \(\partial_{t}\)), after some manipulation we can bring out a factor \(T \pdv*{E}{T}\) to get: 
+%
+\begin{align} \label{eq:heat-variation-temperature-dependence}
+\dv{Q}{t} = T \pdv{E}{T} \qty(\dv{\log T}{t} + \frac{\rho \pdv{E}{\rho } - \frac{P}{\rho }}{T \pdv{E}{T}} \dv{\log \rho }{t})
+\,,
+\end{align}
+%
+and similarly if we express \(E = E(\rho, P)\) we find 
+%
+\begin{align}\label{eq:heat-variation-pressure-dependence}
+\dv{Q}{t} = P \pdv{E}{P} \qty(\dv{\log P}{t} + \frac{\rho \pdv{E}{\rho } - \frac{P}{\rho }}{P \pdv{E}{P}} \dv{\log \rho }{t})
+\,.
+\end{align}
+
+We can simplify these two expressions by recalling some results from before, plus two more expression we now derive for the coefficients \(\Gamma_1\) and \(\Gamma_3 -1\): we assume adiabaticity, and get
+%
+\begin{align}
+0=\dd{S} &= \frac{1}{T} \qty(\pdv{E}{\rho } \dd{\rho } + \pdv{E}{P } \dd{P} - \frac{P}{\rho^2} \dd{\rho })  \\
+0&= \qty(\rho \pdv{E}{\rho } - \frac{P}{\rho } ) \dd{\log \rho }   + P \pdv{E}{P} \dd{\log P}  \\
+\Gamma_1 = \left. \dv{\log P}{\log \rho } \right\vert_{\text{ad}} &= \frac{\frac{P}{\rho } - \rho \pdv{E}{\rho }}{P \pdv{E}{P}}
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+0 = \dd{S} &= \frac{1}{T} \qty(\pdv{E}{\rho } \dd{\rho } + \pdv{E}{T} \dd{T} - \frac{P}{\rho^2} \dd{\rho })  \\
+0&= \qty(\rho \pdv{E}{ \rho } - \frac{P}{\rho }) \dd{\log \rho } + T \pdv{E}{T} \dd{\log T}  \\
+\Gamma_3 -1 = \left. \dv{\log T}{\log \rho } \right\vert_{\text{ad}} &= \frac{\frac{P}{\rho } - \rho \pdv{E}{\rho }}{T \pdv{E}{T}}
+\,,
+\end{align}
 %
 
 
-The final result we get from manipulations is:
+The identifications are: 
+%
+\begin{align}
+\dv{Q}{t} = T \underbrace{\pdv{E}{T}}_{c_V} \qty(\dv{\log T}{t} + \underbrace{\frac{\rho \pdv{E}{\rho } - \frac{P}{\rho }}{T \pdv{E}{T}}}_{- (\Gamma_3 - 1) } \dv{\log \rho }{t})
+\,,
+\end{align}
+%
+and
+%
+%
+\begin{align}
+\dv{Q}{t} = P \underbrace{\pdv{E}{P}}_{1/ \rho (\Gamma_3 -1)} \qty(\dv{\log P}{t} + \underbrace{\frac{\rho \pdv{E}{\rho } - \frac{P}{\rho }}{P \pdv{E}{P}}}_{- \Gamma_1 } \dv{\log \rho }{t})
+\,.
+\end{align}
 
+Finally, we substitute in the equation of energy conservation: 
+%
+\begin{align}
+\dv{Q}{t} = \varepsilon_{\text{eff}} - \pdv{L}{m}
+\,,
+\end{align}
+%
+to find the equations for the evolution of the energy and pressure:
+%
 \begin{subequations}
 \begin{align}
-  \dv{Q}{t}  &= \frac{P}{\rho (\Gamma_3 -1)} \qty(\pdv{\log P }{t} - \Gamma_1\pdv{\log \rho}{t}  )  \\
   \pdv{\log P }{t} &= \Gamma_1 \pdv{\log \rho}{t} + \frac{\rho}{P} (\Gamma_3 - 1) \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  \\
-  \dv{Q}{t} &= c_V T \qty(\pdv{\log T}{t} - (\Gamma_3 - 1) \pdv{\log \rho}{t}) \\
-  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{r} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  
+  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{t} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  
 \end{align}
 \end{subequations}
-
-The second and fourth of these equations substitute our equation of energy conservation.
 
 Say we have a solution for these equations, we look at linear perturbations of them.
 This makes sense: the main solution is basically static on the pulsation time-scales.

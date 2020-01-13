@@ -17,6 +17,9 @@ folder_names = [
 ]
 filenames_regex = "(\\d{2}\\w{3}|\\w{5}\\d{1,2})\\.tex"
 
+def cpars(s):
+    return(s.count('{') == s.count('}'))
+
 def make_subeq_align(filename):
     
     with open(filename, 'r') as f:
@@ -38,12 +41,17 @@ def make_subeq_align(filename):
                 pass
             else:
                 lines[i] = subeq_start + '\n' + lines[i]
-                lines[j] = lines[j] + subeq_end + '\n'
-    
+                if (cpars(lines[j])):
+                    lines[j] = lines[j] + subeq_end + '\n'
+                else:
+                    l = lines[j].split('}')
+                    line = '}'.join(l[:-1])
+                    lines[j] = line + '\n' + subeq_end + '}' + l[-1] + '\n'
+
     with open(filename, 'w') as f:
         f.writelines(lines)
 
 for folder in folder_names:
     for fname in os.listdir(folder):
-        if (re.match(filenames_regex, fname)):
+        if re.match(filenames_regex, fname):
             make_subeq_align(os.path.join(folder, fname))

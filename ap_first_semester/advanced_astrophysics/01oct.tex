@@ -118,28 +118,62 @@ If the gas follows the perfect equation of state
   \frac{P}{\rho} = \frac{k_B}{m_H} \frac{T}{\mu}  \,,
 \end{equation}
 %
-where \(\mu \) is 
-we get
+where \(\mu \) is the average mass of a gas particle in atomic mass units (units of \(m_H\)), so we have \(\rho = \mu N m_H / V\). 
+Substituting this in, we get
 
 \begin{equation}
   v_s^2 = \frac{\Gamma_1 k_B T}{m_H \mu}  \,.
 \end{equation}
 
-Typical values are \(\mu \sim \qty(2X + 3Y/4 + Z/2)^{-2} \sim 0.6\), \(\Gamma_1 = 5/3\), and \(T_{\text{He}} \sim \SI{4.5e4}{K} \).
+The mean molecular weight is calculated taking account of the fact that the electrons appear in the count of particles, but we can neglect their mass: therefore, we get a \(+1\) in the formula. So the value becomes 
+%
+\begin{align}
+\mu = \qty(\sum_{j} \frac{X_j}{A_j} (1+Z_j))^{-1} \approx \qty(2X + 3Y/4 + Z/2)^{-1} \sim 0.6
+\,,
+\end{align}
+%
+where we approximated that for each metal \((1+Z) / A \sim \frac[i]{1}{2} \) and we used the values of the mass fractions of the Sun: \(X =\num{.7381}\), \(Y = \num{.2485}\) and \(Z = \num{.0134}\).\footnote{See \url{https://arxiv.org/abs/0909.0948}} 
+
+Typical values for the other parameters are \(\Gamma_1 = 5/3\), and \(T_{\text{He}} \sim \SI{4.5e4}{K} \).
 
 So we get \(v_s \sim \SI{32.2}{km/s}\).
 
-The timescale is \(\Pi \sim 2R/v_s \sim \SI{22}{d}\), while \(\Pi_{\text{obs}} = \SI{5.336}{d} \), in terms of orders of magnitude it works.
+The timescale for a perturbation to go from one side of the star to the other is \(\Pi \sim 2R/v_s \sim \SI{22}{d}\), while the observed value is \(\Pi_{\text{obs}} = \SI{5.336}{d} \), so in terms of orders of magnitude it works. 
+We could say that from a more thorough analysis we would see that the vibration does not actually go all the way from an edge of the star to the other. 
 
-We can use the equation for the sound speed in the virial theorem, and get:
-
+We can use the equation for the sound speed in the virial theorem, which for a star relates the gravitational potential energy \(\Omega \) to the integral of the pressure:
+%
+\begin{align}
+\Omega  = - 3 \int P \dd{V} = - 3 \int \frac{P}{\rho } \dd{m}
+\,,
+\end{align}
+%
+and substitute in \(P/\rho = v_s^2 / \Gamma_1 \):
+%
 \begin{equation}
-  \Omega = - 3 \frac{\int _{M}  v_s^2 / \Gamma_1 \dd{m}}{\int_M \dd{m}}M = -3 \expval{\frac{v_s^2}{\Gamma_1}} M
+\Omega = - 3 \frac{\int _{M}  v_s^2 / \Gamma_1 \dd{m}}{\int_M \dd{m}}M = -3 \expval{\frac{v_s^2}{\Gamma_1}} M
+\,,
+\marginnote{We multiply and divide by \(M = \int \dd{m}\)}
 \end{equation}
+%
+where the brackets denote an average weighted by the mass distribution. 
 
-If \(\Gamma_1 \) and \(v_s\) are independent, we can compute their averages separately.
+If \(\Gamma_1 \) and \(v_s\) are independent, we can compute their averages separately: we approximate and do this. Then, we can substitute in our expression for the average \(\expval{v_s^2} \sim \expval{v_s}^2\) into \(\Pi \sim 2R / v_s\): we get  
+%
+\begin{align}
+\expval{v_s}^2 = - \frac{\Omega \Gamma_1 }{3M}
+\,,
+\end{align}
+%
+so
+%
+\begin{align}
+\Pi \sim \frac{2R}{\expval{v_s}} = \sqrt{\frac{-4R^2 \times 3M }{\Omega \Gamma_1 }}
+\,,
+\end{align}
+%
 
-This allows us to write \(\Pi  \) wrt the moment of inertia, \(I = \int_r r^2 \dd{m}(r)\):
+This means we are writing the period \(\Pi  \) with respect to something resembling the moment of inertia, \(I = \int_r r^2 \dd{m}(r) \sim R^2M\):
 
 \begin{equation}
   \Pi \sim \qty(\frac{I_{\text{osc}}}{-\Omega} )^{1/2}
@@ -147,27 +181,63 @@ This allows us to write \(\Pi  \) wrt the moment of inertia, \(I = \int_r r^2 \d
 
 This is further evidence that we are dealing with a dynamical phenomenon.
 
-Of course the speed of sound changes throughout the interior of the star.
+We can refine our model: the speed of sound changes throughout the interior of the star.
 We compute the period as the travel time of sound waves throughout the diameter:
 %
 \begin{equation}
   \Pi = 2 \int _{0}   ^{R} \dd{t(r)} = 2 \int_0^R \frac{\dd{r} }{\sqrt{\Gamma_1(r) P(r) / \rho(r)}}\,,
 \end{equation}
 %
-since \(\dd{t} = \dd{r} / v_s\).
+since \(\dd{t} = \dd{r} / v_s\); the factor of 2 comes from the fact that the sound wave must go from one side of the star to the other.
 
-We also rewrite the differential equation for \(P\) substituting \(m=\rho r\). Doing this we get
+We also integrate the hydrostatic balance equation, which reads 
+%
+\begin{align}
+\dv{P}{r} = - \frac{Gm \rho }{r^2} 
+= - \frac{G \rho^2 4 \pi r}{3}
+\,,
+\end{align}
+%
+with respect to \(r\): then we get 
+%
+\begin{align}
+P(r) - \underbrace{P(R)}_{=0} = \int_{R}^{r} \dv{P}{r} \dd{r}  = \frac{2 \pi \rho^2 G}{3} \qty(R^2 - r^2)
+\,,
+\end{align}
+%
+which we can plug into our formula for the period to find: 
+%
+\begin{align}
+\Pi &= 2 \int \dd{r} \qty(\Gamma_1 \frac{P}{\rho })^{-1/2}  \\
+&= 2 \int \dd{r} \qty(\Gamma_1 \frac{2 \pi \rho G}{3} \qty(R^2 - r^2))^{-1/2}  \\
+&= \sqrt{\frac{6}{\Gamma_1 \pi G \overline{\rho}}} \underbrace{\int \frac{ \dd{r}}{\sqrt{R^2- r^2}}}_{\pi /2}  \\
+&= \sqrt{\frac{3 \pi }{2\Gamma_1 G \overline{\rho} }}
+\,,
+\end{align}
+%
+which confirms Ritter's relation \(\Pi \propto \overline{\rho}^{-1/2} \).
+Since the product \(\Pi \overline{\rho}^{1/2}\) is approximately constant, we give it the name 
+%
+\begin{align}
+\mathcal{Q} = \Pi \sqrt{\overline{\rho}} \approx 
+\sqrt{\frac{3 \pi }{2 \Gamma_1 G}} 
+\,.
+\end{align}
 
-\begin{equation}
-  \Pi  \overline{\rho}^{1/2}= \sqrt{\frac{3 \pi}{2 \Gamma_1 G}}
-\end{equation}
+Ritter's relation is consistent with the statement that the period of the oscillations is of the order of the dynamical characteristic time of the star, since 
+%
+\begin{align}
+\tau _{\text{dyn}} = \sqrt{\frac{R^3}{GM}} \qquad \text{while} \qquad \overline{\rho}^{-1/2} \approx \qty(\frac{M}{4 \pi R^3 / 3})^{-1/2} = \sqrt{\frac{4 \pi R^3}{3M}}
+\,.
+\end{align}
 
-Which confirms Ritter's relation \(\Pi \propto \overline{\rho}^{-1/2} \) .
+This gives an estimate of \(\Pi \sim \SI{8.5}{d}\) for a \(\delta \)-Cephei star, which we have to compare to the observed period of \(\Pi _{\text{obs}} = \SI{5.466}{d}\). We have definitely improved our estimate. 
+The prediction of this model is that \emph{dense stars pulstate faster}. 
 
-This works for acoustic modes, but if we consider non-radial g-modes it stops working, such as variables of type ZZ Ceti.
+This works for acoustic modes, such as those found in \(\delta \)-Cephei, \(o\)-Ceti and SX-Phe stars, but if we consider non-radial g-modes such as those found in variables of type ZZ Ceti it stops working. Then, the estimate given by this model can be off by three orders of magnitude. 
 
 \subsection{The energy equations}
 
-Just an overview for now: we will consider the star as a thermodynamic engine.
+
 
 \end{document}

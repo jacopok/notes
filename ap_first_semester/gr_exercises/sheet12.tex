@@ -142,7 +142,7 @@ for the cross polarization. Now, recall that
 \,,
 \end{align}
 %
-and \emph{also} notice that we need to evaluate these expressions for \(x = \alpha \) for \(p=1\) and for \(x = \alpha + \pi /2\) for the other arm. Then, since all the dependence is on trigonometric functions of \emph{two times} \(x\) we must have that the correction on one arm is exactly equal in value and opposite in sign to the correction on the other arm, since the argument of the trigonometric functions changes by \(\pi \) and both sine and cosine are odd under translations of \(\pi \).
+and \emph{also} notice that we need to evaluate these expressions for \(x = \alpha \) for the first arm, with \(p=1\), and for \(x = \alpha + \pi /2\) for the other arm, with \(p=2\). Then, since all the dependence is on trigonometric functions of \emph{two times} \(x\) we must have that the correction on one arm is exactly equal in value and opposite in sign to the correction on the other arm, since the argument of the trigonometric functions changes by \(\pi \) and both sine and cosine are odd under translations of \(\pi \).
 
 This means that in the global expression for \(\Delta T\) we will have twice the same term: then we can collect them, and find 
 %
@@ -151,6 +151,90 @@ This means that in the global expression for \(\Delta T\) we will have twice the
 \,,
 \end{align}
 %
-where \(k\) is the wavenumber / frequency of the gravitational wave, while \(\lambda \) must be integrated from 0 to \(L\), the length of the interferometer arms. The argument 
+where \(k\) is the wavenumber / frequency of the gravitational wave, while \(\lambda \) must be integrated from 0 to \(T\), the length of the interferometer arms. 
+
+The dimensions of the argument of the cosine are \SI{}{m/s}, so in order to make it adimensional we need to divide it by \(c\). The typical order of magnitude of the frequencies of GWs detected at the LIGO/VIRGO detectors is around \(f = \SI{100}{Hz}\), while the length of the arms is around \(T =\SI{4}{km}\). Therefore, the argument of the cosine is bounded by 
+%
+\begin{align}
+\frac{2 \pi f T }{c} \lesssim \frac{\SI{100}{Hz} \times \SI{4}{km}}{c} \approx \num{e-2}
+\,,
+\end{align}
+%
+where we used the relation between frequency and angular velocity: \(k = 2 \pi f\). This is small but not exceedingly small: we can approximate \(\cos(\lambda k ) = \const\) but our predictions will not exceed second-significant-digit accuracy. 
+
+With this approximation, the integral will equal the size of the integration region times the value of the cosine, leaving us with: 
+%
+\begin{align}
+\Delta T = \qty(h_{+} \cos(2 \alpha ) + h_{ \times } \sin(2 \alpha )) T \cos(t k)
+\,,
+\end{align}
+%
+which will vary in time in general, but if the light starts at \(t=0\) then in our approximation the cosine will always equal \(1\).  In the end  then we will be left with: 
+%
+\begin{align}
+\frac{\Delta T}{T} = h_{+} \cos(2 \alpha ) + h_{ \times } \sin(2 \alpha )
+\,.
+\end{align}
+
+\subsubsection{Return trip \(\Delta T / T\)}
+
+If we want to consider the return trip, almost everything will be the same except: 
+\begin{enumerate}
+  \item the starting time and arrival time will change;\label{it:starting-time}
+  \item the unit vectors \(\hat{L}\) will change into \(- \hat{L}\). \label{it:parity}
+\end{enumerate}
+
+Point \ref{it:starting-time} is not a concern if we are in the small frequency approximation: the cosine  will still almost be equal to 1, although the approximation will get a little worse. 
+
+Point \ref{it:parity} is not a concern either: the \(h-\)norm \(\hat{L} \rightarrow h_{ij} \hat{L}^{i} \hat{L}^{j}\) is symmetric, so the norm of a unit vector does not change under parity.
+
+This means that over the time of the return trip a difference \(\Delta T _{\text{return}} = \Delta T _{\text{forward}}\) will be accumulated, so when we calculate \(\Delta T _{\text{total}} / (2T)\) we will get the same result we did with just the forward trip. 
+
+\subsubsection{Exact integration}
+
+We now wish to calculate the time difference without assuming \(k \lambda \) is small. We need to evaluate the integral 
+%
+\begin{align}
+\int_{0}^{T} \cos(\lambda k) \dd{\lambda } 
+= \left. \frac{1}{k} \sin(\lambda k ) \right\vert_{\lambda = 0}^{\lambda = T} = \frac{\sin(Tk)}{k} 
+\,,
+\end{align}
+%
+and, as expected, if \(Tk \sim 0\) then 
+%
+\begin{align}
+\frac{\sin(Tk)}{k} \sim \frac{Tk}{k} = T
+\,.
+\end{align}
+\todo[inline]{Was this the nontrivial integral? maybe I missed something\dots}
+
+So, the proper formula is 
+%
+\begin{align}
+\frac{\Delta T}{T} = 
+\qty(h_{+} \cos(2 \alpha ) + h_{ \times } \sin(2 \alpha ))
+\frac{\sin(Tk)}{k}
+\,.
+\end{align}
+
+This vanishes for all the zeros of \(\sin(Tk)\): for \(k=0\) this is expected (there is no gravitational wave) but it is weird for \(Tk = n \pi \), \(n \in \mathbb{N} \setminus \qty{0}\). 
+
+Let us look at the first weird case: \(Tk = \pi \) to get an idea. 
+
+In that case, we have \(k =  \pi / T \), so the frequency of the GW is \(f = k / 2 \pi  =  1/ 2 T\). 
+
+Since gravitational waves travel at velocity 1, we have \(f P = 1\), where \(f\) and \(P\) are respectively the period and frequency of the GW. 
+This means that, in the case we are considering, the wavelength of the GW is precisely equal to twice the length of the interferometer's arm, since we found \(P = 2T\). 
+
+More generally, we will have \(k = n \pi /T\)
+%
+\begin{align}
+P = \frac{1}{f} = \frac{2 \pi }{k} = \frac{2 \pi T}{n \pi } = \frac{2T}{n}
+\,,
+\end{align}
+%
+and we have proven that at precisely those frequencies the gravitational wave will have a vanishing net effect, since it will go through precisely \(n\) cycles during the beam's trajectory. 
+
+The factor of 2 is \emph{probably} connected with the spin-2 nature of gravitons (i.\ e.\ the fact that they are symmetric under rotations of \(\pi \) around the wavevector).
 
 \end{document}

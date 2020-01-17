@@ -192,49 +192,48 @@ This means that over the time of the return trip a difference \(\Delta T _{\text
 
 \subsubsection{Exact integration}
 
-We now wish to calculate the time difference without assuming \(k \lambda \) is small. We need to evaluate the integral 
+We now wish to calculate the global time difference without assuming \(k \lambda \) is small. As we saw before the contributions for the forward and backward journeys are the same, so we need to evaluate the integral 
 %
 \begin{align}
-\int_{0}^{T} \cos(\lambda k) \dd{\lambda } 
-= \left. \frac{1}{k} \sin(\lambda k ) \right\vert_{\lambda = 0}^{\lambda = T} = \frac{\sin(Tk)}{k} 
+\int_{0}^{2T} \cos(\lambda k) \dd{\lambda } 
+= \left. \frac{1}{k} \sin(\lambda k ) \right\vert_{\lambda = 0}^{\lambda = 2T} = \frac{\sin(2Tk)}{k} 
 \,,
 \end{align}
 %
 and, as expected, if \(Tk \sim 0\) then 
 %
 \begin{align}
-\frac{\sin(Tk)}{k} \sim \frac{Tk}{k} = T
+\frac{\sin(2Tk)}{k} \sim \frac{2Tk}{k} = 2T
 \,.
 \end{align}
-\todo[inline]{Was this the nontrivial integral? maybe I missed something\dots}
 
 So, the proper formula is 
 %
 \begin{align}
-\frac{\Delta T}{T} = 
+\frac{\Delta T}{2T} = 
 \qty(h_{+} \cos(2 \alpha ) + h_{ \times } \sin(2 \alpha ))
-\frac{\sin(Tk)}{k}
+\frac{\sin(2Tk)}{2k}
 \,.
 \end{align}
 
-This vanishes for all the zeros of \(\sin(Tk)\): for \(k=0\) this is expected (there is no gravitational wave) but it is weird for \(Tk = n \pi \), \(n \in \mathbb{N} \setminus \qty{0}\). 
+This vanishes for all the zeros of \(\sin(2Tk)\): for \(k=0\) this is expected (there is no gravitational wave) but it is weird for \(2Tk = n \pi \), \(n \in \mathbb{N} \setminus \qty{0}\). 
 
-Let us look at the first weird case: \(Tk = \pi \) to get an idea. 
+Let us look at the first weird case: \(2Tk = \pi \) to get an idea. 
 
-In that case, we have \(k =  \pi / T \), so the frequency of the GW is \(f = k / 2 \pi  =  1/ 2 T\). 
+In that case, we have \(k =  \pi / 2T \), so the frequency of the GW is \(f = k / 2 \pi  =  1/ 4 T\). 
 
-Since gravitational waves travel at velocity 1, we have \(f P = 1\), where \(f\) and \(P\) are respectively the period and frequency of the GW. 
-This means that, in the case we are considering, the wavelength of the GW is precisely equal to twice the length of the interferometer's arm, since we found \(P = 2T\). 
+Since gravitational waves travel at velocity 1, we have \(fP = 1\), where \(f\) and \(P\) are respectively the period and frequency of the GW. 
+This means that, in the case we are considering, the wavelength of the GW is precisely equal to twice the length of the interferometer's arm, since we found \(P = 4T\). 
 
-More generally, we will have \(k = n \pi /T\)
+More generally, we will have \(k = n \pi /2T\)
 %
 \begin{align}
-P = \frac{1}{f} = \frac{2 \pi }{k} = \frac{2 \pi T}{n \pi } = \frac{2T}{n}
+P = \frac{1}{f} = \frac{2 \pi }{k} = \frac{4 \pi T}{n \pi } = \frac{4T}{n}
 \,,
 \end{align}
 %
 and we have proven that at precisely those frequencies the gravitational wave will have a vanishing net effect, since it will go through precisely \(n\) cycles during the beam's trajectory. 
 
-The factor of 2 is \emph{probably} connected with the spin-2 nature of gravitons (i.\ e.\ the fact that they are symmetric under rotations of \(\pi \) around the wavevector).
+% The factor of 2 is \emph{probably} connected with the spin-2 nature of gravitons (i.\ e.\ the fact that they are symmetric under rotations of \(\pi \) around the wavevector).
 
 \end{document}

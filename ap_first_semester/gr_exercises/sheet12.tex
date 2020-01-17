@@ -1,0 +1,156 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 12}
+
+\subsection{Gravitational wave detection}
+
+\subsubsection{Linear order edges stationarity}
+
+We consider a perturbed metric  \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }\), and we denote as \(h\) the perturbative order in the correction to the Minkowski metric (\emph{not} the trace of \(h_{\mu \nu }\), which is gauge-dependent and usually set to zero). 
+
+We take a test mass in Minkowski spacetime, and we choose a coordinate system such that at a certain starting time \(\tau_0 \) this point is stationary, so at this time \(u^{\mu }(\tau = \tau_0  ) = u^{\mu }_{0} = [1, \vec{0}]^{\top}\) for this mass.
+
+At a following time the gravitational wave arrives, and perturbs the test mass: the mass, by following geodesic motion with respect to the perturbed metric, will move with respect to the coordinates. This is described by the geodesic equation 
+%
+\begin{align} \label{eq:geodesic-equation}
+u^{\nu } \nabla_{\nu } u^{\mu } = \dv{ u^{\mu } }{\tau } + \Gamma^{\mu }_{\alpha \beta } u^{\alpha } u^{\beta } = 0
+\,.
+\end{align}
+
+We want to prove that, in our gauge, the test mass does not acquire velocity to linear order in \(h\). 
+First of all, to zeroth order in \(h\) the mass is in a Minkowski spacetime so, the Christoffel symbols are all zero and it does not move. In fact, the Christoffel symbols are made up of terms of the form \(\Gamma \sim g^{-1} \partial g = g^{-1} \partial h\), which is  \(\mathcal{O}(h)\) at least. 
+The velocity, on the other hand, is nonzero at linear order: \(u^{\mu } = u^{\mu }_{0} + \mathcal{O}(h)\).
+
+We wish to consider equation \eqref{eq:geodesic-equation} to linear order; more specifically we are interested in the second term \(\Gamma^{\mu }_{\alpha \beta } u^{\alpha } u^{\beta }\), which defines the time evolution of the 4-velocity. For this to be first order the velocity must be considered only to constant order, since the Christoffel symbols are already first order. 
+
+Therefore we are left with 
+%
+\begin{align}
+\dv{ u^{\mu }}{\tau } &= - \Gamma^{\mu }_{\alpha \beta } u^{\alpha }_{0} u^{\beta }_{0} = - \Gamma^{\mu }_{00} \\
+&= - \frac{1}{2} \eta^{\mu \nu } \qty(2h_{\nu  0, 0} + h_{00,\nu }) = 0 \marginnote{The inverse metric must be considered only to constant order, otherwise the term is second order}
+\,,
+\end{align}
+%
+which vanishes because, in our gauge, \(h_{\mu 0} = 0\) for all \(\mu \). 
+
+\subsubsection{Linear order gravitational wave \(\Delta T / T\)}
+
+We consider a gravitational wave 
+%
+\begin{align}
+h_{ij} (t, \vec{x}) = \cos(kt - \vec{k} \cdot \vec{x}) \sum _{r = \times , +} e_{ij}^{r} h_{r}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+e_{ij}^{+} = \left[\begin{array}{cc}
+1 &  0 \\ 
+0 & -1
+\end{array}\right] \qquad \text{and} \qquad
+e_{ij}^{ \times } = \left[\begin{array}{cc}
+0 & 1 \\ 
+1 & 0
+\end{array}\right]
+\,
+\end{align}
+%
+and \(\vec{k}^2 = k^2\). In principle the cosine could have an arbitrary phase added to the argument, but we set it to zero for simplicity. 
+Also, we set \(\vec{k} = k \hat{z}\). 
+
+Our interferometer configuration is as follows at order \(h^{0}\): we have the beamsplitter at coordinates \(\vec{B} = [0,0,0]^{\top}\) and the two mirrors at coordinates \(\vec{M}_{1} = T [\cos(\alpha ), \sin(\alpha ),0]^{\top} T \hat{L}_{1}\) and \(\vec{M}_{2} = T [ \cos(\alpha + \pi /2), \sin(\alpha + \pi /2),0]^{\top} = T \hat{L}_{2}\), for some angle \(\alpha \): this means that the arms are orthogonal and at a certain angle with respect to the incoming gravitational wave's basis axes. 
+We also defined some basis vectors aligned along the interferometer's arms. 
+
+We start off two beams of light at the beamsplitter at \(t=0\), and see how much time they each take to reach their respective mirrors. If these are the times \(T_{1,2}\) we then define \(\Delta T = \abs{T_1 - T_2 }\) and compute \(\Delta T / T\). 
+
+Photons' trajectories are defined by \(\dd{s^2} = 0\): so, if we parametrize a photon trajectory by \(x^{\mu }_{p} (\lambda ) = \lambda [1, \hat{L}_{p}]^{\top}\) (for \(p = 1, 2\)) this means that the photon's 4-velocity is 
+%
+\begin{align}
+u^{\mu }_{p} = \dv{}{\lambda } x^{\mu }_{p}(\lambda ) = [1, \hat{L}_{p}]
+\,,
+\end{align}
+%
+so if we assume the 4-velocity is normalized in the perturbed metric we find
+%
+\begin{align}
+0=\dd{s^2} &= - \dd{t_{p}^2} + \qty(\delta_{ij} + h_{ij}) \hat{L}^{i}_{p} \hat{L}^{j}_{p} \dd{\lambda^2}   \marginnote{\(\hat{L}\) is a unit vector}[.5cm]\\
+\dd{t_{p}^2}  &= \qty(1 + h_{ij} \hat{L}^{i}_{p} \hat{L}^{j}_{p}) \dd{\lambda^2}  \\
+\dd{t_{p}}  &= \sqrt{1 + h_{ij} \hat{L}^{i}_{p} \hat{L}^{j}_{p}} \dd{\lambda} \approx \qty(1 + \frac{1}{2} \abs{\hat{L}_{p}}_{h}^2) \dd{\lambda } 
+\,,
+\end{align}
+%
+where by \(\abs{\hat{L}_{p}}_{h}\) we mean the norm of the vector \(\hat{L}\) taken with respect to the bilinear form \(h_{ij}\). 
+
+Now, we can compute the integral giving us the total time: 
+%
+\begin{align}
+T_{p} &= \int \dd{t_{p}}  \\
+&\approx \int \qty(1 + \frac{1}{2} \abs{\hat{L}_{p}}_{h}^2) \dd{\lambda }  \\
+&= T + \frac{1}{2} \int \dd{\lambda } \cos(kt-\vec{k}\cdot \vec{x})  \qty(\sum_{r} e^{r}_{ij} h_{r} )\hat{L}^{i}_{p}\hat{L}^{j}_{p}
+\,,
+\end{align}
+%
+where \(t\) and \(\vec{x}\) are to be considered as functions of \(\lambda \): \(t=\lambda \) and \(\vec{x} = \hat{L}_{p} \lambda \), but by what we have assumed \(\vec{k} \cdot \vec{x} =0\) since the gravitational wave is perpendicular to the interferometer's plane. 
+
+Before assuming anything else, let us compute the bilinear form contribution. For brevity we will denote a cosine as \(c\) and a sine as \(s\). Then, for both \(p =1\) and \(p=2\) we will have: 
+%
+\begin{align}
+e_{ij}^{+} \hat{L}^{i}_{p} \hat{L}^{j}_p 
+= \left[\begin{array}{ccc}
+c & s & 0
+\end{array}\right] 
+\left[\begin{array}{ccc}
+1 & 0 & 0 \\ 
+0 & -1 & 0 \\ 
+0 & 0 & 0
+\end{array}\right] 
+\left[\begin{array}{c}
+c \\ 
+s \\ 
+0
+\end{array}\right]= c^2- s^2 
+\,
+\end{align}
+%
+for the plus polarization, and 
+%
+\begin{align}
+e_{ij}^{ \times } \hat{L}^{i}_{p} \hat{L}^{j}_p 
+= \left[\begin{array}{ccc}
+c & s & 0
+\end{array}\right] 
+\left[\begin{array}{ccc}
+0 & 1 & 0 \\ 
+1 & 0 & 0 \\ 
+0 & 0 & 0
+\end{array}\right] 
+\left[\begin{array}{c}
+c \\ 
+s \\ 
+0
+\end{array}\right]= 2cs
+\,
+\end{align}
+%
+for the cross polarization. Now, recall that 
+%
+\begin{align}
+\cos^2 x - \sin^2 x = \cos(2x) \qquad \text{and} \qquad
+2 \sin x \cos x = \sin (2 x)
+\,,
+\end{align}
+%
+and \emph{also} notice that we need to evaluate these expressions for \(x = \alpha \) for \(p=1\) and for \(x = \alpha + \pi /2\) for the other arm. Then, since all the dependence is on trigonometric functions of \emph{two times} \(x\) we must have that the correction on one arm is exactly equal in value and opposite in sign to the correction on the other arm, since the argument of the trigonometric functions changes by \(\pi \) and both sine and cosine are odd under translations of \(\pi \).
+
+This means that in the global expression for \(\Delta T\) we will have twice the same term: then we can collect them, and find 
+%
+\begin{align}
+\Delta T = \qty(h_{+} \cos(2 \alpha ) + h_{ \times } \sin(2 \alpha )) \int \dd{\lambda } \cos(\lambda k)
+\,,
+\end{align}
+%
+where \(k\) is the wavenumber / frequency of the gravitational wave, while \(\lambda \) must be integrated from 0 to \(L\), the length of the interferometer arms. The argument 
+
+\end{document}

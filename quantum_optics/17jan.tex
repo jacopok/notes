@@ -1,0 +1,95 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section*{Fri Jan 17 2020}
+
+Dialogue: ``take a photon''. 
+
+Nonlinear crystals: in general the formula for the polarization vector in terms of the electric field looks like 
+%
+\begin{align}
+P_{i} = \chi_{ij}^{(1)} E_{j} + \chi_{ijk}^{(2)} E_{j} E_{k} + \dots
+\,,
+\end{align}
+%
+with \(\chi^{(m)}\) being the \(m\)-th order susceptibility tensor: the linear susceptibility is what the basic index of refraction is based on, but the higher order interactions allow for interesting effects. 
+
+For example, green laser pointer start off with an infrared light, and then cuts the frequency in half. 
+
+An atom is ionized, the free electron is accelerated by the light's electric field (thus, it absorbs photons), and then it is reabsorbed. 
+
+This practically allows for up-conversion of low-frequency light.
+
+Typo in formula D4: the \(E^{(+)}\) is the one with the creation operator. 
+
+The photon going straight is the ``pump'' photon, the other two nonlinear photons are the ``idler'' and ``signal''. 
+
+Typical rates of production: \num{e-7} to \num{e-11}.
+
+The process is called \emph{Spontaneous Parametric Down-Conversion}.
+
+In type-1 SPDC we have the same polarization, and a cone is emitted. In type-2 SPDC they have orthogonal polarizations: then they perceive different susceptibility tensors, and two different cones of light are emitted. 
+The intersection of the two cones are those in which we have polarization entangled light. 
+
+With some weird second-quantization notation we can write the Bell state 
+%
+\begin{align}
+\ket{\psi } = \frac{1}{\sqrt{2}} \qty(\ket{H}_{s} \ket{V}_{i} + \ket{V}_{s} \ket{H}_{i})
+\,,
+\end{align}
+%
+where \(s\) and \(i\) denote signal and idler, while \(H\) and \(V\) denote horizontal and vertical polarizations. 
+
+Schrödinger: unlike the classical case, knowledge of a full system does \emph{not} come from the knowledge of all its parts. 
+
+What is the quantum mechanical description of a beam splitter? 
+It does \emph{not} work to multiply the transmission and reflection coefficients by annihilation operators. 
+The actual operatorial description must describe all of the four sides of the BS: we will have a 
+%
+\begin{align}
+\left[\begin{array}{c}
+\hat{a}_{2}  \\ 
+\hat{a}_{3}
+\end{array}\right] = 
+M \left[\begin{array}{c}
+\hat{a}_0  \\ 
+\hat{a}_{1}
+\end{array}\right]
+\,,
+\end{align}
+%
+with \(M\) being a unitary matrix: 
+%
+\begin{align}
+M = \exp(i \frac{\pi}{4} \qty(\hat{a}^\dag_{0} \hat{a}_{1} + \hat{a}_{0} \hat{a}_{1}^\dag))
+\,,
+\end{align}
+%
+so the process is coherent. So, if we send a state \(\ket{01}\) (in the Hilbert space of photons going right, down before the BS) to the BS it returns 
+%
+\begin{align}
+\frac{1}{\sqrt{2}} \qty(i \ket{10} + \ket{01})
+\,
+\end{align}
+%
+in the space of photons going right, down after the BS. 
+For coherent states we have 
+%
+\begin{align}
+\ket{0 \alpha }  \rightarrow \ket{i \frac{\alpha}{\sqrt{2}}} \otimes \ket{\frac{\alpha}{\sqrt{2}}}
+\,,
+\end{align}
+%
+so there is no entanglement. 
+If we send in  two photons, one from up and one from the left, we will always find two photons coming out to the right or downwards. The non-interactions between the photons and the BS destructively interfere. 
+
+The photons must arrive ``at the same time'' for this: the time difference must be small compared to the coherence time of the beam, the time before which the waves have a \emph{phase jump}.  
+%
+\begin{align}
+R _{\text{coincidences}} = 1 - \exp(- (\Delta \omega )^2 (t-t_0 )^2)
+\,,
+\end{align}
+%
+an inverse Gaussian: \(\Delta \omega \) is the \emph{bandwidth} and it gives the inverse of the std of the gaussian. 
+
+\end{document}

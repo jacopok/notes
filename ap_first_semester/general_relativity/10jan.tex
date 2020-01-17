@@ -172,31 +172,31 @@ We need to compute the following products:
 %
 \begin{subequations}
 \begin{align}
-\hat{L}_{12}^{\top} e_{+} \hat{L}_{12} &= \cos^2\alpha - \sin^2\alpha =  2\cos(2 \alpha )
+\hat{L}_{12}^{\top} e_{+} \hat{L}_{12} &= \cos^2\alpha - \sin^2\alpha = \cos(2 \alpha )
 \\
 \hat{L}_{12}^{\top} e_{ \times } \hat{L}_{12} &= 2 \sin \alpha \cos \alpha = \sin(2 \alpha )
 \,,
 \end{align}
 \end{subequations}
 %
-and similarly for \(\hat{L}_{13} \), where we can substitute \(\alpha \rightarrow \alpha + \pi /2\). The factors of \(2\) simplify, so we get 
+and similarly for \(\hat{L}_{13} \), where we can substitute \(\alpha \rightarrow \alpha + \pi /2\). We get: 
 %
 \begin{subequations}
 \begin{align}
-\frac{\Delta T}{T} &= \cos(kt - \vec{k} \cdot \vec{x}) 
+\frac{\Delta T}{T} &= \frac{1}{2} \cos(kt - \vec{k} \cdot \vec{x}) 
 h_{+}\qty(  \qty(\cos(2 \alpha ) - \cos(2 \alpha  + \pi ))) + 
 h_{ \times } \qty(  \qty(\sin(2 \alpha ) - \sin(2 \alpha  + \pi )))  \\
 &= \cos(kt - \vec{k} \cdot \vec{x}) \qty(
 h_{+}\cos(2 \alpha ) + 
-h_{\times} \sin(2 \alpha ))
-\,.
+h_{\times} \sin(2 \alpha )) \marginnote{Simplified factors of 2}
+\,,
 \end{align}
 \end{subequations}
+%
+where we used the fact that \(\cos(x + \pi ) = - \cos(x)\) and similarly for the sine.
 
 So, this is a \(\mathcal{O}(h)\) effect, with \(h \sim \num{e-21}\), which means \(\Delta L  \sim \SI{4}{km} \times \num{e-21} \sim \SI{4e-18}{m}\). 
 
 The fact that we have many photons in the laser helps, and the fact that they bounce several times also does. 
-
-\todo[inline]{Check factors of 2, something seems off}
 
 \end{document}

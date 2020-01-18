@@ -142,18 +142,29 @@ We can choose this basis so that \(e^{i} e_{j}\) (the \(i\)-th basis \emph{linea
 Then, we can calculate what the transformation \(\vec{w}\) applied to the vector \(\vec{v}\) looks like: it is 
 %
 \begin{align}
-w_{i} e^{i} v^{j} e_{j} = w_{i} v^{j} \delta 
+w_{i} e^{i} v^{j} e_{j} = w_{i} v^{j} \delta_{j}^{i} = w_{i} v^{i}
+\,.
+\end{align}
+
+Note that all of this is basis-independent, and also independent of the metric: we are \emph{not} calculating a scalar product, but instead applying a linear transformation to a vector. 
+
+Recall: we are transforming the basis vectors \(e_{i}\) by rescaling them by a factor 2: so, what must the transformation law for the basis dual vectors \(e^{i} \) be if we want to preserve the property \(e_{j} e^{i} = \delta^{i}_{j}\)?
+The twos must simplify, so the transformation law we need is \(e^{i} \rightarrow e^{i} / 2\). 
+Therefore, since we want the covector to stay the same, that is 
+%
+\begin{align}
+\vec{w} = w_{i} e^{i} \overset{!}{=} w^{\prime }_{i} e^{\prime i}
 \,,
 \end{align}
 %
+the transformed components \(w_{i}^{\prime }\) of the dual vector must be \(w^{\prime }_{i} = 2 w_{i}\). 
 
-
-Since, as we said at the beginning, we are working in an Euclidean space with a metric
+This is the meaning of the terms co- and contra-variant: the co-variant vectors (or dual vectors) transform \emph{like} the basis vectors \(e_{i}\), while the contra-variant vectors trasform \emph{in the opposite way} as the basis vectors \(e_{i}\). 
 \end{bluebox}
 
-We will write our laws as tensorial equations, which are covariant.
+We will write our laws as tensorial equations, which are covariant (which, in this context, means that the law has the exact same form in every reference frame).
 
-By pseudo-orthogonality, the scalar product \(A_\mu B^\mu\) is a covariant (that is, invariant) scalar. Of course it is equal to \(A^\mu B_\mu\).
+By pseudo-orthogonality, the scalar product \(A_\mu B^\mu = A^{\nu } g_{\mu \nu } B^{\mu }\) is a covariant (that is, invariant) scalar. The metric can act on either side, so it is equal to \(A^\mu B_\mu\).
 
 \begin{definition}[Tensor]
     A \((p, q)\) \emph{tensor} is an object \(M_{\mu_1 \dots \mu_p}^{\nu_1 \dots \nu_q}\) with many components indexed by \(p+q\) indices, which transforms as:

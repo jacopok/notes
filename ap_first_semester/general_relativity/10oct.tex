@@ -30,8 +30,8 @@ They are covariant!
 
 In Newtonian mechanics, the motion of a particle is described by a function of time \(x^{i} = x^{i}(t)\).
 
-In special relativity, we introduce the concept of \emph{worldline}.
-It must be parametrized with respect to some parameter \(\lambda\), such that \(x^{\mu} = x^{\mu}(\lambda)\). A preferred choice for \(\lambda\) is the proper time of the particle, \(\lambda = \tau\).
+In special relativity, we introduce the concept of \emph{worldline} of a particle: the one-dimensional set of spacetime events in which the particle is found.
+It must be parametrized with respect to some parameter \(\lambda\), such that \(x^{\mu} = x^{\mu}(\lambda)\). A preferred choice for \(\lambda\) is the proper time of the particle, \(\lambda = \tau\), which is defined by \( \dd{s^2} = - \dd{\tau^2}\). 
 
 We then define the 4-velocity:
 %
@@ -48,16 +48,16 @@ Multiplying \(u^\mu u_{\mu}\) we always get \(-c^{2}\), since:
 \end{equation}
 
 
-We can make the expression explicit using \(\dd{\tau} = \gamma \dd{t}\), which gives us \(u^{\mu} = (\gamma c, \gamma v^{i})\).
-In the frame of the particle, \(u^{\mu} = (c, 0)\).   
+We can make the expression of the 4-velocity explicit using \(\dd{\tau} = \gamma \dd{t}\), which gives us \(u^{\mu} = (\gamma c, \gamma v^{i})\).
+In the frame of the particle the particle is not moving, therefore \(u^{\mu} = (c, 0)\).   
 
-The \emph{four-momentum} of a particle is defined as: 
+The \emph{four-momentum} of a massive particle with mass \(m\) is defined as: 
 
 \begin{equation}
   p^{\mu} = m u^{\mu} = (m \gamma c, m \gamma v^{i})\,.
 \end{equation}
 
-The component \(p^{0}\) is \(mc\) at \(v=0\). What does it mean? we can expand it for small \(v\):
+The component \(p^{0}\) is equal to \(mc\) at \(v=0\). What does it look like in the nonrelativistic approximation? we can expand it for small \(v/c\):
 
 \begin{equation}
   \frac{mc}{\sqrt{1 - \frac{v^{2}}{c^{2}}}} \sim
@@ -65,7 +65,7 @@ The component \(p^{0}\) is \(mc\) at \(v=0\). What does it mean? we can expand i
   = mc + \frac{1}{c} \frac{mv^{2}}{2}\,.
 \end{equation}
 
-We get the mass, plus a kinetic energy term: more explicitly, \(cp^0 = mc^{2} + \frac[i]{1}{2} m v^{2}\).
+We get the mass, plus a kinetic energy term: more explicitly, \(cp^0 = mc^{2} + \frac[i]{1}{2} m v^{2}\). 
 
 We can rewrite Newton's first law in SR:
 
@@ -83,13 +83,16 @@ To express this in an easier way we introduce the 4-acceleration:
   a^{\mu} \defeq \dv{u^{\mu}}{\tau} = \dv[2]{x^{\mu}}{\tau}
 \end{equation}
 
-We now with to introduce the concept of a path minimizing proper time. Recall Snell's law, which allows us to relate the angles of incidence of light when it passes between one medium to another, if they have different indices of refraction:
+We now wish to introduce the concept of a path minimizing proper time. 
+Recall Snell's law, which allows us to relate the angles of incidence of light when it passes between one medium to another, if they have different indices of refraction:
 
 \begin{equation}
+  n_1 \sin(\theta_1 ) = n_2 \sin(\theta_2 )
+  \qquad \text{or} \qquad
   \frac{\sin(\theta_{2})}{\sin(\theta_{1})} = \frac{n_1}{n_2 } = \frac{v_2}{v_1 }\,.
 \end{equation}
 
-This can be shown to be equivalent to light minimizing the time it takes to move from a point in one medium to a point in the other.
+It can be shown that a beam of light following this law is equivalent to the beam minimizing the time it takes to move from a point in one medium to a point in the other.
 
 Analogously, saying that a massive particle travels along the worldline which minimizes \(\tau\) is equivalent to Newton's first principle.
 
@@ -133,13 +136,35 @@ Now, we integrate by parts, disregard the boundary terms since the endpoints of 
 
 which proves the equivalence for this type of perturbation, the others are analogous.
 
-The generalization of Newton's second law, which at low speeds is \(F^{i} = m a^{i}\), can be similarly restated as \(\delta S = 0\), for the action \(S = \int \dd{\tau}\).
+\begin{bluebox}
+Let us write a more general sequence of equations, somewhat informally: 
+%
+\begin{align}
+\delta \qty(\int_{A}^{B} \dd{\tau }) &= 
+- \delta \int  \frac{ \dd{x^{\mu }} \dd{x_{\mu }}}{ \dd{\tau^2}} \dd{\tau^2}  \marginnote{Expand \(\dd{s^2}\)} \\
+&= - \int \frac{\qty( \dd{x_{\mu }} + \dd{\epsilon_{\mu }}) \qty( \dd{x^{\mu }} + \dd{\epsilon^{\mu }})}{ \dd{\tau^2}} \dd{\tau }  \marginnote{Perturb}\\
+&= - 2 \int \frac{ \dd{\epsilon_{\mu } \dd{x^{\mu }}}}{ \dd{\tau^2}} \dd{\tau }  \marginnote{Discard terms of order different than 1 in the perturbation}\\
+&= + 2 \int \epsilon_{\mu } \dv[2]{x^{\mu }}{\tau } \dd{\tau }
+\overset{!}{=} 0
+\marginnote{Integrate by parts}
+\,,
+\end{align}
+%
+which must hold for any \(\epsilon_{\mu }\): so, by the fundamental lemma of variational calculus, we must have 
+%
+\begin{align}
+\dv[2]{x^{\mu }}{\tau } = 0
+\,.
+\end{align}
+\end{bluebox}
+
+The generalization of Newton's second law, which at low speeds is \(F^{i} = m a^{i}\), can be similarly restated as \(\delta S = 0\), for the action \(S = \int L \dd{\tau}\), where \(L\) is the Lagrangian for the system. 
 
 \subsection{Motion of light rays}
 
 For light we cannot compute \(u^{\mu}\) with the previous definition, since its proper time is always zero.
 
-Instead, we \emph{define} \(u^{\mu}\) to be a normalized null-like vector, such that \(x^{\mu} = \lambda u^{\mu}\) for some \(\lambda\).
+Instead, we \emph{define} \(u^{\mu}\) to be a normalized null-like vector, such that locally \(x^{\mu} = \lambda u^{\mu}\) for some \(\lambda\).
 
 We know from quantum mechanics that \(E = \hbar \omega\), where \(\hbar = h / (2 \pi)\) and \(\omega = 2 \pi / T = 2 \pi f\). 
 
@@ -149,17 +174,17 @@ The momentum is proportional to the wavevector \(k^{i}\): \(p^{i} = \hbar k^{i} 
   p^{\mu} = \qty(\frac{\hbar \omega}{c}, \frac{\hbar k^{i}}{c}) = \frac{\hbar k^{\mu}}{c}\,.
 \end{equation}
 
-Since the momentum of light must be null we have that necessarily \(\omega = \abs{k} \).
+Since the momentum of light must be null-like (\(p_{\mu } p^{\mu } = 0\)) we have that necessarily \(\omega = \abs{k} \).
 
 \subsection{Doppler effect}
 
 We take a special case: radiation goes in the same direction as the observer.
 In the \(O\) frame we have \(k^{\mu} = (\omega, \omega,0,0)\).
 
-The observer, moving with velocity \(v\), measures \(k^{\prime, \mu}\). This can be easily computed with a Lorentz transformation: \(k^{\prime, \mu} = \tensor{\Lambda}{^\mu_\nu} k^\nu\).
+The observer, moving with velocity \(v\), measures \(k^{\prime \mu}\). This can be easily computed with a Lorentz transformation: \(k^{\prime \mu} = \tensor{\Lambda}{^\mu_\nu} k^\nu\).
 
-We are mostly interested in \(k^{\prime, 0} = \omega'\): it comes out to be \(\omega' = \gamma \omega + (- \gamma \beta)\omega = (1- v/c) \gamma \omega\).
+We are mostly interested in \(k^{\prime 0} = \omega'\): it comes out to be \(\omega' = \gamma \omega + (- \gamma \beta)\omega = (1- v/c) \gamma \omega\).
 
-Some notes: at slow speeds \(\omega' \approx (1-v/c) \omega\); we have \(f'<f\) when source and observer are moving away from each other. 
+Some notes: at slow speeds \(\omega' \approx (1-v/c) \omega\); we have \(f'<f\) when source and observer are moving away from each other. This can be readily proven by considering either \(k^{\mu } = (\omega , -\omega , 0,0)\) or \(\beta \rightarrow - \beta \). 
 
 \end{document}

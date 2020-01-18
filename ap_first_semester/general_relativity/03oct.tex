@@ -52,7 +52,7 @@ We can classify separations between events as
     \item space-like when \(\Delta s^2 >0\).
 \end{itemize}
 
-We can draw spacetime diagrams. A light cone is the set of points which are null-like separated from a select point. Things can be only causally related to events inside the light-cone (with \(\Delta s^2 \geq 0\)).
+We can draw spacetime diagrams. A light cone is the set of points which are null-like separated from a select point. Things can be only causally related to events inside the light-cone, with \(\Delta s^2 \leq 0\).
 
 \subsection{Time dilation}
 
@@ -68,9 +68,11 @@ This directly implies that \(\Delta \tau \leq \Delta t\) for any observer, since
 
 By how much exacly is time dilated? Of course \(\Delta x = v \Delta t\), therefore \(\Delta t = \gamma_v \Delta \tau\).
 
--> Muon problem.
+This effect explains a peculiar phenomenons: certain particles in the upper atmosphere decay into muons, which have a very short half-life. So short, in fact, that if we did not account for special relativity we'd expect to see next to none at the surface, since by the time they got here they would have alredy gone through several halving times. 
+However, we must apply the rule of relativistic time dilation: the muons are travelling very fast towards the ground, therefore in the ground's frame of reference their time passes slower, allowing them to decay slower. 
+So, a significant fraction of them arrives at the ground. 
 
-Inverse Lorentz transformation have the same expression, but with \(v \rightarrow -v\).
+Inverse Lorentz transformation have the same expression as direct ones, but with \(v \rightarrow -v\).
 This can be proved both mathematically by solving the equations and phisically by reasoning about their meaning. There is no preferential inertial frame.
 
 A Lorentz transformation can be written in matrix form in the \((ct, x)\) plane as:
@@ -86,8 +88,16 @@ A Lorentz transformation can be written in matrix form in the \((ct, x)\) plane 
   \end{bmatrix}
 \end{equation}
 %
-since there is an angle \(\theta\) such that \(\gamma = \cosh \theta\) and \(\gamma \beta = \sinh \theta\): the angle \(\theta\) will be \(\theta = \tanh^{-1} \qty(v/c)\). This is true because \(\gamma^2 - \beta^2 \gamma^2 = 1\).
+where we introduced the notation \(\beta = v / c\).
 
-After a boost the \(ct'\) and \(x'\) axes are respectively the lines \(ct=x/\beta\) and \(ct = \beta x\).  
+The second equation is justified by the fact that there is an angle \(\theta\) such that \(\gamma = \cosh \theta\) and \(\gamma \beta = \sinh \theta\): the angle \(\theta\) will be \(\theta = \tanh^{-1} \qty(v/c)\). 
+This is true because \(\gamma^2 - \beta^2 \gamma^2 = 1\), which is the same law that the hyperbolic functions obey: \(\cosh^2 x - \sinh^2 x =1 \) holds for any \(x\).
+
+After a boost the \(ct'\) and \(x'\) axes are rotated into, respectively, the lines \(ct=x/\beta\) and \(ct = \beta x\): this comes directly from the transformation law. 
+The \(ct'\) axis is defined by the equation \(x' =0\), which in the transformed coordinates \(ct\) and \(x\) reads \(\gamma (x - \beta ct) = 0\), or \(ct  = x/ \beta \).
+
+Similarly \(ct' = 0\) in the new coordinates reads \(\gamma (ct - \beta x)=0\), or  \(ct = \beta x\). 
+
+The axes are rotated by an angle which can approach \(\pi /4\) but never reach it, since its tangent is defined by \(\beta \), which can never reach 1. 
 
 \end{document}

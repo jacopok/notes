@@ -9,17 +9,20 @@ Last lecture we saw the fact that the \(ct'\) and \(x'\) axes are rotated by equ
 
 Consider two events which are simultaneous in the \(O'\) frame. Their times in this frame are \(t'_A = t'_B\).
 
-In the \(O\) frame, instead, we have
-
-\begin{equation}
-ct_{A, B} = \frac{v}{c} x_{A, B} + \underbrace{\sqrt{1- \frac{v^2}{c^2} } c t_{A, B}'}_{\text{a constant}}\,,
-\end{equation}
+In the \(O\) frame, instead, we have 
 %
-so the events are not simultaneous in the \(O\) frame.
+\begin{align} 
+  ct^{\prime }_{A, B} &= \gamma_{v} \qty(ct_{A, B} - \frac{v}{c} x_{A, B}) \\
+  ct_{A, B} &= \underbrace{ \frac{v}{c} x_{A, B}}_{\text{variable}} + \underbrace{\sqrt{1- \frac{v^2}{c^2} } c t_{A, B}'}_{\text{constant}}
+\,,
+\end{align}
+%
+where we can notice that the second term is the same if we switch from \(A\) to \(B\), while the first one changes (the objects have different positions). 
+So, the events are not simultaneous in the \(O\) frame.
 
 \subsection{Length contraction}
 
-If in the \(O\) frame, \(A\) occurs at \(t, x = 0\) while \(B\) occurs at \(t=0\), \(x=L\), then \(L\) is the measured length of their spatial interval by \(O\). We assume that this is the frame in which the object is moving, and we transform into a frame in which it is stationary: \(O'\).
+If in the \(O\) frame, \(A\) occurs at \(t = 0, x = 0\) while \(B\) occurs at \(t=0\), \(x=L\), then \(L\) is the measured length of their spatial interval by \(O\). We assume that this is the frame in which the object is moving, and we transform into a frame in which it is stationary: \(O'\).
 
 In the primed frame their coordinates will be:
 
@@ -42,7 +45,7 @@ Two observers see an object moving with \(v' = \dv*{x'}{t'}\) and  \(v = \dv*{x}
 Differentiating we get:
 %
 \begin{equation}
-  v' = \frac{\gamma (\dd{x} - v \dd{t})}{\gamma \qty(\dd{t} - \frac{u\dd{x}}{c^2} )} = \frac{v - u}{1 - \frac{uv}{c^2}}  \,.
+  v' = \frac{\gamma (\dd{x} - u \dd{t})}{\gamma \qty(\dd{t} - \frac{u\dd{x}}{c^2} )} = \frac{v - u}{1 - \frac{uv}{c^2}}  \,. \marginnote{We divide through by \(\dd{t}\)}
 \end{equation}
 
 Two interesting limits of this formula are: \(v' = v - u\) if \(u \ll c\) or \(v \ll c\); and \(v'=c\) if \(v=c\) for whatever \(u\).
@@ -61,20 +64,92 @@ Using Einstein summation notation, we can write the spacetime interval as \(\dd{
 Specifically for the Minkowski metric we have the relation \(\eta_{\mu\nu} = \eta^{\mu\nu}\): it is its own inverse.
 For a general metric \(g_{\mu\nu}\) this will not hold.
 
-How do we express the Lorentz boosts? They preserve \(\dd{s^2} \), therefore they look like \(x'\,^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu\), with the \((1, 1)\) tensors \(\tensor{\Lambda}{_\mu^\nu}\)  satisfying   \(\tensor{\Lambda}{_\mu^\nu}\tensor{\Lambda}{_\rho^\sigma} \eta_{\nu\sigma} = \eta_{\mu\rho}\). This is called the \emph{pseudo-orthogonality} relation.
+How do we express the Lorentz boosts? They are linear transformations, therefore they look like \(x'\,^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu\), with \(\tensor{\Lambda}{_\mu^\nu}\) being constant \((1, 1)\) tensors. 
+Also, they preserve the spacetime interval, therefore they  satisfy \(\tensor{\Lambda}{_\mu^\nu}\tensor{\Lambda}{_\rho^\sigma} \eta_{\nu\sigma} = \eta_{\mu\rho}\). This is called the \emph{pseudo-orthogonality} relation.
 
 The metric allows us to raise and lower indices. Raising an index in the pseudo-orthogonality relation gives us: \(\tensor{\Lambda}{^\mu_\alpha} \eta_{\mu\nu} \tensor{\Lambda}{^\nu_\beta} \eta^{\beta\sigma} =\tensor{\delta}{_\alpha ^\sigma}\), therefore  \(\eta_{\mu\nu} \tensor{\Lambda}{^\nu_\beta} \eta^{\beta\sigma}\) is the inverse of a Lorentz transformation.
 
-Four-vectors can also have their indices down, and they will transform according to the inverse of Lorentz transformations:
+\begin{bluebox}
 
+Notice what this does to the Lorentz transformation matrix: it swaps a sign if \emph{one} of the indices is spatial and one is temporal, but not if they are both spatial or both temporal; also, it transposes the matrix. 
+
+So, consider a Lorentz boost along the \(x\) axis: it is transformed as 
+%
+\begin{align}
+\left[\begin{array}{cccc}
+  \gamma  & - \gamma \beta  & 0 & 0 \\ 
+  -\gamma \beta  & \gamma  & 0 & 0 \\ 
+  0 & 0 & 1 & 0 \\ 
+  0 & 0 & 0 & 1
+\end{array}\right] \rightarrow
+\left[\begin{array}{cccc}
+  \gamma  & \gamma \beta  & 0 & 0 \\ 
+  \gamma \beta  & \gamma  & 0 & 0 \\ 
+  0 & 0 & 1 & 0 \\ 
+  0 & 0 & 0 & 1
+\end{array}\right]
+\,,
+\end{align}
+%
+so as we would expect the velocity \(\beta \) gets mapped to its opposite. On the other hand, a spatial rotation around a unit vector \(\hat{v}\) of angle \(\alpha \) looks like 
+%
+\begin{align}
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & R(\hat{v}, \alpha )
+\end{array}\right] \rightarrow
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & R(\hat{v}, \alpha )^{\top}
+\end{array}\right]
+\,,
+\end{align}
+which makes sense: rotation matrices satisfy \(R^{\top}R = \mathbb{1}\).
+
+In fact, the two types of matrices written here, together with the matrices \(T\) and \(P\) which, respectively, swap the sign of the spatial and temporal coordinates, can be composed to generate \emph{any} Lorentz transformation.
+
+If we do not include the parities \(P\) and \(T\), we have what is called the proper, orthochronous Lorentz group, which is the subset of the whole Lorentz group which can be reached starting with the identity and varying the parameters of the Lorentz transformation continuously. 
+\end{bluebox}
+
+Four-vectors can also have their indices down, and they will transform according to the inverse of Lorentz transformations:
+  
 \begin{subequations}
 \begin{align}
-  (\eta_{\alpha\mu} x^\mu)' &=  \eta_{\alpha \mu} \tensor{\Lambda}{^\mu_\nu}x^\nu  \\
-  &= \tensor{\Lambda}{_\alpha_\sigma} \tensor{\delta}{^\sigma_\nu} x^\nu  \\
-  &= \tensor{\Lambda}{_\alpha_\sigma} \eta^{\sigma \beta} \eta_{\beta \nu} x^\nu  \\
-  &= \tensor{\Lambda}{_\alpha^\beta} x_\beta\,.
+(\eta_{\alpha\mu} x^\mu)' &=  \eta_{\alpha \mu} \tensor{\Lambda}{^\mu_\nu}x^\nu  \\
+&= \tensor{\Lambda}{_\alpha_\sigma} \tensor{\delta}{^\sigma_\nu} x^\nu  \\
+&= \tensor{\Lambda}{_\alpha_\sigma} \eta^{\sigma \beta} \eta_{\beta \nu} x^\nu  \\
+&= \tensor{\Lambda}{_\alpha^\beta} x_\beta\,.
 \end{align}
 \end{subequations}
+
+Indices which are up are called ``contravariant'', indices which are down are called ``covariant''.
+
+\begin{bluebox}
+\textbf{An intuitive explanation of covariance and contravariance}
+
+This is most easily illustrated by considering scaling transformations in a vector space, that is, linear transformations which look like \(v^{i} \rightarrow S v^{i}\), where \(S\) is a scalar and \(v^{i}\) are the components of a vector
+% , in a space where the product of two vectors is found by simply summing the products of the components: in other words, where the metric tensor is \(\delta_{ij}\).
+
+These can be thought of as ``changing the measuring stick we use to figure out how long the components of a vector are''; where by ``measuring stick'' what we really mean is basis vector for our vector space.
+The basis vectors \(e_{i}\) allow us to write the full, geometric vector as \(\vec{v} = v^{i} e_{i}\): we are summing the components times the corresponding basis vector.
+
+If we, for example, increase the length of the basis vectors by \(2\), so we map \(e_{i} \rightarrow e_{i}^{\prime } = 2 e_{i}\) for all \(i\), then for the vector \(\vec{v}\) to remain the same its components must change: specifically, they must be multiplied by \(1/2\). 
+This is where the word \emph{contravariant} comes from. 
+
+Now, for covariant vectors: they are vectors in the \emph{dual} vector space, that is, they represent linear applications from the vector space to a number. They are expressed with respect to the \emph{dual basis}, \(e^{i}\), as: \(\vec{w} = w_{i} e^{i}\).
+We can choose this basis so that \(e^{i} e_{j}\) (the \(i\)-th basis \emph{linear transformation} applied to the \(j\)-th basis vector) is equal to \(\delta^{i}_{j}\).
+
+Then, we can calculate what the transformation \(\vec{w}\) applied to the vector \(\vec{v}\) looks like: it is 
+%
+\begin{align}
+w_{i} e^{i} v^{j} e_{j} = w_{i} v^{j} \delta 
+\,,
+\end{align}
+%
+
+
+Since, as we said at the beginning, we are working in an Euclidean space with a metric
+\end{bluebox}
 
 We will write our laws as tensorial equations, which are covariant.
 

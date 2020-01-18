@@ -22,10 +22,10 @@ which allow us to ``move around''. In more dimensions,  the rule will be
 
 Now, we want to prove that, in Minkowski spacetime, \(\partial_\mu f\) is a rank (0,1) tensor if \(f\) is a function.
 
-Under a change of variables \(f \rightarrow f'\) we have 
+Under a change of variables \(x^{\mu } \rightarrow x^{\prime \mu }\) we have 
 %
 \begin{equation}
-  \pdv{f(x)}{x^{\mu }} \rightarrow \pdv{f' (x')}{x^{\prime \mu }} = \pdv{x^{\alpha }}{x^{\prime \mu }} \pdv{}{x^{\alpha }} f(x) 
+  \pdv{f(x)}{x^{\mu }} \rightarrow \pdv{f (x')}{x^{\prime \mu }} = \pdv{x^{\alpha }}{x^{\prime \mu }} \pdv{}{x^{\alpha }} f(x) \marginnote{Since \(x'\) and \(x\) represent the same point, \(f(x') = f(x)\).}
 \,,
 \end{equation}
 %
@@ -41,8 +41,8 @@ Under a change of coordinates,
   &= \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{}{x^{\alpha }} \qty(\pdv{x^{\prime \mu }}{x^{\beta }} A^{\beta  }(x))    \\
   &= \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv[2]{x^{\prime \mu }}{x^{\alpha }}{x^{\beta }} +
   \pdv{x^{\alpha }}{x^{\prime \nu }} \pdv{x^{\prime \mu }}{x^{\beta }} \pdv{A^{\beta }}{x^{\alpha }}    
+  \,,
 \end{align}
-\,,
 \end{subequations}
 %
 and we can see that the second term is the transformation we want, but the first term spoils the transformation. 
@@ -71,7 +71,16 @@ We define the Christoffel symbols:
 \,,
 \end{equation}
 %
-where we introduced comma notation for partial non-covariant differentiation.
+where we introduced comma notation for partial non-covariant differentiation: the full notation is 
+%
+\begin{align}
+\partial_{\mu } x_{A} \overset{\text{def}}{=}  x_{A, \mu } 
+\qquad \text{and} \qquad
+\nabla_{\mu } x_{A} \overset{\text{def}}{=} x_{A;\mu }
+\,.
+\end{align}
+%
+
 They are symmetric in the two lower indices and they are not tensors. Their transformation law is: 
 %
 \begin{equation}
@@ -102,8 +111,8 @@ How does it transform? For the covariant derivative, we have:
 %
 \begin{subequations}
 \begin{align}
-  \nabla_{\nu }' V_{\kappa }' &= \pdv{}{x^{\prime \nu }} V'_\kappa - \Gamma^{\prime \mu }_{\nu \kappa } V_{\kappa }'  \\
-  &= \partial_\nu \qty(\pdv{x^{\lambda }}{x^{\prime \kappa}}V_{\lambda }) -  \qty(\pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \mu }} \Gamma^{\alpha }_{\beta \gamma } + 
+  \nabla_{\nu }' V_{\kappa }' &= \pdv{}{x^{\prime \nu }} V'_\kappa - \Gamma^{\prime \mu }_{\nu \kappa } V_{\mu  }'  \\
+  &= \pdv{x^{\mu }}{x^{\prime \nu }} \partial_{\mu } \qty(\pdv{x^{\lambda }}{x^{\prime \kappa}}V_{\lambda }) -  \qty(\pdv{x^{\prime \mu }}{x^{\alpha }} \pdv{x^{\beta }}{x^{\prime \nu }} \pdv{x^{\gamma }}{x^{\prime \mu }} \Gamma^{\alpha }_{\beta \gamma } + 
   \pdv{x^{\prime \mu }}{x^{\alpha }} \pdv[2]{x^{\prime \mu }}{x^{\prime \nu }}{x^{\prime \kappa }} ) 
   \qty(\pdv{x^{\lambda }}{x^{\prime \mu }} V_{\lambda })  \\
   &= \pdv[2]{x^{\lambda }}{x^{\prime \nu }}{x^{\prime \mu }} V_{\lambda }
@@ -124,9 +133,9 @@ How does it transform? For the covariant derivative, we have:
 \end{align}
 \end{subequations}
 %
-where we used: relabeling of indices, contraction of the Jacobian matrix with its inverse, the chain rule, the product rule, the transformation law of the Christoffel symbols.
+where we used: relabeling of indices, contraction of the Jacobian matrix with its inverse, the chain rule, the product rule, the transformation law of the Christoffel symbols (some steps are wrong... oh well, there's more interesting stuff to do).
 
-The derivative of a contravariant tensor is a tensor: this can be proven by noticing that \(\nabla_\mu (A^{\alpha }B_{\alpha }) = \partial_\mu (A^{\alpha }B_{\alpha }) = B_{\alpha } \nabla_{\mu }A^{\alpha } + A^{\alpha }\nabla_{\mu }B_{\alpha }\). 
+The derivative of a contravariant tensor is a tensor: this can be proven by noticing that \(\nabla_\mu (A^{\alpha }B_{\alpha }) = \partial_\mu (A^{\alpha }B_{\alpha }) = B_{\alpha } \nabla_{\mu }A^{\alpha } + A^{\alpha }\nabla_{\mu }B_{\alpha }\). Otherwise, we can compute away:
 %
 \begin{subequations}
 \begin{align}
@@ -211,15 +220,30 @@ or
     + \Gamma^{\beta }_{\mu \lambda  }V_{\alpha}^{\lambda }
 \,.
 \end{equation}
+
+The general formula reads: 
 %
+\begin{align}
+\nabla_{\pi } T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{p}} =
+\partial_{p} T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{p}}
++ \sum_{i=1}^{n} \Gamma^{\mu_{i}}_{\pi \sigma }
+T^{\mu_1 \dots \mu_{i-1} \sigma \mu_{i+1} \dots \mu_{n}}_{\nu_1 \dots \nu_{p}}
+- \sum _{j=1}^{p} \Gamma^{\sigma }_{\pi \nu_j}
+T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{i-1} \sigma \nu_{i+1} \dots \nu_{p}}
+\,,
+\end{align}
+%
+
 
 \subsection{Properties of the covariant derivative}
 
 \begin{itemize}
     \item The covariant derivative of a tensor is a tensor;
     \item the covariant derivative obeys the Leibniz rule: \(\nabla_{\mu} (AB) = B \nabla_{\mu }A + A \nabla_{\mu }B\);
-    \item the metric is covariantly constant: \(\nabla_{\mu }g_{\alpha \beta }=0\).
+    \item the metric is covariantly constant: \(\nabla_{\mu }g_{\alpha \beta }=0\). 
 \end{itemize}
+
+The fact that the metric is covariantly constant could actually be assumed instead of the explicit expression of the Christoffel symbols in terms of derivatives of the metric. These two are equivalent.
 
 Notice that covariant derivatives do \emph{not} commute!
 
@@ -238,6 +262,14 @@ expanding and relabeling indices we get the desired cancellation. Now, for paral
 Take a curve \(x^{\alpha }(\lambda )\) and a vector \(V^{\mu }\) defined at a certain point along the curve.
 For infinitesimal displacement we will have \(\dd{V} = \dd{x} \cdot \nabla V\): in components \(\dd{V^{\mu }} = \dd{x^{\alpha }} \nabla_{\alpha }V^{\mu }\).
 
-Parallel transport means that the vector does not change when it is transported: \(\nabla_t V^{\mu }=0\) where the index \(t \) indicates derivation along the curve's tangent vector \(t^{\alpha }= \dv*{x^{\alpha }}{\lambda } \). 
+Parallel transport means that the vector does not change when it is transported: \(\nabla_t V^{\mu }=0\) where the index \(t \) indicates derivation along the curve's tangent vector \(t^{\alpha }= \dv*{x^{\alpha }}{\lambda } \): more explicitly, \(V^{\mu }\) is parallel-transported along the curve parametrized as \(x^{\alpha }(\lambda )\) if 
+%
+\begin{align}
+\dv{}{\lambda } \qty(V^{\mu }(x^{\alpha }(\lambda )))
+=
+\dv{x^{\alpha }}{\lambda } \nabla_{\alpha } V^{\mu } 
+= 0
+\,.
+\end{align}
 
 \end{document}

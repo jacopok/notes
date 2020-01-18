@@ -180,7 +180,16 @@ This proves that the inverse metric is a \((2,0)\) tensor.
 
 \subsection{Lengths, areas, volumes and so on}
 
-In 4D space, if we fix \(x^{0}\) and \(x^{3}\), we can consider an area element like \(\dd{A} = \sqrt{g_{11}} \dd{x^{}} \sqrt{g_{22}} \dd{x^{2}} \).
+In 4D space, if we fix \(x^{0}\) and \(x^{3}\) and we seek the shape of the differential area element --- the \emph{volume form}  on  the surface \(\qty{x^{0} = x^{3}=0}\) --- it will look like \(\dd{A} = \sqrt{g_{11}} \dd{x^{1}} \sqrt{g_{22}} \dd{x^{2}} \) if the metric is diagonal. 
+The square roots come from the fact that the diagonal components tell us how to measure length along a certain direction: if we  are moving along the \(x\) axis from point \(A\) to point \(B\), then
+%
+\begin{align}
+\left. \Delta s^{1} \right\vert_{A}^{B} = \int_{A}^{B} \dd{s} = \int_{A}^{B} \sqrt{g_{11}} \dd{x^{1}} = \sqrt{g_{11} }  \left. \Delta x^{1} \right\vert_{A}^{B}
+\,,
+\end{align}
+%
+since we have the relation \(\dd{s^2} = g_{11} (\dd{x^{1}})^2\). 
+So, a length measured along the \(x^{1}\) direction is given by \(\sqrt{g_{11} }\) times the coordinate distance. Of course, in general we will have to integrate if the metric depends on the point.
 
 Similarly, the 4-volume is just 
 %
@@ -195,11 +204,13 @@ Similarly, the 4-volume is just
 %
 where \(g = \det g_{\mu \nu }\). We have shown it for a diagonal metric, but it can be shown that it holds for any general metric. The minus sign comes from the fact that our metric has signature \(-1\) (and, as we will see, this holds in general): the determinant is then negative, and to take the square root we need a positive number.
 
+This is not put in artificially, but it is a consequence of the fact that we measure positive times for curves with positive \emph{proper} time \(\dd{\tau^2} = - \dd{s^2}\).  
+
 \begin{claim}[Unproven]
     A metric can be always diagonalized, at least locally.
 \end{claim}
 
-When it is diagonal, then \(\dd{v} = \sqrt{-g} \dd[4]{x} \). Then the quantity \(\sqrt{-g} \dd[4]{x} \) is a scalar.
+When the metric is diagonal, then \(\dd{v} = \sqrt{-g} \dd[4]{x} \); then this always holds, since [claim!] \(\sqrt{-g} \dd[4]{x} \) is a scalar.
 
 Intuitively, the claim follows from the equivalence principle: we put a free-falling observer in our space. They will perceive spacetime as being flat.
 
@@ -209,8 +220,24 @@ Under a diffeomorphism with the determinant of the jacobian equal to \(J\) we ha
   g' = J^{-2} g
   \qquad \implies \qquad
   \sqrt{-g'}  = J^{-1} \sqrt{-g} 
-\,.
+\,,
 \end{equation}
+%
+which follows from the following properties of determinants: 
+%
+\begin{align}
+  \det(ABC)= \det A \det B \det C 
+  \qquad \text{and} \qquad 
+  \det (A^{-1}) = 1 / \det A 
+\,,
+\end{align}
+%
+applied to the transformation equation for the metric tensor: 
+%
+\begin{align}
+g_{\mu \nu }^{\prime } = \pdv{x^{\alpha }}{x^{\prime \mu }} \pdv{x^{\beta }}{x^{\prime \nu }} g_{\alpha \beta }
+\,.
+\end{align}
 %
 
 This can be expressed by saying that \(\sqrt{-g} \) is a \emph{tensor density} of weight \(-1\).
@@ -234,9 +261,9 @@ A \((p, q)\) \emph{tensor density} of weight \(w\) is an object \(M_{\mu_1 \dots
 under diffeomorphisms with Jacobian matrix \(\tensor{\Lambda}{_\mu^\nu}\), with determinant \(J\).
 \end{definition}
 
-When we transform the 4-volume element \(\dd[4]{x'} = J \dd[4]{x} \), we get a Jacobian: the element \(\dd[4]{x} \) is a \emph{tensor density of weight 1}.
+When we transform the 4-volume element \(\dd[4]{x'} = J \dd[4]{x} \), we get a Jacobian: the coordinate volume element \(\dd[4]{x} \) is a \emph{tensor density of weight 1}.
 
-Then we see that the volume element \(\sqrt{-g} \dd[4]{x} \) is a \emph{scalar}, since when multiplying tensor densities their weights are added.
+Then we see that the volume element \(\sqrt{-g} \dd[4]{x} \) is a \emph{scalar}, since when multiplying tensor densities their weights are added (or, more simply put, the \(J\)s cancel out).
 
 \subsection{Vectors in curved spacetime}
 

@@ -102,11 +102,25 @@ which is what multiplies \(B\), so we redefine \(B(\widetilde{r}) \) as \(B(\wid
 So, we can just relabel \(B\) as this: the expression 
 %
 \begin{align}
-    \dd{s^2} = -A(r) \dd{t^2} + B(r) \dd{r^2} + r^2\qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi })
+    \dd{s^2} = -A(r) \dd{t^2} + B(r) \dd{r^2} + r^2\qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi }^2)
 \,
 \end{align}
 %
-is fully general. So far we have used the hypothesis of stationarity by writing everything only as a function of \(r\).
+is fully general.
+
+\begin{bluebox}
+Another way to see this is to define the radial coordinate by imposing the condition that the area of a sphere at radius \(r\) be \(4 \pi r^2\): 
+%
+\begin{align}
+\text{Area} (r) = \int C^2(r) \dd{\Omega} = 4 \pi C^2(r)
+\overset{!}{=} 4 \pi r^2 \implies C (r) =r 
+\,,
+\end{align}
+%
+where \(\dd{\Omega^2} = \dd{\theta^2} + \sin^2\theta \dd{\varphi^2}\).
+\end{bluebox}
+
+So far we have used the hypothesis of stationarity by writing everything only as a function of \(r\).
 
 Recall the inverted Einstein equations: 
 %
@@ -153,12 +167,11 @@ Also, we can write \(A' / A = - B' / B\): we substitute it into \(R_{22}\): we g
 so 
 %
 \begin{align}
-  0 = 1 - \frac{1}{B} + \frac{rB'}{2B^2}
+  0 = 1 - \frac{1}{B} + \frac{rB'}{B^2}
 \,,
 \end{align}
 %
 which is first order in terms of \(B\). We can solve it by separating the variables.
-
 We get 
 %
 \begin{align}
@@ -191,14 +204,14 @@ So,
 or, exponentiating: 
 %
 \begin{align}
-  \frac{r}{r_{*}} = \frac{B}{1-B} \frac{1-B_{*}}{B}
+  \frac{r}{r_{*}} = \frac{B}{1-B} \frac{1-B_{*}}{B_{*}}
 \,,
 \end{align}
 %
 from which we can find \(B(r)\): first we write 
 %
 \begin{align}
-  \frac{1-B}{B} = \frac{1-B_{*}}{B} \frac{r_{*}}{r} = \frac{\gamma }{r}
+  \frac{1-B}{B} = \frac{1-B_{*}}{B_{*}} \frac{r_{*}}{r} = \frac{\gamma }{r}
 \,,
 \end{align}
 %
@@ -222,7 +235,7 @@ We are almost at the full solution: by continuity with the large-\(r\) limit, fo
 %
 \begin{align}
   \dd{s^2} = - \qty(1 + \frac{\gamma }{r}) \dd{t^2} 
-  + \qty(1 + \frac{\gamma}{r}) \dd{r^2}
+  + \qty(1 + \frac{\gamma}{r})^{-1} \dd{r^2}
   + r^2 \qty(\dd{\theta^2} + \sin^2 \theta \dd{\phi^2})
 \,,
 \end{align}

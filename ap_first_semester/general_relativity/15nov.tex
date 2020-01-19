@@ -25,11 +25,12 @@ For Bob, we have the exact same thing, except \(A \rightarrow B\).
 So, for \(i = A, B\): 
 %
 \begin{align}
-  f_i = - \qty(1 - \frac{2GM}{r_i})^{-1/2} \frac{p _{\text{orbit}} \cdot \xi }{h}
+  f_i = u_{\mu }^{(i)} p^{\mu }_{ \text{photon}} = - \qty(1 - \frac{2GM}{r_i})^{-1/2} \frac{p _{\text{photon}} \cdot \xi }{h}
 \,,
 \end{align}
 %
-but the last part is exactly the same since the light moves along a geodesic: so their ratio is given by
+since both of the 4-velocities are proportional to the Killing (unit) vector field, with \emph{different proportionality constants}. 
+The last part is exactly the same since the light moves along a geodesic: so their ratio is given by
 %
 \begin{align}
   \frac{f_B}{f_A} = \sqrt{\frac{1-2GM /r_A}{1-2GM/r_B}}
@@ -60,7 +61,9 @@ and then we expand in \(h/R\): we get
   \,,
 \end{align}
 %
-if we want more precision then we can keep more orders.
+if we want more precision then we can keep more orders. 
+
+\subsubsection{Classical orbits}
 
 Kepler's laws are \emph{wrong}! We will show this.
 
@@ -104,6 +107,8 @@ which for large \(r\) tends to 0 from below, while for small \(r\) tends to \(+ 
 
 The circular orbit is the one which corresponds to the bottom of the potential.
 
+\subsubsection{Relativistic Schwarzschild orbits}
+
 Planets \emph{do not} actually orbit in true ellipses, but this is not actually the case even in Newtonian mechanics, since there are other objects in the universe.
 The orbit of Mercury was expected to precede by \(532''\) every \SI{100}{yr}, but people observed an additional \(43''\) every \SI{100}{yr}.
 We will compute this.
@@ -116,7 +121,7 @@ The 4-velocity of the planet will be
 \,,
 \end{align}
 %
-and we have two immediate Killing vectors: \(\xi^{\alpha }_t= (1, \vec{0} )\) and \(\xi^{\alpha }_\varphi = (\vec{0}, 1)\) since the metric is independent of \(t\) and \(\varphi\).
+and we have two immediate Killing vectors: \(\xi^{\alpha }_t= (1, \vec{0} )\) and \(\xi^{\alpha }_\varphi = (0,0,0, 1)\) since the metric is independent of \(t\) and \(\varphi\).
 
 We call \(e = - \xi_t \cdot u = (1 - 2GM/r) \dv{t}{\tau }\).
 
@@ -214,8 +219,18 @@ Where is the boundary at which the solution disappears? it is where the square r
 %
 or \(l = GM \sqrt{12}\). Solutions exist as long as the angular momentum is greater than \(GM \sqrt{12}\).
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/fixed_L_orbits.pdf}
+\caption{Allowed orbits at fixed \(L\). The unstable branch approaches \(r = 3GM\) asymptotically, the stable branch allows for arbitrarily large radii.}
+\label{fig:fixed_L_orbits.pdf}
+\end{figure}
+  
+
 For \(l _{\text{min}}\) we have \(r _{\text{min}} = 6 GM\).
 This is called the ISCO: \emph{innermost stable circular orbit}: it is \(3\) times the Schwazschild radius \(2GM\).
+
+\subsubsection{Orbital precession}
 
 Now, we consider elliptical orbits.
 
@@ -225,7 +240,7 @@ In order to find the orbits, we want a relation between different coordinates du
 %
 \begin{subequations}
 \begin{align}
-  l &= r^2 \dv[]{\varphi }{q}  \\
+  l &= r^2 \dv[]{\varphi }{\tau }  \\
   \frac{1}{2}\qty(\dv{r}{\tau })^2 - \frac{GM}{r} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3} &= E 
 \,,
 \end{align}

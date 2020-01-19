@@ -69,6 +69,35 @@ It can be shown that the second equation can be written as
 \end{align}
 %
 which gives us the first integral \(A = r^2 \dv*{\theta }{s}\).
+
+\begin{bluebox}
+An easy way to see this: the equation can be written, denoting derivatives with respect to \(s\) with a dot, as 
+%
+\begin{align}
+\ddot{\theta} + \frac{2 \dot{r} \dot{\theta}}{r} = 0
+\,,
+\end{align}
+%
+which we can rearrange as 
+%
+\begin{align}
+\frac{ \ddot{\theta}}{\dot{\theta}}
++ 2 \frac{\dot{r}}{r} = 0
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+\dv{}{s} \qty( \log \dot{\theta} + 2 \log r) =
+\dv{}{s} \log(\dot{\theta} r^2)
+=0
+\,,
+\end{align}
+%
+so we have found our integral: the derivative of the logarithm of something is constant iff the thing is constant.
+\end{bluebox} 
+
 We can always also use the definition of the differential: 
 %
 \begin{align}
@@ -90,7 +119,7 @@ so
 \,.
 \end{align}
 
-This has two solutions, but it can be shown that they give the same solution.
+This has two solutions, but it can be shown that they give the same result in the end.
 
 We want the trajectory: the locus of the points the geodesic passes through, \(r(\theta )\) or \(\theta (r)\).
 
@@ -109,7 +138,14 @@ so we can integrate this:
 \,,
 \end{align}
 %
-which comes out to be \(\Delta \theta  = \arccos (A/r)\): \(r\cos(\Delta \theta ) = A \): this is equivalent to 
+which comes out to be \(\Delta \theta  = \arccos (A/r)\), which can be inverted to find \(r\cos(\Delta \theta ) = A \): using the trigonometric relation 
+%
+\begin{align}
+\cos(x-y) = \cos(x) \cos(y) + \sin(x) \sin(y)
+\,,
+\end{align}
+%
+we find that this is equivalent to 
 %
 \begin{align}
   r \cos(\theta ) \cos(\theta_0 ) + r \sin(\theta ) \sin(\theta_0 ) = A
@@ -159,7 +195,7 @@ therefore the integrand must vanish identically: this gives us the Euler-Lagrang
 \subsection{Killing vectors}
 
 Symmetries of the metric correspond to conserved quantities if our Lagrangian only depends on the metric.
-If the metric does not depend on a coordinate, then the unit vector in that direction is a Killing vector field. 
+If the metric does not depend on a coordinate, then the unit vector in that direction is called a Killing vector field. 
 
 If we have a Killing vector field, then the momentum along the Killing vector is conserved.
 

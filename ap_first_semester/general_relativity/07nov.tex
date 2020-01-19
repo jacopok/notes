@@ -169,8 +169,8 @@ where we performed a reparametrization of the curve. Computing away, with the no
 \begin{subequations}
 \begin{align}
   \delta \tau_{AB} &= \int_0^{1} \dd{\sigma} \qty(
-    \frac{{ -\delta g_{ \alpha \beta } u^{\alpha  } u^{\beta }}}{2 \sqrt{\dots}} +
-      \frac{-g_{\alpha \beta } u^{\alpha } \dv{ \delta x^{\beta }}{\sigma } }{\sqrt{\dots}}
+    \frac{{ -\delta g_{ \alpha \beta } u^{\alpha  } u^{\beta }}}{2 \sqrt{- u^2}} +
+      \frac{-g_{\alpha \beta } u^{\alpha } \dv{ \delta x^{\beta }}{\sigma } }{\sqrt{- u^2}}
     )  \\
     &= - \frac{1}{2} \int_0^1  \dd{\sigma } \qty(
         \delta g_{\alpha \beta } \dv{x^{\alpha }}{\sigma }
@@ -198,11 +198,20 @@ where we performed a reparametrization of the curve. Computing away, with the no
 where we applied the product rule, identified two symmetric terms in the velocity, used the identity 
 %
 \begin{align}
-  \frac{1}{\sqrt{\dots}} \dv{}{ \sigma } = \dv{}{\tau }
+  \frac{1}{\sqrt{- u^2}} \dv{}{ \sigma } = \dv{}{\tau }
 \,,
 \end{align}
+% 
+which follows from 
 %
-expanded the metric using: 
+\begin{align}
+u^{\alpha } = \dv{x^{\alpha }}{\sigma }
+\implies
+u^2 = \frac{ \dd{x^{\alpha }} \dd{x_{\alpha }}}{ \dd{\sigma^2}} = - \frac{ \dd{\tau^2 }}{ \dd{\sigma^2}}
+\,.
+\end{align}
+
+Also, we expanded the metric using: 
 %
 \begin{align}
   \delta g_{\alpha \beta } = \partial_{\gamma } g_{ \alpha \beta } \delta x^{\gamma }

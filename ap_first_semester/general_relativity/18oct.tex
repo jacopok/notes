@@ -221,11 +221,14 @@ or
 \,.
 \end{equation}
 
+\begin{bluebox}
+  
+
 The general formula reads: 
 %
 \begin{align}
 \nabla_{\pi } T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{p}} =
-\partial_{p} T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{p}}
+\partial_{\pi } T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{p}}
 + \sum_{i=1}^{n} \Gamma^{\mu_{i}}_{\pi \sigma }
 T^{\mu_1 \dots \mu_{i-1} \sigma \mu_{i+1} \dots \mu_{n}}_{\nu_1 \dots \nu_{p}}
 - \sum _{j=1}^{p} \Gamma^{\sigma }_{\pi \nu_j}
@@ -233,6 +236,33 @@ T^{\mu_1 \dots \mu_{n}}_{\nu_1 \dots \nu_{i-1} \sigma \nu_{i+1} \dots \nu_{p}}
 \,,
 \end{align}
 %
+which can be generalized to tensor \emph{densities} beyond regular tensors: any tensor tensity \(\mathfrak{T}\) (with any amount of indices, omitted for simplicity) of weight \(w\) (that is, which transforms almost like a tensor, with an extra factor of the determinant of the metric raised to the \(w\)th power) can be written as \(\mathfrak{T} = \sqrt{-g}^{w} T\), where \(g\) is the determinant of the metric while \(T\) is a regular tensor, since as we saw \(\sqrt{-g}\) is a density of weight +1.
+
+Then, we can use this to calculate the covariant derivative of a tensor density: we can express \(T = \sqrt{-g}^{-w} \mathfrak{T}\), so the rule will be 
+%
+\begin{align}
+\nabla_{\mu } \mathfrak{T} = \nabla_{\mu } \qty(\sqrt{-g}^{w} \sqrt{-g}^{-w} \mathfrak{T})
+= \sqrt{-g}^{w} \nabla_{\mu } \qty(\sqrt{-g}^{-w} \mathfrak{T})
+\,,
+\end{align}
+%
+where we used the fact that 
+%
+\begin{align}
+\nabla_{\mu} \sqrt{-g} = 0
+\,,
+\end{align}
+%
+which follows from the fact that the metric is covariantly constant: if we compute it in a LIF, then we get 
+%
+\begin{align}
+\nabla_{ \mu} \qty(\sqrt{-g})^{w} = \partial_{\mu } \sqrt{-g}^{w}
+- w \Gamma^{\alpha }_{\alpha \mu} \sqrt{-g} 
+\,,
+\end{align}
+%
+which is zero:\footnote{For a derivation of this expression, see \url{https://yarikraak.nl/tensor_densities.pdf}} there, the coordinate derivatives of the metric are zero, and therefore the Christoffel symbols are also zero. 
+\end{bluebox}
 
 
 \subsection{Properties of the covariant derivative}

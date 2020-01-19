@@ -23,23 +23,22 @@ where
 %
 and the timelike Killing vector gives us \(e\), while the azimuthal Killing vector gives us \(l\). 
 
-We can satisfy the equation with \(V _{\text{eff}} \equiv E\) (eq1), and \(\dv*{r}{t}\) (eq2). These are circular orbits; the equations are, explicitly, 
+We can satisfy the equation with \(V _{\text{eff}} \equiv E\), and \(\dv*{V _{\text{eff}}}{r} = 0\). These are the equations characterizing circular orbits; they are, explicitly, 
 %
-\begin{align}
-  -\frac{GM}{l} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3} = \frac{e^2-1}{2} && \text{eq1}
+\begin{align} \label{eq:effective-potential}
+  -\frac{GM}{l} + \frac{l^2}{2r^2} - \frac{GMl^2}{r^3} = \frac{e^2-1}{2}
 \,
 \end{align}
 %
 and 
 %
-\begin{align}
+\begin{align} \label{eq:stationary-potential}
   \frac{GM}{r^2} - \frac{l^2}{r^3} + \frac{3GMl^2}{r^{4}}=0
-  && \text{eq2}
 \,.
 \end{align}
 %
 
-Let us compute \(\text{eq1} + r \qty(1 - r/2GM) \text{eq2}\): after some algebra, we get 
+Let us compute \(\text{eq}\)\eqref{eq:effective-potential} \( + r \qty(1 - r/2GM) \text{eq}\)\eqref{eq:stationary-potential}: after some algebra, we get 
 %
 \begin{align}
   \frac{l}{e} = \sqrt{GMr} \qty(1 - \frac{2GM}{r})^{-1}
@@ -71,9 +70,18 @@ Now, review of the equation for \(u = r^{-1}\). When we perturbed it, we got a h
 \,,
 \end{align}
 %
-so \(\Delta \varphi \) in one orbit is 
+so \(\Delta \varphi \) in one orbit is such that the cosine's argument progresses by \(2 \pi \):
 %
 \begin{align}
+2 \pi = \Delta \varphi \times \sqrt{1 - \frac{6GM}{r_c}}
+\,,
+\end{align}
+%
+which means
+%
+\begin{align}
+  \Delta \varphi = \frac{2 \pi}{\sqrt{1 - \frac{6GM}{r_c}}} 
+  \approx
   2 \pi \qty(1 + \frac{3GM}{r_c})
 \,,
 \end{align}
@@ -95,6 +103,7 @@ We can plug numbers into this: we know that \(G = \SI{6.67408e-11}{m^3 kg^{-1} s
 %
 where the radius and velocity of the orbit of Mercury must be \emph{both} calculated at the perihelion, or at the aphelion, or one can take the average velocity and the semimajor axis of the ellipse. 
 The factor \(\SI{100}{yr} / \SI{.241}{yr}\) was inserted to account for the number of orbits of Mercury in a century.
+The angular momentum is calculated as \(r^2 \dot{\varphi} = r (r \dot{\varphi}) = rv_{\perp}\) at a certain point.
 
 \begin{lstlisting}[language=Python]
 from scipy.constants import G, c, pi
@@ -243,6 +252,8 @@ The energy measured by the observer is \(E = - \vec{p} \cdot \vec{u}_{\text{obs}
 However, any observer sees \(E = m \gamma \), so they identify \(\gamma = 1 / \sqrt{1 - \frac{2GM}{r}}\). 
 
 Then, the escape velocity is \(\sqrt{\frac{2GM}{r}}\), just like the Newtonian case. 
+
+\subsubsection{Gravitational light deflection}
 
 Now, we will look at the motion of light: by how much is it deflected? 
 

@@ -54,7 +54,7 @@ and
 which means that our Christoffel symbols are 
 %
 \begin{align}
-  \Gamma^{\mu }_{\alpha \beta } = \frac{1}{2} \eta^{\mu \gamma } \qty(\delta g_{\gamma \beta, \alpha } + g_{\gamma \alpha , \beta } - g_{\alpha \beta , \gamma })
+  \Gamma^{\mu }_{\alpha \beta } = \frac{1}{2} \eta^{\mu \gamma } \qty(\delta g_{\gamma \beta, \alpha } + \delta  g_{\gamma \alpha , \beta } - \delta g_{\alpha \beta , \gamma })
   + O(J^2)
 \,.
 \end{align}
@@ -228,29 +228,30 @@ which, if \(z\) were constant, would be an angular precession with angular veloc
 
 \(z\) is not actually a constant: however this describes the instantaneous angular velocity. 
 
-In general, one finds: 
+We assumed that the spin vector and the angular momentum of the BH are orthogonal. In general, one finds the following expression in terms of the angular momentum vector \(\vec{J}\) and of the radial unit vector \(\hat{e}_{r}\):
 %
 \begin{align}
   \vec{\Omega}_{LT} = \frac{GJ}{c^2r^3} \qty(3 (\vec{J} \cdot e^{\hat{r}}) e^{\hat{r}} - \vec{J})
 \,,
 \end{align}
 %
-which notably has the samme factor as the electric field of a dipole. It reduces to our formula if \(\vec{J}\) is parallel to \(e^{\hat{r}}\). 
+which notably has the same factor as the electric field of a dipole. It reduces to our formula if \(\vec{J}\) is parallel to \(e^{\hat{r}}\). 
 
 Now we treat Kerr geometry: from 1963, the vacuum solution of a rotating spherical mass. It is: 
 %
-\begin{subequations}
+
+%
+\boxalign{
 \begin{align}
-    \begin{split}    
-    \dd{s^2} = 
-    &- \qty(1 - \frac{2GMr}{\rho^2}) \dd{t^2} - 
-    \frac{4GMar \sin^2\theta }{\rho^2} \dd{t} \dd{\varphi }
-    + \frac{\rho^2}{\Delta } \dd{r^2} \\
-    &+ \rho^2 \dd{\theta^2} + \qty(r^2+a^2 + \frac{2GMr a^2 \sin^2\theta }{\rho^2}) \sin^2 \theta \dd{\varphi^2}
-    \end{split}
+\begin{split}    
+\dd{s^2} = 
+&- \qty(1 - \frac{2GMr}{\rho^2}) \dd{t^2} - 
+\frac{4GMar \sin^2\theta }{\rho^2} \dd{t} \dd{\varphi }
++ \frac{\rho^2}{\Delta } \dd{r^2} \\
+&+ \rho^2 \dd{\theta^2} + \qty(r^2+a^2 + \frac{2GMr a^2 \sin^2\theta }{\rho^2}) \sin^2 \theta \dd{\varphi^2}
+\end{split}
 \,,
-\end{align}
-\end{subequations}
+\end{align}}
 %
 where \(a = J/M\), \(\rho^2= r^2+a^2 \cos^2\theta  \) and \(\Delta = r^2 - 2GMr +a^2\). 
 

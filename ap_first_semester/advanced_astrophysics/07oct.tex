@@ -197,12 +197,15 @@ Finally, we substitute in the equation of energy conservation:
 %
 to find the equations for the evolution of the energy and pressure:
 %
+\boxalign{
 \begin{subequations}
 \begin{align}
   \pdv{\log P }{t} &= \Gamma_1 \pdv{\log \rho}{t} + \frac{\rho}{P} (\Gamma_3 - 1) \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  \\
-  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{t} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  
+  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{t} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})
 \end{align}
-\end{subequations}
+\end{subequations}}
+
+\subsection{Linear perturbation theory}
 
 Say we have a solution for these equations, we look at linear perturbations of them.
 This makes sense: the main solution is basically static on the pulsation time-scales.
@@ -210,26 +213,33 @@ This makes sense: the main solution is basically static on the pulsation time-sc
 The perturbed model is \(f = f(m)\),  the unperturbed one is \(f_0(m)\).
 The Lagrangian perturbation is \(\delta f (m, t) = f(m, t) - f_0(m, t)\).
 
-Let us consider specific cases for \(r\): the radial displacement is \(\delta r (m, t)\). The position of the layer at time \(t\) is \(r = r_0 + \delta r\).
+Let us consider specific cases for \(f\): the radial displacement is \(\delta r (m, t)\). The position of the layer at time \(t\) is \(r = r_0 + \delta r\).
 
 We can write:
 %
 \begin{equation}
-  r = r_0 \qty(1 + \frac{\delta r}{r_0} ) = r_0 (1+ \zeta)\,.
+  r = r_0 \qty(1 + \frac{\delta r}{r_0} ) = r_0 (1+ \zeta)
+  \,,
 \end{equation}
+%
+where we define \(\zeta = \delta r / r_0 \).
 
-In general the fractional perturbation \(\delta f / f_0\) is assumed to be \(\ll 1 \). So, \(\delta f / f_0 \sim \delta_f / f\).
+In general the fractional perturbation \(\delta f / f_0\) is assumed to be \(\ll 1 \). So, \(\delta f / f_0 \sim \delta_f / f\). Formally, we only consider terms which are of first order in either perturbed function.
 We will insert expressions which are functions of perturbations of all our variables, and thus get linear differential equations.
 
-Let us try the continuity equation: \(r = r_0 (1+\zeta)\) and \(\rho = \rho_0 (1 + \delta \rho / \rho_0)\).
+\subsubsection{Continuity equation}
 
-\begin{equation}
-  \pdv{}{m} \qty(r_0 (1+\zeta)) =
+Let us try the continuity equation, substituting in \(r = r_0 (1+\zeta)\) and \(\rho = \rho_0 (1 + \delta \rho / \rho_0)\).
+
+\begin{align}
+  \pdv{r}{m} &= \frac{1}{4 \pi r^2 \rho }  \\
+  \pdv{}{m} \qty(r_0 (1+\zeta)) &=
   \frac{1}{4 \pi r_0^2} \qty(1+\zeta)^{-2} \qty(1 + \frac{\delta \rho}{\rho_0})^{-1}
-\end{equation}
+\end{align}
 
-and we use \((1+x)^n \approx 1 + nx\):
-
+and we use \((1+x)^n \approx 1 + nx\) plus the zeroth order equation: \(\pdv*{r_0 }{m} = 1 / 4 \pi r_0^2 \rho_0\). 
+With these, we find:
+%
 \begin{equation}
   4 \pi \rho_0^2 \qty(\pdv{r_0}{m} (1+\zeta) + r_0 \pdv{\zeta}{m})
   = (1-2 \zeta) -\frac{\delta \rho}{\rho_0}
@@ -245,7 +255,42 @@ We can collapse the equation into:
 or, the density perturbation is proportional with a negative constant to the radial perturbation, plus a term proportional to \(\pdv*{\zeta}{m}\).
 If there is a positive gradient of radial perturbation, the corresponding layer expands.
 
-Let us also perturb the momentum conservation equation, assuming hydrostatic equilibrium \(\pdv*[2]{r_0}{t} \).
+\subsubsection{Momentum conservation}
+
+Let us also perturb the momentum conservation equation; the unperturbed solution will be at hydrostatic equilibrium, so \(\pdv*[2]{r_0}{t} = \pdv{r_0 }{t} =0 \), which means 
+%
+\begin{align} \label{eq:hydrostatic-equilibrium}
+\pdv{P_0 }{m} = - \frac{Gm}{4 \pi r_0^{4}}
+\,.
+\end{align}
+
+Substituting in we find that, to linear order: 
+%
+\begin{align}
+\pdv[2]{r}{t} &= - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r^2} \\
+\pdv[2]{}{t} \qty(r_0 \qty(1 + \zeta )) 
+&= 
+- 4 \pi \qty(r_0 (1+z))^2 \pdv{}{m} \qty(P_0 \qty(1 + \frac{ \delta P }{P_0 })) - \frac{Gm}{r_0^2 (1 + \zeta^2)} 
+\\
+r_0 \pdv[2]{\zeta }{t} 
+&=
+- 4 \pi r_0^2 \qty(1 + 2 \zeta )
+\qty(\pdv{P_0 }{m} \qty(1 + \frac{ \delta P}{P_0 }) + P_0 \pdv{}{m} \qty(\frac{ \delta P}{P_0 }))
+- \frac{GM}{r_0^2} \qty(1 - 2z) 
+\\
+\frac{r_0}{4 \pi r_0^2} \pdv[2]{\zeta }{t} &= - \qty(1 + 2 \zeta )
+\qty(\pdv{P_0 }{m} \qty(1 + \frac{ \delta P}{P_0 }) + P_0 \pdv{}{m} \qty(\frac{ \delta P}{P_0 }))
++ \qty(1 - 2z) \pdv{P_0 }{m} \marginnote{Used equation \eqref{eq:hydrostatic-equilibrium}.} \\ 
+\begin{split}
+\frac{1}{4 \pi r_0} \pdv[2]{\zeta }{t} &= 
+- \qty(\pdv{P_0 }{m} \qty(1 + \frac{ \delta P}{P_0 }) + P_0 \pdv{}{m} \qty(\frac{ \delta P}{P_0 })) + \pdv{P_0 }{m} + \\
+&\phantom{=}\, - 2\zeta \qty(\pdv{P_0 }{m} \qty(1 + \frac{ \delta P}{P_0 }) + P_0 \pdv{}{m} \qty(\frac{ \delta P}{P_0 }))
+- 2 \zeta \pdv{P_0 }{m}
+\end{split}
+\,.
+\end{align}
+%
+
 
 We have a purely geometric term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\): when a layer moves outwards it expands.
 There is a restoring force toward equilibrium.

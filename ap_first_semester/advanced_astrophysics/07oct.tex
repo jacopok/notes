@@ -289,19 +289,39 @@ r_0 \pdv[2]{\zeta }{t}
 \end{split} \marginnote{Split the terms into different orders of \(\zeta \)} \\
 \begin{split}
 \frac{1}{4 \pi r_0} \pdv[2]{\zeta }{t} &= 
-- \pdv{}{m} \qty(\delta \rho ) + \\
+- \pdv{}{m} \qty(\delta P ) + \\
 &\phantom{=}\ 
 - 4 \zeta \pdv{P_0 }{m}
-- 2\zeta \pdv[]{}{m} \qty(\delta \rho )
+- 2\zeta \pdv[]{}{m} \qty(\delta P )
 \end{split} \\
-&= - \pdv{}{m} (\delta \rho) - 4 \zeta \pdv{P_0 }{m} \marginnote{Neglected a second order term} 
+r_0 \dv[2]{\zeta }{t} &= -4 \pi r_0^2 \qty( \pdv{}{m} (\delta P) + 4 \zeta \pdv{P_0 }{m}) \marginnote{Neglected a second order term} 
 \,.
+\end{align}
+
+The final equation then looks like 
+%
+\boxalign{
+\begin{align}
+r_0 \pdv[2]{\zeta}{t} = - 4 \pi r_0^2 \qty(
+  \underbrace{P_0 \pdv{}{m} \qty( \frac{ \delta P}{P_0 }) + 
+  \frac{ \delta P}{P_0 } \pdv{P_0 }{m}}_{ \pdv{ \delta P}{m} } + 4 \zeta \pdv{P_0 }{m}
+)
+\,,
+\end{align}}
+%
+and we can now give a physical interpretation of the various terms.  
+
+We have a purely geometric term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\): when a layer moves outwards it expands.
+This, by itself, is a force moving the system away from equilibrium: the equation is precisely like a harmonic repulsor, \(\ddot{\zeta} = \omega^2 z\) with 
+%
+\begin{align}
+\omega^2 = -
+\,,
 \end{align}
 %
 
 
-We have a purely geometric term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\): when a layer moves outwards it expands.
-There is a restoring force toward equilibrium.
+\subsubsection{Energy conservation}
 
 Let us also consider the \(\log P\) form of the energy conservation equation.
 We also perturb the adiabatic exponents and the \(\dv*{Q}{t} \) term.

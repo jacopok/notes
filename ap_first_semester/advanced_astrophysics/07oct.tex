@@ -477,11 +477,56 @@ P_0 \pdv{}{m} \qty(\Gamma_1  \qty(-3\zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta }{m}))
 &\phantom{=}\ + \Gamma_1 \qty(- 3\zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta }{m}) \pdv{P_0}{m}
 + 4 \zeta \pdv{P_0 }{m}
 \bigg]
+\end{split}  \\
+\label{eq:step0-LAWE-derivation-substituted}
+\begin{split}
+r_0 \pdv[2]{\zeta }{t} &= 4 \pi r_0^2 \bigg(
+(3 \Gamma_1 - 4)\zeta \pdv{P}{m} 
++ 4 \pi r_0^3 \Gamma_1 \rho \pdv{\zeta }{m} \pdv{P}{m} + \\
+&\phantom{=}\ 
++ 3 P \pdv{}{m} \qty(\Gamma_1 \zeta ) 
++ 4 \pi P \pdv{}{m} \qty(\Gamma_1 r^3 \rho \pdv{\zeta }{m})
+\bigg)
+\,,
 \end{split}
+\end{align}
+%
+and now we can can manipulate the terms inside the parentheses; we start to drop the zero indices, any quantity not being \(\delta \)'d is meant to be unperturbed.
+The first and third terms are respectively given by  
+%
+\begin{align}
+\pdv{P}{m} \zeta \qty(3 \Gamma_1 - 4) =
+\zeta \pdv{}{m} \qty((3 \Gamma_1 - 4) P) \hlc{teal}{-3 \zeta P \pdv{\Gamma_1}{m}} \marginnote{Backwards derivative of a product}
+\,
+\end{align}
+%
+and 
+%
+\begin{align} \label{eq:step1-LAWE-derivation}
+3 P \pdv{}{m} \qty(\Gamma_1 \zeta ) = 3P \Gamma_1 \pdv{\zeta }{m} \hlc{teal}{+ 3 P \zeta \pdv{\Gamma_1 }{m}}
 \,,
 \end{align}
 %
-% [Insert derivation of the LAWE, which can be found in the slides].
+so we can see that the highlighted terms cancel.
+Also, the other term in equation \eqref{eq:step1-LAWE-derivation} can be rewritten using the continuity equation \eqref{eq:continuity}: 
+%
+\begin{align}
+3P \Gamma_1 \pdv{\zeta }{m} 
+= \hlc{lightgray}{12 \pi r^2 \rho  \Gamma_1 P \pdv{\zeta }{m} \pdv{r}{m}}
+\,,
+\end{align}
+%
+so we can see that if we expand the fourth term in \eqref{eq:step0-LAWE-derivation-substituted} we find a thing that is equal to it: 
+%
+\begin{align}
+4 \pi P \pdv{}{m} \qty(r^3 \times  \Gamma_1  \rho \pdv{\zeta }{m})
+= \hlc{lightgray}{4 \pi P \times 3 r^2 \pdv{r}{m} \Gamma_1 \rho \pdv{\zeta }{m}}
++  4 \pi P r^3 \pdv{}{m} \qty(\Gamma_1 \rho \pdv{\zeta }{m})
+\,,
+\end{align}
+%
+so we will have twice that contribution in the final result.
+
 
 \begin{equation}
   r \pdv[2]{\zeta}{t} =

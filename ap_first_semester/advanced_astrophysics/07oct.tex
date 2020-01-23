@@ -22,7 +22,7 @@ We come back to the energy equation
 
 we incorporate the nuclear energy generation rate and the energy lost as neutrino production into an effective energy generation rate per unit mass \(\varepsilon - \varepsilon_\nu = \varepsilon_{\text{eff}} \) and express the energy absorbed by the stellar layer as 
 %
-\begin{align}
+\begin{align} \label{eq:heat-transfer-effective}
  \varepsilon_g = \dv{Q}{t} = \varepsilon_{\text{eff}} - \pdv{L}{m}
 \,.
 \end{align}
@@ -200,8 +200,8 @@ to find the equations for the evolution of the energy and pressure:
 \boxalign{
 \begin{subequations}
 \begin{align}
-  \pdv{\log P }{t} &= \Gamma_1 \pdv{\log \rho}{t} + \frac{\rho}{P} (\Gamma_3 - 1) \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  \\
-  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{t} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})
+  \pdv{\log P }{t} &= \Gamma_1 \pdv{\log \rho}{t} + \frac{\rho}{P} (\Gamma_3 - 1) \qty(\varepsilon_{\text{eff}} - \pdv{L}{m})  \label{eq:log-pressure-energy-conservation}\\
+  \pdv{\log T }{t} &= (\Gamma_3 - 1) \pdv{\log \rho}{t} + \frac{1}{c_V T} \qty(\varepsilon_{\text{eff}} - \pdv{L}{m}) \label{eq:log-temperature-energy-conservation}
 \end{align}
 \end{subequations}}
 
@@ -227,6 +227,21 @@ where we define \(\zeta = \delta r / r_0 \).
 In general the fractional perturbation \(\delta f / f_0\) is assumed to be \(\ll 1 \). So, \(\delta f / f_0 \sim \delta_f / f\). Formally, we only consider terms which are of first order in either perturbed function.
 We will insert expressions which are functions of perturbations of all our variables, and thus get linear differential equations.
 
+\subsubsection{Properties of Lagrangian perturbations}
+
+In general for a Lagrangian perturbation we have the following useful properties: 
+\begin{enumerate}
+  \item we can use the properties of derivatives: \(\delta (f^n) = n f_0^{n-1} \delta f\);
+  \item we can use the properties of logarithmic derivatives:
+  %
+  \begin{align} \label{eq:lagrangian-perturbation-logarithmic}
+  \frac{ \delta \qty( \prod f_i)}{\prod f_i} = \sum \frac{ \delta f_i}{f_i}
+  \,;
+  \end{align}
+  %
+  \item \(\delta \) commutes with partial derivation. 
+\end{enumerate}
+
 \subsubsection{Continuity equation}
 
 Let us try the continuity equation, substituting in \(r = r_0 (1+\zeta)\) and \(\rho = \rho_0 (1 + \delta \rho / \rho_0)\).
@@ -246,11 +261,11 @@ With these, we find:
 \end{equation}
 
 We can collapse the equation into:
-
-\begin{equation}
+\boxalign{
+\begin{align} \label{eq:linearized-continuity}
   \frac{\delta \rho}{\rho_0} =
   - 3 \zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta}{m}
-\end{equation}
+\end{align}}
 
 or, the density perturbation is proportional with a negative constant to the radial perturbation, plus a term proportional to \(\pdv*{\zeta}{m}\).
 If there is a positive gradient of radial perturbation, the corresponding layer expands.
@@ -301,7 +316,7 @@ r_0 \dv[2]{\zeta }{t} &= -4 \pi r_0^2 \qty( \pdv{}{m} (\delta P) + 4 \zeta \pdv{
 The final equation then looks like 
 %
 \boxalign{
-\begin{align}
+\begin{align} \label{eq:linearized-momentum-conservation}
 r_0 \pdv[2]{\zeta}{t} = - 4 \pi r_0^2 \qty(
   \underbrace{P_0 \pdv{}{m} \qty( \frac{ \delta P}{P_0 }) + 
   \frac{ \delta P}{P_0 } \pdv{P_0 }{m}}_{ \pdv{ \delta P}{m} } + 4 \zeta \pdv{P_0 }{m}
@@ -311,31 +326,99 @@ r_0 \pdv[2]{\zeta}{t} = - 4 \pi r_0^2 \qty(
 %
 and we can now give a physical interpretation of the various terms.  
 
-We have a purely geometric term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\): when a layer moves outwards it expands.
-This, by itself, is a force moving the system away from equilibrium: the equation is precisely like a harmonic repulsor, \(\ddot{\zeta} = \omega^2 z\) with 
+We have a term \(-16 \pi r_0^2 \zeta \pdv*{P_0}{m} = 4 \zeta Gm /r_0^2\).
+This, by itself, is a force moving the system away from equilibrium: the equation with only that term on the RHS is precisely like a harmonic repulsor, \(\ddot{\zeta} = \omega^2 z\) with 
 %
 \begin{align}
-\omega^2 = -
-\,,
+\omega^2 = \frac{4Gm}{r_0^3}
+\,.
 \end{align}
-%
 
+This term is of geometric origin: as the layer moves outwards it expands, and the expansion is favoured by the decrease in the gravitational potential and the corresponding increase in pressure due to the increase of the area of the layer. 
+
+The equation with only the other term looks like 
+%
+\begin{align}
+\ddot{\zeta} = - 4 \pi r_0 \pdv{ \delta P }{m}
+= - 4 \pi r_0  \qty( P_0 \pdv{}{m} \qty(\frac{ \delta P }{P_0 }) + \frac{ \delta P}{P_0 } \pdv{P_0 }{m})
+\,.
+\end{align}
+
+\todo[inline]{According to the slides, the action of this term is to be split in two: for the second, a restoring force towards equilibrium, since if the pressure decreases as the layer expands then the force is inward, and a more vague interpretation for the first bit, stating that ``a non uniform variation of \(\delta P\) from a layer to the next generates a change in the pressure gradient'': but it \emph{is} a change in the pressure field\dots}
 
 \subsubsection{Energy conservation}
 
-Let us also consider the \(\log P\) form of the energy conservation equation.
-We also perturb the adiabatic exponents and the \(\dv*{Q}{t} \) term.
+Let us also consider the expression for the time derivative of \(\log P\) coming from the energy conservation equation: equation \eqref{eq:log-pressure-energy-conservation}; the perturbed equation for the time derivative of \(\log T\) (equation \eqref{eq:log-temperature-energy-conservation}) is analogously derived.  
+Besides \(\rho \) and \(P\), we also perturb the adiabatic exponents and the \(\dv*{Q}{t} = \epsilon_{\text{eff}} - \pdv*{L}{m}\) term.
 
-After difficult manipulations we get back an equation which relates the changes in density and pressure to the change in energy: we manipulate until we get something which is similar to the original equation.
+After difficult manipulations we get back an equation which relates the changes in density and pressure to the change in energy: we manipulate until we get something which is similar to the original equation: 
+%
+\boxalign{
+\begin{align}
+\pdv{}{t} \qty(\frac{ \delta P }{P_0 }) &= 
+\Gamma_{1,0} \pdv{}{t} \qty(\frac{ \delta \rho }{\rho_0 })
++ \frac{\rho_0 }{P_0 } \qty(\Gamma_{3, 0} -1) \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m}) \label{eq:perturbed-linearized-energy-log-pressure}\\ 
+\pdv{}{t} \qty(\frac{ \delta T }{T_0 }) &= 
+(\Gamma_{3,0} - 1) \pdv{}{t} \qty(\frac{ \delta \rho }{\rho_0 })
++ \frac{1}{c_V T} \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m}) \label{eq:perturbed-linearized-energy-log-temperature}
+\,,
+\end{align}}
+%
+where we note that the first index of the adiabatic exponents denotes \emph{which exponent it is}, while the second indicates that it is the unperturbed value.
 
-In general for a Lagrangian perturbation \(\delta (f^n) = n f_0^{n-1} \delta f\).
-We have rules for the perturbation of product which work just like logarithmic derivatives. \(\delta\) commutes with partial derivatives.
+\todo[inline]{The last \(T\) in the temperature equation is not unperturbed nor perturbed...?}
 
-In the radiative case with the diffusion approximation we can perturb the luminosity: \(L  \propto r^4 T^4 \kappa_R^{-1} \pdv{\log T}{m}\).
+\subsubsection{Luminosity equation}
 
+In the radiative case with the diffusion approximation we can perturb the luminosity equation, \eqref{eq:luminosity-equation}. It is much more convenient not to calculate \(\delta L\) but \(\delta L  / L_0 \) instead: this allows us to use the logarithmic derivative properties of the perturbation; also, since 
+%
+\begin{align}
+T^{3} \pdv{T}{m} = T^{4} \pdv{\log T}{m}
+\,
+\end{align}
+%
+we use the latter expression, which is more convenient. 
+So we have \(L = \prod f_i\), with 
+%
+\begin{align}
+f_{i} = \qty{- \frac{64 \pi^2 ac}{3}, r^{4}, \kappa_{R}^{-1}, T^{4}, \pdv{\log T}{m}}
+\,.
+\end{align}
+
+Now we can apply the rule given in equation \eqref{eq:lagrangian-perturbation-logarithmic}: we find
+%
 \begin{equation}
-  \frac{\delta L}{L_0} = 4 \zeta + 4 \frac{\delta T}{T_0} - \frac{\delta \kappa_R}{\kappa_{R,0}} + \frac{\pdv{}{m}  \frac{\delta T}{T}}{\pdv{\log T}{m}}
+  \frac{\delta L}{L_0} = 4 \zeta + 4 \frac{\delta T}{T_0} - \frac{\delta \kappa_R}{\kappa_{R,0}} + \qty(\pdv{\log T}{m})^{-1}_{0} \pdv{}{m} \qty( \frac{\delta T}{T_0 })
+  \,,
 \end{equation}
+%
+where we used the simplification 
+%
+\begin{align}
+\delta \qty(\pdv{\log T}{m}) &= \delta \qty(\frac{1}{T} \pdv{T}{m})  \\
+&= \delta \qty(\frac{1}{T}) \pdv{T_0 }{m} + \frac{1}{T_0 }  \delta \qty(\pdv{T}{m})  \\
+&= - \frac{ \delta T}{ T_{0}} \pdv{T_0 }{m} + \frac{1}{T_0 } \pdv{ \delta T }{m }  \\
+&= \pdv{}{m} \qty(\frac{ \delta T}{T_0 }) \marginnote{Inverse application of the product rule}
+\,.
+\end{align}
+
+The last step is to assume a certain dependence of the Rosseland mean opacity on the temperature and density: specifically, it is a ``Kramers-like'' expression, given by 
+%
+\begin{align}
+\kappa_{R} \propto \rho^{n} T^{-s}
+\,,
+\end{align}
+%
+which can be substituted into our expression: the proportionality factor does not matter, and we get additional temperature and density terms: 
+%
+\boxalign{
+\begin{align}
+\frac{ \delta L}{L_0 } 
+= 4 \zeta + (4+s) \frac{\delta T}{T_0} - n \frac{ \delta \rho }{\rho_0 } + \qty(\pdv{\log T}{m})^{-1}_{0} \pdv{}{m} \qty( \frac{\delta T}{T_0 })
+\,,
+\end{align}}
+%
+
 
 In the end, we have a set of four linear PDE equations (written as a 5-equation system).
 
@@ -343,26 +426,62 @@ These describe implicitly how the properties of the star change over time.
 
 Pulsation usually affects mostly the outer layers of a star.
 
-Moving on to
+% Moving on to
 
 \section{Adiabatic oscillations}
 
-Explioting the adiabatic approximation we will get the LAWE: Linear Adiabatic Wave Equation: a single equation which summarizes the 4.
+Exploiting the adiabatic approximation we will get the  Linear Adiabatic Wave Equation (LAWE): a single equation which summarizes the 4 and can be solved explicitly.
 
-This can be solved explicitly.
+Recall the heat transfer equation \eqref{eq:heat-transfer-effective}: 
+if we suppose that each layer does not lose nor gain heat, \(\dv*{Q}{t} =0\), this implies that \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )=0\).
 
-We suppose that each layer does not lose nor gain heat: \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )=0\).
-
-Is this approximation justified? The term multiplying \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )\) in the perturbed energy equation is \(\rho/P (\Gamma_3-1) = \chi_T / (c_V T)\).
-Usually \(\chi_T \sim 1\), \(\Gamma_1 \sim 1\).
+Is this approximation justified? The term multiplying \(\delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )\) in the perturbed energy equation \eqref{eq:perturbed-linearized-energy-log-pressure} is \(\rho (\Gamma_3-1)/P  = \chi_T / (c_V T)\).
+Usually \(\chi_T \sim 1\), while the density perturbation term is multiplied by \(\Gamma_1 \sim 1\).
 
 This term,  \( \chi_T / (c_V T) \delta (\varepsilon_{\text{eff}} - \pdv*{L}{m} )\), is of the order \(1/\tau_{\text{th}}\), the thermal time scale of this layer, while the term before, \(\Gamma_1 \pdv*{}{t} (\delta \rho / \rho)\), is of the order \(1/\tau_{\text{dyn}}\), the dynamical time scale.
+
+\todo[inline]{Is this just because the first term contains a time derivative while the second one does not?}
 
 Therefore, we neglect the second part.
 This only works for the star as a whole, not for single layers.
 There are stellar layers which are \emph{strongly} non-adiabatic (driving layers). We will need some non-adiabatic theory to explain how pulsations \emph{start}.
 
-[Insert derivation of the LAWE, which can be found in the slides].
+So, the energy conservation equations become 
+%
+\begin{align}
+\frac{ \delta P}{P} = \Gamma_1 \frac{ \delta \rho }{\rho }
+\qquad \text{and} \qquad
+\frac{ \delta T }{T} = \qty(\Gamma_3 -1) \frac{ \delta \rho }{\rho }
+\,,
+\end{align}
+%
+which we can substitute into the momentum conservation equation \eqref{eq:linearized-momentum-conservation} to find 
+%
+\begin{align}
+r_0 \pdv[2]{\zeta }{t} = 
+- 4 \pi r_0^2 \qty(
+P_0 \pdv{}{m} \qty(\Gamma_1  \frac{ \delta \rho}{\rho })
++ \Gamma_1 \frac{ \delta \rho }{\rho } \pdv{P_0}{m}
++ 4 \zeta \pdv{P_0 }{m}
+)
+\,,
+\end{align}
+%
+and now we can use the continuity equation \eqref{eq:linearized-continuity} which gives us an expression for \(\delta \rho  / \rho \): inserting it we get 
+%
+\begin{align}
+\begin{split}
+r_0 \pdv[2]{\zeta }{t} &= 
+- 4 \pi r_0^2 \bigg[
+P_0 \pdv{}{m} \qty(\Gamma_1  \qty(-3\zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta }{m})) + \\
+&\phantom{=}\ + \Gamma_1 \qty(- 3\zeta - 4 \pi r_0^3 \rho_0 \pdv{\zeta }{m}) \pdv{P_0}{m}
++ 4 \zeta \pdv{P_0 }{m}
+\bigg]
+\end{split}
+\,,
+\end{align}
+%
+% [Insert derivation of the LAWE, which can be found in the slides].
 
 \begin{equation}
   r \pdv[2]{\zeta}{t} =

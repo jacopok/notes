@@ -16,22 +16,21 @@ Substituting \(\zeta (m, t) = \eta (m) \exp(i \sigma t)\) into the LAWE we find 
 \,.
 \end{align}
 
-We can rewrite this in the Eulerial formalism, using the continuity equation: we get 
+Since we have an explicit \(r\), it is convenient to rewrite this in the Eulerial formalism, using the continuity equation: we get 
 %
 \begin{align}
-- r \sigma^2 \eta = 
+- r \sigma^2 \eta &= 
 \frac{\eta }{\rho } \pdv{}{r} \qty((3\Gamma_1 - 4) P)
-+ 4 \dots 
++ \frac{1}{r^3 \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\zeta }{r})  \\
+\sigma^2 \eta  &= \hlc{green}{-\frac{\eta }{\rho r} \pdv{}{r} \qty(3 \Gamma_1 P - 4P )} \hlc{blue}{- \frac{1}{r^{4} \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\zeta }{r})}
 \,,
 \end{align}
 %
-
+\todo[inline]{Slide 4.37: there is a minus sign missing, right?}
 
 We will have analytic solutions for the adiabatic case, with the additional hypotheses of either \(\Gamma_1 = 4/3\) or \(\Gamma_1 > 4/3\) and homogeneity.
 
-The justification of the adiabatic approx might be asked at the exam.
-
-After plugging our ansatz in the LAWE we should take the real part.
+[The justification of the adiabatic approx might be asked at the exam.]
 
 What are the boundary conditions we should set?
 
@@ -43,9 +42,20 @@ What are the boundary conditions we should set?
     \item \(\eta = \delta r / r = 1\) at \(r = R\).
 \end{enumerate}
 
-\begin{greenbox}
-  What is the \(\pdv[2]{\eta}{r} \) stuff about?
-\end{greenbox}
+By the first condition, we need the term 
+%
+\begin{align}
+\hlc{blue}{\frac{1}{r^4 \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\zeta }{r})}
+= \frac{\Gamma_1 P}{\rho } \pdv[2]{\zeta }{r}
++ 4 \frac{\Gamma_1 P}{\rho r} \pdv{\zeta}{r} 
++ \frac{\Gamma_1 }{\rho } \pdv{\zeta }{r} \pdv{P}{r}
++ \frac{P}{\rho } \pdv{\zeta }{r} \pdv{\Gamma_1}{r}
+\,
+\end{align}
+%
+to be well behaved at \(r=0\). 
+
+\todo[inline]{To be continued}
 
 We use the Eulerian form of the LAWE to figure out the surface boundary conditions.
 We assume that all perturbation are in phase, and write them all as proportional to \(\exp(i \sigma t)\).

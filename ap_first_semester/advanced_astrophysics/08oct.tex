@@ -3,6 +3,8 @@
 
 \section*{8 October 2019}
 
+\subsubsection{An ansatz for the LAWE}
+
 Last lecture we started talking about linearization \& perturbation theory.
 
 We use a complex spinning ansatz, which is by itself not physical, however its conjugate is also a solution so after we have found a solution we just need to take the real part.
@@ -34,17 +36,20 @@ We will have analytic solutions for the adiabatic case, with the additional hypo
 
 [The justification of the adiabatic approx might be asked at the exam.]
 
-What are the boundary conditions we should set?
+\subsubsection{Boundary conditions for the LAWE}
 
+What are the boundary conditions we should set? The final result is:
+%
 \begin{enumerate}
     \item \(\delta r = 0\) at \(r = 0\);
-    \item \(\pdv*{\eta}{r} = 0 \) at \(r=0\), which allows us to fix many divergences at the center;
-    % \item \(\pdv*{\zeta}{r} < + \infty \) or, equivalently (from the continuity equation) \(3 \zeta + \delta \rho / \rho = 0\);
+    \item \(\pdv*{\eta}{r} = 0 \) at \(r=0\);
     \item \((4 + R^3 \sigma^2 / (GM)) \eta + \delta P / P = 0\) at \(r =R\);
     \item \(\eta = \delta r / r = 1\) at \(r = R\).
 \end{enumerate}
 
-By the first condition, we need the term 
+Let us show why. The first condition has an immediate physical basis: there cannot be radial displacement at \(r=0\) since there is nowhere to go at \(r<0\), and if there was positive radial displacement \(\delta r\) it would mean there is a vacuum in the region \(r<\delta r \), which is unphysical because of the pressure there.
+
+So, by the first condition, we need the term 
 %
 \begin{align}
 \hlc{cyan}{\frac{1}{r^4 \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\eta }{r})}
@@ -57,7 +62,48 @@ By the first condition, we need the term
 %
 to be well behaved (nonsingular) at \(r=0\). 
 
-We know that \(\pdv*{P}{r}\) and \(\pdv*{\Gamma_1}{r}\) are zero at \(r=0\),\todo{why?} so we can neglect the terms containing them. 
+We know that \(\pdv*{P}{r}\) and \(\pdv*{\Gamma_1}{r}\) are zero at \(r=0\), so we can neglect the terms containing them. This is because any physical quantity must approach \(r=0\) with zero \(\dv*{}{r}\) slope, in order for it to be differentiable at the center.
+
+% Let us show this: we write the momentum conservation equation in the Eulerian form, 
+% %
+% \begin{align}
+% \pdv{P}{r} = - \frac{Gm \rho }{r^2}
+% \,,
+% \end{align}
+% %
+% and look at the asymptotic behaviour at \(r \rightarrow 0\): \(\rho \) and \(G\) are finite, while \(m\) and \(r^2\) go to zero. We know that \(m  \sim r^3\), therefore globally the behaviour is \(r^3/r^2 = r \rightarrow 0\).
+
+% Also, we know that \(P = \rho^{\Gamma_1 }\). So, let us write \(\pdv*{P}{r}\): 
+% %
+% \begin{align}
+% \pdv{}{r} \exp(\Gamma_1 \log \rho )
+% = \exp(\Gamma_1 \log \rho) \qty(\log \rho \pdv{\Gamma_1  }{r} + \Gamma_1 \pdv{}{r} \log \rho ) = 0
+% \,,
+% \end{align}
+% %
+% \todo[inline]{prove that \(\pdv*{\Gamma_1}{r} =0\) for \(r=0\)}
+
+In the second term we have a division by \(r\): in order for it not to diverge we must ask that \(\pdv*{\eta }{r} =0\) at \(r=0\). 
+
+Since \(\eta \) is \(\zeta \) times a phase, this also means that \(\pdv*{\zeta }{r} =0 \) at \(r=0\). 
+We can plug this into the linearized continuity equation, the Eulerian form of \eqref{eq:linearized-continuity}: 
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } &= - 3\zeta - r\pdv{\zeta }{r} \\
+0=\pdv{\zeta }{r} &= - \frac{1}{r} \qty(3\zeta + \frac{ \delta \rho }{\rho })  \\
+\implies 0 &= 3\zeta + \frac{ \delta \rho }{\rho }
+\,,
+\end{align}
+%
+into which we can substitute the linearized adiabatic expressions for the temperature and pressure perturbations \eqref{eq:linearized-adiabatic-energy-conservation}: so we find 
+%
+\begin{align}
+3\zeta = - \frac{1}{\Gamma_1 } \frac{ \delta P }{P}
+= - \frac{1}{\Gamma_3 -1} \frac{ \delta T}{T}
+\,,
+\end{align}
+%
+
 
 We use the Eulerian form of the LAWE to figure out the surface boundary conditions.
 We assume that all perturbation are in phase, and write them all as proportional to \(\exp(i \sigma t)\).
@@ -71,6 +117,8 @@ and represents ``how far we should move in the star for the pressure to change \
 By inserting this in the equation we see that \(H_P \rightarrow 0\) when \(r \rightarrow R\): the pressure changes very quickly in the photosphere of the star. Therefore, the term multiplying it must also go to zero.
 
 The last condition comes from the fact that we want our study to give us \emph{periods}, not \emph{amplitudes}: we cannot find those out, so we normalize. The LAWE is 1-homogeneous!
+
+\subsubsection{Solving the LAWE}
 
 The LAWE can be written compactly with a linear operator \(\mathcal L\):
 

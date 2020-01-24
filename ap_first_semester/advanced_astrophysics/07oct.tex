@@ -95,6 +95,7 @@ but we can turn the derivatives with respect to \(V\) with ones with respect to 
 %
 so after dividing through by \(\rho \) we find: 
 %
+\begin{subequations}
 \begin{align}
 \rho \pdv{E}{\rho } &= -\frac{T}{\rho } \pdv{P}{T} + \frac{P}{\rho }  \\
 &= - \frac{P}{\rho } \pdv{\log P }{\log T} + \frac{P}{\rho }  \\
@@ -102,6 +103,7 @@ so after dividing through by \(\rho \) we find:
 \pdv{E}{\log \rho }&= -\frac{P}{\rho } \qty(\chi_{T} - 1)
 \,.
 \end{align}
+\end{subequations}
 %
 
 We used the fact that 
@@ -113,6 +115,7 @@ We used the fact that
 
 Now, we can write the first law of thermodynamics for the specific energy density \(E(\rho, T)\): 
 %
+\begin{subequations}
 \begin{align}
 \dd{Q} &= \dd{E} - \frac{P}{\rho^2} \dd{\rho }  \label{eq:heat-differential}\\
 &= \pdv{E}{\log \rho } \dd{\log \rho } 
@@ -121,15 +124,18 @@ Now, we can write the first law of thermodynamics for the specific energy densit
 &= - \frac{P \chi_T }{\rho } \dd{\log \rho } + \pdv{E}{\log T} \dd{\log T} 
 \,,
 \end{align}
+\end{subequations}
 %
 which in the adiabatic (\(\dd{Q} = 0\)) case reduces to 
 %
+\begin{subequations}
 \begin{align}
 \Gamma_3 - 1 \overset{\text{def}}{=} \pdv{\log T }{\log \rho } &= - \frac{P \chi_{T}  }{\rho } \pdv{\log T}{E} = - \frac{P \chi_T }{\rho T c_V}  \\
 &=- \frac{1}{\rho } \times \underbrace{\frac{P \chi_T}{T}}_{\pdv{P}{T}} \times \underbrace{\frac{1}{c_V}}_{\pdv{T}{E}}  \\
 &= - \frac{1}{\rho } \pdv{P}{E}
 \,,
 \end{align}
+\end{subequations}
 %
 where we used the fact that \(c_V = \pdv*{E}{T}\). This can also be written as 
 %
@@ -155,21 +161,25 @@ and similarly if we express \(E = E(\rho, P)\) we find
 
 We can simplify these two expressions by recalling some results from before, plus two more expression we now derive for the coefficients \(\Gamma_1\) and \(\Gamma_3 -1\): we assume adiabaticity, and get
 %
+\begin{subequations}
 \begin{align}
 0=\dd{S} &= \frac{1}{T} \qty(\pdv{E}{\rho } \dd{\rho } + \pdv{E}{P } \dd{P} - \frac{P}{\rho^2} \dd{\rho })  \\
 0&= \qty(\rho \pdv{E}{\rho } - \frac{P}{\rho } ) \dd{\log \rho }   + P \pdv{E}{P} \dd{\log P}  \\
 \Gamma_1 = \left. \dv{\log P}{\log \rho } \right\vert_{\text{ad}} &= \frac{\frac{P}{\rho } - \rho \pdv{E}{\rho }}{P \pdv{E}{P}}
 \,
 \end{align}
+\end{subequations}
 %
 and 
 %
+\begin{subequations}
 \begin{align}
 0 = \dd{S} &= \frac{1}{T} \qty(\pdv{E}{\rho } \dd{\rho } + \pdv{E}{T} \dd{T} - \frac{P}{\rho^2} \dd{\rho })  \\
 0&= \qty(\rho \pdv{E}{ \rho } - \frac{P}{\rho }) \dd{\log \rho } + T \pdv{E}{T} \dd{\log T}  \\
 \Gamma_3 -1 = \left. \dv{\log T}{\log \rho } \right\vert_{\text{ad}} &= \frac{\frac{P}{\rho } - \rho \pdv{E}{\rho }}{T \pdv{E}{T}}
 \,,
 \end{align}
+\end{subequations}
 %
 
 
@@ -246,11 +256,13 @@ In general for a Lagrangian perturbation we have the following useful properties
 
 Let us try the continuity equation, substituting in \(r = r_0 (1+\zeta)\) and \(\rho = \rho_0 (1 + \delta \rho / \rho_0)\).
 
+\begin{subequations}
 \begin{align}
   \pdv{r}{m} &= \frac{1}{4 \pi r^2 \rho }  \\
   \pdv{}{m} \qty(r_0 (1+\zeta)) &=
   \frac{1}{4 \pi r_0^2} \qty(1+\zeta)^{-2} \qty(1 + \frac{\delta \rho}{\rho_0})^{-1}
 \end{align}
+\end{subequations}
 
 and we use \((1+x)^n \approx 1 + nx\) plus the zeroth order equation: \(\pdv*{r_0 }{m} = 1 / 4 \pi r_0^2 \rho_0\). 
 With these, we find:
@@ -281,6 +293,7 @@ Let us also perturb the momentum conservation equation; the unperturbed solution
 
 Substituting in we find that, to linear order: 
 %
+\begin{subequations}
 \begin{align}
 \pdv[2]{r}{t} &= - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r^2} \\
 \pdv[2]{}{t} \qty(r_0 \qty(1 + \zeta )) 
@@ -312,6 +325,7 @@ r_0 \pdv[2]{\zeta }{t}
 r_0 \dv[2]{\zeta }{t} &= -4 \pi r_0^2 \qty( \pdv{}{m} (\delta P) + 4 \zeta \pdv{P_0 }{m}) \marginnote{Neglected a second order term} 
 \,.
 \end{align}
+\end{subequations}
 
 The final equation then looks like 
 %
@@ -354,6 +368,7 @@ Besides \(\rho \) and \(P\), we also perturb the adiabatic exponents and the \(\
 After difficult manipulations we get back an equation which relates the changes in density and pressure to the change in energy: we manipulate until we get something which is similar to the original equation: 
 %
 \boxalign{
+\begin{subequations}
 \begin{align}
 \pdv{}{t} \qty(\frac{ \delta P }{P_0 }) &= 
 \Gamma_{1,0} \pdv{}{t} \qty(\frac{ \delta \rho }{\rho_0 })
@@ -362,7 +377,9 @@ After difficult manipulations we get back an equation which relates the changes 
 (\Gamma_{3,0} - 1) \pdv{}{t} \qty(\frac{ \delta \rho }{\rho_0 })
 + \frac{1}{c_V T} \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m}) \label{eq:perturbed-linearized-energy-log-temperature}
 \,,
-\end{align}}
+\end{align}
+\end{subequations}}
+
 %
 where we note that the first index of the adiabatic exponents denotes \emph{which exponent it is}, while the second indicates that it is the unperturbed value.
 
@@ -394,6 +411,7 @@ Now we can apply the rule given in equation \eqref{eq:lagrangian-perturbation-lo
 %
 where we used the simplification 
 %
+\begin{subequations}
 \begin{align}
 \delta \qty(\pdv{\log T}{m}) &= \delta \qty(\frac{1}{T} \pdv{T}{m})  \\
 &= \delta \qty(\frac{1}{T}) \pdv{T_0 }{m} + \frac{1}{T_0 }  \delta \qty(\pdv{T}{m})  \\
@@ -401,6 +419,7 @@ where we used the simplification
 &= \pdv{}{m} \qty(\frac{ \delta T}{T_0 }) \marginnote{Inverse application of the product rule}
 \,.
 \end{align}
+\end{subequations}
 
 The last step is to assume a certain dependence of the Rosseland mean opacity on the temperature and density: specifically, it is a ``Kramers-like'' expression, given by 
 %
@@ -471,6 +490,7 @@ P_0 \pdv{}{m} \qty(\Gamma_1  \frac{ \delta \rho}{\rho })
 %
 and now we can use the continuity equation \eqref{eq:linearized-continuity} which gives us an expression for \(\delta \rho  / \rho \): inserting it we get 
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 r_0 \pdv[2]{\zeta }{t} &= 
@@ -494,6 +514,7 @@ r_0 \pdv[2]{\zeta }{t} &= 4 \pi r_0^2 \bigg(
 \,,
 \end{split}
 \end{align}
+\end{subequations}
 %
 and now we can can manipulate the terms inside the parentheses; we start to drop the zero indices, any quantity not being \(\delta \)'d is meant to be unperturbed.
 The first and third terms are respectively given by  
@@ -546,6 +567,7 @@ For now then, we have shown that
 
 Now then, the full equation reads 
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 r_0 \pdv[2]{\zeta }{t} &= 
@@ -557,6 +579,7 @@ r_0 \pdv[2]{\zeta }{t} &=
 \,,
 \end{split}
 \end{align}
+\end{subequations}
 %
 and we can notice a certain similarity between the highlighted terms: consider the expression 
 %
@@ -574,6 +597,7 @@ to which we can apply the general expression, which holds for nonzero differenti
 %
 so 
 %
+\begin{subequations}
 \begin{align}
 \frac{\displaystyle\pdv{}{m} \qty(16 \pi^2 \Gamma_1 P \rho r^{6} \pdv{\zeta }{m})}{\displaystyle 16 \pi^2 \Gamma_1 P \rho r^{6} \pdv{\zeta }{m}} &= 
 \frac{1}{P} \pdv{P}{m} 
@@ -584,6 +608,7 @@ so
 + \frac{6}{r} \pdv{r}{m} 
 \,,
 \end{align}
+\end{subequations}
 %
 so 
 %

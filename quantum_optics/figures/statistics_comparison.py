@@ -26,3 +26,16 @@ def moment(b, v, n):
   if (n == 1):
     return(m)
   return (np.sum((b - m)**n * v))
+
+def analyze(dist, ns, nbar):
+  bins = dist(ns, nbar)
+  moments = {'mean': 1, 'variance': 2, 'skewness': 3, 'kurtosis': 4}
+  for m, num in moments.items():
+    print(m, ' = ', moment(ns, bins, num))
+
+"""
+For a Poissonian (coherent): mean=variance=skewness=nu 
+and kurtosis = nu*(1+3*nu)
+
+For the thermal distribution: nth moment is something like exp(n)
+"""

@@ -111,23 +111,49 @@ We use the Eulerian form of the momentum conservation \eqref{eq:linearized-momen
 r \sigma^2 \eta &= 
 \frac{1}{\rho } \qty(P \pdv{}{r} \qty(\frac{ \delta P}{P}) 
 + \frac{ \delta P }{P } \pdv{P}{r} 
-+ \frac{4 \eta }{\rho } \pdv{P}{r})  \\
++ 4 \eta  \pdv{P}{r})  \\
 \pdv{}{r} \qty(\frac{ \delta P}{P}) &= \frac{\rho}{P} 
-\qty(r \sigma^2 \eta ) - \frac{1}{P} \qty(\frac{ \delta P}{P} \pdv{P}{r} + \frac{4 \eta }{\rho } \pdv{P}{r})  \\
+\qty(r \sigma^2 \eta ) - \frac{1}{P} \qty(\frac{ \delta P}{P} \pdv{P}{r} + 4 \eta  \pdv{P}{r})  \\
 &= \frac{\rho r \sigma^2 \eta }{P}
 - \frac{ \delta P}{P} \pdv{\log P}{r}
-- \frac{4 \eta }{\rho } \pdv{\log P}{r}
+- 4 \eta \pdv{\log P}{r}  \\
+&= -\pdv{\log P}{r} \qty(- \frac{\rho r \sigma^2 \eta }{\pdv*{P}{r}}
++ 4 \eta
++ \frac{ \delta P}{P} 
+) 
 \,,
 \end{align}
 %
 since we assumed that all perturbations are \emph{in phase} to the radial one, and thus wrote them all as proportional to \(\exp(i \sigma t)\), which then simplified.
-The pressure scale height is defined as:
+We define the \emph{pressure scale height} as:
 
 \begin{equation}
-  H_P = - \qty(\pdv{\log P }{r} )^{-1}
+  H_P = - \qty(\pdv{\log P }{r} )^{-1}\,,
 \end{equation}
+%
+it represents ``how far we should move in the star for the pressure to change \(e\)-fold''.
 
-and represents ``how far we should move in the star for the pressure to change \(e\)-fold''.
+We insert this into the equation; also we use the Eulerian momentum conservation equation 
+%
+\begin{align}
+\pdv{P}{r} = -\rho \frac{Gm}{r^2}
+\,,
+\end{align}
+%
+so that we find 
+%
+\begin{align}
+\pdv{}{r} \qty(\frac{ \delta P}{P}) =
+\frac{1}{H_P} \qty(
+\qty(
+4 - \frac{r^3 \sigma^2}{ Gm}
+) \eta 
++ \frac{ \delta P }{P }
+)
+\,,
+\end{align}
+%
+
 By inserting this in the equation we see that \(H_P \rightarrow 0\) when \(r \rightarrow R\): the pressure changes very quickly in the photosphere of the star. Therefore, the term multiplying it must also go to zero.
 
 The last condition comes from the fact that we want our study to give us \emph{periods}, not \emph{amplitudes}: we cannot find those out, so we normalize. The LAWE is 1-homogeneous!

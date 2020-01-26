@@ -26,7 +26,7 @@ Since we have an explicit \(r\), it is convenient to rewrite this in the Euleria
 \frac{\eta }{\rho } \pdv{}{r} \qty((3\Gamma_1 - 4) P)
 + \frac{1}{r^3 \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\eta }{r})  \\
 \sigma^2 \eta  &= - \hlc{green}{\frac{\eta }{\rho r} \pdv{}{r} \qty(3 \Gamma_1 P - 4P )} -\hlc{cyan}{\frac{1}{r^{4} \rho } \pdv{}{r} \qty(\Gamma_1 P r^{4} \pdv{\eta }{r})}
-\,,
+\,, \label{eq:linear-operator-LAWE}
 \end{align}
 \end{subequations}
 %
@@ -146,7 +146,7 @@ so that we find
 \pdv{}{r} \qty(\frac{ \delta P}{P}) =
 \frac{1}{H_P} \qty(
 \qty(
-4 - \frac{r^3 \sigma^2}{ Gm}
+4 + \frac{r^3 \sigma^2}{ Gm}
 ) \eta 
 + \frac{ \delta P }{P }
 )
@@ -154,9 +154,16 @@ so that we find
 \end{align}
 %
 
-By inserting this in the equation we see that \(H_P \rightarrow 0\) when \(r \rightarrow R\): the pressure changes very quickly in the photosphere of the star. Therefore, the term multiplying it must also go to zero.
+Since outside the star the pressure is zero, we must have that \(H_P \rightarrow 0\) when \(r \rightarrow R\): the pressure must change by an infinite number of \(e\)-folds to reach zero, so the displacement needed for a single \(e\)-fold change must go to zero. Therefore, the term multiplying \(1/H_P\) must also go to zero to avoid divergences: so we ask 
+%
+\begin{align}
+\qty(4 + \frac{r^3 \sigma^2 }{Gm}) \eta + \frac{ \delta P}{P} \rightarrow 0 
+\,
+\end{align}
+%
+as \(r \rightarrow R\). Since we are considering the mass variable at the edge of the star, we also must have \(m=M\).
 
-The last condition comes from the fact that we want our study to give us \emph{periods}, not \emph{amplitudes}: we cannot find those out, so we normalize. The LAWE is 1-homogeneous!
+The last condition, \(\eta = \delta r / r = 1\) at \(r=R\) comes from the fact that we want our study to give us \emph{periods}, not \emph{amplitudes}: we cannot find those out, so we normalize in a way that is convenient. The LAWE is 1-homogeneous!
 
 \subsubsection{Solving the LAWE}
 
@@ -165,10 +172,20 @@ The LAWE can be written compactly with a linear operator \(\mathcal L\):
 \begin{equation}
   \mathcal L (\eta) = \sigma^2 \eta\,,
 \end{equation}
+%
+where the expression for \(\mathcal{L}\) can be read off equation \eqref{eq:linear-operator-LAWE}. The equation is in the form of a Sturm-Liouville differential equation; in general those have the form 
+%
+\begin{align}
+\pdv{}{r} \qty(p(r) \pdv{\eta }{r}) + \lambda t(r) \eta 
+- s(r) \eta  = 0 
+\,.
+\end{align}
 
-therefore the eigenvalue is the square of the pulsation.
-There are infinitely many solutions to the LAWE, only (finitely many?) fulfill the boundary condition.
-The eigenvalues are real [\(\mathcal L\) is Hermitian], have a wavefunction associated: \(\eta_m (r)\) corresponding to \(\sigma_m ^2\).
+\todo[inline]{Figure out signs! Why does nothing make sense?}
+
+So, the eigenvalue \(\sigma^2\) is the square of the pulsation.
+There are infinitely many solutions to the LAWE, only some (finitely many?) fulfill the boundary condition.
+The eigenvalues are real since \(\mathcal L\) is Hermitian,  and they have a wavefunction associated: \(\eta_m (r)\) corresponding to \(\sigma_m ^2\).
 
 If \(\sigma^2 > 0\) we have an oscillating solution, if \(\sigma^2 <0 \) we have an exponential collapse or explosion since the solution is proportional to \(\exp(i \sigma t)\).
 
@@ -180,12 +197,10 @@ The radial order \(m\) is also the number of nodes.
 The eigenfunctions are orthogonal wrt the scalar product
 
 \begin{equation}
-  \braket{\eta_m}{\eta_n} = \int _{0}   ^{R} \eta_m \eta_n \rho r^4 \dd{r}
+  \braket{\eta_m}{\eta_n} = \int _{0}   ^{R} \eta_m \eta_n \rho r^4 \dd{r} = f(n) \delta_{nm}
 \end{equation}
 
-\begin{greenbox}
-  Possibly there is a \(4 \pi\) missing in order for this to be consistent with the following?
-\end{greenbox}
+\todo[inline]{Possibly there is a \(4 \pi\) missing in order for this to be consistent with the following?}
 
 The functions \(\zeta_m\) are orthogonal wrt the same product. The system is linear: we can write a general solution as a superposition.
 
@@ -195,23 +210,37 @@ We can define the moment of inertia:
   J_m = \int _{0}   ^{M} \abs{\zeta_m}^2 r^2 \dd{m}
 \end{equation}
 
-and the following holds:
+and then we can recover the eigenvalue by:
 
 \begin{equation}
   \sigma_m^2 = \frac{1}{J_m} \int_0^M \zeta_m ^* \mathcal L \zeta_m r^2 \dd{m}
+  = \frac{\ev{\mathcal{L}}{\zeta_{m}}}{\braket{\zeta_{m}}{\zeta_{m}}}
 \end{equation}
 
 \subsection{Simplifications}
 
 \subsubsection{Period-mean density relation}
 
-If \(\eta = \const\), and \(\rho \) and \(\Gamma_1\) are also constanst, we immediately get:
+If \(\eta = \const\), and \(\rho \) and \(\Gamma_1\) are also constanst, we can remove the \(\pdv*{\eta }{r}\) terms: so we have 
+%
+\begin{align}
+\sigma^2 \eta + \frac{\eta }{\rho r} \pdv{}{r} \qty(P \qty(3 \Gamma_1 - 4)) &= 0  \\
+\sigma^2 &= - \frac{3 \Gamma_1 - 4}{\rho r} \pdv{P}{r}  \\
+\sigma^2 &= \qty( 3\Gamma_1 -4 ) \frac{Gm}{r^3}
+\,,
+\end{align}
+%
+and by inserting the mean density formula \(\overline{\rho} = M / \qty(4 \pi R^3 / 3)\) we get the period-mean density relation: \(\sigma = 2 \pi / T\), so we have \(T^{-2} \propto \overline{\rho}\), the period-mean density relation. 
 
-\begin{equation}
-  \sigma^2 = (3 \Gamma_1 - 4) \frac{GM}{r^3}
-\end{equation}
+Actually, this simplified model gives us \(m / r^3 = \const\): the density in this case must be constant and equal to \(\overline{\rho}\) (even if we did not use the assumption before). 
+The precise relation is given by 
+%
+\begin{align}
+T^2 \overline{\rho} = \frac{3 \pi }{\qty(3 \Gamma_1 -4) G}
+\,,
+\end{align}
+%
 
-and by inserting the mean density formula we get the period-mean density relation: this is consistent with our previous assumptions.
 
 \subsubsection{Polytropic model}
 

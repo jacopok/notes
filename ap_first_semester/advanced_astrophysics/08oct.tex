@@ -314,15 +314,28 @@ Answer, from the first equation in Schwarzschild 1941\footnote{\url{https://ui.a
 so \(\omega \) is adimensional: it is, in a certain sense, an adimensionalized frequency. From the data in slide 4.108 we can derive the value of \(\Gamma_1 \rho_{0c} = (\sigma / \omega )^2 / (\pi G) \approx \SI{5.184e14}{kg/m^3}\).
 \end{bluebox}
 
-\subsubsection{A concrete example}
+\subsubsection{Numerical RR Lyrae models}
 
-This is done looking at an RR Lyrae variable.
-We integrate the stellar structure equations numerically.
-We can see that \(\sigma_m - \sigma_{m-1} \approx \const\) when \(m\) gets large.
+We integrate the stellar structure equations numerically, so instead of a simple polytropic equilibrium model our equilibrium model is numerical. 
+This is done looking at an RR Lyrae variable stars.
+\todo[inline]{What are their characteristics?}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{RR_Lyr_frequency_differences.pdf}
+\caption{RR Lyrae frequency differences. The frequencies are measured in \SI{}{rad / d}.}
+\label{fig:RR_Lyr_frequency_differences}
+\end{figure}
+
+We find that the ratio between the period of the fundamental and of the first overtone is around \(P_1 / P_0 \approx \num{.743} \divisionsymbol \num{.745}\) in observed RR Lyrae, while the LAWE model predicts \(\num{.731}\). 
+The observed period is around \(P_0 \approx \SI{.5668}{d}\), while the model predicts \(P_0 \sim \SI{.6454}{d}\). 
+
+We can see that \(\sigma_m - \sigma_{m-1} \approx \const\) when \(m\) gets large, see figure \ref{fig:RR_Lyr_frequency_differences}.
+  
 
 The wavefunctions die out faster than the polytropic model when \(r \rightarrow 0\).
 
-There are ``bumps'' in the pressure plot: these are the partial ionization regions of \ce{H} and \ce{He}.
+There are ``bumps'' in the pressure perturbation plot: these are the partial ionization regions of \ce{H} and \ce{He}.
 
 These appear because we start from a solution of the stellar structure equations, where all the properties of stellar matter were used, to start off with the LAWE.
 
@@ -334,36 +347,116 @@ We expect to see the stable modes, and not to see the unstable ones.
 Let us start from the Lagrangian momentum conservation:
 
 \begin{equation}
-    \pdv[2]{r}{t} = - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r}
+    \pdv[2]{r}{t} = - 4 \pi r^2 \pdv{P}{m} - \frac{Gm}{r^2}
 \end{equation}
 
-and apply to it the identity: \(\frac[i]{1}{2} \pdv{}{t} v^2 = \pdv{r}{t} \pdv[2]{r}{t}\), by multiplying everything by \(\pdv*{r}{t} \).
+and apply to it the identity: \(\frac[i]{1}{2} \pdv{}{t} v^2 = \pdv{r}{t} \pdv[2]{r}{t}\), by multiplying everything by \(\pdv*{r}{t} \), and then we integrate everything with respect to \(m\): we find 
+%
+\begin{align}
+\int_{M} \frac{1}{2} \pdv{}{t} \qty(v^2) \dd{m} = 
+\hlc{olive}{- \int_{M} 4 \pi r^2 \pdv{P}{m} \dd{m} }
+\hlc{teal}{- \int_{M} \frac{Gm}{r^2} \dd{m}}
+\,,
+\end{align}
+%
 
-We then integrate everything with respect to \(m\) and apply some manipulations [see slides].
 
+Now we apply some manipulations: first of all, the following: 
+%
+\begin{align}
+\hlc{teal}{\int_{M} \qty(- \frac{Gm}{r^2} \pdv{r}{t}) \dd{m}} &= 
+\int_{M} \pdv{}{t} \qty(\frac{Gm}{r}) \dd{m}  \\
+&= \dv{}{t} \int_{M} \frac{Gm}{r} \dd{m}  \\
+&= \hlc{teal}{- \dv{\Omega }{t}}
+\,
+\end{align}
+%
+where \(\Omega \) is the total gravitational potential energy, while 
+%
+\begin{align}
+\hlc{olive}{- \int_{M} 4 \pi r^2 \pdv{P}{m} \pdv{r}{t} \dd{m}} &= 
+- \int_{M} \pdv{}{m} \qty(4 \pi r^2 P \pdv{r}{t}) \dd{m}
++ \int_{M} P \pdv{}{m} \qty(4 \pi r^2 \pdv{r}{t}) \dd{m}  \\
+&= - \underbrace{\eval{4 \pi r^2 P \pdv{r}{t}}_{m=0}^{m=M}}_{=0}
++ \int_{M} \frac{4 \pi }{3} P \pdv{}{m} \pdv{}{t} \qty(r^3) \dd{m}  \\
+&= \int_{M} P \pdv{}{t} \underbrace{\qty(4 \pi r^2 \pdv{r}{m})}_{1 / \rho } \dd{m}  \\
+&= \hlc{olive}{\int_{M} P \pdv{}{t} \qty(\rho^{-1}) \dd{m}}
+\,,
+\end{align}
+%
+so in the end we get 
+%
 \begin{equation}
-  \pdv{}{t} \int_M \frac{v^2}{2} \dd{m} =
-  - \dv{\Omega}{t} + \int_M P \pdv{}{t} \frac{1}{\rho} \dd{m}
+\pdv{}{t} \int_M \frac{v^2}{2} \dd{m} =
+\hlc{teal}{- \dv{\Omega}{t} } +
+\hlc{olive}{\int_M P \pdv{}{t} \frac{1}{\rho} \dd{m}}
 \end{equation}
 
-We integrate a pulsation period, which cancels out the gravitational potential term which is conservative.
+We integrate in time over a pulsation period, which cancels out the gravitational potential term which is conservative: 
+%
+\begin{align}
+-\int_{\Pi } \dv{\Omega }{t} \dd{t} = 0
+\,.
+\end{align}
 
-\begin{equation}
-  \expval{\dv{W}{t}}_\Pi = \frac{1}{\Pi} \int_\Pi \int_M   P \pdv{}{t} \qty(\frac{1}{\rho}) \dd{m} \dd{t}
+If we also divide by the period, we are computing an average over a period \(\Pi \). The term 
+%
+\begin{align}
+\expval{\pdv{}{t} \int_{M} \frac{v^2}{2} \dd{m}}_{\Pi }
+= \frac{1}{\Pi } \int_{\Pi } \pdv{}{t} \int_{M} \frac{v^2}{2} \dd{m} \dd{t} = \frac{ \Delta E _{\text{kin}}}{\Pi }
+\,
+\end{align}
+%
+is the average power converted to kinetic energy; the variation in kinetic energy is also the work done on the system: \(\Delta E _{\text{kin}} = W\). So, taking the average on both sides of the equation we get
+%
+\begin{equation} \label{eq:driving-damping-layers-1}
+\expval{\dv{W}{t}}_\Pi = \frac{1}{\Pi} \int_\Pi \int_M   P \pdv{}{t} \qty(\frac{1}{\rho}) \dd{m} \dd{t}.
 \end{equation}
 
 Some layers will provide energy to the oscillation motion (\emph{drive} it), some others will \emph{damp} it.
-These are characterized by the sign of the RHS of this equation.
+These are characterized by the sign of their contribution the RHS of this equation.
 
-If it is positive, we have instability; if it is negative the pulsations will tend to die out, giving stability.
+If it is positive, we have instability since more and more work is being done one the star every period; if it is negative the pulsations will tend to die out, giving stability, since they lose kinetic energy every pulse.
 
 The average time scale of change of the perturbations is
 
 \begin{equation}
   \kappa \defeq \frac{1}{\tau} = -\frac{1}{2} \frac{\expval{\dv*{W}{t}}_\Pi}{\expval{ \delta \psi}_\Pi }
+\,,
 \end{equation}
+%
+where \(\expval{ \delta \psi }\) is the ``average pulsational energy per pulsation cycle'': 
+\todo[inline]{
+so, the integral of the absolute value of \(\dv*{W}{t}\)?
+This \(\psi \) was not defined... 
 
-The term \(\expval{\dv*{W}{t}}_\Pi \) can also be interpreted as the net heat gain fed into mechanical work during a pulsation cycle.
+Also, this way \(\tau \) can be negative: maybe the proper definition is \(\tau = 1/ \abs{\kappa }\)?
+}
+
+So, if \(\kappa < 0\) we are looking at a driving layer, since then \(\expval{ \dv*{W}{t}} >0\), while \(\kappa > 0\) means we are in a damping layer. 
+
+The term \(\expval{\dv*{W}{t}}_\Pi \) can also be interpreted as the net heat gain fed into mechanical work during a pulsation cycle: this can be derived from the first law of thermodynamics (written in its per-unit-mass form, and with the differentials being applied to time derivatives): 
+%
+\begin{align}
+\dv{Q}{t} = \dv{E}{t} + P \dv{(\rho^{-1})}{t}
+\,,
+\end{align}
+%
+so if this is averaged over a period the internal energy change is approximately zero (thermal energy changes on the thermal timescale, which is much longer than the dynamical timescale), so we have 
+%
+\begin{align}
+\expval{\dv{Q}{t}}_{\Pi } = \expval{P \dv{}{t} (\rho^{-1})}
+\,,
+\end{align}
+%
+and therefore we can rewrite equation \eqref{eq:driving-damping-layers-1} as 
+%
+\begin{align}
+\expval{\dv{W}{t}}_{\Pi } = \frac{1}{\Pi } \int_{\Pi } \int_{M} \dv{Q}{t} \dd{m} \dd{t}
+\,,
+\end{align}
+%
+
 
 In the adiabatic case, we had \(\pdv{}{t}\qty( \frac{\delta P}{P} - \Gamma_1 \frac{\delta \rho}{\rho}) =0 \): the perturbations were in phase.
 

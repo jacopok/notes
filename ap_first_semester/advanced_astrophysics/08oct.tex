@@ -251,6 +251,47 @@ It is a gas sphere with the following constitutive equaition:
 \end{equation}
 %
 with varying \emph{polytropic} index \(n\).
+
+\begin{bluebox}
+This can be derived as a solution for the Lane-Emden equation, which comes from Poisson's equation for the gravitational potential: so we do the following manipulation 
+%
+\begin{align}
+\nabla^2 \Phi  &= 4 \pi G \rho  \\
+\frac{1}{r^2} \dv{}{r} \qty(r^2 \dv{\Phi }{r}) &= 4 \pi G \rho  \marginnote{Laplacian in spherical coordinates under spherical symmetry}[-1cm]\\
+-\frac{1}{r^2}\qty(\frac{r^2}{\rho } \dv{P}{r}) &= 4 \pi G \rho   \marginnote{Used the hydrostatic equilibrium equation}\\
+\dv{}{r} \qty(\frac{r^2}{\rho } \dv{P}{r}) &= - 4 \pi G \rho r^2
+\,,
+\end{align}
+%
+so if we assume \(\rho = \rho_{c} \theta^{n}\) the polytropic equation of state will read 
+%
+\begin{align}
+P = K_n \rho^{1 + 1/n} = K_n \rho_{c}^{1 + 1/n} \theta^{n (1 + 1/n)}
+= K_n \rho_{c}^{1 + 1/n} \theta^{n+1}
+\,,
+\end{align}
+%
+where \(\rho_{c}\) is the central density, so we have \(\theta (r=0) = 1\) and \(\theta' (r=0) =0\). Inserting this into Poisson's equation gives us 
+%
+\begin{align}
+\dv{}{r} \qty(\frac{r^2}{\rho_{c} \theta^{n}}
+\dv{}{r} \qty(K_{n} \rho_{c}^{1 + 1/n} \theta^{n+1})) &=-4 \pi G \rho r^2  \\
+\dv{}{r} \qty(r^2 (n+1) K_n \rho_{c}^{1/n} \dv{\theta }{r}) & = - 4 \pi G \rho r^2
+\,,
+\end{align}
+%
+so we can adimensionalize the radial coordinate by putting inside of it all the numbers: \(r = \alpha \xi \), with \(\alpha \) chosen so that 
+%
+\begin{align}
+\frac{1}{\xi^2} \dv{}{\xi } \qty(\xi^2 \dv{\theta }{\xi })
++ \theta^{n} = 0
+\,.
+\end{align}
+
+This is always solvable, and it is solvable analytically for certain values of \(n\). 
+
+\end{bluebox}
+
 It models spheres with different mass distributions:
 \(n=0\) is constant density, \(n=5\) is infinite central density, \(n=3\) is the Eddington standard model, which is reasonable for the Sun and stars on the main sequence.
 
@@ -259,6 +300,8 @@ With these assumptions we can explicitly solve for the wavefunctions, and make p
 The overtones die out toward the center even faster than the fundamental: these oscillations are very much a \emph{surface phenomenon}.
 
 Beyond the \(\eta\)s we can also plot the pressure perturbations: these will not be normalized.
+
+\todo[inline]{Slide 4.108: What is \(\omega \)? Should we not have \(\sigma = \omega \) of the mode? It seems like \(\mathcal{P}\) is the period, and the numbers are consistent with \(\mathcal{P} = 2 \pi / \sigma \)}. 
 
 \subsubsection{A concrete example}
 

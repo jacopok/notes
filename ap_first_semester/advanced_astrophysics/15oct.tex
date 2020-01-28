@@ -86,14 +86,69 @@ So, up to a positive constant, the integrand looks like
 \end{align}
 %
 and we want it to be \(<0\). 
-However, if under the perturbation the layer is \emph{more} opaque than usual (\(\delta \kappa _R > 0\)) then it will let through \emph{less} light than usual, so we will have \(\delta (\pdv*{L}{m}) < 0\). So, the global contribution to \(\kappa \) will be positive, therefore our layer will be \emph{damping}.
+However, if under the perturbation the layer is \emph{more} opaque than usual (\(\delta \kappa _R > 0\)) then it will let through \emph{less} light than usual, so we will have \(\delta (\pdv*{L}{m}) < 0\).
+This can be rendered more formal by considering the luminosity equation \eqref{eq:luminosity-equation}: the dependence of \(L\) on \(\kappa_R \) is inverse.
+
+So, the global contribution to \(\kappa \) will be positive, therefore our layer will be \emph{damping}.
+
+\paragraph{\(\kappa \)-mechanism}
 
 However, layers for which the contribution of this term is negative are present in certain regions: where there is ionization, we can have regions for which the gradient \(\pdv*{\kappa_R}{T}\) reverses: it is usually negative, but it can become locally positive.
 This provides an additional channel for energy stocking: it is like a \emph{dam} for energy.
-
 The ionization energy is then released through mechanical work.
+This is called the \(\kappa \)-mechanism.
 
-We look at the linearized equations of continuity and radiative transfer for an expression for the gradient of \(\delta L\): in the outer regions of the star we have \(\pdv*{L}{m} \approx 0\). 
+\paragraph{\(\gamma \)-mechanism}
+
+The \(\gamma \)-mechanism, on the other hand, involves a decrease of \(\Gamma_3\) which brings it near to 1: recall, 
+%
+\begin{align}
+\Gamma_3 -1 = \eval{\pdv{\log T}{\log \rho }}_{\text{adiabatic}}
+\,,
+\end{align}
+%
+so if it is small that means that the change in temperature, i.e.\ internal energy, associated with a compression (\(\delta \rho >0\)) is small: this can happen in the outer layers of the star, which have partial ionization regions. The work of the compression is partially absorbed in order to ionize the atoms in these layers: if \(\Gamma_3 \) is close enough to 1, we can have 
+%
+\begin{align}
+n - s (\Gamma_3 -1) >0 
+\,
+\end{align}
+%
+even with \(s > 0\).
+
+\paragraph{\(\kappa \)-\(\gamma \)-mechanism}
+
+We look at the linearized equations of continuity and radiative transfer for an expression for the gradient of \(\delta L\), neglecting the temperature perturbation gradient term for simplicity: then, starting from equation \eqref{eq:linearized-RT} we have 
+%
+\begin{align}
+\frac{ \delta L}{L} =
+4 \zeta 
+- n \frac{ \delta \rho }{\rho }
++ (s+4) \frac{ \delta T}{T}
+\,,
+\end{align}
+%
+while from equation \eqref{eq:linearized-cont} we get
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } = - 3 \zeta 
+\,.
+\end{align}
+
+Combining these, and using \(\delta T / T = (\Gamma_3 -1 ) \delta \rho / \rho \) we find: 
+%
+\begin{align}
+\frac{ \delta L}{L }= \qty(-\frac{4/3 +n}{\Gamma_3 -1} + s+4) \frac{ \delta T}{T}
+\,,
+\end{align}
+%
+and now we make the following consideration: on average, in the outer layers of the stars we have no nuclear energy generation (\(\epsilon _{\text{nuc}} \approx 0\)) and the heat variation is negligible (\(\dv*{Q}{t}\approx 0 \)).\todo{Why?} So, we have \(\pdv*{L}{m} \approx 0\) by the energy conservation equation \eqref{eq:energy-conservation}: using this, we can freely bring \(L\) outside of derivatives with respect to \(m\), in order to write 
+%
+\begin{align}
+\pdv{ \delta L}{m} = L \pdv{}{m} \qty[\qty(s+4- \frac{4/3 +n}{\Gamma_3 -1}) \frac{ \delta T}{T}]
+\,.
+\end{align}
+
 In these regions \(\kappa _R \propto \rho^{n}T^{-s}\) with negative \(s\).
 
 There is an opacity bump at \(5<\log(T)< 6.5 \), which was found in the eighties by Simon.

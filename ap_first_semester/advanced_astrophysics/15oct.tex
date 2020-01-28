@@ -41,31 +41,57 @@ An illustrative example is given by RR-Lyrae stars. There, we can look at the re
 
 \subsubsection{\(\kappa \)-\(\gamma \) mechanism}
 
-Today we look at the \(\kappa \)-\(\gamma \)-mechanism.
-
-This deals with the term 
+Today we look at the \(\kappa \)-\(\gamma \)-mechanism, which is about the term 
 %
 \begin{equation}
 \int_M \qty(\frac{\delta T}{T})_{\text{sp}} \pdv{\delta L}{m} \dd{m} 
 \,,
 \end{equation}
 %
-which keeps account of the regions in which the two terms multiplied in the integrand are discordant.
+and we will have driving layers (\(\kappa <0\)) in the regions in which the two terms multiplied in the integrand are discordant. 
 
 The mean Rosseland opacity is approximated by a law in the form: 
 %
 \begin{equation}
-  \kappa _R \simeq \overline{\kappa }_R \rho^{n} T^{-s}      
+  \kappa _R \approx \overline{\kappa }_R \rho^{n} T^{-s} 
 \,,
 \end{equation}
 %
-with \(n \approx 1\), \(s \approx 7/2\) in the case of free-free absorption (inverse \& direct bremsstrahlung) in a non-degenerate, totally ionized gas.
+with \(n \approx 1\), \(s \approx 7/2\) in the case of free-free absorption (that is, inverse \& direct bremsstrahlung) in a non-degenerate, totally ionized gas.
+This seems to be a good approximation for \(4 < \log_{10}T < 8\). 
 
-This allows us to relate the perturbations in \(\rho \) to those in \(T\). However, in this law \(\delta T\) is positive iff \(\delta \rho \) is positive: \emph{damping layers}.
+This allows us to relate the perturbations in \(\kappa_{R} \) to those in \(T\): 
+%
+\begin{align}
+\frac{ \delta \kappa_R}{ \kappa_R} &\approx
+n \frac{ \delta \rho }{\rho } - s \frac{ \delta T}{T}  \\
+&\approx \qty(n - s (\Gamma_3 -1)) \frac{ \delta \rho }{\rho }
+\,,
+\end{align}
+%
+and if we substitute in \(\Gamma_3 \approx 5/3\) with the other terms we get 
+%
+\begin{align}
+\frac{ \delta \kappa_R}{\kappa _R} \approx - \frac{4}{3} \frac{ \delta \rho }{\rho }
+\,,
+\end{align}
+%
+which means that the relative mean opacity perturbation is \emph{discordant} in sign with the pressure one, and thus with the temperature one. 
 
-Driving layers, however, are present in certain regions: where there is ionization, it provides an additional channel for energy stocking: it is like a \emph{dam} for energy.
+So, up to a positive constant, the integrand looks like 
+%
+\begin{align}
+-\frac{ \delta \kappa _R}{\kappa _R} \pdv{ \delta L}{m}
+\,,
+\end{align}
+%
+and we want it to be \(<0\). 
+However, if under the perturbation the layer is \emph{more} opaque than usual (\(\delta \kappa _R > 0\)) then it will let through \emph{less} light than usual, so we will have \(\delta (\pdv*{L}{m}) < 0\). So, the global contribution to \(\kappa \) will be positive, therefore our layer will be \emph{damping}.
 
-The ionization energy is released through mechanical work.
+However, layers for which the contribution of this term is negative are present in certain regions: where there is ionization, we can have regions for which the gradient \(\pdv*{\kappa_R}{T}\) reverses: it is usually negative, but it can become locally positive.
+This provides an additional channel for energy stocking: it is like a \emph{dam} for energy.
+
+The ionization energy is then released through mechanical work.
 
 We look at the linearized equations of continuity and radiative transfer for an expression for the gradient of \(\delta L\): in the outer regions of the star we have \(\pdv*{L}{m} \approx 0\). 
 In these regions \(\kappa _R \propto \rho^{n}T^{-s}\) with negative \(s\).

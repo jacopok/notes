@@ -3,12 +3,50 @@
 
 \section*{Tue Oct 15 2019}
 
+\subsubsection{\(\epsilon \) mechanism}
+
+We now concern ourselves with the energy generation term of equation \eqref{eq:kappa-driving-mechanisms}.
+
+In general the effective energy generation per unit mass is given by 
+%
+\begin{align}
+\epsilon _{\text{eff}} = \epsilon _{\text{nuc}} - \epsilon _{\nu }
+\,,
+\end{align}
+%
+but we assume that the neutrino loss of energy contribution in the perturbation is negligible, so when we perturb we will have \(\delta \epsilon _{\text{eff}} = \delta \epsilon _{\text{nuc}}\). 
+We also have the approximate relation 
+%
+\begin{align}
+\frac{ \delta T}{T} = (\Gamma_3 -1 ) \frac{ \delta \rho }{\rho }
+\,,
+\end{align}
+%
+which implies, since \(\Gamma_3 >1\), that the temperature and density relative perturbations are concordant in sign.
+\todo[inline]{Why can we use this relation? Does it have something to do with working ``at first order in \(\dv*{Q}{t}\)''?}
+
+Now, the line of reasoning goes like this: the nuclear energy generation perturbation is concordant in sign with the temperature perturbation. So, the term 
+%
+\begin{align}
+\qty(\frac{ \delta T}{T} )_{\text{sp}} \delta \epsilon _{\text{eff}} \geq 0
+\,,
+\end{align}
+%
+which means that the contribution to \(\kappa \) will be negative (because of the minus sign in equation \eqref{eq:kappa-driving-mechanisms}): so, since the dependence of the radial perturbation looks like \(\zeta \propto \exp(-\kappa t)\), the perturbation is \emph{amplified}: this is a driving layer. 
+
+\todo[inline]{The reasoning in slide 6.08 seems way too contorted: plus, it mentions the layers ``absorbing energy'', but we cannot actually talk about that without considering the luminosity gradient perturbation\dots}
+
+Are the fluctuations in \(\epsilon _{\text{nuc}}\) actually enough to power pulsations? \emph{No}. 
+An illustrative example is given by RR-Lyrae stars. There, we can look at the relative magnitude of the realative temperature variation, \(\delta T / T\), at various layers in the star: it is of the order \num{e-1} or even more at the surface, but quickly drops as we move towards the center; in the Hydrogen burning shell and in the Helium burning core it is of the order \(\num{e-9} \divisionsymbol \num{e-7}\), which implies that the actual temperature fluctuations are of the order \(\delta T \sim \SI{1}{K}\): way too little to amplify pulsations. 
+
+\subsubsection{\(\kappa \)-\(\gamma \) mechanism}
+
 Today we look at the \(\kappa \)-\(\gamma \)-mechanism.
 
 This deals with the term 
 %
 \begin{equation}
-  \int_M \frac{\delta T}{T} \pdv{\delta L}{m} \dd{m} 
+\int_M \qty(\frac{\delta T}{T})_{\text{sp}} \pdv{\delta L}{m} \dd{m} 
 \,,
 \end{equation}
 %

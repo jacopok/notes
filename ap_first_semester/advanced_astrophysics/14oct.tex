@@ -83,7 +83,7 @@ With this substitution we get:
 
 The time scales for these parameters are \(\omega \sim \omega _{\text{ad}} \sim \tau _{\text{dyn}}\), while \(\kappa \sim 1/ \tau _{\text{th}}\): therefore \(\omega \gg \abs{\kappa } \).
 
-Using this result, we can make some useful \emph{quasi-adiabatic} approximations: in the LNAWE we identify the LAWE operator \(\mathcal{L}\), and replace its application to the wavefunction with the corrisponding eigenvalue: 
+Using this result, we can make some useful \emph{quasi-adiabatic} approximations: in the LNAWE we will identify the LAWE operator \(\mathcal{L}\), and replace its application to the wavefunction with the corrisponding eigenvalue. Basically, we will consider the thermal contribution to be small and work ``to first order'' with  it.
 %
 \begin{align}
 \begin{split}
@@ -122,34 +122,61 @@ So we get
 \begin{align}
 \omega^2 \qty(i \omega - 3 \kappa ) J 
 - (i \omega - \kappa ) \omega^2 J &= C \\
-- 3 \kappa + \kappa &= \frac{C}{J \omega^2}
+- 3 \kappa + \kappa &= \frac{C}{J \omega^2} \\
+\kappa &= - \frac{C}{2 \omega^2 J }
+\,.
+\end{align}
+
+Now we make some considerations on the expression of \(C\) and integrate by parts, getting:
+%
+\begin{align}
+C &= \int_{M} \frac{1}{r \rho } \pdv{}{r} \qty(\rho(\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}}) \eta r^2 \dd{m}  \\
+&= \int_{R} \pdv{}{r}  \qty(\rho(\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}})
+4 \pi r^3 \eta  \dd{r}
+\marginnote{\(\dd{m} = 4 \pi r^2\rho \dd{r}\)} \\ 
+&=  \eval{\rho (\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}}
+4 \pi r^3\eta }_{r=0}^{r=R} 
+- \int_{R} \rho (\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}} \pdv{}{r} \qty(4 \pi r^3 \eta ) \dd{r}
+\\
+&= - \int_{R} \rho (\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}} 4 \pi r^2 \qty(3 \eta + r \pdv{\eta }{r}) \dd{r} \marginnote{\(\rho =0\) if \(r=R\)}
+\\
+&= \int_{R} \rho (\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}} 4 \pi r^2 \qty(\frac{ \delta \rho }{\rho})_{\text{sp}}
+\dd{r}
+\marginnote{From equation \eqref{eq:linearized-cont}: \(\frac{ \delta \rho }{\rho } = -3\zeta - r \pdv{\zeta }{r}\)}
+\\
+&= \int_{R} (\Gamma_3 -1) \qty(\frac{ \delta \rho }{\rho })_{\text{sp}} \delta \qty(\dv{Q}{t})_{\text{sp}}
+ \dd{m}
+\\
+&= \int_M \qty(\frac{\delta T}{T})_{\text{sp}} \delta \qty(\epsilon _{\text{eff}}- \pdv{L}{m} ) \dd{m}
+\marginnote{From the time-integrated equation \eqref{eq:linearized-E2}, neglecting the heat transfer term}
 \,,
 \end{align}
 %
-
-
+and now this expression allows us to study the mechanisms which create perturbations: the coefficient to calculate is \(\kappa \), which we now know to be given by 
 %
-\begin{equation}
-  \kappa = - \frac{C}{2 \omega^2 J }
-\,.
-\end{equation}
-
-We make some considerations on the expression of \(C\), integrate by parts, getting:
-%
-\begin{equation}
-  C = \int_M \qty(\frac{\delta T}{T}) \delta \qty(\epsilon _{\text{eff}}- \pdv{L}{m} ) \dd{m}
+\begin{align} \label{eq:kappa-driven-oscillations}
+\kappa = - \frac{1}{2 \omega^2 J}
+\int_M \qty(\frac{\delta T}{T})_{\text{sp}} \delta \qty(\epsilon _{\text{eff}}- \pdv{L}{m} ) \dd{m}
 \,,
-\end{equation}
+\end{align}
+%
+which we will study in the next section.
 
-which allows us to study the mechanisms which create perturbations.
+\subsection{Driving mechanisms}
 
-The energy of the vibrations comes from the internal thermal energy of the star, which ultimately comes from thermonuclear reactions.
-
-The two terms in \(C\) come respectively from energy generation and transfer.
+The energy of the vibrations comes from the internal thermal energy of the star, which ultimately comes from thermonuclear reactions. We can rewrite equation \eqref{eq:kappa-driven-oscillations} as 
+%
+\begin{align} \label{eq:kappa-driving-mechanisms}
+\kappa = - \frac{1}{2 \omega^2 J} \underbrace{\int_{M} \qty(\frac{ \delta T}{T})_{\text{sp}} \delta \epsilon _{\text{eff}} \dd{m}}_{\text{energy generation}}
++ \frac{1}{2 \omega^2J} \underbrace{\int_{M} \qty(\frac{ \delta T}{T})_{\text{sp}}
+\pdv{ \delta L}{m} \dd{m}}_{\text{energy transfer}}
+\,.
+\end{align}
 
 The \(\epsilon \)-mechanism is about energy generation, which is assumed to be due to nuclear reactions, without considering neutrino processes:
 this can happen if the magnitude of the temperature and density perturbations are large enough.
 
-The \(\kappa \)-\(\gamma \)-mechanism: we look at regions where the luminosity gradient and temperature gradient are discordant. This means that the considered stellar layer is absorbing or emitting; this is usually assumed to be happening through free-free interactions (bremsstrahlung and inverse bremsstrahlung).
+The \(\kappa \)-\(\gamma \)-mechanism is about considering the regions where the luminosity gradient and temperature gradient are discordant.
+This means that the considered stellar layer is absorbing or emitting; this is usually assumed to be happening through free-free interactions (bremsstrahlung and inverse bremsstrahlung).
 
 \end{document}

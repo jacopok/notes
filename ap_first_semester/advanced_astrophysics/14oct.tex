@@ -3,26 +3,131 @@
 
 \section*{Mon Oct 14 2019}
 
-Summary of past lectures: we discussed:
+% Summary of past lectures: we discussed:
 
+% \begin{enumerate}
+%     \item the different time scales of stellar evolution, and their impact on the adiabatic approximation;
+%     \item easy approximations for stellar pulsation;
+%     \item acoustic approximations;
+%     \item Ritter's relation;
+%     \item linearized structure equations: the adiabatic approximation (arguments for it!), deriving the LAWE;
+%     \item examples of solutions to the LAWE and stability conditions;
+%     \item the LNAWE: today.
+% \end{enumerate}
+
+\subsection{The LNAWE}
+
+First of all, let us recall the linearized equations of stellar structure: 
+%
+\boxalign{
+\begin{align}
+\frac{ \delta \rho }{\rho } &= - 3 \zeta - 4 \pi r^3 \rho \pdv{\zeta }{m}  \label{eq:linearized-cont}\\
+r \ddot{\zeta} &= - 4 \pi r^2 \qty[\qty(4 \zeta + \frac{ \delta P}{P})\pdv{P}{m} + P \pdv{}{m} \qty(\frac{ \delta P}{P})]  \label{eq:linearized-mom}\\
+\pdv{}{t} \qty(\frac{ \delta P}{P}) &= \Gamma_1 \pdv{}{t} \qty(\frac{ \delta \rho }{\rho }) + \frac{\rho }{P} \qty(\Gamma_3 - 1) \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m})  \label{eq:linearized-E1}\\
+\pdv{}{t} \qty(\frac{ \delta T}{T}) &= \qty(\Gamma_3-1) \pdv{}{t} \qty(\frac{ \delta \rho }{\rho }) + \frac{1}{c_V T} \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m})  \label{eq:linearized-E2}\\
+\frac{ \delta L}{L} &= 4 \zeta - n \frac{ \delta \rho }{\rho } + (s+4) \frac{ \delta T}{T} + \qty(\pdv{\log T}{m})^{-1} \pdv{}{m} \qty(\frac{ \delta T}{T}) \label{eq:linearized-RT}
+\,,
+\end{align}}
+%
+using which we can derive after long manipulations the Linear Non-Adiabatic Wave Equation, which in its Lagrangian formulation reads: 
+%
+\begin{align}
+\dot{\ddot{\zeta}}
+=
+4 \pi r \qty(\dot{z} \pdv{}{m} \qty((3 \Gamma_1 - 4)P) 
+-  \pdv{}{m} \qty(\rho (\Gamma_3 - 1) \delta \qty(\dv{Q}{t})))
++ \frac{1}{r^2} \pdv{}{m} \qty(16 \pi^2 \Gamma_1 P \rho r^{6} \pdv{\dot{\zeta}}{m})
+\,,
+\end{align}
+%
+where we used the fact that \(\dv*{Q}{t} = \epsilon _{\text{eff}} - \pdv*{L}{m}\). On the other hand, the Eulerian formulation is 
+%
+\begin{align}
+\dot{\ddot{\zeta}} = \frac{1}{r \rho } \qty(\dot{\zeta}\pdv{}{r} \qty((3\Gamma_1 -4) P ) - \pdv{}{r} \qty(\rho (\Gamma_3 -1) \delta \qty(\dv{Q}{t})))
++ \frac{1}{r^4 \rho}\pdv{}{r}\qty(r^{4} \Gamma_1 P \pdv{\dot{\zeta}}{r}) 
+\,.
+\end{align}
+
+\begin{bluebox}
+The procedure to derive the LNAWE is as follows: 
 \begin{enumerate}
-    \item the different time scales of stellar evolution, and their impact on the adiabatic approximation;
-    \item easy approximations for stellar pulsation;
-    \item acoustic approximations;
-    \item Ritter's relation;
-    \item linearized structure equations: the adiabatic approximation (arguments for it!), deriving the LAWE;
-    \item examples of solutions to the LAWE and stability conditions;
-    \item the LNAWE: today;
+  \item substitute the continuity equation \eqref{eq:linearized-cont} into the \(P, \rho \) form of the energy conservation equation \eqref{eq:linearized-E1}; 
+  \item substitute the \(P, \rho \) form of the energy conservation equation \eqref{eq:linearized-E1} into the time derivative of the Eulerian form of the momentum conservation equation \eqref{eq:linearized-mom};
+  \item simplify.
 \end{enumerate}
+\end{bluebox}
 
-We consider the LNAWE: inside of \(\zeta (r, t) = \eta (r) e^{i \sigma t}\) we insert \(\sigma = \omega + i \kappa \): this means we also consider \emph{damped} exponential solutions and \emph{diverging} exponential solutions.
+\subsection{Solving the LNAWE}
 
-The time scales for these parameters are \(\omega \sim \omega _{\text{ad}}\), while \(\kappa \sim 1/ \theta _{\text{th}}\): therefore \(\omega \gg \abs{\kappa } \).
+Our ansatz for the LNAWE will still be of the form \(\zeta (r, t) = \eta (r) e^{i \sigma t}\), but now we insert \(\sigma = \omega + i \kappa \): this means we also consider \emph{damped} exponential solutions and \emph{diverging} exponential solutions. 
+We want to simplify the exponentials, so we must assume that 
+%
+\begin{align}
+\delta \qty(\dv{Q}{t}) = \delta \qty(\dv{Q}{t}) _{\text{sp}} e^{i \sigma t}
+\,.
+\end{align}
 
-Using this result, we can make some useful \emph{quasi-adiabatic} approximations: in the LNAWE we identify the LAWE operator \(\mathcal{L}\), and replace its application to the wavefunction with the corrisponding eigenvalue.
+\todo[inline]{Why do we assume that the heat derivative perturbation is \emph{in phase} with the displacement? Maybe we do not, and the \(_{\text{sp}}\) heat variation is complex?}
 
-We only look at the first order terms in \(\kappa \).
-We define the \emph{work integral} \(C\), and then we derive 
+With this substitution we get: 
+%
+\begin{align}
+- i \sigma^3 \eta = \frac{i \sigma \eta }{r \rho }
+\pdv{}{r} \qty((3 \Gamma_1 -4)P) - \frac{1}{r \rho }
+\pdv{}{r} \qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{t})_{\text{sp}}) 
++ \frac{i \sigma}{r^{4} \rho } \pdv{}{r} \qty(r^{4} \Gamma_1 P \pdv{\eta }{r})
+\,.
+\end{align}
+
+
+
+The time scales for these parameters are \(\omega \sim \omega _{\text{ad}} \sim \tau _{\text{dyn}}\), while \(\kappa \sim 1/ \tau _{\text{th}}\): therefore \(\omega \gg \abs{\kappa } \).
+
+Using this result, we can make some useful \emph{quasi-adiabatic} approximations: in the LNAWE we identify the LAWE operator \(\mathcal{L}\), and replace its application to the wavefunction with the corrisponding eigenvalue: 
+%
+\begin{align}
+\begin{split}
+- i \sigma^3 \eta  &= 
+-i \sigma \qty(- \frac{1}{r \rho } \pdv{}{r} \qty((3\Gamma_1 -4) P) - \frac{1}{r^{4} \rho } \pdv{}{r} r^{4} \Gamma_1 P \pdv{\eta }{r}) + \\
+&\phantom{=}\ 
+ - \frac{1}{r \rho } \pdv{}{r} 
+\qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{t})_{\text{sp}})
+\end{split} 
+\\
+- i \sigma^3 \eta &= 
+- i \sigma \mathcal{L}(\eta ) 
+- \frac{1}{r \rho } \pdv{}{r} 
+\qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{t})_{\text{sp}}) \\
+\mathcal{L}(\eta ) - \sigma^2 \eta &= 
+\frac{i}{r \sigma  \rho } \pdv{}{r} 
+\qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{t})_{\text{sp}})
+\,,
+\end{align}
+%
+so we can see that the eigenvalue of the LAWE operator cannot be \(\sigma^2\) now. We take this equation, multiply it by \(\eta r^2\) and integrate it over the whole star in \(\dd{m}\): we get 
+%
+\begin{align}
+i \sigma^3 \int \eta^2r^2 \dd{m} 
+- i \sigma \int \eta \mathcal{L}(\eta) r^2 \dd{m}
+= \int \frac{r}{\rho } \pdv{}{r} \qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{r}) _{\text{sp}}) \eta \dd{m}
+\overset{\text{def}}{=} C
+\,,
+\end{align}
+%
+where we defined the \emph{work integral} \(C\). 
+We only look at the first order terms in \(\kappa \): so we make the approximation \(i \sigma^3 \approx \omega^2 \qty(i \omega - 3 \kappa )\), while (to first order, but also exactly) \(i \sigma = i \omega - \kappa \). We substitute these two, and then make the key manipulation: we substitute \(\mathcal{L}(\eta )\) with \(\omega^2 \eta \). 
+The only thing missing is the definition: \(J \overset{\text{def}}{=} \int \eta^2 r^2 \dd{m}\).
+So we get 
+%
+\begin{align}
+\omega^2 \qty(i \omega - 3 \kappa ) J 
+- (i \omega - \kappa ) \omega^2 J &= C \\
+- 3 \kappa + \kappa &= \frac{C}{J \omega^2}
+\,,
+\end{align}
+%
+
+
 %
 \begin{equation}
   \kappa = - \frac{C}{2 \omega^2 J }

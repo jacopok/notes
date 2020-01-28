@@ -379,7 +379,7 @@ where \(\Omega \) is the total gravitational potential energy, while
 + \int_{M} P \pdv{}{m} \qty(4 \pi r^2 \pdv{r}{t}) \dd{m}  \\
 &= - \underbrace{\eval{4 \pi r^2 P \pdv{r}{t}}_{m=0}^{m=M}}_{=0}
 + \int_{M} \frac{4 \pi }{3} P \pdv{}{m} \pdv{}{t} \qty(r^3) \dd{m}  \\
-&= \int_{M} P \pdv{}{t} \underbrace{\qty(4 \pi r^2 \pdv{r}{m})}_{1 / \rho } \dd{m}  \\
+&= \int_{M} P \pdv{}{t} \underbrace{\qty(4 \pi r^2 \pdv{r}{m})}_{1 / \rho } \dd{m}  \marginnote{Commuted \(m\) and \(r\) derivatives}\\
 &= \hlc{olive}{\int_{M} P \pdv{}{t} \qty(\rho^{-1}) \dd{m}}
 \,,
 \end{align}
@@ -442,7 +442,7 @@ The term \(\expval{\dv*{W}{t}}_\Pi \) can also be interpreted as the net heat ga
 \,,
 \end{align}
 %
-so if this is averaged over a period the internal energy change is approximately zero (thermal energy changes on the thermal timescale, which is much longer than the dynamical timescale), so we have 
+so if this is averaged over a period the internal energy change is approximately zero (thermal (i.\ e.\ internal) energy changes on the thermal timescale, which is much longer than the dynamical timescale), so we have 
 %
 \begin{align}
 \expval{\dv{Q}{t}}_{\Pi } = \expval{P \dv{}{t} (\rho^{-1})}
@@ -456,23 +456,44 @@ and therefore we can rewrite equation \eqref{eq:driving-damping-layers-1} as
 \,,
 \end{align}
 %
+where \(Q\) is a heat per unit mass, so its integral in \(\dd{m}\) is the total heat change across all stellar layers.
 
+In the adiabatic case, we had 
+%
+\begin{align}
+\pdv{}{t}\qty( \frac{\delta P}{P} - \Gamma_1 \frac{\delta \rho}{\rho}) =0
+\,,
+\end{align}
+%
+(see equation \eqref{eq:perturbed-linearized-energy-log-pressure}, in which we neglected the heat variation terms in the adiabatic case) so the perturbations were in phase.
 
-In the adiabatic case, we had \(\pdv{}{t}\qty( \frac{\delta P}{P} - \Gamma_1 \frac{\delta \rho}{\rho}) =0 \): the perturbations were in phase.
-
-Now we add a term to the time derivatives: the pressure and density perturbations will stop being in phase. The sign of the heat variation term gives us the difference between \emph{driving} heat transfer and \emph{damping} heat transfer.
+Now we add a term to the time derivatives: the pressure and density perturbations will stop being in phase. The sign of the heat variation term gives us the difference between \emph{driving} heat transfer and \emph{damping} heat transfer. Equation \eqref{eq:perturbed-linearized-energy-log-pressure} will now look like 
+%
+\begin{align}
+\pdv{}{t} \frac{ \delta P}{P} = \Gamma_1 \frac{ \delta \rho }{\rho } + \frac{P}{\rho } (\Gamma_3 -1) \delta \dv{Q}{t}
+\,,
+\end{align}
+%
+so the insants of minimum pressure and minimum density will not be synchronized anymore, since there is that extra \(\dv*{Q}{t}\) term. 
 
 In a PV diagram, we can see that these correspond to right and left oriented loops (as opposed to the loops with zero total signed area we had in the adiabatic case).
 
+The total work performed on the star is given by the area of the loops: the area is positive for a loop going clockwise, and negative for a loop going counter-clockwise.
+
+If the term \(\delta \qty(\dv*{Q}{t})>0\) we are looking at a \emph{driving layer}, since at the time of maximum compression (\(\pdv*{}{t} (\delta \rho  / \rho ) = 0\)) we will have \(\pdv*{}{t} \qty(\delta P / P) > 0\): the maximum pressure perturbation will happen as the layer is expanding, so the expansion will be amplified.
+The symmetric reasoning gives us the fact that if \(\delta \qty(\dv*{Q}{t}) < 0\) we have a \emph{damping layer}. 
+
+There tend to be more driving layers in the outer parts of the star, especially peaking in power generation in the partial Helium and Hydrogen ionization regions.  
+
 \begin{bluebox}
-    The star is effectively a themal engine converting heat into work; this will result in an increased overall entropy of the star, and a smoothing of its temperature gradient, however:
-    %
-    \begin{enumerate}
-        \item the timescales on which this process occurs are much larger than the timescales on which oscillating motions are created and destroyed;
-        \item then energies of the oscillations are much smaller than the global thermal energy of the star.
-    \end{enumerate}
-    %
-    therefore this process is typically not relevant.
+The star is effectively a themal engine converting heat into work; this will result in an increased overall entropy of the star, and a smoothing of its temperature gradient, however:
+%
+\begin{enumerate}
+\item the time scales on which this process occurs are much larger than the time scales on which oscillating motions are created and destroyed (specifically, the entropy changes on the thermal time scale);
+\item then energies of the oscillations are much smaller than the global thermal energy of the star.
+\end{enumerate}
+%
+therefore this process is typically not relevant.
 \end{bluebox}
 
 \end{document}

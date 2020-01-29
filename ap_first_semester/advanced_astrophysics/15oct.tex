@@ -177,21 +177,36 @@ The \(\kappa \)-\(\gamma \)-mechanism cannot explain the pulsation of hotter sta
 
 One could consider the partial second ionization layers: this has been thoroughly considered, and it has been found that they cannot provide a significant enough contribution.
 
-There is an opacity bump at \(5<\log(T)< 6.5 \), which was found in the eighties by Simon.
+There is an opacity bump at \(5<\log_{10}(T)< 6.5 \), which was found in the eighties by Simon: the old graph for \(\kappa (T)\) had spikes around \(T \sim \num{e4}\) and \(T \sim \num{e4.7}\), and a new spike was found at \(T \sim \num{e5.4}\). 
 Do note that these are temperatures reached when looking a bit inside the star, not at the surface (although close to it).
 
+\paragraph{Convective blocking}
+Convection is slow to adapt, so it cannot move away the heat brought by the pulsations. Then, the heat must be turned into work. 
+This happens when the period of the pulsations is of the order of the thermal timescale?
+\todo[inline]{Not sure about this}
+
+\paragraph{Convective driving}
+Convective driving is called the \(\delta \)-mechanism.
+It happens when the convective timescale is much shorter than the period of the pulsation, so the convection can mix the gas. 
+\todo[inline]{And this drives pulsations?}
+
+\paragraph{Stochastic driving}
+There also are \emph{stochastically driven} oscillations: they happen in stars which are intrinsically stable, but the pulsations may be fed by convective turbulence. 
+This can happen in Sun-like Main Sequence stars, or in solar-like red giants, such as \(\xi \)-Hydrae stars.
+
+\paragraph{Strange modes}
 There are very luminous \emph{strange modes}, very dim convectively driven modes.
 
-Convective driving is called the \(\delta \)-mechanism.
-
-There also are \emph{stochastically driven} oscillations: they are intrinsically stable.
+\subsubsection{The classical instability strip}
 
 The pulsation region has boundaries:
 for the \(\kappa \)-mechanism:
 \begin{itemize}
     \item if the star is too hot, the regions of partial ionization get too close to the surface;
-    \item if the star is too cold, they are too far in: in the outer region the pulsation is damped.
+    \item if the star is too cold, they are too far in: in their outer region the pulsation is damped by convective heat transfer.
 \end{itemize}
+
+So, there is an optimal region for the partial ionization layers to be.
 
 What is the optimal region? We will only look  at the fundamental mode. We define
 %
@@ -200,9 +215,28 @@ What is the optimal region? We will only look  at the fundamental mode. We defin
 \,,
 \end{equation}
 %
-which represents the thermal balance of a single oscillation.
+which represents the thermal balance of a single oscillation: \(L(\Pi / 2 \pi )\) is the luminosity radiated in a radian of the pulsation cycle (\(1/ 2 \pi \) cycles), 
+while \(c_V T = T \qty(\pdv*{Q}{T}) \approx Q\), the heat per unit mass, which when integrated from \(m\) to \(M\), the whole mass of the star, gives us the global heat variation of the layers above \(m\). 
 
-We are in the helium ionization region: there are no nuclear reactions, so we set energy generation to zero. 
+We are in the helium ionization region: there are no nuclear reactions, so we set energy generation to zero in equation \eqref{eq:linearized-E2}: we get 
+%
+\begin{align}
+\pdv{}{t} \qty(\frac{ \delta T}{T}) =
+(\Gamma_3 -1) \pdv{}{t} \qty(\frac{ \delta \rho }{\rho })
+- \frac{1}{c_V T} \pdv{ \delta L}{m}
+\,.
+\end{align}
+
+Now we assume that the temperature, density and luminosity perturbations are oscillating, so they have a certain starting value, and the temporal dependence is absorbed in a factor \(e^{i \sigma t}\). Then, we get 
+%
+\begin{align}
+i \sigma \frac{ \delta T}{T} &= (\Gamma_3 -1) i \sigma \frac{ \delta \rho }{\rho } - \frac{1}{c_V T} \pdv{ \delta L}{m} \\
+\frac{ \delta T}{T} &= (\Gamma_3 -1) \frac{ \delta \rho }{\rho } + \frac{i}{\sigma  c_V T} \pdv{ \delta L}{m} 
+\,,
+\end{align}
+%
+
+
 %
 \begin{equation}
   \frac{\delta T}{T} = (\Gamma_3 -1 ) \frac{\delta \rho }{\rho } - i \qty(\pdv{\phi }{x} )^{-1} \pdv{}{x} \qty(\frac{\delta L}{L})

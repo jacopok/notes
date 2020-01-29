@@ -232,26 +232,108 @@ Now we assume that the temperature, density and luminosity perturbations are osc
 \begin{align}
 i \sigma \frac{ \delta T}{T} &= (\Gamma_3 -1) i \sigma \frac{ \delta \rho }{\rho } - \frac{1}{c_V T} \pdv{ \delta L}{m} \\
 \frac{ \delta T}{T} &= (\Gamma_3 -1) \frac{ \delta \rho }{\rho } + \frac{i}{\sigma  c_V T} \pdv{ \delta L}{m} 
+\,.
+\end{align}
+
+Now, consider the following: with our definition of \(\phi \), we can write: 
+%
+\begin{align}
+\pdv{}{\phi } = \pdv{m}{\phi } \pdv{}{m}
+= - \frac{L(\Pi /2\pi )}{c_V T} \pdv{}{m}
+\,;
+\end{align}
+%
+do note that \(\phi \) is adimensional, because of the way we define \(L(\Pi / 2 \pi )\):
+%
+\begin{align}
+L(\Pi / 2\pi ) = L / \sigma 
 \,,
 \end{align}
 %
-
-
+which is an energy. With these facts in mind, plus the fact that approximately \(\pdv*{L}{m} = 0\), we can do the following manipulation: 
 %
-\begin{equation}
+\begin{align}
+\frac{i}{\sigma c_V T} \pdv{ \delta L}{m}
+&= - \frac{i }{\sigma L(\Pi / 2 \pi ) } \pdv{ \delta L }{\phi }  \\
+&= -i \pdv{}{\phi } \qty(\frac{ \delta L}{L})
+\,.
+\end{align}
+
+Now, we can use the chain rule on the derivative in \(\partial \phi \) using any auxiliary variable we like: we choose \(x = r/ R\), the fractionary radius, so we get 
+%
+\begin{equation} \label{eq:temperature-evolution-transition-region}
   \frac{\delta T}{T} = (\Gamma_3 -1 ) \frac{\delta \rho }{\rho } - i \qty(\pdv{\phi }{x} )^{-1} \pdv{}{x} \qty(\frac{\delta L}{L})
 \,,
 \end{equation}
 %
 where \(\delta T\) is actually complex, since the perturbations are out of phase.
 
+We can make some considerations on the variations of the terms in the equation: 
+%
+\begin{align}
+\phi \approx \frac{1}{L(\Pi / 2 \pi )}
+\frac{4}{3} \pi R^3 \qty(1 - x^{3}) \rho c_V T
+\propto (1-x^3) \rho c_V T
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\pdv{\phi }{x} \propto - x^2 \rho c_V T
+\,.
+\end{align}
+
+The \(x^2\) dependence, however, is not very important: if the internal energy of a layer does not change, we can write the first law of thermodynamics as 
+%
+\begin{align}
+\dd{Q} = P \dd{\qty(\frac{1}{\rho })} 
+\implies 
+P \sim \dv{Q}{ \qty(\rho^{-1})} \sim Q \times \rho 
+\,,
+\end{align}
+%
+and \(c_V T \sim Q\), so we have: 
+%
+\begin{align}
+\pdv{\phi }{x} \propto - x^2 P
+\,,
+\end{align}
+%
+and while \(x\) goes to zero in the center, the pressure increases a lot. 
+
+\begin{bluebox}
+From what I could gather in 5 minutes, the Sun's pressure profile is very roughly given by 
+%
+\begin{align}
+P(x) \sim \SI{2.5e11}{Pa} \exp( - \lambda x)
+\,,
+\end{align}
+%
+where \(\lambda \sim 9\). Now, if we plot \(\exp(-9x) x^2\), it becomes small both at the surface and at the center, and has a maximum around \(x \sim \num{.2}\).
+So, the reasoning still makes sense, but you have to consider the very center of the star as a special case.
+\end{bluebox}
+
 On the surface, the imaginary term is negligible. In the interior, it is relevant.
 
-The pulsation region is the one in which the ionization region can build up an energy excess. 
+So, near the surface \(\pdv*{x}{\phi }\) is very large: therefore the term multiplying it, \(\pdv*{}{x} \qty(\delta L / L)\), must become small in order for the temperature perturbation not to diverge. This means that the luminosity perturbation cannot change much: it is ``frozen in''. 
+Anyway, the imaginary part of the RHS of equation \eqref{eq:temperature-evolution-transition-region} is much larger than the real part.
+\todo[inline]{Right?}
 
-\subsection{RR Lyr\ae}
+On the other hand, near the center the term \(\pdv*{x}{\phi }\) becomes very small, while the spatial derivative of the perturbation does not become very large, so on balance the term remains small: the oscillations are then quasi-adiabatic.
 
-Now for some star zoology: RR Lyr\ae.
+Between these two regimes, we have a \emph{transition region} in which the two terms in equation \eqref{eq:temperature-evolution-transition-region} are similar in terms of order of magnitude: depending on the temperature of the star, this can can occur before or after the ionization region, when going radially outward.
+
+The classical instability strip is the region in the Hertzsprung-Russell diagram in which the partial ionization region roughly coincides with the transition region. 
+
+\todo[inline]{Why is the perturbation ``frozen in'' if its spatial derivative is small? we could have \(\delta L / L\)  constant with respect to \(x\) and it would still evolve in time!}
+
+\todo[inline]{Why are the boundaries of the classical instability strip tilted? It seems like the region is defined by some relation like \(\log L = - (\text{large \#}) \log T\), why is this so?}
+
+\subsection{Star botany}
+
+\subsubsection{RR Lyr\ae}
+
 It is a stage, which lasts no more than \SI{e8}{yr}.
 
 They are classified by a, b, or c according to the shape of the light curve, its amplitude, its period:

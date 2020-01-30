@@ -356,12 +356,11 @@ and apply to it the identity: \(\frac[i]{1}{2} \pdv{}{t} v^2 = \pdv{r}{t} \pdv[2
 %
 \begin{align}
 \int_{M} \frac{1}{2} \pdv{}{t} \qty(v^2) \dd{m} = 
-\hlc{olive}{- \int_{M} 4 \pi r^2 \pdv{P}{m} \dd{m} }
-\hlc{teal}{- \int_{M} \frac{Gm}{r^2} \dd{m}}
-\,,
+\hlc{olive}{- \int_{M} 4 \pi r^2 \pdv{P}{m} \pdv{r}{t} \dd{m} }
+\hlc{teal}{- \int_{M} \frac{Gm}{r^2} \pdv{r}{t} \dd{m}}
+\,.
 \end{align}
 %
-
 
 Now we apply some manipulations: first of all, the following: 
 %
@@ -472,11 +471,11 @@ In the adiabatic case, we had
 Now we add a term to the time derivatives: the pressure and density perturbations will stop being in phase. The sign of the heat variation term gives us the difference between \emph{driving} heat transfer and \emph{damping} heat transfer. Equation \eqref{eq:perturbed-linearized-energy-log-pressure} will now look like 
 %
 \begin{align}
-\pdv{}{t} \frac{ \delta P}{P} = \Gamma_1 \frac{ \delta \rho }{\rho } + \frac{P}{\rho } (\Gamma_3 -1) \delta \dv{Q}{t}
+\pdv{}{t} \frac{ \delta P}{P} = \Gamma_1 \pdv{}{t} \frac{ \delta \rho }{\rho } + \frac{P}{\rho } (\Gamma_3 -1) \delta \dv{Q}{t}
 \,,
 \end{align}
 %
-so the insants of minimum pressure and minimum density will not be synchronized anymore, since there is that extra \(\dv*{Q}{t}\) term. 
+so the instants of minimum pressure and minimum density will not be synchronized anymore, since there is that extra \(\dv*{Q}{t}\) term. 
 
 In a PV diagram, we can see that these correspond to right and left oriented loops (as opposed to the loops with zero total signed area we had in the adiabatic case).
 

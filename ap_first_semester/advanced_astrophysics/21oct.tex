@@ -37,28 +37,94 @@ yet been observed.
 
 \subsection{Classical Cepheids}
 
-They are younger than RR Lyr.
-They are very important if the \emph{cosmic distance ladder}.
+They massive stars (\(4 \divisionsymbol 9 M_{\odot}\)) are younger than RR Lyr, typically around \(\num{e7} \divisionsymbol \SI{e8}{yr}\).
+Their absolute visual magnitude \(M_V\) can change in a range of typically \num{-2} to \num{-6}. 
+Their periods are typically beteen \(\num{.5} \divisionsymbol \SI{135}{d}\). 
 
-We have a very important Period-Luminosity relation: this can be used to measure distances.
+They are very important for the \emph{cosmic distance ladder} determination, because of the Period-Luminosity relation, which can be used to measure distances: period is not affected by reddening.
 
-Period is not affected by reddening.
+The light curves of Cepheids are characterized by a sharp rize and a shallow fall in magnitude if the star is vibrating on the fundamental, a more symmetric light curve if it is vibrating on the first overtone. 
+A second overtone pulsation is rarely found, and it generally has a much lower amplitude. 
+In classical Cepheids we also find multimodal pulsators. 
 
-The fundamental relation is 
+As with RR Lyrae, the amplitude of the pulsation is larger at higher light frequencies such as the UV, and decreases through visible and IR.
+
+Cepheids with periods between \num{6} and \SI{16}{d} we often have a \emph{bump}, which could be caused by resonances between the fundamental and the second overtone or by echoes from the core.
+
+Some Cepheids, like some RR Lyrae, also show the Blazhko effect (very long-lived modulations in the light curve).
+
+\subsubsection{The Period-Luminosity relation}
+
+The fundamental relation we start from is the Stefan-Boltzmann law:
 %
 \begin{equation}
   L = 4 \pi R^2 \sigma T^4 _{\text{eff}}
 \,,
 \end{equation}
 %
-which can be converted into a relation involving the bolometric magnitude.
-In the end,  using the mass luminosity relation of main sequence stars, we have: 
+which can be converted into a relation involving the bolometric magnitude: we first of all divide through by the solar values for the parameters, and then take the log: 
+%
+\begin{align}
+\log \qty(\frac{L}{L_{\odot}})= 2 \log \qty(\frac{R}{R_{\odot}}) + 4 \log \qty(\frac{T _{\text{eff}}}{T _{\text{eff}, \odot}})
+\,,
+\end{align}
+%
+and we use the definition of bolometric magnitude: 
+%
+\begin{align}
+M_{\text{bol}} - M _{\text{bol}, \odot} = \num{-2.5} \log \frac{L}{L_{\odot}}
+\,,
+\end{align}
+%
+so we substitute it in: 
+%
+\begin{align}
+M _{\text{bol}, \odot} -  M_{\text{bol}}  &= \num{2.5} \qty( 2 \log \qty(\frac{R}{R_{\odot}}) + 4 \log \qty(\frac{T _{\text{eff}}}{T _{\text{eff}, \odot}}))  \\
+M _{\text{bol}} &= -5 \log \qty(\frac{R}{R_{\odot}})
+- 10 \log \qty(\frac{T _{\text{eff}}}{T _{\text{eff}, \odot}}) + \const
+\,,
+\end{align}
+%
+and now we can use the period-mean density relation: 
+%
+\begin{align}
+\Pi^2 \overline{\rho} = \mathcal{Q} = \const
+\implies 
+2 \log \Pi + \log \overline{\rho} = \log \mathcal{Q}
+\,,
+\end{align}
+%
+but \(\overline{\rho} \sim M / R^3\), so this becomes 
+%
+\begin{align}
+2 \log \Pi + \log M - 3 \log R - \log \mathcal{Q} &= \const \\
+\log R &= \frac{2}{3} \log \Pi  + \frac{1}{3} \log M - \frac{2}{3} \log \mathcal{Q} + \const
+\,.
+\end{align}
+%
+We can now substitute this into the other equation; we get 
+%
+\begin{align}
+M _{\text{bol}} + 5 \qty(\frac{2}{3} \log \Pi  + \frac{1}{3} \log M - \frac{2}{3} \log \mathcal{Q} + \const)
++ 10 \log T _{\text{eff}} &= 0 \marginnote{Multiply by \(3/10\)}  \\
+\frac{3}{10} M _{\text{bol}} + \log \Pi + \frac{1}{2} \log M - \log \mathcal{Q} + 3 \log T _{\text{eff}} &= \const
+\,,
+\end{align}
+%
+where we started dropping the adimensionalizing divisions by the solar values of the parameters, since they are ``constants''.
+
+Now, we make the assumption of a mass-luminosity relation like that of Main Sequence stars: \(\log M _{\text{bol}} = - 8 \log M + \const\), so we substitute \(\log M\) with \(- M _{\text{bol}} / 8\).
+The number multiplying \(M _{\text{bol}}\) is then \(3/10 - 1/16 \approx \num{.24}\). So, in the end, we get
 %
 \begin{equation}
   \log(\Pi ) = \num{-0.24}M _{\text{bol}} - 3 \log(T _{\text{eff}}) + \log(Q) + \const
-\,.
+\,,
 \end{equation}
 %
+which is really useful because the period can be measured precisely, while the \emph{absolute} bolometric magnitude is really difficult.
+
+Since the stars which satisfy the P-L relations have different temperatures we have a certain spread of the P-L relation scatter plot. 
+\todo[inline]{Is \(T _{\text{eff}}\) not very much correlated with \(M _{\text{bol}}\)?}
 
 The derivation of this might be asked at the exam.
 
@@ -66,30 +132,86 @@ The derivation of this might be asked at the exam.
 
 This is just an introduction, a full course might be given at the PhD level.
 
-We use the same assumptions as before, except we lose the spherical symmetry.
+We use similar assumptions as before, except we lose the spherical symmetry. Specifically: 
+\begin{enumerate}
+  \item we consider perturbations to a spherically symmetric equilibrium model;
+  \item we make the Cowling approximation: we consider the unperturbed gravitational potential.
+\end{enumerate}
+
+The equations describing the oscillations are 
+%
+\begin{align}
+- \frac{1}{r^2} \pdv{}{r} \qty(r^2 \zeta_{r}) - \frac{g}{v_s^2} \zeta_{r} + \qty(1 - \frac{L_\ell^2}{\sigma^2}) \frac{P'}{v_s^2 \rho } &= 0  \\
+\frac{1}{\rho } \pdv{P'}{r} + \frac{g}{v_s^2\rho } P' + \qty(N^2-\sigma^2)\zeta_{r} &=0
+\,,
+\end{align}
+%
+where: 
+\begin{enumerate}
+  \item the displacement vector is separated into radial and horizontal components: \(\vec{\zeta} = \zeta_{r} \hat{e}_{r} + \vec{\zeta}_{h}\); 
+  \item any perturbed quantity changes in two ways: we write 
+  %
+  \begin{align}
+  \delta f( \vec{r_0} + \delta \vec{r}) = f' (\vec{r_0} ) + \vec{ \delta  r} \cdot \vec{\nabla} f_0 
+  \,,
+  \end{align}
+  %
+  \todo[inline]{Does the prime denote a derivative? how are these things defined?} 
+  \item \(L_{\ell}\) is the Lamb frequency, or acoustic frequency: \(L_{\ell}^2 = \ell (\ell+1) (v_s / r)^2\)
+  \item \(N\) is the Brunt-Väisälä frequency, or bouyancy frequency: 
+  %
+  \begin{align}
+    N^2= -g \qty(\dv{\ln \rho }{r} - \frac{1}{\Gamma_1} \dv{\ln P }{r} )
+  \,,
+  \end{align}
+  %
+  where the term inside brackets is called the \emph{Schwarzschild discriminant} \(A(r)\), and it measures the non-adiabaticity of the system, since it is proportional (with a positive constant) to \(\nabla - \nabla_{\text{ad}}\). 
+  Recall Schwarzschild's criterion: we have convectively unstable regions if \(A(r)\) is positive. So, \(N^2\) is \emph{negative} in regions which are convectively unstable according to Schwarzschild's criterion.
+\end{enumerate}
+
+Our ansatz for the solution is similar to what is done in quantum mechanics: we have a radial part with a quantum number \(n\), and spherical harmonics indexed by the angular order \(\ell \) and the azimuthal order \(m\), with \(\abs{m} \leq \ell\). The temporal periodicity will still look like an oscillating complex exponential, but its frequency will depend on the quantum numbers: so, in the end we will have 
+%
+\begin{align}
+\zeta (\vec{r}) = R_{n} (r) Y_{\ell m} (\Omega) \exp(i \sigma_{n \ell m} t)
+\,,
+\end{align}
+%
+where \(R\) and \(Y\) are the radial and angular components of the perturbation, \(\Omega = (\theta , \varphi )\) and \(Y_{\ell m}\) are the spherical harmonics, the solutions \(Y \colon S^{2} \rightarrow \mathbb{C}\) to \(\nabla^2 Y = - \ell (\ell +1) Y \), satisfying \(\partial_{\varphi }Y = im\): these are restrictions on the unit sphere of \(\nabla^2Y = 0\). 
+
+We can approximate the differential equations locally as a single differential equation (by assuming that all the parameters are constant: we do the following change of variables: 
+%
+\begin{align}
+\pdv{\widetilde{\zeta}}{r} &= h \frac{r^2}{v_s^2} \qty(\frac{L_{\ell}^2}{\sigma^2}  -1 )\widetilde{\eta}  \\
+\pdv{\widetilde{\eta}}{r} &= \frac{1}{r^2h} \qty(\sigma^2-N^2) \widetilde{\zeta}
+\,,
+\end{align}
+%
+which can be combined into 
+%
+\begin{align}
+\pdv[2]{\widetilde{\zeta}}{r} = - k_r^2 \widetilde{\zeta}
+\,,
+\end{align}
+%
+with a wavenumber given by
+%
+\begin{equation}
+  k^2_r = - \frac{1}{v_s^2 \sigma^2 } \qty(L_\ell^2- \sigma^2   ) \qty(\sigma^2 - N^2)
+  \,.
+\end{equation}
 
 We have several families of solutions: 
 
 \begin{enumerate}
-    \item \(p\)-modes, mostly radial, pressure;
-    \item \(g\)-modes, mostly horizontal, buoyancy;
+    \item \(p\)-modes, mostly radial, pressure waves, high frequency: \(\sigma^2> L^2_{\ell}, N^2\);
+    \item \(g\)-modes, mostly horizontal, buoyancy, low frequency, \(\sigma^2 < L^2_{\ell}, N^2\);
     \item \(f\)-modes; without nodes.
 \end{enumerate}
 
 We can derive equations for this case similarly to the LAWE.
 
-[Equations]
 
-We get two different velocities of propagation: \(L_{\ell} = \ell (\ell + 1) (v_s / r)^2\) is the Lamb frequency, while \(N^2= -g \qty(\dv*{\ln \rho }{r} - 1/\Gamma_1 \dv*{\ln P }{r} )\) is the Brunt-Väisälä frequency.
-
-We can approximate the differential equations locally as a single differential equation, which is a harmonic oscillator for the perturbation, with wavenumber
-%
-\begin{equation}
-  k^2_r = - \frac{1}{v_s^2 \sigma^2 } \qty(L_\ell^2- \sigma^2   ) \qty(\sigma^2 - N^2)
-\,.
-\end{equation}
-
-This is negative iff \(\sigma^2\) is either smaller or larger than both \(N^2\) and \(L_\ell^2\); these are respectively \(g\) and \(p\)-modes. If \(\sigma^2\) is between them, we get a real exponential as a solution.
+This is because \(k_r^2\) is negative iff \(\sigma^2\) is either smaller or larger than both \(N^2\) and \(L_\ell^2\); these are respectively \(g\) and \(p\)-modes. If \(\sigma^2\) is between them, we get a real exponential as a solution, which decays quickly.
 This is called the \emph{evanescent regime}.
 
 \(p\)-modes are characterized by a \emph{turning point}: below a certain radius, the mode is in the evanescent regime.

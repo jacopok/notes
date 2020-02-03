@@ -37,9 +37,25 @@ Depending on the temperature of the electrons, we can have regions with mostly C
 \end{equation}
 %
 depending on the sign of the numerator on the RHS we can see whether energy is transferred to or from electrons.
-This applies to a \emph{single photon}: to get a description of the phole distribution we need the Kompaneets equation.
+This applies to a \emph{single photon}: to get a description of the phole distribution we need the Kompaneets equation, which reads 
+%
+\begin{align}
+\pdv{n}{y} = \frac{1}{x^2} \pdv{}{x} \qty[
+x^4 \qty(\pdv{n}{x} + n + n^2)
+]
+\,,
+\end{align}
+%
+where \(n = n(x)\) is the number density of photons, \(x = \hbar \omega / k_B T_e\) with \(\hbar\omega \) being the energy of the photons, and \(T_e\) the temperature of the electrons, while 
+%
+\begin{align}
+\dd{y} = \frac{k_B T_e}{m_e c^2} \sigma_T N_e c \dd{t}
+\,
+\end{align}
+%
+represents the fractional change in Compton optical depth.
 
-In the Kompaneets equation we impose \(\pdv*{n}{t} = 0\), since \(n\) is frequency integrated and Compton scattering conserves photon number.
+In the Kompaneets equation we impose \(\pdv*{n}{t} = 0\), since \(n\) is frequency integrated and Compton scattering conserves photon number. Then, we can get an approximate solution, in the form \(n \propto \omega^{-C}\) for some positive \(C\), which holds up to \(\hbar \omega \sim k_B T_e\), at which point we get a sharp cutoff because of the \emph{recoil effect}: the photons start being \emph{cooled} by Compton interactions. 
 
 Now, follow the instructions in the slides. Open \texttt{ISGR-EBDS-MOD}: ``all'', you can then see the conversion of energy to channel.
 

@@ -2,13 +2,13 @@ Here are the notes I am taking during the lectures of the degree in [Astrophysic
 
 They are divided by semester and class: the current semester folder is `ap_first_semester`, containing notes for:
 
-* [Advanced astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086382/N0)
-* [Astrophysical (high energy) laboratory](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086379/A1302)
-* [Mathematical and numerical methods](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0)
-* [General Relativity](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0)
-* [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0)
+* [Advanced astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086382/N0): reviewed notes for the part on stellar oscillations;
+* [Astrophysical (high energy) laboratory](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086379/A1302): not really coherent notes;
+* [Mathematical and numerical methods](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): not really coherent notes;
+* [General Relativity](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): reviewed everything, exercises included;
+* [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0): did not review yet, plan to in late February.
 
-In every class folder there is a main file but the lectures are kept in a separate file for each day, labelled with the date.
+In every class folder there is a main file but the individual lectures are kept in a separate file for each day, labelled with the date.
 These can be compiled individually (with `pdflatex`), but the resulting PDFs are ignored by git to have some order: only the main pdf for each class is committed here; I should remember to compile it often but sometimes it might be out of date.
 
 This repo is also synced with an Overleaf folder, however I think it is best if that one is kept private.

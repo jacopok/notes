@@ -129,8 +129,8 @@ Under stationarity (\(\partial_t = 0\)), we have:
 
 The conservation of momentum gives us the Euler equation: 
 %
-\begin{equation}
-  v \dv{v}{t} = \underbrace{- \frac{1}{\rho } \dv{P}{r}}_{f_P} \underbrace{- \frac{GM}{r^2}}_{f_g} + f(r)
+\begin{equation} \label{eq:momentum-conservation}
+  v \dv{v}{r} = \underbrace{- \frac{1}{\rho } \dv{P}{r}}_{f_P} \underbrace{- \frac{GM}{r^2}}_{f_g} + f(r)
 \,,
 \end{equation}
 %
@@ -152,21 +152,45 @@ where \(Q\) is the specific heat, \(u \) is the specific internal energy.
 The internal energy, for an ideal gas, scales linearly with the temperature: 
 %
 \begin{equation}
-  u = \frac{3}{2} \frac{k_B T}{\mu m_u} = \frac{3}{2} \frac{R T}{\mu }
+  u = \frac{3}{2} \frac{k_B T}{\mu m_u} = \frac{3}{2} \frac{\mathcal{R} T}{\mu }
 \,,
 \end{equation}
 %
-where \(\mu \) is the mean molecular weight, while \(m_u\) is the atomic unit of mass: \(R = k_B / m_u\).
+where \(\mu \) is the mean molecular weight, while \(m_u \approx m_H\) is the atomic unit of mass. Using these, we define the specific gas constant \(\mathcal{R} = k_B / m_u\).
+
+\begin{bluebox}
+The mean molecular weight is defined as the average weight of a molecule in atomic mass units: \(\mu = \overline{m} / m_H\), and for a neutral gas it can be calculated as 
+%
+\begin{align}
+\frac{1}{\mu m_H} = \frac{\sum _{j} N_j}{M _{\text{tot}}} =
+\sum _{j} \frac{N_j}{N_j m_j} \frac{N_j m_j}{M _{\text{tot}}}
+= \sum _{j} \frac{N_j}{N_j A_j m_H} X_j 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\frac{1}{\mu } = \sum _{j} \frac{N_j}{A_j}
+\,,
+\end{align}
+%
+where we have used the facts that \(m_j = A_j m_H\), we defined the mass fraction \(X_j = N_j m_j / M _{\text{tot}}\): the fraction of the total mass which is of the species \(j\). 
+For an ionized gas the calculation is the same except we need to include a factor \((1+z_j)\), at the numerator in the sum, where \(z_j\) is the atomic number of the element, since for every ionized atom we have an additional particle (the electron).
+
+Using the mass fractions for the Sun we get approximately \(\mu \approx 1.3\) for neutral gas and \(\mu \approx \num{.62}\) for fully ionized gas.
+\end{bluebox}
 
 We will also assume that the gas pressure follows the ideal gas law: 
 %
 \begin{equation}
-  P = \frac{k_B T \rho }{\mu m_u} = \frac{RT \rho }{\mu }
-\,.
+  P = \frac{k_B T \rho }{\mu m_u} = \frac{\mathcal{R} T \rho }{\mu }
+\,,
 \end{equation}
 %
+where we used the fact that \(N = M / \overline{m}\), and \(\overline{m} = \mu m_H\). 
 
-All time derivatives can be written as \(\dv{}{t} = v \dv{}{r} \).
+By stationarity, all time derivatives can be written as \(\dv{}{t} = v \dv{}{r} \).
 
 We define 
 %
@@ -175,32 +199,59 @@ We define
 \,,
 \end{equation}
 %
-the heat input or loss per unit mass per unit distance in the wind. Inserting in the previous equation, we get: 
+the heat input or loss per unit mass per unit distance in the wind (since \(Q\) is already a specific heat). Inserting this in the previous equation, we get the following expression for the energy equation:
 %
-\begin{equation}
-  q = \frac{3}{2} \frac{R}{\mu } \dv{T}{r} + P \dv{\rho^{-1}}{r} 
-\,.
-\end{equation}
-
-These can be incorporated in the global energy equation: 
-%
-\begin{equation} \label{eq:energy-conservation-differential} 
-  \dv{}{r} \qty(\frac{v^2}{2} + \frac{5}{2} \frac{RT}{\mu }- \frac{GM}{r}) = f(r) + q(r)
+\boxalign{
+\begin{align}
+  q = \frac{3}{2} \frac{\mathcal{R}}{\mu } \dv{T}{r} + P \dv{\rho^{-1}}{r} 
 \,,
-\end{equation}
+\end{align}}
 %
-where the expression inside the brackets is the total internal energy. The terms are called A, B, C.
-This clarifies the claim from before: we can change the internal energy by applying a force.
 
-\todo[inline]{Was the claim from before not the reverse?}
+This can be incorporated, using the momentum conservation as well, into the global energy equation: 
+%
+\boxalign{
+\begin{align} \label{eq:energy-conservation-differential}
+  \dv{}{r} \qty(\underbrace{\frac{v^2}{2}}_{\Circled{A}} + \underbrace{\frac{5}{2} \frac{\mathcal{R} T}{\mu }}_{\Circled{B}}\underbrace{- \frac{GM}{r}}_{\Circled{C}}) = f(r) + q(r)
+\,,
+\end{align}}
+%
+where the expression inside the brackets is the total internal energy.
 
-Equation \eqref{eq:energy-conservation-differential} can be written in integral form, by integrating from a generic radius \(r_0 \), we could choose the photospheric radius. 
+\begin{bluebox}
+Here is the derivation of the formula: the momentum conservation equation \eqref{eq:momentum-conservation} can be written as: 
+%
+\begin{align}
+\frac{1}{2} \dv{}{r} \qty(v^2) = - \dv{}{r} \qty(\frac{P}{\rho }) + P \dv{}{r} \qty(\frac{1}{\rho }) + \dv{}{r} \qty(\frac{GM}{r}) + f \marginnote{Inverse Leibniz rule on the \(P,\rho \) term.}
+\,,
+\end{align}
+%
+so we can substitute in our expression from the energy equation for \(P \dv*{\rho^{-1}}{r}\): we get 
+%
+\begin{align}
+\dv{}{r} \qty(\frac{v^2}{2} + \frac{P}{\rho } - \frac{GM}{r}) = f + q - \frac{3}{2} \frac{\mathcal{R}}{\mu} \dv{T}{r}
+\,,
+\end{align}
+%
+but \(P / \rho \) is precisely equal to \(\mathcal{R} T / \mu \), and the molecular weight and the gas constant are constants, so we can bring that term inside the derivative on the LHS in order to get the \(5/2\) factor in the final result.
+\end{bluebox}
 
-Near the photosphere \(\abs{C} \gg A+B\), so  \(e(r_0 ) \approx GM / r_0 < 0 \).
+The terms \(\Circled{A}\), \(\Circled{B}\) and \(\Circled{C}\) describe the different types of energy we can have: \(\Circled{A}\) is kinetic energy, \(\Circled{B}\) is chemical potential energy (enthalpy) while \(\Circled{C}\) is gravitational potential energy.
 
-At large radii \(B, C \to 0\): \(e(r_{\infty}) \approx v_{\infty}^2 /2\).
+We can change the total energy by either adding heat (increasing \(q\)) or by adding momentum (increasing \(f\)).
 
-If we integrate from \(r_0 \) at the photosphere to infinity then we get: 
+% This clarifies the claim from before: we can change the internal energy by applying a force.
+
+% \todo[inline]{Was the claim from before not the reverse?}
+
+Equation \eqref{eq:energy-conservation-differential} can be written in integral form, by integrating from a generic radius \(r_0 \): a useful choice is often the photospheric radius. 
+We introduce the notation \(e (r) = \Circled{A} + \Circled{B}+ \Circled{C}\) for the total energy. 
+
+Near the photosphere \(\abs{\Circled{C}} \gg \Circled{A}+\Circled{B}\), so  \(e(r_0 ) \approx GM / r_0 < 0 \) (this is not obvious theoretically: it is an experimental fact that the gas is slow-moving near the surface).
+
+At large radii \(\Circled{B}, \Circled{C} \to 0\): \(e(r_{\infty}) \approx v_{\infty}^2 /2 > 0\).
+
+If we integrate from \(r_0 \), the radius of the photosphere, to infinity then we get: 
 %
 \begin{equation}
   \frac{v^2_{\infty}}{2} = - \frac{GM}{r_0 } + \int _{r_0 }^{\infty} f(r) + q(r) \dd{r} 
@@ -209,7 +260,9 @@ If we integrate from \(r_0 \) at the photosphere to infinity then we get:
 %
 so the sum of the two integrals must be large enough for the gas to escape the gravitational well.
 
-\todo[inline]{Can't this be made stronger by simply swapping the equality with a less than sign, and integrating not only from \(r_0 \) but from any radius?}
+% \todo[inline]{Can't this be made stronger by simply swapping the equality with a less than sign, and integrating not only from \(r_0 \) but from any radius?}
+
+\section{Isothermal winds}
 
 Now we will treat isothermal winds. 
 These calculations were first done by Parker.

@@ -3,7 +3,7 @@
 
 \section*{Mon Oct 28 2019}
 
-\section{Stellar Winds}
+\section{Introduction}
 
 With Paola Marigo, now.
 
@@ -64,9 +64,13 @@ We can also characterized them by their driving mechanisms:
     \item dust driven winds: due to radiation pressure on dust grains, solid particles, which are very opaque.
 \end{enumerate}
 
-\todo[inline]{Are ionized atoms more opaque to radiation?}
+% \todo[inline]{Are ionized atoms more opaque to radiation?}
+For line-driven winds we have a relations between luminosity and wind momentum: it is a powerlaw. 
+Specifically, what is measured is \(\dot{M}_{ \infty } \sqrt{R / R_{\odot}}\) versus the visual magnitude. 
 
 We will not consider winds driven by pulsation, sound waves and Alfvèn waves (magnetic winds).
+
+\subsubsection{Wind structure equations}
 
 We will assume:
 \begin{enumerate}
@@ -77,7 +81,7 @@ We will assume:
 
 The equation of continuity with the hypothesis of stationarity is given by \(\dot{M} = 4 \pi r^2 \rho (r) v(r) \equiv \const\).
 
-If we differentiate \(\dot{M} \) with respect to \(t\) we get 0 on the LHS, and on the RHS: 
+If we differentiate \(\dot{M} \) with respect to \(r\) we get 0 on the LHS (since, by continuity, the mass loss rate across any layer is constant), and on the RHS: 
 %
 \begin{equation}
   0 = 2 \rho v + rv \dv{\rho }{r} + r \rho \dv{v}{r} 
@@ -99,7 +103,7 @@ and then this gives us
 \end{equation}
 %
 where the prime denotes derivatives with respect to \(r\).
-The gradients of the velocity and density are related.
+So, the gradients of the velocity and density are related.
 
 The force per unit volume is given by 
 %
@@ -126,16 +130,17 @@ Under stationarity (\(\partial_t = 0\)), we have:
 The conservation of momentum gives us the Euler equation: 
 %
 \begin{equation}
-  v \dv{v}{t} = - \frac{1}{\rho } \dv{P}{r} - \frac{GM}{r^2} + f(r)
+  v \dv{v}{t} = \underbrace{- \frac{1}{\rho } \dv{P}{r}}_{f_P} \underbrace{- \frac{GM}{r^2}}_{f_g} + f(r)
 \,,
 \end{equation}
 %
-where \(f(r)\) is a generic unspecified external force, which we assume to be \emph{outward} (no dissipative effects!).
+where \(f(r)\) is a generic unspecified external force, which we assume to be \emph{outward} (no dissipative effects!), while \(f_P\) and \(f_g\) are respectively the force due to the pressure gradient and to gravitation.
 
-\begin{bluebox}
-    The projection of \(\nabla_{\mu }T^{\mu \nu }= 0\) along the flow of the fluid \(u^{\nu }\), which is a timelike Killing vector field, gives us the conservation of the energy: the 1st law of thermodynamics. 
-\end{bluebox}
-
+% \begin{bluebox}
+%     The projection of \(\nabla_{\mu }T^{\mu \nu }= 0\) along the flow of the fluid \(u^{\nu }\), which is a timelike Killing vector field, gives us the conservation of the energy: the 1st law of thermodynamics. 
+% \end{bluebox}
+Do note that while \(f_P\) has a minus sign, \(\dv*{P}{r}<0\) so the force due to the pressure gradient is outward. On the other hand, \(f_g<0\). 
+The first principle of thermodynamics gives us:
 %
 \begin{equation}
   \dv{Q}{t} = \dv{u}{t} + P \dv{\rho^{-1}}{t} 

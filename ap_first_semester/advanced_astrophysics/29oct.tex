@@ -14,21 +14,24 @@ Recall the equations from last time: continuity, momentum and energy conservatio
 \end{align}
 \end{subequations}
 
-The term \(\rho^{-1} \dv*{P}{r} \) is equal to 
+Also, by differentiating the ideal gas law \(P \mu = \mathcal{R} T \rho \) we get
 %
 \begin{equation}
-  \frac{RT}{\mu } \frac{1}{\rho } \dv{\rho }{r} 
+  \frac{1}{\rho } \dv{P}{r} = \frac{\mathcal{R} T}{\mu } \frac{1}{\rho } \dv{\rho }{r} 
+  \marginnote{Divided through by \(\rho \).}
 \,,
 \end{equation}
 %
-so we manipulate the equation into 
+since the temperature is constant.
+
+Using this, we manipulate the momentum equation into 
 %
 \begin{align}
-  v \dv{v}{r}  &= - \frac{1}{\rho } \frac{RT}{\mu } \dv{\rho }{r} - \frac{GM}{r^2} 
+  v \dv{v}{r}  &= - \frac{1}{\rho } \frac{\mathcal{R} T}{\mu } \dv{\rho }{r} - \frac{GM}{r^2} 
 \,,
 \end{align}
 %
-but we know by the continuity equation that 
+but we know by the continuity equation that the density gradient must correspond to the velocity gradient:
 %
 \begin{equation}
   - \frac{1}{\rho } \dv{\rho }{r} = \frac{1}{v} \dv{v}{r} + \frac{2}{r}     
@@ -38,14 +41,16 @@ but we know by the continuity equation that
 which we can substitute into the equation: we get
 %
 \begin{align}
-    v \dv{v}{r}  &=  \frac{RT}{\mu } \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) - \frac{GM}{r^2} 
+    v \dv{v}{r}  &=  \frac{\mathcal{R} T}{\mu } \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) - \frac{GM}{r^2} 
   \,.
 \end{align}
 
-The isothermal speed of sound is given by 
+It is a known fact that the isothermal speed of sound is given by 
 %
 \begin{equation}
-  a^2 = \pdv{P}{\rho } =\pdv{}{\rho } \qty(\frac{R \rho T}{\mu }) = \frac{RT }{\mu }
+  a^2 = \pdv{P}{\rho } =\pdv{}{\rho } \qty(\frac{\mathcal{R} \rho T}{\mu }) = \frac{\mathcal{R} T }{\mu }
+  \implies
+  a = \sqrt{\frac{\mathcal{R} T}{\mu }}
 \,,
 \end{equation}
 %
@@ -56,31 +61,45 @@ so
   \,.
 \end{align}
 
-Now we put all the terms which are proportional to the velocity gradient on the LHS: 
+Now we move all the terms which are proportional to the velocity gradient on the LHS: 
 %
 \begin{equation}
   \dv{v}{r} \qty(v - \frac{a^2}{v}) = \frac{2a^2 }{r }-\frac{GM}{r^2}
 \,,
 \end{equation}
 %
-which is just 
+which can be written as
 %
 \begin{equation}
     \frac{1}{v}\dv{v}{r} \qty(v^2 - a^2) = \frac{2a^2 }{r }-\frac{GM}{r^2}
   \,,
 \end{equation}
 %
-so the Jacobian of the differential equation is zero is singular in \(v=a\): if \(v=a\) we must have \(2a^2r = GM\), which fixes the radius to the Parker radius: \(r_P = GM / 2 a^2\).
-Close to the star, the speed is subsonic and the numerator is negative in 
+so the Jacobian of the differential equation is zero is singular in \(v=a\): if \(v=a\) we must have \(2a^2r = GM\), which fixes the radius to the so-called Parker radius: \(r_P = GM / 2 a^2\), which is obtained by setting the LHS of the equation to zero.
+Close to the star, the speed is subsonic (\(v < a\)) and the numerator \(N\) is negative in 
 %
 \begin{equation}
-  \frac{1}{v} \dv{v}{r} = \frac{N}{D}
+  \frac{1}{v} \dv{v}{r} 
+  = \frac{2 a^2 / r - GM/ r^2}{v^2- a^2}
+  \overset{\text{def}}{=} \frac{N}{D}
 \,,
 \end{equation}
 %
-which is consistent with our assumption \(\dv*{v}{r} > 0 \), which we make since we are considering winds, as opposed to accretion.
+so on the whole \(N/D\) is negative,
+which is consistent with our assumption \(\dv*{v}{r} > 0 \), which we make since we are considering winds, as opposed to accretion. 
 
-Far from the star the numerator is positive, so the speed must still be supersonic.
+\begin{bluebox}
+Why is the numerator negative? This is equivalent to saying 
+%
+\begin{align}
+2 \frac{\mathcal{R} T}{\mu } < \frac{GM}{r}
+\,,
+\end{align}
+%
+
+\end{bluebox}
+
+Far from the star the numerator is positive, so the speed must be supersonic.
 
 The critical velocity \emph{must} be attained at the Parker radius in order to have a phyisically meaningful solution.
 
@@ -96,6 +115,10 @@ So, the only physical solution is transsonic.
 \begin{claim}[Exercise]
 The speed of sound at the critical point equals half of the escape velocity at that radius.
 \end{claim}
+
+\begin{bluebox}
+Solution: 
+\end{bluebox}
 
 The boundary condition is the velocity at some \(r_0 \).
 

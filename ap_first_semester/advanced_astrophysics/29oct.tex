@@ -76,7 +76,7 @@ which can be written as
 \end{equation}
 %
 so the Jacobian of the differential equation is zero is singular in \(v=a\): if \(v=a\) we must have \(2a^2r = GM\), which fixes the radius to the so-called Parker radius: \(r_P = GM / 2 a^2\), which is obtained by setting the LHS of the equation to zero.
-Close to the star, the speed is subsonic (\(v < a\)) and the numerator \(N\) is negative in 
+Close to the star, the speed is subsonic (\(v < a\)), so the denominator \(D\) is negative; also the numerator \(N\) is negative in 
 %
 \begin{equation}
   \frac{1}{v} \dv{v}{r} 
@@ -85,7 +85,7 @@ Close to the star, the speed is subsonic (\(v < a\)) and the numerator \(N\) is 
 \,,
 \end{equation}
 %
-so on the whole \(N/D\) is negative,
+so on the whole \(N/D\) is positive,
 which is consistent with our assumption \(\dv*{v}{r} > 0 \), which we make since we are considering winds, as opposed to accretion. 
 
 \begin{bluebox}
@@ -96,12 +96,14 @@ Why is the numerator negative? This is equivalent to saying
 \,,
 \end{align}
 %
-
+which means that \(\Circled{B} \times 4/5 < \Circled{C}\), (using the notation from equation \eqref{eq:energy-conservation-differential}) which holds since, as we wrote there, \(\Circled{B} \ll \Circled{C} \) near the stellar radius. 
 \end{bluebox}
 
-Far from the star the numerator is positive, so the speed must be supersonic.
+Far from the star the numerator is positive, so the speed must be supersonic, so that \(N>0\) and we can still have \(N/D>0\) everywhere, guaranteeing that the velocity gradient is always positive.
 
-The critical velocity \emph{must} be attained at the Parker radius in order to have a phyisically meaningful solution.
+So, the only physical solution is transsonic.
+
+The critical velocity \emph{must} be attained at the Parker radius in order to have a physically meaningful transsonic solution; always-subsonic and always supersonic solutions are mathematically possible but not usually observed.
 
 The velocity gradient at the critical point can be found by de l'Hôpital's rule to be 
 %
@@ -110,14 +112,43 @@ The velocity gradient at the critical point can be found by de l'Hôpital's rule
 \,.
 \end{equation}
 
-So, the only physical solution is transsonic.
+\begin{bluebox}
+This is calculated by expanding in \(r\); however note that we must vary both \(r\) and \(v\) when we differentiate with respect to \(r\). We find: 
+%
+\begin{align}
+\dv{v}{r} &= v \frac{2 a^2 / r - GM/ r^2}{v^2- a^2}  \\
+&= \bigg(a + \underbrace{\dv{v}{r}}_{\text{Second order}}\bigg)
+\frac{- 2 a^2/r_P^2 + 2 GM / r_P^3}{2 a \dv*{v}{r}} \marginnote{Differentiated above and below at \(r = r_P\) and \(v =a \)}  \\
+\qty(\dv{v}{r})^2 &=  - \frac{a^2}{r_P^2} + \frac{GM}{r_P^3} \marginnote{Simplified the \(2a\)}  \\
+&= -a^2 \qty(\frac{2a^2}{GM})^2 + GM \qty(\frac{2a^2}{GM})^3  \marginnote{Substituted \(r_P = 2a^2 /GM\)}\\
+&= -4 \frac{a^{6}}{(GM)^2} + 8 \frac{a^{6}}{(GM)^2}  \\
+\dv{v}{r} & = \pm 2 \frac{a^3}{GM}
+\,.
+\end{align}
+%
+\end{bluebox}
+
 
 \begin{claim}[Exercise]
 The speed of sound at the critical point equals half of the escape velocity at that radius.
 \end{claim}
 
 \begin{bluebox}
-Solution: 
+The escape velocity is given by 
+%
+\begin{align}
+v _{\text{esc}}^2 = \frac{2GM}{r}
+\,,
+\end{align}
+%
+but we know that \(r_P = GM / 2 a^2\): so 
+%
+\begin{align}
+a^2 = \frac{GM}{2 r_P}
+\,,
+\end{align}
+%
+which means that \(v _{\text{esc}}^2 / a^2 = 4\), so \(v _{\text{esc}} / a = 2\). 
 \end{bluebox}
 
 The boundary condition is the velocity at some \(r_0 \).

@@ -8,6 +8,8 @@ They are divided by semester and class: the current semester folder is `ap_first
 * [General Relativity](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): reviewed everything, exercises included;
 * [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0): did not review yet, plan to in late February.
 
+Disclaimer: unless specified, these notes were not reviewed by anyone but me so they might contain errors, inacccuracies, typos and so on. Please do not rely on them alone.
+
 In every class folder there is a main file but the individual lectures are kept in a separate file for each day, labelled with the date.
 These can be compiled individually (with `pdflatex`), but the resulting PDFs are ignored by git to have some order: only the main pdf for each class is committed here; I should remember to compile it often but sometimes it might be out of date.
 

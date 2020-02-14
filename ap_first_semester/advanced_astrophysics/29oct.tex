@@ -161,21 +161,79 @@ The choice we make for \(v_0  = v(r_0)\) is key, and nontrivial.
 
 If we have the density, velocity and radius of the lower boundary we have \emph{fixed} the accretion rate: \(\dot{M}  = 4 \pi r_0^2 \rho_0 v_0 \). 
 
-This is actually fixed by only specifying the gravity, temperature and density at the star's edge. 
-
-We can fix these by fixing the constant temperature \(T\) and the velocity \(v_0 \) at the critical radius \(r_0\) and assuming our solution is transsonic.
-
-\todo[inline]{What is stated in the slides seems different. What are we fixing? In the final expression there is a dependence on \(v_0 \) and \(r_0 \), so we need those!} 
+This is actually fixed by only specifying the gravity, temperature and density at the star's edge. It would seem like we also should have \(v_0 \), but we do not actually need it, as we will show in a moment.
 
 With these hypotheses, we can solve the momentum equation analytically: we get 
 %
-\begin{equation}
-  \frac{v}{v_0 } \exp( \frac{-v^2}{2 a^2}) = \qty(\frac{r_0}{r})^2 \exp(\frac{GM}{a^2} \qty(\frac{1}{r_0 } - \frac{1}{r}))  
+\begin{align}
+\frac{v}{v_0 } \exp( -\frac{v^2}{2 a^2}) &= \qty(\frac{r_0}{r})^2 \exp(\frac{GM}{a^2} \qty(\frac{1}{r_0 } - \frac{1}{r}))  \\
+&= \qty(\frac{r_0}{r})^2 \exp(\frac{2r_c}{r_0 } - \frac{2r_c}{r})
 \,.
-\end{equation}
+\end{align}
 %
 
-At large distances, we get \(v \rightarrow 2 a \ln(r/r_0)\).
+\begin{bluebox}
+So, to calculate the Mach number we need to solve 
+%
+\begin{align}
+M e^{-M^2/2} = \frac{v_0 }{a} \qty(\frac{r_0 }{r})^2 \exp(\frac{2r_c}{r_0 } - \frac{2 r_c}{r})
+\,,
+\end{align}
+%
+but there seems to be an issue: the left hand side is bounded (it attains its maximum value of \(e^{-1/2} \approx 0.6\) at \(M=1\)) while the RHS is maximized at \(r = r_c\), where it is equal to 
+%
+\begin{align}
+\frac{v_0}{a} \qty(\frac{r_0 }{r_c})^2 \exp(\frac{2r_c}{r_0 } - 2)
+\,,
+\end{align}
+%
+which is dependent on \(v_0 \)! If we plug in solar values for the parameters, \(T = \SI{1e6}{K}\), \(\mu = \num{.62}\) and select an initial velocity like \(v_0 = \SI{1}{km/s}\) we get that the RHS's maximum is around 35! 
+
+This means that, in order to always have solutions, we need to fix \(v_0 \) to set the maxima to be equal.
+This gives us 
+%
+\begin{align}
+v_0 &= e^{-1/2}  \qty(\frac{1}{a} \qty(\frac{r_0}{r_c})^2
+\exp(\frac{2 r_c}{r_0 }) e^{-2})^{-1} \\
+&= a \qty(\frac{r_c}{r_0 })^2 \exp(-  \frac{2r_c}{r_0 } + \frac{3}{2})
+\,.
+\end{align}
+
+Specifically, we can see that for the solar values mentioned before \SI{1}{km/s} was an overestimate, and with the values we fixed the initial velocity is actually more like \SI{17}{m/s}.
+\end{bluebox}
+
+At large distances, we get \(v \rightarrow 2 a \sqrt{\ln(r/r_0)}\).
+
+\begin{bluebox}
+To derive this, take the log of the equation and take the limit \(r \rightarrow \infty \).
+%
+\begin{align}
+-\frac{M^2}{2} + \log M 
+= \log \frac{v_0 }{a} + 2 \log \frac{r_0 }{r} + \frac{2 r_c}{r_0 } - \frac{2 r_c}{r}
+\,,
+\end{align}
+%
+so the RHS diverges as \(- \log r\) does for \(r \rightarrow \infty\), which means that the LHS must also diverge and become very large and negative. The polynomial term \(-M^2/2\) dominates the logarithmic one.
+So, asymptotically we have \(- M^2/2 \approx 2 \log r_0 /r \), which means \(M \approx 2 \sqrt{\log (r/r_0) }\).
+\end{bluebox}
+\todo[inline]{This is reported incorrectly in the slides as \(v \rightarrow 2 a \log (r / r_0 )\). }
+
+This is unphysical (the velocity diverges!?) and due  to the fact that we assume a constant temperature (and, thus, energy input) even for diverging \(r\). 
+
+The density profile can be found from the continuity equation to be 
+%
+\begin{align}
+\frac{\rho}{\rho_0} \exp(\frac{1}{2} \qty(\frac{v_0 \rho_0 r_0^2}{a \rho r^2})^2) = \exp(2 r_c \qty(\frac{1}{r} - \frac{1}{r_0}))
+\,,
+\end{align}
+%
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/atmosphere_critical_radius.pdf}
+\caption{Velocity profile and atmosphere profile.}
+\label{fig:atmosphere_critical_radius}
+\end{figure}
+  
 
 Now we look at the structure of the wind in the subcritical region.
 
@@ -190,24 +248,25 @@ The hydrostatic density structure is given by
 \end{align}
 \end{subequations}
 %
-manipulating this we get 
+since we set the (log) velocity gradient to zero.
+Manipulating this we get 
 %
 \begin{equation}
   \frac{r^2}{\rho } \dv{\rho }{r} = - \frac{GM}{a^2}
 \,,
 \end{equation}
 %
-So the density profile follows a decreasing exponential law: 
+So, integrating this we see that the density profile follows a decreasing exponential law: 
 %
 \begin{equation}
   \frac{\rho (r)}{\rho_0 } = \exp(\frac{-(r-r_0 )}{H_0 } \frac{r_0}{r} ) 
 \,,
 \end{equation}
 %
-where \(H_0 \) is the scale height, \(H_0 = RT / \qty(\mu g_0 )\) with \(g_0 = GM / r_0^2\).
+where \(H_0 \) is the scale height, \(H_0 = \mathcal{R} T / \qty(\mu g_0 )\) with \(g_0 = GM / r_0^2\).
 The length scale at which this decreases is defined by \(H_0 \). 
 
-The density profile in the subsonic region is very well approximated by this hydrostatic profile.
+The density profile in the subsonic region is very well approximated by this hydrostatic profile: as we can see in figure \ref{fig:atmosphere_critical_radius} in the subsonic region the log-velocity gradient is small, so the pressure contribution dominates.
 
 The mass loss rate is our main prediction: we have \(\dot{M } = 4 \pi r^2_0 \rho_0 v_0 = 4 \pi r_c^2\rho_c a\).
 
@@ -219,8 +278,7 @@ Then, we can use the density profile equation:
 \end{equation}
 %
 
-If we consider this numerically, we find that the exponential is the dominant part.
-The mass loss rate is lower when the critical point moves outward.
+If we consider this numerically, we find that the exponential is the dominant part: the mass loss rate becomes lower when the critical point moves outward.
 We can specify it by fixing 
 %
 \begin{enumerate}
@@ -232,5 +290,9 @@ We can specify it by fixing
 
 In the slides there are numerical estimates. 
 As \(H_0 \) increases, the density profile is less steep: the density remains high at larger radii.
+
+\begin{bluebox}
+Why is the dependence on \((r_c - r_0 ) /H_0 \) so strong? The idea seems to be that in order for the wind to expel a significative quantity of material it needs to give it a large velocity in a small space, otherwise the wind becomes supersonic when its density is very small.
+\end{bluebox}
 
 \end{document}

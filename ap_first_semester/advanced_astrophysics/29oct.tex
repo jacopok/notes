@@ -165,7 +165,7 @@ This is actually fixed by only specifying the gravity, temperature and density a
 
 With these hypotheses, we can solve the momentum equation analytically: we get 
 %
-\begin{align}
+\begin{align} \label{eq:isothermal-wind-speed-equation}
 \frac{v}{v_0 } \exp( -\frac{v^2}{2 a^2}) &= \qty(\frac{r_0}{r})^2 \exp(\frac{GM}{a^2} \qty(\frac{1}{r_0 } - \frac{1}{r}))  \\
 &= \qty(\frac{r_0}{r})^2 \exp(\frac{2r_c}{r_0 } - \frac{2r_c}{r})
 \,.
@@ -175,7 +175,7 @@ With these hypotheses, we can solve the momentum equation analytically: we get
 \begin{bluebox}
 So, to calculate the Mach number we need to solve 
 %
-\begin{align}
+\begin{align} 
 M e^{-M^2/2} = \frac{v_0 }{a} \qty(\frac{r_0 }{r})^2 \exp(\frac{2r_c}{r_0 } - \frac{2 r_c}{r})
 \,,
 \end{align}
@@ -222,7 +222,7 @@ This is unphysical (the velocity diverges!?) and due  to the fact that we assume
 
 The density profile can be found from the continuity equation to be 
 %
-\begin{align}
+\begin{align} \label{eq:isothermal-wind-density}
 \frac{\rho}{\rho_0} \exp(\frac{1}{2} \qty(\frac{v_0 \rho_0 r_0^2}{a \rho r^2})^2) = \exp(2 r_c \qty(\frac{1}{r} - \frac{1}{r_0}))
 \,,
 \end{align}
@@ -230,7 +230,7 @@ The density profile can be found from the continuity equation to be
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/atmosphere_critical_radius.pdf}
-\caption{Velocity profile and atmosphere profile.}
+\caption{Velocity profile (solution to \eqref{eq:isothermal-wind-speed-equation}) and density wind profile (solution to \eqref{eq:isothermal-wind-density}), plus atmosphere (hydrostatic) profile (shown in \eqref{eq:density-profile-hydrostatic-equilibrium}).}
 \label{fig:atmosphere_critical_radius}
 \end{figure}
   
@@ -258,7 +258,7 @@ Manipulating this we get
 %
 So, integrating this we see that the density profile follows a decreasing exponential law: 
 %
-\begin{equation}
+\begin{equation} \label{eq:density-profile-hydrostatic-equilibrium}
   \frac{\rho (r)}{\rho_0 } = \exp(\frac{-(r-r_0 )}{H_0 } \frac{r_0}{r} ) 
 \,,
 \end{equation}
@@ -270,13 +270,14 @@ The density profile in the subsonic region is very well approximated by this hyd
 
 The mass loss rate is our main prediction: we have \(\dot{M } = 4 \pi r^2_0 \rho_0 v_0 = 4 \pi r_c^2\rho_c a\).
 
-Then, we can use the density profile equation: 
+In order to compute it at the critical radius, we can use the density profile equation: 
 %
 \begin{equation}
   \dot{M} = 4 \pi r_c^2 a \rho_0 \exp(\frac{-(r_c - r_0 )}{H_0 } \frac{r_0 }{r_c}) 
 \,.
 \end{equation}
 %
+\todo[inline]{This is an approximation, justified by the fact that in the subsonic region the density profile of the wind is almost the same as in hydrostatic equilibrium. There is a correction factor of \(\exp(-1/2)\).}
 
 If we consider this numerically, we find that the exponential is the dominant part: the mass loss rate becomes lower when the critical point moves outward.
 We can specify it by fixing 

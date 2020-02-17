@@ -3,27 +3,39 @@
 
 \section*{Wed Nov 06 2019}
 
+\section{Non-isothermal winds}
+
 Now, we consider the possibility that our winds are \emph{not isothermal}.
 This will change the structure of the wind, by the introduction of an additional pressure gradient.
 
 It will change the speed of sound and thus the Mach number.
 
-We use the energy per unit mass \(e\): 
+It is useful to define the energy per unit mass \(e\): 
 %
 \begin{align}
-  e(r) = \frac{v^2(r)}{2} - \frac{GM}{r} + \frac{\gamma }{\gamma -1} \frac{RT}{\mu }
+  e(r) = \frac{v^2(r)}{2} - \frac{GM}{r} + \frac{\gamma }{\gamma -1} \frac{ \mathcal{R} T}{\mu }
 \,,
 \end{align}
 %
 where \(\gamma / (\gamma -1) = 5/2\) for a monoatomic gas, which has \(\gamma = 3/2\).
 
-In the lower boundary of the wind the velocity is much less than the escape velocity (\(v \ll v _{\text{esc}}\)), while far from the star we have \(v \gg v _{\text{esc}}\).
+In the lower boundary of the wind the velocity is much less than the escape velocity (\(v \ll v _{\text{esc}}\)), and also the thermal velocity of the particles is not enough for them to escape the gravitational well: \(\mathcal{R} T / \mu \ll v _{\text{esc}}\) at the surface of the star, while far from the star we have \(v \gg v _{\text{esc}}\).
 
+If we have an isothemal wind, some energy must be added in order to prevent the adiabatic cooling of the gas, lift it from the potential well, and to increase its kinetic energy.
 
-If we have an isothemal wind, some energy must be added in order to prevent the adiabatic cooling of the gas, lift it from the potential well, and to increase its potential energy.
+If a force is applied it increases the momentum, but the heat transmission \(q\) also appears in the momentum equation, which is \(\Delta e = \int f + q \dd{r} \).
+Heat transmission changes the pressure profile, which affects the momentum, even though \(q\) does not appear explicitly in the momentum equation.
 
-If a force is applied it increases the momentum, but the heat transmission \(q\) does not appear in the momentum equation, which is \(\Delta e = \int f + q \dd{r} \).
-This is how it would seem, but heat transmission changes the pressure profile, which affects the momentum.
+We define the total heat deposition \(Q\) and the total work done by the force \(W\):
+%
+\begin{align}
+Q(r) = \int_{r_0 }^{r} q(\widetilde{r}) \dd{\widetilde{r}}
+\qquad \text{and} \qquad
+W(r) = \int_{r_0 }^{r} f(\widetilde{r}) \dd{\widetilde{r}}
+\,,
+\end{align}
+%
+and we will have \(e( \infty ) - e(r_0 ) = Q( \infty ) + W( \infty )\). 
 
 The most general momentum equation is given by: 
 %
@@ -32,7 +44,8 @@ The most general momentum equation is given by:
 \,,
 \end{align}
 %
-where we introduce the adiabatic speed of sound \(c_s = \sqrt{\gamma a^2} \). In general \(- (\gamma - 1)<0\), therefore if we add heat this is equivalent to pushing \emph{inward}.
+where we introduce the adiabatic speed of sound \(c_s = \sqrt{\gamma a^2} \), \(a\) being the \emph{isothermal} speed of sound.
+In general \(- (\gamma - 1)<0\), therefore if we add heat this is equivalent to pushing \emph{inward}.
 
 If either \(f\) or \(q\) depend on the velocity gradient \(\dv*{v}{r}\) then the sonic point can \emph{decouple} from the critical point.
 
@@ -48,6 +61,7 @@ The momentum equation plus the energy equation
 can be solved numerically, and if we impose smooth passage through the critical point this yields the mass loss rate.
 
 Qualitatively, the results are the same as in the isothermal case.
+Adding either momentum or energy to the subsonic region of the wind increases the bottom-of-the-corona velocity and the mass loss rate. Doing it in the supersonic region has no effect.
 
 This ends our general introduction to stellar winds.
 
@@ -194,6 +208,43 @@ Then, the mass loss rate can be calculated, since we have all of these quantitie
 Lamers-Cassinelli: chap 4, section 3: multiple critical points.
 
 Next Tuesday, the 12th, after the lecture, we will likely move to the DFA in Via Marzolo until 14.30.
+
+\section{Wind types}
+
+\paragraph{Coronal winds}
+These are driven by gas pressure due to high temperature.
+Stars with a convection zone right under the photosphere can have coronas of a few million Kelvin degrees. 
+These are rather well described as isothermal, however the temperature decreases slowly because of conduction.
+
+\paragraph{Dust driven winds}
+For these winds, the driving mechanism is the radiation pressure on the dust grains, which are continuum absorbers. The gas component is dragged along by momentum transfer. 
+This happens for cool stars, whose envelopes have temperatures of less than a thousand degrees Kelvin, in which the dust grains can actually be formed. 
+These can be well modelled as winds with a force like \(f = [r \geq r_d] A / r^2\), where the radius \(r_d\) is the one after which the temperature is low enough for the grains to form.
+
+\paragraph{Line-driven winds}
+These are winds of hot stars, driven by radiation pressure on spectral lines of abundant ions which have many in the UV and far UV.
+The pressure depends on the Doppler effect: the ions can absorb different wavelengths of light at different radii because of it.
+The force depends on the velocity gradient: it cannot be modelled with what we discussed so far.
+
+\paragraph{Pulsation driven winds}
+Stars such as Miras and those in the Asymptotic Giant Branch may pulsate: the atmosphere is tossed up and then falls back. Because of the low gravity, they fall slowly and are hit by an outmoving layer before they have completed their fall. 
+This means that for each pulsation cycle they get a ``kick''.  
+
+This can be a very efficient driving method if we account for dust formation. The shockfront from the pulsation cycle basically travels outwards to infinity.
+
+\paragraph{Sound wave driven winds}
+They are modelled in a way that is similar to coronal winds. 
+The resulting amplitudes are usually small. 
+
+\paragraph{Alfvén Wave Driven winds}
+Due to magnetic fields: if the points at which the field lines make contact with the surface move, than a magnetic wave travels forward with a speed \(v_A = B / \sqrt{4 \pi \rho } \gg a\). 
+This can be very efficient, and result in high wind speeds. 
+It is relevant for stars which do not have strong radiation pressure (ie not more than a thousand times more luminous than the Sun). 
+
+\paragraph{Magnetic rotating winds}
+
+
+\section{Coronal winds}
 
 Now, we introduce the next topic.
 We deal with hot, luminous stars: at the top left of the HR diagram.

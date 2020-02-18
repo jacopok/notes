@@ -65,14 +65,100 @@ E _{\text{mean}} \approx 3.832 k_B T
 Many of the strongest absorption lines of abundant elements such as Carbon, Nitrogen, Oxygen, Silicon, Sulfur and Iron are in the UV, where the flux of stars is usually low. However, if the star is very hot, then the peak of the Planckian is near or in the UV band: specifically, the peak of the distribution in wavelength moves into the UV when the temperature is somewhere between \SI{7000}{K} and \SI{8000}{K}.
 
 The spectral lines in winds are characterized by a large width: the wavelength shift is due to the Doppler effect from the outflowing motion.
-We have components due both to absorption and emission: these make up the so-called P-Cygni profile: a spectral line characterized  by a blue-shifted absorption and a red-shifted emission.
-
 \subsubsection{Spectral line formation}
 
 \paragraph{Line scattering}
+A process like: 
+%
+\begin{align}
+\ket{0} + \gamma _{\text{in}} \rightarrow \ket{1}
+\rightarrow \ket{0} + \gamma _{\text{out}}
+\,,
+\end{align}
+%
+the energies of the in and out photons are almost the same, they may be slightly different due to the Doppler shift due to thermal motion.
+The direction of the photons may be different. If \(\ket{0}\) is indeed the ground state of the system, this is called \emph{resonance scattering}. 
 
+\paragraph{Emission by recombination}
+An electron collides with an ion (which is in a high-energy continuum state), and causes it to recombine into a less energetic state: 
+%
+\begin{align}
+e^{-} + \ket{\text{cont}}_{\text{ion}} 
+% \qty(\rightarrow
+% \ket{n} + \gamma 
+% ) 
+\rightarrow
+\ket{0} + \gamma 
+\,,
+\end{align}
+%
+it may pass through one or several excited state(s) on its way to the ground state.
+For each deexcitation we have a spectral line photon.
+We can see this as emission lines in a spectrum.
+\todo[inline]{What is HEX emission?}
 
-We consider a source which emits a spherically symmetric wind.
+\paragraph{Emission from collisional or photo-excitation}
+Collisional excitation is a process like:
+%
+\begin{align}
+\ket{0} \overset{\text{collision}}{\rightarrow} \ket{2} \rightarrow \ket{1} + \gamma 
+\rightarrow \ket{0} + 2 \gamma 
+\,
+\end{align}
+%
+with \(m < n\). The collisional excitation is efficient at high temperatures and densities, in plasmas: because of this process we see emission lines from hot coronas.
+
+Photo excitation is a process like: 
+%
+\begin{align}
+\ket{0} + \gamma \rightarrow
+\ket{2} 
+\rightarrow
+\ket{1} + \gamma 
+\rightarrow
+\ket{0} + 2 \gamma 
+\,:
+\end{align}
+%
+it occurs if a photon excites the ground state into a higher state, but the descent to lower energy states occurs in more then one step: then a higher-energy photon is absorbed and two or more lower-energy ones are emitted.
+In principle we could see emission lines from this process in stellar winds, but in practice the most likely thing to happen is simply resonance scattering, which does not significantly change the energy of the photon.
+
+\paragraph{Pure absorption}
+A process like 
+%
+\begin{align}
+\ket{1} + \gamma \rightarrow \ket{2} 
+\rightarrow \ket{0}  + \gamma 
+\,,
+\end{align}
+%
+which is not relevant for stellar winds since it needs an excited atom to start and there are few, the vast majority are in their ground state.
+
+\paragraph{Masering by stimulated emission}
+A process like 
+%
+\begin{align}
+\ket{1} + \gamma 
+\rightarrow \ket{0} + 2 \gamma 
+\,,
+\end{align}
+%
+where the two emitted photons are equal both in energy and direction to the incoming one. 
+
+If there is no velocity gradient, this process can generate a strong and narrow emission line. 
+A velocity gradient inhibits it because of the Doppler effect.
+This process is relevant for the winds of cool stars.
+
+\subsubsection{P-Cygni profiles}
+
+We have components due both to absorption and emission: these make up the so-called P-Cygni profile: a spectral line characterized  by a blue-shifted absorption and a red-shifted emission with respect to the base spectrum profile.
+
+They are mainly found for the resonance lines of C IV, N V, Si II and Mg II. 
+
+We consider a source which emits a spherically symmetric wind, continuum radiation and the gas has an absorption line at some wavelength \(\lambda_0 \). 
+
+This wavelength is shifted to \(\lambda = \lambda_0 (1 + v)\), where \(v\) is the velocity of the gas relative to the emission: it is positive if the gas is receding away from the emitter, and negative otherwise.
+
 The region of the wind which is directed at us corresponds to a blue-shifted absorption.
 We basically have emission which is symmetric centered at \(v=0\) (since most of the radiation comes from the photosphere), and absorption which is caused by atoms moving towards us at velocities \(0 \leq v \leq + v_\infty\): so the absorption is something like \(- k [0 \leq v \leq v_\infty]\).
 

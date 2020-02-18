@@ -12,9 +12,65 @@ On the 19th the lecture is in room A (still @ Specola).
 Now we deal with line driven winds.
 The main mechanism is line scattering.
 
-\subsection{P-Cygni profiles}
+\subsection{Spectral lines and P-Cygni profiles}
 
-They are spectra characterized  by a blue-shifted absorption and a red-shifted emission.
+The spectrum of a star can be roughly approximated as a blackbody spectrum: Wien's law, then, tells us that the maximum of the spectral intensity occurs for a frequency which is proportional to the temperature of the star.
+
+\begin{bluebox}
+Specifically, the blackbody spectrum has the shape: 
+%
+\begin{align}
+I_\nu \propto \frac{\nu^3}{\exp(\frac{h \nu }{k_B T}) - 1}
+\,,
+\end{align}
+%
+so its maximum can be found by differentiating: setting \(x = h \nu / k_B T\), this yields the equation \(x/3 = 1- e^{-x}\), which can be solved numerically to see that the solutions are \(x=0\) and \(x \approx\num{2.82143937}\).
+We keep the positive solution: then we can see that 
+%
+\begin{align}
+\nu _{\text{max}} \approx \num{2.82} \frac{k_B T}{h}
+\,.
+\end{align}
+
+This does \emph{not} correspond to the maximum of the intensity expressed in terms of the wavelength: that formula looks like 
+%
+\begin{align}
+I_\lambda \propto \frac{\lambda^{-5}}{\exp(\frac{hc}{\lambda k_B T}) - 1}
+\,,
+\end{align}
+%
+whose maximum can be found similarly to before: if we set \(x = \lambda k_B T / hc\), the equation to solve becomes 
+%
+\begin{align}
+-5 x \qty(e^{1/x} -1) + e^{1/x} = 0
+\,,
+\end{align}
+%
+which can be solved numerically to yield \(x \approx 1/\num{4.96511423174}\), so 
+%
+\begin{align}
+\frac{1}{\lambda _{\text{max}}} \approx 4.97 \frac{k_B T}{hc}
+\,.
+\end{align}
+%
+These are both artefacts of the fact that we are plotting probability distributions: the variable matters, since to go from one to the other we must multiply by \(\abs{\dv*{\nu }{\lambda }}\).
+A figure which is more representative since it is variable-independent is the \emph{average} energy of a photon: 
+%
+\begin{align}
+E _{\text{mean}} \approx 3.832 k_B T
+\,.
+\end{align}
+\end{bluebox}
+
+Many of the strongest absorption lines of abundant elements such as Carbon, Nitrogen, Oxygen, Silicon, Sulfur and Iron are in the UV, where the flux of stars is usually low. However, if the star is very hot, then the peak of the Planckian is near or in the UV band: specifically, the peak of the distribution in wavelength moves into the UV when the temperature is somewhere between \SI{7000}{K} and \SI{8000}{K}.
+
+The spectral lines in winds are characterized by a large width: the wavelength shift is due to the Doppler effect from the outflowing motion.
+We have components due both to absorption and emission: these make up the so-called P-Cygni profile: a spectral line characterized  by a blue-shifted absorption and a red-shifted emission.
+
+\subsubsection{Spectral line formation}
+
+\paragraph{Line scattering}
+
 
 We consider a source which emits a spherically symmetric wind.
 The region of the wind which is directed at us corresponds to a blue-shifted absorption.

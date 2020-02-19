@@ -7,14 +7,37 @@ Last time we estimated the radiation pressure due to one line.
 
 If we know \(\dot{M} \) and the luminosity \(L\), then we can calculate the effective number of  lines: \(N _{\text{eff}} = \dot{M} c^2 / L\).
 
-We define the \emph{efficiency parameter}: 
+\begin{bluebox}
+There will need to be more than these: they cannot \emph{all} be at the peak of the Planckian. 
+\end{bluebox}
+
+For a hot luminous star with \(L \sim \num{e6} L_{\odot}\) the mass loss rate for a single line is \(L/c^2 \approx \num{7e-8} M_{\odot} / \SI{}{yr}\).
+The observed mass loss rate is a hundred times higher, so we can say that \(N  _{\text{eff}} \sim \num{e2}\).
+
+If \emph{all} of the star's light were to be absorbed by lines, then the momentum variation of the wind, \(\dot{M} v_{ \infty }\), will equal the total force applied by the star's emission: \(L/c\). 
+
+\todo[inline]{Lamers calls this a balance of momenta but dimensionally they are forces!}
+% This gives a bound on the mass loss rate: 
+% %
+% \begin{align}
+% \dot{M} _{\text{max}} = \frac{L}{v_{ \infty } c}
+% \,,
+% \end{align}
+% %
+% which is also called the \emph{single scattering limit}: it assumes that any photon is only scattered once. This is not a bad approximation: after the first scattering the photon's directions are much less collimated outwards, so the later scatterings are less effective.
+% Later scatterings can actually contribute, and give rise to an enhanced mass loss rate.
+% The enhancement factor can be as much as 6 for Wolf-Rayet stars!
+
+So, we define the \emph{efficiency parameter}: 
 %
 \begin{align}
-  \eta = \frac{\dot{M} v_{\infty}}{L / c}
-\,.
+  \eta = \frac{\dot{M} v_{\infty}}{L / c} = \frac{\dot{M}}{\dot{M} _{\text{max}}}
+\,,
 \end{align}
+%
+which represents the ratio between the real wind's mass loss rate and the theoretical maximum.
 
-This can be split into various components due to several factors: we always divide by the total luminosity, and have 
+We can also look at the efficiency in the transmission of energy: we look at the variation of a certain type of energy, and compare it to the star's luminosity. 
 %
 \begin{subequations}
 \begin{align}
@@ -25,18 +48,22 @@ This can be split into various components due to several factors: we always divi
 \end{align}
 \end{subequations}
 %
-and we will need 
+while the \(\eta = \eta _{\text{mom}} = \dot{M} v_{ \infty }c / L\) we defined before was the efficiency in the transmission of \emph{momentum}. 
+The main point is: \emph{momentum transfer is efficient, energy transfer is not}. 
+To see this, let us consider a star which, like the example from before, operated with \(\eta_{\text{mom}} = 1\). This is realistic, and matches observations.
+Then, let us compute \(\eta _{\text{kin}}\): it is 
 %
 \begin{align}
-    \eta _{\text{moment}} &= \frac{\dot{M} v_{\infty} c}{L}
-\,.
+\eta _{\text{kin}} = \frac{\dot{M} v_{ \infty }^2}{2L}
+= \frac{v_{ \infty }^2}{2L} \frac{L}{v_{ \infty }c}=
+\frac{v_{ \infty }}{2c}
+\,,
 \end{align}
+%
+which, as we know, is very small: the wind's terminal speed is very much subluminal.
 
-This is basically the energy emission budget, \(L\), divided into its contributions.
 
-The efficiency for non-momentum components is very low as compared to momentum efficency: what matters, again, is the transfer of momentum, not the transfer of energy.
-
-We'd expect \(\eta \leq 1\), but actually sometimes the momentum efficiency can be larger: in one case we have \(\eta _{\text{momentum}} \approx 59\).
+We'd expect \(\eta _{\text{mom}} \leq 1\), but actually sometimes the momentum efficiency can be larger: for WR stars we have \(\eta _{\text{mom}} \approx 59\).
 
 If across all the spectrum of the star we have completely optically thick absorption, then the momentum of the wind is equal to the momentum of radiation: 
 %
@@ -52,10 +79,10 @@ For the luminosity we consider \(L = \num{e5} L_{\odot}\).
 Then, the maximum mass loss rate estimated by \eqref{eq:completely-optically-thick} is similar to the observed one. The ratio \(\eta _{\text{momentum}} = \dot{M} / \dot{M} _{\text{max}}\) is typically \(0.5 \divisionsymbol 1 \), but for some stars it can be of the order \num{e1} to \num{e2}.
 
 This is called the \emph{single scattering upper limit}: we assume that scattering is isotropic, therefore we'd expect that after the first scattering the photon does not contribute anymore.
-This is not actually the case: \emph{multiple scattering} can contribute, enhancing the maximum mass loss rate by a factor \(\tau_{w}\), equal to 
+This is not actually the case: \emph{multiple scattering} can contribute, enhancing the maximum mass loss rate by the optical depth of the wind, \(\tau_{w}\), which is equal to 
 %
 \begin{align}
-  \tau_{w} = \int _{r_c}^{\infty} \kappa \rho \dd{r} 
+\tau_{w} = \int _{r_c}^{\infty} \kappa \rho \dd{r} 
 \,,
 \end{align}
 %
@@ -67,6 +94,10 @@ The quantity \(\tau _w\) is adimensional, since the units of \(\kappa \) are \SI
 Even though we have this corrective factor, the efficiency is always expressed with respect to the single scattering cross section.
 Multiple scattering theory accounts for all of the increased mass loss rate, even up to \(\tau \sim \num{e2}\).
 
+\todo[inline]{How does it account for the approximate isotropy of the radiation after the first scattering?}
+
+\subsubsection{Radiation pressure due to one line}
+
 Now, we derive the expression for the radiative acceleration privided by one line in a moving atmosphere.
 
 We have a unit volume, of \SI{1}{cm^3}, it has a velocity gradient inside it from \(v\) to \(v + \Delta v\), and it will be heated by a monochromatic flux given by \(F_{\nu } = I_{\nu } / (4 \pi r^2)\).
@@ -76,25 +107,25 @@ First we need to know the absorption properties of the medium.
 The absorption coefficient per cubic centimeter of gas is 
 %
 \begin{align}
-  \kappa_{\nu } = \frac{\pi e^2}{m_e c} f n_i \phi (\nu )
+  \kappa_{\nu } = \frac{\pi e^2}{m_e c 4 \pi \epsilon_0} f n_i \phi (\nu )
 \,,
 \end{align}
 %
-where \(\pi e^2/ (m_e c) \approx \SI{2.654e-2}{cm^2/s}\) is the frequency integrated cross section of the classical oscillator (for the electron): 
+where \(\pi e^2/ (4 \pi \epsilon_0 m_e c) \approx \SI{2.654e-2}{cm^2/s}\) is the frequency integrated cross section\footnote{We introduce the factor of \(1/4 \pi \epsilon_0 \) because like civilized people we prefer the International System of units. However, from here on out we will use Gaussian units (set \(4 \pi \epsilon_0 =1\)) since I do not want to change all the formulas.} of the classical oscillator (for the electron):
 %
 \begin{align}
   \frac{\pi e^2}{m_e c} = \sigma = \int_0^{\infty} \sigma (\nu ) \dd{\nu }
 \,;
 \end{align}
 %
-\(f\) is the oscillator strength, which depends on the line (it is a probability);
+\(f\) is the oscillator strength, which depends on the line (it is a correction needed to account for quantum effects);
 \(n_i\) is the number density of atoms which can absorb the line, and \(\phi (\nu )\) is the Gaussian profile of the absorption coefficient, centered at the rest frequency \(\nu_0 \), and normalized so that \(\int \phi (\nu ) \dd{\nu } = 1\): therefore the units of \(\phi\) are \SI{}{1/Hz}.
 
-The typical profile function is a \emph{Doppler profile}: its width is of an order based on the thermal velocity of the atoms, which can sometimes be approximated as much less than the wind velocity: so, we apply the \emph{Sobolev approximation}, and estimate \(\phi (\nu ) \sim \delta (\nu - \nu_0 )\). 
+The typical profile function is a \emph{Doppler profile}: its width is of an order based on the thermal velocity of the atoms (divided by \(c\)), which can be approximated as much less than the wind velocity (as long as there is no turbulence): so, we apply the \emph{Sobolev approximation}, and estimate \(\phi (\nu ) \sim \delta (\nu - \nu_0 )\). 
 
 So we need to consider lines which do not overlap. 
 
-We get 
+Newton's second law, expressed as a function of force, momentum and energy \emph{per unit volume}, reads: 
 %
 \begin{align}
   F _{\text{rad}} = \dv{P _{\text{rad}}}{t} 

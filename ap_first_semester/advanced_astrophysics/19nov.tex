@@ -3,6 +3,37 @@
 
 \section*{Tue Nov 19 2019}
 
+\subsubsection{Which lines drive the winds?}
+
+We classify the driving lines according to which series of the spectral lines of hydrogen they are closest to, even though hydrogen is not the element which is ionized and responsible for line driven winds.
+Recall: the wavenumbers of the lines are given by 
+%
+\begin{align}
+\lambda^{-1} = R_H \qty(\frac{1}{n^2}- \frac{1}{m^2})
+\,,
+\end{align}
+%
+so, the series which are relevant for us are:
+\begin{enumerate}
+  \item \(n=1\) gives the Lyman lines, which are around \(\lambda \sim \SI{1000}{\angstrom}\) --- these drive the winds of the very hottest stars;
+  \item \(n=2\) gives the Balmer lines, which are around \(\lambda \sim \SI{4000}{\angstrom} \divisionsymbol \SI{6000}{\angstrom}\) --- these drive the winds of stars between \SI{20}{\kilo\kelvin} and \SI{30}{\kilo\kelvin};
+  \item \(n=3\) gives the Paschen lines, but actually even the winds of stars below \SI{10}{\kilo\kelvin} are driven by lines in the Balmer continuum.
+\end{enumerate}
+
+As the effective temperature decreases, the Planckian shifts to longer wavelengths, and since the gas is on average less ionized, the absorption lines move to longer wavelengths as well.
+
+\paragraph{Which elements contribute most?}
+
+The dependence on temperature is significant. A synthesis is as follows: 
+\begin{enumerate}
+  \item below \SI{25}{\kilo\kelvin} the iron-group elements are most important;
+  \item above \SI{25}{\kilo\kelvin} Carbon, Nitrogen, Oxyge, Neon and Calcium are more important.
+\end{enumerate}
+
+Hydrogen and helium hardly matter at all.
+ 
+\subsubsection{The theory of line driven winds}
+
 Yesterday we introduced the CAK formalism. 
 
 We consider a spherically symmetric, stationary problem, and we assume that the star looks pointlike to us. 
@@ -16,7 +47,7 @@ v \dv{v}{r} = - \frac{GM}{r^2} - \frac{1}{\rho} \dv{P}{r}
 \,,
 \end{align}
 %
-where we distinguished the continuum acceleration \(g_{c}\) and the line acceleration \(g_{L}\). 
+where we distinguished the continuum acceleration \(g_{c}\) and the line acceleration \(g_{L}\), which we assume is expressible in the form described by CAK: \(g_L = g_e k t^{-\alpha } s^{ \delta } \). 
 
 We assume that the gas follows the ideal gas law: 
 %
@@ -59,18 +90,18 @@ so in the end we get:
 %
 \begin{align}
     v \dv{v}{r} = - \frac{GM}{r^2} + a^2 \qty(\frac{1}{v} \dv{v}{r} + \frac{2}{r}) 
-    + \frac{GM}{r^2} \Gamma_{c} + \frac{\kappa_{e}}{c} \frac{L}{4 \pi r^2} k t^{-\alpha } s^{ \delta }     
+    + \frac{GM}{r^2} \Gamma_{c} + \frac{\kappa_{e}}{c} \frac{L}{4 \pi r^2} k t^{-\alpha } s^{ \delta }
 \,.
 \end{align}
 
 Now recall 
 %
 \begin{align}
-  t = C^{\prime } \rho \dv{r}{v} = C^{\prime } \qty(r^2 v \dv{v}{r})^{-1}
+  t = C_T \rho \dv{r}{v} = \frac{C_T \dot{M}}{4 \pi } \qty(r^2 v \dv{v}{r})^{-1}
 \,,
 \end{align}
 %
-where the constant \(C^{\prime } = \kappa_{e} \sqrt{2 k_B T _{\text{eff}} / m_H}\) encodes all the physical constants.
+where we defined the constant \(C_T = \kappa_{e} \sqrt{2 k_B T _{\text{eff}} / m_H}\).
 
 We plug this into the momentum conservation equation and multiply by \(r^2\): 
 %
@@ -85,7 +116,7 @@ We plug this into the momentum conservation equation and multiply by \(r^2\):
 where 
 %
 \begin{align}
-  C = \frac{\kappa_{e}}{c} \frac{L}{4 \pi} k \qty(\kappa_e \sqrt{\frac{2 k_B T _{\text{eff}}}{m_H}} \frac{\dot{M}}{4 \pi })^{-\alpha } \qty(\frac{\num{e11} \rho }{m_H W })^{ \delta }
+  C = \frac{\kappa_{e}}{c} \frac{L}{4 \pi} k \qty(C_T \frac{\dot{M}}{4 \pi })^{-\alpha } \qty(\frac{\num{e11} \rho }{m_H W })^{ \delta }
 \,. 
 \end{align}
 
@@ -100,8 +131,11 @@ Also, we can bring a term to the RHS: we get
 \end{align}
 %
 
+This equation has a critical point corresponding to the speed of sound, similarly to the ones we encountered before, but this time it is nonlinear.
+
 Now, we make a simplifying assumption: we neglect the gas pressure. This is reasonable at large distances from the star.
-It also can be shown that the physical main points we will find are the same as we would find if we did consider the gas pressure. 
+It also can be shown that the main physical characteristics we will find are the same we would find if we did consider the gas pressure. 
+
 Since the speed of sound is \(a^2 = \pdv*{P}{\rho }\) neglecting the pressure gradient means \(a=0\): removing  the terms with \(a\) we get 
 %
 \begin{align}
@@ -119,11 +153,13 @@ and if we denote \(r^2  v \dv*{v}{r} = D\), the equation can be written as
 
 Our parameters here are \(D\) and \(C \propto \dot{M}^{-\alpha }\).
 
-The system is equivalent to \(CD^{\alpha } = D + GM(1-\Gamma_{e})\): so the solutions, when plotted with respect to \(D\), are the intersections between a slope-1 straight line and a powerlaw. 
+The system is equivalent to \(CD^{\alpha } = D + GM(1-\Gamma_{e})\): so the solutions, when plotted with respect to \(D\), are the intersections between a slope-1 straight line and a powerlaw (with index \(0 < \alpha <1\)). 
 
 There are values of \(C\) such that there is no solution. 
 
 We select the value of \(C\) such that the system has a unique solution --- we do this because, inspecting the equation more closely, we find that it is also a critical-point equation, and if we want a monotonic velocity gradient we must have the solution passing through the critical point.
+
+\todo[inline]{This is not really justified: the critical point condition should be set by setting the numerator of the full equation, with \(a\), to zero when \(v=a\)\dots I guess it works this way.}
 
 So we differentiate \(D - C D^{\alpha } + GM (1-\Gamma_{e})\) with respect to \(D\), set it equal to \(0\) and find \(C = D^{1-\alpha } / \alpha \).
 

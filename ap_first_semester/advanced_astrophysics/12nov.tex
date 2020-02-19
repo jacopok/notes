@@ -106,7 +106,7 @@ What is the acceleration \(g _{\text{line}}\)?
 First we need to know the absorption properties of the medium. 
 The absorption coefficient per cubic centimeter of gas is 
 %
-\begin{align}
+\begin{align} \label{eq:opacity-expression}
   \kappa_{\nu } = \frac{\pi e^2}{m_e c 4 \pi \epsilon_0} f n_i \phi (\nu )
 \,,
 \end{align}
@@ -120,6 +120,8 @@ where \(\pi e^2/ (4 \pi \epsilon_0 m_e c) \approx \SI{2.654e-2}{cm^2/s}\) is the
 %
 \(f\) is the oscillator strength, which depends on the line (it is a correction needed to account for quantum effects);
 \(n_i\) is the number density of atoms which can absorb the line, and \(\phi (\nu )\) is the Gaussian profile of the absorption coefficient, centered at the rest frequency \(\nu_0 \), and normalized so that \(\int \phi (\nu ) \dd{\nu } = 1\): therefore the units of \(\phi\) are \SI{}{1/Hz}.
+
+\todo[inline]{This \(\kappa_{\nu } \) is not the same as the one in the expression \(\tau = \int \kappa \rho \dd{r}\): this one actually is \(\kappa \rho \) already, since it has the units \(\SI{}{1/m}\).}
 
 The typical profile function is a \emph{Doppler profile}: its width is of an order based on the thermal velocity of the atoms (divided by \(c\)), which can be approximated as much less than the wind velocity (as long as there is no turbulence): so, we apply the \emph{Sobolev approximation}, and estimate \(\phi (\nu ) \sim \delta (\nu - \nu_0 )\). 
 
@@ -135,48 +137,57 @@ Newton's second law, expressed as a function of force, momentum and energy \emph
 %
 where \(\dv*{E _{\text{rad}}}{t}\) is the radiative energy absorbed per unit time and volume by the line.
 
-Then we get 
+Then, the acceleration due to the line is:
 %
-\begin{align}
+\begin{align} \label{eq:line-acceleration-general}
   g _{\text{line}} = \frac{F _{\text{rad}}}{\rho }
   = \frac{1}{c \rho } \dv{E _{\text{rad}}}{t}
 \,.
 \end{align}
  
-We still need to calculate the radiative energy absorbed: for a single optically thick line is \(\dv*{E _{\text{rad}}}{t} = F_{\nu } \kappa _{\text{line}}\).
-
-A more general expression, which however still applies the Sobolev approximation, is 
+We still need to calculate the radiative energy absorbed: for a single optically thick line it is given by \(\dv*{E _{\text{rad}}}{t} = F_{\nu } \kappa _{\text{line}}\), so in the end the line acceleration is 
 %
 \begin{align}
-  g _{\text{rad}} = \frac{F_{\nu_0} \nu_0 }{c} \qty(1 - \exp(- \tau_{\nu_0 } (\mu=1)) ) \dv{v}{r} \frac{1}{c \rho }
+g _{\text{line}} = \frac{\kappa _{\text{line}} F_{\nu }}{c \rho }
+\,.
+\end{align}
+%
+\todo[inline]{This \(\kappa _{\text{line}}\) has the dimensions of \(\SI{}{m^2 /s}\): it is not the same as a regular opacity, which is a cross-section per unit mass.}
+
+A more general expression is:
+%
+\begin{align}
+  g _{\text{rad}} = \frac{F_{\nu_0} \nu_0 }{c} \qty(1 - \exp(- \tau_{\nu_0 }) ) \dv{v}{r} \frac{1}{c \rho }
 \,;
 \end{align}
-\todo[inline]{What is \(\mu = 1\) about?}
 %
 here \(F_{\nu_0}\) is the monochromatic flux from the star emitted at the line rest frequency \(\nu_0 \), the quantity 
 %
 \begin{align}
-  \frac{\nu_0}{c} \dv{v}{r} 
+  \frac{\nu_0}{c} \dv{v}{r}
 \,
 \end{align}
 %
-is the width of the frequency band that can be absorbed, while \(1 - \exp(\dots) \) is the probability that the absorption occurs in our cubic centimeter: there \(\tau \) is the optical depth (integrated up to infinity).
+is the width of the frequency band that can be absorbed, while \(1 - \exp(-\tau ) \) is the probability that the absorption occurs in our cubic centimeter: there \(\tau \) is the optical depth (integrated up to infinity).
 
 The product of these three terms gives an energy absorption rate \(\dv*{E _{\text{rad}}}{t}\), if we multiply by \(1/c\) we get absorbed momentum, if we multiply by \(1/ \rho \) we get acceleration.
 
-Let us start from optically thin line: they absorb only part of the radiative flux.
+\paragraph{Optically thin line}
 
-Then we get \(\exp(-\tau_{\nu_0 }) \sim 1- \tau_{\nu_0 } \), therefore \(1- \exp(-\tau_{\nu_0 }) = \tau_{\nu_0 } \).
-This is proportional to \(\rho \kappa \propto n_i\).
+Let us start from optically thin lines: they absorb only part of the radiative flux.
 
-In the end, we get 
+Then \(\tau_{\nu_0 } \) is small, so we get \(\exp(-\tau_{\nu_0 }) \sim 1- \tau_{\nu_0 } \), therefore \(1- \exp(-\tau_{\nu_0 }) \approx \tau_{\nu_0 } \).
+
+\todo[inline]{So what? there seems to be a factor \(\rho \) missing\dots} 
+
+So, we can substitute \eqref{eq:opacity-expression} into \eqref{eq:line-acceleration-general}, and we get:
 %
 \begin{align}
-  g_{\text{line}} = \frac{F_{\nu }}{c} \frac{n_i}{\rho } \qty(f \frac{\pi e^2}{m_e c}) \sim \frac{L_{\nu }}{r^2} \frac{n_i}{\rho }
+g_{\text{line}} = \frac{F_{\nu }}{c} \frac{n_i}{\rho } \qty(f \frac{\pi e^2}{m_e c}) \sim \frac{L_{\nu }}{r^2} \frac{n_i}{\rho }
 \,,
 \end{align}
 %
-where \(L_{\nu }\) is the monochromatic luminosity of the star: we have \(F_{\nu } \sim L_{\nu }/ r^2\).
-We can approximate \(n_i / \rho \) as a constant with respect to the radius: therefore, we have \(g _{\text{line}} \propto L_{\nu } / r^2\).
+where \(L_{\nu }\) is the monochromatic luminosity of the star: we have \(F_{\nu } \sim L_{\nu }/ r^2\), the factor of \(4 \pi \) does not make much of a difference.
+We can approximate \(n_i / \rho \) as a constant with respect to the radius: it depends on the ionization ratio of the gas, which will not change much. Therefore, we have \(g _{\text{line}} \propto L_{\nu } / r^2\).
 
 \end{document}

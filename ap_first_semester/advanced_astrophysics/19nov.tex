@@ -163,16 +163,23 @@ We select the value of \(C\) such that the system has a unique solution --- we d
 
 So we differentiate \(D - C D^{\alpha } + GM (1-\Gamma_{e})\) with respect to \(D\), set it equal to \(0\) and find \(C = D^{1-\alpha } / \alpha \).
 
-Plugging the solution in we find a differential equation: 
+Plugging this expression for \(C\) in we find a differential equation: 
 %
 \begin{align}
   r^2 v \dv{v}{r} = D = \frac{\alpha }{1 - \alpha } GM_{*} (1-\Gamma_{e})
 \,,
 \end{align}
 %
-which can be solved by separation of variables.
-
-The solution is 
+which can be solved by direct integration if we express it like: 
+%
+\begin{align}
+\frac{1}{2} \dv{}{r} \qty(v^2)
+&= \frac{\alpha }{1-\alpha } GM_{*} (1 - \Gamma_{e}) \\
+v^2 &= \int  \frac{\alpha }{1-\alpha } 2GM_{*} (1 - \Gamma_{e}) \dd{r} 
+\,,
+\end{align}
+%
+so the solution is 
 %
 \begin{align}
   v(r) = \qty(\frac{\alpha }{1-\alpha } 2GM_{*} \qty(1-\Gamma_{e} ) \qty(\frac{1}{R_{*}} - \frac{1}{r}))^{1/2}
@@ -188,7 +195,7 @@ this is a \(\beta \)-type law, with \(\beta = \num{.5}\) and
 \,,
 \end{align}
 %
-since the escape velocity (at the photosphere) is 
+since the escape velocity for electrons in the photosphere is 
 %
 \begin{align}
   v _{\text{esc}} = \sqrt{\frac{2 G M_{*} (1 - \Gamma_{e })}{R_{*}}}
@@ -197,11 +204,15 @@ since the escape velocity (at the photosphere) is
 %
 and we include \(\Gamma_{e} \) in the escape velocity since there is electron scattering there.
 
-This gives us a rather complicated but well-defined expression for the mass loss rate. 
-
-The main dependences are \(\dot{M} \propto L_{*}^{ 1/ \alpha } M_{*}^{(\alpha - 1 ) / \alpha }\).
-
-\todo[inline]{Copy formula for \(\dot{M}\).}
+This gives us a rather complicated but well-defined expression for the mass loss rate, which appears in \(C\), for which we have an expression in terms of \(D\): we find
+%
+\begin{align}
+\dot{M} = \frac{4 \pi }{C} \qty(\frac{\kappa_{e}}{4 \pi})^{1/\alpha } \qty(\frac{1-\alpha }{\alpha })^{\frac{1-\alpha }{\alpha }} \qty(k \alpha )^{1/\alpha }
+s^{ \delta / \alpha } \qty(\frac{L_{*}}{c})^{1/\alpha }
+\qty(GM_{*} (1-\Gamma_{e}))^{(\alpha -1) / \alpha }
+\,,
+\end{align}
+in which the main dependences are \(\dot{M} \propto L_{*}^{ 1/ \alpha } M_{*}^{(\alpha - 1 ) / \alpha }\).
 
 For Main Sequence stars \(L_{*} \sim M_{*}^{2.5}\), so we can turn the luminosity dependence into a mass dependence: \(\dot{M} \sim M^{(3.5 \alpha  - 1 ) / \alpha }\).
 For \(\alpha = 0.52\) we get approximately \(\dot{M} \sim M^{1.58}\).

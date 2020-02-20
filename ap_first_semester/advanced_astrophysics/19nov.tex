@@ -27,7 +27,7 @@ As the effective temperature decreases, the Planckian shifts to longer wavelengt
 The dependence on temperature is significant. A synthesis is as follows: 
 \begin{enumerate}
   \item below \SI{25}{\kilo\kelvin} the iron-group elements are most important;
-  \item above \SI{25}{\kilo\kelvin} Carbon, Nitrogen, Oxyge, Neon and Calcium are more important.
+  \item above \SI{25}{\kilo\kelvin} Carbon, Nitrogen, Oxygen, Neon and Calcium are more important.
 \end{enumerate}
 
 Hydrogen and helium hardly matter at all.
@@ -214,19 +214,104 @@ s^{ \delta / \alpha } \qty(\frac{L_{*}}{c})^{1/\alpha }
 \end{align}
 in which the main dependences are \(\dot{M} \propto L_{*}^{ 1/ \alpha } M_{*}^{(\alpha - 1 ) / \alpha }\).
 
-For Main Sequence stars \(L_{*} \sim M_{*}^{2.5}\), so we can turn the luminosity dependence into a mass dependence: \(\dot{M} \sim M^{(3.5 \alpha  - 1 ) / \alpha }\).
-For \(\alpha = 0.52\) we get approximately \(\dot{M} \sim M^{1.58}\).
+For Main Sequence stars \(L_{*} \sim M_{*}^{2.5}\), so we can turn the luminosity dependence into a mass dependence: \(\dot{M} \sim M^{(3.5 \alpha  - 1 ) / \alpha }\), or similarly into a luminosity dependence: 
+%
+\begin{align}
+\dot{M} \sim L^{\frac{2}{5} + \frac{3}{5 \alpha }}
+\,.
+\end{align}
+%
 
-Now, we talk about the corrections due to the finite size of a star. Near the star, we cannot approximate it as a point source.
-This is in general hard to do, the result is: we get a lower mass loss rate, and a higher terminal velocity. 
-The line acceleration formula picks up a correction factor \(D_f\), which is derived geometrically. 
+For \(\alpha = 0.52\) we get approximately \(\dot{M} \sim M^{1.58}\) and \(\dot{M} \sim L^{1.55}\).
+This is the same result we would see if we did consider the gas pressure.
 
-\todo[inline]{Copy formula for \(D_f\).}
+\paragraph{The terminal velocity does not depend on the mass loss rate}
+An important result we found is the fact that \(D\) is a constant, regardless of the value of \(\alpha \) (so, for any value of the optical thickness of the line). 
+
+The asymptotic velocity does not depend on the mass loss rate, even though the radiative acceleration does (\(g _{\text{line}} \sim \dot{M}^{\alpha }\)).
+This is because we are fixing the passage of the wind velocity law through the critical point.
+
+\paragraph{Corrections due to the finite size of the star}
+
+Now, we talk about the corrections due to the finite size of a star. Near the star, we cannot approximate it as a point source: the direction of the momentum provided by the radiation is not all radial anymore; a significant part of the momentum is in a non-radial direction.
+
+Accounting for this is in general hard to do, the result is: we get a lower mass loss rate, and a higher terminal velocity. 
+
+The line acceleration formula picks up a correction factor \(D_f\), which is derived geometrically: 
+%
+\begin{align}
+D_f = \frac{(1+\sigma )^{\alpha +1 } - (1+\sigma \mu_{*}^2)^{\alpha +1}}{ (1 + \mu_{*}^2) (\alpha +1) \sigma (1+\sigma )^{\alpha }}
+\,,
+\end{align}
+%
+where \(\mu_{*} = \cos(\theta ) = \sqrt{1 - (R_{*} /r)^2}\),
+with \(\theta \) being half of the angle subtended by the star from the point of view we are considering. \(\alpha \) is the same as before, while \(\sigma \) is defined as 
+%
+\begin{align}
+\sigma = \frac{r}{v} \dv{v}{r}  -1
+\,.
+\end{align}
+%
+\todo[inline]{The definition of \(\mu_{*}\) is inconsistent in the slides, I suspect that the square needed to make it into a cosine of the angle was forgotten in Lamers' book.}
+
+So now our radiative acceleration will look like 
+%
+\begin{align}
+g _{\text{line}} = \frac{\kappa_{e}}{c}\frac{L_{*}}{4 \pi r^2} k t^{-\alpha } s^{ \delta } D_f
+\,,
+\end{align}
+%
+
 
 The correction factor can be both below and above unity, depending on the distance from the star and on \(\beta \). 
-As we'd expect in the \(r \rightarrow \infty \) limit we have \(\beta \rightarrow 1\). 
+As we'd expect in the \(r \rightarrow \infty \) limit we have \(D_f \rightarrow 1\). 
+For most realistic values of \(\beta \) it starts off below 1 near the star, then rises above it (by not much, it becomes of the order \num{1.1}) and then tends towards 1.
 
-Typically, the mass loss rate variation due to this correction is similar to multiplying it by \(1/2\), while the escape velocity is approximately multiplied by 2. 
+\begin{bluebox}
+At this point, Lamer states that a decrease in the effective optical thickness of the line causes a decrease of the line acceleration. 
+This is counterintuitive: after all, if the line absorbs more it should also accelerate more, right?
+Actually, the effect is the opposite, as I will now show: we prove that if \(\beta > .5\) then
+%
+\begin{align}
+\dv{g _{\text{line}}}{\alpha } < 0
+\,,
+\end{align}
+%
+which means that as the optical thickness increases (\(\alpha \) increases) the radiative acceleration decreases.
+
+We know that \(g _{\text{line}} \sim D^{\alpha }\), and let us use a \(\beta \)-type velocity law. Then, we have (setting \(R_{*} =1\) here):
+%
+\begin{align}
+\dv{v}{r} = \frac{1}{r^2} \qty(1 - \frac{1}{r})^{\beta -1}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+D^{\alpha } = \qty(v r^2 \dv{v}{r})^{\alpha}
+= \qty(1 - \frac{1}{r})^{\alpha (2\beta -1)}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\dv{}{\alpha } D^{\alpha }
+&= \dv{}{\alpha } \exp(\alpha \log D)
+= D^{\alpha } \log D  \\
+&= \qty(1 - \frac{1}{r})^{\alpha (2 \beta -1)}
+(2 \beta -1 ) \log \qty(1 - \frac{1}{r})
+\,,
+\end{align}
+%
+where, as long as \(2 \beta -1 >0\), all the terms are positive except for \(\log (1 - 1/r)\), which is negative outside the star.
+This proves that an increase in optical depth decreases the radiative acceleration.
+\end{bluebox}
+
+Typically, the mass loss rate variation due to this correction is similar to multiplying it by \(1/2\), while the escape velocity is approximately multiplied by 2 (although the multiplier varies with effective temperature).
+
+\paragraph{Line driven winds' instability}
 
 Phenomena which are not accounted for by this model are: 
 \begin{enumerate}
@@ -235,7 +320,16 @@ Phenomena which are not accounted for by this model are:
     \item discrete absorption components \& variability.
 \end{enumerate}
 
-In general these winds are unstable: they will feel shocks. 
+In general these winds are unstable to small-amplitude stellar oscillations: they will feel shocks.
+
 These can be simulated: the time-averaged \(v_{ \infty }\) and \(\dot{M}\) are similar to those found in stationary models. 
+The fact that the line acceleration has a positive dependence on the velocity gradient means that the velocity profile is unstable to perturbations. However, they are generally more or less sinusoidal so their effects cancel.
+
+The takeaways are: 
+\begin{enumerate}
+  \item \(v_{ \infty }\) and \(\dot{M}\) in perturbed models are similar to those found in unperturbed ones;
+  \item the amplitude of the velocity perturbation is comparable to the velocity itself and the perturbations affect a large part of the wind: so, the P-Cygni profiles are broadened;
+  \item if the density is high the temperatures in the perturbed regions rise significantly: we then see X-ray emission and ionization of very energetic lines.
+\end{enumerate}
 
 \end{document}

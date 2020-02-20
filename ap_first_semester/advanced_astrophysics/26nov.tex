@@ -1,21 +1,75 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Wed Nov 27 2019}
+\marginpar{Tuesday \\ 2019-11-26}
 
-(Based on few Giorgio notes-BOFGN hereafter) In this lecture the attention was focused on the importance of C/O ratio in the formation of dust grains in dust driven winds. In AGB stars the core, mainly made of heavier elements such as carbon and oxygen, is ourrounded by an helium envelope and, more externally, an hydrogen envelope. Between these areas there exist some convective flows that can bring oxygen and carbon from the core to the more external parts of the star. Reaching thanks to convection these external layers, which lay at a lower temperature, the heavy elements can form moleculary bounds. In particular the strongest bounded molecule that can be formed is carbon monoxyde (CO). This implies that, if the star has a C/O ratio >1 (i.e. it has more abbundance of carbon over oxygen) almost all the oxygen is used to form carbon monoxyde, while the rest of the carbon can form other molecules: for this reason, in these stars we observe carbon grains. Viceversa, in oxygen-rich stars we have with the specular mechanism silicate grains. At this point we started a discussion that will be continued in the following lecture about dust grains opacity, focusing first on cross section.
+% (Based on few Giorgio notes-BOFGN hereafter)
+
+\paragraph{Pulsation assisted winds}
+
+The density \(\rho_{c}\) at the condensation radius \(r_C\) is critical: it determines the mass loss rate \(\dot{M}\). 
+If it is too low no wind can be generated.
+Therefore, there is a need for a mechanism to increase the density scale height: these winds are \emph{pulsation assisted}, the driving mechanism are shocks occurring in pulsating stars.
+So, \(\dot{M}\) is very sensitive to these pulsations, which ``launch'' the gas to a height sufficient for it to form dust grains.
+
+The wind starts to be accelerated at the critical radius \(r_C\), and its acceleration is so fast that it is reasonable to assume that this critical radius is the same as the sonic radius at which the gas reaches \(v=a\). 
+This is the dust formation radius and also the condensation radius.
+
+The momentum equation of the dust driven wind reads: 
+%
+\begin{align}
+v \dv{v}{r} + \frac{GM}{r^2} + \frac{1}{\rho }\dv{P}{r} = g _{\text{rad}} = \frac{GM}{r^2} \Gamma_{d}
+\,,
+\end{align}
+%
+with the \(\Gamma_{d}\) defined in \eqref{eq:definition-gamma-dust}, proportional to the opacity \(\kappa_{rp}\).
+
+\paragraph{Maximum mass loss rate}
+
+In this case we also have a maximum mass loss rate given by 
+%
+\begin{align}
+\dot{M} _{\text{max}} v_{ \infty } = \frac{L}{c}
+\,,
+\end{align}
+%
+which is rather low since 
+
+\paragraph{Dust grain opacities}
+
+In this lecture the attention was focused on the importance of C/O ratio in the formation of dust grains in dust driven winds. 
+
+In AGB stars the core, mainly made of heavier elements such as carbon and oxygen, is sourrounded by a helium envelope and, more externally, a hydrogen envelope. 
+Between these areas there exist some convective flows that can bring oxygen and carbon from the core to the more external parts of the star. 
+This process is called the \emph{third dredge-up}.
+
+Reaching thanks to convection these external layers, which lay at a lower temperature, the heavy elements can form molecular bounds.
+In particular the strongest bounded molecule that can be formed is carbon monoxyde (\ce{CO}).
+This implies that, if the star has a C/O ratio $>1$ (i.e.\ it has more abundance of carbon over oxygen) almost all the oxygen is used to form carbon monoxyde, while the rest of the carbon can form other molecules: for this reason, in these stars we observe carbon grains.
+
+Viceversa, in oxygen-rich stars we have with the specular mechanism, which ends in the formation of silicate grains.
+At this point we started a discussion that will be continued in the following lecture about dust grains' opacity, focusing first on cross section.
+
 Let $a$ be the radius of the grain, and $Q$ the efficency of the cross section. In this case we have a cross section $c=\pi a^2$ and, considering both absorption and scattering cross sections $c_a$, $c_s$, we have
+%
 \begin{equation}
-c_tot=c_a+c_s=\pi a^2(Q_a(a,\lambda)+Q_c(a,\lambda))
+c_{\text{tot}}
+=c_a+c_s
+=\pi a^2(Q_a(a,\lambda)+Q_c(a,\lambda))
 \end{equation}
-where $Q_a<<Q_c$ for IR wavelengths.
+%
+where $Q_a \ll Q_c$ for IR wavelengths.
 Now we can define the opacity
+%
 \begin{equation}
-k_\lambda=\frac{\int_{a_{min}}^{a_{max}}Q_a\pi a^2 n da}{\rho}
+k_\lambda=\frac{\int_{a_{\text{min}}}^{a_{\text{max}}}Q_a\pi a^2 n \dd{a}}{\rho}
 \end{equation}
+%
 and the mean opacity
+%
 \begin{equation}
 k=\int d\lambda k_\lambda
 \end{equation}
-which is the relevant quantity for the momentum equation
+%
+which is the relevant quantity for the momentum equation.
 \end{document}

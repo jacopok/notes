@@ -51,7 +51,21 @@ Unexplained issues are the bistability jump, the momentum problem and the metall
 
 \section{Dust driven winds}
 
+\subsection{General considerations}
+
 Now, we will speak of dust driven winds: we move to the cool and luminous part of the H-R diagram, which is populated by red giants and so on. 
+
+The main characteristics of these stars are: 
+\begin{enumerate}
+  \item mass between \num{.7} and \(2 M_{\odot}\);
+  \item luminosity between \num{e3} and \(\num{e5}L_{\odot}\);
+  \item temperature between \num{2} and \SI{3}{\kilo\kelvin};
+  \item mass loss rate between \num{e-7} and \(\num{e-4} M_{\odot} / \SI{}{yr}\);
+  \item asymptotic velocity between \num{20} and \SI{30}{km/s};
+  \item mass of the shells between \num{.1} and \(\num{.6}M_{\odot}\);
+  \item pulsation period between \num{e2} and \(\SI{e3}{d}\).
+\end{enumerate}
+
 
 Qualitatively, the driving mechanism is the radiation pressure on dust grains; dust can exist in low temperature regions of the atmosphere, with \(T \sim \SI{e3}{K}\). 
 Dust absorbs momentum and is accelerated outwards: it is very opaque. 
@@ -63,12 +77,15 @@ This mechanism critically depends on the dust formation radius: the distance at 
 
 Dust grains can absorb photons in the continuum, they are then said to be ``continuum driven'' as opposed to ``line driven''. 
 Then, this very much diminishes the role of Doppler shift in making it possible for the radiation to pass through much of the gas uninterrupted. 
+Besides, the actual shift is low since the wind is not accelerated to very high velocities.
+
+The wind speeds of cool stars become comparable to the escape speed near the transsonic points, as opposed to what happens for hot stars, for which this happens right after the wind has left the stellar surface.
 
 The typical photons in this process are infrared, on the order of \(\lambda \sim \SI{1}{\micro\metre}\). 
 
 The dust causes significant reddening. We have low \(v _{ \infty }\) and high \(\dot{M}\).
 
-Most of the momentum is then transferred in the subsonic region for the high \(\dot{M}\), while little energy must be transferred in the supersonic region in order for the exit velocity to be low. 
+Most of the momentum must be transferred to the wind in the subsonic region to account for the high \(\dot{M}\), while little energy must be transferred in the supersonic region in order for the exit velocity to be low. 
 
 The formation of dust grains must be described with molecular chemistry, and it heavily depends on the ratios of chemical species. 
 
@@ -77,46 +94,60 @@ An example: the Helix Nebula.
 We define the Eddington factor: the ratio of radiative acceleration to gravity. 
 In the case of radiation forces on dust, it is 
 %
-\begin{align}
+\begin{align} \label{eq:definition-gamma-dust}
   \Gamma_{d} = \frac{\kappa _{\text{rp}}L_{*}}{4 \pi c G M_{*}}
 \,,
 \end{align}
 %
 where the \(\kappa _{\text{rp}} \) is called the ``radiation pressure mean opacity'': it measures the capacity of the dust to absorb photons. 
 
-Sometimes, we can have \(\Gamma_{d}\) greater than unity.
+In order to have a wind, we must have \(\Gamma_{d}\) greater than unity after some radius, otherwise the net force on a single particle is inward.
 
 To a good approximation, the transsonic transition corresponds to the point at which \(\Gamma_{d}\) becomes greater than one. 
 
-The plot of \(\Gamma_{d}\) looks something like \(\Gamma_{d} (r) = \Theta (r - r _{\text{sonic}}) \times 1.4\), where \(r _{\text{sonic}} \sim (3 \divisionsymbol 4) r_{*}\), where \(\Theta \) is the Heaviside theta.
+The plot of our model of \(\Gamma_{d}\) looks something like \(\Gamma_{d} (r) = \Theta (r - r _{\text{sonic}}) \times 1.4\), where \(r _{\text{sonic}} \sim (3 \divisionsymbol 4) r_{*}\), where \(\Theta \) is the Heaviside theta.
 
-What are the conditions in order to have a dust driven wind? We first need to  form the dust grains: they need to survive against sublimation. 
+\paragraph{Necessary conditions}
+
+What are the conditions in order to have a dust driven wind? We first need to form the dust grains: they need to survive against sublimation. 
 Then, the dust must be coupled enough to the gas in order to drive it. 
 
-There are two interesting temperatures. The first is the radiative equilibrium temperature \(T _{\text{rad}}\), which is the temperature of the grains: it depends on the radiative heating and cooling of the grains. 
+There are two interesting temperatures. The first is the radiative equilibrium temperature \(T _{\text{rad}}\), which is the temperature of the grains: it is the result of the balance between the radiative heating and cooling of the grains. 
 
 The second one is the condensations temperature \(T _{\text{cond}}\), below it the grain becomes a solid. 
-Above \(T _{\text{cond}}\) we have sublimation. 
+If \(T _{\text{rad}} >  T _{\text{cond}}\) we have  immediate sublimation.
 
-\(T _{\text{cond}} \sim \const\) is not a bad approximation; the radiative equilibrium temperature instead decreases. 
+\(T _{\text{cond}} \sim \const\) is not a bad approximation; the radiative equilibrium temperature instead decreases moving outwards from the star. 
 There is a radius at which they are equal, and for larger radii we have \(T _{\text{rad}} < T _{\text{cond}}\). 
 This critical radius is called the dust condensation radius \(r_{d}\). 
 
 Let us suppose that we are at \(r > r_d\). 
-The grain then can form, and it can then gain momentum and energy from the Sun's photons, and transfer it to the gas molecules. 
+The grain then can form, and it can then gain momentum \(h \nu /c\) and energy \(h \nu \) from the Sun's photons, and transfer it to the gas molecules. 
+The energy is not really relevant: it is absorbed and then reemitted isotropically. The momentum, on the other hand, is radial.
 
-We can get a lower limit to the mass loss rate because of the gas-dust coupling condition. Deriving this is complicated, but qualitatively it is since if there is less mass loss rate there is also less gas density, so there is less transfer. 
+We can get a lower limit to the mass loss rate \(\dot{M} \gtrsim \num{e-7} M_{\odot} / \SI{}{yr}\) because of the gas-dust coupling condition.
+Deriving this is complicated, but qualitatively it is since if there is less mass loss rate there is also less gas density, so there is less transfer. 
 
 Also, we can have an upper limit on the speed of the dust driven wind. We have the maximal drift speed of a grain through the gas: the drift speed \(u_{\text{grain}} - v _{\text{gas}} \propto \rho _{\text{gas}}^{-1/2}\), so there is a radius beyond which the collisions exceed the limiting energy at which they are able to destroy the grains, so there is no further increase in the wind speed, since the dust and gas get progressively more decoupled as the density decreases. 
 
 The properties of the grains are very important, but studying the processes in grain formation and growth is hard. 
 
-There are both processes of accretion of the gas onto the dust particle and erosion by sputtering, collisions of the gas onto the grain. 
+There are both processes of accretion of the gas onto the dust particle and erosion by sputtering: collisions of the gas onto the grain. 
 
 There will be a distribution of grain sizes, typically from \(\num{.05} \divisionsymbol \SI{.1}{\micro\metre}\): we can sometimes make the small grain approximation. 
 
-The composition of the grains depends on the materials in the gas, particularly on the \ce{C/O} ratio (defined as a ratio of number of atoms).
+The composition of the grains depends on the materials in the gas, particularly on the \ce{C/O} (Carbon to Oxygen) ratio (defined as a ratio of number of atoms).
 
-If \(\ce{C/O} <1\) typically we form silicate grains, while if it is larger than one we typically form carbonaceous grains. 
+\begin{enumerate}
+  \item If \(\ce{C/O} <1\) typically we form silicate grains. The stars with this ratio are called \(M\)-type stars, they are oxygen-rich.
+  \item If \(\ce{C/O} >1\) typically we form carbonaceous grains. The stars with this ratio are called \(C\)-type stars. 
+  \item If \(\ce{C/O} \sim 1\) the star is called an \(S\)-type star.
+\end{enumerate}
+
+Stars in the AGB evolve through these: they start off as \(M\)-type, move through \(S\) type into \(C\)-type.
+
+If we make an infrared color-magnitude diagram, we can see that oxygen-rich stars are redder, while carbon-rich ones are bluer.
+
+The phase we are interested in is called TP-AGB: Thermally Pulsating Asymptotic Giant Branch.
 
 \end{document}

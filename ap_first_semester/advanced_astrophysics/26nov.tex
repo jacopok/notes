@@ -33,7 +33,75 @@ In this case we also have a maximum mass loss rate given by
 \,,
 \end{align}
 %
-which is rather low since 
+which is rather low since the asymptotic velocity is low.
+
+As was the case with line driven winds, multiple scattering can enhance this maximum mass loss rate by a factor depending on the optical depth \(\tau_{w} = \int_{r_s}^{ \infty } \kappa \rho \dd{r}\), however now we also have a dependence on \(\Gamma_{d}\): 
+%
+\begin{align}
+\dot{M} _{\text{max}} = \frac{L}{v_{ \infty } c } \qty(\frac{\Gamma_{d} -1}{\Gamma_{d}}) \tau_{w}
+\,.
+\end{align}
+
+\begin{bluebox}
+Here is the derivation of this expression, from Lamers:
+we integrate the momentum equation multiplied by \(4 \pi r^2 \rho \) from the star's radius \(R_{*}\) to infinity, but we split certain integrals into the contributions from \(R_{*}\) to \(r_s\) and from \(r_s\) to infinity. We get: 
+%
+\begin{align}
+0 &= \int_{R_*}^{ \infty } \qty[ 4 \pi r^2 \rho  v \dv{v}{r} + 4 \pi GM \rho    
++ 4 \pi r^2 \dv{P}{r} - 4 \pi GM \Gamma_{d}] \dd{r}  \\
+\begin{split}
+0 &= \int_{R_*}^{ \infty } 4 \pi r^2 \rho  v \dv{v}{r} \dd{r}
++ \int_{R_*}^{r_s}  \qty[\frac{1}{\rho } \dv{P}{r} + \frac{GM}{r^2} ] 4 \pi r^2 \rho \dd{r} + \\
+&\phantom{=}\ 
++ \int_{r_s}^{ \infty } \frac{1}{\rho } \dv{P}{r} 4 \pi r^2 \rho \dd{r} 
++ \int_{r_s}^{ \infty } \frac{GM}{r^2} (1 - \Gamma_{d})
+\rho 4 \pi r^2 \dd{r} 
+\,,
+\end{split}
+\end{align}
+%
+but \(4 \pi r^2 \rho \dd{r} = \dd{m}\), so the second integral can be written as 
+%
+\begin{align}
+\int_{R_*}^{r_s} \frac{1}{\rho } \dv{P}{r}  + \frac{GM}{r^2}
+ \dd{m}
+\,,
+\end{align}
+%
+which is precisely 0 if we have hydrostatic balance, and we do under \(r_s\). So this term can be neglected. 
+Similarly, the third integral is 
+%
+\begin{align}
+\int_{r_s}^{ \infty } \frac{1}{\rho } \dv{P}{r} \dd{m}
+\,,
+\end{align}
+%
+and it is also negligible since the pressure gradient is very low beyond the sonic point.
+
+The first integral can be written as 
+%
+\begin{align}
+\int_{R_*}^{ \infty } v \dv{v}{r} \dd{m}
+\,,
+\end{align}
+%
+and we can recognize the expression of the convective derivative: \(\dot{v}  = v \dv*{v}{r}\) if the wind is stationary. The contribution to this integral at \(R_*\) is negligible: the term which remains is \(\dot{M} v_{ \infty }\). So, we are left with 
+%
+\begin{align}
+\dot{M} v_{ \infty } = - GM (1- \Gamma_{d}) \int_{r_s}^{ \infty }
+\rho \dd{r}
+\,,
+\end{align}
+%
+and we define \(\tau_{w} = \int_{r_s}^{ \infty } \rho \kappa_{rp}\) we can express this as 
+%
+\begin{align}
+\dot{M} v_{ \infty } = GM \frac{\Gamma_{d} -1 }{\kappa_{rf}} \tau_{w}
+\,,
+\end{align}
+%
+and now we can insert the expression for \(\kappa_{rf}\) which is found by inverting the definition of \(\Gamma_{d}\): we get
+\end{bluebox}
 
 \paragraph{Dust grain opacities}
 

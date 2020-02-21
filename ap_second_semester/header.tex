@@ -1,0 +1,124 @@
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage[caption = false]{subfig}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{mathtools}
+\DeclareMathOperator{\tr}{Tr}
+\usepackage{commath}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage[right=4cm,left=2cm,top=3cm,bottom=3.0cm, marginparwidth=2.7cm, marginparsep=3mm]{geometry}
+\usepackage{mdframed}
+\usepackage[version=4]{mhchem}
+
+%\usepackage{tikz-cd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\parsec{pc}
+\usepackage{cancel}
+\usepackage{mathrsfs}
+\usepackage{tensor}
+\usepackage{marginnote}
+\renewcommand*{\marginnotevadjust}{-0.3cm}
+\renewcommand*{\marginfont}{\scriptsize}
+% \usepackage{fancybox}
+
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+
+\newcommand{\diag}[1]{\text{diag}\qty(#1)}
+\newcommand{\const}{\text{const}}
+\newcommand{\sign}{\text{sign}}
+\renewcommand{\H}{\mathcal{H}}
+\renewcommand{\dim}{\text{dim}}
+\newcommand{\supp}[1]{\text{supp} \qty(#1)}
+
+\usepackage{nicefrac}
+\usepackage{ifthen}
+\let\oldfrac\frac
+\renewcommand{\frac}[3][d]{\ifthenelse{\equal{#1}{d}}{\oldfrac{#2}{#3}}{\nicefrac{#2}{#3}}}
+
+\renewcommand{\var}[1]{\text{var} \qty(#1)}
+\newcommand{\defeq}{\ensuremath{\stackrel{\text{def}}{=}}}
+
+\newcommand\mybox[1]{%
+  \fbox{\begin{minipage}{0.9\textwidth}#1\end{minipage}}}
+
+%Spiegazioni/verifiche
+\newenvironment{greenbox}{\begin{mdframed}[hidealllines=true,backgroundcolor=green!20,innerleftmargin=3pt,innerrightmargin=3pt]}{\end{mdframed}}
+
+%Approfondimenti
+\newenvironment{bluebox}{\begin{mdframed}[hidealllines=true,backgroundcolor=blue!10,innerleftmargin=3pt,innerrightmargin=3pt]}{\end{mdframed}}
+
+\newtheorem{claim}{Claim}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\usepackage{circledsteps}
+
+\newcommand{\hlc}[2]{%
+  \colorbox{#1!50}{$\displaystyle#2$}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+\usepackage{svg}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+% \pagestyle{empty}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=10,shrink=10]{microtype}
+
+\newcommand{\boxalign}[2][0.986\textwidth]{
+  \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
+  \begin{center}\begin{tikzpicture}
+   \node [mybox] (box){%
+    \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
+   };
+\end{tikzpicture}\end{center}}
+
+\author{Jacopo Tissino, Giorgio Mentasti}
+
+\allowdisplaybreaks

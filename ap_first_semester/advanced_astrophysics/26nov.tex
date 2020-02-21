@@ -88,19 +88,50 @@ The first integral can be written as
 and we can recognize the expression of the convective derivative: \(\dot{v}  = v \dv*{v}{r}\) if the wind is stationary. The contribution to this integral at \(R_*\) is negligible: the term which remains is \(\dot{M} v_{ \infty }\). So, we are left with 
 %
 \begin{align}
-\dot{M} v_{ \infty } = - GM (1- \Gamma_{d}) \int_{r_s}^{ \infty }
+\dot{M} v_{ \infty } \approx - 4 \pi  GM (1- \Gamma_{d}) \int_{r_s}^{ \infty }
 \rho \dd{r}
 \,,
 \end{align}
 %
-and we define \(\tau_{w} = \int_{r_s}^{ \infty } \rho \kappa_{rp}\) we can express this as 
+and we define \(\tau_{w} = \int_{r_s}^{ \infty } \rho \kappa_{rp} \dd{r}\) we can express this as 
 %
 \begin{align}
-\dot{M} v_{ \infty } = GM \frac{\Gamma_{d} -1 }{\kappa_{rf}} \tau_{w}
+\dot{M} v_{ \infty } \approx 4 \pi GM \frac{\Gamma_{d} -1 }{\kappa_{rf}} \tau_{w}
 \,,
 \end{align}
 %
-and now we can insert the expression for \(\kappa_{rf}\) which is found by inverting the definition of \(\Gamma_{d}\): we get
+and now we can insert the expression for \(\kappa_{rf}\) which is found by inverting the definition of \(\Gamma_{d}\): we get 
+%
+\begin{align}
+\kappa_{rp} = \frac{4 \pi c GM }{L} \Gamma_{d}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\dot{M} v_{ \infty } &\approx 4 \pi  GM \frac{L}{4 \pi c GM} \frac{\Gamma_{d} - 1}{\Gamma_{d}} \tau_{w}  \\
+&\approx \frac{L}{c} \frac{\Gamma_{d} - 1}{\Gamma_{d}} \tau_{w}
+\,,
+\end{align}
+%
+and far from the star \(\Gamma_{d} \gg 1\), so the expression simplifies to 
+%
+\begin{align}
+\dot{M} \approx \frac{L}{c v_{ \infty }}\tau_{w}
+\,.
+\end{align}
+
+It would seem that \(\tau \) can be arbitrarily large, but this is not the case: by conservation of energy, we can see that 
+%
+\begin{align}
+\frac{1}{2} \dot{M} v_{ \infty }^2 &< L  \\
+\dot{M} &< \frac{2L}{v_{ \infty }^2}
+\,,
+\end{align}
+%
+so, comparing the formulas, we see that \(\tau_{w} < 2 c / v_{ \infty }\). 
+More precise considerations allow us to drop the factor \(2\). 
 \end{bluebox}
 
 \paragraph{Dust grain opacities}
@@ -118,7 +149,24 @@ This implies that, if the star has a C/O ratio $>1$ (i.e.\ it has more abundance
 Viceversa, in oxygen-rich stars we have with the specular mechanism, which ends in the formation of silicate grains.
 At this point we started a discussion that will be continued in the following lecture about dust grains' opacity, focusing first on cross section.
 
-Let $a$ be the radius of the grain, and $Q$ the efficency of the cross section. In this case we have a cross section $c=\pi a^2$ and, considering both absorption and scattering cross sections $c_a$, $c_s$, we have
+We must distinguish two different kinds of opacities: 
+\begin{enumerate}
+  \item the absorptive grain opacity \(\kappa_{d}\): this accounts for pure absorption \emph{without} scattering, it determines the pressure, so it defines the condensation radius;
+  \item the radiation pressure mean opacity \(k_{rp}\):\footnote{Do note that this is a latin letter \(k\), while the other opacity is a greek \(\kappa \).} this accounts for both absorption and scattering. Scattering does not affect the temperature of the gas, but it \emph{does} affect the radiative acceleration.
+\end{enumerate}
+
+Let $a$ be the radius of the grain, and $Q$ the efficency of the cross section, which depends both on \(a\) and on the wavelength \(\lambda \) of the light.
+The distribution of the grain radii is as such: 
+%
+\begin{align}
+n(a) \dd{a} \approx K a^{-3.5} [a _{\text{min}} < a < a _{\text{max}} ] \dd{a}
+\,,
+\end{align}
+%
+where \(a _{\text{min}} \approx \SI{5}{nm}\) while \(a _{\text{max}} \approx \SI{250}{nm}\), while \(k\) is a normalization factor.
+
+
+In this case we have a cross section $c=\pi a^2$ and, considering both absorption and scattering cross sections $c_a$, $c_s$, we have
 %
 \begin{equation}
 c_{\text{tot}}
@@ -126,17 +174,26 @@ c_{\text{tot}}
 =\pi a^2(Q_a(a,\lambda)+Q_c(a,\lambda))
 \end{equation}
 %
-where $Q_a \ll Q_c$ for IR wavelengths.
-Now we can define the opacity
+where $Q_a \ll Q_s$ for IR wavelengths: typically the absorptive efficiency \(Q_a\) can be modelled by \(Q_a \propto a \lambda^{-p}\), where the exponent \(p\) is around 1 in the infrared --- it then approaches 2 for longer wavelengths;\footnote{Actually the exponent is very much dependent on the chemical composition of the dust, this is an average.} on the other hand the scattering efficiency is in the Rayleigh regime, \(Q_s \propto \lambda^{-4}\).
+
+Now we can define the global absorption opacity
 %
 \begin{equation}
-k_\lambda=\frac{\int_{a_{\text{min}}}^{a_{\text{max}}}Q_a\pi a^2 n \dd{a}}{\rho}
+k_\lambda=\frac{1}{\rho } \int_{a_{\text{min}}}^{a_{\text{max}}}Q_a\pi a^2 n \dd{a}
+\,,
 \end{equation}
+%
+the scattering opacity 
+%
+\begin{align}
+\sigma_{\lambda } = \frac{1}{\rho } \int_{a_{\text{min}}}^{a_{\text{max}}} Q_s \pi a^2 n \dd{a}
+\,,
+\end{align}
 %
 and the mean opacity
 %
 \begin{equation}
-k=\int d\lambda k_\lambda
+k=\int \dd{\lambda} k_\lambda
 \end{equation}
 %
 which is the relevant quantity for the momentum equation.

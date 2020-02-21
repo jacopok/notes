@@ -55,7 +55,7 @@ We define
 where we use the Planck function \(B_{\lambda }(T)\); with it we define 
 %
 \begin{align}
-  \kappa_{p} (T) = \int_{a _{\text{min}}}^{a _{\text{max}}} Q^{A}_{p} (a, T) \pi a^2 n(a) \dd{a}
+  \kappa_{p} (T) = \frac{1}{\rho } \int_{a _{\text{min}}}^{a _{\text{max}}} Q^{A}_{p} (a, T) \pi a^2 n(a) \dd{a}
 \,,
 \end{align}
 %
@@ -69,10 +69,11 @@ This quantity will enter into the balance between cooling and heating of the sin
 %
 for a blackbody. 
 
-For hydrodynamical calculations instead we use the radiation pressure mean efficiency: 
+For hydrodynamical calculations we need to account both for scattering and absorption: then we need some geometric considerations, since there is a strong dependence on the scattering angle.
+This is the definition of the radiation pressure mean efficiency: 
 %
 \begin{align}
-  Q _{\text{rp}} (a ) = \frac{\int_{0}^{ \infty  } \qty(Q^{A} (a, \lambda) + (1- g_{\lambda }) Q^{S} (a, \lambda ) ) F_{\lambda } \dd{\lambda }}{\int_{0}^{ \infty } F_{\lambda } \dd{\lambda }}
+Q _{\text{rp}} (a ) = \frac{\int_{0}^{ \infty  } \qty(Q^{A} (a, \lambda) + (1- g_{\lambda }) Q^{S} (a, \lambda ) ) F_{\lambda } \dd{\lambda }}{\int_{0}^{ \infty } F_{\lambda } \dd{\lambda }}
 \,.
 \end{align}
 %
@@ -83,26 +84,23 @@ Here we are accounting for both the absorption efficiency and the scattering eff
 \,,
 \end{align}
 %
-where 
+where \(F_{\lambda }\) is the monochromatic flux: if we have spherical symmetry it is given by
 %
 \begin{align}
   F_{\lambda } = \frac{L_{\lambda }}{4 \pi r^2}
-\,
+  \,.
 \end{align}
 %
-is the monochromatic flux. 
 
-Also, \(g_{\lambda }\) is the \emph{mean cosine} of the scattering angle: if it is equal to 1 we have forward scattering, if it is equal to $-1$ we have backward scattering, while if it is equal to 0 we have isotropic scattering. 
+Do note that the \(F_{\lambda }\) is not generally known \emph{a priori}: it is a solution to the radiative transfer equation in the presence of dust.
 
-We are shown a plot of \(g_{\lambda } \) in terms of the wavelength: it decreases from \num{.8} to 0 as \(\lambda \) goes from \SI{0.1}{\micro\metre} to \SI{10}{\micro\metre}.
+The parameter \(g_{\lambda }\) is the \emph{mean cosine} of the scattering angle: if it is equal to 1 we have forward scattering, if it is equal to $-1$ we have backward scattering, while if it is equal to 0 we have isotropic scattering. 
 
-Do note that the \(F_{\lambda }\) is not generally known \emph{a priori}: it is a solution to the radiative transfer equation.
+We are shown a plot of \(g_{\lambda } \) in terms of the wavelength: it decreases from \num{.8} to 0 as \(\lambda \) goes from \SI{0.1}{\micro\metre} to \SI{10}{\micro\metre}: less energetic photons have little momentum, so they are less likely to keep moving in the same direction they were before, the isotropic thermal motion of the gas can easily sway them.
 
 The temperaure of the grain is determined by the balance of the heating and cooling rates: heating occurs because of collisions with fast-moving gas particles or because of the absorption of radiation. 
 
 Cooling, on the other hand, occurs because of collisional energy transfer or by emission of thermal radiation. 
-
-\todo[inline]{Are we modelling the dust grain as a black body?}
 
 We make an approximation: we only consider radiative processes, and estimate the temperature of the dust grain with the radiative equilibrium temperature. 
 

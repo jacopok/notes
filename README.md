@@ -13,6 +13,8 @@ Disclaimer: unless specified, these notes were not reviewed by anyone but me so 
 In every class folder there is a main file but the individual lectures are kept in a separate file for each day, labelled with the date.
 These can be compiled individually (with `pdflatex`), but the resulting PDFs are ignored by git to have some order: only the main pdf for each class is committed here; I should remember to compile it often but sometimes it might be out of date.
 
+Also, in the `ap_first_semester` folder the `main` pdfs are hardlinked to pdfs with more descriptive names, they are automatically synced so you can use either.
+
 This repo is also synced with an Overleaf folder, however I think it is best if that one is kept private.
 
 The idea for these notes is that they will be complete if somewhat untidy, while in the revision phase I will try to make them into a customized explanation, which will be put in the repository [Handbooks](https://github.com/jacopok/handbooks).

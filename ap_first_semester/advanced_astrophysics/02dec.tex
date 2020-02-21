@@ -108,14 +108,14 @@ The radiative equilibrium equation is
 %
 \begin{align}
   \int_{0}^{ \infty } \kappa_{\lambda } B_{\lambda }(T_d) \dd{\lambda }
-  = \int_{0}^{ \infty } \kappa_{\lambda } y_{\lambda } \dd{\lambda }
+  = \int_{0}^{ \infty } \kappa_{\lambda } J_{\lambda } \dd{\lambda }
 \,,
 \end{align}
 %
-where 
+where \(\kappa_{\lambda } B_{\lambda } (T_d)\) is the radiative cooling per unit wavelength of the grains, while \(\kappa_{\lambda } J_{\lambda }\) models the radiative heating:
 %
 \begin{align}
-  y_{\lambda } = \frac{1}{4 \pi } \int_{0}^{4 \pi } I_{\lambda } \dd{\Omega } = W(r) B( T _{\text{eff}})
+  J_{\lambda } = \frac{1}{4 \pi } \int_{0}^{4 \pi } I_{\lambda } \dd{\Omega } = W(r) B( T _{\text{eff}})
 \,,
 \end{align}
 %
@@ -131,7 +131,7 @@ where \(R\) is the radius of the star, \(r\) is our considered radial position.
 
 This allows us to fix \(r\) and compute \(T_d (r)\). 
 
-The LHS of the balance equation corresponds to the radiative cooling, while the RHS corresponds to the radiative heating. 
+% The LHS of the balance equation corresponds to the radiative cooling, while the RHS corresponds to the radiative heating. 
 
 In both terms we make the dependence on \(Q_p^{A}\) explicit: 
 %
@@ -157,26 +157,48 @@ and we know that the integral of the Planck function is given by \(\sigma _{\tex
 \,,
 \end{align}
 %
-so 
+so, far from the star,
 %
 \begin{align}
   T_d(r) \sim T _{\text{eff}} \qty(\frac{R}{2r})^{1/2} \qty(\frac{Q^{A}_{p} (a, T _{\text{eff}})}{Q^{A}_{p} (a,T_{d})})^{1/4}
+\,
+\end{align}
+%
+or 
+%
+\begin{align}
+T_d^{4} Q_p^{A} = T _{\text{eff}}^{4} Q^{A} (a, T _{\text{eff}}) W(r)
 \,.
 \end{align}
+%
 
 An immediate application is to find the condensation radius: what is the radius at which the temperature becomes low enough so that the grains are not broken up by thermal motion? 
 
-Typically the condensation temperature is \(T_c \sim 1 \divisionsymbol  \SI{1.5e3}{K} \). 
+We calculate this by substituting the condensation temperature, which is \(T_c \sim 1 \divisionsymbol  \SI{1.5e3}{K} \), in place of the dust temperature \(T_d\).
 
-The equation is 
+Then, the only dependence on the radius is in \(W(r)\): we are still in the far-from-the-star approximation, so we find:
 %
 \begin{align}
-  r_c \sim \frac{R}{2} \qty(\frac{T _{\text{eff}}}{T_c})^2
-  \sqrt{\frac{Q^{A}_p (a, T _{\text{eff}})}{Q^{A}_p (a,  T_c)}}
+r_c \sim \frac{R}{2} \qty(\frac{T _{\text{eff}}}{T_c})^2
+\sqrt{\frac{Q^{A}_p (a, T _{\text{eff}})}{Q^{A}_p (a,  T_c)}}
 \,,
 \end{align}
 %
 and this allows us to see that typically the condensation radius is around \(2 \divisionsymbol 4\) star radii, for stars at a few thousand Kelvin.
+
+In order to do this estimate we also need to assume the functional dependence of \(Q^{A} \propto \lambda^{-p}\): then we get 
+%
+\begin{align}
+T_d = T _{\text{eff}} W(r)^{\frac{1}{4+p}}
+\,,
+\end{align}
+%
+so the condensation radius becomes 
+%
+\begin{align}
+r_c \approx \frac{R_*}{2} \qty(\frac{T_d}{T _{\text{eff}}})^{- \frac{4 + p}{2}}
+\,.
+\end{align}
 
 Tomorrow we will speak of the combined dust \& wind equation. 
 

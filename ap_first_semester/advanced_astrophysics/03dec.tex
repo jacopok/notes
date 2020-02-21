@@ -9,18 +9,37 @@ In the treatment of dust driven winds, we must consider grains of different size
 To do this, we have to implement some simplifying assumptions:
 \begin{enumerate}
     \item a fixed radius $a$ of dust grains
-    \item a radial profile of flow velocity $u(r)$
-    \item the existence of a drag force $f_{\text{drag}}(r)$
+    \item a radial profile of flow velocity for the grains $u(r)$
+    \item the existence of a drag force $f_{\text{drag}}(r)$: this models the effective drag on the dust due to its coupling to the gas.
 \end{enumerate}
+
 In this case the equation for the momentum can be written as
+
 \begin{equation}
-    u \frac{\partial u}{\partial r}=-\frac{GM}{r^2}+Q_{RP}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{drag}}{m_d}
+u \dv{u}{r} = -\frac{GM}{r^2}+Q_{rp}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{\text{drag}}}{m_d}
+\,,
 \end{equation}
-Now, considering the fact that the thermal speed of sound is defined by
+%
+where \(m_d\) is the mass of a single grain. 
+
+The acceleration of a dust grain is given by 
+%
+\begin{align}
+g _{\text{rad}} = \frac{\kappa \mathcal{F}}{c}
+\,,
+\end{align}
+%
+where \(\mathcal{F} = L / 4 \pi r^2\) is the radiative flux, \(\sigma = \pi a^2 Q_{rp}\) is the cross section for the absorption of radiation and \(\kappa = \sigma / m_d\) is the opacity per unit mass.
+
+The thermal speed of sound is given by
 \begin{equation}
-    \frac{m a_{th}^2}{2}=K_b T
+\frac{m a_{th}^2}{2} = \frac{1}{2} \mu m_H a^2_{th} =k_b T
+\,,
 \end{equation}
-we want to study flows for which the drift velocity $w_{drift}=u-v$ is much higher than this $a_{th}$. In this case the drag force, postulated to be
+we want to study flows for which the drift velocity $w_{\text{drift}}=u-v$ is much higher than this $a_{th}$; in this definition
+\(u\) is the velocity of the dust, \(v\) the one of the gas.
+
+In this case the drag force, postulated to be
 \begin{equation}
     f_{drag}=\pi a^2\rho w \sqrt{w_{drift}^2+a_{th}^2}
 \end{equation}

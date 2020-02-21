@@ -10,7 +10,16 @@ y = np.linspace(-2, 2, num=20)
 X, Y = np.meshgrid(x, y)
 
 def hyper(x, y):
-  return(np.sqrt(5 + x ** 2 - y ** 2))
+  # return(np.sqrt(5 + x ** 2 - y ** 2))
+  return(x ** 2 - y ** 2)
+
+"""
+Metric is:
+g_μν =
+[[1 + 4x**2, -4xy],
+[-4xy, 1+4y**2]]
+
+"""
 
 Z = hyper(X, Y)
 

@@ -25,49 +25,135 @@ where \(m_d\) is the mass of a single grain.
 The acceleration of a dust grain is given by 
 %
 \begin{align}
-g _{\text{rad}} = \frac{\kappa \mathcal{F}}{c}
+g _{\text{rad}} = \frac{\kappa \mathscr{F}}{c}
 \,,
 \end{align}
 %
-where \(\mathcal{F} = L / 4 \pi r^2\) is the radiative flux, \(\sigma = \pi a^2 Q_{rp}\) is the cross section for the absorption of radiation and \(\kappa = \sigma / m_d\) is the opacity per unit mass.
+where \(\mathscr{F} = L / 4 \pi r^2\) is the radiative flux, \(\sigma = \pi a^2 Q_{rp}\) is the cross section for the absorption of radiation and \(\kappa = \sigma / m_d\) is the opacity per unit mass.
 
 The thermal speed of sound is given by
 \begin{equation}
-\frac{m a_{th}^2}{2} = \frac{1}{2} \mu m_H a^2_{th} =k_b T
+\frac{m a_{th}^2}{2} = \frac{1}{2} \mu m_H a^2_{th} =k_B T
 \,,
 \end{equation}
 we want to study flows for which the drift velocity $w_{\text{drift}}=u-v$ is much higher than this $a_{th}$; in this definition
-\(u\) is the velocity of the dust, \(v\) the one of the gas.
+\(u\) is the velocity of the dust, \(v\) the one of the gas, while \(\mu \) is the mean molecular weight: it would be around \num{2.4} for a solar mixture with molecular hydrogen and stuff, but instead it is 
+\(\mu \approx \num{1.3}\) since shocks dissociate hydrogen.
 
-In this case the drag force, postulated to be
+What is the expression of the drag force? we have two limiting cases: 
+\begin{enumerate}
+    \item if the drift velocity \(w _{\text{dr}}\) is \(\gg \) than the thermal speed \(a _{\text{th}}\) then the expression is 
+    %
+    \begin{align}
+    f _{\text{drag}} = \pi a^2 \rho w _{\text{dr}}^2
+    \,;
+    \end{align}
+    %
+    \item if instead \(w _{\text{dr}} \ll a _{\text{th}}\), then 
+    %
+    \begin{align}
+    f _{\text{drag}}
+    = \pi a^2 \rho w _{\text{dr}} a _{\text{th}}
+    \,.
+    \end{align}
+\end{enumerate}
+
+These expressions follow from the form of the relative dynamic pressure: \(\rho w^2 _{\text{dr}} \) or \(\rho a _{\text{th}} w _{\text{dr}}\) respectively.
+So, we take the drag force to be an average of these two cases: 
+%
 \begin{equation}
-    f_{drag}=\pi a^2\rho w \sqrt{w_{drift}^2+a_{th}^2}
+f_{\text{drag}}=\pi a^2\rho w _{\text{dr}} \sqrt{w_{\text{dr}}^2+a_{th}^2}
+\,.
 \end{equation}
-reduces to $f_{drag}=\pi a^2\rho w_{drift}^2$.
+% reduces to $f_{\text{drag}}=\pi a^2\rho w_{\text{dr}}^2$.
 Imposing now that at infinity the velocity gradient is null, we have
+\begin{align}
+0&=Q_{rp}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{\text{drag}}}{m_d} \\
+&= Q_{rp}\pi a^2 \frac{L}{c m_d 4\pi r^2}
+- \pi a^2 \frac{\rho}{m_d} w \sqrt{w_{\text{dr}}^2+a_{th}^2} \,,
+\end{align}
+%
+which leads to an expression for the drift velocity: we write it in the limit \(w _{\text{dr}} \gg a _{\text{th}}\), so we can ignore the \(a^2 _{\text{th}}\) in the square root: we get
+%
 \begin{equation}
-    0=Q_{RP}\pi a^2 \frac{L}{c m_d 4\pi r^2}-\frac{f_{drag}}{m_d}
+w_{\text{drift}}=\sqrt{Q_{rp}\frac{L}{4\pi r^2\rho c}}
 \end{equation}
-that leads to an expression for the drift velocity
+%
+and we can substitute in \(4 \pi r^2 \rho \) from the continuity equation:
+%
 \begin{equation}
-    w_{drift}=\sqrt{Q_{RP}\frac{L}{4\pi r^2\rho c}}
+w_{\text{drift}}=\sqrt{Q_{rp}\frac{L v}{\dot M c}}\,.
 \end{equation}
-and remembering that $\rho$ scales as $\dot M$ in the mass loss equation,
-\begin{equation}
-    w_{drift}=\sqrt{Q_{RP}\frac{L v}{\dot M c}}
-\end{equation}
-We know from momentum equation
-\begin{equation}
-    v \frac{\partial v}{\partial r}=-\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}+n_d\frac{f_{drag}}{\rho}= -\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}+n_d\frac{Q_{RP}\pi a^2 v}{\rho 4\pi c}=-\frac{1}{P}\frac{d P}{d r}-\frac{GM}{r^2}(1-\Gamma_d)
-\end{equation}
-where we defined the corrective factor, $\Gamma_d$ that encodes the pull against gravity driven by the drag force. The physical interpretation of this solution is that radiation transfers momentum to dust, that can transfer it to the gas, reaching a terminal velocity.
-We know from previous lectures that mass loss rate is lower for static atmosphere, because the scale factor $H_r$ is very small in this cases, implying an higher density than the hydrostatic case.
-From mass loss equation we have
+
+This makes sense: recall that the meaning of \(w _{\text{dr}}\) is the \emph{difference} in velocity between dust and gas. So, if the density is high the dust is more tightly bound to the gas.
+This dependence of the drift velocity on the mass loss rate is confirmed by simulations.
+
+Let us now write the momentum equation for the gas (whose velocity is \(v\)): 
+%
+\begin{align}
+v \dv{v}{r}
+& =-\frac{1}{P} \dv{P}{r} - \frac{GM}{r^2}+n_d\frac{f_{\text{drag}}}{\rho} \\
+&= -\frac{1}{P} \dv{P}{r} - \frac{GM}{r^2}+\frac{n_d}{\rho }\frac{Q_{RP}\pi a^2 L}{4\pi r^2 c}  \\
+&=-\frac{1}{P} \dv{P}{r} - \frac{GM}{r^2}(1-\Gamma_d)
+\end{align}
+%
+where \(n_d\) is the number density of the dust; also, we defined the corrective factor $\Gamma_d$: 
+%
+\begin{align}
+\Gamma_{d} = \frac{n_d}{\rho } \frac{L Q _{\text{rp}} }{4 \pi c GM} = \frac{\kappa _{\text{rp}} L }{4 \pi c GM}
+\,,
+\end{align}
+%
+which encodes the pull against gravity driven by the drag force. 
+The physical interpretation of this solution is that radiation transfers momentum to dust, that can transfer it to the gas, reaching a terminal velocity.
+
+The expression for \(f _{\text{drag}}\) we used was 
+%
+\begin{align}
+f _{\text{drag}} &= \pi a^2 \rho w _{\text{dr}}^2  \\
+&= \pi a^2 \rho \frac{Q _{\text{rp}} L}{4 \pi r^2 \rho  c }  \\
+&= \pi a^2 \frac{Q _{\text{rp}} L}{4 \pi r^2 c}
+\,.
+\end{align}
+
+We know from previous lectures that mass loss rate is lower for static atmosphere, because the scale factor $H_r$ is very small: the density is small at the dust formation radius. 
+Again, pulsation is an important mechanism which enhances the mass loss rate of dust driven winds.
+
+The continuity equations for the gas and dust respectively read:
 \begin{subequations}
 \begin{align}
     \dot M&= 4\pi r^2 \rho v\\
-    \dot M_d&=4\pi r^2 n_d m_d u_{dust}
+    \dot M_d&=4\pi r^2 n_d m_d u\,,
 \end{align}
 \end{subequations}
-This implies a lower limit on the luminosity $L$ in the case $\Gamma_d>1$
+%
+where \(u\) is the velocity of the dust, and \(v\) is that of the gas.
+
+So, we define the ratio of the dust to gas densities: 
+%
+\begin{align}
+\delta_{dg} = \frac{n_d m_d}{\rho } = \frac{\dot{M}_{d}}{\dot{M}} \frac{v}{u}
+\,,
+\end{align}
+%
+where the mass loss rates are roughly constant after the dust has been formed; on the other hand the velocities are variable. At the condensation radius \(r_s\) the velocities are equal, so we have \(\delta^{0}_{dg} = \dot{M}_{d} / \dot{M}\).
+
+We can get a lower limit for the luminosity by the condition that \(\Gamma_{d}>1\): this is written as 
+%
+\begin{align}
+\Gamma_{d} = \frac{n_d \pi a^2 Q _{\text{rp}} L}{\rho 4 \pi c GM}
+&>1  \\
+L &> \frac{4 \pi \rho c GM}{n_d \pi a^2 Q _{\text{rp}}} = \frac{4 \pi c GM}{k_F}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+k_F = \frac{n_d}{\rho } \pi a^2 Q _{\text{rp}}
+\,,
+\end{align}
+    %
+
+
 \end{document}

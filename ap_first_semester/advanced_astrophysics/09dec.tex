@@ -5,10 +5,6 @@
 
 % (BOFGN)
 
-Massive stars play a key role in several astrophysical and 
-cosmological phaenomena.
-In particular, after their collapse into the supernova, the residual heavy metals and dusts contribute drastically to the formation of new stars.
-
 Here is a classification of stars' final fates by initial mass \(M\): 
 \begin{enumerate}
     \item \(\num{.8} M_{\odot} < M < \num{2} M_{\odot}\) are low-mass stars: Carbon-Oxygen white dwarves;
@@ -24,27 +20,77 @@ Here is a classification of stars' final fates by initial mass \(M\):
     \item \(\num{5e4} M_{\odot} < M < \num{e5} M_{\odot}\)  are super massive stars: supernova explosion, with no remnant.
 \end{enumerate}
 
+% Massive stars play a key role in several astrophysical and 
+% cosmological phaenomena.
+% In particular, after their collapse into the supernova, the residual heavy metals and dusts contribute drastically to the formation of new stars.
 
-Massive stars also are the most important candidate for the explanation of several astrophysical and cosmological issues.
+% Massive stars also are the most important candidate for the explanation of several astrophysical and cosmological issues.
 
-the existence of black holes, neutron stars, heavy isotopes and gamma ray bursts: that is the reason why we will focus on these stars in our lecture.
-Before doing it for massive stars, we saw a graph picturing the evolution of stars for different mass values: as a rough scheme we have massive stars that become supernovas and then black holes-neutron stars, while low-mass stars slowly turn to red dwarfs.
+% the existence of black holes, neutron stars, heavy isotopes and gamma ray bursts: that is the reason why we will focus on these stars in our lecture.
+
+Massive stars are pivotal in the description of: 
+
+The \textbf{chemical evolution of galaxies}: they light up (increase the temperature of) the regions of stellar formation, aiding it; they produce most of the heavy elements; they mix up the interstellar medium; they produce neutron stars and black holes.
+
+The \textbf{cosmology} of population III stars: 
+reionization of the early (\(z < 5\) ) universe; 
+massive remnants such as black holes possibly being the progenitors of Active Galactic Nuclei.
+
+In \textbf{High energy astrophysics}, the production of heavy and long-lived unstable isotopes which can be observed in Gamma Ray Bursts.
+
+% Before doing it for massive stars, we saw a graph picturing the evolution of stars for different mass values: as a rough scheme we have massive stars that become supernovas and then black holes-neutron stars, while low-mass stars slowly turn to red dwarfs.
 
 The most important equations for stellar evolution are the usual ones:
 \begin{itemize}
-    \item mass equation
-    \item momentum equation
-    \item energy conservation equation
-    \item energy transport equation
-    \item chemestry equation
+    \item continuity equation 
+    %
+    \begin{align}
+    \dv{r}{m} = \frac{1}{4 \pi r^2 \rho }
+    \,,
+    \end{align}    
+    \item momentum equation 
+    %
+    \begin{align}
+    \dv{P}{m} = - \frac{Gm}{4 \pi r^{4}} - \frac{1}{4 \pi r^2} \dv[2]{r}{t}
+    \,,
+    \end{align}
+    %    
+    \item energy transport equation 
+    %
+    \begin{align}
+    \dv{L}{m} = - \frac{Gm}{4 \pi r^4} \frac{T}{P} \nabla
+    \,,
+    \end{align}
+    %
+    where \(\nabla\) has contributions from convection, encoded in \(\nabla _{\text{ad}} \), and from radiative transport: 
+    %
+    \begin{align}
+    \nabla _{\text{rad}} = \frac{3 \kappa }{16 \pi acG} \frac{L_r P}{m T^{4}}
+    \,,
+    \end{align}       
+    \item energy conservation equation 
+    %
+    \begin{align}
+    \dv{L}{m} = \epsilon _{\text{nuc}}- \epsilon_{\nu } - T \dv{s}{t}
+    \,,
+    \end{align}
+    %    
+    \item chemical species' evolution equation: 
+    %
+    \begin{align}
+    \dv{X_{i}}{t} = A \frac{m_u}{\rho } \sum_{j} \qty(r_{ji} - r_{ij})
+    \,.
+    \end{align}
+    %
+    
 \end{itemize}
 %
-while the most important variables involved are:
+and we need constitutive relations for the following parameters:
 %
 \begin{itemize}
-    \item pressure $P(\rho,T,X)$ in the equation of state
-    \item opacity $k(\rho,T,X)$
-    \item energy production $\epsilon(\rho,T,X)$
+    \item pressure $P(\rho,T,X_i)$;
+    \item opacity $k(\rho,T,X_i)$;
+    \item energy production $\epsilon(\rho,T,X_i)$.
 \end{itemize}
 
 Hereafter we consider very massive stars (\(M > 80 M_{\odot}\)), laying in the main sequence of H-R diagram. In the first time of their life, these stars burn hydrogen in the CNO cycle. When H finishes in the core, it starts the burning of helium in the triple alpha reaction, producing carbon. Note that in this reaction thermal (i.e. weak-interactions origined) neutrinos are produced.

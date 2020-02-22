@@ -78,7 +78,7 @@ The most important equations for stellar evolution are the usual ones:
     \item chemical species' evolution equation: 
     %
     \begin{align}
-    \dv{X_{i}}{t} = A \frac{m_u}{\rho } \sum_{j} \qty(r_{ji} - r_{ij})
+    \dv{X_{i}}{t} = A_i \frac{m_u}{\rho } \sum_{j} \qty(r_{ji} - r_{ij})
     \,.
     \end{align}
     %
@@ -90,30 +90,53 @@ and we need constitutive relations for the following parameters:
 \begin{itemize}
     \item pressure $P(\rho,T,X_i)$;
     \item opacity $k(\rho,T,X_i)$;
-    \item energy production $\epsilon(\rho,T,X_i)$.
+    \item energy production $\epsilon(\rho,T,X_i)$,
 \end{itemize}
+%
+where \(\rho \) is the density, \(T\) is the temperature and \(X_i\) are the chemical species' mass fractions.
 
-Hereafter we consider very massive stars (\(M > 80 M_{\odot}\)), laying in the main sequence of H-R diagram. In the first time of their life, these stars burn hydrogen in the CNO cycle. When H finishes in the core, it starts the burning of helium in the triple alpha reaction, producing carbon. Note that in this reaction thermal (i.e. weak-interactions origined) neutrinos are produced.
-Then it starts the synthesis of oxygen from carbon, neon from oxygen, magnesium from neon, silicium and iron from magnesium che al mercato mio padre comprò. These elements lay in the star having the heaviest in the core and the others in order of mass.
+Hereafter we consider very massive stars (\(M > 80 M_{\odot}\)), laying in the main sequence of H-R diagram. In the first time of their life, these stars burn hydrogen in the CNO cycle. When H ends up in the core, it starts the burning of helium in the triple alpha reaction, producing carbon.
+Note that in this reaction thermal (i.e. weak-interactions origined) neutrinos are produced.
+Then it starts the synthesis of oxygen from carbon, neon from oxygen, magnesium from neon, silicium and iron from magnesium.\footnote{Che al mercato mio padre comprò.}
+These elements lay in the star having the heaviest in the core and the others in order of mass. 
 
+\begin{bluebox}
+They are elements with mass numbers 1, 4, 12, 16, 20, 24, 28: if helium is present, they are created by adding an \(\alpha \) particle each time. Beryllium (\(A = 8\)) is missing: this is because \ce{^8 Be} is unstable, so the thing which actually happens is that while it is formed an other \(\alpha \) particle comes by and it makes an excited state of \ce{^{12} C} which is close in energy.
+\end{bluebox}
+    
 We said before that pressure is one among the most important variables we shall consider. Its dependence on some other thermodynamical variables is strongly affected by the electron characterization:
 %
 \begin{subequations}
 \begin{align}
 P_R &=\frac{aT^4}{3} && \text{in the relativistic case}\\
-P_{class} &=\frac{R\rho T}{\mu} && \text{in the perfect-gas case}\\
-P_{deg,NR} &=\rho^{\frac{5}{3}} && \text{for a degenerate gas of non relativistic electrons} \\
-P_{deg,R} &=\rho^{\frac{4}{3}} && \text{for a degenerate gas of relativistic electrons}
+P_{\text{class}} &=\frac{R\rho T}{\mu} && \text{in the classical perfect-gas case}\\
+P_{\text{deg,NR}} &=\rho^{\frac{5}{3}} && \text{for a degenerate gas of non relativistic electrons} \\
+P_{\text{deg,R}} &=\rho^{\frac{4}{3}} && \text{for a degenerate gas of relativistic electrons}
 \end{align}
 \end{subequations}
-%
-Now we consider neutrino producion in this phase of the star, since it has been shown that $\epsilon_{nuc}\approx\epsilon_\nu$, i.e. almost all the power due to nuclear reactions is brought away by neutrinos. For strong-interaction born neutrinos we have that the free path is
+
+The main nuclear stages of stellar evolution are 
+\begin{enumerate}
+    \item core nuclear burning, moving to;
+    \item nuclear fuel exhaustion, moving to;
+    \item core contraction, moving to;
+    \item core heating, back up.
+\end{enumerate}
+
+When we get to iron, this process stops.
+The contraction raises the temperature: the two are related by a law like \(T _{\text{core}} \propto \rho _{\text{core}}^{1/3}\). 
+
+Now we consider neutrino producion in this phase of the star, since it has been shown that $\epsilon_{\text{nuc}}\approx \epsilon_\nu$, i.e. almost all the power due to nuclear reactions is brought away by neutrinos.
+For strong-interaction born neutrinos we have that the free path is
 %
 \begin{equation}
-    l_\nu=\frac{1}{\sigma_\nu n}=\frac{\mu m_\mu}{\rho\sigma_\mu}\approx 3000 R-sun
+    l_\nu=\frac{1}{\sigma_\nu n}=\frac{\mu m_u}{\rho\sigma_\nu}\approx 3000 R_{\odot}\,,
 \end{equation}
 %
-which means that neutrinos in average do not interact with the star and can not give back energy to it. This explains the strong neutrinos luminosity (higher than electromagnetic) of almost all the stars, and the consequent mass loss rates.
+since \(\sigma_{\nu } \approx \SI{e-48}{m^{-2}}\).
+We are assuming \(\mu \sim 1.3\), and \(\rho \sim \SI{e6}{g/cm^3}\).
+
+This means that neutrinos in average do not interact with the star and can not give back energy to it. This explains the strong neutrinos luminosity (higher than electromagnetic) of almost all the stars, and the consequent mass loss rates.
 For weak-interaction (/thermal) neutrinos, the main mechanism that can product them are the following:
 \begin{itemize}
     \item photo-neutrinos production ($\gamma+e^- \to \nu + \bar\nu +e^-$)
@@ -121,9 +144,13 @@ For weak-interaction (/thermal) neutrinos, the main mechanism that can product t
     \item plasma-neutrinos production ($\gamma \to \nu + \bar\nu $)
     \item Bremmstrahlung-neutrinos production (similar, $\gamma \to \nu + \bar\nu $)
 \end{itemize}
-In general these processes are very rare in nature, since
+
+In general these processes are very rare in nature, since the probability of emitting a neutrino/antineutrino pair instead of a proton is:
+%
 \begin{equation}
-    \frac{P(\nu\bar\nu}{\gamma}=3x10^{-18}\left(\frac{E_\nu}{m_e c^2}\right)^4
+    \frac{P(\nu\bar\nu)}{\gamma}=\num{3e-18}\left(\frac{E_\nu}{m_e c^2}\right)^4
 \end{equation}
+%
 for this reason neutrinos are important for the core-cooling process and the speed-up of core reactions.
+
 \end{document}

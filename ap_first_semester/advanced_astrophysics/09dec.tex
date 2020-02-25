@@ -126,6 +126,8 @@ The main nuclear stages of stellar evolution are
 When we get to iron, this process stops.
 The contraction raises the temperature: the two are related by a law like \(T _{\text{core}} \propto \rho _{\text{core}}^{1/3}\). 
 
+\subsubsection{Neutrino production}
+
 Now we consider neutrino producion in this phase of the star, since it has been shown that $\epsilon_{\text{nuc}}\approx \epsilon_\nu$, i.e. almost all the power due to nuclear reactions is brought away by neutrinos.
 For strong-interaction born neutrinos we have that the free path is
 %
@@ -137,20 +139,67 @@ since \(\sigma_{\nu } \approx \SI{e-48}{m^{-2}}\).
 We are assuming \(\mu \sim 1.3\), and \(\rho \sim \SI{e6}{g/cm^3}\).
 
 This means that neutrinos in average do not interact with the star and can not give back energy to it. This explains the strong neutrinos luminosity (higher than electromagnetic) of almost all the stars, and the consequent mass loss rates.
-For weak-interaction (/thermal) neutrinos, the main mechanism that can product them are the following:
+
+The main mechanism that can produce weak-interaction or thermal neutrinos are the following:
+%
 \begin{itemize}
-    \item photo-neutrinos production ($\gamma+e^- \to \nu + \bar\nu +e^-$)
-    \item pair-neutrinos production ($e^++e^- \to \nu + \bar\nu $)
-    \item plasma-neutrinos production ($\gamma \to \nu + \bar\nu $)
-    \item Bremsstrahlung-neutrinos production (similar, $\gamma \to \nu + \bar\nu $)
+    \item photo-neutrinos production ($\gamma+e^- \to \nu + \bar\nu +e^-$) happens at high temperatures (\(T > \SI{2e8}{K}\)) --- it is basically a Compton process;
+    \item pair-neutrinos production ($e^++e^- \to \nu + \bar\nu $) happens at very high temperatures (\(T \gtrsim \SI{e9}{K}\));
+    \item plasma-neutrinos production ($\gamma \to \nu + \bar\nu $) happens for degenerate matter with very high density;
+    \item bremsstrahlung-neutrinos production (similar, $\gamma \to \nu + \bar\nu $) happens if we have low temperatures but very high density. 
 \end{itemize}
 
-In general these processes are very rare in nature, since the probability of emitting a neutrino/antineutrino pair instead of a proton is:
+In general these processes are very rare in nature, since the probability of emitting a neutrino/antineutrino pair instead of a photon in any process which generally emits a photon is:
 %
 \begin{equation}
     \frac{\mathbb{P}(\nu\bar\nu)}{\mathbb{P}(\gamma)}=\num{3e-18}\left(\frac{E_\nu}{m_e c^2}\right)^4
 \end{equation}
 %
-for this reason neutrinos are important for the core-cooling process and the speed-up of core reactions.
+but in high-temperature situations (\(E_\nu > \SI{511}{keV}\)) the quantity in parentheses can become larger than 1: the process becomes relevant.
+Neutrinos produced anywhere in the core essentially amount to lost energy: if the temperature of the core exceeds \(T_c = \SI{5e8}{K}\), the luminosity of neutrino emission exceeds the electromagnetic one.
+
+For this reason neutrinos are important for the core-cooling process and the speed-up of core reactions.
+
+As we said, during nuclear burning all the (specific) energy produced is brought away by neutrinos, \(\epsilon _{\text{nuc}}\approx \epsilon_{\nu }\): each elements's burning has a characteristic curve \(\epsilon (T)\): these are quite steep, and at a given \(\epsilon \) we need higher and higher temperatures as we reach heavier elements. 
+The neutrino curve \(\epsilon_{\nu } (T)\) instead is shallower, and intersects them all: the intersections define the burning temperatures. 
+
+The nuclear timescale is much shorter this way: it is given by 
+%
+\begin{align}
+\tau _{\text{nuc}} = \frac{E _{\text{nuc}}}{\dot{E} _{\text{nuc}}} \approx \frac{E _{\text{nuc}}}{L_{\nu }} \ll \frac{E _{\text{nuc}}}{L}
+\,,
+\end{align}
+%
+since \(L_{\nu } \gg L\).
+If the cooling happened only electromagnetically the star would need a much longer time to burn.
+
+
+\begin{figure}[h]
+\begin{tabular}{ccccccc}
+\Longstack{Burning \\ stage}
+& \Longstack{Dominant \\ Process} &
+\(T_c\) [\SI{}{keV}] & \(\rho_{c}\) [\SI{}{g/cm^3}] &
+\(L_{\gamma }\) [\SI{e4}{} \(L_{\odot}\)] &
+\(L_{\nu }/ L_{\gamma }\) & Duration [\SI{}{yr}] \\
+\hline
+Hydrogen &       H $\rightarrow$ He &   \num{3} & \num{5.9e+00} & \num{2.1} & \num{0.0e+00} & \num{1.2e+07} \\
+Helium &    He $\rightarrow$ C, O &  \num{14} & \num{1.3e+03} & \num{6.0} & \num{1.7e-05} & \num{1.3e+06} \\
+Carbon &   C $\rightarrow$ Ne, Mg &  \num{53} & \num{1.7e+05} & \num{8.6} & \num{1.0e+00} & \num{6.3e+03} \\
+  Neon &   Ne $\rightarrow$ O, Mg & \num{110} & \num{1.6e+07} & \num{9.6} & \num{1.8e+03} & \num{7.0e+00} \\
+Oxygen &       O $\rightarrow$ Si & \num{160} & \num{9.7e+07} & \num{9.6} & \num{2.1e+04} & \num{1.7e+00} \\
+Silicon &  Si $\rightarrow$ Fe, Ni & \num{270} & \num{2.3e+08} & \num{9.6} & \num{9.2e+05} & \num{1.6e-02} \\
+\end{tabular}
+\label{tab:massive-star-burning-stages}
+\caption{Burning stages of a \(15 M_{\odot}\) star, with neutrino and electromagnetic luminosities.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/gamma_nu_luminosities.pdf}
+\caption{Electromagnetic and neutrino luminosities as the temperature increases.}
+\label{fig:gamma_nu_luminosities}
+\end{figure}
+    
+So, as the later stages of stellar evolution come about, the temperature of the core increases, then neutrino production becomes much more relevant, more energy is lost to it, and therefore the last stages of stellar evolution are much more short-lived than they would be otherwise.
 
 \end{document}

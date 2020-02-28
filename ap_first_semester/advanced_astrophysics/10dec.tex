@@ -26,22 +26,6 @@ For red supergiants, instead, we have
 \textbf{dust driven winds}: the mass loss rates can be very high, as much as \(\num{e-4} M_{\odot} / \SI{}{yr}\).
 Stars with masses lower than \(40 M_{\odot}\) spend a long time in the core-Helium burning phase as red supergiants: they have time to shed their outer layers; they are then observed as Wolf-Rayet stars, which are the very hottest.
 
-\subsection{Advanced burning stages}
-
-There are four major burning phases: 
-%
-\begin{enumerate}
-    \item Carbon;
-    \item Neon;
-    \item Oxygen;
-    \item Silicon.
-\end{enumerate}
-
-The central burning region forms a convective core.
-Burning in external shells forms convective shells.
-After a certain type of fuel is locally exhausted, the burning shifts outward.
-This gives rise to a so-called ``onion-skin'' model.
-
 \subsection{Wolf-Rayet stars}
 
 \subsubsection{The Humphrey-Davidson limit}
@@ -113,7 +97,7 @@ We see a simulation: a \(15 M_{\odot}  \) star starts off on the high part of th
 
 A \(3 M_{\odot}\) star instead moves away from the MS more slowly, and then after having moved right it quickly moves far left and cools, as a white dwarf. 
 
-\subsection{The collapse of the iron core}
+\section{The collapse of the iron core}
 
 Now, let us discuss the engine of the explosion of these massive stars. The explosion is triggered by an implosion: we are at the end of the Silicon-burning phase. 
 The pressure of the iron core is mantained by the degenerate electrons. 
@@ -130,7 +114,7 @@ In order to study its dynamical instability, we nee to look at the adiabatic exp
 \,,
 \end{align}
 %
-we have a dynamica instability when  \(\gamma _{\text{ad}}\) falls below the critical value of \(4/3\). 
+we have a dynamic instability when  \(\gamma _{\text{ad}}\) falls below the critical value of \(4/3\). 
 It is a local quantity, it can be defined for each layer; we can use a global parameter to measure the instability: 
 %
 \begin{align}
@@ -151,34 +135,78 @@ We have two processes which are opposed: the first is \textbf{photodisintegratio
 %
 in which a heavy nucleus is shattered into \(\alpha \) particles. This is an \emph{endothermic} process.
 
-There is a very important weak process: electron capture, or \emph{neutronization}: \(\ce{p+ + e- \rightarrow n +} \nu_{e}\). This decreases the electron pressure!
-
-The Chandrasekar mass scales as the square of the mean molecular weight: 
+The other process is \textbf{electron capture}, or \emph{neutronization}: \(\ce{p+ + e- \rightarrow n +} \nu_{e}\).
+This is a weak-interaction process.
+This increases the mean molecular weight per electron \(\mu_{e}\), so the Chandrasekar mass decreases since it is inversely dependent on \(\mu_{e}\): it becomes
 %
 \begin{align}
-  M _{\text{ch}} = \frac{5.83}{\mu_{e}^2} \sim 1.26 M_{\odot}
+M _{\text{ch}} = \frac{5.83}{\mu_{e}^2} \sim 1.26 M_{\odot}
 \,
 \end{align}
 %
-for the iron core. A huge amount of neutrinos are produced. 
+for the iron core.
+A huge amount of neutrinos are produced. 
+
+\todo[inline]{Are these actually opposed? it seems like they both act to speed up the collapse; this is what is written in Janka et al: ``Electron capture, \(\beta \) decay, and partial photodisintegration of iron-group nuclei to alpha particles
+cost the core energy and reduce its electron density. As a consequence, the collapse is accelerated.''}
+
+\subsection{The steps of the collapse}
+
 Now we follow a work by Janka et al (2007) at the Max Planck, which outlines the steps of the collapse. 
 
-As the density of the core increases, it becomes opaque to neutrinos: we have the scattering cross section 
+The first step in the collapse happens after the iron core, which is only supported by electron degeneracy pressure since it cannot fuse iron esothermally, grows past its Chandrasekar mass, which as we have discussed can decrease by several mechanisms. Then, gravity overcomes this pressure and forces \emph{electron capture} to happen. This 
+
+As the density of the core increases, it becomes opaque to neutrinos: their scattering cross section is
 %
 \begin{align}
   \sigma_{\nu } \approx \num{e-49} A^2 \qty(\frac{\rho }{\mu_{e}})^{2/3} \SI{}{cm^2}
 \,,
 \end{align}
 %
-and in the meantime the collapse is proceding, until it reaches values of \(\rho \sim \SI{e14}{g cm^{-3}}\), comparable to the nuclear density, at which point the material becomes incompressible. 
+so when their diffusion time becomes longer than the time of the collapse they do not have time to escape, on average.
+Here \(A\) is the mass number of the relevant nucleus, \(\rho \) is the density while \(\mu_{e}\) is the mean molecular weight per electron.
+We have the formation of a shell below which neutrinos are trapped and above which they escape.
 
-A proto-neutron star is formed, and a shock front travels back. 
+\todo[inline]{The formula as given is dimensionally inconsistent, I posit that it is to be interpreted ignoring the dimensionality of \(\rho \).}
 
-\todo[inline]{What triggers the initial infall and compression in the first place? }
+In the meantime the collapse is proceding, until it reaches a density of around \(\rho \sim \SI{e14}{g cm^{-3}}\): this is comparable to the density of the nucleus, which is around \SI{2e14}{g cm^{-3}}: at this point the material becomes incompressible, since nuclear matter is much less compressible than the gas of electrons, protons and neutrons we had before.
 
-It is unclear whether the energy of the shock is enough to blow off the envelope. The energy of the delayed neutrinos which are still trapped in the nucleus will contribute\dots
+A proto-neutron star is formed, and a shock front travels back towards the outer layers of the infalling iron core. 
+
+% \todo[inline]{What triggers the initial infall and compression in the first place? }
+
+It is unlikely that the energy of the shock is already enough to blow off the envelope. This would be called the ``Propmt mechanism'': all modern simulations show it is not actually effective.
+This is because there are several endothermic or effectively endothermic processes taking place: 
+\begin{enumerate}
+  \item the dissociation of heavy nuclei into nucleons: the binding energy of iron is around \(B \sim \SI{492}{MeV}\), if we had a \(1.4 M_{\odot}\) iron core then the energy needed to break up all of the iron nuclei would be 
+  %
+  \begin{align}
+  E = B \frac{1.4 M_{\odot}}{m _{\text{Fe}}} \approx \SI{24}{foe}
+  \,,
+  \end{align}
+  %
+  where \(m _{\text{Fe}}\) is the mass of an iron nuclide, and \(\SI{1}{foe} = \SI{e51}{erg}\) (ten to the Fifty-One Erg);
+  \item neutrino prodution: the energy emitted in the form of neutrino radiation is essentially lost to the star, although
+  the energy of the delayed neutrinos which are still trapped in the nucleus will contribute.
+\end{enumerate}
+
+\subsection{Advanced stellar burning phases}
 
 Now we start an interesting new part: the advanced burning stages, after the \ce{He}-burning phases. 
+
+There are four major burning phases: 
+%
+\begin{enumerate}
+    \item Carbon;
+    \item Neon;
+    \item Oxygen;
+    \item Silicon.
+\end{enumerate}
+
+The central burning region forms a convective core.
+Burning in external shells forms convective shells.
+After a certain type of fuel is locally exhausted, the burning shifts outward.
+This gives rise to a so-called ``onion-skin'' model.
 
 As the initial mass increases, the fraction of carbon produced decreases from around \num{.35} to \num{.15} as \(M\) goes from 10 to 120 solar masses. 
 

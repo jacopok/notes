@@ -169,13 +169,13 @@ We have the formation of a shell below which neutrinos are trapped and above whi
 
 \todo[inline]{The formula as given is dimensionally inconsistent, I posit that it is to be interpreted ignoring the dimensionality of \(\rho \).}
 
-In the meantime the collapse is proceding, until it reaches a density of around \(\rho \sim \SI{e14}{g cm^{-3}}\): this is comparable to the density of the nucleus, which is around \SI{2e14}{g cm^{-3}}: at this point the material becomes incompressible, since nuclear matter is much less compressible than the gas of electrons, protons and neutrons we had before.
+In the meantime the collapse is proceding \emph{homologously} (the different layers are falling simultaneously), until it reaches a density of around \(\rho \sim \SI{e14}{g cm^{-3}}\): this is comparable to the density of the nucleus, which is around \SI{2e14}{g cm^{-3}}: at this point the material becomes incompressible, since nuclear matter is much less compressible than the gas of electrons, protons and neutrons we had before.
 
 A proto-neutron star is formed, and a shock front travels back towards the outer layers of the infalling iron core. 
 
 % \todo[inline]{What triggers the initial infall and compression in the first place? }
 
-It is unlikely that the energy of the shock is already enough to blow off the envelope. This would be called the ``Propmt mechanism'': all modern simulations show it is not actually effective.
+It is unlikely that the energy of the shock is already enough to blow off the envelope. This would be called the \textbf{prompt mechanism}: all modern simulations show it is not actually effective.
 This is because there are several endothermic or effectively endothermic processes taking place: 
 \begin{enumerate}
   \item the dissociation of heavy nuclei into nucleons: the binding energy of iron is around \(B \sim \SI{492}{MeV}\), if we had a \(1.4 M_{\odot}\) iron core then the energy needed to break up all of the iron nuclei would be 
@@ -190,9 +190,21 @@ This is because there are several endothermic or effectively endothermic process
   the energy of the delayed neutrinos which are still trapped in the nucleus will contribute.
 \end{enumerate}
 
-\subsection{Advanced stellar burning phases}
+An alternative, more plausible mechanism driving the explosion is the  \textbf{delayed neutrino-heating mechanism}: the shockwave travelling outward after the infalling matter hits nuclear density would stall under the inward pressure of the infalling material, but it is \emph{revived} by the neutrino flux: these neutrinos carry most of the energy which was converted from gravitational potential energy.
 
-Now we start an interesting new part: the advanced burning stages, after the \ce{He}-burning phases. 
+These neutrinos keep streaming; when they are still inside they are degenerate and thus energetic, as they stream outward they are down-scattered in energy space.
+
+As they are heated by neutrinos, the layers between the forming remnant and the shock front expand, creating a region of high temperature and low density.
+This process then keeps driving the full explosion.
+
+Do note that the neutrinos need not convert all their energy to heat in this process: in simulations they convert to thermal energy around \SI{10}{\%} to \num{20}{\%} of the radiated neutrino energy.
+The supernova does not need a large fraction of the gravitational binding energy of the iron nucleus in order to explode.
+
+The time needed to reach this stage from the start of the collapse is on the order of \SI{e-1}{s}.
+
+\subsection{Advanced stellar burning phases and mass of the iron core}
+
+Now we start a new part: the advanced burning stages, after the \ce{He}-burning phases. 
 
 There are four major burning phases: 
 %
@@ -208,31 +220,66 @@ Burning in external shells forms convective shells.
 After a certain type of fuel is locally exhausted, the burning shifts outward.
 This gives rise to a so-called ``onion-skin'' model.
 
-As the initial mass increases, the fraction of carbon produced decreases from around \num{.35} to \num{.15} as \(M\) goes from 10 to 120 solar masses. 
+As the initial mass of the star increases, the fraction of mass in the CO core decreases from around \num{.35} to \num{.15} as \(M\) goes from 10 to 120 solar masses.  
+So, the mass of the CO core scales with the initial mass, but sublinearly so.
 
-What about the density structure in the pre-supernova phase? 
-The starting mass of the iron core increases with the stellar mass: as it goes from 10 to 120 solar masses it goes from 1.2 to 1.8 solar masses. 
+% What about the density structure in the pre-supernova phase? 
+The mass of the iron core right before the SN explosion also increases with the stellar mass: as \(M\) goes from 10 to \(120 M_{\odot}\) it goes from 1.2 to 1.8 solar masses. 
+So, the higher the mass of the CO core was, the more compact is the structure of the presupernova stage.
+
+\todo[inline]{Hold on: is the mass of the iron core right before the explosion just the Chandrasekar mass? I'd think that, as long as there is silicon left to burn, iron would keep on being formed, until it reaches the Chandrasekar mass\dots} 
 
 As the total mass increases, at a fixed radius we have more internal mass: the density \emph{increases} with mass. 
 
-Some of the material near the core, when the shock occcurs, falls back on it if it is inside a certain critical radius, if it is outside that radius it is thrown out. 
-How much of it depends on the physical properties of the core. 
+\subsubsection{Explosion and fallback}
 
-What does the remnant look like? It can either be a black hole or a neutron star. The possibilities 
+Some of the material near the core, when the shock occcurs, falls back on it if it is inside a certain critical radius, if it is outside that radius it is thrown out. 
+How much of it falls back depends on the physical properties of the core.
+For an average supernova, the energy of the matter thrown into the interstellar medium is of the order of \SI{1}{foe}.
+
+So, the questions we ask are these: 
+\begin{enumerate}
+  \item Do all massive stars actually explode?
+  \item What are their remnants?
+  \item What is the efficiency of the fall back?
+\end{enumerate}
+
+The remnant can either be a black hole or a neutron star.
+If the fallback is very efficient we have an \emph{implosion}, if it is inefficient we have an \emph{explosion}.
+The possibilities are 
 \begin{enumerate}
     \item Explosion and Neutron Star;
     \item Implosion and Black Hole;
     \item (rarely) Explosion and Black Hole.
 \end{enumerate}
 
-There is no clear-cut law. One thing to look at is the bounce-compactness parameter: 
+There is no clear-cut law or mass thereshold. One thing to look at is the \textbf{bounce-compactness parameter}: 
 %
 \begin{align}
-  \xi_{M^*} = \abs{\frac{M^{*} / M_{\odot}}{R(M^{*}) / \SI{e7}{m}}}_{t = t _{\text{bounce}}}
+  \xi_{M^*} = \eval{\frac{M^{*} / M_{\odot}}{R(M^{*}) / \SI{e7}{m}}}_{t = t _{\text{bounce}}}
+\,:
+\end{align}
+%
+it seems like this parameter's value being high is correlated to a black hole being formed, while it being low is correlated with succesful explosions.
+We usually look at \(\xi_{2.5}\), which means we are basically considering the inverse of the radius of the region encompassing \(2.5 M_{\odot}\).
+
+\(\xi_{2.5} \) is a measure of compactness: the time-scale of black hole formation scales like \(t _{\text{BH}} \propto \xi_{2.5}^{-3/2}\), so if \(\xi_{2.5}\) is high the time for black hole formation is short: if the shock revitalization time is held constant then we can have implosion into a BH if \(t _{\text{BH}} < t _{\text{shock}}\), and explosion into a SN plus a neutron star remnant otherwise.
+
+\todo[inline]{In the slides it is stated: ``Successful SN: the shock is revived on a time longer than the time-scale for a BH formation.'', but it seems to me like it is the other way around.}
+
+We can plot \(\xi_{2.5}\) as a function of the Zero-Age Main Sequence (so, initial) or ZAMS mass of the star: it has peaks around \(23 M_{\odot}\) and \(40 M_{\odot}\).
+
+\begin{bluebox}
+This variable is effectivey equal to 
+%
+\begin{align}
+\xi_{2.5} = 6772.2 \times \frac{G (2.5 M_{\odot})}{c^2 R}
 \,,
 \end{align}
 %
-and it seems like this paramter being high is correlated to a black hole being formed. 
+so it measures how relativistic the core is. Generally, \(\xi \sim \num{.5}\), so it is not very relativistic.
+\end{bluebox}
+
 We have also the parameter 
 %
 \begin{align}

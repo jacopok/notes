@@ -11,19 +11,21 @@ end_doc = "\\end{document}\n"
 subfile_include = lambda x : "\\subfile{" + x + "}\n"
 
 folder_names = {
-    # "aa": "advanced_astrophysics",
-    # "al": "astrophysics_lab",
-    # "gr": "general_relativity",
-    # "nm": "numerical_methods",
-    # "ac": "astrophysics_cosmology"
+    "tp": "theoretical_physics",
+    "gp": "gravitational_physics",
+    "ap": "astroparticle_physics",
+    "tc": "theoretical_cosmology",
+    "rp": "radiative_processes",
+    "gw": "gravitational_wave_astrophysics",
+    "ma": "multimessenger_astrophysics"
 }
 
 schedule = {
-    0: [],
-    1: [],
-    2: ["ac"],
-    3: ["gr", "ac"],
-    4: ["gr"]
+    0: ["tp", "gp"],
+    1: ["tp", "ap", "ma"],
+    2: ["ap", "tp", "rp"],
+    3: ["tc", "rp"],
+    4: ["gp", "tc", "ma"]
 }
 
 def next_monday():

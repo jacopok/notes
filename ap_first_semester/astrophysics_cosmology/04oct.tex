@@ -24,12 +24,27 @@ where \(\Phi_{*}\), \(L_{*}\) and \(\alpha \) are parameters, with dimensions of
 
 These can be fit by observation: we find \(\Phi^* \approx \SI{e-2}{} h^3 \SI{}{\mega\parsec^{-3}}\), \(L^* \approx \num{e10}h^{-2} L_\odot \) and \(\alpha \approx 1\).
 
-[Plot of this function: sharp drop-off at \(L=L^*\) ]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/Schechter.pdf}
+\caption{A rough plot of the Schechter function for \(\alpha = 1\).}
+\label{fig:Schechter}
+\end{figure}
 
-The integral for \(\mathscr L_g\) converges despite the divergence of \(\Phi(L)\) as \(L \rightarrow 0\): so we do not need to really worry about the low-luminosity cutoff.
+The integral for \(\mathscr L_g\) converges despite the divergence of \(\Phi(L)\) as \(L \rightarrow 0\), since it is multiplied by \(L\): so we do not need to really worry about the low-luminosity divergence of the distribution.
 
-The result of the integral is \(\mathscr L_g = \Phi^* L^* \Gamma(2-\alpha)\) where \(\Gamma\) is the Euler gamma function, and \(\Gamma(2-1) = 1\).
-Numerically, we get \(\num{2.0(7)e18} h L_\odot \SI{}{\per\cubic\mega\parsec}. \)
+The result of the integral for a generic value of \(\alpha \) is \(\mathscr L_g = \Phi^* L^* \Gamma(2-\alpha)\), where \(\Gamma\) is the Euler gamma function; for the \(\alpha = 1\) case we get a factor \(\Gamma(2-1) = 1\).
+
+Numerically, we get \(\mathscr{L}_{g} \approx \num{e8} h L_\odot \SI{}{\per\cubic\mega\parsec}. \) 
+\todo[inline]{This is reported incorrectly in \cite{Pacciani:2018} as \(\sim \num{e18}\)! The correct figure can be found in \cite[eq. 4.5.14]{LucchinColes:2002}.
+I do not think there is much of a point in reporting the specific value, since the parameters are already given as order-of-magnitude estimates.}
+
+Now, we must estimate \(\expval{M / L}\).
+The luminosity of galaxies can be measured readily, the great difficulty lies in estimating their mass.
+
+\subsection{Estimating the masses of galaxies}
+
+We must distinguish between the different shapes of the galaxies:
 
 Spiral galaxies are characterized by rotation.
 

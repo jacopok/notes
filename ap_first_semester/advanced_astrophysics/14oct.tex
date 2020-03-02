@@ -20,6 +20,7 @@
 First of all, let us recall the linearized equations of stellar structure: 
 %
 \boxalign{
+\begin{subequations}
 \begin{align}
 \frac{ \delta \rho }{\rho } &= - 3 \zeta - 4 \pi r^3 \rho \pdv{\zeta }{m}  \label{eq:linearized-cont}\\
 r \ddot{\zeta} &= - 4 \pi r^2 \qty[\qty(4 \zeta + \frac{ \delta P}{P})\pdv{P}{m} + P \pdv{}{m} \qty(\frac{ \delta P}{P})]  \label{eq:linearized-mom}\\
@@ -27,7 +28,9 @@ r \ddot{\zeta} &= - 4 \pi r^2 \qty[\qty(4 \zeta + \frac{ \delta P}{P})\pdv{P}{m}
 \pdv{}{t} \qty(\frac{ \delta T}{T}) &= \qty(\Gamma_3-1) \pdv{}{t} \qty(\frac{ \delta \rho }{\rho }) + \frac{1}{c_V T} \delta \qty(\epsilon_{\text{eff}} - \pdv{L}{m})  \label{eq:linearized-E2}\\
 \frac{ \delta L}{L} &= 4 \zeta - n \frac{ \delta \rho }{\rho } + (s+4) \frac{ \delta T}{T} + \qty(\pdv{\log T}{m})^{-1} \pdv{}{m} \qty(\frac{ \delta T}{T}) \label{eq:linearized-RT}
 \,,
-\end{align}}
+\end{align}
+\end{subequations}}
+
 %
 using which we can derive after long manipulations the Linear Non-Adiabatic Wave Equation, which in its Lagrangian formulation reads: 
 %
@@ -85,6 +88,7 @@ The time scales for these parameters are \(\omega \sim \omega _{\text{ad}} \sim 
 
 Using this result, we can make some useful \emph{quasi-adiabatic} approximations: in the LNAWE we will identify the LAWE operator \(\mathcal{L}\), and replace its application to the wavefunction with the corrisponding eigenvalue. Basically, we will consider the thermal contribution to be small and work ``to first order'' with  it.
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 - i \sigma^3 \eta  &= 
@@ -103,6 +107,7 @@ Using this result, we can make some useful \emph{quasi-adiabatic} approximations
 \qty(\rho (\Gamma_3 -1) \delta \qty(\pdv{Q}{t})_{\text{sp}})
 \,,
 \end{align}
+\end{subequations}
 %
 so we can see that the eigenvalue of the LAWE operator cannot be \(\sigma^2\) now. We take this equation, multiply it by \(\eta r^2\) and integrate it over the whole star in \(\dd{m}\): we get 
 %
@@ -119,6 +124,7 @@ We only look at the first order terms in \(\kappa \): so we make the approximati
 The only thing missing is the definition: \(J \overset{\text{def}}{=} \int \eta^2 r^2 \dd{m}\).
 So we get 
 %
+\begin{subequations}
 \begin{align}
 \omega^2 \qty(i \omega - 3 \kappa ) J 
 - (i \omega - \kappa ) \omega^2 J &= C \\
@@ -126,9 +132,11 @@ So we get
 \kappa &= - \frac{C}{2 \omega^2 J }
 \,.
 \end{align}
+\end{subequations}
 
 Now we make some considerations on the expression of \(C\) and integrate by parts, getting:
 %
+\begin{subequations}
 \begin{align}
 C &= \int_{M} \frac{1}{r \rho } \pdv{}{r} \qty(\rho(\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}}) \eta r^2 \dd{m}  \\
 &= \int_{R} \pdv{}{r}  \qty(\rho(\Gamma_3 -1) \delta \qty(\dv{Q}{t})_{\text{sp}})
@@ -151,6 +159,7 @@ C &= \int_{M} \frac{1}{r \rho } \pdv{}{r} \qty(\rho(\Gamma_3 -1) \delta \qty(\dv
 \marginnote{From the time-integrated equation \eqref{eq:linearized-E2}, neglecting the heat transfer term}
 \,,
 \end{align}
+\end{subequations}
 %
 and now this expression allows us to study the mechanisms which create perturbations: the coefficient to calculate is \(\kappa \), which we now know to be given by 
 %

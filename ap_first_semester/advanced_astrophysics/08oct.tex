@@ -88,12 +88,14 @@ In the second term we have a division by \(r\): in order for it not to diverge w
 Since \(\eta \) is \(\zeta \) times a phase, this also means that \(\pdv*{\zeta }{r} =0 \) at \(r=0\). 
 We can plug this into the linearized continuity equation, the Eulerian form of \eqref{eq:linearized-continuity}: 
 %
+\begin{subequations}
 \begin{align}
 \frac{ \delta \rho }{\rho } &= - 3\zeta - r\pdv{\zeta }{r} \\
 0=\pdv{\zeta }{r} &= - \frac{1}{r} \qty(3\zeta + \frac{ \delta \rho }{\rho })  \\
 \implies 0 &= 3\zeta + \frac{ \delta \rho }{\rho }
 \,,
 \end{align}
+\end{subequations}
 %
 into which we can substitute the linearized adiabatic expressions for the temperature and pressure perturbations \eqref{eq:linearized-adiabatic-energy-conservation}: so we find 
 %
@@ -107,6 +109,7 @@ into which we can substitute the linearized adiabatic expressions for the temper
 
 We use the Eulerian form of the momentum conservation \eqref{eq:linearized-momentum-conservation} to figure out the surface boundary conditions: it reads 
 %
+\begin{subequations}
 \begin{align}
 r \sigma^2 \eta &= 
 \frac{1}{\rho } \qty(P \pdv{}{r} \qty(\frac{ \delta P}{P}) 
@@ -123,6 +126,7 @@ r \sigma^2 \eta &=
 ) 
 \,,
 \end{align}
+\end{subequations}
 %
 since we assumed that all perturbations are \emph{in phase} to the radial one, and thus wrote them all as proportional to \(\exp(i \sigma t)\), which then simplified.
 We define the \emph{pressure scale height} as:
@@ -223,12 +227,14 @@ and then we can recover the eigenvalue by:
 
 If \(\eta = \const\), and \(\rho \) and \(\Gamma_1\) are also constanst, we can remove the \(\pdv*{\eta }{r}\) terms: so we have 
 %
+\begin{subequations}
 \begin{align}
 \sigma^2 \eta + \frac{\eta }{\rho r} \pdv{}{r} \qty(P \qty(3 \Gamma_1 - 4)) &= 0  \\
 \sigma^2 &= - \frac{3 \Gamma_1 - 4}{\rho r} \pdv{P}{r}  \\
 \sigma^2 &= \qty( 3\Gamma_1 -4 ) \frac{Gm}{r^3}
 \,,
 \end{align}
+\end{subequations}
 %
 and by inserting the mean density formula \(\overline{\rho} = M / \qty(4 \pi R^3 / 3)\) we get the period-mean density relation: \(\sigma = 2 \pi / T\), so we have \(T^{-2} \propto \overline{\rho}\), the period-mean density relation. 
 
@@ -255,6 +261,7 @@ with varying \emph{polytropic} index \(n\).
 \begin{bluebox}
 This can be derived as a solution for the Lane-Emden equation, which comes from Poisson's equation for the gravitational potential: so we do the following manipulation 
 %
+\begin{subequations}
 \begin{align}
 \nabla^2 \Phi  &= 4 \pi G \rho  \\
 \frac{1}{r^2} \dv{}{r} \qty(r^2 \dv{\Phi }{r}) &= 4 \pi G \rho  \marginnote{Laplacian in spherical coordinates under spherical symmetry}[-1cm]\\
@@ -262,6 +269,7 @@ This can be derived as a solution for the Lane-Emden equation, which comes from 
 \dv{}{r} \qty(\frac{r^2}{\rho } \dv{P}{r}) &= - 4 \pi G \rho r^2
 \,,
 \end{align}
+\end{subequations}
 %
 so if we assume \(\rho = \rho_{c} \theta^{n}\) the polytropic equation of state will read 
 %
@@ -273,12 +281,14 @@ P = K_n \rho^{1 + 1/n} = K_n \rho_{c}^{1 + 1/n} \theta^{n (1 + 1/n)}
 %
 where \(\rho_{c}\) is the central density, so we have \(\theta (r=0) = 1\) and \(\theta' (r=0) =0\). Inserting this into Poisson's equation gives us 
 %
+\begin{subequations}
 \begin{align}
 \dv{}{r} \qty(\frac{r^2}{\rho_{c} \theta^{n}}
 \dv{}{r} \qty(K_{n} \rho_{c}^{1 + 1/n} \theta^{n+1})) &=-4 \pi G \rho r^2  \\
 \dv{}{r} \qty(r^2 (n+1) K_n \rho_{c}^{1/n} \dv{\theta }{r}) & = - 4 \pi G \rho r^2
 \,,
 \end{align}
+\end{subequations}
 %
 so we can adimensionalize the radial coordinate by putting inside of it all the numbers: \(r = \alpha \xi \), with \(\alpha \) chosen so that the equation turns into
 %
@@ -364,6 +374,7 @@ and apply to it the identity: \(\frac[i]{1}{2} \pdv{}{t} v^2 = \pdv{r}{t} \pdv[2
 
 Now we apply some manipulations: first of all, the following: 
 %
+\begin{subequations}
 \begin{align}
 \hlc{teal}{\int_{M} \qty(- \frac{Gm}{r^2} \pdv{r}{t}) \dd{m}} &= 
 \int_{M} \pdv{}{t} \qty(\frac{Gm}{r}) \dd{m}  \\
@@ -371,9 +382,11 @@ Now we apply some manipulations: first of all, the following:
 &= \hlc{teal}{- \dv{\Omega }{t}}
 \,
 \end{align}
+\end{subequations}
 %
 where \(\Omega \) is the total gravitational potential energy, while 
 %
+\begin{subequations}
 \begin{align}
 \hlc{olive}{- \int_{M} 4 \pi r^2 \pdv{P}{m} \pdv{r}{t} \dd{m}} &= 
 - \int_{M} \pdv{}{m} \qty(4 \pi r^2 P \pdv{r}{t}) \dd{m}
@@ -384,6 +397,7 @@ where \(\Omega \) is the total gravitational potential energy, while
 &= \hlc{olive}{\int_{M} P \pdv{}{t} \qty(\rho^{-1}) \dd{m}}
 \,,
 \end{align}
+\end{subequations}
 %
 so in the end we get 
 %

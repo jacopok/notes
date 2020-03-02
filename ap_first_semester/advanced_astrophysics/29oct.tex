@@ -115,6 +115,7 @@ The velocity gradient at the critical point can be found by de l'Hôpital's rule
 \begin{bluebox}
 This is calculated by expanding in \(r\); however note that we must vary both \(r\) and \(v\) when we differentiate with respect to \(r\). We find: 
 %
+\begin{subequations}
 \begin{align}
 \dv{v}{r} &= v \frac{2 a^2 / r - GM/ r^2}{v^2- a^2}  \\
 &= \bigg(a + \underbrace{\dv{v}{r}}_{\text{Second order}}\bigg)
@@ -125,6 +126,7 @@ This is calculated by expanding in \(r\); however note that we must vary both \(
 \dv{v}{r} & = \pm 2 \frac{a^3}{GM}
 \,.
 \end{align}
+\end{subequations}
 %
 \end{bluebox}
 
@@ -165,11 +167,13 @@ This is actually fixed by only specifying the gravity, temperature and density a
 
 With these hypotheses, we can solve the momentum equation analytically: we get 
 %
+\begin{subequations}
 \begin{align} \label{eq:isothermal-wind-speed-equation}
 \frac{v}{v_0 } \exp( -\frac{v^2}{2 a^2}) &= \qty(\frac{r_0}{r})^2 \exp(\frac{GM}{a^2} \qty(\frac{1}{r_0 } - \frac{1}{r}))  \\
 &= \qty(\frac{r_0}{r})^2 \exp(\frac{2r_c}{r_0 } - \frac{2r_c}{r})
 \,.
 \end{align}
+\end{subequations}
 %
 
 \begin{bluebox}
@@ -192,12 +196,14 @@ which is dependent on \(v_0 \)! If we plug in solar values for the parameters, \
 This means that, in order to always have solutions, we need to fix \(v_0 \) to set the maxima to be equal.
 This gives us 
 %
+\begin{subequations}
 \begin{align}
 v_0 &= e^{-1/2}  \qty(\frac{1}{a} \qty(\frac{r_0}{r_c})^2
 \exp(\frac{2 r_c}{r_0 }) e^{-2})^{-1} \\
 &= a \qty(\frac{r_c}{r_0 })^2 \exp(-  \frac{2r_c}{r_0 } + \frac{3}{2})
 \,.
 \end{align}
+\end{subequations}
 
 Specifically, we can see that for the solar values mentioned before \SI{1}{km/s} was an overestimate, and with the values we fixed the initial velocity is actually more like \SI{17}{m/s}.
 \end{bluebox}

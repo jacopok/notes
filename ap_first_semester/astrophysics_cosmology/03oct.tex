@@ -310,25 +310,64 @@ The latter is a ``Newtonian'' measurement, while the former is a ``GR'' measurem
 
 % This computation also proves that the spatial curvature is constant throughout the history of the universe: 
 
-We define:
+Further, we define the \textbf{Hubble parameter}:
 \begin{equation}
   H_0 = H(t_0) = 100 h \times \SI{}{\kilo\metre\per\second\per\mega\parsec}
+  \approx \SI{70}{\kilo\metre\per\second\per\mega\parsec}
 \end{equation}
 %
-where \(h\) is a number: around \(0.7\), while  \(t_0\) just means \emph{now}.
+where \(h \approx \num{.7}\) is a number, and \(t_0\) just means \emph{now}.\footnote{Also, \SI{}{pc} means ``parsec'': 
+%
+\begin{align}
+\SI{1}{pc} = \frac{\SI{1}{AU}}{\SI{1}{arcsec}}
+\approx \SI{3.085e+16}{m}
+\approx \SI{3.26}{ly}
+\,,
+\end{align}
+%
+where the angle is to be interpreted as adimensional (in radians), and \SI{}{AU} is an astronomical unit, the Earth-Sun average distance. 
+The definition is as such because of a way we have to measure the distances to nearby objects, by measuring their parallax between winter and summer: if they are close enough, they will have apparently moved with respect to further objects, because of the movement of the Earth around the Sun.}
+
+The reason for this peculiar way to write the constant is that historically it has been difficult to determine the value of \(H_0 \) precisely, and it affects many astronomical conversions: keeping it indeterminate in this way allows us to quickly update our old estimates if we measure \(H_0 \) more precisely later.
+Historically, in the American school, the pupils of Hubble thought \(h \sim 0.5\), while the French school thought \(h \sim 1\).
+Now, a great issue in cosmology is the disagreement between the measurements of \(H_0 \) obtained from the cosmic distance ladder and those obtained from the CMB \cite[]{Wong:2019}.
 
 \subsection{Energy density}
 
-How do we measure it? We want the energy density \emph{today} of \emph{galaxies}: \(\rho_{0g}\).
-This is \(\mathscr L_g \expval{M/L} \), where \(\mathscr L _g\) is the mean (intrinsic, bolometric) luminosity of galaxies per unit volume, while \(M/L\) is the mass to light ratio of galaxies.
-It is measured in units of \(M_{\odot} / L_{\odot}\). Reference values for these are \(M_{\odot} \sim \SI{1.99e33}{g}\), while \(L_\odot \sim \SI{3.9e33}{\erg\per\second} \).
+So, in order to determine the spatial curvature of the universe we need to look at \(\Omega \propto \rho \): so, we need to measure the energy density of the universe.
 
-How do we measure this? We have a trick:
+How do we do it?
 
+Let us start by considering the energy density \emph{today} (index 0) due to \emph{galaxies} (index \(g\)): \(\rho_{0g}\).
+We do not directly observe the mass\footnote{Here the terms mass and energy are used equivalently: the velocity of galaxies with respect to the CMB is nonrelativistic, so we approximate \(E = \gamma m c^2 \approx m c^2\).}  
+of galaxies: we can only measure their luminosities.
+
+So, we do the following: we compute the mean value of \(\rho \), the mass per unit volume, with the aid of the galaxy luminosity per unit volume \(\ell\): we find 
+%
+\begin{align}
+\expval{\rho }
+&= \expval{\ell \,\frac{\rho }{\ell}} 
+= \expval{\ell} \expval{\frac{\rho }{\ell}} 
+= \expval{\ell} \expval{\frac{M}{L}}
+\,,
+\end{align}
+%
+where we simplified the ratio of mass per unit volume over luminosity per unit volume to just mass over luminosity per galaxy: \(\expval{M / L}\) is the average ratio of mass over luminosity per galaxy.
+In order to simplify the expression, we assume that this is uncorrelated to the luminosity of the galaxy.
+It is measured in units of solar mass over solar luminosity: \(M_{\odot} / L_{\odot}\).
+Reference values for these are \(M_{\odot} \sim \SI{1.99e33}{g}\), while \(L_\odot \sim \SI{3.9e33}{\erg\per\second} \).
+
+We denote \( \expval{\ell} \defeq \mathscr L_g  \): it is the mean (intrinsic, bolometric\footnote{Bolometric means ``total, over all wavelengths'', as opposed to the luminosity in a certain wavelength band, which is easier to measure in astronomy.}) luminosity of galaxies per unit volume.
+
+By definition, it is given by 
+%
 \begin{equation}
-  \mathscr L _g = \int_0^\infty \dd{L} L \Phi(L)
+  \mathscr L _g = \int_0^\infty  L \Phi(L) \dd{L}
+\,,
 \end{equation}
-
-where \(\Phi(L)\) is the number of galaxies per unit volume and unit luminosity: the \emph{luminosity function}. With of our observations we estimate the shape of \(\Phi(L)\). We know that the integral must converge, so we can bound the shape of \(\Phi\) (?).
+%
+where \(\Phi(L)\) is the number of galaxies per unit volume and unit luminosity: the \emph{luminosity function}.
+With of our observations we estimate the shape of \(\Phi(L)\).
+% We know that the integral must converge, so we can bound the shape of \(\Phi\).
 
 \end{document}

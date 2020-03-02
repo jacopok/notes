@@ -26,7 +26,7 @@ There are many good textbooks, for example ``\citetitle{LucchinColes:2002}'' by 
 
 % In october the lessons of GR and this course on fridays are swapped.
 
-\chapter{Cosmology}
+\chapter{Cosmography}
 
 % \section*{3 October 2019}
 \marginpar{Thursday\\ 2019-10-3}
@@ -35,8 +35,8 @@ There are many good textbooks, for example ``\citetitle{LucchinColes:2002}'' by 
 
 The basis for the modern treatment of cosmology is the \textbf{cosmological principle} (or Copernican principle):
 roughly stated, it is ``\emph{we do not occupy a special, atypical position in the universe}''.
-
-\todo[inline]{We will discuss the validity of this.}
+We will discuss the validity of this later in this section.
+It is extremely useful to make such an assumption since it endows our model of the universe with a great deal of symmetry, which makes its mathematical treatment manageable. 
 
 A more formal statement is:
 %
@@ -44,76 +44,168 @@ A more formal statement is:
     Every \emph{comoving observer} observes the Universe around them at a \emph{fixed time} in their reference frame as being \emph{homogeneous} and \emph{isotropic}.
 \end{proposition}
 
-This is expected to hold only on very large scales: the 
+\textbf{Comoving} means moving coherently with the absolute reference frame, which is defined as the rest frame of the cosmic fluid, which determines the geometry of the universe. 
 
-Comoving is a proxy for the absolute reference frame.
-When we observe the CMB we see that we are surrounded by radiation of temperature \(\sim \SI{3}{K}\).
-There is a \emph{dipole modulation} though: around a milliKelvin of difference. This is due to the Doppler effect: we are \emph{not} comoving with respect to the CMB.
+When we observe the Cosmic Microwave Background (CMB) we see that we are surrounded by radiation distributed like a blackbody of temperature \(T _{\text{CMB}} \approx \SI{2.725}{K}\) \cite[]{Fixsen:2009}.
 
-We, however, ignore the anisotropies on the order of a \SI{}{\micro K}.
+This radiation is not uniformly distributed in the sky: we 
+see a \emph{dipole modulation} of around \(\Delta T \approx\)\SI{3.4}{mK} \cite[]{PlanckCollaboration:2018I}.
+This is due to the Doppler effect: the Solar System is \emph{not} comoving with respect to the CMB.
 
-The velocity needed to explain the Doppler effect is of the order of \SI{630}{\kilo\metre\per\second}.
-This is \emph{after} correcting for the motion of everything up to a galactic scale.
+In fact, we can measure the \emph{peculiar velocity} of the Solar System this way: it comes out to be around \(c \Delta T / T _{\text{CMB}} \approx \SI{370}{km/s}\).
+This cannot be explained by the movement of the Sun through the galaxy, nor by the movement of the galaxy through the Local Group: the Local group is actually moving with respect to the absolute reference.
+In fact, the velocities of the Sun with respect to the Local Group and the velocity of the Local Group with respect to the CMB are almost directed in opposite directions, so the velocity of the LG with respect to the CMB can be measured to be \(\approx \SI{620}{km/s}\) \cite[Table 3]{PlanckCollaboration:2018I}.
 
-So, we must assume that to get a \emph{comoving} observer we should launch it in a certain direction at an extremely high velocity. So, we \emph{do} have a preferred frame.
+So, the absolute reference frame can be experimentally defined as the frame of the observer who sees the CMB with zero dipole moment.
 
-\emph{Fixed time} refers to the proper time of the comoving observer.
+The CMB has anisotropies of the order of \SI{20}{\micro K} (root mean square) \cite[]{Wright:2003} at higher order multipole moments: it is uniform to approximately 1 part in \num{e5}.
 
-This refers to scales on the order of \SI{100}{\mega\parsec}.
+% The velocity needed to explain the Doppler effect is of the order of \SI{630}{\kilo\metre\per\second}.
+% This is \emph{after} correcting for the motion of everything up to a galactic scale.
 
-How can we talk about homogeneity if we can only look at the universe from a single point? We assume that any other observer would also see isotropy as we do.
+% So, we must assume that to get a \emph{comoving} observer we should launch it in a certain direction at an extremely high velocity. So, we \emph{do} have a preferred frame.
 
-Isotropy around every point is equivalent to homogeneity. We observe isotropy, we assume homogeneity.
+The word ``time'' in \textbf{fixed time} refers to the proper time of a comoving observer, which is called \emph{cosmic time}.
 
-What if we are not typical? a different assumption is that our observer status is \emph{random} according to some distribution\dots This discussion then starts to involve the anthropic principle.
+% This refers to scales on the order of \SI{100}{\mega\parsec}.
 
-We must however always keep in mind that these assumptions have to be made before any cosmological study starts.
+\textbf{Homogeneity} means that the characteristics of the universe as observed from a point are the same as they would be as observed from any other point. 
 
-In GR, our line element will generally be \(\dd{s^2} = g_{ab} \dd{x^a} \dd{x^b} \). The \emph{preferred} form of the metric is the one written in the comoving frame: the Robertson-Walker line element,
+\textbf{Isotropy} means that the characteristics of the universe as observed in a certain direction are the same as they would be if they were observed in another direction.
+
+\paragraph{On the validity of the cosmological principle}
+
+The principle is expected to hold only on very large\footnote{Larger than \(260 h^{-1} \SI{}{Mpc} \approx \SI{380}{Mpc}\) \cite[]{Yadav+:2010}, where \(h \approx \num{.68}\) \cite[]{PlanckCollaboration:2016XIII}: this will be made clearer in later sections, but is meant to give an idea of the length scales involved.} scales:
+at small scales we see structures, such as galaxies or our Solar System, so we surely do not have homogeneity.
+
+How can we talk about homogeneity if we can only look at the universe from a single point?
+We must \emph{assume} that any other observer would also see isotropy as we do.
+
+Isotropy around every point implies homogeneity. We observe isotropy, we assume homogeneity.
+So, we can go from isotropy to homogeneity under the assumption that we are typical observers.
+
+% What if we are not typical? a different assumption is that our observer status is \emph{random} according to some distribution\dots
+% This discussion then starts to involve the anthropic principle.
+
+In the end, this assumption has to be made before any cosmological study starts: it might not be completely correct, but it allows us to make falsifiable predictions, so we shall keep it until the models it allows us to create do not match observations anymore.
+
+\section{The geometry of spacetime}
+
+The best description for gravity we have so far is given by the general theory of relativity (GR).
+In it, spacetime is modelled as a 3+1-dimensional semi-Riemannian manifold with a line element which is  generally given by the expression \(\dd{s^2} = g_{ab} \dd{x^a} \dd{x^b} \) and which.
+
+Latin indices can take values from 0 to 3, and we adopt the ``mostly minus'' metric signature.
+
+Such a spacetime can have up to \(4(4+1) / 2 = 10\) global continuous symmetries, which can be classified into:
+\begin{enumerate}[label=(\alph*)]
+  \item 1 time translation; \label{item:time-translation}
+  \item 3 Lorentz boosts; \label{item:lorentz-boost}
+  \item 3 spatial translations; \label{item:spatial-translation}
+  \item 3 spatial rotations. \label{item:spatial-rotation}
+\end{enumerate}
+
+The metric of Minkowski spacetime, which has all of these 10 symmetries, reads: 
+%
+\begin{subequations}
+\begin{align}
+\dd{s^2} &= c^2 \dd{t^2} - \dd{\vec{x}^2} && \text{(cartesian coordinates)} \\
+&= c^2 \dd{t^2} - \dd{r^2} - r^2 \dd{\Omega^2} && \text{(spherical coordinates)}
+\,,
+\end{align}
+\end{subequations}
+%
+where \(r = \abs{x}\), while \(\theta \) and \(\varphi \) are the spherical angles and \(\dd{\Omega^2} = \dd{\theta^2} + \sin^2\theta \dd{\varphi^2 }\).
+
+In cosmology we lose time translation symmetry, since the universe is expanding, and Lorentz boost symmetry, since as we saw in the previous section we can tell at which speed we are moving with respect to the CMB.
+
+We keep the purely spatial symmetries: so, our description of spacetime will be as a 3+1-dimensional manifold which, if we fix the temporal coordinate for a comoving observer, reduces to a \emph{maximally symmetric} 3-dimensional space --- for 3 dimensions the maximum number of symmetries is \(3(3+1) / 2 = 6\), which correspond to \ref{item:spatial-translation} and \ref{item:spatial-rotation}. 
+
+It can be shown that the most general form of a metric satisfying these conditions is the \textbf{Robertson-Walker line element}, which, in the comoving frame, reads
 %
 \boxalign{
 \begin{align} \label{eq:robertson-walker}
-  \dd{s^2} = c^2 \dd{t^2} - a^2(t) \qty(\frac{\dd{r^2}}{1 - k r^2} + r^2 \qty(\dd{\theta^2} + \sin^2(\theta) \dd{\varphi^2} ) )
+  \dd{s^2} = c^2 \dd{t^2} - a^2(t) \qty(\frac{\dd{r^2}}{1 - k r^2} + r^2 \dd{\Omega^2} )\,.
 \end{align}}
 %
-where \(a(t)\) is called the \emph{scale factor}. Sometimes it is convenient to write \(\dd{\theta^2} + \sin^2(\theta) \dd{\varphi^2} = \dd{\Omega^2}\).
-The angular part is the same (just rescaled) as the Minkowski one.
+% Sometimes it is convenient to write \(\dd{\theta^2} + \sin^2(\theta) \dd{\varphi^2} = \dd{\Omega^2}\).
 
-The parameter \(k\) is a constant, which can be \(\pm 1\) or \(0\).
+% The angular part is the same (just rescaled) as the Minkowski one.
 
-The parameter \(r\) is not a length: we choose our variables so that \(a(t)\)  is a length, while the stuff in the brackets in \eqref{eq:robertson-walker} is adimensional (and so is \(r\)).
+The coordinate \(r\) does not have the dimensions of a length: we choose our variables so that \(a(t)\) is a length, while \(r\) is adimensional.\footnote{This is a matter of convention: if we normalize \(\abs{k}=1\) then we will have \(0 \leq r < 1\); we could also let \(k\) be arbitrarily large; then \(r\) would also be.}
 
+The parameter \(a(t)\) is called the \emph{scale factor}: varying it amounts to rescaling all of space.
+It has the dimensions of a length, and it depends on the cosmic time \(t\).
+
+The parameter \(k\) is a constant describing the spatial curvature, which can always be normalized to \(\pm 1\) or \(0\).
+Universes with:
 \begin{itemize}
     \item \(k=1\) are called closed universes;
-    \item \(k=-1\) are open universes;
+    \item \(k=-1\) are called open universes;
     \item \(k=0\) are called flat universes.
 \end{itemize}
 
-The set of flat universes with \(k=0\) has zero measure.
+We can choose the normalization of \(k\), but its sign is a constant.
+Positive values correspond to \(k=1\), negative values to \(k=-1\).
+When computing probability distributions for \(k\), we must not consider it to be a discrete variable but a continuous variable instead: so, the set of flat universes with \(k=0\) has zero measure, and thus zero probability with any probability density function.
 
-In a 4D flat spacetime we have the 10 degrees of freedom of Lorentz transformations: Minkowski spacetime is \emph{maximally symmetric}.
+% In a 4D flat spacetime we have the 10 degrees of freedom of Lorentz transformations: Minkowski spacetime is \emph{maximally symmetric}.
 
-Other geometries are De Sitter and Anti de Sitter spacetimes.
+% Other possible geometries are De Sitter and Anti de Sitter spacetimes.
 
-For the actual universe, however, not all of these symmetries hold: the universe seems not to be symmetric under time translation, and we have a preferential velocity.
-4 symmetries are broken (time translation and Lorentz boosts), 6 hold (rotations and spatial translations): our assumption is that there is a 3D maximally symmetric space.
+% For the actual universe, however, not all of these symmetries hold: the universe seems not to be symmetric under time translation, and we have a preferential velocity.
+% 4 symmetries are broken (time translation and Lorentz boosts), 6 hold (rotations and spatial translations): our assumption is that there is a 3D maximally symmetric space.
 
-Under these assumptions, we can derive the RW line element.
+% Under these assumptions, we can derive the RW line element.
 
-Say we have a cartesian flat 2D plane: the flat metric for this is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
+\subsection{A bidimensional example}
+
+We consider surfaces: these are the simplest manifolds which can have intrinsic curvature.
+
+\begin{bluebox}
+Intrinsic curvature is described by the Riemann tensor, which has 20 independent components in 4D and 6 in 3D, so it is difficult to visualize.
+
+On the other hand, in 2D has only 1 independent component: \(R_{1212} = R \det g_{ab}\), where \(R\) is the scalar curvature. 
+
+\(R\) has an immediate geometric interpretation: it is equal to \(2/(R_1 R_2)\), where \(R_i\) are the radii of the osculating circles at the point; it is positive if the circles are in the same direction, as they are for a sphere, and negative if they are in different directions, as they are for a hyperboloid.
+
+If we have a direction in which the surface is flat, such as in a cylinder, then \(R=0\): it is intrinsically flat.
+\end{bluebox}
+
+The metric for a cartesian flat 2D plane is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
 The constant \(a\) is included since we want \(r\) to be adimensional.
 
-The surface of a sphere has the following line element:
+The metric for the surface of a sphere is:
 \(\dd[]{l^2} = a^2 \qty(\dd[]{\theta^2} + \sin^2 \theta \dd[]{\varphi^2}) \),
 where \(a^2 = R^2\), the square radius of the sphere.
 
-For a hyperboloid, we will have:
+The metric for the surface of a hyperboloid is:
 \(\dd[]{l^2} = a^2 \qty(\dd[]{\theta^2} + \sinh^2 \theta \dd[]{\varphi^2}) \),
 therefore the only difference is that trigonometric functions become hyperbolic ones.
 
-For both of these, let us define the variable: \(r = \sin\theta \) in the spherical case, and \(r = \sinh \theta \)  in the hyperbolic case.
-Then, these line elements become respectively:
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/sin_vs_sinh.pdf}
+\caption{Plot of the functions \(\sin(\theta )\) and \(\sinh (\theta )\) in the interval \(-\pi \leq \theta\leq \pi  \).}
+\label{fig:sin_vs_sinh}
+\end{figure}
 
+Do note that for the sphere \(\theta  \in [- \pi, \pi ]\) while for the hyperboloid we can in principle have \(\theta \in \mathbb{R}\): this is indicative of the fact that the sphere is bounded, while the hyperboloid is infinite, 
+
+For both of these, let us define the variable: \(r = \sin\theta \) in the spherical case, and \(r = \sinh \theta \)  in the hyperbolic case.
+
+As we change variable we do the following manipulation for the sphere: 
+%
+\begin{subequations}
+\begin{align}
+\dd{r^2} &= \qty(\dv{r}{\theta })^2 \dd{\theta^2} = \cos^2\theta \dd{\theta^2}  \\
+\implies \dd{\theta^2} &= \frac{\dd{r^2}}{\cos^2\theta } = \frac{\dd{r^2}}{1 - r^2}
+\,,
+\end{align}
+\end{subequations}
+%
+and similarly for the hyperboloid, except for the fact that in that case \(\cosh^2 \theta  = 1 + \sinh^2\theta = 1+r^2 \).
+
+So, the line elements become respectively:
 \begin{subequations}
 \begin{align}
     \dd[]{l^2}_{\text{sphere}} &= a^2 \qty(\frac{\dd[]{r^2}}{1 - r^2}  + r^2 \dd{\varphi^2}  )\\
@@ -121,8 +213,9 @@ Then, these line elements become respectively:
 \end{align}
 \end{subequations}
 
-We can rewrite the RW element as:
+We have a striking similarity to the Robertson-Walker metric: we only need to make the substitution \(\dd{\varphi } \rightarrow \dd{\Omega }\) in order to recover it.
 
+We can also work backwards and rewrite the RW line element in sphere- or hyperboloid-like coordinates:
 \begin{equation}
   \dd{l^2} = c^2 \dd{t^2} - a^2 \begin{cases}
       \dd{\chi^2} + \sin^2 \chi \dd{\Omega^2} \\
@@ -130,53 +223,92 @@ We can rewrite the RW element as:
       \dd{\chi^2} + \sinh^2 \chi \dd{\Omega^2}
 \end{cases}
 \end{equation}
+%
+where we introduce a variable \(\chi \) defined so that if \(k = +1\) then \(r = \sin \chi\), if \(k=0\)  then \(r=\chi\), and if \(k = -1\) then \(r = \sinh \chi\).
 
-where if \(k = +1\)  then \(r = \sin \chi\), if \(k=0\)  then \(r=\chi\), and if \(k = -1\) then \(r = \sinh \chi\).
+The properties of the sphere and of the hyperboloid actually carry over to the 3D case: a spacetime with positive curvature is bounded, while if it is flat or hyperbolic it is unbounded.
 
-If we wish to use cartesian coordinates we will have:
+\subsection{Other forms of the RW metric}
 
+If we wish to use cartesian coordinates the RW metric takes the following expression:
+%
 \begin{equation}
   \dd{s^2} = c^2 \dd{t^2} - a^2 (t) \qty(1 + \frac{k \abs{x}^2}{4} )^{-2} \qty(\dd{x^2} + \dd{y^2} + \dd{z^2}) \,.
 \end{equation}
 
 Universes in which \(a\) is a constant are called \emph{Einstein spaces}.
-We can change time variable, defining \(\dd{t} = a(\eta) \dd{\eta} \), where \(a(\eta) \defeq a(t(\eta))\):  so, we will have
+
+We can also change time variable: the \emph{conformal time} \(\eta \) is such that \(\dd{t} = a(\eta) \dd{\eta} \), where \(a(\eta) \defeq a(t(\eta))\): so, we will have
 
 \begin{equation}
   \dd{s^2} = a^2 (\eta) \qty(c^2 \dd{\eta^2} - \qty(\frac{\dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega})) \,.
 \end{equation}
 
-The parameter \(\eta\) is called \emph{conformal time}: RW is said to be \emph{conformal} to Minkowski.
-Conformal geometry is particularly useful for systems which have no characteristic length.
+% The parameter \(\eta\) is called \emph{conformal time}: RW is said to be \emph{conformal} to Minkowski.
+\begin{bluebox}
+Conformal transformations are defined to be those which preserve angles locally; since angles are defined through the metric but the angle between two vectors does not change if they are rescaled, this can be translated into the condition that the metric is rescaled by a generic function:
+%
+\begin{align}
+g_{ab} \rightarrow a^2(x^{i}) g_{ab}
+\,.
+\end{align}
 
-Photons do not have a characteristic length: they do not perceive the expansion of spacetime.
+In our case, the dependence on the point in spacetime is reduced to a dependence on the cosmic time only since we have symmetry with respect to spatial translations.
+\end{bluebox}
 
-The photons of the CMB look like they are thermal: they were thermal originally, and remained such despite the expansion of the universe.
+In general our spacetime does not have conformal symmetry: a generic massive particle in it has a Compton wavelength \(\lambda = h / (mc)\) which defines its interaction cross section, so if the spacetime expands a gas of these particles will have different dynamics.
 
-For now we did not use any dynamics, but we will insert them later.
+However, conformal geometry is useful for the description of particles which have no characteristic length, such as photons.
+The photons of the CMB look like they are thermal: they were thermal in the early universe, since they were in thermal equilibrium with matter (photons and matter particles were constantly Compton-scattering off each other); when matter and radiation decoupled the photons scattered for the last time and then kept travelling.
+The universe has since expanded by a factor \(\approx 1090\), but because of the fact that the photons do not have a characteristic length their distribution can still be modelled as a blackbody distribution for an appropriately rescaled temperature.
 
-The Friedmann equations are:
+\section{The energy budget of the universe}
 
+Up until now we did not consider any dynamics in our spacetime. We will discuss this topic in more detail in later sections, but for now we give the result: the dynamics of the universe are described by the Friedmann equations:
+%
 \begin{subequations} \label{eq:friedmann-equations} 
 \begin{align}
-    \dot{a}^2 &= \frac{8 \pi G }{3} \rho a^2 - kc^2  \\
-    \ddot{a} &= - \frac{4 \pi G }{3} a  \qty(\rho  + \frac{3P}{c^2} )  \\
-    \dot{\rho} &= \frac{-3 \dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
+    \dot{a}^2 &= \frac{8 \pi G_N }{3} \rho a^2 - kc^2  \\
+    \ddot{a} &= - \frac{4 \pi G_N }{3} a  \qty(\rho  + \frac{3P}{c^2} )  \\
+    \dot{\rho} &= -3 \frac{\dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
 \end{align}
 \end{subequations}
 %
-where dots denote differentiation with respect to the proper time of a cosmological observer, \(t\), which is called \emph{cosmic time}.
-These imply that the energy density \(\rho = \rho( t)\) and the isotropic pressure \(P = P(t)\) only depend on \(t\).
+where dots denote differentiation with respect to the \emph{cosmic time} \(t\), \(G_N\) is Newton's gravitational constant, \(\rho = \rho( t) \) is the energy density, and \(P = P(t)\) is  the isotropic pressure.
 
-An important parameter is \(H(t) \defeq \dot{a} / a\), the \emph{Hubble parameter}.
+The curvature \(k\) appears in the first equation: so we can try to measure it by comparing the other two terms in the equations.
+This way, we can determine whether the universe is flat or curved.
+
+In order to discuss this problem, let us establish some notation: an important parameter is \(H(t) \defeq \dot{a} / a\), the \emph{Hubble parameter}.
 We can write an equation for it from the first Friedmann one:
-
-\begin{equation}
+%
+\begin{equation} \label{eq:hubble-parameter-evolution}
   H^2 = \frac{8 \pi G}{3} \rho - \frac{kc^2}{a^2}
 \end{equation}
 
-If \(k=0\), then there we have a critical energy density \(\rho_C (t) = 3 H^2 (t) / (8 \pi G)\): we call \(\Omega(t) = \rho(t) / \rho_C(t)\).
-Is \(\Omega\) larger or smaller than 1? This tells us about the sign of \(k\); while measuring \(k\) directly is \emph{very} hard. The former is a ``Newtonian'' measurement, while the latter is a ``GR'' measurement.
+If \(k=0\), then there we must have a critical energy density 
+%
+\begin{align}
+  \rho_C (t) = 3 H^2 (t) / (8 \pi G)
+\,,
+\end{align}
+%
+and we define \(\Omega(t) = \rho(t) / \rho_C(t)\).
+For a flat universe, \(\Omega = 1\), and so we can determine \(k = \sign (\Omega -1)\), since: 
+%
+\begin{align}
+1 &= \frac{8 \pi G}{3} \frac{\rho }{H^2} - k \frac{c^2}{a^2H^2}  \marginnote{Dividing 
+% \eqref{eq:hubble-parameter-evolution} 
+through by \(H^2\)}\\
+\frac{\rho }{\rho_{c}} - 1 &= k \frac{c^2}{a^2H^2}  \\
+\sign (\Omega -1) &= \sign \qty(k \frac{c^2}{a^2H^2}) = \sign (k) = k 
+\,.
+\end{align}
+
+The alternative is measuring \(k\) directly, say, by drawing really large triangles and measuring the sum of their internal angles.
+The latter is a ``Newtonian'' measurement, while the former is a ``GR'' measurement. The Newtonian measurement is much harder to perform.
+
+This computation also proves that the spatial curvature is constant throughout the history of the universe: 
 
 We define:
 \begin{equation}

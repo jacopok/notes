@@ -44,24 +44,43 @@ The luminosity of galaxies can be measured readily, the great difficulty lies in
 
 \subsection{Estimating the masses of galaxies}
 
-We must distinguish between the different shapes of the galaxies:
+We must distinguish between the different shapes of the galaxies: spiral galaxies are characterized by rotation of the stars about the galactic center, while in elliptical galaxies the stars' motion is disordered.
 
-Spiral galaxies are characterized by rotation.
+\subsubsection{Spiral galaxies}
 
-We plot the velocity of rotation of galaxies \(v\)  against the radius \(R\). This is measured using the Doppler effect.
+If we see a spiral galaxy edge-on, we will have a side of it coming in our direction, and the other side moving away from us (after correcting for other sources of Doppler shift, such as the velocity of the whole galaxy).
+So, using the Doppler effect we can measure the distribution of the velocity in the galaxy as a function of the radius. 
 
-We'd expect a roughly linear region, and then a region with \(v \sim R^{-1/2}\):
-we apply \(G M(R) = v^2 (R) R\) (this comes from Kepler's laws or from the virial theorem). This implies
+% We plot the velocity of rotation of galaxies \(v\)  against the radius \(R\).
 
-\begin{equation}
-  v(R) \propto \sqrt{\frac{M(R)}{R}}
-\end{equation}
+In order to get a theoretical model, we can approximate the galaxy as a sphere: this is very rough (spiral galaxies are closer to being disk-like), but it gives the same qualitative result, so there is no need for a more precise model in this context.
 
-So in the inside of the galaxy, where \(M(R) \propto R^3\), \(v \propto R\), while outside of it \(M(R)\) is roughly constant, so \(v \propto R^{-1/2}\).
+We model the galaxy velocity distribution using Newtonian mechanics: the GR corrections are negligible at these scales, galaxies are much larger than their Schwarzschild radii.
 
-Instead of this, we see the linear region and then \(v(R)\) is approximately constant. Is Newtonian gravity wrong? (GR effects are trivial at these scales).
+Equating the gravitational force \(GM/R^2\) to the centripetal acceleration \(v^2 /R\) we find: 
+%
+\begin{align}
+v = \sqrt{\frac{GM}{R}}
+\,,
+\end{align}
+%
+where \(v\) and \(M\) are functions of \(R\): \(M\) is the mass contained in the spherical shell of radius \(R\), and \(v\) is the orbital velocity at the boundary of the shell.
 
-An option is MOND: they propose that there is somthing like a Yukawa term at Megaparsec distances. They are wrong for some other reasons.
+In the inside regions of the galaxy, where \(M(R) \propto R^3\) since the density is approximately constant we will have \(v \propto R\), while in the outskirts of the galaxy \(M(R)\) will not change much, since all the mass is inside, so we will have \(v \propto R^{-1/2}\).
+
+Our prediction is then a roughly linear region, and then a region with \(v \sim R^{-1/2}\).
+This is shown as the ``Predicted'' curve in figure \ref{fig:dark_matter}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/Dark_matter.pdf}
+\caption{Predicted and observed velocity distribution for galaxies. The point at which they star to diverge is approximately the radius of the bulk of the galaxy. This plot is approximate, realistic models do not have such sharp corners.}
+\label{fig:dark_matter}
+\end{figure}  
+
+Instead of this, when in the 1980s people started to be able to measure this curve accurately  we see the linear region and then \(v(R)\) is approximately constant. Is Newtonian gravity wrong?
+
+An option is MOND: they propose that there is something like a Yukawa term at Megaparsec distances. They are wrong for some other reasons.
 
 Another option is that what we thought was the galaxy, from our EM observations, is actually smaller than the real galaxy. We'd need mass obeying \(M (R) \sim R\): since \(M(R) = 4 \pi \int_0^{R_{\text{max}}} \dd{R} R^2 \rho(R)\), we need \(\rho(R) \propto R^{-2}\). This is a \emph{thermal} distribution (?): we call it the \emph{dark matter halo}.
 
@@ -92,7 +111,7 @@ In order to have \(\Omega = 1\), we'd need 1390.
 
 So measuring the number density of galaxies and their velocities we get a way to measure \(\Omega_0\).
 
-So, only \(5\%\) of the energy budget is given by baryionic matter (not all of which is visible), while around \(27\%\) is dark matter.
+So, only \(5\%\) of the energy budget is given by baryonic matter (not all of which is visible), while around \(27\%\) is dark matter.
 
 In order to comply with observation, it must be:
 
@@ -100,7 +119,7 @@ In order to comply with observation, it must be:
   0.013 \leq \Omega_{\text{b}} h^2 \leq 0.025\,,
 \end{equation}
 %
-where \(\Omega_b\) corresponds to the baryionic density: so the universe \emph{cannot} be made only of baryons.
+where \(\Omega_b\) corresponds to the baryonic density: so the universe \emph{cannot} be made only of baryons.
 
 Dark matter likes ``clumping'': we characterize it by this property.
 
@@ -175,11 +194,11 @@ How do we relate the luminosity distance and the scale factor? Geometrically we 
 since we can just integrate over angles the FLRW element: the value of \(k\) does not enter into the equation.
 The corrective factor comes from the frequency dependence of energy and the fact that power is energy over time, which also changes.
 
+
 Therefore:
 %
 \begin{equation}
   d_L = \frac{a_o^2}{a_e} r = a (1+z) r\,.
 \end{equation}
-
 
 \end{document}

@@ -35,7 +35,7 @@ The integral for \(\mathscr L_g\) converges despite the divergence of \(\Phi(L)\
 
 The result of the integral for a generic value of \(\alpha \) is \(\mathscr L_g = \Phi^* L^* \Gamma(2-\alpha)\), where \(\Gamma\) is the Euler gamma function; for the \(\alpha = 1\) case we get a factor \(\Gamma(2-1) = 1\).
 
-Numerically, we get \(\mathscr{L}_{g} \approx \num{e8} h L_\odot \SI{}{\per\cubic\mega\parsec}. \) 
+Numerically, we get \(\mathscr{L}_{g} \approx \num{2.0(7)e8} h L_\odot \SI{}{\per\cubic\mega\parsec}. \) 
 \todo[inline]{This is reported incorrectly in \cite{Pacciani:2018} as \(\sim \num{e18}\)! The correct figure can be found in \cite[eq. 4.5.14]{LucchinColes:2002}.
 I do not think there is much of a point in reporting the specific value, since the parameters are already given as order-of-magnitude estimates.}
 
@@ -78,50 +78,106 @@ This is shown as the ``Predicted'' curve in figure \ref{fig:dark_matter}.
 \label{fig:dark_matter}
 \end{figure}  
 
-Instead of this, when in the 1980s people started to be able to measure this curve accurately  we see the linear region and then \(v(R)\) is approximately constant. Is Newtonian gravity wrong?
+Instead of this, when in the 1980s people started to be able to measure this curve accurately they saw that, after the linear region, \(v(R)\) was approximately constant.
+So, is Newtonian gravity wrong?
 
-An option is MOND: they propose that there is something like a Yukawa term at Megaparsec distances. They are wrong for some other reasons.
+An option to solve this problem was proposed by Milgrom and collaborators: it is called MOdified Newtonian Dynamics, or MOND: they propose that gravity is not actually always described by a \(r^{-1}\) potential, but instead at low accelerations it behaves differently.
+Specifically, they posit that the gravitational acceleration \(g\) should be modulated by a factor \(\mu (g / a_0 )\), where \(a_0 \approx \num{8e-10} h^2 \SI{}{m /s^2}\) is a characteristic acceleration while \(\mu (x)\) is an adimensional function such that \(\mu \rightarrow 1\) for \(x \gg 1\) and \(\mu \rightarrow x\) for \(x \ll 1\), such as \(\mu = x / (1+x)\) \cite{bekensteinDoesMissingMass1984}.
 
-Another option is that what we thought was the galaxy, from our EM observations, is actually smaller than the real galaxy. We'd need mass obeying \(M (R) \sim R\): since \(M(R) = 4 \pi \int_0^{R_{\text{max}}} \dd{R} R^2 \rho(R)\), we need \(\rho(R) \propto R^{-2}\). This is a \emph{thermal} distribution (?): we call it the \emph{dark matter halo}.
+This approach is Newtonian but there are also relativistic MOND variants. They do not match observation as well as the alternative approach does.\footnote{MOND would be compatible with the speed of gravity being less than the speed of light, which is equivalent to the graviton being massive. Recent measurements of gravitational waves seem to agree with the general-relativistic prediction that it is massless.}
+The heaviest thing weighing against MOND is the fact that even using it we still need dark matter in order to fully explain observations.
 
-People tend to believe that this matter is made up of beyond-the-standard-model particles, like a \emph{neutralino}.
-An alternative is the \emph{axion}.
+\subsubsection{Dark matter}
 
-The total density of DM is \(\sim 5\) times more than that of regular matter.
+The alternative option is that Newtonian mechanics describes galactic mechanics well, but the galaxy's matter distribution inferred from our observations is actually smaller than the real distribution, which extends outward further than the matter we can see: this is \textbf{dark matter}.
 
-If galaxies are not spiral, we look at other things: the Doppler broadening of spectral lines gives us a measure of the RMS velocity.
+We'd need mass obeying \(M (R) \propto R\) in order to have a constant value of \(v\): since \(M(R) = 4 \pi \int_0^{R_{\text{max}}}  R^2 \rho(R) \dd{R}\), we need the density profile to decay like \(\rho(R) \propto R^{-2}\).
+This is called a \emph{thermal} density profile: we call it the \emph{dark matter halo}, which surrounds all spiral galaxies.
 
-\subsection{Virial theorem}
+We do not know what dark matter is: we can say that it   interacts gravitationally but not electromagnetically.
+People tend to believe that it is made up of beyond-the-standard-model particles, like a \emph{neutralino} or an \emph{axion}.
+Historically, people thought the effect could be due to massive neutrinos; however their mass would need to be around \SI{30}{eV}, and the analysis of the CMB data showed that the sum of the masses of the neutrino species must be \(\sum m_\nu < \num{0.120}\) \cite[Table 7]{PlanckCollaboration:2018I}.
 
-Later in the course we will obtain the (nonrelativistic) virial theorem:
+The total density of matter (dark+regular) is \(\sim 6\) times more than that of regular matter alone: this must be accounted for in our estimate of the \(M/L\) ratio for spiral galaxies (since we have additional mass but not additional luminosity):
+with this correction, we find that for spiral galaxies
+%
+\begin{align}
+\expval{\frac{M}{L}} \approx 300 h \frac{M_{\odot}}{L_{\odot}}
+\,,
+\end{align}
+%
 
+\subsubsection{Elliptical galaxies}
+
+If galaxies are not spiral-shaped, we have to weigh them in a different way: the Doppler broadening of spectral lines gives us a measure of the root-mean-square velocity.
+
+% \subsection{Virial theorem}
+Later in the course we will obtain the (nonrelativistic) \emph{virial theorem}, now we just state it: if \(T\) is the kinetic energy of a gravitationally bound system, \(U\) is the potential energy, then
+%
 \begin{equation}
   2T + U = 0
 \end{equation}
-
-This holds when the inertia tensor stabilizes.
-
-The kinetic energy is \(T = \frac[i]{3}{2} M \expval{v_r^2} \): we expect the radial velocity to account for one third of total energy by equipartition.
-\(M\) is the total mass of the energy.
-
-The potential energy is \(U = - G M^2 /R\). Substituting this in we get \(3 \expval{v_r^2} = GM/R\).
-
-If we account for the extra DM mass, we get \(\expval{M/L} \approx 300 h M_\odot / L_\odot\).
-In order to have \(\Omega = 1\), we'd need 1390.
-
-So measuring the number density of galaxies and their velocities we get a way to measure \(\Omega_0\).
-
-So, only \(5\%\) of the energy budget is given by baryonic matter (not all of which is visible), while around \(27\%\) is dark matter.
-
-In order to comply with observation, it must be:
-
-\begin{equation}
-  0.013 \leq \Omega_{\text{b}} h^2 \leq 0.025\,,
-\end{equation}
 %
-where \(\Omega_b\) corresponds to the baryonic density: so the universe \emph{cannot} be made only of baryons.
+holds when the inertia tensor stabilizes, that is, when we have dynamical equilibrium.
 
-Dark matter likes ``clumping'': we characterize it by this property.
+The kinetic energy is \(T = \frac[i]{3}{2} M \expval{v_r^2} \), where \(v_r\) is the radial\footnote{By ``radial'' we mean directed towards us, not towards the center of the galaxy.}
+component of the velocity, which we expect to account for one third of total energy by the equipartition theorem.
+\(M\) is the total mass of the galaxy.
+
+The potential energy, instead, is \(U = - G M^2 /R\). Substituting these expressions into the virial theorem we get
+%
+\begin{align}
+2 \times \frac{3}{2} M \expval{v_r^2} - \frac{GM^2}{R} &= 0  \\
+M &= \frac{3R}{G} \expval{v_r^2}
+\,,
+\end{align}
+%
+so if we can measure \(\expval{v_r^2}\) through Doppler broadening and we can give a reasonable estimate for the radius \(R\) of the galaxy we can give an estimate for \(M\).
+
+\subsubsection{Putting it together}
+
+Accounting for the dark matter mass, we get \(\expval{M/L} \approx 300 h M_\odot / L_\odot\).
+
+To date, the best estimate for \(\rho_{0c}\) is 
+%
+\begin{align}
+\rho_{0c} \approx \num{1.88e-29} h^2 \SI{}{g /cm^3}
+\,,
+\end{align}
+%
+so, in order to have \(\Omega = 1\), we'd need \(\expval{M/L}\) to be equal to:
+%
+\begin{align}
+\expval{\frac{M}{L}} 
+= \frac{\rho_{0c}}{\mathscr{L}_{g}}
+\approx \frac{\SI{1.88e-29}{\littleh^2 g /cm^{3}}}{\SI{2e8}{\littleh \Lsun /Mpc^{3}}}
+\approx 1390 h M_{\odot} / L_{\odot}
+\,.
+\end{align}
+
+% So measuring the number density of galaxies and their velocities we get a way to measure \(\Omega_0\).
+
+We can define quantities of the form \(\Omega_{0i}  = \rho_{0i} / \rho_{0c}\), where \(i\) is a type of matter, such as baryonic matter, dark matter, dark energy, radiation and so on, whose density is represented as \(\rho_{0i}\).
+
+These variables quantify how much, at the present, time, of the cosmic energy budget is accounted for by that type of matter.
+
+So, only \(\Omega_{0b} \approx 5\%\) of the energy budget is given by baryonic matter (not all of which is visible), while around \(\Omega_{0 DM} 27\%\) is dark matter.
+Together, they are just denoted as ``matter'', and \(\Omega_{0m} \approx 30 \%\).
+
+We can ask ourselves: is dark matter actually baryonic matter which for some reason we cannot see, such as black holes or brown dwarfs?
+
+This cannot be the case: our observations, combined with models for primordial nucleosynthesis, gives the following bounds for the baryonic energy density: 
+%
+\begin{equation}
+0.013 \leq \Omega_{\text{0b}} h^2 \leq 0.025
+\,.
+\end{equation}
+
+The upper bound for \(\Omega_{0b}\) is around \(2.5\%/h^2 \approx \SI{5.4}{\percent}\).
+
+% where \(\Omega_b\) corresponds to the baryonic density: so the universe \emph{cannot} be made only of baryons.
+
+% Dark matter likes ``clumping'': we characterize it by this property.
 
 In the end we have \(\Omega = 1 = \Omega_b + \Omega_{DM} + \Omega_{DE}\) (do note that the value of 1 is measured, not theoretical!)
 
@@ -137,7 +193,7 @@ where \(\sigma_r = \pi^2 k_B^4 / (15 \hbar ^3 c^3)\), while \(\sigma_{SB} = \sig
 
 We are going to show that if neutrinos were massless, their temperature would be \(T_\nu = (4/11)^{1/3} T_\gamma\).
 
-However, we know that for sure \(\sum m_\nu \leq \SI{0.12}{eV} \).
+% However, we know that for sure \(\sum m_\nu \leq \SI{0.12}{eV} \).
 
 We have:
 %

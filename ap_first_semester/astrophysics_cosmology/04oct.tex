@@ -134,7 +134,7 @@ M &= \frac{3R}{G} \expval{v_r^2}
 %
 so if we can measure \(\expval{v_r^2}\) through Doppler broadening and we can give a reasonable estimate for the radius \(R\) of the galaxy we can give an estimate for \(M\).
 
-\subsubsection{Putting it together}
+\subsubsection{Global matter contributions}
 
 Accounting for the dark matter mass, we get \(\expval{M/L} \approx 300 h M_\odot / L_\odot\).
 
@@ -161,7 +161,7 @@ We can define quantities of the form \(\Omega_{0i}  = \rho_{0i} / \rho_{0c}\), w
 
 These variables quantify how much, at the present, time, of the cosmic energy budget is accounted for by that type of matter.
 
-So, only \(\Omega_{0b} \approx 5\%\) of the energy budget is given by baryonic matter (not all of which is visible), while around \(\Omega_{0 DM} 27\%\) is dark matter.
+So, only \(\Omega_{0b} \approx 5\%\) of the energy budget is given by baryonic matter (not all of which is visible), while around \(\Omega_{0 DM} \approx 27\%\) is dark matter.
 Together, they are just denoted as ``matter'', and \(\Omega_{0m} \approx 30 \%\).
 
 We can ask ourselves: is dark matter actually baryonic matter which for some reason we cannot see, such as black holes or brown dwarfs?
@@ -179,28 +179,75 @@ The upper bound for \(\Omega_{0b}\) is around \(2.5\%/h^2 \approx \SI{5.4}{\perc
 
 % Dark matter likes ``clumping'': we characterize it by this property.
 
-In the end we have \(\Omega = 1 = \Omega_b + \Omega_{DM} + \Omega_{DE}\) (do note that the value of 1 is measured, not theoretical!)
+This would seem to indicate that \(\Omega_{0} \approx \num{.3} \ll 1\): however we are failing to consider a crucial contribution.
+Consider the second Friedmann equation \eqref{eq:friedmann-2}: in the Newtonian limit \(P \sim 0\) while \( \rho >0 \), so we get \(\ddot{a} <0\): the universe contracts.
+This is not what is observed: we actually see it in accelerated expansion.
 
-The Friedmann equation would imply deceleration if \(\rho, P \geq 0\): dark energy seems to have \emph{negative pressure}.
+\subsubsection{Dark energy}
 
-What about radiation? The CMB appears to be Planckian:
+The measurements leading to this conclusion are performed by estimating the distance and redshift of far-away objects whose intrinsic luminosity is well known, called \emph{standard candles}: the most commonly used are type Ia supernovae and Cepheid variables.
 
+So, if the expansion is accelerated then \(\ddot{a} > 0\): this means, again from the second Friedmann equation \eqref{eq:friedmann-2}, that \(P < -\rho c^2/3\).
+This is commonly expressed by defining \(w = P / \rho c^2\). 
+In order to have accelerated expansion we need \(w < -1/3\); what is observed is closer to \(w \sim -1\).
+
+This negative pressure has the effect of a \emph{tension}, pulling the universe apart.
+This contribution is also called a ``cosmological constant term'', for reasons which will be expanded upon in later sections, and denoted with the letter \(\Lambda \).
+
+We cannot see directly neither dark matter nor dark energy: how do we distinguish the two? Dark matter tends to cluster, while dark energy is uniformly distributed.
+
+From observations of both the anisotropies in the CMB and the distribution of galaxies we can determine that \(\Omega_{\Lambda } \approx \num{.7}\).
+
+% The Friedmann equation would imply deceleration if \(\rho, P \geq 0\): dark energy seems to have \emph{negative pressure}.
+
+\subsubsection{Radiation}
+
+We still need to compute the contribution of the energy of electromagnetic and neutrino radiation to the total energy balance.
+Let us start with radiation: the greatest fraction of the radiation energy density is contained in the CMB, which is extremely close to a Planckian distribution: 
+%
+\begin{align}
+B (\nu, T) = \frac{2 h}{c^2} \frac{\nu^3}{\exp(\frac{h \nu }{k_B T}) - 1}
+\,,
+\end{align}
+%
+with \(T = T_{0 \gamma } \approx \SI{2.725(1)}{K}\). \(B\) is a measure of spectral intensity: it is measured in units of energy per unit second, area, solid angle and frequency. This is a well-known distribution, whose integral is given by
+%
 \begin{equation}
   \rho_{0 \gamma} = \frac{\sigma_r T_{0 \gamma}^4}{c^2} = \SI{4.8e-34}{\gram\per\centi\metre\cubed}
 \end{equation}
 %
 where \(\sigma_r = \pi^2 k_B^4 / (15 \hbar ^3 c^3)\), while \(\sigma_{SB} = \sigma_r c /4\).
 
-We are going to show that if neutrinos were massless, their temperature would be \(T_\nu = (4/11)^{1/3} T_\gamma\).
+\todo[inline]{Doing the computation, by }
+\begin{lstlisting}[language=Python]
+(4 * cosmo.Tcmb0**4 * ac.sigma_sb / ac.c**3 ).cgs
+\end{lstlisting}
+\todo[inline]{gives \SI{4.6e-34}{g / cm^3}: it is very close to the figure of 4.8 given in \cite{Pacciani:2018}, but I do not see where the discrepancy would come from.}
 
-% However, we know that for sure \(\sum m_\nu \leq \SI{0.12}{eV} \).
+So, we have that the radiation contribution to the global energy balance is \(\Omega_{0 \gamma } \approx \SI{2.5e-5}{\littleh^{-2}} < \SI{.01}{\percent}\), definitely negligible.
 
-We have:
+\todo[inline]{Typo in \cite{Pacciani:2018}: exponent of \(h\) is \(-2\), not \(+2\).}
+
+We are going to show in later sections that if neutrinos were massless, their temperature would be \(T_\nu = (4/11)^{1/3} T_\gamma < T_\gamma \).
+
+They might not be massless, and if they are not the main contribution to the energy density they will give will be from their masses.
+However, recent observations (for example, by the Planck satellite) are bounding the mass of the neutrinos,
+\(\sum m_\nu \leq \SI{0.12}{eV} \): we have 
 %
 \begin{equation}
-  \rho_\nu = 3 N_\nu \frac{\expval{m_\nu} }{\SI{10}{eV}} \SI{e-30}{\gram\per\cubic\centi\metre}
+\rho_\nu = 3 N_\nu \frac{\expval{m_\nu} }{\SI{10}{eV}} \SI{e-30}{\gram\per\cubic\centi\metre}
+\,,
 \end{equation}
-(??? to check)
+%
+where \(N_{\nu }\) is the number of neutrino species. 
+Even if we assume the upper bound, \(N_{\nu } \expval{m_{\nu }} = \SI{.12}{eV}\), we get \(\Omega_{0 \nu } < \SI{.5}{\percent}\). 
+
+\subsubsection{Conclusions}
+
+% In the end we have \(\Omega = 1 = \Omega_b + \Omega_{DM} + \Omega_{DE}\) (do note that the value of 1 is measured, not theoretical!)
+If we add up all the contributions to  \(\Omega = \Omega_b + \Omega_{DM} + \Omega_{\Lambda }\) (neglecting, as we said, the contributions by EM radiation and neutrinos) we find experimentally \(\Omega_{k} = \Omega-1 \approx (5^{+38}_{-40}) \times  \num{e-4}\) \cite[Table A.2]{planckcollaborationPlanck2018Results2019a}.
+
+So, with the data we have currently we cannot determine the sign of the universe's spatial curvature.
 
 \subsection{The Hubble law}
 

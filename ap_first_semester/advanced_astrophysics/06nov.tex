@@ -40,7 +40,7 @@ and we will have \(e( \infty ) - e(r_0 ) = Q( \infty ) + W( \infty )\).
 The most general momentum equation is given by: 
 %
 \begin{align}
-  \frac{1}{v} \dv{v}{r} = \qty(2 \frac{c_s^2}{r} - \frac{GM}{r} + f -(\gamma - 1) q) / \qty(v^2- c_s^2)
+  \frac{1}{v} \dv{v}{r} = \qty(2 \frac{c_s^2}{r} - \frac{GM}{r^2} + f -(\gamma - 1) q) / \qty(v^2- c_s^2)
 \,,
 \end{align}
 %
@@ -173,37 +173,73 @@ while at the critical point they are similar, and specifically
   The energy per unit mass at the bottom of the corona is given by 
   %
   \begin{align}
-    e(r) = - \frac{GM}{r_0 } + \frac{1}{2} v_0^2 + \frac{5}{2} \frac{RT}{\mu }
+    e(r_0 ) = - \frac{GM}{r_0 } + \frac{1}{2} v_0^2 + \frac{5}{2} \frac{RT}{\mu }
+  \,,
+  \end{align}
+
+  where we have everything but \(v_0 \): we can calculate it by imposing that the solution passes through the critical point, the formula we found for it is 
+  %
+  \begin{align}
+  v_0 = a \qty(\frac{r_c}{r_0 })^2 \exp(- 2 \frac{r_c}{r_0 } + \frac{3}{2}) \approx \SI{61}{km/s}
+  \,.
+  \end{align}
+  %
+  
+  Using this figure, we can find 
+  %
+  \begin{align}
+  e(r_0 ) &\approx \SI{-2.76e9}{m^2/s^2}  \\ 
+  e(r_c ) &\approx \SI{1.34e10}{m^2/s^2}
   \,,
   \end{align}
   %
-but we cannot use this formula since we do not have \(v_0 \) nor \(\dot{M}\). However, we can approximate the density profile as an exponential, applying the formula 
-%
-\begin{subequations}
-\begin{align}
-  \dot{M} &= 4 \pi r_c^2 a \rho_{c}  \\
-  &= 4 \pi r_c^2 a \rho_0 \exp(- \frac{r_c - r_0 }{H_0 } \frac{r_0 }{r_c})  
-\,,
-\end{align}
-\end{subequations}
-%
-where we have: the length scale \(H_0 = RT r_0^2 / (GM \mu )\), the critical velocity \(a = \sqrt{RT/\mu }\), and the critical radius \(r_c = GM/(2a^2)\).
+  where we assumed \(\mu = \num{.62}\) since the matter is ionized, and computed the energy density for both the bottom of the corona and the critical point \(r_c = GM/2a^2 \approx \SI{2.97e10}{m} \approx 1.4 R_{*}\).
 
-Plugging these in, we find: 
-%
-\begin{subequations}
-\begin{align}
-  \dot{M} &= 4 \pi \qty(\frac{GM \mu }{2 RT})^2 \sqrt{\frac{RT}{\mu }} \rho_0 
-  \exp(\frac{\mu GM}{RT} \qty(\frac{2RT}{GM \mu } - \frac{1}{r_0 }))  \\
-  &= \pi (GM)^2 \qty(\frac{\mu }{RT})^{3/2} \rho_0 
-  \exp(2 - \frac{\mu GM}{RT r_0 })
-\,.
-\end{align}
-\end{subequations}
-%
-\todo[inline]{One temperature should probably be the effective temperature, but I do not really know what that means. }
+  The isothermal speed of sound is given by \(a = \sqrt{RT/\mu } \approx \SI{116}{km/s}\). 
 
-Then, the mass loss rate can be calculated, since we have all of these quantities. It comes out to be barely anything, since \(\mu GM / RT r_0 \) is very large and we have a negative exponential of it\dots
+  The mass loss rate can be computed at the bottom of the corona: it is given by 
+  %
+  \begin{align}
+  \dot{M} = 4 \pi r_0 ^2 v_0 \rho_0 \approx \SI{3.34e16}{kg/s}
+  \,,
+  \end{align}
+  %
+  therefore we can compute the power needed to accelerate the wind: 
+  %
+  \begin{align}
+  P = \dot{M} \qty(e(r_c) - e(r_0 )) \approx \SI{5.40e26}{J/s} \approx \SI{1.66}{\percent} L_{*}
+  \,,
+  \end{align}
+  %
+  
+  %
+% but we cannot use this formula since we do not have \(v_0 \) nor \(\dot{M}\). However, we can approximate the density profile as an exponential, applying the formula 
+% %
+% \begin{subequations}
+% \begin{align}
+%   \dot{M} &= 4 \pi r_c^2 a \rho_{c}  \\
+%   &= 4 \pi r_c^2 a \rho_0 \exp(- \frac{r_c - r_0 }{H_0 } \frac{r_0 }{r_c})  
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% where we have: the length scale \(H_0 = RT r_0^2 / (GM \mu )\), the critical velocity \(a = \sqrt{RT/\mu }\), and the critical radius \(r_c = GM/(2a^2)\).
+
+% Plugging these in, we find: 
+% %
+% \begin{subequations}
+% \begin{align}
+%   \dot{M} &= 4 \pi \qty(\frac{GM \mu }{2 RT})^2 \sqrt{\frac{RT}{\mu }} \rho_0 
+%   \exp(\frac{\mu GM}{RT} \qty(\frac{2RT}{GM \mu } - \frac{1}{r_0 }))  \\
+%   &= \pi (GM)^2 \qty(\frac{\mu }{RT})^{3/2} \rho_0 
+%   \exp(2 - \frac{\mu GM}{RT r_0 })
+% \,.
+% \end{align}
+% \end{subequations}
+% %
+% \todo[inline]{One temperature should probably be the effective temperature, but I do not really know what that means. }
+
+% Then, the mass loss rate can be calculated, since we have all of these quantities. It comes out to be barely anything, since \(\mu GM / RT r_0 \) is very large and we have a negative exponential of it\dots
 
 \end{bluebox}
 

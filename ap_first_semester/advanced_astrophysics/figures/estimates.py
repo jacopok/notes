@@ -10,7 +10,7 @@ plt.style.use(astropy_mpl_style)
 
 R = ac.k_B / ac.u
 mu = .62
-T=  1e6*u.K
+T=  1e7*u.K
 
 a = np.sqrt(R * T / mu)
 

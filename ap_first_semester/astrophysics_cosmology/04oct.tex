@@ -255,60 +255,135 @@ So, with the data we have currently we cannot determine the sign of the universe
 \centering
 \includegraphics[width=\textwidth]{figures/hubble_original.png}
 \caption{Original velocity versus distance data from Edwin Hubble's paper in 1929 \cite{hubbleedwinRelationDistanceRadial1929}.}
-\label{fig:hubble_origial}
+\label{fig:hubble_original}
 \end{figure}
 
-It is very simply
-
+At the end of the 1920s Edwin Hubble compared the estimates for the distances of far-away galaxies (obtained through standard candles and other types of estimates) to their velocities relative to us, as measured through their redshift. His results are shown in figure \ref{fig:hubble_original}: he obtained a roughly linear relation in the form:
+%
 \begin{equation}
   v = H_0 d\,,
 \end{equation}
 %
-where \(v\) is the velocity of objects far from us, and \(d\) is their distance from us. Can we derive this from the Robertson-Walker line element?
-It was actually derived first by Lemaitre.
+where \(v\) is the velocity of the galaxies, and \(d\) is their distance from us, while \(H_0 \) is a constant of proportionality.
+Hubble's measurements suggested \(H_0 \sim \SI{500}{km/s/Mpc}\), more refined modern ones using techniques similar to those used by Hubble yield a value of \SI{73.24(174)}{km/s/Mpc} \cite{riessDeterminationLocalValue2016}.
 
-We drop the angular part in the FLRW line element (for \(k = 0\)):
+Measurements of \(H_0 \) through analysis of the CMB gives an incompatible value: \(H_0 = \SI{67.8(9)}{km/s/Mpc}\) \cite{PlanckCollaboration:2016XIII}.
 
+
+Let us now show that this \(H_0 \) is actually the same one we defined before, \(H_0 = \dot{a} / a\).
+% Can we derive this from the Robertson-Walker line element?
+% It was actually derived first by Lemaitre.
+
+We are considering the distance connecting us (the center of our reference frame) to a distance galaxy: so we drop the angular part in the flat (\(k = 0\)) Friedmann-Lemaître-Robertson-Walker (FLRW) line element:
+%
 \begin{equation}
   \dd{s^2} = c^2 \dd{t^2} - a^2(t) \dd{r^2}
 \end{equation}
 
-So the distance \(d = a(t) r\): therefore \(\dot{d} = \dot{a}r = \frac{\dot{a} }{a} d\).   This is Newtonian and rough, but it seems to work.
+So, at a fixed time the distance is given by \(d = a(t) r\): therefore \(v = \dot{d} = \dot{a}r = \frac{\dot{a} }{a} d = H_0 d\). 
+
+Do note that we neglected the temporal part of the metric: this is equivalent to assuming that photons travel instantaneously.
+Assuming the universe is spatially flat is correct up to second order: for a general value of \(k\) we have 
+%
+\begin{align}
+d = a \int_{0}^{r} \frac{ \dd{\widetilde{r}} }{\sqrt{1 - k \widetilde{r}^2}} = a  \qty( r + \mathcal{O}(r^3))
+\,,
+\end{align}
+%
+since the integral gives either \(r\), \(\arcsin(r)\) or \(\operatorname{arcsinh}(r)\), depending on \(k\): all three of these equal \(r\) up to second order.
+
+So, this is Newtonian and rough, but it gives us the correct intuitive idea.
+We now wish to make this reasoning more precise.
+
+The first step, since we want to discuss our observations of light, is to define the redshift.
 
 \begin{definition}[Redshift]
-    The redshift \(z\) is defined by
-    %
-    \begin{equation}
-      z = \frac{\lambda_0 - \lambda_e}{\lambda_{e}}\,,
-    \end{equation}
-    %
-    where \(\lambda_0\) and \(\lambda_e\) are the observed and emission wavelengths.
+The redshift \(z\) of a photon is defined by
+%
+\begin{equation}
+  z = \frac{\lambda_0 - \lambda_e}{\lambda_{e}}
+  = \frac{\lambda_0 }{\lambda_{e}} - 1
+  = \frac{\nu_{e}}{\nu_{0}} - 1
+  \,,
+\end{equation}
+%
+where \(\lambda_0\) and \(\lambda_e\) are the observed and emission wavelengths respectively.
 \end{definition}
 
-We can show that \(1+z = a_0/ a_e\). Therefore, \(\nu_o / \nu_e = a_e / a_0\).
+We will show that the redshift can be found from the ratio of the scale factors now and at emission: \(1+z = a_0/ a_e\).
+Therefore, \(\nu_o / \nu_e = a_e / a_0\).
 
-So, we can define (?) the luminosity distance:
+We wish to study the distribution of light from an astronomical source: in Minkowski spacetime the apparent luminosity \(\ell\) decreases like \(r^{-2}\) if \(r\) is the distance from the object.
+In a generic spacetime this will not be the case: however, we can define a measure of spatial distance \(d_L\) such that \(\ell = L / (4 \pi d_L^2)\), where \(L\) is the intrinsic luminosity of the object.
+
+Do note that \(\ell \) is dimensionally a luminosity flux: it is measured in units of energy per unit time per unit area.
+
+\begin{definition}  
+The luminosity distance \(d_L\) is defined as:
 %
 \begin{equation}
-  d_L = \sqrt{\frac{L}{4 \pi \ell} } \,,
+d_L = \sqrt{\frac{L}{4 \pi \ell} } \,.
 \end{equation}
-%
-where \(L\) is the observed luminosity, while \(\ell\) is the apparent luminosity.
 
-How do we relate the luminosity distance and the scale factor? Geometrically we derive:
+Since \(L \propto \ell\), this is a well-defined measure of distance between two generic points in spacetime, regardless of the presence of a source of light there.
+\end{definition}
+  
+How do we relate the luminosity distance and the scale factor?
+The radiation from our source is spread on a sphere: we integrate the angular part of the FLRW metric over a sphere of fixed comoving radius \(r\) to find its area.
+
+The metric restricted to the angular coordinates at fixed \(r\) is given by 
+%
+\begin{align}
+\dd{s^2} = a^2 r^2 \qty(\dd{\theta^2} + \sin^2\theta \dd{\varphi^2})
+\,,
+\end{align}
+%
+so the area form on the surface of the sphere is 
+%
+\begin{align}
+\dd{A} = \sqrt{ \det g} \dd{\theta } \wedge \dd{\varphi }
+\,,
+\end{align}
+%
+where \(\sqrt{ \det g} = \sqrt{a^{4} r^{4} \sin^2\theta } = a^2r^2 \sin \theta \). 
+So,
+%
+\begin{align}
+A = \int_{S^{2}}  \dd{A} = a^2r^2 \int_{0}^{\pi } \dd{\theta } \int_{0}^{2 \pi } \dd{\varphi } \sin \theta = 4 \pi a^2r^2 
+\,,
+\end{align}
+%
+where we substituted the wedge product for the regular tensor product of the differentials since our axes are orthogonal.
+Now, at which time do we compute the scale factor? We are measuring the flux at the surface of the sphere, at the time at which we are observing: therefore we need to compute it at observation time. This gives us \(A = 4 \pi r^2a_0^2\).
+
+Now, the emitted luminosity is in the form: 
+%
+\begin{align}
+L = \dv{N}{t_{e}} \expval{h \nu_{e} }
+\,,
+\end{align}
+%
+where \(\dv*{N}{t}\) is the number of photons emitted per unit time, whose average energy is \(\expval{h \nu }\).
+From the point of view of the observer, the number of photons is the same, while the frequency of the observed photon and the time interval \(\dd{t_{e}}\) change: specifically, \(\nu_{e} = \nu_0 a_0 / a_e\) and \(\dd{t_{e}} = \dd{t_0 } a_e / a_0 \).\footnote{This is the case even though the temporal component of the metric does not change, since we are not considering a fixed instance of cosmic time (which is unphysical): instead, we are considering the time intervals that the emitter and observed measure between the crests of a light wave sent from one to the other.}
+Therefore, the observed absolute luminosity obeys the relation \(L= L_0 (a_0 / a_e)^2 \).
+
+So, putting everything together we get:
 %
 \begin{equation}
-  \ell = \frac{L}{4 \pi r^2 a^2} \qty(\frac{a_e}{a_0}) ^2
+  \ell = \frac{L_0 }{A} 
+  = \frac{L}{4 \pi r^2 a_0 ^2} \qty(\frac{a_e}{a_0}) ^2
+  \,,
 \end{equation}
 %
-since we can just integrate over angles the FLRW element: the value of \(k\) does not enter into the equation.
-The corrective factor comes from the frequency dependence of energy and the fact that power is energy over time, which also changes.
-
+note that the value of \(k\) does not enter into the equation.
+% The corrective factor comes from the frequency dependence of energy and the fact that power is energy over time, which also changes.
 
 Therefore:
 %
 \begin{equation}
-  d_L = \frac{a_o^2}{a_e} r = a (1+z) r\,.
+d_L = \sqrt{\frac{L}{4 \pi \ell}}
+= \sqrt{\frac{4 \pi r^2a_0^2}{4 \pi } \qty(\frac{a_0}{a_e})^2}
+= \frac{a_0^2}{a_e} r = a_0  (1+z) r\,.
 \end{equation}
 
 \end{document}

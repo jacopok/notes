@@ -141,7 +141,7 @@ where we substituted the first order expression \(t_0 -t = z/ H_0 \): we are all
 
 By the same reasoning, we can expand the inverse bracket to first order: 
 %
-\begin{align}
+\begin{align} \label{eq:time-difference-wrt-redshift}
 t_0 - t = \frac{z}{H_0 } \qty[1 - \qty(1 + \frac{q_0}{2} z)]
 = \frac{z}{H_0 } - \qty(1 + \frac{q_0}{2}) \frac{z^2}{H_0 }
 \,,
@@ -167,7 +167,7 @@ where we should select the negative sign since we want positive quantities on bo
 
 The integral on the right hand side can be solved analytically: it is 
 
-\begin{equation}
+\begin{equation} \label{eq:integral-radial-FLRW}
 -\int_{r}^{0} \frac{ \dd{\widetilde{r}}}{\sqrt{1 - k \widetilde{r}^2}} =
 \begin{cases}
   \arcsin r =r + \mathcal{O}(r^3) &k =1 \\
@@ -183,68 +183,115 @@ On the left hand side, we can substitute in \(a(t)\) from equation \eqref{eq:sca
 \int_{t}^{t_0} \frac{c\dd{t}}{a(t)} 
 &= \frac{c}{a_0 }
 \int_{t }^{t_0 } \dd{\widetilde{t}} \qty[1 + H_0 (\widetilde{t} - t_0) + \mathcal{O}(\Delta \widetilde{t}^2)]^{-1}  \\
-&= \frac{c}{a_0 } \qty[t_0  - t - \frac{H_0}{2} \qty(t-t_0 )^2] + \mathcal{O}(\Delta t^3)
+&= \frac{c}{a_0 } \qty[t_0  - t + \frac{H_0}{2} \qty(t-t_0 )^2] + \mathcal{O}(\Delta t^3)
 \end{align}
 %
 where we used the expression for the scale factor to first order only since the integration raised the order of the estimate by one.
 we have:
-\begin{equation}
-  \frac{c}{a_0 } \qty((t_0 - t) + \frac{1}{2} H_0 (t_0 - t)^2 + o(\abs{t_0 - t} ^2)) = r \,,
-\end{equation}
+\begin{align}
+\frac{c}{a_0 } \qty((t_0 - t) + \frac{1}{2} H_0 (t_0 - t)^2 + \mathcal{O}(\Delta t ^3)) &= r  
+\,,
+\end{align}
 %
 since the term proportional to \(q_0 \) only gives a third order contribution.
-
-The explicit form of the luminosity distance was
-\begin{equation}
-  d_L = a_0^2 \frac{r}{a} = a_0 (1+z) r\,.
-\end{equation}
-
-The term \(a_0 \) should disappear at the end of every calculation: it is a bookkeeping parameter.
-Moving on:
-\begin{equation}
-  d_L = a_0 (1+z) \frac{c}{a_0 H_0 } \qty(z - \frac{1}{2} (1+ q_0 )z^2)\,,
-\end{equation}
+We can now substitute the expression for the time difference with respect to the redshift \eqref{eq:time-difference-wrt-redshift}, only computed to second order: 
 %
-but this also contains cubic terms:
-\begin{equation}
-  d_L \simeq \frac{c}{H_0} \qty(z + \frac{1}{2} (1-q_0 ) z^2 + o(z^2))\,.
-\end{equation}
+\begin{align}
+r &= \frac{c}{a_0 } \qty[\frac{z}{H_0 } \qty(1 -\qty(1 + \frac{q_0}{2})z)+ \frac{H_0 }{2} \qty(\frac{z}{H_0 } \qty(1 -\qty(1 + \frac{q_0}{2})z))^2]  \\
+&= \frac{c}{a_0 } \qty[\frac{z}{H_0 } - \qty(1+\frac{q_0}{2})\frac{z^2}{H_0 } + \frac{H_0}{2} \frac{z^2}{H_0^2}] \marginnote{Ignored the third and higher order terms in the square.}  \\
+&= \frac{c}{a_0 H_0 } \qty[z - \frac{1}{2} \qty(1 + q_0 )z]
+\,.
+\end{align}
+%
 
-Therefore:
-\begin{equation}
-  cz = H_0 \qty(d_L + \frac{1}{2} (q_0 -1 ) \frac{H_0}{c} d_L^2)\,,
-\end{equation}
+Now, we can insert this expression for \(r\) into the formula for the luminosity distance \eqref{eq:luminosity-distance}:
+\begin{align}
+d_L &= a_0^2 \frac{r}{a} = a_0 (1+z) r \\
+&= a_0 (1+z) \frac{c}{a_0 H_0 } \qty(z - \frac{1}{2} (1+ q_0 )z^2)
+\,.
+\end{align}
+
+As we expect, the term \(a_0 \) disappears: it is a bookkeeping parameter, the physical properties of a universe described by a FLRW metric are invariant under a global rescaling of the scale factor.
+
+Our expression also contains cubic terms in \(z\): removing these to get back to second order we find
+\begin{align}
+d_L &= \frac{cz}{H_0} 
+\qty(1+z) \qty(1- \frac{1}{2}\qty(1+q_0)z)  \\
+&= \frac{cz}{H_0 } \qty(1 + \qty( 1 - \frac{1}{2} - \frac{1}{2}q_0 )z)  \\
+&= \frac{cz}{H_0 } \qty(1 + \frac{1}{2}\qty(1 - q_0) z)
+% \qty(z + \frac{1}{2} (1-q_0 ) z^2)
+\,.
+\end{align}
+
+We can turn this into a relation for \(cz\) in terms of \(d_L\) by substituting in the first order expression \(d_L H_0 = cz\) into the second order term:
+\begin{align}
+cz &= d_L H_0 + \frac{q_0 -1}{2} cz^2 \\
+cz &= H_0 \qty(d_L + \frac{1}{2} (q_0 -1 ) \frac{H_0}{c} d_L^2)\,,
+\end{align}
 %
 and we can notice that the relation is approximately linear and independent of acceleration for low redshift, but we can detect the acceleration at higher redshift.
-Typically we need to go at around \SI{10}{\mega\parsec}.
+Typically we need to measure galaxies at least \SI{10}{\mega\parsec} away in order to detect these second order effects.
+As we mentioned in the beginning, the data show the parameter \(q_0 \) to be negative.
 
-% The parameter \(q_0 \) appears to be negative now.
+This effect is similar to a Doppler effect, but the analogy is not perfect: the redshift is caused by the expansion of space itself, and the apparent velocities of the galaxies at high redshift would be superluminal. 
 
-We can do better than that if we go from \emph{cosmography} to \emph{cosmology}, by understanding what causes the acceleration of the expansion of the universe.
+\todo[inline]{The reasoning in \cite{Pacciani:2018} is not completely convincing: extrapolating a superluminal velocity from \(cz \sim 10c\) is meaningless, since these formulas were derived in the nonrelativistic approximation. If we use the correct relativistic formula for the Doppler shift this issue does not arise. We might be able to show that the apparent speed of high-redshift galaxies is superluminal but we need another way to do it.}
 
-Let us expand on the concept of redshift:
+\begin{definition}[Angular diameter distance]
+The angular diameter distance is defined as the ratio of the object's physical transverse size \(L\) to its angular size in radians \(\Delta \theta \): 
+%
+\begin{align}
+d_A = \frac{L}{\Delta \theta } = a(t) r
+\,,
+\end{align}
+%
+which is peculiar in that it is not monotonic in \(z\) \cite{hoggDistanceMeasuresCosmology2000}: at \(z \gtrsim 1\) it starts decreasing.
+\end{definition}
+
+% We can do better than that if we go from \emph{cosmography} to \emph{cosmology}, by understanding what causes the acceleration of the expansion of the universe.
+
+\subsubsection{Redshift-scale factor relation}
+
+Let us prove the statement from before, \(\lambda_0 / \lambda  = a_0 / a\):
 photons are emitted with a certain wavelength \(\lambda_{e}\), at a comoving radius \(r\) from us, and detected at \(\lambda_{o}\).
-The line element for the photon is \(\dd{s^2} =0\), therefore \(c\dd{t}/ a(t) = \pm \dd{r} \sqrt{1-kr^2} \).
 
-As before, we can integrate this relation from the emission to the absorption: we call it \(f(r)\) (it can be any of the functions shown before).
+The line element for the photon is \(\dd{s^2} =0\), therefore \(c\dd{t}/ a(t) = \pm \dd{r} / \sqrt{1-kr^2} \).
 
+As before, we can integrate this relation from the emission to the absorption: we call it \(f(r)\) (it can be any of the functions shown in equation \eqref{eq:integral-radial-FLRW}):
 \begin{equation}
   \int_{t}^{t_0 } = \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})} = f(r)
 \end{equation}
 
-If we map \(t \rightarrow t + \delta t\) and \(t_0 \rightarrow \delta t_0 \) in the integration limits, the integral must be constant since it only depends on \(r\).
-
-When equating these two we can simplify the original integral, rearrange the integration limits and get:
+If we map \(t \rightarrow t + \delta t\) and \(t_0 \rightarrow \delta t_0 \) in the integration limits, the integral must be constant since it only depends on \(r\) --- do note that all the expansion of the universe is accounted for by the increasing scale factor, objects are stationary with respect to the comoving radial coordinate.
+We are computing the integral for two successive wavefront of the light.
+Then, we equate the two: 
+%
+\begin{align}
+f(r) &= \int_{t}^{t_0 } \frac{c \dd{\widetilde{t} }}{a(\widetilde{t})} = \int_{t+\delta t}^{t_0 + \delta t_0 } \frac{c \dd{\widetilde{t} }}{a(\widetilde{t})}
+\,,
+\end{align}
+%
+which we can split into: 
+%
+\begin{align}
+\qty[\int_{t+ \delta t}^{t} + \int_{t}^{t_0} + \int_{t_0 }^{t_0 + \delta t_0 } - \int_{t}^{t_0 }] \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})} = 0
+\,,
+\end{align}
+%
+where, since all the integrals have the same argument, we collect it at the end for clarity.
+We simplify the original integral and swap the integration limits to get:
 \begin{equation}
   \int_{t}^{t + \delta t} \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})} = \int_{t_0 }^{t_0 + \delta t_0 } \frac{c\dd{\widetilde{t}}}{a(\widetilde{t})}\,,
 \end{equation}
 %
-which can we cast into
+which can we approximate by
 \begin{equation}
-  \frac{c \delta t}{a(t)} =   \frac{c \delta t_0 }{a(t_0 )}\,.
+\frac{c \delta t}{a(t)} =   \frac{c \delta t_0 }{a(t_0 )}\,,
 \end{equation}
+%
+since the periods of the photons we are considering are generally much smaller than the cosmic timescales.
 
-Since the frequency must be proportional to the inverse of the time intervals \(\delta t\) or \(\delta t_0 \), we have
+Since the frequency of the emitted and observed photons must be proportional to the inverse of the time intervals \(\delta t\) or \(\delta t_0 \), we have
 \begin{equation}
   \nu_{e} a(t_{e}) = \nu_{o} a(t_{o})\,,
 \end{equation}
@@ -256,16 +303,18 @@ therefore
   = \frac{a_0 }{a}\,.
 \end{equation}
 
+\chapter{Friedmann models}
+
 \subsection{A Newtonian derivation of the Friedmann equations}
 
-It is useful to do it first this way, pedagogically.
+It is useful to do it first this way, pedagogically, although the proper derivation is done starting from the Einstein Field Equations.
 
 Let us take a uniform spacetime with density \(\rho\). We consider a sphere, and take all the mass inside the sphere away.
 
 Consider Birkoff's theorem: the gravitational field of a spherically symmetric body is always described by the Schwarzschild metric.
 This can also be applied to a hole: in this case, it tells us that the metric inside the cavity is the Minkowski metric.
 
-The mass taken away will be \(M(\ell) = \frac[i]{4 \pi}{3} \rho \ell^{3}\), where \(\vec{l} = a(t) \vec{r}\) is the radius of the sphere.
+The mass taken away will be \(M(\ell) = \frac{4 \pi}{3} \rho \ell^{3}\), where \(\vec{l} = a(t) \vec{r}\) is the radius of the sphere.
 
 We suppose that the gravitational field is \emph{weak}:
 \begin{equation}

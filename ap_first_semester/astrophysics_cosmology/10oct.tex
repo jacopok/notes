@@ -20,60 +20,100 @@
 % %
 % where \(k=0, \pm 1\) and \(r\) is the dimensionless comoving radius.
 
-The distance can be calculated as:
+Another way of defining a distance is the one we get by directly integrating the radial part of the line element: this way, we are effectively using a space-like measuring stick, working at fixed cosmic time and fixing both of the angles \(\theta \) and \(\varphi \).
+
+% The distance can be calculated as:
+% %
+% \begin{equation}
+%   d_P (t) = a(t)\frac{r}{\sqrt{1-kr^2}}\,.
+% \end{equation}
+
+% We are allowed to consider radial trajectories, however this does not account for the fact that we cannot actually measure with a space-like measuring stick.
+
+\begin{definition}[Proper distance]
+The proper distance \(d_P\) at a fixed cosmic time \(t \) to an object at a comoving radial coordinate \(r\) is given by: 
 %
 \begin{equation}
-  d_P (t) = a(t)\frac{r}{\sqrt{1-kr^2}}\,.
+d_P = a(t) \int_0^r \frac{\dd{\widetilde{r}}}{\sqrt{1-k \widetilde{r}^2}}\,.
 \end{equation}
+\end{definition}
+  
+% This is called the \emph{proper distance} (the subscript \(P\) is for ``proper''): the integration, at zero \(\dd{\Omega}\) and zero \(\dd{t}\), of the radial part of the metric.
 
-We are allowed to consider radial trajectories, however this does not account for the fact that we cannot actually measure with a space-like measuring stick.
+% On the other hand (OTOH), the flux of photons can give us the \emph{luminosity distance}, which is actually measurable.
 
-A better definition is
+\subsubsection{A derivation of the Hubble law}
+
+We want to derive the Hubble law (\(v = H_0 d\)) mathematically.
+It can also be restated as \(cz = H_0 d\): the observed velocity of recession of the objects is measured through redshift, which is described (in  the nonrelativistic limit\footnote{The relativistic expression is 
 %
-\begin{equation}
-  d_P = a(t) \int_0^r \frac{\dd{\widetilde{r}}}{\sqrt{1-k \widetilde{r}^2}}\,.
-\end{equation}
-
-This is called the \emph{proper distance} (the subscript \(P\) is for ``proper''): the integration, at zero \(\dd{\Omega}\) and zero \(\dd{t}\), of the radial part of the metric.
-
-On the other hand (OTOH), the flux of photons can give us the \emph{luminosity distance}, which is actually measurable.
-
-We want to derive the Hubble law (\(v = H_0 d\)) mathematically. It can also be restated as \(cz = H_0 d\). 
-
-\begin{greenbox}
-  why?
-\end{greenbox}
-
-For a fixed source at \(d = ar\), naïvely we would have:
+\begin{align}
+1 + z = \sqrt{\frac{1 + v/c}{1 - v/c}} \gtrsim 1+ \frac{v}{c}
+\,.
+\end{align}})
+by the formula 
 %
-\begin{equation}
-  \dot{d} = \dot{a} r = \frac{\dot{a} }{a} ar = H_0  d
-\end{equation}
+\begin{align}
+\lambda _0 = \lambda _{e} \qty(1 \pm \frac{v}{c})
+\,,
+\end{align}
+%
+where the sign in the \(\pm\) is a plus if the object is receding from us.
+We also defined \(z\) through \(\lambda_0 / \lambda_{e}  = 1+z\): this means that we can identify \(z = v/c\).
 
-We can ``move away from the current epoch by Taylor expanding''.
+% For a fixed source at \(d = ar\), naïvely we would have:
+% %
+% \begin{equation}
+%   \dot{d} = \dot{a} r = \frac{\dot{a} }{a} ar = H_0  d
+% \end{equation}
 
-The scale factor \(a(t)\) can be written as
-
+Now, we are going to ``move away from the current epoch by Taylor expanding'':
+the scale factor at a time \(t\), \(a(t)\), can be written as
+%
 \begin{subequations}
 \begin{align}
-    a(t) &\simeq a_0 + \dot{a}_0 (t-t_0 ) + \frac[i]{1}{2} \ddot{a}(t-t_0)^2\\
-    &= a_0 \qty(1 + \frac{\dot{a} }{a_0}|_{t_0 } (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))\,,
+    a(t) &= a_0 + \dot{a}_0 (t-t_0 ) + \frac{1}{2} \ddot{a}_{0}(t-t_0)^2 + \mathcal{O}\qty(\abs{t-t_0}^3)
+    \marginnote{We drop the error term}\\
+    &\approx a_0 \qty(1 + H_0 (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))\,, \marginnote{Substituted \(H_0 = \dot{a}_{0} / a_0 \).}
 \end{align}
 \end{subequations}
 %
-where \(q_0 \defeq - \ddot{a_0 } a_0 / (\dot{a_0 } )^2\) is called the \emph{deceleration parameter} by historical reasons: people thought they would see deceleration when first writing this.
+where \(q_0 \defeq - \ddot{a}_0 a_0 / (\dot{a}_0 )^2\) is called the \emph{deceleration parameter} by historical reasons: people thought they would see deceleration \(\ddot{a}<0\) when first writing this, so a positive \(q_0 \), but
+the deceleration parameter is instead measured to be negative.
 
-(the Hubble \emph{constant} is not constant wrt \emph{time} , but wrt \emph{direction}!)
-
-The deceleration parameter is actually measured to be negative.
+% (the Hubble \emph{constant} is not constant wrt \emph{time} , but wrt \emph{direction}!)
 
 Now, \(1 + z = a_0 / a\) can be expressed as:
 
 \begin{equation}
-    1+ z \simeq \qty(1 + \frac{\dot{a} }{a_0}|_{t_0 } (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))^{-1}\,.
+    1+ z \simeq \qty(1 + H_0  (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))^{-1}\,.
 \end{equation}
 
-Do note that this is derived by using at most second order in the distance interval: when expanding we cannot trust terms of order higher than second. Expanding with this in mind we get:
+Do note that this is derived starting with a formula which is correct up to second order in the time interval \(\Delta t = t - t_0 \): when expanding we cannot trust terms of order higher than second.
+Expanding with this in mind we get:\footnote{We need to compute the first and second derivatives of 
+%
+\begin{align}
+\qty(1 + H_0 \Delta t - \frac{q_0}{2} H_0^2 \Delta t)^{-1}
+= \qty(1 + a \Delta t + b \Delta t)^{-1} = f(\Delta t)
+\,:
+\end{align}
+%
+they are 
+%
+\begin{align}
+\dv{f}{\Delta t} &= - \qty(1 + a \Delta t + b \Delta t)^{-2} \qty(a + 2 b \Delta t)  \\
+\dv[2]{f}{\Delta t} &= 2\qty(a + 2b \Delta t)^2 \qty(1 + a \Delta t + b \Delta t) - \qty(1 + a \Delta t + b \Delta t)^{-2} \qty(2 b)
+\,,
+\end{align}
+%
+so we have 
+%
+\begin{align}
+\eval{\dv{f}{\Delta t} }_{\Delta t = 0} = x
+\qquad \text{and} \qquad
+\frac{1}{2!}\eval{\dv[2]{d}{\Delta t}}_{\Delta t = 0} = \frac{1}{2!} \qty(2 a^2- 2b) = a^2 - b
+\,.
+\end{align}}
 %
 \begin{equation}
   1+ z \simeq
@@ -82,15 +122,19 @@ Do note that this is derived by using at most second order in the distance inter
 %
 therefore
 %
-\begin{equation}
-  z = H_0 (t_0 - t) + \qty(1 + \frac{q_0}{2}) H_0^2 (t_0 - t)^2\,.
-\end{equation}
+\begin{align}
+  z &= H_0 (t_0 - t) + \qty(1 + \frac{q_0}{2}) H_0^2 (t_0 - t)^2 \marginnote{Changed the time intervals to \(t_0 -t = - \Delta t\), the square of which is the same as before.}  \\
+  &= (t_0 - t) \qty[H_0 + \qty(1 + \frac{q_0}{2})H_0^2(t_0 - t) z]
+  \,.
+\end{align}
 
 Rearranging the equation we get
 %
-\begin{equation}
-  t_0 - t = z \qty(H_0 + \qty(1+\frac{q_0}{2})H_0 z)^{-1}\,,
-\end{equation}
+\begin{align}
+  t_0 - t &= z \qty[H_0 + \qty(1+\frac{q_0}{2})H_0 (t_0 -t)]^{-1}  \\
+  &= 
+  \,,
+\end{align}
 %
 but as before we must expand to get only the relevant orders:
 \begin{equation}
@@ -154,11 +198,11 @@ Therefore:
 and we can notice that the relation is approximately linear and independent of acceleration for low redshift, but we can detect the acceleration at higher redshift.
 Typically we need to go at around \SI{10}{\mega\parsec}.
 
-The parameter \(q_0 \) appears to be negative now.
+% The parameter \(q_0 \) appears to be negative now.
 
 We can do better than that if we go from \emph{cosmography} to \emph{cosmology}, by understanding what causes the acceleration of the expansion of the universe.
 
-Let us expand on the concept of reshift:
+Let us expand on the concept of redshift:
 photons are emitted with a certain wavelength \(\lambda_{e}\), at a comoving radius \(r\) from us, and detected at \(\lambda_{o}\).
 The line element for the photon is \(\dd{s^2} =0\), therefore \(c\dd{t}/ a(t) = \pm \dd{r} \sqrt{1-kr^2} \).
 

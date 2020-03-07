@@ -74,7 +74,7 @@ the scale factor at a time \(t\), \(a(t)\), can be written as
 \begin{align}
     a(t) &= a_0 + \dot{a}_0 (t-t_0 ) + \frac{1}{2} \ddot{a}_{0}(t-t_0)^2 + \mathcal{O}\qty(\abs{t-t_0}^3)
     \marginnote{We drop the error term}\\
-    &\approx a_0 \qty(1 + H_0 (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))\,, \marginnote{Substituted \(H_0 = \dot{a}_{0} / a_0 \).}
+    &\approx a_0 \qty(1 + H_0 (t-t_0 ) - \frac{1}{2} q_0 H_0 ^2 (t-t_0 ))\,, \marginnote{Substituted \(H_0 = \dot{a}_{0} / a_0 \).} \label{eq:scale-factor-expansion-second-order}
 \end{align}
 \end{subequations}
 %
@@ -128,46 +128,66 @@ therefore
   \,.
 \end{align}
 
-Rearranging the equation we get
+Bringing the bracket to the other side we get
 %
 \begin{align}
-  t_0 - t &= z \qty[H_0 + \qty(1+\frac{q_0}{2})H_0 (t_0 -t)]^{-1}  \\
-  &= 
+  t_0 - t &= z \qty[H_0 + \qty(1+\frac{q_0}{2})H_0^2 (t_0 -t)]^{-1}  \\
+  &= z \qty[H_0 + \qty(1+\frac{q_0}{2})H_0 z]^{-1}  \\
+  &= \frac{z}{H_0}  \qty[1+ \qty(1+\frac{q_0}{2}) z]^{-1}
   \,,
 \end{align}
 %
-but as before we must expand to get only the relevant orders:
-\begin{equation}
-  t_0 - t = H_0 (t_0 - t) + \qty(1+ \frac{q_0}{2}H_0^2 (t_0 - t)^2)
-\end{equation}
+where we substituted the first order expression \(t_0 -t = z/ H_0 \): we are allowed to make this substitution since the expression is multiplied by \(z\), which has the same asymptotic order as \(t_0 -t\) (since \(H_0 \) is finite): working to first order inside the brackets is equivalent to working to second order in the global expression.
 
-We would like the time interval to disappear: for photons \(\dd{s^2} =0\), therefore in that case \(c^2 \dd{t^2} = a^2 (t) \dd{r^2} / (1-kr^2) \). Taking a square root and integrating:
+By the same reasoning, we can expand the inverse bracket to first order: 
+%
+\begin{align}
+t_0 - t = \frac{z}{H_0 } \qty[1 - \qty(1 + \frac{q_0}{2} z)]
+= \frac{z}{H_0 } - \qty(1 + \frac{q_0}{2}) \frac{z^2}{H_0 }
+\,,
+\end{align}
+%
+
+% As before, when we expand we keep only the relevant orders:
+% %
+% \begin{equation}
+%   t_0 - t = H_0 (t_0 - t) + \qty(1+ \frac{q_0}{2}H_0^2 (t_0 - t)^2)
+% \end{equation}
+
+We would like the time interval to disappear: we want a distance, not a time, so we should seek an expression for \(r\) instead of \(\Delta t\).
+We are observing photons, for which \(\dd{s^2} =0\), which is equivalent \(c^2 \dd{t^2} = a^2 (t) \dd{r^2} / (1-kr^2) \).
+Taking a square root and integrating we get:
 \begin{equation}
-  \int_{t}^{t_0 } \frac{c \dd{t}}{a(t)}
-  = \pm \int_r^0 \frac{\dd{\widetilde{r}}}{\sqrt{1-kr^2}}\,,
+\int_{t}^{t_0 } \frac{c \dd{t}}{a(t)}
+= \pm \int_r^0 \frac{\dd{\widetilde{r}}}{\sqrt{1-k \widetilde{r}^2}}
+\,,
 \end{equation}
 %
-where the plus or minus sign comes from\dots
+where we should select the negative sign since we want positive quantities on both sides. The other choice would correspond to the photon being emitted from the Earth and received at the comoving radius of the source. 
 
-The integral on the RHS can be solved analytically: it is 
+The integral on the right hand side can be solved analytically: it is 
 
 \begin{equation}
-  \begin{cases}
-      \arcsin r \qquad k=1 \\
-      r \qquad k=0 \\
-      \operatorname{arcsinh} r \qquad k = -1
-  \end{cases}
+-\int_{r}^{0} \frac{ \dd{\widetilde{r}}}{\sqrt{1 - k \widetilde{r}^2}} =
+\begin{cases}
+  \arcsin r =r + \mathcal{O}(r^3) &k =1 \\
+  r  &k=0 \\
+  \operatorname{arcsinh} r =r + \mathcal{O}(r^3)\qquad\qquad  &k= -1
+\end{cases}
 \end{equation}
 %
-in all cases, it is just \(r\) up to \emph{second} order (since the next term in the expansion of an arcsine or hyperbolic arcsine etc is of third order).
+in all cases, it is just \(r\) up to \emph{second} order (since the next term in the expansion of an arcsine or hyperbolic arcsine is of third order).
 
-On the other side, we have:
-\begin{equation}
-  \frac{1}{a_0 }
-  \int_{t_0 }^t c\dd{\widetilde{t}} \qty(1 + H_0 (\widetilde{t} - t_0) - \frac{q_0}{2}H_0^2 (\widetilde{t} - t_0)^2)^{-1}
-\end{equation}
+On the left hand side, we can substitute in \(a(t)\) from equation \eqref{eq:scale-factor-expansion-second-order}:
+\begin{align}
+\int_{t}^{t_0} \frac{c\dd{t}}{a(t)} 
+&= \frac{c}{a_0 }
+\int_{t }^{t_0 } \dd{\widetilde{t}} \qty[1 + H_0 (\widetilde{t} - t_0) + \mathcal{O}(\Delta \widetilde{t}^2)]^{-1}  \\
+&= \frac{c}{a_0 } \qty[t_0  - t - \frac{H_0}{2} \qty(t-t_0 )^2] + \mathcal{O}(\Delta t^3)
+\end{align}
 %
-therefore, neglecting \emph{third} and higher order terms, we have:
+where we used the expression for the scale factor to first order only since the integration raised the order of the estimate by one.
+we have:
 \begin{equation}
   \frac{c}{a_0 } \qty((t_0 - t) + \frac{1}{2} H_0 (t_0 - t)^2 + o(\abs{t_0 - t} ^2)) = r \,,
 \end{equation}

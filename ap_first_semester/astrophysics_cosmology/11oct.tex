@@ -49,11 +49,9 @@ Indeed, this would yield the Friedmann equation without the \(P\) term.
 essere sempre scelta piccola a piacere di modo che ad ogni istante valga la condizione di campo debole.''
 This does not seem to make sense: the weak-field condition is not dependent on our coordinate choices, and in fact is written in terms of \(\ell\) and not \(r\).}
 
-\begin{bluebox}
-The three Friedman equations are not independent: for example, the second one \eqref{eq:friedmann-2} can be derived from the first and third \cite[sec. 10.3.5]{tissinoGeneralRelativityExercises2020}. 
+The three Friedman equations are not independent: for example, the second one \eqref{eq:friedmann-2} can be derived from the first and third. 
 
 This means that we can derive the full relativistic equations in this Newtonian context, using the derivations we have shown for the first and third equation, and then combining these to find the second.
-\end{bluebox}
 
 % \begin{subequations}
 %     \begin{align}
@@ -67,24 +65,47 @@ This means that we can derive the full relativistic equations in this Newtonian 
 
 % The third equation comes from the Bianchi identities \(\nabla_{\mu} G^{\mu \nu}=0\).
 
-Rewriting the first equation:
+Let us do this derivation explicitly:
+we differentiate the first Friedmann equation
 \begin{equation}
   \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k c^2
 \end{equation}
-and
+with respect to time to find 
 \begin{equation}
   2 \dot{a} \ddot{a} = 
   \frac{8 \pi G}{3} \dot{\rho} a^2 + \frac{16 \pi G}{3} \rho \dot{a} a 
 \end{equation}
 
-We then substitute in the expression we have for \(\dot{\rho} \) from the third FE.
-Everything is multiplied by \(\dot{a} \): if it is not zero we have
-\begin{equation}
-  \frac{\ddot{a}}{a} = - 4 \pi G \rho - \frac{4 \pi G p}{c^2} + \frac{8 \pi G}{3} \rho= 
-  - 4 \pi G \qty(\frac{\rho}{3} + \frac{P}{c^2})\,.
-\end{equation}
+We then substitute in the expression we have for \(\dot{\rho} \) from the third equation: 
+%
+\begin{align}
+\dot{\rho} = -3 \frac{\dot{a}}{a} \qty(\rho + \frac{P}{c^2})
+\,,
+\end{align}
+%
+which gives us  
+%
+\begin{align}
+2 \dot{a} \ddot{a} &= 
+\frac{8 \pi G}{3} \qty[- 3 \frac{\dot{a}}{a} \qty(\rho + \frac{P}{c^2})] a^2 + \frac{16 \pi G}{3} \rho  \dot{a} a  \\
+\ddot{a} &= - 4 \pi G \qty(\rho + \frac{P}{c^2}) a
++ \frac{8 \pi G}{3} \rho a 
+ \marginnote{Dividing through by \(2\dot{a}\)}  \\
+\frac{\ddot{a}}{a} &= - \frac{8 \pi G}{3} \qty[\frac{3}{2} \qty(\rho + \frac{P}{c^2}) - \rho ]  
+\marginnote{Dividing through by \(a\)}
+\\
+\frac{\ddot{a}}{a} &= -\frac{4 \pi G}{3} \qty(\rho + 3 \frac{P}{c^2})
+\,,
+\end{align}
+%
+which is precisely equation \eqref{eq:friedmann-2}.
 
-The equation system is underdetermined. We have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid: \(p \overset{!}{=} p(\rho)\).
+\section{The equation of state}
+
+So, the equation system is underdetermined: we do not in fact have three independent Friedmann equations, but just two. 
+The variables we want to find, however, are three: \(P(t)\), \(\rho (t)\), \(a(t)\).
+
+So, we have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid, that is, one for which the pressure only depends on the density: \(P \overset{!}{=} P(\rho)\).
 
 Very often this equation of state will look like \(p = w \rho c^2\), for a constant \(w\) (not \(\omega\)!). This is related to the adiabatic constant \(\gamma\) by \(\gamma = w+1\).
 
@@ -107,7 +128,7 @@ More generally, not assuming \(w=0\) we get:
   \dot{\rho} = -3 (1+w) \rho \frac{\dot{a} }{a} \implies \rho \propto a^{-3 (1+w)} = a^{-3 -3\gamma}
 \end{equation}
 
-Another case is a \emph{gas of photons}: in that case \(p = \rho c^2 / 3\), so \(w=\frac[i]{1}{3} \), \(\gamma = \frac[i]{4}{3} \), \(c_{s}^2 = c^2 / 3 \): the speed of sound is \(c / \sqrt{3} \). These photons are thermal: perturbations can propagate (even without interactions with matter\dots). 
+Another case is a \emph{gas of photons}: in that case \(p = \rho c^2 / 3\), so \(w=\frac{1}{3} \), \(\gamma = \frac{4}{3} \), \(c_{s}^2 = c^2 / 3 \): the speed of sound is \(c / \sqrt{3} \). These photons are thermal: perturbations can propagate (even without interactions with matter\dots). 
 
 In this case we get \(\rho \propto p \propto a^{-4}\).
 

@@ -107,15 +107,36 @@ The variables we want to find, however, are three: \(P(t)\), \(\rho (t)\), \(a(t
 
 So, we have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid, that is, one for which the pressure only depends on the density: \(P \overset{!}{=} P(\rho)\).
 
-Very often this equation of state will look like \(p = w \rho c^2\), for a constant \(w\) (not \(\omega\)!). This is related to the adiabatic constant \(\gamma\) by \(\gamma = w+1\).
+Very often this equation of state will be linear: \(P = w \rho c^2\), with an adimensional constant \(w\).\footnote{This is a latin \(w\), not a greek \(\omega \): students historically call it ``omega'' for some reason.}
+We will assume this relation to be true.
 
-We are going to assume homogeneity and isotropicity.
+% This is related to the adiabatic constant \(\gamma\) by \(\gamma = w+1\).
 
-Some possible equations of state are \(p \equiv 0\), or \(w =0\): this means \(\gamma =1 \). This is a \emph{dust pressureless fluid}.
+% We are going to assume homogeneity and isotropicity.
 
-What is the speed of sound of our fluid? We only have the adiabatic speed of sound \(c_s^2 = \pdv*{p}{\rho}\), where the derivative is to be taken at constant entropy and is just a total derivative in the barotropic case.
+\subsection{Common equations of state}
 
-Also in the baryionic case \(p=0\) is a good approximation.
+A thing we will compute for the different equations of state is the adiabatic speed of sound: 
+%
+\begin{align}
+c^2_{s} = \pdv{P}{\rho } = \dv{P}{\rho } = w c^2
+\,.
+\end{align}
+
+
+\begin{enumerate}
+  \item \(w = 0\) is equivalent to \(P \equiv 0\): this is what we get in the nonrelativistic limit, for \(P \ll \rho c^2\), since there is no pressure this can be interpreted as a \emph{dust}. In this case \(\rho \propto a^{-3}\), and \(c_s^2 \ll c^2\). 
+  \item \(w = 1/3\) is what we get if we seek the pressure of radiation.\footnote{This expression can be derived in different ways, one of which is to start from the fact that the stress energy tensor must be traceless since it is of the form \(T_{\mu \nu } \sim \sum _{i} \rho u^{(i)}_{\mu } u^{(i)}_{\nu }\), where \(u_{\mu }^{(i)}\) are the four-velocities of photons: their norm is zero, so we must have \(g^{\mu \nu} T_{\mu \nu } = 0\). Another, perhaps more illustrative derivation was given in the General Relativity course \cite[pag. 86-87]{tissinoGeneralRelativityNotes2020}.}
+  In this case we have \(c_s = c/ \sqrt{3}\), while the energy density goes like \(\rho \propto a^{-4}\), since we get a factor \(a^{-3}\) from the volume expansion and another \(a^{-1}\) from the decrease of the energy of each photon due to redshift. So, for a radiation-dominated universe the total energy \(E \propto \rho a^{3} \propto a^{-1}\) is not conserved. 
+  \item 
+\end{enumerate}
+
+
+% Some possible equations of state are \(P \equiv 0\), or \(w =0\): this means \(\gamma =1 \). This is a \emph{dust pressureless fluid}.
+
+% What is the speed of sound of our fluid? We only have the adiabatic speed of sound \(c_s^2 = \pdv*{p}{\rho}\), where the derivative is to be taken at constant entropy and is just a total derivative in the barotropic case.
+
+% Also in the baryionic case \(p=0\) is a good approximation.
 
 If \(p=0\) we can simplify:
 \begin{equation}

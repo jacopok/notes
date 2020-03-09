@@ -123,51 +123,77 @@ c^2_{s} = \pdv{P}{\rho } = \dv{P}{\rho } = w c^2
 \,.
 \end{align}
 
+We also will be able to tell what the evolution of the energy density is for a varying scale factor:
+this can be derived from the third Friedmann equation \eqref{eq:friedmann-3}: in this case it reads 
+%
+\begin{align}
+\frac{\dot{\rho}}{\rho } + 3\frac{P}{\rho c^2} \frac{\dot{a}}{a} + 3 \frac{\dot{a}}{a}  &= 0   \\
+\frac{\dot{\rho}}{\rho } + 3 (1+w) \frac{\dot{a}}{a} &= 0 \\
+\dv{}{t} \log \qty(\rho a^{3(1+w)}) &=0 \implies \rho a^{3(1+w)} = \const
+\,,
+\end{align}
+%
+so \(\rho \propto a^{-3(1+w)}\).
 
 \begin{enumerate}
-  \item \(w = 0\) is equivalent to \(P \equiv 0\): this is what we get in the nonrelativistic limit, for \(P \ll \rho c^2\), since there is no pressure this can be interpreted as a \emph{dust}. In this case \(\rho \propto a^{-3}\), and \(c_s^2 \ll c^2\). 
-  \item \(w = 1/3\) is what we get if we seek the pressure of radiation.\footnote{This expression can be derived in different ways, one of which is to start from the fact that the stress energy tensor must be traceless since it is of the form \(T_{\mu \nu } \sim \sum _{i} \rho u^{(i)}_{\mu } u^{(i)}_{\nu }\), where \(u_{\mu }^{(i)}\) are the four-velocities of photons: their norm is zero, so we must have \(g^{\mu \nu} T_{\mu \nu } = 0\). Another, perhaps more illustrative derivation was given in the General Relativity course \cite[pag. 86-87]{tissinoGeneralRelativityNotes2020}.}
-  In this case we have \(c_s = c/ \sqrt{3}\), while the energy density goes like \(\rho \propto a^{-4}\), since we get a factor \(a^{-3}\) from the volume expansion and another \(a^{-1}\) from the decrease of the energy of each photon due to redshift. So, for a radiation-dominated universe the total energy \(E \propto \rho a^{3} \propto a^{-1}\) is not conserved. 
-  \item 
+  \item \(w = 0\) is equivalent to \(P \equiv 0\): this is what we get in the nonrelativistic limit, for \(P \ll \rho c^2\), since there is no pressure this can be interpreted as a \emph{dust}. In this case \(\rho \propto a^{-3}\); also, we have \(c_s^2 \ll c^2\). 
+  \item \(w = 1/3\) is what we get if we seek the pressure of radiation.\footnote{This expression can be derived in different ways, one of which is to start from the fact that the stress energy tensor must be traceless since it is of the form \(T_{\mu \nu } \sim \sum _{i} \rho u^{(i)}_{\mu } u^{(i)}_{\nu }\), where \(u_{\mu }^{(i)}\) are the four-velocities of photons: their norm is zero, so we must have \(g^{\mu \nu} T_{\mu \nu } = 0\), but also for a perfect fluid \(T = T^{\mu }_{\mu } = \rho - 3 P/c^2\). Another, perhaps more illustrative derivation was given in the General Relativity course \cite[pag. 86-87]{tissinoGeneralRelativityNotes2020}.}
+  In this case we have \(c_s = c/ \sqrt{3}\), while the energy density goes like \(\rho \propto a^{-4}\), since we get a factor \(a^{-3}\) from the volume expansion and another \(a^{-1}\) from the decrease of the energy of each photon due to redshift. 
+  Alternatively, from what was derived before we can see that the exponent in the powerlaw must be \(- 3(1+1/3) = -4\).
+  
+  So, for a radiation-dominated universe the total energy \(E \propto \rho a^{3} \propto a^{-1}\) is not conserved. 
+  \item \(w=1\) is called \emph{stiff matter}: it has \(P = \rho c^2\) and  \(c_s = c\). 
+  This is an incompressible fluid: it is so difficult to set this matter in motion that once one does it travels at the speed of light. Now, \(\rho \propto P \propto a^{-6}\). 
+  \item \(w=-1\) means that \(P = - \rho c^2\). We cannot compute a speed of sound (it would be imaginary).
+  Now \(\rho\) and \(p\) are constants, since they are proportional to \(a^{0}\). This is the case of dark energy: it can be shown that the effect of inserting a cosmological constant \(\Lambda\) into the Einstein equations has precisely this effect.\footnote{This is shown by interpreting the additional term in the EFE as an addition to the stress-energy tensor and interpreting it as a perfect-fluid tensor \cite[eqs. 434-438]{tissinoGeneralRelativityNotes2020}.}
 \end{enumerate}
-
 
 % Some possible equations of state are \(P \equiv 0\), or \(w =0\): this means \(\gamma =1 \). This is a \emph{dust pressureless fluid}.
 
 % What is the speed of sound of our fluid? We only have the adiabatic speed of sound \(c_s^2 = \pdv*{p}{\rho}\), where the derivative is to be taken at constant entropy and is just a total derivative in the barotropic case.
 
-% Also in the baryionic case \(p=0\) is a good approximation.
+% Also in the baryonic case \(p=0\) is a good approximation.
 
-If \(p=0\) we can simplify:
-\begin{equation}
-  \dot{\rho} = -3 \frac{\dot{a} }{a} \rho \implies 
-  \rho \propto a^{-3}\,.
-\end{equation}
+% If \(p=0\) we can simplify:
+% \begin{equation}
+%   \dot{\rho} = -3 \frac{\dot{a} }{a} \rho \implies 
+%   \rho \propto a^{-3}\,.
+% \end{equation}
 
-More generally, not assuming \(w=0\) we get:
-\begin{equation}
-  \dot{\rho} = -3 (1+w) \rho \frac{\dot{a} }{a} \implies \rho \propto a^{-3 (1+w)} = a^{-3 -3\gamma}
-\end{equation}
 
-Another case is a \emph{gas of photons}: in that case \(p = \rho c^2 / 3\), so \(w=\frac{1}{3} \), \(\gamma = \frac{4}{3} \), \(c_{s}^2 = c^2 / 3 \): the speed of sound is \(c / \sqrt{3} \). These photons are thermal: perturbations can propagate (even without interactions with matter\dots). 
 
-In this case we get \(\rho \propto p \propto a^{-4}\).
+% Another case is a \emph{gas of photons}: in that case \(p = \rho c^2 / 3\), so \(w=\frac{1}{3} \), \(\gamma = \frac{4}{3} \), \(c_{s}^2 = c^2 / 3 \): the speed of sound is \(c / \sqrt{3} \). These photons are thermal: perturbations can propagate (even without interactions with matter\dots). 
 
-Stiff matter is \(p = \rho c^2\), \(w=1\), \(\gamma=2\) and \(c_s = c\). This is an incompressible fluids: it is so difficult to set this matter in motion that once one does it travels at the speed of light. Now, \(\rho \propto p \propto a^{-6}\).
+% In this case we get \(\rho \propto p \propto a^{-4}\).
 
-A possible case is \(p = - \rho c^2\): \(w = -1\) and \(\gamma = 0\): we cannot compute a speed of sound. Now \(\rho\) and \(p\) are constants. This is the case of dark energy (?).
+So, we replace the third Friedmann Equation with \(w = \const\) and 
+%
+\begin{align}
+  \rho(t) = \rho_{*} \qty(a(t) / a_{*})^{-3(1+w)} 
+\,,
+\end{align}
+%
+where \(a_{*}\) and \(\rho_{*} \) are the scale factor and density at some chosen time.
 
-This can be interpreted as an interpretation of the cosmological constant \(\Lambda\).
+If we substitute this expression into the second FE we get that gravity is attractive (\(\ddot{a} < 0 \)) if and only if \(w > -1/3\). 
 
-Now we relace the last FE with \(w = \const\), \(\rho(t) = \rho_{*} \qty(a(t) / a_{*})^{-3(1+w)}  \).
+Throughout this section we worked as if we had a single type of cosmic fluid in the universe: this is not really the case, we have many of them, and they will be interacting, but it is a good first approximation to consider them as separate.  
 
-Now, if we substitute into the second FE we get that gravity is attractive (\(\ddot{a} < 0 \)) iff \(w > -1/3\). 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/global_energy_contributions.pdf}
+\caption{Contributions to the energy density varying with the scale factor. They are normalized to the current critical energy density, using data from the 2015 Planck mission \cite{PlanckCollaboration:2016XIII}. The increase of the radiation energy density with an increasing scale factor is sharp, but the crossover point with the matter density is at \(a = \rho_{\text{rad}}/\rho_{\text{m}} \approx \num{e-4}\), at which point we have \(\rho \approx \num{e12} \rho_{0c}\).}
+\label{fig:global_energy_contributions}
+\end{figure}
 
-[Plot: \(\rho\) vs \(a\): the cosmological constant is constant, matter is decreasing, radiation is decreasing faster].
+In this plot, \(a\) can be interpreted as the time, since their relation is monotonic.
+We could insert the spatial curvature \(k\) in the plot: it decreases, but slower than matter, since it appears in the first Friedmann equation with an exponent \(a^{-2}\). 
 
-In this plot, \(a\) can be interpreted as the time.
-We can insert the spatial curvature in the plot: it decreases, but slower than matter. 
-Now, the dark energy in the universe is more important than the curvature. 
+\todo[inline]{It is not clear to me how we would derive the EOS for spatial curvature.}
+
+Now, the dark energy in the universe is the most important component. It it dominant over matter, radiation, and also dominant over spatial curvature.
+
+\section{Dark energy}
 
 Let us solve the first FE: inserting the third one we get
 \begin{equation}

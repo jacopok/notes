@@ -1,49 +1,75 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Fri Oct 11 2019}
+% \section*{Fri Oct 11 2019}
+\marginpar{Friday \\ 2019-10-11}
 
-On Oct 31 Marco Peloso will not give his lecture, so Sabino will do both lectures.
+% On Oct 31 Marco Peloso will not give his lecture, so Sabino will do both lectures.
 
-Recalling last lecture: 
-we consider a universe with constant density \(\rho\)\dots
+% Recalling last lecture: 
+% we consider a universe with constant density \(\rho\)\dots
 
 We can also recover the third Friedmann equation 
-
 \begin{equation}
-  \dot{\rho} = -3 \frac{\dot{a}}{a} \qty(\rho + \frac{P}{c^2})\,,
+\dot{\rho} = -3 \frac{\dot{a}}{a} \qty(\rho + \frac{P}{c^2}) \approx -3 \frac{\dot{a}}{a} \rho 
+\,,
+\end{equation}
+%
+where the approximation as before is the Newtonian one, \(P \ll \rho c^2\). In this case, however, we will be able to also recover the nonrelativistic pressure term if we account for conservation of energy and not just mass.
+% without the last term, which yet again will come from the relativistic consideration.
+
+When deriving these equations relativistically the third one comes from the conservation of the temporal component of the stress-energy tensor (\(\nabla_{\mu } T^{\mu 0} = 0\)), i.e. the ``conservation of energy'',\footnote{This is actually \emph{not} a conservation law as stated, it is not covariant: in order for it to be we would need to project it along a temporal Killing vector, which does not exist in cosmology. However, if we did have a temporal Killing vector \(\xi_{\mu }\) the projection \(\xi_{\nu } \nabla_{\mu } T^{\mu \nu } =0\) would indeed be the conservation of energy.
+
+Indeed, it is more correct to say that this equation is not a conservation law at all, but is instead just an expression of the geometric Bianchi identities \(\nabla_{\mu } G^{\mu \nu }=0\), which are written in terms of the Einstein tensor \(G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2} R g_{\mu \nu }\); if the Einstein equations hold then \(G_{\mu \nu } \) is proportional to \(T_{\mu \nu }\), therefore the two statements are equivalent.}
+so to find it in our Newtonian calculation we will need to consider the nonrelativistic equivalent of that equation, which is the first law of thermodynamics.
+
+We will consider \emph{ideal fluids}.
+The first law, assuming adiabaticity --- which must be present, since net heat transfer in the universe would violate isotropy ---  states:
+\begin{equation}
+  \dd{E} + P\dd{V} = 0\,.
 \end{equation}
 
-without the last term, which yet again will come from the relativistic consideration.
+We can write the total energy as the product of the energy density times the volume: \(E = \frac{4 \pi }{3} \rho c^2 a^{3}\), since the volume is \(V = \frac{4 \pi }{3} a^3\).
 
-We will consider \emph{ideal fluids}. From thermodynamics we have:
+So, the first law reads: 
+%
+\begin{align}
+0&=\frac{4\pi }{3}\qty[\dd{\qty(\rho c^2 a^3)} + P \dd{(a^3)}]   \\
+&= c^2 \rho \dd{(a^3)} + c^2 a^3 \dd{\rho } + P \dd{(a^3)}   \marginnote{Divided through by \(4 \pi / 3\)}\\
+&= 3 \qty(\rho + \frac{P}{c^2}) \frac{\dd{a}}{a} + \dd{\rho } \marginnote{Divided through by \(c^2a^3\), collected terms.}
+\,,
+\end{align}
+%
+which is the third Friedmann equation, \eqref{eq:friedmann-3}: the only manipulation left to do is to apply the differentials, which are covectors, to the temporal vector \(\dv*{}{t}\) in order to turn them into time derivatives.
 
-\begin{equation}
-  \dd{E} + p\dd{V} = 0\,.
-\end{equation}
+Why were we able to recover the relativistic term this time? The completely non-relativistic approach to this would be to write \(M = \frac{4\pi }{3} \rho a^3 \), and to write down the equation for the conservation of mass alone. 
+Indeed, this would yield the Friedmann equation without the \(P\) term.
 
-We can write \(E = \rho c^2 a^{3}\). Then, this becomes \(\dd{(\rho c^2 a^3)} + p \dd{a^3} = 0\); expanding:
-\begin{equation}
-  c^2 \dd \rho a^3 + c^2 \rho \dd{a^3} + p \dd{a^3} = 0\,.
-\end{equation}
+\todo[inline]{Footnote number 5 at page 17 in \cite{Pacciani:2018} states: ``In generale si può porre \(\ell(t) = a(t)r\) con \(r\) coordinata comovente adimensionale per la validità del principio cosmologico; \(r\) può
+essere sempre scelta piccola a piacere di modo che ad ogni istante valga la condizione di campo debole.''
+This does not seem to make sense: the weak-field condition is not dependent on our coordinate choices, and in fact is written in terms of \(\ell\) and not \(r\).}
 
-This amounts to the third Friedmann equation, exactly.
+\begin{bluebox}
+The three Friedman equations are not independent: for example, the second one \eqref{eq:friedmann-2} can be derived from the first and third \cite[sec. 10.3.5]{tissinoGeneralRelativityExercises2020}. 
 
-\begin{subequations}
-    \begin{align}
-        \dot{a}^2 &= \frac{8 \pi G }{3} \rho a^2 - kc^2  \\
-        \ddot{a} &= - \frac{4 \pi G }{3} a  \qty(\rho  + \frac{3P}{c^2} )  \\
-        \dot{\rho} &= -\frac{3\dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
-    \end{align}
-\end{subequations}    
+This means that we can derive the full relativistic equations in this Newtonian context, using the derivations we have shown for the first and third equation, and then combining these to find the second.
+\end{bluebox}
 
-The equations are in terms of the three parameters \(a\), \(\rho\) and \(p\), which are all functions of time.
+% \begin{subequations}
+%     \begin{align}
+%         \dot{a}^2 &= \frac{8 \pi G }{3} \rho a^2 - kc^2  \\
+%         \ddot{a} &= - \frac{4 \pi G }{3} a  \qty(\rho  + \frac{3P}{c^2} )  \\
+%         \dot{\rho} &= -\frac{3\dot{a} }{a} \qty(\rho + \frac{P}{c^2} )
+%     \end{align}
+% \end{subequations}    
 
-The third equation comes from the Bianchi identities \(\nabla_{\mu} G^{\mu \nu}=0\).
+% The equations are in terms of the three parameters \(a\), \(\rho\) and \(p\), which are all functions of time.
+
+% The third equation comes from the Bianchi identities \(\nabla_{\mu} G^{\mu \nu}=0\).
 
 Rewriting the first equation:
 \begin{equation}
-  \ddot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k c^2
+  \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k c^2
 \end{equation}
 and
 \begin{equation}

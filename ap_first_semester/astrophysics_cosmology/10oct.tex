@@ -330,61 +330,94 @@ With this in mind, let us take a spacetime with uniform density \(\rho\).
 We consider a sphere, and imagine taking all the mass inside the sphere away.
 % Then, by Birkoff's theorem, 
 
-\todo[inline]{It is claimed in \cite[]{Pacciani:2018} that it is a corollary of the  JB theorem that the metric inside a spherical shell is Minkowski, this was not obvious to me so I looked for a reference. 
-An article by Zhuang and Yi \cite{zhangCOMMONMISUNDERSTANDINGBIRKHOFF2012} actually claims that this is false, and that the metric inside the shell is indeed a slice of Schwarzschild spacetime but not necessarily with \(M=0\), and their reasoning seems to make sense.}
+% \todo[inline]{It is claimed in \cite[]{Pacciani:2018} that it is a corollary of the  JB theorem that the metric inside a spherical shell is Minkowski, this was not obvious to me so I looked for a reference. 
+%  actually claims that this is false, and that the metric inside the shell is indeed a slice of Schwarzschild spacetime but not necessarily with \(M=0\), and their reasoning seems to make sense.}
 
-This can also be applied to a hole: in this case, it tells us that the metric inside the cavity is the Minkowski metric.
+By the Jebsen-Birkhoff theorem, the internal geometry of this shell is only determined by the mass distribution inside the shell: since we took all the mass inside the sphere away, the inside spacetime is Minkowski, that is, Schwarzschild spacetime with \(M=0\).\footnote{There is actually some nuance to this: as is expounded upon in an article by Zhuang and Yi \cite{zhangCOMMONMISUNDERSTANDINGBIRKHOFF2012}, in general relativity the geometry inside the shell is actually influenced by the presence of the shell, in that its time coordinate is different to the one which would be measured by an outside observer. This is relevant, for instance, if we wish to compute the Shapiro delay of a ray of light passing through the shell and coming back out.
+This is not an issue for us, since the geometry on the inside is locally indistinguishable from a pure vacuum Minkowski spacetime if we measure only inside the shell.}
 
-The mass taken away will be \(M(\ell) = \frac{4 \pi}{3} \rho \ell^{3}\), where \(\vec{l} = a(t) \vec{r}\) is the radius of the sphere.
+% This can also be applied to a hole: in this case, it tells us that the metric inside the cavity is the Minkowski metric.
 
-We suppose that the gravitational field is \emph{weak}:
+We describe this system through a mass coordinate: \(M(\ell)\) is the mass enclosed by a spherical shell of radius \(\ell\).
+
+The mass taken away will be \(M(\ell) = \frac{4 \pi}{3} \rho \ell^{3}\), where \(\vec{l} = a(t) \vec{r}\) is the radius of the sphere, whose norm is \(\ell = \abs{\vec{l}}\), and \(\rho \), as mentioned before, is the constant density.
+
+We suppose that the gravitational field is \emph{weak}: this is quantitatively expressed using the relation \(\ell \ll r_g\), where \(r_g\) is the Schwarzschild radius of the system: this relation becomes
+%
 \begin{equation}
-  \frac{GM(\ell)}{\ell c^2} \ll 1\,.
+  \frac{GM(\ell)}{\ell c^2} \ll 1\,,
+\end{equation}
+%
+and is a necessary assumption in order to apply a Newtonian approximation.
+
+Now, we ``put back'' the mass which was removed, in order to restore the initial situation.
+
+We put a test mass on the surface of the sphere. What is the motion of the mass due to the gravitational field from the center? It will surely be radial, and since as we said we are in the Newtonian approximation we can calculate it using Newton's equation: 
+%
+\begin{equation} \label{eq:newtonian-approx-acceleration}
+\ddot{\ell} = - \frac{GM(\ell)}{\ell^2} = - \frac{4 \pi G}{3} \rho \ell
+\,.
 \end{equation}
 
-We put a test mass on the surface of the sphere. What is the motion of the mass due to the gravitational field from the center? It will surely be radial, therefore
-\begin{equation}
-  \ddot{\ell} = - \frac{GM(\ell)}{l^2} = - \frac{4 \pi G}{3} \rho \ell\,.
-\end{equation}
+This seems to give us a net force even though we expect everything to be stationary because of isotropy.
+This is because we are not working in comoving coordinates: the distance \(\ell\) can change with the scale factor, even when the comoving vector \(\vec{r}\) is constant.
 
-This seems to give us a net force even though by our hypotheses there should be none, this is actually not an issue since the unit vectors in our equations will go away in the end.
+Our final result will not depend on the unit vector we choose.
 
-Then, we have
-\begin{equation}
-  \ddot{a} r = - \frac{4 \pi G}{3} \rho a r
-  \to
-  \ddot{a} = - \frac{4 \pi G}{3} \rho a\,.
-\end{equation}
+% there should be none, this is actually not an issue since the unit vectors in our equations will go away in the end.
 
-This is part of a Friedmann equation: the isotropic pressure term cannot be recovered, it's like the speed of light is infinite now.
+Plugging in \(\ell = a r\) we find
+\begin{align}
+  \ddot{a} r &= - \frac{4 \pi G}{3} \rho a r \\
+  \ddot{a} &= - \frac{4 \pi G}{3} \rho a\,.
+\end{align}
 
-Now consider 
+This is the second Friedmann equation, \eqref{eq:friedmann-2}, without the pressure term for the reasons mentioned before.
+
+% This is part of a Friedmann equation: the isotropic pressure term cannot be recovered, it's like the speed of light is infinite now.
+
+Starting from the acceleration equation \eqref{eq:newtonian-approx-acceleration} we can get 
 \begin{equation}
   \dot{\ell} \ddot{\ell} = - \frac{GM}{\ell^2} \dot{\ell}\,,
+  \marginnote{Multiplied by \(\dot{\ell}\)}
 \end{equation}
 %
-therefore 
+and identifying \(2\dot{\ell} \ddot{\ell} = \dv*{(\dot{\ell})^2}{t} + \const\) we find the conservation of energy equation:
 %
 \begin{equation}
-  \frac{1}{2}\dot{\ell}^2 = \frac{4 \pi}{3} G \rho \ell^{3} + \const\,,
+  \frac{1}{2}\dot{\ell}^2 = \frac{4 \pi}{3} G \rho \ell^{3} + C\,,
 \end{equation}
 %
-and integrating we get
+where \(C\) is an arbitrary constant, which we can express in terms of the scale factor:
 %
 \begin{equation}
-  \dot{a}^2 r^2 = \frac{8 \pi G}{3} \rho a^2 r^2 + \const
+  \dot{a}^2 r^2 = \frac{8 \pi G}{3} \rho a^2 r^2 + C
 \end{equation}
 %
-or, removing the \(r^2\) term, which is a constant,
+or, removing the \(r^2\) term, which is a constant (since it is a comoving radius, with respect to which objects are stationary),
 %
 \begin{equation}
-    \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 + \const\,.
+\dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 + \frac{C}{r^2}\,.
 \end{equation}
 
-We know that this new constant is related to the energy per particle. 
+Now, the dimensions of this constant are those of a speed, therefore we can express it as \(C / r^2 = -k c^2\), where \(k\) is adimensional.
 
-A universe with negative \(k\) expands forever and so on.
+This clarifies the statement that the magnitude of \(k\) is arbitrary: we get it by dividing by the adimensional comoving radius, whose magnitude is indeed arbitrary, therefore we can normalize it however we wish: so we choose \(\abs{k} = 1\) or 0.
 
-The number \(k\) was badly defined to be only \(\pm 1\) or 0: its newtonian version is much better represented by \(k_N = kc^2\).
+\begin{bluebox}
+The equation we found is of the form: 
+%
+\begin{align}
+E _{\text{kin}} + E _{\text{grav}} = -k c^2
+\,,
+\end{align}
+%
+where \(E _{\text{kin}}\) and \(E _{\text{grav}}\) are the energies per unit mass in the form of either kinetic or gravitational energy.
+So we can directly see that \(k\), in a sense, describes the \emph{intrinsic} energy of a free, stationary (with respect to the comoving coordinates) test particle.
+
+If it is positive (\(k<0\)) then the particles have an intrinsic positive energy, which causes expansion, while if it is negative (\(k>0\)) it is as if they were intrinsically gravitationally bound, which causes contraction.
+\end{bluebox}
+
+% The number \(k\) was badly defined to be only \(\pm 1\) or 0: its newtonian version is much better represented by \(k_N = kc^2\).
 
 \end{document}

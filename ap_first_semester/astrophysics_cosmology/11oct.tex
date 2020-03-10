@@ -193,66 +193,172 @@ We could insert the spatial curvature \(k\) in the plot: it decreases, but slowe
 
 Now, the dark energy in the universe is the most important component. It it dominant over matter, radiation, and also dominant over spatial curvature.
 
-\section{Dark energy}
+\section{Solutions of the Friedmann Equations}
 
-Let us solve the first FE: inserting the third one we get
+We want to solve the equation system 
+%
+\begin{align}
+\frac{\dot{a}^2}{a^2} &= \frac{8 \pi G}{3} \rho - \frac{kc^2}{a}  \label{eq:friedmann-1-later} \\
+\rho (t) &= \rho_{* } \qty(\frac{a(t)}{a_{*}})^{-3 (1+w)}
+\label{eq:friedmann-3-later}
+\,,
+\end{align}
+%
+which encompasses all of the physical content of the FE, since the second equation can be derived from these two. 
+
+Inserting \eqref{eq:friedmann-3-later} into \eqref{eq:friedmann-1-later} we find:
+%
 \begin{equation}
   \qty(\frac{\dot{a} }{a})^2 = 
   \frac{8 \pi G}{3} \rho_* \qty(\frac{a}{a_*}) ^{-3 (1+w)} - \frac{kc^2}{a^2}\,.
 \end{equation}
 
-We defined the parameter \(\Omega = \frac{8 \pi G \rho}{3 H^2} = \rho / \rho_C\).
-Experimentally this is very close to 1.
-The Einstein-de Sitter model is one where we take \(\Omega \equiv 1\): negligible spatial curvature. This amounts to making \(k=0\).
-\begin{equation}
-  \dot{a}^2 = \frac{8 \pi G}{3} \rho_* a_{*}^{3 (1+w)} a^{-(1+3w)}
-\end{equation}
+\subsection{Einstein-De Sitter models}
 
-therefore \(\dot{a} = \pm A a^{\frac{1+3w}{2}}\), or \(a ^{\frac{1+3w}{2}}\dd{a} = A \dd{t}\). A solution is:
+As we discussed before, if we had zero spatial curvature (\(k=0\)) then we would find \(\rho = \rho_{c} = 3 H^2 / (8 \pi G )\): so, we define the parameter \(\Omega = \frac{8 \pi G \rho}{3 H^2} = \rho / \rho_C\) which quantifies how close this is to being true: experimentally this is compatible with 1.
+
+The Einstein-de Sitter model is one where we take \(\Omega \equiv 1\): negligible spatial curvature, which is equivalent to setting \(k=0\). So, the equation becomes:
 \begin{equation}
-  a(t)= a_{*} \qty(
+  \dot{a}^2 = \underbrace{\frac{8 \pi G}{3} \rho_* a_{*}^{3 (1+w)}}_{A^2} a^{-(1+3w)} 
+  \,,
+  \marginnote{Set \(k=0\), multiplied by \(a^2\), defined \(A\).}
+\end{equation}
+%
+therefore \(\dot{a} = \pm A a^{-\frac{1+3w}{2}}\), or \(a ^{\frac{1+3w}{2}}\dd{a} = \pm A \dd{t}\). 
+We choose the positive sign, since we observe the universe to be expanding. 
+This can be integrated directly: the equation is 
+%
+\begin{align}
+\int_{a_{*}}^{a} \widetilde{a}^{\frac{1+3w}{2}} \dd{\widetilde{a}} = A \int_{t_{*}}^{t} \dd{\widetilde{t}} = A\qty(t-t_{*})
+\,,
+\end{align}
+%
+but we must distinguish two cases: either \((1+3w) / 2 =-1\), which is equivalent to \(w = -1\), or not. 
+Let us first assume that \(w \neq -1\). Then, we get:
+
+A solution is:
+\begin{align}
+  \frac{2}{3 + 3w}\eval{a^{\frac{3+3w}{2}}}_{a_{*}}^{a} &= A \qty(t - t_{*})
+   \\
+   a^{\frac{3 + 3w}{2}}  - a_{*}^{\frac{3+3w}{2}}
+   &= \frac{3 (1+w)}{2} \underbrace{\sqrt{\frac{8\pi G}{3} \rho_{*}}}_{H_{*}} a_{*}^{\frac{3 + 3w}{2}} (t - t_{*}) 
+   \marginnote{Since \(k=0\) we have \(H_{*}^2 = \frac{8 \pi G}{3} \rho_{*}\)}
+   \\  
+  a^{\frac{3 +3w}{2}} &= a_{*}^{\frac{3 + 3w}{2}} \qty(1 + \frac{3}{2} (1+w) H_{*} \qty(t - t_{*}))
+   \\
+  a(t)&= a_{*} \qty(
     1 + \frac{3}{2} (1+w) H_{*} (t - t_{*})
   )^{\frac{2}{3(1+w)}}
-\end{equation}
-where \(H_{*}^2 = \frac{8 \pi G}{3} \rho_{*}\), coupled to:
+\,,
+\end{align}
+%
+which we can couple to the equation for the evolution of the density, by plugging this expression for the scale factor directly into \eqref{eq:friedmann-3-later}:
+%
 \begin{equation}
-  \rho(t) = \rho_{*} \qty(1 + \frac{3}{2}(1+w H_* (t-t_*)))^{-2}
+\rho(t) = \rho_{*} \qty(1 + \frac{3}{2}(1+w) H_* (t-t_*))^{-2}
+\,,
+\end{equation}
+%
+and also the Hubble parameter \(H \propto \sqrt{\rho }\):  
+%
+\begin{align}
+H(t) = H_{*} \qty(1 + \frac{3}{2}(1+w) H_{*}(t-t_{*}))
+\,.
+\end{align}
+
+There is a time where the bracket in \(a(t)\) is zero, which means \(a = 0 \): this corresponds to the Big Bang, so we call it \(t_{\text{BB}}\), defined by
+\begin{equation}
+1 + \frac{3}{2} (1+w) H_{*} (t_{\text{BB}} - t_* ) = 0
+\,.
 \end{equation}
 
-There is a time where the bracket in \(a(t)\) is zero: we call it as \(t_{\text{BB}}\) define it by
-\begin{equation}
-  1 + \frac{3}{2} (1+w) H_{*} (t_{\text{BB}} - t_* ) = 0\,.
-\end{equation}
+Since the curvature scalar is \(R \propto H^2 \propto \rho \),\footnote{This can be shown by a simple argument: we take the trace of the EFE, to get 
+%
+\begin{align}
+g^{\mu \nu } \qty(R_{\mu \nu } - \frac{1}{2} R g_{\mu \nu })
+= 8 \pi G g^{\mu \nu } T_{\mu \nu }
+\implies -R = 8 \pi G T
+\,,
+\end{align}
+%
+where \(R= g^{\mu \nu } R_{\mu \nu }\) and \(T=g^{ \mu \nu } T_{\mu \nu }\) are the traces of the Ricci tensor and of the stress-energy tensor. 
+We've shown that \(R \propto T\): so, since \(T \propto \rho \), we have \(R \propto \rho \), but if we also assume that there is no spatial curvature then \(H^2 \propto \rho \), therefore \(R \propto H^2\).}
+at \(t_{\text{BB}}\)  the curvature is diverges.
 
-Since the curvature scalar is \(R \propto H^2\), at \(t_{\text{BB}}\)  the curvature is diverges.
+This time can be expressed by inverting the equation: 
+%
+\begin{align}
+t _{\text{BB}} = t_{*} - \frac{2}{3 (1+w)H_{*}}
+\,.
+\end{align}
 
 Hakwing \& Ellis proved that if \(w>-1/3\) we unavoidably must have a Big Bang.
 
-We can define a new time variable by \(t_{\text{new}} \equiv (t - t_{*}) + 2 H_*^{-1} / (3 (1+w))\). Then, we can just write:
-\begin{equation}
-  a \propto t_{\text{new}}\,^{\frac{2}{3(1+w)}}
-\end{equation}
-and this allows us to get rid of \(t_{*}\).
+We can define a new time variable by 
+%
+\begin{align}
+t_{\text{new}} \equiv t-t _{\text{BB}} =  (t - t_{*}) + 2 H_*^{-1} / (3 (1+w))
+\,.
+\end{align}
 
-Inserting this new time variable, we get
+Using this new variable the \(t_{*}\) simplifies, and we can just write:
 \begin{equation}
-  \rho(t) = \frac{1}{6 (1+w)^2 \pi 4 t^2}
+a \propto t_{\text{new}}\,^{\frac{2}{3(1+w)}}
+\,.
 \end{equation}
+
+Inserting this new time variable (which we will just call \(t\)), we get
+\begin{equation}
+  \rho(t) = \frac{1}{6 (1+w)^2 \pi G t^2}
+\end{equation}
+\todo[inline]{Show this explicitly.}
 and the Hubble parameter is:
 \begin{equation}
   H(t) = \frac{2}{3(1+w) t}
 \end{equation}
-Some cases are:
-\begin{equation}
-  \begin{cases}
-      w = 0 \implies a \propto t^{2/3}  \\
-      w=1/3 \implies a \propto t^{1/2} \\  
-      w=1 \implies a \propto t^{1/3}  
-  \end{cases}
-\end{equation}
+% Some cases are:
+% \begin{equation}
+%   \begin{cases}
+%       w = 0 \implies a \propto t^{2/3}  \\
+%       w=1/3 \implies a \propto t^{1/2} \\  
+%       w=1 \implies a \propto t^{1/3}  
+%   \end{cases}
+% \end{equation}
 
-The \emph{De Sitter} universe is one where \(w \rightarrow 1\): \(a(t) \propto \exp(Ht) \) and \(H = \const\). (CHECK) 
+Let us now revisit the cases from before: 
+\begin{enumerate}
+  \item \(w=0\) is nonrelativistic matter: it has \(a \propto t^{2/3}\), \(\rho = 1 / (6 \pi G t^2)\) and \(H = 2/ (3t)\). 
+  
+  This yields a prediction for the age of the universe of \(t \approx \SI{9.6}{Gyr}\) (using the Planck data \cite{PlanckCollaboration:2016XIII}): this is not correct, since the actual value is more like \(t \approx \SI{13.8}{Gyr}\), but it has the right order of magnitude; the discrepancy is due to the fact that the assumption of the universe being dominated by nonrelativistic matter is wrong. 
+  \item \(w=1/3\) is radiation: it has \(a \propto t^{1/2}\), \(\rho \propto 3/ (32 \pi G t^2)\) and \(H = 1/ (2t)\);
+  \item \(w=-1\) is dark energy: as we mentioned before, this is the case which must be treated separately. The integral yields: 
+  %
+  \begin{align}
+  \log \qty(\frac{a}{a_{*}}) = A (t-t_{*})
+  \,,
+  \end{align}
+  %
+  which means 
+  %
+  \begin{align}
+  a (t) = a_{*} \exp(H_{*} a_{*}^{\frac{3 (1+w)}{2}} (t - t_{*}))
+  \,,
+  \end{align}
+  %   
+  while, as we saw, \(\rho \) and \(P\) (and, therefore, \(H\)) are constant. 
+\end{enumerate}
 
-stuff
+% The \emph{De Sitter} universe is one where \(w \rightarrow 1\): \(a(t) \propto \exp(Ht) \) and \(H = \const\). (CHECK) 
+
+From the redshift we can trace back the time of emission of the photon: for a matter-dominated universe, for example, we have:
+%
+\begin{align}
+1 + z  = \frac{a_0 }{a} =  \qty(\frac{t_0 }{t})^{2/3}
+= \qty(\frac{2}{3H_0 t })^{2/3} 
+\,.
+\end{align}
+%
+\todo[inline]{Show that in this case \(q = 1/2\).}
+
 
 \end{document}

@@ -5,74 +5,89 @@
 
 \marginpar{Thursday \\ 2019-10-17, \\ compiled \\ \today}
 
-If we neglect spatial curvature, which is small, we can write the luminosity distance as an integral which we can compute:
-%
-\begin{equation}
-  d_L \equiv \qty(\frac{L}{4 \pi \ell})^{1/2}
-\,.
-\end{equation}
-%
+\section{Measuring distances} 
 
-Our metric is the FLRW line element. Then, we can write \(d_L\) as: 
-%
-\begin{equation}
-  d_L = a_0 (1+z) r(z)
-\,.
-\end{equation}
-%
+We want to be able to compute the comoving radius, given our knowledge of the evolution of the distribution of energy density in time.
 
-We now define the \emph{conformal time} \(\tau\): we want to impose \(a^2(\tau ) \dd{\tau^2} = \dd{t^2}  \).
-Then, the RW line element becomes: 
+% We will neglect spatial curvature. 
+We have shown that the luminosity distance is given by:
 %
 \begin{equation}
-  \dd{s^2} = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \frac{\dd{r^2} }{1 - k r^2} - r^2 \dd{\Omega^2} )
+  d_L \equiv \sqrt{\frac{L}{4 \pi \ell}}
+  = a_0 (1+z) r(z)
 \,.
 \end{equation}
 
-This is very important when we talk about zero-mass particles, with no intrinsic length scale.
-Using the variable \(\chi\), we have: 
+Also recall \emph{conformal time} \(\eta\), which is defined by its relation to cosmic time, \(a(\eta ) \dd{\eta} = \dd{t}\): it allows us to write the FLRW metric as
 %
 \begin{equation}
-  \dd{s^2}  = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \dd{\chi^2} - f^2_k (\chi ) \dd{\Omega^2})
-\,,
+  \dd{s^2} = a^2(\eta ) \qty(c^2 \dd{\eta^2} - \frac{\dd{r^2} }{1 - k r^2} - r^2 \dd{\Omega^2} )
+\,.
 \end{equation}
-%
-where \(f_k(\chi )=r\) is equal to \(\sin(\chi ) \), \(\chi \) or \(\sinh(\chi )\) if \(k\) is equal to \(1\), \(0\) or \(-1\).
 
-If we look at photons moving radially, we get 
+This is very important when we talk about zero-mass particles, with no intrinsic length scale: the photon, which is our primary tool for astrophysical observations, is one of these.
+This can be written in terms of the variable \(\chi\): 
 %
 \begin{equation}
-  \dd{s^2} = 0 = a^2(\tau ) \qty(c^2 \dd{\tau^2} - \dd{\chi^2})
+  \dd{s^2}  = a^2(\eta ) \qty(c^2 \dd{\eta^2} - \dd{\chi^2} - f^2_k (\chi ) \dd{\Omega^2})
 \,,
 \end{equation}
 %
-therefore \(c^2 \dd{\tau^2} = \dd{\chi^2}\): setting \(c=1\), we get \(\tau (t_0 ) - \tau (t_e) = \chi (r_e) - \chi (0)\), where a subscript \(e\) means ``emission''. 
+where \(f_k(\chi )=r\) is equal to \(\sin(\chi ) \), \(\chi \) or \(\sinh(\chi )\) if \(k\) is equal to \(1\), \(0\) or \(-1\); in other words we either have \(\chi = \arcsin(r)\), \(\chi = r\) or \(\chi = \operatorname{arcsinh}(r)\).
+
+If we look at photons moving radially we do not need to account for the angular part, and we find
+%
+\begin{equation}
+  \dd{s^2} = 0 = a^2(\eta ) \qty(c^2 \dd{\eta^2} - \dd{\chi^2})
+\,,
+\end{equation}
+%
+therefore \(c^2 \dd{\eta^2} = \dd{\chi^2}\):  we get \(c \qty(\eta (t_0 ) - \eta (t_e)) = \chi (r_e) - \chi (r_0 )\), where a subscript \(e\) means ``emission'', while a subscript \(0\) means detection. 
+We are choosing the negative sign when simplifying the square, since the problem we are considering is that of radiation starting from an astrophysical source and coming towards us: its radial coordinate \(\chi \) decreases when the temporal coordinate \(\eta \) increases. 
+
+This means that we can find out the comoving distance \(\Delta \chi \) between two events by calculating the difference between their comoving times \(\Delta \eta \).
+This is what was meant by the fact that this expression of the metric is useful for massless particles: the scale factor gets factored out, we can write the expression in a very simple way.
 
 \begin{equation}
-  \dd{\tau} = \frac{\dd{t} }{a}  = \frac{\dd{a} }{a \dot{a} }
+  \dd{\eta} = \frac{\dd{t} }{a}  = \frac{\dd{a} }{a \dot{a} }
 \,,
 \end{equation}
 %
-and now recall \(a = a_0 /(1+z)\): differentiating this we get
+and now recall \((1+z) = a_0 / a\): we differentiate this with respect to time to find
 %
 \begin{equation}
-  \dd{a} = - \frac{a_0 }{(1+z)^2} \dd{z}
+  \dv{z}{t} = - \frac{a_0 }{a^2} \dot{a} = - \frac{a_0 H(z)}{a}
 \,,
 \end{equation}
 %
-\begin{equation}
-  \frac{\dd{a}}{a^2} = \frac{\dd{a} (1+z)^2}{a^2} = - \frac{\dd{z}}{ a_0 }
-\,,
-\end{equation}
-%
+% \begin{equation}
+%   \frac{\dd{a}}{a^2} = \frac{\dd{a} (1+z)^2}{a^2} = - \frac{\dd{z}}{ a_0 }
+% \,,
+% \end{equation}
+% %
+% which means 
+% %
+% \begin{equation}
+%   \dd{e} = - \frac{\dd{z}}{a_0 H(z)}
+%   \,.
+% \end{equation}
 which means 
 %
-\begin{equation}
-  \dd{e} = - \frac{\dd{z}}{a_0 H(z)}
-  \,.
-\end{equation}
+\begin{align}
+\dd{\eta } = \frac{ \dd{t}}{a} = - \frac{ \dd{z}}{a_0 H(z)}
+\marginnote{Took the inverse of the equation, split the differentials, used the definition of \(\eta \)}
+\,,
+\end{align}
+%
+so we get our final expression: 
+%
+\begin{align}
+\dd{ \chi  } = \frac{ \dd{z}}{a_0 H(z)} 
+\,.
+\end{align}
 
-\todo[inline]{??? probabily there is wrong stuff here}
+So, if we can find a way to parametrize the Hubble parameter \(H(z)\) in terms of the redshift we will be able to measure distances.
+% \todo[inline]{??? probabily there is wrong stuff here}
 
 The Hubble parameter is given by 
 %
@@ -81,27 +96,26 @@ The Hubble parameter is given by
 \,,
 \end{equation}
 %
-with density \(\rho (t) = \rho _r (t) + \rho _m (t) + \rho _\Lambda \), where the first term scales like \(a^{-4}\), the second \(a^{-3}\), the third is constant. Thus they scale like \((1+z)^{4}\), \((1+z)^{3}\) and so on.
+where the density comes from several components: \(\rho (t) = \rho _r (t) + \rho _m (t) + \rho _\Lambda \), where the first term is the density of radiation and scales like \(a^{-4}\), the second is the density of matter and scales like \(a^{-3}\), the third is the density of dark energy and is constant.
 
-Then we can write a law for the evolution of \(H(z) = H_0 E(z)\).
-Recall the definitiion of \(\Omega (t)\): we can look at the \(\Omega_i (t)\) for \(i\) corresponding to matter, radiation and so on: 
+In terms of the redshift, they scale like \((1+z)^{4}\), \((1+z)^{3}\) (and \((1+z)^{0}\)) respectively.
+
+We express the Hubble parameter as a multiple of its value now: \(H(z) = H_0 E(z)\), where \(E(z)\) is an adimensional function.
+
+Recall the definition of \(\Omega (t)\): it describes the ratio of the density of a certain type of fluid to the critical density. We can look at the \(\Omega_i (t)\) for \(i\) corresponding to matter, radiation and so on: 
 %
 \begin{equation}
-  \Omega _i (z) = \frac{8 \pi G \rho _i (t)}{3 H^2(z)}
-  = \frac{8 \pi G }{3 H^2} \frac{\rho _i (z)}{E^2(z)}
-  \overset{\text{def}}{=} \Omega _{i,0} \frac{(1+z)^{\alpha }}{E^2(z)}
-\,.
+  \Omega _i (z) = \frac{8 \pi G \rho _i (z)}{3 H^2(z)}
+  = \frac{8 \pi G \rho_{i}(z=0)}{3 H_0 ^2} \times  \frac{\rho _i (z) / \rho_{i}(z=0)}{E^2(z)}
+  = \Omega _{i,0} \frac{(1+z)^{\alpha }}{E^2(z)}
+\,,
 \end{equation}
 
-In the case of radiation, \(p = \rho c^2 /3\), and then \(\alpha = 4\). 
+where \(\alpha \) is the exponent of the scaling of the fluid: \(\alpha = 4\) for radiation, \(\alpha = 3\) for matter, \(\alpha = 0\) for the cosmological constant \(\Lambda \), while for spatial curvature \(\alpha = 2\).
 
-For matter \(p=0\): \(\alpha = 3\).
-
-For the cosmological constant \(\Lambda \): \(\alpha =0\).
-
-For spatial curvature we have \(\alpha = 2\).
-
-For the \(\Omega )\) corresponding to the curvature we define: \(\Omega _k = - t c^2/(a^2 H^2)\).
+\todo[inline]{
+For the \(\Omega \) corresponding to the curvature we define: \(\Omega _k = - k c^2/(a^2 H^2)\).
+Again, not sure how to interpret this: what is the EOS of spatial curvature?}
 
 We must have 
 %
@@ -110,21 +124,21 @@ We must have
 \,.
 \end{equation}
 
-Recall the definition of \(E^2(z)\): 
+We can write an expression for \(E^2(z)\) by taking the ratio of the densities at emission versus now:
 %
 \begin{equation}
   E^2(z) = \frac{H^2}{H_0^2} = 
-  \Omega _{k, 0} + \Omega_{r, 0} (1+z)^4 + \Omega_{m, 0} (q+z)^{3}
-\,.
+  \Omega _{\Lambda , 0} +  \Omega_{m, 0} (1+z)^{3}
+  +\Omega_{r, 0} (1+z)^4
+\,,
 \end{equation}
-
+%
 and to get \(E\) we just take the square root.
-We have \(\tau (t_0 ) - \tau (t_e) = \chi (r_e)\).
-Integrating: 
+
+Now we can finally compute our integral 
 %
 \begin{equation}
-  \chi (r) = c \int_{a_t}^{a} \frac{\dd{a}  }{a \dot{a} }
-  = \int \frac{\dd{z'} }{E(z')}
+  \chi (z) = \frac{c}{a_0 H_0 } \int_{0}^{z} \frac{\dd{z'} }{E(z')}
 \,,
 \end{equation}
 %
@@ -137,31 +151,54 @@ therefore
 \end{equation}
 %
 
-Two weeks ago we defined the luminosity distance: now we can compute it.
+This does depend on \(k\), but the differences between positive and negative curvature are only relevant starting from third order.
+If the curvature is zero, we get the comoving distance:
+%
+\begin{align}
+d_C = r a_0 = \frac{c}{H_0 } \int_{0}^{z} \frac{ \dd{z'}}{E(z')}
+\,.
+\end{align}
 
-\todo[inline]{How do we decide which \(k\) to use?}
+If the curvature is not zero, we can still define a useful distance: the \emph{transverse comoving distance}, 
+%
+\begin{align}
+d_M = a_0 r = a_0 f_k \qty(\frac{c}{a_0 H_0 } \int_0^z \frac{\dd{z'}   }{E(z')})
+\,;
+\end{align}
+%
+for \(k=0\) these two coincide.
 
-Now,  suppose we are looking at a certain far-away object with angular size \(\Delta \theta \): we fix \(r\) in the RW line element, and look at a constant time: then we get a linear size corresponding to the angular one of 
+\todo[inline]{Right? I didn't write this down but it seems natural.}
+
+% Two weeks ago we defined the luminosity distance: now we can compute it.
+
+Now,  suppose we are looking at a certain far-away object with angular size \(\Delta \theta \) and linear size \emph{at emission} of \(\Delta x\): then the angular diameter distance is given, in the small-angle approximation,
 %
 \begin{equation}
-  \dd{s}  = a(t) r \Delta \theta 
-\,,
+d_A = \frac{ \Delta x}{\Delta \theta } = a(t_e) r
+= \frac{a_0 r_z}{1+z} = \frac{d_M}{1+z}
+\,.
 \end{equation}
-%
-which, when divided by \(\Delta \theta \), is called angular diameter \(D_A = a r = a_0 r(z) / (1+z)\).
-This changes with distance... (?) 
 
+Since the luminosity distance is given by 
+%
 \begin{equation}
- d_L = a_0 (1+z) r
-\,,
+ d_L = a_0 (1+z) r = d_M (1+z)
+\,
 \end{equation}
 %
-then 
+their ratio is  
 %
 \begin{equation}
   \frac{d_L}{d_A} = (1+z)^2
 \,.
 \end{equation}
+
+\todo[inline]{This part is kind of confused, I think the concepts are well explained but there is some reorganization to do.}
+
+\todo[inline]{Add summary of cosmological distances, with explanation of their physical meaning, drawing from \cite{hoggDistanceMeasuresCosmology2000} and \cite{davisExpandingConfusionCommon2004}.}
+
+\section{The cosmological constant}
 
 Einstein thought that the universe had to be static.
 

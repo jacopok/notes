@@ -82,7 +82,7 @@ which means
 so we get our final expression: 
 %
 \begin{align}
-\dd{ \chi  } = \frac{ \dd{z}}{a_0 H(z)} 
+\dd{ \chi  } = \frac{c \dd{z}}{a_0 H(z)} \marginnote{Used the fact that \(\dd{\chi } = - c \dd{\eta }\).}[.2cm]
 \,.
 \end{align}
 
@@ -172,7 +172,7 @@ for \(k=0\) these two coincide.
 
 % Two weeks ago we defined the luminosity distance: now we can compute it.
 
-Now,  suppose we are looking at a certain far-away object with angular size \(\Delta \theta \) and linear size \emph{at emission} of \(\Delta x\): then the angular diameter distance is given, in the small-angle approximation,
+Now,  suppose we are looking at a certain far-away object with angular size \(\Delta \theta \) and linear size \emph{at emission} of \(\Delta x\): then the \emph{angular diameter distance} is given, in the small-angle approximation, by
 %
 \begin{equation}
 d_A = \frac{ \Delta x}{\Delta \theta } = a(t_e) r
@@ -200,13 +200,14 @@ their ratio is
 
 \section{The cosmological constant}
 
-Einstein thought that the universe had to be static.
+Einstein thought that the universe had to be static: it was a common notion at the time that it should be, it was almost a philosophical principle.\footnote{An interesting story is actually the fact that this was corroborated by a calculation error on Einstein's part, which was pointed out by Friedmann: Einstein thought \cite{einsteinCommentFriedmannPaper1922} that \(\nabla_{\mu } T^{\mu \nu }= 0\) implied \(\partial_{t} \rho =0\), while Friedmann pointed out \cite{friedmannAlexanderFriedmann1922} that the correct equation reads \( \partial_{t} \qty(\sqrt{-g} \rho ) =0\): the density of the universe is not forced to be time independent if the determinant of the metric changes accordingly. Even the best make mistakes.}
+Now we know that the universe is neither static nor stationary.\footnote{The distinction between static and stationary is subtle but significant \cite{ludvigsenGeneralRelativityGeometric1999}: \emph{stationarity} is about the existence of a timelike Killing vector, while \emph{staticity} is about the timelike Killing vector being orthogonal to spacelike submanifolds. 
+A concrete example: Schwarzschild geometry is both static and stationary, Kerr geometry is stationary but not static.}
 
-Recall the Friedmann equations \eqref{eq:friedmann-equations}. Now, if we look at static solutions for matter (\(p=0\)): the third equation becomes the identity, the derivatives of \(a\) are zero: therefore the second equation gives us \(\rho \equiv 0\): there cannot be matter.
+So, he sought static solutions (\(a = \const\)) for matter (\(P=0\)) to the Friedmann equations \eqref{eq:friedmann-equations}:
+the third equation becomes \(\dot{\rho}= 0\), the second equation gives us \(\rho \equiv 0\), and from the first we must also have \(k=0\): the only way to have a static matter-filled universe is for the density of matter to be zero, and for the spatial curvature to be also zero.
 
-Now we know that the universe is neither static nor stationary.
-
-Einstein modified his equations in order to get a static non-empty solution.
+In order to satisfy what he thought was an empirical fact, Einstein modified his equations in order to get a static non-empty solution.
 
 The Einstein equations read 
 %
@@ -215,33 +216,67 @@ The Einstein equations read
 \,,
 \end{equation}
 %
-when \(c=1\), where the Einstein tensor \(G_{\mu \nu }\) can be defined with 
+when \(c=1\), where the Einstein tensor \(G_{\mu \nu }\) can be defined in terms of the Ricci curvature tensor \(R_{\mu \nu }\) and the scalar curvature \(R\) as:
 %
 \begin{equation}
   G_{ \mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu }R
 \,.
 \end{equation}
 
-Einstein added a term \(- \Lambda g_{\mu \nu }\) to the LHS of the Einstein equations. This is allowed since 
+This peculiar construction is the only one which can be made in terms of the curvature tensor and which is covariantly constant: \(\nabla_{\mu } G^{\mu \nu } = 0\). 
+This is a necessary condition since \(\nabla_{\mu } T^{\mu \nu }=0\): the Einstein equations state that they are proportional, so if we take the covariant derivative of the equations we must get the identity \(0=0\).
+
+% \begin{bluebox}
+% Here, \(R = g^{\mu \nu } R_{\mu \nu }\) is the scalar curvature, while \(R_{\mu \nu } = R^{\rho }_{\mu \rho \nu }\) is the Ricci tensor, and finally \(R^{\mu }_{\nu \rho \sigma }\) is the Riemann tensor, defined in terms of the affine connection \(\Gamma^{\mu }_{\nu \rho }\) as 
+% %
+% \begin{align}
+% R^{\mu }_{\nu \rho \sigma } = -2 \qty(\Gamma^{\mu }_{\nu [\rho , \sigma ]} + \Gamma^{\alpha }_{\nu [\rho } \Gamma^{\mu }_{\sigma ] \alpha })
+% \,,
+% \end{align}
+% %
+% where commas denote coordinate differentiation. The connection \(\Gamma^{ \mu }_{\nu \rho } \) 
+% \end{bluebox}
+
+Einstein added a term \(- \Lambda g_{\mu \nu }\) to the LHS of the Einstein equations, with \(\Lambda \) a constant number. This is allowed since 
 
 \begin{enumerate}
     \item it is symmetric;
-    \item it has zero covariant divergence, since \(\Lambda \) is constant while \(\nabla_{\mu } g^{\mu \nu } = 0\).
+    \item it has zero covariant divergence, since \(\Lambda \) is constant and the metric is covariantly constant \(\nabla_{\mu } g^{\mu \nu } = 0\).
 \end{enumerate}
 
-Then, we can rewrite the EE with a modified stress-energy tensor, to which we add \(\Lambda g_{\mu \nu } / 8 \pi G\). Comparing this to an ideal fluid tensor 
+Then, we can rewrite the EE in two equivalent ways: either 
+%
+\begin{align}
+\widetilde{G}_{\mu \nu } &= 8 \pi G T_{\mu \nu } &\text{with}&& \widetilde{G}_{\mu \nu } &= G_{\mu \nu } - \Lambda g_{\mu \nu }  \\
+G_{\mu \nu } &= 8\pi G \widetilde{T}_{\mu \nu } &\text{with}&& 
+\widetilde{T}_{\mu \nu } &= T_{\mu \nu } + \frac{\Lambda g_{\mu \nu }}{8 \pi G} 
+\,.
+\end{align}
+%
+
+In the first interpretation, the cosmological constant is an intrinsic geometric property of spacetime; in the second interpretation cosmological constant is a particular kind of fluid, with the property of its contribution to the stress-energy tensor always being a constant multiple of the metric. 
+
+In order to find out what the properties of this fluid are, w compare its stress-energy tensor to a generic ideal fluid tensor: 
 %
 \begin{equation}
-  T_{\mu \nu } = \left[\begin{array}{cccc}
-  \rho & 0 & 0 & 0 \\ 
-  0 & p & 0 & 0 \\ 
-  0 & 0 & p & 0 \\ 
-  0 & 0 & 0 & p
-  \end{array}\right]
+T_{\mu \nu }^{\text{(generic)}} = \left[\begin{array}{cccc}
+\rho & 0 & 0 & 0 \\ 
+0 & P & 0 & 0 \\ 
+0 & 0 & P & 0 \\ 
+0 & 0 & 0 & P
+\end{array}\right]
+\qquad \qquad
+T^{(\Lambda )}_{\mu \nu } = \frac{\Lambda g_{\mu \nu }}{8 \pi G} = \frac{\Lambda}{8 \pi G} \left[\begin{array}{cccc}
+1 & 0 & 0 & 0 \\ 
+0 & -1 & 0 & 0 \\ 
+0 & 0 & -1 & 0 \\ 
+0 & 0 & 0 & -1
+\end{array}\right]
 \,,
 \end{equation}
 %
-we get \(\rho \rightarrow \rho + \Lambda/ 8 \pi G \) and \(p \rightarrow p + \Lambda  / 8 \pi G\).
+so the corrections to the stress energy tensor must be \(\rho \rightarrow \rho + \Lambda/ 8 \pi G \) and \(P \rightarrow P - \Lambda  / 8 \pi G\), or, in other words, the density and pressure of the ``cosmological constant fluid'' are \(\rho_{\Lambda } = - P_{\Lambda } = \Lambda/8\pi G\).
+This proves that the equation of state of the cosmological constant is \(w = -1\).
 
 Inserting this into the Friedmann equations we get: 
 %
@@ -259,7 +294,9 @@ Inserting this into the Friedmann equations we get:
 \,,
 \end{equation}
 %
-while in the third equation, in the contribution \(\widetilde{\rho }  + \widetilde{p} \) the two \(\Lambda \) terms cancel. Then for the first equation we get 
+while in the third equation, in the contribution \(\widetilde{\rho }  + \widetilde{p} \) the two \(\Lambda \) terms cancel. For a cosmological constant-dominated universe, then, \(\dot{\rho} = \dot{P} = 0\). 
+
+So, proceeding with the derivation by Einstein, we set \(\dot{a}= \ddot{a} =0 \): for the first Friedmann equation we get 
 %
 \begin{equation}
   \frac{8 \pi G}{3} \rho + \frac{\Lambda}{3} = \frac{k}{a^2}
@@ -273,14 +310,21 @@ and for the second:
 \,.
 \end{equation}
 
-Then, 
+So, we substitute the expression for \(4 \pi G \rho \) into the first Friedmann equation: 
 %
 \begin{equation}
+  \frac{2}{3} \qty(4 \pi G \rho ) + \frac{\Lambda}{3} =
   \Lambda \qty(\frac{1}{3}+ \frac{2}{3}) = \Lambda = \frac{k}{a^2}
-\,,
+\,.
 \end{equation}
-%
-and we want a solution with \(k=1\), \(\Lambda > 0\).
+
+What are the physical conclusions to draw? 
+Since we want matter in the universe we must have \(\rho >0\), which implies \(\Lambda >0\), which implies \(k =1\): so the universe must be closed. 
+
+Friedmann studied perturbations around this solution and found it to be unstable: so, it is not suitable as a description of the universe.
+This, combined with the observations by Hubble of an expanding universe, prompted the scientific community to discard the idea of a stationary universe in favor of an expanding one.
+
+Einstein called \cite{autInvestigatingLegendEinstein2018} the introduction of the cosmological constant into the equation his ``greatest blunder''; however in modern cosmology the idea of a cosmological constant has gained new vigor: 
 
 A candidate for the cosmological constant term is the vacuum energy in QFT: however the estimate given there is around \num{e120} times off.
 

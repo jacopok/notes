@@ -1,4 +1,185 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-3-11, \\ compiled \\ \today}
+
+\chapter{The particle physics Standard Model}
+
+[For this lecture, we can refer to Peskin, chapter 2.]
+
+We wish to describe what we described yesterday as ``matter'' and ``radiation''.
+
+The problem is similar to the one we have in classical mechanics, an initial value problem: given the positions and velocities of the particles at a certain starting time \(t_0 \) we wish to compute their state at a later time \(t\).
+
+This classical description in which the particles are not wavelike fails at the microscopic level: we want to give a quantum description of such a system of particles. 
+We will derive it from the classical description using the standard tools of quantization. 
+We start with a refresher of the classical description.
+
+\subsection{The classical description of a system of particles}
+
+Our aim is to compute and solve the equations of motion.
+The usual approach is to use Hamilton's variational principle: it is the principle of least action, but it is not usually referred to as such: we are actually not \emph{minimizing} the action but finding a \emph{stationary point} for it.
+This could also be a maximum or a saddle point.
+
+The action functional \(S\) depends on the coordinates \(q_i(t)\) of the particles at at time \(t\), on the derivatives of these positions \(\dot{q}_{i}(t)\) which represent the velocities of the particles at a time \(t\). 
+We usually write \(S \qty[q_{i}(t), \dot{q}_{i}(t)]\). 
+
+If we fix \(q(t_0 )\) and \(q(t_{f})\), the positions at some initial and final time \(t_f\), we can then trace out a path \(q(t)\) and perturb it by \(\delta q(t)\); we fix \(\delta q(t_0 ) = \delta q(t_f) = 0\). 
+
+Under this perturbation of the path \(q \rightarrow q + \delta q\), the action changes to \(S \rightarrow S + \delta S\). 
+We then ask that \(\delta S =0\). 
+
+\(S\) is an action: is dimensions are those of an energy times a time. 
+In terms of the Lagrangian \(L\), the action is defined as 
+%
+\begin{align}
+S \qty[q_i(t), \dot{q}_{i}(t)] = \int_{t_0 }^{t_f} L (q_i (t), \dot{q}_{i}(t)) \dd{t}
+\,,
+\end{align}
+%
+which means that the Lagrangian must have the dimensions of an energy. 
+We will make use of a quantity called the Lagrangian density: 
+%
+\begin{align}
+L = \int \mathscr{L} \qty(\phi (\vec{x}), \partial_{\mu } \phi (\vec{x})) \dd[3]{x}
+\,.
+\end{align}
+
+From a finite number of particles we move to considering a field \(\phi (\vec{x})\): this means that, in a certain sense, we are considering an infinite number of particles. 
+
+The dependence of the Lagrangian on the \(q_i\) and \(\dot{q}_{i}\) shifted to a dependence on the spacetime coordinates \(x\) and their 4-derivatives \(\partial_{\mu } x\).
+It could depend on many fields simultaneously, we omit this dependence for simplicity.
+Now, this Lagrangian density has the dimensions of an energy per unit volume. 
+
+Then, the action, computed in a region \(\Omega \) of 4-dimensional spacetime, is 
+%
+\begin{align}
+S = \int_{\Omega } \dd[4]{x} \mathscr{L} \qty(\phi (x), \partial_{\mu } (\phi (x)))
+\,.
+\end{align}
+
+Now that we have established the notation, we can apply the action principle: we consider an infinitesimal variation of the field \(\phi \rightarrow \phi  + \delta \phi \). 
+We require this variation to vanish not only at the initial and final time, but over all the boundary \(\partial \Omega \): 
+%
+\begin{align}
+\eval{\delta \phi }_{\partial \Omega } =0
+\,.
+\end{align}
+
+Then, imposing \(\delta S =0\) is equivalent to the Euler-Lagrange equations: 
+%
+\begin{align}
+\pdv{\mathscr{L}}{\phi (x)} - \pdv{}{x^{\mu }} \qty(\pdv{\mathscr{L}}{\qty(\partial_{\mu} \phi (x))}) = 0
+\,.
+\end{align}
+
+If we have many fields \(\phi_{r}\), then we have a set of E-L equations for each of them. 
+This is still classical: for example, classical (relativistic) electrodynamics is formulated in this way.
+
+The momenta are 
+%
+\begin{align}
+\pi (x) = \pdv{\mathscr{L}}{\dot{\phi} (x)}
+\,,
+\end{align}
+%
+where a dot denotes a time derivative
+and using this we define the Hamiltonian density by 
+%
+\begin{align}
+\mathscr{H} (x) = \pi (x) \dot{\phi} (x) - \mathscr{L}(\phi, \partial_{\mu }\phi )
+\,,
+\end{align}
+%
+and similarly to the Lagrangian we have the full Hamiltonian \(H\)
+%
+\begin{align}
+H = \int \dd[3]{x} \mathscr{H}
+\,.
+\end{align}
+
+Now, these fields (\(\phi \) and \(\pi \)) are classical fields: we will apply classical quantization to them. 
+They will need to satisfy the classical commutation relations: 
+%
+\begin{align}
+\qty[\phi (\vec{x}, t), \pi (\vec{x}', t)] &= i \hbar \delta (\vec{x} - \vec{x}')  \\
+\qty[\phi (\vec{x}, t), \phi  (\vec{x}', t)] &=
+\qty[\pi (\vec{x}, t), \pi  (\vec{x}', t)] = 0
+\,.
+\end{align}
+%
+% \todo[inline]{\(\pi \) or \(\dot{\phi}\)?}
+% \todo[inline]{What does dot mean?}
+% \todo[inline]{Dependence on \(x\)?}
+
+\subsection{A relativistic reminder}
+
+
+the energy-momentum four-vector is 
+%
+\begin{align}
+p^{\mu } = \left[\begin{array}{cccc}
+E & \vec{p} c
+\end{array}\right]
+\,,
+\end{align}
+%
+where the greek index \(\mu \) can take values from 0 to 3. 
+
+The metric signature used here is the the mostly minus one. So, \(p^{\mu } q_{\mu } = E_{p} E_{q} - \vec{p} \cdot \vec{q}\), since we raise and lower indices using the metric \(\eta_{\mu \nu }\). 
+
+The square norm of the 4-momentum is \(p \cdot p  = p^2 = E^2 - \abs{p}^2 c^2\). It is Lorentz invariant.
+
+In the rest frame of the observer, \(p^{\mu } = \qty[E_{0}, \vec{0}]\), and this \(E_0\) is just (\(c^2\) times)
+ the mass of the particle: this is the \emph{definition} of mass. 
+
+When the relation is satisfied we have 
+%
+\begin{align}
+p^2 &= E^2 - \abs{p}^2 c^2= \qty(mc^2)^2  \\
+E &= c \sqrt{\abs{p}^2 + (mc)^2}
+\,.
+\end{align}
+
+% \todo[inline]{There is an extra \(c\) in the notes.}
+
+When this relation is satisfied we say we are \emph{on shell}: for virtual particles, instead, this might not be satisfied.
+
+We will use natural units: \(\hbar = c = 1\). 
+
+This means that we equate energies (\SI{}{eV}) and angular velocities (\SI{}{Hz}); also we equate times (\SI{}{s}) and lengths (\SI{}{m}). 
+
+The rest energy of the electron is \(m_e \approx \SI{511}{keV}\). 
+Let us consider an electron with a momentum \(p\) of the order of its mass \(m_e\): then, its uncertainty in position is of the order 
+%
+\begin{align}
+\frac{\hbar}{p c} \approx \frac{1}{m_e} \approx \SI{4e-11}{cm}
+\,.
+\end{align}
+
+The dimensions of the lagrangian density, in natural units, are those of an energy to the fourth power, or a length to the \(-4\), or a mass to the fourth. 
+
+Another useful exercise is to calculate the coupling of the electromagnetic field: 
+%
+\begin{align}
+V(r) = \frac{e^2}{4 \pi \epsilon_{0} r} = \frac{e^2}{4 \pi } \frac{1}{r} 
+\,,
+\end{align}
+%
+since we set \(\epsilon_{0} = \mu_0 = 1\). 
+We can introduce the electromagnetic \(\alpha \): this is 
+%
+\begin{align}
+\alpha = \frac{e^2}{4 \pi } \times \frac{1}{\hbar c} 
+\,.
+\end{align}
+
+This then becomes adimensional: \(\alpha \approx 1 / 137\). 
+It represents the strength of the electromagnetic interaction: the strength of the coupling of the photon to the electron.  
+The fact that it is \(\sim \num{e-2}\) is important: it allows us to work in a perturbative way, in powers of \(\alpha \). 
+
+What is the coupling of the strong and weak interactions? This will be discussed.
+
+Next time, we will discuss symmetries and symmetry breaking. 
+
 \end{document}

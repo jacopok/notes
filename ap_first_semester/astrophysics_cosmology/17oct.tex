@@ -200,11 +200,11 @@ their ratio is
 
 \section{The cosmological constant}
 
-Einstein thought that the universe had to be static: it was a common notion at the time that it should be, it was almost a philosophical principle.\footnote{An interesting story is actually the fact that this was corroborated by a calculation error on Einstein's part, which was pointed out by Friedmann: Einstein thought \cite{einsteinCommentFriedmannPaper1922} that \(\nabla_{\mu } T^{\mu \nu }= 0\) implied \(\partial_{t} \rho =0\), while Friedmann pointed out \cite{friedmannAlexanderFriedmann1922} that the correct equation reads \( \partial_{t} \qty(\sqrt{-g} \rho ) =0\): the density of the universe is not forced to be time independent if the determinant of the metric changes accordingly. Even the best make mistakes.}
+Einstein thought that the universe had to be static: it was a common notion at the time that it should be, almost a philosophical principle.\footnote{An interesting historical fact: this was corroborated by a calculation error on Einstein's part, which was later pointed out by Friedmann. Einstein thought \cite{einsteinCommentFriedmannPaper1922} that \(\nabla_{\mu } T^{\mu \nu }= 0\) implied \(\partial_{t} \rho =0\), while Friedmann pointed out \cite{friedmannAlexanderFriedmann1922} that the correct equation reads \( \partial_{t} \qty(\sqrt{-g} \rho ) =0\): the density of the universe is not forced to be time independent if the determinant of the metric changes accordingly. Even the best make mistakes.}
 Now we know that the universe is neither static nor stationary.\footnote{The distinction between static and stationary is subtle but significant \cite{ludvigsenGeneralRelativityGeometric1999}: \emph{stationarity} is about the existence of a timelike Killing vector, while \emph{staticity} is about the timelike Killing vector being orthogonal to spacelike submanifolds. 
-A concrete example: Schwarzschild geometry is both static and stationary, Kerr geometry is stationary but not static.}
+A concrete example: Schwarzschild geometry is both static and stationary, Kerr geometry is stationary but not static, FLRW geometry is neither, since there is no timelike Killing vector field.}
 
-So, he sought static solutions (\(a = \const\)) for matter (\(P=0\)) to the Friedmann equations \eqref{eq:friedmann-equations}:
+So, he sought static solutions (\(a = \const\)) for matter (\(P=0\)) to the Friedmann equations \eqref{eq:friedmann-equations}: if we set \(\dot{a} = \ddot{a} = 0\) 
 the third equation becomes \(\dot{\rho}= 0\), the second equation gives us \(\rho \equiv 0\), and from the first we must also have \(k=0\): the only way to have a static matter-filled universe is for the density of matter to be zero, and for the spatial curvature to be also zero.
 
 In order to satisfy what he thought was an empirical fact, Einstein modified his equations in order to get a static non-empty solution.
@@ -237,7 +237,7 @@ This is a necessary condition since \(\nabla_{\mu } T^{\mu \nu }=0\): the Einste
 % where commas denote coordinate differentiation. The connection \(\Gamma^{ \mu }_{\nu \rho } \) 
 % \end{bluebox}
 
-Einstein added a term \(- \Lambda g_{\mu \nu }\) to the LHS of the Einstein equations, with \(\Lambda \) a constant number. This is allowed since 
+Einstein added a term \(- \Lambda g_{\mu \nu }\) to the LHS of the Einstein equations, with \(\Lambda \) a constant scalar. This is allowed since 
 
 \begin{enumerate}
     \item it is symmetric;
@@ -280,21 +280,17 @@ This proves that the equation of state of the cosmological constant is \(w = -1\
 
 Inserting this into the Friedmann equations we get: 
 %
-\begin{equation}
-  \qty(\frac{\dot{a} }{a})^2= 
+\begin{align}
+  \qty(\frac{\dot{a} }{a})^2 &= 
   \frac{8 \pi G}{3} \rho + \frac{\Lambda }{3}
-  - \frac{k}{a^2}
+  - \frac{k}{a^2} \\
+  \frac{\ddot{a}}{a}  &= - \frac{4 \pi G}{3} \rho + \Lambda \\
+ \dot{\rho} &= -3 \frac{\dot{a}}{a }\qty(\widetilde{\rho} + \widetilde{P}) = -3 \frac{\dot{a}}{a} \qty(\rho + P)
 \,,
-\end{equation}
+\end{align}
 %
-
-%
-\begin{equation}
-  \frac{\ddot{a}}{a} = - \frac{4 \pi G}{3} \rho + \Lambda 
-\,,
-\end{equation}
-%
-while in the third equation, in the contribution \(\widetilde{\rho }  + \widetilde{p} \) the two \(\Lambda \) terms cancel. For a cosmological constant-dominated universe, then, \(\dot{\rho} = \dot{P} = 0\). 
+and we can see that in the third equation, the effect of the source is encompassed in a term \(\widetilde{\rho }  + \widetilde{P} \): the two \(\Lambda \) terms cancel, since they are opposite.
+For a cosmological constant-dominated universe --- that is, for a universe in which the only fluid behaves like the cosmological constant -- we have \(\dot{\rho} = \dot{P} = 0\). 
 
 So, proceeding with the derivation by Einstein, we set \(\dot{a}= \ddot{a} =0 \): for the first Friedmann equation we get 
 %
@@ -324,11 +320,14 @@ Since we want matter in the universe we must have \(\rho >0\), which implies \(\
 Friedmann studied perturbations around this solution and found it to be unstable: so, it is not suitable as a description of the universe.
 This, combined with the observations by Hubble of an expanding universe, prompted the scientific community to discard the idea of a stationary universe in favor of an expanding one.
 
-Einstein called \cite{autInvestigatingLegendEinstein2018} the introduction of the cosmological constant into the equation his ``greatest blunder''; however in modern cosmology the idea of a cosmological constant has gained new vigor: 
+Einstein probably \cite{autInvestigatingLegendEinstein2018} called the introduction of the cosmological constant into the equation his ``greatest blunder''; however in modern cosmology the idea of a cosmological constant has gained new vigor: we observe the universe's expansion to be accelerated, that is \(\ddot{a} > 0\), and the only way for this to be the case if \(\rho >0\) is if \(\Lambda > 0\) as well. 
+It is the only kind of fluid which has a repulsive gravitational effect.
 
-A candidate for the cosmological constant term is the vacuum energy in QFT: however the estimate given there is around \num{e120} times off.
+As opposed to the approach by Einstein, in which the cosmological constant was inserted to stationarize the universe, we make it a measurable parameter of our theory.
 
-The next topic is a solution of the Friedmann equations.
-We will try to do it with \(p=0\): \(\rho \propto a^{-3}\).
+A candidate for the cosmological constant term, which is a kind of intrinsic energy of space, is the vacuum energy in QFT: however the estimate we get when trying to make this quantitative is around \num{e120} times the measured value of \(\Lambda \).
+
+% The next topic is a solution of the Friedmann equations.
+% We will try to do it with \(p=0\): \(\rho \propto a^{-3}\).
 
 \end{document}

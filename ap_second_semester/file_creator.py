@@ -8,6 +8,16 @@ subfile_heading = """\\documentclass[main.tex]{subfiles}
 \\end{document}"""
 
 end_doc = "\\end{document}\n"
+bibliography = "bibliography"
+
+def end_doc_condition(line):
+    if (end_doc in line):
+        return True
+    elif (bibliography in line):
+        return True
+    else:
+        return False
+
 subfile_include = lambda x : "\\subfile{" + x + "}\n"
 
 folder_names = {
@@ -59,7 +69,7 @@ def create_file(folder, filename):
 
     with open(main_path, "w") as f:
         for line in buf:
-            if line == end_doc:
+            if end_doc_condition(line):
                 line = subfile_include(filename) + line
                 print("Adding subfile to main at " + main_path)
             f.write(line)
@@ -71,11 +81,15 @@ def add_line_main(folder):
         buf = f.readlines()
 
     with open(main_path, "w") as f:
+        done = False
         for line in buf:
-            if line == end_doc:
+            if end_doc_condition(line):
                 line = "\n" + line
                 print("Adding white line to main at " + main_path)
+                done = True
             f.write(line)
+            if (done):
+                return
 
 for i in schedule:
     day = next_monday() + datetime.timedelta(i)

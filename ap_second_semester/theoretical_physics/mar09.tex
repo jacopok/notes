@@ -100,15 +100,27 @@ which is true since \(V\) is a symmetric operator: it has real eigenvalues. This
 \psi^{*} \nabla^2 \psi 
 - \psi \nabla^2 \psi^{*}  
 }  \\
-&= \frac{i}{2m} \int_{\mathbb{R}^3} \qty{
+&= \frac{i}{2m} \int_{\mathbb{R}^3} 
 \nabla_{\vec{x}} \cdot \qty[
-\psi^{*} \vec{\nabla} \psi - \psi\qty(\vec{\nabla} \psi^{*})  
-]
-}
+\psi^{*} \vec{\nabla} \psi - \psi\qty(\vec{\nabla} \psi^{*})]
 \,,
 \end{align}
 %
-so we can define 
+where we integrated by parts\footnote{The calculation, expressed using index notation (and the Einstein summation convention) for clarity, is as follows: 
+%
+\begin{align}
+\psi^{*} \partial_{i} \partial^{i} \psi  = \partial_{i} \qty(\psi^{*} \partial^{i} \psi)  - (\partial_{i} \psi^{*})(\partial^{i} \psi)
+\,
+\end{align}
+%
+and similarly for the other term. The terms which come out as the products of two gradients, \(\qty(\partial_{i} \psi^{*}) (\partial^{i} \psi)\), are equal for both the terms, so they simplify. Then, we are left with 
+%
+\begin{align}
+\psi^{*} \partial_{i} \partial^{i} \psi - \psi \partial_{i} \partial^{i} \psi^{*} = \partial_{i} \qty(\psi^{*} \partial^{i} \psi - \psi \partial^{i} \psi^{*})
+\,.
+\end{align}
+%
+} so we can define 
 %
 \begin{align}
 \vec{j} (\vec{x}, t) = - \frac{i}{2m} \qty(\psi^{*} \vec{\nabla} \psi - \psi \vec{\nabla} \psi^{*}  )

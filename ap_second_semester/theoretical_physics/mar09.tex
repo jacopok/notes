@@ -3,6 +3,223 @@
 
 \marginpar{Thursday\\ 2020-3-12, \\ compiled \\ \today}
 
+\section*{General information}
 
+Written \& oral exam. 
+
+\todo[inline]{The oral is optional: but is there grade truncation?}
+
+The suggested book is D'Auria \& Trigiante \cite{dauriaSpecialRelativityFeynman2011}. 
+For the second part it is also useful to have a look at Mandl \& Shaw \cite{mandlQuantumFieldTheory2010}.
+
+
+Live question time in Zoom at half past 11 on Mondays. 
+
+Things which will be taken for granted: four-vectors, Lorenz and Poincaré groups, basics of QM, basics of linear operators. 
+
+\subsection*{Contents}
+
+This course will deal with the basics of Relativistic Quantum Field Theory. 
+
+We will discuss the Lagrangian formalism for a Classical Field Theory. 
+We will quantize these theories using canonical quantization, specifically for a scalar, a Dirac fermion, and a vector boson. 
+
+Then, we will introduce interactions in our Lagrangian: we will use the \(S\)-matrix expansion, and Feynman diagrams. 
+
+\chapter{Relativistic Quantum Field Theory}
+
+\section{The nonrelativistic wave equation}
+
+We will review the derivation of the nonrelativistic Schrödinger equation. 
+We find it starting from the correspondence principle: we start from the expression of the energy 
+%
+\begin{align}
+E = \frac{p^2}{2m} + V(x)
+\,,
+\end{align}
+%
+and substitute the energy with \(E \rightarrow i \partial_{t}\), the momentum with \(\vec{p} \rightarrow - i \vec{\nabla}_{x}\) and the position with the position operator \(\vec{x}\), all acting on the wavefunction.
+With this we get 
+%
+\begin{align}
+i \pdv{\psi }{t} (\vec{x}, t)
+= \qty(\frac{-\nabla^2 }{2m}+  V(\vec{x})) \psi (\vec{x}, t) 
+\,.
+\end{align}
+%
+
+We still need to assign a meaning to the wavefunction: this is given by the Bohr condition, which tells us that the probability density of finding the particle in a specific  region is
+%
+\begin{align}
+\rho (\vec{x}, t) = \abs{\psi (\vec{x}, t)}^2 \geq 0 
+\,.
+\end{align}
+
+This probability density must be normalized as an initial condition:
+%
+\begin{align}
+\mathbb{P} (t_0 ) = \int_{\mathbb{R}^3} \dd[3]{x} \rho (\vec{x}, t_0 ) = 1
+\,,
+\end{align}
+%
+and we wish to show that it will also be normalized at later times: 
+%
+\begin{align}
+\dv{\mathbb{P}}{t} &= 
+\int_{\mathbb{R}^3} \dd[3]{x} \pdv{}{t} \abs{\psi (\vec{x}, t)}^2  \\
+&= \int_{\mathbb{R}^3} \dd[3]{x} \qty(\psi^{*} \pdv{\psi }{t} + \pdv{\psi^{*}}{t} \psi )
+\,.
+\end{align}
+
+Using the Schrödinger equation we can substitute in the expression for the derivative of the wavefunction: 
+%
+\begin{align}
+\dv{\mathbb{P}}{t} &= \int_{\mathbb{R}^3} \dd[3]{x} \qty{
+\psi^{*}  \frac{1}{i}\qty(-\frac{\nabla^2}{2m}+V) \psi - \frac{1}{i} \psi \qty(- \frac{\nabla^2}{2m} + V) \psi^{*}   
+}  \\
+&= \frac{i}{2m} \int_{\mathbb{R}^3} \dd[3]{x} \qty{
+\psi^{*} \nabla^2 \psi - 2m \psi^{*} V \psi 
+- \psi \nabla^2 \psi^{*}
++ 2m \psi V \psi^{*}
+}
+\,,
+\end{align}
+%
+and we use the fact that 
+%
+\begin{align}
+\psi^{*} V \psi  = \psi V \psi^{*} = \qty(\psi^{*} V \psi )^{*}
+\,,
+\end{align}
+%
+which is true since \(V\) is a symmetric operator: it has real eigenvalues. This allows us to simplify the terms which include \(V\), and we find:
+\todo[inline]{There seem to be some \(2m\) factors missing in the formula in the notes.}
+%
+\begin{align}
+\dv{\mathbb{P}}{t} &= \frac{i}{2m} \int_{\mathbb{R}^3 } \dd[3]{x} \qty{
+\psi^{*} \nabla^2 \psi 
+- \psi \nabla^2 \psi^{*}  
+}  \\
+&= \frac{i}{2m} \int_{\mathbb{R}^3} \qty{
+\nabla_{\vec{x}} \cdot \qty[
+\psi^{*} \vec{\nabla} \psi - \psi\qty(\vec{\nabla} \psi^{*})  
+]
+}
+\,,
+\end{align}
+%
+so we can define 
+%
+\begin{align}
+\vec{j} (\vec{x}, t) = - \frac{i}{2m} \qty(\psi^{*} \vec{\nabla} \psi - \psi \vec{\nabla} \psi^{*}  )
+\,,
+\end{align}
+%
+so that our equation now reads 
+%
+\begin{align}
+\dv{\mathbb{P}}{t} = - \int_{\mathbb{R}^3} \dd[3]{x} \vec{\nabla}_{x} \cdot \vec{j} 
+= \int_{\partial \mathbb{R}^3} \vec{j} \cdot \hat{n} \dd[2]{x} = 0
+\,,
+\end{align}
+%
+since the wavefunction is integrable: that is, it goes to zero \emph{quickly} as \(\abs{\vec{x}} \rightarrow \infty \). 
+Therefore, \(\abs{\vec{j}} \rightarrow 0\) as \(\abs{\vec{x}} \rightarrow \infty \). For a more detailed explanation, see the Quantum Mechanics notes by Manzali \cite[page 147]{manzaliAppuntiDiFisica2019}.
+
+So, if the probability is equal to one at a certain time than it keeps being equal to one. 
+
+We can express this as a differential equation for the integrand: the \emph{continuity equation}, 
+%
+\begin{align}
+\pdv{}{t} \abs{\psi  (\vec{x}, t)}^2 + \vec{\nabla} \cdot \vec{j} = 0
+\,.
+\end{align}
+
+Let us now consider the way to solve the free Schrödinger equation: 
+%
+\begin{align}
+i \pdv{\psi }{t} = - \frac{\nabla^2 \psi }{2m } 
+\,.
+\end{align}
+
+We start from an ansatz of the equation being factorizable: \(\psi (\vec{x}, t) = \chi (t) \varphi (\vec{x})\). So, we get 
+%
+\begin{align}
+i \pdv{\psi_{0}}{t} = \varphi (\vec{x}) i \pdv{\chi }{t}
+\,
+\end{align}
+%
+on the LHS, and 
+%
+\begin{align}
+H_0 (\psi ) = - \chi (t) \frac{\vec{\nabla}^2}{2m} \varphi (\vec{x})
+\,
+\end{align}
+%
+on the RHS. Dividing both by \(\psi = \chi \varphi \) we get 
+%
+\begin{align}
+i \frac{1}{\chi } \pdv{\chi }{t} = - \frac{1}{\varphi } \frac{\vec{\nabla}^2}{2m} \varphi 
+\,,
+\end{align}
+%
+and since these are dependent only on time (for the LHS) and only on position (for the RHS) they must be separately constant: let us call their value \(E\). Therefore, we can integrate them to get 
+%
+\begin{align}
+\pdv{\chi }{t} = - i E \chi  \implies \chi (t) = \chi (0) \exp(-iEt)
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+\nabla^2 \varphi = -2 m E \varphi  \implies \varphi (\vec{x}) = \varphi (0) \exp(i \vec{k} \cdot \vec{x})
+\,.
+\end{align}
+%
+Here , \(\vec{k}\) is a 3D vector such that \(\abs{\vec{k}}^2 = 2 m E\). 
+
+This is called the \emph{dispersion relation}. So, the full solution, which is called a \emph{monochromatic} solution, is 
+%
+\begin{align}
+\psi (\vec{x}, t) = \exp(-i \qty(Et - \vec{k} \cdot \vec{x}))
+\,,
+\end{align}
+%
+where \(\abs{\vec{k}}^2 = 2mE\).
+
+The general solution will be a continuous superposition of solutions of this form: 
+%
+\begin{align}
+\psi (\vec{x}, t) = \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} \widetilde{\varphi} (\vec{k}) \eval{\exp(-i \qty(\omega_{k} - \vec{k} \cdot \vec{x}))}_{\omega_{k} = \frac{\abs{\vec{k}}^2}{2m}}
+\,.
+\end{align}
+
+Our conventions for the Fourier transform are:
+%
+\begin{align}
+\varphi (\vec{x}) &= \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} \widetilde{\varphi} (\vec{k}) \exp(-i \vec{k}\cdot \vec{x})
+\widetilde{\varphi} (\vec{x}) &= \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} \varphi (\vec{k}) \exp(i \vec{k}\cdot \vec{x})
+\,,
+\end{align}
+%
+so we use the symmetric definition. Other conventions have factors \((2\pi )^{-3}\) on one side and nothing on the other; it is the same but the we must be consistent. 
+
+It is a theorem that \(\abs{\varphi }^2 = \abs{\widetilde{\varphi}}^2\), where the square norm of \(\varphi \), \(\abs{\varphi}^2\), is just the integral of \(\varphi^{*} \varphi \) over all 3D space. 
+
+The 3D dirac delta function is defined as 
+%
+\begin{align}
+\delta^{3 } (\vec{x} - \vec{y}) = \frac{1}{(2\pi )^3}
+\int \dd[3]{k} \exp(- i \vec{k} \cdot (\vec{x} - \vec{y}))
+\,,
+\end{align}
+%
+and the 3D delta in the momentum space is perfectly analogous. 
+
+The Schrödinger equation is manifestly \emph{non relativistic}: we started from the nonrelativistic expression \(E = p^2/2m + V\), so we should expect so. 
+In the differential equation we have a second spatial derivative and a first temporal derivative: there is no way to write such an equation  covariantly. 
+
+This kind of law of physics is only invariant under \emph{galilean transformations}, which do not change time. 
 
 \end{document}

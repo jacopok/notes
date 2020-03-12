@@ -1,4 +1,185 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-3-12, \\ compiled \\ \today}
+
+\section*{Contents of the course}
+
+We start with a derivation of the Friedmann eqs. from the Einstein equations. 
+
+We will then discuss the properties of the CMB, deriving the spectrum, and then CMB anisotropies. 
+
+Then we will discuss star and structure formation, about the nonlinear evolution of perturbations. 
+We will use the path-integral approach to classical field theory. 
+We will also discuss weak gravitational lensing in the universe.
+
+We will use some smart nonlinear approximations: the Zel'dovich approximation and the adhesion approximation.
+
+We will use an ``effective Planck constant'', a parameter which can be fit in our model. 
+
+References: notes by a student from the previous years, in Italian \cite{nataleNoteCorsoDi2017}. 
+
+\chapter{Friedmann equations}
+
+In the previous course we used the approximate symmetries of the universe to write the FLRW line element: 
+%
+\begin{align}
+\dd{s^2} = -\dd{t^2} + a^2(t) \dd{\sigma^2}
+\,,
+\end{align}
+%
+do note that we switch signature from the previous course: now we use the mostly plus one.
+The spatial part is defined by 
+%
+\begin{align}
+\dd{\sigma^2} = \widetilde{g}_{ij} \dd{x^{i}} \dd{x^{j}}
+\,,
+\end{align}
+%
+where \(\widetilde{g}_{ij}\) is the maximally symmetric metric tensor in a 3D space. 
+There are only 3 maximally symmetric 4D spacetimes: Minkowski, dS and AdS.
+
+Since we have maximal symmetry, the Riemann tensor is 
+%
+\begin{align}
+R_{ijkl} = k \qty(\widetilde{g}_{ik} \widetilde{g}_{jl} - \widetilde{g}_{il} \widetilde{g}_{jk})
+\,.
+\end{align}
+
+We can use spherical coordinates: 
+%
+\begin{align}
+\dd{\sigma^2 } = \frac{ \dd{r^2}}{1 - k r^2} + r^2 \dd{\Omega^2}
+\,,
+\end{align}
+%
+and we can define the coordinate \(\chi \) by 
+%
+\begin{align}
+\dd{\chi } = \frac{ \dd{r^2}}{\sqrt{1 - k r^2}}
+\,.
+\end{align}
+
+The Einstein equations read 
+%
+\begin{align}
+G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = 8 \pi G T_{\mu \nu }
+\,,
+\end{align}
+%
+where \(R_{\mu \nu }\) is the Ricci tensor and \(R\) is its trace, the scalar curvature, while \(T_{\mu \nu } \) is the stress energy momentum tensor. 
+
+In cosmology we assume to have the SEMT of a perfect fluid. 
+Really, we have particles, between which there is vacuum. 
+
+We need to use the Weyl tensor, which describes the parts of the Riemann tensor which is not in the traces. 
+``The real world'' is only described by the Weyl tensor, but in cosmology we make a great approximation in ignoring it. 
+
+What we do is to insert an ansatz for the metric tensor, which we use to derive the Christoffel symbols, and from these we write the Riemann tensor. 
+Doing it the other way around, starting from the source SEMT, is very difficult. 
+
+[Christoffel symbols for FLRW]
+
+Notice that the spatial Christoffel symbols are nonzero even in Minkowski (\(k=0\)): why is this?
+This is because we are using curvilinear coordinates, the Christoffel symbols express the \emph{extrinsic} curvature, not the \emph{intrinsic} curvature; they are not tensors, so they can be zero in a reference and nonzero in another. 
+
+[Ricci tensor components]
+
+A great simplification comes from the observation that the metric being diagonal implies that the Ricci tensor is diagonal as well. 
+
+The Ricci scalar then comes out to be 
+%
+\begin{align}
+R = 6 \qty[\frac{\ddot{a}}{a} + \qty(\frac{\dot{a}}{a}) + \frac{k}{a^2}]
+\,.
+\end{align}
+
+The dimensions of the Ricci scalar are those of a length to the \(-2\). 
+
+The stress energy tensor is the functional derivative of everything but the curvature in the action with respect to the metric: if our action is 
+%
+\begin{align}
+S = S_{g} + S_{\text{fluid}}
+\,,
+\end{align}
+%
+where the gravitational action is \(S_{g} = M_p^2 R \sqrt{-g} /2 \) then 
+%
+\begin{align}
+T_{\mu \nu } \overset{\text{def}}{=} \fdv{S_{\text{fluid}}}{g^{\mu \nu }}
+\,.
+\end{align}
+
+\todo[inline]{Discuss why this is equivalent to ``flux of momentum component \(\mu \) across a surface of constant \(x^{\nu} \)''.}
+
+We use perfect fluids: they have a stress-energy tensor like 
+%
+\begin{align}
+T^{\mu \nu } =  \qty(\rho + P) u^{\mu } u^{\nu } + p g^{\mu \nu }
+\,,
+\end{align}
+%
+where \(u^{\mu }\) is the 4-velocity of the fluid element. 
+It is diagonal \emph{in the comoving frame}, in which \(u^{\mu } = \qty(1, \vec{0})\).
+
+If we are not comoving, we have additional heat transfer off diagonal terms (this is discussed in my thesis \cite[section 4.2]{tissinoRelativisticNonidealFlows2019}). 
+
+If we take the covariant divergence of the Einstein tensor \(G_{\mu \nu }\) we get zero; so the stress energy tensor must also have \(\nabla_{\mu} T^{\mu \nu }=0\). 
+This is \emph{not} a conservation equation. 
+
+In SR we had an equation like \(\partial_{\mu}  T^{\mu \nu }\): this \emph{was} a conservation equation, a local one. 
+In GR we also need Killing vectors in order to actually have conserved quantities. In cosmology we do not have symmetry with respect to time translation, so there is no timelike Killing vector \(\xi_{\mu }\) such that \(\xi_{\nu } \nabla_{\mu } T^{\mu \nu }\) represents the conservation of energy.
+
+This equation, \(\nabla_{\mu } T^{\mu \nu }\) follows from the fact that our fluid follows its equations of motion. 
+
+Let us explore the meaning of these equations: if, in the equation \(0 = \nabla_{\mu } T^{\mu}_{0}\),  we find 
+%
+\begin{align}
+0 &= \partial_{\mu } T^{\mu }_{0} + \Gamma^{\mu }_{\mu \lambda } T^{\lambda }_{0} - \Gamma^{\lambda }_{\mu 0} T^{\mu }_{\lambda }  \\
+&= - \dot{\rho}- 3 H \qty(\rho + P) 
+\,.
+\end{align}
+
+For example consider radiation: \(P = \rho /3\). This means that \(\dot{\rho}= - 4 H \rho  \): so, as the Hubble parameter increases, the radiation density decreases.
+
+The other two Friedmann equations can be derived from the time-time and space-space components on the Einstein equations: we get 
+%
+\begin{align}
+\frac{\ddot{a}}{a} &= - \frac{4 \pi G}{ 3} \qty(\rho + 3 P)  \\
+\qty(\frac{\dot{a}}{a})^2 &= \frac{8 \pi G}{3} \rho - \frac{k}{a^2}
+\,.
+\end{align}
+
+The space-space equation is not a dynamical equation, since it contains no second time derivatives: it is a \emph{constraint} on the evolution of the system. 
+
+However, the three Friedmann equations are not independent: the time-time one can be found from the other two. 
+
+\begin{greenbox}
+Exercise: calculate the Christoffel symbols for the FLRW metric, for any \(k\). 
+\end{greenbox}
+
+\begin{greenbox}
+Exercise: calculate the Ricci tensor and curvature scalar. 
+\end{greenbox}
+
+A useful theorem is the fact that for a maximally symmetric space the Ricci tensor must be given by
+%
+\begin{align}
+\widetilde{R}_{\alpha \beta } = 2 k \widetilde{g}_{\alpha \beta }
+\,. 
+\end{align}
+
+We can write the stress energy tensor as 
+%
+\begin{align}
+T_{\mu \nu } = \rho u_{\mu } u_{\nu } + P h_{\mu \nu }
+\,,
+\end{align}
+%
+where \(h_{\mu \nu } \) is the projection tensor onto the spacelike subspace \(h_{\mu \nu } = u_{\mu} u_{\nu } + g_{\mu \nu }\). 
+
+This is more physically meaningful. 
+
+Tomorrow we will start the discussion on the CMB. 
+
 \end{document}

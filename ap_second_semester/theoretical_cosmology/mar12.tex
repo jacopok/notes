@@ -72,7 +72,7 @@ where \(R_{\mu \nu }\) is the Ricci tensor and \(R\) is its trace, the scalar cu
 In cosmology we assume to have the SEMT of a perfect fluid. 
 Really, we have particles, between which there is vacuum. 
 
-We need to use the Weyl tensor, which describes the parts of the Riemann tensor which is not in the traces. 
+We need to use the Weyl tensor, which describes the parts of the Riemann tensor which are not in the traces. 
 ``The real world'' is only described by the Weyl tensor, but in cosmology we make a great approximation in ignoring it. 
 
 What we do is to insert an ansatz for the metric tensor, which we use to derive the Christoffel symbols, and from these we write the Riemann tensor. 
@@ -89,31 +89,50 @@ The Christoffel symbols for the FLRW metric are:
 \end{array}\right] \\
 \Gamma^{r}_{\mu \nu } &= \left[\begin{array}{cccc}
 0 & \dot{a} / a & 0 & 0 \\ 
-\dot{a} / a & \frac{kr}{a^2 (1-kr^2)} & 0 & 0 \\ 
+\dot{a} / a & \frac{kr}{(1-kr^2)} & 0 & 0 \\ 
 0 & 0 & (kr^2-1)r & 0 \\ 
 0 & 0 & 0 & (kr^2-1)r \sin^2\theta 
 \end{array}\right] \\
 \Gamma^{\theta }_{\mu \nu } &= \left[\begin{array}{cccc}
- &  &  &  \\ 
- &  &  &  \\ 
- &  &  &  \\ 
- &  &  & 
+ 0 & 0 & \dot{a} / a & 0 \\ 
+0 & 0 & 1 / r & 0 \\ 
+\dot{a} / a & 1/r & 0 & 0 \\ 
+0 & 0 & 0 & - \sin \theta \cos \theta 
 \end{array}\right] \\
 \Gamma^{\varphi }_{\mu \nu } &= \left[\begin{array}{cccc}
- &  &  &  \\ 
- &  &  &  \\ 
- &  &  &  \\ 
- &  &  & 
+0 & 0 & 0 & \dot{a} / a \\ 
+0 & 0 & 0 & 1/r \\ 
+0 & 0 & 0 & \cos \theta  /\sin \theta  \\ 
+\dot{a} /a  & 1/r & \cos \theta  /\sin \theta  & 0
 \end{array}\right]
 \,.
 \end{align}
 
+In order to calculate these, we can make use of certain simplifications: the FLRW metric is diagonal, and it does not depend on \(\varphi \).
+
 Notice that the spatial Christoffel symbols are nonzero even in Minkowski (\(k=0\), \(\dot{a} = \ddot{a} =  0\)): why is this?
 This is because we are using curvilinear coordinates, the Christoffel symbols express the \emph{extrinsic} curvature, not the \emph{intrinsic} curvature; they are not tensors, so they can be zero in a reference and nonzero in another. 
 
-[Ricci tensor components]
+In general, the Riemann tensor is given by 
+%
+\begin{align}
+R^{\mu }_{\nu \rho \sigma } = -2 \qty(\Gamma^{\mu }_{\nu [\rho , \sigma ]} + \Gamma^{\alpha }_{\nu [\rho } \Gamma^{\mu }_{\sigma ] \alpha })
+\,,
+\end{align}
+%
+where commas denote coordinate derivation, and square square brackets denote antisymmetrization (for clarification on this notation Wikipedia does a good job \cite{AntisymmetricTensor2019}). 
+
+The Ricci tensor is given by the contraction of the Riemann tensor along its first and third component:
+%
+\begin{align}
+R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu }
+= -2 \qty(\Gamma^{\alpha }_{\mu [\alpha , \nu ]} + \Gamma^{\beta }_{\mu [\alpha } \Gamma^{\alpha }_{\nu ] \beta  })
+\,.
+\end{align}
 
 A great simplification comes from the observation that the metric being diagonal implies that the Ricci tensor is diagonal as well. 
+
+\todo[inline]{Not true! See \cite{winRicciTensorDiagonal1996}.}
 
 The Ricci scalar then comes out to be 
 %
@@ -124,17 +143,17 @@ R = 6 \qty[\frac{\ddot{a}}{a} + \qty(\frac{\dot{a}}{a}) + \frac{k}{a^2}]
 
 The dimensions of the Ricci scalar are those of a length to the \(-2\). 
 
-The stress energy tensor is the functional derivative of everything but the curvature in the action with respect to the metric: if our action is 
+The stress energy tensor is the functional derivative of everything but the curvature in the action with respect to the metric: if our Lagrangian is 
 %
 \begin{align}
-S = S_{g} + S_{\text{fluid}}
+L = L_{g} + L_{\text{fluid}}
 \,,
 \end{align}
 %
-where the gravitational action is \(S_{g} = M_p^2 R \sqrt{-g} /2 \) then 
+where the gravitational Lagrangian is \(L_{g} = M_P^2 R /2 \) (and \(M_P = 1 / \sqrt{8 \pi G}\) in natural units is the reduced Planck mass, and \(R\) is the scalar curvature) then 
 %
 \begin{align}
-T_{\mu \nu } \overset{\text{def}}{=} \fdv{S_{\text{fluid}}}{g^{\mu \nu }}
+T_{\mu \nu } \overset{\text{def}}{=} -2 \fdv{L_{\text{fluid}}}{g^{\mu \nu }}
 \,.
 \end{align}
 

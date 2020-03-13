@@ -1,43 +1,57 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{The CMB}
+
 \marginpar{Friday\\ 2020-3-13, \\ compiled \\ \today}
 
 Today we discuss the CMB. 
-This is discussed in the book Modern Cosmology, we follow Sabino's notes.
+This is discussed in the book Modern Cosmology \cite{dodelsonModernCosmology2003}, we follow the professor's notes.
 
+A note: in these lectures a dot will refer to conformal time derivatives only, if we differentiate with respect to cosmic time we shall write the derivative explicitly.
 Let us suppose we have some particle species interacting, such as \(1 + 2 \leftrightarrow 3 +4\). 
 
-In these lectures a dot will refer to conformal time derivatives only. The derivative of the number density of particle type \(1\) is:  
+The variation in time of the abundance of particle type \(1\), (which is given by the density times a volume: \(n_1 a^3\)) is given by the difference of the particles which are created and destroyed.
+We write the formula first, and then explain it: this is given by
 %
 \begin{align}
+\begin{split}
 a^{-3} \dv{(n_1 a^3)}{t}
-= \qty[\prod_{i=1}^{4}
-\int \frac{ \dd[3]{p_{i}} }{(2 \pi )^3 2 E_i}]
+&= \int \frac{ \dd[3]{p_{1}} }{(2 \pi )^3 2 E_1} \qty[\prod_{i=2}^{4}
+\int \frac{ \dd[3]{p_{i}} }{(2 \pi )^3 2 E_i}] \times \\
+&\phantom{=}\ 
 \times (2 \pi )^{4} \delta^{(3)} (\vec{p}_{1} + \vec{p}_{2} - \vec{p}_{3} - \vec{p}_{4})
-\delta (E_1 + E_2 - E_3 - E_4 ) \times 
+\delta (E_1 + E_2 - E_3 - E_4 )  \times \\
+&\phantom{=}\ 
+\times 
 \abs{\mathcal{M}}^2
 \qty[f_3 f_4 \qty(1 \pm f_1 ) \qty(1 \pm f_2 ) - f_1 f_2 \qty(1 \pm f_3 ) \qty(1 \pm f_4 )]
+\end{split}
 \,,
 \end{align}
 %
-where the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to describe a instantaneous such as this. \(\mathcal{M}\) is the scattering matrix. 
-The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the statistics, we use \(-\) for fermions and \(+\) for bosons. 
+where:
+\begin{enumerate}
+  \item the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to go to a  describe a instantaneous such as this.
+  \item \(\mathcal{M}\) is the scattering matrix. 
+  \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. Bose statistics enhance the process, Pauli statistics block it. 
+  \item The \(2\pi \)-s account for the normalization of the deltas: if we were to discretize phase space and use Kronecker deltas we would not need them. 
+  \item The energy of each particle species is given by  \(E = \sqrt{p^2+m^2}\). 
+  Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the equations of motion are preferred in the path integral. So, we impose this condition: we do 
+  %
+  \begin{align}
+  \int \dd[3]{p} \int_{0}^{ \infty } \delta (E^2- p^2-m^2) 
+  = \int \dd[3]{p} \int_{0}^{ \infty } \frac{ \delta (E - \sqrt{p^2+m^2})}{2E}
+  \,,
+  \end{align}
+  %
+  so we include the term in the denominator. 
+\end{enumerate}
+
 If there is no interaction, \(n_1 \propto a^{-3}\). 
-Bose statistics enhance the process, Pauli statistics block it. 
 
-The \(2\pi \) account for the normalization of the deltas. 
-We set \(\hbar = c = k_B = 1\). The energy is given by  \(E = \sqrt{p^2+m^2}\). 
+We set \(\hbar = c = k_B = 1\).
 
-Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the EOM are preferred in the path integral. So, we impose this condition: we do 
-%
-\begin{align}
-\int \dd[3]{p} \int_{0}^{ \infty } \delta (E^2- p^2-m^2) 
-= \int \dd[3]{p} \int_{0}^{ \infty } \frac{ \delta (E - \sqrt{p^2+m^2})}{2E}
-\,,
-\end{align}
-%
-so we include the term in the denominator. 
 
 The term for particle \(1\), \(E_1\), has a different origin: the time is related to the proper time by \(p^{0}\), which is \(E_1\). The factor \(2\) is included for symmetry, it is indifferent if we include it or not since we can normalize the helicities \(g_{i}\). 
 
@@ -199,7 +213,7 @@ where \(f = f(x^{\alpha }, p^{\alpha })\), however actually we do not have that 
 If there are no collisions: \(\hat{\mathbb{L}} [f] =0 \), which is equivalent to 
 %
 \begin{align}
-\frac{\mathcal{D}f}{\mathcal{D}\lambda } =0
+\frac{\mathrm{D}f}{\mathrm{D}\lambda } =0
 \,,
 \end{align}
 %
@@ -225,7 +239,7 @@ Then, the Liouville operator is
 %
 \begin{align}
 \hat{\mathbb{L}} = p^{\alpha } \pdv{}{x^{\alpha }}-  
-\Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }} \overset{\text{def}}{=} \frac{\mathcal{D}}{\mathcal{D}\lambda }
+\Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }} \overset{\text{def}}{=} \frac{\mathrm{D}}{\mathrm{D}\lambda }
 \,.
 \end{align}
 

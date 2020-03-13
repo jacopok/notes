@@ -1,4 +1,316 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-3-13, \\ compiled \\ \today}
+
+Today we discuss the CMB. 
+This is discussed in the book Modern Cosmology, we follow Sabino's notes.
+
+Let us suppose we have some particle species interacting, such as \(1 + 2 \leftrightarrow 3 +4\). 
+
+In these lectures a dot will refer to conformal time derivatives only. The derivative of the number density of particle type \(1\) is:  
+%
+\begin{align}
+a^{-3} \dv{(n_1 a^3)}{t}
+= \qty[\prod_{i=1}^{4}
+\int \frac{ \dd[3]{p_{i}} }{(2 \pi )^3 2 E_i}]
+\times (2 \pi )^{4} \delta^{(3)} (\vec{p}_{1} + \vec{p}_{2} - \vec{p}_{3} - \vec{p}_{4})
+\delta (E_1 + E_2 - E_3 - E_4 ) \times 
+\abs{\mathcal{M}}^2
+\qty[f_3 f_4 \qty(1 \pm f_1 ) \qty(1 \pm f_2 ) - f_1 f_2 \qty(1 \pm f_3 ) \qty(1 \pm f_4 )]
+\,,
+\end{align}
+%
+where the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to describe a instantaneous such as this. \(\mathcal{M}\) is the scattering matrix. 
+The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the statistics, we use \(-\) for fermions and \(+\) for bosons. 
+If there is no interaction, \(n_1 \propto a^{-3}\). 
+Bose statistics enhance the process, Pauli statistics block it. 
+
+The \(2\pi \) account for the normalization of the deltas. 
+We set \(\hbar = c = k_B = 1\). The energy is given by  \(E = \sqrt{p^2+m^2}\). 
+
+Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the EOM are preferred in the path integral. So, we impose this condition: we do 
+%
+\begin{align}
+\int \dd[3]{p} \int_{0}^{ \infty } \delta (E^2- p^2-m^2) 
+= \int \dd[3]{p} \int_{0}^{ \infty } \frac{ \delta (E - \sqrt{p^2+m^2})}{2E}
+\,,
+\end{align}
+%
+so we include the term in the denominator. 
+
+The term for particle \(1\), \(E_1\), has a different origin: the time is related to the proper time by \(p^{0}\), which is \(E_1\). The factor \(2\) is included for symmetry, it is indifferent if we include it or not since we can normalize the helicities \(g_{i}\). 
+
+Typically we have kinetic equilibrium, if the scattering time is very short with respect to the Hubble time. 
+So, we use 
+%
+\begin{align}
+f_{\text{BE/FD}} = \qty(\exp(\frac{E- \mu }{T}) \pm 1)^{-1}
+\,,
+\end{align}
+%
+where the sign is a \(-\) for Bose Einstein statistics, while a \(+\) for Fermi-Dirac statistics. 
+
+For the nonrelativistic particles (all of them, except the photons) we have \(E - \mu \gg T\). 
+If \(f\) becomes very small, then we can drop the terms \((1 \pm f_i)\). This is the Boltzmann limit. 
+
+In theory we could not do this for photons, in practice we do it and the magnitude of the error is the same as the ratio \(\zeta (3) \approx 1.2\) to \(1\). 
+
+Then, our distributions will be given by 
+%
+\begin{align}
+f(E) = e^{ \mu / T} e^{- E/ T}
+\,.
+\end{align}
+
+So the phase space distribution term is 
+%
+\begin{align}
+\exp(- \frac{E_1 + E_2 }{T} ) \qty(e^{(\mu_3 + \mu_4 ) / T} - e^{(\mu_1 + \mu_2 ) / T})
+\,,
+\end{align}
+%
+where we used the fact that \(E_1 + E_2 = E_3 + E_4 \) by energy conservation, as we said. 
+If we enforced the Saha condition, chemical equilibrium \(\mu_1 + \mu_2 = \mu_3 + \mu_4 \), then we get precisely zero: the number densities of the species are constant.
+
+The mean number density of species \(i\) is given by 
+%
+\begin{align}
+n_i = g_i e^{\mu_{i} / T} \int \frac{ \dd[3]{p} }{(2 \pi )^3} e^{-E_i / T}
+\,,
+\end{align}
+%
+where \(g_i\) is the number of helicity states. 
+
+So, we find for the whole expression inside the brackets:
+%
+\begin{align}
+\frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
+- 
+\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}
+\,,
+\end{align}
+%
+so we can define the time-averaged cross section 
+%
+\begin{align}
+\expval{\sigma v} = \frac{1}{n_1^{(0)} n_2^{(0)}}
+\prod_{i} \int \frac{ \dd[3]{p}}{2 E_i} \dots
+\,,
+\end{align}
+%
+so the final equation is 
+%
+\begin{align}
+a^{-3} \dv[]{}{t} (n_1 a^3)
+= \expval{\sigma v} n_1^{(0)} n_2^{(0)} 
+\frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
+- 
+\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}
+\,,
+\end{align}
+%
+and the left hand side is typically \(\sim n_1 / t \sim n_1 H\). So, the combination on the RHS must be ``squeezed to zero'' eventually, which is equivalent to the Saha equation. 
+
+This is basically saying that we eventually reach chemical equilibrium. 
+
+\section{Hydrogen recombination}
+
+The process is 
+%
+\begin{align}
+e^{-} + p \leftrightarrow H + \gamma 
+\,,
+\end{align}
+%
+so the Saha equation yields 
+%
+\begin{align}
+\frac{n_e n_p}{n_H} = \frac{n_e^{(0)} n_p^{(0)}}{n_H^{(0)}}
+\,,
+\end{align}
+%
+and charge neutrality implies \(n_e = n_p\), \emph{not} \(n_e^{(0)} = n_p^{(0)}\). 
+
+At this stage in evolution, there are already some Helium nuclei, but we ignore them. 
+
+We define the ionization fraction 
+%
+\begin{align}
+X = \frac{n_e}{n_e + H}
+\,.
+\end{align}
+
+This then yields 
+%
+\begin{align}
+\frac{1 - X_e^{n}}{X_e^{2}} = \frac{4 \sqrt{2} \zeta (3)}{\sqrt{\pi }} \eta \qty(\frac{T}{m_e})^{3/2} \exp(\epsilon_{0} / T)
+\,,
+\end{align}
+%
+where \(\epsilon_0 = m_p + m_e - m_H = \SI{13.6}{eV}\) is the ionization energy of Hydrogen. 
+
+Then, we get that the temperature of recombination is \(T _{\text{rec}} \approx \SI{.3}{eV}\). 
+
+The evolution of the ionization fraction is 
+%
+\begin{align}
+\dv{X_{e}}{t} = (1-X_{e}) \beta (T) - X^2_{e} n_b \alpha^{(2)} (T)
+\,,
+\end{align}
+%
+where we defined the ionization rate 
+%
+\begin{align}
+\beta (T) = \expval{\sigma v} \qty(\frac{m_e T}{2 \pi })^{3/2} e^{- \epsilon_0 /T}
+\,,
+\end{align}
+%
+and the recombination rate \(\alpha^{(2)} = \expval{\sigma v}\). 
+
+The value of this can be solved numerically: the difference between this and the Saha equation is not great in the prediction in the recombination redshift; however the prediction of the residual ionized hydrogen is different: there is much more than Saha would predict. 
+
+The universe gets reionized at \(z \gtrsim 6\); this is still under discussion. 
+
+There are many ingredients in the interaction of the universe. We are interested in the photons: we want to predict the anisotropies in the CMB. 
+There is a dipole due to the movement of the solar system through the CMB. Now, we want to see what our predictions are if we subtract this. 
+
+[Scheme of the interactions.]
+
+The metric interacts with everything, photons interact with electrons through Compton scattering, electrons interact with protons through Coulomb scattering, dark energy, dark matter and neutrinos  interact only with the metric.
+
+Instead of Compton scattering, we use its nonrelativistic limit which applies here. 
+
+Scattering between electrons and protons is suppressed since protons are very massive. The other terms in the universe affect the geometry and we could see them through this. 
+
+There are models which include DM-DE coupling, and quintessence models, 
+and models in which dark energy clusters. 
+
+We are not going to consider these. 
+
+We go back to first principles: 
+%
+\begin{align}
+\hat{\mathbb{L}} [f] = \hat{\mathbb{C}} [f]
+\,,
+\end{align}
+%
+where \(f = f(x^{\alpha }, p^{\alpha })\), however actually we do not have that much freedom in the phase space distribution. 
+If there are no collisions: \(\hat{\mathbb{L}} [f] =0 \), which is equivalent to 
+%
+\begin{align}
+\frac{\mathcal{D}f}{\mathcal{D}\lambda } =0
+\,,
+\end{align}
+%
+where \(\lambda \) is the affine parameter. 
+
+In the nonrelativistic case, 
+%
+\begin{align}
+\hat{\mathbb{L}} = \pdv{}{t} + \dot{x} \cdot \nabla_{x} + \dot{v} \cdot \nabla_{v} = \pdv{}{t} + \frac{p}{m} \cdot \nabla_{x} + \frac{F}{m} \cdot \nabla_{v} 
+\,,
+\end{align}
+%
+while in the GR case we need to account for the geodesic equation: and we write 
+%
+\begin{align}
+\dv{p^{\alpha }}{\lambda } = - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma }
+\,,
+\end{align}
+%
+where the affine parameter \(\lambda \) has the dimensions of a mass, in order to have dimensional consistency.
+
+Then, the Liouville operator is 
+%
+\begin{align}
+\hat{\mathbb{L}} = p^{\alpha } \pdv{}{x^{\alpha }}-  
+\Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }} \overset{\text{def}}{=} \frac{\mathcal{D}}{\mathcal{D}\lambda }
+\,.
+\end{align}
+
+This is a total derivative in phase space with respect to the affine parameter. 
+
+In the FLRW background, \(f = f(\abs{p}, t)\) and 
+%
+\begin{align}
+\hat{\mathbb{L}} = E \pdv{f}{t} - \frac{\dot{a}}{a} \abs{p}^2 \pdv{f}{E}
+\,,
+\end{align}
+%
+so if we define the number density 
+%
+\begin{align}
+n(t) = \frac{g}{(2\pi )^3} \int \dd[3]{p} f(E, t)
+\,,
+\end{align}
+%
+so if we integrate over momenta we get 
+%
+\begin{align}
+\int \frac{ \dd[3]{p}}{E} \hat{\mathbb{L}}[f] 
+\,,
+\end{align}
+%
+we find the equation from before: 
+%
+\begin{align}
+\dot{n} + 3 \frac{\dot{a}}{a} n 
+\,,
+\end{align}
+%
+\todo[inline]{??? to check}
+
+Now we use a perturbed FLRW metric, in the Poisson gauge.  
+%
+\begin{align}
+\dd{s^2} = - e^{2 \Phi } \dd{t^2} 
++ 2 a \omega_{i} \dd{x^{i}} \dd{t} + a^2
+\qty(e^{-2 \Psi } \delta_{ij} + \chi_{ij} \dd{x^{i}} \dd{x^{j}})
+\,,
+\end{align}
+%
+where we neglect spatial curvature (which we will do from now on). 
+This is because we would never be able to see the effect of spatial curvature in the geometry (although we could see it in the dynamics). 
+
+Let us describe the quantities we introduced.
+We have 10 degrees of freedom in the metric.
+We account for them like this: \(\Phi \) and \(\Psi \) are scalar, \(\omega \) is a vector, \(\chi_{ij}\) is a tensor. 
+This is explained in more detail in the class by Nicola Bartolo (``early Universe''). These are GR perturbations. 
+
+``Perturbation'' means that we compare the physical spacetime and the idealized FLRW metric. 
+We need to do this since we cannot solve the EFE if there is no symmetry. 
+So, we say that spacetime is \emph{close} to the idealized spacetime. 
+
+We need a map between the physical and idealized spacetimes: this is called a \emph{gauge}. 
+Perturbations are classified with respect to their effect on FLRW. 
+In euclidean space we know scalars, vectors, tensors. 
+The perturbations will behave as such, under a change of coordinates in the Cartesian space which is the 3D space-like slice of FLRW. 
+
+\(\omega_{i}\) carries a 3D vector index. 
+\(\chi_{ij}\) contains the off-diagonal perturbations. 
+Let us start with  \(\omega_{i}\). In principle: Helmholtz's theorem says that we can decompose \(\omega_{i} = \omega_{i, \text{transverse}} + \partial_{i} \omega \).
+We say that the part we are interested in is the transverse one, but we still have a gradient. 
+
+We choose our \(\chi \) such that \(\chi^{i}_{j} = \chi^{i}_{j, i} =0\). 
+\(\chi \) could also contain vectors (objects with a vector index), as long as they are divergenceless. 
+
+It can also contain tensors: these are GWs. 
+
+So, we have 3 scalars (\(a\), \(\Psi \), \(\Phi \)), 3 components of a transverse vector (\(\omega_{i}\)), plus the divergence \(\omega \), while in the tensor we have \(6 - 3- 1 = 2\) degrees of freedom. 
+
+So we have \(10\) total degrees of freedom. 
+The reason we do this is that the degrees of freedom obey independent eqs.\ of motion. 
+
+There is gauge ambiguity in our problem: we could change the mapping between physical space and FLRW. 
+We could do a change such as \(x^{\mu } \rightarrow x^{\prime \mu } = x^{\mu } + \) a perturbation. 
+
+This is explained better in the notes called ``GR perturbations''. 
+
+Gauge freedom allows us to drop 2 of the 4 scalars we have. 
+
+We use Poisson or longitudinal gauge, which is sometimes incorrectly called ``Newtonian gauge'' even though it is not Newtonian. 
+
+Our next goal will be to solve the geodesic eqs.\  for the motion of the particles in this gauge. 
+
 \end{document}

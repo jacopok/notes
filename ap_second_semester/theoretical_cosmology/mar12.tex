@@ -1,8 +1,6 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\marginpar{Thursday\\ 2020-3-12, \\ compiled \\ \today}
-
 \section*{Contents of the course}
 
 We start with a derivation of the Friedmann eqs. from the Einstein equations. 
@@ -15,11 +13,14 @@ We will also discuss weak gravitational lensing in the universe.
 
 We will use some smart nonlinear approximations: the Zel'dovich approximation and the adhesion approximation.
 
-We will use an ``effective Planck constant'', a parameter which can be fit in our model. 
+We will use an ``effective Planck constant'' instead of \(\hbar\): it will be a parameter which can be fit in our model. 
 
-References: notes by a student from the previous years, in Italian \cite{nataleNoteCorsoDi2017}. 
+As for references: there are handwritten notes by the professor in the Dropbox folder (for access to the folder, write to the professor).
+Also, there notes by a student from the previous years, in Italian \cite{nataleNoteCorsoDi2017}, which are to be used with caution as they contain some errors. 
 
-\chapter{Friedmann equations}
+\section{Friedmann equations: a brief overview}
+
+\marginpar{Thursday\\ 2020-3-12, \\ compiled \\ \today}
 
 In the previous course we used the approximate symmetries of the universe to write the FLRW line element: 
 %
@@ -78,6 +79,7 @@ We need to use the Weyl tensor, which describes the parts of the Riemann tensor 
 What we do is to insert an ansatz for the metric tensor, which we use to derive the Christoffel symbols, and from these we write the Riemann tensor. 
 Doing it the other way around, starting from the source SEMT, is very difficult. 
 
+\begin{claim}
 The Christoffel symbols for the FLRW metric are: 
 %
 \begin{align}
@@ -94,7 +96,7 @@ The Christoffel symbols for the FLRW metric are:
 0 & 0 & 0 & (kr^2-1)r \sin^2\theta 
 \end{array}\right] \\
 \Gamma^{\theta }_{\mu \nu } &= \left[\begin{array}{cccc}
- 0 & 0 & \dot{a} / a & 0 \\ 
+0 & 0 & \dot{a} / a & 0 \\ 
 0 & 0 & 1 / r & 0 \\ 
 \dot{a} / a & 1/r & 0 & 0 \\ 
 0 & 0 & 0 & - \sin \theta \cos \theta 
@@ -107,6 +109,7 @@ The Christoffel symbols for the FLRW metric are:
 \end{array}\right]
 \,.
 \end{align}
+\end{claim}
 
 In order to calculate these, we can make use of certain simplifications: the FLRW metric is diagonal, and it does not depend on \(\varphi \).
 
@@ -125,14 +128,52 @@ where commas denote coordinate derivation, and square square brackets denote ant
 The Ricci tensor is given by the contraction of the Riemann tensor along its first and third component:
 %
 \begin{align}
-R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu }
-= -2 \qty(\Gamma^{\alpha }_{\mu [\alpha , \nu ]} + \Gamma^{\beta }_{\mu [\alpha } \Gamma^{\alpha }_{\nu ] \beta  })
+R_{\mu \nu } 
+&= R^{\alpha }_{\mu \alpha \nu }
+= -2 \qty(\Gamma^{\alpha }_{\mu [\alpha , \nu ]} + \Gamma^{\beta }_{\mu [\alpha } \Gamma^{\alpha }_{\nu ] \beta  })  \\
+&= \Gamma^{\alpha }_{\mu \nu , \alpha } 
+- \Gamma^{\alpha }_{\mu \alpha , \nu }
++ \Gamma^{\beta }_{\mu \nu } \Gamma^{\alpha }_{\alpha \beta } 
+- \Gamma^{\beta}_{\mu \alpha } \Gamma^{\alpha }_{\nu \beta }
 \,.
 \end{align}
 
-A great simplification comes from the observation that the metric being diagonal implies that the Ricci tensor is diagonal as well. 
+A great simplification comes from the fact that, for the FLRW metric, the Ricci tensor is diagonal.\footnote{If there are a certain number of coordinates the metric is independent of, the Ricci tensor has very few nonzero components \cite{winRicciTensorDiagonal1996}. This is not enough to prove that the Ricci tensor must be diagonal for this metric, however in the specific case of FLRW this is the case anyways.}
 
-\todo[inline]{Not true! See \cite{winRicciTensorDiagonal1996}.}
+\begin{claim}
+The components of the Ricci tensor are: 
+%
+\begin{align}
+R_{tt} &= - 3 \partial_{t} \qty(\frac{\dot{a}}{a})
+- 3 \qty(\frac{\dot{a}}{a})^2  \\
+&=-3 \qty(\frac{\ddot{a}}{a} - \qty(\frac{\dot{a}}{a})^2
++ \qty(\frac{\dot{a}}{a})^2)  \\
+&= -3 \frac{\ddot{a}}{a}
+\,,
+\end{align} 
+%
+\begin{align}
+\begin{split}
+R_{rr} &= \partial_{t} \qty(\frac{\dot{a} a}{1 - kr^2} )
++ \partial_{r} \qty(\frac{kr}{1 - kr^2})
+- \partial_{r} \qty(\frac{kr}{1 - kr^2})
+- 2 \partial_{r} \qty(\frac{1}{r}) \\
+&\phantom{=}\ 
++ \frac{\dot{a} a}{1 - kr^2} 3 \frac{\dot{a}}{a}
++ \frac{kr}{1-kr^2} \qty(\frac{kr }{1 - kr^2} + \frac{2}{r}) \\
+&\phantom{=}\ 
+- 2 \frac{\dot{a}}{a} \frac{\dot{a} a}{1 - kr^2}
+- \qty(\frac{kr}{1 - kr^2})^2 
+- 2 \qty(\frac{1}{r})^2
+\end{split}  \\
+&= \frac{\ddot{a} a + \dot{a}^2}{1 - kr^2} 
++ 3 \frac{\dot{a}^2}{1 - kr^2}
++ 2 \frac{k}{1 - kr^2}
+- 2 \frac{\dot{a}^2}{1 - kr^2}  \\
+&= \frac{\ddot{a} a + 2 \dot{a}^2 + 2 k}{1 - kr^2}
+\,,
+\end{align}
+\end{claim}
 
 The Ricci scalar then comes out to be 
 %

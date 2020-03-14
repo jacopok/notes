@@ -116,14 +116,12 @@ We will assume this relation to be true.
 
 \subsection{Common equations of state}
 
-A thing we will compute for the different equations of state is the speed of sound: 
+A thing we will compute for the different equations of state is the adiabatic\footnote{The speed of sound is usually computed for adiabatic transformations, since the transmission of sound is usually close to an adiabatic process. In our case, adiabaticity is embedded in the hypotheses made in the derivation of the Friedmann equations. So, we can calculate the derivative without worrying about the adiabaticity condition being respected since for the solutions we will consider it always will be.} speed of sound: 
 %
 \begin{align}
 c^2_{s} = \pdv{P}{\rho } = \dv{P}{\rho } = w c^2
 \,.
 \end{align}
-
-\todo[inline]{This is referred to in the Pacciani notes \cite[page 19]{Pacciani:2018} as the ``adiabatic speed of sound'', but it is not really clear how this derivative is computed for an adiabatic transformation, and even whether it makes sense to approximate perturbations in cosmology as adiabatic.} 
 
 We also will be able to tell what the evolution of the energy density is for a varying scale factor:
 this can be derived from the third Friedmann equation \eqref{eq:friedmann-3}: in this case it reads 
@@ -189,9 +187,15 @@ Throughout this section we worked as if we had a single type of cosmic fluid in 
 \end{figure}
 
 In this plot, \(a\) can be interpreted as the time, since their relation is monotonic.
-We could insert the spatial curvature \(k\) in the plot: it decreases, but slower than matter, since it appears in the first Friedmann equation with an exponent \(a^{-2}\). 
+We could insert the spatial curvature \(k\) in the plot: it decreases, but slower than matter, since it appears in the first Friedmann equation with an exponent \(a^{-2}\).
+We can find an effective \(\rho (a)\) law for the curvature by defining an effective \(\rho_{k}\) for curvature with \(H^2 = \frac{8 \pi G}{3} (\rho + \rho_{k})\), which implies \(\rho_{k} = - 3 k c^2 / (8 \pi G a^2)\). 
 
-\todo[inline]{It is not clear to me how we would derive the EOS for spatial curvature.}
+We can also express this in units of the current critical energy density \(\rho_{0,c} = 3 H^2 / (8 \pi G)\): we find 
+%
+\begin{align} \label{eq:spatial-curvature-effective-density}
+\frac{\rho_{k}}{\rho_{c, 0}} = - \frac{kc^2}{H^2a^2}
+\,.
+\end{align}
 
 Now, the dark energy in the universe is the most important component. It it dominant over matter, radiation, and also dominant over spatial curvature.
 

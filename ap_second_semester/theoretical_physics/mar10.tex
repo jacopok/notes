@@ -1,4 +1,441 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Saturday\\ 2020-3-14, \\ compiled \\ \today}
+
+\section{Conventions}
+
+\subsection{Natural units}
+
+Two constants which often come up in theoretical physics are Planck's constant \(\hbar = h /2 \pi  \approx \SI{6.582e-22}{MeV / Hz}\) and the speed of light \(c \approx \SI{2.997e8}{m/s}\). 
+They are used to convert quantities which are \emph{equivalent}: a length is equivalent to a time interval if light passes through that length in that time interval in a vacuum; an energy is equivalent to an angular velocity if a photon with that angular velocity has that energy.
+
+So, we can express lengths in ``seconds \( \times c\)'', energies in ``kilograms times \(c^2\)'' or ``Hertz times \(\hbar\)'', and so on.
+Since this is very convenient, we go one step further and do not write the \(c\) and the \(\hbar\). 
+This allows us to not worry about the number of times these should appear in a formula. 
+
+Formally, we do this by imposing the conditions \(\hbar = c = 1\), where \(1\) is adimensional. 
+Then, we can select a common unit and use it for everything: a common choice is the electronVolt (or its multiples).
+
+Some examples of physical quantities in natural units:
+\begin{enumerate}
+  \item masses and energies are both measured in \SI{}{eV} (for masses, we should multiply by \(c^2\));
+  \item linear momenta \(p = mv\) are measured in \SI{}{eV} (times \(c\));
+  \item angular momenta \(L = r \wedge p\) are adimensional (they could be expressed in units of \(\hbar\));
+  \item times and lengths are both measured in \SI{}{eV^{-1}}.
+\end{enumerate}
+
+This shortens formulas, but it obscures their dimensionality.
+Thankfully we can always reinsert the necessary \(c\)s and \(\hbar\)s by dimensional analysis. 
+
+\subsection{Relativistic notation}
+
+A contravariant vector is denoted by writing its components, 
+%
+\begin{align}
+v^{\mu } = \left[\begin{array}{c}
+v^{0} \\ 
+v^{1} \\ 
+v^{2} \\ 
+v^{3}
+\end{array}\right]
+\,,
+\end{align}
+%
+and examples of these include the position 4-vector \(x^{\mu } = (t, \vec{x})\), and the 4-momentum \(p^{\mu } = (E, \vec{p})\). 
+
+We shall use the worse convention for the metric, that is, the mostly negative \((+,-,-,-)\) one. 
+This allows us to obtain covariant vectors as 
+%
+\begin{align}
+x_{\mu } = \eta_{\mu \nu } x^{\nu } = (t,-\vec{x})
+\,.
+\end{align}
+
+The derivative operator, instead, is naturally covariant: 
+%
+\begin{align}
+\partial_{\mu } = \pdv{}{x^{\mu }} = (\partial_{t}, \vec{\nabla})
+\,.
+\end{align}
+
+\section{The Klein Gordon equation}
+
+We shall use the correspondence principle, as we did for the Schrödinger equation; however this time we will apply it to a relativistic particle. Its 4-momentum has a modulus square equal to the square of its mass: \(M^2\), since it is a relativistic invariant and we may compute it in any reference frame we like. 
+In a generic frame, it is
+%
+\begin{align}
+M^2 = p^{\mu } p_{\mu } =  p^{\mu } \eta_{\mu \nu } p^{\nu } = E^2 - \abs{\vec{p}}^2
+\,,
+\end{align}
+%
+which allows us to write the \emph{dispersion relation} 
+%
+\begin{align}
+E^2 = \vec{p}^2 + M^2
+\,.
+\end{align}
+
+This is \emph{quadratic} in the energy, as opposed to the nonrelativistic expression \(E = m + mv^2 /2\). 
+
+Applying the correspondence principle, we find 
+%
+\begin{align}
+- \partial_{t}^2 \varphi (\vec{x}, t) &= \qty(- \nabla^2 + M^2) \varphi (\vec{x}, t)  \\
+0 &= \qty[\qty(\partial_{t}^2 - \nabla^2) + M^2] \varphi (\vec{x}, t)   \\
+&= \qty[\square + M^2] \varphi (\vec{x}, t)
+\,,
+\end{align}
+%
+where we defined \(\square = \partial^{\mu } \partial_{\mu } = \partial_{t}^2 - \nabla^2\). 
+Another way to see this is that, compactly stated, the correspondence principle is \(p_{\mu } = -i  \partial_{\mu }\), so from \(p^2= M^2\) we get 
+%
+\begin{align}
+\qty[\square + M^2] \varphi (\vec{x}, t) = 0
+\,.
+\end{align}
+
+This is the \emph{free Klein-Gordon relativistic equation}. 
+
+Let us check its covariance \emph{a posteriori}, even though it is guaranteed since we started from a covariant relation. 
+Both \(M^2 = p^{\mu } p_{\mu }\) and \(\square = \partial^{\mu } \partial_{\mu }\) are scalars.
+
+What about the wavefunction \(\varphi \)?
+It should transform under a Lorentz transformation \(x \rightarrow x' = \Lambda x\) as 
+%
+\begin{align}
+\varphi' (x')= \varphi (x)
+\,.
+\end{align}
+
+This amounts to saying that it is a \emph{scalar} function. 
+With these constraints, we can say that the Klein-Gordon equation is \emph{covariant}; moreover, since it is a scalar equation it is actually \emph{invariant}. 
+If we apply a Lorentz transformation, we find that indeed 
+%
+\begin{align}
+\qty[\square' + M^{\prime 2} ] \varphi^{\prime } (x^{\prime }) = \qty[\square + M^2] \varphi (x)
+\,,
+\end{align}
+%
+since \(\square\), \(M^2\) and \(\varphi (x)\) are scalars; therefore covariance is proven. 
+If this is zero in an inertial reference frame, it is also zero in any other inertial reference frame. 
+
+\subsection{Continuity equation}
+
+Now, let us seek a probability current for the KG equation as we did with the Schrödinger equation. 
+Let us multiply on the left the KG equation by the conjugate of the wavefunction, \(\varphi^{*}\). We shall use this equation and its conjugate: 
+%
+\begin{align}
+\varphi^{*} \qty[\square + M^2] \varphi &= 0 \\
+\varphi \qty[\square + M^2] \varphi^{*} &= 0
+\,,
+\end{align}
+%
+these both hold since \(\square\) and \(M^2\) are real. 
+If we subtract one of these from the other, the mass terms simplify and we get 
+%
+\begin{align}
+0 &= \varphi^{*} \square \varphi - \varphi \square \varphi^{*}  \\
+&= \varphi^{*} \partial^{\mu } \partial_{\mu } \varphi  - (\varphi^{*} \leftrightarrow \varphi )
+\,,
+\end{align}
+%
+where the notation  \(- (\varphi^{*} \leftrightarrow \varphi )\) means that we are subtracting the same thing which appears before, but written swapping \(\varphi \) and \(\varphi^{*}\). We can expand the derivatives: 
+%
+\begin{align}
+0 &= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi ) - \qty(\partial^{\mu } \varphi^{*}) \qty(\partial_{\mu } \varphi ) - (\varphi^{*} \leftrightarrow \varphi )  \\
+&= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi ) - (\varphi^{*} \leftrightarrow \varphi )
+\marginnote{The product of the gradients is symmetric under interchange of \(\varphi \) and \(\varphi^{*}\), since the metric is constant.}  \\
+&= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi - \varphi \partial_{\mu } \varphi^{*})
+\overset{\text{def}}{=} -2i \partial^{\mu } j_{\mu }
+\,,
+\end{align}
+%
+where we defined the 4-current 
+%
+\begin{align}
+j_{\mu } = \frac{i}{2}\varphi^{*} \partial_{\mu } \varphi 
+- (\varphi^{*} \leftrightarrow \varphi )
+\,, 
+\end{align}
+%
+so we can write the conservation equation \(\partial^{\mu } j_{\mu } = \partial_{\mu } j^{\mu } = 0\) in 3-vector form as: 
+%
+\begin{align}
+\partial_{t} \rho + \vec{\nabla} \cdot \vec{j}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\rho = \frac{i}{2} \varphi^{*} \partial_{t} \varphi - (\varphi^{*} \leftrightarrow \varphi )
+\qquad \text{and} \qquad
+\vec{j} = - \frac{i}{2} \varphi^{*} \partial^{i} \varphi 
+-(\varphi^{*} \leftrightarrow \varphi ) \marginnote{Minus sign since we want the contravariant components.}
+\,.
+\end{align}
+
+We can integrate the continuity equation over all 3D space to obtain a conserved quantity: 
+%
+\begin{align}
+\int_{\mathbb{R}^{3}} \dd[3]{x} \rho  \overset{\text{def}}{=} Q
+\,,
+\end{align}
+%
+which is actually constant since 
+%
+\begin{align}
+\dv{Q}{t} = \int_{\mathbb{R}^{3}} \dd[3]{x}  \partial_{t} \rho 
+= - \int_{\mathbb{R}^{3}} \dd[3]{x} \vec{\nabla} \cdot \vec{j} 
+= - \int_{S^{2}_{ \infty }} \vec{j} \cdot \hat{n} \dd{A} \rightarrow 0 \marginnote{Used the divergence theorem, the surface \(S^{2}_{ \infty }\) is a sphere with diverging radius.}
+\,.
+\end{align}
+
+We call this conserved quantity a ``charge''. 
+There is an issue: in the Schrödinger case the quantity called \(\rho \) was positive by definition; now instead \(\rho \) and \(Q\) are not necessarily positive.
+
+This can be proven as follows: suppose \(\rho \) was positive for a certain wavefunction \(\varphi \). The conjugate wavefunction \(\varphi^{*} \) is also a solution to the KG equation, and for it the density will be negative, since permuting \(\varphi \) and \(\varphi^{*}\) is equivalent to changing the sign of \(j_{\mu }\). 
+
+So, we cannot use the Bohr ansatz, interpreting \(Q\) as a probability. 
+
+\subsection{Solutions to the free KG equation}
+
+Let us forget about the physical interpretation for a while, and discuss the general solutions of the KG equation. 
+We can decompose the wavefunction \(\varphi(x) \) in terms of its Fourier transform \(\widetilde{\varphi}(k)\): 
+%
+\begin{align}
+\varphi (x) = \frac{1}{(2 \pi )^2} \int \dd[4]{k} e^{-i k^{\mu } x_{\mu }} \widetilde{\varphi}(k)
+\,.
+\end{align}
+
+In order for this to be covariant, if \(\varphi \) is a scalar then \(\widetilde{\varphi}\) also must be. 
+The argument of the exponential is also a scalar. 
+
+The volume form in the momentum space \(\dd[4]{k}\) is a scalar: under a Lorentz transformation it transforms as 
+%
+\begin{align}
+\dd[4]{k'} = \abs{\det \Lambda } \dd[4]{k}
+\,,
+\end{align}
+%
+so it does not change since \(\abs{\det \Lambda } = 1\) for Lorentz transformations.
+
+\begin{claim}
+The inverse Fourier transform reads 
+%
+\begin{align}
+\widetilde{\varphi} (k) = \frac{1}{(2\pi )^2}
+\int \dd[4]{x} e^{i k^{\mu } x_{\mu } } \varphi (x)
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We take the transform of the antitransform: 
+%
+\begin{align}
+\widetilde{\varphi} (k) &=  \frac{1}{(2\pi )^{2}}
+\int \dd[4]{x} \varphi (x) e^{i k^{\mu } x_{\mu }}  \\
+&=  \frac{1}{(2\pi )^{4}}
+\int \dd[4]{x} e^{i k^{\mu } x_{\mu }}
+\int \dd[4]{k'} e^{-i k^{\prime \mu } x_{\mu }} \varphi (k')  \\
+&= \int \dd[4]{k'} \qty[\frac{1}{(2\pi )^{4}} 
+\int \dd[4]{x} e^{-i (k^{\prime \mu } - k^{\mu }) x_{\mu }} ] \varphi (k^{\prime })  \\
+&= \int \dd[4]{k'} \delta^{(4)} (k - k') \varphi (k') = \varphi (k)
+\,,
+\end{align}
+%
+where we used the definition of the 4D Dirac \(\delta \) function (here in position space, the definition in momentum space is perfectly analogous): 
+%
+\begin{align}
+\delta^{(4)} (x^{\mu }) = \frac{1}{(2\pi )^{4}}
+\int \dd[4]{k} e^{-i k_{\mu } x^{\mu }}
+\,,
+\end{align}
+%
+and its main property: 
+%
+\begin{align}
+\int \dd[4]{x} \delta^{(4)} (x) f(x) = f(0)
+\,.
+\end{align}
+\end{proof}
+
+Now, to solve the KG equation we insert the Fourier expression of the wavefunction into it: 
+%
+\begin{align}
+0= \qty[\square + M^2] \varphi (x) &= \int \frac{ \dd[4]{k}}{(2\pi )^2} \qty[- k^2+M^2] e^{-i k^{\mu }x_{\mu }} \widetilde{\varphi}(k) 
+\marginnote{The \(\square\) operator acts in position space, so it has no effect on \(\widetilde{\varphi}(k)\): it applies only to the exponential, yielding \(-k^2=(-ik^{\mu })(-ik_{\mu })\).}
+\,,
+\end{align}
+%
+and since the integral must be zero the integrand must be zero as well. 
+\todo[inline]{What? this is not true in general!}
+
+We can use the ansatz \(\widetilde{\varphi} (k)  = \delta (k^2 -M^2) \widetilde{f}(k)\), where \(\widetilde{f}(k)\) is a generic scalar function. 
+If \(\widetilde{\varphi} (k)\) is written in this way, it automatically satisfies the KG equation. 
+
+Now, recall that for a Dirac delta function applied to a generic function \(f(x)\), whose zeroes are enumerated by the index \(i\) (that is, \(f(x_{i}) = 0\) for all \(i\) between \(1\) and \(N\)) the following property holds: 
+%
+\begin{align}
+\delta (f(x)) =  \sum _{i=1}^{N} \frac{ \delta (x - x_{i})}{\abs{f'(x_i)}}
+\,.
+\end{align}
+
+We can apply this property to \(\delta (k^2-M^2)\).
+First of all, since \(k^{2} = k_0^2 - \abs{\vec{k}}^2 \), we can write this expression as \(\delta (k_0^2 - \omega_{k}^2)\), by defining \(\omega_{k}\) as the positive root:
+%
+\begin{align}
+\omega_{k} = + \sqrt{\abs{k}^2 + M^2}
+\,.
+\end{align}
+
+Now, we apply the \(\delta \) function property: 
+%
+\begin{align} 
+\delta (k^2 - M^2) = 
+\delta (k_0^2 - \omega_{k}^2) &= \frac{ \delta (k_0 - \omega_{k})}{ \abs{2 k_0 }} 
++ 
+\frac{ \delta (k_0 + \omega_{k})}{ \abs{2 k_0} }  \\
+&= \frac{ \delta (k_0 - \omega_{k}) + \delta (k_0 + \omega_{k})}{2 \omega_{k}}
+\,,
+\end{align}
+%
+where we substituted \(\abs{k_0} = \omega_{k}\), which holds both if \(k_0 = \omega_{k}\) and if \(k_0 = - \omega_{k}\). 
+This finally gives us  
+%
+\begin{align}
+\widetilde{\varphi} (k) = \frac{1}{2 \omega_{k}} \qty(\delta (k_0 - \omega_{k}) + \delta (k_0 + \omega_{k}))
+\widetilde{f}(k)
+\,,
+\end{align}
+%
+which we can insert this into the Fourier transform of \(\varphi (x)\): 
+%
+\begin{align}
+\varphi (x) &= 
+\frac{1}{(2\pi )^2}  
+\int \dd[4]{k} \widetilde{\varphi} (k) e^{-ik^{\mu }x_{\mu }} \\
+&=
+\frac{1}{(2\pi )^2} 
+\int \frac{ \dd[4]{k}}{2 \omega_{k}} 
+\qty(\delta (k_0 - \omega_{k}) + \delta (k_0 + \omega_{k}))
+e^{-ik^{\mu } x_{\mu }} \widetilde{f}(k)  \\
+&= \frac{1}{(2\pi)^2} 
+\int \frac{ \dd[3]{k}}{2 \omega_{k}}
+\qty[
+e^{- i \omega_{k} x_0 } e^{i \vec{k} \cdot \vec{x}} \widetilde{f} (\omega_{k}, \vec{k})  + 
+e^{ i \omega_{k} x_0 } e^{i \vec{k} \cdot \vec{x}} \widetilde{f} (-\omega_{k}, \vec{k})  
+]  \marginnote{We integrate in \(\dd{k^{0}}\) to get rid of the \(\delta \) functions.}\\
+&= \frac{1}{(2\pi )^2}
+\int \frac{ \dd[3]{k}}{2 \omega_{k}}
+\qty[e^{-i k^{\mu} x_{\mu }} \widetilde{f}(k^{\mu })
++ e^{i k^{\mu }x_{\mu }} \widetilde{f}(-k^{\mu })]_{k_0 = \omega_{k}} 
+\,,
+\end{align}
+%
+where we indicate \(\eval{k^{\mu }}_{k_0 = \omega_{k}} = (\omega_{k}, \vec{k})\).
+
+We used the fact that, in the Fourier transform integral, the terms \(e^{i \vec{k} \cdot \vec{x}} \widetilde{f} (\vec{x})\) and \(e^{-i \vec{k} \cdot \vec{x}} \widetilde{f}(- \vec{x})\) are equivalent: this is because, since we are integrating over all of 3D space, any contributions which are \emph{odd} in \(\vec{k}\) will not affect the total integral, therefore we can only consider the even part of the integrand. 
+
+Now, in order to simplify the notation we define 
+%
+\begin{align}
+a(k) = \frac{\widetilde{f}(k)}{\sqrt{2\pi } \sqrt{2 \omega_{k}}}
+\qquad \text{and} \qquad
+b(k) = \frac{\widetilde{f} (-k)}{\sqrt{2 \pi } \sqrt{2 \omega_{k}}}
+\,,
+\end{align}
+%
+which are arbitrary like the initial function \(\widetilde{f}\), however they are connected since \(a(k) = b^{*} (-k)\). 
+So, the final solution reads: 
+%
+\begin{align}
+\varphi (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} \qty[a(k) e^{-ik \cdot x} + b^{*}(k) e^{i k \cdot x}]_{k_0 = \omega_{k}}  \\
+&= \varphi_{+}(x) + \varphi_{-}(x)
+\,.
+\end{align}
+
+Recall that all \(k\)s appearing in the expression are to be interpreted as \((\omega_{k}, \vec{k})\). 
+The part dependent on \(a(k)\) is conventionally called the \emph{positive energy} solution \(\varphi_{+}\), while the part depending on \(b^{*}(k)\) is the \emph{negative energy} solution \(\varphi_{-}\).
+
+This is because, as the energy of a wavefunction \(\varphi \) is computed by \(E = i \partial_{t} \varphi \), we have 
+%
+\begin{align}
+E (\varphi_{+}) &= i \partial_{0} \qty{
+  \frac{1}{(2 \pi)^{3/2}} 
+  \int \frac{ \dd[3]{k}}{\sqrt{2\omega_{k}}} a(k) e^{-i k^{\mu } x_{\mu }} 
+} = i (-i) \omega_{k} \varphi_{+} = \omega_{k} \varphi_{+}  \\
+E ( \varphi_{-}) &= i \partial_{0} \qty{
+  \frac{1}{(2 \pi)^{3/2}} 
+  \int \frac{ \dd[3]{k}}{\sqrt{2\omega_{k}}} b^{*}(k) e^{i k^{\mu } x_{\mu }} 
+} = i (i) \omega_{k} \varphi_{-} =- \omega_{k} \varphi_{-}  
+\,,
+\end{align}
+%
+so \(\varphi_{+}\) has a positive energy while \(\varphi_{-}\) has a negative one. 
+
+This is the main difference between the Schrödinger and KG equations. 
+
+The solution to the KG equation is not explicitly covariant, but all the steps preserved covariance so the final solution is still covariant. 
+
+The KG equation is real, since \(\square\) is a real operator and \(M^2\) is real, so it will admit real solutions. 
+In order to find these we impose \(\varphi = \varphi^{*}\). 
+
+\begin{claim}
+\(\varphi = \varphi^{*}\) implies \(a = b\).
+\end{claim}
+\begin{proof}
+We write only the argument of the integrals for simplicity: 
+%
+\begin{align}
+\varphi &\sim a e^{-ikx} + b^{*} e^{ikx}  \\
+\varphi^{*} &\sim a^{*} e^{ikx} + b e^{-ikx}
+\,,
+\end{align}
+%
+so if \(\varphi = \varphi^{*}\) we must identify these component by component, so we must have \(a= b\), and \(a^{*} = b^{*}\).
+\end{proof}
+
+Then, the most general real solution to the KG equation is 
+%
+\begin{align}
+\varphi_{\mathbb{R}} (x) = \frac{1}{(2 \pi)^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty[a(k) e^{-ik \cdot x} + a^{*} e^{i k \cdot x}]_{k_0 = \omega_{k}}
+\,.
+\end{align}
+
+\begin{claim}
+For a real KG solution, the function \(a(k)\) can be written as 
+%
+\begin{align}
+a(k) = \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty(\omega_{k} \varphi(x) +i \partial_{0} \varphi (x)) \eval{e^{i k \cdot x} }_{k_0 = \omega_{k}} 
+\,.
+\end{align}
+\end{claim}
+
+\begin{claim}
+For a complex KG solution, the functions \(a(k)\) and \(b^{*}(k)\) can be written as 
+%
+\begin{align}
+a(k) &= \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty(\omega_{k} \varphi(x) +i \partial_{0} \varphi (x)) \eval{e^{i k \cdot x} }_{k_0 = \omega_{k}} \\ 
+b^{*}(k) &= \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty(\omega_{k} \varphi(x) - i \partial_{0} \varphi (x)) \eval{e^{-i k \cdot x} }_{k_0 = \omega_{k}} 
+\,.
+\end{align}
+\end{claim}
+
+\begin{claim}
+Given two real solutions to the KG equation, \(\varphi_{1}\) and \(\varphi_{2}\), one can always write a complex solution \(\varphi = (\varphi_{1} + i \varphi_{2}) / \sqrt{2}\). 
+
+Then, the functions \(a\) and \(b^{*}\) for the complex solution can be written in terms of the \(a_{1}\) and \(a_2 \) for the real solution as: 
+%
+\begin{align}
+a &=   \\
+b &= 
+\,.
+\end{align}
+\end{claim}
+
 \end{document}

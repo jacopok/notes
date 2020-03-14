@@ -68,10 +68,12 @@ def create_file(folder, filename):
         buf = f.readlines()
 
     with open(main_path, "w") as f:
+        done=False
         for line in buf:
-            if end_doc_condition(line):
+            if end_doc_condition(line) and not done:
                 line = subfile_include(filename) + line
                 print("Adding subfile to main at " + main_path)
+                done=True
             f.write(line)
 
 def add_line_main(folder):

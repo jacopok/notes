@@ -83,13 +83,11 @@ def add_line_main(folder):
     with open(main_path, "w") as f:
         done = False
         for line in buf:
-            if end_doc_condition(line):
+            if end_doc_condition(line) and not done:
                 line = "\n" + line
                 print("Adding white line to main at " + main_path)
                 done = True
             f.write(line)
-            if (done):
-                return
 
 for i in schedule:
     day = next_monday() + datetime.timedelta(i)

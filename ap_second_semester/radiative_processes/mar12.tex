@@ -228,6 +228,88 @@ We can account for both absorption and emission in a combined equation for the d
 and we can see that in the absence of emission and absorption it is unchanged as we have shown before.
 If \(j_{\nu }\) and \(\alpha_{\nu }\) are known we can integrate this differential equation to find the specific intensity. 
 
-This will \emph{not} be the case when we will include scattering: the scattering term will not just depend on \(I_{\nu }\) but in its integral, making this an integro-differential equation. 
+This will \emph{not} be the case when we will include scattering: the scattering term will not just depend on \(I_{\nu }\) but in its integral on the sphere, making this an integro-differential equation. 
+
+\subsubsection{Solutions to the transfer equation in simple cases}
+
+If there is only emission, that is, only \(j_{\nu }\) is nonzero, the intensity increases linearly in \(s\): 
+%
+\begin{align}
+\dv{I_{\nu }}{s} = j_{\nu } \implies 
+I_{\nu } = I_{\nu }(0) + \int_{s_0 }^{s} j_{\nu } (\widetilde{s}) \dd{\widetilde{s}} 
+\,.
+\end{align}
+
+If there is only absorption, that is, only \(\alpha_{\nu }\) is nonzero, then the intensity decreases exponentially in \(s\):
+%
+\begin{align}
+\dv{I_{\nu }}{s} = - \alpha_{\nu } I_{\nu } \implies 
+I_{\nu } = I_{\nu }(s_0 ) \exp(- \int_{s_0 }^{s} \alpha_{\nu }(\widetilde{s}) \dd{\widetilde{s}})
+\,.
+\end{align}
+
+\subsection{Optical depth and source function}
+
+The optical depth \(\tau_{\nu }\) is defined so that it changes by 1 when the intensity of light at frequency \(\nu \) changes \(e\)-fold: its differential is
+%
+\begin{align}
+\dd{\tau_{\nu }} = \alpha_{\nu } \dd{s}
+\,,
+\end{align}
+%
+so that the solution in the absorption-only case reads \(I_{\nu } \propto e^{-\int \dd{\tau }} = e^{-\tau }\).
+
+So, a useful distinction to make is based on the magnitude of \(\tau \), since it quantifies how much light can shine through a medium: 
+\begin{enumerate}
+  \item if \(\tau \gg 1\) the medium is said to be \emph{opaque} or \emph{optically thick};
+  \item if \(\tau \ll 1\) the medium is said to be \emph{transparent} or \emph{optically thin};
+  \item if \(\tau \approx 1\) the medium is said to be \emph{translucent}. 
+\end{enumerate}
+
+If we define the source function 
+%
+\begin{align}
+S_{\nu } = \frac{j_{\nu }}{\alpha_{\nu }}
+\,,
+\end{align}
+%
+we can write the radiative transfer equation as 
+%
+\begin{align}
+\dv{I_{\nu }}{\tau_{\nu }} = - I_{\nu } + S_{\nu } \marginnote{Divided through by \(\alpha_{\nu }\), used definition of \(\tau_{\nu }\).}
+\,.
+\end{align}
+
+\subsection{A formal solution of the radiative transfer equation}
+
+We can solve this equation by defining \(Y_{\nu } = I_{\nu }e^{\tau_{\nu }}\), which obeys 
+%
+\begin{align}
+\dv{Y_{\nu }}{\tau_{\nu }} = \dv{I_{\nu }}{\tau_{\nu }} e^{\tau_{\nu  }} + I_{\nu } e^{\tau_{\nu }}
+\,,
+\end{align}
+%
+so we can multiply the radiative transport equation to get 
+%
+\begin{align}
+\dv{I_{\nu }}{\tau_{\nu }} e^{\tau_{\nu }} &= - I_{\nu }e^{\tau_{\nu }} + S_{\nu } e^{\tau_{\nu }}  \\
+\dv{Y_{\nu }}{\tau_{\nu }} &= S_{\nu } e^{\tau_{\nu }}  \\
+Y_{\nu }(\tau_{\nu }) &= Y_{\nu } (0 ) +  \int_{0}^{\tau_{\nu }} S_{\nu } (\widetilde{\tau}_{\nu }) e^{\widetilde{\tau}_{\nu }} \dd{\widetilde{\tau}_{\nu }}  \\
+I_{\nu }(\tau_{\nu }) &= I_{\nu } (0) e^{-\tau_{\nu }}
++ \int_{0}^{\tau_{\nu }} S_{\nu }(\widetilde{\tau}_{\nu }) e^{\widetilde{\tau}_{\nu } - \tau_{\nu }} \dd{\widetilde{\tau}_{\nu }} \marginnote{Divided through by \(e^{\tau_{\nu }}\).}
+\,,
+\end{align}
+%
+which has a direct intuitive meaning: the intensity at a certain point must be computed accounting for the initial one and emission all through the beam before the point we are considering, and each of these contributions to the emission is weighted by an exponential factor: the relevance of a term decreases if the optical distance increases. 
+
+If \(S_{\nu } \) is a constant, we have the simplified expression 
+%
+\begin{align}
+I_{\nu } (\tau_{\nu }) = I_{\nu }(0) e^{-\tau_{\nu }} 
++ S_{\nu } (\tau_{\nu }) \qty(1 - e^{-\tau_{\nu }})
+\,,
+\end{align}
+%
+and we can see that for large optical depths the intensity is dictated purely by the source at that point. 
 
 \end{document}

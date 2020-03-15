@@ -403,7 +403,7 @@ Then, the most general real solution to the KG equation is
 \begin{align}
 \varphi_{\mathbb{R}} (x) = \frac{1}{(2 \pi)^{3/2}} 
 \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
-\qty[a(k) e^{-ik \cdot x} + a^{*} e^{i k \cdot x}]_{k_0 = \omega_{k}}
+\qty[a(k) e^{-ik \cdot x} + a^{*} (k) e^{i k \cdot x}]_{k_0 = \omega_{k}}
 \,.
 \end{align}
 
@@ -416,6 +416,22 @@ a(k) = \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qt
 \end{align}
 \end{claim}
 
+\begin{proof}
+The solution is found by direct substitution of \(\varphi_{\mathbb{R}}\) into the expression for \(a\) in order to verify it; the operations are all reversible so we can use the derivation backwards or forwards equivalently. We find 
+%
+\begin{align}
+a &\overset{?}{=} 
+\frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k} \dd[3]{x}}{2 \omega_{k}}
+\qty[\omega_{k} \qty(a e^{-i k \cdot x} + a^{*} e^{i k \cdot x}) + i \partial_{0} \qty(a e^{-i k \cdot x} + a^{*} e^{i k \cdot x})]\eval{e^{i k \cdot x}}_{k_0 = \omega_{k}}  \\
+&= \frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k} \dd[3]{x}}{2 \omega_{k}} \qty[\qty(\omega_{k} +i (-i k_0 )) a^{-ik \cdot x} + \qty(\omega_{k} +i (i k_0 )) a^{*} e^{i k \cdot x}]\eval{e^{i k \cdot x}}_{k_0 = \omega_{k}} \\
+&= \frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k} \dd[3]{x}}{2 \omega_{k}} \qty[2\omega_{k} a^{-ik \cdot x}]\eval{e^{i k \cdot x}}_{k_0 = \omega_{k}} \marginnote{Used the fact that \(\omega_{k} = k_0 \), and \(i^2=-1\).}  \\ 
+&= \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} e^{i \vec{k} \cdot \vec{x}} \qty[
+\frac{1}{(2\pi )^{3/2}} \int \dd[3]{k} e^{-i \vec{k} \cdot \vec{x}} a
+] = a \marginnote{3D Fourier inverse and direct transform. We simplified two factors of \(e^{ik_0 x^{0}}\) and \(e^{-ik_0 x^{0}}\) since they are equal everywhere (\(k_0 = \omega_{k}\)).}
+\,.
+\end{align}
+\end{proof}
+
 \begin{claim}
 For a complex KG solution, the functions \(a(k)\) and \(b^{*}(k)\) can be written as 
 %
@@ -426,16 +442,44 @@ b^{*}(k) &= \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}
 \end{align}
 \end{claim}
 
+\begin{proof}
+The derivation is the same as the real-valued solution case. The \(b^{*}\) terms simplify if there is a plus in front of the \(i \partial_{0}\) term, if instead we have a minus the \(a\) terms simplify; everything else is precisely the same.  
+\end{proof}
+
 \begin{claim}
 Given two real solutions to the KG equation, \(\varphi_{1}\) and \(\varphi_{2}\), one can always write a complex solution \(\varphi = (\varphi_{1} + i \varphi_{2}) / \sqrt{2}\). 
 
 Then, the functions \(a\) and \(b^{*}\) for the complex solution can be written in terms of the \(a_{1}\) and \(a_2 \) for the real solution as: 
 %
 \begin{align}
-a &=   \\
-b &= 
+a &=  \frac{ a_1 + i a_2 }{\sqrt{2}} \\
+% b^{*} &= \frac{a_1^{*} + i a_2^{*} }{\sqrt{2}}  \\
+b &= \frac{a_1 - i a_2 }{\sqrt{2}}
 \,.
 \end{align}
 \end{claim}
+
+\begin{proof}
+We write out the complex function: 
+%
+\begin{align}
+\frac{\varphi_1 + i \varphi_2 }{\sqrt{2}} = 
+\frac{1}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k }}} \qty[
+\frac{a_1 + i a_2 }{\sqrt{2}} e^{-i k \cdot x}
++  \frac{a_1^{*} + i a_2^{*}}{\sqrt{2}}
+e^{i k \cdot x}]
+\,,
+\end{align}
+%
+so, since \(b^{*} = \qty(a_1^{*} + i a_2^{*}) / 2\), we can get \(b\) by conjugating, 
+%
+\begin{align}
+b = \frac{a_1 - i a_2 }{\sqrt{2}}
+\,,
+\end{align}
+%
+while \(a\) can be directly read off the expression.
+\end{proof}
 
 \end{document}

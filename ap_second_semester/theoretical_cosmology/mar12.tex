@@ -176,12 +176,50 @@ R_{rr} &= \partial_{t} \qty(\frac{\dot{a} a}{1 - kr^2} )
 &= \frac{\ddot{a} a + 2 \dot{a}^2 + 2 k}{1 - kr^2}
 \,,
 \end{align}
+%
+\begin{align}
+\begin{split}
+R_{\theta \theta } &= 
+r^2 \partial_{t} \qty(a \dot{a})
++ \partial_{r} \qty((kr^2-1)r)
+- \partial_{\theta } \qty(\frac{\cos \theta }{\sin \theta }) \\
+&\phantom{=}\ 
++3 \Gamma^{t}_{\theta \theta } \Gamma^{\theta }_{t \theta } + \Gamma^{r}_{\theta \theta } \qty(\Gamma^{r}_{r r } + 2 \Gamma^{\theta }_{r \theta })
+-2 \qty(\Gamma^{t}_{\theta \theta } \Gamma^{\theta }_{t \theta } + \Gamma^{r}_{\theta \theta } \Gamma^{\theta }_{\theta r}) - \frac{\cos^2 \theta}{\sin^2\theta }
+\end{split}  \\
+&= r^2 \qty(\ddot{a} a + \dot{a}^2)
++ 3kr^2 - 1 + \frac{1}{\sin^2\theta} 
++  r^2 \dot{a}^2
+- kr^2
+- \frac{\cos^2\theta }{\sin^2\theta }  \\
+&= r^2 \qty(\ddot{a} a + 2\dot{a}^2 + 2k)
+\,,
+\end{align} 
+%
+\begin{align}
+R_{ \varphi \varphi } &= \partial_{\alpha } \Gamma^{\alpha }_{\varphi \varphi } - \partial_{\varphi } \Gamma^{\alpha }_{\alpha \varphi } + \Gamma^{\alpha }_{\varphi \varphi } \Gamma^{\beta }_{\alpha \beta } - \Gamma^{\beta }_{\varphi \alpha } \Gamma^{\alpha }_{\varphi \beta }  \\
+&= r^2 \sin^2\theta \qty(\ddot{a} a + 2 \dot{a}^2 + 2k) 
+\,.
+\end{align}
 \end{claim}
 
 The Ricci scalar then comes out to be 
 %
 \begin{align}
-R = 6 \qty[\frac{\ddot{a}}{a} + \qty(\frac{\dot{a}}{a}) + \frac{k}{a^2}]
+\begin{split}
+R = g^{\mu \nu } R_{\mu \nu } 
+&= 3 \frac{\ddot{a}}{a} 
++ \frac{1-kr^2}{a^2} \frac{\ddot{a}
+ a + 2 \dot{a}^2 + 2k}{1 - kr^2} \\
+ &\phantom{=}\ 
++ \frac{1}{a^2r^2} r^2 \qty(\ddot{a} a + 2 \dot{a}^2 + 2k)
++ \frac{1}{a^2r^2 \sin^2\theta }
+r^2 \sin^2\theta  \qty(\ddot{a} a + 2 \dot{a}^2 + 2k) 
+\end{split}
+\\
+&= 3 \frac{\ddot{a}}{a} + 3 \frac{\ddot{a}a + 2 \dot{a}^2 + 2k}{a^2}
+\\
+&= 6 \qty[\frac{\ddot{a}}{a} + \qty(\frac{\dot{a}}{a}) + \frac{k}{a^2}]
 \,.
 \end{align}
 
@@ -194,7 +232,7 @@ L = L_{g} + L_{\text{fluid}}
 \,,
 \end{align}
 %
-where the gravitational Lagrangian is \(L_{g} = M_P^2 R /2 \) (and \(M_P = 1 / \sqrt{8 \pi G}\) in natural units is the reduced Planck mass, and \(R\) is the scalar curvature) then 
+where the gravitational Lagrangian is \(L_{g} = M_P^2 R /2 \) (and \(M_P = 1 / \sqrt{8 \pi G}\) in natural units is the reduced Planck mass) then 
 %
 \begin{align}
 T_{\mu \nu } \overset{\text{def}}{=} -2 \fdv{L_{\text{fluid}}}{g^{\mu \nu }}

@@ -27,118 +27,150 @@ The solution to this differential equation is, as we mentioned in section \ref{s
 %
 which can also be written as \(a \propto e^{Ht}\), since \(H = \dot{a} / a = \sqrt{\Lambda / 3}\).
 This is called a steady-state solution, since the Hubble parameter is constant. 
+It is also called a \emph{de Sitter} solution: it belongs to the maximally symmetric 4D spacetime solutions to the Einstein Equations: Minkowski, de Sitter and Anti de Sitter: the latter has \(\Lambda < 0\), the former has \(\Lambda >0\).
 
 This actually seems to model the observed expansion of the universe well, and until recently it competed with the Big Bang theory. 
 
 The fraction of the cosmic fluid which behaves like dark energy is bound to increase with time, since as we saw it is the only component which does not decrease in density over time. 
 
-\section{Curved models}
+% The two other solutions are also called \emph{de Sitter} and look like cosines (?): they can be mapped into each other.
 
-We seek solutions to the Friedmann equations for nonzero spatial curvature \(k\), for a universe containing nonrelativistic matter (\(w=0\)) without dark energy.
+% \todo[inline]{How?}/
 
-This is called a \emph{de Sitter} solution.
-The two other solutions are also called \emph{de Sitter} and look like cosines (?): they can be mapped into each other.
-
-\todo[inline]{How?}
-
-These belong to the maximally symmetric solutions: Minkowski, dS and Anti de Sitter: the latter has \(\Lambda < 0\).
-
-\todo[inline]{In AdS, do we have \(a \propto \exp(i k t) \)?}
-
-The \emph{no-hair cosmic theorem} is actually a conjecture: it states that asymptotically only the dark energy contribution is relevant: all the matter and everything else is forgotten. 
+This is expressed formally using the so-called \emph{no-hair cosmic theorem}, which is actually a conjecture if it is meant to describe the universe: it states that asymptotically only the dark energy contribution is relevant: all the matter and everything else is forgotten. 
+In order to interpolate between the current --- matter dominated, or in which at least matter has a sizeable contribution --- universe and the asymptotic one we can use a solution in the form
 %
 \begin{equation}
   a \propto \qty(\sinh(At))^{2/3}
 \,,
 \end{equation}
 %
+where we define \(2A/3 = \sqrt{\Lambda /3} \), since the hyperbolic sine is asymptotically close to an exponential.
 
-where we define \(2A/3 = \sqrt{\Lambda /3} \) is a solution which \emph{interpolates} between the current --- matter dominated --- universe and the asymptotic one, since the hyperbolic sine is locally a simple exponential.
+\section{Curved models}
 
-We can rewrite the Friedmann equation as 
+We seek solutions to the Friedmann equations for nonzero spatial curvature \(k\), for a universe containing nonrelativistic matter (\(w=0\)) without dark energy.
+We make these assumptions since with them we can find an analytic solution. 
+
+We can rewrite the two independent Friedmann equations as 
 %
-\begin{equation}
-  \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 - k
+\begin{align}
+  \dot{a}^2 &=  \frac{8 \pi G}{3} \rho a^2 - k  \\
+  \rho  &= \rho_0 \qty(\frac{a}{a_0 })^{-3}
 \,,
-\end{equation}
+\end{align}
 %
-and now we will solve it with \(k = \pm 1\).
-In general, for an ODE like \(y = f(y')\) with \(f'\) continuous we introduce \(y' \equiv p\) with \(p \neq 0\): then \(y = f(p)\), which implies 
+and now we will solve them with \(k = \pm 1\).
+
+\medskip
+
+\paragraph{Solutions to parametric ODEs}
+In general, for an ODE like \(y = f(y')\) for the function \(y=y(x)\) with \(f'\) continuous we introduce \(y' \equiv p\), assuming  \(p \neq 0\): then \(y = f(p)\), which implies 
 %
 \begin{equation}
   y' = \dv{f}{p} p'
+  \marginnote{Differentiated both sides of \(y = f(p)\)}
 \,,
 \end{equation}
 %
-and then 
+which we can manipulate to get
 %
 \begin{equation}
   p = \dv{f}{p} p' \implies \dv{x}{p} = \frac{1}{p} \dv{f}{p}
 \,,
 \end{equation}
 %
-which gives by integration the solution: 
+so we can get the solution by integration: we get an expression for \(x \) in terms of \(p\), which we will be able to invert since by assumption \(p' \neq 0\): so, we get
 %
 \begin{equation}
-  x = \int  \dd{p} \frac{1}{p} \dv{f}{p}
-  \qquad \text{with} \qquad
+  x = \int   \frac{1}{p} \dv{f}{p}\dd{p}
+  \qquad \text{and} \qquad
   y = f(p)
 \,.
 \end{equation}
 
-Using this for our problem, we get \(\dot{a}^2 = A a^{-1} - k \), where \(A \equiv 8 \pi G a_0^3 \rho_0 /3\). We can rewrite this as 
+\medskip
+
+We use this for our problem: our differential equation looks like 
 %
-\begin{equation}
-  a = \frac{A}{p^2+k} 
+\begin{align}
+\dot{a}^2 &= \frac{8 \pi G}{3} \rho a^2 - k  \\
+\dot{a}^2 &= \frac{8 \pi G}{3} \rho_0 \frac{a_0^3}{a^3}a^2 - k \marginnote{Substituted \(\rho = \rho_0 a_0^3 / a^3\) from the third Friedmann equation.} \\
+\dot{a}^2 &=  A a^{-1} - k
+\,,
+\end{align}
+%
+where we defined \(A \equiv 8 \pi G a_0^3 \rho_0 /3\).
+We can rewrite this as 
+%
+\begin{equation} \label{eq:curved-models-general-ODE}
+  a = \frac{A}{p^2+k} = f(p)
   \qquad \text{where} \qquad
   p = \dot{a} 
 \,.
 \end{equation}
 
-Then we get: 
+Then, using the general formula we get: 
 %
-\begin{equation}
-  \dot{a} = p = -2A  p \dot{p} \frac{1}{(p^2+k)^2}
-\,,
-\end{equation}
-%
-and using our formula 
-%
-\begin{equation}
-  t = -2A \int \frac{\dd{p} }{(p^2+k)^2}
+\begin{align}
+t &= \int \frac{1}{p} \dv{f}{p} \dd{p} 
+\qquad \text{where} \qquad
+\dv{f}{p} = -\frac{2Ap}{(p^2+k)^2}  \\
+&= \int \frac{-2A}{(p^2+k)^2} \dd{p}
 \,.
-\end{equation}
+\end{align}
 
 \subsection{Positive curvature: a closed universe}
 
-In order to go forward, we distinguish the cases: it \(k = +1\), then \(p = \tan(\theta ) \), therefore \(1 + p^2= \sec^2 \theta \) which implies \(\dd{p} = \dd{\theta } \sec^2 \theta  \).
-
-For the time: 
+If \(k = +1\), then we can make the substitution \(p = \tan(\theta ) \), which is helpful since \(1 + p^2= \sec^2 \theta \); for the change of variable we have \(\dd{p} = \dd{\theta } \sec^2 \theta  \).
+So, for the time we find: 
 %
-\begin{equation}
-  t = \int -2A \dd{\theta } \cos^2(\theta ) = -A \qty(\theta + \sin(\theta ) \cos(\theta ) ) + \const
+\begin{align}
+  t &= -2A \int \frac{\sec^2\theta \dd{\theta }}{\sec^4\theta } \\
+  &= -2A  \int \cos^2(\theta ) \dd{\theta }  = -A \qty(\theta + \sin(\theta ) \cos(\theta ) ) + \const
 \,,
-\end{equation}
+\end{align}
 %
-and we apply the trigonometric identity \(\sin(\theta ) \cos(\theta ) = \sin(2 \theta ) \):
+and we can apply the trigonometric identity \(\sin(\theta ) \cos(\theta ) = \sin(2 \theta ) \):
 %
 \begin{equation}
   t = -\frac{A}{2} \qty(2 \theta  + \sin(2 \theta ) ) + \const
-\,,
+\,.
 \end{equation}
-%
-now we can define \(2 \theta  = \pi - \alpha \), therefore \(\sin(2\theta ) = \sin(\alpha )  \): this gives us
-\(t = A/2 (\alpha - \sin(\alpha ) )\) and \(p = 1/\tan(\alpha /2) = \tan(\pi /2 - \alpha /2) \).
 
-So we almost have our solution: 
+Now we can define \(2 \theta  = \pi - \alpha \), which allows for the simplification \(\sin(2\theta ) = \sin(\alpha )  \); also, we can express \(p=\tan \theta \) in terms of \(\alpha \).
+This gives us 
 %
-\begin{equation}
-  a = \frac{A}{1 + \tan^2(\pi /2 - \alpha /2)} = A \cos^2(\frac{\pi}{2} - \frac{\alpha}{2})  = \frac{A}{2} \qty(1+\cos(\pi - \alpha ) ) = \frac{A}{2} \qty(1- \cos(\alpha ) )
+\begin{align}
+t = \frac{A}{2} \qty(\alpha - \sin(\alpha ) ) + \const
+\qquad \text{and} \qquad
+p = \tan(\frac{\pi}{2} - \frac{\alpha}{2})
+\marginnote{Absorbed factor \(-A \pi /2\) into the constant}
+\,.
+\end{align}
+%
+
+We almost have our solution: inserting \(p(\alpha )\) into the main equation for \(a\) \eqref{eq:curved-models-general-ODE} we get
+%
+\begin{align}
+  a &= \frac{A}{1 + \tan^2(\pi /2 - \alpha /2)} = A \cos^2 \qty(\frac{\pi}{2} - \frac{\alpha}{2})  
+  \marginnote{Used \(1 + \tan^2x = 1/\cos^2x\).}
+  \\
+  &= \frac{A}{2} \qty(1+\cos(\pi - \alpha ) ) = \frac{A}{2} \qty(1- \cos(\alpha ) )
+  \marginnote{Used \(\cos^2(x/2) = (1+\cos x) /2 \) and \(\cos x = - \cos(\pi -x)\).}
 \,,
-\end{equation}
-which should be complemented with the equation we found for \(t\).
-
-Reinserting the constants we have:
+\end{align}
+which should be complemented with the equation we found for \(t\): in the end, our solution looks like 
+%
+\begin{align}
+t &= \frac{A}{2} \qty(\alpha - \sin \alpha ) + \const  \\
+a &= \frac{A}{2} \qty(1 - \cos \alpha )
+\,,
+\end{align}
+%
+so, in order to interpret this physically we fix \(t=0 \iff \alpha = 0\), which sets ``const'' to zero, and we reinsert the constants\footnote{
+We wish to express the constant \(A / 2\) in term of observables such as \(H_0 \) and \(\Omega_0 = \rho_0  / \rho_{0c}\). 
+} we get
 %
 \begin{equation}
   a = a_0 \frac{\Omega_0}{2 (\Omega_0 -1)} \qty(1- \cos(\alpha ) ) 

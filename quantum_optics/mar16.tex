@@ -1,0 +1,214 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2020-3-16, \\ compiled \\ \today}
+
+\section{Vallone's part}
+
+We will discuss some protocols with which to generate entanglement, how it is measured and how it is used. 
+
+Then, we would have another lab activity in which we are shown how to make a Quantum Key Distribution protocol.
+
+Last time (?) we discussed the Ambu-Mandel effect: this is about the fact that two photons impacting on a beam splitter can either go both up or both down. 
+
+What happens if the two impacting photons are entangled?
+Let us denote \(a\) and \(b\) as the incoming photons, while \(c\) and \(d\) are the ones coming out. 
+
+Let us assume these two photons start out as a singlet in their polarization: 
+%
+\begin{align}
+\ket{\psi^{-}} &= \frac{1}{\sqrt{2}}
+\qty(\ket{H}_{A} \ket{V}_{B}  - \ket{V}_{A} \ket{H}_{B} )  \\
+&= \frac{1}{\sqrt{2}} \qty(a ^\dag_{H} b ^\dag_{B} - a ^\dag_{V} b ^\dag_{H}) \ket{0}
+\,,
+\end{align}
+%
+where the second expression is the same as the first, written in the second quantization formalism. 
+The operators can be written as 
+%
+\begin{align}
+a ^\dag &= \frac{1}{\sqrt{2}} \qty(c ^\dag + i d ^\dag) \\
+b ^\dag &= \frac{1}{\sqrt{2}} \qty(d ^\dag + i c ^\dag) 
+\,,
+\end{align}
+%
+which means that when the photon changes direction it picks up a phase delay of \(i = e^{i \pi /2}\). 
+
+Substituting this in, we find 
+%
+\begin{align}
+\ket{\psi^{-}} &= \frac{1}{\sqrt{2}^3}
+\qty[\qty(c_{H} ^\dag + i d_{H} ^\dag)\qty(d_{V} ^\dag + i c_{V} ^\dag)   - \qty(c_{V} ^\dag + i d_{V} ^\dag)\qty(d_{H} ^\dag + i c_{V}^\dag) ] \ket{0}  \\
+&= \frac{1}{\sqrt{2}} \qty[c_{H} ^\dag d_{V} ^\dag - c_{V} ^\dag d_{H} ^\dag] \ket{0}
+\,,
+\end{align}
+%
+since these operators commute if they act on different spaces. 
+So, the photons must always come out in different directions. We can compute this for different Bell states: 
+%
+\begin{align}
+\ket{\psi^{\pm}} &= \frac{1}{\sqrt{2}} \qty[a_{H} ^\dag b_{V} ^\dag \pm a_{V} ^\dag b_{H} ^\dag] \ket{0} \\
+\ket{\phi^{\pm}} &= \frac{1}{\sqrt{2}} \qty[a_{H} ^\dag b_{H} ^\dag \pm a_{V} ^\dag b_{V} ^\dag] \ket{0} 
+\,,
+\end{align}
+%
+and with similar steps as before we get that for the \(\psi^{\pm }\) states (singlet) the photons come out in different states, while for the \(\phi^{\pm }\) (triplet) states they come out the same side. 
+
+This is idealized, as if the photons had an infinite wavelength. In the lab, we can plot the number of coincidences as the delay in time of arrival changes: the coincidences have a bump or a hump for \(\Delta t = 0\); for the singlets the coincidences go to zero, while the triplets the coincidences double from the regular (non-entangled) case.
+
+We can have a projective measurement in our space to be one which distinguishes these 4 states: this is a Bell State Measurement. 
+
+We can check whether we see \(\psi \) or \(\phi \) by looking at coincidence or no coincidence, and by looking at whether the polarizations are the same or different we can see whether we have the \(+\) or \(-\) in  \(\psi^{\pm }\) (or \(\phi^{\pm}\) respectively). 
+
+\subsection{Quantum Teleportation}
+
+This means transferring the wavefunction from a particle to another. 
+Particles are indistinguishable, the only thing which is different from one to the other is the wavefunction. 
+So, if we can transfer the wavefunction we have transferred the particles for any purpose. 
+
+``Classical FAX becomes quantum teleportation''.
+
+Let us discuss the teleportation protocol. For another reference, see the notes for the course on Quantum Information \cite[]{tissinoQuantumInformationNotes2019}. The photon starts out with a wavefunction 
+%
+\begin{align}
+\ket{\varphi }_{A} = \alpha \ket{0} + \beta \ket{1}
+\,,
+\end{align}
+%
+and we have an EPR state, with two particles entangled, let us say, in the singlet state \(\ket{\psi^{-}}\) on particles \(B\) and \(C\). 
+
+What we should do is a Bell State Measure on particles \(A\) and \(B\). Our result has 4 possible outcomes, we codify it into 2 classical bits.
+
+Then, we will apply a unitary transformation depending on these 2 bits on particle \(C\). Then, the state of particle \(A\) will be replicated on particle \(C\).
+
+This destroys the state of particle \(A\). 
+This also does not give us any information on the state, or on the parameters \(\alpha \) and \(\beta \).
+We cannot teleport faster than light, since we are bound to transmitting classical bits. 
+
+The state will be 
+%
+\begin{align}
+\ket{\chi } = 
+  \ket{\phi}_{A} \ket{\psi^{-}}_{BC}
+ &= \qty(\alpha \ket{0}_{A} + \beta \ket{1}_{A} )
+ \otimes 
+ \frac{1}{\sqrt{2}} \qty(\ket{01}_{BC} - \ket{10}_{BC}) \\
+ &= \frac{1}{\sqrt{2}} \qty(\alpha \ket{001} + \beta \ket{101} - \alpha \ket{010} - \beta \ket{110})
+\,,
+\end{align}
+%
+so if we compute 
+%
+\begin{align}
+_{BC}\braket{\psi^{\pm}}{\chi }_{ABC}
+ &= \frac{1}{2} \qty( \pm \beta \ket{1}_{C} - \alpha \ket{0}_{C}) \\
+&= -\frac{1}{2} \qty(\alpha \ket{0}_{C} \mp \beta \ket{1}_{C})
+\,,
+\end{align}
+%
+so if we measure \(\psi^{-}_{AB}\) we have \(\frac{1}{2} \ket{\varphi }_{C}\), while if we measure \(\psi^{+}_{AB}\) we will have \(\frac{1}{2} \sigma_{z} \ket{\varphi}_{C}\).
+
+On the other hand, if we measure \(\phi^{\pm}_{AB}\) we will have either \(\frac{1}{2} \sigma_{x} \ket{\varphi}_{C}\) or \(\frac{1}{2} \sigma_{y} \ket{\varphi}_{C}\).
+
+The \(\frac{1}{2}\) factor accounts for the normalization of the probabilities of obtaining the various states: regardless of \(\ket{\varphi }\), we have probability \(\frac{1}{4} = \frac{1}{2^2}\) for each of the 4 states. The two classical bits contain no information about the state. 
+
+If we do not transmit the two classical bits, the state on particle \(C\) becomes completely mixed: 
+%
+\begin{align}
+\frac{1}{4} \dyad{\varphi } + 
+\frac{1}{4} \sigma_{x} \dyad{\varphi }\sigma_{x}  + 
+\frac{1}{4} \sigma_{y} \dyad{\varphi }\sigma_{y}  + 
+\frac{1}{4} \sigma_{z} \dyad{\varphi }\sigma_{z} =
+\frac{1}{2} \mathbb{1} 
+\,.
+\end{align}
+
+If we start with two entangled photons \(A\) and \(B\), and clone photon \(B\) into photon \(D\), then photons \(A\) and \(D\) will be entangled. 
+This is \emph{entanglement swapping}. It works because \(A's\) wavefunction factors out of everything. 
+
+This means that we can have entangled particles even if they have never directly interacted. 
+
+This is especially useful if we want to entangle slow, massive particles. 
+In the future, it might be the basis for the \emph{quantum internet}. 
+
+This cannot be done if we do not transmit classical information.
+
+\subsection{Dense Coding}
+
+If we just have one qubit, we can use it to encode only one bit of information.
+
+However, if we use additional entangled qubits we can do better, still by sending just one qubit physically. 
+
+Alice and Bob start out with a singlet state \(\propto \qty(\ket{01} - \ket{10})\). 
+Alice applies one of \(\mathbb{1}\), \(\sigma_{x}\), \(\sigma_{y}\) or \(\sigma_{z}\) based on the values of her two classical bits.
+
+The state becomes 
+%
+\begin{align}
+\mathbb{1} \rightarrow \frac{1}{\sqrt{2}} \qty(\ket{01} - \ket{10 }) &= \ket{\psi^{-}} \\
+\sigma_{x} \rightarrow \frac{1}{\sqrt{2}} \qty(\ket{11} - \ket{00 }) &= \ket{\phi^{-}} \\
+\sigma_{y} \rightarrow \frac{1}{\sqrt{2}} \qty(\ket{11} - i\ket{00 }) &= \ket{\phi^{+}} \\
+\sigma_{z} \rightarrow \frac{1}{\sqrt{2}} \qty(\ket{01} + \ket{10 }) &= \ket{\psi^{+}} 
+\,,
+\end{align}
+%
+so in the end Alice can measure qubit \(A\), which is sent to her, and qubit \(B\), which she already had. 
+Based on the results of her measurements, she can determine what the two classical bits were. 
+
+\subsection{Tomography}
+
+How do we measure \(\alpha \) and \(\beta \) for 
+%
+\begin{align}
+\ket{\psi } = \alpha \ket{0} + \beta \ket{1} 
+\,?
+\end{align}
+%
+
+We can measure along the regular basis to find \(\abs{\alpha }^2\) and \(\abs{\beta }^2\). 
+In order to get information about their phases, we apply a Hadamard gate: if we measure along 
+%
+\begin{align}
+\frac{1}{\sqrt{2}} \qty(\ket{0} \pm \ket{1})
+\,
+\end{align}
+%
+then we find information about \(\abs{\alpha + \beta }^2 / 2\) and \(\abs{\alpha - \beta }^2/2\).
+
+We can decompose a density matrix \(\rho \) as \(\rho = r_{\mu } \Gamma^{\mu }\), where the \(\Gamma^{\mu }\) are a basis of Hermitian matrices. 
+
+Then, if we have a basis \(\ket{\psi_{\alpha }}\) we can do 
+%
+\begin{align}
+\mathbb{P}_{\alpha } = \ev{\psi_{\alpha }}{\rho }
+= \sum_{\mu } r_{\mu } \ev{\psi_{\alpha }}{\Gamma^{\mu }}
+= \sum_{\mu } r_{\mu } B_{\mu \alpha }
+\,,
+\end{align}
+%
+and this system is solvable as long as the projectors \(\dyad{\psi_{\alpha }}\) are linearly independent (which implies that the matrix \(B_{\mu \alpha }\) is invertible). 
+
+It is a fact that for a \(d\)-dimensional Hilbert space we need \(d^2-1\) of these. 
+
+For a qubit, we can write its density matrix as 
+%
+\begin{align}
+\rho = \frac{1}{2} \qty(\mathbb{1} + \vec{r} \cdot \vec{\sigma})
+\,;
+\end{align}
+%
+in this case the four states needed are \(P_0 = \dyad{0}\), \(P_1 = \dyad{1}\), \(P_{+} = \dyad{+}\), \(P_{-} = \dyad{-}\). 
+These are not independent as states, however they are independent as projectors. 
+
+Then, we can recover the components of the Bloch vector representation as 
+%
+\begin{align}
+r_{z} &= P_0 - P_1  \\
+r_{x} &= 2 P_{+} -1  \\
+r_{y} &= 2 P_1 - 1
+\,,
+\end{align}
+%
+so in general the only way to recover all the information about a quantum state is to project it along linearly independent projectors (or, really, the necessity is that the projectors span the whole Hilbert space).
+
+\end{document}

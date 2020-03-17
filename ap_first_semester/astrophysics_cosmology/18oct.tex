@@ -168,73 +168,151 @@ a &= \frac{A}{2} \qty(1 - \cos \alpha )
 \,,
 \end{align}
 %
-so, in order to interpret this physically we fix \(t=0 \iff \alpha = 0\), which sets ``const'' to zero, and we reinsert the constants\footnote{
-We wish to express the constant \(A / 2\) in term of observables such as \(H_0 \) and \(\Omega_0 = \rho_0  / \rho_{0c}\). 
-} we get
+so, in order to interpret this physically we fix \(t=0 \iff \alpha = 0\), which sets ``const'' to zero, and we reinsert the constants. 
+In order to do so, we wish to express the constant \(A / 2\) in term of observables such as \(H_0 \) and \(\Omega_0 = \rho_0  / \rho_{0c}\).
+We have: 
 %
-\begin{equation}
-  a = a_0 \frac{\Omega_0}{2 (\Omega_0 -1)} \qty(1- \cos(\alpha ) ) 
+\begin{align}
+\Omega_0 = \frac{8 \pi G \rho_0 }{3 H_0^2}
+\qquad \implies \qquad
+A = \frac{8 \pi G a_0^3 \rho_0 }{3} = \Omega_0 H_0^2 a_0^3
 \,,
-\end{equation}
+\end{align}
 %
-and
+which we can simplify by making use of the first Friedmann equation, which reads: 
 %
-\begin{equation}
-  t = \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\alpha - \sin(\alpha ) )
+\begin{align}
+H_0^2 = \frac{8 \pi G}{3} \rho_0 - \frac{k}{a_0 ^2}
+\qquad \implies \qquad
+1 = \Omega_0 - \frac{1}{a_0^2 H_0^2} 
+\marginnote{We are treating the case \(k=1\)}
+\qquad \implies \qquad
+a_0^2H_0^2 = \frac{1}{1 - \Omega_0 }
 \,,
-\end{equation}
+\end{align}
 %
-but now we switch from \(\alpha \) to \(\theta \) for historical reasons.
+so we can write \(A/2\) in two different ways: 
+%
+\begin{align}
+\frac{A}{2} = \frac{a_0}{2} \frac{\Omega_0 }{1 - \Omega_0 }
+= \frac{1}{2 H_0 } \frac{\Omega_0 }{(1-\Omega_0 )^{3/2}}
+\,.
+\end{align}
 
-[Plot: \(a(\theta )\) vs \(\theta \)].
+We use one of these for \(a\) and the other for \(t\): this is done because it makes the prefactor of the expression manifestly dimensionally consistent with the quantity we are expressing --- this is not always the case when working with \(c=1\).
+Then, the expressions for \(a\) and \(t\) become:
+%
+\begin{align}
+  a &= a_0 \frac{\Omega_0}{2 (\Omega_0 -1)} \qty(1- \cos(\alpha ) ) = \widetilde{a}_{0} \frac{1 - \cos \alpha }{2} \\
+  t &= \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\alpha - \sin(\alpha ) )
+  = \widetilde{t}_{0} \frac{\alpha - \sin \alpha }{2}
+\,.
+\end{align}
 
-We have \(\dot{a} > 0 \)   when \(0 \leq \theta \leq \theta_m = \pi \), while \(\dot{a} < 0\) when \(\theta _m \leq \theta \leq 2 \pi \).
-This is the \emph{turn-around} angle. The angles \(0\) and \(2 \pi \) correspond to the Big Bang and the Big Crunch.
+For the discussion of these results we rename the angle variable from \(\alpha \) to \(\theta \) for historical reasons. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/positive_curvature_a.pdf}
+\caption{A plot of \(a(\theta )\) and \(t(\theta )\).}
+\label{fig:positive_curvature_a}
+\end{figure}
+
+We have \(\dot{a} > 0 \)   when \(0 \leq \theta \leq \theta_m = \pi \), while \(\dot{a} < 0\) when \(\theta _m \leq \theta \leq 2 \pi \): so, we call \(\theta_{m}\) the \emph{turn-around} angle.
+The angles \(0\) and \(2 \pi \) correspond to the Big Bang and the Big Crunch.
 
 At \(\theta _m\) we have: 
 %
-\begin{equation}
-  a = a_0 \frac{\Omega_0}{\Omega_0 -1} 
-\,,
-\end{equation}
-%
-and 
-%
-\begin{equation}
-  t = \frac{\pi}{2 H_0 } \frac{\Omega_0}{(\Omega_0 -1)^{3/2}}
-\,,
-\end{equation}
-%
-therefore if we set \(a=1\) at the current time we get 
-%
-\begin{equation}
-  t_0 = \frac{1}{2H_0 } \frac{\Omega_0  }{(\Omega_0 -1)^{3/2}} \qty(\arccos (\frac{2}{\Omega_0 }-1) - \frac{2}{\Omega_0 } (\Omega_0 -1 )^{1/2})
-\,,
-\end{equation}
-%
-In a pure matter model we would have \(a \propto t^{2/3}\), which would imply \(H_0 = 2/(3 t_0 )\) or \(t_0 = 2 / (3 H_0 )\): this does not make sense! It would give us an age of the universe of the order \SI{e9}{yr}, while the measured age of the universe is \SI{1.4e10}{yr}.
-This is for a flat universe.
+\begin{align}
+  a_m &= \widetilde{a}_{0} =  a_0 \frac{\Omega_0}{\Omega_0 -1}  \\
+  t_m &= \frac{\pi}{2} \widetilde{t}_0 = \frac{\pi}{2 H_0 } \frac{\Omega_0}{(\Omega_0 -1)^{3/2}}
+\,.
+\end{align}
 
-For a given \(H_0 \), we would have a smaller \(t_0 \) with a closed universe.
+\subsubsection{The age of a closed universe}
+
+The total lifetime of the universe, in this scenario, is equal to \(2 t_m = \pi \widetilde{t}_{0}\). How does this compare to the result we found for a flat universe, namely \(t_0 = 2 / (3 H_0 )\) (equation \eqref{eq:einstein-de-sitter-age} with \(w=0\))?
+
+We set \(a(t) = a_0 \), which means we are normalizing the scale factor to the current one: this yields 
+%
+\begin{align}
+1= \frac{\Omega_0}{1-\Omega_0 } \frac{1 - \cos \theta }{2}
+\qquad \implies \qquad
+\cos \theta = 1 - \frac{2 (\Omega_0 -1)}{\Omega_0 } = \frac{2}{\Omega_0 }-1
+\,,
+\end{align}
+%
+so we can invert the cosine (assuming we are in the expanding phase: it is not invertible globally) and insert our expression for \(\theta \) into the expression for the time, to get\footnote{We need to use the expression \(\sin(
+\arccos(x)) = \sqrt{1- \cos^2(\arccos x)} = \sqrt{1- x^2}\) with \(x = 2/ \Omega_0 -1\), and then the following manipulation: 
+%
+\begin{align}
+\sqrt{1 - \qty(\frac{2}{\Omega_0 }-1)^2} = \sqrt{1 - \frac{4}{\Omega_0^2} + \frac{4}{\Omega_0} -1}
+= \frac{2}{\Omega_0 } \sqrt{\Omega_0 -1 }
+\,.
+\end{align}}
+%
+\begin{equation} \label{eq:positive-curvature-age}
+  t_0 = \frac{1}{2H_0 } \frac{\Omega_0  }{(\Omega_0 -1)^{3/2}} \qty(\arccos (\frac{2}{\Omega_0 }-1) - \frac{2}{\Omega_0 } \sqrt{\Omega_0 -1 })
+\,.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/curved_universe_age}
+\caption{Universe age at the current time as a function of \(\Omega_0 \). For \(\Omega_0>1\) we use the positive curvature model in equation \eqref{eq:positive-curvature-age}: the age is lower than \(2/(3H_0 )\); for \(\Omega_0 <1\) we use the negative curvature model \eqref{eq:negative-curvature-age}: the age is greater than \(2/(3H_0 )\).
+The flat model is plotted with a horizontal line for clarity, but if the universe is spatially flat then we must have \(\Omega_0 =1\).}
+\label{fig:curved_universe_age}
+\end{figure}
+
+As we can see in figure \ref{fig:curved_universe_age}, this means that the estimated age of the universe is lower than \(2/(3H_0 ) \approx \SI{9.6}{Gyr}\), while the measured age of the universe is around \SI{14}{Gyr}.
 
 \subsection{Negative curvature: an open universe}
 
-For \(k = -1\) we do exactly the same steps with hyperbolic functions instead of trigonometric ones: we get 
+For \(k = -1\) we do exactly the same steps with hyperbolic functions instead of trigonometric ones, calling the argument of these functions \(\psi \) instead of \(\theta \): we get 
 %
-\begin{equation}
-  a ( \psi ) = a \frac{\Omega_0 }{2 (1-\Omega_0)} \qty(\cosh \psi -1)
+\begin{align}
+  a ( \psi ) &= a \frac{\Omega_0 }{2 (1-\Omega_0)} \qty(\cosh \psi -1) \\
+  t (\psi ) &=  \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\sinh \psi - \psi  )
 \,,
-\end{equation}
+\end{align}
 %
-with \(\cosh\psi = 2/\Omega_0 -1\) and 
-%
-\begin{equation}
-  t (\psi ) =  \frac{1}{H_0 } \frac{\Omega_0}{2 (\Omega_0 -1)^{3/2}}(\sinh \psi - \psi  )
-\,.
-\end{equation}
-%
+and as before we can calculate the independent variable with \(\cosh\psi = 2/\Omega_0 -1\).\footnote{A doubt one might have: where does the sign change from \(\theta  - \sin(\theta )\) to \(\sinh(\psi ) - \psi \)? 
 
-The same reasoning as before gives us a \(t_0 > 2 / (3 H_0 )\)! This is then more attractive.
+The difference between the calculations with the trigonometric functions and the hyperbolic functions lies in the substitution \(2 \theta = \pi - \alpha \): in the hyperbolic case we cannot do it this way, since the hyperbolic functions do not have any periodicity like this. Instead, the right substitution looks like \(2 \psi = i \pi + u\), since \(\sinh(i \pi + u) = -\sinh(u)\).
+
+Then, we have the same expressions as before, but their sign is flipped.}
+
+An analogous reasoning to the one before gives us 
+%
+\begin{align} \label{eq:negative-curvature-age}
+t_0 = \frac{1}{2H_0 } \frac{\Omega_0}{(1-\Omega_0 )^{3/2}} \qty(\frac{2}{\Omega_0 } \sqrt{1 - \Omega_0 } - \operatorname{arccosh} \qty(\frac{2}{\Omega_0 } -1)) 
+\marginnote{Now \(\sinh(\operatorname{arccossh}(x)) = \sqrt{x^2-1}\)}
+\,,
+\end{align}
+%
+which is plotted, again, in figure \ref{fig:curved_universe_age}: in this case \(t_0 > 2 / (3 H_0 )\)! This is then more attractive.
+
+\todo[inline]{In Pacciani's notes \cite[pag. 26]{Pacciani:2018} this is reported with an incorrect global sign.}
+
+\subsection{Considerations on curvature}
+
+The experimental fact that \(t_0 > 2/(3H_0 )\) seems to favour an open universe. 
+However, the age of the universe is \(t_0 \approx \num{.96} H_0^{-1}\): looking at figure \ref{fig:curved_universe_age} it is clear that in order to account for it with spatial curvature only we would need \(\Omega_0 \ll 1\), and actually \(\Omega_0 < \Omega_{0m}\), where \(\Omega_{0m}\) is the current measured ratio of the density of matter to the critical density. 
+
+In fact, in the current \(\Lambda \)CDM model of cosmology this is accounted for using dark energy, which means a positive cosmological constant.
+
+From the second Friedmann equation 
+%
+\begin{align}
+\frac{\ddot{a}}{a} =- \frac{4 \pi G}{3} \rho (1+3w) 
+\,
+\end{align}
+%
+we know that \(\ddot{a} < 0\), that is, the expansion of the universe decelerates if \(w > - 1/3\).
+A singular instant at which \(a =0\) must be reached if \(w>-1/3\), while this is not necessarily the case for \(w<-1/3\).
+
+\todo[inline]{Comment on inflationary theory}
+
+\chapter{The thermal history of the universe}
 
 Radiation's energy density \(\rho _r (a)\) can be seen as a function of the redshift: \(\rho _r (z ) = \rho _{0r} (1+z)^{4}\), since \((1+z) = a_0 / a\).
 
@@ -271,7 +349,6 @@ Another time is \(z_\Lambda \), defined by: \(\rho _m (z_{\Lambda }) = \rho _\La
 %
 which implies that \(z_\Lambda \approx \num{0.33}\).
 
-\chapter{The thermal history of the universe}
 
 The model which won out is the \emph{hot Big Bang} model.
 

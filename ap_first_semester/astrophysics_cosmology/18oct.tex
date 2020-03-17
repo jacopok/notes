@@ -314,43 +314,52 @@ A singular instant at which \(a =0\) must be reached if \(w>-1/3\), while this i
 
 \chapter{The thermal history of the universe}
 
-Radiation's energy density \(\rho _r (a)\) can be seen as a function of the redshift: \(\rho _r (z ) = \rho _{0r} (1+z)^{4}\), since \((1+z) = a_0 / a\).
+In the study of the early stages of the universe the variation of the temperature, which determines the distribution of the energies of the collisions of the particles, plays a central role.
+It makes sense to talk about temperature when the particles are actually in thermal equilibrium, as they were in the early universe: photons and electrons were continuously Compton-scattering off each other. 
+After the particles stop continuously interacting we say that they \emph{decoupled}, and each component evolves independently. 
 
-For matter \(\rho _m (z) = \rho_{0m} (1+z)^{3}\), for \(\Lambda \) instead \(\rho _\Lambda (z) = \rho _{0 \Lambda }\).
+\section{Radiation energy density and the equality redshift}
 
-Let us define a moment called the \emph{equality redshift} \(z _{\text{eq}}\). This is when \(\rho _r (z _{\text{eq}}) = \rho _m (z _{\text{eq}})\). This means that 
+In section \ref{sec:common-equations-of-state} we discussed the evolution of the energy density of matter and radiation, showing that for radiation \(\rho _r (z ) = \rho _{0r} (1+z)^{4}\) while for matter
+\(\rho _m (z) = \rho_{0m} (1+z)^{3}\). 
+We discussed this in the context of electromagnetic radiation, but it describes well the behavior of very relativistic particles, such as neutrinos. 
+
+We can define a moment called the \emph{equality redshift} \(z _{\text{eq}}\).
+This is when the energy density of radiation and that of matter were equal: \(\rho _r (z _{\text{eq}}) = \rho _m (z _{\text{eq}})\).
+This means that 
 %
 \begin{equation}
-  (1+z _{\text{eq}}) = \frac{\rho _{0,m}}{\rho _{0,r}} 
+\rho_{0,r} (1+z _{\text{eq}})^{4} = \rho_{0,m} (1+z _{\text{eq}})^{3} \implies
+(1+z _{\text{eq}}) = \frac{\rho _{0,m}}{\rho _{0,r}} 
   = \frac{\Omega_{0,m}}{\Omega_{0,r}}
 \,,
 \end{equation}
 %
-where we divided and multiplied by the critical density.
+where we divided and multiplied by the critical density today. 
 
-We know that \(\Omega_{0,m}\) is around \num{0.3}, while for the radiation it would be easier to measure the density.
-Neutrinos are matter now but they were radiation at the time of equality (???).
+We know that \(\Omega_{0,m}\) is around \num{0.3}, while for the radiation we can deduce the density from the spectrum of the CMB.
 
 Accounting for everything, we think that 
 %
 \begin{equation}
   1 + z _{\text{eq}} \simeq \num{2.3e4} \Omega_{0, m} h^2
+  \approx 3370
 \,.
 \end{equation}
 
-This means that the recombination of electrons and protons into Hydrogen happened when the universe was already \emph{matter dominated}.
+The value is that obtained from the Planck Collaboration \cite[]{PlanckCollaboration:2016XIII}.
 
-Another time is \(z_\Lambda \), defined by: \(\rho _m (z_{\Lambda }) = \rho _\Lambda (z_\Lambda )\). 
-%
+This means that the recombination of electrons and protons into Hydrogen, which occurred around redshift \(z _{\text{CMB}} \approx 1090\), happened when the universe was already \emph{matter dominated} --- specifically, the density of matter was \(\approx 3\) times that of radiation.
+
+Another interesting time is \(z_\Lambda \), when the energy density due to the cosmological constant equalled that of matter:  \(\rho _m (z_{\Lambda }) = \rho _\Lambda (z_\Lambda )\), which is calculated with the same reasoning as \(z _{\text{eq}}\), recalling that \(\rho_{\Lambda }\) is a constant:
 \begin{equation}
-  1+ z_\Lambda = \qty(\frac{\rho_{0, \Lambda }}{\rho_{0,m}})^{1/3} \simeq \qty(\frac{0.7}{0.3})^{1/3}
-\,,
+1+ z_\Lambda = \qty(\frac{\rho_{0, \Lambda }}{\rho_{0,m}})^{1/3} \simeq \qty(\frac{0.7}{0.3})^{1/3} \approx \num{0.33}
+\,.
 \end{equation}
-%
-which implies that \(z_\Lambda \approx \num{0.33}\).
 
+This is relatively close, in cosmological terms: the comoving distance corresponding to this redshift is around \SI{1350}{Mpc}, less than \SI{10}{\percent} of the comoving distance to the CMB. 
 
-The model which won out is the \emph{hot Big Bang} model.
+% The model which won out is the \emph{hot Big Bang} model.
 
 Consider radiation: we know from Stefan's law that \(\rho _r \propto T^{4}\), while \(\rho _r \propto a^{-4}\). Therefore we would expect \emph{Tolman's law} to hold: \(T \propto 1/a\).
 

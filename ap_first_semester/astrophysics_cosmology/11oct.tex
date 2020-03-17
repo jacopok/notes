@@ -316,15 +316,19 @@ a \propto t_{\text{new}}\,^{\frac{2}{3(1+w)}}
 \,.
 \end{equation}
 
-Inserting this new time variable (which we will just call \(t\)), we get
-\begin{equation}
-  \rho(t) = \frac{1}{6 (1+w)^2 \pi G t^2}
-\end{equation}
-\todo[inline]{Show this explicitly.}
-and the Hubble parameter is:
-\begin{equation} \label{eq:einstein-de-sitter-age}
-  H(t) = \frac{2}{3(1+w) t}
-\end{equation}
+Inserting this new time variable (which we will just call \(t\)), we get that the Hubble parameter is:
+\begin{align} 
+H(t) &= \frac{1}{a} \dv{a}{t} = \frac{2}{3(1+w)} t^{\frac{2}{3(1+w)}-1} t^{- \frac{2}{3(1+w)}} \\
+H(t) &=  \frac{2}{3(1+w) t} \label{eq:einstein-de-sitter-age}
+\,,
+\end{align}
+so we can compute the density:
+\begin{align}
+\rho(t) &= \frac{3H^2}{8 \pi G} = \frac{3}{8 \pi G} \frac{4}{9 (1+w)^2 t^2} \\
+&= \frac{1}{6 (1+w)^2 \pi G t^2}
+\,.
+\end{align}
+% \todo[inline]{Show this explicitly.}
 % Some cases are:
 % \begin{equation}
 %   \begin{cases}
@@ -366,8 +370,28 @@ From the redshift we can trace back the time of emission of the photon: for a ma
 = \qty(\frac{2}{3H_0 t })^{2/3} 
 \,.
 \end{align}
-%
-\todo[inline]{Show that in this case \(q = 1/2\).}
 
+We can calculate the deceleration parameter for this case, to check that it is indeed positive: we need to differentiate the expression 
+%
+\begin{align}
+a(t) = a_0 \qty(\frac{3 H_0 t}{2})^{2/3}
+\,,
+\end{align}
+%
+and we find 
+%
+\begin{align}
+q_0 = - \frac{\ddot{a}_{0} a_0 }{\dot{a}_{0}^2}
+=- \frac{t_0^{-4/3} t_0^{2/3}}{(t_0^{-1/3})^2} \times \frac{\frac{2}{3} \qty(-\frac{1}{3})}{\frac{2}{3} \frac{2}{3}} = \frac{1}{2}
+\marginnote{The \(a_0 (3H_0 /2)^{2/3}\) terms all simplify.}
+\,.
+\end{align}
+
+This is a special case of the fact that \cite[eq. 2.2.4b]{LucchinColes:2002}
+%
+\begin{align}
+q \equiv q_0 = \frac{1 + 3w}{2}
+\,.
+\end{align}
 
 \end{document}

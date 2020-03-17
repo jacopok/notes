@@ -1,4 +1,281 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Symmetries and conservation laws}
+
+\marginpar{Tuesday\\ 2020-3-17, \\ compiled \\ \today}
+
+Our aim is to describe the fundamental constituents of matter with a Quantum Field Theory. 
+The method used to derive the equations of motion is a variational principle: we will find a Lagrangian density for various particles, and then apply the variational principle to find their equations of motion. 
+
+A guiding principle on the description of these fundamental particles is based on using their symmetries. 
+We have Nöether's theorem in Quantum Field Theory: from these symmetries we are able to find conserved quantities. 
+
+These symmetries are described with groups, since we can compose their application; the theory describing groups is very rich. 
+For this lecture we will base ourselves on Peskin's chapter 2 \cite[]{peskinConceptsElementaryParticle2019}. 
+
+A group \(G\) is a set of elements endowed with an operation. The set of elements can be either discrete or continuous. Most of the time, in theoretical physics, we use continuous groups. 
+
+We distinguish: 
+\begin{enumerate}
+  \item \textbf{spacetime} symmetries: groups which transform our coordinate system for spacetime, such as Lorentz and Poincaré transformations;
+  \item \textbf{internal} symmetries: groups which transform a certain field, or a certain property of our quantum system.
+\end{enumerate}
+
+For our set to be a group, we need to be able to define an operation --- we will usually call it multiplication --- between the elements of the group, such that if \(a, b \in G\) then \(ab \in G\). Also, we must have 
+\begin{enumerate}
+  \item associativity: \((ab)c = a(bc)\);
+  \item existence of the identity \(\mathbb{1}\), such that \(\mathbb{1} a = a \mathbb{1} = a\);
+  \item existence of inverses: there exists \(a^{-1}\) such that \(a a^{-1} = a^{-1} a = \mathbb{1}\). 
+\end{enumerate}
+
+What is of interest to us is the association of the group with a transformation which is a symmetry: this is called a \emph{representation}. 
+
+We call a transformation a symmetry if, after performing the transformation, the dynamics of the system do not change. 
+
+For a quantum mechanical system, we are interested in the observables: these are described by operators, whose eigenvalues are the observations we make, and which in the Heisenberg picture evolve like 
+%
+\begin{align}
+\dv{}{t} O(t) = [H, O(t)]
+\,;
+\end{align}
+%
+if an operator commutes with the Hamiltonian, \([H,O]=0\), then the operator is constant. 
+
+If we perform a transformation in the form 
+%
+\begin{align}
+\ket{\psi } \rightarrow \ket{\psi'} = U \ket{\psi }
+\,,
+\end{align}
+%
+then the operators will change by 
+%
+\begin{align}
+O \rightarrow O^{\prime } = U ^\dag O U 
+\,.
+\end{align}
+
+Note that whether we have \(U ^\dag O U\) or \(U O U ^\dag\) does not matter, since we ask observables \(O\) to be Hermitian, so \(O = O ^\dag\). 
+
+We know that these transformations must always be unitary, because the conservation of probability implies that we must have \(\braket{\psi }{\psi } = \const\): so, 
+%
+\begin{align}
+U ^\dag U = \mathbb{1}
+\,.
+\end{align}
+
+This can be also stated as \(U ^\dag = U^{-1}\). 
+
+So, the function associating a unitary operator \(U\) to an element \(g\) of the group is called its \emph{unitary representation}. 
+
+A transformation \(G\) is a symmetry if \(\forall a \in G\) we have 
+%
+\begin{align}
+[U(a), H]  =0
+\,,
+\end{align}
+%
+that is, the unitary representation of the group element always commutes with the Hamiltonian.
+
+If we have a state \(\ket{\psi }\) with energy \(H \ket{\psi } = E \ket{\psi }\), then the transformation commuting with the Hamiltonian means that \(\ket{\psi'} = U \ket{\psi }\) has the same energy.
+
+Now, we can move to an example, taken from Peskin \cite[]{peskinConceptsElementaryParticle2019}. 
+Consider the discrete group \(\mathbb{Z}_{2}\), which only has the elements \(1\) and \(-1\), with the same multiplication rules as those we would have if these elements were integers. 
+So, the group is closed with respect to multiplication.
+It can be easily checked that this is indeed a group based on our definition. 
+
+In order for this to be of interest to us, we can consider a quantum mechanical system and find a unitary representation acting on its Hilbert space. 
+
+Let us suppose we have a QM system with a basis made of two states \(\ket{\pi^{+}}\) and \(\ket{\pi^{-}}\). Let us define the \emph{charge conjugation} operator \(C\), by: 
+%
+\begin{align}
+C \ket{\pi^{+}} = \ket{\pi^{-}} 
+\qquad \text{and} \qquad
+C \ket{\pi^{-}} = \ket{\pi^{+}} 
+\,.
+\end{align}
+
+So, we can find a unitary representation of \(\mathbb{Z}_{2}\) in this system: we need to define \(U(1)\) and \(U(-1)\). We define 
+%
+\begin{align}
+U(1) = \mathbb{1} =\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & 1
+\end{array}\right] 
+\qquad \text{and} \qquad
+U(-1) = \sigma_{x} - \left[\begin{array}{cc}
+0 & 1 \\ 
+1 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+where the matrices are to be interpreted as acting on vectors expressed to the basis \(\qty{\ket{\pi_{+}}, \ket{\pi_{-}}}\).
+
+So, we can say that our unitary representation looks like 
+%
+\begin{align}
+\mathbb{Z}_{2} \rightarrow \qty{\mathbb{1}, C}
+\,.
+\end{align}
+
+Now, if \([C, H] =0\) (and \(\mathbb{1}\) commutes with \(H\), which is always the case) then we say that ``\(H\) has the symmetry \(\mathbb{Z}_{2}\)''.
+
+The interesting question to determine will be whether this is actually the case for our given group. 
+
+Groups can be subdivided into abelian and non-abelian ones.
+A group is abelian if for every \(a, b\) in \(G\) we have \(ab = ba\), or equivalently, \([a, b] =0\). 
+It is not if this is not the case, that is, there exist \(a, b\) such that \(ab \neq ba\). 
+
+The condition on the elements directly translates to a condition on the matrices of the unitary representation. 
+If we have commuting matrices, we can simultaneously diagonalize them: for example, in the case of \(\mathbb{Z}_{2}\) we can go to a basis in which 
+%
+\begin{align}
+C = \left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\,,
+\end{align}
+%
+specifically the states need to be 
+%
+\begin{align}
+\ket{\pi_{1}} = \frac{\ket{\pi^{+}} + \ket{\pi^{-}}}{\sqrt{2}} 
+\qquad \text{and} \qquad
+\ket{\pi_{2}} = \frac{\ket{\pi^{+}} - \ket{\pi^{-}}}{\sqrt{2}}
+\,,
+\end{align}
+%
+since then \(C \ket{\pi_1 } = \ket{\pi_1 }\) (we write \(C = +1\)) and \(C \ket{\pi_{2}} = - \ket{\pi_2 }\) (we write \(C = -1\)). 
+We will often use this notation, confusing operator and eigenvalue.
+
+In the case of nonabelian groups it is not in general possible to diagonalize all the matrices; we can however write the matrices as a block matrix: 
+%
+\begin{align}
+U_{R} = \left[\begin{array}{ccc}
+U_1  & 0 & 0 \\ 
+0 & U_2  & 0 \\ 
+0 & 0 & \dots
+\end{array}\right] 
+\,.
+\end{align}
+
+Do note that some elements of a nonabelian group can commute: for example, in the rotation group we have 
+%
+\begin{align}
+[J^{i}, J^{j}] = \epsilon^{ijk} J_{k}
+\,,
+\end{align}
+%
+so if we take \(i = j\), that is, we consider rotations along the same axis, they will commute since then the Kronecker symbol is equal to zero. 
+
+\subsection{Space translations}
+
+An element of the group can be written as 
+%
+\begin{align}
+U(a) = e^{i a P }
+\,,
+\end{align}
+%
+where the operator \(P\), whose eigenvalue is the momentum, is called the generator of the transformation. 
+
+If we take a plane wave, for example,
+%
+\begin{align}
+\braket{x}{p} = e^{i p x}
+\,,
+\end{align}
+%
+then we have 
+%
+\begin{align}
+\bra{x} U(a) \ket{p} = e^{i p (x-a)}
+\,.
+\end{align}
+
+If our system is invariant under translations, then Nöether's theorem tells us that the momentum is conserved. 
+
+In order to be a physical observable \(P\) needs to be Hermitian: \(P = P ^\dag\). 
+
+So, the adjoint of the unitary transformation is 
+%
+\begin{align}
+U ^\dag (a) =
+\sum _{n} \qty(\frac{(-iaP)^{n}}{n!}) ^\dag
+= \sum _{n} \frac{(iaP ^\dag)^{n}}{n!}
+=
+e^{i a P ^\dag} = e^{iaP} = U^{-1}(a)
+\,,
+\end{align}
+%
+which confirms the fact that the transformation is unitary. 
+
+Let us say that the momentum operator \(P\) commutes with the Hamiltonian: \([P,H] = 0\). Then, 
+%
+\begin{align}
+[U(a), H] = 0 
+\,.
+\end{align}
+
+All this is to say that a constant of motion \(O\) corresponds to an operator \(O\) which commutes with the Hamiltonian. 
+
+An example: the group \(G\) of 3D rotations. 
+They depend on a continuous parameter \(\vec{\alpha}\), just like translations depended on the parameter \(a\). 
+
+The rotation is written as 
+%
+\begin{align}
+U(\vec{\alpha}) = e^{-i \vec{\alpha} \cdot \vec{J}}
+\,,
+\end{align}
+%
+where the components of the angular momentum have the following commutation relations: 
+%
+\begin{align}
+[J^{i}, J^{j}] = \epsilon^{ijk} J^{k}
+\,.
+\end{align}
+
+We can multiply rotation matrices: 
+%
+\begin{align}
+U(\vec{\beta}) U(\vec{\alpha}) = U(\vec{\gamma})
+\,.
+\end{align}
+
+This space of 3D rotations is called SO(3), since every rotation corresponds to a 3x3 matrix which is a rotation matrix --- so it is orthogonal and has determinant 1.
+
+We can look for 1D representations of the generators \(J^{i}\): we get \(J^{i} = 0\), which means that we are not actually performing a rotation.
+Which states transform this way? These are scalar states, spin 0. 
+
+For 2D representations, we have 
+%
+\begin{align}
+J^{i} =\frac{1}{2} \sigma^{i} 
+\,,
+\end{align}
+%
+where the \(\sigma^{i}\) are the Pauli matrices.
+
+We can also find 3D spin-1/2 representations. 
+
+A rotation in 2D, represented by an element of SO(2), corresponds to a phase shift, so we can say that it is equivalent to an element of U(1).
+This then allows us to see that SO(2) is abelian. 
+
+In general, we write for a unitary \(n \times n\) unitary representation
+%
+\begin{align}
+U(n) \rightarrow e^{-i \alpha^{n} t^{a}}
+\,,
+\end{align}
+%
+where the generators \(t^{a}\) are Hermitian matrices corresponding to Hermitian operators. 
+In particular, one of these is the identity: \(t^{0} = \mathbb{1}\). 
+
+So, we omit it and  say that we have \(n^2-1\) generators for the SU\((n)\) group.
+We shall see that each of these generators corresponds to a particle, and for the weak interaction we will have \(2^2-1 = 3\) particles, while for the strong one we will have \(3^2-1=8\). 
+
 \end{document}

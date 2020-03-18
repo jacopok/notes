@@ -1,4 +1,135 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-3-18, \\ compiled \\ \today}
+
+Yesterday we mentioned the fact that for group symmetries we can find corresponding conservation laws. 
+
+Invariance under spacetime translations gives us the conservation of 4-momentum \(p^{\mu }\). 
+Invariance under the Lorentz group gives us conservation of angular momentum (for rotation).
+
+% \todo[inline]{What is the conserved quantity corresponding to Lorentz boosts?}
+
+\subsection{Discrete symmetries}
+
+The symmetry in which we reverse the spatial coordinates is called parity \(P\), if we reverse the time coordinate we have time reversal \(T\), and later we will discuss the internal symmetry of charge conjugation \(C\).
+
+More precisely, if \(x^{\mu } = \qty( x^{0}, \vec{x} )\) we have 
+%
+\begin{align}
+P x^{\mu } &= \qty(x^{0}, - \vec{x})  \\
+T x^{\mu } &= \qty(-x^{0}, \vec{x})
+\,.
+\end{align}
+
+These are Lorentz transformations represented by matrices with negative determinants: \(\det \Lambda_{P} = \det \Lambda_{T} = -1\). 
+This means that we cannot obtain these transformations with a composition of orthochronal Lorentz transformations --- those defined to be continuously connected to the identity ---, since the determinant of a Lorentz transformation is always \(\pm 1\), and it is a continuous function of the Lorentz transformation. 
+
+In quantum mechanics, these must be interpreted like operators. 
+Their eigenvalues will be \(\pm 1\). 
+
+These transformations being symmetries is an experimental question. \(P\) and \(T\) are symmetries of the strong and electromagnetic interactions. 
+
+The weak interaction, instead, does not conserve \(P\). 
+
+We defined the charge conjugation operator \(C\) by its action on the \(\ket{\pi^{+}}\) and \(\ket{\pi^{-}}\), on the basis defined by them its matrix representation was \(\sigma_{x}\). 
+It commuted with the Hamiltonian. 
+
+In general, this swaps not only the electric charge but all the quantum numbers, including the ``hypercharges'' such as baryon number.
+The charge conjugation operator \(C\) gives us the antiparticle of a certain particle, so it must flip all of the charges. 
+There are, however, theories in which, say, lepton number conservation is broken but baryon number is conserved. The precise meaning of this operator depends on the theory. 
+
+If we constructed our experiments with antimatter would we get the same physics? 
+
+It was experimentally determined that weak interactions violated parity, and it was thought that baryon number was conserved: however in the early universe we would expect to have equal amounts of matter and antimatter, but this is not what we see --- we are made of matter, and we do not see tha gamma ray background we would expect to see if there were matter and antimatter spacetime regions. 
+
+We can apply several ``mirrors'' to our system: this amounts to the composition of the operators. 
+There is a theorem in Quantum Field Theory: if a QFT is consistent, then it must obey \(CPT\) symmetry. 
+After passing through all of the three mirrors, the system has the same physical properties. 
+The order of the three symmetries does not matter: they commute. 
+
+The conservation of the electric charge \(Q\), for example, is connected to \(\mathrm{U}(1)_{\text{em}}\) symmetry. 
+This is an \emph{exact} symmetry, which we expect not to break down at higher energy. 
+
+On the other hand, \(C\), \(P\) and \(T\) are not exact symmetries since there exist some interactions which violate them (separately: \(P\) and \(CP\) are violated, so \(T\) is also violated by the \(CPT\) theorem). 
+
+\section{Relativistic wave equations}
+
+In quantum mechanics we describe the dynamics of a quantum system using the Schrödinger equation: 
+%
+\begin{align}
+E = \frac{\vec{p}^2}{2m } + V
+\,,
+\end{align}
+%
+where \(E = i \partial_{t} \psi \) and \(\vec{p}^2 = - (2m)^{-1} \vec{\nabla}^2 \psi \). 
+
+This is non (special) relativistic: if we perform a Lorentz boost the equation does not remain in the same form. 
+
+Also, this equation describes the dynamics of one electron. In elementary particle physics it is no longer \emph{consistent} to only consider one particle: 
+when the energies are of the order of the mass of the particles we can create antiparticles or other particles. 
+So, in general there is no reason to expect that the number of particles is conserved in particle physics. 
+
+Formally, it is hard to define from the Schrödinger equation a conserved quantity connected to the probability of finding the particle. 
+It does not account for the possibility that the particle might appear or disappear. 
+For example, we can have matter-antimatter collisions: this is called \emph{annihilation}, and the two incoming particles disappear completely.
+
+The equation \(E = \vec{p}^2 / 2m \) is intrinsically nonrelativistic; the corresponding relativistic relation is \(E^2 = \vec{p}^2 + m^2\). 
+
+We can make the same canonical quantization substitutions to get 
+%
+\begin{align}
+\qty(\pdv[2]{}{t} - \vec{\nabla}^2 + m^2) \phi (t, \vec{x}) = 0
+\,.
+\end{align}
+
+Why should we use \(E^2 = \vec{p}^2 + m^2\) instead of, say, \(E = \sqrt{\vec{p}^2 + m^2}\)? 
+The problem is that it is hard to see what could be meant by the square root of an operator. 
+Anyways, we shall use the approach of ``taking the square root'' in order to solve the KG equation. 
+We can write this in a manifestly covariant way as 
+%
+\begin{align}
+\qty(\partial^{\mu } \partial_{\mu } + m^2) \phi (t, \vec{x}) = 0
+\,,
+\end{align}
+%
+where \(\partial_{\mu } = (\partial_{t}, \vec{\nabla})\), whose square \(\partial^{\mu } \partial_{\mu } = \partial_{t}^2 - \vec{\nabla}^2 = \square\) is the Dalambertian.
+
+This is the Klein-Gordon equation. 
+As long as \(\phi \) is a scalar, this is a scalar Lorentz invariant equation. 
+
+It should be used to describe a spin-0 particle, since we are not accounting for spin: the only spin-0 elementary particle known is the Higgs Boson. 
+All other spin-0 particles are composite. 
+
+A crucial fact in the KG equation is the fact that the energy can in principle be both positive and negative: \(E = \pm \sqrt{\vec{p}^2 + m^2}\). 
+A reasonable approach would be to not bother treating the ``unphysical'' \(E<0\) solution; however this is wrong, the negative energy solution is important. 
+
+This was a great open debate last century. We will be given the solution, but it would not have easy to figure it out. 
+
+This is the reason why people started discussing antiparticles.
+
+An interesting question now is: can we define an action 
+%
+\begin{align}
+S[\phi (x)] = \int \dd[4]{x} \mathscr{L} (\phi, \partial_{\mu } \phi )
+\,
+\end{align}
+%
+whose actions of motion are the KG equation? The answer is yes, with 
+%
+\begin{align}
+\mathscr{L} = \frac{1}{2} \qty(\partial^{\mu } \phi \partial_{\mu } \phi - m^2 \phi^2)
+\,.
+\end{align}
+
+To show that this is the case is left as an exercise.
+Notice that we talk of ``Lagrangians'' but we always mean Lagrangian densities. 
+The corresponding Hamiltonian density \(\mathscr{H}\) has a vacuum state we can call \(\ket{0}\), which corresponds to the absence of particles. 
+
+We will then have states describing \(n\) particles of mass \(m\). 
+
+Next time, we will move from the KG equation with \(\phi \) being just a wavefunction to it being an operator, which can act on the vacuum creating particles. 
+
+This is sometimes called ``second quantization'', to distinguish it from the first quantization, in which operators act on wavefunctions. 
+
 \end{document}

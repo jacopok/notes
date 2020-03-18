@@ -378,10 +378,13 @@ We will use natural units, so that \(c= \hbar = k_B = 1\): so, temperatures and 
 
 This is very convenient, since it allows us to make the following consideration: when the temperature will be of the order of the mass of a certain elementary particle, then statistically that type of particle will usually be ultra-relativistic.
 
-\section{Thermodynamics in the early universe}
 
 By \emph{total number of galaxies} we mean the galaxies in our past light cone.
 \todo[inline]{Is this relevant here?}
+
+This section will mostly follow Weinberg's book \cite[page 538, section 15.6]{weinbergGravitationCosmologyPrinciples1972}.
+
+\section{Thermodynamics in the early universe}
 
 We will express the quantities mentioned above: \(P\), \(\rho \) and \(n\) in terms of the distribution of particles in phase space: in general the phase space for a single particle in 3D is six-dimensional, but we operate under the assumption that the cosmological principle holds, so by homogeneity the spatial dependence of the distribution function can be neglected. 
 Thus, we can talk of densities, neglecting the spatial position, and integrating over momentum space to gather all the information there is to know about the particles in that position.
@@ -467,9 +470,11 @@ T^{\mu \nu }
 \,,
 \end{align}
 %
-where \(v^{\nu } = u^{\nu } / \gamma \) is the non-covariant velocity vector, while \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
+where \(v^{\nu } = u^{\nu } / \gamma  = p^{\nu }/E = (1, v^{i})\) is the non-covariant velocity vector, while \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
 This bizarre-looking formula reproduces equation \eqref{eq:energy-density-momentum-space} for \(\mu = \nu = 0\): indeed, in this case \(p^{0} (q) = E(q)\), while \(v^{0}(q) = \gamma / \gamma = 1\).
+
 This formula is not covariant, it only holds in the rest frame of the fluid: this is not an issue, neither are the other formulas in this section. 
+\todo[inline]{Is it though? we are integrating in \(\dd[3]{q} / E\),  which is an invariant\dots}
 
 So, for the diagonal components the integrand looks like \(q^{i} v^{j} = q^{i} q^{j} / E(q)\). 
 The result then follows by isotropy: the total force per unit area to go around is \(q^2 / E\), and it must be distributed equally in the three spatial directions, so if we want to switch from the directional integral \(T^{ii} = P \propto \int q^{i} q^{i} / E\) (not summed over \(i\)) to an integral of the modulus of the momentum, \(P \propto \int q^2 / E\) we must divide by 3. 
@@ -480,26 +485,57 @@ This definition gives us \(P = \rho /3\) for photons directly, which can be seen
 
 \subsubsection{The distribution function}
 
-In full generality the distribution is 
+If the particles are in thermal equilibrium, the distribution in momentum space will be given by the following expression: 
 %
 \begin{equation}
-  f(\vec{q}) = \qty(\exp(\frac{E- \mu }{T}) \pm 1 )^{-1}
+  f(\vec{q}) = \qty(\exp(\frac{E(q)- \mu }{T}) \pm 1 )^{-1}
 \,,
 \end{equation}
 %
-where we have a plus for fermions, and a minus for bosons. Here, \(\mu \) is the chemical potential: is becomes relevant when the gas becomes hot and dense.
-It can be introduced as a Lagrange multiplier for changes in number of particles.
+where we have a plus for fermions, and a minus for bosons. Here, \(\mu = \pdv*{\rho }{n}\) is the chemical potential, the derivative of the energy (density) with respect to a change in the number (density) of particles: is becomes relevant when the gas becomes hot and dense, if it is sparse then adding particles does not affect the energy.
 
-The Planck distribution is given by: 
+% It can be introduced as a Lagrange multiplier for changes in number of particles.
+
+The Planck distribution, which describes the statistics of photons, is consistent with this, since it is given by: 
 %
 \begin{equation}
   f_k(\vec{q}) = \qty(\exp(\frac{q}{T}) -1 )^{-1}
 \,,
 \end{equation}
 %
-since they are bosons with no chemical potential:
+since they are bosons with no chemical potential.\footnote{This seemed weird to me: is the Planck function not 
+%
+\begin{align}
+B_{\nu } (T) = \frac{2\nu^3}{e^{\nu / 2 \pi T} -1 }
+\,
+\end{align}
+%
+in natural units? Well, these two are actually equivalent formulations. To see this, recall that in natural units \(q = E = \omega = 2 \pi \nu \) for a photon. First of all, they describe different physical quantities: the Planck function describes the \emph{spectral radiance}, \(\dd{E} = B_\nu (T) \dd{t} \dd{A} \dd{\nu } \dd{\Omega }\), while the distribution \(f(q)\) describes the number of particles per unit momentum volume: \(\dd{N} = f(q) \dd[3]{q}\). 
 
-In general we can say that if for some species we have the reaction \(i+j \leftrightarrow k+l\), then \(\mu _i + \mu _j = \mu _k + \mu _l\). We can deduce them by the known relations: for example, from the annihilation of electron and positron we can derive \(\mu _{e^{+}} = - \mu_{e^{-}}\).
-This rule is not trivial; it is an ansatz of thermodynamical equilibrium to get a solution of the Boltzmann equation which allows us to write the Saha equations.
+To check their equivalence, let us compute the energy density with both: 
+%
+\begin{align}
+\rho &=  \frac{g}{(2\pi )^3} \int \frac{q}{e^{q/T}-1} \dd{\Omega } q^2 \dd{q} = \frac{2}{(2\pi )^3}\int \frac{ \omega^3}{e^{q/T}-1} \dd{\Omega } \dd{q}  
+= \int \frac{2 \nu^3}{e^{\nu /2 \pi T}} \dd{\Omega } \dd{q}
+\\
+\text{but also}\quad\rho &= \dv{E}{V} = \int \frac{ \dd{E}}{ \dd{t} \dd{A} \dd{q} \dd{\Omega }} \dd{q} \dd{\Omega } = \int B_q(T) \dd{\Omega } \dd{q}
+\,,
+\end{align}
+%
+where we used the fact that, in natural units \(\dd{V} = \dd{t} \dd{A}\).
+}
+The fact that the distribution of photons is indeed described by this distribution with \(\mu =0\) is a way to experimentally determine the fact that the chemical potential of photons is indeed zero. If we observed the distribution for physical blackbodies to have \(\mu \neq 0\) this would be called a \emph{spectral distortion}.
+
+It is a fact that the chemical potential \(\mu \) can be neglected when dealing with the early universe. Let us justify this.
+
+In general we can say that if for some chemical species we have the reaction \(i+j \leftrightarrow k+l\), and we reach chemical equilibrium, then the chemical potentials of the species will be connected by \(\mu _i + \mu _j = \mu _k + \mu _l\): this is called the \emph{Saha equation}.
+
+Assuming that we are in thermal equilibrium is not in general valid, we we will do so in our discussion for simplicity, but non-equilibrium dynamics must be considered when dealing with CMB anisotropies.
+
+By enumerating all the possible chemical reactions between the various particle types we will get a system of equations for their chemical potentials, complemented with some known facts, such as the fact that photons have \(\mu_{\gamma }=0\), which is the case since the photons do not interact with each other.
+
+For example, from the annihilation of electron and positron \(e^{+}+ e^{-} \leftrightarrow 2 \gamma \) we can derive \(\mu _{e^{+}} = - \mu_{e^{-}}\).
+
+% This rule is not trivial; it is an ansatz of thermodynamical equilibrium to get a solution of the Boltzmann equation which allows us to write the Saha equations.
 
 \end{document}

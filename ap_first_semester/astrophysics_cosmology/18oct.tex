@@ -356,7 +356,7 @@ The value is that obtained from the Planck Collaboration \cite[]{PlanckCollabora
 
 This means that the recombination of electrons and protons into Hydrogen, which occurred around redshift \(z _{\text{CMB}} \approx 1090\), happened when the universe was already \emph{matter dominated} --- specifically, the density of matter was \(\approx 3\) times that of radiation.
 
-Another interesting time is \(z_\Lambda \), when the energy density due to the cosmological constant equalled that of matter:  \(\rho _m (z_{\Lambda }) = \rho _\Lambda (z_\Lambda )\), which is calculated with the same reasoning as \(z _{\text{eq}}\), recalling that \(\rho_{\Lambda }\) is a constant:
+Another interesting time is \(z_\Lambda \), when the energy density due to the cosmological constant equalled that of matter:  \(\rho _m (z_{\Lambda }) = \rho _\Lambda (z_\Lambda )\), which is calculated with the same reasoning as \(z _{\text{eq}}\), recalling that \(\rho_{\Lambda }\) is a constant with respect to the redshift:
 \begin{equation}
 1+ z_\Lambda = \qty(\frac{\rho_{0, \Lambda }}{\rho_{0,m}})^{1/3} \simeq \qty(\frac{0.7}{0.3})^{1/3} \approx \num{0.33}
 \,.
@@ -368,52 +368,117 @@ This is relatively close, in cosmological terms: the comoving distance correspon
 
 What is the temperature of a radiation-dominated universe?
 From the Stefan-Boltzmann law we know that \(\rho _r \propto T^{4}\), while as we have discussed previously \(\rho _r \propto a^{-4}\).
-Therefore, we expect \emph{Tolman's law} to hold: \(T \propto 1/a\).
+Therefore, we expect \(T \propto 1/a\) to hold: this is known as \emph{Tolman's law}.
 In this chapter we will discuss how this does approximately hold, but we need to make some corrections due to the annihilation of ultrarelativistic particles.
 
 We know that in a radiation dominated universe \(a \propto t^{1/2}\), which means that \(T \propto t^{-1/2}\).
 
 We shall describe the pressure \(P\), number density \(n\) and energy density \(\rho  \) in the universe, as functions of the chemical potentials \(\mu \) and of  the temperature \(T\).
+We will use natural units, so that \(c= \hbar = k_B = 1\): so, temperatures and masses will be measured in electronVolts. 
+
+This is very convenient, since it allows us to make the following consideration: when the temperature will be of the order of the mass of a certain elementary particle, then statistically that type of particle will usually be ultra-relativistic.
 
 \section{Thermodynamics in the early universe}
 
 By \emph{total number of galaxies} we mean the galaxies in our past light cone.
 \todo[inline]{Is this relevant here?}
 
-When (in natural units) we get temperature of the order of a certain elementary particle, then statistically that type of particle will usually be ultra-relativistic.
+We will express the quantities mentioned above: \(P\), \(\rho \) and \(n\) in terms of the distribution of particles in phase space: in general the phase space for a single particle in 3D is six-dimensional, but we operate under the assumption that the cosmological principle holds, so by homogeneity the spatial dependence of the distribution function can be neglected. 
+Thus, we can talk of densities, neglecting the spatial position, and integrating over momentum space to gather all the information there is to know about the particles in that position.
 
-The number density of particles is: 
+\subsection{Number density, energy density and pressure}
+
+\subsubsection{Number density}
+
+If \(f(\vec{q})\) is the distribution density of particles with three-dimensional momentum \(\vec{q}\), the number density of particles is given by: 
 %
-\begin{equation}
-  n = \frac{g}{(2 \pi )^3} \int \dd[3]{q} f(\vec{q})
+\begin{equation}\label{eq:number-density-momentum-space}
+  n = \frac{g}{(2 \pi )^3} \int \dd[3]{q} f(\vec{q}, T, \mu )
 \,,
 \end{equation}
 %
-in units where \(c= \hbar = k_B = 1\). The parameter \(g\) is the number of helicity states, \(q\) is the three-momentum. The function \(f(\vec{q})\) is a pdf in phase space.
-We will have to integrate  over position and momentum: the metric we will get in the end must not depend on anything but time, by the cosmological principle.
+where the parameter \(g\) is the number of helicity states: it is the number of particles we can have with different quantum numbers, after fixing momentum and position. 
 
-There is no general rule for \(g\): for photons, we only have two spin states; the ``rule'' \(g = 2s +1 \) is not actually applied, for photons \(\vec{s} = 0\) is unphysical, for gravitons \(\abs{\vec{s}} \leq 1 \) is unphysical.
-\(g\) accounts for all internal degrees of freedom: for atoms we also have vibration, rotation\dots
-
-The energy density is 
+This essentially is our choice for the normalization of the distribution function. 
+We include the factor \((2\pi)^3 \) in order to normalize the integral: the number of particles, a pure number, is given by
 %
-\begin{equation}
-  \rho = \frac{g}{(2 \pi )^3} \int \dd[3]{\vec{q}} E(q) f(\vec{q}) 
+\begin{align}
+N \propto \int \dd[3]{q} \dd[3]{x}  f(\vec{q}, \vec{x})
+\,,
+\end{align}
+%
+so the right hand side's differentials have the dimensions of an action cubed: we need to normalize them, and the conventional action used to do so is \(h = 2 \pi \hbar\).
+So, when we set \(\hbar = 1\) we get a factor \((2\pi )^3\) on the denominator. 
+Do note that the \(\dd[3]{x}\) integral, giving a volume, is brought to the left in our expression to give a number density. 
+
+\subsubsection{The number of helicity states}
+
+The only quantum number which can vary after fixing those if we are considering an elementary particle is the spin component \(s_z\); therefore if the total spin is \(s\) we should have \(2s+1\) possible spin states.
+For example  electrons, which have spin \(1/2\), will have \(g = 2s+1 = 2\). 
+
+% We will have to integrate  over position and momentum: the metric we will get in the end must not depend on anything but time, by the cosmological principle.
+
+Things, however, are more complicated than this: for photons, we only have two spin states (\(g=2\)) even though they have \(s=1\), since \(s_z=0\) is unphysical for a photon. 
+Gravitons also have \(g=2\) even though their total spin is \(s=2\): this is because \(\abs{s_z} \leq 1 \) is unphysical for a graviton. 
+In general for massless particles Lorentz invariance guarantees the fact that transverse modes cannot exist, since we cannot go in the rest frame of the particle.\footnote{Some more details on this: if we measure the spin component \(s_z\) to be equal to some value in a certain reference frame, then this will mean that --- if \(s_z \neq 0 \) we need a rotation of at least \(2 \pi / s_z\) around the \(z\) axis in order to recover the system we started with, while if \(s_z=0\) the system is symmetric with respect to rotations around the \(z\) axis. 
+
+So, for a photon to have \(s_z=0\) we would need to be in a frame in which its wavefunction was cylindrically symmetric. This cannot be the case if the photon is travelling in the \(z\) direction, so we must be in the rest frame of the photon, which does not exist. 
+
+Similarly, for gravitons the argument as to why \(s_z \neq 0\) still applies, and we can exclude the spins \(\abs{s_z} = 1\) by the following argument: in full generality we can remove all the gauge freedom in a gravitational wave by going to TT gauge, and we can show that in TT gauge the wave is symmetric under rotations of angle \(\pi \) about the \(z\) axis. 
+Therefore, the spin of the graviton must be at least \(2\) in magnitude.}
+
+Even for massive particles we do not always have \(g = 2s+1\): \(g\) accounts for all internal degrees of freedom, and as the temperature drops below a certain value we need to consider composite particles as well: for atoms we also have vibration, rotation and such. These all contribute to \(g\). 
+
+\subsubsection{Energy density}
+
+The energy density is given by
+%
+\begin{equation} \label{eq:energy-density-momentum-space}
+  \rho = \frac{g}{(2 \pi )^3} \int \dd[3]{q} E(q) f(\vec{q}, T, \mu ) 
 \,,
 \end{equation}
 %
-where \(E^2 = q^2 + m^2\). For photons \(E = q\), for nonrelativistic particles \(E \approx m + q^2 / 2m\).
+where \(E^2 = q^2 + m^2\).
+For photons \(E = q\), for nonrelativistic particles \(E \approx m + q^2 / 2m\).
+Here we are denoting the modulus of the momentum vector as \(q = \abs{\vec{q}}\). 
+
+This formula is a weighted average of the energies on the distribution function on the momenta. 
+
+\subsubsection{Pressure}
 
 The adiabatic pressure is 
 %
-\begin{equation}
-  P = \frac{g}{(2 \pi )^3} \int \dd[3]{\vec{q}} \frac{q^2 f(\vec{q})}{3E} 
+\begin{equation}\label{eq:pressure-momentum-space}
+  P = \frac{g}{(2 \pi )^3} \int \dd[3]{q} \frac{q^2 f(\vec{q}, T, \mu )}{3E(q)} 
 \,,
 \end{equation}
 %
-which comes from a consideration of the diagonal components \(T_{ii}\) of the stress energy tensor of particles. Alternatively, we can say that this comes from imposing \(\dd{E} = P \dd{V} + \dd{Q} \).
+which comes from a consideration of the diagonal components of the stress energy tensor of an ideal fluid: we know that 
+%
+\begin{align}
+T^{\mu \nu }
+= \left[\begin{array}{cccc}
+\rho  & 0 & 0 & 0 \\ 
+0 & P & 0 & 0 \\ 
+0 & 0 & P & 0 \\ 
+0 & 0 & 0 & P
+\end{array}\right]
+= \frac{g}{(2\pi )^3} \int \dd[3]{q} f(\vec{q}) p^{\mu } (\vec{q}) v^{\nu } (\vec{q})
+\,,
+\end{align}
+%
+where \(v^{\nu } = u^{\nu } / \gamma \) is the non-covariant velocity vector, while \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
+This bizarre-looking formula reproduces equation \eqref{eq:energy-density-momentum-space} for \(\mu = \nu = 0\): indeed, in this case \(p^{0} (q) = E(q)\), while \(v^{0}(q) = \gamma / \gamma = 1\).
+This formula is not covariant, it only holds in the rest frame of the fluid: this is not an issue, neither are the other formulas in this section. 
 
-This definition gives us \(P = \rho /3\) for photons directly.
+So, for the diagonal components the integrand looks like \(q^{i} v^{j} = q^{i} q^{j} / E(q)\). 
+The result then follows by isotropy: the total force per unit area to go around is \(q^2 / E\), and it must be distributed equally in the three spatial directions, so if we want to switch from the directional integral \(T^{ii} = P \propto \int q^{i} q^{i} / E\) (not summed over \(i\)) to an integral of the modulus of the momentum, \(P \propto \int q^2 / E\) we must divide by 3. 
+
+% Alternatively, we can say that this comes from imposing \(\dd{E} = P \dd{V} + \dd{Q} \).
+
+This definition gives us \(P = \rho /3\) for photons directly, which can be seen by substituting \(E = q\). 
+
+\subsubsection{The distribution function}
 
 In full generality the distribution is 
 %

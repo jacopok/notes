@@ -51,11 +51,188 @@ in which we can see the two contributions: the three-momentum \(\vec{p}\) is exc
 Let us make the terms in the minimally coupled Klein-Gordon equation explicit: 
 %
 \begin{align}
-\qty[\qty(\partial^{\mu } +iqA^{\mu } \qty(\partial_{\mu } +i q A_{\mu }) + M^2)] \varphi &= 0  \\
-\qty[\square + iq A^{\mu } \partial_{\mu } + iq \partial_{\mu } A^{\mu } - q^2A^2 + M^2] &=0
+\qty[\qty(\partial^{\mu } +iqA^{\mu }) \qty(\partial_{\mu } +i q A_{\mu }) + M^2] \varphi &= 0  \\
+\qty[\square + iq A^{\mu } \partial_{\mu } + iq \partial_{\mu } A^{\mu } - q^2A^2 + M^2] \varphi &=0  \\
+\qty[\square + 2iq A^{\mu } \partial_{\mu } + iq \qty(\partial_{\mu } A^{\mu }) - q^2A^2 + M^2] \varphi &=0  
 \,,
 \end{align}
 %
+
+Do note that anything on the right acts on anything on the left: the application of the derivatives looks like \(
+\DD^{\mu } \qty(\DD_{\mu } \qty(\varphi ))\). So, the term 
+\(\partial_{\mu } A^{\mu }\) should be read as \(\partial_{\mu } \qty(A^{\mu } \varphi )\), which we expanded into \(\qty(\partial_{\mu } A^{\mu }) + A^{\mu } \partial_{\mu }\) --- all acting on \(\varphi \), but the term \(\qty(\partial_{\mu }A^{\mu })\) is just multiplied by \(\varphi \), it does not perform a differentiation.
+
+\subsubsection{The Coulomb potential}
+
+The 4-potential is not physical: if we change it by \(A_{\mu } \rightarrow A^{\prime }_{\mu } = A_{\mu } + \partial_{\mu } \Lambda \) for some scalar function \(\Lambda \) it does not change the resulting measurable electric and magnetic fields. 
+Therefore, while still retaining full generality in our description of physical systems we can impose certain conditions, such as \(\partial_{\mu } A^{\mu } = 0\). 
+This condition, known as the \emph{Coulomb gauge}, does not actually fix all of the gauge freedom --- that is, even by imposing this we still do not have a one-to-one correspondence between the physical fields and the 4-potentials: after imposing it, we can still perform gauge transformations where the function \(\Lambda \) is harmonic, that is, it satisfies \(\square \Lambda = 0\). 
+
+This condition is convenient since it allows us to get rid of a term in the KG equation, so we impose it. 
+
+\subsubsection{Antimatter: an interpretation for the negative-energy solution}
+
+Let us consider a simple case: the monochromatic solution to the KG equation, \(\varphi_{\pm} (x) = e^{\mp i k \cdot x}\), coupled to the EM field.
+Let us suppose that the 4-momentum \(k^{\mu} = (\omega_{k}, \vec{k})\) corresponding to the two solutions is fixed, that is, the positive energy solution has \(E \varphi^{+} = \omega_{k}\) while the negative energy solution has \(E \varphi^{-} = - \omega_{k}\), with the same \(\omega_{k}\) and the same \(\vec{k}\). 
+
+Splitting the energy and momentum terms, the equation reads: 
+%
+\begin{align}
+\qty[\qty(E - q A_0 )^2 + \qty(\vec{p} - q \vec{A}) + M^2] \varphi^{\pm}(x) = 0
+\,,
+\end{align}
+%
+where \(E = i \partial_{t} \) while \(\vec{p} = - i \vec{\nabla}\). 
+
+Then, we can write the two equations like 
+%
+\begin{align}
+\qty[\qty(\omega_{k} - q A_0 )^2 + \qty(\vec{k} - q \vec{A}) + M^2] \varphi^{+}(x) &= 0 \\
+\qty[\qty(\omega_{k} + q A_0 )^2 + \qty(\vec{k} + q \vec{A}) + M^2] \varphi^{-}(x) &= 0 
+\,,
+\end{align}
+%
+where we used the fact that \((-\omega_{k} - q A_0 )^2 = (\omega_{k} + q A_0 )^2\), and similarly for the other term.  
+
+So, we can see that the two equations can be transformed into each other also by swapping the charge, \(q \rightarrow -q\). 
+
+The interpretation for this is that the KG equation describes two degrees of freedom, which we call a \emph{particle} (with \(E>0\)) and an \emph{antiparticle} (with \(E<0\)).
+
+The particle and antiparticle have the same mass, but their charge is opposite. 
+In a certain sense, the existence of antimatter is a prediction of relativistic quantum mechanics. 
+
+\subsection{The nonrelativistic limit}
+
+As a consistency check for our relativistic equation, we wish to verify that the nonrelativistic limit of the KG equation is the Schrödinger equation.
+
+In the nonrelativistic limit the mass of the particle \(M\) is much larger than its momentum \(p\), so we can expand: 
+%
+\begin{align}
+E = \sqrt{\abs{p}^2 + M^2}
+= M \sqrt{1 + \frac{\abs{p}^2}{M^2}}
+= M + \underbrace{\frac{\abs{p}^2}{2M}}_{E_k} + \order{\frac{\abs{p}^{4}}{M^{3}}}
+\,.
+\end{align}
+
+In quantum mechanics the time evolution of a particle depends on its energy, so if \(M \gg E_k\) the evolution due to the mass will be much faster than that due to the kinetic energy: so, we factor it out by 
+%
+\begin{align}
+\varphi (t, \vec{x}) = e^{-iMt} \varphi^{\prime } (t, \vec{x})
+\,,
+\end{align}
+%
+where the evolution of \(\varphi^{\prime }\) will look like \(e^{-iE_k t} \varphi'\). 
+
+Now, let us expand the derivative terms in the KG equation (in the Coulomb gauge, so we do not worry about \(\partial_{\mu }A^{\mu }\)): 
+%
+\begin{align}
+\DD^{\mu } \DD_{\mu } &= \qty(\partial^{0} + i q A^{0})
+\qty(\partial_{0} + i q A_{0})
++ \qty(\partial^{i} + i q A^{i})
+\qty(\partial_{i} + i q A_{i}) \\
+&= \qty(\partial_{0} + i q A_{0})^2
+- \qty(\partial_{i} + i q A_{i})^2  \\
+&= \qty(\partial_{0} + i q A_{0})^2
+- \qty(\vec{\nabla} - i q \vec{A})^2
+\,,
+\end{align}
+%
+where we used the fact that \(\vec{A} = A^{i}\), while \(\vec{\nabla} = \partial_{i} = - \partial^{i}\). 
+
+In the full KG equation applied to the decomposed field \(\varphi = e^{-iMt} \varphi^{\prime }\) we move the momentum terms to the right and keep the mass and energy on the left: 
+%
+\begin{align}
+\qty[\qty(\partial_{0} + i q A_0 )^2 + M^2] e^{-iMt} \varphi^{\prime }
+&=  
+\qty(\nabla- iq \vec{A})^2 e^{-iMt} \varphi^{\prime }
+\marginnote{The term \(e^{-iMt}\) is constant with respect to the spatial coordinates}
+\\ 
+\qty[\partial_0^2 + 2iq A_0 \partial_0 - q^2 A_0^2 + M^2]
+e^{-iMt} \varphi^{\prime }
+&=  
+e^{-iMt} \qty(\nabla- iq \vec{A})^2 \varphi^{\prime }
+\,.
+\end{align}
+
+The time-derivative on the right acts both on the mass term and on the wavefunction \(\varphi^{\prime }\). So, we get\footnote{It is really easy when doing these computations to forget some terms. A way I've found helpful is to write down the full expression, 
+%
+\begin{align}
+\qty(\partial_0 + i q A_0 )
+\qty(\partial_0 + i q A_0 )
+\qty(e^{-iMt} \varphi')
+\,,
+\end{align}
+%
+give binary labels (000, 001\dots until 111) to each term and work through all \(2^3\) of them. Notice the expansion of the term 
+%
+\begin{align}
+\partial_0 \partial_0 \qty(e^{-iMt} \varphi')
+= \partial_0 \qty(-iM e^{-iMt} \varphi' + e^{-iMt} \partial_0 \varphi')
+= -iM e^{-iMt} \partial_0 \varphi' 
+- M^2 e^{-iMt} \varphi' 
++ e^{-iMt} \partial_0^2 \varphi 
+- iM e^{iMt} \varphi' 
+\,.
+\end{align}
+}
+%
+\begin{align}
+\begin{split}
+e^{-iMt} \qty(\nabla- iq \vec{A})^2 &\varphi^{\prime } = \\
+=e^{-iMt}
+\qty[\partial_0^2 - M^2 - 2iM \partial_0  + 2iq A_0 (-iM) + 2 iq \qty(\partial_0 A_0 ) + 2iq A_0 \partial_0 - q^2 A_0^2 + M^2] & \varphi^{\prime }  
+\end{split}
+\\ 
+\qty[\partial_0^2 - 2iM \partial_0  + 2q A_0 M + 2 iq \qty(\partial_0 A_0 ) + 2iq A_0 \partial_0 - q^2 A_0^2 ]
+\varphi^{\prime }
+=  
+\qty(\nabla- iq \vec{A})^2  &\varphi^{\prime }
+\,,
+\end{align}
+%
+and now we must discuss which terms we can discard. 
+
+On the right hand side we have terms of the order of the mass and ones of the order of the energy: we wish to keep only the former, since as we assumed they dominate the latter. Specifically, terms without explicit dependence on the mass are of the order of the kinetic energy:\footnote{This is imprecise, we can do better: we distinguish the terms with time derivatives and those without. 
+Those with time derivatives are applied to \(\varphi'\), which by construction evolves with \(\omega = E_k\), therefore they are negligible. 
+The other terms are \(q^2 A_0^2\), which is the electric potential energy, and  \(2iq \partial_0 A_0 \), which is proportional to the electric field: we assume the electric field to be nonrelativistic, that is, of intensity comparable to the kinetic energy of the particle, and much smaller than its mass.  
+}
+then, we remove and get precisely the minimally coupled Schrödinger equation:
+%
+\begin{align}
+\qty[- 2 iM \partial_0 + 2 q_0 A_0 M ] \varphi' &= \qty(\vec{\nabla} - iq \vec{A})^2 \varphi^{\prime }  \\
+i \partial_0 \varphi' &= \qty[- \frac{ \qty(\vec{\nabla} - i q \vec{A})^2}{2M} + q_0 A_0 ] \varphi'
+\,.
+\end{align}
+%
+
+This is precisely the equation we wrote above: the nonrelativistic Schrödinger equation for a charged spin-0 particle in an electromagnetic field. 
+
+\section{Summary}
+
+\begin{enumerate}
+  \item The dispersion relation \(E^2 = p^2+m^2\) is a quadratic relation, the positive root is called \(\omega_{p} = \sqrt{p^2+m^2}\) and the energy can be \(E = \pm \omega_{p}\). 
+  \item A solution to the KG equation has two independent terms \(\varphi^{+}\) and \(\varphi^{-}\), which can be interpreted as a particle-antiparticle pair, where \(\varphi^{+}\) has charge \(q\) while \(\varphi^{-}\) has charge \(-q\). 
+  
+  An antiparticle has the same quantum numbers, but the opposite charge. 
+  \item There is no way to define a conserved (positive definite) probability for the KG equation, but the nonrelativistic limit of the KG equation is consistent with nonrelativistic quantum mechanics. 
+\end{enumerate}
+
+\begin{claim}
+The continuity equation for the coupled KG equation is given by 
+%
+\begin{align}
+\partial_{\mu } j^{\mu }_{EM} = 0
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+j^{\mu } = \frac{1}{2} \qty(i \varphi^{*} \partial^{\mu } \varphi   - q A^{\mu } \varphi^{*} \varphi ) + \text{c. c.}
+\,.
+\end{align}
+\end{claim}
+
 
 
 \end{document}

@@ -1,4 +1,268 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-3-19, \\ compiled \\ \today}
+
+We come back to the discussion from last time, about the Boltzmann equation in a perturbed universe. 
+
+When can we drop some terms using a gauge transformation? 
+We can do it for scalar and vector perturbations. 
+We shall use the longitudinal, or Poisson gauge, in which the scalar perturbations are reduced to \(\Phi \) and \(\Psi \), so we can take the tensor terms to be traceless and covariantly constant. 
+
+We will not discuss vectors, since if they are zero at the beginning they cannot be generated, they stay at zero. 
+In our natural units, the perturbations will be small: \(\Phi \ll 1\) and \(\Psi \ll 1\). 
+Recall that we are neglecting spatial curvature. 
+
+Photons have \(P^2=0\): so we can express this as 
+%
+\begin{align}
+- \qty(1 + 2 \Phi ) (p^{0})^2 + p^2 =0 
+\,,
+\end{align}
+%
+where \(p^2\) is defined as \(p^2 = g_{ij} P^{i} P^{j}\),
+since in our gauge choice the spatial part of the metric has a Kronecker delta this will only include the spatial parts. So, we get 
+%
+\begin{align}
+P^{0} = \frac{p}{\sqrt{1 + 2 \Phi }} \approx p \qty(1 - \Phi )
+\,.
+\end{align}
+
+Now, we will write the Liouville operator by dividing through by \(P^{0}\):
+%
+\begin{align}
+\frac{\mathrm{D}f}{\mathrm{D}t }
+= \pdv{f}{t} + \pdv{f}{x^{i}} \dv{x^{i}}{t} 
++ \pdv{f}{p} \cdot \dv{p}{t}
++ \pdv{f}{\hat{p}^{i}} \dv{\hat{p}^{i}}{t}
+\,,
+\end{align}
+%
+where we split the three-momentum into absolute value \(p\) and the unit vector \(\hat{p}\), which has \(\hat{p}^{i} = \hat{p}_{i}\) and \(\delta_{ij} \hat{p}^{i} \hat{p}^{j}\). 
+We have \(\dv*{x^{i}}{t} = P^{i} / P^{0}\). 
+
+We are going to expand only to first order. Higher order are more important for small angular scales, and for secondary CMB anisotropies, these are interesting but we are not going to treat them. 
+
+To first order, the last term of the RHS is zero, since it is a product of two terms which are both zero to zeroth order (in an unperturbed universe the phase space distribution is perfectly isotropic and a particle keeps travelling in the same direction).
+
+Now we define the amplitude \(A\) by \(P^{i} = A \hat{p}^{i}\): now we will have 
+%
+\begin{align}
+p^2 &= g_{ij} P^{i} P^{j} = a^2 \delta_{ij} (1 - 2 \Psi  ) \hat{p}^{i} \hat{p}^{j} A^2  \\
+&= a^2(1 -2 \Psi ) A^2
+\,,
+\end{align}
+%
+therefore, taking the square root and staying to first order we get 
+%
+\begin{align}
+A \approx p \frac{1+\Psi }{a}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+P^{i} = p \hat{p}^{i} \frac{1 + \Psi }{a}
+\,,
+\end{align}
+%
+and the division by \(a\) can be interpreted as a redshift effect. 
+Inserting this term we get 
+%
+\begin{align}
+\dv{x^{i}}{t} = \frac{P^{i}}{P^{0}} = \hat{p}^{i} \frac{1 + \Psi + \Phi }{a}
+\,,
+\end{align}
+%
+and we can notice that \(\dv*{x^{i}}{t}\) multiplies the term \(\pdv*{f}{x^{i}}\), which is only nonzero to first order: so we must consider this term to zeroth order. So, we get 
+%
+\begin{align}
+\frac{\mathrm{D}f}{\mathrm{F}t} = \pdv{f}{t}
++ \frac{\hat{p}^{i} }{a} \pdv{f}{x^{i}}
++ \pdv{f}{p} \dv{p}{t}
+\,,
+\end{align}
+%
+and now we shall show that 
+%
+\begin{align}
+\dv{p}{t} = - p \qty(H - \pdv{\Psi }{t} + \frac{\hat{p}^{i}}{a} \pdv{\Phi }{x^{i}})
+\,,
+\end{align}
+%
+which will imply that 
+%
+\begin{align}
+\frac{\mathrm{D}f}{\mathrm{F}t} = \pdv{f}{t}
++ \frac{\hat{p}^{i} }{a} \pdv{f}{x^{i}}
+- p \pdv{f}{p} \qty(H - \pdv{\Psi }{t} + \frac{\hat{p}^{i}}{a} \pdv{\Phi }{x^{i}})  
+\,.
+\end{align}
+
+We will use the geodesic equation for photons: it is enough to consider its zeroth component, which is 
+%
+\begin{align}
+\dv{P^{0}}{\lambda } = - \Gamma^{0}_{\alpha \beta } P^{\alpha } P^{\beta }
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+\dv{}{t} \qty(p (1+ \Phi )) = - \Gamma^{0}_{\alpha \beta } P^{\alpha } P^{\beta } \frac{1+\Phi }{p}
+\,,
+\end{align}
+%
+where we brought a \(P^{0}\) from the left to the right side. This means that we have 
+%
+\begin{align}
+(1-\Phi ) \dv{p}{t} 
+= p \dv{\Phi }{t} - \Gamma^{0}_{\alpha \beta } 
+P^{\alpha } P^{\beta } \frac{1+\Phi }{p}
+\,,
+\end{align}
+%
+and now we multiply both sides by \(1+\Phi \), the inverse of \(1 - \Phi \) to linear order: 
+%
+\begin{align}
+\dv{p}{t} = p \qty(\dv{\Phi }{t} + \frac{\hat{p}^{i}  }{a} \pdv{\Phi }{x^{i}}) 
+- \Gamma^{0}_{\alpha \beta } P^{\alpha } P^{\beta } \frac{1+2\Phi }{p}
+\,,
+\end{align}
+%
+and now we have to start calculating the Christoffel symbols: 
+%
+\begin{align}
+\Gamma^{\mu }_{\alpha \beta } = \frac{1}{2} g^{\mu \nu } \qty(g_{\nu \alpha , \beta } + g_{\nu \beta , \alpha } - g_{\alpha \beta , \nu })
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\Gamma^{0}_{\alpha \beta } \frac{P^{\alpha }P^{\beta }}{p}
+= \frac{g^{0\nu }}{2} \qty(2 g_{\nu \alpha , \beta } - g_{\alpha \beta , \nu }) \frac{P^{\alpha }P^{\beta }}{p}
+\,,
+\end{align}
+%
+but \(g^{0i}\) are zero, since we are ignoring vector perturbations, and \(g^{00} = -1 + 2\Phi \) (since it is the contravariant metric). Then we get 
+%
+\begin{align}
+\Gamma^{0}_{\alpha \beta } \frac{P^{\alpha }P^{\beta }}{p}
+= \frac{-1 + 2 \Phi }{2} \qty(2 g_{0 \alpha , \beta } - g_{\alpha \beta , 0 }) \frac{P^{\alpha }P^{\beta }}{p}
+\,,
+\end{align}
+%
+and we also have 
+%
+\begin{align}
+\pdv{g_{0 \alpha }}{x^{\beta }}
+= - 2 \pdv{\Phi }{x^{\beta }} \delta_{\alpha 0}
+\,,
+\end{align}
+%
+so we distinguish the components and find: 
+%
+\begin{align}
+- \pdv{g_{\alpha \beta }}{t} \frac{P^{\alpha } P^{\beta }}{p} &= - \pdv{g_{00} }{t} \frac{(P^{0})^2}{p} - \pdv{g_{ij}}{t} \frac{P^{i} P^{j}}{p} \\
+&= 2 \pdv{\Phi }{t} p - a^2 \delta_{ij} \qty(-2 \pdv{\Psi }{t} + 2 H (1- 2 \Psi )) \frac{P^{i} P^{j}}{p}
+\,,
+\end{align}
+%
+and we already have shown that \(\delta_{ij} P^{i} P^{j} = p^2 (1 + 2 \Psi ) / a^2\).
+
+So on the whole we get 
+%
+\begin{align}
+\Gamma^{0}_{\alpha \beta } \frac{P^{\alpha } P^{\beta }}{p } = 
+(-1 + 2 \Phi ) \qty[
+- \pdv{\Phi }{t} p - 2 \pdv{\Phi }{x^{i}}
+\frac{p \hat{p}^{i}}{a} + p \qty(\pdv{\Psi }{t} - H)
+]
+\,,
+\end{align}
+%
+so putting everything together 
+[extra passage]
+we get 
+%
+\begin{align}
+\dv{p}{t} = -p \qty(H - \pdv{\Psi }{t} + \frac{\hat{p}^{i}}{a} \pdv{\Phi }{x^{i}})
+\,.
+\end{align}
+
+Now we need to choose how to perturb the photon distribution function. At zeroth order it is the Planckian: 
+%
+\begin{align}
+f \approx \frac{1}{e^{p/T} - 1} 
+\,.
+\end{align}
+
+In general we will have dependence on the position \(\vec{x}\), the momentum (\(p, \hat{p}\)) and time \(t\). 
+
+We do not observe spectral distortions in the CMB: it is always described by a Planckian, with anisotropies in the \emph{temperature}. So, we parametrize it as 
+%
+\begin{align}
+f(\vec{x}, p, \hat{p}, t) 
+= \qty[\exp(\frac{p}{T(t) \qty(1 + \Theta (\vec{x}, \hat{p}, t))}) - 1]^{-1}
+\,,
+\end{align}
+%
+where we assumed that \(\Theta = \delta T / T\) does \emph{not} depend on the momentum of the photon \(p\): otherwise, we would have a spectral distortion. 
+This is certainly true, at least to linear order. 
+
+So, we expand in \(\Theta\): 
+%
+\begin{align}
+f &\approx \frac{1}{e^{p/T}-1}
+ + \qty(\pdv{}{T} \qty(\exp(p/T)-1)^{-1}) T \Theta  \\
+ &= f^{(0)} - p \pdv{f^{(1)}}{p} \Theta 
+\,,
+\end{align}
+%
+since 
+%
+\begin{align}
+T \pdv{f^{(0)}}{T} = - p \pdv{f^{(0)}}{p}
+\,.
+\end{align}
+
+At zeroth order we have 
+%
+\begin{align}
+\frac{\mathrm{D}f}{\mathrm{D}t} = \pdv{f^{(0)}}{t}
+- Hp \pdv{f^{(0)}}{p} =0
+\,,
+\end{align}
+%
+since we do not have collision terms. We can write this differently using 
+%
+\begin{align}
+\pdv{f^{(0)}}{t} = \pdv{f^{(0)}}{T} \dv{T}{t} = - \frac{P}{T} \dv{T}{t} \pdv{f^{(0)}}{p}
+\,,
+\end{align}
+%
+where we used the change in derivative variable from before. So we get 
+%
+\begin{align}
+\qty[- \frac{1}{T} \dv{T}{t} - \frac{1}{a} \dv{a}{t}] \pdv{f^{(0)}}{p} =0
+\,,
+\end{align}
+%
+which means \(\dot{T} / T + \dot{a} / a = 0\), or \(T \propto 1/a\), which is Tolman's law. Now, let us go to first order. 
+%
+\begin{align}
+\bigd{f}{t}
+= -p \pdv{}{t} \qty[\pdv{f^{(0)}}{p} \Theta ] - p \frac{\hat{p}^{i}}{a} \pdv{\Theta }{x^{i}} \pdv{f^{(0)}}{p}
++ H p \Theta  \pdv{}{p} \qty(p \pdv{f^{(0)}}{p}) 
++ p \pdv{f^{(0)}}{p} \qty[\pdv{\Psi }{t} - \frac{\hat{p}^{i}}{a} \pdv{\Phi }{x^{i}}]
+\,.
+\end{align}
+
+[Final expression]
+
+We can distinguish two terms which have to do with the propagation of the anisotropies from emission to now --- this is not precise, but it is the reason we call them ``free-streaming''. 
+The other two terms arise from the self-gravity of the matter appearing on the RHS of the Einstein equations. 
+
 \end{document}

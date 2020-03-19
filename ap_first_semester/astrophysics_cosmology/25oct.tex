@@ -68,49 +68,48 @@ We can relate some chemical potentials by reactions, but not all of them: our sy
 If there was a global electric charge, phenomenologically we'd expect global magnetic fields, but we see them only of the order of the \SI{1}{nT}, which gives an upper bound on the global charge density.
 
 We can estimate the orders of magnitude for the various species in the universe.
-The baryon number is very small when compared to the number of photons in the universe. The lepton number is harder to estimate, but it is reasonable to assume that it is quite small as well. For slightly more detailed discussion, see Weinberg \cite[before eq. 15.6.5]{weinbergGravitationCosmologyPrinciples1972}
+The baryon number is very small when compared to the number of photons in the universe. The lepton number is harder to estimate, but it is reasonable to assume that it is quite small as well. For slightly more detailed discussion, see the book by Weinberg \cite[before eq. 15.6.5]{weinbergGravitationCosmologyPrinciples1972}.
 In the end, we can say that in the early universe \(\mu / T \ll 1\), so we can assume \(\mu \approx 0\).
+This is just a reasonable simplification, which we make in order to get analytic results. 
 
-Therefore, the dependence of the number density, energy density and pressure would be also on \(\mu \) but we forget it, and keep only the temperature dependence: we write \(n(T)\), \(\rho (T)\) and \(P(T)\).
+Therefore, the dependence of the number density, energy density and pressure would be also on \(\mu \) but we neglect it, and keep only the temperature dependence: so, we will just write \(n(T)\), \(\rho (T)\) and \(P(T)\).
+
+\todo[inline]{There is a whole section before this in \cite[]{paccianiAppuntiCorsoPhysical2018}\dots}
+
+\subsection{Entropy}
 
 From the second principle of thermodynamics we know that the entropy in a certain volume \(V\) at temperature \(T\), \(S(V, T)\) is given by: 
 %
 \begin{equation}
-  \dd{S}  = \frac{1}{T} \qty(\dd{\rho (T, V)}  + P(T) \dd{V} )
-\,.
-\end{equation}
-%
- 
-Then we have 
-%
-\begin{equation}
-  \pdv{S}{V} = \frac{1}{T} \qty(\rho (T) + P(T))
+  \dd{S}  = \frac{1}{T} \qty(\dd{\qty(\rho(T) V)}  + P(T) \dd{V})
+  = \frac{1}{T} \qty(V \dd{\rho (T)} + (P(T) + \rho(T) ) \dd{V})
 \,,
 \end{equation}
 %
-and 
+since in order to get the total energy we must multiply the constant energy by the volume: \(E = \rho (T) V\). 
+ 
+Then we can read off the partial derivatives of the entropy:
 %
 \begin{equation}
+  \pdv{S}{V} = \frac{1}{T} \qty(\rho (T) + P(T))
+  \qquad \text{and} \qquad
   \pdv{S}{T} = \frac{V}{T} \dv{\rho (T)}{T} 
 \,.
 \end{equation}
-%
 
-Recall the Pfaff relations: in order for the differential to be exact it needs to be closed, which means that the second partial derivatives need to commute: 
+In order for the differential to be exact it needs to be closed, which means that the second partial derivatives need to commute (these are known as the \emph{Pfaff relations}):
 %
-\begin{equation}
+\begin{align}
+  \pdv[2]{S}{T}{V} &= \pdv[2]{S}{V}{T} \\ 
   \pdv{}{T}  \qty(\frac{1}{T}\qty(\rho (T) + P(T))) 
-  = \pdv{}{V} \qty(\frac{V}{T} \dv{\rho (T)}{T} ) 
+  &= \pdv{}{V} \qty(\frac{V}{T} \dv{\rho (T)}{T} )   \\
+  - \frac{1}{T^2} \qty(\rho + P)
+  + \frac{1}{T} \qty(\dv{\rho }{T} + \dv{P}{T})
+  &= \frac{1}{T} \dv{\rho }{T}   \\
+  \dv{P}{T} &= \frac{1}{T} \qty(\rho +P) 
+  \marginnote{Simplified \(T^{-1}(\dv*{\rho }{T})\), multiplied by \(T\) and brought \(T^{-1} (\rho +P)\) to the other side}[-1cm]
 \,.
-\end{equation}
-
-We can proceed with the calculation, to get: 
-%
-\begin{equation}
-  \dv{P}{T} = \frac{1}{T} \qty(\rho (T ) + P(T))
-\,.
-\end{equation}
-%
+\end{align}
 
 Cosmology has not entered into the picture yet, but it can by the third Friedmann equation, which can be rewritten as 
 %

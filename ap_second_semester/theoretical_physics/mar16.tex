@@ -228,11 +228,44 @@ The continuity equation for the coupled KG equation is given by
 where 
 %
 \begin{align}
-j^{\mu } = \frac{1}{2} \qty(i \varphi^{*} \partial^{\mu } \varphi   - q A^{\mu } \varphi^{*} \varphi ) + \text{c. c.}
+j^{\mu }_{EM} = \frac{1}{2} \qty(i \varphi^{*} \partial^{\mu } \varphi   - q A^{\mu } \varphi^{*} \varphi ) - \text{c. c.}
 \,.
 \end{align}
 \end{claim}
 
-
+\begin{proof}
+Similarly to what was done before, we notice that 
+%
+\begin{align}
+\varphi^{*} \qty(\DD^{\mu } \DD_{\mu } + M^2) \varphi = 0
+\,
+\end{align}
+%
+can be added to the negative of its complex conjugate to yield 
+%
+\begin{align}
+0&= \varphi^{*} \qty(\DD^{\mu } \DD_{\mu }) \varphi - \text{c. c. } \marginnote{Simplified mass terms, which were symmetric in \(\varphi^{*} \leftrightarrow \varphi \)}
+\\
+0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \qty(\DD^{\mu } \varphi^{*}) \qty(\DD_{\mu } \varphi ) - \text{c. c. } \marginnote{Removed symmetric term in \(\varphi \leftrightarrow \varphi^{*}\)}\\ 
+0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \text{c. c. } \\ 
+0&= \DD^{\mu } \qty( \varphi^{*} \DD_{\mu } \varphi - \text{c. c. }) \\ 
+0&= \DD^{\mu } j_{\mu }
+\,,
+\end{align}
+%
+so our conserved current is 
+%
+\begin{align}
+j^{\mu } &= \varphi^{*} \DD^{\mu } \varphi - \text{c. c. } \\
+j^{\mu } &= \varphi^{*} \partial^{\mu } \varphi 
++ iq A^{\mu } \varphi^{*} \varphi 
+- \text{c. c. }  \\
+&= \varphi^{*} \partial^{\mu} \varphi + i q A^{\mu } \varphi^{*} \varphi - \varphi \partial^{\mu }\varphi^{*} - i q A^{\mu } \varphi^{*} \varphi \\
+&= \varphi^{*} \partial^{\mu} \varphi - \varphi \partial^{\mu }\varphi^{*} + 2i q A^{\mu } \varphi^{*} \varphi 
+\,,
+\end{align}
+%
+and conventionally we define \(j^{\mu }_{EM} = - \frac{i}{2} j^{\mu }\). 
+\end{proof}
 
 \end{document}

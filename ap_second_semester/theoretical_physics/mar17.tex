@@ -1,4 +1,33 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The Klein paradox}
+
+\marginpar{Thursday\\ 2020-3-19, \\ compiled \\ \today}
+
+The fact that it was not possible to derive a conserved charge for the KG equation is not just a mathematical inconvenience: we will use a gedankenexperiment to show the physical consequences of this. 
+
+Consider the scattering of a particle, which is described by a pure plane wave, on a an electromagnetic potential step.
+Suppose we are in a frame in which \(qA^{\mu } = (V(x), \vec{0})\); if we are not in such a frame we can always perform a boost so that we are.
+Also suppose that the potential looks like a step: \(V(x) = V_0 [x \geq 0]\). Here ``\(x\)'' refers to a 1d spatial coordinate. 
+
+Now, suppose that we have an incoming wave with energy \(\omega \) and momentum \(k_{x}\) in the \(x<0\) region. 
+Upon impact, there will in general be a reflected wave in the \(x<0\) region and a transmitted wave in the \(x>0\) region. We will call the former \(\varphi_{1}\) and the latter \(\varphi_{2}\). 
+
+We can decompose both of these into a time and space exponential: \(\varphi_{i} (t, x) = e^{-i \omega t} \chi_{i}(x)\), for \(i = 1, 2\). 
+
+Now, the incoming wave contributes to the global wavefunction with an exponential \(e^{ik_x x}\) in the \(x<0\) region. 
+In the same region we can find the reflected wave, which has the opposite momentum; also, its amplitude is less than that of the incoming wave. We write its contribution to \(\chi_{1}\) as \(r e^{-i k_x x}\), where \(r\) is the reflection coefficient. 
+
+By a similar reasoning, in the \(x>0\) region we will have a contribution \(t e^{i k_x^{\prime } x}\): the direction of propagation is the same as the incoming wave, the momentum might be different. In the end, our wavefunction looks like 
+%
+\begin{align}
+\varphi (t, x) &=
+e^{-i \omega t} \qty[\chi_1 [x<0] + \chi_2 [x \geq 0]] \\
+&=
+ e^{-i \omega t} \qty[ \qty(e^{i k_x x} + r e^{-i k_x x})[x<0] + t e^{i k_x^{\prime }x } [x\geq 0]]
+\,.
+\end{align}
+
+
 \end{document}

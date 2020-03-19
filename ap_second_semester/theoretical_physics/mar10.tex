@@ -32,6 +32,7 @@ Thankfully we can always reinsert the necessary \(c\)s and \(\hbar\)s by dimensi
 
 A contravariant vector is denoted by writing its components, 
 %
+\begin{subequations}
 \begin{align}
 v^{\mu } = \left[\begin{array}{c}
 v^{0} \\ 
@@ -41,6 +42,7 @@ v^{3}
 \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 and examples of these include the position 4-vector \(x^{\mu } = (t, \vec{x})\), and the 4-momentum \(p^{\mu } = (E, \vec{p})\). 
 
@@ -80,12 +82,14 @@ This is \emph{quadratic} in the energy, as opposed to the nonrelativistic expres
 
 Applying the correspondence principle, we find 
 %
+\begin{subequations}
 \begin{align}
 - \partial_{t}^2 \varphi (\vec{x}, t) &= \qty(- \nabla^2 + M^2) \varphi (\vec{x}, t)  \\
 0 &= \qty[\qty(\partial_{t}^2 - \nabla^2) + M^2] \varphi (\vec{x}, t)   \\
 &= \qty[\square + M^2] \varphi (\vec{x}, t)
 \,,
 \end{align}
+\end{subequations}
 %
 where we defined \(\square = \partial^{\mu } \partial_{\mu } = \partial_{t}^2 - \nabla^2\). 
 Another way to see this is that, compactly stated, the correspondence principle is \(p_{\mu } = i  \partial_{\mu }\),\footnote{So we get \(E = p_0 = p^{0} = i \partial_{t}\), while \(\vec{p} = p^{i} = - p_{i} = - i \vec{\nabla} = - i \partial_{i}\).} so from \(p^2= M^2\) we get 
@@ -125,23 +129,28 @@ If this is zero in an inertial reference frame, it is also zero in any other ine
 Now, let us seek a probability current for the KG equation as we did with the Schrödinger equation. 
 Let us multiply on the left the KG equation by the conjugate of the wavefunction, \(\varphi^{*}\). We shall use this equation and its conjugate: 
 %
+\begin{subequations}
 \begin{align}
 \varphi^{*} \qty[\square + M^2] \varphi &= 0 \\
 \varphi \qty[\square + M^2] \varphi^{*} &= 0
 \,,
 \end{align}
+\end{subequations}
 %
 these both hold since \(\square\) and \(M^2\) are real. 
 If we subtract one of these from the other, the mass terms simplify and we get 
 %
+\begin{subequations}
 \begin{align}
 0 &= \varphi^{*} \square \varphi - \varphi \square \varphi^{*}  \\
 &= \varphi^{*} \partial^{\mu } \partial_{\mu } \varphi  - (\varphi^{*} \leftrightarrow \varphi )
 \,,
 \end{align}
+\end{subequations}
 %
 where the notation  \(- (\varphi^{*} \leftrightarrow \varphi )\) means that we are subtracting the same thing which appears before, but written swapping \(\varphi \) and \(\varphi^{*}\). We can expand the derivatives: 
 %
+\begin{subequations}
 \begin{align}
 0 &= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi ) - \qty(\partial^{\mu } \varphi^{*}) \qty(\partial_{\mu } \varphi ) - (\varphi^{*} \leftrightarrow \varphi )  \\
 &= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi ) - (\varphi^{*} \leftrightarrow \varphi )
@@ -150,6 +159,7 @@ where the notation  \(- (\varphi^{*} \leftrightarrow \varphi )\) means that we a
 \overset{\text{def}}{=} -2i \partial^{\mu } j_{\mu }
 \,,
 \end{align}
+\end{subequations}
 %
 where we defined the 4-current 
 %
@@ -234,6 +244,7 @@ The inverse Fourier transform reads
 \begin{proof}
 We take the transform of the antitransform: 
 %
+\begin{subequations}
 \begin{align}
 \widetilde{\varphi} (k) &=  \frac{1}{(2\pi )^{2}}
 \int \dd[4]{x} \varphi (x) e^{i k^{\mu } x_{\mu }}  \\
@@ -245,6 +256,7 @@ We take the transform of the antitransform:
 &= \int \dd[4]{k'} \delta^{(4)} (k - k') \varphi (k') = \varphi (k)
 \,,
 \end{align}
+\end{subequations}
 %
 where we used the definition of the 4D Dirac \(\delta \) function (here in position space, the definition in momentum space is perfectly analogous): 
 %
@@ -294,6 +306,7 @@ First of all, since \(k^{2} = k_0^2 - \abs{\vec{k}}^2 \), we can write this expr
 
 Now, we apply the \(\delta \) function property: 
 %
+\begin{subequations}
 \begin{align} 
 \delta (k^2 - M^2) = 
 \delta (k_0^2 - \omega_{k}^2) &= \frac{ \delta (k_0 - \omega_{k})}{ \abs{2 k_0 }} 
@@ -302,6 +315,7 @@ Now, we apply the \(\delta \) function property:
 &= \frac{ \delta (k_0 - \omega_{k}) + \delta (k_0 + \omega_{k})}{2 \omega_{k}}
 \,,
 \end{align}
+\end{subequations}
 %
 where we substituted \(\abs{k_0} = \omega_{k}\), which holds both if \(k_0 = \omega_{k}\) and if \(k_0 = - \omega_{k}\). 
 This finally gives us  
@@ -314,6 +328,7 @@ This finally gives us
 %
 which we can insert this into the Fourier transform of \(\varphi (x)\): 
 %
+\begin{subequations}
 \begin{align}
 \varphi (x) &= 
 \frac{1}{(2\pi )^2}  
@@ -335,6 +350,7 @@ e^{ i \omega_{k} x_0 } e^{i \vec{k} \cdot \vec{x}} \widetilde{f} (-\omega_{k}, \
 + e^{i k^{\mu }x_{\mu }} \widetilde{f}(-k^{\mu })]_{k_0 = \omega_{k}} 
 \,,
 \end{align}
+\end{subequations}
 %
 where we indicate \(\eval{k^{\mu }}_{k_0 = \omega_{k}} = (\omega_{k}, \vec{k})\).
 
@@ -352,17 +368,20 @@ b(k) = \frac{\widetilde{f} (-k)}{\sqrt{2 \pi } \sqrt{2 \omega_{k}}}
 which are arbitrary like the initial function \(\widetilde{f}\), however they are connected since \(a(k) = b^{*} (-k)\). 
 So, the final solution reads: 
 %
+\begin{subequations}
 \begin{align}
 \varphi (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} \qty[a(k) e^{-ik \cdot x} + b^{*}(k) e^{i k \cdot x}]_{k_0 = \omega_{k}}  \\
 &= \varphi_{+}(x) + \varphi_{-}(x)
 \,.
 \end{align}
+\end{subequations}
 
 Recall that all \(k\)s appearing in the expression are to be interpreted as \((\omega_{k}, \vec{k})\). 
 The part dependent on \(a(k)\) is conventionally called the \emph{positive energy} solution \(\varphi_{+}\), while the part depending on \(b^{*}(k)\) is the \emph{negative energy} solution \(\varphi_{-}\).
 
 This is because, as the energy of a wavefunction \(\varphi \) is computed by \(E = i \partial_{t} \varphi \), we have 
 %
+\begin{subequations}
 \begin{align}
 E (\varphi_{+}) &= i \partial_{0} \qty{
   \frac{1}{(2 \pi)^{3/2}} 
@@ -374,6 +393,7 @@ E ( \varphi_{-}) &= i \partial_{0} \qty{
 } = i (i) \omega_{k} \varphi_{-} =- \omega_{k} \varphi_{-}  
 \,,
 \end{align}
+\end{subequations}
 %
 so \(\varphi_{+}\) has a positive energy while \(\varphi_{-}\) has a negative one. 
 
@@ -390,11 +410,13 @@ In order to find these we impose \(\varphi = \varphi^{*}\).
 \begin{proof}
 We write only the argument of the integrals for simplicity: 
 %
+\begin{subequations}
 \begin{align}
 \varphi &\sim a e^{-ikx} + b^{*} e^{ikx}  \\
 \varphi^{*} &\sim a^{*} e^{ikx} + b e^{-ikx}
 \,,
 \end{align}
+\end{subequations}
 %
 so if \(\varphi = \varphi^{*}\) we must identify these component by component, so we must have \(a= b\), and \(a^{*} = b^{*}\).
 \end{proof}
@@ -420,6 +442,7 @@ a(k) = \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qt
 \begin{proof}
 The solution is found by direct substitution of \(\varphi_{\mathbb{R}}\) into the expression for \(a\) in order to verify it; the operations are all reversible so we can use the derivation backwards or forwards equivalently. We find 
 %
+\begin{subequations}
 \begin{align}
 a &\overset{?}{=} 
 \frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k} \dd[3]{x}}{2 \omega_{k}}
@@ -431,16 +454,19 @@ a &\overset{?}{=}
 ] = a \marginnote{3D Fourier inverse and direct transform. We simplified two factors of \(e^{ik_0 x^{0}}\) and \(e^{-ik_0 x^{0}}\) since they are equal everywhere (\(k_0 = \omega_{k}\)).}
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 \begin{claim}
 For a complex KG solution, the functions \(a(k)\) and \(b^{*}(k)\) can be written as 
 %
+\begin{subequations}
 \begin{align}
 a(k) &= \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty(\omega_{k} \varphi(x) +i \partial_{0} \varphi (x)) \eval{e^{i k \cdot x} }_{k_0 = \omega_{k}} \\ 
 b^{*}(k) &= \frac{1}{(2 \pi  )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty(\omega_{k} \varphi(x) - i \partial_{0} \varphi (x)) \eval{e^{-i k \cdot x} }_{k_0 = \omega_{k}} 
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}
@@ -452,12 +478,14 @@ Given two real solutions to the KG equation, \(\varphi_{1}\) and \(\varphi_{2}\)
 
 Then, the functions \(a\) and \(b^{*}\) for the complex solution can be written in terms of the \(a_{1}\) and \(a_2 \) for the real solution as: 
 %
+\begin{subequations}
 \begin{align}
 a &=  \frac{ a_1 + i a_2 }{\sqrt{2}} \\
 % b^{*} &= \frac{a_1^{*} + i a_2^{*} }{\sqrt{2}}  \\
 b &= \frac{a_1 - i a_2 }{\sqrt{2}}
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}

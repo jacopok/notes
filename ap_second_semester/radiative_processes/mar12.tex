@@ -13,11 +13,13 @@ Its volume can be expressed as \(\dd{V} =\dd{A} c \dd{t}\), where \(\dd{t}\) is 
 
 We can also express the differential energy using the definition of the specific intensity: then, we will have the following two equations: 
 %
+\begin{subequations}
 \begin{align}
 \dd{E} &= u_{\nu } (\Omega ) c \dd{A} \dd{t} \dd{\Omega } \dd{\nu }  \\
 &= I_{\nu } \dd{A} \dd{t} \dd{\Omega } \dd{\nu }
 \,,
 \end{align}
+\end{subequations}
 %
 therefore \(u_{\nu } = I_{ \nu } / c\).
 Also, if we want to get the total energy density we just need to integrate over the volume of the whole sphere: 
@@ -42,21 +44,25 @@ u = \int u_{\nu } \dd{\nu } = \frac{4 \pi }{c} \int J_{\nu } \dd{\nu }
 An isotropic radiation field is one for which the specific intensity does not depend on angles. 
 Let us start from the definitions of \(u_{\nu }\) and \(P_{\nu }\): 
 %
+\begin{subequations}
 \begin{align}
 u_{\nu } &= \int \frac{I_{\nu }}{c} \dd{\Omega } = \frac{4 \pi J_{\nu }}{c}  \\
 P_{\nu } &= \int  \frac{I_{\nu }}{c}  \cos^2\theta \dd{\Omega } =
 \int \frac{I_{\nu }}{c} \cos^2\theta \sin \theta \dd{\theta } \dd{\varphi }
 \,,
 \end{align}
+\end{subequations}
 %
 and let us use the assumption that \(I_\nu \) does not depend on \(\Omega \): so we can bring it out of the integrals, to find 
 %
+\begin{subequations}
 \begin{align}
 u_{\nu } &= 4 \pi  \frac{I_{\nu }}{c}  \\
 P_{\nu } &= - 2 \pi  \frac{I_{\nu }}{c} \int \cos^2\theta \dd{\cos \theta } = 2 \pi \frac{I_{\nu }}{c} \int_{-1}^{1} x^2 \dd{x}  \marginnote{The differential is negative, but we swap the integration bounds.}\\
 &= \frac{4 \pi }{3} \frac{I_{\nu }}{c}
 \,,
 \end{align}
+\end{subequations}
 %
 which gives us the result we sought: 
 %
@@ -99,6 +105,7 @@ Therefore, the differential solid angle will look like
 and we can apply the same reasoning reversing the photons' motion to find the same, alternate relation with \((1 \leftrightarrow 2)\). 
 We can use this to write 
 %
+\begin{subequations}
 \begin{align}
 I_{\nu , 1} \frac{ \dd{A_1 }}{ \dd{\Omega_2 }} &= 
 I_{\nu , 2} \frac{ \dd{A_2 }}{ \dd{\Omega_1 }}  \\
@@ -106,6 +113,7 @@ I_{\nu ,1 } R^2 &= I_{\nu , 2} R^2  \\
 I_{\nu , 1} &= I_{\nu , 2}
 \,.
 \end{align}
+\end{subequations}
 
 This means that, under our assumptions, the specific intensity is conserved: 
 %
@@ -127,11 +135,13 @@ This is due to emission and absorption, but also to scattering, which preserves 
 Emission is a process through which photons are created. 
 We can define the grey emission coefficient \(j\) and the monochromatic emission coefficient \(j_{\nu }\) as: 
 %
+\begin{subequations}
 \begin{align}
 \dd{E} &= j \dd{V} \dd{\Omega } \dd{t}  \\
 \dd{E} &= j_{\nu } \dd{V} \dd{\Omega } \dd{t} \dd{\nu }
 \,,
 \end{align}
+\end{subequations}
 %
 they quantify the energy added to the radiation field per unit volume, solid angle (in order to account for the direction of emission) and unit time. For the monochromatic coefficient, we restrict ourselves to radiation emitted in the range from \(\nu \) to \(\nu + \dd{\nu }\).
 
@@ -187,12 +197,14 @@ Let us consider our usual cylinder with cross sectional area \(\dd{A}\) and leng
 The total effective cross section area presented for absorption will be \(\sigma_{\nu } \dd{N}\). 
 The energy contained in photons in this cross sectional area will be lost: the energy lost \(- \dd{I_{\nu }}\) can be calculated as 
 %
+\begin{subequations}
 \begin{align}
 - \dd{I_{\nu }} \dd{A} \dd{t} \dd{\Omega} \dd{\nu }
 &=  I_{\nu } \qty(\sigma_{\nu } n \dd{A} \dd{s}) \dd{t} \dd{\Omega } \dd{\nu }  \\
 - \dd{I_{\nu }} &= - n \sigma_{\nu } I_{\nu } \dd{s}
 \,,
 \end{align}
+\end{subequations}
 %
 which is the relation written above, with \(n \sigma_{\nu } = \alpha_{\nu }\). 
 The number density is proportional to the mass density: \(n \overline{m} = \rho \) where \(\overline{m} \) is the average mass of a particle. Therefore, we can express \(\alpha_{\nu }\) as 
@@ -291,6 +303,7 @@ We can solve this equation by defining \(Y_{\nu } = I_{\nu }e^{\tau_{\nu }}\), w
 %
 so we can multiply the radiative transport equation to get 
 %
+\begin{subequations}
 \begin{align}
 \dv{I_{\nu }}{\tau_{\nu }} e^{\tau_{\nu }} &= - I_{\nu }e^{\tau_{\nu }} + S_{\nu } e^{\tau_{\nu }}  \\
 \dv{Y_{\nu }}{\tau_{\nu }} &= S_{\nu } e^{\tau_{\nu }}  \\
@@ -299,6 +312,7 @@ I_{\nu }(\tau_{\nu }) &= I_{\nu } (0) e^{-\tau_{\nu }}
 + \int_{0}^{\tau_{\nu }} S_{\nu }(\widetilde{\tau}_{\nu }) e^{\widetilde{\tau}_{\nu } - \tau_{\nu }} \dd{\widetilde{\tau}_{\nu }} \marginnote{Divided through by \(e^{\tau_{\nu }}\).}
 \,,
 \end{align}
+\end{subequations}
 %
 which has a direct intuitive meaning: the intensity at a certain point must be computed accounting for the initial one and emission all through the beam before the point we are considering, and each of these contributions to the emission is weighted by an exponential factor: the relevance of a term decreases if the optical distance increases. 
 

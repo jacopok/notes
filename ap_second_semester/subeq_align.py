@@ -8,14 +8,15 @@ subeq_end = "\\end{subequations}"
 align_newline = "\\\\"
 
 folder_names = [
-"advanced_astrophysics",
-"astrophysics_lab",
-"general_relativity",
-"numerical_methods",
-"astrophysics_cosmology",
-"gr_exercises"
+"astroparticle_physics",
+"gravitational_physics",
+"gravitational_wave_astrophysics",
+"multimessenger_astrophysics",
+"radiative_processes",
+"theoretical_cosmology",
+"theoretical_physics"
 ]
-filenames_regex = "(\\d{2}\\w{3}|\\w{5}\\d{1,2})\\.tex"
+filenames_regex = "(\\w{3}\\d{2}|\\w{5}\\d{1,2})\\.tex"
 
 def cpars(s):
     return(s.count('{') == s.count('}'))

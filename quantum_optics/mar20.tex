@@ -1,0 +1,160 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Friday\\ 2020-3-20, \\ compiled \\ \today}
+
+Today we will discuss another application of entanglement: Quantum Key Distribution.
+
+\section{Quantum Key Distribution}
+
+The idea is that it is possible to exchange two keys between two people, in an \emph{unconditional} way, as opposed to the current way of doing security, which is based on hard-to-solve problems. 
+
+If Alice and Bob have a shared key \(K\), they can use a \emph{one-time-pad} to communicate. 
+
+Say \(X\) is our message: then Alice constructs \(Y = X \oplus K\), which is completely random since \(K\) is. 
+
+When Bob receives the message, he does \(Y \oplus K = X \oplus K \oplus K = X\). 
+This is old classical cryptography, it was discovered by Shannon. 
+
+This works as long as \(K\) is indeed \emph{one-time}: if it is reused, an attacker can start reconstructing the message: otherwise, . 
+
+So, the QKD is about transmitting the key. 
+The most famous protocol to do this is BB84. 
+Most of the things which will be covered today are covered in 
+Rev Mod Phys 81, 1301 (2009).
+
+The basis of the algorithm is a public quantum channel between Alice and Bob. The thing which is needed is for the channel to be \emph{verified}, so that Alice is sure to be talking to Bob. 
+Eve can be watching the passing qubits.  
+
+Alice can prepare four possible states, which she associates to two logical bits: \(\ket{0}\) and \(\ket{+}\) are associated with 0, while \(\ket{1}\) and \(\ket{-}\) are associated with 1. 
+
+Bob either measures \(\sigma_{z}\) or \(\sigma_{x}\). 
+It they use the same basis, Bob measures the same thing Alice sent. 
+
+If they use a different basis, then the result is random, since \(\abs{\braket{\pm}{0}}^2 =  \abs{\braket{\pm}{1}}= 1 / 2\). 
+
+So, there is a need to do \emph{sifting} later: after the transmission, Alice and Bob say publicly which bases they used. 
+With this information, they discard the qubits for which they used different bases. 
+
+Any measurement by the eavesdropper necessarily increases the Q-Bit Error Rate, which can be detected by Alice and Bob. 
+
+If Eve performs an ``Intercept and Resend'' attack, \(1/2\) of the time she will get the basis wrong, and those times she will create an error half of the time. 
+So, in this case we will have a QBER equal to \SI{25}{\percent}. 
+
+This can be measured by selecting, a posteriori, some qubits to be used as a check. 
+
+Alice could also use the states \(\ket{+i}\) and \(\ket{-i}\), which are eigenstates of \(\sigma_{y}\). Using these states we can increase the security. 
+
+The probabilities can be changed: we can have probabilities \(\epsilon \) for \(\sigma_{x}\) and \(\sigma_{y}\), while we use \(1-2\epsilon \) probability for \(\sigma_{z}\). 
+
+Then, we encode the key using only \(\sigma_{z}\), so we are communicating \(\approx1 -4 \epsilon  \) of the time. 
+We use the qubits encoded with \(\sigma_{x}\) and \(\sigma_{y}\) to measure how many times Eve has been measuring, since she will be always measuring \(\sigma_{z}\). 
+
+Eve cannot determine which basis is being used by Alice, since the mixed states corresponding to having \(\ket{0}\) or \(\ket{1}\) with equal probability and to having \(\ket{+}\) or \(\ket{-}\) with equal probability are the same, \(\rho = \frac{1}{2} \mathbb{1}\). 
+
+This works well if the devices are working as expected.
+If the implementation is insecure, QKD can still be breached: so, we want to get \emph{device-independent} implementations. 
+
+A possible implementation is one in which we use an entangled source which gives us pairs with \(\ket{\Psi^{-}}\). 
+
+Then, Alice measures \(\sigma_{x}\) and \(\sigma_{z}\) and so does Bob. 
+Using the correlations between Alice and Bob we can determine whether the qubits are being generated entangled or not. 
+The state is 
+%
+\begin{align}
+\ket{\Psi^{-}} = \frac{1}{\sqrt{2}} \qty(\ket{01} - \ket{10})
+= \frac{1}{\sqrt{2}} \qty(\ket{+-} - \ket{- +})
+\,,
+\end{align}
+%
+so the measurements are precisely anticorrelated for both bases 01 and +-. 
+
+So, we can do QKD with black boxes.
+However, this is difficult to implement. 
+
+The receiver is more vulnerable to attacks, since they can receive any signal from the outside. 
+So, we want to do \emph{measurement device independent} coding: Alice and Bob each prepare the four states with equal probabilities, they send it to an untrusted station \(C\), in which there is a beamsplitter. 
+This performs a Bell measurement: if \(C\) sees a coincidence, then they communicate this to \(A\) and \(B\): this means that the measured state is \(\ket{\Psi^{-}}\). This means that the original qubits were opposite, but there is no information as to what the states originally were. 
+
+If the operator at \(C\) does anything else other than the Bell measurement, this can be detected by Alice and Bob by looking at the QBER. 
+
+By adding some more detectors we can also measure \(\ket{\Psi^{+}}\); then we do efficient BB84 by mostly sending in one basis. 
+This way, we can also get an efficiency of \(1- \epsilon \). 
+
+Now, how do we measure the secret Key Rate? 
+It is defined by 
+%
+\begin{align}
+r = I_{AB} - I_E 
+\,,
+\end{align}
+%
+where \(I_{AB}\) is the mutual information of Alice and Bob, while \(I_E\) is the information of the Eavesdropper. 
+
+The definition of \(I_{AB}\) is: 
+%
+\begin{align}
+I_{AB} = H(A) - H(A|B)
+\,,
+\end{align}
+%
+where \(H(A)\) is the Shannon entropy of Alice: 
+%
+\begin{align}
+H(A) = - \sum_{x = 0,1} p_x \log_2  p_x
+\,.
+\end{align}
+
+If the bits are random, then \(H(A )= 1\). On the other hand, 
+%
+\begin{align}
+H(A|B) = - \sum _{\substack{a=0,1 \\ b=0,1} } p_{ab} \log_2 p_{a|b}
+\,,
+\end{align}
+%
+which is zero if Alice and Bob's bits are perfectly correlated. It can be shown that 
+%
+\begin{align}
+H(A|B) = h_2  (Q) = -Q \log_2 Q - (1-Q) \log_2 (1-Q)
+\,,
+\end{align}
+%
+where \(Q\) is the error rate. 
+
+So, we write this as \(I_{AB} = 1 - h_2 (Q)\). 
+\(Q\) is the number of bits which are wrong, and the formula tells us that in order to correct these errors we need to reveal \(h_2 (Q)\). 
+
+It can be shown that the information of the eavesdropper in the BB84 case is 
+%
+\begin{align}
+I_E = h_2 (Q)
+\,.
+\end{align}
+
+With the 6-state coding we have 
+%
+\begin{align}
+I_E = Q + (1- Q) h_2 \qty(\frac{1 - 3 Q / 2}{1 - Q})
+\,.
+\end{align}
+
+This is purely quantum: classically there is no connection between \(I_E\) and \(Q\). 
+So, for BB84 the error rate must be \(Q \leq \SI{11}{\percent}\).
+
+So, we need to do \emph{error correction} and then \emph{privacy amplification} so that the eavesdropper has no residual information. 
+Privacy amplification reduces the key length by a factor \(1/r\), so we get bits which are surely secure. 
+
+What we do, practically, is to use an attenuated laser. The state of the laser is a coherent one: 
+%
+\begin{align}
+\ket{\alpha } = e^{- \abs{\alpha }^2 / 2} \sum _{n} \frac{\alpha ^{n}}{\sqrt{n!}} \ket{k}
+\,.
+\end{align}
+
+We can attenuate the laser so that we have \(\abs{\alpha } = \mu \), with \(\mu = 1\): usually we will have zero photons, often one, but sometimes \(2\): this is an issue, since the attacker can take one and leave the other: this is called Photon Number Splitting. 
+
+What can be done is to use a \emph{decoy state}: we use three values for the intensity, \(\mu = 1 \), but  also  \( \nu_1 = .1 \) and \(\nu_2 =  0\). Using this, we can see whether there is a PNS attack or not. 
+
+So, from the source point of view we have no issue in using a classical source like a laser. 
+
+\end{document}

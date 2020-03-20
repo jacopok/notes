@@ -22,13 +22,123 @@ In the same region we can find the reflected wave, which has the opposite moment
 By a similar reasoning, in the \(x>0\) region we will have a contribution \(t e^{i k_x^{\prime } x}\): the direction of propagation is the same as the incoming wave, the momentum might be different. In the end, our wavefunction looks like 
 %
 \begin{align}
-\varphi (t, x) &= \varphi_1 [x<0] + \varphi_2 [x \geq 0] \\
-&= e^{-i \omega t} \qty[\chi_1 [x<0] + \chi_2 [x \geq 0]] \\
+\varphi (t, x) &= \varphi_1 [x\leq 0] + \varphi_2 [x \geq 0] \\
+&= e^{-i \omega t} \qty[\chi_1 [x\leq 0] + \chi_2 [x \geq 0]] \\
 &=
- e^{-i \omega t} \qty[ \qty(e^{i k_x x} + r e^{-i k_x x})[x<0] + t e^{i k_x^{\prime }x } [x\geq 0]]
+ e^{-i \omega t} \qty[ \qty(e^{i k_x x} + r e^{-i k_x x})[x\leq 0] + t e^{i k_x^{\prime }x } [x\geq 0]]
 \,.
 \end{align}
 
-This wavefunction will need to satisfy the KG equation everywhere, however 
+This wavefunction will need to satisfy the KG equation everywhere, however the equation has a different form in the two regions: if \(\DD^{\mu } = \partial^{\mu } + iqA^{\mu }\), then we can say that the two equations are 
+%
+\begin{align}
+  \qty[\partial^{\mu } \partial_{\mu } + M^2] \varphi_1 &= 0 \\
+  \qty[\DD^{\mu } \DD_{\mu } + M^2] \varphi_2 &= 0 
+\,,
+\end{align}
+%
+so we can insert the solutions into the equations: for the region without potential we get
+%
+\begin{align}
+\qty[\partial^{\mu } \partial_{\mu } + M^2] \varphi_1 &= \qty[+ \partial_0^2 - \partial_{x}^2 + M^2 ] \qty[e^{-i \omega t} \qty(e^{ik_{x}x} + r e^{-ik_x x})]   \\
+&= (-i\omega)^2 \varphi_1 + M^2 \varphi_1 - e^{-i \omega t}\partial_{x}^2  \qty(e^{ik_{x}x} + r e^{-ik_x x}) \\
+&= -\omega^2 \varphi_1 + M^2 \varphi_1 - e^{-i \omega t}  \qty((ik_x)^2 e^{ik_{x}x} + r (-ik_x)^2 e^{-ik_x x}) \\
+&= \qty[-\omega^2 + M^2 + k_x^2 ] \varphi_1  
+\,,
+\end{align}
+%
+notice that even though the function has components with momentum in either direction it still is an eigenfunction of the operator \(\square\)! 
+For the other region we can use the fact we discussed earlier: with the minimal substitution, the momentum becomes \(p^{\mu } = i \partial^{\mu } \rightarrow i \DD^{\mu } = p^{\mu } - qA^{\mu }\), so in our case we will have \(p^{0} \rightarrow \omega_{k} - q A^{0} = \omega_{k} - V_0 \), while \(p^{i} \rightarrow \vec{k}'\), since \(\vec{A} = 0\). We can substitute the energy directly since the potential is constant, so there is no \(\partial_0 V_0 \) term. 
+Then, the rest of the calculation is perfectly analogous, with \(k_{x}'\) instead of \(k_x\).
+
+So, we have the two relations 
+%
+\begin{align}
+- \omega_k^2 + k_x^2 + M^2 = 0
+\qquad \text{and} \qquad
+- \qty(\omega_{k} - V_0 )^2 + k_x^{\prime 2}  + M^2 = 0
+\,.
+\end{align}
+
+We choose the solutions in which the wave is propagating towards increasing \(x\): so we get 
+%
+\begin{align}
+k_x = \sqrt{\omega_{k}^2  - M^2} 
+\qquad \text{and} \qquad
+k_x^{\prime 2} = \sqrt{\qty(\omega_{k} - V_0)^2 - M^2}
+\,.
+\end{align}
+
+Now we must make these consistent with each other, by imposing that at the border the function be \(\mathcal{C}^{1}\). 
+
+Why do we fix only the first derivative? Probably something to do with the fact that the KG eq is second order, so we would need \(\square = \DD^{\mu } \DD_{\mu }\) at the boundary, which cannot be the case.
+
+We can work with the spatial components \(\chi_{i}\), since the time evolution factors. So, for continuity we get that \(\chi_1 (0) = \chi_2 (0)\) implies:
+%
+\begin{align}
+1+r = t
+\,,
+\end{align}
+%
+while for differentiability we get that \(\partial_{x} \chi_1(0) = \partial_{x} \chi_2 (0)\) implies:
+%
+\begin{align}
+i k_x  - r i k_x = i t k_x'
+\implies
+\frac{k_x'}{k_x} = \frac{1- r}{t}
+\,.
+\end{align}
+
+Now, what do we know of these variables? Well, from the dispersion relations if we fix the mass \(M\), the energy \(\omega \) and the potential \(V_0 \) we have \(k_x\) and  \(k_x^{\prime }\). 
+Then, from the two equations we have found we can calculate \(r\) and \(t\); their expressions are exactly those found in the nonrelativistic case. Since \(1-r = 2-t\) we have 
+%
+\begin{align}
+\frac{k_{x}'}{k_x} = \frac{2}{t} - 1 \implies 
+\frac{k_x^{\prime } + k_x}{k_x} = \frac{2}{t}
+\implies t = \frac{2 k_x}{k_x' + k_x}
+\qquad \text{and} \qquad
+r = t-1 = \frac{k_x - k_x'}{k_x' + k_x}
+\,.
+\end{align}
+
+Now, we shall discuss the probability currents for the two regions: the formula is always 
+%
+\begin{align}
+j^{\mu } = \frac{i}{2} \varphi^{*} \partial^{\mu } \varphi  + \frac{q}{2} A^{\mu } \varphi^{*} \varphi  + \text{c. c.}
+\,,
+\end{align}
+%6
+but in the first region the potential is identically zero. 
+
+One non-obvious thing to consider is that, in general, we could have \(k_x'\) be either real or imaginary, since while \( \omega^2 - M^2\) must be \(>0\) there is no such constraint on \((\omega- V_0 )^2 - M^2\). The calculation is as follows:
+%
+\begin{align}
+j^{0}_{(1)} &= \frac{i}{2} e^{i \omega t} \partial^{0} e^{-i \omega t} \abs{\chi_1 }^2  + \text{c. c.} = \frac{2}{2} \omega \abs{\chi_1 }^2 
+\marginnote{The \(\chi_1 \) is not time-dependent, we get two terms by adding the conjugate}  \\
+j_1 \overset{\text{def}}{=} j^{x}_{(1)} &= - \frac{i}{2} \qty(e^{ik_x x} + r e^{-ik_x x}) \partial_{x} \qty(e^{ik_x x} + r e^{-ik_x x}) + \text{c. c. }  \marginnote{Minus sign from lowerig the index}\\
+&= - \frac{2}{2} i (i k_x ) \qty(e^{ik_x x} + r e^{-ik_x x}) \qty(e^{ik_x x} - r e^{-ik_x x}) = k_x \qty(1 - \abs{r}^2)  \\
+j^{0}_{(2)} &= \frac{i}{2} t^{*} e^{i \omega t} e^{-i k_x^{\prime *}x} t (-i \omega ) e^{-i \omega t} e^{i k_x^{\prime } x} + \frac{1}{2} V_0 \varphi^{*} \varphi  + \text{c. c.}  \\
+&= (\omega - V_0 ) \abs{t}^2 e^{i \qty(k_x^{\prime }- k_x^{\prime *})x}  \\
+j_2 \overset{\text{def}}{=} j^{x}_{(2)} &= -\frac{i}{2} t^{*} e^{i \omega t} e^{-i k_x^{\prime *} x} 
+(i k_x^{\prime }) e^{-i \omega t} e^{i k_x^{\prime }x } + \text{c. c. }  \\
+&= \frac{1}{2} \abs{t}^2 e^{i \qty(k_x^{\prime } - k_x^{\prime *})x} k_x^{\prime } + \text{c. c. }  \\
+&= \frac{k_x^{\prime } + k_x^{\prime *}}{2} \abs{t}^2 e^{i \qty(k_x^{\prime } - k_x^{\prime *})x}
+\,.
+\end{align}
+
+We can define the reflection and transmission coefficients, which are probabilities:
+%
+\begin{align}
+\mathcal{R} = \frac{j _{\text{in}} - j_1}{j _{\text{in}}} = \abs{r}^2
+\qquad \text{and} \qquad
+\mathcal{T} = \frac{j_2}{j _{\text{in}}}
+= \frac{k_x^{\prime } - k_x^{\prime *}}{2 k_x} \abs{t}^2 e^{i (k_x^{\prime } -k_x^{\prime *})x}
+\,,
+\end{align}
+%
+where \(j _{\text{in}} = k_x\). 
+\todo[inline]{What is the motivation behind these definitions?}
+
+
 
 \end{document}

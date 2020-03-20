@@ -1,4 +1,261 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-3-20, \\ compiled \\ \today}
+
+Now, we will discuss the collision terms. 
+The interaction we wish to consider is Compton scattering, which has the form 
+%
+\begin{align}
+e^{-} (\vec{q}) + \gamma (\vec{p})
+\leftrightarrow
+e^{-} (\vec{q}') + \gamma (\vec{p}')
+\,,
+\end{align}
+%
+and we are interested to see how this affects the momentum distribution of the photons. 
+
+The collision term in the equation 
+%
+\begin{align}
+\bigd{f}{t} = \hat{\mathbb{C}} [f(\vec{p})] 
+\,
+\end{align}
+%
+reads 
+%
+\begin{align}
+\begin{split}
+\hat{\mathbb{C}} [f(\vec{p})] &= \frac{1}{p} 
+\int \frac{ \dd[3]{q}}{(2\pi)^3 2 E_e (q)}
+\int \frac{ \dd[3]{q'}}{(2\pi)^3 2 E_e (q')}
+\int \frac{ \dd[3]{p'}}{(2\pi)^3 2 E_e (p')} 
+\abs{\mathcal{M}}^2 (2 \pi )^{4} \\
+&\phantom{=}\ 
+\times \delta^{(3)} (\vec{p} + \vec{q} - \vec{p}' - \vec{q}')
+\delta (E(p) + E_e(q) - E(p') - E_e (q')) \\
+&\phantom{=}\ 
+\times \qty[f_e (\vec{q}') f(\vec{p}') - f_e(\vec{q}) f(\vec{p})]
+\end{split}
+\,.
+\end{align}
+
+The factor \(1/p\) at the start comes from the LHS, since we differentiated with respect to \(t\) and not \(\lambda \) on the LHS. 
+
+For the photons the energy is \(E(p') = p'\), for the electrons  instead \(E_e (q) \approx m_e + q^2  /2m_e\), since the electrons are nonrelativistic --- the temperatures are of the order \SI{.3}{eV} at recombination, a vanishingly small fraction of the electrons' mass of \SI{511}{keV}. 
+
+So, we should perform all the integrations on the RHS: we start with the integration over \(q'\). We get rid of a \(\delta \) function and get 
+%
+\begin{align}
+\begin{split}
+\hat{\mathbb{C}} [f(\vec{p})] &= \frac{\pi}{2 m_e^2}
+ \frac{1}{p} 
+\int \frac{ \dd[3]{q}}{(2\pi)^3 2 E_e (q)}
+\int \frac{ \dd[3]{p'}}{(2\pi)^3 2 E_e (p')} 
+\abs{\mathcal{M}}^2 \\
+&\phantom{=}\ 
+\times \delta \qty[p + \frac{q^2}{2 m_e} - p' - \frac{\qty(\vec{p}+ \vec{q} - \vec{p}')^2}{2m_e}] \\
+&\phantom{=}\ 
+\times \qty[f_e \qty(\vec{q} + \vec{p} - \vec{p}') f(\vec{p}')
+- f_e (\vec{q}) f(\vec{p})]
+\end{split}
+  \,.
+\end{align}
+
+For nonrelativistic Compton scattering we have 
+%
+\begin{align}
+E_e(\vec{q}) - E_e (\vec{q} + \vec{p} - \vec{p}')
+ = \frac{q^2}{2 m_e} - \frac{\qty(\vec{q} + \vec{p} - \vec{p}')^2}{2m_q}
+ \approx \frac{(\vec{p} - \vec{p}') \cdot \vec{q}}{m_e}
+\,,
+\end{align}
+%
+which is true as long as \(q \gg p, p'\). 
+Also, the scattering is close to being elastic: 
+%
+\begin{align}
+  \frac{(\vec{p} - \vec{p}') \cdot \vec{q}}{m_e}
+  \sim \frac{Tq}{m_e} \sim T v_b \ll T
+\,,
+\end{align}
+%
+since the velocity of the electrons is nonrelativistic. 
+
+So, 
+%
+\begin{align}
+\frac{\Delta E_e}{E} \sim \frac{T v_b}{T c} \sim \frac{v_b}{c} \ll 1
+\,.
+\end{align}
+
+Let us motivate \(q \ll p, p'\): we know that, since 
+%
+\begin{align}
+\frac{q^2}{2m_e} \sim T
+\,,
+\end{align}
+%
+we have \(q \sim (m_e T)^{1/2} \), which is equal to 
+%
+\begin{align}
+q \sim \qty(\frac{m_e}{T})^{1/2} T \gg T 
+\,,
+\end{align}
+%
+so \(q \gg T \sim p\). 
+
+Now, the change to the electron kinetic energy is small so we can expand: 
+%
+\begin{align}
+&\delta \qty[p + \frac{q^2}{2m_e} - p' - \frac{\qty(\vec{q} + \vec{p} -\vec{p}')^2}{2m_e} ]   \\
+&\approx
+\delta (p - p')
+ + \qty[E_e (q') - E_e (q)]
+ \times \pdv{}{E_e(q')} \delta (p + E_e (q) - p' - E_e(q'))  \\
+ &\approx 
+\delta (p - p')
++ \frac{(\vec{p}- \vec{p}) \cdot \vec{q}}{m_e} 
+\pdv{ \delta (\vec{p} - \vec{p}')}{p'} 
+\,,
+\end{align}
+%
+where we used the fact that 
+%
+\begin{align}
+\pdv{(x-y)}{x} = - \pdv{(x-y)}{y}
+\,.
+\end{align}
+
+The derivative of the delta-function is defined as a functional yielding the derivative of the function it is integrated with. 
+
+This then gives us 
+%
+\begin{align}
+\begin{split}
+\hat{\mathbb{C}} [f(\vec{p})] &= \frac{\pi}{2 m_e^2}
+\frac{1}{p} 
+\int \frac{ \dd[3]{q}}{(2\pi)^3 2 E_e (q)}
+\int \frac{ \dd[3]{p'}}{(2\pi)^3 2 E_e (p')} 
+\abs{\mathcal{M}}^2 \\
+&\phantom{=}\ 
+\times\qty[\delta (p - p') + \frac{(\vec{p}- \vec{p}) \cdot \vec{q}}{m_e} 
+\pdv{ \delta (\vec{p} - \vec{p}')}{p'} 
+] \qty(f (\vec{p}') - f(\vec{p})) 
+\end{split}
+\,.
+\end{align}
+
+Now, it is a fact from QFT that we can compute 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 = 6 \pi \sigma_{T} m_e^2 \qty(1 + \cos^2\theta )
+\,,
+\end{align}
+%
+where \(\cos \theta = \hat{p} \cdot \hat{p}'\). 
+
+For simplicity we replace this angle-dependent quantity with its angular average: the integral of the cosine gives us \(1/3\), so we get a multiplier \(6 ( 1+ 1/3) = 8 \): 
+%
+\begin{align}
+\expval{ \abs{\mathcal{M}}^2} = 8 \pi \sigma_{T} m_e^2
+\,.
+\end{align}
+
+Now, we insert this in the expression and integrate over \(q\): this yields a mean velocity, and also we expand the phase space distributions to first order:
+%
+\begin{align}
+\begin{split}
+\hat{\mathbb{C}} [f(\vec{p})] &= 
+\frac{2 \pi n_e \sigma_{T}}{p}
+\int \frac{ \dd[3]{p'}}{(2\pi)^3 p'} 
+\qty[ \delta (p - p') \qty(\vec{p} - \vec{p}') \cdot \vec{v}_b \pdv{ \delta (p - p')}{p'}] \\
+&\phantom{=}\ 
+\times \qty[ f^{(0)} (\vec{p}') - f^{(0)}(\vec{p}) - p' \pdv{f^{(0)}}{p'} \theta (\vec{p}') + p \pdv{f^{(0)}}{p} \theta (\vec{p})]
+\,.
+\end{split}
+\end{align}
+%
+
+[passages]
+
+We do the angular integral, and simplify it by defining the \emph{monopole} contribution:
+%
+\begin{align}
+\theta_0 (\vec{x}, t) =  \frac{1}{4 \pi } \int \dd{\Omega'} 
+\theta (\vec{x}, \hat{p}', t)
+\,.
+\end{align}
+
+Then, finally, we integrate over \(p'\), which gives us the result 
+%
+\begin{align}
+\hat{\mathbb{C}} [f(\vec{p})] &=
+- p \pdv{f^{(0)}}{p} n_e \sigma_T 
+\qty[\theta_0 - \theta (\hat{p}) + \hat{p} \cdot \vec{v}_b]
+\,.
+\end{align}
+
+The factor due to the electron spin, \(g_e\), is accounted for in the  electron momentum distribution \(f_e\). 
+
+So, for the photons we have 
+%
+\begin{align}
+\pdv{\theta }{t} \frac{\hat{p}^{i}}{a} \pdv{\theta }{x^{i}}
+- \pdv{\Psi }{t} + \frac{\hat{p}^{i}}{a} \pdv{\Phi }{x^{i}} 
+= n_e \sigma_{T} \qty(\theta_0 - \theta + \hat{p}\cdot \vec{v}_b )
+\,.
+\end{align}
+
+Our last step is to move to conformal time \(\eta \), defined by \(\dd{\eta } = \dd{t} / a\); denoting derivatives with respect to conformal time with a dot (and multiplying everything by \(a\)) we get: 
+%
+\begin{align}
+\dot{\theta} + \hat{p}^{i} \pdv{\theta }{x^{i}}
+- \dot{\Psi} + \hat{p}^{i} \pdv{\Phi }{x^{i}}
+= n_e \sigma_{T} a \qty(\theta_0 - \theta + \hat{p} \cdot \vec{v}_b)
+\,.
+\end{align}
+ 
+Now, in order to solve this equation we perform a Fourier transform: 
+%
+\begin{align}
+\theta (\vec{x}) = 
+\int \frac{ \dd[3]{k}}{(2\pi )^3} e^{i \vec{k} \cdot \vec{x}}
+\widetilde{\theta} (\vec{k})
+\,,
+\end{align}
+%
+and we define the \emph{cosine} of the angle between the photon momentum \(\vec{p}\) and the momentum \(\vec{k}\): \(\mu = \hat{k} \cdot \hat{p}\). 
+
+The optical depth is defined by 
+%
+\begin{align}
+\tau (\eta )
+= \int_{\eta }^{\eta_0 } \dd{\overline{\eta}}a(\overline{\eta})
+n_e \sigma_{T} 
+\,,
+\end{align}
+%
+and it is large at early times, small at late times since the density decreases. Its derivative is 
+%
+\begin{align}
+\dot{\tau} = \dv{\tau }{\eta } = - n_e \sigma_{T} a 
+\,,
+\end{align}
+%
+which is a term in the Boltzmann equation! Substituting it, we get 
+%
+\begin{align}
+\dot{\widetilde{\theta}} + ik \mu \widetilde{\theta}
+- \dot{\widetilde{\Psi}} + ik \mu \widetilde{\Psi}
+=- \dot{\tau}\qty(\widetilde{\theta}_0 - \widetilde{\theta} + \mu \widetilde{v}_b)
+\,.
+\end{align}
+
+It is an assumption we are making that the velocities are irrotational, so they can be expressed as a gradient: so, in Fourier space we get \(\widetilde{\vec{v}}_{b} = \hat{k} \widetilde{v}_b\). 
+
+We still need to solve the Einstein equations in order to determine \(\Phi \) and \(\Psi \). In order to do this we need to describe all the component of the universe.
+
+Also, we need to determine the velocity of the baryons \(v_b\); it is an assumption we are making that in order to preserve local as well as global neutrality the local velocities of baryons and leptons are equal. 
+
 \end{document}

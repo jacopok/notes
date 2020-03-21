@@ -53,7 +53,7 @@ Then, the rest of the calculation is perfectly analogous, with \(k_{x}'\) instea
 
 So, we have the two relations 
 %
-\begin{align}
+\begin{align} \label{eq:dispersion-relation-general}
 - \omega_k^2 + k_x^2 + M^2 = 0
 \qquad \text{and} \qquad
 - \qty(\omega_{k} - V_0 )^2 + k_x^{\prime 2}  + M^2 = 0
@@ -65,7 +65,7 @@ We choose the solutions in which the wave is propagating towards increasing \(x\
 \begin{align}
 k_x = \sqrt{\omega_{k}^2  - M^2} 
 \qquad \text{and} \qquad
-k_x^{\prime 2} = \sqrt{\qty(\omega_{k} - V_0)^2 - M^2}
+k_x^{\prime} = \sqrt{\qty(\omega_{k} - V_0)^2 - M^2}
 \,.
 \end{align}
 
@@ -110,14 +110,17 @@ j^{\mu } = \frac{i}{2} \varphi^{*} \partial^{\mu } \varphi  + \frac{q}{2} A^{\mu
 %6
 but in the first region the potential is identically zero. 
 
-One non-obvious thing to consider is that, in general, we could have \(k_x'\) be either real or imaginary, since while \( \omega^2 - M^2\) must be \(>0\) there is no such constraint on \((\omega- V_0 )^2 - M^2\). The calculation is as follows:
+One non-obvious thing to consider is that, in general, we could have \(k_x'\) be either real or imaginary, since while \( \omega^2 - M^2\) must be \(>0\) there is no such constraint on \((\omega- V_0 )^2 - M^2\).
+If we conjugate an exponential as \(\qty(e^{iz})^{*}\), the result is \(e^{-i z^{*}}\) for a general complex \(z\). 
+The calculation is as follows:
 %
 \begin{align}
+\rho_1 \overset{\text{def}}{=}  
 j^{0}_{(1)} &= \frac{i}{2} e^{i \omega t} \partial^{0} e^{-i \omega t} \abs{\chi_1 }^2  + \text{c. c.} = \frac{2}{2} \omega \abs{\chi_1 }^2 
-\marginnote{The \(\chi_1 \) is not time-dependent, we get two terms by adding the conjugate}  \\
-j_1 \overset{\text{def}}{=} j^{x}_{(1)} &= - \frac{i}{2} \qty(e^{ik_x x} + r e^{-ik_x x}) \partial_{x} \qty(e^{ik_x x} + r e^{-ik_x x}) + \text{c. c. }  \marginnote{Minus sign from lowerig the index}\\
+\marginnote{The \(\chi_1 \) is not time-dependent, we get two terms by adding the conjugate. We get a minus sign from lowering the index}  \\
+j_1 \overset{\text{def}}{=} j^{x}_{(1)} &= - \frac{i}{2} \qty(e^{ik_x x} + r e^{-ik_x x}) \partial_{x} \qty(e^{ik_x x} + r e^{-ik_x x}) + \text{c. c. } \\
 &= - \frac{2}{2} i (i k_x ) \qty(e^{ik_x x} + r e^{-ik_x x}) \qty(e^{ik_x x} - r e^{-ik_x x}) = k_x \qty(1 - \abs{r}^2)  \\
-j^{0}_{(2)} &= \frac{i}{2} t^{*} e^{i \omega t} e^{-i k_x^{\prime *}x} t (-i \omega ) e^{-i \omega t} e^{i k_x^{\prime } x} + \frac{1}{2} V_0 \varphi^{*} \varphi  + \text{c. c.}  \\
+\rho_2 \overset{\text{def}}{=}  j^{0}_{(2)} &= \frac{i}{2} t^{*} e^{i \omega t} e^{-i k_x^{\prime *}x} t (-i \omega ) e^{-i \omega t} e^{i k_x^{\prime } x} + \frac{1}{2} V_0 \varphi^{*} \varphi  + \text{c. c.}  \\
 &= (\omega - V_0 ) \abs{t}^2 e^{i \qty(k_x^{\prime }- k_x^{\prime *})x}  \\
 j_2 \overset{\text{def}}{=} j^{x}_{(2)} &= -\frac{i}{2} t^{*} e^{i \omega t} e^{-i k_x^{\prime *} x} 
 (i k_x^{\prime }) e^{-i \omega t} e^{i k_x^{\prime }x } + \text{c. c. }  \\
@@ -132,13 +135,175 @@ We can define the reflection and transmission coefficients, which are probabilit
 \mathcal{R} = \frac{j _{\text{in}} - j_1}{j _{\text{in}}} = \abs{r}^2
 \qquad \text{and} \qquad
 \mathcal{T} = \frac{j_2}{j _{\text{in}}}
-= \frac{k_x^{\prime } - k_x^{\prime *}}{2 k_x} \abs{t}^2 e^{i (k_x^{\prime } -k_x^{\prime *})x}
+= \frac{k_x^{\prime } + k_x^{\prime *}}{2 k_x} \abs{t}^2 e^{i (k_x^{\prime } -k_x^{\prime *})x}
 \,,
 \end{align}
 %
 where \(j _{\text{in}} = k_x\). 
 \todo[inline]{What is the motivation behind these definitions?}
 
+Now, we have three possible cases for the behavior of \(k_x^{\prime }\): it is 
+\begin{enumerate}
+  \item real if \(\omega_{k} - M > V_0 \): this is the nonrelativistic case;
+  \item imaginary if \(\abs{\omega_{k} - V_0 } < M\): this is the intermediate case;
+  \item real again if \(\omega_{k} + M < V_0 \): this is the fully relativistic case.
+\end{enumerate}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/primed_momentum_potential.pdf}
+\caption{An illustration of how \(k_x^{\prime }\) changes as \(V_0 \) increases. We have fixed the mass \(M\) and the the energy \(\omega_{k}\) to \(\num{.5}\) and \(\num{.7}\) respectively. The regions are separated by the critical points of \(\abs{k_x'}\), at \(V_0 = \num{.2}\) and \(V_0 = \num{1.2}\) respectively. Do note that this is a plot of the \emph{absolute value} of \(k_x^{\prime }\): in the intermediate region it is purely imaginary.}
+\label{fig:primed_momentum_potential}
+\end{figure}
+
+This is shown in figure \ref{fig:primed_momentum_potential}.
+ 
+\todo[inline]{The professor states that the NR approximation can only be applied in the first case: however, vanilla QM can deal with the second case, as long as \(V_0 < \omega_{k}\).}
+
+\subsubsection{Nonrelativistic case}
+
+Now, \(k_x\) and \(k_x'\) are both real, so \(k_x^{\prime } = k_x^{\prime *}\), which means that the probability currents read: 
+%
+\begin{align}
+\rho_1 &= \omega \abs{\chi_1 }^2
+&
+j_1 &= k_x \qty(1 - \abs{r}^2) \\
+\rho_2 &= (\omega - V_0 ) \abs{t}^2 
+&
+j_2 &=  k_x^{\prime } \abs{t}^2 
+\,,
+\end{align}
+%
+and, since \(r\) and \(r\) are both (real and) \(<1\) these quantities are all positive. Also, we must have \(k_x' < k_x\), so the quantities 
+%
+\begin{align}
+\mathcal{R} &= \abs{r}^2
+\qquad \text{and} \qquad
+\mathcal{T} = \frac{k_x'}{k_x} \abs{t}^2
+\,
+\end{align}
+%
+are both \(<1\). So, it will be consistent if we impose (?) a probabilistic Born-like interpretation in which these coefficients are reflection and transmission probabilities, with \(\mathcal{R} + \mathcal{T} = 1\).
+
+\subsubsection{Intermediate case}
+
+Now, we have \(\abs{\omega_{k} - V_0 } < M\), so, while \(k_x>0\), 
+%
+\begin{align}
+k_x' = \pm i \sqrt{M^2 - \qty(\omega_{k} - V_0 )^2}
+\,.
+\end{align}
+
+\todo[inline]{In principle we could have both \(+\) or \(-\), right? Do we select \(+i\) by normalization later?}
+
+Now, in our computation of the probability density \(\rho_2 \) we will have a factor 
+%
+\begin{align}
+\exp(i (k_x' - k_x^{\prime *})x) = \exp(\pm 2 i^2 \abs{k_x'}x) =  \exp(\mp 2 \abs{k_x^{\prime }} x)
+\,,
+\end{align}
+%
+while for the probability current \(j_2 \) we will get a factor \(k_x^{\prime } + k_x^{\prime *} = 0 \) multiplying everything.
+
+\todo[inline]{The solution with \(\exp(+ 2\abs{k_x'} x)\) is unphysical (not normalizable), so we discard it (?)}
+
+So, in the end we get 
+%
+\begin{align}
+\rho_1 &= \omega \abs{\chi_1 }^2
+&
+j_1 &= k_x \qty(1 - \abs{r}^2) \\
+\rho_2 &= (\omega - V_0 ) \abs{t}^2 e^{-2 \abs{k_x^{\prime }} x}
+&
+j_2 &= 0 
+\,.
+\end{align}
+
+Notice that in the intermediate region we can have both \(V_0 < \omega_{k}\) and \(V_0 > \omega_{k}\). 
+
+In this case, we get for the reflection and transmission probabilities 
+%
+\begin{align}
+\mathcal{R} = \abs{r}^2 = \abs{\frac{k_x - i k_x^{\prime }}{k_x + i k_x^{\prime }}} = \abs{\frac{z}{z^{*}}}^2 = 1
+\marginnote{The ratio of \(z\) and \(z^{*}\) is only a phase}
+\,,
+\end{align}
+%
+while \(\mathcal{T} \propto j_2 = 0\). 
+
+So, in this case the particle is certainly reflected; this is compatible with the probabilistic interpretation \(\mathcal{R} + \mathcal{T} = 1\). 
+However, \(\rho_2  \) is not positive defined so it cannot be interpreted as a probability density in general. 
+
+If \(V_0 < \omega_{k} \) we still get the vanilla-QM result of \(\rho_2 \sim e^{-2 \abs{k_x^{\prime }}x}\): the particle penetrates the classically forbidden region. 
+This effect is suppressed as \(V_0 \) increases. 
+
+\subsubsection{Fully relativistic case}
+
+This is the situation which is completely outside the realm of classical QM description, in which we expect to see relativistic effects. 
+We have \(V_0 > \omega_{k} + M \). 
+
+Now 
+%
+\begin{align}
+k_x^{\prime } = \pm \sqrt{(\omega_{k} - V_0 )^2 - M^2} \in \mathbb{R}
+\,,
+\end{align}
+%
+so the densities are 
+%
+\begin{align}
+\rho_1 &= \omega \abs{\chi_1 }^2
+&
+j_1 &= k_x \qty(1 - \abs{r}^2) \\
+\rho_2 &= (\omega - V_0 ) \abs{t}^2 < 0 
+&
+j_2 &= k_{x}^{\prime } \abs{t}^2 
+\,,
+\end{align}
+%
+where the sign of \(j_2 \) is determined by that of \(k_x^{\prime }\), which is not necessarily positive. 
+Actually, it must be negative: to see this, we can calculate the group velocity, which would be the global velocity of the wavepacket we are approximating. We can calculate \(\omega_{k}\) from the dispersion relation \eqref{eq:dispersion-relation-general} to get
+%
+\begin{align}
+v_G = \pdv{\omega_{k} }{k_x^{\prime }} 
+= \pdv{k_x^{\prime }} \qty(V_0 + \sqrt{k_x^{\prime 2} + M^2})
+= \frac{k_x^{\prime }}{\sqrt{k_x^{\prime 2} + M^2}}
+= \frac{k_x^{\prime }}{\omega_{k} - V_0 }
+\,,
+\end{align}
+%
+where we used the dispersion relation again in the last step. 
+Now, for the packet to propagate forward we need \(v_G > 0\), but since the denominator is negative this means \(k_x^{\prime } < 0\). 
+
+Then, we will have 
+%
+\begin{align}
+r = \frac{k_x - k_x^{\prime }}{k_x + k_x^{\prime }} 
+\implies 
+\mathcal{R} = \abs{\frac{k_x - k_x^{\prime }}{k_x + k_x^{\prime }}}^2 > 1
+\,,
+\end{align}
+%
+while the other coefficient is 
+%
+\begin{align}
+\mathcal{T} = k_x^{\prime } \abs{t}^2  
+= k_x^{\prime } \abs{\frac{2 k_x}{k_x^{\prime } + k_x}}^2 
+= k_x^{\prime } \frac{4 k_x^2}{(k_x^{\prime } + k_x)^2}
+< 0
+\,,
+\end{align}
+%
+\todo[inline]{Different from what is reported in the notes! The \(k_x\) should be squared.}
+
+So, we can still maintain the condition \(\mathcal{R} + \mathcal{T} =1\), but reflection is ``more than certain''? Surely this is not the correct physical interpretation. 
+
+This is the heart of the Klein-Gordon paradox. 
+
+What is actually happening is that in our description we are fixing the number of particles to be one; a proper (``grand-canonical'' instead of ``canonical'', in statistical mechanics terms) description of the situation would allow us to see that the energy in the system is enough to create real particle-antiparticle pairs.
+
+The antiparticles gain energy under the potential (since they perceive it as \(-V_0 \), having a negative charge), so they are transmitted, while the particles are reflected. On average, then, more than one particle is reflected. 
+
+In order to properly study these extreme conditions, we need the new paradigm of \emph{Quantum Field Theory}. 
 
 \end{document}

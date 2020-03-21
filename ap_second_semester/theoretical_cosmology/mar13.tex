@@ -279,7 +279,76 @@ we find the equation from before:
 %
 \todo[inline]{??? to check}
 
-Now we use a perturbed FLRW metric, in the Poisson gauge.  
+\subsection{Metric perturbations}
+
+\begin{bluebox}
+We want to write the most general perturbed metric solution to the Einstein Equations: it will look like \(g_{\mu \nu } = g_{\mu \nu }^{\text{FLRW}} + h_{\mu \nu }\), for a small perturbation \(h_{\mu \nu }\). Recall that the FLRW metric, in the zero-curvature case, is given by 
+%
+\begin{align}
+\dd{s^2} =  - \dd{t^2} + a^2 \delta_{ij} \dd{x^{i}} \dd{x^{j}}
+\,.
+\end{align}
+%
+
+We will neglect spatial curvature because it does not affect the CMB anisotropies in the universe much.
+
+In general this perturbation will be gauge-dependent, and we want to write only a number of independent components corresponding to the number of physical degrees of freedom. This is done via the scalar-vector-tensor decomposition \cite[section 2.1]{bertschingerCosmologicalPerturbationTheory2000a}.
+
+We decompose the components of \(h_{\mu \nu }\) as: 
+%
+\begin{align}
+h_{00} &= -2 \Phi \,, &
+h_{0i} &= 2a \omega_{i} &
+h_{ij} &= a^2 \qty(-2 \Psi \delta_{ij} + \chi_{ij})
+\,.
+\end{align}
+
+So, we have distinguished two scalar degrees of freedom \(\Phi \) and \(\Psi \), plus a vector \(\omega_{i}\) and a tensor \(\chi_{ij}\).
+Since we can absorb any variations of the trace of the spatial part of the metric into \(\Psi \), we can assume \(\chi_{ij}\) to be traceless, which takes away one degree of freedom from the 6 of the tensor. 
+This would mean we have  \(2+ 3 + 6 -1 = 10\) degrees of freedom, the right amount before accounting for gauge. 
+
+Now, we make use of the Helmholtz decomposition: any vector field \(x^{i}\) can be written as \(x^{i} = x^{i}_{\perp} + x^{i}_{\parallel}\), where \(x^{i}_{\perp}\) is solenoidal (\(\nabla_{i} x^{i}_{\perp} = 0\)), while \(x^{i}_{\parallel}\) is irrotational (\(\epsilon^{ijk}\nabla_{i}x_{j} = 0\)). 
+
+This means that we can split the three degrees of freedom of the vector field into one in \(x^{i}_{\parallel}\) --- since it is irrotational, it can be written as the gradient of a scalar function ---, and two in \(x^{i}_{\perp}\), since it is a 3D vector field for which one component is determined. 
+
+We can do a similar thing for the tensor perturbation, but it is slightly more complicated: it it written in the form 
+%
+\begin{align}
+\chi_{ij} = 
+\underbrace{\chi_{ij}^{\parallel}}_{\text{1 dof}} + 
+\underbrace{\chi_{ij}^{\perp}}_{\text{3 dof}} + 
+\underbrace{\chi_{ij}^{T}}_{\text{2 dof}} 
+\,,
+\end{align}
+%
+where \(\chi^{\parallel}\) contains only one degree of freedom, since it can be written as 
+%
+\begin{align}
+\chi^{\parallel}_{ij} = \qty(\nabla_{i} \nabla_{j} - \frac{1}{3} \delta_{ij}\nabla^2) \phi_{S}
+\,,
+\end{align}
+%
+while \(\chi^{\perp}_{ij}\) contains three degrees of freedom, since it can be written as the symmetrized gradient of a vector field \(S^{T}\):
+%
+\begin{align}
+\chi^{\perp}_{ij} = 2 \nabla_{(i} S_{j)}^{T}
+\,,
+\end{align}
+%
+where the vector field is divergence-free: \(\nabla_{j} S^{j}_{T} = 0\).
+
+The last term is fully transverse: its divergence vanishes, \(\nabla_{i} \chi^{ij}_{T} = 0\).  This term then contains two physical degrees of freedom, since it starts out from five --- it is a symmetric spatial tensor with zero trace --- but we impose 3 equations.
+
+Now, the term \(\chi^{\parallel}\) can be absorbed into \(\Phi \) so we remove it. 
+Let us enumerate the degrees of freedom we have, distinguishing them into ``modes'' based on how they transform:
+\begin{enumerate}
+  \item The \textbf{tensor mode} is given by \(\chi^{T}_{ij}\), the part of the spatial metric perturbation which cannot be obtained as a gradient. It has two degrees of freedom, and it transforms as a spin-2 field (which means it is unchanged by rotations of angle \(\pi \) about its axis). This corresponds to gravitational radiation. 
+  \item The \textbf{vector mode} is given by the vectors \(\omega_{i}\) and \(S^{T}_{i}\). It has 
+\end{enumerate}
+
+\end{bluebox}
+  
+  Now we use a perturbed FLRW metric, in the Poisson gauge.  
 %
 \begin{align}
 \dd{s^2} = - e^{2 \Phi } \dd{t^2} 

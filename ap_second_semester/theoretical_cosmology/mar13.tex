@@ -6,7 +6,7 @@
 \marginpar{Friday\\ 2020-3-13, \\ compiled \\ \today}
 
 Today we discuss the CMB. 
-This is discussed in the book Modern Cosmology \cite{dodelsonModernCosmology2003}, we follow the professor's notes.
+This is discussed in the book Modern Cosmology \cite{dodelsonModernCosmology2003}, we will follow the professor's notes, which are available in the Dropbox.
 
 A note: in these lectures a dot will refer to conformal time derivatives only, if we differentiate with respect to cosmic time we shall write the derivative explicitly.
 Let us suppose we have some particle species interacting, such as \(1 + 2 \leftrightarrow 3 +4\). 
@@ -35,11 +35,20 @@ a^{-3} \dv{(n_1 a^3)}{t}
 where:
 \begin{enumerate}
   \item the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to go to a reference frame which is locally Minkowski: in our description of an instantaneous process such as this, the deviations from this frame are negligible.
-  \item \(\mathcal{M}\) is the invariant scattering amplitude between the initial and final states. 
+  \item \(\mathcal{M}\) is the invariant scattering amplitude between the initial and final states. It is proportional to 
+  %
+  \begin{align}
+  \mathcal{M} \propto S_{12, 34} = \bra{12} \hat{H} _{\text{int}} \ket{34}
+  \,,
+  \end{align}
+  %
+  where \(S\) is the \(S\)-matrix, while \(\hat{H}_{\text{int}}\) is the interaction Hamiltonian and \(\ket{12}\), \(\ket{34}\) are the intial and final states. 
+  The proportionality factor accounts for the fact that we want this element to be Lorentz invariant.
   \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. Bose statistics enhance the process, Pauli statistics block it. 
   \item The \(2\pi \)-s account for the normalization of the deltas: if we were to discretize phase space and use Kronecker deltas we would not need them. 
   \item The energy of each particle species is given by  \(E = \sqrt{p^2+m^2}\). 
-  Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the equations of motion are preferred in the path integral. So, we impose this condition: we do 
+  Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the equations of motion are (very much) preferred in the path integral.
+  Because of this, it is an excellent approximation to just impose this condition: we do 
   %
   \begin{align}
   \int \dd[3]{p} \int_{0}^{ \infty } \delta (E^2- p^2-m^2) 
@@ -50,17 +59,24 @@ where:
   so we include the term in the denominator. 
 \end{enumerate}
 
-\todo[inline]{Clarify definition of \(\mathcal{M}\). }
+% \todo[inline]{Clarify definition of \(\mathcal{M}\). }
 
-If there is no interaction, \(n_1 \propto a^{-3}\). 
+If there is no interaction, \(n_1 \propto a^{-3}\), as we expect for nonrelativistic matter. 
 
-We set \(\hbar = c = k_B = 1\).
+We are integrating over the momenta of all the particles except for \(1\) in order to account for all the possible ways the reaction could happen. 
+% The \(2E_{i}\) factors in the denominator 
 
+\todo[inline]{
+Something like: 
 
-The term for particle \(1\), \(E_1\), has a different origin: the time is related to the proper time by \(p^{0}\), which is \(E_1\). The factor \(2\) is included for symmetry, it is indifferent if we include it or not since we can normalize the helicities \(g_{i}\). 
+The term for particle \(1\), \(E_1\), has a different origin: the time is related to the proper time by \(p^{0}\), which is \(E_1\).
+The factor \(2\) is included for symmetry, it is indifferent if we include it or not since we can normalize the helicities \(g_{i}\). 
 
-Typically we have kinetic equilibrium, if the scattering time is very short with respect to the Hubble time. 
-So, we use 
+was mentioned during lecture, but why should we not integrate over \(\dd[4]{p_1}\) and apply the same reasoning as the other particles?
+}
+
+Typically we have kinetic equilibrium, as long as the scattering time is very short with respect to the Hubble time. 
+So, we use the conventional distribution functions for Bose-Einstein or Fermi-Dirac gases,
 %
 \begin{align}
 f_{\text{BE/FD}} = \qty(\exp(\frac{E- \mu }{T}) \pm 1)^{-1}
@@ -68,11 +84,21 @@ f_{\text{BE/FD}} = \qty(\exp(\frac{E- \mu }{T}) \pm 1)^{-1}
 \end{align}
 %
 where the sign is a \(-\) for Bose Einstein statistics, while a \(+\) for Fermi-Dirac statistics. 
+Here, \(E\) is the energy of the particle, \(\mu \) is its chemical potential, which quantifies how much the energy changes if we add particles, while \(T\) is the temperature. 
 
-For the nonrelativistic particles (all of them, except the photons) we have \(E - \mu \gg T\). 
-If \(f\) becomes very small, then we can drop the terms \((1 \pm f_i)\). This is the Boltzmann limit. 
+For the nonrelativistic particles (all of them, except the photons\footnote{As we will discuss in more detail later, the recombination temperature is around \SI{.3}{eV}}, much less than the mass of the lightest particles involved, electrons.) we have \(E - \mu \gg T\). 
+If \(f\) becomes very small, then we can drop the terms \((1 \mp f_i)\).\footnote{What do these terms look like? We have 
+%
+\begin{align}
+1 \mp f_i = 1 \mp \frac{1}{e^{(E-\mu ) / T} \pm 1}
+= \frac{e^{(E - \mu ) / T} \pm 1 \mp 1}{e^{(E- \mu ) / T} \pm 1 }
+= \frac{1}{1 \pm e^{- (E - \mu ) / T}}
+\,.
+\end{align}
+%
+} This is the Boltzmann limit. 
 
-In theory we could not do this for photons, in practice we do it and the magnitude of the error is the same as the ratio \(\zeta (3) \approx 1.2\) to \(1\). 
+In theory we could not do this for photons, in practice we do it and the magnitude of the error is the same as the ratio \(\zeta (3) \approx 1.2\) to \(1\), where \(\zeta \) is the Riemann zeta function. 
 
 Then, our distributions will be given by 
 %
@@ -84,21 +110,29 @@ f(E) = e^{ \mu / T} e^{- E/ T}
 So the phase space distribution term is 
 %
 \begin{align}
-\exp(- \frac{E_1 + E_2 }{T} ) \qty(e^{(\mu_3 + \mu_4 ) / T} - e^{(\mu_1 + \mu_2 ) / T})
+f_1 f_2 - f_3 f_4 &= \exp(\frac{-(E_1 + E_2 ) + (\mu_1 +\mu_2 )}{T})
+- \exp(\frac{-(E_3 + E_4) + (\mu_3 +\mu_4 )}{T})\\
+&=\exp(- \frac{E_1 + E_2 }{T} ) \qty(e^{(\mu_3 + \mu_4 ) / T} - e^{(\mu_1 + \mu_2 ) / T})
 \,,
 \end{align}
 %
-where we used the fact that \(E_1 + E_2 = E_3 + E_4 \) by energy conservation, as we said. 
-If we enforced the Saha condition, chemical equilibrium \(\mu_1 + \mu_2 = \mu_3 + \mu_4 \), then we get precisely zero: the number densities of the species are constant.
+where we used the fact that \(E_1 + E_2 = E_3 + E_4 \) by energy conservation. 
 
-The mean number density of species \(i\) is given by 
+What do the chemical potentials look like?
+If we were to enforce the Saha condition \(\mu_1 + \mu_2 = \mu_3 + \mu_4 \), which is equivalent to chemical equilibrium , then we would get precisely zero for our variation of species number.
+This makes sense: if there is equilibrium, the number densities of the species do not change.
+So, we cannot restrict ourselves to chemical equilibrium if we want to describe recombination. 
+
+We can get relations for the chemical potentials starting from the number densities of the species which are already present:
+the mean number density of species \(i\) is given by 
 %
 \begin{align}
-n_i = g_i e^{\mu_{i} / T} \int \frac{ \dd[3]{p} }{(2 \pi )^3} e^{-E_i / T}
+n_i = \frac{g_i}{(2\pi)^3} \int \dd[3]{p} f(p)
+= g_i e^{\mu_{i} / T} \int \frac{ \dd[3]{p} }{(2 \pi )^3} e^{-E_i / T}
 \,,
 \end{align}
 %
-where \(g_i\) is the number of helicity states. 
+where \(g_i\) is the number of helicity states of the particle (see the notes for the course in fundamentals of astrophysics and cosmology for more details \cite[]{tissinoFundamentalsAstrophysicsCosmology2020}). 
 
 So, we find for the whole expression inside the brackets:
 %

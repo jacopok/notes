@@ -36,17 +36,17 @@ where:
 \begin{enumerate}
   \item the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to go to a reference frame which is locally Minkowski: in our description of an instantaneous process such as this, the deviations from this frame are negligible.
   \item \(\mathcal{M}\) is the \emph{invariant scattering amplitude} between the initial and final states.
-  In Quantum Field Theory, in order to describe a process one assumes that the particles involved usually evolve according to their free Hamiltonians, while their interaction is described by an interaction Hamiltoninan \(\hat{H} _{\text{int}}\). So, the matrix element of the time evolution between the initial state \(\ket{12}\) and the final state \(\ket{34}\) is called the \(S\)-matrix element:
+  In Quantum Field Theory, in order to describe a process one assumes that the particles involved usually evolve according to their free Hamiltonians, while their interaction is described by an interaction Hamiltonian \(\hat{H} _{\text{int}}\) --- we put ourselves in the interaction picture, so that the free time evolution is factored out. The matrix element of the time evolution between the initial state \(\ket{12}\) and the final state \(\ket{34}\) is called the \(S\)-matrix element:
   %
   \begin{align}
   S_{12, 34} = \lim_{t \rightarrow \infty } \bra{12} U(t) \ket{34} 
   \,,
   \end{align}
   %
-  where \(t\) is assumed to go to infinity. This is in general hard to express, but it can be formally written as a Dyson series in terms of the interaction Hamiltonian --- we put ourselves in the interaction picture, so that the free time evolution is factored out. If we only consider this series to first order we get 
+  where \(t\) is assumed to go to infinity since we are considering asymptotic initial and final states. This is in general hard to express, but it can be formally written as a Dyson series in terms of the interaction Hamiltonian. If we only consider this series to first order we get (roughly speaking):
   %
   \begin{align}
-  S_{12, 34} = \underbrace{\braket{12}{34}}_{=0} + \bra{12} \hat{H}_{\text{int}} \ket{34}
+  S_{12, 34} \sim \underbrace{\braket{12}{34}}_{=0} + \bra{12} \hat{H}_{\text{int}} \ket{34}
   \,.
   \end{align}
   %
@@ -57,12 +57,14 @@ where:
   \,.
   \end{align}
   %  
-  where \(S\) is the \(S\)-matrix, while \(\hat{H}_{\text{int}}\) is the interaction Hamiltonian and \(\ket{12}\), \(\ket{34}\) are the intial and final states. 
-  The proportionality factor accounts for the fact that we want this element to be Lorentz invariant.
+  Do note that \(\mathcal{M}\) is an amplitude, while \(\abs{\mathcal{M}}^2\) is a probability. 
+  If we integrate across all of momentum space, as we are doing, we get the total probability of the process happening. For more details, see Peskin \cite[sections 7.2, 7.3]{peskinConceptsElementaryParticle2019}.
+  % where \(S\) is the \(S\)-matrix, while \(\hat{H}_{\text{int}}\) is the interaction Hamiltonian and \(\ket{12}\), \(\ket{34}\) are the intial and final states. 
+  % The proportionality factor accounts for the fact that we want this element to be Lorentz invariant.
   \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. Bose statistics enhance the process, Pauli statistics block it. 
   \item The \(2\pi \)-s account for the normalization of the deltas: if we were to discretize phase space and use Kronecker deltas we would not need them. 
-  \item The energy of each particle species is given by  \(E = \sqrt{p^2+m^2}\). 
-  Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}. A priori, the particle does whatever it wants, however solutions to the equations of motion are (very much) preferred in the path integral.
+  \item The energy of each particle species is given by  \(E^2 = p^2+m^2\). 
+  Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}: a priori, the particle does whatever it wants, however solutions to the equations of motion are (very much) preferred in the path integral.
   Because of this, it is an excellent approximation to just impose this condition: we do 
   %
   \begin{align}
@@ -149,20 +151,72 @@ n_i = \frac{g_i}{(2\pi)^3} \int \dd[3]{p} f(p)
 %
 where \(g_i\) is the number of helicity states of the particle (see the notes for the course in fundamentals of astrophysics and cosmology for more details \cite[]{tissinoFundamentalsAstrophysicsCosmology2020}). 
 
-So, we find for the whole expression inside the brackets:
+So, we can define 
 %
 \begin{align}
-\frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
-- 
-\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}
+n_{i}^{(0)} = \eval{n_{i}}_{\mu_{i} = 0 }
+\implies 
+e^{\mu_i / T} = \frac{n_i}{n_i^{(0)}}
+\,.
+\end{align}
+
+These quantities can be estimated if the particles are either very relativistic (\(E_i \approx p_i\)) or very non-relativistic (\(E_i \approx m_i + p^2 / 2 m_i\)): in the second case we have\footnote{We need to use a gaussian integral: in general, we have the theorem 
+%
+\begin{align}
+\int \dd[n]{x} \exp(- \frac{1}{2} A_{ij} x_{i} x_{j}) = \sqrt{\frac{(2\pi )^{n}}{\det A}}
 \,,
 \end{align}
 %
-so we can define the time-averaged cross section 
+and in our case \(A_{ij} =  (m_i T)^{-1} \delta_{ij}\), so \(\det A = (m_i T)^{-3}\).
+}
 %
 \begin{align}
-\expval{\sigma v} = \frac{1}{n_1^{(0)} n_2^{(0)}}
-\prod_{i} \int \frac{ \dd[3]{p}}{2 E_i} \dots
+n_{i}^{(0)}  
+&= g_i \int \frac{ \dd[3]{p}}{(2 \pi)^3} e^{-E_i / T}
+\approx \frac{g_i}{(2 \pi)^3} e^{-m_i / T} \int \dd[3]{p} e^{- \frac{p^2}{2m_i T}} \\
+&= \frac{g_i}{(2 \pi)^3} e^{-m_i / T} \sqrt{(2 \pi)^3 (m_i T)^3}  
+= g_i \qty(\frac{m_i T}{2 \pi })^{3/2} e^{-m_i / T}
+\,,
+\end{align}
+%
+while in the very relativistic case we find 
+%
+\begin{align}
+n_{i}^{(0)}  
+&= g_i \int \frac{ \dd[3]{p}}{(2 \pi)^3} e^{-E_i / T}
+\approx \frac{g_i}{(2 \pi)^3} \int \dd[3]{p} e^{- p_i / T}  \\
+&= \frac{g_i}{(2\pi )^3} 4 \pi T^3 \int e^{-x} x^2 \dd{x}  
+= \frac{g_i}{\pi^2} T^3
+\,.
+\end{align}
+
+For photons, the correct expression accounting for their quantum mechanical statistics would be this one, multiplied by the Riemann zeta function calculated at \(3\): 
+%
+\begin{align}
+\zeta (3) = \sum _{n \in \mathbb{N} } \frac{1}{n^3} \approx 1.2
+\,,
+\end{align}
+%
+so we are wrong by about \SI{20}{\percent} in neglecting it. 
+
+Inserting these \(n_i^{(0)}\) we get the simpler expression
+%
+\begin{align}
+e^{(\mu_3 + \mu_4 ) / T} - e^{( \mu_1 + \mu_2 ) / T} 
+=
+\frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
+- 
+\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}
+\,.
+\end{align}
+
+We can define the thermally-averaged cross section to encompass all the terms which do not depend on the number densities at a specific time: 
+%
+\begin{align}
+\expval{\sigma v} &= \frac{1}{n_1^{(0)} n_2^{(0)}}
+\prod_{i=1}^{4} \int \frac{ \dd[3]{p}}{2 E_i} 
+e^{- (E_1 + E_2 ) / T} 
+(2 \pi )^{4} \delta^{(4)} \qty(p^{\mu }_{1} + p^{\mu }_{2} - p^{\mu }_{3} - p^{\mu }_{4}) \abs{\mathcal{M}}^2
 \,,
 \end{align}
 %
@@ -170,10 +224,10 @@ so the final equation is
 %
 \begin{align}
 a^{-3} \dv[]{}{t} (n_1 a^3)
-= \expval{\sigma v} n_1^{(0)} n_2^{(0)} 
+= \expval{\sigma v} n_1^{(0)} n_2^{(0)} \qty[
 \frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
 - 
-\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}
+\frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}]
 \,,
 \end{align}
 %

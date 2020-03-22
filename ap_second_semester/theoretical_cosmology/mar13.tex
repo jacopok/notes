@@ -35,13 +35,28 @@ a^{-3} \dv{(n_1 a^3)}{t}
 where:
 \begin{enumerate}
   \item the delta functions account for momentum and energy conservation: energy is \emph{not conserved} in general in cosmology, \emph{but} we can use the equivalence principle to go to a reference frame which is locally Minkowski: in our description of an instantaneous process such as this, the deviations from this frame are negligible.
-  \item \(\mathcal{M}\) is the invariant scattering amplitude between the initial and final states. It is proportional to 
+  \item \(\mathcal{M}\) is the \emph{invariant scattering amplitude} between the initial and final states.
+  In Quantum Field Theory, in order to describe a process one assumes that the particles involved usually evolve according to their free Hamiltonians, while their interaction is described by an interaction Hamiltoninan \(\hat{H} _{\text{int}}\). So, the matrix element of the time evolution between the initial state \(\ket{12}\) and the final state \(\ket{34}\) is called the \(S\)-matrix element:
   %
   \begin{align}
-  \mathcal{M} \propto S_{12, 34} = \bra{12} \hat{H} _{\text{int}} \ket{34}
+  S_{12, 34} = \lim_{t \rightarrow \infty } \bra{12} U(t) \ket{34} 
   \,,
   \end{align}
   %
+  where \(t\) is assumed to go to infinity. This is in general hard to express, but it can be formally written as a Dyson series in terms of the interaction Hamiltonian --- we put ourselves in the interaction picture, so that the free time evolution is factored out. If we only consider this series to first order we get 
+  %
+  \begin{align}
+  S_{12, 34} = \underbrace{\braket{12}{34}}_{=0} + \bra{12} \hat{H}_{\text{int}} \ket{34}
+  \,.
+  \end{align}
+  %
+  The invariant scattering amplitude is then defined so that 
+  %
+  \begin{align}
+  \abs{S_{12, 34}}^2 = (2 \pi)^{4} \delta^{(4)} (p^{\mu }_{1} + p^{\mu }_{2} - p^{\mu }_{3} - p^{\mu }_{4}) \abs{\mathcal{M}}^2
+  \,.
+  \end{align}
+  %  
   where \(S\) is the \(S\)-matrix, while \(\hat{H}_{\text{int}}\) is the interaction Hamiltonian and \(\ket{12}\), \(\ket{34}\) are the intial and final states. 
   The proportionality factor accounts for the fact that we want this element to be Lorentz invariant.
   \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. Bose statistics enhance the process, Pauli statistics block it. 

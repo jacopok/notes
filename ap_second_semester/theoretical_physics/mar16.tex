@@ -192,7 +192,7 @@ e^{-iMt} \qty(\nabla- iq \vec{A})^2 &\varphi^{\prime } = \\
 \qty[\partial_0^2 - M^2 - 2iM \partial_0  + 2iq A_0 (-iM) + 2 iq \qty(\partial_0 A_0 ) + 2iq A_0 \partial_0 - q^2 A_0^2 + M^2] & \varphi^{\prime }  
 \end{split}
 \\ 
-\qty[\partial_0^2 - 2iM \partial_0  + 2q A_0 M + 2 iq \qty(\partial_0 A_0 ) + 2iq A_0 \partial_0 - q^2 A_0^2 ]
+= \qty[\partial_0^2 - 2iM \partial_0  + 2q A_0 M + 2 iq \qty(\partial_0 A_0 ) + 2iq A_0 \partial_0 - q^2 A_0^2 ]
 \varphi^{\prime }
 =  
 \qty(\nabla- iq \vec{A})^2  &\varphi^{\prime }
@@ -249,45 +249,66 @@ j^{\mu }_{EM} = \frac{1}{2} \qty(i \varphi^{*} \partial^{\mu } \varphi   - q A^{
 Similarly to what was done before, we notice that 
 %
 \begin{align}
-\varphi^{*} \qty(\DD^{\mu } \DD_{\mu } + M^2) \varphi = 0
+\varphi^{*} \qty(\DD^{\mu } \DD_{\mu } + M^2) \varphi = 
+\varphi^{*}\qty[\square + 2iq A^{\mu } \partial_{\mu } + iq \qty(\partial_{\mu } A^{\mu }) - q^2A^2 + M^2] \varphi
+=0
 \,
 \end{align}
 %
-can be added to the negative of its complex conjugate to yield 
+can be added to the negative of its complex conjugate, which reads 
 %
-\begin{subequations}
 \begin{align}
-0&= \varphi^{*} \qty(\DD^{\mu } \DD_{\mu }) \varphi - \text{c. c. } \marginnote{Simplified mass terms, which were symmetric in \(\varphi^{*} \leftrightarrow \varphi \)}
-\\
-0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \qty(\DD^{\mu } \varphi^{*}) \qty(\DD_{\mu } \varphi ) - \text{c. c. } \marginnote{Removed symmetric term in \(\varphi \leftrightarrow \varphi^{*}\)}\\ 
-0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \text{c. c. } \\ 
-0&= \DD^{\mu } \qty( \varphi^{*} \DD_{\mu } \varphi - \text{c. c. }) \\ 
-0&= \DD^{\mu } j_{\mu }
+\varphi \qty[\square - 2 iq A^{\mu }\partial_{\mu } - i q \qty(\partial_{\mu } A^{\mu }) ] \varphi^{*} = 0
 \,,
 \end{align}
-\end{subequations}
 %
-so our conserved current is 
+to yield 
+% %
+% \begin{subequations}
+% \begin{align}
+% 0&= \varphi^{*} \qty(\DD^{\mu } \DD_{\mu }) \varphi - \text{c. c. } \marginnote{Simplified mass terms, which were symmetric in \(\varphi^{*} \leftrightarrow \varphi \)}
+% \\
+% 0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \qty(\DD^{\mu } \varphi^{*}) \qty(\DD_{\mu } \varphi ) - \text{c. c. } \marginnote{Removed symmetric term in \(\varphi \leftrightarrow \varphi^{*}\)}\\ 
+% 0&= \DD^{\mu } \qty(\varphi^{*} \DD_{\mu } \varphi) - \text{c. c. } \\ 
+% 0&= \DD^{\mu } \qty( \varphi^{*} \DD_{\mu } \varphi - \text{c. c. }) \\ 
+% 0&= \DD^{\mu } j_{\mu }
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% so our conserved current is 
+% %
+% \begin{subequations}
+% \begin{align}
+% j^{\mu } &= \varphi^{*} \DD^{\mu } \varphi - \text{c. c. } \\
+% j^{\mu } &= \varphi^{*} \partial^{\mu } \varphi 
+% + iq A^{\mu } \varphi^{*} \varphi 
+% - \text{c. c. }  \\
+% &= \varphi^{*} \partial^{\mu} \varphi + i q A^{\mu } \varphi^{*} \varphi - \varphi \partial^{\mu }\varphi^{*} + i q A^{\mu } \varphi^{*} \varphi \\
+% &= \varphi^{*} \partial^{\mu} \varphi - \varphi \partial^{\mu }\varphi^{*} + 2i q A^{\mu } \varphi^{*} \varphi 
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% and conventionally we define \(j^{\mu }_{EM} = \frac{i}{2} j^{\mu }\), which is 
+% %
+% \begin{align}
+% j^{\mu }_{EM} = \frac{i}{2} \varphi^{*}\partial^{ \mu } \varphi 
+% -\frac{i}{2} \varphi\partial^{ \mu } \varphi^{*} + \frac{2}{2} i^2  q A^{\mu } \varphi^{*} \varphi 
+% \,.
+% \end{align} 
 %
-\begin{subequations}
 \begin{align}
-j^{\mu } &= \varphi^{*} \DD^{\mu } \varphi - \text{c. c. } \\
-j^{\mu } &= \varphi^{*} \partial^{\mu } \varphi 
-+ iq A^{\mu } \varphi^{*} \varphi 
-- \text{c. c. }  \\
-&= \varphi^{*} \partial^{\mu} \varphi + i q A^{\mu } \varphi^{*} \varphi - \varphi \partial^{\mu }\varphi^{*} + i q A^{\mu } \varphi^{*} \varphi \\
-&= \varphi^{*} \partial^{\mu} \varphi - \varphi \partial^{\mu }\varphi^{*} + 2i q A^{\mu } \varphi^{*} \varphi 
+\begin{split}
+0&=\varphi^{*} \square \varphi + 2iqA_{\mu } \varphi^{*} \partial^{\mu } \varphi + iq \qty(\partial_{\mu }A^{\mu } ) \varphi \varphi^{*} + \\
+&-\varphi \square \varphi^{*} + 2iqA_{\mu } \varphi \partial^{\mu } \varphi^{*} + iq \qty(\partial_{\mu }A^{\mu } ) \varphi \varphi^{*}
+\end{split}  \marginnote{The \(q^2A^2\) and \(M^2\) terms cancel since they are real}\\
+&= \partial^{\mu } \qty(\varphi^{*} \partial_{\mu } \varphi - \varphi \partial_{\mu } \varphi^{*}) + 2iq \qty[A_{\mu } \qty(\varphi^{*} \partial^{\mu } \varphi  + \varphi \partial^{\mu } \varphi^{*} ) + \varphi \varphi^{*} \partial_{\mu } A^{\mu }]  \\
+&= \partial^{\mu } \qty[ \varphi^{*} \partial_{\mu } \varphi - \varphi^{*} \partial_{\mu } \varphi + 2 iq A_{\mu } \varphi \varphi^{*}]
 \,,
 \end{align}
-\end{subequations}
 %
-and conventionally we define \(j^{\mu }_{EM} = \frac{i}{2} j^{\mu }\), which is 
-%
-\begin{align}
-j^{\mu }_{EM} = \frac{i}{2} \varphi^{*}\partial^{ \mu } \varphi 
--\frac{i}{2} \varphi\partial^{ \mu } \varphi^{*} + \frac{2}{2} i^2  q A^{\mu } \varphi^{*} \varphi 
-\,.
-\end{align} 
+so the expression inside the brackets is the conserved current, up to a multiplicative factor of \(i/2\). 
 \end{proof}
 
 \end{document}

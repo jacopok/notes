@@ -33,12 +33,12 @@ There are many good textbooks, for example ``\citetitle{LucchinColes:2002}'' by 
 
 \section{The cosmological principle}
 
-The basis for the modern treatment of cosmology is the \textbf{cosmological principle} (or Copernican principle):
+The basis for the modern treatment of cosmology is the \textbf{Copernican principle}:
 roughly stated, it is ``\emph{we do not occupy a special, atypical position in the universe}''.
 We will discuss the validity of this later in this section.
 It is extremely useful to make such an assumption since it endows our model of the universe with a great deal of symmetry, which makes its mathematical treatment manageable. 
 
-A more formal statement is:
+As we will discuss shortly, this principle can be combined with our observations of isotropy to yield:
 %
 \begin{proposition}[Cosmological principle]
     Every \emph{comoving observer} observes the Universe around them at a \emph{fixed time} in their reference frame as being \emph{homogeneous} and \emph{isotropic}.
@@ -81,15 +81,15 @@ at small scales we see structures, such as galaxies or our Solar System, so we s
 \todo[inline]{Change citation for homogeneity length scale?}
 
 How can we talk about homogeneity if we can only look at the universe from a single point?
-We must \emph{assume} that any other observer would also see isotropy as we do.
+We must \emph{assume} that any other observer would also see isotropy as we do: this is precisely what the Copernican principle tells us.
 
-Isotropy around every point implies homogeneity. We observe isotropy, we assume homogeneity.
-So, we can go from isotropy to homogeneity under the assumption that we are typical observers.
+Isotropy around every point implies homogeneity. We observe isotropy, and with the assumption that we are typical observers we obtain homogeneity.
+% So, we can go from isotropy to homogeneity under the assumption that we are typical observers.
 
 % What if we are not typical? a different assumption is that our observer status is \emph{random} according to some distribution\dots
 % This discussion then starts to involve the anthropic principle.
 
-In the end, this assumption has to be made before any cosmological study starts: it might not be completely correct, but it allows us to make falsifiable predictions, so we shall keep it until the models it allows us to create do not match observations anymore.
+In the end, this assumption is the basis of modern cosmology: it has to be made before any cosmological study starts: it might not be completely correct, but it allows us to make falsifiable predictions, so we shall keep it until the models it allows us to create do not match observations anymore.
 
 \section{The geometry of spacetime}
 
@@ -110,7 +110,7 @@ The metric of Minkowski spacetime, which has all of these 10 symmetries, reads:
 %
 \begin{subequations}
 \begin{align}
-\dd{s^2} &= c^2 \dd{t^2} - \dd{\vec{x}^2} && \text{(cartesian coordinates)} \\
+\dd{s^2} &= c^2 \dd{t^2} - \dd{\vec{x}^2} && \text{(Cartesian coordinates)} \\
 &= c^2 \dd{t^2} - \dd{r^2} - r^2 \dd{\Omega^2} && \text{(spherical coordinates)}
 \,,
 \end{align}
@@ -172,7 +172,7 @@ On the other hand, in 2D has only 1 independent component: \(R_{1212} = R \det g
 % If we have a direction in which the surface is flat, such as in a cylinder, then \(R=0\): it is intrinsically flat.
 \end{bluebox}
 
-The metric for a cartesian flat 2D plane is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
+The metric for a Cartesian flat 2D plane is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
 The constant \(a\) is included since we want \(r\) to be dimensionless.
 
 The metric for the surface of a sphere is:
@@ -190,7 +190,7 @@ therefore the only difference is that trigonometric functions become hyperbolic 
 \label{fig:sin_vs_sinh}
 \end{figure}
 
-Do note that for the sphere \(\theta  \in [- \pi, \pi ]\) while for the hyperboloid we can in principle have \(\theta \in \mathbb{R}\): this is indicative of the fact that the sphere is bounded, while the hyperboloid is infinite, 
+Do note that for the sphere \(\theta  \in [- \pi, \pi ]\) while for the hyperboloid we can in principle have \(\theta \in \mathbb{R}\): this is indicative of the fact that the sphere is bounded, while the hyperboloid is not.
 
 For both of these, let us define the variable: \(r = \sin\theta \) in the spherical case, and \(r = \sinh \theta \)  in the hyperbolic case.
 
@@ -231,7 +231,7 @@ The properties of the sphere and of the hyperboloid actually carry over to the 3
 
 \subsection{Other forms of the RW metric}
 
-If we wish to use cartesian coordinates the RW metric takes the following expression:
+If we wish to use Cartesian coordinates the RW metric takes the following expression:
 %
 \begin{equation}
   \dd{s^2} = c^2 \dd{t^2} - a^2 (t) \qty(1 + \frac{k \abs{x}^2}{4} )^{-2} \qty(\dd{x^2} + \dd{y^2} + \dd{z^2}) \,.
@@ -246,8 +246,11 @@ We can also change time variable: the \emph{conformal time} \(\eta \) is such th
 \end{equation}
 
 % The parameter \(\eta\) is called \emph{conformal time}: RW is said to be \emph{conformal} to Minkowski.
+
+\todo[inline]{Clarify distinction on different types of conformal transformations and dependence on spatial curvature.}
+
 \begin{bluebox}
-Conformal transformations are defined to be those which preserve angles locally; since angles are defined through the metric but the angle between two vectors does not change if they are rescaled, this can be translated into the condition that the metric is rescaled by a generic function:
+Conformal (Weyl) transformations are defined to be those which preserve angles locally; since angles are defined through the metric but the angle between two vectors does not change if they are rescaled, this can be translated into the condition that the metric is rescaled by a generic function:
 %
 \begin{align}
 g_{ab} \rightarrow a^2(x^{i}) g_{ab}
@@ -255,9 +258,11 @@ g_{ab} \rightarrow a^2(x^{i}) g_{ab}
 \end{align}
 
 In our case, the dependence on the point in spacetime is reduced to a dependence on the cosmic time only since we have symmetry with respect to spatial translations.
+
+The conformal time is called that because if we use it we can map 
 \end{bluebox}
 
-In general our spacetime does not have conformal symmetry: a generic massive particle in it has a Compton wavelength \(\lambda = h / (mc)\) which defines its interaction cross section, so if the spacetime expands an ensemble of these particles will have different dynamics.
+The universe we inhabit does not have conformal symmetry: a generic massive particle in it has a Compton wavelength \(\lambda = h / (mc)\) which defines its interaction cross section, so if the spacetime expands an ensemble of these particles will have different dynamics.
 
 However, conformal geometry is useful for the description of particles which have no characteristic length, such as photons.
 The photons of the CMB look like they are thermal: they were thermal in the early universe, since they were in thermal equilibrium with matter (photons and matter particles were constantly Compton-scattering off each other); when matter and radiation decoupled the photons scattered for the last time and then kept travelling.

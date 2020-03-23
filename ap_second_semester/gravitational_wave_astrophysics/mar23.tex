@@ -1,4 +1,312 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Introduction}
+
+\marginpar{Monday\\ 2020-3-23, \\ compiled \\ \today}
+
+Organization: the instructor for this first part is professor Michela Mapelli. 
+
+Structure of the course:
+\begin{enumerate}
+  \item today we start with background on GW, theory and data;
+  \item tomorrow we will discuss BH formation from single stars;
+  \item on wednesday we will discuss BH formation form binary evolution;
+  \item next week we will discuss BH dynamics.
+\end{enumerate}
+
+In the next part we will discuss neutron stars with professor Thomas Tauris. 
+
+There is no final grade for the exam, only a pass/fail. 
+This year, there will be a google form with multiple choice questions. 
+
+\subsection*{What is GWA?}
+
+It is a branch of astrophysics which studies the astrophysical characterization of GW sources. 
+Mostly, it is about discussing binary black holes, binary neutron stars and NS-BH binaries, which emit in the frequency range we can observe right now. 
+
+The main open question is: what are the formation channels of the compact objects binaries observed by ground-base interferometers.
+
+\chapter{Gravitational wave summary}
+
+From wikipedia: ``GW are ripples in the curvature of spacetime which propagate as waves, travelling outward from the source, at the speed of light''.
+The math describing these is that of GR: the main equations are the Einstein Field Equations 
+%
+\begin{align}
+R_{\mu \nu } - \frac{1}{2} R g_{\mu \nu } = \frac{8 \pi G}{c^{4}} T_{\mu \nu }
+\,,
+\end{align}
+%
+where \(R_{\mu \nu }\) is the trace of the Riemann tensor, which is a measure of curvature; on the other hand \(T_{\mu \nu }\) is a measure of the density of \(4\)-momentum in spacetime, which acts as a source. 
+
+The metric \(g_{\mu \nu }\) is used in order to measure distances. 
+
+The EFE are in general 10 second-order nonlinear PDEs. 
+In the strong-curvature case, with rapidly moving sources we must use numerical solutions of the full nonlinear EFE. 
+
+In the weak field limit, with almost flat spacetime and slowly moving sources, we have analytic solutions. 
+
+We assume the perturbation looks like \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu } \), then we can linearize the EFE. We can rewrite the linearized equations using the trace-reversed perturbation 
+%
+\begin{align}
+\overline{h}_{\mu \nu } = h_{\mu \nu } - \frac{1}{2} \eta_{\mu \nu } h
+\,,
+\end{align}
+%
+and then in a special coordinate system (in a special gauge) we get 
+%
+\begin{align}
+\square \overline{h}_{\mu \nu } = \frac{16 \pi G}{c^{4}} T_{\mu \nu } + \mathcal{O}(h^2)
+\,,
+\end{align}
+%
+which can be solved in general using the method of Green's functions, just like in electrodynamics, to find 
+%
+\begin{align}
+\overline{h}^{\mu \nu } = \frac{4G}{c^{4}} \int \dd[3]{y} \frac{\eval{T^{\mu \nu} (t, \vec{y})}_{\text{ret}}}{\abs{\vec{x}- \vec{y}}}
+\,,
+\end{align}
+%
+where \(t _{\text{ret}} = t - \abs{\vec{x} - \vec{y}}/c\). 
+
+This is general but not easy to visualize. In order to discuss it we first assume we are far from our source:
+so we can say that the support of the stress-energy tensor is all at a distance \(r\) from us. So, we get 
+%
+\begin{align}
+\overline{h}^{\mu \nu } (t, \vec{x}) = \frac{4}{r} \frac{G}{c^{4}} \int \dd[3]{y} T^{\mu \nu } (t - r/c, \vec{y})
+\,.
+\end{align}
+
+If the source is moving slowly, that is, with a nonrelativistic velocity, we get 
+%
+\begin{align}
+\overline{h}^{ij} (t, \vec{x}) = \frac{2}{r} \frac{G}{c^{4}} \ddot{I}^{ij} (t- r/c)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+I^{ij} (t- r/c) = \int \dd[3]{y} x^{i} x^{j} \rho (t- r/c, \vec{y})
+\,.
+\end{align}
+
+For a full derivation see Hartle \cite[]{hartleGravityIntroductionEinstein2003}. 
+
+This means that not all accelerating masses produce GWs: only those with non-zero quadrupole moment do; there is a need for an asymmetry in mass distribution.
+
+Let us consider the simplest case we can have: a binary system, with two stars of equal mass \(M\) orbiting each other in a circular orbit of radius distance \(a\) with angular velocity \(\omega \). We can consider the center of mass and reduced mass coordinates. 
+
+The components of the second mass moment are found from \(x(t) = a \cos(\omega t)\), \(y = a \sin( \omega t)\), \(z = 0\): 
+%
+\begin{align}
+I_{xx} &= Ma^2 \qty[1 + \cos(2 \omega t)] \\
+I_{yy} &= Ma^2 \sin(2 \omega t) \\
+I_{zz} &= Ma^2 \qty[1 - \cos(2 \omega t)] 
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\overline{h}^{ij} \sim \frac{2}{r} \frac{G}{c^{4}} (2 \omega )^2  M a^2
+\left[\begin{array}{ccc}
+\cos((2 \omega (t - r/c))) & \sin((2 \omega (t - r/c))) & 0 \\ 
+\sin((2 \omega (t - r/c))) & -\cos((2 \omega (t - r/c))) & 0 \\ 
+0 & 0 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+which we can simplify using 
+%
+\begin{align}
+\omega = \sqrt{\frac{2GM}{a^2}}
+\,,
+\end{align}
+%
+so we can see that the frequency of the GW is \emph{twice} \(\omega \): \(\omega_{GM} = 2 \omega  \). 
+
+We also get the two polarizations, \(h_{+}\) and \(h_{ \times }\).
+
+The amplitudes are of the order 
+%
+\begin{align}
+h = \frac{1}{2} \qty(h_{+}^2 + h_{ \times }^2)^{1/2} \sim \frac{8 G^2}{c^{4}} \frac{M^2}{ra}
+\,,
+\end{align}
+%
+so with a solar mass binary, orbiting at a distance of a solar radius a kiloparsec away we get 
+%
+\begin{align}
+h \sim \num{e-21} \qty(\frac{M}{M_{\odot}})^2 \qty(\frac{\SI{1}{kpc}}{r}) \qty(\frac{R_{\odot}}{r})
+\,.
+\end{align}
+
+The amplitude is called the \emph{strain}: the bigger it is, the easier the detection. 
+
+The easiest events to detect involve large masses, are close, and involve very close inspirals. 
+
+\medskip
+
+The crucial thing is that GW emission implies energy loss: this can be express iin the Keplerian limit as
+%
+\begin{align}
+E _{\text{orb}} = - G \frac{m_1 m_2 }{2a}
+\,.
+\end{align}
+
+The variable thing here is the radius \(a\): it decreases, until coalescence. 
+As the semimajor axis decreases, the frequency increases. 
+
+In order to quantify this, we can use the expression for the power emitted: 
+%
+\begin{align}
+P_{GW} = \frac{32}{5} \frac{G^{4}}{c^{5}}
+\frac{1}{a^{5}} m_1^2 m_2^2 (m_1 +m_2 )
+\,,
+\end{align}
+%
+so we can write 
+%
+\begin{align}
+P_{GW} = \dv{E _{\text{orb}}}{t} = \frac{Gm_1 m_2 }{2a^2} \dv{a}{t}
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+\dv{a}{t} = \frac{64}{5} \frac{G^3}{c^{5}} \frac{1}{a^3} m_1 m_2 (m_1 + m_2 )
+\,,
+\end{align}
+%
+which we can integrate in order to find the necessary time for coalescence: 
+%
+\begin{align}
+t_{GW} = \frac{5}{256} \frac{c^{5}}{G^{3}} \frac{a^{4}}{m_1 m_2 (m_1 + m_2 )}
+\,.
+\end{align}
+
+Here we neglected the eccentricity, if we account for it we need to multiply by a term \((1- e^2)^{7/2}\). 
+
+This is an extremely long timescale. If \(a = \SI{1}{Au}\) and \(m_1 = m_2 = M_{\odot}\) we get timescales like \(t_{GW} \sim \SI{e17}{yr}\)!
+
+The aforementioned equations hold for the ``inspiral phase''. The phases we usually distinguish are 
+\begin{enumerate}
+  \item inspiral, when the Keplerian approximation still holds;
+  \item merger, when the distance between the objects is closer than the ISCO;
+  \item ringdown, when the objects have coalesced.
+\end{enumerate}
+
+We can use post-Newtonian techniques for the inspiral, then full numerical relativity for the merger, and ``black hole perturbation methods'' for the ringdown. 
+The ISCO has a radius is 
+%
+\begin{align}
+r_{ISCO} = 6 \frac{G (m_1 + m_2 )}{c^2}
+\,,
+\end{align}
+%
+and we can get a good estimate of the frequency using the Keplerian formula: 
+%
+\begin{align}
+\omega_{GW, ISCO} = 2 \sqrt{ \frac{G (m_1 + m_2 )}{r_{ISCO}^3}}
+\,,
+\end{align}
+%
+which works surprisingly well, better than a factor of 2. 
+
+See Abbott et al \cite[]{ligoscientificcollaborationandvirgocollaborationObservationGravitationalWaves2016} for graphs. 
+
+With the sensitivity of current ground-based detectors we can detect small BH and NS mergers. 
+
+SMBH mergers are too low frequency, but we could maybe see extremely high mass ratio mergers. 
+
+We could see GWs from neutrons stars with crustal asymmetries, with \SI{10}{Hz} to \SI{e-2}{Hz}.
+
+Asymmetric supernova explosions would also be in this frequency range, but with too low amplitude. 
+
+In this course we will focus on binary compact objects. 
+
+\section{Observations of GW}
+
+In the first two observations by LIGO-VIRGO we have seen 10 BBHs and 1 binary neutron star. 
+
+The third observing run is ongoing, it will finish about now. 
+
+From these observations we know that 
+\begin{enumerate}
+  \item BBHs exist;
+  \item BBHs can merge in a Hubble time;
+  \item Massive BHs (with mass \(>20  M_{\odot}\)) exist.
+\end{enumerate}
+
+As the observation number increases, the range of the observations increases. For O3, we will be able to see up to around \SI{110}{Mpc}: this number is derived discussing a test well-oriented \(1.3 M_{\odot}\) neutron star, which would give a SNR of around 12. 
+This is roughly proportional to \(m^{5/3}\): the more massive the object, the larger the horizon: we will be able to see further for more massive objects. 
+
+What are the parameters which are directly observables (neglecting eccentricity): 
+\begin{enumerate}
+  \item 2 masses;
+  \item 6 spin components;
+  \item polarization;
+  \item inclination of binary with respect to interferometers;
+  \item 2 angles (RA, DEC);
+  \item redshift;
+  \item reference time;
+  \item phase at a reference time.
+\end{enumerate}
+
+\subsection{Masses and spins}
+The ``no hair theorem'' states that BHs are unique up to mass and spin, since charge is negligible. 
+Conventionally, we have \(m_1 > m_2 \). 
+LIGO-VIRGO measure two masses: 
+%
+\begin{align}
+m _{\text{chirp}} &= \frac{(m_1 m_2 )^{3/5}}{(m_1 + m_2 )^{1/5}}  \\
+M &= m_1 + m_2 
+\,,
+\end{align}
+%
+where \(m _{\text{chirp}}\) defines the change of the frequency in the inspiral phase. 
+The total mass is measured by measuring the frequency at merger. 
+
+Generally, we can measure well one of these but not the other. 
+For high-mass mergers, we have the merger at the central frequency in the LIGO-VIRGO range, at around \SI{400}{Hz}. 
+For low-mass mergers, the merger is at a higher frequency: this means that we can see more of the inspiral, since it stays in the high-sensitivity range longer. 
+
+The detected BH mergers span the range from around 10 to \(60M_{\odot}\). 
+
+The masses of the NS detected through GW are consistent with those measured through X-ray binaries; on the other hand the BHs measured with GWs are heavier than those measured by EM measurements. 
+
+The spins of the BHs are defined by the vector 
+%
+\begin{align}
+\vec{S} = \frac{\vec{J} c}{G m^2}
+\,,
+\end{align}
+%
+which goes from \(S = 0\) for Schwarzschild to \(S = \num{.998}\) for tan extremal Kerr. 
+
+LIGO and VIRGO are not sensitive to individual spins. They can measure two combinations: if \(\hat{L}\) is the BBH orbital angular momentum, we define the effective spin as 
+%
+\begin{align}
+\chi _{\text{eff}} \frac{\qty(m_1 \vec{S}_{1} + m_2 \vec{S}_{2})}{m_1 + m_2 } \cdot \hat{L}
+\,,
+\end{align}
+%
+which ranges from \(-1\) to \(1\). 
+This is measures since it affects the phase of the GWs, while the orthogonal component of the spin affects precession: 
+%
+\begin{align}
+\chi_{p} = \frac{1}{B_1 m_1^2} \max \qty(B_1 S_{1, \perp}, B_2 S_{2, \perp})
+\,,
+\end{align}
+%
+where\dots
+
+These are really uncertain. 
+There is heavy degeneracy between the value \(q = m_2 / m_1 \) and the effective spin. 
+
+\todo[inline]{What does a 2D pdf plot showing degeneracy look like in general?}
+
 \end{document}

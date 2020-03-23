@@ -50,7 +50,10 @@ It can also be restated as \(cz = H_0 d\): the observed velocity of recession of
 \begin{align}
 1 + z = \sqrt{\frac{1 + v/c}{1 - v/c}} \gtrsim 1+ \frac{v}{c}
 \,.
-\end{align}})
+\end{align}
+
+This will not be relevant for our discussion, however, since before the special-relativistic corrections become relevant we will need to use general-relativistic corrections: roughly speaking, the effects of spacetime expanding while the photon travels from its source to us. 
+})
 by the formula 
 %
 \begin{align}
@@ -235,7 +238,26 @@ As we mentioned in the beginning, the data show the parameter \(q_0 \) to be neg
 
 This effect is similar to a Doppler effect, but the analogy is not perfect: the redshift is caused by the expansion of space itself, and the apparent velocities of the galaxies at high redshift would be superluminal. 
 
-\todo[inline]{The reasoning in \cite{Pacciani:2018} is not completely convincing: extrapolating a superluminal velocity from \(cz \sim 10c\) is meaningless, since these formulas were derived in the nonrelativistic approximation. If we use the correct relativistic formula for the Doppler shift this issue does not arise. We might be able to show that the apparent speed of high-redshift galaxies is superluminal but we need another way to do it. (Decisamente hai ragione, aggiungi poi che la relazione vale per z piccolo e 10 non è piccolo solitamente. Ad ogni modo ha ragione a dire che il rate di espansione potrebbe essere maggiore di c senza creare problemi alla relatività)}
+\subsubsection{Interpretation of superluminal recession velocities}
+
+What follows is a synthesis of the enlightening article by Davis and Lineweaver \cite[]{davisExpandingConfusionCommon2004}, which should be referred to for clarification.
+
+To start with, in General Relativity we cannot directly compare velocities of objects which are far away from each other: they lie in different vector spaces, and there can be no local inertial frame extending that far.
+So, it is consistent to have superluminal recession velocities, while observers near the emission, as well as observers near Earth, always measure velocities locally to be \(\leq c\). 
+
+The proper way to define velocities is directly through the metric: so, we will need to differentiate the relation \(d = a \chi \), where \(\chi \) is the distance in comoving coordinates and \(d\) is the physical distance, with respect to the cosmic time. This yields \(\dot{d} = \dot{a} \chi = H d\). 
+This \(\dot{d}\) is precisely the recession velocity, and this definition can be extended to any redshift. As written it is quite implicit, since we do not know what the distance in comoving coordinates is to an object we observe with redshift \(z\). This will be treated in section \ref{sec:measuring-distances}, but for now the result is (see also the aforementioned paper \cite[eq. 1]{davisExpandingConfusionCommon2004}) that the velocity, measured at a cosmic time \(t\), of an object observed with redshift \(z\), is
+%
+\begin{align}
+v _{\text{rec}} = H(t) d_C(z) = \frac{c \dot{a}(t)}{a_0 } \int_{0}^{z} \frac{ \dd{\widetilde{z}}}{H(\widetilde{z})}
+\,,
+\end{align}
+%
+which can be greater than \(c\). 
+
+\todo[inline]{Finish explanation.}
+
+% \todo[inline]{The reasoning in \cite{Pacciani:2018} is not completely convincing: extrapolating a superluminal velocity from \(cz \sim 10c\) is meaningless, since these formulas were derived in the nonrelativistic approximation. If we use the correct relativistic formula for the Doppler shift this issue does not arise. We might be able to show that the apparent speed of high-redshift galaxies is superluminal but we need another way to do it. (Decisamente hai ragione, aggiungi poi che la relazione vale per z piccolo e 10 non è piccolo solitamente. Ad ogni modo ha ragione a dire che il rate di espansione potrebbe essere maggiore di c senza creare problemi alla relatività)}
 
 \begin{definition}[Angular diameter distance]
 The angular diameter distance is defined as the ratio of the object's physical transverse size \(L\) to its angular size in radians \(\Delta \theta \): 
@@ -405,7 +427,7 @@ or, removing the \(r^2\) term, which is a constant (since it is a comoving radiu
 \dot{a}^2 = \frac{8 \pi G}{3} \rho a^2 + \frac{C}{r^2}\,.
 \end{equation}
 
-Now, the dimensions of this constant are those of a speed, therefore we can express it as \(C / r^2 = -k_N = -k c^2\), where \(k\) is dimensionless --- we are allowed to do this since \(k_N\) has the dimensions of an energy per unit mass, or equivalently a velocity squared.
+Now, the dimensions of this constant are those of a speed, therefore we can express it as \(C / r^2 = -k_N = -k c^2\), where \(k\) is dimensionless --- we are allowed to do this since \(k_N\), the Newtonian curvature constant, has the dimensions of an energy per unit mass, or equivalently a velocity squared.
 
 This clarifies the statement that the magnitude of \(k\) is arbitrary: we get it by dividing by the dimensionless comoving radius, whose magnitude is indeed arbitrary, therefore we can normalize it however we wish: so we choose \(\abs{k} = 1\) or 0.
 
@@ -418,7 +440,7 @@ E _{\text{kin}} + E _{\text{grav}} = -k c^2
 \end{align}
 %
 where \(E _{\text{kin}}\) and \(E _{\text{grav}}\) are the energies per unit mass in the form of either kinetic or gravitational energy.
-So we can directly see that \(k\), in a sense, describes the \emph{intrinsic} energy of a free, stationary (with respect to the comoving coordinates) test mass.\footnote{Not a particle: for these thermodynamic considerations we are considering a mesoscopic set of particles, large enough that we cannot distinguish them, but small enough for the universe to be considered a continuum of these elements.}
+So we can directly see that \(k\), in a sense, describes the \emph{intrinsic} energy of a free, stationary (with respect to the comoving coordinates) test mass.
 
 If it is positive (\(k<0\)) then the particles have an intrinsic positive energy, which causes expansion, while if it is negative (\(k>0\)) it is as if they were intrinsically gravitationally bound, which causes contraction.
 \end{bluebox}

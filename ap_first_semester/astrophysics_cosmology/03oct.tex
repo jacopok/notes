@@ -168,7 +168,8 @@ Intrinsic curvature is described by the Riemann tensor, which has 20 independent
 
 On the other hand, in 2D has only 1 independent component: \(R_{1212} = R \det g_{ab}\), where \(R\) is the scalar curvature. 
 
-\(R\) has an immediate geometric interpretation: it is equal to \(2/(R_1 R_2)\), where \(R_i\) are the radii of the osculating circles at the point; it is positive if the circles are in the same direction, as they are for a sphere, and negative if they are in different directions, as they are for a hyperboloid.
+The scalar curvature \(R\) has an immediate geometric interpretation: it is equal to \(2/(r_1 r_2)\), where \(r_i\) are the radii of the osculating circles at the point; it is positive if the circles are in the same direction, as they are for a sphere, and negative if they are in different directions, as they are for a hyperboloid.
+For a flat surface we cannot define an osculating circle (at least not in both directions): its radius diverges, so the curvature diverges. 
 % If we have a direction in which the surface is flat, such as in a cylinder, then \(R=0\): it is intrinsically flat.
 \end{bluebox}
 
@@ -311,8 +312,12 @@ through by \(H^2\)}\\
 \,.
 \end{align}
 
-The alternative is measuring \(k\) directly, say, by drawing really large triangles and measuring the sum of their internal angles.
-The latter is a ``Newtonian'' measurement, while the former is a ``GR'' measurement. The Newtonian measurement is much harder to perform.
+This is a promising way to measure the curvature of the universe. As we will see, we can infer the densities of the various constituents of the universe through their dynamics. 
+The alternative is trying to measure the curvature geometrically, however we should look at really large scales in order to see any effects: we are thus drawn to the CMB. 
+Unfortunately, the geometrical effects of spatial curvature on the CMB power spectrum\footnote{The power spectrum is, roughly speaking, the set of the square moduli of the coefficients in the spherical-harmonics decomposition, classified according to the coefficient \(l\); the higher \(l\), the smaller the angular scale we are considering.} are highest for the lowest multipoles, for which we have the largest variance.
+This means that the direct geometric effects of curvature cannot be discerned in the CMB power spectrum, however the dynamical effects can. 
+% The alternative is measuring \(k\) directly, say, by drawing really large triangles and measuring the sum of their internal angles.
+% The latter is a ``Newtonian'' measurement, while the former is a ``GR'' measurement. The Newtonian measurement is much harder to perform.
 
 % This computation also proves that the spatial curvature is constant throughout the history of the universe: 
 
@@ -348,19 +353,29 @@ Let us start by considering the energy density \emph{today} (index 0) due to \em
 We do not directly observe the mass\footnote{Here the terms mass and energy are used equivalently: the velocity of galaxies with respect to the CMB is nonrelativistic, so we approximate \(E = \gamma m c^2 \approx m c^2\).}  
 of galaxies: we can only measure their luminosities.
 
-So, we do the following: we compute the mean value of \(\rho \), the mass per unit volume, with the aid of the galaxy luminosity per unit volume \(\ell\): we find 
-%
+So, we do the following: we compute the mean value of \(\rho \), the mass per unit volume, with the aid of the galaxy luminosity per unit volume \(\ell\): the mean density is given by the mean luminosity times the average ratio of mass to luminosity of galaxies:\footnote{Formally, the steps are %
 \begin{align}
 \expval{\rho }
 &= \expval{\ell \,\frac{\rho }{\ell}} 
-= \expval{\ell} \expval{\frac{\rho }{\ell}} 
+\approx \expval{\ell} \expval{\frac{\rho }{\ell}} 
 = \expval{\ell} \expval{\frac{M}{L}}
+\,,
+\end{align}
+%
+where we made the assumption of the ratio \(\rho / \ell\) being \emph{uncorrelated} to the luminosity \(\ell\). 
+This is not precisely verified, but we are giving order-of-magnitude estimates so this is close enough for our purposes.}
+%
+\begin{align}
+\expval{\rho }
+% &= \expval{\ell \,\frac{\rho }{\ell}} 
+% = \expval{\ell} \expval{\frac{\rho }{\ell}} 
+\sim \expval{\ell} \expval{\frac{M}{L}}
 \,,
 \end{align}
 %
 where \(\expval{M  / L}\) is the average ratio of mass over luminosity per galaxy: we had a ratio of densities, but since we are considering averages we can integrate above and below with respect to the spatial volume.
 
-\todo[inline]{In order to simplify the expression, we assume that the \(\rho / \ell\) ratio is uncorrelated to the luminosity per unit volume \(\ell\): is there a justification for this, beyond saying that it is true by homogeneity?}
+% \todo[inline]{In order to simplify the expression, we assume that the \(\rho / \ell\) ratio is uncorrelated to the luminosity per unit volume \(\ell\): is there a justification for this, beyond saying that it is true by homogeneity?}
 
 It is measured in units of solar mass over solar luminosity: \(M_{\odot} / L_{\odot}\).
 Reference values for these are \(M_{\odot} \sim \SI{1.99e33}{g}\), while \(L_\odot \sim \SI{3.9e33}{\erg\per\second} \).

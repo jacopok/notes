@@ -291,7 +291,7 @@ t_0 = \frac{1}{2H_0 } \frac{\Omega_0}{(1-\Omega_0 )^{3/2}} \qty(\frac{2}{\Omega_
 %
 which is plotted, again, in figure \ref{fig:curved_universe_age}: in this case \(t_0 > 2 / (3 H_0 )\)! This is then more attractive.
 
-\todo[inline]{In Pacciani's notes \cite[pag. 26]{Pacciani:2018} this is reported with an incorrect global sign.}
+% \todo[inline]{In Pacciani's notes \cite[pag. 26]{Pacciani:2018} this is reported with an incorrect global sign.}
 
 \subsection{Considerations on curvature}
 
@@ -309,8 +309,9 @@ From the second Friedmann equation
 %
 we know that \(\ddot{a} < 0\), that is, the expansion of the universe decelerates if \(w > - 1/3\).
 A singular instant at which \(a =0\) must be reached if \(w>-1/3\), while this is not necessarily the case for \(w<-1/3\).
+As we will discuss in the next chapter, this will be one of the motivations behind the theory of inflation, which does not require the presence of an initial singularity. 
 
-\todo[inline]{Comment on inflationary theory}
+% \todo[inline]{Comment on inflationary theory}
 
 \chapter{The thermal history of the universe}
 
@@ -466,15 +467,16 @@ T^{\mu \nu }
 0 & 0 & P & 0 \\ 
 0 & 0 & 0 & P
 \end{array}\right]
-= \frac{g}{(2\pi )^3} \int \dd[3]{q} f(\vec{q}) p^{\mu } (\vec{q}) v^{\nu } (\vec{q})
+= \frac{g}{(2\pi )^3} \expval{ \int \frac{\dd[3]{q}}{E(\vec{q})} f(\vec{q}) p^{\mu } (\vec{q}) p^{\nu } (\vec{q})}
 \,,
 \end{align}
 %
-where \(v^{\nu } = u^{\nu } / \gamma  = p^{\nu }/E = (1, v^{i})\) is the non-covariant velocity vector, while \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
+where \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
 This bizarre-looking formula reproduces equation \eqref{eq:energy-density-momentum-space} for \(\mu = \nu = 0\): indeed, in this case \(p^{0} (q) = E(q)\), while \(v^{0}(q) = \gamma / \gamma = 1\).
 
-This formula is not covariant, it only holds in the rest frame of the fluid: this is not an issue, neither are the other formulas in this section. 
-\todo[inline]{Is it though? we are integrating in \(\dd[3]{q} / E\),  which is an invariant\dots}
+This formula is covariant: it only holds in the rest frame of the fluid: this is not an issue, neither are the other formulas in this section. 
+
+\todo[inline]{Explain better why it is covariant.}
 
 So, for the diagonal components the integrand looks like \(q^{i} v^{j} = q^{i} q^{j} / E(q)\). 
 The result then follows by isotropy: the total force per unit area to go around is \(q^2 / E\), and it must be distributed equally in the three spatial directions, so if we want to switch from the directional integral \(T^{ii} = P \propto \int q^{i} q^{i} / E\) (not summed over \(i\)) to an integral of the modulus of the momentum, \(P \propto \int q^2 / E\) we must divide by 3. 

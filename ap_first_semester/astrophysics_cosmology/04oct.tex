@@ -35,9 +35,9 @@ The integral for \(\mathscr L_g\) converges despite the divergence of \(\Phi(L)\
 
 The result of the integral for a generic value of \(\alpha \) is \(\mathscr L_g = \Phi^* L^* \Gamma(2-\alpha)\), where \(\Gamma\) is the Euler gamma function; for the \(\alpha = 1\) case we get a factor \(\Gamma(2-1) = 1\).
 
-Numerically, we get \(\mathscr{L}_{g} \approx \num{2.0(7)e8} h L_\odot \SI{}{\per\cubic\mega\parsec}. \) 
-\todo[inline]{This is reported incorrectly in \cite{Pacciani:2018} as \(\sim \num{e18}\)! The correct figure can be found in \cite[eq. 4.5.14]{LucchinColes:2002}.
-I do not think there is much of a point in reporting the specific value, since the parameters are already given as order-of-magnitude estimates.}
+Numerically, inserting reasonable estimates for the parameters, we get \(\mathscr{L}_{g} \approx \num{2.0(7)e8} h L_\odot \SI{}{\per\cubic\mega\parsec}. \) 
+% \todo[inline]{This is reported incorrectly in \cite{Pacciani:2018} as \(\sim \num{e18}\)! The correct figure can be found in \cite[eq. 4.5.14]{LucchinColes:2002}.
+% I do not think there is much of a point in reporting the specific value, since the parameters are already given as order-of-magnitude estimates.}
 
 Now, we must estimate \(\expval{M / L}\).
 The luminosity of galaxies can be measured readily, the great difficulty lies in estimating their mass.
@@ -82,7 +82,7 @@ Instead of this, when in the 1980s people started to be able to measure this cur
 So, is Newtonian gravity wrong?
 
 An option to solve this problem was proposed by Milgrom and collaborators: it is called MOdified Newtonian Dynamics, or MOND: they propose that gravity is not actually always described by a \(r^{-1}\) potential, but instead at low accelerations it behaves differently.
-Specifically, they posit that the gravitational acceleration \(g\) should be modulated by a factor \(\mu (g / a_0 )\), where \(a_0 \approx \num{8e-10} h^2 \SI{}{m /s^2}\) is a characteristic acceleration while \(\mu (x)\) is an adimensional function such that \(\mu \rightarrow 1\) for \(x \gg 1\) and \(\mu \rightarrow x\) for \(x \ll 1\), such as \(\mu = x / (1+x)\) \cite{bekensteinDoesMissingMass1984}.
+Specifically, they posit that the gravitational acceleration \(g\) should be modulated by a factor \(\mu (g / a_0 )\), where \(a_0 \approx \num{8e-10} h^2 \SI{}{m /s^2}\) is a characteristic acceleration while \(\mu (x)\) is an dimensionless function such that \(\mu \rightarrow 1\) for \(x \gg 1\) and \(\mu \rightarrow x\) for \(x \ll 1\), such as \(\mu = x / (1+x)\) \cite{bekensteinDoesMissingMass1984}.
 
 This approach is Newtonian but there are also relativistic MOND variants. They do not match observation as well as the alternative approach does.\footnote{MOND would be compatible with the speed of gravity being less than the speed of light, which is equivalent to the graviton being massive. Recent measurements of gravitational waves seem to agree with the general-relativistic prediction that it is massless.}
 The heaviest thing weighing against MOND is the fact that even using it we still need dark matter in order to fully explain observations.
@@ -96,7 +96,7 @@ This is called a \emph{thermal} density profile: we call it the \emph{dark matte
 
 We do not know what dark matter is: we can say that it   interacts gravitationally but not electromagnetically.
 People tend to believe that it is made up of beyond-the-standard-model particles, like a \emph{neutralino} or an \emph{axion}.
-Historically, people thought the effect could be due to massive neutrinos; however their mass would need to be around \SI{30}{eV}, and the analysis of the CMB data showed that the sum of the masses of the neutrino species must be \(\sum m_\nu < \num{0.120}\) \cite[Table 7]{PlanckCollaboration:2018I}.
+Historically, people thought the effect could be due to massive neutrinos; however their mass would need to be around \SI{30}{eV}, and the analysis of the CMB data showed that the sum of the masses of the neutrino species must be \(\sum m_\nu < \SI{0.120}{eV}\) \cite[Table 7]{PlanckCollaboration:2018I}.
 
 The total density of matter (dark+regular) is \(\sim 6\) times more than that of regular matter alone: this must be accounted for in our estimate of the \(M/L\) ratio for spiral galaxies (since we have additional mass but not additional luminosity):
 with this correction, we find that for spiral galaxies
@@ -138,7 +138,7 @@ so if we can measure \(\expval{v_r^2}\) through Doppler broadening and we can gi
 
 Accounting for the dark matter mass, we get \(\expval{M/L} \approx 300 h M_\odot / L_\odot\).
 
-The value of the critical energy density today, \(\rho_{0c}\), is given by\footnote{Do note that the numerical figure, \num{1.88e-29}, is approximate but its value is known to at least four significant digits, since it is bounded only by our knowledge of \(G\).} 
+The value of the critical energy density today, \(\rho_{0c}\), is given by\footnote{Do note that the numerical figure, \num{1.88e-29}, is approximate but its value is known to at least four significant digits, since the only source of uncertainty in it lies in the uncertainty in our measurement of \(G\) --- all the uncertainty in \(H_0 \) is expressed in variable form, with the parameter \(h\).} 
 %
 \begin{align}
 \rho_{0c} = \frac{3H^2}{8 \pi G}  \approx \num{1.88e-29} h^2 \SI{}{g /cm^3}
@@ -194,6 +194,8 @@ This is commonly expressed by defining \(w = P / \rho c^2\).
 In order to have accelerated expansion we need \(w < -1/3\); what is observed is closer to \(w \sim -1\).
 
 This negative pressure has the effect of a \emph{tension}, pulling the universe apart.
+As we will discuss in section \ref{sec:cosmological-constant}, a candidate for a cosmological fluid with negative pressure (specifically, \(w = -1\)) is a cosmological constant term, called \(\Lambda \), which can be inserted in the Einstein Field Equations.
+It is not the possible one: in principle dark energy could be constituted by any kind of fluid which is uniformly distributed and which has negative pressure. 
 
 % This contribution is also called a ``cosmological constant term'', for reasons which will be expanded upon in later sections, and denoted with the letter \(\Lambda \).
 
@@ -250,9 +252,9 @@ Even if we assume the upper bound, \(N_{\nu } \expval{m_{\nu }} = \SI{.12}{eV}\)
 \subsubsection{Conclusions}
 
 % In the end we have \(\Omega = 1 = \Omega_b + \Omega_{DM} + \Omega_{DE}\) (do note that the value of 1 is measured, not theoretical!)
-If we add up all the contributions to  \(\Omega = \Omega_b + \Omega_{DM} + \Omega_{\Lambda }\) (neglecting, as we said, the contributions by EM radiation and neutrinos) we find experimentally \(\Omega_{k} = \Omega-1 \approx (5^{+38}_{-40}) \times  \num{e-4}\) \cite[Table A.2]{planckcollaborationPlanck2018Results2019a}.
+If we add up all the contributions to  \(\Omega = \Omega_b + \Omega_{DM} + \Omega_{\Lambda }\) (neglecting, as we said, the contributions by EM radiation and neutrinos) we find experimentally \(\Omega_{k} \overset{\text{def}}{=} 1- \Omega  \approx (5^{+38}_{-40}) \times  \num{e-4}\) \cite[Table A.2]{planckcollaborationPlanck2018Results2019a}.
 
-So, with the data we have currently we cannot determine the sign of the universe's spatial curvature.
+So, with the data we have currently we cannot determine the sign of the universe's spatial curvature: with the current experimental uncertainties, the value is very much compatible with \(\Omega_{k} =0 \), and no particular meaning should be drawn from the fact that the nominal value of \(\Omega_{k}\) is slightly above 0.
 
 \subsection{The Hubble law}
 

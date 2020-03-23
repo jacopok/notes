@@ -1,4 +1,275 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-3-23, \\ compiled \\ \today}
+
+We were discussing the proper detector frame: it is defined by rigid rulers around one point in free fall. 
+
+What happens in this frame? the equation of geodesic deviation looks like 
+%
+\begin{align}
+0 &= \dv[2]{\xi^{i}}{\tau}
++ 2 \Gamma^{i}_{\nu \rho } \dv{x^{\nu }}{\tau } \dv{x^{\rho }}{\tau }
++ \xi^{\sigma } \qty( \partial_{\sigma } \Gamma^{i}_{\nu \rho } ) \dv{x^{\nu }}{\tau } \dv{x^{\rho }}{\tau }  \\
+&=\dv[2]{\xi^{i}}{\tau}
++ \xi^{j} \qty(\partial_{j} \Gamma^{j}_{00}) \qty(\dv{x^{0}}{\tau })^2
+\,,
+\end{align}
+%
+where we made the nonrelativistic approximation, and accounted for the fact that in this frame we have  
+%
+\begin{align}
+\Gamma^{\mu }_{\nu \rho } = 0
+\qquad \text{and} \qquad
+\partial_0 \Gamma^{i}_{0j} =0 
+\implies 
+R^{i}_{0j0} = \partial_{j} \Gamma^{j}_{00} 
+\,,
+\end{align}
+%
+so we have 
+%
+\begin{align}
+0= \dv[2]{\xi^{i}}{\tau } + R^{i}_{0j0} \xi^{j} \qty(\dv{x^{0}}{\tau })^2
+\,,
+\end{align}
+%
+and since the Riemann tensor is \emph{invariant} (rather than covariant) under coordinate transformations, we can compute it in the TT gauge: 
+%
+\begin{align}
+ R^{i}_{0j0} = - \frac{1}{2} \partial_0 \partial_0 h_{ij} = - \frac{1}{2} \ddot{h}_{ij}^{TT}
+\,,
+\end{align}
+%
+so our final result reads 
+%
+\begin{align}
+\xi^{i} = \frac{1}{2} \ddot{h}^{TT}_{ij} \xi^{j}
+\,,
+\end{align}
+%
+which is physically significant since we can interpret the effect of the GW as that of a Newtonian force: 
+%
+\begin{align}
+F^{i} = \frac{m}{2} \ddot{h}^{TT}_{ij} \xi^{j}
+\,.
+\end{align}
+
+How do we decide whether these approximations are justified?
+We need to impose \(r^2 / L_B^2 \ll 1 \), where \(L_B\) is the scale of the variations of the metric while \(r\) is the scale of our detector. 
+
+This allows us to see that the GWs are transverse: for a wave along the \(z\) direction we get 
+%
+\begin{align}
+\ddot{\xi}^{3} = \frac{1}{2} \ddot{h}_{3j}^{TT} \xi^{j} = 0
+\,,
+\end{align}
+%
+while we can do the calculations for small displacements along \(x\) or \(y\): for the plus polarization we get 
+%
+\begin{align}
+  \delta x &= \frac{1}{2} h_{+} x_0 \cos(\omega t)  \\
+  \delta y &= - \frac{1}{2} h_{+} y_0 \cos(\omega t)  
+\,,
+\end{align}
+%
+while for the cross polarization we get 
+%
+\begin{align}
+\delta x &= \frac{1}{2} h_{ \times } y_0 \cos(\omega t)  \\
+\delta y &= \frac{1}{2} h_{ \times } x_0 \cos(\omega t)  
+\,.
+\end{align}
+
+(possibly minus)
+We can also have circular polarizations, like \(h_+ \pm i h_{  \times }\). 
+
+What about Earth-based detectors? 
+They are definitely not free-falling, in fact: 
+\begin{enumerate}
+  \item at zeroth order the metric is flat;
+  \item at first order we have the Newtonian forces;
+  \item at second order we get the GW and the background metric.
+\end{enumerate}
+
+So, how do we distinguish these effects? We can isolate them by Fourier analysis, there will be a dominant frequency. 
+
+How do we know that our ``free-falling'' mass is moving because of the GW and not because of other noises?
+We can bound the mass and distance of a source of GW we detect in a certain frequency region. 
+
+At the low frequencies, we have objects on the Earth making noise. 
+
+Now, let us move towards GW \emph{generation}.
+
+\chapter{GW generation}
+
+Some assumptions: we will 
+\begin{enumerate}
+  \item expand around flat spacetime;
+  \item consider nonrelativistic systems;
+  \item assume the stress energy tensor is conserved: to first order, this reads 
+  %
+  \begin{align}
+  \partial^{\mu} T_{\mu \nu } = 0
+  \,.
+  \end{align}  
+\end{enumerate}
+
+If the system is nonrelativistic, we have that it is also large with respect to its Schwarzschild radius:
+%
+\begin{align}
+E _{\text{kin}} = - \frac{1}{2} U \implies 
+\frac{1}{2} \mu v^2 = \frac{1}{2} G \frac{\mu M}{r} \implies \frac{v^2}{c^2} = \frac{GM}{c^2 r} = \frac{R_S}{r} \ll 1
+\,.
+\end{align}
+
+The lambda tensor is a projector onto the subspace orthogonal to \(\hat{n} = \vec{k} / \abs{\vec{k}}\). 
+It obeys some identities [see slides].
+
+In order to solve the linearized equations, we use Green's functions: 
+%
+\begin{align}
+\square_x G(x -y) = \delta^{(4)} (x-y)
+\,,
+\end{align}
+%
+where \(x\) is our variable, while \(y\) is just a parameter. 
+
+So, we get 
+%
+\begin{align}
+-2k \int \dd[4]{y} \square_x G(x-y) T_{\mu \nu } (y) = -2k \int \dd[4]{y} \delta^{(4)} (x-y) T_{\mu \nu }(x)
+\,,
+\end{align}
+%
+so we will have as a solution a superposition of the homogeneous solution, and the source term:
+%
+\begin{align}
+\overline{h}_{\mu \nu } (x) = \overline{h}^{(0)}_{\mu \nu }(x)
+- 2k \int \dd[4]{y} G(x-y) T_{\mu \nu }(y)
+\,.
+\end{align}
+
+To get the solution, we do 
+%
+\begin{align}
+\partial_{\mu } \partial^{\mu } G(x^{\sigma }) = \delta^{(4)} (x^{\sigma })
+\,,
+\end{align}
+%
+so if we integrate over a hypersphere of radius \(r = \abs{\vec{x}}\) we have 
+%
+\begin{align}
+\int_V \dd[4]{x} \delta^{(4)} (x^{\sigma }) &= 1  \\
+&= \int_{V} \dd[4]{x} \partial_{\mu } \partial^{\mu } G(x^{\sigma })  \\
+&= \int \dd{S} \qty(\partial_{\mu } G(x^{\sigma })) n^{\mu } 
+\,,
+\end{align}
+%
+but the only points which matter are in the future light-cone. We get \(\dd{S} = c \dd{t}  \dd{\Omega }\), and we call \(n^{\mu } \partial_{\mu } = \partial_{r}\): 
+%
+\begin{align}
+1 &= \int \dd{S} \qty(\partial_{\mu } G(x^{\sigma })) n^{\mu }  \\
+&= 4 \pi r^2 \int_0^{ \infty } \dd{t} \partial_{r} \qty(f(r) \delta (ct-r) )c
+\,,
+\end{align}
+%
+but if we integrate by parts the first integral vanishes, and the second is equal to 1: 
+%
+\begin{align}
+4 \pi r^2 \partial_{r} f(r) = 1 \implies 
+f(r) = - \frac{1}{4 \pi r}
+\implies G(x^{\sigma }) = - \frac{ \delta (x^{0} - \abs{\vec{x}})}{4 \pi \abs{\vec{x}}} \theta_H (x^{0})
+\,,
+\end{align}
+%
+and after some more passages we finally get 
+%
+\begin{align}
+\overline{h}_{\mu \nu } 
+(t, \vec{x}) = 
+\frac{4G}{c^{4}}
+\int \dd[3]{y} \frac{T_{\mu \nu } (ct - \abs{\vec{x}-\vec{y}}, \vec{y})}{\abs{\vec{x} - \vec{y}}}
+\,.
+\end{align}
+
+We can move to the TT gauge if we are outside of the source, since there the equation \(\square \overline{h}_{\mu \nu }\) satisfies the FE. 
+
+Far from the source, \(\abs{\vec{x}} \gg \abs{\vec{y}}\) for any \(\vec{y}\) inside the source. So, we can expand: 
+%
+\begin{align}
+\abs{\vec{x} - \vec{y}} = r (1 - \frac{\vec{y} \cdot \hat{n}}{r} + \order{\frac{d^2}{r^2}})
+\,.
+\end{align}
+
+If we want to keep only the terms at \(\order{1/r}\) we get 
+%
+\begin{align}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}}
+\Lambda_{ij, kl} \int \dd[3]{y} \frac{1}{\abs{\vec{x} - \vec{y}}}
+T_{kl} \qty(t - \frac{r}{c} + \frac{\vec{y} \cdot \hat{n}}{c}, \vec{y})
+\,.
+\end{align}
+
+If the object is moving periodically with frequency \(\omega \), then we will have 
+%
+\begin{align}
+\frac{1}{\omega } \sim \frac{d}{v}
+\,,
+\end{align}
+%
+so we assume \(d/c \ll d/v\). Expanding the stress energy tensor, we find 
+%
+\begin{align}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}\qty[T_{kl} + \frac{y^{m} n^{p}}{c} \partial_0 T_{kl}  + \frac{y^{m} y^{p} n^{m} n^{p}}{2c^2} \partial_0^2 T_{kl} + \dots]
+\,.
+\end{align}
+
+If we define the multiplole moments: 
+%
+\begin{align}
+S^{ij m_1 m_2 \dots} = \int \dd[3]{x} T^{ij} \prod_\alpha  x^{m_\alpha }
+\,.
+\end{align}
+
+[definitions and stuff, too fast to write]
+
+We get that the quadrupole term dominates: 
+%
+\begin{align}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}}
+\Lambda_{ij, kl} S^{kl}
+\,.
+\end{align}
+
+The quadrupole moment is defined as 
+%
+\begin{align}
+Q^{kl} = M^{kl} - \frac{1}{3} \delta^{kl} M_{ii} 
+= \int \dd[3]{x} \rho (t, \vec{x}) \qty(x^{i} x^{j} - \frac{1}{3} r^2 \delta_{ij})
+\,.
+\end{align}
+
+Since \(\Lambda_{ij, kl} \delta^{kl} =0 \), we can substitute \(Q\) for \(M\): we get 
+%
+\begin{align}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{2G}{c^{4}}
+\Lambda_{ij, kl} \ddot{Q}^{kl} \qty(t - \frac{r}{c})
+= \frac{1}{r} \frac{2G}{c^{4}} \ddot{Q}^{TT}_{ij} \qty(t - \frac{r}{c})
+\,.
+\end{align}
+
+If a wave is propagating along the \(\hat{n} = \hat{z}\) direction, we get 
+%
+\begin{align}
+\Lambda_{ij, kl} \ddot{M}_{kl} = \left[\begin{array}{ccc}
+\qty(\ddot{M}_{11} - \ddot{M}_{22}) / 2 &  \ddot{M}_{12} & 0 \\ 
+\ddot{M}_{12} & \qty(\ddot{M}_{22} - \ddot{M}_{11}) / 2 & 0 \\ 
+0 & 0 & 0
+\end{array}\right]
+\,.
+\end{align}
+
+
+
 \end{document}

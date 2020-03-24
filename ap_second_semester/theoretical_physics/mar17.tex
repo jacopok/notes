@@ -139,8 +139,18 @@ We can define the reflection and transmission coefficients, which are probabilit
 \,,
 \end{align}
 %
-where \(j _{\text{in}} = k_x\). 
-\todo[inline]{What is the motivation behind these definitions? Can they be shown formally to represent probabilities, or is that interpretation something we add ``after the fact''?}
+where \(j _{\text{in}} = k_x\) is the current density corresponding to the incoming wave alone: it is calculated as the current density we would measure in region 1 if we did not have the reflected wave component:
+%
+\begin{align}
+j_{\text{in}} \overset{\text{def}}{=} \eval{j^{x}_{(1)}}_{\chi_1 = e^{ik_x x}} &= - \frac{i}{2} \qty(e^{ik_x x}) \partial_{x} \qty(e^{ik_x x} ) + \text{c. c. } \\
+&= - \frac{2}{2} i (i k_x ) e^{ik_x x} e^{ik_x x} = k_x 
+\,.
+\end{align}
+
+
+
+
+% \todo[inline]{What is the motivation behind these definitions? Can they be shown formally to represent probabilities, or is that interpretation something we add ``after the fact''?}
 
 Now, we have three possible cases for the behavior of \(k_x^{\prime }\): it is 
 \begin{enumerate}
@@ -157,8 +167,7 @@ Now, we have three possible cases for the behavior of \(k_x^{\prime }\): it is
 \end{figure}
 
 This is shown in figure \ref{fig:primed_momentum_potential}.
- 
-\todo[inline]{The professor states that the NR approximation can only be applied in the first case: however, vanilla QM can deal with the second case, as long as \(V_0 < \omega_{k}\), right? The case \(\omega_{k} - M < V_0 \ll \omega_{k}\) is nonrelativistic quantum tunneling!}
+The NR approximation can only be applied in the first case, and in the second case only as long as \(V_0 < \omega_{k}\): the case \(\omega_{k} - M < V_0 \ll \omega_{k}\) is nonrelativistic quantum tunneling. 
 
 \subsubsection{Nonrelativistic case}
 
@@ -194,7 +203,7 @@ k_x' = \pm i \sqrt{M^2 - \qty(\omega_{k} - V_0 )^2}
 \,.
 \end{align}
 
-\todo[inline]{In principle we could have both \(+\) or \(-\), right? Do we select \(+i\) by normalization later?}
+In principle we could have both \(+\) or \(-\), but we select the positive imaginary because it is the physical in which the wave travels rightward. 
 
 Now, in our computation of the probability density \(\rho_2 \) we will have a factor 
 %
@@ -204,8 +213,6 @@ Now, in our computation of the probability density \(\rho_2 \) we will have a fa
 \end{align}
 %
 while for the probability current \(j_2 \) we will get a factor \(k_x^{\prime } + k_x^{\prime *} = 0 \) multiplying everything.
-
-\todo[inline]{The solution with \(\exp(+ 2\abs{k_x'} x)\) is unphysical (not normalizable), so we discard it (?)}
 
 So, in the end we get 
 %

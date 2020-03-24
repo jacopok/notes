@@ -1,4 +1,216 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Relativistic wave equations}
+
+\marginpar{Tuesday\\ 2020-3-24, \\ compiled \\ \today}
+
+Last week, we moved from the usual Schrödinger equation to the Klein Gordon equation by moving from \(E = p^2 / 2m\) to \(E^2 = p^2 + m^2\). 
+The latter is covariant under Lorentz transformations. 
+
+There are, however, two issues with the Schrödinger equations:
+one is that it is not relativistic, while the second one is more subtle. 
+
+The Schrödinger equation describes the evolution of a single particle in time, while when we deal with elementary particles a one-particle description is unsuitable: we must have conservation of probability, so we are unable to describe situations in which a particle disappears by decaying into other particles, or we have inelastic collisions. 
+
+This is the reason why we need a multiparticle description. 
+An example of the issues which arise in the single-particle relativistic description is the Klein paradox. 
+
+So, we will introduce the so-called second quantization formalism. 
+We are going to interpret \(\phi \) as a \textbf{quantum field operator}, instead of a scalar field. Let us make this explicit. 
+We take the KG equation from the first quantization to the KG equation describing a Quantum Field Theory. 
+
+\(\phi (x)\) will be an operator which can destroy or create particles. 
+We start from the quantization of the Hamiltonian density, \(\mathscr{H}\): we consider its ground state \(\ket{0}\). 
+This corresponds to a state in which there is no particle, and is called the \textbf{vacuum} state. 
+
+We will also have higher-energy states, in which we will have one or more particles: how do we describe these? 
+A one particle state \(\ket{\varphi_{1 } (p)}\) can be acted upon by the operator \(\phi (x)\): it is destroyed, yielding a state which is aligned with the vacuum. Formally, we have 
+%
+\begin{align}
+\bra{0} \phi (x) \ket{\varphi_1 (p)} = e^{-ipx}
+\,,
+\end{align}
+%
+where \(p^{0}\) is the positive energy: \(p^{0} = + E_p = + \sqrt{\vec{p}^2 + m^2}\). 
+
+Now, let us consider the complex conjugate of this matrix element: we swap the bra and ket and take the adjoint of the operator, to get 
+%
+\begin{align}
+\bra{\varphi_1 (p)} \phi ^\dag \ket{0} = e^{ipx}
+\,.
+\end{align}
+
+This means that, if the first equation describes a particle propagating with momentum \(p^{\mu }\), this new equation will now describe a particle propagating with momentum \(- p^{\mu }\). 
+
+This will now have a negative energy. 
+This was a problem historically, now we give the solution directly. 
+
+Let us introduce a particle \(\ket{\varphi_2 (p)}\), such that 
+%
+\begin{align}
+\bra{0} \phi ^\dag (x) \ket{\varphi_2 (p)} = e^{-ipx}
+\,,
+\end{align}
+%
+so now this particle  has the same mass \(m\), but this new particle \(\ket{\varphi_2}\) differs from \(\ket{\varphi_1 }\) only for the charge, which is now opposite. 
+
+\todo[inline]{Add clarification: in general we change the sign of the coupling, which is in front of the V in the Lagrangian.}
+
+Do note that charge does not exclusively mean electric charge! We can also have other kinds of charges. 
+For example, neutrinos have the charge of lepton number. 
+
+Particles can be their own antiparticles, if they have zero charge.
+So, we can interpret the negative energy solution as the presence of an antiparticle: 
+a negative energy particle would correspond to a positive energy antiparticle. 
+
+A generic field theory is defined by its action, which is written from the density Lagrangian: a free Lagrangian is  
+%
+\begin{align}
+\mathscr{L} = \frac{1}{2} \qty(\partial^{\mu } \phi \partial_{\mu } \varphi - m^2 \varphi^2)
+\,,
+\end{align}
+%
+and if we impose \(\var{S}=0\) we get precisely the KG equation as our equation of motion. 
+
+\subsection{Spin 1}
+
+We discuss 3D vectors \(V^{i}\), which transform under rotations \(R_{ij} \in SO(3)\) as 
+%
+\begin{align}
+V^{i} \rightarrow V^{\prime i} = R_{ij}V^{j}
+\,.
+\end{align}
+
+Now, the matrix element from before reads 
+%
+\begin{align}
+\bra{0} V^{i}(x) \ket{v(p, \epsilon )} = \epsilon^{i} e^{-ipx}
+\,,
+\end{align}
+%
+where we need to account for the momentum \(p\) and the polarization \(\epsilon^{i} \). 
+If we want to move to a relativistic description, we get the same thing, with the spatial index \(i\) being replaced by a 4-dimensional index \(\mu \):
+%
+\begin{align}
+\bra{0} V^{\mu }(x) \ket{v(p, \epsilon )} = \epsilon^{\mu } e^{-ipx}
+\,.
+\end{align}
+
+The problem is now the normalization of these states: what is the value of \(\braket{v}{v}\)? 
+With the definition we gave, this is equal to \(\epsilon^{\mu } \epsilon_{\mu }\), not 1! 
+In general this will not be positive. Take the photon: then, we have the two helicities, which are transverse degrees of freedom. 
+For example, we can have \(\epsilon ^{\mu } = (0,1,1,0)\), which in our choice of metric, which is the mostly negative one. 
+
+So, we could impose \(\braket{v}{v} = - \epsilon^{\mu } \epsilon_{\mu }\): but what if we make a boost?
+\todo[inline]{The square modulus is covariant though!}
+
+This is in general a problem. 
+
+The electromagnetic field strength is defined as 
+%
+\begin{align}
+A^{\mu }  = \qty(\varphi (x), \vec{A})
+\,,
+\end{align}
+%
+and the EM field strength is \(F^{\mu \nu } = 2 \partial^{[\mu } A^{\nu ]}\). So, we have 
+%
+\begin{align}
+F^{i0} &= - \nabla^{i} \varphi - \partial_{t} A^{i} = E^{i}  \\
+ F^{ij} &=  - 2\nabla^{[i} A^{j]} = \epsilon^{ijk} B^{k}
+\,.
+\end{align}
+
+The Maxwell equations follow from the density Lagrangian 
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu } - j^{\mu } A_{\mu }
+\,,
+\end{align}
+%
+where \(j^{\mu }\) is an external current. This yields \(\partial_{\mu } F^{\mu \nu } = j^{\nu }\). 
+
+The photon is a massless vector boson. This description applies in general to a massless vector field. 
+Are there massive vector fields?
+Yes, the weak interaction is described by a massive vector boson \(W^{\pm}_{\mu }\).
+
+\subsection{Spin 1/2}
+
+Now we discuss spin \(1/2\) particles: we will need to have first derivatives on either side, as opposed to the second equations in the KG equation.
+
+Our ansatz for what will be called the Dirac equation is: 
+%
+\begin{align}
+i \partial_{t} = - i \vec{\alpha} \cdot \vec{\nabla} + \beta m
+\,.
+\end{align}
+
+Is it possible to find four numbers (3 encoded in the vector \(\vec{\alpha} \), one more in \(\beta \)) so that the square of this relation is \(E^2 = p^2+m^2\) and that we still retain Lorentz invariance? 
+
+If we try to impose these conditions, we find that there are no solutions: there are no such four numbers. 
+
+We can, however, find a solution if we allow \(\vec{\alpha}\) and \(\beta \) to be matrices: specifically, \(4 \times 4 \) matrices, which must obey the \textbf{anticommutation relations}: 
+%
+\begin{align}
+\qty{\alpha_{i}, \alpha_{j}} &= 2\delta_{ij} 
+\qquad \text{and} \qquad
+\qty{\alpha_{i}, \beta } = 0
+\,,
+\end{align}
+%
+and now we define 
+%
+\begin{align}
+\gamma^{0} = \beta 
+\qquad \text{and} \qquad
+\gamma^{i} = \beta \alpha^{i}
+\,,
+\end{align}
+%
+which must be 4D, as we said, and the simplest representation is called the Dirac representation:
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & \mathbb{1}
+\end{array}\right] 
+\qquad \text{and} \qquad
+\gamma^{i} = \left[\begin{array}{cc}
+0 & \sigma^{i}   \\ 
+\sigma^{i} & 0
+\end{array}\right]
+\,.
+\end{align}
+
+It can be verified that then 
+%
+\begin{align}
+\qty{\gamma^{\mu }, \gamma^{\nu }} = 2 \eta^{\mu \nu }
+\,.
+\end{align}
+
+We can move between representations of these matrices using unitary transformations. 
+Inserting these, we find: 
+%
+\begin{align}
+\qty[ i \gamma^{0} \pdv{}{t} + i \vec{\gamma} \cdot \vec{\nabla} - m \mathbb{1}] \varphi (x) = 0
+\,,
+\end{align}
+%
+which means that the wavefunction must be 4-dimensional as well, since we are acting on it with a 4D operator. 
+We are going to call such an object a \textbf{spinor}. 
+If we denote \(\gamma^{\mu } = \qty(\gamma^{0}, \vec{\gamma}) \) we can write the Dirac equation as 
+%
+\begin{align}
+\qty(i \gamma^{\mu }\partial_{\mu } - m) \varphi (x) &= 0  \\
+\qty(i \slashed{\partial} - m ) \varphi (x) &= 0
+\,,
+\end{align}
+%
+where we have defined the notation \(\slashed{x} = \gamma^{\mu } x_{\mu }\). 
+As we shall see tomorrow morning, this equation is extremely rich in structure. 
+
+In the Westminster abbey, this equation is inscribed as a homage to Paul Dirac.
+
 \end{document}

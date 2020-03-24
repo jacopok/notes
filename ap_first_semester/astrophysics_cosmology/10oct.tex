@@ -242,20 +242,29 @@ This effect is similar to a Doppler effect, but the analogy is not perfect: the 
 
 What follows is a synthesis of the enlightening article by Davis and Lineweaver \cite[]{davisExpandingConfusionCommon2004}, which should be referred to for clarification.
 
-To start with, in General Relativity we cannot directly compare velocities of objects which are far away from each other: they lie in different vector spaces, and there can be no local inertial frame extending that far.
-So, it is consistent to have superluminal recession velocities, while observers near the emission, as well as observers near Earth, always measure velocities locally to be \(\leq c\). 
+The proper way to define velocities is directly through the metric: so, we will need to differentiate the relation \(d = a \chi \), where \(\chi \) is the distance in comoving coordinates and \(d\) is the physical distance, with respect to the cosmic time. This yields \(\dot{d} = \dot{a} \chi = H d\).
+Note that we are assuming that the object is stationary with respect to the comoving coordinates (\(\dot{\chi} = 0\)), so we are ignoring what is called the \emph{peculiar velocity}. 
 
-The proper way to define velocities is directly through the metric: so, we will need to differentiate the relation \(d = a \chi \), where \(\chi \) is the distance in comoving coordinates and \(d\) is the physical distance, with respect to the cosmic time. This yields \(\dot{d} = \dot{a} \chi = H d\). 
-This \(\dot{d}\) is precisely the recession velocity, and this definition can be extended to any redshift. As written it is quite implicit, since we do not know what the distance in comoving coordinates is to an object we observe with redshift \(z\). This will be treated in section \ref{sec:measuring-distances}, but for now the result is (see also the aforementioned paper \cite[eq. 1]{davisExpandingConfusionCommon2004}) that the velocity, measured at a cosmic time \(t\), of an object observed with redshift \(z\), is
+This \(\dot{d}\) is precisely the recession velocity, and this definition can be extended to any redshift. As written it is quite implicit, since we do not know what the distance in comoving coordinates is to an object we observe with redshift \(z\). This will be treated in section \ref{sec:measuring-distances}, but for now the result is (see also the aforementioned paper \cite[eq. 1]{davisExpandingConfusionCommon2004}, and an older paper by Harrison \cite[eq. 13]{harrisonRedshiftdistanceVelocitydistanceLaws1993}) that the velocity now of an object observed with redshift \(z\) is
 %
 \begin{align}
-v _{\text{rec}} = H(t) d_C(z) = \frac{c \dot{a}(t)}{a_0 } \int_{0}^{z} \frac{ \dd{\widetilde{z}}}{H(\widetilde{z})}
+v _{\text{rec}} = H_0 d_C(z) = c H_0  \int_{0}^{z} \frac{ \dd{\widetilde{z}}}{H(\widetilde{z})}
 \,,
 \end{align}
 %
-which can be greater than \(c\). 
+which can be greater than \(c\): doing the computation allows us to see that \(v>c\) for \(z \gtrsim 1.5\).\footnote{An interesting (although meaningless) fact: the current recession velocity of the CMB (\(z \approx 1090\)) is around \(\num{3.14} c \approx \pi c\), according to the latest Planck data \cite[]{PlanckCollaboration:2016XIII}. For more details on how the recession velocity scales with the redshift, see figure 2 in Davis \& Lineweaver \cite[]{davisExpandingConfusionCommon2004}.} 
 
-\todo[inline]{Finish explanation.}
+So, does this result contradict General, or even Special Relativity? 
+It does not!
+In General Relativity we cannot directly compare velocities of objects which are far away from each other: they lie in different vector spaces, and there can be no local inertial frame extending that far.
+So, it is consistent to have superluminal recession velocities, while observers near the emission, as well as observers near Earth, always measure velocities locally to be \(\leq c\). 
+
+So, now we can clear some common misconceptions: 
+\begin{enumerate}
+  \item recession velocities can indeed exceed the speed of light;
+  \item they can do so in periods of ``regular'' expansion of the universe: we did not consider inflation, which surely did not occur for \(z \sim 1.5\), which is the point at which the recession velocities start being superluminal;
+  \item we can indeed see the light from objects which are currently receding superluminally: the formula for the comoving distance is derived by integrating a photon's trajectory. 
+\end{enumerate}
 
 % \todo[inline]{The reasoning in \cite{Pacciani:2018} is not completely convincing: extrapolating a superluminal velocity from \(cz \sim 10c\) is meaningless, since these formulas were derived in the nonrelativistic approximation. If we use the correct relativistic formula for the Doppler shift this issue does not arise. We might be able to show that the apparent speed of high-redshift galaxies is superluminal but we need another way to do it. (Decisamente hai ragione, aggiungi poi che la relazione vale per z piccolo e 10 non è piccolo solitamente. Ad ogni modo ha ragione a dire che il rate di espansione potrebbe essere maggiore di c senza creare problemi alla relatività)}
 

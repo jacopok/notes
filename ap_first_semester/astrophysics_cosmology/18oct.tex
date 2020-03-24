@@ -379,10 +379,6 @@ We will use natural units, so that \(c= \hbar = k_B = 1\): so, temperatures and 
 
 This is very convenient, since it allows us to make the following consideration: when the temperature will be of the order of the mass of a certain elementary particle, then statistically that type of particle will usually be ultra-relativistic.
 
-
-By \emph{total number of galaxies} we mean the galaxies in our past light cone.
-\todo[inline]{Is this relevant here?}
-
 This section will mostly follow Weinberg's book \cite[page 538, section 15.6]{weinbergGravitationCosmologyPrinciples1972}.
 
 \section{Thermodynamics in the early universe}
@@ -424,7 +420,7 @@ For example  electrons, which have spin \(1/2\), will have \(g = 2s+1 = 2\).
 
 Things, however, are more complicated than this: for photons, we only have two spin states (\(g=2\)) even though they have \(s=1\), since \(s_z=0\) is unphysical for a photon. 
 Gravitons also have \(g=2\) even though their total spin is \(s=2\): this is because \(\abs{s_z} \leq 1 \) is unphysical for a graviton. 
-In general for massless particles Lorentz invariance guarantees the fact that transverse modes cannot exist, since we cannot go in the rest frame of the particle.\footnote{Some more details on this: if we measure the spin component \(s_z\) to be equal to some value in a certain reference frame, then this will mean that --- if \(s_z \neq 0 \) we need a rotation of at least \(2 \pi / s_z\) around the \(z\) axis in order to recover the system we started with, while if \(s_z=0\) the system is symmetric with respect to rotations around the \(z\) axis. 
+In general for massless particles Lorentz invariance guarantees the fact that transverse modes cannot exist, since we cannot go in the rest frame of the particle.\footnote{Some more details on this: if we measure the spin component \(s_z\) to be equal to some value in a certain reference frame, then this will mean: (1) if \(s_z \neq 0 \) we need a rotation of at least \(2 \pi / s_z\) around the \(z\) axis in order to recover the system we started with, while (2) if \(s_z=0\) the system is symmetric with respect to rotations around the \(z\) axis. 
 
 So, for a photon to have \(s_z=0\) we would need to be in a frame in which its wavefunction was cylindrically symmetric. This cannot be the case if the photon is travelling in the \(z\) direction, so we must be in the rest frame of the photon, which does not exist. 
 
@@ -454,10 +450,11 @@ The adiabatic pressure is
 %
 \begin{equation}\label{eq:pressure-momentum-space}
   P = \frac{g}{(2 \pi )^3} \int \dd[3]{q} \frac{q^2 f(\vec{q}, T, \mu )}{3E(q)} 
-\,,
+\,.
 \end{equation}
-%
-which comes from a consideration of the diagonal components of the stress energy tensor of an ideal fluid: we know that 
+
+\begin{bluebox}  
+This comes from a consideration of the diagonal components of the stress energy tensor of an ideal fluid: we know that 
 %
 \begin{align}
 T^{\mu \nu }
@@ -472,14 +469,23 @@ T^{\mu \nu }
 \end{align}
 %
 where \(p^{\mu } = (E(q), \vec{q})\) is the momentum vector.
-This bizarre-looking formula reproduces equation \eqref{eq:energy-density-momentum-space} for \(\mu = \nu = 0\): indeed, in this case \(p^{0} (q) = E(q)\), while \(v^{0}(q) = \gamma / \gamma = 1\).
+Although it may not look like it, this formula is covariant.\footnote{we are integrating a tensorial expression (\(f p^{\mu } p^{\nu }\) is a tensor) with respect to a covariant integration element: \(\dd[3]{q} / E(q)\) is a scalar with respect to Lorentz transformations, since it can be obtained as 
+%
+\begin{align}
+\dd[4]{q} \delta (E^2 - p^2 - m^2) = \frac{ \dd[3]{q}}{2E} \delta (E - \sqrt{m^2+p^2})
+\,.
+\end{align}
+}
+The average sign is meant to indicate a spatial average, across volumes which are wide enough for homogeneity to hold. 
 
-This formula is covariant: it only holds in the rest frame of the fluid: this is not an issue, neither are the other formulas in this section. 
+This formula reproduces equation \eqref{eq:energy-density-momentum-space} for \(\mu = \nu = 0\): indeed, in this case \(p^{0} (q) = E(q)\).
+The off-diagonal components are zero by isotropy: if they were not, we would see heat and particle flow in specific directions. 
 
-\todo[inline]{Explain better why it is covariant.}
+So, for the diagonal components spatial components the integrand looks like \(q^{i} q^{j} / E(q)\). 
 
-So, for the diagonal components the integrand looks like \(q^{i} v^{j} = q^{i} q^{j} / E(q)\). 
-The result then follows by isotropy: the total force per unit area to go around is \(q^2 / E\), and it must be distributed equally in the three spatial directions, so if we want to switch from the directional integral \(T^{ii} = P \propto \int q^{i} q^{i} / E\) (not summed over \(i\)) to an integral of the modulus of the momentum, \(P \propto \int q^2 / E\) we must divide by 3. 
+The formula for the pressure then follows by isotropy: the total force per unit area to go around is \(q^2 / E\), and it must be distributed equally in the three spatial directions, so if we want to switch from the directional integral \(T^{ii} = P \propto \int q^{i} q^{i} / E\) (not summed over \(i\)) to an integral of the modulus of the momentum, \(P \propto \int q^2 / E\) we must divide by 3. 
+\end{bluebox}
+
 
 % Alternatively, we can say that this comes from imposing \(\dd{E} = P \dd{V} + \dd{Q} \).
 
@@ -508,7 +514,7 @@ The Planck distribution, which describes the statistics of photons, is consisten
 since they are bosons with no chemical potential.\footnote{This seemed weird to me: is the Planck function not 
 %
 \begin{align}
-B_{\nu } (T) = \frac{2\nu^3}{e^{\nu / 2 \pi T} -1 }
+B_{\nu } (T) = \frac{2\nu^3}{e^{ 2 \pi \nu / T} -1 }
 \,
 \end{align}
 %
@@ -518,7 +524,7 @@ To check their equivalence, let us compute the energy density with both:
 %
 \begin{align}
 \rho &=  \frac{g}{(2\pi )^3} \int \frac{q}{e^{q/T}-1} \dd{\Omega } q^2 \dd{q} = \frac{2}{(2\pi )^3}\int \frac{ \omega^3}{e^{q/T}-1} \dd{\Omega } \dd{q}  
-= \int \frac{2 \nu^3}{e^{2 \pi  \nu /T}} \dd{\Omega } \dd{q}
+= \int \frac{2 \nu^3}{e^{2 \pi \nu /T}} \dd{\Omega } \dd{q}
 \\
 \text{but also}\quad\rho &= \dv{E}{V} = \int \frac{ \dd{E}}{ \dd{t} \dd{A} \dd{q} \dd{\Omega }} \dd{q} \dd{\Omega } = \int B_q(T) \dd{\Omega } \dd{q}
 \,,

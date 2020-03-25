@@ -1,4 +1,356 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-3-25, \\ compiled \\ \today}
+
+Today we are going to examine the third case of wave equations: we discussed the KG equation for a scalar particle, then we moved to a vector particle, and now we are going to consider a spin-1/2 particle. 
+
+
+One has to prove that the equation \(\qty(i \slashed{\partial} - m)  \varphi (x )=0\) is Lorentz-covariant. 
+Also, solutions of the Dirac equation are also solutions of the Klein-Gordon equation, therefore they satisfy \(E^2=p^2+m^2\). 
+
+The first is hard, the second is comparatively easy to prove. 
+The first is hard, even though it looks covariant, since \(\gamma^{\mu }\) does not transform as a vector \emph{a priori}. 
+Nevertheless, these are both true statements. 
+
+The result is that under a Lorentz transformation we have 
+%
+\begin{align}
+\psi (x) \rightarrow \psi^{\prime } (x) = S(\Lambda ) \psi (x)
+\,,
+\end{align}
+%
+where \(S(\Lambda )\) is a unitary transformation associated with the Lorentz transformation \(\Lambda \), defined by 
+%
+\begin{align}
+S (\Lambda ) \gamma^{\mu } S^{-1} (\Lambda ) = \qty(\Lambda^{-1})^{\mu }_{\nu } \gamma^{\nu }
+\,.
+\end{align}
+
+So, in order to do this we need to write an infinitesimal Lorentz transformation 
+%
+\begin{align}
+\tensor{\Lambda }{^{\mu }_{\nu }} = \tensor{\eta }{^{\mu }_{\nu }} + \delta \tensor{\omega}{^{\mu }_{\nu }}
+\,,
+\end{align}
+%
+where \(\delta \tensor{\omega }{^{\mu }_{\nu }}\) is an antisymmetric matrix, if it has nonzero \(0i\) components it gives boosts, if it has nonzero \(ij\) components it gives rotations. 
+The result for the form of \(S\) is:
+%
+\begin{align}
+S = \mathbb{1} + \frac{1}{8 } \qty[\gamma_{\mu }, \gamma_{\nu }] \delta \tensor{\omega }{^{\mu \nu }}
+\,.
+\end{align}
+
+If we make a rotation, for example, we get 
+%
+\begin{align}
+\psi (x) \rightarrow \exp(i \frac{i}{2} \qty[\gamma_{i}, \gamma_{j}] \delta \tensor{\omega }{^{ij}}) \psi (x) 
+\,,
+\end{align}
+%
+and typically one uses the shorthand rotation 
+%
+\begin{align}
+\frac{i}{2} \qty[\gamma_{i}, \gamma_{j}] \overset{\text{def}}{=} \sigma_{ij}
+\,.
+\end{align}
+
+[see notes for an explicit example]
+
+A spinor \(\psi (x)\) reacts in a peculiar way to rotations: it rotates by an angle \( \varphi /2 \) if we perform a Lorentz rotation of an angle \(\varphi \). 
+This means that its periodicity is \(4\pi \).  
+
+We introduce the \emph{chiral representation} of the gamma matrices: 
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+0 & -\mathbb{1} \\ 
+\mathbb{1} & 0
+\end{array}\right]
+\qquad \text{and} \qquad
+\vec{\gamma} = \left[\begin{array}{cc}
+0 & \vec{\sigma}  \\ 
+-\vec{\sigma} & 0
+\end{array}\right]
+\,.
+\end{align}
+
+Then, for Lorentz boosts we have 
+%
+\begin{align}
+\sigma_{0i} = \frac{1}{2} \qty[\gamma_0, \gamma_{i}] = -i \left[\begin{array}{cc}
+\sigma_{i} & 0 \\ 
+0 & - \sigma_{i}
+\end{array}\right]
+\,,
+\end{align}
+%
+while for rotations we have 
+%
+\begin{align}
+\sigma_{ij} = \frac{i}{2} \qty[\gamma_{i}, \gamma_{j}] = \epsilon_{ijk} \left[\begin{array}{cc}
+\sigma_{k} & 0 \\ 
+0 & \sigma_{k}
+\end{array}\right]
+\,,
+\end{align}
+%
+which is useful since it gives us block-diagonal matrices. 
+So, we can interpret the spinor as being made up of two components: 
+%
+\begin{align}
+\psi (x) = \left[\begin{array}{c}
+\psi_1  \\ 
+\psi_2  \\ 
+\psi_3   \\ 
+\psi_4 
+\end{array}\right] 
+= \left[\begin{array}{c}
+\eta  \\ 
+\omega 
+\end{array}\right]
+\,,
+\end{align}
+%
+on which Lorentz transformations act independently. 
+This is relevant since, for example, if we deal with an electron, we  will describe it with a 4-component spinor, however we will be able to divide it into two components \(e_L\) and \(e_R\), which are two component spinors on which we can act independently. 
+
+This will become very concrete when we will discuss how many degrees of freedom were present in the original plasma. 
+
+Since a spinor \(\psi \) also solves the KG equation, it will be able to be written as 
+%
+\begin{align}
+\psi = \left[\begin{array}{c}
+a \\ 
+b \\ 
+c \\ 
+d
+\end{array}\right] e^{-i px}
+\,,
+\end{align}
+%
+but what are the relations between the coefficients? 
+We consider a simple case, that of \(\vec{p} =0\), so that we are in the rest frame of the particle. 
+
+Then, the Dirac equation reads: 
+%
+\begin{align}
+\qty(\gamma^{0}E - m ) \left[\begin{array}{c}
+a \\ 
+b \\ 
+c \\ 
+d
+\end{array}\right]=0
+\,,
+\end{align}
+%
+so we need to choose a representation for the \(\gamma^{0}\) in order to write this explicitly. We choose the Dirac representation, in which 
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+\,.
+\end{align}
+
+Then, the equation reads 
+%
+\begin{align}
+\left[\begin{array}{cccc}
+E-m & 0 & 0 & 0 \\ 
+0 & E-m & 0 & 0 \\ 
+0 & 0 & -E-m & 0 \\ 
+0 & 0 & 0 & -E-m
+\end{array}\right] 
+\left[\begin{array}{c}
+a \\ 
+b \\ 
+c \\ 
+d
+\end{array}\right] e^{-ipx}
+= 0
+\,,
+\end{align}
+%
+so we get a solution in which \(E=m\), and a solution in which \(E = -m \). So, in general we write the two linearly independent  solutions, respectively with positive and negative energy, as 
+%
+\begin{align}
+\psi = \left[\begin{array}{c}
+\xi  \\ 
+0
+\end{array}\right] e^{-imt}
+\qquad \text{and} \qquad
+\Psi = \left[\begin{array}{c}
+0 \\ 
+\eta 
+\end{array}\right] e^{+imt}
+\,.
+\end{align}
+
+The assumption we made, \(\vec{p} = 0\), does not actually mean we lose generality: we can simply boost into the rest frame of the particle.
+If we do this, we get the general 
+%
+\begin{align}
+\left[\begin{array}{cc}
+E-m & - \vec{\sigma} \cdot \vec{p} \\ 
+\vec{\sigma} \cdot \vec{p} & -E-m
+\end{array}\right]
+\left[\begin{array}{c}
+\left[\begin{array}{c}
+a \\ 
+b
+\end{array}\right] \\ 
+\left[\begin{array}{c}
+c \\ 
+d
+\end{array}\right]
+\end{array}\right]
+e^{-imt + i \vec{p} \cdot \vec{x}}
+\,,
+\end{align}
+%
+so we can decompose our solution into 
+%
+\begin{align}
+\psi &= u^{s} e^{-i \vec{p} \cdot \vec{x}} & E&>0
+\psi &= v^{s} e^{i \vec{p} \cdot \vec{x}} & E&<0
+\,,
+\end{align}
+%
+so now we come to the interpretation: we introduce the existence of an antifermion, which corresponds to the solution to the Dirac equation with negative energy, but it has the opposed momentum: so, it has positive energy.
+Then, both of our solutions have positive energy and evolve forward in time, and both have the same mass. 
+
+Now, we make the jump to second quantization: we start interpreting \(\psi (x) \) as an operator, which can destroy a one-state particle or create a particle starting from the vacuum. 
+
+We will have 
+%
+\begin{align}
+\bra{0} \psi (x) \ket{e^{-}(p,s)} = u^{s} (p) e^{-ipx}
+\,.
+\end{align}
+
+Now, the one-particle state \(\ket{e^{-}(p, s)}\) is promoted to a spinor. 
+On the other hand, we have the creation operator \(\psi ^\dag\): 
+%
+\begin{align}
+\bra{e^{-}(p,s)} \psi ^\dag (x) \ket{0} = u^{s ^\dag} e^{-ipx}
+\,.
+\end{align}
+
+Now, the tricky question is to introduce the negative-energy solution. 
+Then, the \(\psi ^\dag\) operator will destroy this state, while \(\psi \) will create it. 
+So we will write an equation like 
+%
+\begin{align}
+\bra{0} \psi ^\dag (x) \ket{e^{+} (p, s)} 
+= v^{s ^\dag} (p) e^{-ipx} 
+\,,
+\end{align}
+%
+where we would write \(v^{s}(p)\) if we were considering the negative energy particle, instead we are looking at the antiparticle.
+
+Now, we will be able to operate with \(\psi (x)\) on the vacuum, to find 
+%
+\begin{align}
+\bra{e^{+}(p, s)} \psi (x) \ket{0} = v^{s} (p) e^{ipx}
+\,.
+\end{align}
+
+Yesterday we discussed the Lagrangian of the free photon field, 
+%
+\begin{align}
+\mathscr{L} \propto F^{\mu \nu } F_{\mu \nu }
+\,,
+\end{align}
+%
+but as we said there can also be coupling to external currents, which we did not quantize. 
+However, now we quantized the electron: so, can we construct the external current \(j_{\mu }\) in the coupling term \(j_{\mu }A^{\mu }\)? 
+
+The first attempt would be to write something like 
+%
+\begin{align}
+j^{\mu } \sim \psi ^\dag \gamma^{\mu } \psi 
+\sim e^{+} \gamma^{\mu } e^{-}
+\,,
+\end{align}
+%
+but we would need to check whether it is a vector: in fact, it does not transform correctly. 
+
+Is this at least a Hermitian operator? Well, its adjoint is 
+%
+\begin{align}
+\qty(\psi ^\dag \gamma^{\mu } \psi ) ^\dag = \psi ^\dag \qty(\gamma^{\mu })^\dag \psi 
+\,,
+\end{align}
+%
+but 
+%
+\begin{align}
+\qty(\gamma^{\mu })^\dag = \qty(\gamma^{0}, - \gamma^{i}) \neq \gamma^{\mu }
+\,.
+\end{align}
+
+One finds that the correct definition is to have 
+%
+\begin{align}
+\overline{\psi} \overset{\text{def}}{=}
+\psi ^\dag \gamma^{0}
+\,,
+\end{align}
+%
+and then 
+%
+\begin{align}
+j^{\mu } = \overline{\psi} \gamma^{\mu } \psi 
+\,
+\end{align}
+%
+is the correct definition. This, then, transforms as a 4-vector. 
+
+Now, in order to introduce the EM field we will use minimal coupling: 
+%
+\begin{align}
+\partial_{\mu } \rightarrow \DD_{\mu } = \partial_{\mu } + ie A_{\mu }
+\,,
+\end{align}
+%
+
+so the Dirac equation will read 
+%
+\begin{align}
+\qty( i \slashed{\DD} -m ) \psi &= 0  \\
+\qty(i \gamma^{\mu } \qty(\partial_{\mu } + ie A_{\mu }) -m ) \psi &= 0 
+\,.
+\end{align}
+
+From which density Lagrangian can we derive the Dirac equation? It turns out to be 
+%
+\begin{align}
+\mathscr{L} = \overline{\psi} \qty(i \gamma^{\mu } \DD_{\mu } -m ) \psi 
+\,,
+\end{align}
+%
+so if we want to describe both the EM field, the electron and their interaction, we have 
+%
+\begin{align}
+\mathscr{L} (e, A_{\mu }) = 
+\underbrace{- \frac{1}{4} F^{\mu \nu } F_{\mu \nu }}_{\text{free EM field}} + \underbrace{\overline{\psi} \qty(i \slashed{\DD} - m) \psi}_{\text{electron}} 
+- \underbrace{e\overline{\psi} \slashed{A} \psi}_{\text{electron-EM coupling}} 
+\,.
+\end{align}
+
+This is the density Lagrangian of Quantum ElectroDynamics. 
+This is the first interacting QFT which was constructed, and it was extraordinarily successful. 
+
+Its predictions for the anomalous magnetic moment of the electrons were exceptional: we can solve it perturbatively to different orders in 
+%
+\begin{align}
+\alpha = \frac{e^2}{4 \pi } \approx \frac{1}{137}
+\,.
+\end{align}
+
+
+
 \end{document}

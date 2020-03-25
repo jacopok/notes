@@ -1,4 +1,141 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-3-25, \\ compiled \\ \today}
+
+To summarize yesterday's lesson: we discussed the main physical processes affecting the mass of BHs and NSs. 
+
+We know that the mass of a star is not constant over time: it decreases because of mass loss, and the final mass which is still bound at collapse is the budget we have to form the compact object. 
+
+CCSNe are crucial: for every star, if is explodes as a supernova it can form a NS or a light BH, while if the explosion fails we can have formation of more massive BHs. 
+
+In the picture from yesterday, we did not discuss PISNe. 
+Now, we also include very massive stars, with masses \(M > 150M_{\odot}\).
+
+Pair Instability leaves no remnant, Pulsational Pair Instability just leads to more mass loss. 
+If we also consider these, we get a mass gap between 60 to \(120 M_{\odot}\) in the remnants. 
+
+Only metal-poor stars can develop He-cores which are heavy enough to start pair creation. 
+PISNe create a V-shaped signature for metal-poor stars, around 60 to \(100 M_{\odot}\) ZAMS mass. 
+
+Around \(230M_{\odot}\) ZAMS mass, we have a jump to huge remnants for extremely low-metallicity stars. 
+Here, pair creation starts, and the switch-on of the nuclear burning is not enough to counteract the collapse: all of the star just falls in on itself. 
+
+If this is indeed the case, it could be a formation channel for intermediate-mass BHs, which could merge to form SMBHs.
+
+So, we expect to see no BHs between 60 to \(120 M_{\odot}\): currently, LIGO-VIRGO observations are consistent with this. 
+
+What about spin? It is not well-understood. 
+We expect that the spin of the Compact Object is related to the spin of the core, at collapse. However, part of this spin will be lost during the SN explosion. 
+If we have accretion disks or jets, some angular momentum is lost. 
+
+If we have direct collapse, then the spin will be conserved. 
+
+However, if we take the final angular momentum of the core and assume it collapses directly to a BH, this gives almost only maximally rotating BHs. 
+
+This is definitely not what we observe: although we have uncertainty, most of the spins are consistent with being small \cite[]{theligoscientificcollaborationGWTC1GravitationalWaveTransient2019}. 
+
+This is derived with GR SN collapse models, but these are usually not fine enough to really account for the remnant. 
+
+Spin direction can be changed by the SN kick --- when the SN explodes, the remnant rebounds, if there is no SN kick, the spin remains in the same direction: this can be tested, if we observe the SN head-on then we expect the spin to be head-on as well. 
+
+\section{Formation of BH and NS binaries}
+
+The initial separation for a binary to start losing significant energy from GW radiation must be \(\lesssim 50 R_{\odot}\). 
+How do the compact objects get this close? 
+
+A way is for the stars to start off gravitationally bound. 
+The second scenario is one in which two BHs which come from unbound stars, in a dense environment. 
+
+\subsection{Primordial binaries}
+
+We know that massive stars tend to form in pairs: \num{70} to \SI{90}{\percent} of massive stars are in a binary. 
+
+The issue is that evolutionary processes can affect the binary. 
+
+We can have mass transfer. 
+\subsubsection{Mass transfer from wind}
+
+A massive star loses a lot of mass from wind, more or less isotropically, and if it is orbited by a companion then the companion will intercept some of this. 
+How small is the cross section? If we do some analytical calculations, we see that if \(1\) is the star emitting wind, while \(2\) is the accretor, we have 
+%
+\begin{align}
+\abs{\frac{\dot{M}_{2A}}{\dot{M}_{1W}}} \propto \qty(\frac{v _{\text{orb}}}{v_W})^{4}
+\,.
+\end{align}
+
+Typically the ratio of velocities is of the order \(1/10\), so this is very inefficient. 
+For Wolf-Rayet stars we have high orbital velocities. 
+
+\subsubsection{Roche lobe}
+
+In the corotating frame, a stationary corotating test particle experiences an acceleration given by the potential 
+%
+\begin{align}
+\phi_R = \frac{G m_1}{\abs{\vec{r} - \vec{d}_1}} + \frac{G m_2}{\abs{\vec{r} - \vec{d}_{2}}} + \frac{1}{2} \abs{\vec{\omega} \times \vec{r}}^2
+\,,
+\end{align}
+%
+and it can be seen that the dependence on the masses is actually a dependence on the mass ratio \(q = m_1 / m_2\), where 1 is conventionally the donor while 2 is the accretor. 
+We can draw the equipotential surface, and we have an equipotential surface which is shaped like an 8. 
+
+Then, a good approximation for the critical radius for the donor is
+%
+\begin{align}
+\frac{r_1}{a} = \frac{\num{.49} q^{2/3}}{\num{.6} q^{2/3} + \log \qty(1 + q^{1/3})}
+\,,
+\end{align}
+%
+where \(a\) is the semimajor axis of the binary orbit. 
+
+If a star fills its Roche lobe, then mass can flow from one star to the other. 
+
+This matter flow is not radial, from Coriolis force it can form an accretion disk. 
+
+The big question is whether the Roche lobe overflow is stable.
+Recall, there are three important timescale in stellar evolution: the dynamical timescale, the Kelvin-Helmholtz thermal timescale, and the nuclear timescale. 
+
+Is the transfer stable across these timescales (that is, across which of these)? 
+
+Let us assume that the mass transfer is conservative, then it will be able to change the mass ratio, but non the total mass nor the angular momentum. So, we have the conserved quantity 
+%
+\begin{align}
+\qty(m_1 m_2 )^2 a = \const
+\,.
+\end{align}
+
+Therefore, at \(m_1 = m_2 \) there is a minimum for the semimajor axis \(a\).
+
+So, let us consider a RLO system with 
+\begin{enumerate}
+  \item [parameters]
+\end{enumerate}
+
+So, we have instability if the star 1 cannot shrink fast enough to keep it into hydrodynamical equilibrium. 
+Then, it is unstable over a dynamical timescale. This causes a common envelope to form, or directly a merger. 
+
+If, after having shrunk, the donor is not in thermal equilibrium anymore, then we have instability on a thermal timescale. 
+This causes the donor to expand. 
+
+For binary compact objects, the most important thing is the dynamical instability. 
+If at least one of the two stars already has a CO core, then as they form a common envelope then the drag of the envelope increases, which means than the cores tend to spiral in. 
+
+Then, either they form a single star, or the envelope is removed and the two cores are left spiralling each other. 
+
+A naked core is the same thing as a WR star, so it can collapse to a BH. 
+Then, we can get a binary BH system.
+The envelope is crucial in robbing the system of energy, so that it can merge within a Hubble time. 
+
+This seemed unlikely, which was the reason why people in astrophysics were doubtful of the possibility to see BBHs. 
+
+Now this is kind of better understood, but it is not possible to study it on thermal timescales.
+
+Is the envelope actually ejected? 
+LIGO and VIRGO exclude a scenario in which there still is an envelope, at least for the events which we did not see electromagnetically. 
+
+There is a scenario by O'Connor: the BHs form from the split of the core of a single progenitor, and merge immediately: this is definitely rejected.
+Another scenario is about the formation of the secondary BH when there is still a common envelope. This, as mentioned, is excluded when we do not see the EM counterpart, since there would be no way to quench it. 
+
+See Thorne-Zytkow stars. 
+
 \end{document}

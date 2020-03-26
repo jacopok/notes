@@ -6,7 +6,7 @@
 \marginpar{Friday\\ 2020-3-13, \\ compiled \\ \today}
 
 Today we discuss the CMB. 
-This is discussed in the book Modern Cosmology \cite{dodelsonModernCosmology2003}, we will follow the professor's notes, which are available in the Dropbox.
+This is discussed in the book Modern Cosmology \cite[chapter 3]{dodelsonModernCosmology2003}, we will follow the professor's notes, which are available in the Dropbox.
 
 A note: in these lectures a dot will refer to conformal time derivatives only, if we differentiate with respect to cosmic time we shall write the derivative explicitly.
 Let us suppose we have some particle species interacting, such as \(1 + 2 \leftrightarrow 3 +4\). 
@@ -59,10 +59,12 @@ where:
   %  
   Do note that \(\mathcal{M}\) is an amplitude, while \(\abs{\mathcal{M}}^2\) is a probability. 
   If we integrate across all of momentum space, as we are doing, we get the total probability of the process happening. For more details, see Peskin \cite[sections 7.2, 7.3]{peskinConceptsElementaryParticle2019}.
+
+  Also, note that in our model the processes are always time-reversible, so \(\mathcal{M}_{12 \to 34} = \mathcal{M}_{34 \to 12}\).
   % where \(S\) is the \(S\)-matrix, while \(\hat{H}_{\text{int}}\) is the interaction Hamiltonian and \(\ket{12}\), \(\ket{34}\) are the intial and final states. 
   % The proportionality factor accounts for the fact that we want this element to be Lorentz invariant.
-  \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. Bose statistics enhance the process, Pauli statistics block it. 
-  \item The \(2\pi \)-s account for the normalization of the deltas: if we were to discretize phase space and use Kronecker deltas we would not need them. 
+  \item The \(f_{i}\) are the phase space distributions of the different species: the terms including these account for the quantum statistics, we use \(-\) for fermions and \(+\) for bosons. The factors \(1 \pm f_i\) account for the quantum phenomena of Bose enhancing and Pauli blocking \cite[]{nordheimKineticMethodNew1928}. We include them here, but we will usually neglect them. 
+  \item The \(2\pi \)-s account for the normalization of the deltas: if we were to discretize phase space we would not need them, but when we move from discrete sums (and Kronecker deltas) to integrals (and Dirac deltas) we need to divide by \(h^3\) for each integral over momentum; in our units however \(\hbar = 1\), therefore \(h = 2 \pi \). 
   \item The energy of each particle species is given by  \(E^2 = p^2+m^2\). 
   Why are there \(2E\) factors in the denominators? In principle, we should integrate in \(\dd[4]{p}\), however we work \emph{on shell}: a priori, the particle does whatever it wants, however solutions to the equations of motion are (very much) preferred in the path integral.
   Because of this, it is an excellent approximation to just impose this condition: we do 
@@ -73,7 +75,7 @@ where:
   \,,
   \end{align}
   %
-  so we include the term in the denominator. 
+  so we include the \(2E\) term in the denominator: the integral over the energies has already been performed, and by \(E\) we always mean \(E(\vec{p})\). 
 \end{enumerate}
 
 % \todo[inline]{Clarify definition of \(\mathcal{M}\). }
@@ -228,12 +230,19 @@ a^{-3} \dv[]{}{t} (n_1 a^3)
 \frac{n_3 n_4 }{n_3^{(0)} n_4^{(0)}}
 - 
 \frac{n_1 n_2 }{n_1^{(0)} n_2^{(0)}}]
-\,,
+\,.
 \end{align}
-%
-and the left hand side is typically \(\sim n_1 / t \sim n_1 H\). So, the combination on the RHS must be ``squeezed to zero'' eventually, which is equivalent to the Saha equation. 
 
-This is basically saying that we eventually reach chemical equilibrium. 
+The left hand side is typically of the order \(\sim n_1 / t \sim n_1 H\), since the order of magnitude of the age of the universe is the Hubble time \(H^{-1}\).
+
+So, as the universe ages, the combination on the RHS must be ``squeezed to zero'': this is equivalent to the Saha equation, since it means that 
+%
+\begin{align}
+e^{(\mu_1 + \mu_2 ) / T} = e^{(\mu_3 + \mu_4 ) / T} \implies \mu_1 + \mu_2 = \mu_3 + \mu_4 
+\,.
+\end{align}
+
+This is also called ``chemical equilibrium'' by particle physicists, or nuclear statistical equilibrium by people studying Big Bang Nucleosynthesis. 
 
 \section{Hydrogen recombination}
 

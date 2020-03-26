@@ -1,4 +1,242 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Boltzmann equation for CDM}
+
+\marginpar{Thursday\\ 2020-3-26, \\ compiled \\ \today}
+
+[From yesterday: the distribution function for Compton scattering is general, as long as electrons and photons are in thermal equilibrium.]
+
+Last time we derived the first order Boltzmann equation for the thermal anisotropy. 
+
+Now, however, we need to discuss CDM, and then we will discuss baryons.. 
+
+For Dark Matter the collision term is negligible (since by the observations of galactic dynamics we know that DM is collisionless):
+so in the Boltzmann equation we have 
+%
+\begin{align} \label{eq:Boltzmann-DM}
+\bigd{f _{\text{dm}}}{\lambda } = 0
+\,.
+\end{align}
+
+The key fact is that DM is nonrelativistic. The calculation, except for this, is quite analogous.
+The momentum \(P^{\mu }\) has to be normalized: \(P^{\mu }P_{\mu } = g_{\mu \nu } P^{\mu }P^{\nu } = -m^2\), as opposed to \(0\), which we had with the photon. We define the norm of the three-momentum 
+%
+\begin{align}
+p^2 = g_{ij} P^{i} P^{j}
+\,,
+\end{align}
+%
+and with it the energy: \(E = \sqrt{p^2+m^2}\). Then, using our perturbed metric we get 
+%
+\begin{align}
+P^{0} = E (1-\Phi )
+\qquad \text{and} \qquad
+P^{i} = p \hat{p}^{i} \frac{1 + \Psi }{a}
+\,,
+\end{align}
+%
+where \(\hat{p}^{i}\) is a unit vector in the direction of \(p^{i}\). 
+This makes sense: the velocity, without perturbation, decays like \(a^{-1}\). 
+
+Notice that we can make the derivative with respect to the affine parameter \(\lambda \) to one with respect to \(t\), the factor \(\dv*{t}{\lambda }\) can be moved to the RHS and does not affect our discussion. 
+The LHS of the Boltzmann equation \eqref{eq:Boltzmann-DM} then reads 
+%
+\begin{align}
+\bigd{f_{\text{dm}}}{t} = \pdv{f_{\text{dm}}}{t} 
++ \pdv{f _{\text{dm}}}{x^{i}} \dv{x^{i}}{t}
++ \pdv{f _{\text{dm}}}{E} \dv{E}{t}
++ \underbrace{\pdv{f _{\text{dm}}}{\hat{p}^{i}} \dv{\hat{p}^{i}}{t}}_{\text{higher order}}
+\,,
+\end{align}
+%
+where the last term is second order since it is a product of factors which are both zero to zeroth order. 
+With steps analogous to the massless case we find 
+%
+\begin{align} 
+0= \pdv{f _{\text{dm}}}{t} + \frac{\hat{p}^{i}}{a} \frac{p}{E} \pdv{f _{\text{dm}}}{x^{i}}
+- \pdv{f _{\text{dm}}}{E} \qty[
+\frac{1}{a} \dv{a}{t} \frac{p^2}{E} - \frac{p^2}{E} \pdv{\Psi }{t} 
++ \frac{\hat{p}^{i} p}{a} \pdv{\Phi }{x^{i}}
+]
+\,.
+\end{align}
+
+The factor \(\dv*{a}{t} / a\) is just \(H\), we write it this way in order not to overload the dot (which represents derivatives with respect to conformal time only in our notation). 
+
+In order to work with this, we shall consider only terms up to first order in \(p / E\), which is justified since DM is non-relativistic. 
+Also, we will take moments: in general, a moment is an integral of a function (with angular dependence) multiplied by some power of the cosine of the angle between the direction considered and some fixed other direction. 
+In principle, the hierarchy goes to any order: in practice, we can usually truncate the hierarchy to some order according to some physical principle. 
+Fortunately, DM behaves like a fluid, which allows us to work to first order only. 
+
+\todo[inline]{Are the NS equations not exact?}
+
+This approach is fully relativistic, but linear. 
+In star formation, we use Newtonian approximation, but we account for  nonlinearity.
+Having both is impossible.
+
+The lowest (0th) moment is just given by the integral in \(\dd[3]{p} / (2 \pi )^3\) of the distribution, that is, over all angles: we find 
+%
+\begin{align}
+\begin{split}
+0&= \pdv{}{t} \int \frac{\dd[3]{p}}{(2 \pi )^3} f _{\text{dm}}
++ \frac{1}{a} \pdv{}{x^{i}} \int \frac{\dd[3]{p}}{(2 \pi )^3} f _{\text{dm}} \frac{p \hat{p}^{i}}{E} \\
+&\phantom{=}\ 
+- \qty[\frac{1}{a} \dv{a}{t} - \pdv{\Psi }{t}]
+\int \frac{\dd[3]{p}}{(2 \pi )^3} \pdv{f _{\text{dm}}}{E} \frac{p^2}{E}
+- \underbrace{\frac{1}{a} \pdv{\Phi }{x^{i}} \int \frac{\dd[3]{p}}{(2 \pi )^3} \pdv{f _{\text{dm}}}{E} \hat{p}^{i} p}_{\text{higher order}} 
+\marginnote{We take out of the integral any term not depending on the angles in momentum space.}
+\,.
+\end{split}
+\end{align}
+%
+why is the last term higher order? There is no way to have a nonzero result to zeroth order in the integral by isotropy, and it is multiplied by a first-order perturbation. 
+
+Now, we introduce the dark matter density \(n _{\text{dm}}\) --- for more details, see the notes for the course in Fundamentals of Astrophysics and Cosmology \cite[section 3.2]{tissinoFundamentalsAstrophysicsCosmology2020}, but do note that the number density defined there is global, while the one we are considering here is a local number density, which can be different for different points in spacetime.
+Also, we define its velocity \(v^{i}\): 
+%
+\begin{align}
+n _{\text{dm}} &= \int \frac{ \dd[3]{p}}{(2\pi )^3} f _{\text{dm}}  
+\marginnote{Note that \(f _{\text{dm}}\) accounts for the number of degrees of freedom \(g _{\text{dm}}\).}\\
+v^{i } &= \expval{ \frac{P^{i}}{E}}_{\text{particle}}
+= \frac{1}{n _{\text{dm}}} \int \frac{ \dd[3]{p}}{(2 \pi )^3} f _{\text{dm}} \frac{p \hat{p}^{i}}{E}
+\,.
+\end{align}
+
+\todo[inline]{These are not covariant, right? Since \(n\) is the 0th component of a 4-vector\dots}
+
+In the first and second terms we can insert \(n _{\text{dm}}\) and \(v^{i}\) directly (to first order --- we always do manipulations neglecting second order terms), while for the third term we need to integrate by parts, using \(\dv*{E}{p} = p/E\):\footnote{This comes from \(E = \sqrt{p^2+m^2}\): 
+%
+\begin{align}
+\pdv{E}{p} = \frac{ 2 p }{2 \sqrt{p^2+m^2}} = \frac{p}{E}
+\,.
+\end{align}
+} we obtain: 
+%
+\begin{align}
+\int \frac{\dd[3]{p}}{(2 \pi )^3} \pdv{f _{\text{dm}}}{E} \frac{p^2}{E}
+&= \int \frac{ \dd[3]{p}}{(2\pi )^3} p \pdv{f _{\text{dm}}}{p} 
+\marginnote{Changed the derivative of the distribution} \\
+&= \frac{4 \pi }{(2 \pi )^3} \int_{0}^{ \infty } \dd{p} p^3 \expval{\pdv{f _{\text{dm}}}{p}}  \\
+&= -3 \frac{4 \pi }{(2 \pi )^3} \int_{0}^{ \infty } \dd{p} p^2 \expval{f _{\text{dm}}}= -3 n _{\text{dm}}
+\,,
+\end{align}
+%
+which is a calculation discussed in the FAC course \cite[]{tissinoFundamentalsAstrophysicsCosmology2020} [I'll insert the section when I get to it].
+
+This yields: 
+%
+\begin{align}
+\pdv{n _{\text{dm}}}{t} + \frac{1}{a} \pdv{}{x^{i}} \qty(n _{\text{dm}} v^{i}) + 3 \qty[\frac{1}{a} \dv{a}{t}  - \pdv{\Psi }{t}] n _{\text{dm}} = 0
+\,,
+\end{align}
+%
+which to 0th order yields 
+%
+\begin{align}
+\pdv{n _{\text{dm}}^{(0)}}{t} + 3 \frac{1}{a} \dv{a}{t} n _{\text{dm}}^{(0)} \iff a^3 n _{\text{dm}}^{(0)} = \const
+\,.
+\end{align}
+%
+Now, we can write the full number density as 
+%
+\begin{align}
+n _{\text{dm}} = n _{\text{dm}}^{(0)} \qty[1 + \delta (\vec{x}, t)]
+\,,
+\end{align}
+%
+where \(\delta \) is the standard notation in cosmology for these kinds of dimensionless fractional perturbations. 
+
+Then, after some simplifications the evolution of this perturbation looks like 
+%
+\begin{align}
+\pdv{ \delta  }{t} + \frac{1}{a} \pdv{v^{i}}{x^{i}} - 3 \pdv{\Psi }{t}=0
+\,,
+\end{align}
+%
+which is our first order continuity equation. 
+
+This was for the first moment, for the next one we integrate after multiplying by \(\hat{p}^{j} / E\). 
+We neglect a term because it is too relativistic, that is, second order in \(p / E\). 
+
+Integrating by parts, for a different term we get 
+%
+\begin{align}
+\int  \frac{ \dd[3]{p}}{(2\pi )^3} \pdv{f _{\text{dm}}}{p} \frac{p^2 \hat{p}^{i}}{E} &= \int \frac{ \dd{\Omega  } \hat{p}^{j}}{(2 \pi )^3}
+\int \dots lni
+&= - 4 n _{\text{dm}} v^{i}
+\,.
+\end{align}
+
+We finally obtain 
+%
+\begin{align}
+\pdv{(n _{\text{dm}} v^{i})}{t} + 4 \frac{1}{a} \dv{a}{t} n _{\text{dm}}v^{j} + \frac{n _{\text{dm}}}{a} \pdv{\Phi  }{x^{i}} =0
+\,,
+\end{align}
+%
+so we factor out the background and get, to first order, 
+%
+\begin{align}
+\pdv{v^{j}}{t} + H v^{j} + \frac{1}{a} \pdv{\Phi }{x^{j}}=0
+\,.
+\end{align}
+
+This is basically a linear Euler equation. In Fourier space, we get 
+%
+\begin{align}
+\widetilde{\dot{\delta}} + i k \widetilde{v} - 3 \widetilde{\dot{\psi}} &= 0  \\
+\widetilde{\dot{v}} + \frac{\dot{a}}{a} \widetilde{v} + i k \widetilde{\Phi} &= 0
+\,.
+\end{align}
+
+\section{Boltzmann equation for baryons}
+
+Which interaction are relevant? 
+At recombination, electrons are tightly coupled with photons, while the interaction between protons and photons is suppressed by a factor \((m_{e} / m_p)^2\) with respect to to electron-photon scattering.
+We need to deal with Coulomb scattering between electrons and proton. 
+So, we can say that the quantity 
+%
+\begin{align}
+\frac{ \rho_{e} - \rho_{p}^{(0)}}{\rho_{e}^{(0)}}  =
+% \frac{ \rho_{e} - \rho_{p}^{(0)}}{\rho_{e}^{(0)}}  =
+\rho_{b}
+\,,
+\end{align}
+%
+is a perturbation. So we write two Boltzmann equations, for electrons and protons, assuming that they move with the same velocity. The collision term looks like 
+%
+\begin{align}
+C_{e \gamma }= (2 \pi)^{4} \delta^{(4)} (p + q - p' - q') 
+\frac{ \abs{\mathcal{M}}^2 \qty[f_{e}(q') f_{\gamma }(p') - f_e (q) f_\gamma (p)] }{8 E(p) E(p') E_e(q) E_e(q')}
+\,,
+\end{align}
+%
+So the zeroth moment equation for electrons is the same as the one for Dark Matter: both of the terms in the RHS vanish in
+%
+\begin{align}
+\pdv{n_e}{t} + \frac{1}{a} \pdv{}{x^{i}} (n_e v^{i}_{b}) + 3 \qty[H - \pdv{\Psi }{t}]n_e = \expval{C_{ep}} + \expval{C_{e \gamma }}
+\,,
+\end{align}
+%
+since they multiply antisymmetric terms in exchange of momenta [clear up]. 
+
+For the first moment we sum the proton and electron equations multiplied by the respective charges. 
+The symmetry of the momenta of electrons and protons cancels the term of Coulomb scattering in the first moment equation. So, we get 
+%
+\begin{align}
+\pdv{v^{j}_{b}}{t} + H v_b^{j} + \frac{1}{a} \pdv{\Phi }{x^{j}} 
+=\frac{1}{\rho_{b}} \expval{c_{e \gamma } q^{j}}_{pp'q'q}
+\,,
+\end{align}
+%
+but by total momentum conservation we can switch the momentum \(q^{j} \) in the equation to a \(p^{j}\). 
+We Fourier transform, and multiply by \(\hat{k}^{j}\): then we get \(\vec{p} \cdot \hat{k} = p \mu \), where \( \mu = \cos \alpha \). 
+
+Two pages from Dodelson \cite[]{dodelsonModernCosmology2003}.
+
+The velocities of electrons and protons are the same to any perturbative order in our expansion, because of the tight-coupling assumption. 
+
+In the Planckian, the only dependence is the time.
+
 \end{document}

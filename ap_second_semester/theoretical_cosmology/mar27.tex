@@ -1,4 +1,211 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-3-27, \\ compiled \\ \today}
+
+In the perturbed Einstein Equations we will need the stress-energy tensor: it does not require the full phase space distribution, but only certain kinds of integrated information. 
+
+With our approach, we did not assume that DE, DM and such are fluids: instead, we have shown it. 
+
+We can combine the equations for electrons and protons into a unique equation for the baryons: 
+%
+\begin{align}
+m_p \pdv{}{t} \qty(n_b v_b^{j}) + 4H m_p n_b v_b^{j} \dots
+\,.
+\end{align}
+%
+
+The quantity \(- \expval{c_{e \gamma } p \mu } / \rho_{b}\) is similar to what we had for photons: a monopole term, the temperature anisotropy, and the Doppler term, which is called that since it involves a velocity. Then we get 
+%
+\begin{align}
+- \expval{c_{e \gamma } p \mu } / \rho_{b}
+&= \frac{n_e \sigma_{T}}{\rho_{b}}
+\int \frac{ \dd[3]{p}}{(2 \pi )^3} p^2 \pdv{f^{(0)}}{p} \mu \qty[ \widetilde{\theta}_{0} - \widetilde{\theta} (\mu ) + \widetilde{v}_{b} \mu ]  \\
+&= \frac{n_e \sigma_{T}}{\rho_{b}}
+\int_{0}^{ \infty } \frac{ \dd{p}}{2 \pi^2} p^{4} \pdv{f^{(0)}}{p} \int_{-1}^{1} \frac{ \dd{\mu }}{2} \mu \qty[\widetilde{\theta}_{0} - \widetilde{\theta} (\mu ) + \widetilde{v}_{b} \mu ] 
+\,,
+\end{align}
+%
+notice that the terms inside the bracket are independent of the modulus of \(p\). 
+Now we define the \emph{dipole}: 
+%
+\begin{align}
+\theta_{1} = i \int_{-1}^{1} \frac{ \dd{\mu }}{2 } \mu \theta(\mu )
+\,,
+\end{align}
+%
+so we finally get 
+%
+\begin{align}
+\widetilde{\dot{v}}_{b} + \frac{\dot{a}}{a} \widetilde{v}_{b}
++ i k \widetilde{\Phi} =
+\dot{\tau} R \qty(3 i \widetilde{\theta}_{1} + \widetilde{v}_{b})
+\,,
+\end{align}
+%
+where we defined 
+%
+\begin{align}
+R = \frac{3 \rho_b^{(0)}}{4 \rho_{\gamma }^{(0)}}
+\,.
+\end{align}
+
+In general we define the multipole moments as 
+%
+\begin{align}
+\theta_{\ell} = \frac{1}{(-i)^{\ell}} \int_{-1}^{1} \frac{ \dd{\mu }}{2} P_\ell (\mu ) \theta(\mu )
+\,,
+\end{align}
+%
+where \(P_e (\mu )\) are the Legendre polynomials. 
+
+Then we get 
+%
+\begin{align}
+\widetilde{\dot{\theta}} + ik \mu \widetilde{\theta} - \widetilde{\dot{\Psi}}
++ ik \mu \widetilde{\Phi} =
+-\dot{\tau} \qty[\widetilde{\theta}_{0} - \widetilde{\theta} 
++ \mu v_b - \frac{1}{2} P_2 (\mu ) \widetilde{\theta}_{2}] 
+\,,
+\end{align}
+%
+where the addition of the quadrupole term accounts for (???), see the notes by Natale. 
+
+Dropping the tildas, we get 
+%
+\begin{align}
+\dot{\theta} + ik \mu \theta &= \dot{\Psi} - ik \mu \Phi - \dot{\tau} \qty[\theta_0 - \theta + \mu v_b - \frac{1}{2} P_2 (\mu ) \Pi ]  \\
+\Pi &= \theta_2 - \theta_{P_2 } + \theta_{P_0 }  \\
+\dot{\theta}_{p} + i k \mu \theta_{p} &= - \dot{\tau} \qty[- \theta_{p} + \frac{1}{2} \qty(1 - P_2 (\mu ) \Pi )] \dots
+\,,
+\end{align}
+%
+anisotropy creates polarization, polarization does not affect polarization much. 
+
+Why do we not have a quadrupole term? Its integral is zero since it is multiplied by \(\mu \). 
+
+What about neutrinos? 
+We can model the anisotropies in the cosmic neutrino background using Fermi-Dirac statistics, with 
+%
+\begin{align}
+f = \frac{1}{\exp(d)} \dots
+\,,
+\end{align}
+%
+so now repeating the considerations we made for the photons, we get 
+%
+\begin{align}
+\dot{w} \dots
+\,.
+\end{align}
+
+Why do we consider only the scalar perturbations? Vectors do not obey dynamical equation but only conservation equations, and they die away quickly in the expansion. 
+The Lense-Thirring effect is about the \(g_{0i}\) terms, and it is not governed by the (???) theorem, but we neglect it as well. 
+
+Tensor perturbations are gravitational waves. 
+They evolve separately from the scalar perturbations: we decompose the anisotropy into 
+%
+\begin{align}
+\theta^{T} (k, \mu, \phi ) = \theta^{T}_{+} (k, \mu ) \qty(1 - \mu^2) \cos( 2 \phi ) + \theta^{t}_{ \times } (k, \mu ) (1-\mu^2)
+\,,
+\end{align}
+%
+and both of the polarizations (\(\epsilon = +, \times \)) satisfy 
+%
+\begin{align}
+\dot{\theta}^{T}_{\epsilon } + ik \mu \theta^{T}_{\epsilon } + \frac{1}{2} \dot{h}_{\epsilon } = \dot{\tau} \qty[
+\theta^{T}_{\epsilon } - \frac{1}{10} \theta^{T}_{\epsilon, 0} - \frac{1}{7} \theta^{T}_{ \epsilon , 2} - \frac{3}{7} \theta^{T}_{\epsilon , 4}]
+\,.
+\end{align}
+
+Let us then perturb Einstein's equations: we use conformal time, so the metric (in Euclidean \(k=0\) 3-space) is 
+%
+\begin{align}
+\dd{s^2} = a^2 \qty[- (1 + 2 \Phi ) \dd{\eta^2} + (1- 2 \Psi ) \dd{\ell^2}]
+\,.
+\end{align}
+
+We compute the Christoffel symbols, and from these we get the Ricci tensor, the Ricci scalar and the Einstein tensor. 
+It is generally much more convenient to write the equations with mixed indices 
+%
+\begin{align}
+G^{\mu }_{\nu } = 8 \pi G T^{\mu }_{\nu }
+\,.
+\end{align}
+
+To first order we get 
+%
+\begin{align}
+\Gamma^{0}_{00} &= \frac{ \dot{a} }{a } + \dot{\Phi}  \\
+\Gamma^{i}_{0j }&= \qty(\frac{\dot{a}}{a} - \dot{\Psi}) \delta^{i}_{j}  \\
+\Gamma^{0}_{ij} &= \qty[\frac{\dot{a}}{a } \qty(1 - 2 \Phi - 2 \Psi ) - \dot{\Psi}] \delta_{ij}  \\
+\Gamma^{0}_{0i} &= \partial_{i} \Phi   \\
+\Gamma^{i}_{00} &= \partial^{i} \Phi   \\
+\Gamma^{i}_{jk} &= - \partial_{j} \Psi \delta^{i}_{k} - \partial_{k} \Psi \delta^{i}_{j} + \partial^{i} \Psi 
+\delta_{jk}
+\,,
+\end{align}
+%
+so the Einstein tensor reads: 
+%
+\begin{align}
+G^{0}_{0} = \frac{1}{a^2} \qty[\dots]
+\,,
+\end{align}
+%
+
+Often people make the quasi-static approximation, in which we neglect the time-derivatives of the potentials. We do not do that here. 
+The stress-energy tensor has the following 00 component: 
+%
+\begin{align}
+T^{0}_{0} = - \sum _{i} g_i \int  \frac{ \dd[3]{p}}{(2 \pi )^3} E_i (p) f_i (\vec{x}, \vec{p} ,t)
+\,.
+\end{align}
+
+For nonrelativistic matter, \(E_i \sim m_i\): then we get 
+%
+\begin{align}
+T^{0, \text{dm}}_{0} = - \rho_{\text{dm}} (1 + \delta )
+\,.
+\end{align}
+
+For the photons we have 
+%
+\begin{align}
+T^{0,(\gamma )}_{0} = 
+-2 \int \frac{\dd[3]{p}}{(2 \pi )^3} p \qty[f^{(0)} - p \pdv{f^{(0)}}{p} \theta ] 
+= - \rho_{\gamma } \qty[ 1 + 4 \Theta_0 ]
+\,,
+\end{align}
+%
+and for the neutrinos we get the exact same result, substituting the variables: 
+%
+\begin{align}
+T_{0}^{0, (\nu )} = - \rho_{\nu } \qty[1 + 4 w_0 ]
+\,.
+\end{align}
+
+Dark Energy is usually considered to be smooth. Then we have, for the 00 EFE: 
+%
+\begin{align}
+\nabla^2 \Psi - 3 \frac{\dot{a}}{a} \qty(\dot{\Psi} + \Phi \frac{\dot{a}}{a }) = 4 \pi G a^2 \qty(
+\rho_{\text{dm}} \delta + \rho_{b} \delta_{b} + 4 \rho_{\gamma } \Theta_0 + 4 \rho_{\nu } w_0 
+)
+\,.
+\end{align}
+
+Recall that we want to solve for \(\Psi \) and \(\Phi \): we have a lot of redundancy in the EFE. 
+Another convenient independent equation is the traceless part of the \(ij\) components. 
+The simplest way to do these calculations is to use projectors in Fourier space.
+
+On the left hand side we get 
+%
+\begin{align}
+\qty(\hat{k}_{i} \hat{k}^{j} - \frac{1}{3} \delta^{i}_{j}) \hat{G}^{i}_{j} &= \qty(\hat{k}_{i} \hat{k}^{j} - \frac{1}{3} \delta_{i}^{j}) 
+\frac{k^{i}k_{j}}{a^2} \qty(\Phi - \Psi ) 
+&= \frac{2}{3} \frac{k^2}{a^2} \qty(\Phi- \Psi )
+\,.
+\end{align}
+
+
 \end{document}

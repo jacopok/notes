@@ -1,4 +1,131 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-3-27, \\ compiled \\ \today}
+
+Last time we saw how to expand the solution into multipole moments, and focused on the quadrupole. 
+
+We finally got, for a GW propagating along \(\hat{z}\): 
+%
+\begin{align}
+h_{+} &= \frac{1}{r} \frac{G}{c^{4}} \qty(\ddot{M}_{11} - \ddot{M}_{22})  \\
+h_{ \times } &= \frac{2}{r} \frac{G}{c^{4}} \ddot{M}_{12}
+\,.
+\end{align}
+
+But how do we compute the full angular distribution? 
+We can brute-force it using the full \(\Lambda \) projection tensor, but a more conceptual way is to put ourselves in a frame in which the generic vector \(\hat{n}\) is \(\hat{z}\). 
+Then we use the rotation matrices: we need two of them, one for each unit vector in a rank-2 tensor \(M_{ij}\). 
+Then we use the simple expression for \(h_{+}\) and \(h_{ \times }\), substituting in the \(\ddot{M}_{11}\), \(\ddot{M}_{12}\) and so on in the primed system. 
+
+\begin{enumerate}
+  \item There is no monopole radiation: \(\dot{M} = 0\), since mass is conserved.
+  \item We can move the origin so that the dipole is zero: \(M^{i} =0 \). This corresponds to linear momentum being conserved: \(\dot{P}^{i}=0\). This is in stark contrast to Electromagnetism: there, we cannot eliminate the dipole radiation. This is due to there being positive and negative electric charges, while there are no negative masses. 
+  \item We did not account for back-action: our GWs do not carry ``away'' energy or momentum. This is unphysical, we will account for it!
+\end{enumerate}
+
+A stress-energy tensor for a system of point masses looks like 
+%
+\begin{align}
+T^{\mu \nu }(t, \vec{x}) = \sum _{A} \frac{p^{\mu }_{A} p^{\nu }_{A}}{\gamma_{A}  m_{A}} \delta^{(3)} (x - x_{A}(t))
+\,.
+\end{align}
+
+In order to apply our system, our system must be closed: we cannot consider any particle trajectory, since they must move on geodesics in order to conserve the stress-energy tensor. 
+
+However, we can use the relative coordinate in a self-gravitating system: then we have the relative \(x_0 = x_1 - x_2 \), the total mass \(m = m_1 + m_2 \), the reduced mass \(\mu = m_1 m_2 / (m_1 + m_2 )\), an the center of mass position \(x _{\text{CM}} = (m_1 x_1 +m_2 x_2 ) / (m_1 + m_2 )\). 
+
+If we set the position of the COM to zero identically, we find 
+%
+\begin{align}
+M^{ij} = \mu x^{i}_{0} x^{j}_{0}
+\,.
+\end{align}
+
+We consider two particles in the XY plane moving on a trajectory, which for now we assign. so that we get 
+%
+\begin{align}
+x_0 (t) &= R \cos(\omega_{s} t + \frac{\pi}{2}) \\
+y_0 (t) &= R \sin(\omega_{s} t + \frac{\pi}{2}) \\
+z_0 (t) &= 0
+\,,
+\end{align}
+%
+so we find 
+%
+\begin{align}
+\ddot{M}_{11} &= - \ddot{M}_{22} = 2 \mu R^2 \omega_{s}^2 \cos(2 \omega_{s}t)  \\
+\ddot{M}_{12} &= 2 \mu R^2\omega_{s}^2  \sin( 2 \omega_{s}t)
+\,,
+\end{align}
+%
+which means the GW emission has twice the rotational frequency. 
+
+If we look at emission in a generic direction \(\hat{n}\), described by the angles \(\theta \) and \(\varphi \), we will receive 
+%
+\begin{align}
+h_{+} (t, \theta , \varphi ) = \frac{1}{r} \frac{4G \mu \omega_{s}^2 R^2}{c^{4}} \frac{1 + \cos^2\theta }{2} \cos(2 \omega_{s}t _{\text{ret}} + 2 \phi ) \\
+h_{ \times } (t, \theta , \varphi ) = \frac{1}{r} \frac{4G \mu \omega_{s}^2 R^2}{c^{4}} \cos(\theta ) \sin(2 \omega_{s}t _{\text{ret}} + 2 \phi )
+\,,
+\end{align}
+%
+so the two scale differently as \(\theta \) varies. 
+
+Do note that \(h_{+} + h_{ \times }\) looks like a circular polarization moving counter-clockwise, while \(h_{+} - h_{ \times }\) moves clockwise. This is what we see for \(\theta = 0, \pi \); on the other hand for \(\theta = \pi /2\) we only have \(h_{+}\). 
+
+\todo[inline]{Plot effects! }
+
+Some numbers: the Earth-Sun system, seen \SI{1e5}{lyr} away, has a strain on the order \num{5e-32}. 
+Let us try a BNS in our galaxy: we use Newtonian orbits to model the binary. 
+
+Note that the strain is inversely proportional to \(r\): this is because we are not measuring the intensity, but directly the amplitude. 
+
+If we put in the expression for the radius from Kepler's law: we find 
+%
+\begin{align}
+h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}
+\,.
+\end{align}
+%
+Let us consider a BNS with masses \(m_1 = m_2 = 1.5 M_{\odot}\) in our galaxy: then, the strain will be  of the order \num{e-20}.
+
+We have seen a BNS outside of our galaxy, at \SI{40}{Mpc} away. 
+
+Do this with GW150914: \(m_1 \sim 36 M_{\odot}\), \(m_2 \sim 31 M_{\odot}\), \(f_s \sim \SI{250}{Hz}\), \(r \sim \SI{440}{Mpc}\).
+
+When their distance becomes too small, we cannot model them using Kepler's laws anymore. 
+
+Now, back-action: we saw no energy loss, which is ``by design'': GW energy is quadratic in \(h\), while our theory is linear. 
+
+Another approach: if our theory is local, it cannot describe the energy of GWs. 
+GWs do carry energy, however we cannot describe it in a local way, since for any single particle we can gauge them away. However, we can look at the tidal effects between two particles. 
+
+We need to perform an average in spacetime. 
+
+If we introduce a stress-energy tensor for our GWs, this will curve the background spacetime: then we have 
+%
+\begin{align}
+g_{\mu \nu } = \overline{g}_{\mu \nu } + h_{\mu \nu }
+\,,
+\end{align}
+%
+but how do we decide which deviation from flat is part of the background and what is part of \(h\)?
+
+There is no formal way to define this, but we can use a heuristic, based on what they describe. 
+We say that the background \(\overline{g}_{\mu \nu }\) varies spatially slowly, across a distance \(L_B\), such that all the GWs we are considering have reduced wavelengths (\(k = \lambda /2 \pi \)) which are smaller than a fixed maximum wavelengths, so that \(\lambda  \leq \lambda_{GW} \ll L_B\). 
+
+This is like distinguishing waves and tides in the ocean: intuitively it is easy to see how they differ, based on the scale of their effects.
+
+We also impose that all the GWs vary much faster than the background, temporally: \(f > f_{GW} \gg f_B\). 
+Do not that these two are independent, since while GWs travel at the speed of light\footnote{Which we know to within a part in \num{e-14}.} the background does not. 
+We refer to both as the short-wave approximation. 
+
+How do GW detectors then distinguish GW from background? 
+If we impose \(f_{GW} = c / \lambda_{GW}\) with \(\lambda_{GW}\) around a kilometer we get \(f \sim \SI{300}{kHz}\). This is not interesting, and technically difficult. 
+Also, ground-based detectors do not measure the metric along the length, but only an integrated effect. 
+
+Instead, the detectors monitor local temporal variations of \(g_{\mu \nu } (t, x_0 )\). 
+So, our detectors work best between \SI{100}{Hz} to \SI{1000}{Hz}; the Earth's gravitational field is not smooth along the corresponding length scale. However, it's close to static: its variations are slower than a few \SI{}{Hz}.
+So, we can apply our distinction: GW and background can be distinguished in frequency. 
+
 \end{document}

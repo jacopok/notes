@@ -1,0 +1,276 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Friday\\ 2020-3-27, \\ compiled \\ \today}
+
+We can always decompose a Hermitian matrix in a basis: if \(M = M ^\dag\) then \(M = r_{\mu } \hat{\Gamma}_{\mu } \).
+If we choose the matrices so that \(\Tr [\hat{\Gamma}_{\mu } \hat{\Gamma}_{\nu }] = \delta_{\mu \nu }\), we can use the Euclidean scalar product. 
+
+\section{Bell nonlocality}
+
+We will follow some of \cite[]{RevModPhysa} (preprint: \cite[]{brunnerBellNonlocality2014}). 
+
+When first encountering QM, people usually think in terms of statistics. 
+
+Let us make an explicit example for a hidden variable theory. 
+
+Let us suppose we have a qubit which is described by the density matrix 
+%
+\begin{align}
+\rho = \frac{1}{2} \qty(\mathbb{1} + \vec{s} \cdot \vec{\sigma})
+\,,
+\end{align}
+%
+where \(\vec{s}\) is a unit vector in the Bloch sphere. 
+Now, we can measure spins: our observables are in the form \(\hat{A} = \vec{a} \cdot \vec{\sigma}\), which means we are measuring the spin in the direction of the unit vector \(\vec{a}\). 
+
+The expectation value is 
+%
+\begin{align}
+\expval{\hat{A}} = \Tr (\hat{A} \rho ) = \vec{a} \cdot \vec{s}
+= \cos \theta  = (+1) \mathbb{P} (+1) + (-1) \mathbb{P}(-1)
+\,,
+\end{align}
+%
+where \(\theta \) is the angle between \(\vec{a}\) and \(\vec{s}\). 
+
+Is the output of the measurement prescribed by some hidden variable \(\lambda \)?
+
+If so, we would need to describe the state with the pair \((\rho , \lambda )\). Then, if \(A(\lambda )\) is the function associating a value of \(\lambda \) to its outcome we will have 
+%
+\begin{align}
+\expval{\hat{A}} = \int \dd{\mu_{\rho }(\lambda )} A(\lambda )
+\,.
+\end{align}
+
+In principle \(A(\lambda )\) would also depend on \(\rho \), but we can rescale the measure on the space so that it doesn't. 
+
+Suppose \(\vec{\lambda}\) is defined on the hemisphere \(\vec{\lambda} \cdot \vec{s} \geq 0 \) and \(\abs{\vec{\lambda}} =1\).
+Then, \(\dd{\mu_{\rho }(\lambda )}\) is a uniform density function defined there, and it is zero otherwise. 
+
+Let us define the unit vector \(\vec{a}'\) so that 
+%
+\begin{align}
+A(\lambda ) = \sign(\vec{\lambda } \cdot \vec{a}')
+\,,
+\end{align}
+%
+and so that \(\vec{a}'\) is in the plane defined by \(\vec{s}\) and \(\vec{a} \) and the angle between \(\vec{s}\) and \(\vec{a}'\) is \(\theta'\), defined by 
+%
+\begin{align}
+1 - \frac{2 \theta'}{\pi } = \cos  \theta 
+\,.
+\end{align}
+
+With this, we have a statistical model which describes quantum mechanics. 
+
+The problem comes along when we consider Bell inequalities, which deal with multiple systems. 
+
+Then, in the Hidden Variable theory we will have 
+%
+\begin{align}
+\expval{\hat{A} \otimes \hat{B}} = \int \dd{\mu_{\rho } (\lambda )} F(\lambda )
+\,,
+\end{align}
+%
+but if we assume we have locality then (as shown in Phys Rev 47, 777 (1935), the EPR paper) we must impose that there can be no causal link between events which are spacelike-separated. 
+So, under a Local Hidden Variable model we must have that the events are independent: so we must write 
+%
+\begin{align}
+\expval{\hat{A} \otimes \hat{B}} = \int \dd{\mu_{\rho } (\lambda )} A(\lambda ) B(\lambda )
+\,.
+\end{align}
+
+Reality means determinism: if we have reality and we fix \(\lambda \) then the result of the measurement is also fixed. 
+
+What Bell did was to probe that this kind of expression is incompatible with the prediction of QM: if we consider the operator 
+%
+\begin{align} 
+S =
+\expval{\hat{A} \otimes \hat{B}}+
+\expval{\hat{A} \otimes \hat{B}'} +
+\expval{\hat{A}' \otimes \hat{B}} -
+\expval{\hat{A}' \otimes \hat{B}'} 
+\,,
+\end{align}
+%
+where \(\hat{A}'\) and \(\hat{B}'\) are two different observables Alice and Bob can choose to measure randomly, and which both have eigenvalues \(\pm 1\). Then, we have that its expectation value is 
+%
+\begin{align}
+\int \dd{\mu (\lambda )} \qty[A (B + B') + A' (B - B')] 
+\,,
+\end{align}
+%
+and this is upper-bounded by 2. 
+If we do an experiment, and measure a value which is greater than 2, then we have falsified LHV theory. 
+Quantum Mechanics tells us we can indeed go beyond 2. 
+If we choose \(\vec{a}\) and \(\vec{a}'\) at right angles to each other, \(\vec{b} \) and \(\vec{b}'\) likewise, with an angle of \(\pi /4\) between them, then it can be shown that if the state \(\rho \) is a singlet then 
+%
+\begin{align}
+\expval{(\vec{a} \cdot \vec{\sigma}) \otimes (\vec{a} \cdot \vec{\sigma})} = - \vec{a} \cdot \vec{b} 
+\,,
+\end{align}
+%
+so if \(\vec{a} = \vec{b} \) we have perfect anticorrelation. So we get 
+%
+\begin{align}
+\expval{\abs{S}} = \abs{- \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} } = 2 \sqrt{2} \approx 2.8  > 2
+\,.
+\end{align}
+
+So, we either reject determinism or we reject locality. 
+
+In the orthodox interpretation of QM the theory is simply nondeterministic. 
+
+This is wonderful theoretically, but there are loopholes. 
+Only in 2015 the experiment was done in a loophole-free way. 
+
+\subsection{Loopholes}
+
+\subsubsection{Freedom of choice}
+
+In the experiment we discussed before Alice and Bob could choose in a random way between the two measurements. This is important since if the measurements are predetermined then that is a hidden variable. 
+If the measurements are fixed then we can describe the statistics with a hidden variable theory. 
+
+\subsubsection{Locality}
+
+The choice of the measurement basis must be done late enough so that the events are still spacelike separated. 
+So, we should choose the measurement basis so that the photons have almost arrived when we decide. 
+
+\subsubsection{Detection loophole}
+
+Photons are not revealed efficiently: they are lost in detection, so we may reveal only a small fraction of the total photons. 
+
+\subsubsection{Superdeterminism}
+
+It has not been possible yet to exclude that all of nature is completely predetermined. 
+
+When we write the correlation between two operators, we write something like 
+%
+\begin{align}
+\expval{A \otimes B} = \sum _{ij} ij \mathbb{P}_{AB} (ij)
+\,,
+\end{align}
+%
+but we have that \(\mathbb{P} (a, b) + \mathbb{P} (\overline{a}, b) = \mathbb{P}(b)\). 
+Then, we can find that 
+%
+\begin{align}
+\expval{A \otimes B} = 4 \mathbb{P}(a, b) - 2 P_A(a) -2 P_B(b) +1
+\,,
+\end{align}
+%
+which is useful since it contains only positive results. 
+This allows us to write 
+%
+\begin{align}
+S_{CHSH} = 4S_{CH} + 2
+\qquad \text{where} \qquad
+S_{CH} = \mathbb{P}(a, b) 
++ \mathbb{P} (a', b) 
++ \mathbb{P} (a, b') 
+- \mathbb{P}(a) - \mathbb{P}(b)
+\,,
+\end{align}
+%
+and \(S_{CHSH}\leq 2\) is equivalent to \(S_{CH} \leq 0\). The advantage is that we do not need to normalize for the total number of events: we can write this directly as 
+%
+\begin{align}
+N(a, b) 
++ N (a', b) 
++ N (a, b') 
+- N(a) - N(b)
+\leq 0
+\,,
+\end{align}
+%
+so we have no issue with lost photons. 
+
+If the efficiency is \(\eta \) for each channel, then experimentally we will measure 
+%
+\begin{align}
+S_{CH}^{\text{exp}} = \eta^2 \qty[\mathbb{P}(a, b) 
++ \mathbb{P} (a', b) 
++ \mathbb{P} (a, b') ]
+- \eta \qty[\mathbb{P}(a) + \mathbb{P}(b)]
+\,,
+\end{align}
+%
+where the term multiplying \(\eta^2\) is precisely \(S_{CHSH}+ \mathbb{P}(a) + \mathbb{P}(b)\). If we want to violate the inequalities, we must have \(S_{CH}^{\text{exp}} > 0\): the minimum efficiency is 
+%
+\begin{align}
+\eta_{*} = \frac{\mathbb{P}_{A}(a) + \mathbb{P}_{B}(b)}{S^{Q}_{CH} + P_{A}(a) + P_{B}(b)}
+\,,
+\end{align}
+%
+and if we use maximally entangled singlet states we have \(\eta_{*} \approx 2 \qty(\sqrt{2}-1) \approx \SI{83}{\percent}\). 
+
+This is combined efficiency: an emitted photon must have a \(\geq \SI{83}{\percent}\) probability of being revealed. 
+
+The detectors used had less efficiency than this: actually, if we have a state like \(\cos \theta \ket{00} + \sin \theta \ket{11 }\) we have a lower \(\eta_{*}\): the best thing is in the limit of \(\theta \rightarrow 0\), so we will need \(\eta_{*} \approx 2/3 \approx \SI{67}{\percent}\). 
+
+If we do not have this efficiency, we must make a \emph{fair sampling assumption}: the photons we do measure are a representative sample of all the photons. 
+
+There were three works published in 2015 which did this: 
+\begin{enumerate}
+  \item Nature 526, 682
+  \item PRL 115, 250401
+  \item PRL 115, 250402
+\end{enumerate}
+
+In the works in PRL they used photons, while the work in Nature used electron spins, entangling them with entanglement swapping. 
+The experiment using electrons did not have the detection loophole, but they are very much subject to the locality loophole. 
+
+We can further extend Bell inequalities in multipartite systems. 
+
+If we have three systems, we can measure (denoting \(\sigma_{x} = X\) and so on)
+%
+\begin{align}
+M_1 &= X_{a} X_{b} X_{c} \\
+M_2 &= - Y_{a} Y_{b} X_{c} \\
+M_3 &= - Y_{a} X_{b} Y_{c} \\
+M_4 &= - Y_{a} Y_{b} Y_{c}
+\,,
+\end{align}
+%
+and one can see that \(M_1 M_2 M_3 = - M_4 \), so classically if we assume we can write the expectation value as 
+%
+\begin{align}
+\int \dd{\mu } A(\lambda ) B(\lambda ) C(\lambda )
+\,,
+\end{align}
+%
+and we can violate these with the GHZ state: 
+%
+\begin{align}
+\ket{\text{GHZ}} = \frac{1}{\sqrt{2}} \qty(\ket{000} + \ket{111})
+\,,
+\end{align}
+%
+and we can see that 
+%
+\begin{align}
+\expval{M_i} = +1
+\,,
+\end{align}
+%
+for each of these. We can write this as an inequality with \(M_1 + M_2 + M_3 + M_4 \leq 2\). 
+
+The nice thing is that we can do this with perfect correlations, while in CHSH we do not have perfect correlations. 
+
+One could actually see that this can be generalized to \(N\) qubits: as we increase the dimension, the violation increases exponentially: 
+%
+\begin{align}
+\frac{\beta_{Q}}{\beta_{c}} \sim 2^{N}
+\,,
+\end{align}
+%
+where \(\beta \) is the value we obtain for the inequality. 
+
+No one has yet done a loophole-free measurement with three subsystems, but loophole-wrought measurements have indeed been done. 
+
+We can also improve the violations increasing the dimensionality of two systems, that is, using Q-dits.
+
+Often ``quantum nonlocality'' is discussed, but this is imprecise: we cannot really prove that quantum mechanics is nonlocal, we can only say that it either is  nonlocal or nondeterministic. 
+
+\end{document}

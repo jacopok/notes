@@ -1,0 +1,184 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Friday\\ 2020-3-27, \\ compiled \\ \today}
+
+Common envelope: Webbink formalism. 
+It does not really capture all the physics.
+
+If the parameter \(\alpha \) is small, then we need to shrink the binary a lot in order to eject the envelope. 
+
+How can we constrain this \(\alpha \)? 
+We do not really get good constraints from GW and EM observations, however in simulations the product \(\alpha \lambda \) is very important. 
+
+This formalism is definitely not enough.
+How can we do without it? 
+An alternative to common envelope theory is given by chemically homogenous evolution. 
+A strong chemical gradient usually is associated with a strong density gradient; if we have chemically homogeneous stars their radius is smaller, so they do not surpass their Roche limit. 
+
+How can stars be chemically homogeneous? They can rotate very fast.
+
+The stars can overfill the Roche lobe without entering common envelope, because of their rotation: the behavior is changed, conventian
+
+This model predicts heavy BHs, with aligned spins (unless the SN resets them). 
+A natal kick can be due to: asymmetry in mass ejection during core collapse, asymmetry in neutrino emission during core collapse, Blaauw mechanism. 
+Tha last one can be due to symmetric SN: the decrease in mass can perturb the binary evolution. 
+
+Is the supernova explosion usually strong enough to push the other star outward? No, this is not usually a relevant effect.
+
+If we fit the 3D velocity distribution of SNe we get a Maxwellian with \(\sigma \sim \SI{265}{km/s}\). 
+Usually stellar rotation is neglected, Whoosley's Kepler code accounts for this. 
+On the other hand, the proper motion of the center of mass before the explosion is accounted for by removing the velocity of nearby stars. 
+
+This is debated, but we can say that usually the velocities are of order \(\gtrsim \SI{100}{km/s}\). 
+BHs should experience less kick than Neutron Stars, from conservation of linear momentum by a factor 10.
+
+A good approximation is 
+%
+\begin{align}
+v _{\text{kick, BH}} = \qty(1 - f_{\text{fb}}) v _{\text{kick, NS}}
+\,.
+\end{align}
+
+Also, we can say that 
+%
+\begin{align}
+v _{\text{kick, CO}} \propto \frac{ m _{\text{ej}}}{m _{\text{CO}}}
+\,.
+\end{align}
+
+Also, of course, we must account for GW decay: we get that GW emission produces circularization (\(e\) decreases) and orbital decay (\(a\) decreases). 
+
+[summary of isolated binary evolution]
+
+\section{Dynamics of stars and Black Holes in Dense Stellar Systems}
+
+Why dynamics? 
+Well, massive stars form in star clusters, which are dynamically active places. Actually, they are the most dynamic place in the universe. 
+
+People usually see a dichotomy between the sparse galactic field vs globular clusters, which are dynamical, old but somewhat rare. 
+
+We also have young star clusters and open clusters: these are dynamical and short lived; this is the place in which we see most of star formation. Many stars which are currently in the field were formed there
+
+We also have nuclear star clusters: they are also dynamical, long lived and typically host SMBHs. 
+
+If we put density vs mass in a log-log plot, we see a linear (so, powerlaw) correlation: from the low mass, low density we have the solar neighborhood, young clusters, globular clusters and galactic nuclei.
+
+When we have close encounters, they are much more often between an object and a binary: a binary has a much larger cross section. 
+
+Binaries are energy reservoirs: 
+%
+\begin{align}
+E _{\text{int}} = \frac{1}{2} \mu v^2  - \frac{G m_1 m_2 }{r}
+\,,
+\end{align}
+%
+where \(r\) and \(v\) are the relative separation and velocity. We also have \(E _{\text{int}} = - E _{\text{binding}}\). 
+This energy can be exchanged with the ``intruder''. 
+This can result in binary shrinking: the binding energy increases, which means that the semimajor axis decreases, since 
+%
+\begin{align}
+E _{\text{bind}} = \frac{ G m_1 m_2 }{2a}
+\,.
+\end{align}
+
+This can also result in a dynamical exchange of a partner. 
+
+The probability of the exchange is very strongly a function of the mass of the intruder: it looks like \(\mathbb{P} \sim [m _{\text{intruder}} > m_1 ]\). 
+
+An intruder can also ``ionize'' the binary if it comes in with a critical minimal velocity. 
+
+Will the binary usually acquire or lose energy? 
+We can answer statistically: this is given by Heggie's law: hard binaries, which have \(E_b\) higher than the average kinetic energy of a star in the star cluster: 
+%
+\begin{align}
+\frac{G m_1 m_2 }{2a} > \frac{1}{2} \expval{m} \sigma^2
+\,,
+\end{align}
+%
+where \(\sigma \) is the velocity dispersion, will tend to become harder, and similarly soft binaries will tend to become softer. 
+
+Now, we move to the rate of three-body encounters. 
+What is the cross section of three-body encounters? 
+
+We can define \(b _{\text{max}} \) as the maximum impact parameter so that there is a nonzero energy exchange between star and binary. 
+
+A thing we can do is to ask that the maximum pericenter distance be of the order of the semimajor axis. 
+This gives us an expression  for the cross section \(b _{\text{max}}\), and also for the area \(\Sigma = \pi b _{\text{max}}^2\). 
+
+Then we can estimate the typical rate of interaction. 
+Typically, as long as the binary is hard and sufficiently massive (so that exchanges are unlikely) we will have 
+%
+\begin{align}
+\frac{ \Delta E_b}{E_b} \propto \frac{m_3}{m_1 + m_2 }
+\,,
+\end{align}
+%
+so we write the constant as 
+%
+\begin{align}
+\xi = \frac{m_1 +m_2 }{m_3 } \frac{\expval{\Delta E_b}}{E_b} \sim \num{.1}
+\,.
+\end{align}
+%
+Now we can express the average variation of the binding energy as 
+%
+\begin{align}
+\dv{E_b}{t} = \xi \frac{\expval{m}}{m_1 + m_2 } E_b \frac{2 \pi G (m_1 + m_2 ) na}{\sigma } = \pi \xi G^2 \frac{\rho}{\sigma } m_1 m_2 
+\,,
+\end{align}
+%
+so we get that a hard binary hardens at a constant rate. 
+
+The hardening rate is given by 
+%
+\begin{align}
+\dv{}{t} \qty(\frac{1}{a}) &= \frac{2}{G m_1 m_2 } \dv{E_b}{t} = 2 \pi G \xi \frac{\rho}{\sigma }  \\
+\dv{a}{t} &= - 2 \pi G \xi \frac{\rho }{\sigma } a^2
+\,,
+\end{align}
+%
+which notably does not depend on the masses anymore; also, we can use it to derive a timescale: 
+%
+\begin{align}
+t_{h} = \abs{\frac{a}{\dot{a}}} = \frac{1}{2 \pi G \xi } \frac{\sigma}{\rho } \frac{1}{a}
+\,,
+\end{align}
+%
+which only depends on the local velocity dispersion \(\sigma \), mass density \(\rho \), semimajor axis \(a\) and the parameter of efficiency \(\xi \). 
+
+So we have hardening: this allows for the binary to be shrunk enough so that it start to efficiently emit GWs. 
+
+We can equate this timescale \(t_h\) with \(t_{GW}\): we can equate the two in order to find the time at which the two effects are equal. We can combine the two to get 
+%
+\begin{align}
+\dv{a}{t} = - 2 \pi \xi \frac{G \rho }{\sigma }a^2 - \frac{64}{5} \frac{G^3 m_1 m_2 (m_1 +m_2 )}{c^{5} (1-e^2)^{7/2}} a^{-3}
+\,.
+\end{align}
+
+This formalism is very accurate, especially if the masses of the binary objects are very large compared to the other objects, and if the variation of \(\sigma \) and \(\rho \) is on longer timescales than the evolution of the binary. 
+
+An other important prediction is that BHs are favoured in exchanges since they are very massive.
+More than \SI{90}{\percent} of BBHs are formed in young star clusters via exchange. 
+
+It is very difficult for isolated binaries to form events like the heaviest ones we know. 
+
+The eccentricity is usually very small, since GW emission causes circularization. 
+
+The spins tend to be aligned, more often than not, especially for heavy binaries. 
+
+Kozai-Lidov resonance: if we have a tight binary orbited by a third object, this can oscillate. 
+This does not affect the semimajor axis of the binary, however is changes the eccentricity. 
+
+If we introduce gravitational corrections, these systems can suddenly collapse: then we predict to see very eccentric BBHs. 
+
+Intermediate mass BHs: in a young star cluster there is  process called dynamical friction, by which the most massive stars tend to sink to the center. 
+This may lead to the formation of a very massive star, which could possibly collapse to an intermediate mass black hole. 
+
+IMBHs could also be formed by repeated mergers in a cluster. 
+We will, however need to account for relativistic kicks. 
+
+In lecture 5 there would be some exercises in population synthesis codes.
+In lecture 8 we have a code which generates realistic initial conditions for realistic three-body encounters. 
+
+\end{document}

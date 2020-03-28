@@ -40,7 +40,7 @@ H_D = -i \vec{\alpha} \cdot \vec{\nabla} + \beta M = \vec{\alpha} \cdot \qty(-i 
 %
 for some yet to be determined 4 coefficients \(\vec{\alpha}\) and \(\beta \).
 
-This is equivalent to saying that the energy \(E\) is given by \(\vec{\alpha} \cdot \vec{p} + \beta M\), since \(\vec{p} = - i \vec{\nabla}\). 
+Why are we introducing the \(i\)? This formulation is equivalent to saying that the energy \(E\) is given by \(\vec{\alpha} \cdot \vec{p} + \beta M\), since \(\vec{p} = - i \vec{\nabla}\). 
 
 We are assuming the coefficients to be constant, we shall see that this hypothesis works out. Also, as we shall these cannot be numbers, but instead they are matrices: for now, all this means is that we need to be careful when manipulating them, since in general they will not commute. 
 
@@ -109,7 +109,302 @@ So, in order for the equations to be equivalent we need to impose
 \beta^2 = M^2
 \,.
 \end{align}
-%
 
+This means \(\alpha_{i}\) and \(\beta \) cannot be real or complex numbers: for complex numbers \(x, y\) we have \(\qty{x, y} = 2 xy \),  since for them multiplication is commutative. 
+
+Specifically, they must be matrices in an \(N\)-dimensional vector space, called a spinorial space. 
+So, \(\alpha_{i}\) and \(\beta \) are \(N \times N\) matrices, while the wavefunction \(\psi \) is an \(N\) dimensional vector (spinor). \(N\) is yet to be determined.
+
+They must be Hermitian matrices, since they satisfy \(\alpha_{i} ^\dag = \alpha_{i}\) and \(\beta ^\dag = \beta \).
+
+We must have \(\alpha_{i}^2 = \frac{1}{2} \qty{\alpha_{i}, \alpha_{i}} = \mathbb{1}\), where \(\mathbb{1}\) is the \(N\) dimensional identity matrix. Also, \(\beta^2 = \mathbb{1}\). 
+If we write \(\alpha_{i}\) and \(\beta \) in diagonal form, which we can do since they are Hermitian, we get their real eigenvalues on the diagonal. If we square them we get the identity, therefore they must all be \(\pm 1\). 
+
+Now, let us show that these are traceless: call \(c_{\mu }\) one of the four \(\qty(\beta ,\alpha_{i})\). Then, we know that \(\qty{c_{\mu }, c_{\nu }} = 2 \delta_{\mu \nu }\).
+So, we do the following manipulation: take \(c_{\mu }\) and \(c_{\nu }\), with \(\nu \neq \mu \):
+%
+\begin{align}
+\Tr(c_{\mu }) &= \Tr(c_{\mu } c_{\nu } c_{\nu })  \marginnote{\(c_{\nu }^2 = \mathbb{1}\)}\\
+&= \Tr(-c_{\nu } c_{\mu } c_{\nu }) \marginnote{\(\qty{c_{\mu }, c_{\nu }} = 0\), so \(c_{\mu } c_{\nu } = - c_{\nu } c_{\mu }\)}  \\
+&= \Tr(-c_{\mu } c_{\nu } c_{\nu })  \marginnote{Cyclic property of the trace, and linearity of the trace}[.7cm]\\
+&= - \Tr(c_{\mu })
+\,,
+\end{align}
+%
+so \(\Tr(c_{\mu }) = - \Tr(c_{\mu }) \implies \Tr(c_{\mu }) = 0\). 
+Since the trace is the sum of the eigenvalues, which are \(\pm 1\), the dimension must be even. 
+
+So, our simplest guess will be \(N=2\): a basis for Hermitian complex matrices is \(\qty{\mathbb{1}, \sigma_{i}}\) where \(\sigma_{i}\) are the Pauli matrices.
+However, \(\mathbb{1}\) is not traceless: so our \(c_{\mu }\) can only be written as \(c_{\mu } = \vec{c} \cdot \vec{\sigma}\).
+
+Now, our \(c_{\mu }\) must be linearly independent over \(\mathbb{C}\): if they were not, say because \(c_{\mu } = z c_{\nu }\), with \(\mu \neq \nu \) and \(z \in \mathbb{C}\), then the anticommutation would read 
+%
+\begin{align}
+\qty{c_{\mu }, c_{\nu }} = \qty{z c_{\nu }, c_{\nu }} = z \mathbb{1}  \neq 0
+\,,
+\end{align}
+%
+a contradiction. 
+We only have three linearly independent Pauli matrices \(\sigma_{i}\) to express four \(c_{\mu }\), so this cannot work. 
+
+Do however note that if \(M=0\) then we do not need the \(\beta \) matrix since the term multiplying it goes to zero, so the only matrices we need are the three \(\alpha_{i}\): in the massless case, then, we can use the Pauli matrices, setting \(\sigma_{i} = \alpha_{i}\) satisfies all our requirements, since \(\qty{\sigma_{i}, \sigma_{j}} = 2 \delta_{ij}\). 
+
+The next possible dimensionality is \(N=4\), and we can use the following matrices: 
+%
+\begin{align}
+\alpha_{i} = \left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\qquad \text{and} \qquad
+\beta = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]  
+\,.
+\end{align}
+
+These are self adjoint since the Pauli matrices are, manifestly traceless, and they satisfy the anticommutation relations. 
+
+\begin{proof}
+We expand the relation \(\qty{\alpha_{i}, \alpha_{j}}\): if we write \(\alpha_{i} \alpha_{j}\) we get 
+%
+\begin{align}
+\alpha_{i} \alpha_{j} = 
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma_{j} \\ 
+\sigma_{j} & 0
+\end{array}\right]
+= \left[\begin{array}{cc}
+\sigma_{i} \sigma_{j} & 0 \\ 
+0 & \sigma_{i} \sigma_{j}
+\end{array}\right]
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\qty{\alpha_{i}, \alpha_{j}} = \left[\begin{array}{cc}
+\qty{\sigma_{i}, \sigma_{j}} & 0 \\ 
+0 & \qty{\sigma_{i}, \sigma_{j}}
+\end{array}\right]
+= \qty{\sigma_{i}, \sigma_{j}} \mathbb{1}_{4}
+\,,
+\end{align}
+%
+but we know that \(\qty{\sigma_{i}, \sigma_{j}} = 2 \delta_{ij}\), so we have verified the anticommutation relations between the \(\alpha_{i}\). 
+
+To see that \(\beta^2 = \mathbb{1}_{4}\) is immediate since it is already diagonal, so we only need to show \(\qty{\alpha_{i}, \beta } = 0\). We have 
+%
+\begin{align}
+\alpha_{i} \beta =
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+&= 
+\left[\begin{array}{cc}
+0 & -\sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right] \\
+\beta \alpha_{i} =
+\left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+&= 
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+-\sigma_{i} & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+so the sum \(\alpha_{i} \beta + \beta \alpha_{i}\) is zero, which proves our statement. 
+\end{proof}
+
+\subsubsection{The \(\gamma \) matrices}
+
+It is then conventional to define the matrices 
+%
+\begin{align}
+\gamma^{0} = \beta = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+\qquad \text{and} \qquad
+\gamma^{i} = \beta \alpha_{i} = \left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+-\sigma_{i} & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+which obey the following properties: 
+\begin{enumerate}
+  \item \(\gamma^{0} = (\gamma^{0}) ^\dag\), while \(\gamma^{i} = - (\gamma^{i} ) ^\dag\);
+  \item \(\qty{\gamma^{\mu }, \gamma^{\nu }} = 2 \eta^{\mu \nu }\), specifically \((\gamma^{0})^2 = \mathbb{1}_{4}\) and \((\gamma^{i})^2 = - \mathbb{1}_{4}\). 
+\end{enumerate}
+
+We can then interpret this collection of matrices as a 4-vector. 
+We can rewrite the Dirac equation using them: we multiply it by \(\beta \) to get 
+%
+\begin{align}
+i \partial_0 \psi &= \qty(-i \alpha_{i} \partial_{i}+ \beta M ) \psi  \\
+i \beta \partial_0 \psi &= \qty(-i \beta \alpha_{i} \partial_{i} + \beta^2 M) \psi  \\
+i \gamma^{0} \partial_0 \psi &= \qty(- \gamma^{i}\partial_{i} + \beta^2 M) \psi  \\
+\qty(i \gamma^{\mu } \partial_{\mu } - M ) \psi &= 0 
+\,.
+\end{align}
+
+This looks simple, but recall that \(\gamma^{\mu }\) are \(4 \times 4\) matrices and \(\psi \) is a 4D spinor: if we write this explicitly using the spinor indices, for which we use the Hebrew letters \(\aleph\) nd \(\beth\) (aleph and beth\footnote{Since this notation will only be used here, it does not matter if it is a little inconvenient. I did not use greek or latin letters since they both already have meaning in the conventional notation.}), we get 
+%
+\begin{align}
+\qty(i \gamma^{\mu }_{\aleph \beth} - M \delta_{\aleph \beth}) \psi_{\beth} = 0 
+\,,
+\end{align}
+%
+which is a set of 4 equations, indexed by the free index \(\aleph\).
+Since the \(\gamma \) matrices are not diagonal, the components \(\psi_{\beth}\) are mixed in the equation. 
+
+If we introduce the slashed notation \(\slashed{p} \overset{\text{def}}{=} \gamma^{\mu }p_{\mu }\). 
+
+With this notation, the Dirac equation reads 
+%
+\boxalign{
+\begin{align}
+\qty(i \slashed{\partial} -M) \psi = 0
+\,.
+\end{align}}
+
+\subsubsection{Representations of \(\gamma \)-matrices}
+
+The way we defined the \(\gamma \) matrices was arbitrary, and in fact there are other possible equivalent definitions which are also physically useful. 
+
+In general, for any unitary matrix \(C\) we can move to the new representation 
+%
+\begin{align}
+\widetilde{\gamma}^{\mu } =C^{-1} \gamma^{\mu } C
+\,.
+\end{align}
+%
+\todo[inline]{How do we prove that the physical results are the same? The Dirac equation is in the form \(A \psi =0\), and if we show that for an equation in this form \(C^{-1} A C\) is as good as \(A\) then we are done: in \(A = i \slashed{\partial} - M \mathbb{1}\) the \(M \mathbb{1}\) term is unaffected since it commutes with the matrix, the derivative is unaffected since the \(C\) matrix is assumed to be constant. But then, if we want to use \( \widetilde{A} = C^{-1}A C\), we will find solutions to \(C^{-1} A C C^{-1} \psi = \widetilde{A} \widetilde{\psi}\), where \(\widetilde{\psi} = C^{-1} \psi \): we do not lose any information, sure, since the matrix is unitary, but is the state physically equivalent?}
+
+The Dirac representation we gave before is usually used when dealing with the nonrelativistic limit, while the one we now show is called the relativistic, or Weyl, or chiral, representation. 
+We use the matrix which is known in quantum information as the Hadamard gate:
+%
+\begin{align}
+C = \frac{1}{\sqrt{2}} \left[\begin{array}{cc}
+1 & 1 \\ 
+-1 & 1
+\end{array}\right]
+\,
+\end{align}
+%
+we can move to the representation 
+%
+\begin{align}
+\gamma^{\mu } = \qty(\left[\begin{array}{cc}
+0 & \mathbb{1} \\ 
+\mathbb{1} & 0
+\end{array}\right], \left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+- \sigma_{i} & 0
+\end{array}\right])
+\,.
+\end{align}
+%
+\begin{proof}
+We multiply, writing \(1\) for \(\mathbb{1}\) and \(0\) for the 0 matrix for simplicity: for \(\gamma^{0}\) we get 
+%
+\begin{align}
+C^{-1} \gamma^{0} C &= \frac{1}{2} \left[\begin{array}{cc}
+1 & -1 \\ 
+1 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 1 \\ 
+-1 & 1
+\end{array}\right]  \\
+&= \frac{1}{2} \left[\begin{array}{cc}
+1 & -1 \\ 
+1 & 1
+\end{array}\right] 
+\left[\begin{array}{cc}
+1 & 1 \\ 
+1 & -1
+\end{array}\right]  \\
+&= \frac{1}{2} \left[\begin{array}{cc}
+0 & 2 \\ 
+2 & 0
+\end{array}\right] = \left[\begin{array}{cc}
+0 & 1 \\ 
+1 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+while for \(\gamma^{i}\) we have 
+%
+\begin{align}
+C^{-1} \gamma^{i} C &= \frac{1}{2} \left[\begin{array}{cc}
+1 & 1 \\ 
+-1 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+- \sigma_{i} & 0
+\end{array}\right] 
+\left[\begin{array}{cc}
+1 & -1 \\ 
+1 & 1
+\end{array}\right]  \\
+&= \frac{1}{2} 
+\left[\begin{array}{cc}
+1 & 1 \\ 
+-1 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+\sigma_i  & \sigma_i  \\ 
+- \sigma_i  & \sigma_i 
+\end{array}\right]  \\
+&= \left[\begin{array}{cc}
+0 & \sigma_i  \\ 
+-\sigma_i  & 0
+\end{array}\right]
+\,.
+\end{align}
+\end{proof}
+
+The Dirac equation is consistent with the Klein Gordon equation: we can multiply it by the conjugate of the Dirac operator, \(-(i \slashed{\partial}+M)\), to get 
+%
+\begin{align}
+- \qty(i \slashed{\partial}+M) \qty(i \slashed{\partial}-M) \psi  &= 0\\
+\qty( \gamma^{\mu } \gamma^{\nu } \partial_{\mu } \partial_{\nu } + M^2  ) &= 0   \\
+\qty(\square + M^2) \psi &=0
+\,,
+\end{align}
+%
+which is equivalent to the Klein-Gordon equation since when we compute \(\gamma^{ \mu }  \gamma^{\nu } \partial_{\mu } \partial_{\nu }\) we only have the symmetric part, since the partial derivatives commute, and \(\frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} = \eta^{\mu \nu }\). 
+
+The Klein-Gordon equation is then diagonal in the spinorial space: by this manipulation we have shown that the KG operator is proportional to the identity. 
 
 \end{document}
+

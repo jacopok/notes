@@ -1,4 +1,115 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The Dirac Equation}
+
+\marginpar{Saturday\\ 2020-3-28, \\ compiled \\ \today}
+
+The Klein Gordon equation, which we discussed in the previous lectures, has two main issues: 
+\begin{enumerate}
+  \item It is a second order equation, since we started from the relativistic dispersion relation \(E^2 = M^2 + \abs{\vec{p}}^2\), so it admits a negative as well as a positive energy solution: \(E = \pm \omega_{p}\). 
+  \item The charge associated with its 4-current density \(J^{\mu }\) is not positive definite: 
+  %
+  \begin{align}
+  Q = \int \dd[3]{x} J^{0}(\vec{x}, t) 
+  \,
+  \end{align}
+  %
+  can be negative. 
+\end{enumerate}
+
+In order to clarify the problem with these, we discussed the Klein Paradox, in which there is a violation of unitarity for a scattering process: the reflection probability was \(>1\) while the transmission probability was negative. 
+
+Dirac, in 1928, tried a different approach. 
+
+\subsection{Historical derivation of the Dirac equation}
+
+We want to build an equation in the form 
+%
+\begin{align}
+i \pdv{}{t} \psi  = H_D \psi 
+\,,
+\end{align}
+%
+for some Dirac Hamiltonian \(H_D\), which we require to be first-order in the space derivatives and the mass, so that our equation can be covariant: this in general will be written as 
+%
+\begin{align}
+H_D = -i \vec{\alpha} \cdot \vec{\nabla} + \beta M = \vec{\alpha} \cdot \qty(-i \vec{\nabla}) + \beta M
+\,,
+\end{align}
+%
+for some yet to be determined 4 coefficients \(\vec{\alpha}\) and \(\beta \).
+
+This is equivalent to saying that the energy \(E\) is given by \(\vec{\alpha} \cdot \vec{p} + \beta M\), since \(\vec{p} = - i \vec{\nabla}\). 
+
+We are assuming the coefficients to be constant, we shall see that this hypothesis works out. Also, as we shall these cannot be numbers, but instead they are matrices: for now, all this means is that we need to be careful when manipulating them, since in general they will not commute. 
+
+In order to determine \(\vec{\alpha }\) and \(\beta \) we impose the conditions: 
+\begin{enumerate}
+  \item the Dirac Hamiltonian \(H_D\) is hermitian, since it needs to describe the physical property of energy, therefore it is an observable;
+  \item if \(\psi \) solves the Dirac equation, then it also solves the KG equation. 
+\end{enumerate}
+
+\todo[inline]{Are KG solutions also Dirac solutions generally?}
+
+The first condition can be written as \(H = H ^\dag\), but to find out what it means for the coefficients \(\vec{\alpha }\) and \(\beta \) we need to know what \(\vec{\nabla} ^\dag\): since we know that momentum \(\vec{p} = -i \vec{\nabla}\) is self adjoint, we must have \(\vec{p} ^\dag = (-i) ^\dag \vec{\nabla} ^\dag = i \vec{\nabla} ^\dag \overset{!}{=} -i \vec{\nabla} = \vec{p} \),
+which means that \(\vec{\nabla} ^\dag = - \vec{\nabla}\).
+So, we get 
+%
+\begin{align}
+H ^\dag &= (-i) ^\dag \vec{\alpha} ^\dag \cdot \vec{\nabla} ^\dag + \beta ^\dag M ^\dag  \\
+&= -i \alpha^{*} \cdot \vec{\nabla} + \beta^{*} M
+\,,
+\end{align}
+%
+since \(M\) is real.\footnote{In the professor's notes this is done explicitly by integrating by parts: this method can be adapted to look like that, since one can use integration by parts to show that for any wavefunctions \(\phi \) and \(\psi \) we have \(\braket{\phi }{\nabla \psi } + \braket{\nabla \phi}{\psi } = 0\). Then, the only difference between the approaches is whether we only integrate by parts to get the adjoint of \(\nabla\) or the whole of \(H_D\). }
+Therefore, the coefficients must satisfy \(\vec{a}^{*} = \vec{\alpha}\) and \(\beta^{*} = \beta \) themselves. 
+
+The other condition, consistency with the KG equation, means that when we square the Dirac time derivative operator 
+%
+\begin{align}
+\pdv{}{t} = -i H_D
+\,
+\end{align}
+%
+we should get the KG square time- derivative operator 
+%
+\begin{align}
+\pdv[2]{}{t} = \nabla^2 + M^2
+\,.
+\end{align}
+
+So, we find 
+%
+\begin{align}
+\nabla^2 + M^2 &\overset{!}{=} (-i H_D)^2 = - H_D^2  \\
+&= -\qty(-i \alpha_{i}  \nabla_{i} + \beta ) \qty(-i \alpha_{j} \nabla_{j} + \beta )  \\
+&= \alpha_{i} \alpha_{j} \nabla_{i} \nabla_{j} + i \qty(\alpha_{i} \beta  + \beta \alpha_{i}) \nabla_{i} + \beta^2  \\
+&= \frac{1}{2} \qty{\alpha_{i}, \alpha_{j}} \nabla_{i} \nabla_{j} 
++ i \qty{\alpha_{i}, \beta } \nabla_{i} + \beta^2
+\,,
+\end{align}
+%
+where we introduced the anticommutator bracket notation: 
+%
+\begin{align}
+\qty{A, B} = AB + BA
+\qquad \text{while} \qquad
+\qty[A, B] = AB - BA
+\,.
+\end{align}
+
+So, in order for the equations to be equivalent we need to impose 
+%
+\begin{align}
+\frac{1}{2}\qty{\alpha_{i}, \alpha_{j}} = \delta_{ij}
+\qquad \qquad 
+\qty{\alpha_{i}, \beta } = 0
+\qquad \qquad 
+\beta^2 = M^2
+\,.
+\end{align}
+%
+
+
 \end{document}

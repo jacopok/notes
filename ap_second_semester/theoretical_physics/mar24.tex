@@ -162,6 +162,199 @@ S^{-1} (\Lambda ) &= \exp(\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })
 
 \subsection{Dirac conjugate spinor}
 
+We want to define a notion of a conjugate spinor, starting from what we know about hermitian conjugate operators: we start by taking the Hermitian conjugate of the Dirac equation, 
+%
+\begin{align}
+\qty[\qty(i \slashed{\partial} -M) \psi ]^\dag = - i \psi ^\dag \qty(i \gamma^{\mu \dag} \overleftarrow{\partial}_{\mu } + M )
+\,,
+\end{align}
+%
+where the result follows from the fact that the adjoint of a product is the product of the reverse-ordered adjoints, while the notation \(\overleftarrow{\partial}_{\mu }\) means that the derivative operator is acting on what is on its left. 
 
+In order to simplify this, we employ the following facts: \((\gamma^{0})^2 = \mathbb{1}\), and 
+%
+\begin{align}
+\gamma^{0} \gamma^{\mu \dag} \gamma^{0} = \gamma^{\mu }
+\,.
+\end{align}
+
+\begin{proof}
+For \(\gamma^{0}\) the result is immediate, since it is self adjoint: \(\gamma^{0} = \gamma^{0, \dag}\), so the expression reduces to \(\qty(\gamma^{0})^3 = \qty(\gamma^{0})^2 \qty(\gamma^{0}) = \gamma^{0}\).
+
+Then let us consider \(\gamma^{i}\): since they are block matrices of the Pauli matrices, which are self-adjoint and which have determinant \(-1\), we have:
+%
+\begin{align}
+\gamma^{i \dag} = \left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+- \sigma_{i} & 0
+\end{array}\right] ^\dag = 
+\left[\begin{array}{cc}
+0 & - \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right] = - \gamma^{i}
+\,,
+\end{align}
+%
+therefore we need to prove that \(\gamma^{0} \gamma^{i} \gamma^{0} = -\gamma^{i}\): 
+%
+\begin{align}
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+-\sigma_{i} & 0
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right] &= 
+\left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & -\sigma_{i} \\ 
+- \sigma_{i} & 0
+\end{array}\right]  \\
+&= 
+\left[\begin{array}{cc}
+0 & - \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\,.
+\end{align}
+\end{proof}
+
+With these results, we can use the manipulation 
+%
+\begin{align}
+\psi ^\dag \gamma^{\mu \dag} \overleftarrow{\partial}_{\mu } &= 
+\psi ^\dag \gamma^{0} \gamma^{0} \gamma^{\mu \dag} \gamma^{0} \gamma^{0} \overleftarrow{\partial}_{\mu }  \\
+&= \psi ^\dag \gamma^{0} \gamma^{\mu } \overleftarrow{\partial}_{\mu } \gamma^{0}
+\,,
+\end{align}
+%
+which holds since the matrix \(\gamma^{0}\) is constant.
+We also define \(\overline{\psi} = \psi ^\dag \gamma^{0}\), so that the whole equation reads 
+%
+\begin{align}
+\overline{\psi} \qty(i \slashed{\partial} + M ) =0 
+\,,
+\end{align}
+%
+where we removed the \(\gamma^{0}\) at the right, since the equation multiplied by it is equivalent to the one which is not. 
+
+Now, in order to see how \(\overline{\psi}\) transforms under a Lorentz transformation we use the following facts: 
+\begin{enumerate}
+  \item \(\psi' (x' ) = S(\Lambda ) \psi (x)\) and 
+  \item \(\gamma^{0} S ^\dag (\Lambda ) \gamma^{0} = S^{-1}(\Lambda )\).
+\end{enumerate}
+
+\begin{proof}
+We are going to work near the identity: this is justified, since if we find an equality like \(f(\Lambda ) \equiv g(\Lambda )\) for \(\Lambda \) near \(\mathbb{1}\), then we can extrapolate it using the exponential map to places further away in the group.
+
+\todo[inline]{Does this actually work, or are we deriving something which only holds near the identity?}
+
+We know that \(S(\Lambda )\) is written as 
+%
+\begin{align}
+S(\Lambda )=   \exp( -\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })
+\,,
+\end{align}
+%
+so its adjunct is 
+%
+\begin{align}
+S ^\dag (\Lambda ) = \exp( \frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu \dag}) \approx \mathbb{1} + \frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu \dag}
+\,,
+\end{align}
+%
+so when we multiply it from the left and right by \(\gamma^{0}\) it goes through everything, and we are left with 
+%
+\begin{align}
+\gamma^{0} \Sigma^{\mu \nu \dag} \gamma^{0} \overset{?}{=} 
+\Sigma^{\mu \nu }
+\,,
+\end{align}
+%
+since the expression for \(S^{-1}(\Lambda )\) differs from that of \(S(\Lambda )\) only for a sign in the exponent, but we picked up a sign when taking the adjunct. 
+Recall that the explicit expression of the \(\Sigma \) matrices is 
+%
+\begin{align}
+\Sigma^{\mu \nu } = \frac{i}{4} \qty[\gamma^{\mu }, \gamma^{\nu }]
+\,,
+\end{align}
+%
+so we can show directly that 
+%
+\begin{align}
+\gamma^{0} \Sigma^{\mu \nu \dag} \gamma^{0} &=
+\frac{i}{4} \gamma^{0} \gamma^{\mu \dag}  \gamma^{\nu\dag } \gamma^{0 }
+-\frac{i}{4} \gamma^{0} \gamma^{\nu\dag }  \gamma^{\mu \dag} \gamma^{0 } \\
+&= 
+\frac{i}{4} \gamma^{0} \gamma^{\mu \dag} \gamma^{0} \gamma^{0} \gamma^{\nu\dag } \gamma^{0 }
+-\frac{i}{4} \gamma^{0} \gamma^{\nu\dag }  \gamma^{0} \gamma^{0} \gamma^{\mu \dag} \gamma^{0 }  \\
+&= \frac{i}{4} \qty[\gamma^{\mu } \gamma^{\nu }] = \Sigma^{\mu \nu }
+\,.
+\end{align}
+\end{proof}
+
+Using these results, we can show that the conjugate spinor \(\overline{\psi} = \psi ^\dag \gamma^{0}\) transforms like: 
+%
+\begin{align}
+\overline{\psi}' (x') &= \psi^{\prime \dag} \gamma^{0}  \\
+&= \qty(S(\Lambda ) \psi ) ^\dag \gamma^{0}  \\
+&= \psi ^\dag S ^\dag (\Lambda ) \gamma^{0} \\
+&= \psi ^\dag \gamma^{0} \gamma^{0} S ^\dag (\Lambda ) \gamma^{0} \\
+&= \overline{\psi} S^{-1}(\Lambda ) \\
+\,.
+\end{align}
+
+\subsection{Continuity equation}
+
+We can apply the same strategy we used in the KG case: if we multiply the Dirac equation by \(\overline{\psi}\) on the left and the conjugate equation by \(\psi \) on the right, we get 
+%
+\begin{align}
+\overline{\psi} \qty(i \slashed{\partial} - M ) \psi &= 0 
+\overline{\psi} \qty(i \overleftarrow{\slashed{\partial}} + M ) \psi &= 0 
+\,.
+\end{align}
+
+if we sum them, the \(M \overline{\psi} \psi  \) terms cancel, so we have 
+%
+\begin{align}
+0 &= \overline{\psi} \qty(i \overleftarrow{\slashed{\partial}} + i \slashed{\partial}) \psi   \\
+&= i \qty( (\partial_{\mu }\overline{\psi}) \gamma^{\mu } \psi   + \overline{\psi} \gamma^{\mu }\partial_{\mu } \psi)  \\
+&= \partial_{\mu } \qty(\overline{\psi} \gamma^{\mu } \psi )
+\,,
+\end{align}
+%
+so we have the conserved current \(\overline{\psi} \gamma^{ \mu } \psi   = J^{\mu }\).
+Its corresponding charge density is \(\rho = J^{0}= \overline{\Psi} \gamma^{0} \psi = \psi ^\dag \psi \). 
+
+This looks like a positive definite conserved charge, so it could be interpreted as a probability. 
+In fact, this is not the case, as we shall see in the future. 
+
+\subsection{Bilinear forms and Lorentz transformations}
+
+Our observables may not still carry spinorial indices: all the spinorial indices must be saturated in the expression for an observable.
+
+For instance, \(\overline{\psi} \psi \) is the dot product of two spinors, so it carries no indices.
+It is a scalar under Lorentz transformations, since \(\overline{\psi}\) transforms with a \(S^{-1}\) while \(\psi \) transforms with an \(S\).  
+
+\(\overline{\psi} \gamma^{\mu } \psi \) is instead a vector under Lorentz transformations: it transforms like 
+%
+\begin{align}
+\overline{\psi} \gamma^{\mu } \psi \rightarrow
+\overline{\psi} S^{-1}(\Lambda ) \gamma^{\mu } S(\Lambda  ) \psi 
+= \overline{\psi} \tensor{\Lambda }{^{\mu }_{\nu }} \gamma^{\nu } \psi 
+\,,
+\end{align}
+%
+where we used the property shown in equation \eqref{eq:spinorial-representation-definition}.
+
+So, everything we are doing is covariant when we are discussing observables. 
 
 \end{document}

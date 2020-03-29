@@ -35,7 +35,7 @@ schedule = {
     1: ["tp", "ap", "ma", "gw"],
     2: ["ap", "rp", "gw"],
     3: ["tc", "rp"],
-    4: ["gp", "tc", "ma"]
+    4: ["gp", "tc", "ma", "gw"]
 }
 
 def next_monday():

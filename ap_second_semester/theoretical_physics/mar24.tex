@@ -1,4 +1,167 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Covariance of the Dirac Equation}
+
+\marginpar{Sunday\\ 2020-3-29, \\ compiled \\ \today}
+
+How do these new spinors transform under Lorentz transformations? 
+
+We suppose that for a general Lorentz transformation \(\Lambda \) we will have something in the form 
+%
+\begin{align}
+\psi^{\prime } (x') = S(\Lambda ) \psi (x)
+\,,
+\end{align}
+%
+where \(S(\Lambda )\) is a \(4 \times 4\) matrix, belonging to the \emph{spinorial representation of the Lorentz group}. 
+We do this because if we were to simply impose \(\psi^{\prime }(x^{\prime }) = \psi (x)\) we get a contradiction, so the equation is not covariant. 
+
+Now, let us see what we must require of the matrices \(S(\Lambda )\) so that the Dirac equation holds in the new frame as well as in the old. 
+When we do the computation, recall that the \(\gamma^{\mu }\) matrices are \emph{not} a 4-vector, despite the position of the index: they need not be transformed using a \(\Lambda \) matrix; better put, they are a set of 4 Lorentz scalars
+
+So, we must have 
+%
+\begin{align}
+\qty(i \slashed{\partial}' - M) \psi^{\prime } (x') &=
+\qty(i \gamma^{\mu } \tensor{\Lambda }{_{\mu }^{\nu }} \partial_{\nu } -M) S(\Lambda ) \psi (x)  
+\\
+&= S(\Lambda ) \qty[i \tensor{\Lambda }{_{\mu }^{\nu }} S^{-1}(\Lambda ) 
+\gamma^{\mu } S(\Lambda ) \partial_{\nu } - M ] \psi (x)  \\
+&=S(\Lambda ) \qty[i \slashed{\partial} - M] \psi (x)
+\,,
+\end{align}
+%
+where we used the following:
+\begin{enumerate}
+  \item the matrix \(S(\Lambda )\) is constant with respect to the spatial coordinates, since the Lorentz transformation is fixed, so we can bring it outside of the derivative \(\partial_{\nu }\);
+  \item the matrices \(\gamma^{\mu }  \) and \(S(\Lambda )\) do not commute \emph{a priori}, so if we wish to bring the equation in the form \(S(\Lambda ) \times \qty[\text{old-coordinates Dirac eq}]\) we cannot simply commute them, instead we multiply by \(\mathbb{1} = S S^{-1}\) on the left;
+  \item we impose the condition 
+  %
+  \begin{align}
+  \tensor{\Lambda }{_{\mu }^{\nu }} S^{-1}(\Lambda ) \gamma^{\mu } S(\Lambda ) \overset{!}{=} \gamma^{\nu }
+  \,
+  \end{align}
+  %
+  in order to find the expression we need in order for the equation to be covariant, since as long as the matrix \(S(\Lambda )\) is nondegenerate the equation \(S(\Lambda ) \qty[i \slashed{\partial} - M] \psi =0\) has the same solutions as the Dirac equation.
+\end{enumerate}
+
+If we multiply by an inverse Lorentz matrix on both sides we can bring this equation into the form 
+% 
+\begin{align} \label{eq:spinorial-representation-definition}
+S^{-1}(\Lambda ) \gamma^{\mu } S(\Lambda ) = \tensor{\Lambda }{^{\mu }_{\nu }} \gamma^{\nu }
+\,,
+\end{align}
+%
+so we can say that the Dirac equation is covariant as long as we find some matrices \(S(\Lambda )\) satisfying these conditions. 
+Do note that while this looks like a vector transformation law, the \(\gamma^{\mu }\) matrices do not transform under Lorentz transformations: what we are stating is that it is equivalent to apply a Lorentz matrix to them and to transform them as spinorial matrices. 
+
+In a way, we are asking the transformation laws for spinors and vectors to be compatible. 
+
+\subsubsection{Explicit realization of the spinorial representation}
+
+In order to do this, we consider infinitesimal Lorentz transformations, 
+%
+\begin{align}
+\tensor{\Lambda }{^{\mu }_{\nu }} = \tensor{ \delta }{^{\mu }_{\nu }} + \tensor{\omega}{^{\mu}_{\nu }}
+\,,
+\end{align}
+%
+where \(\omega_{\mu \nu } = \omega_{[\mu \nu ]}\) is an antisymmetric tensor.\footnote{The fact that \(\omega \) must be antisymmetric may be derived by imposing the condition \(\eta_{\mu \nu } = \tensor{\Lambda }{_{\mu }^{\alpha }} \tensor{\Lambda }{_{\nu }^{\beta }} \eta_{\alpha \beta }\), with the perturbed \(\Lambda \) we wrote above.}
+
+A rank-2 antisymmetric tensor in 4 dimensions has 6 degrees of freedom: these physically correspond to three rotations and three boosts. 
+
+A rather general ansatz looks like:
+%
+\begin{align}
+S(\Lambda ) = \mathbb{1} - \frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu }
+\,,
+\end{align}
+%
+where \(\Sigma^{\mu \nu }\) is the set of the generators of the spinorial representation of the Lorentz group. For fixed \(\mu \) and \(\nu \), these are matrices in the spinor space: if we write all the indices explicitly, they look like \(\Sigma^{\mu \nu }_{\aleph \beth}\). 
+
+This means that to each possible basis Lorentz transformation of spacetime (think boost or rotation) we are associating a \(4 \times 4\) basis spinor transformation matrix. 
+This is what finding a representation of the group means: for each element of the Lorentz group we are finding a transformation matrix. 
+
+Do note, however, that we are only working at linear order in \(\omega_{\mu \nu }\), so we are not looking yet at a representation of the whole group, instead we are only considering elements which are close to the identity. 
+So, we can insert this expression for \(S(\Lambda )\) into the relation between the \(S(\Lambda )\) and \(\Lambda \), equation \eqref{eq:spinorial-representation-definition}, using the fact that to first order \(S = \mathbb{1} + \epsilon \) is the inverse of \(S^{-1} = \mathbb{1} - \epsilon \) we have, to first order in \(\omega \): 
+%
+\begin{align}
+\qty(\mathbb{1} + \frac{i}{2} \omega_{\rho \sigma } \Sigma^{\rho \sigma }) \gamma^{\mu } \qty(\mathbb{1} - \frac{i}{2} \omega_{\alpha \beta } \Sigma^{\alpha \beta }) &= \gamma^{ \mu} +\tensor{\omega}{^{\mu }_{\nu }} \gamma^{\nu } \\
+\gamma^{\mu } + \frac{i}{2} \omega_{\rho \sigma } \Sigma^{\rho \sigma } \gamma^{ \mu } - \frac{i}{2} \gamma^{\mu }\omega_{\alpha \beta } \Sigma^{\alpha \beta } &= \gamma^{\mu } + \omega_{\sigma \nu } \eta^{\mu \sigma } \gamma^{\nu }  \\
+-\frac{i}{2} \omega_{\rho \sigma } \qty[\gamma^{\mu }, \Sigma^{\rho \sigma }] &= \omega_{\sigma \nu } \eta^{\mu [\sigma } \gamma^{\nu ]}  \\
+\qty[\gamma^{\mu }, \Sigma^{\rho \sigma }] &= i \qty(\eta^{\mu \rho } \gamma^{\sigma } - \eta^{\mu \sigma } \gamma^{\rho })
+\,,
+\end{align}
+%
+where we antisymmetrized the indices in \(\eta^{\mu \rho } \gamma^{\sigma }\) since they are multiplied by the antisymmetric tensor \(\omega_{\rho \sigma }\), so any symmetric part would not contribute to the equation. 
+We also used the fact that \(\omega_{\rho \sigma } \) is proportional to the identity in the spinor space. 
+
+\begin{claim}
+This is satisfied by 
+%
+\begin{align}
+\Sigma^{\mu \nu } = \frac{i}{4} \qty[\gamma^{\mu }, \gamma^{\nu }] = \frac{1}{2} \sigma^{\mu \nu }
+\,,
+\end{align}
+\end{claim}
+
+\begin{proof}
+We plug the definitions in: 
+%
+\begin{align}
+\qty[\gamma^{\mu }, \Sigma^{\rho \sigma }] &= \frac{i}{4} \qty(\gamma^{\mu } \gamma^{\rho} \gamma^{\sigma } - \gamma^{\mu } \gamma^{\sigma } \gamma^{\rho } - \gamma^{ \rho } \gamma^{\sigma } \gamma^{\mu } + \gamma^{ \sigma } \gamma^{ \rho } \gamma^{ \mu })  \\
+i \qty(\eta^{\mu \rho } \gamma^{\sigma } - \eta^{\mu \sigma } \gamma^{\rho }) &= \frac{i}{2} \qty(\gamma^{\mu} \gamma^{\rho } \gamma^{\sigma } + \gamma^{\rho } \gamma^{\mu } \gamma^{\sigma } -\gamma^{\mu } \gamma^{\sigma }\gamma^{\rho } - \gamma^{\sigma } \gamma^{\mu } \gamma^{ \rho } )
+\,,
+\end{align}
+%
+where we used the anticommutation relations \(\qty{\gamma^{\mu }, \gamma^{\nu }} = 2 \eta^{\mu \nu }\). 
+Then, we must check whether these two expression are equal, that is, whether 
+%
+\begin{align}
+\frac{1}{2} \qty( \mu  \rho \sigma  - \mu  \sigma  \rho  -  \rho  \sigma  \mu  +  \sigma   \rho   \mu ) &\overset{?}{=} 
+\mu \rho  \sigma  + \rho  \mu  \sigma  -\mu  \sigma \rho  - \sigma  \mu   \rho   \\
+&=  \qty{\mu, \rho }\sigma - \qty{\mu , \sigma } \rho 
+\,,
+\end{align}
+%
+where we only write the indices of the \(\gamma \)s for clarity. 
+
+We can now use the identity: 
+%
+\begin{align}
+[\mu , \rho \sigma ] &= \mu \rho \sigma - \rho \sigma \mu  \\
+&= \mu \rho \sigma + \rho \mu \sigma - \rho \mu \sigma - \rho \sigma \mu \marginnote{Added and subtracted}  \\
+&= \qty{\mu, \rho } \sigma - \rho \qty{\mu, \sigma }
+\,.
+\end{align}
+
+Note that in our convention there is no division by 2 in the commutator and anticommutator. 
+Then, we can recognize these in the initial claim: we find 
+%
+\begin{align}
+\frac{1}{2} \qty( \mu  \rho \sigma  - \mu  \sigma  \rho  -  \rho  \sigma  \mu  +  \sigma   \rho   \mu )
+&= \frac{1}{2} \qty(\qty[\mu, \rho \sigma ] - \qty[\mu, \sigma \rho ])  \\
+&= \frac{1}{2} \qty(\qty{\mu, \rho } \sigma - \rho \qty{\mu, \sigma } -
+\qty{\mu, \sigma } \rho + \sigma \qty{\mu, \rho })  \\
+&= \qty{\mu, \rho } \sigma - \qty{\mu, \sigma } \rho 
+\,,
+\end{align}
+%
+since the anticommutators \(\qty{\mu, \sigma }\) are proportional to the metric \(\eta^{\mu \sigma }\), which is proportional to the identity in the spinorial space, which commutes with the gamma matrices, so \(\qty{\mu , \sigma }\) commutes with any gamma matrix. 
+\end{proof}
+
+Up until now we have worked ``near the identity'' of our transformation group; if we want to extrapolate these results to general transformations we may use the exponential map, which gives us relations in the form 
+%
+\begin{align}
+S(\Lambda ) &= \exp( -\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })  \\
+S^{-1} (\Lambda ) &= \exp(\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })
+\,.
+\end{align}
+%
+
+\subsection{Dirac conjugate spinor}
+
+
+
 \end{document}

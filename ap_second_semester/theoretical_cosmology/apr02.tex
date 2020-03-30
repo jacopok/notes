@@ -1,4 +1,169 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday \\ 2020-4-02, \\ compiled \\ \today}
+
+On the Right Hand Side, instead, since the stress energy tensor is given by 
+%
+\begin{align}
+T^{i}_{j} = \sum _{\text{all species \(a\)}} g_{a}
+\int  \frac{ \dd[3]{p}}{(2 \pi )^3} 
+\frac{p^{i}p_{j}}{E_{a}(p)} f_a (\vec{x}, \vec{p}, t)
+\,
+\end{align}
+%
+we obtain 
+%
+\begin{align}
+\qty(\hat{k}_{i} \hat{k}^{j} - \frac{1}{3} \delta^{i}_{j})
+\widetilde{T}^{i}_{j} 
+= \sum _{a} g_{a} \int  \frac{\dd[3]{p}}{(2\pi )^3} \frac{p^2\mu^2 - p^2/3}{E_a (p)} f_a (\vec{p})
+\,,
+\end{align}
+%
+but we know that 
+%
+\begin{align}
+\mu^2 - \frac{1}{3} = \frac{2}{3} P_2 (\mu )
+\,,
+\end{align}
+%
+where \(P_2\) is the second Legendre polynomial, so we get 
+%
+\begin{align}
+\qty(\hat{k}_{i} \hat{k}^{j} - \frac{1}{3} \delta^{i}_{j})
+\widetilde{T}^{i}_{j} &=
+-2 \int_{0}^{ \infty } \frac{ \dd{p} p^2}{2\pi^2} \pdv{f^{(0)}}{p}p^2
+\int_{-1}^{1} \frac{ \dd{\mu }}{2} \frac{2}{3} P_2 (\mu ) \theta (\mu )  \\
+&= 2 \frac{2}{3} \widetilde{\theta}_{2} \int_{0}^{ \infty } \frac{ \dd{p}p^2}{2 \pi^2} p^2 \pdv{f^{(0)}}{p} = - \frac{8}{3} p_{\gamma } \widetilde{\theta}_{2}
+\,,
+\end{align}
+%
+so if we collect terms we find 
+%
+\begin{align} \label{eq:radiation-temperature-perturbation-term}
+k^2 \qty(\Phi - \Psi ) &= - 32 \pi G a^2 
+\underbrace{\qty[\rho_{\gamma } \widetilde{\theta}_{2} + \rho_{\nu } \widetilde{w}_{2}] }_{\rho_{r} \theta_{r, 2}} 
+\,.
+\end{align}
+
+Since we have added the neutrino contribution, we are accounting for all of radiation. 
+
+The Einstein 00 equation \eqref{eq:einstein-00-perturbed-equation} can be written in Fourier space as 
+%
+\begin{align}
+k^2 \Phi + 3 \frac{\dot{a}}{a} \qty(\dot{\Psi} + \frac{\dot{a}}{a} \Phi )
+= -4 \pi G a^2 \qty(\rho_{m } \delta_{m} + 4 \rho_{r} \widetilde{\theta}_{r, 0}) 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\rho_{m} \delta_{m} = \rho_{m} \delta + \rho_{b} \delta_{b} 
+\qquad \text{and} \qquad
+\rho_{r} \theta_{r, 0} = \rho_{\gamma } \theta + \rho_{\nu } w
+\,.
+\end{align}
+
+Dark Matter and baryons do not contribute to the quadrupole (at first order). 
+
+Recall that the EFE are not independent: we need another one, and we choose the \(^0_i\) one: those components of the stress-energy tensor are given by 
+%
+\begin{align}
+T^{0}_{i} = \sum _{\alpha } a \rho_{\alpha } 
+\int \frac{ \dd[3]{p}}{(2\pi )^3} p_{i} f_\alpha  (\vec{x}, \vec{p}, t)
+\,,
+\end{align}
+%
+so with reasoning similar to what was done before we find that the \(^0_{i}\) equation reads
+%
+\begin{align}
+\dot{\Psi} + a H \Phi = - \frac{4 \pi G a^2}{ik}
+\qty[\rho_{m} v_{m} - 4 i \rho_{r} \theta_{r, 1}]
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\rho_{m} v_{m} = \rho _{\text{dm}} v + \rho_{b} v_{b}
+\qquad \text{and} \qquad
+\rho_{r} \theta_{r, 1} = \rho_{g} \theta_1 + \rho_{\nu } w_{1}
+\,.
+\end{align}
+
+Combining the \(00\) and \(0i\) equations we find 
+%
+\begin{align}
+k^2 \Psi = -4\pi G a^2
+\qty[\rho_{m} \delta_{m} + 4 \rho_{r} \theta_{r, 0}
++ \frac{32H}{k} \qty(i \rho_{m} v_m + 4 \rho_{r} \theta_{r, 1})]
+\,.
+\end{align}
+
+\subsubsection{Tensor models}
+
+Now that we have found the equation of motion of the scalar field, let us discuss tensor modes: we can find the equation of motion for these starting from the transverse traceless part of the \(^i_{j}\) equation. We set \(\chi_{ij} = 2 h_{ij}\), and with this we can write the traceless Christoffel symbols:
+%
+\begin{align}
+\Gamma^{0}_{ij} &= \frac{1}{2} \dot{h}_{ij} + \frac{\dot{a}}{a} h_{ij}  \\
+\Gamma^{i}_{0j} &= \frac{1}{2} \dot{h}  \\
+\Gamma^{i}_{jk} &= h^{i}_{(j,k)} - \frac{1}{2} \tensor{h}{_{jk}^{,i}}  \\
+\,,
+\end{align}
+%
+which yield the traceless Einstein tensor 
+%
+\begin{align}
+G^{i}_{j} &= \frac{\dot{a}}{a} \dot{h}^{i}_{j} 
+- \frac{1}{2} \nabla^2 h^{i}_{j} + \frac{1}{2} \ddot{h}^{i}_{j}
+\,.
+\end{align}
+
+In order to get the correct contribution on the RHS we need to project it: we apply the projection operator 
+%
+\begin{align}
+\tensor{\mathcal{P}}{^{k}_{i}^{j}_{l}} =
+\mathcal{P}^{k}_{i} \mathcal{P}^{j}_{l}
+- \frac{1}{2} \mathcal{P}^{k}_{l} \mathcal{P}^{j}_{i}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\mathcal{P}^{i}_{j} = \delta^{i}_{j} - \hat{k}^{i}\hat{k}_{j}
+\,.
+\end{align}
+
+\todo[inline]{The work \cite[]{carboneUnifiedTreatmentCosmological2005} is mentioned, but the work only the two-index \(\mathcal{P}\) is defined (in position space and not in momentum space, but it's the same) (eq. 13); but the four-index combination is not explicitly written\dots}
+
+What is usually done is to completely neglect the right hand side of the EFE (since it is second order in \(v/c\)?), to get the homogeneous expression 
+%
+\begin{align}
+\ddot{h}_{ij} + 2 \frac{\dot{a}}{a} h_{ij} - \nabla^2 h_{ij} = 0
+\,.
+\end{align}
+
+We can express the tensor perturbation in Fourier space as 
+%
+\begin{align}
+h_{ij} = \frac{1}{(2\pi )^3} \int \dd[3]{k} e^{- \vec{k} \cdot \vec{x}}
+h_{ij} (\vec{k}, t)
+\,,
+\end{align}
+%
+where \(h_{ij} (\vec{k}, t)\) can be decomposed into the two basis polarizations \(+\) and \(\times \)
+so that our equation will read 
+%
+\begin{align}
+\ddot{h}_{\epsilon } + 2 \frac{\dot{a}}{a} \dot{h}_{\epsilon } + k^2 h_{\epsilon } = 16 \pi G \pi_{\epsilon }
+\,,
+\end{align}
+%
+where \(\epsilon = +, \times \) (see Pritchard \& Kamionkowski \cite[]{pritchardCosmicMicrowaveBackground2005}). 
+
+
+
 \end{document}

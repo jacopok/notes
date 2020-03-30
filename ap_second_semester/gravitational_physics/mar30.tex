@@ -1,4 +1,277 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-3-30, \\ compiled \\ \today}
+
+Last time we discussed: how can we distinguish what is a GW and what is not? 
+
+We do this by separating them by frequency. 
+We cannot really measure the nature of tensor perturbation of GWs, since we are only measuring integrated effects. 
+
+We can precisely map the effect of the GW in time, by sampling with a frequency which is much higher than the one of the GW. 
+
+So, let us fo this formally: if we expand the Ricci tensor to second order in \(h_{\mu \nu }\) we get 
+%
+\begin{align}
+\frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu }T)
+= \overline{R}_{\mu \nu } 
++ R^{(1)}_{\mu \nu } 
++ R^{(2)}_{\mu \nu } 
+\,,
+\end{align}
+%
+where the second order in \(h_{\mu \nu }\) term, \(R^{(2)}_{\mu \nu }\), has both high and low frequency components. 
+
+This is because, when we have a term like 
+%
+\begin{align}
+\qty(\sin(\omega_{1} t)\sin(\omega_2 t))^2
+\,,
+\end{align}
+%
+by the prostapheresis formulas we will gets terms like \(\omega_1 + \omega 2 \) and \(\omega_1 - \omega_2 \), one of which is high frequency and the other is low frequency, since we are considering a high-frequency wavepacket.
+
+Recall, we expand in two parameters: \(h\) and \(\lambda / L_B\). Then, we have 
+%
+\begin{align}
+\overline{R}_{\mu \nu } \sim \partial^2 \overline{g}_{\mu \nu } \sim \frac{1}{L_B^2} 
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\qty[R^{(2)}_{\mu \nu }]^{\text{low frequency}} \sim \qty(\partial h)^2
+ \sim \qty(\frac{h}{\lambda })^2
+\,.
+\end{align}
+
+See Maggiore, page 31 for more details. 
+So, the EFE low-frequency components are 
+%
+\begin{align}
+\overline{R}_{\mu \nu } = - \qty[R^{(2)}_{\mu \nu }]^{\text{low freq}} 
++ \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T)^{\text{low freq}}
+\,,
+\end{align}
+%
+so we either have \(T_{\mu \nu }=0\), in which case
+%
+\begin{align}
+\frac{1}{L_B^2} \sim \qty(\frac{h}{\lambda })^2
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+\frac{1}{L_B^2} \sim \qty(\frac{h}{\lambda })^2 + T_{\mu \nu } \gg \qty(\frac{h}{\lambda })^2
+\,,
+\end{align}
+%
+so we will have \(h \ll \lambda / L_B\): so we can take averages on a scale \(\ell\) such that \(\lambda_{GW} \ll \ell \ll L_B\): then we wil find 
+%
+\begin{align}
+\overline{R}_{\mu \nu } =
+- \expval{R^{(2)}_{\mu \nu }} + \frac{8 \pi G}{c^{4}} \expval{T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T} 
+\,.
+\end{align}
+
+After some math (see Maggiore): we can define a stress tensor of the GW, which looks like 
+%
+\begin{align}
+t_{\mu \nu } = - \frac{c^{4}}{8 \pi G} \expval{R^{(2)}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu } R^{(2)}}
+\,,
+\end{align}
+%
+and a ``smoothed out'' SEMT of matter: 
+%
+\begin{align}
+\expval{T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T}
+\overset{\text{def}}{=}
+\overline{T}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu } \overline{T}
+\,,
+\end{align}
+%
+soo the equation which will hold is 
+%
+\begin{align}
+\overline{R}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu } \overline{R} = 
+\frac{8 \pi G}{c^{4}} \qty(\overline{T}_{\mu \nu } + t_{\mu \nu })
+\,.
+\end{align}
+
+Do note that if we work with these, the tensor which is conserved is \(\overline{T}_{\mu \nu } + t_{\mu \nu }\): 
+%
+\begin{align}
+\nabla^{\mu } \qty(\overline{R}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu }\overline{R}) = 0 = \nabla^{\mu } \qty(\overline{T}_{\mu \nu } + t_{\mu \nu })
+\,.
+\end{align}
+
+How does this look like far from the source? there, we can approximate \(\overline{g} \approx \eta_{\mu \nu }\) and \(\nabla_{\mu } \approx \partial_{\mu }\). 
+
+This \(t_{\mu \nu }\) only has 2 physical degrees of freedom: how do we gauge the others away? The Lorentz gauge plus \(h=0\) eliminates \(5\) degrees of freedom. 
+
+When we have terms like \(h \partial \partial h\), we can integrate by parts on a sufficiently large volume to turn them into \(\partial(h \partial ) - \partial h \partial h\). 
+Using the facts \(\partial^{\mu }h_{\mu \nu } = h = \square h_{\mu \nu } = 0\) we can simplify several terms: in the end we get 
+%
+\boxalign{
+\begin{align}
+t_{\mu \nu } = \frac{c^{4}}{32 \pi G} \expval{\partial_{\mu } h_{\alpha \beta } \partial_{\nu } h^{\alpha \beta }}
+\,.
+\end{align}}
+
+This is actually coordinate-independent, it can be computed in any frame we like. In the TT-gauge, we will have 
+%
+\begin{align}
+t^{00 }= \frac{c^2}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+\,.
+\end{align}
+
+Also, we will have \(t^{01} = t^{02} =0 \) by symmetry, and also \(t^{03}= t^{00}\). 
+
+Then, if we are far enough away from the source we can compute 
+%
+\begin{align}
+\dd{E} &= \dd{A} c \dd{t} \frac{c^2}{32 \pi G} \expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}}
+\frac{ \dd{E}}{ \dd{t} \dd{A}} = \frac{c^3}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+\,.
+\end{align}
+%
+so, in order to get the total power \(\dv*{E}{t}\) we can integrate this expression in \(R^2 \dd{\Omega }\). 
+In order to compute the momentum carried away, we can do a similar thing, and get the momentum flux. 
+
+In order to do this calculation, we can use the explicit expression for the \(\Delta_{ij,kl}\) projection tensor. We find 
+%
+\begin{align}
+\dv{E}{t} &= \frac{r^2c^{3}}{32 \pi G} \int \dd{\Omega }
+\expval{
+\frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij,kl} \dot{\ddot{Q}}^{kl}
+\frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij,kl} \dot{\ddot{Q}}^{kl}
+}  \\
+&=\frac{G}{8 \pi c^{5}} \int \dd{\Omega }
+\Lambda_{ij, kl} \expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{kl}}
+\,,
+\end{align}
+%
+where the only expression depending on the angle is \(\Lambda_{ij, kl} \): then we integrate and find 
+%
+\begin{align}
+\dv{E}{t} = \dots
+\,.
+\end{align}
+
+When we do the same from the momentum density, we get an integral in the form 
+%
+\begin{align}
+\dv{P^{k}}{t} \propto \int \dd{\Omega } \ddot{Q} \partial^{k} \dot{\ddot{Q}}
+\,,
+\end{align}
+%
+but the integrand is odd under spatial inversion, so there is no contribution! This is not true if we go beyond the quadrupole, instead full GR calculations/simulations show that there are kicks at the merger. 
+
+We can calculate the angular distribution in a relatively simple way, since it is easy to go to TT gauge at a point. 
+
+The energy lost by the source at \(t _{\text{ret}} = t - r/c \) is the same as the energy measured in GW. 
+\todo[inline]{Clarify: why are the two expressions calculated at the same time?}
+
+If we model the back-reaction as a force, we have 
+%
+\begin{align}
+\dv{E _{\text{source}}}{t} = 
+\expval{\int  \dd[3]{x} \dv{F_i}{V} \dot{x}_{i}} = 
+= - \frac{G}{5 c^{5}} \expval{\dv{Q_{ij}}{t} \dv[5]{Q_{ij}}{t}}
+\,.
+\end{align}
+
+Equating terms and making some considerations, we get 
+%
+\begin{align}
+\dv{F_{i}}{V} = - \frac{2G}{5c^{5}} \dv[5]{Q_{ij}}{t} \rho (t, \vec{x}) x_{j}
+\,,
+\end{align}
+%
+so finally 
+%
+\begin{align}
+F_{i} = - \frac{2G}{5c^{5}} \dv[5]{Q_{ij}}{t} m \overline{x}_{j}
+\,,
+\end{align}
+%
+where \(\overline{x}_{j} \) is the center-of-mass coordinate. 
+
+Then, we can calculate the torque explicitly: we get 
+%
+\begin{align}
+T_{i} = - \frac{2G}{5c^{5}} \epsilon_{ijk} Q_{il} \dv[5]{Q_{kl}}{t}
+\,,
+\end{align}
+%
+so if we take the average we get 
+%
+\begin{align}
+\expval{\dv{L_{i}}{t}} = -\frac{2G}{5c^{5}} \epsilon_{ijk} 
+\expval{\dot{\ddot{Q}}_{jl} \dot{\ddot{Q}}_{kl}}
+\,.
+\end{align}
+
+\section{Back-reaction and the evolution of binary systems}
+
+We use the reduced mass formalism, the amplitude is 
+%
+\begin{align}
+A = \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}
+\,,
+\end{align}
+%
+so we have the polarizations 
+%
+\begin{align}
+h_{+} &= A \frac{1 - \cos^2\theta   }{2} \cos(2 \omega_{s} t _{\text{ret}} + 2 \varphi ) \\ 
+h_{\times } &= A \cos \theta  \sin(2 \omega_{s} t _{\text{ret}} + 2 \varphi )  
+\,,
+\end{align}
+%
+we define the chirp mass: 
+%
+\begin{align}
+M_c = \mu ^{3/5} M^{2/5} = \frac{\qty(m_1 m_2 )^{3/5}}{(m_1 + m_2 )^{1/5}}
+\,,
+\end{align}
+%
+also the frequency of the GW is twice the frequency of the orbit. 
+
+Coming back to the radiated power: it is 
+%
+\begin{align}
+\dv{E}{t} = \frac{G}{5 c^{5}} \expval{\dot{\ddot{M}}_{ij} \dot{\ddot{M}}_{ij} - \frac{1}{3} \qty(\dot{\ddot{M}}_{kk})^2}
+\,,
+\end{align}
+%
+so we can calculate this explicitly for our binary: we need to average over a period, so we get a factor \(\expval{\sin^2\varphi } = 1/2\): 
+%
+\begin{align}
+\dv{E}{t} = \frac{32}{5} \frac{c^{5}}{G} \qty(\frac{GM_c \omega_{GW}}{2 c^{3}})^{ 10 /3}
+\,,
+\end{align}
+%
+where we used the fact \(R^3 = GM / \omega_{s}^2\).
+We can do a similar thing for the angular momentum: 
+%
+\begin{align}
+\dv{L}{t} = \dots
+\,.
+\end{align}
+
+Now, let us consider masses in quasi-circular orbit: by the virial theorem, 
+%
+\begin{align}
+\dot{R} = - \frac{2R^2}{G m_1 m_2 } \dot{E}_{GW}
+\,.
+\end{align}
+
+Therefore, as the GWs carry away energy the radius shrinks. 
+But we assumed the orbits to be circular! This is fine: they are almost-circular usually. 
+This is fine for most of the inspiral, until the merger phase. 
+
 \end{document}

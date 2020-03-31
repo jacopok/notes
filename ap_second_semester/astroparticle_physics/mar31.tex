@@ -1,4 +1,137 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-3-31, \\ compiled \\ \today}
+
+Last time we saw our first field theory: QED. 
+
+We have associated spin \(1/2\) fermions to matter fields. 
+Spin \(1\) particles, instead, are vector bosons, such as the photon \(\gamma\), the gluon \(g\) and the weak \(W^{\pm}\) and \(Z^{0}\) bosons. These are the radiation fields.  
+We will explore this in more detail. 
+
+This connection comes from the \textbf{spin-statistics} theorem: it states that particles with integer spin obey Bose-Einstein statistics, while particles with half-integer spin obey Fermi-Dirac statistics.
+
+Up until now, we have observed only particles with spins \(0\), \(1/2\) and \(1\). 
+
+We could have a symmetry called supersymmetry, in which fermions and bosons are associated. 
+
+The graviton has spin \(2\); in supergravity the graviton has a fermion partner called the ``gravitino'' with spin \(3/2\). 
+
+How do we normalize the states in relativistic theory? 
+Classically we did 
+%
+\begin{align}
+\braket{p_1 }{p_2  } = (2 \pi )^3 \delta^{(3)} (\vec{p}_{1} - \vec{p}_{2})
+\,,
+\end{align}
+%
+in the relativistic case instead we will do 
+%
+\begin{align}
+\braket{p_1 }{p_2  } = 2 E_{p_1 } (2 \pi )^3 \delta^{(3)} (\vec{p}_{1} - \vec{p}_{2})
+\,.
+\end{align}
+
+The relativistic volume element is given by 
+%
+\begin{align}
+\int \frac{ \dd[3]{p}}{(2\pi )^3} \rightarrow
+\int \frac{ \dd[4]{p}}{(2 \pi )^{4}} (2 \pi ) \delta (p^2-m^2)
+= \int \frac{ \dd[3]{p}}{(2\pi )^3} \frac{1}{2E_p}
+\,,
+\end{align}
+%
+where we integrated over the variable \(p^{0}=E\), which removed the \(\delta (p^2-m^2) = \delta (E - \sqrt{p^2+m^2}) / 2E\). 
+
+Let us consider a \textbf{decay} process: we have a particle \(A\) decaying into a possibly multi-particle state \(f\). 
+We are interested in the decay \emph{rate} of this process. 
+
+Another process of interest is a \textbf{scattering} process of \(n \to m \) particles. 
+There is no particle number conservation: we can create and destroy as many particles as we like. 
+These types of processes are described by their \emph{cross section}, which is an effective area corresponding to how aligned the trajectories of the incoming particles must be in order to interact.
+
+This cross section allows us to compute the average time for an interaction to occur: if two particles' interaction becomes so rare that they cannot interact within a Hubble time then they are said to have \emph{decoupled}. 
+
+The probability of survival of particle \(A\) at time \(t\) is in the form \(\mathbb{P}(t) = \exp(-t / \tau_{A})\), so we define 
+%
+\begin{align}
+\Gamma_{A} = \frac{1}{\tau_{A}}
+\,,
+\end{align}
+%
+which has the dimensions of a frequency, or equivalently an energy. 
+
+We can define the branching ratios as 
+%
+\begin{align}
+BR(A \to f) = \frac{ \Gamma (A \to f)}{\Gamma_{A}}
+\,.
+\end{align}
+
+We can consider fixed-target experiments: we want to know how many events per second we will have, which will be given by 
+%
+\begin{align}
+\frac{\text{\# events}}{s} = n_A \times v_A \times \sigma 
+\,,
+\end{align}
+%
+where \(\sigma \) is the cross section, \(v_A\) is the velocity of the incoming particles, while \(n_A\) is the number density of particles in the target. 
+
+If we have two beams of particles coming towards each other, the term will look like \(n_A n_B (v_A - v_B) \ell_B A_b \sigma \). 
+
+In general, we will be interested in the differential cross section 
+%
+\begin{align}
+\frac{ \dd{\sigma }}{ \dd[3]{p_1 } \dd[3]{p_2 } \dots \dd[3]{p_{n}}}
+\,.
+\end{align}
+
+This is just a definition, and it is not covariant, if we want to integrate we still need to use the covariant momentum element. 
+
+For a scattering process like \(A+B \rightarrow 1 + \dots + n\)
+we will need to compute things like 
+%
+\begin{align}
+\bra{12 \dots n} T \ket{AB} = \mathcal{M} (A+B \rightarrow 1 + \dots + n) (2\pi )^{4} \delta^{(4)} (P_A + P_B - \sum p_i)
+\,,
+\end{align}
+%
+where \(T\) is the time evolution, and we defined the invariant scattering amplitude \(\mathcal{M}\). 
+If we want to compute the width \(\Gamma_{A}\) for a decay process, we need to define the phase space integral:
+%
+\begin{align}
+\int \dd{\Pi_{n}} = \underbrace{\prod_{i} \int \frac{ \dd[3]{p_i}}{2 E_i (2 \pi )^3} 
+(2\pi )^{4} \delta^{(4)} (P_A - \sum _{i} p_i)}_{\text{phase space integral}}
+\,,
+\end{align}
+%
+so we will have what is called Fermi's golden rule:
+%
+\begin{align}
+\Gamma_{A} = \frac{1}{2 M_A} \int \dd{\Pi_{n}} \abs{\mathcal{M} (a \rightarrow f)}^2
+\,,
+\end{align}
+%
+since in order to get the probability we need to take the square of the amplitude. 
+
+[Discussion on the dimensionality of \(\mathcal{M}\)]
+
+If we are in the COM frame, the phase space integral for the initial particles reads: 
+%
+\begin{align}
+\int \dd{\Pi_{2}} &= \int \frac{\dd[3]{p}}{(2 \pi )^3} \frac{1}{2 E_1 } \frac{1}{2 E_2 } (2 \pi ) \delta (E_{CM} - E_1 - E_2 )   \\
+&= \frac{1}{8 \pi } \frac{2p}{E_{CM}} \int  \frac{\dd{\Omega}}{4 \pi } 
+\,.
+\end{align}
+
+The nonrelativistic Breit-Wigner formula is given by 
+%
+\begin{align}
+\mathcal{M} \sim \frac{1}{E - E_R + i \Gamma/ 2}  
+\,.
+\end{align}
+
+The paradigmatic process for these kinds of interactions is the process \(e^{+}e^{-} \to \mu^{+}\mu^- \). 
+In the noted it is sketched how one would go about discussing such a process. 
+
 \end{document}

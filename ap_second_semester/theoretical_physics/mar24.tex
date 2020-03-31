@@ -22,6 +22,7 @@ When we do the computation, recall that the \(\gamma^{\mu }\) matrices are \emph
 
 So, we must have 
 %
+\begin{subequations}
 \begin{align}
 \qty(i \slashed{\partial}' - M) \psi^{\prime } (x') &=
 \qty(i \gamma^{\mu } \tensor{\Lambda }{_{\mu }^{\nu }} \partial_{\nu } -M) S(\Lambda ) \psi (x)  
@@ -31,6 +32,7 @@ So, we must have
 &=S(\Lambda ) \qty[i \slashed{\partial} - M] \psi (x)
 \,,
 \end{align}
+\end{subequations}
 %
 where we used the following:
 \begin{enumerate}
@@ -86,6 +88,7 @@ This is what finding a representation of the group means: for each element of th
 Do note, however, that we are only working at linear order in \(\omega_{\mu \nu }\), so we are not looking yet at a representation of the whole group, instead we are only considering elements which are close to the identity. 
 So, we can insert this expression for \(S(\Lambda )\) into the relation between the \(S(\Lambda )\) and \(\Lambda \), equation \eqref{eq:spinorial-representation-definition}, using the fact that to first order \(S = \mathbb{1} + \epsilon \) is the inverse of \(S^{-1} = \mathbb{1} - \epsilon \) we have, to first order in \(\omega \): 
 %
+\begin{subequations}
 \begin{align}
 \qty(\mathbb{1} + \frac{i}{2} \omega_{\rho \sigma } \Sigma^{\rho \sigma }) \gamma^{\mu } \qty(\mathbb{1} - \frac{i}{2} \omega_{\alpha \beta } \Sigma^{\alpha \beta }) &= \gamma^{ \mu} +\tensor{\omega}{^{\mu }_{\nu }} \gamma^{\nu } \\
 \gamma^{\mu } + \frac{i}{2} \omega_{\rho \sigma } \Sigma^{\rho \sigma } \gamma^{ \mu } - \frac{i}{2} \gamma^{\mu }\omega_{\alpha \beta } \Sigma^{\alpha \beta } &= \gamma^{\mu } + \omega_{\sigma \nu } \eta^{\mu \sigma } \gamma^{\nu }  \\
@@ -93,6 +96,7 @@ So, we can insert this expression for \(S(\Lambda )\) into the relation between 
 \qty[\gamma^{\mu }, \Sigma^{\rho \sigma }] &= i \qty(\eta^{\mu \rho } \gamma^{\sigma } - \eta^{\mu \sigma } \gamma^{\rho })
 \,,
 \end{align}
+\end{subequations}
 %
 where we antisymmetrized the indices in \(\eta^{\mu \rho } \gamma^{\sigma }\) since they are multiplied by the antisymmetric tensor \(\omega_{\rho \sigma }\), so any symmetric part would not contribute to the equation. 
 We also used the fact that \(\omega_{\rho \sigma } \) is proportional to the identity in the spinor space. 
@@ -109,36 +113,43 @@ This is satisfied by
 \begin{proof}
 We plug the definitions in: 
 %
+\begin{subequations}
 \begin{align}
 \qty[\gamma^{\mu }, \Sigma^{\rho \sigma }] &= \frac{i}{4} \qty(\gamma^{\mu } \gamma^{\rho} \gamma^{\sigma } - \gamma^{\mu } \gamma^{\sigma } \gamma^{\rho } - \gamma^{ \rho } \gamma^{\sigma } \gamma^{\mu } + \gamma^{ \sigma } \gamma^{ \rho } \gamma^{ \mu })  \\
 i \qty(\eta^{\mu \rho } \gamma^{\sigma } - \eta^{\mu \sigma } \gamma^{\rho }) &= \frac{i}{2} \qty(\gamma^{\mu} \gamma^{\rho } \gamma^{\sigma } + \gamma^{\rho } \gamma^{\mu } \gamma^{\sigma } -\gamma^{\mu } \gamma^{\sigma }\gamma^{\rho } - \gamma^{\sigma } \gamma^{\mu } \gamma^{ \rho } )
 \,,
 \end{align}
+\end{subequations}
 %
 where we used the anticommutation relations \(\qty{\gamma^{\mu }, \gamma^{\nu }} = 2 \eta^{\mu \nu }\). 
 Then, we must check whether these two expression are equal, that is, whether 
 %
+\begin{subequations}
 \begin{align}
 \frac{1}{2} \qty( \mu  \rho \sigma  - \mu  \sigma  \rho  -  \rho  \sigma  \mu  +  \sigma   \rho   \mu ) &\overset{?}{=} 
 \mu \rho  \sigma  + \rho  \mu  \sigma  -\mu  \sigma \rho  - \sigma  \mu   \rho   \\
 &=  \qty{\mu, \rho }\sigma - \qty{\mu , \sigma } \rho 
 \,,
 \end{align}
+\end{subequations}
 %
 where we only write the indices of the \(\gamma \)s for clarity. 
 
 We can now use the identity: 
 %
+\begin{subequations}
 \begin{align}
 [\mu , \rho \sigma ] &= \mu \rho \sigma - \rho \sigma \mu  \\
 &= \mu \rho \sigma + \rho \mu \sigma - \rho \mu \sigma - \rho \sigma \mu \marginnote{Added and subtracted}  \\
 &= \qty{\mu, \rho } \sigma - \rho \qty{\mu, \sigma }
 \,.
 \end{align}
+\end{subequations}
 
 Note that in our convention there is no division by 2 in the commutator and anticommutator. 
 Then, we can recognize these in the initial claim: we find 
 %
+\begin{subequations}
 \begin{align}
 \frac{1}{2} \qty( \mu  \rho \sigma  - \mu  \sigma  \rho  -  \rho  \sigma  \mu  +  \sigma   \rho   \mu )
 &= \frac{1}{2} \qty(\qty[\mu, \rho \sigma ] - \qty[\mu, \sigma \rho ])  \\
@@ -147,17 +158,20 @@ Then, we can recognize these in the initial claim: we find
 &= \qty{\mu, \rho } \sigma - \qty{\mu, \sigma } \rho 
 \,,
 \end{align}
+\end{subequations}
 %
 since the anticommutators \(\qty{\mu, \sigma }\) are proportional to the metric \(\eta^{\mu \sigma }\), which is proportional to the identity in the spinorial space, which commutes with the gamma matrices, so \(\qty{\mu , \sigma }\) commutes with any gamma matrix. 
 \end{proof}
 
 Up until now we have worked ``near the identity'' of our transformation group; if we want to extrapolate these results to general transformations we may use the exponential map, which gives us relations in the form 
 %
+\begin{subequations}
 \begin{align}
 S(\Lambda ) &= \exp( -\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })  \\
 S^{-1} (\Lambda ) &= \exp(\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })
 \,.
 \end{align}
+\end{subequations}
 %
 
 \subsection{Dirac conjugate spinor}
@@ -183,6 +197,7 @@ For \(\gamma^{0}\) the result is immediate, since it is self adjoint: \(\gamma^{
 
 Then let us consider \(\gamma^{i}\): since they are block matrices of the Pauli matrices, which are self-adjoint and which have determinant \(-1\), we have:
 %
+\begin{subequations}
 \begin{align}
 \gamma^{i \dag} = \left[\begin{array}{cc}
 0 & \sigma_{i} \\ 
@@ -194,9 +209,11 @@ Then let us consider \(\gamma^{i}\): since they are block matrices of the Pauli 
 \end{array}\right] = - \gamma^{i}
 \,,
 \end{align}
+\end{subequations}
 %
 therefore we need to prove that \(\gamma^{0} \gamma^{i} \gamma^{0} = -\gamma^{i}\): 
 %
+\begin{subequations}
 \begin{align}
 \left[\begin{array}{cc}
 1 & 0 \\ 
@@ -225,16 +242,19 @@ therefore we need to prove that \(\gamma^{0} \gamma^{i} \gamma^{0} = -\gamma^{i}
 \end{array}\right]
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 With these results, we can use the manipulation 
 %
+\begin{subequations}
 \begin{align}
 \psi ^\dag \gamma^{\mu \dag} \overleftarrow{\partial}_{\mu } &= 
 \psi ^\dag \gamma^{0} \gamma^{0} \gamma^{\mu \dag} \gamma^{0} \gamma^{0} \overleftarrow{\partial}_{\mu }  \\
 &= \psi ^\dag \gamma^{0} \gamma^{\mu } \overleftarrow{\partial}_{\mu } \gamma^{0}
 \,,
 \end{align}
+\end{subequations}
 %
 which holds since the matrix \(\gamma^{0}\) is constant.
 We also define \(\overline{\psi} = \psi ^\dag \gamma^{0}\), so that the whole equation reads 
@@ -289,6 +309,7 @@ Recall that the explicit expression of the \(\Sigma \) matrices is
 %
 so we can show directly that 
 %
+\begin{subequations}
 \begin{align}
 \gamma^{0} \Sigma^{\mu \nu \dag} \gamma^{0} &=
 \frac{i}{4} \gamma^{0} \gamma^{\mu \dag}  \gamma^{\nu\dag } \gamma^{0 }
@@ -299,10 +320,12 @@ so we can show directly that
 &= \frac{i}{4} \qty[\gamma^{\mu } \gamma^{\nu }] = \Sigma^{\mu \nu }
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 Using these results, we can show that the conjugate spinor \(\overline{\psi} = \psi ^\dag \gamma^{0}\) transforms like: 
 %
+\begin{subequations}
 \begin{align}
 \overline{\psi}' (x') &= \psi^{\prime \dag} \gamma^{0}  \\
 &= \qty(S(\Lambda ) \psi ) ^\dag \gamma^{0}  \\
@@ -311,6 +334,7 @@ Using these results, we can show that the conjugate spinor \(\overline{\psi} = \
 &= \overline{\psi} S^{-1}(\Lambda ) \\
 \,.
 \end{align}
+\end{subequations}
 
 \subsection{Continuity equation}
 
@@ -324,12 +348,14 @@ We can apply the same strategy we used in the KG case: if we multiply the Dirac 
 
 if we sum them, the \(M \overline{\psi} \psi  \) terms cancel, so we have 
 %
+\begin{subequations}
 \begin{align}
 0 &= \overline{\psi} \qty(i \overleftarrow{\slashed{\partial}} + i \slashed{\partial}) \psi   \\
 &= i \qty( (\partial_{\mu }\overline{\psi}) \gamma^{\mu } \psi   + \overline{\psi} \gamma^{\mu }\partial_{\mu } \psi)  \\
 &= \partial_{\mu } \qty(\overline{\psi} \gamma^{\mu } \psi )
 \,,
 \end{align}
+\end{subequations}
 %
 so we have the conserved current \(\overline{\psi} \gamma^{ \mu } \psi   = J^{\mu }\).
 Its corresponding charge density is \(\rho = J^{0}= \overline{\Psi} \gamma^{0} \psi = \psi ^\dag \psi \). 
@@ -339,7 +365,7 @@ In fact, this is not the case, as we shall see in the future.
 
 \subsection{Bilinear forms and Lorentz transformations}
 
-Our observables may not still carry spinorial indices: all the spinorial indices must be saturated in the expression for an observable.
+Our observables can not still carry spinorial indices: all the spinorial indices must be saturated in the expression for an observable, since we can only observe scalars in the spin tensor algebra. 
 
 For instance, \(\overline{\psi} \psi \) is the dot product of two spinors, so it carries no indices.
 It is a scalar under Lorentz transformations, since \(\overline{\psi}\) transforms with a \(S^{-1}\) while \(\psi \) transforms with an \(S\).  

@@ -56,11 +56,13 @@ The first condition can be written as \(H = H ^\dag\), but to find out what it m
 which means that \(\vec{\nabla} ^\dag = - \vec{\nabla}\).
 So, we get 
 %
+\begin{subequations}
 \begin{align}
 H ^\dag &= (-i) ^\dag \vec{\alpha} ^\dag \cdot \vec{\nabla} ^\dag + \beta ^\dag M ^\dag  \\
 &= -i \alpha^{*} \cdot \vec{\nabla} + \beta^{*} M
 \,,
 \end{align}
+\end{subequations}
 %
 since \(M\) is real.\footnote{In the professor's notes this is done explicitly by integrating by parts: this method can be adapted to look like that, since one can use integration by parts to show that for any wavefunctions \(\phi \) and \(\psi \) we have \(\braket{\phi }{\nabla \psi } + \braket{\nabla \phi}{\psi } = 0\). Then, the only difference between the approaches is whether we only integrate by parts to get the adjoint of \(\nabla\) or the whole of \(H_D\). }
 Therefore, the coefficients must satisfy \(\vec{a}^{*} = \vec{\alpha}\) and \(\beta^{*} = \beta \) themselves. 
@@ -81,6 +83,7 @@ we should get the KG square time- derivative operator
 
 So, we find 
 %
+\begin{subequations}
 \begin{align}
 \nabla^2 + M^2 &\overset{!}{=} (-i H_D)^2 = - H_D^2  \\
 &= -\qty(-i \alpha_{i}  \nabla_{i} + \beta ) \qty(-i \alpha_{j} \nabla_{j} + \beta )  \\
@@ -89,6 +92,7 @@ So, we find
 + i \qty{\alpha_{i}, \beta } \nabla_{i} + \beta^2
 \,,
 \end{align}
+\end{subequations}
 %
 where we introduced the anticommutator bracket notation: 
 %
@@ -123,6 +127,7 @@ If we write \(\alpha_{i}\) and \(\beta \) in diagonal form, which we can do sinc
 Now, let us show that these are traceless: call \(c_{\mu }\) one of the four \(\qty(\beta ,\alpha_{i})\). Then, we know that \(\qty{c_{\mu }, c_{\nu }} = 2 \delta_{\mu \nu }\).
 So, we do the following manipulation: take \(c_{\mu }\) and \(c_{\nu }\), with \(\nu \neq \mu \):
 %
+\begin{subequations}
 \begin{align}
 \Tr(c_{\mu }) &= \Tr(c_{\mu } c_{\nu } c_{\nu })  \marginnote{\(c_{\nu }^2 = \mathbb{1}\)}\\
 &= \Tr(-c_{\nu } c_{\mu } c_{\nu }) \marginnote{\(\qty{c_{\mu }, c_{\nu }} = 0\), so \(c_{\mu } c_{\nu } = - c_{\nu } c_{\mu }\)}  \\
@@ -130,6 +135,7 @@ So, we do the following manipulation: take \(c_{\mu }\) and \(c_{\nu }\), with \
 &= - \Tr(c_{\mu })
 \,,
 \end{align}
+\end{subequations}
 %
 so \(\Tr(c_{\mu }) = - \Tr(c_{\mu }) \implies \Tr(c_{\mu }) = 0\). 
 Since the trace is the sum of the eigenvalues, which are \(\pm 1\), the dimension must be even. 
@@ -151,6 +157,7 @@ Do however note that if \(M=0\) then we do not need the \(\beta \) matrix since 
 
 The next possible dimensionality is \(N=4\), and we can use the following matrices: 
 %
+\begin{subequations}
 \begin{align}
 \alpha_{i} = \left[\begin{array}{cc}
 0 & \sigma_{i} \\ 
@@ -163,12 +170,14 @@ The next possible dimensionality is \(N=4\), and we can use the following matric
 \end{array}\right]  
 \,.
 \end{align}
+\end{subequations}
 
 These are self adjoint since the Pauli matrices are, manifestly traceless, and they satisfy the anticommutation relations. 
 
 \begin{proof}
 We expand the relation \(\qty{\alpha_{i}, \alpha_{j}}\): if we write \(\alpha_{i} \alpha_{j}\) we get 
 %
+\begin{subequations}
 \begin{align}
 \alpha_{i} \alpha_{j} = 
 \left[\begin{array}{cc}
@@ -185,9 +194,11 @@ We expand the relation \(\qty{\alpha_{i}, \alpha_{j}}\): if we write \(\alpha_{i
 \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 therefore 
 %
+\begin{subequations}
 \begin{align}
 \qty{\alpha_{i}, \alpha_{j}} = \left[\begin{array}{cc}
 \qty{\sigma_{i}, \sigma_{j}} & 0 \\ 
@@ -196,11 +207,13 @@ therefore
 = \qty{\sigma_{i}, \sigma_{j}} \mathbb{1}_{4}
 \,,
 \end{align}
+\end{subequations}
 %
 but we know that \(\qty{\sigma_{i}, \sigma_{j}} = 2 \delta_{ij}\), so we have verified the anticommutation relations between the \(\alpha_{i}\). 
 
 To see that \(\beta^2 = \mathbb{1}_{4}\) is immediate since it is already diagonal, so we only need to show \(\qty{\alpha_{i}, \beta } = 0\). We have 
 %
+\begin{subequations}
 \begin{align}
 \alpha_{i} \beta =
 \left[\begin{array}{cc}
@@ -232,6 +245,7 @@ To see that \(\beta^2 = \mathbb{1}_{4}\) is immediate since it is already diagon
 \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 so the sum \(\alpha_{i} \beta + \beta \alpha_{i}\) is zero, which proves our statement. 
 \end{proof}
@@ -240,6 +254,7 @@ so the sum \(\alpha_{i} \beta + \beta \alpha_{i}\) is zero, which proves our sta
 
 It is then conventional to define the matrices 
 %
+\begin{subequations}
 \begin{align}
 \gamma^{0} = \beta = \left[\begin{array}{cc}
 \mathbb{1} & 0 \\ 
@@ -252,6 +267,7 @@ It is then conventional to define the matrices
 \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 which obey the following properties: 
 \begin{enumerate}
@@ -262,6 +278,7 @@ which obey the following properties:
 We can then interpret this collection of matrices as a 4-vector. 
 We can rewrite the Dirac equation using them: we multiply it by \(\beta \) to get 
 %
+\begin{subequations}
 \begin{align}
 i \partial_0 \psi &= \qty(-i \alpha_{i} \partial_{i}+ \beta M ) \psi  \\
 i \beta \partial_0 \psi &= \qty(-i \beta \alpha_{i} \partial_{i} + \beta^2 M) \psi  \\
@@ -269,6 +286,7 @@ i \gamma^{0} \partial_0 \psi &= \qty(- \gamma^{i}\partial_{i} + \beta^2 M) \psi 
 \qty(i \gamma^{\mu } \partial_{\mu } - M ) \psi &= 0 
 \,.
 \end{align}
+\end{subequations}
 
 This looks simple, but recall that \(\gamma^{\mu }\) are \(4 \times 4\) matrices and \(\psi \) is a 4D spinor: if we write this explicitly using the spinor indices, for which we use the Hebrew letters \(\aleph\) nd \(\beth\) (aleph and beth\footnote{Since this notation will only be used here, it does not matter if it is a little inconvenient. I did not use greek or latin letters since they both already have meaning in the conventional notation.}), we get 
 %
@@ -306,6 +324,7 @@ In general, for any unitary matrix \(C\) we can move to the new representation
 The Dirac representation we gave before is usually used when dealing with the nonrelativistic limit, while the one we now show is called the relativistic, or Weyl, or chiral, representation. 
 We use the matrix which is known in quantum information as the Hadamard gate:
 %
+\begin{subequations}
 \begin{align}
 C = \frac{1}{\sqrt{2}} \left[\begin{array}{cc}
 1 & 1 \\ 
@@ -313,9 +332,11 @@ C = \frac{1}{\sqrt{2}} \left[\begin{array}{cc}
 \end{array}\right]
 \,
 \end{align}
+\end{subequations}
 %
 we can move to the representation 
 %
+\begin{subequations}
 \begin{align}
 \gamma^{\mu } = \qty(\left[\begin{array}{cc}
 0 & \mathbb{1} \\ 
@@ -326,10 +347,12 @@ we can move to the representation
 \end{array}\right])
 \,.
 \end{align}
+\end{subequations}
 %
 \begin{proof}
 We multiply, writing \(1\) for \(\mathbb{1}\) and \(0\) for the 0 matrix for simplicity: for \(\gamma^{0}\) we get 
 %
+\begin{subequations}
 \begin{align}
 C^{-1} \gamma^{0} C &= \frac{1}{2} \left[\begin{array}{cc}
 1 & -1 \\ 
@@ -360,9 +383,11 @@ C^{-1} \gamma^{0} C &= \frac{1}{2} \left[\begin{array}{cc}
 \end{array}\right]
 \,,
 \end{align}
+\end{subequations}
 %
 while for \(\gamma^{i}\) we have 
 %
+\begin{subequations}
 \begin{align}
 C^{-1} \gamma^{i} C &= \frac{1}{2} \left[\begin{array}{cc}
 1 & 1 \\ 
@@ -391,16 +416,19 @@ C^{-1} \gamma^{i} C &= \frac{1}{2} \left[\begin{array}{cc}
 \end{array}\right]
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 The Dirac equation is consistent with the Klein Gordon equation: we can multiply it by the conjugate of the Dirac operator, \(-(i \slashed{\partial}+M)\), to get 
 %
+\begin{subequations}
 \begin{align}
 - \qty(i \slashed{\partial}+M) \qty(i \slashed{\partial}-M) \psi  &= 0\\
 \qty( \gamma^{\mu } \gamma^{\nu } \partial_{\mu } \partial_{\nu } + M^2  ) &= 0   \\
 \qty(\square + M^2) \psi &=0
 \,,
 \end{align}
+\end{subequations}
 %
 which is equivalent to the Klein-Gordon equation since when we compute \(\gamma^{ \mu }  \gamma^{\nu } \partial_{\mu } \partial_{\nu }\) we only have the symmetric part, since the partial derivatives commute, and \(\frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} = \eta^{\mu \nu }\). 
 

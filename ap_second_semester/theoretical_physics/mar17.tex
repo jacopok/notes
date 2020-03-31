@@ -21,6 +21,7 @@ In the same region we can find the reflected wave, which has the opposite moment
 
 By a similar reasoning, in the \(x>0\) region we will have a contribution \(t e^{i k_x^{\prime } x}\): the direction of propagation is the same as the incoming wave, the momentum might be different. In the end, our wavefunction looks like 
 %
+\begin{subequations}
 \begin{align}
 \varphi (t, x) &= \varphi_1 [x\leq 0] + \varphi_2 [x \geq 0] \\
 &= e^{-i \omega t} \qty[\chi_1 [x\leq 0] + \chi_2 [x \geq 0]] \\
@@ -28,17 +29,21 @@ By a similar reasoning, in the \(x>0\) region we will have a contribution \(t e^
  e^{-i \omega t} \qty[ \qty(e^{i k_x x} + r e^{-i k_x x})[x\leq 0] + t e^{i k_x^{\prime }x } [x\geq 0]]
 \,.
 \end{align}
+\end{subequations}
 
 This wavefunction will need to satisfy the KG equation everywhere, however the equation has a different form in the two regions: if \(\DD^{\mu } = \partial^{\mu } + iqA^{\mu }\), then we can say that the two equations are 
 %
+\begin{subequations}
 \begin{align}
   \qty[\partial^{\mu } \partial_{\mu } + M^2] \varphi_1 &= 0 \\
   \qty[\DD^{\mu } \DD_{\mu } + M^2] \varphi_2 &= 0 
 \,,
 \end{align}
+\end{subequations}
 %
 so we can insert the solutions into the equations: for the region without potential we get
 %
+\begin{subequations}
 \begin{align}
 \qty[\partial^{\mu } \partial_{\mu } + M^2] \varphi_1 &= \qty[+ \partial_0^2 - \partial_{x}^2 + M^2 ] \qty[e^{-i \omega t} \qty(e^{ik_{x}x} + r e^{-ik_x x})]   \\
 &= (-i\omega)^2 \varphi_1 + M^2 \varphi_1 - e^{-i \omega t}\partial_{x}^2  \qty(e^{ik_{x}x} + r e^{-ik_x x}) \\
@@ -46,6 +51,7 @@ so we can insert the solutions into the equations: for the region without potent
 &= \qty[-\omega^2 + M^2 + k_x^2 ] \varphi_1  
 \,,
 \end{align}
+\end{subequations}
 %
 notice that even though the function has components with momentum in either direction it still is an eigenfunction of the operator \(\square\)! 
 For the other region we can use the fact we discussed earlier: with the minimal substitution, the momentum becomes \(p^{\mu } = i \partial^{\mu } \rightarrow i \DD^{\mu } = p^{\mu } - qA^{\mu }\), so in our case we will have \(p^{0} \rightarrow \omega_{k} - q A^{0} = \omega_{k} - V_0 \), while \(p^{i} \rightarrow \vec{k}'\), since \(\vec{A} = 0\). We can substitute the energy directly since the potential is constant, so there is no \(\partial_0 V_0 \) term. 
@@ -114,6 +120,7 @@ One non-obvious thing to consider is that, in general, we could have \(k_x'\) be
 If we conjugate an exponential as \(\qty(e^{iz})^{*}\), the result is \(e^{-i z^{*}}\) for a general complex \(z\). 
 The calculation is as follows:
 %
+\begin{subequations}
 \begin{align}
 \rho_1 \overset{\text{def}}{=}  
 j^{0}_{(1)} &= \frac{i}{2} e^{i \omega t} \partial^{0} e^{-i \omega t} \abs{\chi_1 }^2  + \text{c. c.} = \frac{2}{2} \omega \abs{\chi_1 }^2 
@@ -128,6 +135,7 @@ j_2 \overset{\text{def}}{=} j^{x}_{(2)} &= -\frac{i}{2} t^{*} e^{i \omega t} e^{
 &= \frac{k_x^{\prime } + k_x^{\prime *}}{2} \abs{t}^2 e^{i \qty(k_x^{\prime } - k_x^{\prime *})x}
 \,.
 \end{align}
+\end{subequations}
 
 We can define the reflection and transmission coefficients, which are probabilities:
 %
@@ -141,11 +149,13 @@ We can define the reflection and transmission coefficients, which are probabilit
 %
 where \(j _{\text{in}} = k_x\) is the current density corresponding to the incoming wave alone: it is calculated as the current density we would measure in region 1 if we did not have the reflected wave component:
 %
+\begin{subequations}
 \begin{align}
 j_{\text{in}} \overset{\text{def}}{=} \eval{j^{x}_{(1)}}_{\chi_1 = e^{ik_x x}} &= - \frac{i}{2} \qty(e^{ik_x x}) \partial_{x} \qty(e^{ik_x x} ) + \text{c. c. } \\
 &= - \frac{2}{2} i (i k_x ) e^{ik_x x} e^{ik_x x} = k_x 
 \,.
 \end{align}
+\end{subequations}
 
 
 
@@ -173,6 +183,7 @@ The NR approximation can only be applied in the first case, and in the second ca
 
 Now, \(k_x\) and \(k_x'\) are both real, so \(k_x^{\prime } = k_x^{\prime *}\), which means that the probability currents read: 
 %
+\begin{subequations}
 \begin{align}
 \rho_1 &= \omega \abs{\chi_1 }^2
 &
@@ -182,6 +193,7 @@ j_1 &= k_x \qty(1 - \abs{r}^2) \\
 j_2 &=  k_x^{\prime } \abs{t}^2 
 \,,
 \end{align}
+\end{subequations}
 %
 and, since \(r\) and \(r\) are both (real and) \(<1\) these quantities are all positive. Also, we must have \(k_x' < k_x\), so the quantities 
 %
@@ -216,6 +228,7 @@ while for the probability current \(j_2 \) we will get a factor \(k_x^{\prime } 
 
 So, in the end we get 
 %
+\begin{subequations}
 \begin{align}
 \rho_1 &= \omega \abs{\chi_1 }^2
 &
@@ -225,6 +238,7 @@ j_1 &= k_x \qty(1 - \abs{r}^2) \\
 j_2 &= 0 
 \,.
 \end{align}
+\end{subequations}
 
 Notice that in the intermediate region we can have both \(V_0 < \omega_{k}\) and \(V_0 > \omega_{k}\). 
 
@@ -258,6 +272,7 @@ k_x^{\prime } = \pm \sqrt{(\omega_{k} - V_0 )^2 - M^2} \in \mathbb{R}
 %
 so the densities are 
 %
+\begin{subequations}
 \begin{align}
 \rho_1 &= \omega \abs{\chi_1 }^2
 &
@@ -267,6 +282,7 @@ j_1 &= k_x \qty(1 - \abs{r}^2) \\
 j_2 &= k_{x}^{\prime } \abs{t}^2 
 \,,
 \end{align}
+\end{subequations}
 %
 where the sign of \(j_2 \) is determined by that of \(k_x^{\prime }\), which is not necessarily positive. 
 Actually, it must be negative: to see this, we can calculate the group velocity, which would be the global velocity of the wavepacket we are approximating. We can calculate \(\omega_{k}\) from the dispersion relation \eqref{eq:dispersion-relation-general} to get

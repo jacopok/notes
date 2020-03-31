@@ -273,14 +273,12 @@ Now, in order to see how \(\overline{\psi}\) transforms under a Lorentz transfor
 \end{enumerate}
 
 \begin{proof}
-We are going to work near the identity: this is justified, since if we find an equality like \(f(\Lambda ) \equiv g(\Lambda )\) for \(\Lambda \) near \(\mathbb{1}\), then we can extrapolate it using the exponential map to places further away in the group.
-
-\todo[inline]{Does this actually work, or are we deriving something which only holds near the identity?}
-
-We know that \(S(\Lambda )\) is written as 
+Let us first work to first order: 
+we know that \(S(\Lambda )\) is written as 
 %
 \begin{align}
 S(\Lambda )=   \exp( -\frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu })
+\approx \mathbb{1} - \frac{i}{2} \omega_{\mu \nu } \Sigma^{\mu \nu }
 \,,
 \end{align}
 %
@@ -321,6 +319,25 @@ so we can show directly that
 \,.
 \end{align}
 \end{subequations}
+
+We have worked to first order until now, but the result we found actually works up to any order, since in the full expression of the exponential we will have terms proportional to 
+%
+\begin{align}
+\frac{1}{n!} \qty(\omega_{\mu \nu } \Sigma^{\mu \nu \dag})^{n}
+\,,
+\end{align}
+%
+so if we multiply on both sides by \(\gamma^{0}\) we get something like (we omit the indices for simplicity) 
+%
+\begin{align}
+\frac{1}{n!} \omega^{n} \gamma^{0} \Sigma^{\dag n} \gamma^{0} = 
+\frac{1}{n!} \omega^{n} \gamma^{0} \Sigma^\dag \gamma^{0} \gamma^{0} \Sigma^\dag  \dots \gamma^{0} \gamma^{0} \Sigma^\dag \gamma^{0} =
+\frac{\omega^{n}}{n!}\pro_{n} \qty(\gamma^{0} \Sigma^{\dag} \gamma^{0}) 
+= \frac{\omega^{n}}{n!} \Sigma^{n}
+\,,
+\end{align}
+%
+so the reasoning extends to arbitrary orders in the expansion of the exponential. 
 \end{proof}
 
 Using these results, we can show that the conjugate spinor \(\overline{\psi} = \psi ^\dag \gamma^{0}\) transforms like: 

@@ -25,7 +25,7 @@ def moment(b, v, n):
   m = np.average(b, weights=v)
   if (n == 1):
     return(m)
-  return (np.sum((b - m)**n * v))
+  return (np.sum((b - m)**n * v) / np.sum(v))
 
 def analyze(dist, ns, nbar):
   bins = dist(ns, nbar)

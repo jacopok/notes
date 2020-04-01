@@ -1,4 +1,187 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-4-1, \\ compiled \\ \today}
+
+This and next week we will finish the introduction to particle physics, then we will start discussing the open problems in cosmology and astroparticle physics. 
+
+We consider the following process: 
+%
+\begin{align}
+e^{+} e^{-} \to \mu^- \mu^+
+\,,
+\end{align}
+%
+where the mass of the electron is around \(m_e \sim \SI{.5}{MeV}\), the mass of the muon is around \(m_{\mu } \sim \SI{100}{MeV}\). 
+
+Digression: there are different families of leptons, the first encompasses \(e, \nu_{e}, u, d\); the second encompasses \(\mu, \nu_{\mu }, c, s\) and the third encompasses \(\tau, \nu_{\tau }, t, b\). 
+The characteristics of the four members of the family are well-known, and between families the characteristics are the same: the only thing which varies between the families is the mass. 
+
+So, Rabi famously asked ``who ordered the fermions''? 
+
+Coming back to our problem: the state \(\ket{e^{+}e^{-}}\) must be annihilated by the EM current \(j^{\mu } = \overline{\psi} \gamma^{\mu } \psi \); it is then converted to a photon, which however is not on mass shell --- it cannot be since we cannot go to its rest frame. 
+It is then called a \emph{virtual photon}. 
+
+Then, this photon decays to a muon-antimuon pair: then we will have a term \(\bra{\mu^- \mu^+} j^{\mu }\).
+
+Let us call \(p_{-}\) and \(p_{+}\) the momenta of the electron and positron, and \(p^{\prime }_{-}\) and \(p^{\prime }_{+}\) those of the muon and antimuon. 
+
+The momentum \(q\) of the photon cannot have \(q^2  =0 \), but this is fine: it is just an excitation. 
+
+The physics of the process is all contained in the matrix element \(\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-)\). How do we calculate it? we have 
+%
+\begin{align}
+\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-)
+(-e)
+\bra{\mu^- \mu^+} j^{\mu } \ket{0}
+\frac{1}{q^2}
+(-e)
+\bra{0} j_{\mu } \ket{e^{+} e^{-}}
+\,,
+\end{align}
+%
+where the \(-e\) factor is because of the EM coupling to the photon. 
+The Breit-Wigner factor looks like 
+%
+\begin{align}
+\frac{1}{P^2-M_R^2}
+\,,
+\end{align}
+%
+but for the photon we have no mass, therefore we only get a factor \(1/q^2\). 
+
+The Feynman diagrams are just a way to collect the Feynman rules needed to compute the process, they are not meant to represent how the process ``looks like''. 
+
+Let us take the ultrarelativistic limit, in which the energy of the process is much larger than the muon's mass. 
+If this is the case, then we can set \(m_e = m_\mu  = 0\). 
+
+Let us consider the Dirac equation, in the case in which the mass \(m\) is equal to zero: then we get 
+%
+\begin{align}
+i \slashed{\partial} \psi = 0
+\,.
+\end{align}
+
+Let us use the chiral representation for the \(\gamma \) matrices: 
+%
+\begin{align}
+\gamma^{\mu } = \left[\begin{array}{cc}
+0 & \sigma^{\mu } \\ 
+\overline{\sigma}^{\mu } & 0
+\end{array}\right] 
+\,,
+\end{align}
+%
+where we mean by \(\sigma^{0} = \mathbb{1}\), and \(\overline{\sigma}^{\mu } = (\sigma^{0}, - \sigma^{i})\).
+
+Let us then split the spinor \(\psi \) into 
+%
+\begin{align}
+\psi = \left[\begin{array}{c}
+\psi_{L} \\ 
+\psi_{R}
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\psi_{L, R}\) are two-component spinors. This allows us to write two two-dimensional equations: 
+%
+\begin{align}
+i \overline{\sigma}^{\mu } \partial_{\mu } \psi_{L} &= 0 \\
+i \sigma^{\mu } \partial_{\mu } \psi_{R} &= 0
+\,,
+\end{align}
+%
+so if we have no mass the equations decouple. 
+
+We can do the same thing if the Dirac equation is coupled to the EM field, since the issue is with the structure of the \(\gamma^{\mu }\), it does not matter if we have \(\gamma^{\mu } \DD_{\mu }\) or \(\gamma^{\mu } \partial_{\mu }\). 
+
+So, for the right-handed spinor we have:
+%
+\begin{align}
+\qty(i \partial_{t} + i \sigma_{3} \partial_3 ) \psi_{R}
+\,,
+\end{align}
+%
+so if we have a plane wave 
+%
+\begin{align}
+\psi_{R} = U_R (p) e^{-iEt + i \vec{p} \cdot \vec{x}}
+\,.
+\end{align}
+%
+the equation reads 
+%
+\begin{align}
+\qty(E - p \sigma^{3}) U_R = \left[\begin{array}{cc}
+E-p & 0 \\ 
+0 & E+p
+\end{array}\right] U_{R} = 0
+\,,
+\end{align}
+%
+so we must have two solutions: they look like 
+%
+\begin{align}
+\psi_{R} = \left[\begin{array}{c}
+1 \\ 
+0
+\end{array}\right] e^{-i Et + i E x_3 }
+\qquad \text{and} \qquad
+\psi_{R} = \left[\begin{array}{c}
+0 \\ 
+1
+\end{array}\right] e^{+i Et + i E x_3 }  
+\,.
+\end{align}
+
+In the end, we have that our quantum field operator \(\psi_{R}\) acts as 
+%
+\begin{align}
+\bra{0} = \psi_{R} \ket{e^{-}_{E} (p)} = U_R(p) e^{-ipx}
+\,.
+\end{align}
+
+Then, we can have it acting in the other way as 
+%
+\begin{align}
+\bra{e^{+}_{L}(p)} \psi_{R} \ket{0} = v_L (p) e^{+ipx}
+\,.
+\end{align}
+
+If we were to repeat the analysis for the other spinor, we would get the specular result. 
+
+At high energies we can move from electron-left to an electron-right, but at a price \(m / E\). 
+
+In order to describe this spin, we introduce the helicity quantum number, which is defined as 
+%
+\begin{align}
+h = \hat{p} \cdot \vec{s}
+\,,
+\end{align}
+%
+the projection of the spin along the direction of motion. 
+For \(\psi_{R}\), we have the \((1,0)\) state with helicity \(h = 1/2\), while the state \((0,1)\) is a positron with helicity \(h = - 1/2\). 
+
+If \(m=0\), then helicity is exactly conserved. 
+
+Accounting for everything, the cross section comes out to be 
+%
+\begin{align}
+\sigma = \frac{4 \pi }{3} \frac{\alpha^2}{E^2_{CM}}
+\,.
+\end{align}
+%
+we could have guessed the dependence on \(\alpha^2  / E^2_{CM}\), but for the numerical factor we needed to do the full computation. 
+This is because the cross section is a length square, so it must depend on the inverse square of our only energy parameter, \(E_{CM}\). 
+
+Also, the coupling was fixed: we are working in QED, so we only have a coupling constant: \(e\), so we will have terms \(e^2 / 4 \pi = \alpha \) inside of \(\mathcal{M}\), so we will get \(\alpha^2\) inside of \(\abs{\mathcal{M}}^2\). 
+The \(4 \pi \)s will cancel because of the phase-space angular integrals.
+
+If we have done this, can we apply it? suppose we want to compute the cross section \(\sigma (e^{+}e^{-} \to \text{hadrons})\). How could we do it?
+% Well, all these processes look similar, but 
+We can make a similar kind of reasoning, but we get a multiplicity of 3: this indicates that we have a different type of charge.
+
+We shall see that this is related to certain kinds of internal symmetries of our field theory. 
+
 \end{document}

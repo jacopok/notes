@@ -21,14 +21,17 @@ we obtain
 \,,
 \end{align}
 %
-but we know that 
+where \(\mu \) is the cosine of the angle between \(\hat{k}\) and \(\hat{p}\). 
+
+But we know that 
 %
 \begin{align}
 \mu^2 - \frac{1}{3} = \frac{2}{3} P_2 (\mu )
 \,,
 \end{align}
 %
-where \(P_2\) is the second Legendre polynomial, so we get 
+where \(P_2\) is the second Legendre polynomial; recall that these Legendre polynomials are precisely those used in the definition of the multipole moments \(\theta_{k}\) [definition ref].
+Using this, we get 
 %
 \begin{subequations}
 \begin{align}
@@ -41,7 +44,16 @@ where \(P_2\) is the second Legendre polynomial, so we get
 \end{align}
 \end{subequations}
 %
-so if we collect terms we find 
+we have integrated by parts, and the quadrupole contribution has vanished by the orthogonality property of the Legendre polynomials.
+
+[why is it \(\rho_{\gamma, 0}\)? we are not computing it now, right?]
+We are writing \(\rho_{\gamma }\) and the such we really mean \(\rho_{\gamma }^{(0)}\), an average at monopole order. 
+
+In a universe without neutrinos, we would have no difference between \(\Phi \) and \(\Psi \). 
+
+\todo[inline]{What would be the geometric meaning of the difference between \(\Phi \) and \(\Psi \)?}
+
+So, if we collect terms we find that the whole Einstein equation reads:
 %
 \begin{align} \label{eq:radiation-temperature-perturbation-term}
 k^2 \qty(\Phi - \Psi ) &= - 32 \pi G a^2 
@@ -50,6 +62,7 @@ k^2 \qty(\Phi - \Psi ) &= - 32 \pi G a^2
 \end{align}
 
 Since we have added the neutrino contribution, we are accounting for all of radiation. 
+See Dodelson \cite[page 99]{dodelsonModernCosmology2003}.
 
 The Einstein 00 equation \eqref{eq:einstein-00-perturbed-equation} can be written in Fourier space as 
 %
@@ -70,7 +83,7 @@ where
 
 Dark Matter and baryons do not contribute to the quadrupole (at first order). 
 
-Recall that the EFE are not independent: we need another one, and we choose the \(^0_i\) one: those components of the stress-energy tensor are given by 
+Recall that the EFE are not independent: we could also have chosen the \(^0_i\) one: those components of the stress-energy tensor are given by 
 %
 \begin{align}
 T^{0}_{i} = \sum _{\alpha } a \rho_{\alpha } 
@@ -95,7 +108,7 @@ where
 \,.
 \end{align}
 
-Combining the \(00\) and \(0i\) equations we find 
+In this case then we would find
 %
 \begin{align}
 k^2 \Psi = -4\pi G a^2
@@ -150,6 +163,7 @@ What is usually done is to completely neglect the right hand side of the EFE (si
 \,.
 \end{align}
 
+
 We can express the tensor perturbation in Fourier space as 
 %
 \begin{align}
@@ -199,6 +213,10 @@ h _{\text{mat}} (\eta ) &= 3 h(0) \dots
 
 \subsubsection{Initial conditions}
 
+Plot: comoving scale versus log of scale factor. From Lucchin-Coles? \cite[]{colespCosmology2002}. 
+
+We can say that the universe starts at the end of inflation.
+
 Let us put the curvature \(k\) back into the equations we found. 
 At early times, but after inflation, (???) are outside the horizon
 so we have \(k \eta \ll 1\) and \(\dot{\tau} \rightarrow \infty \), so the initial conditions look like 
@@ -214,8 +232,82 @@ so we have \(k \eta \ll 1\) and \(\dot{\tau} \rightarrow \infty \), so the initi
 \end{align}
 %
 these equations assume that all the multipoles from the dipole onward are suppressed. 
+
+This is called the ``separate universe'' approximation. Locally, the universe looks like a separate FRLW curved universe.
+\todo[inline]{Clarify}
+
 Also, the dipole must be much smaller than the monopole, and we must have the velocity of the baryons \(v_b\) be equal to \(-3 i \theta \) because of tight coupling. 
 
 In this limit, photons behave like a fluid, and this fluid has the same behavior as the \(e^{-}\) fluid.
+
+We assume that the neutrino quadrupole is negligible. 
+We are considering a radiation-dominated epoch, so we neglect matter. 
+
+We have then \(\Psi = \Phi \), and 
+%
+\begin{align}
+3 \frac{\dot{a}}{a} \qty(\dot{\Psi} + \frac{\dot{a}}{a} \Phi ) = - 16 \pi G a^2 \rho_{r} \Theta_{r, 0}
+\,,
+\end{align}
+%
+which becomes 
+%
+\begin{align}
+\frac{\dot{\Phi}}{\eta } + \frac{1}{\eta^2} \Phi 
+= - \frac{16 \pi G}{3} \rho_{r} a^2 \qty(\frac{\rho_{\gamma }}{\rho_{r} \theta_{0} + \frac{\rho_{\nu}}{\rho_{r}} w_0 })
+\,.
+\end{align}
+
+Then the phase space distribution looks like 
+%
+\begin{align}
+f_{\nu } = \frac{\rho_{\nu }}{\rho_{\gamma } + \rho_{\nu }}
+\,,
+\end{align}
+%
+since \(a \propto \eta \) and \(\rho_{r} \propto a^{-4} \) and \(\rho_{r} = \rho_{\gamma } + \rho_{\nu }\). 
+
+If we assume \(\dot{\theta}_{0} = \dot{w}_{0} = \dot{\Phi}\). This finally yields 
+%
+\begin{align}
+\ddot{\Phi} \eta + 4 \dot{\Phi} = 0
+\,,
+\end{align}
+%
+which has a vanishing solution, and a constant solution. We choose the latter. 
+
+We require the perturbation to be isentropic (see \cite[]{colespCosmology2002}). This yields 
+%
+\begin{align}
+\delta_{m} = 3 \theta_0 = \frac{3}{4} \delta_{r}
+\,.
+\end{align}
+
+Why do we assume this? If the perturbation is sourced by a single scalar field, then we can only consider a single mode: the isentropic mode. 
+
+With these, the 00 EFE becomes 
+%
+\begin{align}
+\Phi = -2 \qty[(1- f_{\nu }) \theta_0 + f_{\nu }w_0 ]
+\,,
+\end{align}
+%
+where we must have \(f_{\nu } = \const\). 
+
+Adiabaticity implies 
+%
+\begin{align}
+\phi = - 2 \theta_0 \implies \delta = - \frac{3}{2} \Phi 
+\,.
+\end{align}
+
+If we had kept the neutrino quadrupole, we would have gotten 
+%
+\begin{align}
+\Phi = \Psi \qty(1 + \frac{2 f_{\nu }}{5})
+\,.
+\end{align}
+
+\(f_{\nu }\) is a constant at any order: it is a number fixed by the number of neutrino species. 
 
 \end{document}

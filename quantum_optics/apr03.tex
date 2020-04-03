@@ -1,0 +1,404 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Friday\\ 2020-4-3, \\ compiled \\ \today}
+
+Why is it important to choose the measurements randomly? 
+If we already know what the measurement bases will be, then we can create a hidden variable model which will give the correct results. 
+
+\section{Continuous variables in QM}
+
+If we have a single mode, then we have 
+%
+\begin{align}
+a ^\dag_{\lambda, \epsilon , \vec{k}} \overset{\text{def}}{=} a ^\dag
+\qquad \text{where} \qquad
+\qty[a, a  ^\dag] = 1
+\,,
+\end{align}
+%
+with which we can generate \(n\)-photon states as 
+%
+\begin{align}
+\ket{n} = \frac{\qty(a ^\dag)^{n}}{\sqrt{n!}} \ket{0}
+\,,
+\end{align}
+%
+where our Hilbert space must be infinite-dimensional since we can have as many photons as we want. 
+
+So, we can define 
+%
+\begin{align}
+a = \hat{X}_{1} + i \hat{X}_{2}
+\,,
+\end{align}
+%
+where we have 
+%
+\begin{align}
+\qty[\hat{X}_{1}, \hat{X}_{2}] = \frac{i}{2}
+\,,
+\end{align}
+%
+so this real-imaginary decomposition is like a position-momentum decomposition. 
+These operators are called \emph{quadratures}, they are self-adjoint.
+
+We are in second quantization, so the wavefunction is written as 
+%
+\begin{align}
+\ket{\psi } = \int \dd[3]{k} \int \dd{\lambda } \sum_{\epsilon } a ^\dag_{\lambda, \epsilon , \vec{k}} \ket{0}
+\,.
+\end{align}
+
+\subsection{P-function}
+
+Any state can be written as 
+%
+\begin{align}
+\rho = \sum _{n, m} \rho_{n, m} \ketbra{n}{m}
+\,,
+\end{align}
+%
+since the single-particle states are a basis. 
+If we write a coherent state 
+%
+\begin{align}
+\ket{\alpha } = e^{- \abs{\alpha }^2/2} \sum _{n} \frac{(a ^\dag)^{n}}{n!} \ket{0}
+\,,
+\end{align}
+%
+we can use the expression 
+%
+\begin{align}
+\int \frac{ \dd[2]{\alpha }}{\pi } \dyad{\alpha } = \mathbb{1}
+\,,
+\end{align}
+%
+which allows us to write 
+%
+\begin{align}
+\rho = \frac{1}{\pi } \int \dd[2]{\alpha} P(\alpha ) \dyad{\alpha }
+\,.
+\end{align}
+
+Note that we have \(\dyad{\alpha }\), not \(\ketbra{\alpha }{\beta }\).
+This can be done since the coherent states are not linearly independent, they are an overcomplete basis. 
+
+This must be normalized, so that 
+%
+\begin{align}
+\int \dd[2]{\alpha } P(\alpha ) = 1
+\,.
+\end{align}
+
+If this \(P(\alpha )\) was always positive, then we would have classical states, a statistical mixture. 
+
+The over-completeness relation is found by expanding the integral 
+%
+\begin{align}
+\bra{n} \qty[ \int \frac{ \dd[2]{\alpha }}{\pi } \dyad{\alpha }] \ket{m} = \delta_{nm}
+\,.
+\end{align}
+
+\subsection{Husini-function}
+
+Given the \(P\)-function, we have 
+%
+\begin{align}
+\hat{O} = \int \frac{\dd[2]{\alpha}}{\pi } P_O (\alpha ) \dyad{\alpha }
+\,
+\end{align}
+%
+for any operator \(\hat{O}\), so we will have 
+%
+\begin{align}
+\expval{\hat{O}}_{\rho } = \Tr(\hat{O}\rho ) \int \frac{ \dd[2]{\alpha }}{\pi  } P_O(\alpha ) \ev{\rho }{\alpha }
+\,,
+\end{align}
+%
+so we define 
+%
+\begin{align}
+\frac{1}{\pi } \ev{\rho }{\alpha } = Q(\alpha )
+\,,
+\end{align}
+%
+which is called the Husini function.
+
+The generating function \(C(k)\) of a pdf \(p(x)\) is defined as 
+%
+\begin{align}
+C(x) = \int e^{ikx} p(x) \dd{x}
+\,,
+\end{align}
+%
+so we will have 
+%
+\begin{align}
+\eval{\dv[n]{C(k)}{x}}_{k=0} = i^{n} \expval{x^{n}}_{p}
+\,.
+\end{align}
+
+We can do a similar thing in the quantum realm. 
+We can define 
+%
+\begin{align}
+\chi (\eta ) = \Tr[\rho \underbrace{\exp(\eta \hat{a} ^\dag - \eta^{*} \hat{a})}_{D(\eta )}]
+\,,
+\end{align}
+%
+which is somewhat like a Fourier transform. The operator \(D(\eta )\) is called the displacement operator: its action is 
+%
+\begin{align}
+D(\alpha ) \ket{0} = \ket{\alpha }
+\,,
+\end{align}
+%
+so it generates the coherent states. 
+In phase space, it translates from the vacuum to the coherent state \(\ket{\alpha }\). We can write it as 
+%
+\begin{align}
+D(\alpha ) = \exp(\alpha a ^\dag - \alpha^{*} a) 
+= \exp(- \frac{\abs{\alpha }^2}{2}) \exp(\alpha a ^\dag) \exp(- \alpha^{*} a)
+\,,
+\end{align}
+%
+but \(e^{- \alpha^{*} a} \ket{0} = \ket{0}\), since \(a \ket{0} = 0\). 
+
+We also define the operators 
+%
+\begin{align}
+\chi_{N} (\eta ) =
+\Tr[\rho e^{\eta a ^\dag} e^{- \eta^{*} a}]
+\qquad \text{and} \qquad
+\chi_{A} (\eta ) =
+\Tr[\rho  e^{- \eta^{*} a} e^{\eta a ^\dag}]
+\,,
+\end{align}
+%
+where the \(N\) stands for normal-ordering; these are 
+%
+\begin{align}
+\chi_{N} (\eta ) = e^{ \frac{1}{2} \abs{\eta }^2} \chi (\eta )
+\qquad \text{and} \qquad
+\chi_{A} (\eta ) = e^{- \frac{1}{2} \abs{\eta }^2} \chi (\eta )
+\,.
+\end{align}
+
+So, with these, we can define 
+%
+\begin{align}
+P(\alpha ) = \frac{1}{\pi } \int \dd[2]{\eta } e^{ \overline{\eta} \alpha - \eta \overline{\alpha}} \chi_{N}(\eta ) \qquad \text{and} \qquad
+Q(\alpha ) = \frac{1}{\pi } \int \dd[2]{\eta } e^{ \overline{\eta} \alpha - \eta \overline{\alpha}} \chi_{A}(\eta )
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+W(\alpha ) = \frac{1}{\pi } \int \dd[2]{\eta } e^{ \overline{\eta} \alpha - \eta \overline{\alpha}} \chi(\eta )
+\,,
+\end{align}
+%
+the latter being the Wigner function. 
+These are all equivalent, we can use whichever is more convenient, which usually is the Wigner function. 
+
+Similarly to the classical case, we have 
+%
+\begin{align}
+\expval{a ^{\dag m} a^{n}}_{\rho } &= \pdv[n]{\eta } \pdv[m]{\overline{\eta}} \chi_{N} (\eta ) \\
+\expval{a^{n} a ^{\dag m} }_{\rho } &= \pdv[n]{\overline{\eta} } \pdv[m]{\eta} \chi_{A} (\eta )\\
+\expval{ \qty{ a^{n}, a ^{\dag m}} }_{\rho } &= \pdv[n]{\overline{\eta} } \pdv[m]{\eta} \chi (\eta ) \\
+\,.
+\end{align}
+
+For coherent states we have 
+%
+\begin{align}
+\ev{a}{\alpha } = \alpha 
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\ev{\alpha }{\Delta X^2_{1}} =
+\ev{\alpha }{\Delta X^2_{2}} 
+= \frac{1}{4}
+\,.
+\end{align}
+
+The Wigner function of a coherent state is 
+%
+\begin{align}
+\ket{\beta } \rightarrow W(\alpha ) = \frac{2}{\pi } e^{-2 \abs{\alpha - \beta }^2}
+\,.
+\end{align}
+
+Usually we will calculate probability densities like 
+%
+\begin{align}
+\ev{x_1}{\rho } = p(x_1 ) = \int \dd{x_2 } W(x_1 , x_2 )
+\,.
+\end{align}
+
+While \(W(\alpha )\) can be both negative and positive, its integral along any line in the complex plane will be \(\geq 0\), since we can define 
+%
+\begin{align}
+X_{\theta } = \frac{1}{2} \qty(a e^{-i \theta } + a ^\dag e^{+i \theta })
+\,.
+\end{align}
+
+In this coherent state, we will have 
+%
+\begin{align}
+Q(\alpha ) = \abs{ \braket{\alpha }{\beta }}^2 = \frac{1}{\pi } e^{- \abs{\alpha - \beta }^2}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+P(\alpha ) = \delta (\alpha - \beta )
+\,.
+\end{align}
+
+How do we measure these? We need a type of measure called \textbf{homodyne detection}.
+
+We have a beamsplitter, on one side we have our state \(\rho \), on the other we have a laser: an almost-classical state  \(\ket{\beta }\) with \(\beta \gg 1\). 
+
+Outside the BS we then measure \(I_c - I_d\), which is the average on \(\rho \) of \(X_{\theta }\), where \(\beta = \abs{\beta } e^{i \theta }\). 
+
+This is because \(c ^\dag = b ^\dag + i a ^\dag\) and \(d ^\dag = a ^\dag + i b ^\dag\). So, we are measuring 
+%
+\begin{align}
+I_c - I_d \propto c ^\dag c - d ^\dag d &= 2 i a ^\dag b - 2 i b ^\dag a
+\,,
+\end{align}
+%
+but since we need to do this on the state \(\rho \otimes \dyad{\beta }\) we get 
+%
+\begin{align}
+2 i \beta \expval{a ^\dag}_{\rho } - 2 i \beta^{*} \expval{a}_{\rho } 
+\,,
+\end{align}
+%
+which is precisely 
+%
+\begin{align}
+2 i \abs{\beta } \expval{\qty[i e^{i \theta } a ^\dag - i e^{-i \theta }a]}_{\rho }
+\,,
+\end{align}
+%
+which corresponds to the Wigner function integrated on a line at an angle \(\theta \). 
+
+This is a macroscopic measurement! We measure bulk currents, however if we measure the variance 
+%
+\begin{align}
+\expval{\Delta I^2_{cd}} = 4 \abs{\beta }^2 \expval{\Delta X_{\theta }^2}_{\rho } + \order{ \abs{\beta} }
+\,.
+\end{align}
+
+The noise here is intrinsically quantum. 
+If \(\beta \gg 1 \) we can do this approximation. 
+
+We can then do a sort of tomography on our state. 
+
+A different measurement is called a double homodyne, or heterodyne. 
+
+Now our detector is split in two, we use the same laser but in two beam splitters, with a respective phase of \(\pi / 2\). We are effectively using a POVM 
+%
+\begin{align}
+\Pi_{\beta } = \frac{1}{\pi } \dyad{\beta }
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\beta = X_1 + i X_2 
+\,.
+\end{align}
+
+Then we will have \(\Tr (\rho \Pi_{\beta }) = \pi^{-1} \ev{\beta }{\rho } = Q(\beta )\). 
+
+In classical communication, this is called a coherent detector. 
+
+\section{Squeezing}
+
+Coherent states are really classical states. 
+We know that 
+%
+\begin{align}
+\Delta X_1 \Delta X_2 \geq \frac{1}{4} 
+\qquad \text{and} \qquad
+\expval{ \Delta X^2_{\theta }} = \frac{1}{4} \forall \theta 
+\,,
+\end{align}
+%
+but this constraint can also be satisfied by ``squeezed'' states: these have large variances in one direction and small in the other. 
+
+These are written using the squeezing operator: 
+%
+\begin{align}
+S(\xi ) = \exp( \frac{1}{2} \qty(\xi^{*} a ^{\dag 2} - \xi a^2))
+\,.
+\end{align}
+
+Since we have the squares of the operators, we have different behaviour from before. We can write \(S\) as  
+%
+\begin{align}
+S(\xi ) = \frac{1}{\sqrt{\mu }} \exp( - \frac{1}{2} \frac{\nu }{\mu } \alpha ^{\dag 2}) \mu^{- a ^\dag a} \exp( \frac{1}{2} \frac{\overline{\nu}}{\mu } a^2)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\mu = \cosh r, \nu = \sinh r e^{i \varphi } \qquad \text{where} \qquad
+\xi = r e^{i \varphi }
+\,.
+\end{align}
+%
+so we have 
+%
+\begin{align}
+\ket{\xi } = S(\xi ) \ket{0} 
+&= \frac{1}{\sqrt{\mu }} \exp(- \frac{1}{2} \tanh r e^{i \varphi } a ^{\dag 2})    \\
+&= \frac{1}{\sqrt{\mu }} \sum _{n} \qty(\dots) \frac{a ^{\dag 2}}{\sqrt{n!}} \ket{0}
+\,,
+\end{align}
+%
+so this state will have only an even number of photons: we will have 
+%
+\begin{align}
+\sqrt{\expval{\Delta X_{\varphi }}} = \frac{1}{2} e^{-r} \qquad \text{and} \qquad
+\sqrt{\expval{\Delta X_{r}}} = \frac{1}{2} e^{+r}
+\,,
+\end{align}
+%
+so \(\varphi \) tells us along which direction we are squeezing, while \(r\) tells us by how much. 
+
+This was applied on the vacuum, but then we can do 
+%
+\begin{align}
+\ket{\xi , \alpha } = D(\alpha ) S( \xi ) \ket{0}
+\,.
+\end{align}
+
+This only changes the average, the variances are kept. 
+The operators \(S\) and \(D\) do not commute.
+
+This can be experimentally generated using nonlinear crystals. 
+The first term in the expansion of \(S(\xi )\) is precisely the first term in the spontaneous parametric down-conversion. 
+
+The Hamiltonian in SPDC is 
+%
+\begin{align}
+H = b a^{\dag 2} - b ^\dag a^2
+\,,
+\end{align}
+%
+so we will actually never have an odd number of photons. 
+
+\end{document}

@@ -1,4 +1,177 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-4-6, \\ compiled \\ \today}
+
+We are discussing the Hulse-Taylor pulsar, which is a very precise clock.
+There are many effects by which the time-of-arrival is shifted, if we take them all out we can get the effect from the source. 
+
+We will have the Shapiro delay from the Sun, the Einstein delay at the receiver from the curvature of the spacetime around the Earth, which is given by 
+%
+\begin{align}
+\dv{\tau }{t} \approx 1 + \phi \qty(x _{\text{obs}}) - \frac{v^2 _{\text{obs}}}{2c^2}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\tau \approx t + \int^{t} \dd{\widetilde{t}} \qty(\phi \qty(x _{\text{obs}}) - \frac{v^2 _{\text{obs}}}{2c^2})
+= t - \Delta_{\oplus, \odot}
+\,.
+\end{align}
+
+If most of the velocity is due to the motion of the Earth in its elliptic orbit, we have from conservation of energy
+%
+\begin{align}
+\frac{v^2 _{\text{obs}}}{2} = \frac{GM}{r} - \frac{GM}{2a}
+\,,
+\end{align}
+%
+so that we find 
+%
+\begin{align}
+\dv{ \Delta}{t} \approx \frac{v^2}{2c^2} - \phi = \frac{GM_{\odot}}{c^2} \qty( \frac{1}{r} - \frac{1}{2a} - \frac{1}{r})
+= R_{\text{earth-Sun}} \qty( \frac{1}{r} - \frac{1}{4a})
+\,.
+\end{align}
+
+However, we must also consider the group velocity of the signal which travels through the ISM, which is ionized gas. Then, we get a delay which depends on the frequency: 
+%
+\begin{align}
+t_L = \frac{L}{c} + \frac{e^2}{2 \pi m_e c} \frac{1}{\nu^2} DM
+\,,
+\end{align}
+%
+where \(DM\) is the Dispersion Measurement. 
+For the HT pulsar, this spreads the time over a \SI{4}{MHz} bandwidth: 
+however, we can measure precisely in the spectral domain, and we can ``connect the dots'' to find what corresponds to a single pulse. 
+
+This allows us to reconstruct the original pulse.
+
+Taking these effects out, we get 
+%
+\begin{align}
+t _{\text{ssb}} = \tau - \frac{D}{\nu^2} + \Delta_{E, {\odot}} - \Delta_{S, {\odot}} + \Delta_{R, {\odot}}
+\,.
+\end{align}
+
+This is ``time in solar-system barycenter''.
+where
+%
+\begin{align}
+D = \frac{e^2}{2 \pi m_e c} DM
+\,.
+\end{align}
+
+We need to look at the gravitational time delay at the source: there is a contribution from the gravitational field of the NS itself, which is hard to calculate but constant, so we do not worry about it. 
+The combined gravitational field, instead, is time-varying: so, we find 
+%
+\begin{align}
+\dv{T}{t} &= 1 - \frac{G m_c}{c^2 \abs{x_p - x_c}} - \frac{v_p^2}{2 c^2}  \\
+ \dv{T}{u} &\approx \frac{P_b}{2 \pi } \qty(1 - \frac{G}{c^2} \frac{2 m_c m_p + 3 m_c^2}{2 a (m_p + m_c)})\qty(1 - e \cos u \qty(1 + \frac{G}{c^2})) \dots
+\,,
+\end{align}
+%
+[to finish]
+where \(u\) is the angular parameter describing the orbit, while \(e\) is the eccentricity.
+
+Also, we have the Romer delay: \(\Delta_{R} = \hat{z} \cdot x_{pb} / c\). 
+
+The coordinates, for a Keplerian orbit, are 
+%
+\begin{align}
+r_{pb} = r_1 = a_1 \qty(1 - e \cos u )
+\qquad \text{and} \qquad
+\cos \psi = \frac{\cos u - e}{1- e \cos u}
+\,.
+\end{align}
+
+The Romer delay then is 
+%
+\begin{align}
+\Delta_{R} = r_1 \sin \iota \sin(\omega+\psi ) 
+= r_1 \sin \iota \qty(\cos \psi \sin \omega + \cos \omega \sin \psi )
+\,,
+\end{align}
+%
+where \(\iota \) is the observation angle, while \(\psi \) is the angle from the line of notes (see drawing). 
+
+The relativistic effect, however, is large. 
+We will not do the calculation, we find 
+%
+\begin{align}
+\Delta_{R} = a_1 \sin \iota 
+\qty((\cos u - e_r ) \sin \omega + \sqrt{1 - e^2_{\theta }} \sin u \cos \omega )
+\,, 
+\end{align}
+%
+where 
+%
+\begin{align}
+e_{r, \theta } &= e (1 + \delta_{r, \theta })  \\
+\delta_{r} &= \frac{G}{c^2} \frac{3 m_p^2 + 6 m_p m_c + 2 m_c^2}{a (m_p + m_c)}  \\
+\delta_{\theta } &= 
+\,,
+\end{align}
+%
+also here the advance of the periastron is much more significant than it is for Mercury. 
+
+The Shapiro delay at the source must also be accounted for. 
+
+If we get all the Keplerian parameters and two of the post-Newtonian ones then we should know everything.
+
+We measure \(P_b, T_0, x= a \sin \iota /c, e, \omega \) and the post-Newtonian \(\dot{\omega}, \gamma \) and finally we make a prediction for \(\dot{P}\). This matches the data very well.
+
+\section{GW from a rotating rigid body}
+
+The moment of inertia tensor can be defined as 
+%
+\begin{align}
+I^{ij} = \int \dd[3]{x} \rho (x) \qty(r^2 \delta^{ij} - x^{i} x^{j})
+\,.
+\end{align}
+
+There exists a frame in which this tensor is diagonal, its eigenvalues are the moments of inertia, its eigenvectors are the axes of inertia.
+They are then defined by equations like 
+%
+\begin{align}
+I_1 = \int \dd[3]{x} \rho \qty(x_2^2 + x_3^2) 
+\,.
+\end{align}
+ 
+For an ellipsoid with axes \(a, b, c\) and mass \(m\) we have 
+%
+\begin{align}
+I_1 = \frac{m}{5} \qty(b^2 +c^2)
+\,.
+\end{align}
+
+The rotational kinetic energy is given by 
+%
+\begin{align}
+E _{\text{rot}} &= \frac{1}{2} I_{ij} \omega_{i} \omega_{j} \\ 
+&= \frac{1}{2} I_i \omega_{i}^2
+\,,
+\end{align}
+%
+where the last equality holds in the body frame. 
+
+Suppose we have a body spinning around an axis, such that the position of any point shifts by a rotation matrix \(R_{ij}\). 
+
+The inertia tensor shifts by \(I \rightarrow R^{\top} I R\).
+
+The tensor we defined before, 
+%
+\begin{align}
+M^{ij} = \frac{1}{c^2} \int \dd[3]{x} T^{00} (x) x^{i} x^{j} 
+\approx - I^{ij} + \int \dd[3]{x} \rho (x) r^2 \delta^{ij}
+\,,
+\end{align}
+%
+which we can substitute in. This is the trace of the inertia tensor. 
+
+Suppose we had a body whose angular momentum is not aligned with the moment of inertia: we can use Euler angles to express the rotation matrix.
+
+
 \end{document}

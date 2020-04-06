@@ -1,4 +1,115 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-4-6, \\ compiled \\ \today}
+
+\subsection{General solution of the Dirac equation}
+
+We have imposed that solutions of the Dirac equation are solutions of the KG equation and vice-versa, so a general solution of the Dirac equation should look like those we found when discussing the Klein-Gordon equation: 
+%
+\begin{align}
+\psi (x) = \psi_{+ } (x) + \psi_{-} (x) 
+\sim \eval{e^{-ikx} u(k) + v(k) e^{ikx}}_{k_0 = \omega_{k}}
+\,,
+\end{align}
+%
+where the subscript \(+\) or \(-\) refers to the sign of the energy of the solution, and now \(u(k)\) and \(v(k)\) are spinors in momentum space. 
+We use the \(\sim\) sign since these are only plane wave solutions, a general solution will be an integral of these over momentum space.
+
+If we apply the Dirac operator \(i \slashed{\partial} - M\) to these we find 
+%
+\begin{align}
+\qty( i \slashed{\partial} - M) \psi_{+} \sim e^{-ikx} \qty(\slashed{k} - M) u(k) &= 0 \\
+\qty( i \slashed{\partial} - M) \psi_{-} \sim -e^{ikx} \qty(\slashed{k} + M) v(k) &= 0
+\,,
+\end{align}
+%
+so, since the exponentials are nonzero we can write these two equations as 
+%
+\boxalign{
+\begin{align}
+\qty(\slashed{k}- M) u(k) = 0 
+\qquad \text{and} \qquad
+\qty(\slashed{k} + M) v(k) = 0
+\,.
+\end{align}}
+
+Let us now assume that the particle we are considering is not massless, so we can go in its rest frame. 
+If we were to consider a massless particle, we could work with the \(N=2\) Weyl spinors. Instead, we will need the \(N=4\) ones. 
+
+In the rest frame \(k^{\mu } = (M, \vec{0})\), so the two equations read 
+%
+\begin{align}
+0&= \qty(\slashed{k} - M) u(k)  \\
+&= \qty(\gamma^{\mu }k_{\mu } - M) u(k)  \\
+&= \qty(\gamma^{0} M - M ) u(k) = M \qty(\gamma^{0} - \mathbb{1}) u(k)  \\
+&=\qty( \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right] 
+-
+\left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & \mathbb{1}
+\end{array}\right]
+) u(k)  \\
+&= \left[\begin{array}{cc}
+0 & 0 \\ 
+0 & -2 \mathbb{1}
+\end{array}\right] M u(k) =0
+\,,
+\end{align}
+%
+so a generic solution looks like 
+%
+\begin{align}
+u(M) = c \left[\begin{array}{c}
+\xi  \\ 
+0
+\end{array}\right]
+\,.
+\end{align}
+
+Note that we are using the Dirac representation, but if we were to choose a different one the spinors would look different. 
+For \(v(k)\) the equation looks like 
+%
+\begin{align}
+M \qty(\gamma^{0} + \mathbb{1}) v(M) =
+\left[\begin{array}{cc}
+2 \mathbb{1} & 0 \\ 
+0 & 0
+\end{array}\right] M v(M) = 0
+\,,
+\end{align}
+%
+\todo[inline]{Reported with a wrong sign in the notes!}
+so 
+%
+\begin{align}
+v(M) = c \left[\begin{array}{c}
+0 \\ 
+\xi 
+\end{array}\right]
+\,.
+\end{align}
+
+Here \(\xi \) is a two-dimensional vector, while \(c\) is a normalization constant. 
+We have two independent solutions for each case, so in total there are four independent ones. 
+A basis we can choose is 
+%
+\begin{align}
+u_{r} (M) = \sqrt{2M} \left[\begin{array}{c}
+\xi_{r} \\ 
+0
+\end{array}\right]
+\qquad \text{and} \qquad
+v_{r} (M) = \sqrt{2M} \left[\begin{array}{c}
+0 \\
+\xi_{r} 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(r=1,2\) and \((\xi_{r})^{i} = \delta^{i}_{r}\) are unit vectors, a basis for the 2d space. 
+
 \end{document}

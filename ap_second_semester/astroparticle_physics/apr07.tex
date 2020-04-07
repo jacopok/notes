@@ -1,4 +1,220 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-4-7, \\ compiled \\ \today}
+
+Last time we wrote the Lagrangian of QED: 
+%
+\begin{align}
+\mathscr{L}_{QED} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu } 
++ \overline{\psi} \qty(i \gamma^{\mu } \DD_{\mu } -m) \psi 
+\,,
+\end{align}
+%
+where \(\DD_{\mu } = \partial_{\mu } + i e A_{\mu }\).
+
+This possesses several symmetries: Lorentz (actually, Poincaré) invariance, \(P\) (parity), \(C\) (charge conjugation), \(T\) (time inversion). 
+
+We are also interested in the \emph{internal} symmetries of this Lagrangian: all the aforementioned symmetries were spacetime ones.
+
+We know that \(\overline{\psi} = \psi ^\dag \gamma^{0}\), so if we transform \(\psi \to e^{i \theta } \psi \) the Lagrangian is unchanged, since we also have \(\overline{\psi} \to e^{-i \theta } \overline{\psi} \).
+Here, we are taking a constant phase angle \(\theta \): it comes out of the derivative unchanged. 
+This is called a \(U(1)\) global symmetry, since it is the same everywhere in space and since a phase is the same as a \(1 \times 1 \) unitary matrix.
+
+The following section differs from the notes. 
+Let us ignore the interactions of electrons with the EM fields in QED. 
+Our world is made of electrons, and we want to describe these free propagating electrons. 
+We take the Lagrangian 
+%
+\begin{align}
+\mathscr{L}_{\text{Dirac}} = \overline{\psi} \qty(i \partial_{\mu } \gamma^{\mu } -m) \psi 
+\,,
+\end{align}
+%
+which still has the symmetry \(\psi \to e^{i \alpha } \psi \). 
+
+Is this invariant also with respect to a \emph{local} \(U(1)\) symmetry? This looks like \(\psi (x) \to e^{i \alpha (x)} \psi (x)\), where \(\alpha (x)\) is a continuous spacetime scalar function. 
+
+This is a ``promotion'' of the symmetry: why? It seems like a global symmetry is a more general thing\dots However, the global symmetry is a special case of the local one. 
+
+This local symmetry is called a \(U(1)\) \emph{gauge} symmetry. 
+Properly speaking, the global symmetry is also a gauge one but it is commonly called just a global symmetry. 
+
+Substituting in, we get 
+%
+\begin{align}
+e^{-i \alpha (x)} \overline{\psi} \qty[i \partial_{\mu } \gamma^{\mu } - m] e^{i \alpha (x)} \psi  
+&= 
+\overline{\psi} \qty[i \partial_{\mu } \gamma^{\mu } - m] \psi  
+ + \overline{\psi} \psi i \gamma^{\mu }\partial_{\mu } \alpha 
+\,,
+\end{align}
+%
+so we see that the Lagrangian is \emph{not} invariant under this gauge symmetry in general. 
+
+If we want the symmetry to hold, we need to introduce a \emph{compensating} field to cancel out the term.
+
+The answer is that the thing to add is a vector field \(A_{\mu }\). 
+Then, if we transform 
+%
+\begin{align}
+A_{\mu } \to A_{\mu } - \frac{1}{e} \partial_{\mu } \alpha 
+\,
+\end{align}
+%
+this compensates the change, as long as the vector is coupled to the fermion with a term \(\overline{\psi} e \gamma^{\mu } A_{\mu } \psi \) in the Lagrangian. 
+This is a profound result: if we wanted to describe a world with only electrons, and we want to have this electron be symmetric with respect to the \(U(1)\) gauge symmetry \(e \to e^{i \alpha (x)} e\) then we \emph{must} have a vector coupled to it. 
+
+Then, we should also insert a term describing the propagation of the free vector \(A_{\mu }\). 
+
+A quote: ``And she said `let there be symmetry', and there was light''.
+
+We could have just proven that the QED Lagrangian is invariant with respect to \(U(1)\) symmetry: however, this reasoning illustrates the point that the symmetry requires the insertion of photons. 
+
+One might ask: how do you know that this is the correct symmetry? 
+The method is trial and error. 
+
+Could we have something which is more complicated than a spin 1 mediator? It is basically a guessing game, we see what works. 
+
+This \(U(1)\) gauge symmetry is an abelian symmetry, but we also have non-abelian ones: the \(T^{a}\) are Hermitian operators called generators, their Lie algebra which is defined by 
+%
+\begin{align}
+\qty[T^{a}, T^{b}] = if^{abc} T^{c}
+\,.
+\end{align}
+
+The \emph{structure coefficients} \(f^{abc}\) are antisymmetric in their first two indices. 
+
+To say that these are generators means that any infinitesimal transformation can be written as 
+%
+\begin{align}
+\Phi \to \qty(1 + i \alpha^{a} t^{a}_{R}) \Phi 
+\,.
+\end{align}
+
+We will be interested in Lie groups \(SU(n)\) with \(N\geq 2\), which are \(N \times N\) unitary matrices with determinant \(1\).
+
+For example, recall that \(SU(2)\) corresponds to \(SO(3)\). 
+
+Some time ago we discussed the annihilation  of \(e^{+} e^{-}\) into hadrons: we can get protons and neutrons, pions, kaons\dots
+
+However we can simplify by discussing only the creation of quarks. 
+
+When we compute the cross sections, our calculation seems to be wrong by a factor 3. If we multiply it by 3 we get the correct result. 
+So there are three types of quarks: we categorize them by ``color'', even though it has nothing to do with colors. 
+
+We associated QED  with \(U(1)\): is there a group corresponding to Quantum Chromo Dynamics?
+Can we do this with the weak interaction as well? 
+
+Since there are three quarks, we are drawn to represent them as triplets. 
+Since we know that unitary matrices are nice, we try \(SU(3)\). 
+
+We call this symmetry \(SU(3)_{\text{color}}\). 
+
+Consider now \(SU(N)\): we have 
+%
+\begin{align}
+\Tr \qty[t^{a}_{N} t^{b}_{N}] = \frac{1}{2} \delta^{ab}
+\,,
+\end{align}
+%
+where \(t^{a}_{N}\) are the generators of the Lie algebra. 
+
+We define the following: 
+%
+\begin{align}
+\qty(t^{a}_{G})^{bc} \overset{\text{def}}{=} f^{abc}
+\,,
+\end{align}
+%
+which satisfy 
+%
+\begin{align}
+\Tr \qty[t^{a}_{G} t^{b}_{G}] = f^{acd} f^{bcd} = C(G) \delta^{ab}
+\,,
+\end{align}
+%
+where the constant \(C(G)\) is just the dimension \(N\) in our case. 
+
+Consider the Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \overline{\psi} \qty(i \gamma^{\mu } \partial_{\mu } - m ) \psi 
+\,.
+\end{align}
+
+This can describe an electron. Now, let us add an index \(j\) in the group \(G\), according to which the particle transforms in the \(R\)-dimensional (in our case \(R=3\)) representation:
+\begin{align}
+\mathscr{L} = \overline{\psi}_{j} \qty(i \gamma^{\mu } \partial_{\mu } - m ) \psi_{j}
+\,.
+\end{align}
+
+Under the local action of a group \(G\) the particle transforms like 
+%
+\begin{align}
+\psi_{j} (x) \overbrace{\to}^{G} 
+\psi^{'}_{j} (x)
+= \qty(1 + i \alpha^{a}(x) t^{a}_{R})_{jk} \psi_{k} 
+\,,
+\end{align}
+%
+where \(a\) is an index going from 0 to \(N^2-1\). 
+
+Now we have to do the same thing we did in the \(U(1)_{\text{em}}\) case. 
+
+We have the same problem as before: we need to cancel a term with one index. So, we will need to take a derivative like 
+%
+\begin{align}
+\partial_{\mu } \qty(\alpha (x) \psi ) = \qty(\partial_{\mu } \alpha ) \psi  
+\,,
+\end{align}
+%
+even though now ``\(\alpha \)'' is actually a product of many terms. The solution will still be in the form 
+%
+\begin{align}
+\DD_{\mu } \to \partial_{\mu } - i g A_{\mu }^{a} t^{a}_{R}
+\,,
+\end{align}
+%
+where \(g\) is the strength of the interaction, commonly written as \(g_{s}\) in the case of the strong force. 
+The index \(a\) goes from \(1\) to \(N^2-1 = 8\). 
+
+The beautiful thing is the fact that starting only from the symmetry requirement we can get a full theory. 
+
+We now attribute actual \emph{existence} to these quantum fields: they are interaction bosons. 
+They must transform like 
+%
+\begin{align}
+A^{a}_{\mu }(x) \to A^{a}_{\mu } (x) + \frac{1}{g} \DD_{\mu } \alpha^{a}(x)
+\,,
+\end{align}
+%
+and then the Lagrangian will be 
+%
+\boxalign{
+\begin{align}
+\mathscr{L} =
+- \frac{1}{4} F^{\mu \nu a} F^{a}_{\mu \nu } + \overline{\psi}
+\qty(i \gamma^{\mu } \DD_{\mu }-m) \psi 
+\,,
+\end{align}}
+%
+which looks the same as the QED Lagrangian, but we must be careful: what is \(F_{\mu \nu }^{a}\)? We might think it is 
+%
+\begin{align}
+F^{a}_{\mu \nu } = 2 \partial_{[\mu } A^{a}_{\nu ]}
+\,,
+\end{align}
+%
+but this is not enough: inside the covariant derivative in \(\DD_{\mu } \alpha \) in the transformation law we also have \(A_{\mu }\), so we get an additional term, and the final formula looks like 
+%
+\begin{align}
+F^{a}_{\mu \nu } = 2 \partial_{[\mu } A^{a}_{\nu ]} + g f^{abc} A^{b}_{\mu } A^{c}_{\nu }
+\,.
+\end{align}
+
+This corresponds to the fact that, while there is no photon-photon interaction since \(U(1)\) is abelian,  \(SU(3)\) is not: so, we do have gluon-gluon interaction. 
+
+This is crucial in very high energy situations, such as in the early universe. 
+
 \end{document}

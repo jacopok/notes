@@ -3,6 +3,91 @@
 
 \marginpar{Friday\\ 2020-4-10, \\ compiled \\ \today}
 
+If we were to drop all the dependence on \(\mu \) and integrate \(\widetilde{S}\), we get the spherical Bessel functions. 
 
+The visibility function is defined as 
+%
+\begin{align}
+g(\eta ) = - \dot{\tau} e^{-\tau }
+\,,
+\end{align}
+%
+this is normalized to one when integrated in \(\dd{\eta }\), and it has a peak at last scattering. 
+This function will be later approximated as a \(\delta \) function of \(t - t _{\text{last scattering}}\). 
+
+Terms in equation [48]: 
+\begin{enumerate}
+    \item Sachs-Wolfe term
+    \item Velocity doppler term;
+    \item Integrated Sachs-Wolfe. 
+\end{enumerate}
+
+This is the main equation we use to study the CMB spectrum. 
+
+\section{The angular power spectrum}
+
+Several telescopes have been launched in order to study the CMB. We need to map the whole sky, to a good resolution, and to a good spectral resolution.
+Some ones were COBE, WMAP. Now we have Planck. 
+
+The temperature is 
+%
+\begin{align}
+T (\hat{x}, \hat{p}, \eta ) = T(\eta ) \qty[1 + \theta (\hat{x}, \hat{p}, \eta )]
+\,,
+\end{align}
+%
+and then we write \(\theta \) as a sum of harmonic coefficients: 
+%
+\begin{align}
+\theta (\hat{x}, \hat{p}, \eta ) = \sum _{\ell=1}^{ \infty }
+\sum _{m = -\ell}^{\ell} a_{ \ell m } (\hat{x}, \eta )  Y_{\ell m } (\hat{p})
+\,,
+\end{align}
+%
+where the spherical harmonics are orthonormal. 
+
+We can recover the harmonic coefficients by Fourier transforming; at this step we can set \(\vec{x} =0 \), not before.  
+
+The \(\ell = 0\) contribution is not included: it is the monopole, it cannot be distinguished from a renormalization of the temperature background. 
+
+The dipole is telling us about the motion of the Earth with respect to to the CMB, so usually people start at 2. We then stop at the resolution of the experiment. 
+
+We have \(\expval{a_{\ell m}} = 0\), however
+the angular average of 
+%
+\begin{align}
+\expval{a_{\ell m } a^{*}_{\ell' m'}} = \delta_{\ell \ell'} \delta_{m m'} C_\ell
+\,.
+\end{align}
+
+This comes from the orthonormality, and the requirement of statistical isotropy.    
+We account for the complications arising from galaxy emission.
+%
+\begin{align}
+C_\ell = \frac{2}{\pi } \int_{0}^{ \infty } \dd{k} k^2 P(k) \abs{\frac{\theta_{\ell} (k)}{ \delta (k)}}^2
+\,,
+\end{align}
+%
+where \(\delta \) is the dark matter density perturbation,
+%
+\begin{align}
+\expval{ \delta (\vec{k}) \delta (\vec{k}')} =
+(2 \pi )^3 \delta^{(3)} (\vec{k} + \vec{k}') P(k)
+\,,
+\end{align}
+%
+where \(P(k)\) is defined by this equation, it is the power since it is quadratic.
+
+An interesting effect is the fact that 
+%
+\begin{align}
+(\theta_0 + \Phi ) ( ? \eta_{*}) = \frac{1}{3} \dots
+\,.
+\end{align}
+
+Now we discuss the Sachs-Wolfe \(C_\ell\). 
+
+The simplest approximation is \(P(k) \sim k^{n}\), a power low, where \(n\) is called the \emph{spectral index}. 
+For \(n=1\) we have lots of simplifications. 
 
 \end{document}

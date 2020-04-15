@@ -1,4 +1,171 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-4-15, \\ compiled \\ \today}
+
+Last lecture we started the discussion of a new kind of interaction: we had treated QED and QCD, now we introduced the nuclear weak interaction. 
+
+We would like to introduce a sort of ``QWD'', and we will see that this is possible in the standard model, by unifying the electromagnetic and weak interactions. 
+
+We have seen that fermions are described by a four-component spinor: 
+%
+\begin{align}
+\Psi = \left[\begin{array}{c}
+\psi_{L} \\ 
+\psi_{R}
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\psi_{L, R}\) are both two-component vector. The right handed part has helicity \(h = + 1/ 2\), the left handed part has helicity \(h = - 1 / 2\).
+
+The puzzling part of the weak interaction is that it seems like the only part of the fermion entering \(\beta \)-decay is the left-handed part.
+In the late seventies, the professor's master thesis stated that this was a mystery. Still, we do not know why this interaction breaks parity. 
+
+We need to describe the experimental results: so, we need a projector onto the left-handed components. 
+We already introduced the Dirac \(\gamma^{\mu }\) matrices. 
+Now we introduce 
+%
+\begin{align}
+\gamma^{5} = \left[\begin{array}{cc}
+- \mathbb{1} & 0 \\ 
+0 & \mathbb{1}
+\end{array}\right]
+\,,
+\end{align}
+%
+which has the important property that it anticommutes with all the Dirac matrices: 
+%
+\begin{align}
+\qty{\gamma^{5}, \gamma^{\mu }} = 0 
+\,,
+\end{align}
+%
+and actually we can write it as 
+%
+\begin{align}
+\gamma^{5} = i \gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}
+\,.
+\end{align}
+
+By its form we can readily see that \(\psi_{L}\) is an eigenstate of \(\gamma^{5}\) with eigenvalue \(-1\), while \(\psi_{R}\) has eigenvalue \(+1\). 
+So, the matrix 
+%
+\begin{align}
+\frac{\mathbb{1} - \gamma^{5}}{2} 
+\,
+\end{align}
+%
+projects a state onto the left-handed subspace.
+The Dirac matrices can be written as 
+%
+\begin{align}
+\gamma^{\mu } \left[\begin{array}{cc}
+0 & \sigma^{\mu }  \\ 
+-\overline{\sigma}^{\mu } & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\sigma^{\mu } = \left[\begin{array}{cc}
+\mathbb{1} & \sigma^{\mu }
+\end{array}\right]
+\qquad \text{and} \qquad
+\overline{\sigma}^{\mu } = \left[\begin{array}{cc}
+\mathbb{1} & - \sigma^{\mu }
+\end{array}\right]
+\,.
+\end{align}
+%
+
+Now, then, we discard the left handed components: for \(m=0\) we write 
+%
+\begin{align}
+i \overline{\sigma} \partial \psi_{L} =0\\
+i \sigma \partial \psi_{R}=0
+\,,
+\end{align}
+%
+so we can discard the second equation. 
+We can introduce a current involving only the left-handed component: 
+%
+\begin{align}
+j^{\mu +}_{L} = \nu ^+_{L} \overline{\sigma}^{\mu } e_{L} + u ^+_{L} \overline{\sigma}^{\mu } d_{L} + \dots
+\,.
+\end{align}
+
+Notice that we did not introduce here an index \(a\) as we had done for the color charge. 
+
+This is a charged current.
+
+Why are there no terms involving \(\sigma^{\mu }\)? We projected along the first two components, so in the terms 
+%
+\begin{align}
+\overline{u} \gamma^{\mu } \qty( \frac{1-\gamma^{5}}{2})d = \overline{u} \gamma^{\mu } d_L
+\,
+\end{align}
+%
+the last two terms vanish, we do not need to write them.
+This theory of weak interaction is called a \(V-A\) theory: in the current we have the terms 
+%
+\begin{align}
+\frac{1}{2} \qty[ \underbrace{\overline{u} \gamma^{\mu } d}_{V} - \underbrace{\overline{u} \gamma^{\mu } \gamma^{5} d}_{A}]
+\,,
+\end{align}
+%
+where the term \(V\) is a vector current, while the term \(A\) is an axial current. 
+
+We know that a density Lagrangian has a dimension of 4, so from the expression \(\mathscr{L} = \overline{\psi} m \psi \) we get that the fermion must have dimension \(3/2\). 
+By dimension, we mean power of the mass.
+
+When we have a term like \(j^{\mu } j_{\mu } \times \const\), the constant must have a dimension of \(-2\). 
+The constant is called \(G_F\), and we have that the cross section goes like \(\sigma \sim G_F^{2} \sim [m]^{-4}\)? this does not work, we need something with dimension \(2\) multiplying it, since the cross section has dimension \(-2\). 
+
+Our only free parameter is \(s\), the square of the center of mass energy. So, we will have 
+%
+\begin{align}
+\sigma \sim G_F^2 s
+\,,
+\end{align}
+%
+which means that if we increase the beam energy the cross section increases. 
+\(s\) can diverge in principle, but \(\sigma \) is connected to a probability: this means that we have a unitarity violation. 
+
+This can be fixed with the introduction of a charged mediator \(W\).
+
+How massive must it be? We can measure \(G_F \sim \SI{e-5}{GeV^{-2}}\). 
+
+In the Breit-Wigner resonance formula we will need to insert 
+%
+\begin{align}
+\frac{1}{q^2- M_W^2}
+\,,
+\end{align}
+%
+which avoids the divergence. 
+In order for this to work, we need this boson to be of the order of \SI{10}{GeV} to \SI{100}{GeV}.
+
+Now we need to describe this as a gauge theory. The symmetry group will be \(SU(2)_{L}\). We will have \(2^2-1 = \) three generators. 
+
+This process is going to fail: the kinetic term of these vector bosons will look like 
+%
+\begin{align}
+F^{\mu \nu, i} F_{\mu \nu }^{i}
+\,,
+\end{align}
+%
+which will never have a quadratic term \(M^2 W^{\mu } W_{\mu }\). 
+So, the bosons will never be massive like we need.
+This is called the Intermediate Vector Boson theory. 
+
+Since our plain Yang-Mills theory does not have vector bosons, we can insert them manually. 
+However, if we do we are explicitly breaking the gauge symmetry.
+
+We lose renormalizability: renormalization means that we can absorb all the infinities into a finite number of parameters.
+
+We have a dilemma: Yang-Mills theories are based on the power of symmetry, but they predict massless mediators. 
+
 \end{document}

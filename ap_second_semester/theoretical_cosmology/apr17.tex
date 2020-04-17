@@ -1,4 +1,162 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-4-17, \\ compiled \\ \today}
+
+There are some additional notes on gravitational dynamics.
+
+We have effects due to curvature: normalization, tilt, tensor modes. 
+Tensor modes describe primordial gravitational waves, a stochastic GW background, which as opposed to the CMB has no reason to be thermal. 
+
+These GWs are radiation, so they dilute like \(a^{-4}\). 
+The scalar perturbation and primordial gravitational waves mix. There is no way to tell them apart.
+
+We can characterize them by an integrated Sachs-Wolfe effect. 
+
+An interesting place to find topics for a discussion for the exam: Hu's website.
+
+\section{Gravitational instability}
+
+We are going to describe the full nonlinearity in the Newtonian approximation. 
+
+We need to choose coordinates which absorb the expansion of the universe. These are given by \(\vec{r} = a \vec{x}\). 
+These are inertial with respect to the background FRW evolution (not with respect to the matter, which is not uniform).
+So, we have 
+%
+\begin{align}
+\vec{w} = \vec{\dot{r}} = \frac{\dot{a}}{a} \vec{r}
++ a \dv{\vec{x}}{t} = H \vec{r} + \vec{v}
+\,,
+\end{align}
+%
+where \(\vec{v}\) is the peculiar velocity. We also define the gradient 
+%
+\begin{align}
+\nabla_{\vec{r}} = \pdv{}{\vec{r}} = \frac{1}{a} \pdv{}{\vec{x}} = \frac{1}{a} \nabla_{\vec{x}} 
+\,.
+\end{align}
+
+We can also take the total derivative of a generic function: 
+%
+\begin{align}
+\frac{\DD f(\vec{r}, t)}{\DD t}
+= \eval{\pdv{f}{t}}_{\vec{r}} + \pdv{f}{\vec{r}} \dot{\vec{r}} 
+\,,
+\end{align}
+%
+[stuff]
+which means that we have 
+%
+\begin{align}
+\eval{\pdv{f}{t}}_{\vec{x}} = \eval{\pdv{f}{t}}_{\vec{r}}
++ H \qty(\hat{r} \cdot \nabla_{r}) f
+\,.
+\end{align}
+
+The equations describing the fluid then are 
+%
+\begin{align}
+\eval{\pdv{f}{t}}_{\vec{r}} + \nabla_{\vec{r}} \qty(\rho \vec{w}) &= 0  \\
+\eval{\pdv{\vec{w}}{t}}_{\vec{r}} + \qty(\vec{w} \cdot \nabla_{\vec{r}}) \vec{w} &= - \frac{1}{\rho } \nabla_{\vec{r}} p - \nabla_{\vec{r}} \Phi  \\
+\nabla^2_{\vec{r}} \Phi &= 4 \pi G \rho 
+\,,
+\end{align}
+%
+which are continuity, Euler and gravitational field evolution. 
+We perturb: \(\rho = \rho_{b} + \delta \rho \) and \(\Phi = \Phi_{b} + \phi  \). 
+We do this so that 
+%
+\begin{align}
+\nabla^2_{r} \Phi_{b} = 4 \pi G \rho_{b} (t)
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\nabla^2_{r} \phi = 4 \pi G \delta \rho 
+\,.
+\end{align}
+
+Let us open the continuity equation. We get 
+%
+\begin{align}
+\pdv{\rho }{t}_{\vec{x}} + 3 H \rho + \frac{1}{a} \nabla_{\vec{x}} \qty(\rho \vec{v}) &= 0
+\,.
+\end{align}
+
+The Euler equation, instead, gives 
+%
+\begin{align}
+\eval{\pdv{\vec{v}}{t}}_{\vec{r}} + 
+H \vec{v}  + \frac{1}{a} \vec{v} \cdot \nabla_{x} \vec{v}
+= - \frac{1}{a \rho } \nabla_{x} p
+- \frac{1}{a} \nabla_{x} \phi 
+\,,
+\end{align}
+%
+since we are neglecting the spatial variation of the background.
+
+Now we Fourier transform \(\delta \), \(\vec{v}\) and \(\phi \).
+
+If we linearize, we get 
+%
+\begin{align}
+k^2 \phi_{\vec{k}} &= - 4 \pi G a^2 \rho_{b} (t) \delta_{\vec{k}}  \\
+\dot{\delta}_{\vec{k}} + \frac{i \vec{k} \cdot \hat{v}_{\vec{k}}}{a} &=0  \\
+\dot{\vec{v}}_{\vec{k}} + H \vec{v}_{\vec{k}} &= - \frac{i \vec{k}}{a} 
+\qty(c_s^2 \delta_{\vec{k}} + \phi_{\vec{k}})
+\,,
+\end{align}
+%
+where \(c_s^2 = \pdv*{p}{\rho }\).
+In the absence of dissipation, vorticity is conserved along stream lines: this is a theorem from Newtonian mechanics. 
+This means that 
+%
+\begin{align}
+\dot{\vec{v}}_{\perp} + H \vec{v}_{\perp} = 0
+\,,
+\end{align}
+%
+so \(\vec{v}_{\perp} \propto 1 / a\). 
+It is not possible a priori to generate vorticity in QFT (?)
+
+We can combine our equations to get 
+%
+\begin{align}
+\ddot{\delta}_{\vec{k}} + 2 H \dot{\delta}_{\vec{k}} + \qty[\frac{c_s^2 k^2}{a^2} - 4 \pi G \rho_{b}] \delta_{\vec{k}} = 0
+\,,
+\end{align}
+%
+so the Hubble radius is crucial since it appears in the second term.
+We can define a comoving Jeans wavenumber by setting the bracket to zero: 
+%
+\begin{align}
+k_J = \frac{a}{c_s} \sqrt{4 \pi G \rho_{b}}
+\,.
+\end{align}
+
+For CDM the Jeans wavenumber goes to infinity. 
+Even if the DM is no longer thermal, it still has memory of its initial condition through velocity dispersion. 
+
+We can define a mass from the wavenumber.
+
+Take a sphere of radius half the wavelength: then we have 
+%
+\begin{align}
+\frac{4\pi}{3} ( \frac{\lambda}{2} )^3 \rho  = m 
+\,.
+\end{align}
+
+We get two solutions: \(\delta \propto t^{\alpha }\), with \(\alpha = 2/3\) or \(\alpha = -1\). Therefore, 
+%
+\begin{align}
+v_{\vec{k}} \propto t^{\beta }
+\,,
+\end{align}
+%
+where \(\beta = 1/3\) or \(\beta = -4/3\). 
+
+Do galaxies have vorticity? No, that's fake news.
+
 \end{document}

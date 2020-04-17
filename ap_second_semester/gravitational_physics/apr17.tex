@@ -1,4 +1,198 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Noise theory}
+
+\subsection{A simple experiment}
+
+\marginpar{Friday\\ 2020-4-17, \\ compiled \\ \today}
+
+We want to use a pendulum to measure \(g\). We want to use small oscillations, which should have \(g = \omega^2L\), and we want to fit \(a(t)\).
+
+However, our signal can be very noisy compared to the theoretical waveform. 
+
+It \emph{is} a good idea to use the whole timeseries instead of just counting oscillations, since we are using more data then. 
+
+The physical system gives us a signal \(s(t)\), we have some measurement apparatus which gives us an output \(s'(t)\).
+The output \(s'(t)\) can be also affected by noise: we can have physical noise \(n_1 (t)\) in the form of a random concurrent phenomenon, noise \(n_2 (t)\) in the transducer, and \(n_3 (t)\) in the readout. 
+
+In our example: \(n_1 \) can be due to air currents, vibrations of the suspension points. The transducer in our case is the accelerometer, so we can have input voltage instability, imperfect mechanical coupling, thermal vibrations contributing to \(n_2 \). 
+In the readout, we have have reference voltage instability, quantization if we digitize the signal, and electronic pick-up.
+
+We want to distinguish the output signal \(s'\) from the output noise \(n'\).
+
+We define \textbf{precision experiments} as experiments where the signal amplitude is generally comparable or smaller than the noise amplitude.
+
+We call \textbf{noise} any unwanted signal. 
+
+In the classical realm, \(n(t)\) is the sum of deterministic processes, but in practice it is random since there are so many of them. We usually assume that they are zero-mean.
+
+\subsection{Random processes}
+
+A random variable is a number \(x\) associated to a possible experimental outcome. Any outcome has an associated probability.
+In the continuous realm, we use probability density functions: 
+%
+\begin{align}
+\mathbb{P} (x_0 \leq x \leq x_1 ) \int_{x_0 }^{x_1 } f(x) \dd{x}
+\,,
+\end{align}
+%
+and we can use it to compute mean values: 
+%
+\begin{align}
+\int g(x) f(x) \dd{x} = \expval{g(x)}_{f}
+\,,
+\end{align}
+%
+while the variance is 
+%
+\begin{align}
+\sigma^2  = \expval{(x - \expval{x})^2} = \expval{x^2} - \expval{x}^2
+\,.
+\end{align}
+
+Do note that these are ensemble averages, what we expect to be the average of a sample. They are not time averages. 
+
+A random signal is a time series \(x(t)\).
+Every time we repeat the experiment we get a new \(x(t)\). 
+
+Knowing \(x(\widetilde{t})\) at a specific time \(\widetilde{t}\) we have partial predictive power for \(x(\widetilde{t} + T)\). 
+
+At a fixed time \(\widetilde{t}\), the possible values of \(x(\widetilde{t})\) have a certain probability distribution \(f(x; \widetilde{t})\). Then we have the following functions of time: \(\mu (t) = \expval{x(t)}\) and \(\sigma^2(t)\). 
+
+Ideally these are averages over an infinite number of realizations. We can, however, assume \emph{ergodicity}: this means that in stead of an ensemble mean value we can compute a time average, and similarly for other statistical properties. 
+
+Also, we assume stationarity: the statistical properties are time-independent. 
+
+Also, we can assume gaussianity: \(x(t)\) is normally distributed at fixed \(t\). 
+This is qualitatively justified by the central limit theorem. 
+
+These assumptions are almost always made, but it is important to keep them in mind.
+
+We assume that the noise is \textbf{stochastic}, so it results from many different uncorrelated processes, and the correlation between the noise at a time \(t\) and \(t + \Delta t\) decreases quickly with \(\Delta t\). 
+
+\todo[inline]{So, we meand that the noise is high-frequency?}
+
+\textbf{Stationarity}: the apparatus is stable in time, and so are the processes that generate the noise.
+This is valid only for somewhat small periods. 
+
+\subsection{Fourier transforms}
+
+For square-integrable functions, 
+%
+\begin{align}
+\int \abs{s(t)}^2 \dd{t} < \infty 
+\,,
+\end{align}
+%
+we define 
+%
+\begin{align}
+s(\omega ) = \int s(t) e^{-i \omega t} \dd{t}
+\qquad \text{and} \qquad
+s(t) = \frac{1}{2 \pi } \int s(\omega ) e^{i \omega t} \dd{\omega } 
+\,.
+\end{align}
+
+Important properties are linearity, the fact that in Fourier space derivatives become multiplication by \(i \omega \). 
+Also, the convolution theorem: multiplication in time domain is the same as convolution in frequency domain: 
+%
+\begin{align}
+\int s(t) q(t) e^{-i \omega t} \dd{t} = \frac{1}{2 \pi } \int s(\omega') q (\omega - \omega') \dd{\omega'}
+\,.
+\end{align}
+
+The transform of the Dirac \(\delta(t) \) function is 1.
+Almost any signal can be described as an infinite superposition of oscillatory terms. 
+
+The transform is a complex-valued function, telling us the amplitude and phase of any component of the oscillation.
+
+In practice, the frequency domain is very useful. Many interesting signals are well-defined in frequency.
+
+Even multiple signals can be easily separated in frequency. 
+Also, random noise is easier to characterize in frequency domain: the shape of the noise is interesting.
+
+Some other properties: the Fourier transform preserves the energy (in the sense of the integral of the square modulus). 
+It also preserves the information. It returns a Hermitian function. 
+
+We have the uncertainty principle: 
+%
+\begin{align}
+\Delta \omega \Delta t \geq \frac{1}{2} 
+\,.
+\end{align}
+
+Depending on the physical characteristics of the signal, we should select a large observation time or a large frequency band.
+
+\subsection{Power spectral density}
+
+The phase of the noise will be completely different from one realization to the other.
+
+We define the autocorrelation function: 
+%
+\begin{align}
+R(t, t')  = \expval{x(t) x(t')} = R(\tau) 
+\,,
+\end{align}
+%
+where \(\tau = t - t'\). So, we define the power spectral density (PSD) as:
+%
+\begin{align}
+S_x (\omega ) = \int  \dd{\tau } R(\tau ) e^{i \omega \tau } 
+\,.
+\end{align}
+
+White noise has no correlation between a point and another: its auto-correlation function is a delta. It has all the frequency components. 
+The autocorrelation function measures how fast the signal loses memory. 
+
+A more loose and intuitive definition is the ensemble average: 
+%
+\begin{align}
+S_x(\omega ) \delta (\omega - \omega') = \expval{x(\omega ) x^{*} (\omega')}
+\,.
+\end{align}
+
+It is the average of the amplitude square, which is a power.
+
+This is not the formal definition since \(x(\omega )\) may not exist.
+
+If we build a window filter which only allows \([\omega_1 \leq \omega \leq \omega_2 ]\), then the residual power will be 
+%
+\begin{align}
+P = \int_{\omega_1 }^{\omega_2 } S(\omega ) \dd{\omega }
+\,.
+\end{align}
+
+For real signals, \(S\) is symmetric: \(S_x (-\omega ) = S_x (\omega )\). 
+If we do not care about negative frequencies, we keep only the \([\omega \geq_0 ]\) region and multiply by 2.
+
+The root mean square of the signal in time is the integral of the PSD: 
+%
+\begin{align}
+\sigma^2_{x} = \int_{0}^{ \infty } S_x (\omega )
+\,.
+\end{align}
+
+Here we are assuming that the signal has zero mean.
+If two signals are uncorrelated, the power spectral density of their sum is the sum of their PSDs. 
+
+The amplitude, or linear, spectral density, is \(\sqrt{S_x(\omega )}\). 
+
+If our signal has units of \SI{}{m}, then \([S_x(\omega )] = \SI{}{m^2/Hz}\), so the linear PSD has units of \([\sqrt{S_x(\omega )}] \SI{}{m / \sqrt{Hz}}\).
+
+In practice, we measure for a limited time \(T\). So, \(x\) will only have Fourier components at frequencies \(f_n = n / T\). The frequency resolution is \(\Delta f = 1 / T\). 
+
+Having a measurement which is limited in time with a window \(w(t)\), we are actually measuring \(x(t) w(t)\): so, in frequency space we have 
+%
+\begin{align}
+x _{\text{measured}} (\omega ) = \int \dd{\widetilde{\omega}} x(\widetilde{\omega}) w(\omega - \widetilde{\omega} ) 
+\,,
+\end{align}
+%
+so the Fourier transform of the window spreads out our signal.
+
+We can deconvolve if we know what the window looks like. However, we do not usually do it. 
+In fact, if we were to take out this windowing effect it would mean we are assuming that if we were to observe our signal for a longer time than we did we would see the same thing.
+This might be justified sometimes, some other times it is not.
+
 \end{document}

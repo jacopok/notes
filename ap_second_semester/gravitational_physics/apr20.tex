@@ -1,4 +1,140 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-4-20, \\ compiled \\ \today}
+
+The Fourier transform is stochastic since the noise is stochastic: however, the PSD encompasses the statistical properties of the signal in a way that is stationary and well-defined. 
+
+A physical system is a functional \(F\) which transforms input time series \(i_j (t)\) into output time series \(o_j (t) = F(i_j(t))\). 
+
+Real systems are causal: there cannot be causality going backward in time. 
+
+Also, often we can approximate systems as linear ones, as long as we work near a single point. 
+Also, we can sometimes approximate them as stationary. 
+
+Under all of these assumptions, we can express everything using an impulse response function: 
+%
+\begin{align}
+o(t) = \int \dd{\widetilde{t}} i(\widetilde{t}) F( \delta (t - \widetilde{t})) 
+= \int \dd{\widetilde{t}} h(t - \widetilde{t})
+\,,
+\end{align}
+%
+and this is a convolution: so we can express it as 
+%
+\begin{align}
+o(\omega ) = i(\omega ) h(\omega )
+\,.
+\end{align}
+
+The power spectral density then transforms as \(S_o (\omega ) = \abs{h(\omega )}^2 S_i (\omega )\), and if we have systems in series we can just multiply the impulse responses together. 
+
+\subsection{Sampling}
+
+Often we sample signals digitally.
+Analogic systems are faster, but electronics are getting very fast as well and they are easier to use.
+
+The signal is quantized in two ways: we quantize both in time by sampling at an interval \(t_s\) and in amplitude, by encoding it with a finite number of bits.
+
+This introduces noise, which is however well-known and easy to calculate.
+
+If we have a signal at a frequency \(f\) and we want to reconstruct it, we need to sample at a frequency \(2f\). 
+If we sample at \SI{100}{Hz}, we can only accurately describe signals up to \SI{50}{Hz}. 
+This is the Nyquist theorem.
+
+This is true if we want to fit the data with the slowest sinusoid, if we know in which frequency range we should look.
+If we work below the Nyquist frequency we can be sure of each frequency.
+
+\section{Gravitational wave detection}
+
+We can use an \textbf{elastic body} which resonates: we have the pro that this might enhance the effect of a GW through resonance and extend the duration of burst signals. 
+However, it is only sensitive around its resonant frequency. 
+Also, since it extends the signal it is hard to precisely reconstruct the time profile of the signal. 
+
+These need to be isolated solid objects: they will fit in a lab, but the GW displacements are small. 
+
+On the other side, we have \textbf{interferometers} which measure the distance between free falling masses. 
+
+If we have a perfect harmonic oscillator with rest position \(x_0 \): then we will have 
+%
+\begin{align}
+x(\omega ) = \frac{k x_0 + F _{\text{ext}}(\omega )}{k - m \omega^2}
+\,,
+\end{align}
+%
+while if there is damping we will have 
+%
+\begin{align}
+m \ddot{x} = - k \qty(x(t) - x_0 (t)) - \beta \dot{x}(t) + F _{\text{ext}}(t)
+\,,
+\end{align}
+%
+which means we have 
+%
+\begin{align}
+x(\omega ) = \frac{k x_0 + F _{\text{ext}}(t)}{k \qty(1 - \qty( \frac{\omega}{\omega_0 })^2 + \frac{i \omega \beta }{k})}
+\,,
+\end{align}
+%
+otherwise, we can have structural internal damping, which looks like 
+%
+\begin{align}
+m \ddot{x} = - k (1 + i \delta ) \qty(x(t) - x_0 (t)) + F _{\text{ext}}(t)
+\,.
+\end{align}
+
+The transfer function is more peaked for less damping. 
+
+How do we see the effect of GW on an elastic body? Consider two masses, which are free falling, and connect them by a spring: they now will not move along geodesics.
+
+We will have the equation 
+%
+\begin{align}
+F _{\text{GW}} - k (L - \Delta x) = m \Delta \ddot{x}
+\,.
+\end{align}
+
+This is given by 
+%
+\begin{align}
+F = \frac{m}{2} \ddot{h}^{TT}_{xx} \Delta x \approx \frac{m}{2} L \ddot{h}^{TT}_{xx}
+\,.
+\end{align}
+
+This, however, is only valid as long as \(L \ll \lambda _{\text{GW}}\). 
+
+For a continuous bas, we will have 
+%
+\begin{align}
+\dd{m} \qty(\pdv[2]{u}{t} - v_s^2 \pdv[2]{u}{x}) = \dd{F_x} = \dd{m} \frac{1}{2} x \ddot{h}_{xx}^{TT}
+\,.
+\end{align}
+%
+
+We further assume that 
+%
+\begin{align}
+\eval{\pdv{u}{x}}_{x = \pm L/2} = 0
+\,.
+\end{align}
+
+The general solution will be given by a sum of sines and cosines, but the cosines will move the center of the bar. 
+
+We will have 
+%
+\begin{align}
+u(t, x) = \sum _{n=0}^{ \infty } \xi_{n} \sin( \frac{\pi x}{L} (2 n + 1))
+\,,
+\end{align}
+%
+and we can take the scalar product in the \(L^{2}\) space with the basis sinusoids: so we find 
+%
+\begin{align}
+\ddot{\xi}_{n} + \omega^2_{n} \xi_{n} = \frac{(-)^{n}}{(2n+1)^2} \frac{2L}{\pi^2} \ddot{h}^{TT}_{xx}
+\,.
+\end{align}
+
+We have basically eliminated the spatial part. 
+We can analyze the time evolution by itself. 
+
 \end{document}

@@ -16,62 +16,144 @@ sorting=nyt
 
 \maketitle
 
-Sessione di 6h per la Summer STEM Academy dell'estate 2020. 
+Iniziamo con un quiz: \textbf{cos'è la luce}?
 
-L'idea è che alla fine della sessione gli studenti abbiano un quadro chiaro di quale sia stato, a grandi linee, lo sviluppo storico delle teorie della luce e come, con apparati moderni, si possa mostrare che la luce è composta di parti indivisibili: i fotoni. 
-
-La cosa importante è che tutti i passaggi logici che permettono di trarre una conclusione sulla natura della luce a partire dalla lettura dei numeri che escono dai rivelatori siano chiari, e che non rimangano parti ``magiche''. 
-
-\section{Prerequisiti matematici}
-
-\begin{enumerate}
-    \item Cauchy-Schwartz: \(\expval{X^2} \geq \expval{X}^2 \)
-    \item Statistica Bayesiana
+\begin{enumerate}[label=\emph{\alph*})]
+    \item Un'onda.
+    \item Una particella.
+    \item Sia un'onda che una particella. 
+    \item Né un'onda né una particella. 
+    \item Mi astengo.
 \end{enumerate}
 
-\section{Teoria}
+La domanda, posta in questo modo vago (e provocatorio), rischia di allontanarsi dall'ambito di ricerca della Fisica: non siamo generalmente interessati a descrivere l'\emph{essenza fondamentale} di un oggetto, bensì cerchiamo di fornire modelli che ne descrivano il comportamento e che siano in grado di predire i risultati degli esperimenti che facciamo. 
+Questo approccio all'investigazione spesso riesce a darci grande chiarezza sul come pensare agli oggetti fisici. 
 
-\begin{enumerate}
-    \item Teoria ondulatoria della luce
-    \begin{enumerate}
-        \item Coefficienti di trasmissione e riflessione
-        \item Intensità
-    \end{enumerate}
-    \item Teoria particellare della luce
-    \item Applicazioni di probabilità: probabilità condizionata, come misurare sperimentalmente le probabilità a partire dai conteggi osservati
-    \item Concetti generali di rilevatori di particelle
-    \begin{enumerate}
-        \item Fotomoltiplicatori
-        \item Coincidenze
-    \end{enumerate}
-    \item Apparato sperimentale
-    \begin{enumerate}
-        \item Cristallo birifrangente
-        \item Beamsplitter
-        \item Struttura del nostro apparato
-    \end{enumerate}
-    \item Previsioni dei nostri due modelli per l'apparato:
-    \begin{enumerate}
-        \item Definizione di \(g = P_{23}/(P_2 P_3) = I_{23}/(I_2 I_3)\)
-        \item \(g \geq 1\) nel modello ondulatorio
-        \item \(g = 0\) nel modello particellare
-    \end{enumerate}
-\end{enumerate}
+% TODO keep this bit?
 
-\section{Esercizi}
+Tenendo questo in mente, cerchiamo di rispondere alla domanda.
+Innanzitutto, dobbiamo chiarire qual'è l'oggetto fisico che vogliamo descrivere.
 
-\subsection{Esperimento di Michelson: velocità della luce}
+Partiamo dalla descrizione più intuitiva: la luce è quello che vediamo con gli occhi. 
+Vedremo che, investigando questo fenomeno nel dettaglio, questa definizione risulterà restrittiva e ci porterà a ridefinire quella che vediamo con gli occhi come \emph{luce visibile} --- quindi, c'è anche della ``luce invisibile''.
 
-Parametri: doppia distanza fra gli specchi \(D = \SI{3972.46}{ft}\), variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{28.672}{feet}\), rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
+Per ora, tuttavia, partiamo dalle prime teorie della luce, che volevano descrivere solo quella visibile.
+
+Lo storico dibattito è quello fra Newton e Huygens. 
+
+Newton (1642--1726/1727), il più famoso dei due, proponeva una \textbf{teoria corpuscolare} della luce. 
+
+Secondo questa teoria, la luce è composta di corpuscoli molto leggeri che viaggiano ad una velocità finita. 
+
+Quali fenomeni voleva spiegare Newton con questa teoria?
+Riflessione e rifrazione, innanzitutto: lui ha dimostrato che facendo passare la luce per un prisma si può scomporla nelle sue componenti cromatiche, e --- qui la chiave! --- questo processo è reversibile: con un altro prisma è possibile ricomporre la luce bianca.
+
+La luce, dunque, viene deviata quando passa per un'interfaccia, e di quanto viene deviata dipende dal suo colore. 
+
+La riflessione invece è ciò che accade per uno specchio: la luce ``rimbalza'' ad un angolo uguale a quello di incidenza.
+
+La teoria di Newton ha delle spiegazioni per questi fenomeni, seppur non completamente soddisfacenti.
+Newton la mette in pratica per costruire telescopi: il telescopio Newtoniano utilizza solo specchi invece che lenti, eliminando quindi l'aberrazione cromatica che le caratterizza. 
+
+La teoria corpuscolare ha dietro l'apparato della nuovissima meccanica Newtoniana: la luce viene descritta come un insieme di piccole particelle con massa molto ridotta che si muovono molto velocemente rispettando le leggi di Newton: inerzia, \(\vec{F} = m \vec{a}\) e azione-reazione.
+
+Un vantaggio della teoria corpuscolare è il fatto che non richiede un \emph{etere luminifero} (portatore della luce). 
+
+La teoria di Huygens è \textbf{ondulatoria}: vede la luce come un'onda che si propaga in un qualche tipo di etere, in modo simile a come si comportano le onde nell'acqua poco profonda.
+
+Questa teoria spiega, al contrario di quella corpuscolare, il fatto che all'interfaccia fra due mezzi ci siano sia riflessione che rifrazione: nella meccanica ondulatoria questo è un fatto naturale e atteso.
+
+Nel contesto della meccanica ondulatoria, si può derivare la legge di Snell, che governa l'angolo al quale la luce viene diffratta. 
+
+Iniziamo però con i preliminari della teoria ondulatoria: guardiamo il caso monodimensionale per semplicità, guardare il problema in più dimensioni è utile ed interessante ma le caratteristiche principali si possono evincere già da qui. 
+
+La caratteristica principale delle onde è la periodicità: partiamo da quella che si chiama onda \emph{monocromatica}, il caso più semplice, che ha un periodo ben definito.
+Le equazioni che ora scriviamo potrebbero descrivere, ad esempio, la variazione del livello dell'acqua lungo una linea che tracciamo in uno stagno: chiamiamola \(A\).
+\(A\) può assumere un valore positivo o negativo, se vale 0 significa che il livello è quello che avrebbe lo stagno senza perturbazioni.
+
+Se fissiamo un istante temporale \(t_0 \) e ``fotografiamo'' l'onda, la formula che la descrive è 
+%
+\begin{align}
+\eval{A(x)}_{t = t_0 } = A_0 \sin(2 \pi \frac{x}{\lambda } +\varphi )
+\,.
+\end{align}
+
+\(A_0 \) è l'ampiezza massima che raggiunge l'onda, l'altezza dei picchi e la profondità delle valli. \(\lambda \) è una lunghezza caratteristica dell'onda, detta \emph{lunghezza d'onda}: è la distanza fra due picchi vicini, o fra due valli vicine; se \(x\) --- la posizione spaziale lungo la linea --- varia aumentando o diminuendo di esattamente \(\lambda\) l'ampiezza non cambia.
+Questo è dovuto al fatto che la funzione seno ha una periodicità di \(2 \pi \). 
+
+Il termine \(\varphi \) si chiama \emph{fase}, ed esprime il fatto che nel punto che chiamiamo \(x=0\) l'onda può essere in un massimo, un minimo, o a qualunque punto della sua evoluzione. 
+Visto che \(\varphi \) è arbitrario, è arbitraria anche la scelta di un seno piuttosto che un coseno: cambiando \(\varphi \) di \(\pi /2\) possiamo passare dall'uno all'altro. 
+
+Se vogliamo includere la dipendenza dal tempo, otterremo una formula di questo tipo: 
+%
+\begin{align}
+A(x, t) = A_0 \sin(2 \pi \qty( \frac{x}{\lambda } - \frac{t}{T}) + \varphi )
+\,.
+\end{align}
+
+Abbiamo inserito un tempo caratteristico \(T\), chiamato \emph{periodo}: se fissiamo la posizione \(x\) e guardiamo solo un punto, l'onda torna al punto dov'era prima dopo un tempo \(T\). 
+C'è un meno perché stiamo assumendo che l'onda avanzi verso destra, ovvero verso le \(x\) positive: se \(x\) aumenta di un poco, per mantenerci nella stessa posizione (``viaggiando con l'onda'', ovvero tornando allo stesso valore dell'argomento del seno) dobbiamo aumentare un poco anche \(t\), ovvero aspettare un poco. 
+
+Se aspettiamo un tempo \(T\) l'onda si è spostata di una lunghezza \(\lambda \): quindi, la sua velocità è \(v = \lambda / T\). Spesso questo si scrive introducendo la \emph{frequenza}, \(f = 1 / T\), misurata in \(\SI{}{Hz} = 1 / \SI{}{s}\).
+
+Così, scriviamo 
+%
+\boxalign{
+\begin{align}
+v = \lambda f
+\,.
+\end{align}}
+
+\textbf{Esercizio: legge di Snell}
+
+Da impostare a lezione, senza finire il conto. 
+I fronti d'onda arrivano paralleli, il vettore d'onda ha un angolo \(\theta _{\text{in}}\) dalla normale. \(v = \lambda f\) deve valere sia dentro che fuori dal vetro: visto che \(f\) è la stessa, abbiamo 
+%
+\begin{align}
+\frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
+\,,
+\end{align}
+%
+dove definiamo l'indice di rifrazione con \(v = c/n\). 
+
+Se \(D\) è la distanza fra le creste misurata lungo l'interfaccia, abbiamo 
+%
+\begin{align}
+\frac{\lambda_{i}}{D} = \sin(\theta_{i})
+\,,
+\end{align}
+%
+per \(i = \text{in}, \text{out}\). 
+
+Da qui si ricava 
+%
+\begin{align}
+n _{\text{in}} \sin(\theta _{\text{in}}) = 
+n _{\text{out}} \sin(\theta _{\text{out}})
+\,.
+\end{align}
+
+Un altro fenomeno spiegato dalla teoria ondulatoria è la diffrazione: se illuminiamo una fessura, e restringiamo la fessura, l'immagine luminosa inizialmente si restringe, ma a un certo punto inizia ad allargarsi.
+
+Abbiamo definito la velocità della luce, ma quanto vale numericamente? 
+
+\textbf{Esercizio: esperimento di Michelson, velocità della luce.}
+
+% Parametri: doppia distanza fra gli specchi \(D = \SI{3972.46}{ft}\), variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{28.672}{feet}\), rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
+
+L'apparato che lo scienziato americano Michelson ha utilizzato nel 1880 \cite[]{michelsonExperimentalDeterminationVelocity1880} per misurare la velocità della luce permette una misura molto accurata.
+Per una descrizione dell'apparato e una figura vedere Wikipedia \cite[]{FizeauFoucaultApparatus2019}.
+
+Distanza fra gli specchi \(D = \SI{605.40}{m}\); variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{8.7392}{m}\); rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
 
 Formula corretta: 
 %
 \begin{align}
-c = \frac{2 \times 2 \pi Dn}{\arctan(d / r)} \approx \num{.994} c
+c = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
 \,.
 \end{align}
-%
-Refs: \cite[]{michelsonExperimentalDeterminationVelocity1880}, \cite[]{FizeauFoucaultApparatus2019}.
+
+
 
 \printbibliography
 

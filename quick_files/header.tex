@@ -126,6 +126,28 @@
 \newcommand{\bigd}[2]{\frac{\mathrm{D} #1}{\mathrm{D} #2}}
 \newcommand{\DD}{\mathrm{D}}
 
+\usepackage{framed}
+\usepackage{thmtools}
+\usepackage{etoolbox}
+\usepackage{fancybox}
+
+\newenvironment{myleftbar}{%
+\def\FrameCommand{\hspace{0.6em}\vrule width 2pt\hspace{0.6em}}%
+\MakeFramed{\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\declaretheoremstyle[
+spaceabove=6pt,
+spacebelow=6pt
+headfont=\normalfont\bfseries,
+headpunct={} ,
+headformat={\cornersize*{2pt}\ovalbox{\NAME~\NUMBER\ifstrequal{\NOTE}{}{\relax}{\NOTE}:}},
+bodyfont=\normalfont,
+]{exobreak}
+
+\declaretheorem[style=exobreak, name=Esercizio,%
+postheadhook=\leavevmode\myleftbar, %
+prefoothook = \endmyleftbar]{exo}
+
 \author{Jacopo Tissino}
 
 \allowdisplaybreaks

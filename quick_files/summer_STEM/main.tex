@@ -106,23 +106,23 @@ v = \lambda f
 \,.
 \end{align}}
 
-\textbf{Esercizio: legge di Snell}
 
+\begin{exo}[Legge di Snell]
 Da impostare a lezione, senza finire il conto. 
 I fronti d'onda arrivano paralleli, il vettore d'onda ha un angolo \(\theta _{\text{in}}\) dalla normale. \(v = \lambda f\) deve valere sia dentro che fuori dal vetro: visto che \(f\) è la stessa, abbiamo 
 %
 \begin{align}
-\frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
-\,,
+    \frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
+    \,,
 \end{align}
 %
 dove definiamo l'indice di rifrazione con \(v = c/n\). 
-
+    
 Se \(D\) è la distanza fra le creste misurata lungo l'interfaccia, abbiamo 
 %
 \begin{align}
-\frac{\lambda_{i}}{D} = \sin(\theta_{i})
-\,,
+    \frac{\lambda_{i}}{D} = \sin(\theta_{i})
+    \,,
 \end{align}
 %
 per \(i = \text{in}, \text{out}\). 
@@ -134,26 +134,55 @@ n _{\text{in}} \sin(\theta _{\text{in}}) =
 n _{\text{out}} \sin(\theta _{\text{out}})
 \,.
 \end{align}
+\end{exo}
+
+Abbiamo menzionato prima il fatto che la teoria ondulatoria prevede che questo fenomeno di rifrazione avvenga simultaneamente a quello della riflessione. 
+La teoria permette di dare delle precise stime su quanta luce viene riflessa e quanta viene trasmessa. Non entriamo nel dettaglio --- chi è interessata può trovare una discussione più completa in diversi testi di ottica, ad esempio Vistnes \cite[]{vistnesReflectionTransmissionPolarization2018}. Menzioniamo solo le quantità in gioco: la luce trasmette energia, ma come la quantifichiamo? 
+Immaginiamo di avere un sensore in grado di rilevare questa energia. Questo sensore avrà una certa area, e lo terremo acceso per un certo tempo. 
+Se l'onda luminosa è costante nel tempo, l'energia che rileveremo tenendo il detector acceso per un tempo \(2T\) sarà due volte quella che avremmo rilevato in un tempo \(T\). Allo stesso modo, se raddoppiamo l'area del sensore l'energia che rileviamo raddoppierà.
+
+Per questo motivo, quantifichiamo l'energia della luce usando l'\textbf{intensità}, che è definita come l'energia per unità di tempo e per unità di area: 
+%
+\begin{align}
+I = \frac{E}{A t}
+\,,
+\end{align}
+%
+e si misura in \(\SI{}{J / m^2 / s}  = \SI{}{W/m^2}\). 
+
+In termini di intensità possiamo definire i coefficienti di riflessione e trasmissione: se l'intensità dell'onda incidente è \(I _{\text{in}}\), l'intensità dell'onda riflessa è \(I_{r}\) mentre quella dell'onda trasmessa (ovvero rifratta) è \(I_{t}\), allora definiamo 
+%
+\begin{align}
+\mathcal{R} = \frac{I_r}{I _{\text{in}}}
+\qquad \text{e} \qquad
+\mathcal{T} = \frac{I_t}{I _{\text{in}}}
+\,,
+\end{align}
+%
+che dovranno soddisfare \(\mathcal{R} + \mathcal{T} = 1\).
 
 Un altro fenomeno spiegato dalla teoria ondulatoria è la diffrazione: se illuminiamo una fessura, e restringiamo la fessura, l'immagine luminosa inizialmente si restringe, ma a un certo punto inizia ad allargarsi.
 
 Abbiamo definito la velocità della luce, ma quanto vale numericamente? 
 
-\textbf{Esercizio: esperimento di Michelson, velocità della luce.}
+\begin{exo}[Esperimento di Michelson, velocità della luce]
 
 % Parametri: doppia distanza fra gli specchi \(D = \SI{3972.46}{ft}\), variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{28.672}{feet}\), rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
 
 L'apparato che lo scienziato americano Michelson ha utilizzato nel 1880 \cite[]{michelsonExperimentalDeterminationVelocity1880} per misurare la velocità della luce permette una misura molto accurata.
 Per una descrizione dell'apparato e una figura vedere Wikipedia \cite[]{FizeauFoucaultApparatus2019}.
 
-Distanza fra gli specchi \(D = \SI{605.40}{m}\); variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{8.7392}{m}\); rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
+Alcuni parametri di una singola misura di Michelson: distanza fra gli specchi \(D = \SI{605.40}{m}\); variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{8.7392}{m}\); rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
+
+Qual'è la velocità della luce che dovrebbe calcolare Michelson?
 
 Formula corretta: 
 %
 \begin{align}
-c = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
+c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
 \,.
 \end{align}
+\end{exo}
 
 \section{Maxwell e Einstein}
 
@@ -196,9 +225,25 @@ h = \SI{6.62607015e-34}{J / Hz}
 \end{align}
 %
 è la costante di proporzionalità, che si chiama \textbf{costante di Planck}. 
-Nota interessante: il valore è esatto da dal 2018. Questo numero è così importante che definiamo le nostre unità di misura a partire da esso.
+Nota interessante: il valore è esatto dal 2018. Questo numero è così importante che definiamo le nostre unità di misura a partire da esso.
 
+Cosa vuol dire ``energia caratteristica''? 
+L'ipotesi avanzata da Einstein e Planck per spiegare l'effetto fotoelettrico e altri fenomeni, come la radiazione di corpo nero, fu quella che la luce fosse suddivisa in quanti indivisibili, che poi furono chiamati \textbf{fotoni}, caratterizzati proprio da un'energia data da \(E = hf\). 
 
+Il grande scienziato Millikan nella sua \emph{Nobel lecture} del 1924
+\cite[]{millikanRobertMillikanNobel1924} parla così della teoria della luce quantizzata: 
+
+\begin{quotation}
+``It may be said then without hesitation that it
+is not merely the Einstein equation which is having extraordinary success at
+the moment, but the Einstein conception as well.
+
+But until it can account for the facts of interference and the other effects
+which have seemed thus far to be irreconcilable with it, we must withhold
+our full assent.''
+\end{quotation}
+
+Era chiaro, dunque, che la teoria corpuscolare non poteva spiegare del tutto 
 
 \printbibliography
 

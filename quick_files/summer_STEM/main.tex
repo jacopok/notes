@@ -40,7 +40,9 @@ Vedremo che, investigando questo fenomeno nel dettaglio, questa definizione risu
 
 Per ora, tuttavia, partiamo dalle prime teorie della luce, che volevano descrivere solo quella visibile.
 
-\section{Newton versus Huygens}
+\section{Teorie della luce}
+
+\subsection{Newton versus Huygens} \label{sec:newton-vs-huygens}
 
 Lo storico dibattito è quello fra Newton e Huygens. 
 
@@ -185,7 +187,7 @@ c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \nu
 \end{align}
 \end{exo}
 
-\section{Maxwell e Einstein}
+\subsection{Maxwell e Einstein}
 
 Nei primi anni 1860, James Clerk Maxwell riesce a unificare tutte le osservazioni riguardanti i fenomeni elettrici e magnetici nelle sue celebri 4 equazioni: queste descrivono i due \emph{campi vettoriali} elettrico \(\vec{E}\) e magnetico \(\vec{B}\). 
 Ad ogni punto nello spazio per ogni istante temporale sono assegnati questi due vettori, e inoltre abbiamo la carica elettrica \(Q\) e la corrente elettrica \(\vec{J}\). 
@@ -244,7 +246,130 @@ which have seemed thus far to be irreconcilable with it, we must withhold
 our full assent.''
 \end{quotation}
 
-Era chiaro, dunque, che la teoria corpuscolare non poteva spiegare del tutto 
+Era chiaro, dunque, che la teoria corpuscolare non poteva spiegare del tutto i fenomeni osservati, che hanno caratteristiche ondulatorie.
+
+Non entreremo nel \emph{come}, ma questo problema si è effettivamente risolto qualche anno dopo con la teoria dell'elettrodinamica quantistica (QED), che ad oggi è la teoria accettata. 
+Così per chiudere in bellezza (non da dire a lezione), ecco la Lagrangiana della QED:
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4}  F_{\mu \nu } F^{\mu \nu }
++ \overline{\psi} \qty(i \slashed{\DD} -m ) \psi 
+\,.
+\end{align}
+
+\section{Note di probabilità}
+
+Un \emph{evento} \(A\) è qualcosa che possiamo misurare, ovvero qualcosa per cui è possibile determinare se è avvenuto o meno. 
+Possiamo assegnare \textbf{probabilità} agli eventi: cosa questo significhi esattamente è un'importante questione filosofica.\footnote{Io propendo per la scuola Bayesiana per la quale la probabilità di un evento riflette la nostra credenza soggettiva che un evento possa accadere: la possiamo calcolare come la quota alla quale saremmo disposti a scommettere sull'evento, aspettandoci di guadagnare.}
+
+Un'interpretazione diffusa è quella frequentista: la probabilità è la frazione di casi in cui avviene l'evento \(A\) diviso per i casi totali: 
+%
+\begin{align}
+    \mathbb{P} (A) \overset{\text{def}}{=} \frac{N_A}{N _{\text{TOT}}}
+    \,,
+\end{align}
+%
+dove \(N_A\) è il numero di volte che ho visto l'evento \(A\), mentre \(N _{\text{TOT}}\) è il numero di volte in cui ho ripetuto l'esperimento.
+
+\subsection{Probabilità condizionata}
+
+Un concetto importante in statistica e probabilità è quello di \textbf{condizionamento}: qual'è la probabilità che avvenga l'evento \(B\), se so che è avvenuto \(A\)? 
+Questo si denota con \(\mathbb{P} (B | A)\), ed è semplice da calcolare in linea teorica: quello che abbiamo effettivamente fatto è di ridurre il nostro insieme totale di casi considerati da \(N _{\text{TOT}}\) a \(N_A\): quindi, avremo 
+%
+\begin{align}
+\mathbb{P}(B | A) = \frac{N_{BA}}{N_A} = \frac{ N_{BA} / N _{\text{TOT}}}{N_A / N _{\text{TOT}}} = \frac{\mathbb{P}(AB)}{\mathbb{P}(A)}
+\,,
+\end{align}
+%
+dove con \(BA = AB\) si intende l'evento che avvengano sia \(A\) che \(B\). 
+
+\section{Il nostro esperimento}
+
+Questa sezione è presa principalmente dall'introduzione di \textcite{thornObservingQuantumBehavior2004}.
+
+L'effetto fotoelettrico è molto suggestivo dell'esistenza del quanto di luce --- il \textbf{fotone} --- ma non è una prova conclusiva. Si può dimostrare che l'effetto potrebbe essere anche spiegato assumendo che il campo elettromagnetico sia un'onda classica, mentre il \emph{detector} è quantizzato, ovvero composto di particelle.
+
+L'obiettivo che ci poniamo in queste ore è di comprendere e replicare un esperimento di Grangier del 1986, che dà un'evidenza sperimentale molto forte per il fatto che la luce sia effettivamente composta di particelle.
+
+L'idea di base dell'esperimento è di ridurre molto l'intensità di un fascio di luce e farlo passare per un \emph{beam splitter} --- entreremo più nel dettaglio, per ora diciamo semplicemente che è un pezzo di plexiglass costruito in modo tale che la luce incidente abbia un'eguale probabilità di andare dritta o di deviare di un angolo retto quando lo incontra.
+
+Mettiamo dei sensori corrispondenti alle due uscite, e andiamo a verificare che se vediamo il fotone da una parte, non lo vedremo dall'altra.
+
+Ci sono diversi problemi con questa prima grezza descrizione dell'esperimento, ma iniziamo con le basi: quali sono le componenti dell'apparato sperimentale?
+
+\subsection{Laser}
+
+Questo è uno strumento che Grangier non aveva a disposizione, ma che ci facilita molto la vita. 
+Un LASER --- Light Amplification by Stimulated Emission of Radiation --- sfrutta le proprietà di come la luce interagisce con gli atomi, si può dire ``risuonando'' con gli elettroni, per amplificare una frequenza di luce ben precisa.
+
+Riescono a emettere dunque quello che, nel modello classico ondulatorio, è proprio l'\emph{onda piana} che abbiamo visto, descritta dalla sinusoide.
+
+\subsection{Beamsplitter}
+
+Un beam-splitter sono essenzialmente due prismi incollati insieme.
+L'interfaccia interna fra di essi soddisfa le proprietà che abbiamo visto nella sezione \ref{sec:newton-vs-huygens}; i beamsplitter tendenzialmente sono fatti in modo tale che i coefficienti siano molto vicini a 
+%
+\begin{align}
+\mathcal{R} = \mathcal{T} = \frac{1}{2}
+\,.
+\end{align}
+
+Visto che da entrambi i lati dell'interfaccia c'è lo stesso materiale, la legge di Snell si applica in modo molto semplice visto che \(n_1 = n_2 \), dunque non c'è deflessione.
+
+\subsection{Detector e fotomoltiplicatori}
+
+Come facciamo a rilevare i fotoni? 
+In genere, i sensori che utilizziamo si basano sull'effetto fotoelettrico, ovvero sul fatto che il fotone che arriva ha dell'energia, e la può utilizzare per spostare della carica elettrica.
+Finché abbiamo molta luce, come quando facciamo una fotografia, questo va bene. Se abbiamo un po' meno luce, possiamo allungare il tempo di esposizione, oppure avere una grande superficie che consideriamo.
+
+Il problema è sempre il fatto che l'energia di un singolo fotone è molto piccola, quindi la strategia è generalmente quella di aspettare che ne arrivino tanti, anche se ne rileviamo una piccola frazione va bene.
+
+Questo non va bene per noi! Se vogliamo investigare le proprietà del singolo fotone dobbiamo riuscire a rilevare una significativa porzione di essi.
+
+Il modo di risolvere questo problema è tramite una \emph{valanga}.
+Il nostro sensore è un sistema instabile, quando arriva un fotone lo destabilizza come un calcio su un nevaio: non saremmo in grado di vedere il singolo fotone, ma riusciamo facilmente a vedere la valanga.
+Il nome del sensore è proprio ``\textbf{fotodiodo a valanga}''.
+
+Le valanghe in montagna sono irreversibili; nel caso dell'elettronica invece c'è un modo di resettare tutto.
+Questo si può fare velocemente, ma non è istantaneo: dopo ogni fotone rilevato c'è una finestra temporale nella quale, se ne arriva un altro, non lo sapremo. 
+
+Inoltre, una caratteristica dei sistemi instabili è che ogni tanto scattano per qualche perturbazione ambientale, senza che ci sia stato un fotone. 
+I conteggi dovuti a questo vanno sotto il nome di \textbf{dark count}.
+
+È importante che questo dark count sia basso rispetto ai conteggi veri.
+
+\subsection{SPDC}
+
+Questa è forse la parte più complessa dell'apparato, dal punto di vista della fisica necessaria a spiegarne il funzionamento.
+
+Esistono dei particolari cristalli, chiamati \textbf{cristalli nonlineari}, che esibiscono il fenomeno della Spontaneous Parametric Down-Conversion.
+
+Quando illuminiamo questi cristalli con una luce come quella di un laser, quasi la totalità della luce passa attraverso il cristallo, ma se guardiamo in una direzione ad un angolo di qualche grado da quella del laser vedremo della luce che arriva ad esattamente \emph{metà} della frequenza del laser, ovvero metà dell'energia, ovvero il doppio della lunghezza d'onda. 
+Se guardiamo dall'altra parte del cristallo, rileveremo un fenomeno esattamente simmetrico.
+
+Quello che succede, in termini quantistici, è che i fotoni del laser interagiscono con gli elettroni del cristallo e, talvolta, un fotone viene trasformato in due fotoni, ognuno con metà dell'energia del fotone iniziale.
+
+Per fugare dubbi di circolarità: la descrizione che diamo di questo fenomeno è quantistica perché è quella che funziona, ma non abbiamo bisogno di assumere la teoria quantistica della luce perché il nostro apparato sperimentale funzioni.
+Se mettiamo dei detector agli angoli corretti, vedremo che rilevano fotoni contemporaneamente alla frequenza giusta da un lato e dall'altro molto di più di quello che accade se li spostiamo ad un angolo poco più in là. 
+
+\subsection{Com'è fatto il nostro apparato sperimentale}
+
+Il nostro apparato è costruito in modo tale da permetterci di avere un ``insieme universo'' ben definito nel calcolare le probabilità: se prendessimo il laser e lo puntassimo direttamente al beam splitter, potremmo vedere un certo numero di conteggi da una parte e dall'altra, e potremmo controllare quante volte abbiamo visto una coincidenza, ovvero un evento nel quale i detector sono scattati nello stesso momento (entro un margine di errore --- entreremo nel dettaglio sulle coincidenze). 
+
+Tuttavia, senza controlli non sapremmo valutare se queste coincidenze siano quelle attese o meno: questo perché i nostri detectors hanno un certo rate di dark count, e non scattano sempre quando c'è un fotone.
+Senza sapere quanto è grande l'insieme universo, il numero totale di fotoni che avrebbero potuto essere stati visti, non possiamo sapere se il numero di coincidenze che vediamo sia compatibile con quello atteso per la teoria classica. 
+
+\todo[inline]{da finire}
+
+\begin{exo}[Rate atteso di conteggi]
+Il laser che useremo avrà una potenza di circa \SI{50}{mW} e la luce emessa avrà una lunghezza d'onda di circa \SI{500}{nm}. 
+
+Mettiamo un filtro attenuatore che attenui la luce di un fattore 10000, inoltre la SPDC capita solo a un fotone su \num{e7}. Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
+
+(I numeri sono molto spannometrici, da aggiornare eventualmente)
+\end{exo}
+
+
 
 \printbibliography
 

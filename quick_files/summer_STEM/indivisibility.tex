@@ -11,7 +11,7 @@ backref=true
 
 \addbibresource{STEM_Indivisibility.bib}
 
-\title{L'indivisibilità del fotone: STEM 2020}
+\title{L'indivisibilità del fotone: Summer STEM Academy 2020}
 
 \begin{document}
 
@@ -276,12 +276,36 @@ dove \(N_A\) è il numero di volte che ho visto l'evento \(A\), mentre \(N _{\te
 Un concetto importante in statistica e probabilità è quello di \textbf{condizionamento}: qual'è la probabilità che avvenga l'evento \(B\), se so che è avvenuto \(A\)? 
 Questo si denota con \(\mathbb{P} (B | A)\), ed è semplice da calcolare in linea teorica: quello che abbiamo effettivamente fatto è di ridurre il nostro insieme totale di casi considerati da \(N _{\text{TOT}}\) a \(N_A\): quindi, avremo 
 %
-\begin{align}
+\begin{align} \label{eq:probabilita-condizionata}
 \mathbb{P}(B | A) = \frac{N_{BA}}{N_A} = \frac{ N_{BA} / N _{\text{TOT}}}{N_A / N _{\text{TOT}}} = \frac{\mathbb{P}(AB)}{\mathbb{P}(A)}
 \,,
 \end{align}
 %
-dove con \(BA = AB\) si intende l'evento che avvengano sia \(A\) che \(B\). 
+dove con \(BA\) (\(= AB\), non è importante l'ordine) si intende l'evento che avvengano sia \(A\) che \(B\). 
+
+\subsection{Eventi indipendenti}
+
+Due eventi si dicono indipendenti se l'avvenire di uno non influenza l'avvenire dell'altro: possiamo fare uso del concetto appena definito per formalizzare ciò, scrivendo 
+%
+\begin{align}
+\mathbb{P}(A) = \mathbb{P}(A | B) 
+\qquad \text{e} \qquad
+\mathbb{P}(B) = \mathbb{P}(B | A) 
+\,.
+\end{align}
+
+Possiamo semplicemente prendere una delle due, e con la formula \eqref{eq:probabilita-condizionata} scriveremo 
+%
+\begin{align} \label{eq:probabilita-indipenenti}
+\mathbb{P}(A) = \mathbb{P}(A | B) = \frac{\mathbb{P}(AB)}{\mathbb{P}(B)}
+\iff
+\mathbb{P}(AB) = \mathbb{P}(A) \mathbb{P}(B)
+\,,
+\end{align}
+%
+e visto che la scrittura che abbiamo ottenuto è simmetrica per scambio di \(A\) con \(B\) non ci serve fare il conto con l'altra espressione.
+
+Questa formula è ciò che caratterizza gli eventi indipendenti: si dice che le probabilità si possono \emph{fattorizzare}; l'``e'' logico all'interno della descrizione dell'evento si può portare fuori e diventa un prodotto fra numeri se e solo se gli eventi sono indipendenti.
 
 \section{Il nostro esperimento}
 
@@ -338,6 +362,47 @@ I conteggi dovuti a questo vanno sotto il nome di \textbf{dark count}.
 
 È importante che questo dark count sia basso rispetto ai conteggi veri.
 
+\subsection{Cosa vogliamo misurare}
+
+Rendiamo più concreto il discorso: è utile definire la quantità 
+%
+\begin{align}
+g^{(2)} = \frac{\mathbb{P}(\text{coincidenza})}{\mathbb{P}(\text{riflesso})\mathbb{P}(\text{trasmesso})}
+\,,
+\end{align}
+%
+dove le probabilità sono riferite alla nostra \emph{misura} dell'evento descritto: \(\mathbb{P} (\text{riflesso})\) è la probabilità che un certo fotone sia riflesso, e che lo rileviamo come tale.
+
+\todo[inline]{inserire schema dell'apparato ``semplificato'', senza gate}
+
+Questa quantità sarà quella che permetterà di sintetizzare il risultato del nostro esperimento: segue il fatto fondamentale per capire le predizioni dei due modelli. 
+
+Nel \textbf{modello classico}, ondulatorio, l'onda luminosa arriva sul detector con una qualche intensità \(I\). Questa potrebbe dipendere dal tempo, ma concretamente varia poco quindi assumiamo che sia constante.
+In tal caso, quello che ci aspettiamo dal modello classico è che, a seconda di quant'è l'intensità incidente il detector abbia una qualche probabilità di attivarsi. 
+
+Crucialmente, le probabilità di attivazione dei due detector sono indipendenti: l'onda arriva in modo continuo ad entrambi i detector, che ogni tanto si attivano, ma l'attivazione di uno non influenza l'attivazione dell'altro. 
+
+Per quello che abbiamo visto (vedi equazione \eqref{eq:probabilita-indipenenti}) in questo caso possiamo fattorizzare: allora ci aspettiamo \(g^{(2)} = 1\). 
+
+Si può mostrare che, nel caso più generale in cui l'intensità luminosa non è costante ma invece dipende dal tempo, vale la disuguaglianza \(g^{(2)} \geq 1\).
+
+Nel \textbf{modello quantistico} invece, dobbiamo considerare i singoli fotoni, che sono \emph{indivisibili}: dunque, se un fotone viene rilevato da una parte non può essere rilevato dall'altra. Allora, in questo caso ci aspettiamo \(g^{(2)} \approx 0\); realisticamente, visto che come abbiamo menzionato esiste il dark count ci aspettiamo di vedere un numero poco più alto di 0.
+
+Ad ogni modo, se troviamo qualcosa di vicino a 0 e molto minore di 1 saremo riusciti a falsificare l'ipotesi classica.
+
+Abbiamo detto prima che possiamo calcolare le probabilità dividendo gli eventi favorevoli per gli eventi totali.
+
+Quindi, per calcolare il valore di \(g^{(2)}\) dovremo calcolare le tre probabilità in gioco, utilizzando la solita formula. Chiamiamo \(N _{\text{TOT}}\) il numero totale di fotoni incidenti sul beamsplitter: allora avremo 
+%
+\begin{align}
+g^{(2)} = \frac{N_{RT} / N _{\text{TOT}}}{(N_R / N _{\text{TOT}}) (N_T / N _{\text{TOT}})} = \frac{N_{RT} N _{\text{TOT}}}{N_R N_T}
+\,,
+\end{align}
+%
+e qui si pone il problema: il risultato dipende dal numero totale di fotoni che arrivano al detector, e che non possiamo calcolare! Se proviamo a sommare \(N_R\) e \(N_T\) avremo qualcosa che potrebbe essere molto più piccolo del numero dei fotoni incidenti, visto che a priori non sappiamo quant'è l'efficienza dei nostri detector.
+
+Fortunatamente c'è una soluzione a questo problema, e per descriverla dobbiamo introdurre un altro pezzo dell'apparato.
+
 \subsection{SPDC}
 
 Questa è forse la parte più complessa dell'apparato, dal punto di vista della fisica necessaria a spiegarne il funzionamento.
@@ -349,17 +414,10 @@ Se guardiamo dall'altra parte del cristallo, rileveremo un fenomeno esattamente 
 
 Quello che succede, in termini quantistici, è che i fotoni del laser interagiscono con gli elettroni del cristallo e, talvolta, un fotone viene trasformato in due fotoni, ognuno con metà dell'energia del fotone iniziale.
 
+Per dire una cosa molto sexy: questi fotoni sono \emph{entangled}, intrecciati, il che significa che la descrizione che ne facciamo come sistema quantistico non può essere scomposta in due descrizioni di sottosistemi senza perdere qualcosa. 
+
 Per fugare dubbi di circolarità: la descrizione che diamo di questo fenomeno è quantistica perché è quella che funziona, ma non abbiamo bisogno di assumere la teoria quantistica della luce perché il nostro apparato sperimentale funzioni.
 Se mettiamo dei detector agli angoli corretti, vedremo che rilevano fotoni contemporaneamente alla frequenza giusta da un lato e dall'altro molto di più di quello che accade se li spostiamo ad un angolo poco più in là. 
-
-\subsection{Com'è fatto il nostro apparato sperimentale}
-
-Il nostro apparato è costruito in modo tale da permetterci di avere un ``insieme universo'' ben definito nel calcolare le probabilità: se prendessimo il laser e lo puntassimo direttamente al beam splitter, potremmo vedere un certo numero di conteggi da una parte e dall'altra, e potremmo controllare quante volte abbiamo visto una coincidenza, ovvero un evento nel quale i detector sono scattati nello stesso momento (entro un margine di errore --- entreremo nel dettaglio sulle coincidenze). 
-
-Tuttavia, senza controlli non sapremmo valutare se queste coincidenze siano quelle attese o meno: questo perché i nostri detectors hanno un certo rate di dark count, e non scattano sempre quando c'è un fotone.
-Senza sapere quanto è grande l'insieme universo, il numero totale di fotoni che avrebbero potuto essere stati visti, non possiamo sapere se il numero di coincidenze che vediamo sia compatibile con quello atteso per la teoria classica. 
-
-\todo[inline]{da finire}
 
 \begin{exo}[Rate atteso di conteggi]
 Il laser che useremo avrà una potenza di circa \SI{50}{mW} e la luce emessa avrà una lunghezza d'onda di circa \SI{500}{nm}. 
@@ -370,6 +428,51 @@ Mettiamo un filtro attenuatore che attenui la luce di un fattore 10000, inoltre 
 \end{exo}
 
 
+\subsection{Com'è fatto il nostro apparato}
+
+% Il nostro apparato è costruito in modo tale da permetterci di avere un ``insieme universo'' ben definito nel calcolare le probabilità: se prendessimo il laser e lo puntassimo direttamente al beam splitter, potremmo vedere un certo numero di conteggi da una parte e dall'altra, e potremmo controllare quante volte abbiamo visto una coincidenza, ovvero un evento nel quale i detector sono scattati nello stesso momento (entro un margine di errore --- entreremo nel dettaglio sulle coincidenze).
+
+% Tuttavia, senza controlli non sapremmo valutare se queste coincidenze siano quelle attese o meno: questo perché i nostri detectors hanno un certo rate di dark count, e non scattano sempre quando c'è un fotone.
+% Senza sapere quanto è grande l'insieme universo, il numero totale di fotoni che avrebbero potuto essere stati visti, non possiamo sapere se il numero di coincidenze che vediamo sia compatibile con quello atteso per la teoria classica. 
+
+In uscita del laser attacchiamo un cristallo nonlineare. 
+Questo produce luce intrecciata; da uno dei due lati mettiamo direttamente un sensore, chiamato \textbf{gate}. 
+
+Dall'altro lato mettiamo l'apparato descritto prima: beamsplitter, e i due sensori per i fotoni riflessi e trasmessi.
+
+\todo[inline]{Inserire schema}
+
+Ora abbiamo un grande vantaggio rispetto a prima: possiamo usare il detector di gate come controllo, ovvero il nostro ``insieme universo'' è costituito dalle volte in cui questo detector è scattato; il numero di volte che è scattato il gate, \(N_G\), diventa il nostro \(N _{\text{TOT}} \).
+
+Nel fare il conto, tuttavia, dovremo considerare che se il nostro insieme universo è questo insieme ristretto, allora dobbiamo condizionare sul fatto che il gate sia scattato: otteniamo, allora, 
+%
+\begin{align}
+g^{(2)} = \frac{\mathbb{P}(RT | G)}{\mathbb{P}(R|G) \mathbb{P}(T|G)}
+\approx \frac{N_{RTG} N_G}{N_{RG} N_{TG}}
+\,.
+\end{align}
+
+\subsection{Coincidenze}
+
+Abbiamo quasi esaurito i problemi sperimentali, ma ne rimane ancora uno grosso: cosa intendiamo esattamente con ``concidenza''? 
+
+I detector mandano i segnali che vedono ad un oggetto detto \textbf{timetagger}, che li prende e li digitalizza, convertendoli in un numero intero. Questo numero intero corrisponde al numero di ``tick'' di un suo orologio interno, fra due di questi passano circa \SI{81}{ps} (ovvero poco più di  2 centimetri-luce!).
+
+Questo è un tempo così breve che i minimi ritardi dell'elettronica si riescono a discenrnere. 
+
+Ora, mostriamo un grafico ottenuto nel seguente modo: per ogni fotone visto dal detector ``gate'' al tempo \(t_G\), cerchiamo il più vicino temporalmente fra quelli riflessi, e chiamiamo il suo tempo \(t_R\). 
+Ci segnamo il valore di \(t_R - t_G\), e ripetiamo questa operazione per ogni click del gate. 
+
+Facciamo un istogramma di queste differenze di tempi: l'altezza di ogni barra rappresenta il numero di volte che abbiamo trovato quel valore.
+
+\todo[inline]{Inserire grafico}
+
+Vediamo un fondo di rumore, e un distinto picco. Questo non è centrato a \(t_R = t_G\) (perché?). 
+
+Gli eventi che stanno nel picco sono quelli che possiamo considerare come coincidenze. 
+Come si quantifica esattamente ``nel picco''? C'è sicuramente un grado di arbitrarietà nella scelta, ma questa andrà a influenzare esattamente dove tagliamo le code: il grosso della curva sarà preso.
+
+Come troviamo le coincidenze triple? Ne abbiamo una quando allo stesso evento del gate corrisponde sia un fotone riflesso che uno trasmesso.
 
 \printbibliography
 

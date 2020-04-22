@@ -1,4 +1,130 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-4-22, \\ compiled \\ \today}
+
+Last time we considered the spontaneous breaking of a \emph{global} symmetry: we saw the appearance, corresponding to the breaking of the \(U(1)\) symmetry, of massless Goldstone bosons.
+Each broken generator has a corresponding Goldstone boson.
+
+We had a quadratic term in the Lagrangian, and a quartic term. 
+
+What would \(\mu^2<0\) physically mean? It would be a tachyonic particle. The Vacuum Expectation Value goes from 0 to \(v\): in this case we have broken the \(U(1)\) symmetry.
+
+The imaginary part of the field \(\phi \) corresponds to a massless scalar field.
+
+Every time we have a certain global symmetry described by a group \(G\) with generators \(t^{a}\), which is broken to a subgroup \(G'\) (which can also be just the identity) with generators \(t^{i}\), we can identify the broken generators with Goldstone bosons.
+
+We have the Dirac equation \(\qty(i \slashed{\partial} - m) \psi =0\), where \(\psi \) has a global \(U(1)\) symmetry. 
+This can\emph{not} be generalized to a local \(U(1)\) symmetry, unless we introduce a compensating gauge field.
+
+Let us consider the Lagrangian from yesterday for the scalar field with a kinetic, quadratic and quartic term. Can we do \(\partial_{\mu } \to \DD_{\mu }\) as we did with QED, to generalize the \(U(1)\) symmetry of \(\phi \)?
+
+We can do it and encounter no issues. 
+
+What if \(\mu^2<0\)? The result is surprising: we do as before, perturbing around the vacuum \(\phi = v\), writing \(\phi = v + \sigma (x) + i \eta (x)\). 
+This is around pages 92--93 of the notes.
+
+We start from \(\phi \), which has 2 dof since it is a complex scalar, and \(A_{\mu }\), which also has 2 dof since it is a massless vector. 
+
+We would expect to get the fields \(\sigma \) and \(\eta \): however, the field \(\eta \) does not appear, it is ``eaten up'' by the vector field \(A_{\mu }\).
+We only find a massive real scalar \(\sigma (x)\), which has 1 dof, and a massive vector boson \(A_{\mu }\), which has 3 dof.
+
+This is the \emph{transmutation}, the scalar degree of freedom is absorbed to a degree of freedom in the vector field.
+
+We can repeat this in the general case, with the group \(G\) being broken to \(G'\). Suppose, for clarity, that this is \(SU(2)\) being broken to \(U(1)\). 
+
+We are curing two different problems: we have found massive gauge bosons, and removed the unphysical Goldstone bosons.
+
+As \(SU(2)\) is broken to \(U(1)\), the 3 generators \(A_{\mu }^{a}\), with \(a = 1, 2, 3\) are broken to give two massive vector bosons (\(Z^{\pm}\)) and one massless vector boson (the photon), while the real field \(\sigma \) is the Higgs field.
+
+We are missing the \(Z\) boson: this is just an example to clarify what this mechanism looks like, it is not what we actually will use: we will have to choose another symmetry group.
+
+This will be a way to unify electromagnetic and weak interactions, and we will get to use a single coupling constant for our new electroweak theory.
+
+The correct symmetry group for the electroweak theory is 
+%
+\begin{align}
+SU(2)_{L} \otimes U(1) _{\text{hypercharge}}
+\,,
+\end{align}
+%
+where the hypercharge is usually denoted as \(Y\).
+
+We have a doublet under \(SU(2)\), we will see that one component of this doublet has charge \(+\) while the other has charge 0.
+
+We have three vector fields for \(SU(2)\), which we call \(A_{\mu}^{i}\), and also a vector field for \(U(1)\): \(B_{\mu }\).
+
+The VEV of our field will be 
+%
+\begin{align}
+\expval{\phi }= \left[\begin{array}{c}
+0 \\ 
+v
+\end{array}\right]
+\,.
+\end{align}
+
+The residual gauge symmetry can be identified with \(U(1)_{\text{em}}\). Do note that \(U(1)\)-hypercharge \emph{is} broken. However, a certain combination of the generators gives us the \(U(1)\) electromagnetic.
+The combination is 
+%
+\begin{align}
+T^{3} + Y
+\,,
+\end{align}
+%
+where \(T^{3}\) is the third generator of \(SU(2)\), while \(Y\) is the generator of hypercharge. 
+A combination which is broken is 
+%
+\begin{align}
+Q_{z} = T^{3} - \sin^2 (\theta_{w}) Q
+\,,
+\end{align}
+%
+where \(\theta_{w}\) is the Weak, or Wonder angle, defined by 
+%
+\begin{align}
+\tan(\theta_{w}) = \frac{g'}{g}
+\,,
+\end{align}
+%
+where \(g'\) and \(g\) are the coupling constants relative to \(U(1)\) and \(SU(2)\) respectively.
+
+The model is called the Glashow-Weinberg-Salam model. This is the Standard Model of the electroweak interaction.
+
+How is this unification since we have two coupling constants? The constants are not the coupling constants of weak and electromagnetic interaction. The photon is given by
+%
+\begin{align}
+A_{\mu } = \sin(\theta_{w}) A^{3}_{\mu } + \cos(\theta_{w}) B_{\mu }
+\,,
+\end{align}
+%
+while the orthogonal combination is 
+%
+\begin{align}
+Z^{0}_{\mu } = \cos(\theta_{w}) A^{3}_{\mu } - \sin(\theta_{w}) B_{\mu }
+\,,
+\end{align}
+%
+so we cannot decouple the weak and electromagnetic bosons.
+This is why the symmetry is called the electroweak symmetry.
+
+When the symmetry is broken, we are left with a long-range interaction and a short range one.
+
+If \(\mu^2\) is a function of \(T\), then we can get a phase transition.
+This is called the electroweak phase transition.
+
+Standard Model Lagrangian: 
+%
+\boxalign{
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F_{\mu \nu } F^{\mu \nu }
++ i \overline{\psi} \slashed{\DD} \psi  
++ \psi_{i} y_{ij} \psi_{j} \phi 
++ \text{h. c.} 
++\abs{\DD_{\mu } \phi }^2 - V(\phi )
+\,.
+\end{align}}
+
+We have not seen the \(y_{ij}\) bit yet, it is responsible for the fermion masses.
+
 \end{document}

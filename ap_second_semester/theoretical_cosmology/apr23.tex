@@ -1,4 +1,215 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-4-23, \\ compiled \\ \today}
+
+We are going to continue discussing cosmic structure formation.
+
+We treat the dynamics of self-gravitating collisionless particles. 
+
+We will neglect pressure gradients since the pressure is generally very small. 
+
+We have a Eulerian approach: we take a LIF with respect to the background field. 
+
+We sometimes do not write the mass of the fluid particle: by the equivalence principle the inertial and gravitational masses are equal.
+
+We have the relations \(\vec{r} = a \vec{x}\) and 
+%
+\begin{align}
+\ddot{r} = - \nabla_{r} \Phi 
+\,,
+\end{align}
+%
+where the gravitational field is defined by 
+%
+\begin{align}
+\nabla^2_{r} \Phi  = 4 \pi G \rho 
+\,.
+\end{align}
+
+If we take the background potential 
+%
+\begin{align}
+\Phi = \Phi_{b} = \frac{2}{3} \pi G \rho_{b} (t) r^2
+\,,
+\end{align}
+%
+we recover the Friedmann equation 
+%
+\begin{align}
+\ddot{a} = - \frac{4}{3} \pi G \rho_{b} (t) a
+\,.
+\end{align}
+
+The derivative of \(\vec{r}\) is given by 
+%
+\begin{align}
+\dot{r} = \dot{a} x + a \dot{x} = Hr + v
+\,,
+\end{align}
+%
+which is the Hubble law in a fully Newtonian setting. 
+
+We can write the particle Lagrangian: it looks like 
+%
+\begin{align}
+\mathscr{L}' = \frac{m}{2} \qty(a \dot{x} + \dot{a} x)^2 - m \Phi (\vec{x}, t)
+\,,
+\end{align}
+%
+so we have three terms: \(a^2 \dot{x}^2\), \(\dot{a}^2 x^2 \) and \(2 a x \dot{a} \dot{x}\).
+
+We use the canonical transformation 
+%
+\begin{align}
+\mathscr{L} = \mathscr{L}' - \dv{\psi }{t}
+\qquad \text{where} \qquad
+\psi = \frac{1}{2} m a \dot{a} x^2
+\,,
+\end{align}
+%
+using which we remove the mixed terms, so we get 
+%
+\begin{align}
+\mathscr{L} = \frac{m}{2} a^2 \dot{x}^2 - m \phi 
+\,,
+\end{align}
+%
+where \(\phi = \Phi - \Phi_{b} = \Phi + a \ddot{a} x^2 / 2\).
+
+We have different kinds of problems: we have problems in which we give initial positions and velocities, and ones in which we have initial and final positions. 
+
+We can also have mixed problems, where we give the initial velocity and the final position.
+
+\todo[inline]{What are they called?}
+
+Then we get the equation for \(\phi \): 
+%
+\begin{align}
+\nabla^2_{x} = 4 \pi G a^2 \rho + 3 a \ddot{a} = 4 \pi G a^2\rho_{b} \delta 
+\,.
+\end{align}
+
+In order to write Hamilton's equations we need the conjugate momentum: 
+%
+\begin{align}
+\vec{p} = \pdv{\mathscr{L}}{\vec{\dot{x}}} = m a^2 \dot{x}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\dot{p} = \pdv{\mathscr{L}}{\vec{x}} = - m \nabla_{x} \phi 
+\,,
+\end{align}
+%
+and if we define \(\vec{v} = a \dot{\vec{x}}\) then we have 
+%
+\begin{align}
+\vec{\dot{p}} = \pdv{}{t} \qty(m a \vec{v}) = m a \vec{\dot{v}} + m \dot{a} \vec{v}
+\,,
+\end{align}
+%
+which yields our Euler-Lagrange equations: 
+%
+\begin{align}
+\dv{\vec{v}}{t} + H \vec{v} = - \frac{1}{a} \nabla \phi 
+\,.
+\end{align}
+
+This equation is always true, it does not assume that the element of mass behaves like a fluid. 
+
+Hamilton's equations are written by writing the Hamiltonian: 
+%
+\begin{align}
+\mathscr{H}(\vec{x}, \vec{p}, t) &= \vec{p} \cdot \dot{\vec{x}} - \mathscr{L}   \\
+&= \frac{p^2}{2 m a^2} + m \phi (\vec{x}, t)
+\,,
+\end{align}
+%
+and Hamilton's equations read 
+%
+\begin{align}
+\vec{p} &= m a^2 \dot{\vec{x}}  \\
+\dot{\vec{p}} &= - m \nabla_{x} \phi 
+\,.
+\end{align}
+
+By Liouville's theorem for collisionless matter the phase-space density is conserved: 
+%
+\begin{align}
+\dd{f} = 0 \implies 
+\pdv{f}{t} + \dot{\vec{x}} \cdot \pdv{f}{\vec{x}} + \dot{\vec{p}} \cdot \pdv{f}{\vec{p}} = 0
+\,.
+\end{align}
+
+This yields the Vlasov equation: 
+%
+\begin{align}
+\pdv{f}{t} + \frac{\vec{p}}{m a^2} \cdot \nabla f - m \nabla \phi \cdot \pdv{f}{\vec{t}}= 0
+\,,
+\end{align}
+
+which must be solved together with the Poisson equation for \(\phi \).
+
+Nobody has managed to solve it yet: it is very hard. 
+
+We cannot use the linear regime: stars and structures are highly nonlinear. 
+
+Jim Peebles for ``reconstruction problem''.
+There is an ambiguity in the trajectories. 
+We can find information about these things in a dropbox folder by the professor. 
+
+We take \emph{moments}: 
+%
+\begin{align}
+\rho (\vec{x}, t) = \frac{m}{a^3} \int \dd[3]{p} 
+f(\vec{x}, \vec{p}, t)
+\,,
+\end{align}
+%
+the first one is
+%
+\begin{align}
+\vec{v}(\vec{x}, t) = \frac{1}{ma} \frac{\int \dd[3]{p} \vec{p} f (\vec{x}, \vec{p}, t)}{\int \dd[3]{p} f(\vec{x}, \vec{p}, t)}
+\,,
+\end{align}
+%
+the second one is 
+%
+\begin{align}
+\Pi^{ij} &= \frac{\expval{p^{i} p^{j}}}{m^2a^2} - v^{i} v^{j}  \\
+&= \frac{1}{m^2a^2} \qty[\dots]
+\,,
+\end{align}
+%
+which represents a velocity dispersion. In general we are not able to drop this term. 
+
+We integrate the Vlasov equation over \(\vec{p}\) and manipulate. 
+
+Collecting all the terms we get 
+%
+\boxalign{
+\begin{align}
+\pdv{v^{i}}{t} + H v^{i} + \frac{1}{a} \qty(v_{j} \partial^{j}) v^{i}
+= - \frac{1}{a} \partial^{i} \phi - \frac{1}{a \rho } \partial_{j} \qty(\rho \Pi^{ij})
+\,,
+\end{align}}
+%
+so the Euler equation changed: we have an additional velocity dispersion term.
+
+What do we do then? Kolmogorov's approach is through a hierarchy of moments, and it works well in the turbolent regime. 
+
+We can have an ansatz for \(\Pi^{ij}\), for example we can say that it is diagonal: this specifically does not really work here. 
+
+People say that \(f\) can be split in two: a \emph{coarse-grain} distribution and a \emph{fine-grain} distribution. The coarse distribution is an average, the fine grain captures the details. 
+
+A system behaves like a fluid if there is scattering between the particles. 
+
+How do we define the scale? This is difficult, since CDM does not have a cross-section.
+The ``physical truth'' is provided by N-body simulations, we make approximations until they match the simulations.
+
+This is also why we do not use multiple-scale models: they are complicated and difficult to tune.
+
 \end{document}

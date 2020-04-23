@@ -17,6 +17,10 @@ backref=true
 
 \maketitle
 
+\tableofcontents
+
+\medskip
+
 Iniziamo con un quiz: \textbf{cos'è la luce}?
 
 \begin{enumerate}[label=\emph{\alph*})]
@@ -24,6 +28,7 @@ Iniziamo con un quiz: \textbf{cos'è la luce}?
     \item Una particella.
     \item Sia un'onda che una particella. 
     \item Né un'onda né una particella. 
+    \item A volte un'onda, a volte una particella.
     \item Mi astengo.
 \end{enumerate}
 
@@ -166,6 +171,9 @@ che dovranno soddisfare \(\mathcal{R} + \mathcal{T} = 1\).
 
 Un altro fenomeno spiegato dalla teoria ondulatoria è la diffrazione: se illuminiamo una fessura, e restringiamo la fessura, l'immagine luminosa inizialmente si restringe, ma a un certo punto inizia ad allargarsi.
 
+Questo è un fenomeno radicalmente ondulatorio: un fascio di particelle classiche si restringerebbe e basta.
+Nel caso delle onde, invece, più restringiamo la fessura più ci avvicineremo alla situazione nella quale un'onda si sta propagando da un singolo punto: lo farà in cerchi. 
+
 Abbiamo definito la velocità della luce, ma quanto vale numericamente? 
 
 \begin{exo}[Esperimento di Michelson, velocità della luce]
@@ -190,11 +198,11 @@ c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \nu
 \subsection{Maxwell e Einstein}
 
 Nei primi anni 1860, James Clerk Maxwell riesce a unificare tutte le osservazioni riguardanti i fenomeni elettrici e magnetici nelle sue celebri 4 equazioni: queste descrivono i due \emph{campi vettoriali} elettrico \(\vec{E}\) e magnetico \(\vec{B}\). 
-Ad ogni punto nello spazio per ogni istante temporale sono assegnati questi due vettori, e inoltre abbiamo la carica elettrica \(Q\) e la corrente elettrica \(\vec{J}\). 
+Ad ogni punto nello spazio per ogni istante temporale sono assegnati questi due vettori, e inoltre abbiamo la carica elettrica \(Q\) e la corrente elettrica \(I\). 
 
-Le quattro equazioni si possono dividere in due gruppi: due equazioni sono identità che pongono dei vincoli su come si comportano e come interagiscono i campi elettrico e magnetico, le altre due invece coinvolgono la carica \(Q\) e la corrente \(\vec{J}\) e descrivono come queste generino i campi elettrico e magnetico, rispettivamente. 
+Le quattro equazioni si possono dividere in due gruppi: due equazioni sono identità che pongono dei vincoli su come si comportano e come interagiscono i campi elettrico e magnetico, le altre due invece coinvolgono la carica \(Q\) e la corrente \(I\) e descrivono come queste generino i campi elettrico e magnetico, rispettivamente. 
 
-Se si scrive le equazioni di Maxwell ponendo \(Q = \vec{J} = 0\), ovvero nel vuoto, si trova un'equazione che descrive un'onda che viaggia proprio alla velocità \(c\) di cui abbiamo parlato prima. 
+Se si scrive le equazioni di Maxwell ponendo \(Q = I = 0\), ovvero nel vuoto, si trova un'equazione che descrive un'onda che viaggia proprio alla velocità \(c\) di cui abbiamo parlato prima. 
 Questo fa sospettare che la luce sia un fenomeno elettromagnetico! 
 
 È proprio così: non entriamo nei dettagli, ma si può dimostrare sperimentalmente che agitando della carica elettrica avanti e indietro si può generare luce.
@@ -202,6 +210,18 @@ Questo fa sospettare che la luce sia un fenomeno elettromagnetico!
 Qui entra in gioco l'unificazione di cui parlavamo: la \emph{luce visibile} di cui abbiamo iniziato a parlare all'inizio è solo una tipologia particolare di una classe più grande di fenomeni che possiamo chiamare \emph{luce}: la \textbf{radiazione elettromagnetica}.
 
 \emph{Radiazione} è un termine generale per descrivere qualcosa che si diffonde nello spazio portando energia.
+
+Cosa cambia dalla teoria ondulatoria di Huygens a quella elettromagnetica di Maxwell?
+La teoria ondulatoria classica immagina la luce come un'onda nell'acqua: per ogni punto della superficie dell'acqua possiamo assegnare un singolo valore --- uno \emph{scalare} --- per descriverne l'altezza.
+In modo simile, la teoria ondulatoria pre-elettromagnetica descrive un'onda scalare.
+
+Al contrario, i campi elettrico e magnetico sono \emph{vettoriali}: ad ogni punto dello spazio associano una ``freccia'', che ha direzione e lunghezza.
+
+Cosa comporta fisicamente questa differenza? la luce può avere una \emph{polarizzazione}, ovvero può avere orientata in modi diversi rispetto alla sua direzione di propagazione. 
+
+\todo[inline]{Inserire schema con \(\vec{k} \perp \vec{E} \perp \vec{B}\).}
+
+Questo ha delle applicazioni pratiche: ad esempio, gli occhiali che si usano per vedere i film 3D usano due lenti con filtri polarizzatori perpendicolari, una orizzontale e una verticale; in questo modo possono mostrare due immagini diverse ad ogni occhio.
 
 \todo[inline]{Inserire tabella/grafico con le varie lunghezze d'onda della luce.}
 
@@ -257,10 +277,26 @@ Così per chiudere in bellezza (non da dire a lezione), ecco la Lagrangiana dell
 \,.
 \end{align}
 
+Descriviamo tuttavia qualche caratteristica della QED: 
+\begin{enumerate}
+    \item è una teoria \emph{quantistica}: il campo elettromagnetico è suddiviso in unità indivisibili;
+    \item è una teoria \emph{relativistica}: si può usare per fare buone predizioni anche quando gli oggetti in gioco vanno a velocità vicine a quella della luce;
+    \item quando il numero di fotoni in gioco è molto alto è una teoria ben approssimata da quella classica di Maxwell.
+\end{enumerate}
+
+\todo[inline]{Figura: diagramma di Venn delle teorie, a matrioska QED, teoria elettromagnetica, meccanica ondulatoria, ray optics \cite[fig. 1.0-1]{salehFundamentalsPhotonics}.}
+
+\begin{enumerate}
+    \item Ottica ``corpuscolare'', a raggi: funziona bene per il trattamento basilare di come funzionano le lenti, e in generale per trattare tutti i fenomeni per cui la lunghezza d'onda della luce è abbastanza piccola rispetto agli oggetti in gioco. 
+    \item Ottica ondulatoria scalare: spiega interferenza, diffrazione, rifrazione. È un'approssimazione scalare della teoria elettromagnetica.
+    \item Ottica elettromagnetica: spiega tutti i fenomeni ondulatori, più quelli di polarizzazione, e l'interazione della luce con la carica e la corrente elettrica.
+    \item Ottica quantistica: si riduce, quando ci sono molti fotoni, all'ottica elettromagnetica classica. Un fenomeno che si spiega con la teoria quantistica ma non in quella classica è quello che vedremo in laboratorio!
+\end{enumerate}
+
 \section{Note di probabilità}
 
 Un \emph{evento} \(A\) è qualcosa che possiamo misurare, ovvero qualcosa per cui è possibile determinare se è avvenuto o meno. 
-Possiamo assegnare \textbf{probabilità} agli eventi: cosa questo significhi esattamente è un'importante questione filosofica.\footnote{Io propendo per la scuola Bayesiana per la quale la probabilità di un evento riflette la nostra credenza soggettiva che un evento possa accadere: la possiamo calcolare come la quota alla quale saremmo disposti a scommettere sull'evento, aspettandoci di guadagnare.}
+Possiamo assegnare \textbf{probabilità} agli eventi: cosa questo significhi esattamente è un'importante questione filosofica.\footnote{Io propendo per la scuola Bayesiana per la quale la probabilità di un evento riflette la nostra credenza soggettiva che un evento possa accadere: la possiamo calcolare come il minimo delle quote alla quale saremmo disposti a scommettere sull'evento, aspettandoci di guadagnare.}
 
 Un'interpretazione diffusa è quella frequentista: la probabilità è la frazione di casi in cui avviene l'evento \(A\) diviso per i casi totali: 
 %
@@ -270,6 +306,11 @@ Un'interpretazione diffusa è quella frequentista: la probabilità è la frazion
 \end{align}
 %
 dove \(N_A\) è il numero di volte che ho visto l'evento \(A\), mentre \(N _{\text{TOT}}\) è il numero di volte in cui ho ripetuto l'esperimento.
+
+Possiamo definire eventi combinati: ad esempio, chiamiamo \(A\cap B\) l'evento in cui sono avvenuti sia \(A\) che \(B\).
+Qui lo abbrevierò in \(AB\), visto che non c'è pericolo di confusione.
+
+Un altro esempio è \(A \cup B\) l'evento in cui è avvenuto almeno uno fra i due.
 
 \subsection{Probabilità condizionata}
 
@@ -325,6 +366,13 @@ Ci sono diversi problemi con questa prima grezza descrizione dell'esperimento, m
 
 Questo è uno strumento che Grangier non aveva a disposizione, ma che ci facilita molto la vita. 
 Un LASER --- Light Amplification by Stimulated Emission of Radiation --- sfrutta le proprietà di come la luce interagisce con gli atomi, si può dire ``risuonando'' con gli elettroni, per amplificare una frequenza di luce ben precisa.
+
+Cosa significa ``risonanza'' (domanda per loro)? 
+L'idea è che abbiamo un sistema che possiamo sollecitare periodicamente, ad esempio spingendo un bambino su un'altalena.
+Diciamo di spingere sempre con la stessa forza, ma variamo la frequenza alla quale lo facciamo.
+
+Se spingiamo con troppa frequenza, il bambino starà vicino al centro. Se spingiamo con troppo poca frequenza, dopo ogni spinta si stabilizzerà al centro.
+C'è una frequenza ottimale alla quale possiamo spingere, se lo facciamo esattamente al momento giusto possiamo amplificare la vibrazione.
 
 Riescono a emettere dunque quello che, nel modello classico ondulatorio, è proprio l'\emph{onda piana} che abbiamo visto, descritta dalla sinusoide.
 
@@ -458,7 +506,7 @@ Abbiamo quasi esaurito i problemi sperimentali, ma ne rimane ancora uno grosso: 
 
 I detector mandano i segnali che vedono ad un oggetto detto \textbf{timetagger}, che li prende e li digitalizza, convertendoli in un numero intero. Questo numero intero corrisponde al numero di ``tick'' di un suo orologio interno, fra due di questi passano circa \SI{81}{ps} (ovvero poco più di  2 centimetri-luce!).
 
-Questo è un tempo così breve che i minimi ritardi dell'elettronica si riescono a discenrnere. 
+Questo è un tempo così breve che riusciamo a distinguere dei fenomeni molto rapidi: vedremo la differenza temporale dovuta al fatto che i cammini della luce sono di lunghezze leggermente diverse, e una dispersione dovuta a fenomeni come le variazioni temporali intrinseche dei sensori, e i minimi ritardi dell'elettronica.
 
 Ora, mostriamo un grafico ottenuto nel seguente modo: per ogni fotone visto dal detector ``gate'' al tempo \(t_G\), cerchiamo il più vicino temporalmente fra quelli riflessi, e chiamiamo il suo tempo \(t_R\). 
 Ci segnamo il valore di \(t_R - t_G\), e ripetiamo questa operazione per ogni click del gate. 

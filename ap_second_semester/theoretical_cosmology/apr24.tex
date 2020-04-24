@@ -3,6 +3,158 @@
 
 \marginpar{Friday\\ 2020-4-24, \\ compiled \\ \today}
 
+\section{The Zel'dovich approximation}
 
+So far we have discussed perturbation in two ways: initially, we had a contribution on the RHS of the EFE given by the perturbations.
+
+During radiation dominance there is not much need to go beyond linear theory. 
+
+Now we want to go full nonlinear.
+
+We need to use a mixture of techniques: both the study of the 2-body problem and a continuous distribution of matter.
+This is what we do if we use numerical techniques.
+
+On the other hand, we can make some smart approximations.
+
+Last semester we mentioned the ``spherical top-hat solution'': we assume spherical symmetry, and work from there. 
+
+The Zel'dovich approximation gives an exact solution in the case of planar symmetry.
+We can also get exact solutions with cylindrical symmetry. 
+
+We come back to the fluid equations: continuity, Euler, Poisson on a FRLW background. 
+
+When you do linear perturbation theory, you perturb around the background value.
+
+However, in doing this we are assuming that all the perturbations have the same weight: this is not necessarily true. We should define an internal hierarchy. 
+
+What we are doing is formal in the context of Lagrangian perturbation theory. 
+
+We define 
+%
+\begin{align}
+\eta &= \frac{\rho }{ \rho_{b}}  = 1 + \delta  \\
+\vec{u} &= \dv{\vec{x}}{a} = \frac{\vec{v}}{a \dot{a} }  \\
+\varphi &= \frac{3 t_{*}^2}{2 a_{*}^3} \phi 
+\,.
+\end{align}
+
+This is because he wanted dependence on the growth factor. In EDS this is the scale factor, in general this could be a different thing.
+
+We are referring to a more general background: there can be a growth suppression factor, such that the density perturbation \(\delta \) does not scale with \(a\) but instead based on some function of \(a\). 
+We should use this function and not the scale factor in general.
+In the matter-filled universe we are considering right now this is the same.
+
+The new equations are 
+%
+\begin{align}
+\frac{ \DD \vec{u}}{\DD a} + \frac{3}{2a} \vec{u} &= - \frac{3}{2a} \nabla \varphi  \\
+\frac{ \DD \eta }{\DD a} + \eta \nabla \cdot \vec{u} &= 0  \\
+\nabla^2 \varphi &= \frac{\delta}{a}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\frac{\DD }{\DD a} = \pdv{}{a} + \vec{u} \cdot \nabla
+\,
+\end{align}
+%
+is the convective derivative.
+
+We have chosen this variable \(\vec{u}\) precisely because we want something which is almost constant in linear theory: we have \(\delta \sim t^{2/3}\) and \(v \sim t^{1/3}\) and \(\phi \sim \const\). 
+
+So, we get 
+%
+\begin{align}
+\pdv{\vec{u}}{a} = 0  
+\,,
+\end{align}
+%
+so then we can approximate:
+%
+\begin{align}
+\bigd{\vec{u}}{a} = 0 
+\,.
+\end{align}
+
+At the linear level, \(\vec{u} = - \nabla \varphi \). 
+The argument is that we can \emph{extend} the linear result beyond the linear level. This is because the velocity goes like \(k\), while the potential goes like \(\delta / k^2\).
+
+The system becomes more and more linear as we increase the scale.
+
+Why don't we try to solve the equation by neglecting the nonlinearity in the velocity? 
+
+Then the equation system reads: 
+%
+\begin{align}
+\bigd{\vec{u}}{a} &= 0  \\
+\bigd{\eta }{a} + \eta \nabla \cdot \vec{u} &= 0 
+\,.
+\end{align}
+
+This can be solved exactly, as we will now see.
+
+This is describing the inertial motion of particles with no external force acting on them. 
+
+It is important to say that this is a total derivative: the variation is zero along the trajectories of the particles.
+
+The velocity of a particle which has a velocity \(\vec{u}_{0}\) at a position \(\vec{q}\) is preserevd. We can integrate the position straightforwardly, since the relation we get is linear.
+
+This, however, is in our weird variables: the real motion is more complicated, but we can map the new variables to the new ones.
+
+We can solve the continuity equation in different ways: we can divide by \(\eta \) to get logarithmic derivatives, so that 
+%
+\begin{align}
+\bigd{\log \eta }{a} =  -\nabla \cdot \vec{u}
+\,.
+\end{align}
+
+when we integrate, though, we should follow the trajectory: 
+%
+\begin{align}
+\eta (\vec{x}, a) = \eta_0 (\vec{q}) \exp{ - \int_{a_0 }^{a} \dd{a'} \nabla \cdot \vec{u} \qty[\vec{x}(\vec{q}, a',), a']}
+\,.
+\end{align}
+
+This calculation is done in `The large scale structure of the universe' by Peebles \cite[]{peeblesLargescaleStructureUniverse1980}.
+
+Also, we can use an approach in which we use the Jacobian of the change of coordinates between Lagrangian and Eulerian.
+
+The tensor 
+%
+\begin{align}
+D_{ij} = \pdv[2]{\varphi_0}{q_{i}}{q^{j}}
+\,
+\end{align}
+%
+is called the deformation tensor.
+The matrix 
+%
+\begin{align}
+\pdv{x^{i}}{q_{j}} = \delta^{i}_{j} - a \pdv[2]{\varphi_0}{q_{i}}{q^{j}}
+\,
+\end{align}
+%
+defines the transformation between the old and new coordinates.
+The eigenvalues of the transformation tensor are local. 
+
+It can be shown (Doroshevick 1970) that there is a \SI{92}{\percent} probability that at least one eigenvalue is positive.
+
+This is computed using the assumption that \(\varphi_0 \) has a gaussian distribution.
+
+This is important since we can write 
+%
+\begin{align}
+\eta (\vec{x}, a) = \frac{1}{\prod_{i=1}^{3} (1 - \lambda_{i}(\vec{q}) a)}
+\,.
+\end{align}
+
+Pancakes in terms of shapes, of course, not in terms of ingredients.
+
+The jacobian of the change of coordinates is ill defined if two particles collide. 
+
+At that point, we get nonlinearities, which \emph{are} structure formation.
+This is a sort of non-gaussianity we get from this approximation.
 
 \end{document}

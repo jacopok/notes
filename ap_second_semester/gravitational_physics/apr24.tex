@@ -1,4 +1,188 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-4-24, \\ compiled \\ \today}
+
+\todo[inline]{Recover ten minutes}
+
+Resonant bars are resonant: their transfer function is very much peaked. 
+
+The transfer function is the response to the strain as a function of signal frequency.
+
+The displacement function \(\xi_0 \) is a sinusoid, it looks like 
+%
+\begin{align}
+\xi_0 (t) = \frac{2 L \omega^2 h_0 }{\pi^2} \frac{(\omega^2 - \omega^2_{0}) \cos(\omega t) - \gamma_0 \sin(\omega t)}{(\omega^2-\omega_0^2)^2 + \omega^2 \gamma_0^2}
+\,.
+\end{align}
+
+In Fourier space this is easier: 
+%
+\begin{align}
+\xi_0 (\omega ) = - \frac{2L}{\pi^2} \frac{\omega^2}{\omega_0^2 - \omega^2 - i \omega \gamma_0 } h_0 \delta (\omega )
+\,.
+\end{align}
+
+It is a fact from classical mechanics that the absorbed energy of an oscillator subject to an external impulsive force is 
+%
+\begin{align}
+E 
+= \frac{1}{2 m_0 } \abs{ \int_{ - \infty }^{ \infty  } F(t) e^{-i \omega_0 t} \dd{t}}^2
+= \frac{ML^2}{\pi^{4} } \abs{ \int_{ - \infty }^{ \infty  } \ddot{h}_{xx}^{TT}(t) e^{-i \omega_0 t} \dd{t}}^2
+\,,
+\end{align}
+%
+and since the force is impulsive we can integrate by parts twice: so, we get 
+%
+\begin{align}
+E = 16 M L^2 f_0^{4} \abs{h_{xx}^{TT} (f_0 )}^2
+\,,
+\end{align}
+%
+which is the energy of the GW component at frequency \(\omega_0 \): we can invert it as 
+%
+\begin{align}
+\abs{h_{xx}^{TT} (f_0 )}^2 = \frac{1}{16L^2 f_0^{4}} \frac{E}{M}
+\,.
+\end{align}
+
+The transfer function can be written as 
+%
+\begin{align}
+\xi_0 (\omega ) = - \frac{2L}{\pi^2} \frac{\omega^2}{(\omega - \omega_{+}) (\omega-\omega_{-})} h^{TT}_{xx} (\omega )
+\qquad \text{where} \qquad
+\omega_{\pm} = \pm \sqrt{\omega_0 ^2 - \qty(\frac{\gamma_0 }{2})^2} - i \frac{\gamma_0 }{2}
+\,.
+\end{align}
+
+We suppose that the incoming burst is a delta in time: then, it has components at all possible frequencies.
+
+Then, we get 
+%
+\begin{align}
+\xi_0 (t) = \frac{2L}{\pi^2} h_0 \tau_{GW} \int_{- \infty }^{ \infty } \frac{ \dd{\omega }}{2 \pi } \frac{\omega^2}{(\omega - \omega_{+}) (\omega-\omega_{-})} e^{-i \omega t} \approx \frac{2L }{\pi^2} h_0 \omega_0 \tau_{GW} e^{-\gamma_0 t / 2} \sin(\omega_0 t)
+\,.
+\end{align}
+
+By saying that the signal is a delta, do we mean that \(\tau_{GW} \ll 1 / \omega_0 \)? YES, where \(\omega_0 \) is the frequency of the oscillator, which in our case is faster than the characteristic frequency of the dissipation. 
+
+\subsection{Antenna pattern}
+
+The sensitivity of the detector depends both on the direction from which che GW comes and the polarization.
+
+Specifically, if \(\vec{J}\) is the orientation of the bar, then we have 
+%
+\begin{align}
+h _{\text{out}} = \hat{J}^{i} \hat{J}^{j} h_{ij} (t)
+\,.
+\end{align}
+
+If \(\theta \) is the angle between the bar direction and the source-Earth vector, we will have 
+%
+\begin{align}
+h _{\text{out}} = h_{+} \sin^2\theta 
+\,.
+\end{align}
+
+For a generic rotation, including a rotation of angle \(\varphi \) around the axis \(z'\) of the source system where the \(+\) and \(\times \) polarizations are defined, we get 
+%
+\begin{align}
+h _{\text{out}} (t) = h_{+}' \sin^2\theta \cos 2 \varphi + h_{ \times }' \sin^2 \theta \sin 2 \varphi 
+\,.
+\end{align}
+
+The response of the bar is quite small: we cannot really measure it; however we can transfer the energy to a lighter oscillator, which will move more. 
+
+We need to tune the bar so that its resonant frequency is the same as the one of the other bar. 
+
+The ratio of masses is \(\mu \), then we will have 
+%
+\begin{align}
+A_t = \frac{A_0 }{\sqrt{\mu }}
+\,,
+\end{align}
+%
+and we typically can choose \(\mu \lesssim \num{e-4}\), if we go lower other noise sources dominate.
+
+\subsection{Thermal and readout noise}
+
+We saw that we can represent the stages of our processing by their transfer functions \(H_{i}(\omega )\). At each stage, though, we can get noise.
+
+This noise is then processed by the later transfer functions. 
+
+Say we have 
+%
+\begin{align}
+y(\omega ) = H_1 (\omega ) H_2 (\omega ) H_3 (\omega ) x(\omega )
+\,,
+\end{align}
+%
+and we have noise after each stage. 
+
+We can have thermal noise: noisy signals are described by a deterministic part plus a stochastic noisy part.
+
+We can model this thermal noise using a Green's function: we get 
+%
+\begin{align}
+x(t) = \dots
+\,.
+\end{align}
+
+For thermal noise, we can assume that it is completely uncorrelated: it is due to billions of atomic interactions, so it loses memory quickly.
+This means that the noise is white noise: the PSD is constant in freqency. Therefore, we can show that 
+%
+\begin{align}
+\expval{x^2(t)} \approx \frac{A}{m_0^2 \omega_0^2} \qty(1 - e^{- \gamma_0 t})
+\,.
+\end{align}
+
+Then, the average total energy of the mode is 
+%
+\begin{align}
+\expval{E(t)} 
+= \frac{1}{2} m_0 \omega_0^2 \expval{x^2(t)} + \frac{1}{2} m_0 \expval{\dot{x}^2(t)}
+\approx \frac{A}{2 m_0 \gamma_0 } \qty(1 - e^{-\gamma_0 t})
+\,.
+\end{align}
+
+So, we get asymptotically 
+%
+\begin{align}
+\expval{E(t)} \to 2 k_B T m_0 \gamma_0 
+\,,
+\end{align}
+%
+which is the fluctuation-dissipation theorem: the PSD of the noise is 
+%
+\begin{align}
+S_F(\omega ) = 4 k_B T m_0 \gamma_0 
+\,.
+\end{align}
+
+We can always write 
+%
+\begin{align}
+F(\omega ) = Z(\omega ) \dot{x}(\omega )
+\,,
+\end{align}
+%
+for any linear system.
+So, the FDT gives us 
+%
+\begin{align}
+S _{\text{F, th}} (\omega ) = 4 k_B T \Re{Z(\omega )}
+\,.
+\end{align}
+
+This is in terms of the PSD of the force, which can be connected to that of the velocity.
+
+If the energy of the DoF must be asymptotically constant, there needs to be a lossy mechanism giving energy to the DoF. 
+
+\todo[inline]{Is there a problem with many transducers?}
+\todo[inline]{Could we analyze different wavelengths by modifying the frequency}
+
+The temperatures are of the order of milliKelvin, we cool them to close to zero by isolating them and making liquid helium go through everything. 
+
+In this case the approximation of constant temperature is quite good.
+
 \end{document}

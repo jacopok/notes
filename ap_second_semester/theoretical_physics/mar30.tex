@@ -170,6 +170,7 @@ The constant \(C\) is for normalization, and we choose it such that the normaliz
 \,.
 \end{align}
 
+\begin{claim}
 The final result we get from this manipulation is 
 %
 \begin{align}
@@ -179,7 +180,7 @@ u_r (k) &= \frac{(\slashed{k} + M)}{\sqrt{2 M \qty(\omega_{k} + M )}} u_r (M)
 \displaystyle
 \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} 
 \xi_{r}
-\end{array}\right] \\
+\end{array}\right] \label{eq:positive-energy-dirac-solution-momentum-space}\\
 v_r (k) &= \frac{(-\slashed{k} + M)}{\sqrt{2 M \qty(\omega_{k} + M )}} v_r (M)
 = \left[\begin{array}{c}
 \displaystyle
@@ -188,9 +189,57 @@ v_r (k) &= \frac{(-\slashed{k} + M)}{\sqrt{2 M \qty(\omega_{k} + M )}} v_r (M)
 \end{array}\right]
 \,.
 \end{align}
+\end{claim}
 
 The first solution is the positive-energy one, the second is the negative-energy one. 
 Notice that the expression \(\vec{k} \cdot \vec{\sigma}\) yields a \(2 \times 2\) complex matrix, which is applied to the vector \(\xi_{r}\).
+
+We prove the second equality for the positive energy solution. 
+
+\begin{proof}
+We begin by writing out the operator 
+%
+\begin{align}
+\slashed{k}  = \gamma^{\mu } \eta_{\mu \nu } k^{\nu }
+= \left[\begin{array}{cc}
+\mathbb{1} \omega_{k} & 0 \\ 
+0 & -\mathbb{1} \omega_{k}
+\end{array}\right]
+- 
+\left[\begin{array}{cc}
+0 & \vec{k} \cdot \vec{\sigma} \\ 
+-\vec{k} \cdot \vec{\sigma} & 0
+\end{array}\right]
+= \left[\begin{array}{cc}
+\mathbb{1} \omega_{k} & -\vec{k} \cdot \vec{\sigma} \\ 
+\vec{k} \cdot \vec{\sigma} & - \mathbb{1} \omega_{k}
+\end{array}\right]
+\,.
+\end{align}
+
+So, when we apply this (plus \(M\) times the identity) to the solution 
+%
+\begin{align}
+u_r(M) = \sqrt{2M} \left[\begin{array}{c}
+\xi_{r} \\ 
+0
+\end{array}\right]
+\,,
+\end{align}
+%
+we get: 
+%
+\begin{align}
+\qty(\slashed{k} + M) u_{r}(M) = 
+\sqrt{2M} \left[\begin{array}{c}
+\qty(\omega_{k} + M)  \xi_{r} \\ 
+\qty(\vec{k} \cdot \vec{\sigma}) \xi_{r}
+\end{array}\right]
+\,,
+\end{align}
+%
+which we can divide by \(\sqrt{2M (\omega_{k} + M)}\) to find the desired expression, equation \eqref{eq:positive-energy-dirac-solution-momentum-space}.
+\end{proof}
 
 \begin{claim}
 The conjugate spinors \(\overline{u}\) and \(\overline{v}\) in momentum space read respectively: 
@@ -223,7 +272,7 @@ Recall that \(\overline{u} = u ^\dag \gamma^{0}\), and that in our representatio
 \,.
 \end{align}
 
-Then, as we take the 
+The conjugate of a product, \(\overline{AB}\), is equal to 
 \end{proof}
 
 

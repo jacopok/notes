@@ -35,7 +35,7 @@ so, since the exponentials are nonzero we can write these two equations as
 \end{align}}
 
 Let us now assume that the particle we are considering is not massless, so we can go in its rest frame. 
-If we were to consider a massless particle, we could work with the \(N=2\) Weyl spinors. Instead, we will need the \(N=4\) ones. 
+If we were to consider a massless particle, we could work with the \(N=2\) Weyl spinors. Instead, we will need the \(N=4\) Dirac spinors. 
 
 In the rest frame \(k^{\mu } = (M, \vec{0})\), so the two equations read 
 %
@@ -43,7 +43,7 @@ In the rest frame \(k^{\mu } = (M, \vec{0})\), so the two equations read
 0&= \qty(\slashed{k} - M) u(k)  \\
 &= \qty(\gamma^{\mu }k_{\mu } - M) u(k)  \\
 &= \qty(\gamma^{0} M - M ) u(k) = M \qty(\gamma^{0} - \mathbb{1}) u(k)  \\
-&=\qty( \left[\begin{array}{cc}
+&=M\qty( \left[\begin{array}{cc}
 \mathbb{1} & 0 \\ 
 0 & -\mathbb{1}
 \end{array}\right] 
@@ -111,7 +111,7 @@ v_{r} (M) = \sqrt{2M} \left[\begin{array}{c}
 %
 where \(r=1,2\) and \((\xi_{r})^{i} = \delta^{i}_{r}\) are unit vectors, a basis for the 2D space. 
 
-If we choose this normalization, then we will have \(\overline{u}_{r}(M) u_s(M) = 2 M \delta_{rs}\) and \(\overline{v}_{r}(M) v_s(M) =- 2 M \delta_{rs}\), while all the \(u\)s and the \(v\)s are respectively orthogonal: \(\overline{u}_{r} v_s =  \overline{v}_{r} u_s\). 
+If we choose this normalization, then we will have \(\overline{u}_{r}(M) u_s(M) = 2 M \delta_{rs}\) and \(\overline{v}_{r}(M) v_s(M) =- 2 M \delta_{rs}\), while all the \(u\)s and the \(v\)s are respectively orthogonal: \(\overline{u}_{r} v_s =  \overline{v}_{r} u_s = 0\). 
 
 This choice corresponds to having chosen to have the spin of the particle along the third axis, as we shall see shortly. 
 
@@ -120,19 +120,128 @@ The fact that we were able to find a basis of four independent vectors for the s
 We put ourselves in the rest frame: if we wish to compute the solutions \(u(k)\) and \(v(k)\) in a generic frame we need to perform a Lorentz boost from the rest frame. 
 In order to study how this boost affects the spinor, we need to study the spinorial representation of the Lorentz boost, \(S(\Lambda)\). 
 
-Instead, we can use the following trick: 
+Instead of explicitly writing out the full representation of the Lorentz matrix we are interested in, which is long and complicated, we can use the following trick: 
 %
-\begin{align}
-\qty(\slashed{k} - M) \qty(\slashed{k} + M) 
-=
-\qty(\slashed{k} + M) \qty(\slashed{k} - M)
-= \gamma^{\mu } \gamma^{\nu } k_{\mu }k_{\nu } - M^2  = \frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} k_{\mu } k_{\nu } - M^2 = k^2-M^2 = 0
+\begin{align} \label{eq:on-shell-equality}
+\qty(\slashed{k} - M) \qty(\slashed{k} + M)
+&=
+\qty(\slashed{k} + M) \qty(\slashed{k} - M) \\
+&= \gamma^{\mu } \gamma^{\nu } k_{\mu }k_{\nu } - M^2   \\
+&= \frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} k_{\mu } k_{\nu } - M^2 = k^2-M^2 = 0
 \,,
 \end{align}
 %
-since \( \frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} = \eta^{\mu \nu }\), and we are always implicitly assuming that the zeroth component of the momentum satisfies \(k^{0} = \omega_{k}\).
+since \( \frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} = \eta^{\mu \nu }\), and the square of the 4-momentum always corresponds to the mass of the particle under our assumptions (of working on-shell).
 
+This allows us to quickly prove that the ansatz 
+%
+\begin{align}
+u(k) = C (\slashed{k} + M) u(M)
+\,
+\end{align}
+%
+satisfies the KG equation (with positive energy), since 
+%
+\begin{align}
+(\slashed{k} - M) u(k) = C \qty(k^2 - M^2) u(M) = 0
+\,,
+\end{align}
+%
+which follows from the identity \eqref{eq:on-shell-equality} which we just proved.
 
+\todo[inline]{But then we could use something which is not \(u(M)\) for our rest-frame solution, right?}
+
+Similarly, for the negative-energy case we have the solution 
+%
+\begin{align}
+v(k) = C (\slashed{k} - M )v(M)
+\,,
+\end{align}
+%
+which will satisfy \((\slashed{k} + M) v(k) = 0\).
+
+The constant \(C\) is for normalization, and we choose it such that the normalization is the same as in the rest frame: so, the identities to be satisfied are 
+%
+\begin{align} \label{eq:normalization-spinor}
+\overline{u}_{r} (k) u_{s}(k) &= 2 M \delta_{rs}  \\
+\overline{v}_{r} (k) v_{s}(k) &= - 2 M \delta_{rs}  \\
+\overline{u}_{r} (k) v_{s}(k) &=   
+\overline{v}_{r} (k) u_{s}(k) = 0  
+\,.
+\end{align}
+
+The final result we get from this manipulation is 
+%
+\begin{align}
+u_r (k) &= \frac{(\slashed{k} + M)}{\sqrt{2 M \qty(\omega_{k} + M )}} u_r (M)
+= \left[\begin{array}{c}
+\xi_{r}\sqrt{\omega_{k} + M} \\ 
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} 
+\xi_{r}
+\end{array}\right] \\
+v_r (k) &= \frac{(-\slashed{k} + M)}{\sqrt{2 M \qty(\omega_{k} + M )}} v_r (M)
+= \left[\begin{array}{c}
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} \xi_{r}\\
+\xi_{r}\sqrt{\omega_{k} + M} 
+\end{array}\right]
+\,.
+\end{align}
+
+The first solution is the positive-energy one, the second is the negative-energy one. 
+Notice that the expression \(\vec{k} \cdot \vec{\sigma}\) yields a \(2 \times 2\) complex matrix, which is applied to the vector \(\xi_{r}\).
+
+\begin{claim}
+The conjugate spinors \(\overline{u}\) and \(\overline{v}\) in momentum space read respectively: 
+%
+\begin{align}
+\overline{u}_{r} (k) = \overline{u}_{r}(M) \frac{\qty(\slashed{k} + M)}{\sqrt{2 (\omega_{k} + M)}}
+= \left[\begin{array}{cc}
+\xi_{r}^{\top} \sqrt{\omega_{k} + M}, & 
+\displaystyle
+- \xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}
+\end{array}\right] \\
+\overline{v}_{r} (k) = \overline{v}_{r}(M) \frac{\qty(-\slashed{k} + M)}{\sqrt{2 (\omega_{k} + M)}}
+= \left[\begin{array}{cc}
+\displaystyle
+\xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}, &
+-\xi_{r}^{\top} \sqrt{\omega_{k} + M}
+\end{array}\right]
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Recall that \(\overline{u} = u ^\dag \gamma^{0}\), and that in our representation 
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+\,.
+\end{align}
+
+Then, as we take the 
+\end{proof}
+
+\begin{claim}
+We can derive the normalization conditions \eqref{eq:normalization-spinor} from the explicit expressions of the solutions.
+\end{claim}
+
+\begin{claim}
+The following identities hold:
+%
+\begin{align} 
+u_{r}^\dag (k) u_{s}(k) &= 2 \omega_{k}\delta_{rs}  \\
+v_{r}^\dag (k) v_{s}(k) &= 2 \omega_{k} \delta_{rs}  \\
+u_{r}^\dag (k) v_{s}(-k) &=   
+v_{r}^\dag (k) u_{s}(-k) = 0  
+\,.
+\end{align}
+
+Notice that now we have a dagger instead of a bar.
+\end{claim}
 
 \end{document}
-

@@ -32,10 +32,10 @@ folder_names = {
 
 schedule = {
     0: ["tp", "gp"],
-    1: ["tp", "ap", "ma"],
+    1: ["tp", "ap"],
     2: ["ap", "rp"],
     3: ["tc", "rp"],
-    4: ["gp", "tc", "ma"]
+    # 4: ["gp", "tc"]
 }
 
 def next_monday():

@@ -1,4 +1,91 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-4-27, \\ compiled \\ \today}
+
+We discussed the Fluctuation Dissipation Theorem last time:
+we have qualitative arguments, if by equipartition each DoF has energy \(1/2 k_B T\) and it is dissipative there must be some forcing mechanism.
+
+A lossy harmonic oscillator gets from its environment a PSD given by 
+%
+\begin{align}
+S_x (\omega ) = \frac{4 k_B T}{\omega^2}
+\frac{m_0 \gamma_0 }{m_0^2 \gamma_0^2 + 
+\qty( \frac{m_0}{\omega } \qty(\omega_0^2 - \omega^2))^2}
+\,.
+\end{align}
+
+What does the noise look like in the bar-transducer system?
+The noise by the transducer is very small at resonance, the noise of the bar does not have features there: the PSD is 
+%
+\begin{align}
+S _{\text{h, th}} = \pi \frac{k_B T}{M v_s^2} 
+\frac{f_0^3}{f^{4}} \qty( \frac{1}{Q_0} + \frac{1}{\mu Q_t} \frac{\qty(f^2-f_0^2)^2 + \qty(f f_0 / Q_0 )^2}{f_0^{4}})
+\,.
+\end{align}
+
+\todo[inline]{Missing bit\dots still to understand}
+
+\section{Gravitational Wave Interferometry}
+
+\subsection{Mach-Zender interferometer}
+
+We consider a laser with the electric field 
+%
+\begin{align}
+\vec{E} _{\text{in}} = \vec{E}_{0} \exp(-i \qty(\omega_{l} t - k_l t))
+\,,
+\end{align}
+%
+where the subscript \(l\) means ``laser'', we include it to remind ourselves with the GW parameters.
+
+After the first beamsplitter the reflected wave picked up a phase: 
+%
+\begin{align}
+E_T = \frac{E _{\text{in}}}{\sqrt{2}} e^{i \pi }
+\qquad \text{and} \qquad
+E_R = \frac{E _{\text{in}}}{\sqrt{2}} e^{i \Delta \phi } 
+\,,
+\end{align}
+%
+where we insert some prism which delays the reflected wave by \(\Delta \phi \). 
+
+So the output value is 
+%
+\begin{align}
+E _{\text{out}} = \frac{E_{T}}{\sqrt{2}} e^{i \pi }
++ \frac{E_{R}}{\sqrt{2}} = E _{\text{in}} \qty(1 + e^{i \Delta \phi })
+\,,
+\end{align}
+%
+so the initial power is multiplied by \((1 + \cos( \Delta \phi )) / 2 \). 
+
+So, is energy not conserved? This output is the same on both ends of the beamsplitter. The phase of \(\pi \) is picked up only if the index of refraction increases. This includes a correction: then energy is conserved.
+
+\subsection{Michelson-Morley interferometer}
+
+In the detector frame we can treat the GW as a Newtonian force acting on the mirrors: 
+%
+\begin{align}
+F_{x} \approx \frac{m}{2} x_0 \ddot{h}_{xx}^{TT} 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\ddot{x} = \frac{1}{2} x_0 \ddot{h}^{TT}_{xx}
+\,.
+\end{align}
+
+This only holds if \(x \ll \lambda_{GW}\), which means \(f \ll c/ L  \approx \SI{100}{kHz} (L / \SI{3}{km} )\).
+
+If we insert the displacement for the mirrors we find 
+%
+\begin{align}
+I _{\text{out}} = E_0^2 \sin^2 \qty(k \qty(L_x - L_y + h_0 L \cos(\omega_{GW} t)))
+\,.
+\end{align}
+%
+
 \end{document}

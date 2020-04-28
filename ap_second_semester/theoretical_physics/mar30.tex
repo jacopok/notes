@@ -272,12 +272,123 @@ Recall that \(\overline{u} = u ^\dag \gamma^{0}\), and that in our representatio
 \,.
 \end{align}
 
-The conjugate of a product, \(\overline{AB}\), is equal to 
+We can then compute 
+%
+\begin{align}
+\overline{u}_{r} (k) &= \left[\begin{array}{c}
+\xi_{r}\sqrt{\omega_{k} + M} \\ 
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} 
+\xi_{r}
+\end{array}\right] ^\dag
+\gamma_0  \\
+&= \left[\begin{array}{cc}
+\xi_{r}^{\top} \sqrt{\omega_{k} + M}, & 
+\xi_{r}^{\top} \displaystyle
+\frac{(\vec{k} \cdot \vec{\sigma})}{\sqrt{\omega_{k} + M}}
+\end{array}\right] \gamma_0   \marginnote{\(\vec{k}\) and \(\xi_{r}\) are real, \(\sigma = \sigma ^\dag\).}\\
+&=  \left[\begin{array}{cc}
+\xi_{r}^{\top} \sqrt{\omega_{k} + M}, & 
+-\xi_{r}^{\top} \displaystyle
+\frac{(\vec{k} \cdot \vec{\sigma})}{\sqrt{\omega_{k} + M}}
+\end{array}\right]
+\,.
+\end{align}
+
+The computation for the negative energy solution is analogous.
 \end{proof}
 
 \begin{claim}
 We can derive the normalization conditions \eqref{eq:normalization-spinor} from the explicit expressions of the solutions.
 \end{claim}
+
+\begin{proof}
+Writing out the multiplication explicitly for the real solutions we have: 
+%
+\begin{align}
+\overline{u}_{r}(k) u_s(k) &=
+\left[\begin{array}{cc}
+\xi_{r}^{\top} \sqrt{\omega_{k} + M}, & 
+\displaystyle
+- \xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}
+\end{array}\right]
+\left[\begin{array}{c}
+\xi_{s}\sqrt{\omega_{k} + M} \\ 
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} 
+\xi_{s}
+\end{array}\right]  \\
+&= \xi_{r}^{\top} \sqrt{\omega_{k} +M }
+\xi_{s} \sqrt{\omega_{k} + M}
+- \xi_{r}^{\top} 
+\frac{(\vec{k} \cdot \vec{\sigma})}{\sqrt{\omega_{k} + M}}
+\frac{(\vec{k} \cdot \vec{\sigma})}{\sqrt{\omega_{k} + M}}
+\xi_{s}  \label{eq:normalization-condition-step-positive-energy}\\
+&= \delta_{rs} (\omega_{k} + M) - \delta_{rs} \frac{\abs{k}^2}{\omega_{k} + M}  \\
+&= \delta_{rs} \frac{(\omega_{k} + M)^2 - \abs{k}^2}{\omega_{k} + M}  \\
+&= \delta_{rs} \frac{M^2 + 2 \omega_{k} M + \omega_{k}^2 - \abs{k}^2}{\omega_{k} + M} = 2M \delta_{rs}  \frac{\omega_{k} + M}{\omega_{k} + M}
+\marginnote{Used \(\omega_{k}^2 - \abs{k}^2 = M^2\)}
+\,,
+\end{align}
+%
+where we applied the identity 
+%
+\begin{align}
+(\vec{a} \cdot \vec{\sigma}) (\vec{b} \cdot \vec{\sigma}) = \qty(\vec{a} \cdot \vec{b}) \mathbb{1} + i \qty(\vec{a} \times \vec{b}) \cdot \vec{\sigma} 
+\,,
+\end{align}
+%
+which follows from the commutation and anticommutation relations 
+%
+\begin{align}
+\qty[\sigma_{a}, \sigma_{b}] &= 2i \epsilon_{abc} \sigma_{c}  \\
+\qty{\sigma_{a}, \sigma_{b}} &= 2\delta_{ab} \mathbb{1}
+\,.
+\end{align}
+
+Now we can replicate the calculation for the negative energy solution: 
+%
+\begin{align}
+\overline{v}_{r} v_s &=
+\left[\begin{array}{cc}
+\displaystyle
+\xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}, &
+-\xi_{r}^{\top} \sqrt{\omega_{k} + M}
+\end{array}\right]
+\left[\begin{array}{c}
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} \xi_{s}\\
+\xi_{s}\sqrt{\omega_{k} + M} 
+\end{array}\right]  \\
+&= \delta_{rs} \qty( \frac{\abs{k}^2}{\omega_{k} + M}  - \omega_{k} - M) \\
+&= -2M \delta_{rs}
+\,,
+\end{align}
+%
+where we skipped some steps since we can recognize the opposite of the expression we found earlier, equation \eqref{eq:normalization-condition-step-positive-energy}. 
+
+For the mixed terms, instead, we get 
+%
+\begin{align}
+\overline{v}_{r} u_{s} &= 
+\left[\begin{array}{cc}
+\displaystyle
+\xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}, &
+-\xi_{r}^{\top} \sqrt{\omega_{k} + M}
+\end{array}\right]
+\left[\begin{array}{c}
+\xi_{s}\sqrt{\omega_{k} + M} \\ 
+\displaystyle
+\frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}} 
+\xi_{s}
+\end{array}\right]  \\
+&= \xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}
+\xi_{s} \sqrt{\omega_{k} +M} - 
+\xi_{r}^{\top} \frac{\vec{k} \cdot \vec{\sigma}}{\sqrt{\omega_{k} + M}}
+\xi_{s} \sqrt{\omega_{k} +M} = 0 = \overline{u}_{r} v_s
+\,.
+\end{align}
+\end{proof}
 
 \begin{claim}
 The following identities hold:
@@ -292,5 +403,9 @@ v_{r}^\dag (k) u_{s}(-k) = 0
 
 Notice that now we have a dagger instead of a bar.
 \end{claim}
+
+\begin{proof}
+In order to see what these solutions are we need to compute \(u_{r} ^\dag\) 
+\end{proof}
 
 \end{document}

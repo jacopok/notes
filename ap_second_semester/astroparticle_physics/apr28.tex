@@ -1,4 +1,153 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-4-28, \\ compiled \\ \today}
+
+Let us discuss the Standard Model of Particle Physics. 
+
+Our symmetry is 
+%
+\begin{align}
+\text{Lorentz} \otimes 
+SU(3)_{c}  \otimes
+SU(2)_{L} \otimes
+U(1)_{Y}
+\,.
+\end{align}
+
+Starting from the symmetry, the only other prescription needed are the quantum numbers of the various particles: we can make a table. 
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{rcccc}
+& Name & \(T_3\) (SU(2)) & \(Y\) & \(Q\) \\
+\cline{2-5}
+\ldelim\{{4}{*}[Leptons (no \(SU(3)\) charge)] &
+\(\nu_{L}\) & \(+ 1 / 2\) & \(- 1/ 2\) & 0  \\
+& \(e^{-}\) & \(- 1/ 2\) & \(- 1/ 2\) & \(-1\)  \\
+& \(\cancelto{}{\nu_{R}}\) & 0 & 0 & 0 \\
+& \(e^{-}_{R}\) & 0 & \(-1\) & \(-1\) \\
+ \\
+\ldelim\{{2}{*}[Higgs scalar] &
+\(\phi^{+}\) & \(+1 / 2\) & \(+ 1/2\) &  \(+1\) \\
+&\(\phi^{0}\) & \(-1 / 2\) & \(+1 /2 \) & \(0\) \\
+ \\
+\ldelim\{{4}{*}[Quarks (\(SU(3)_c\) triplets)] &
+\(u_L\) & \(+ 1/ 2\) & \(1 / 6\) & \( 2 / 3\) \\ 
+& \(d_L\)& \(- 1/ 2\) & \(1 / 6\) & \(- 1/ 3\) \\
+& \(u_R\)& \(0\) & \(2/3\) & \(2/ 3\) \\
+& \(d_R\)& \(0\) & \(- 1/3\) & \(- 1/ 3\) 
+\end{tabular}
+\label{tab:particles}
+\caption{Particles}
+\end{figure}
+
+Here we write only one of the generations for both leptons and quarks.
+The quantum numbers for the other generations are the same. An unanswered question is \emph{why} exactly there are three families.
+
+We are always computing the electric charge as \(Q = T_3 + Y\).
+Sometimes we write ``1'' for the right-handed quarks under \(T_3 \), this is not the eigenvalue but it is used to mean ``singlet''.
+
+For the \(SU(3)\) we have 8 generators, for \(SU(2)\) we have three generators, for \(U(1)\) we only have 1 generator.
+
+The assignment of the charges cannot come from the symmetry, it must be determined experimentally.
+
+The right-handed neutrino does not appear here: it should be invariant under any gauge transformation. This would then be the \emph{sterile} neutrino: it would not interact with matter by any of the forces of the Standard Model.
+
+It makes sense not to include it \emph{a priori} then, however we can keep it in mind: it is a DM candidate.
+
+Can we say anything about its possible mass? There are schemes in which the RH neutrino enters, and in which it can be assigned a mass. However, in general this is a free parameter: in some contexts we can give it a specific value, but we cannot say anything about its mass from basic Standard Model theory.
+
+There are experiments at Fermilab which could point indirectly at their existence.
+
+The rule is always: 
+\begin{quote}
+    \emph{Write all the terms in your Lagrangian which are invariant under your symmetry and which have dimension \( 4\).}
+\end{quote}
+
+Should we not include also some prescription for the couplings? 
+No, this is included in the symmetry: if we have the coupling constants \(g_S\), \(g\) (weak) and \(g'\) (hypercharge) we can determine everything else.
+
+The issue is that, before including the Higgs boson, everything is massless.
+
+Gluons and quarks have the same ``destiny'': there is confinement when \(g_S\) becomes large.
+
+The \(SU(2) \times U(1)_{Y}\) symmetry is spontaneously broken to \(U(1)_{\text{em}}\). If we had 4 massless DoF before, they must still be there but they have become massive.
+
+These three particles would have become Goldstone bosons, but instead they become the longitudinal component of the three vector bosons.
+
+The charged Higgs component \(\phi^{+}\) gives mass to the \(W^{\pm}\) vector bosons of the electroweak interaction, the \(\phi^{0}\) gives mass to the \(Z^{0}\) vector boson. 
+
+So, we know how to write the kinetic terms \(F^{\mu \nu } F_{\mu \nu }\), and the mass terms \(\overline{\psi} \slashed{D} \psi \). 
+
+Now we move to the terms coming from the spontaneous breaking of the symmetry. 
+
+We have the massless \(G^{a}\) and \(A^{\mu }\), and the massive \(W^{\pm}\) and \(Z^{0}\). These are the terms we've written so far: where do the \(\overline{\psi} m  \psi \) terms come from?
+
+The kinetic term has dimension \(2^2\), which is fine, the wavefunction has dimension \(3/2\) while the derivative has dimension \(1\).
+So, also a term \(\overline{\psi} m \psi \) would be fine, dimension-wise: but is it symmetric? we can write it as \(\overline{\psi}_{L} \psi_{R}\). Let us consider electrons for example.
+
+But \(e_L\) is in an \(SU(2)\) doublet, while the \(e_R\) is an \(SU(2)\) singlet. So, the object is not a singlet. This is not invariant under \(SU(2)_{L}\).
+
+So, does this mean that fermions are massless? Before introducing \(\phi \), in the pure Yang-Mills theory, they indeed are.
+
+There is only one kind of field which is invariant under spacetime transformations: a scalar. So, we could introduce a term like 
+%
+\begin{align}
+\overline{\psi}_{L}^{i} \phi_{i} \psi_{R}
+\,,
+\end{align}
+%
+where \(i\) is an index going from 1 to 2, an \(SU(2)\) index. 
+This is not a mass term, but an interaction term between the Higgs field and the electron-left and electron-right.
+
+Then, the way the mechanism works is by the fact that the VEV of \(\phi \) is \(v \neq 0\), so at low energies we will see an effective mass term. The constant we put before this will look like 
+%
+\begin{align}
+y^{ij} \overline{\psi}^{i}_{L} \phi \psi_{R}^{j}
+\,,
+\end{align}
+%
+where now the indices \(i\) and \(j\) run over the possible fermions.
+We will then have 
+%
+\begin{align}
+M_\ell = y_{\ell} v 
+\,,
+\end{align}
+%
+and the matrix will be \(y^{ij} = \delta^{ij} y^{j}\).
+
+Similarly we will have mass terms for the leptons, up and down quarks.
+These are free parameters of the theory, and they must be different. 
+The VEV of the Higgs field is fixed by the masses of the \(W\) and \(Z\) bosons: so it is of the order \SI{100}{GeV}.
+
+But the mass of the electron is \(m_e \sim \SI{511}{keV}\): so, we must have \(y_e \sim \num{e-5}\). 
+
+The price we pay for this is the fact that the number of free parameters increases. This is a ``dirty part'' of the theory.
+
+Why are these parameters so different? This is the \emph{flavour problem}.
+
+We could have a term which looks like 
+%
+\begin{align}
+\overline{u}_{L} \gamma^{\mu } d_{L} W_{\mu }
+\,.
+\end{align}
+
+Thi is not the most general thing: we could write 
+%
+\begin{align}
+\overline{u}_{L} U_{L} ^{\dag, (u)} \gamma^{\mu } U_{L}^{(d)} d_{L} W_{\mu }
+\,.
+\end{align}
+%
+The product \(U ^\dag U\) is called \(V_{CKM}\), the Cabibbo matrix, which gives us \(CP\) violation in the Standard model.
+
+It does seem, though, that the amount of CP violation in the Standard Model is too small to satisfy the Sacharov conditions.
+
+There are many parameters: the couplings, the mass terms inside \(y^{ij}\), the terms \(\mu \) and \(\lambda \) inside of \(V(\phi )\).
+
+
+
 \end{document}

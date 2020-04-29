@@ -1,4 +1,224 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Neutrinos}
+
+\marginpar{Wednesday\\ 2020-4-29, \\ compiled \\ \today}
+
+The Yukawa Lagrangian is written as 
+%
+\begin{align}
+\mathscr{L}_{\text{Yukawa}}
+= - y_{e} L ^\dag_{a} \phi_{a} e_{R}
+-y_{d} O ^\dag_{a} \phi_{a} d_{r}
+-y_{a} O ^\dag_{a} \epsilon_{ab} \phi ^\dag_{b} u_{R} 
++ \text{h.c.}
+\,.
+\end{align}
+
+Commonly this is written as \(\overline{\psi}_{L} \phi \psi_{R}\), this however does not mean \(\overline{\psi} = \psi ^\dag \gamma^{0}\), since it is applied to a 2-component spinor. 
+
+The index \(a\) is an SU(2) index, and the Higgs field looks like 
+%
+\begin{align}
+\phi = \left[\begin{array}{c}
+\phi^{+} \\ 
+\phi^{0}
+\end{array}\right]
+\,;
+\end{align}
+%
+we have two terms like 
+%
+\begin{align}
+\left[\begin{array}{cc}
+\nu_{L} & e^{-}_{L}
+\end{array}\right]
+\left[\begin{array}{c}
+\phi^{+} \\ 
+\phi^{0}
+\end{array}\right]
+e_{R}
+\,,
+\end{align}
+%
+and also 
+%
+\begin{align}
+\left[\begin{array}{cc}
+\nu_{R}^{c} & e^{+}_{R}
+\end{array}\right]
+\left[\begin{array}{c}
+\phi^{+} \\ 
+\phi^{0}
+\end{array}\right]
+e_{R}^{-}
+\,.
+\end{align}
+
+This means that the neutrino is massless: the VEV of \(\phi_{a}\) is 0 for \(\phi^{+}\), and \(v\) for \(\phi^{0}\). 
+So, we get Dirac mass terms for the electron but not for the neutrino.
+
+Ettore Majorana proposed a way to give a mass for the neutrino (or any neutral fermion, really).
+
+The symmetries of the SM are, generally, \(\text{Lorentz} \otimes \text{Gauge}\).
+We then write all the terms we can which are invariant under these. 
+
+From these we can derive conservation laws, such as that for the Baryon number. We define 
+%
+\begin{align}
+B(\text{Quark}) = \frac{1}{3} \qquad \text{and} \qquad
+B(\text{antiQuark}) = - \frac{1}{3}
+\,,
+\end{align}
+%
+while for any other particle we assign 0.
+This is conserved, but we need not impose it: the most general Lagrangian we write with our symmetries has it.
+This is a global symmetry: \(U(1)_{B}\). 
+
+The way to find it is to construct a baryonic current \(j^{\mu }_{B}\), in such a way that it is conserved in our Lagrangian, then the integral of \(j^{0}_{B}\) will give the conserved charge.
+
+This has heavy consequences: the lightest baryon is the proton. If it were to decay, this would not conserve baryon number. 
+
+If we are allowed to violate baryon number conservation we can have a decay like \(p \to e^{+ } + \gamma \), which would occur and destabilize atoms.
+
+\todo[inline]{Recover a couple minutes}
+
+We get a bound on the lifetime of the proton of 
+%
+\begin{align}
+\tau _{\text{proton}} > \SI{e32}{yr}
+\,.
+\end{align}
+
+We also have lepton number conservation.
+This is more interesting since we have neutrinos, which are hard to detect.
+
+We will see a method to give mass to neutrinos, which will however violate lepton number conservation.
+
+Parity and charge are massively violated.
+
+CP symmetry moves us from \(e^{-}_{L}\) to \(e^{+}_{L}\) to \((e^{+})_{R}\).
+
+If we have CP symmetry, then if in our model we have a \(\nu_{L}\) we will also need to have a \(\nu^{c}_{R}\).
+That is, there are only two degrees of freedom between them.
+
+In the SM we introduce only left-handed neutrinos. However, we can also introduce 
+%
+\begin{align}
+\nu_{R} \iff (\nu^{c})_{L}
+\,.
+\end{align}
+
+The beta decay is always 
+%
+\begin{align}
+n \to p + e^{-} + \overline{\nu}_{e}
+\,,
+\end{align}
+%
+and we look at the spectrum of the energies of the electron. 
+
+If the neutrinos are massless the curve gets to a certain point, if they are massive the curve stops a bit earlier. 
+People have done this to a very high degree of precision.
+
+What we have found up to now is \(m_{\nu_{e}} < \SI{2}{eV}\) in these beta decay experiments. 
+The result that the neutrinos are massive did not come from here. 
+
+From cosmic ray interactions we have charged pions, which decay into 
+%
+\begin{align}
+\pi^{+} \to \mu^+ + \nu_{\mu }
+\,.
+\end{align}
+
+Then, the muon decays into 
+%
+\begin{align}
+\mu^+ \to e^{+} + \nu_{e} + \overline{\nu}_{\mu }
+\,.
+\end{align}
+
+So, we expect twice as many \(\nu_{\mu }\) as \(\nu_{e}\).
+
+We can build detectors in order to see these. We expect a muonic neutrino and antineutrino. 
+
+The state \(\nu_{\mu }\) is a charge eigenstate, not a mass eigenstate: in general it will be written as \(a \nu_1 + b n_2 +c \nu_3 \).
+
+Its time-evolution will then exhibit an oscillation in the probability to still find a \(\nu_{\mu }\), since the mass components oscillate at different frequencies.
+
+The experiment OPERA found that some of the neutrinos from CERN going to Gran Sasso were converted to \(\nu_{\tau }\) and such. 
+
+Also, Kamiokande found a ratio different from 2 of \(\nu_{\mu }\) to \(\nu_{e}\).
+
+So, if there is an oscillation it means that the neutrinos must indeed be massive, or at least some of them must be.
+
+We put a Dirac mass term for the \(\nu_{R}\): the mass will look like 
+%
+\begin{align}
+m_{\nu } =  y_{\nu } v
+\,.
+\end{align}
+
+But we know that the masses of the neutrinos are very small, from beta decay but also from structure formation in the early universe.
+
+So, since \(v \sim \SI{100}{GeV}\) and \(m_{\nu } \lesssim \SI{1}{eV}\) we must have \(y_{\nu } \sim \num{e-11}\).
+
+The Dirac mass term is 2+2 degrees of freedom. 
+
+If \(L\) is a lepton doublet, we can write a term \(L \phi \).
+
+However, \(L\) has an index: but we can consider a term 
+%
+\begin{align}
+L^{i} \phi L^{j} \phi \epsilon_{ij}
+\,.
+\end{align}
+
+We can do this for the neutrinos but not for the other particles since they are uncharged. 
+
+So the term looks like 
+%
+\begin{align}
+\nu_{L} \phi^{0} \nu_{L} \phi^{0}
+\,.
+\end{align}
+
+When we compute the VEV we get a mass for the neutrino. 
+
+This is for the left-handed neutrino. The dimension of this term is 5, since the fermions have dimension \(3/2\), while the Higgs has dimension 1: we should put a mass term in the denominator.
+We will then have a term which looks like 
+%
+\begin{align}
+y^2_{\nu } \frac{L L \phi^2}{M}
+\,,
+\end{align}
+%
+so that in the end \(m_{\nu } = y^2_{\nu } v^2 / M\).
+
+This \(M\) must be very large in order to account for the small neutrino mass.
+
+This is a sort of seesaw model: the mass matrix looks something like 
+%
+\begin{align}
+\left[\begin{array}{cc}
+0 & m _{\text{Dirac}} \\ 
+m _{\text{Dirac}} & M
+\end{array}\right]
+\,.
+\end{align}
+
+The thing is: \(\nu_{R}\) has no gauge numbers. 
+The mass of the right-handed neutrino is not ``protected'' by the gauge symmetry, it can be as large as it likes. 
+
+% If neutrinos possess a Majorana mass, 
+
+It is important to find out whether the mass of the neutrino is due to a Majorana or Dirac mass term.
+
+The experiments which can determine this are called \emph{neutrinoless double beta decay}.
+
+If this were found, it would mean that neutrinos have a Majorana mass.
+
+This concludes the discussion of the particle physics standard model. Next week we are going to start looking at the standard model of cosmology.
+
 \end{document}

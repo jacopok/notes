@@ -1,4 +1,114 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-4-29, \\ compiled \\ \today}
+
+So, we can write out the \textbf{general solution} for the Dirac equation: the spinor and its conjugate are
+%
+\begin{subequations}
+\begin{align}
+\psi (x) &=
+\frac{1}{(2 \pi )^{3/2}}
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r=1}^{2} \qty[
+    c_r(k) u_r(k) e^{-ikx}
+    d^{*}_{r} (k) v_r(k) e^{ikx}
+]_{\omega_{k} = k^{0}}
+\\
+\overline{\psi} (x) &=
+\frac{1}{(2 \pi )^{3/2}}
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r=1}^{2} \qty[
+    d_r(k) \overline{v}_r(k) e^{-ikx}
+    c^{*}_{r} (k) \overline{u}_r(k) e^{ikx}
+]_{\omega_{k} = k^{0}}
+\,.
+\end{align}
+\end{subequations}
+
+The functions \(c_r\) and \(d_r\) represent the two degrees of freedom of the positive and negative energy solution respectively.
+
+The important thing to recall is 
+%
+\begin{align}
+\psi_{+} \sim cu \qquad \text{and} \qquad
+\psi_{-} \sim d ^* v
+\,.
+\end{align}
+
+Note that \(c_r\) and \(d_r\) are scalar functions, while \(u_r\) and \(v_r\) are 4D spinors.
+
+\subsection{Energy projectors}
+
+We wish to distinguish positive and negative energy solutions: so, we define the projector onto the positive and negative energy subspaces, 
+%
+\begin{align}
+\Lambda_{\pm } (k) = \frac{\pm \slashed{k} + M}{2M}
+\,.
+\end{align}
+
+These two are an incomplete set of orthogonal projectors.
+
+\begin{claim}
+They satisfy 
+%
+\begin{subequations}
+\begin{align}
+\Lambda_{\pm}^2 (k) &= \Lambda_{\pm} (k)  \\
+\Lambda_{+} (k) + \Lambda_{-} (k) &= \mathbb{1}  \\
+\Lambda_{+} (k) \Lambda_{-} (k) &= 0  \\
+\Tr[\Lambda_{\pm} (k)] &= 2
+\,.
+\end{align}
+\end{subequations}
+\end{claim}
+
+\begin{proof}
+Let us first establish what \(\slashed{k}^2\) is equal to: 
+%
+\begin{align}
+\slashed{k}^2 =
+\gamma^{\mu } k_{\mu } \gamma^{\nu } k_{\nu }
+= \frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }}k_{\mu } k_{\nu }
+= \eta^{\mu \nu } k_{\mu } k_{\nu }
+= k^2 \mathbb{1}_{4}
+\,.
+\end{align}
+
+So, we can compute 
+%
+\begin{align}
+\Lambda_{\pm}^2 (k) &= \frac{1}{4 M^2}\qty[\slashed{k}^2 + M^2 \mathbb{1} \pm 2 \slashed{k} M]  \\
+&= \frac{1}{4 M^2} \qty[2 M \mathbb{1} \pm 2 \slashed{k}M] = \frac{\pm \slashed{k} + M}{2M}
+\,.
+\end{align}
+
+For the second property, we get 
+%
+\begin{align}
+\Lambda_{+} + \Lambda_{-} = \frac{+ \slashed{k} + M - \slashed{k} + M}{2M} = \frac{2M}{2M} = \mathbb{1} 
+\,.
+\end{align}
+
+For the third expression, we find 
+%
+\begin{align}
+\Lambda_{+} \Lambda_{-} \propto \qty(\slashed{k} + M) \qty(\slashed{k} - M) = \slashed{k}^2 - M^2 = 0
+\,.
+\end{align}
+
+For the fourth expression, instead, we find that since \(\slashed{k}\) is traceless the trace is equal to that of \((M / 2 M)  \mathbb{1}\), which is equal to \(2\) since spinorial matrices are 4-dimensional.
+\end{proof}
+
+We can apply these projectors to the solutions we know how to write from the general expression \eqref{eq:dirac-equation-solutions}: 
+%
+\begin{align}
+\Lambda_{+} u_r (k) &= \frac{1}{2M} (\slashed{k} + M)^2 u_r(M) = (\slashed{k} + M) u_r (M) = u_r(k) \\
+\Lambda_{-} u_r (k) &= \frac{1}{2M} (-\slashed{k} + M) (\slashed{k} + M) u_r(M) = (\slashed{k} + M) u_r (M) = 0 \\
+\Lambda_{+} v_r (k) &= \frac{1}{2M} (\slashed{k} + M) (\slashed{k} - M) u_r(M) = 0 \\
+\Lambda_{-} v_r (k) &= \frac{1}{2M} (-\slashed{k} + M) (\slashed{k} - M) u_r(M) = - v_r(k)
+\,.
+\end{align}
+%
+
 \end{document}

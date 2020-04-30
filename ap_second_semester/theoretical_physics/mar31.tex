@@ -435,19 +435,50 @@ where we applied the definition of the spin generator \(\Sigma^{i}\) \eqref{eq:r
 So, we can take the square modulus of \(\omega^{\mu }\) in the rest frame, and normalize it by \(M^2\). Since this is a 4-vector this will be a covariant quantity: 
 %
 \begin{align}
-\frac{\omega_{\mu } \omega^{\mu }}{M^2}
+\eval{\frac{\omega_{\mu } \omega^{\mu }}{M^2}}_{\text{rest frame}}
 = \Sigma^{i} \Sigma_{i} = - \Sigma^{i} \Sigma^{i} = -\frac{1}{4} \left[\begin{array}{cc}
 \sigma_{i} \sigma_{i} & 0 \\ 
 0 & \sigma_{i } \sigma_{i}
 \end{array}\right]
 = - \frac{3}{4} \mathbb{1}
-\,.
+\,. \marginnote{Factor \(3\) since there is a sum over \(i\).}
 \end{align}
 
 This is consistent with the expression we know from quantum mechanics, that is, the eigenvalue of \(s^2\) being \(s (s+1)\) with \(s = 1/2\).
 
 \todo[inline]{What about the negative sign?}
 
+So, the PL vector gives us a way to define the spin of a particle in a relativistic manner. 
 
+We can use a unit vector \(n^{\mu }\) which is orthogonal to the momentum of the particle, that is, such that \(n^{\mu } p_{\mu }=0\) and \(n^{\mu } n_{\mu }=-1\), to define a spin in a generic direction: 
+%
+\begin{align}
+\eval{\frac{\omega^{\mu }n_{\mu }}{M}}_{\text{rest frame}} = - \vec{\Sigma} \cdot \vec{n}
+\,.
+\end{align}
+
+We can also define the helicity in this frame work, using the vector 
+%
+\begin{align}
+n^{\mu }_{p} = \frac{1}{M} \left[\begin{array}{c}
+\abs{p} \\ 
+\omega_{p} \hat{p}
+\end{array}\right]
+\,,
+\end{align}
+%
+which has square modulus \((\abs{p}^2 - \omega_{p}^2) / M^2 = -1\), and is orthogonal to the momentum: their product is \(\propto \abs{p} \omega_{p}  - \omega_{p} \abs{p} = 0\).
+
+For some geometrical intuition: if we trace out a 2D spacetime diagram with the directions of time and \(\hat{p}\), the momentum will be some timelike vector, while this \(n^{\mu }_{p}\) will be its reflection with respect to the light-like axis.
+
+With this, we recover 
+%
+\begin{align}
+\eval{\frac{\omega^{\mu }n_{\mu , p}}{M}}_{\text{rest frame}}
+= - \Sigma_{p} = - \vec{\Sigma} \cdot \hat{p}
+\,.
+\end{align}
+%
+\subsection{Chirality}
 
 \end{document}

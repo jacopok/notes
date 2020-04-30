@@ -1,4 +1,209 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-4-30, \\ compiled \\ \today}
+
+Today we will improve on the Zel'dovich approximation with the adhesion approximation.
+
+We see plots from a 1992 paper from the professor. 
+
+We are taking collisionless particles in 1D. The Zel'dovich approximation breaks down since the particles going through each other does not make sense: they will have gravitational interactions in that case.
+
+We will discuss the difference, in structure formation, between ``pancakes'' and ``filaments''.
+
+The issue seems to be that, after the trajectories of the particles cross the matrix of transformation between Eulerian and Lagrangian coordinates becomes singular.
+
+How do we get extended structures? By continuity of the eigenvalues. 
+
+We cannot really estimate the global size of the structures here, they are transient anyway.
+
+\section{The adhesion approximation}
+
+We add a fictitious term for the gravitational ``sticking'' of particles into pancakes or filaments. 
+
+We start from the equations
+%
+\begin{align}
+\bigd{\vec{u}}{\tau } &= \nu \nabla^2 \vec{u}  \\
+\bigd{\eta }{\tau } &= - \eta \nabla \cdot \vec{u}
+\,.
+\end{align}
+
+We have basically added a kinematic viscosity term to the Navier-Stokes equations.
+The coefficient \(\nu \) is called the kinematic viscosity coefficient, which has dimensions \(\qty[\nu ] = L^2 /T\).
+
+This is completely artificial, but we do it to model the effect of gravitational interactions. 
+
+We are basically modelling gravity as a local effect. 
+
+What we obtain is called the 3D Burgers' equation. 
+We can obtain turbulence here, but the system is solvable.
+
+\todo[inline]{Is the system solvable because at small scales the vortices die out?}
+
+Let us assume that the velocity is irrotational: \(\vec{u} = \nabla \Phi \). The quantity \(\Phi \) is called a velocity potential. 
+
+Substituting in, we get 
+%
+\begin{align}
+\pdv{\Phi }{\tau } + \frac{1}{2} \qty(\nabla \Phi )^2 = \nu \nabla^2 \Phi 
+\,,
+\end{align}
+%
+which is called the Bernoulli equation.
+
+To see that these are equivalent: if we take the gradient, we get 
+%
+\begin{align}
+\frac{1}{2} \partial^{i}  \qty(\partial_{j} \Phi \partial^{j} \Phi )
+&= \partial^{j} \Phi \partial_{i } \partial_{j} \Phi  
+= u^{j} \partial_{j} u^{i}
+\,.
+\end{align}
+
+The other derivatives commute, so if we take the gradient of the equation we get back Euler's equation.
+
+The issue is the fact that this is a nonlinear equation.
+
+We do the Hopf-Cole transformation to solve the Burgers equation. So, we define 
+%
+\begin{align}
+\Phi = - 2 \nu \log U
+\,,
+\end{align}
+%
+where \(U\) is called the ``expotential''.
+This simplifies the equation into the Fokker-Planck equation: 
+%
+\begin{align}
+\pdv{U}{\tau } = \nu \nabla^2 U
+\,.
+\end{align}
+
+This is a linear diffusion equation. It models heat transfer, but it is also the Schrödinger equation after a Wick\footnote{Pronounced ``Vick'', not ``Uick''. } rotation.
+
+This is a parabolic equation. 
+The Poisson equation, for instance, is elliptic: it only requires spatial initial conditions. Hyperbolic equations include the wave equation: they require initial conditions. 
+
+Parabolic equations require both: they imply infinite-speed transmission of signal. 
+
+We use the ansatz 
+%
+\begin{align}
+U(\vec{x}, \tau ) = f(\tau ) g(\vec{x})
+\,,
+\end{align}
+%
+and we substitute 
+%
+\begin{align}
+f(\tau ) = e^{E \tau }
+\,,
+\end{align}
+%
+so that we need to solve 
+%
+\begin{align}
+E g(\vec{x}) = \nu \nabla^2 g(\vec{x})
+\,.
+\end{align}
+
+In Fourier space, then, 
+%
+\begin{align}
+E_k g_{\vec{k}} = - \nu k^2 g_{\vec{k}}
+\,.
+\end{align}
+%
+So, a general solution will be a superposition: 
+%
+\begin{align}
+U(\vec{x}, \tau ) = \int \frac{ \dd[3]{k}}{(2 \pi )^3}
+e^{- \nu k \tau^2} g_{\vec{k}} e^{i \vec{k} \cdot \vec{x}}
+\,. 
+\end{align}
+
+The standard thing to do to get some boundary conditions is to look at a kernel of the function, its impulse response.
+
+We get 
+%
+\begin{align}
+K(\vec{x}, \tau | \hat{q}, 0) \overset{\tau \to 0}{ \to } \delta (\vec{x} - \vec{q})
+\,.
+\end{align}
+
+In order to get this, we need to set \(g_{\vec{k}} = e^{- i \vec{k} \cdot \vec{q}}\). 
+This yields 
+%
+\begin{align}
+K (\vec{x}, \tau | \vec{q}, 0) &=
+\int \frac{ \dd[3]{k}}{(2\pi )^3} e^{- \nu k^2\tau } e^{i \vec{k} \cdot \qty(\vec{x} - \vec{q})}  \\
+&= (4 \pi \nu \tau )^{-3/2} \exp(- \frac{(\vec{x} - \vec{q})^2}{4 \nu \tau })
+\,.
+\end{align}
+
+To get the initial conditions \(U_0 (\vec{q})\) we use the Chapman-Kolmogorov equation: 
+%
+\begin{align}
+U(\vec{x}, \tau ) = \int \dd[3]{q} U_0 (\vec{q}) K(\vec{x}, \tau | \vec{q}, 0)
+\,.
+\end{align}
+
+This is a consequence of Bayes's theorem: we can marginalize over a parameter like
+%
+\begin{align}
+\mathbb{P}(A) = \int \dd{B} \mathbb{P}(B) \mathbb{P}(A | B)
+\,.
+\end{align}
+
+Inverting the definition of \(U\), we have 
+%
+\begin{align}
+U_0 (\vec{q}) = e^{- \Phi_0 (\vec{q})  / 2 \nu } = e^{ \phi_0 / 2 \nu }
+\,,
+\end{align}
+%
+and then we get 
+%
+\begin{align}
+U(\vec{x}, \tau ) = \int \frac{ \dd[3]{q}}{(4 \pi \nu \tau )^{3/2}}
+e^{- S(\vec{x}, \vec{q}, \tau )  / 2 \nu }
+\,.
+\end{align}
+
+The Bernoulli equation is the same as the Hamilton-Jacobi equation for the action.
+
+Here, 
+%
+\begin{align}
+S(\vec{x}, \vec{q}, \tau ) = \frac{(\vec{x} - \vec{q})^2}{2 \tau } - \phi_0 (\vec{q})
+\,,
+\end{align}
+%
+and then we only need to recover the velocity: we need to differentiate and get 
+%
+\begin{align}
+\vec{u} (\vec{x}, \tau ) = - 2 \nu \frac{\nabla U }{U }
+= \frac{ \int \dd[3]{q}\frac{\vec{x} - \vec{q}}{\tau } e^{- S(\vec{x}, \vec{q}, \tau ) / 2 \nu }}{ \int \dd[3]{q} e^{- S (\vec{x}, \vec{q}, \tau ) / 2 nn}}
+\,.
+\end{align}
+
+We are interested in small values for \(\nu \). This parameter regulates the thickness of our pancakes, since it gives us a length scale for the derivative in the ``Navier-Stokes'' equation.
+
+In this limit, the exponential is very peaked, and we can consider only the absolute minima of the action, just like in the path integral. 
+
+If we perform this approximation, we get 
+%
+\begin{align}
+U(\vec{x}, \tau ) = e^{ - S(\vec{x}, \vec{q}, \tau )  / 2 \nu } \sum _{s} j_s (\vec{x}, \vec{q}, \tau )
+\,,
+\end{align}
+%
+where we expanded the action around the minimum to get 
+%
+\begin{align}
+j_S = \qty[\det \pdv[2]{S}{q_{i}}{q_{j}}]^{- 1/2}
+\,.
+\end{align}
+
 \end{document}

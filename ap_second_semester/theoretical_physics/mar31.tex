@@ -481,4 +481,172 @@ With this, we recover
 %
 \subsection{Chirality}
 
+We can define another matrix beyond the \(\gamma^{\mu }\): it is 
+%
+\begin{align}
+\gamma_{5} = - \frac{i}{4} \epsilon_{\mu \nu \rho \sigma } \gamma^{\mu } \gamma^{\nu } \gamma^{\rho } \gamma^{\sigma } = + i \gamma^{0} \gamma^{1} \gamma^{2} \gamma^{3}
+\,.
+\end{align}
+
+Note the sign convention: we choose \(\epsilon^{0123} = +1 \), which means that we get \(\epsilon_{0123} = -1\), since we must lower an odd amount of spacelike indices.
+
+\begin{claim}
+The \(\gamma^{5}\) matrix is self adjoint: 
+%
+\begin{align}
+\gamma_{5} = \qty(\gamma_{5})^\dag
+\,,
+\end{align}
+%
+it squares to the identity: 
+%
+\begin{align}
+\qty(\gamma_5 )^2 = \mathbb{1}
+\,,
+\end{align}
+%
+and it anticommutes with the other gamma matrices: 
+%
+\begin{align}
+\qty{\gamma^{\mu } , \gamma_5 } = 0
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We will need to move a few matrices around, so first let us establish that, since 
+%
+\begin{align}
+\frac{1}{2} \qty{\gamma^{\mu }, \gamma^{\nu }} = \eta^{\mu \nu }
+\,,
+\end{align}
+%
+we have that the square of \(\gamma^{0} \) is \(\mathbb{1}\), while the square of \(\gamma^{i} \) is \(- \mathbb{1}\). 
+
+On the other hand, we can switch the places of two different \(\gamma \) matrices as long as we switch the global sign. So, first of all let us show that the square of the \(\gamma_5 \) matrix is the identity: we write a number in place of the \(\gamma \), for clarity.  
+%
+\begin{align}
+\qty(\gamma_{5})^2 &= i^2 01230123 = - 01230123  \\
+&= (-)^{4} 00123123 = (-)^{6} 00112323 = (-)^{7} 00112233  \\
+&= - \mathbb{1} (-\mathbb{1})^3 = \mathbb{1}
+\,.
+\end{align}
+
+For the self-adjointness, we have 
+%
+\begin{align}
+\gamma_5 ^\dag &= + \frac{i}{4} \epsilon_{\mu \nu \rho \sigma } 
+\gamma^{\sigma \dag} \gamma^{\rho \dag} \gamma^{\nu \dag} \gamma^{\mu \dag} \\
+&= \frac{i}{4} \epsilon_{\mu \nu \rho \sigma } \gamma^{\sigma } \gamma^{\rho } \gamma^{\nu } \gamma^{\mu }  \\
+&= \frac{i}{4} \epsilon_{\mu \nu \rho \sigma }
+\gamma^{\mu } \gamma^{\nu } \gamma^{\rho } \gamma^{\sigma }
+\,.
+\end{align}
+
+Here we used the fact that the Dirac matrices are self-adjoint, and that we can get from the configuration \(\mu \nu \rho \sigma \) to \(\sigma \rho \nu \mu \) in an even number of ``hops''. At each hop we can exchange the matrices by changing sign, like before, so there is no issue. The matrices we are exchanging are surely different since they are multiplied by the Kronecker symbol.
+
+For the anticommutation: say we have the expression \(\gamma^{\mu } \gamma_5 \) for some \(\mu \) and we want to bring the \(\gamma^{\mu } \) to the other side. We can commute it with the Kronecker symbol and itself, and we need to anticommute it with three matrices different from itself. This gives us three minus signs, so the result has an opposite sign to what we started with: \(\gamma^{\mu } \gamma_5 = - \gamma_5 \gamma^{\mu }\), what we wanted to prove. 
+\end{proof}
+
+In the Dirac representation, 
+%
+\begin{align}
+\gamma_5 = \left[\begin{array}{cc}
+0 & \mathbb{1} \\ 
+\mathbb{1} & 0
+\end{array}\right] 
+\,.
+\end{align}
+%
+
+\begin{claim}
+The \(\gamma_{5}\) matrix commutes with the spin tensor \(\Sigma^{\mu \nu }\).
+\end{claim}
+
+\begin{proof}
+Recall that \(\Sigma^{\mu \nu} \propto \qty[\gamma^{\mu}, \gamma^{\nu }]\). Then, as before writing the indices without the \(\gamma \)s: 
+%
+\begin{align}
+\qty[\gamma_5, \Sigma^{\mu \nu }] &\propto 5 \mu \nu - 5 \nu \mu - \mu \nu 5 + \nu \mu 5   \\
+&= -\mu 5 \nu + \nu 5 \mu + \mu 5 \nu - \nu 5 \mu  =0
+\,,
+\end{align}
+%
+where we anticommuted \(\gamma_5 \) with \(\gamma^{\mu }\) and \(\gamma^{\nu }\).
+\end{proof}
+
+The fact that these commute means that they can be simultaneously diagonalized.
+
+This allows us to classify the eigenvectors by the eigenvalue f \(\gamma_5 \) instead of the spin.
+
+The \(N=4\) spinorial representation is reducible: it is the sum of 2 2-dimensional representations.
+
+The \(\gamma_5 \) matrix is called the \textbf{chirality} operator, using it we can define the projectors 
+%
+\begin{align}
+P_{R, L} = \frac{\mathbb{1} \pm \gamma_5 }{2}
+\,,
+\end{align}
+%
+where the minus corresponds to the left projector, while the plus corresponds to the right.
+
+\begin{claim}
+These are indeed a complete set of orthogonal projectors: they are idempotent, orthogonal and they sum to the identity.
+
+Also, they are self adjoint.
+\end{claim}
+
+\begin{proof}
+First, let us show idempotence; we denote either of \(L\) or \(R\) by \(x\).
+
+\begin{align}
+P_x^2 = \frac{1}{4} \qty(1 \pm 2 \gamma_5  + \gamma_5^2)
+= \frac{1}{4} \qty(2 \mathbb{1} \pm 2 \gamma_5 ) = P_x
+\,.
+\end{align}
+
+Then, to see orthogonality: 
+%
+\begin{align}
+P_L P_R = \frac{1}{4} \qty(\mathbb{1} - \gamma_5 ) \qty(\mathbb{1} + \gamma_5 ) = \frac{1}{4} \qty(\mathbb{1}^2 - \gamma_5^2) = 0
+\,.
+\end{align}
+
+Finally, they sum to the identity: 
+%
+\begin{align}
+P_L + P_R = \frac{1}{2} \qty(\mathbb{1} - \gamma_5 ) + \frac{1}{2} \qty(1 + \gamma_5) = \mathbb{1}
+\,.
+\end{align}
+
+They are self-adjoint because \(\mathbb{1}\) and \(\gamma_5 \) are.
+\end{proof}
+
+We can then project any Dirac spinor into the left or right chiral subspaces by applying these matrices. 
+
+The projections onto the right-chiral subspace will have a \(+1 \) eigenvalue for \(\gamma_5 \), the projections onto the left-chiral subspace will have eigenvalue \(-1\).
+
+These chiral spinors are the irreducible \(N=2\) representations which constitute the full spinor.
+
+For the massless case we could also have used a \(N=2\) representation for the full space, the Weyl spinor. This would have behaved like a left or right chiral spinor.
+
+Finally, we can define the \textbf{conjugate chiral spinors}: 
+%
+\begin{align}
+\overline{\psi}_{L} &= \qty(\psi_{L} ^\dag) \gamma^{0} 
+= \psi ^\dag P_L \gamma^{0} = \overline{\psi} P_R \\
+\overline{\psi}_{R} &= \qty(\psi_{R} ^\dag) \gamma^{0} 
+= \psi ^\dag P_R \gamma^{0} = \overline{\psi} P_L 
+\,,
+\end{align}
+%
+where we used the fact that 
+%
+\begin{align}
+\gamma^{0} \qty(1 \pm \gamma_5 ) 
+= \qty(1 \mp \gamma_5 ) \gamma^{0}
+\,,
+\end{align}
+%
+since the identity commutes with \(\gamma^{0}\), while \(\gamma^{5}\) anticommutes with it.
 \end{document}

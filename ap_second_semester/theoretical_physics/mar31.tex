@@ -189,7 +189,7 @@ K_{i} = \Sigma^{i0} = -\frac{i}{2} \left[\begin{array}{cc}
 %
 and of rotations: 
 %
-\begin{align}
+\begin{align} \label{eq:rotation-spin-generator-definition}
 \Sigma_{i} = \frac{1}{2} \epsilon_{ijk} \Sigma^{jk} 
 = \frac{1}{2} \left[\begin{array}{cc}
 \sigma_{i} & 0 \\ 
@@ -213,6 +213,240 @@ S(\Lambda ) = \exp( - \frac{i}{2} \theta_{k} \Sigma_{k})
 \end{align}
 %
 where we used the angle \(\theta_{k} = \epsilon_{ijk} \omega^{ij}\).
+These \(\Sigma_{k}\) are called the spin operators. They result in an \emph{internal rotation} of the spinor corresponding to a rotation of our coordinates.
+
+In the rest frame of the particle, the basis states we chose are the eigenstates of \(\Sigma_{3}\): We have 
+%
+\begin{align}
+\Sigma_{3} u_r (M) = \frac{1}{2} \left[\begin{array}{cc}
+\sigma_3  & 0 \\ 
+0 & \sigma_3 
+\end{array}\right]
+\sqrt{2M}
+\left[\begin{array}{c}
+\xi_{r} \\ 
+0
+\end{array}\right]
+= \pm \frac{1}{2} u_R (M)
+\,,
+\end{align}
+%
+where we have either \(+\) or \(-\) depending on whether \(r=1\) or \(2\), respectively.
+
+Also, the negative energy solutions are basis states: we get 
+%
+\begin{align}
+\Sigma_{3} v_r (M) = \frac{1}{2}
+\left[\begin{array}{cc}
+\sigma_3  & 0 \\ 
+0 & \sigma_3 
+\end{array}\right]
+\sqrt{2M}
+\left[\begin{array}{c}
+0   \\
+\xi_{r} 
+\end{array}\right]
+= \pm \frac{1}{2} v_r(M)
+\,.
+\end{align}
+
+So, our particles have spin \(1/2\). We can have the \(z\) component of the spin to be \(\pm 1 /2 \), and positive and negative energy: in the end, these are 4 degrees of freedom. 
+
+Note that we have eigenstates of \(\Sigma_3 \) specifically because of the way we chose \(\xi_{r}\): we can have other equivalent choices. 
+
+\subsection{The helicity operator}
+
+\begin{claim}
+The spin projection along a given axis is not a good quantum number: it does not commute with the Hamiltonian, \(\qty[H , \Sigma_3 ] \neq 0\).
+\end{claim}
+
+\begin{proof}
+What is the Dirac Hamiltonian? 
+Recall that we started the whole discussion by requiring that the Dirac equation should have the form 
+%
+\begin{align}
+i \partial_{t} \psi = H_D \psi 
+\,,
+\end{align}
+%
+and the ansatz we used was 
+%
+\begin{align}
+H_D = \alpha \cdot \vec{p} + \beta M
+\,,
+\end{align}
+%
+and we found that for a massive particle we can write \(\alpha_{i}\) and \(\beta \) as 4-dimensional matrices, which in the Dirac representation are 
+%
+\begin{align}
+\alpha_{i} = \left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\qquad \text{and} \qquad
+\beta = \left[\begin{array}{cc}
+\mathbb{1} & 0 \\ 
+0 & -\mathbb{1}
+\end{array}\right]
+\,.
+\end{align}
+
+So, the Hamiltonian is a 4-dimensional matrix, which looks like 
+%
+\begin{align}
+H_D = \left[\begin{array}{cc}
+M & \vec{\sigma} \cdot \vec{p}\\ 
+ \vec{\sigma} \cdot \vec{p} & -M
+\end{array}\right]
+\,.
+\end{align}
+
+So, let us compute the commutator: we get 
+%
+\begin{align}
+\qty[\vec{\alpha} \cdot \vec{p} + \beta M, \Sigma_3 ]
+= \qty[\vec{\alpha}, \Sigma_{3}] \cdot \vec{p} + M \qty[\beta, \Sigma_3 ]
+\,.
+\end{align}
+
+We can just compute the two matrix commutators, since the momentum and the mass are fixed. We find, for each component:
+%
+\begin{align}
+\qty[\alpha_{i}, \Sigma_{3}] = 
+\frac{1}{2}
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+\left[\begin{array}{cc}
+\sigma_3  & 0 \\ 
+0 & \sigma_3 
+\end{array}\right] 
+- \frac{1}{2} 
+\left[\begin{array}{cc}
+\sigma_3  & 0 \\ 
+0 & \sigma_3 
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma_{i} \\ 
+\sigma_{i} & 0
+\end{array}\right]
+=  \frac{1}{2}
+\left[\begin{array}{cc}
+0 & \qty[\sigma_3, \sigma_{i}] \\ 
+\qty[\sigma_3, \sigma_{i}] & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+and we know that this is given by\footnote{A more elegent way to deal with these computations is to intrpret them in terms of tensor products of Pauli matrices: we have, for instance, \(\alpha_{i} = \sigma_{x} \otimes \sigma_{i}\), and there are explicit formulas for products in the form \((\sigma_{a } \otimes \sigma_{b})(\sigma_{c } \otimes \sigma_{d}) \) \cite[]{agartthaCommutatorsTensorProduct2018}.}
+%
+\begin{align}
+\qty[\sigma_{3}, \sigma_{i}] = 2i \epsilon_{3ik} \sigma_{k} 
+\,,
+\end{align}
+%
+so in the full expression we find 
+%
+\begin{align}(\sigma_{a } \otimes \sigma_{b})
+\qty[\alpha_{i}, \Sigma_3]
+=
+i \epsilon_{3ik} \alpha_{k}
+\,,
+\end{align}
+%
+while \(\beta \) and \(\Sigma_3 \) are both diagonal, and therefore they commute. So, we can finally say that 
+%
+\begin{align} \label{eq:spin-conservation-dirac}
+\qty[H_D, \Sigma_3 ] = i \epsilon_{3jk} p_{j} \alpha_{k} 
+\,,
+\end{align}
+%
+which is not zero \emph{unless} \(\vec{p}\) is oriented along the \(z\) axis.
+This, however, is not a covariant condition. 
+\end{proof}
+
+So, we define the \textbf{helicity} as the projection of the spin along the direction of motion: 
+%
+\begin{align}
+\Sigma_{p} = \frac{\vec{\Sigma} \cdot \vec{p}}{\abs{p}} = \vec{\Sigma} \cdot \hat{p}
+\,.
+\end{align}
+
+The helicity is a good quantum number. It commutes with the Dirac Hamiltonian, whereas \(\Sigma_3 \) does not.
+So, the eigenvalue of \(\Sigma_{p}\) is conserved: this makes it a good quantum number, since it provides a reliable description of the state.
+
+From the result we found before we can see that what we are basically doing here is calculating \(\Sigma_{p}\) along the momentum, which is equivalent (after a rotation of the axes) to setting \(\vec{p} = \abs{p} \hat{z}\).
+Then, from equation \eqref{eq:spin-conservation-dirac} we can see that \(\Sigma_{p}\) will commute with the Hamiltonian.
+
+\todo[inline]{This is much simpler than the solution proposed in the professor's notes, but just as valid, I think: after all, we can choose the coordinates in which we perform the calculation as we wish since in the end we get a covariant result.}
+
+\subsection{Pauli-Lubanski vector and helicity}
+
+We define the following pseudovector:\footnote{Pseudovector means that it is even under parity transformations \(P : \vec{x} \to - \vec{x}\).
+
+More formally, we can say that it transforms under spatial rotations like a vector density: if \(R \in O(3)\), a regular vector transforms like \(v' = R v\), but a pseudovector transforms like \(w' = (\det R) Rw \). So, while a vector is flipped by a parity: \(Pv = - v\) a pseudovector is not: \(P w = w\).
+
+We can obtain pseudovectors by taking the cross product of regular vectors. The magnetic field \(\vec{B}\) is an example of a pseudovector.
+}
+%
+\begin{align}
+\omega^{\mu } = \frac{1}{2} \epsilon^{\mu \nu \rho \sigma } J_{\nu \rho } p_{\sigma }
+\,,
+\end{align}
+%
+where \(J_{\nu \rho }\) is the total angular momentum tensor, which includes both an angular and spin component: 
+%
+\begin{align}
+J_{\nu \rho } = L_{\nu \rho } + \Sigma_{\nu \rho } 
+\qquad \text{where} \qquad
+L_{\nu \rho } = 2 x_{[\nu } p_{\rho  ]}
+\,.
+\end{align}
+
+There are two terms in the expression for \(\omega^{\mu }\), but the angular momentum one vanishes: we have 
+%
+\begin{align}
+\frac{1}{2} \epsilon^{\mu \nu \rho \sigma }L_{\nu \rho } p_{\sigma }
+= 
+\frac{1}{2} \epsilon^{\mu \nu \rho \sigma } \qty(x_{\nu }p_{\rho } - x_{\rho } p_{\nu }) p_{\sigma } =0
+\,,
+\end{align}
+%
+since in both cases we have the contraction of two copies of the momentum, which are symmetric in their indices, with the antisymmetric tensor. 
+
+Now, let us move to the rest frame of the particle, so that \(p^{\mu } = (M, \vec{0})\).
+Then, we will have 
+%
+\begin{align}
+\omega^{\mu } = \frac{M}{2} \epsilon^{\mu \nu \rho 0} \Sigma_{\nu \rho }
+\,.
+\end{align}
+
+Therefore, this vector is purely spatial since setting \(\mu =0\) means the RHS vanishes: so, \(\omega^{0} = 0\). On the other hand, we have 
+%
+\begin{align}
+\omega^{i} = \frac{M}{2} \epsilon^{0i \nu \rho } \Sigma_{\nu \rho } = \frac{M}{2} \epsilon^{i j k } \Sigma_{j k } = M \Sigma^{i}
+\,,
+\end{align}
+%
+where we applied the definition of the spin generator \(\Sigma^{i}\) \eqref{eq:rotation-spin-generator-definition}, and we moved from the four-dimensional Kronecker symbol to the three-dimensional one: we are allowed to move to three-vector indices since the case in which they are equal to zero is excluded by the first index being zero.
+
+So, we can take the square modulus of \(\omega^{\mu }\) in the rest frame, and normalize it by \(M^2\). Since this is a 4-vector this will be a covariant quantity: 
+%
+\begin{align}
+\frac{\omega_{\mu } \omega^{\mu }}{M^2}
+= \Sigma^{i} \Sigma_{i} = - \Sigma^{i} \Sigma^{i} = -\frac{1}{4} \left[\begin{array}{cc}
+\sigma_{i} \sigma_{i} & 0 \\ 
+0 & \sigma_{i } \sigma_{i}
+\end{array}\right]
+= - \frac{3}{4} \mathbb{1}
+\,.
+\end{align}
+
+This is consistent with the expression we know from quantum mechanics, that is, the eigenvalue of \(s^2\) being \(s (s+1)\) with \(s = 1/2\).
+
+\todo[inline]{What about the negative sign?}
 
 
 

@@ -39,6 +39,258 @@ As we did in the case of the Klein-Gordon equation, we start out by factoring ou
 \,,
 \end{align}
 %
-which we can plug into the expression for the Dirac equation.
+which we can plug into the expression for the Dirac equation: we find 
+%
+\begin{align}
+i \partial_0 \qty(e^{-iMt} \psi ') &= \qty[i \vec{\alpha} \cdot \qty(- \vec{\nabla} + i q \vec{A}) + \beta M + q A_0 ] \qty(e^{-iMt} \psi')  \\
+e^{-iMt } \qty(- i^2 + i \partial_0 ) \psi' &=
+e^{-iMt} \qty[i \vec{\alpha} \cdot \qty(- \vec{\nabla} + i q \vec{A}) + \beta M + q A_0 ] \psi'  \\
+i \partial_0 \psi' &= \qty[i \vec{\alpha} \cdot \qty(- \vec{\nabla} + i q \vec{A}) + (\beta - \mathbb{1}) M + q A_0 ] \psi'
+\,,
+\end{align}
+%
+which we can write using the explicit spinorial expressions for the \(\vec{\alpha}\) and \(\beta \) matrices; for clarity we also divide \(\psi '\) into two two-component spinors \(\varphi'\) and \(\chi '\):
+%
+\begin{align}
+\begin{split}
+i \partial_0 
+\left[\begin{array}{c}
+\varphi' \\ 
+\chi '
+\end{array}\right]
+ &= 
+\left[\begin{array}{cc}
+0 & i \vec{\sigma} \cdot (-\vec{\nabla} + i q \vec{A})  \\ 
+i \vec{\sigma} \cdot (-\vec{\nabla} + i q \vec{A}) & 0
+\end{array}\right]
+\left[\begin{array}{c}
+    \varphi' \\ 
+    \chi '
+\end{array}\right] \\
+&
++ \left[\begin{array}{cc}
+0 & 0 \\ 
+0 & -2M
+\end{array}\right] \left[\begin{array}{c}
+\varphi' \\ 
+\chi '
+\end{array}\right]
+\\
+&
++ \left[\begin{array}{cc}
+qA_0  & 0 \\ 
+0 & q A_0 
+\end{array}\right] \left[\begin{array}{c}
+\varphi' \\ 
+\chi '
+\end{array}\right]
+\,.
+\end{split}
+\end{align}
+
+Then we can read off the two \emph{coupled} equations for these 2D spinors: 
+%
+\begin{align}
+i \partial_0 \varphi ' &= i \vec{\sigma} \cdot \qty(- \vec{\nabla} + i q \vec{A}) \chi '
++ q A_0 \varphi '  \\
+i \partial_0 \chi ' &= i \vec{\sigma} \cdot \qty(- \vec{\nabla} + i q \vec{A}) \varphi ' +
+(- 2 M + q A_0 ) \chi '
+\,.
+\end{align}
+
+Notice that the mass only appears in the second equation: so, we can apply the nonrelativistic approximation, which amounts to saying that the mass \(M\) is the largest energy at play; formally, this means 
+%
+\begin{align}
+\abs{q A_0} \ll M 
+\qquad \text{and} \qquad
+\abs{\frac{\partial_0 \chi '}{\chi '}} \ll M
+\,,
+\end{align}
+%
+so we remove those terms in the second equation; if we bring the term \(2 M \chi '\) to the left hand side we get: 
+%
+\begin{align}
+\chi ' =  \frac{i}{2M} \vec{\sigma} \cdot \qty(- \vec{\nabla} + i q \vec{A}) \varphi '
+\,,
+\end{align}
+%
+so we have an explicit constraint on the value of \(\chi '\) if we know \(\varphi '\).
+
+We do not know \emph{a priori} the asymptotic relation of \(\chi '\) to \(\varphi '\), so we only made cancellations in terms which were comparable since they were all applied to \(\chi '\).
+
+Now, then we have found that, since \(\chi ' \sim \varphi ' / M\), the magnitude of \(\varphi '\) is much larger than that of \(\chi '\). 
+
+We can substitute what we found for \(\chi '\) into the first equation: we find 
+%
+\begin{align}
+i \partial_0 \varphi ' &= \frac{1}{2M} \qty[i \vec{\sigma} \cdot \qty(- \vec{\nabla} + iq \vec{A})]^2 \varphi ' + q A_0 \varphi '  \\
+&= q A_0 \varphi ' - \frac{1}{2M} \qty[- \vec{\sigma} \cdot \vec{\nabla} + iq \vec{\sigma} \cdot \vec{A}]^2 \varphi '
+\,.
+\end{align}
+
+This is the \emph{Pauli equation coupled to an external magnetic field}, the generalization of the Schrödinger equation to spin \(1/2\) charged particles.
+
+We can make it more explicit by squaring the differential operator.
+
+The sign convention in the notes is weird, in that a 3D vector written as \(\vec{x}\) does not consistently mean neither \(x^{i}\) nor \(x_{i}\).
+Instead, we have \(\vec{\nabla} = \partial_{i}  \) and \(\vec{A} = A^{i}\).
+
+When we write out a scalar product we imply that one index should be upper and one should be lower, if this is not the case already one of them must be raised or lowered. Once we are in component notation, though, we can move indices around as we like.
+
+So, explicitly we have 
+%
+\begin{align}
+\qty(- \vec{\sigma} \cdot \vec{\nabla} + i q \vec{\sigma} \cdot \vec{A})^2 \varphi'
+&= \qty(- \sigma^{i} \partial_{i} + i q \sigma^{i} A^{i})^2 \varphi'  \\
+&= \qty(- \sigma^{i} \partial_{i} - i q \sigma^{i} A_{i})^2 \varphi'  \\
+&= \qty( \sigma_{i} \partial_{i} + i q \sigma_{i} A_{i})^2 \varphi'  \\
+&= \qty( \sigma_{i} \partial_{i} + i q \sigma_{i} A_{i})
+\qty( \sigma_{j} \partial_{j} + i q \sigma_{j} A_{j}) \varphi '  \\
+&= \qty( \sigma_{i} \partial_{i} + i q \sigma_{i} A_{i})
+\qty(\sigma_{j} \qty(\partial_{j} \varphi ') + i q \sigma_{j} A_{j} \varphi ')  \\
+&= \sigma_{i} \sigma_{j} \qty[\partial_{i} \partial_{j} + iq \qty(\partial_{i} A_{j} + A_{j} \partial_{i} + A_{i} \partial_{j} ) - q^2 A_{i} A_{j}] \varphi '
+\,,
+\end{align}
+%
+and now we notice that all the terms except for \(\partial_{i} A_{j}\) are symmetric in \(ij\): so, we split the product \(\sigma_{i} \sigma_{j}\) into its symmetric and antisymmetric parts. 
+This yields 
+%
+\begin{align}
+\sigma_{i} \sigma_{j} = \frac{1}{2} \qty{\sigma_{i}, \sigma_{j}} + \frac{1}{2} \qty[\sigma_{i}, \sigma_{j}] = \delta_{ij} + i \epsilon_{ijk} \sigma_{k}
+\,,
+\end{align}
+%
+so we find 
+%
+\begin{align}
+\qty(- \vec{\sigma} \cdot \vec{\nabla} + i q \vec{\sigma} \cdot \vec{A})^2 \varphi'
+&=
+\qty(\delta_{ij} + i \epsilon_{ijk} \sigma_{k})
+\qty[\partial_{i} \partial_{j} + iq \qty(\partial_{i} A_{j} + A_{j} \partial_{i} + A_{i} \partial_{j} ) - q^2 A_{i} A_{j}] \varphi '  \\
+&= \qty[\partial_{i} \partial_{i} + i q \qty( \partial_{i} A_{i} + 2A_{i} \partial_{i}) - q^2 A_{i} A_{i}] \varphi '
++ \qty[i^2 q \partial_{i} A_{j} \epsilon^{ijk} \sigma_{k}] \varphi '  \\
+&= \qty[\vec{\nabla}^2 - iq \qty(\vec{\nabla} \cdot \vec{A} + 2 \vec{A} \cdot \vec{\nabla}) - q^2 \vec{A}^2 
++ \vec{\sigma} \cdot \vec{B} ] \varphi'  \\
+&= \qty[- \vec{\nabla} + iq \vec{A}]^2 \varphi + q\vec{\sigma} \cdot \vec{B} \varphi '
+\,,
+\end{align}
+%
+where we used the fact that \(\partial_{i} A_{j} \epsilon_{ijk} = \frac{1}{2} F_{ij} \epsilon_{ijk}  = B_{k}\), and in the last step we set \(\nabla \cdot \vec{A} = 0\), the Coulomb gauge condition.
+
+Notice that we had to raise the indices of both \(\vec{A}\) and \(\vec{B}\), so we had to switch the sign of those terms.
+
+Then, we can finally write the full Pauli equation: 
+%
+\begin{align}
+i \partial_0 \varphi ' = \qty{- \frac{1}{2M} \qty[- \vec{\nabla} + i q \vec{A}]^2  + q A_0 - \frac{q}{2M} \vec{\sigma} \cdot \vec{B} } \varphi '
+\,,
+\end{align}
+%
+which differs from the minimally-coupled Schrödinger equation by the spin coupling to the magnetic field. 
+This new term in the Hamiltonian is 
+%
+\begin{align}
+H _{\text{dip}}= - \frac{q}{2M} \vec{\sigma} \cdot \vec{B} = - \vec{\mu}_{s} \cdot \vec{B}
+\,,
+\end{align}
+%
+where we introduced the \textbf{intrinsic magnetic moment} 
+%
+\begin{align} \label{eq:intrinsic-magnetic-moment}
+\vec{\mu}_{s} = \frac{q}{2M} \vec{\sigma} = \frac{q}{M} \vec{\Sigma}^{(3)}
+\,.
+\end{align}
+
+In nonrelativistic quantum mechanics this term is introduced by hand: if the wavefunction is a scalar there is no way for this term to come about. Once we start describing it as a spinor, though, we can see where the term comes from.
+
+The \textbf{magnetic dipole moment} associated with the \emph{orbital angular momentum}, as opposed to the spin, is defined as 
+%
+\begin{align}
+\vec{\mu}_{L} = \frac{q}{2M } \vec{L}
+\,,
+\end{align}
+%
+so in this case the ratio of magnetic moment to momentum is 
+%
+\begin{align}
+\frac{\abs{\vec{\mu}_{L}}}{\abs{\vec{L}}} = \frac{q}{2M}
+\,,
+\end{align}
+%
+while for the spin we defined (already in nonrelativistic QM) 
+%
+\begin{align}
+\vec{\mu}_{s} = \frac{q}{2M} g_e \vec{\Sigma}^{(3)}
+\qquad \implies \qquad
+\frac{\abs{\vec{\mu}_{s}}}{\abs{\vec{\Sigma}}} = \frac{q}{2M} g_{e} 
+\,,
+\end{align}
+%
+where we define the \textbf{electron gyromagnetic factor} \(g_e\).
+This can be compared with the equation we found before for the intrinsic magnetic moment \eqref{eq:intrinsic-magnetic-moment}, to yield our prediction: 
+%
+\begin{align}
+g_e = 2
+\,.
+\end{align}
+
+\begin{claim}
+We can also derive this prediction from the full relativistic Dirac equation.
+\end{claim}
+
+\begin{claim}
+We have the relation 
+%
+\begin{align}
+\qty[i \partial_{\mu } - q A_{\mu }, i \partial_{\nu } - q A_{\nu }] \psi 
+= -iq F_{\mu \nu } \psi 
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We write the terms of the product out, antisymmetrizing everything: 
+%
+\begin{align}
+&\qty[i \partial_{\mu } - q A_{\mu }, i \partial_{\nu } - q A_{\nu }] \psi = \\
+&=2 \qty(i \partial_{[\mu }i \partial_{\nu ]}
+- i q \qty(\partial_{[\mu } A_{\nu ]} ) 
+-iq A_{[\nu } \partial_{\mu ]}
+-iq A_{[\mu } \partial_{\nu ]}
++ q^2 A_{[\mu } A_{\nu ]}) \psi   \\
+&= -2iq \partial_{[\mu } A_{\nu ]} \psi 
+= -iq F_{\mu \nu } \psi 
+\,,
+\end{align}
+%
+where we removed all the terms which were symmetric in \(\mu \leftrightarrow \nu \). 
+
+Note that this is the commutator of the covariant derivatives on the manifold: it yields the Riemann tensor, which we then have shown to be given by the electromagnetic field-strength.
+\end{proof}
+
+\begin{claim}
+We have the relation 
+%
+\begin{align}
+\Sigma^{\mu \nu }F_{\mu \nu }
+=i \vec{\alpha} \cdot \vec{E} + \Sigma^{(3)} \cdot \vec{B}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\vec{\alpha} = \left[\begin{array}{cc}
+0 & \vec{\sigma} \\ 
+\vec{\sigma} & 0
+\end{array}\right] 
+\qquad \text{and} \qquad
+\vec{\Sigma}^{3} = \frac{1}{2} \left[\begin{array}{cc}
+\vec{\sigma} & 0 \\ 
+0 & \vec{\sigma}
+\end{array}\right]
+\,.
+\end{align}
+\end{claim}
 
 \end{document}

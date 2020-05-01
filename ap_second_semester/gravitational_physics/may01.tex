@@ -1,0 +1,163 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Friday\\ 2020-5-1, \\ compiled \\ \today}
+
+We were discussing the basics of GW interferometry.
+
+Moving to the TT gauge is a coordinate system in which the mirrors are free-falling. 
+However, the light propagating through spacetime is affected by the fact that the spacetime is ``stretched'': for our photons,
+%
+\begin{align}
+\dd{s^2} = - c^2 \dd{t^2} + \qty(1 + h_{+} (t)) \dd{x}^2 + \qty(1 - h_{+}(t))^2 \dd{y}^2 + \dd{z}^2 = 0
+\,,
+\end{align}
+%
+so in the \(x\) arm, depending on the direction of propagation we will have: 
+%
+\begin{align}
+\dd{x} = \sqrt{ \frac{c^2 \dd{t^2}}{1 + h_{+}(t)}}
+\approx \pm c \dd{t} \qty(1 - \frac{1}{2} h_{+}(t))
+\,,
+\end{align}
+%
+so if we integrate the whole round-trip of the photon we get, for the first leg: 
+%
+\begin{align}
+L_{x} = \int_{0}^{L_x} \dd{x} = \int_{t_0 }^{t_1 } c \dd{t} = c (t_1 - t_0 ) 
+- \frac{c}{2} \int_{t_0 }^{t_1 } \dd{t} h_{+}(t) 
+\,,
+\end{align}
+%
+and for the second leg: 
+%
+\begin{align}
+- L_x = \int_{L_x}^{0} = - \int_{t_1 }^{t_2 } c \dd{t} \qty(1 - \frac{h_{+}(t)}{2}) = - c (t_2 - t_1 ) + \frac{c}{2} \int_{t_1 }^{t_2 } \dd{t} h_{+}(t) 
+\,,
+\end{align}
+%
+so the time difference is given by 
+%
+\begin{align}
+t_2 - t_0 = \frac{2L_x}{c} + \frac{1}{2} \int_{t_0 }^{t_2} \dd{t} h_{+}(t) 
+\,,
+\end{align}
+%
+where we can consider \(t_2 \approx t_0  + 2 L_x  /c\) in the integration bound, since the correction would be second order. 
+
+To first order, then, if the GW is sinusoidal we have for the \(x\) arm:
+%
+\begin{align}
+t_2 - t_0 = \frac{2L_x}{c} + \frac{L_x}{c} h_{+} \qty(t_0 + \frac{L_x}{c}) \frac{\sin(\frac{\omega_{gw} L_x}{c})}{\frac{\omega_{gw}L_x}{c}}
+\,,
+\end{align}
+%
+while for the \(y\) arm the sign is inverted. 
+
+The argument is basically the ratio of the length of our arm to the wavelength of the GW. We have a maximum of the effect, then, when the GW perturbation is effectively static during the time in which we are detecting. 
+
+Keep in mind, though, that the effect also scales with \(L_x\): a very small detector wouldn't work. 
+
+If the length, on the other hand, is very large the perturbation cancels out during the flight of the photon.  
+If we fix the frequency, making the detector longer and longer does not help: further full oscillations of the path length do not have any effect.
+
+The interesting thing is the phase difference: if in both arms the light reaches the detector at \(t_2 \) we have 
+%
+\begin{align}
+\Delta \phi 
+&= \omega_{l} \qty(t_0^{x }- t_0^{y}) \\
+&= \omega_{l} \qty(2 \frac{L_x -L_y}{c} + \frac{2L}{c} \operatorname{sinc}(\frac{\omega_{gw} L}{c} ) h_0 \cos(\omega_{gw} t + \alpha )) = \Delta \phi_0 + \Delta \phi_{gw}
+\,.
+\end{align}
+
+So, we have a tradeoff: we want to stay before the first zero of the sinc, but we also want to have a relatively large detector.
+
+So, our optimal length is of the order of a quarter of the wavelength.
+
+This is the same as saying we want to keep the photon in-flight for a quarter of the period of the GW. 
+
+This would mean, for a frequency of \SI{100}{Hz}, that we would need a detector of around \SI{750}{km}.
+
+If we do the computation accounting for the oscillation of the laser light, we get that the field out of the BS is 
+%
+\begin{align}
+E = \frac{E_0}{2} e^{-i \gamma } \qty(e^{-i \omega_{l} t}
++ \beta e^{-i \alpha } e^{-i (\omega_{l} - \omega_{gw})} + \beta e^{i \alpha } e^{-i (\omega_{l} + \omega_{gw}) t})
+\,,
+\end{align}
+%
+which is the same of a single field which is modulated in amplitude.
+
+\section{Lasers and cavities}
+
+The best mirrors in the world are built for GW detectors.
+These are dielectric mirrors.
+We stack dielectric interfaces on top of each other, so that the wave coming back has constructive interference while the wave being transmitted interferes destructively with the next layer.
+
+A \textbf{cavity} is an arrangement of mirrors such that we have a closed path for light.
+
+Mirrors are symmetric, if we can input some light then we are also losing the same amount.
+
+We have an incident field \(E _{\text{in}}\), a circulating field \(E_{c}\) and a transmitted field \(E_{t}\). The ``in'' mirror is labelled 1, the ``out'' mirror is labelled 2. 
+
+So, we have 
+%
+\begin{align}
+E_{c} = t_1 E _{\text{in}} + r_1 r_2 E_{c} e^{-ik 2L} 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+E_{c} = E _{\text{in}} \frac{t_1 }{1 - r_1 r_2 e^{-ik2L}}
+\,.
+\end{align}
+
+Here \(k\) is the wavevector of the electric field. The exponential is called the \emph{round-trip gain}. 
+
+The reflected field is given by 
+%
+\begin{align}
+E_{r} &= -r_1 E _{\text{in}} + r_2 t_1 E_{c} e^{-ik2L}  \\
+&= -E _{\text{in}} \frac{r_1 - r_2 e^{-ik 2L}}{1 - r_1 r_2 e^{-ik2L}}
+\,.
+\end{align}
+
+On the other hand, the transmitted field is 
+%
+\begin{align}
+E_{t} = t_2 E_c 
+\,.
+\end{align}
+
+The circulating intensity can be calculated by the square modulus of the field, we then get 
+%
+\begin{align}
+I_{c} = E^2 _{\text{in}} \abs{\frac{t_1 }{1 - r_1 r_2 e^{-ik2L}}}^2
+\,,
+\end{align}
+%
+so we want to minimize the denominator: this means we want \(L = n \pi / k\). 
+
+As we increase reflectivity the peaks get narrower and higher. 
+
+The distance in frequency between the peaks, \(c / 2L\), is called the \emph{free spectral range}. 
+
+The \emph{finesse} is defined as the free spectral range divided by the FWHM of the peaks, 
+%
+\begin{align}
+\mathcal{F} = \frac{\pi \sqrt{r_1 r_2 }}{1 - r_1 r_2 }
+\,.
+\end{align}
+
+This is \(2 \pi  / \text{losses}\).
+
+Using this, we can estimate the storage time of a photon inside the cavity: 
+%
+\begin{align}
+\tau_{s} \approx \frac{L \mathcal{F}}{c \pi }
+\,.
+\end{align}
+
+\end{document}

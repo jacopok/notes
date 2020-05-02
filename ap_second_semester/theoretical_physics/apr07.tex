@@ -118,6 +118,120 @@ Also, the equations for \(L\) and \(L + \dv*{F}{t}\) are the same: the action is
 
 \subsection{Classical system with finite DoF: Hamiltonian formalism}
 
+We start off by defining the momenta: in component form, they are
+%
+\begin{align}
+p_{i} = \pdv{L}{\dot{q}^{i}}
+\,.
+\end{align}
 
+As long as the Lagrangian is well behaved\footnote{The formal requirement is that the matrix 
+%
+\begin{align}
+\pdv[2]{L}{\dot{q}}{\dot{q}}
+\,
+\end{align}
+%
+should be invertible.}
+we can move between momenta and velocities, by using the inverse relation \(\dot{q} = \dot{q} (q, p)\).
+
+The Hamiltonian is then defined as 
+%
+\begin{align}
+H(q, p) = \dot{q}(q, p) \cdot p - L (q, \dot{q}(q, p))
+\,,
+\end{align}
+%
+and this procedure is called a \emph{Legendre transform}. 
+Note that since we assumed the Lagrangian to have no explicit dependence of time the Hamiltonian will not depend on time either. This is tied to the conservation of energy: if the Lagrangian is given by \(T - V\) the Hamiltonian is given by \(T + V\), and thus represents the total energy of the system. A theorem in Hamiltonian mechanics is 
+%
+\begin{align}
+\dv{H}{t} = \pdv{H}{t}
+\,,
+\end{align}
+%
+so the variation of the energy in the evolution of the system (total derivative) is equal to the partial derivative of the Hamiltonian with respect to time.
+
+Let us take the functional derivative of the Hamiltonian: using indices for the clarity of the tensorial structure, we find 
+%
+\begin{align}
+\delta H &= \pdv{H}{p_{i}}  \delta p_{i} + \pdv{H}{q^{i}} \delta q^{i}  \\
+&= \qty[\dot{q}^{i} + \pdv{\dot{q}^{j}}{p_{i}} p_{j} - \pdv{L}{\dot{q}^{j}}  \pdv{\dot{q}^{j}}{p_{i}}] \delta p_{i}
++ \qty[\pdv{\dot{q}^{j}}{q^{i}} p_{j}
+- \pdv{L}{q^{i}} - \pdv{L}{\dot{q}^{j}} \pdv{\dot{q}^{j}}{q^{i}}] \delta q^{i}  \\
+&= \dot{q}^{i} \delta p_{i} - \pdv{L}{q^{i}} \delta q^{i}  
+\marginnote{Used the fact that \(p_{i} = \pdv*{L}{\dot{q}^{i}}\).}  \\
+&= \dot{q}^{i} \delta p_{i} - \dot{p}_{i} \delta q^{i} 
+\marginnote{Used the Euler-Lagrange equations.}
+\,,
+\end{align}
+%
+so we can equate the first and last equations to find the coupled equations 
+%
+\boxalign{
+\begin{align}
+\dot{q}^{i} = \pdv{H}{p_{i}} \qquad \text{and} \qquad
+\dot{p}_{i} = -\pdv{H}{q^{i}}    
+\,.
+\end{align}}
+%
+
+These are known as \textbf{Hamilton's equations of motion}, they are an equivalent formulation of Lagrange's ones but they may be more useful in certain contexts such as when performing numerical integration.
+
+In the Hamiltonian contexts it is useful to define the Poisson bracket. 
+If we define the operator \(\nabla\) as the derivative operator on the \(2N\)-dimensional \(q, p\) phase space, then the Poisson bracket is defined as 
+%
+\begin{align}
+\qty{f, g} &= \qty(\nabla_{i} f) \mathbb{J}_{ij} \qty(\nabla_{j} g)  \\
+&= \pdv{f}{q^{i}} \pdv{g}{p_{i}}
+- \pdv{f}{p_{i}} \pdv{g}{q^{i}}
+\,,
+\end{align}
+%
+where we defined the \emph{symplectic unity} tensor 
+%
+\begin{align}
+\mathbb{J} = \left[\begin{array}{cc}
+0 & \mathbb{1}_{N} \\ 
+-\mathbb{1}_{N} & 0 
+\end{array}\right]
+\,.
+\end{align}
+
+With the aid of these, and defining the vector \(X = \qty[q, p]^{\top}\) we can write Hamilton's equations as 
+%
+\begin{align}
+\dv{X}{t} = \qty{X, H}
+\,,
+\end{align}
+%
+or, more explicitly, 
+%
+\begin{align}
+\dot{q} = \qty{q, H}
+\qquad \text{and} \qquad
+\dot{p} = \qty{p, H}
+\,.
+\end{align}
+
+The Poisson brackets between the coordinates in phase space are given by 
+%
+\begin{align}
+\qty{q^{i}, q^{j}} = 0
+ \qquad
+\qty{p_{i}, p_{j}} = 0
+\qquad 
+\qty{q^{i}, p_{j}} = \delta^{i}_{j}
+\,.
+\end{align}
+
+A generic function's variation in time is given by 
+%
+\begin{align}
+\dv{f}{t} = \pdv{f}{t} + \qty{f, H}
+\,.
+\end{align}
+
+There is a clear analogy between the classical Poisson bracket and the commutator in quantum mechanics.
 
 \end{document}

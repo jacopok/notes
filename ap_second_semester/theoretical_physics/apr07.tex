@@ -1,4 +1,123 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{Field theories}
+
+\section{Lagrangian and Hamiltonian formalisms}
+
+\marginpar{Saturday\\ 2020-5-2, \\ compiled \\ \today}
+
+The Lagrangian and Hamiltonian formalism can aid in the description of systems with either a finite of infinite number of degree of freedom. 
+
+\subsection{Classical system with finite DoF: Lagrangian formalism}
+
+The usual example is a system of particles labelled by the index \(i\) with masses \(m_i\), positions \(q_i (t)\) and velocities \(\dot{q}_{i}(t)\).
+
+If the forces acting on the particles are \textbf{conservative}, we can express them in terms of a potential, which we assume not to depend on the velocities nor on time: \(V(q_{i})\).
+From now on when we write \(q\) or \(\dot{q}\) we will mean the full vector of the positions or velocities.
+
+If this is the case, the motion of the particles is described by Newton's equation: 
+%
+\begin{align}
+m_i \ddot{q}_{i} = - \pdv{V}{q_{i}}
+\,.
+\end{align}
+
+This can alternatively be described in terms of a function called the Lagrangian: 
+%
+\begin{align}
+L(q, \dot{q}, t)
+\,,
+\end{align}
+%
+which could depend on time, but we usually assume it to be independent of time explicitly, that is, \(\partial_{t} L = 0\) (although the \emph{total} derivative of the Lagrangian may be nonzero!).
+
+The condition of the Lagrangian being explicitly time-independent is equivalent to the system of forces being conservative.
+
+The Lagrangian can be a generic function of the positions and velocities of the particles, but in order to reproduce Newton's law we need it to be in the form 
+%
+\begin{align}
+L = T-V = \frac{1}{2} m_i \dot{q}_i^2 - V(q_i)
+\,,
+\end{align}
+%
+where a sum over the particles is implied in the kinetic energy term.
+
+Typically problems in Lagrangian mechanics are given by fixing the boundary conditions as the initial and final position, as opposed to writing the initial values of position and velocity. 
+
+We want to find the physical trajectory the particle(s) will take corresponding to those initial and final conditions.\footnote{There can be issues arising from this approach: for instance, the process for finding trajectories may find many equivalent ones, for example in situations with some symmetry or nontrivial topology.
+In the gravitational two-body problem we can ask what is the stationary action path needed in order to reach the antipodal point to the current one: there are infinite ones, corresponding to the choice of azimuthal angle of the initial velocity.
+However, this is not really a problem, since the approach we are about to introduce --- Hamilton's principle of stationary action --- just provides a formulation which eventually yields the same differential equations as the initial value problem; physically the velocity as well as the position of the particles is well determined in the initial moment.}
+
+This can be accomplished using Hamilton's principle of stationary action. We start by introducing the action: 
+%
+\begin{align}
+S[q(t), t _{\text{in}}, t _{\text{fin}}] = \int_{t _{\text{in}}}^{t _{\text{fin}}} L(q(t), \dot{q}(t)) \dd{t}
+\,,
+\end{align}
+%
+which depends on the full \emph{path} \(q(t)\): the integral is computed by evaluating the Lagrangian along it.
+Because of this the action \(S\) is called a \emph{functional}, since it is a function of a function. The Lagrangian, on the other hand, is  a regular function.
+
+We then state the following: 
+\begin{claim}
+The path taken physically by the system satisfies the stationary action principle: 
+%
+\begin{align}
+\delta S = 0
+\,.
+\end{align}
+
+The variation is the functional derivative of \(S\), meant to be a variation in the infinite-dimensional space of possible curves.
+\end{claim}
+
+This is not a proven principle, but rather an axiom to be taken, analyzed and confronted with experiment. 
+
+\todo[inline]{The notes by the professor state that the action must be minimized by the physical path, but this is not the case! The physical path can be a maximum of the action.}
+
+Let us calculate what the variation of the action means physically. We start by considering two nearby paths, \(\gamma \) and \(\gamma '\), such that 
+%
+\begin{align}
+\gamma ' = \gamma + \delta_0 \gamma 
+\,,
+\end{align}
+%
+so that the coordinates \(q\) at a time \(t\) are given by 
+%
+\begin{align}
+q_{\gamma } (t) 
+\qquad \text{and} \qquad
+q_{\gamma '} (t) = q_{\gamma }(t) + \delta_0 q_{\gamma }(t)
+\,,
+\end{align}
+%
+and we impose that the variation of the path, \(\delta_0 q_{\gamma } (t)\), is zero at the initial and final time, so that the boundary conditions are satisfied: \(\delta_0 q_{\gamma }(t _{\text{in}}) = 0 = \delta_0 q_{\gamma }(t _{\text{fin}})\).
+
+The reason for the subscript \(0\) for the variation \(\delta \) is that we consider \emph{synchronous} variations: the difference between the perturbed and unperturbed trajectory, at a \emph{fixed time}. 
+Also, we take the synchronous variation of the action:
+%
+\begin{align}
+\delta_0 S [q_{\gamma }] &= S [q_{\gamma } + \delta_0 q_{\gamma }] - S[q_{\gamma }]  \\
+&= \int_{t _{\text{in}}}^{t _{\text{fin}}} \delta_0 L (q_{\gamma }, \dot{q}_{\gamma }) \dd{t}  \\
+&= \int_{t _{\text{in}}}^{t _{\text{fin}}} \qty[ \pdv{L}{q} \cdot \delta_0 q + \pdv{L}{\dot{q}} \cdot \dot{q}] \dd{t}  \\
+&= \int_{t _{\text{in}}}^{t _{\text{fin}}} \qty[\pdv{L}{q}  - \dv{}{t} \pdv{L}{\dot{q}}] \cdot \delta_0 q \dd{t}
+\,,
+\end{align}
+%
+since, as we are considering synchronous variations, \(\delta_0 \) and \(\partial_{t}\) commute; also we neglected boundary terms in the integration by parts as they are set to zero by the fact that the variation of the path,  \(\delta_0 q_{\gamma }\), is zero at the boundaries.
+
+Since this must hold for any variation of the path, by the fundamental lemma of the calculus of variation the integrand must vanish: this yields the Euler-Lagrange equations 
+%
+\begin{align}
+\pdv{L}{q} - \dv[]{}{t} \pdv{L}{\dot{q}} = 0
+\,.
+\end{align}
+
+Note that there is \textbf{gauge freedom} in the choice of Lagrangian: an easy symmetry to see is the scaling one; the Lagrange equations of \(L\) and \(cL\) for \(c \in \mathbb{R}\) are the same. 
+Also, the equations for \(L\) and \(L + \dv*{F}{t}\) are the same: the action is the integral in time of the Lagrangian, therefore adding a total derivative to it shifts the action by a constant \(\eval{\Delta F}_{\text{in}}^{\text{fin}}\), which vanishes when taking the variation.
+
+\subsection{Classical system with finite DoF: Hamiltonian formalism}
+
+
+
 \end{document}

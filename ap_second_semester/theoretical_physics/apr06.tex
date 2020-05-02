@@ -235,10 +235,6 @@ g_e = 2
 \end{align}
 
 \begin{claim}
-We can also derive this prediction from the full relativistic Dirac equation.
-\end{claim}
-
-\begin{claim}
 We have the relation 
 %
 \begin{align}
@@ -273,7 +269,7 @@ We have the relation
 %
 \begin{align}
 \Sigma^{\mu \nu }F_{\mu \nu }
-=i \vec{\alpha} \cdot \vec{E} + \Sigma^{(3)} \cdot \vec{B}
+=i \vec{\alpha} \cdot \vec{E} + \vec{\Sigma} \cdot \vec{B}
 \,,
 \end{align}
 %
@@ -285,12 +281,84 @@ where
 \vec{\sigma} & 0
 \end{array}\right] 
 \qquad \text{and} \qquad
-\vec{\Sigma}^{3} = \frac{1}{2} \left[\begin{array}{cc}
+\vec{\Sigma} = \frac{1}{2} \left[\begin{array}{cc}
 \vec{\sigma} & 0 \\ 
 0 & \vec{\sigma}
 \end{array}\right]
 \,.
 \end{align}
 \end{claim}
+
+\begin{proof}
+Recall the definitions of 
+%
+\begin{align}
+\Sigma^{\mu \nu } = \frac{i}{4} \qty[\gamma^{\mu }, \gamma^{\nu }]
+\,
+\end{align}
+%
+and of the the electric and magnetic fields in terms of the field-strength tensor: 
+%
+\begin{align}
+E^{i} = F^{i0} = - F^{0i} = +F_{0i}
+\qquad \text{and} \qquad
+B^{k} = \frac{1}{2} F^{ij} \epsilon^{ijk}
+\,.
+\end{align}
+
+For the magnetic field we can also write the inverse expression: 
+%
+\begin{align}
+F^{ij} = \epsilon^{ijk} B^{k}
+\,,
+\end{align}
+%
+
+
+So, we distinguish the cases where \(\mu = 0\) and \(\mu = i\), a spatial 3D index.
+
+In the first case, the index \(\nu \) must be nonzero by antisymmetry, so we find
+%
+\begin{align}
+\Sigma^{0j}F_{0j} &= \frac{i}{4} \qty[\gamma^{0}, \gamma^{j}] E^{j}
+\,,
+\end{align}
+%
+and since different \(\gamma \) matrices anticommute we can replace the commutator with twice the product: 
+%
+\begin{align}
+\Sigma^{0j} F_{0j} &= \frac{i}{2} \gamma^{0} \gamma^{j} E^{j} = \frac{i}{2} \gamma^{0} \gamma^{0} \alpha^{j} E^{j} = \frac{i}{2} \vec{\alpha} \cdot \vec{E}
+\,.
+\end{align}
+
+In the final expression we are summing over \(\mu \) and \(\nu \), so the contribution will be twice this, since we need to account for the case where \(\nu =0\) as well as \(\mu =0 \).
+
+In the other case, we apply a similar reasoning; in this case we also need to recall the definition of the vector \(\vec{\Sigma}\): 
+%
+\begin{align}
+\Sigma^{i} = \frac{1}{2} \epsilon^{ijk} \Sigma^{jk}
+\,,
+\end{align}
+%
+so we can substitute this into the expression and find:
+%
+\begin{align}
+\Sigma^{ij} F_{ij} &= \Sigma^{ij} F^{ij}  \\
+&= \Sigma^{ij} \tensor{\epsilon }{^{ijk}} B_{k}  \\
+&= 2 \vec{\Sigma}^{k} B_{k}
+\,,
+\end{align}
+%
+\todo[inline]{which has an extra factor two\dots should figure out why this is the case}
+\end{proof}
+
+
+\begin{claim}
+We can also derive the prediction \(g_e = 2\) from the full relativistic Dirac equation.
+\end{claim}
+
+\begin{proof}
+\todo[inline]{Still to do}
+\end{proof}
 
 \end{document}

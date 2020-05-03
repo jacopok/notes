@@ -71,16 +71,14 @@ Two Lagrangians which are equal up to the divergence of a function of the field,
 \end{claim} 
 
 \begin{proof}
-\todo[inline]{We need to make an additional assumpion: that the function of the field vanishes if the field vanishes.}
-
-If we make this assumption, we can calculate the variation of the action we get after adding this term:
+We make this assumption, we can calculate the variation of the action we get after adding this term:
 %
 \begin{align}
 \Delta S = \int \dd[4]{x} \partial_{\mu } k^{\mu } 
 \,,
 \end{align}
 %
-so we can calculate this in a region whose radius we send to infinity, and apply the divergence theorem: under the critical assumption that the function of the field vanishes like the field does as the field goes to zero, we get zero variation.
+so we can calculate this in a region whose radius we send to infinity. Properly speaking, our region should be in the form \(I \times B_R\), the product of an interval in time an a spere in space. We then apply the divergence theorem: the field \(\varphi \) goes to zero at infinity, so as long as \(k^{\mu }\) is regular it will tend to a constant value \(k^{\mu } (0)\), of which we must take the flux on a symmetric region: it will be zero.
 \end{proof}
 
 \subsection{Interlude: functional derivatives}
@@ -100,7 +98,7 @@ We define a space \(\varphi \) of smooth functions:
 \,,
 \end{align}
 %
-and define \textbf{functionals} to be maps from \(\varphi \) to \(\mathbb{R}\) (or \(\mathbb{C}\)), so the space of functionals is the dual of \(\varphi \): 
+and define \textbf{functionals} to be maps from \(\varphi \) to \(\mathbb{R}\) (or \(\mathbb{C}\)), so the space of functionals is the dual of \(\varphi \): a functional \(F\) is in the form
 %
 \begin{align}
  F:
@@ -117,6 +115,171 @@ We are giving general definitions, but the case we will be interested in is usua
 
 We encountered two functionals so far: the Lagrangian is a functional of the field \(\varphi (\vec{x}, \overline{t})\) for a fixed \(\overline{t}\); the action is a functional of the field \(\varphi (x^{\mu })\).
 
+We can vary a functional: if we are given a function \(g \in \varphi \), we can select a small perturbation \(\delta g\) so that we can define 
+%
+\begin{align}
+\delta S[g] =  \eval{\dv{}{\epsilon } S[g + \epsilon (\delta g )]}_{\epsilon =0}
+= \eval{S[g + \delta g] - S[g]}_{\text{first order}}
+\,.
+\end{align}
 
+The functional derivative of \(F[g]\), which is denoted by \(\fdv*{f}{g}\), is defined by the relation 
+%
+\begin{align}
+\delta F = \int \fdv{F}{g} \delta g \dd{x}
+\,,
+\end{align}
+%
+which should be interpreted as the functional analogue of the formula for the differential 
+%
+\begin{align}
+\dd{F} (x_{i}) = \sum _{i} \pdv{F}{x_{i}} \dd{x_{i}} 
+\,.
+\end{align}
+
+\begin{claim}
+The functional derivative is indeed a derivative: it is linear 
+%
+\begin{align}
+\fdv{}{g} \qty(\alpha F + \beta  G) = \alpha \fdv{F}{g} + \beta \fdv{G}{g}
+\,;
+\end{align}
+%
+zero for constants: \(\fdv*{C}{g} = 0 \) if \(C[g] \equiv C \in \mathbb{R}\); and finally it satisfies the Leibniz rule: 
+%
+\begin{align}
+\fdv{}{g} \qty(FG)= \fdv{F}{g} G + F \fdv{G}{g}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+First of all, what to we mean by sum and product of functionals? 
+The intuitive definition to give is that the sum of two functionals \(F[g]\) and \(G[g]\) is the functional \(F+G\) such that \((F+G)[g] = F[g] + G[g]\).
+For the product we adopt a similar definition. 
+
+Then, we get 
+%
+\begin{align}
+\delta (\alpha F + \beta G)[g] &= \eval{\qty(\alpha F[g+ \delta g] + \beta G[g + \delta g]) - \qty(\alpha F[g] + \beta G[g])}_{\text{lin}}
+\\
+&= \alpha \eval{\qty(F[g + \delta g] - F[g])}_{\text{lin}} + \beta \eval{\qty(G [g + \delta g] - G[g])}_{\text{lin}}  \\
+&= \alpha \delta F [g] + \beta \delta G[g]
+\,.
+\end{align}
+
+For a constant we get \(C[g + \delta g] = C[g]\), so the differential is zero. 
+
+For the Leibniz rule, we have 
+%
+\begin{align}
+\delta (FG)[g] &= F[g + \delta g] G[g + \delta g] - F[g] G[g]  \\
+&= 
+\,,
+\end{align}
+%
+\todo[inline]{To review\dots the definitions do not convince me}
+
+A reference: \cite[]{engelDensityFunctionalTheory2011}.
+\end{proof}
+
+A possible functional we can apply to smooth functions is the \emph{evaluation} functional: \(F_{\mathbb{1}}[g] = g(y )\); we can represent it as an integral by introducing the delta function, 
+%
+\begin{align}
+F_{\mathbb{1}} [g]  = \int \delta (x - y) g(x) \dd{x}
+\,.
+\end{align}
+%
+This is sometimes referred to as the \emph{identity functional}, since it does not alter the function beyond changing the name of the variable.
+
+By the definition of the functional derivative, we find 
+%
+\begin{align}
+F_{\mathbb{1}} [g] = \int \delta (x-y) g(x) \dd{x} = \int \fdv{F_{\mathbb{1}}}{g} g(x) \dd{x}
+\,,
+\end{align}
+%
+so we must identify 
+%
+\begin{align}
+\fdv{F_{\mathbb{1}}}{g(x)} = \fdv{g(y)}{g(x)} = \delta (x -y )
+\,.
+\end{align}
+
+In the 4D case we have, analogously: 
+%
+\begin{align}
+\fdv{\varphi (x^{\mu })}{ \varphi (y^{\mu })} = \delta^{(4)} (x^{\mu } - y^{\mu })
+\,,
+\end{align}
+%
+and if we fix one or more of the coordinates the dimension of the \(\delta \) function diminishes accordingly. 
+
+\begin{claim}
+We can derive the Euler-Lagrange equations using functional derivatives.
+\end{claim}
+
+\todo[inline]{Add discussion of the formal stuff}
+
+\subsection{Hamiltonian formulation}
+
+We define the \textbf{canonically conjugate momentum} as 
+%
+\begin{align}
+\pi (\vec{x}, t) = \fdv{L(t)}{\dot{\varphi}_{t} (\vec{x})} = \pdv{\mathscr{L}}{\partial_0 \varphi (\vec{x})}
+\,,
+\end{align}
+%
+so that we can introduce the Hamiltonian density via the Legendre transform: 
+%
+\begin{align}
+\mathscr{H} = \pi (\vec{x}, t) \partial_0 \varphi (\vec{x}, t) - \mathscr{L} (\varphi , \partial_{\mu } \varphi )
+\,,
+\end{align}
+%
+and the Hamiltonian as its integral 
+%
+\begin{align}
+H(t) = \int \dd[3]{x} \mathscr{H}
+\,.
+\end{align}
+
+The Hamiltonian is a functional of the fields \(\pi \) and \(\varphi \): 
+%
+\begin{align}
+H(t) = H[\pi_{t}, \varphi_{t}]
+\,.
+\end{align}
+
+\begin{claim}
+We can calculate Hamilton's equations from the functional variation of \(H\): they read 
+%
+\begin{align}
+\dot{\varphi} (\vec{x}, t) = \fdv{H}{\pi_{t}(\vec{x})}
+\qquad \text{and} \qquad
+\dot{\pi}(\vec{x}, t) = - \fdv{H}{\varphi_{t}(\vec{x})}
+\,.
+\end{align}
+\end{claim}
+
+We can also write the HE with the Poisson brackets: the definition must however be adapted; it will read 
+%
+\begin{align}
+\qty{F, G}_{t} = \int \dd[3]{x} \qty(\fdv{F}{\varphi_{t}(\vec{x})} \fdv{G}{\pi_{t}(\vec{x})} - \fdv{F}{\pi_{t}(\vec{x})} \fdv{G}{\varphi_{t}(\vec{x})})
+\,,
+\end{align}
+%
+\todo[inline]{which yields a function of the coordinates \(\vec{y}\), since the functional derivatives are functions of \(\vec{y}\) as well as of \(\vec{x}\), and we marginalize over \(\vec{x}\)?}
+
+Then, Hamilton's equations will read 
+%
+\begin{align}
+\dot{\varphi}_{t} = \qty{\varphi, H}_{t}
+\qquad \text{and} \qquad
+\dot{\pi}_{t} = -\qty{\pi , H}(t)
+\,.
+\end{align}
+
+The brackets of the fields \(\varphi \) and \(\pi \) are the same as in the finite-DoF case, substituting \(\delta_{j}^{i}\) with \(\delta^{(3)} (\vec{x}- \vec{y})\).
 
 \end{document}

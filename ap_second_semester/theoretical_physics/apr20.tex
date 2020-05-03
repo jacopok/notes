@@ -1,4 +1,122 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Classical system with infinite DoF}
+
+\marginpar{Sunday\\ 2020-5-3, \\ compiled \\ \today}
+
+We move from a system of particles to a field, basically. We make the following substitutions: 
+\begin{enumerate}
+    \item the coordinates \(q_{i}(t)\) become a field, a function of the coordinates \(\varphi (\vec{x}, t)\);
+    \item sums over the coordinates, \(\sum _{i}\), become integrals in space: \(\int \dd[3]{x}\);
+    \item the Lagrangian \(L(q_{i}, \dot{q}_{i})\) becomes a Lagrangian density \(\mathscr{L} (\varphi , \partial_{\mu } \varphi )\).  
+\end{enumerate}
+
+The Lagrangian density is a function of position in space, we can recover the full Lagrangian by integrating: 
+%
+\begin{align}
+L(t) = \int \dd[3]{x} \mathscr{L}(\varphi (\vec{x}, t), \partial_{\mu } \varphi (\vec{x}, t)) 
+\,.
+\end{align}
+
+The action is now a functional of the fields: 
+%
+\begin{align}
+S [ \varphi ] = \int \dd[4]{x} \mathscr{L} (\varphi, \partial_{\mu } \varphi )
+\,,
+\end{align}
+%
+where we integrate in spacetime since we must integrate in \(\dd[3]{x}\) to recover the Lagrangian, and then in time to recover the action from the Lagrangian. 
+Note that this yields a number as an output, and takes the whole field in spacetime as an input. As such, it is not a function of the spacetime coordinates.
+
+The domain of integration is usually Minkowski spacetime with some boundary conditions at infinity: we assume that the fields and their derivatives vanish at infinity. 
+
+As in the finite DoF case, we stationarize the action and set \(\delta S =0\). 
+What does it mean to vary the field? We assume the variation to be ``synchronous'', that is, 
+%
+\begin{align}
+\varphi '(x) = \varphi (x) + \delta_0 \varphi (x)
+\,,
+\end{align}
+%
+so the point in spacetime is not affected: only the field changes.
+
+The variation of the action is given by 
+%
+\begin{align}
+\delta_0 S [\varphi ] &= S [ \varphi + \delta_0 \varphi ] - S[\varphi ]  \\
+&= \int \dd[4]{x} \qty{ \mathscr{L} (\varphi + \delta_0 \varphi , \partial_{\mu } \varphi + \delta_0 \partial_{\mu } \varphi ) - \mathscr{L} (\varphi, \partial_{\mu } \varphi )}  \\
+&= \int \dd[4]{x } \delta_0 \mathscr{L} (\varphi , \partial_{\mu }\varphi )  \\
+&= \int \dd[4]{x} 
+\qty{ \pdv{\mathscr{L}}{\varphi } \delta_0 \varphi  + \pdv{\mathscr{L}}{\partial_{\mu } \varphi } \delta_0\partial_{\mu }  \varphi  }  \\
+&= \int \dd[4]{x} \qty{\pdv{\mathscr{L}}{\varphi } - \partial_{\mu }\pdv{\mathscr{L}}{\partial_{\mu } \varphi }} \delta_0 \varphi 
+\,.
+\end{align}
+
+We integrated by parts, and the boundary term vanished because of our boundary conditions on the fields. 
+Also, we assumed that \(\delta_0 \qty(\dd[4]{x}) =0 \) in our second step.
+
+In this case, like in the finite-DoF one, \(\qty[\partial_{\mu }, \delta_0 ] =0\). 
+
+Since \(\delta_0 S = 0\) must hold for all \(\delta_0 \varphi \), the rest of the integrand must be equal to zero: these are the Euler-Lagrange equations of the theory, 
+%
+\begin{align}
+\pdv{\mathscr{L}}{\varphi } - \partial_{\mu }\pdv{\mathscr{L}}{\partial_{\mu } \varphi } =0
+\,.
+\end{align}
+
+
+\begin{claim}
+Two Lagrangians which are equal up to the divergence of a function of the field, \(\partial_{\mu } k^{\mu }(\varphi )\), are equivalent (they have the same EL equations).
+\end{claim} 
+
+\begin{proof}
+\todo[inline]{We need to make an additional assumpion: that the function of the field vanishes if the field vanishes.}
+
+If we make this assumption, we can calculate the variation of the action we get after adding this term:
+%
+\begin{align}
+\Delta S = \int \dd[4]{x} \partial_{\mu } k^{\mu } 
+\,,
+\end{align}
+%
+so we can calculate this in a region whose radius we send to infinity, and apply the divergence theorem: under the critical assumption that the function of the field vanishes like the field does as the field goes to zero, we get zero variation.
+\end{proof}
+
+\subsection{Interlude: functional derivatives}
+
+We define a space \(\varphi \) of smooth functions: 
+%
+\begin{align}
+\varphi = \qty{
+ f:
+\left|
+  \begin{array}{rcl}
+    M_{4} & \longrightarrow & \mathbb{R} \text{ or } \mathbb{C} \\
+    x & \longmapsto & f(x) \\
+  \end{array}
+\right.
+}
+\,,
+\end{align}
+%
+and define \textbf{functionals} to be maps from \(\varphi \) to \(\mathbb{R}\) (or \(\mathbb{C}\)), so the space of functionals is the dual of \(\varphi \): 
+%
+\begin{align}
+ F:
+\left|
+  \begin{array}{rcl}
+    \varphi  & \longrightarrow & \mathbb{R} \text{ or } \mathbb{C}   \\
+    f & \longmapsto & F[f] \\
+  \end{array}
+\right.
+\,.
+\end{align}
+
+We are giving general definitions, but the case we will be interested in is usually the one of real-valued functionals.
+
+We encountered two functionals so far: the Lagrangian is a functional of the field \(\varphi (\vec{x}, \overline{t})\) for a fixed \(\overline{t}\); the action is a functional of the field \(\varphi (x^{\mu })\).
+
+
+
 \end{document}

@@ -1,4 +1,157 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-5-4, \\ compiled \\ \today}
+
+We are discussing resonance and cavities in order to study the LASERs used in GW interferometry. 
+
+We can have a lot of energy stored in the cavity, so that the power of the stored laser beam is much larger than the input power.
+This does not violate conservation of energy: the energy is stored, but we cannot extract more power than what is coming in. 
+
+As the reflectivity increases, the peaks of intensity become sharper and sharper. 
+
+We can treat the losses inside the cavity by introducing: 
+%
+\begin{align}
+r_{l} = 1 - l_{E} = \sqrt{1 - l_{I}}
+\,,
+\end{align}
+%
+which is derived from \(r_l^2 + l_I = r_l^2 + t_l^2 = 1\). 
+
+We have the fields inside and outside given by 
+%
+\begin{align}
+E_{c} &= E _{\text{in}} \frac{t_1 }{1 - r_1 r_2 r_{l} e^{-ik2L}}  \\
+E_{r} &= - E _{\text{in}} \frac{r_1 - r_2 r_{l} e^{-ik2L}}{1 - r_1 r_2 r_{l} e^{-ik 2L}}
+\,.
+\end{align}
+
+The total reflected field inside the cavity can be overcoupled if \(r_1 < r_2 r_{l}\), so that the reflected field is less than the one outside; also we can have undercoupling and finally the \textbf{impedence matched} case is obtained when \(r_1 = r_2 r_{l}\). 
+
+In this case the reflected intensity goes to zero. We also have discontinuity in phase, but this is not an issue. 
+
+Let us define a \textbf{beam} properly: 
+%
+\begin{align}
+\vec{E}(x, y, z) = u (x, y, z) e^{-ikz}
+\,,
+\end{align}
+%
+where we are neglecting the temporal dependence. 
+The function \(u(x, y, z)\) is a complex amplitude. 
+
+This obeys the wave equation, as long as 
+%
+\begin{align}
+\qty(\nabla^2 + k^2) E = \nabla^2 u  - 2ik \pdv{u}{z}
+\,.
+\end{align}
+
+The term 
+%
+\begin{align}
+\pdv[2]{u}{z}
+\,
+\end{align}
+%
+has magnitude much smaller than the other terms. So, we neglect it. 
+This is the paraxial approximation. The function is then given by 
+%
+\begin{align}
+u(x, y, z) = E_0 \frac{w_0 }{w(z)} \exp(-\frac{x^2 +y^2}{w^2(z)} -i \qty(k \frac{x^2+y^2}{2 R(z)} - \psi (z)))
+\,,
+\end{align}
+%
+where we define 
+%
+\begin{align}
+w(z) = w_0 \sqrt{1 + \qty( \frac{z}{z_{r}})^2}
+\qquad \text{and} \qquad
+R(z) = z \qty(1 + \qty( \frac{z_{r}}{z})^2)
+\qquad \text{and} \qquad
+\psi (z) = \atan(z / z_r)
+\,,
+\end{align}
+%
+so the beam is squeezed: it is not a plane wave. 
+
+The factor \(z_{r} = \pi w_0^2 / \lambda \). 
+The radius of the beam can only be small in a certain region, as we go further it widens. 
+
+This also affects the phase, by the factor \(\psi (z)\).
+
+The divergence angle is given by \(\theta \approx w (z) / z \approx \lambda / \pi w_0 \), which is a manifestation of the uncertainty principle: 
+%
+\begin{align}
+w_0 \theta = \frac{\lambda}{\pi }
+\,.
+\end{align}
+
+Starting from the gaussian beam, we can define orthonormal bases which describe any beam in the paraxial approximation: the Laguerre-Gauss (cylindrical) and Hermite-Gauss (rectangular) bases.
+
+These are eigenfunctions of the paraxial wave equation: they propagate without changing their shape (although they are scaled). This is not the case for combination of them, because of the Guoy phase.
+
+We generally try to work with the 00 mode, because it is easier. 
+
+Resonance means constructive interference in the cavity: we must have resonance both in phase and in the transverse profile. 
+
+As the beam spreads the wavefronts curve, we need to account for this: the mirrors must be exactly parallel to the wavefronts. 
+So, we need to make them curved. 
+
+For LIGO-VIRGO we have a \emph{confocal} cavity, so the sum of the curvatures of the mirrors is of the order of the length of the cavity. 
+
+For the mirrors we use in the lab, their radii of curvature are from centimeters to meters. 
+
+If a gaussian beam is reflected on the mirror and comes back to itself, all the higher orders modes come back to themselves as well. 
+However, they do not do so because of the phase difference.
+
+The very high order modes are suppressed, since they are more affected by the imperfections of the mirror.
+
+We can do a back-of-the-envelope calculation for the sensitivity of a Michelson interferometer. We want to get 
+%
+\begin{align}
+\frac{ \Delta }{L} \approx \SI{e-21}{Hz^{-1/2}}
+\,,
+\end{align}
+%
+so we want 
+%
+\begin{align}
+\Delta L \approx \SI{e-18}{m Hz^{-1/2}}
+\,,
+\end{align}
+%
+so we want an interferometric sensitivity of around 
+%
+\begin{align}
+\frac{\Delta L}{\lambda } = \frac{\Delta L}{\lambda } \approx \SI{e-12}{Hz^{-1/2}}
+\,.
+\end{align}
+
+The relative error in photon counting is given by 
+%
+\begin{align}
+\frac{\Delta L}{\lambda } \approx \frac{\Delta N}{N} = \frac{1}{\sqrt{N}}
+\,,
+\end{align}
+%
+which means we must get something on the order of 
+%
+\begin{align}
+N \approx \SI{e-24}{Hz}
+\,.
+\end{align}
+
+This means we need a power of approximately 
+%
+\begin{align}
+P = N \hbar \omega \approx \SI{200}{kW}
+\,.
+\end{align}
+
+Fabry-Perot cavities are also useful to increase the effective length: we want \(L _{\text{arm}} \approx \SI{750}{km} \qty( \SI{100}{Hz}  / f _{\text{gw}})\), while the arm length is of the order \SI{3}{km}. 
+
+So, we have different reasons to introduce cavities: they increase power, they increase effective length. 
+
 \end{document}

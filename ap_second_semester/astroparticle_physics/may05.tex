@@ -1,4 +1,120 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{Early Universe}
+
+\section{Basics of cosmology}
+
+\marginpar{Tuesday\\ 2020-5-5, \\ compiled \\ \today}
+
+We establish some basic notions in cosmology. We use natural units \(\hbar = c = k_B = 1\), so that we have the equivalence of mass, energy, temperature and angular frequency. 
+
+The Planck units are defined by also setting \(G =1\).
+The classic textbook is Kolb-Turner \cite[]{kolbEarlyUniverse1994}.
+For something more recent, we have Gorbunov and Rubakov \cite[]{gorbunovIntroductionTheoryEarly2011}.
+
+The FLRW metric is given by 
+%
+\begin{align}
+\dd{s^2} = \dd{t}^2  - a^2(t) \gamma_{ij} \dd{x^{i}} \dd{x^{j}}
+\,,
+\end{align}
+%
+where \(\gamma_{ij}\) is the metric of a unit 3-sphere, 3-hyperboloid or 3-plane.
+
+The Hubble parameter is given by \(H(t) = \dot{a}(t) / a(t)\). The Einstein equations read 
+%
+\begin{align}
+R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R= 8 \pi G T_{\mu \nu }
+\,.
+\end{align}
+
+The pressure is assumed to follow the law \(P = w \rho \), and fluids are characterized by their \(w\). 
+The stress-energy tensor is \(T_{\mu \nu } = \diag(\rho , - P, -P, -P)\).
+
+The Friedmann equations read 
+%
+\begin{align}
+\qty( \frac{\dot{a}}{a})^2 &= \frac{8 \pi G}{3} \rho - \frac{k}{a^2}  \\
+\dot{\rho} + 3 \frac{\dot{a}}{a}(\rho + P) &=0  \\
+P &= P(\rho ) 
+\,.
+\end{align}
+
+The dynamical \(\ddot{a}\) Friedmann equation is a consequence of the first two. 
+
+If we have nonrelativistic matter, which is commonly called ``dust'', with \(w = 0\), we get \(\rho \propto a^{-3}\) and \(a(t) \sim t^{2/3}\).
+So, the energy density scales like \(\rho (t) \sim t^{-2}\). 
+
+The Hubble parameter, on the other hand, is given by \(H(t) = 2 / (3 t)\). This is not actually verified, since the assumption we are making of the universe being filled with matter does not hold. 
+
+For relativistic matter, we have \(P = \rho /3\), so the density scales like \(\rho \sim a^{-4}\), \(a(t) \sim t^{1/2}\), \(H = 1/(2t)\) and \(\rho = \frac{3}{32 \pi G t^2} \).
+
+The density scales like 
+%
+\begin{align}
+\rho = \frac{\pi^2}{30} g_{*} T^{4}
+\,,
+\end{align}
+%
+and the Hubble parameter scales like 
+%
+\begin{align}
+H^2 = \frac{8\pi G}{3} \rho = \frac{8}{90} \pi^3 g_{*}
+\,.
+\end{align}
+
+Let us consider the vacuum: suppose we had a relation like 
+%
+\begin{align}
+T_{\mu \nu } = \rho _{\text{vac}} \eta_{\mu \nu }
+\,,
+\end{align}
+%
+so that \(P = - \rho _{\text{vac}}\).
+
+This is equivalent to the introduction of a \(- 8 \pi G \Lambda g_{\mu \nu }\) term to the left-hand side of the field equations. 
+
+\subsection{The \(\Lambda \)CDM model}
+
+The ingredients are: 
+\begin{enumerate}
+    \item Nonrelativistic matter: baryons, dark matter, and also neutrinos as long as \(m_{\nu } \gtrsim \SI{-3}{eV}\). 
+    \item Relativity.
+    \item Dark energy: is it vacuum energy? 
+\end{enumerate}
+
+The Hubble parameter is given by 
+%
+\begin{align}
+H^2 = \frac{8 \pi G}{3} \qty(\rho_{M} + \rho _{\text{rad}} + \rho_{\Lambda } + \rho _{\text{curv}})
+\,.
+\end{align}
+
+The critical density is given by 
+%
+\begin{align}
+\rho_{c} = \frac{3}{8 \pi G} H_0^2 \approx \SI{5e-6}{GeV / cm^3}
+\,.
+\end{align}
+
+This is obtained by taking \(h = \num{.7}\). 
+
+We can take the ratios of \(\rho_{i} / \rho_{c} = \Omega_{i})\), this quantifies how much of the density of the universe is in the form of a certain kind of fluid. 
+
+What is the vacuum energy predicting by the Standard Model? 
+We know that there is symmetry breaking. 
+
+What remains when we take the VEV are the scalar terms, since the vector fields are zero in the vacuum. Specifically, we are left with 
+%
+\begin{align}
+\mu^2 \phi^2 + \lambda \phi^{4}
+\,.
+\end{align}
+
+The order of magnitude of the VEV of the Higgs is around \SI{100}{GeV}. 
+The dimensions of \(\rho = E / L^3\) are those of an energy to the fourth power. So, our estimate will be \(\rho \sim \qty(\SI{100}{GeV})^{4}\). 
+
+The estimate from cosmology is \SI{e-10}{eV^{4}}; the one from particle physics is 120 orders of magnitude larger.
+
 \end{document}

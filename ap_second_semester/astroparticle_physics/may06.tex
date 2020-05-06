@@ -1,4 +1,129 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-5-6, \\ compiled \\ \today}
+
+Today we will discuss the \textbf{thermodynamics of the early universe}. 
+
+We start off by discussing particles in thermal equilibrium, but the interesting thing is the transition between this equilibrium and non-equilibrium.
+
+We use the usual approximation of a dilute gas, we take a Boltzmann distribution function \(f(p)\), from which we can compute \(n\), \(\rho \) and \(P\).
+
+We can make some useful approximations in the relativistic limit \(T \gg m\) and in the nonrelativistic limit \(T \ll m\).
+
+\todo[inline]{Add reference to Fundamentals notes, chapter 3}
+
+A very important parameter is \(g_{*}\): it is the \emph{effective} number of degrees of freedom: it is computed as 
+%
+\begin{align}
+g_{*} = \sum _{i \in \text{bosons}} g_{i} \qty(\frac{T_{i}}{T})^{4} + \frac{7}{8} \sum _{i \in \text{fermions}} g_{i} \qty( \frac{T_i}{T})^{4}
+\,,
+\end{align}
+%
+since we need to weigh the contributions to the degrees of freedom according to whether the particles are in equilibrium or not, and when the particle decoupled. 
+
+Let us compute \(g_{*}\) in a couple of examples. First, let us consider \(T \ll \SI{}{MeV}\). 
+
+So, in the standard model we only have photons and the three neutrino species. So, we get 
+%
+\begin{align}
+g_{*} (T\ll\SI{}{MeV}) = 2 + \frac{7}{8} \times 3 \times 2
+\,,
+\end{align}
+%
+and we must ask: are these particles still coupled at the time we are considering?
+The temperature of the neutrinos is given by 
+%
+\begin{align}
+T_{\nu } = \sqrt[3]{ \frac{4}{11}} T_{\gamma }
+\,,
+\end{align}
+%
+so in the end we get \(g_{*} \approx 3.37\).
+
+If we consider a temperature around \(\SI{1}{MeV} < T < \SI{100}{MeV}\), we also will have to account for (?).
+
+In the era of radiation domination, we get 
+%
+\begin{align}
+a(t) \propto \sqrt{t}
+\,,
+\end{align}
+%
+and the Hubble parameter scales like 
+%
+\begin{align}
+H \approx 166 \sqrt{g_{*}} \frac{T^2}{M_{\text{Pl}}} = \frac{T^2}{M _{\text{Pl}}}
+\,.
+\end{align}
+
+So, we get a time of the order of 
+%
+\begin{align}
+t \approx \qty( \frac{T}{\SI{}{MeV}})^2 \SI{}{s}
+\,.
+\end{align}
+
+How do we quantitatively describe coupling? We take the rate \(\Gamma_{i}^{\nu }\) from our particle to another, considering all possible processes.
+
+Let us suppose that \(T > M_W\), so roughly \(T > \SI{100}{GeV}\).
+
+The rate is given by 
+%
+\begin{align}
+\Gamma_{\nu } = \sigma n v 
+\,,
+\end{align}
+%
+and the physics is really given by the cross section \(\sigma \): the other factors are always roughly the same, \(n \sim T^{3}\) and \(v \sim 1\).
+
+We have the coupling constant 
+%
+\begin{align}
+\frac{e^2}{4 \pi } = \alpha _{\text{em}}
+\,,
+\end{align}
+%
+and the charge is \(e = g \sin(\theta_{w})\), where we know experimentally that \(\sin^2\theta_{w} \approx \num{.24}\).
+
+So, we know that the scaling is 
+%
+\begin{align}
+\sigma \sim \qty( \frac{g^2_{w}}{4 \pi })^{2}
+\sim \qty(\alpha^2_{w})
+\,,
+\end{align}
+%
+and on the denominator we need a mass square: but the only energy scale we know of here is \(T\), so we finally get \(\sigma \sim \alpha^2_{w} / T^2\). So, in the end we find 
+%
+\begin{align}
+\sigma \sim \frac{\alpha^2_{w}}{T^2} T^3 \times 1 \sim \alpha^2_{w} T
+\,.
+\end{align}
+
+The result we get is: \(T > H\) when 
+%
+\begin{align}
+T < \frac{\alpha^2_{w }M _{\text{Pl}}}{\sqrt{g_{*}}}
+\,.
+\end{align}
+
+In another case (which?) we have \(\sigma \sim T^{2}\), so \(\Gamma \sim T^{5}\). 
+
+We must compare to the expansion of the universe. 
+
+The end result is \(\Gamma_{\nu } > H\) as long as \(T > \SI{1}{MeV}\), roughly. So, for larger temperatures the neutrinos are coupled, for smaller temperatures they are decoupled. Below \SI{1}{MeV} they completely decouple. 
+
+The ``relic neutrinos'' are colder than the relic photons. Moreover, their number density is smaller. 
+The entropy density is given by 
+%
+\begin{align}
+s = \frac{\rho + P}{T} = \frac{4}{3} \frac{\rho}{T}
+\,.
+\end{align}
+
+The temperature of neutrinos today is around \(T^{0}_{\nu } \approx \SI{1.96}{K}\). 
+
+Next week we will consider nucleosynthesis. 
+
 \end{document}

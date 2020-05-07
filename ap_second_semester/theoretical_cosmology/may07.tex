@@ -1,4 +1,167 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-5-7, \\ compiled \\ \today}
+
+Using the decaying mode is a mathematical trick. 
+
+\todo[inline]{Understand this better.}
+
+As we saw last time, the length in \(\nu \) can be interpreted as the thickness of the pancakes. 
+
+We have gotten an equation with no nonlinear terms: the Fokker-Planck equation, 
+%
+\begin{align}
+\pdv{U}{\tau } = \nu \nabla^2 U
+\,.
+\end{align}
+
+If we change \(\tau \) to \(i \tau \), this is the Schrödinger equation. 
+We solve it by separation of variables. 
+
+In Fourier space, we get 
+%
+\begin{align}
+E_{k} g_{\vec{k}} = - \nu k^2 g_{\vec{k}}
+\,.
+\end{align}
+
+This is a linear ODE, a general solution will be a superposition of eigenstates: 
+%
+\begin{align}
+U(\vec{x}, \tau ) = \int \frac{\dd[3]{k}}{(2 \pi )^3} e^{- \nu k^2 \tau } g_{\vec{k}} e^{i \vec{k} \cdot \vec{x}}
+\,,
+\end{align}
+%
+and we just need to impose boundary conditions. 
+
+We look at the kernel: the ``impulse response'' of our function. 
+We call it 
+%
+\begin{align}
+K ( \hat{x}, \tau | \hat{q}, 0)
+\,,
+\end{align}
+%
+which is indeed a conditional probability amplitude: as \(\tau \to 0\) it approaches \(\delta (\hat{x} - \hat{q})\). 
+
+This is a probability, not a probability amplitude. 
+
+We can integrate to find it: it is 
+%
+\begin{align}
+K (\hat{x}, \tau | \hat{q}, 0) = \qty(4 \pi \nu \tau )^{-3/2} \exp( -\frac{(\hat{x} - \hat{q})}{4 \nu \tau })
+\,.
+\end{align}
+
+We find this by marginalizing. 
+
+This yields an equation which is basically the Hamilton-Jacobi one, 
+%
+\begin{align}
+\pdv{S}{\tau } + \frac{1}{2} \qty(\nabla S)^2 = 0
+\,.
+\end{align}
+
+This yields an expression for the full (Eulerian) velocity. 
+We are interested in the limit \(\nu \to 0 \). Only the minima of the action matter, and we can perform Gaussian integrals. We expand \(S\) around the absolute minima: we find 
+%
+\begin{align}
+U(\hat{x}, \tau ) &= (4 \pi \nu \tau )^{-3/2} e^{-S / 2 \nu }
+\int \dd[3]{ \delta q} \exp(- \frac{1}{4 \nu } \pdv[2]{S}{q_{i} q^{j} \delta q^{i} \delta q_{j}})  \\
+&= \det \dots
+\,.
+\end{align}
+
+So, we are saying that the velocity is given by 
+%
+\begin{align}
+\vec{u} (\vec{x}, \tau ) = \sum _{s} \frac{\vec{x} - \vec{q}_{s}}{\tau } w_{s} (\vec{x}, \vec{q}, \tau )
+\,.
+\end{align}
+
+It is a superposition of different solutions, weighted by the \(w_{s}\).
+
+\section{Schrödinger equation approach for LSS formation}
+
+Madelung proposed a hydrodynamical approach to QM: a decomposition 
+%
+\begin{align}
+\psi (\vec{x}, t) = R (\vec{x}, t) e^{- \frac{S(\vec{x},t)}{i \hbar}}
+\,,
+\end{align}
+%
+which we can substitute into the Schrödinger equation 
+%
+\begin{align}
+i \pdv{\psi }{t} = - \frac{\nabla^2}{2m} \psi + V \psi 
+\,,
+\end{align}
+%
+which yields two separate equations for the real and imaginary parts: we get 
+%
+\begin{align}
+- \nabla \qty( \frac{R^2}{2m} \nabla S) = \pdv{}{t} R^2
+\,,
+\end{align}
+%
+so if we define the usual probability current 
+%
+\begin{align}
+j = \frac{\hbar}{2 m i} \qty(\psi^{*} \nabla \psi - \psi \nabla \psi^{*}) = \frac{R^2}{2m} \nabla S
+\,,
+\end{align}
+%
+so we get the equation 
+%
+\begin{align}
+\pdv{\rho }{t} + \nabla \cdot \qty(\rho \vec{v}) = 0
+\,
+\end{align}
+%
+for the imaginary part of the equation. 
+
+For the real part of the equation, instead, we find 
+%
+\begin{align}
+\pdv{S}{t} + \frac{1}{2m} \qty(\nabla S)^2 = - (V + Q ) 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+Q ( \vec{x}, t) = - \frac{\hbar^2}{2m} \frac{1}{R} \nabla^2 R 
+\,
+\end{align}
+%
+a part we must include in the potential to account for quantum effects. 
+This is the effectively the Bernoulli equation! 
+
+After the Madelung transformation, then, we get hydrodynamic equations. 
+We cna also do this backward: we start from the Bernoulli equation and continuity: 
+%
+\begin{align}
+\pdv{\rho }{t} + \nabla \cdot \qty(\rho \vec{v}) &= 0  \\
+\pdv{\phi }{t} + \frac{1}{2} \qty(\nabla \phi )^2 &= -V 
+\,,
+\end{align}
+%
+and associate it with Schrödinger, using \(\nu \) instead of \(\hbar\). 
+We then get Schrödinger, with a different potential: 
+%
+\begin{align}
+i \nu \pdv{\Psi }{t} = - \frac{\nu^2}{2 } \nabla^2 \Psi + \qty(V + \frac{\nu^2}{2} \frac{\nabla^2 R}{R}) \Psi 
+\,.
+\end{align}
+
+We apply this procedure in cosmology: we get 
+%
+\begin{align}
+\pdv{\eta }{\tau } + \nabla \cdot \qty(\eta \vec{u}) = 0   \\
+&
+\,,
+\end{align}
+
+
 \end{document}

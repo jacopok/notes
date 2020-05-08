@@ -1,4 +1,144 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-5-8, \\ compiled \\ \today}
+
+Our variables are \(\vec{u}\), \(\eta \) and \(\varphi \), to be considered as \(a\) varies. 
+
+Notice that \(\nu \) from now is not the viscosity!
+
+We have the equations we wrote last time using 
+%
+\begin{align}
+\eta = \frac{\rho}{\rho_{b}} = 1+ \delta 
+\,,
+\end{align}
+%
+and \(\vec{u} = \dv*{\vec{x}}{\tau }\), and \(\tau = a(t)\).
+
+So, we define the wavefunction: 
+%
+\begin{align}
+\Psi = R e^{i \Phi  / \nu } = \qty(1 + \delta )^{1/2} e^{i \Phi / \nu }
+\,.
+\end{align}
+
+With the Madelung procedure we get a Schrödinger equation with a correction to the potential: 
+%
+\begin{align}
+i \nu \pdv{\Psi }{t} = - \frac{\nu^2}{2}  \nabla^2 \Psi 
++ \qty(V + \frac{\nu^2}{2} \frac{\nabla^2 R}{R})\Psi 
+\,.
+\end{align}
+
+Then, we take 
+%
+\begin{align}
+V = \frac{3}{2 \tau } \qty(\Phi + \varphi ) 
+\,,
+\end{align}
+%
+so that we get the Poisson equation in the form 
+%
+\begin{align}
+\nabla^2 \qty(V + \frac{3i\nu}{4 \tau } \log \qty( \frac{\Psi}{\Psi^{*}} )) = - \frac{3}{2 \tau^2} \qty(\abs{\Psi  }^2 - 1)
+\,.
+\end{align}
+
+Can we drop the quantum term in the Schrödinger equation? kind of, we can say that it is quadratic in \(\nu \)\dots
+This is what is done in the literature, anyway.
+
+Then, we get the quantum term in the regular Poisson equation:
+%
+\begin{align}
+\pdv{\Phi }{\tau } + \frac{1}{2} \qty(\nabla \Phi )^2 = - V - \frac{\nu^2}{2} \frac{\nabla^2 R}{R }
+\,.
+\end{align}
+
+Also, let us set the potential \(V = 0\): then we will have the quantum mechanics of free particles. 
+
+So then, we get 
+%
+\begin{align}
+i \nu \pdv{\Psi }{ \tau } + \frac{\nu^2}{2} \nabla^2 \Psi  = 0 
+\,.
+\end{align}
+
+We solve this equation by performing a Wick rotation and using the results we obtained in the adhesion approximation. 
+
+The similarity is to the Fokker-Planck equation: the only difference is that we have to map \(\tau \to i \tau \), that is, we perform a Wick rotation. 
+So, we take everything we discussed for the solution to the Fokker-Planck equation and adapt it here. 
+
+So, we consider a Green's function as 
+%
+\begin{align}
+\Psi (\vec{x}, \tau ) = \int G(\vec{x}, \tau, \vec{q}, 0) \Psi_{i} (\vec{q}) \dd[3]{q}
+\,,
+\end{align}
+%
+so we can use the Feynman formula: 
+%
+\begin{align}
+G(\vec{x}, \tau , \vec{q}, 0) = \qty(2 \pi i \nu \tau )^{-3/2} 
+\exp( \frac{i}{\nu } \frac{(\vec{x} - \vec{q})^2}{2 \tau })
+\,,
+\end{align}
+%
+and then from the Madelung transformation we get 
+%
+\begin{align}
+\Psi (\vec{x}, \tau ) = \qty(2 \pi i \nu \tau )^{ - 3/ 2}
+\int \dd[3]{q} \qty(1 + \delta_{i} (\vec{q}))^{1/2} \exp( \frac{i}{\nu } \qty[ \frac{(\vec{x} - \vec{q})^{2}}{2 \tau } + \Phi_{i} (\vec{q})])
+\,.
+\end{align}
+
+Now, we apply the saddle-point approximation: this integral, kind of like Faynman's path-integral, is dominated by the regions in which the exponentials interfere constructively, which are defined by 
+%
+\begin{align}
+\nabla_{q} \qty[ \frac{(\vec{x} - \vec{q})^2}{2 \nu \tau } + \frac{\Phi_{i} (\vec{q})}{\nu }] = 0
+\,.
+\end{align}
+
+Now we are going to directly get both velocity and density. 
+We assume that \(\delta_{i}=0\). Then we find 
+%
+\begin{align}
+\vec{x} = \vec{q}_{s} - \tau \nabla_{q } \varphi_0 (q_{s})
+\,.
+\end{align}
+
+As \(\nu \to 0\), we find 
+%
+\begin{align}
+\Psi (\vec{x}, \tau ) \approx \eta^{1/2} (\vec{q}_{s}) e^{ \frac{i}{\nu } \chi (\vec{q}_{s})} \qty[\det \qty(\delta_{ij} - \tau \pdv[2]{\varphi_0 }{q_{i}}{q_{j}})]^{1/2}
+\,,
+\end{align}
+
+where 
+%
+\begin{align}
+\chi = \frac{(\vec{x} - \vec{q})^2}{2 \tau } - \varphi_0 (\vec{q})
+\,.
+\end{align}
+
+This looks similar to Zeldovich, but suppose that we had different stationary points: then, we get interference! 
+
+In the laminar regime we get 
+%
+\begin{align}
+\eta = \Psi^{*} \Psi \sim \det^{-1} \qty(\delta_{ij} - \tau \pdv[2]{\varphi_0 }{q_{i}}{q_{j}})
+\,.
+\end{align}
+
+Sandro Winberger is in Parma, he knows how to do this stuff. 
+
+\chapter{Statistics of the Large-Scale Structure}
+
+We want to understand the statistics of the distribution in space of structures.
+We can compare the models of LSS formation in terms of statistical properties of the distribution of galaxies, not in terms of geography. 
+
+We only have one universe, and we see only a part of it. 
+
+The person who introduced the fair sample hypothesis is Birkhoff. 
+
 \end{document}

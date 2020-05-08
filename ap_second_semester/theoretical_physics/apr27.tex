@@ -1,4 +1,136 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Relativistic classical field theory}
+
+\marginpar{Friday\\ 2020-5-8, \\ compiled \\ \today}
+
+We want to build a relativistic field theory starting from a lagrangian density \(\mathscr{L}\). 
+What conditions should we impose on it?
+
+\begin{enumerate}
+    \item The action \(S = \int \dd[4]{x} \mathscr{L}\) must be a real functional, so \(\mathscr{L}\) must be a real function.
+    \item The action \(S\) must be adimensional,\footnote{Why? Well, the simplest argument I can think of is that is should have the same dimensionality it has in classical theory. Beyond that, when we write a path integral 
+    %
+    \begin{align}
+    K \sim \int \mathcal{D} x e^{- i S}
+    \,
+    \end{align}
+    %
+    the action goes into the argument of the exponential, so it must be adimensional.} so the Lagrangian must have the dimensions of a length to the \(-4\), which is equivalent to a mass to the \(4\)th power.
+    \item The action \(S\) must be a Lorentz scalar, therefore (since \(\dd[4]{x}\) is a scalar) the Lagrangian must also be a scalar. 
+    \item We want second-order equations of motion, so we ask that \(\mathscr{L} = \mathscr{L}( \varphi , \partial_{\mu }\varphi )\).    
+\end{enumerate}
+
+\subsection{Real scalar field}
+
+We consider a real scalar field \(\varphi (x)\). In analogy to classical theory, we choose the Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \underbrace{\frac{1}{2} \qty(\partial_{\mu } \varphi ) \qty(\partial^{\mu } \varphi )}_{\text{kinetic term}} - \underbrace{\frac{1}{2} m^2 \varphi^2}_{\text{mass term}}
+\,.
+\end{align}
+
+This is a \emph{free particle} Lagrangian: it does not contain powers of \(\varphi \) which are higher than two. These higher terms would represent interactions. 
+In order for our conditions to hold, the dimensions of both \(m\) and \(\varphi \) must be those of a mass. 
+
+The Euler-Lagrange equations read: 
+%
+\begin{align}
+\qty(\square + m^2) \varphi = 0
+\,,
+\end{align}
+%
+which is the Klein-Gordon equation. 
+As we saw in section \ref{sec:solutions-free-KG-equation}, the solutions to this equation are given by 
+%
+\begin{align}
+\varphi (x) = 
+\frac{1}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty(a(k) e^{-ikx} + a^{*}(k) e^{ikx})_{k^{0} = \omega_{k}}
+\,.
+\end{align}
+
+Let us also express this in the Hamiltonian formulation: the momentum is given by 
+%
+\begin{align}
+\pi (x) = \pdv{\mathscr{L}}{\partial^{0} \varphi } = \partial_{0} \varphi 
+\,,
+\end{align}
+%
+and using it we can write the Hamiltonian density with the usual formula: 
+%
+\begin{align}
+\mathscr{H} = \pi \partial_{0} \varphi - \mathscr{L} = \frac{1}{2} \pi^2 + \frac{1}{2} \qty(\nabla \varphi )^2 + \frac{1}{2} m^2 \varphi^2
+\,.
+\end{align}
+
+Note that this is positive definite: so the Hamiltonian, its integral (\(H = \int \mathscr{H} \dd[3]{x}\)) also is.
+We can write down the Hamilton equations and see that they are equivalent to the Lagrange ones: they read 
+%
+\begin{align}
+\dot{\varphi}_{t} (\vec{x}) &= \fdv{H}{\pi_{t} (\vec{x})}
+ = \pi = \partial_{0} \varphi   \\
+\dot{\pi}_{t} &= - \fdv{H}{\varphi_{t}}  \\
+&= - \frac{1}{2} \fdv{}{\varphi } \int \pi^2 + \qty(\nabla \varphi)^2 + m^2 \varphi^2 \dd[3]{x}  \\
+&= - \fdv{}{\varphi } \int \dd[3]{x} \qty[- \varphi \nabla^2 \varphi + \frac{1}{2} m^2 \varphi ]  \\
+&= \nabla^2\varphi  - m^2 \varphi 
+\,,
+\end{align}
+%
+where we used the fact that 
+%
+\begin{align}
+\frac{1}{2}\fdv{}{\varphi(x) } \int \qty(\nabla \varphi(y) )^2 \dd[3]{y} 
+&= \int \dd[3]{y} \fdv{ \nabla \varphi (y) }{\varphi (x) } \cdot \nabla \varphi (y) \\
+&= \int \dd[3]{y} \nabla \qty(\fdv{\varphi (y) }{\varphi( x) } ) \cdot\qty(\nabla \varphi (y) )  \\
+&= - \int \dd[3]{y} \fdv{\varphi (y) }{\varphi(x) } \nabla^2 \varphi (y)   \\
+&= - \int \dd[3]{y} \delta^{(3)} (x- y) \nabla^2 \varphi (y)
+= - \nabla^2\varphi (x)
+\,.
+\end{align}
+
+By the KG equation, the result can also be written as \(\partial_{0}^2 \varphi\).
+
+Let us now discuss the \textbf{Nöther currents} associated with the symmetries of this Lagrangian. It does not explicitly depend on space nor time, so it has Poincaré invariance: the associated canonical stress-energy-momentum tensor is given by 
+%
+\begin{align}
+\widetilde{T}^{\mu }_{\nu }
+= \qty(\partial^{\mu } \varphi ) \qty(\partial_{\nu } \varphi ) - \delta^{\mu }_{\nu }\mathscr{L} 
+\,.
+\end{align}
+
+The components of the total momentum are given by integrating \(\widetilde{T}^{0}_{\nu }\) over 3-space: they are 
+%
+\begin{align}
+P_{0} &= \int \widetilde{T}^{0}_{0} = \int \dd[3]{x} \qty(\partial_{0}\varphi )^2  - \mathscr{L} = \int \dd[3]{x} \mathscr{H}= H  \\
+P_{i} &= \int \widetilde{T}^{0}_{i} = \int \dd[3]{x} \qty(\partial^{0}\varphi) \qty(\partial_{i} \varphi )
+\,.
+\end{align}
+
+\begin{claim}
+We can check explicitly that these currents are indeed conserved, that is, that \(\partial_{\mu } \widetilde{T}^{\mu }_{\nu } =0 \) is an identity. 
+\end{claim}
+
+\begin{proof}
+The computation goes as such: 
+%
+\begin{align}
+\partial_{\mu } \widetilde{T}^{\mu }_{\nu } &= \partial_{\mu } \qty(\partial^{\mu } \varphi \partial_{\nu } \varphi ) - \partial_{\nu } \mathscr{L}  \\
+&= \partial_{\mu } \partial^{\mu } \varphi \partial_{\nu } \varphi 
++ \partial^{\mu }\varphi \partial_{\mu } \partial_{\nu } \varphi 
+- \frac{1}{2} \partial_{\nu } \qty( \partial_{\mu } \varphi \partial^{\mu } \varphi  -  m^2 \varphi^2)  \\
+&= \partial_{\mu } \partial^{\mu } \varphi \partial_{\nu } \varphi 
++ \partial^{\mu }\varphi \partial_{\mu } \partial_{\nu } \varphi 
+- \partial_{\nu } \partial_{\mu } \varphi \partial^{\mu } \varphi 
++ m^2 \varphi \partial_{\nu } \varphi   \\
+&= (\square \varphi + m^2 \varphi ) \partial_{\nu }\varphi  = 0
+\,,
+\end{align}
+%
+where derivatives are always intended to only act on what's directly in front of them, and where finally we recover the KG equation. 
+\end{proof}
+
+
 \end{document}

@@ -1,4 +1,61 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-5-8, \\ compiled \\ \today}
+
+\todo[inline]{About an hour of only listening}
+
+In the TT gauge, the carrier angular frequency is \(\omega_{l}\) and we get some power in the sidebands \(\omega_{l} \pm \omega_{gw}\). 
+We express this as a vector equation: we define the vector \(\vec{B} = (\text{carrier}, \text{sidebands})\) after a round-trip, so we have  
+%
+\begin{align}
+\left[\begin{array}{c}
+B_1  \\ 
+B_2  \\ 
+B_3 
+\end{array}\right]
+=
+\left[\begin{array}{ccc}
+X_{00}  & 0 & 0 \\ 
+X_{10}  & X_{11}  & 0 \\ 
+X_{20}  & 0 & X_{22} 
+\end{array}\right]
+\left[\begin{array}{c}
+A_1  \\ 
+A_2  \\ 
+A_3 
+\end{array}\right]
+\,,
+\end{align}
+%
+and in the end we get 
+%
+\begin{align}
+\abs{\Delta \phi_{x}} = h_0 k_{l} L \operatorname{sinc} \qty( \frac{\omega_{gw}L}{c}) \frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 }  \frac{1}{\abs{e^{2 i \omega_{gw} \frac{L}{c}}} - r_1 r_2 }
+\,.
+\end{align}
+
+We can make some approximations: \(p \approx 0 \), \(r_2 \approx 1\), \(r_1 \sim 1\). We get 
+%
+\begin{align}
+\frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 } \approx 1 + r_1 \approx 2 \qty(1 + \epsilon (r1, r2, p))
+\,.
+\end{align}
+
+Also, our finesse is large so that the value of the sinc is around 1. 
+
+The cavity acts as a low-pass frequency: the cutoff is called the \emph{cavity pole}, 
+%
+\begin{align}
+f_p = \frac{1}{4 \pi \tau_{s}} \approx \frac{c}{4 \mathcal{F}L} 
+\,,
+\end{align}
+%
+so the response looks like 
+%
+\begin{align}
+\abs{\Delta \phi_{FP}} = h_0 \frac{4 \mathcal{F}}{\pi } k_l L \frac{1}{\sqrt{1 + \qty( \frac{f_{gw}}{f_p})^2}}
+\,.
+\end{align}
+
 \end{document}

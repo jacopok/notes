@@ -16,5 +16,89 @@ Inoltre, vediamo le due Nubi di Magellano: le due galassie a noi più vicine.
 Opera di James Turrell: ``Celestial Vault'', ci si può stendere in una piattaforma con un orizzonte artificiale che scherma dall'inquinamento luminoso. 
 
 Il \textit{Primo Moto} di Raffaello mostra una precisa configurazione astrale: quella del 31 ottobre 1503, anno in cui il suo pontefice entra in carica. 
+Qui si vede la sfera celeste \emph{dall'esterno}.
+
+\emph{Uranometria} (Bayer) versus \emph{Coelum Stellatum Christianus} (Schiller): sempre attorno al 1600, si vede due immagini speculari: Perseo contro San Paolo. Nel primo caso si vede la sfera dall'interno, nel secondo dall'esterno. 
+
+L'\textbf{astronomia sferica} descrive i moti degli astri nella sfera celeste. L'\textbf{astronomia dinamica}, invece, ne prevede i moti. 
+L'astronomia \textbf{di posizione} è l'unione delle due: ha predetto, ad esempio, il ritorno della cometa di Halley. 
+
+Possiamo misurare distanze angolari relative ancor prima di aver fissato un sistema di riferimento. 
+Per avere un numero indicativo, Luna e Sole hanno un diametro di circa \SI{30}{\prime}. 
+
+Gli strumenti storici senza utilizzo di lenti riescono a raggiungere una precisione di \SI{1}{\prime}. 
+Attualmente, il satellite Gaia ha una precisione angolare di circa \SI{10}{\micro as}, 6 milioni di volte migliore. 
+
+Possiamo dare stime delle distanze angolari tenendo il braccio esteso e traguardando un dito, tre dita, la dimensione trasversa della mano: avremo \SI{1}{\degree}, \SI{5}{\degree} e \SI{10}{\degree} circa --- è buona norma provare a controllare le misure del proprio corpo contro un riferimento noto, comunque. 
+
+I pianeti sono tutti più piccoli di \SI{50}{\arcsec}, e noi non siamo in grado di risolvere ad occhio oggetti con distanze minori di \SI{100}{\arcsec}, quindi li vediamo come puntiformi. 
+
+Gli angoli si misurano in \textbf{radianti} in generale: questa è l'unità da utilizzare, ad esempio, negli argomenti delle funzioni trigonometriche. 
+In radianti si ha un angolo giro di \(2 \pi \SI{}{rad}\).
+Possiamo, tuttavia, anche utilizzare i gradi: così dividiamo un angolo giro in \SI{360}{\degree}, ognuno di questi in \SI{60}{\arcmin}, ognuno di questi in \SI{60}{\arcsec}, che poi sono divisi in modo decimale. 
+Alternativamente, per tracciare la posizione degli oggetti nel cielo notturno dalla Terra è comodo anche dividere un angolo giro in \SI{24}{h}, ognuna in \SI{60}{min} e ognuno di questi in \SI{60}{s}. 
+
+\subsection{Trigonometria}
+
+Prendiamo un triangolo \(ABC\), con lati \(a\), \(b\) e \(c\) e angoli \(\alpha \), \(\beta \) e \(\gamma \). Ad ogni lettera si fa corrispondere il relativo vertice, angolo e il lato opposto, sotteso da quell'angolo.
+
+Nel contesto della geometria Euclidea si può mostrare che \(\alpha + \beta + \gamma  =\pi \). 
+
+Valgono anche: la \emph{legge dei seni}
+%
+\begin{align}
+\frac{\sin(\alpha )}{a} = 
+\frac{\sin(\beta )}{b} = 
+\frac{\sin(\gamma )}{c} =
+\frac{1}{2R}
+\,,
+\end{align}
+%
+dove \(R\) è il raggio del cerchio circoscritto; poi la \emph{legge del coseno}, una generalizzazione del teorema di Pitagora:
+%
+\begin{align}
+a^2 = b^2 + c^2 - 2bc \cos(\alpha )
+\,,
+\end{align}
+%
+e la \emph{legge delle tangenti}: 
+%
+\begin{align}
+\frac{a-b}{a+b} = \frac{\tan(\frac{\alpha - \beta }{2})}{\tan(\frac{\alpha + \beta}{2} )}
+\,.
+\end{align}
+
+Lo \textbf{steradiante}, o angolo solido è definito come il rapporto fra l'area di una superficie sferica e il raggio della sfera al quadrato, in analogia all'angolo lineare, che è definito come il rapporto fra arco e raggio. L'angolo solido coperto dalla sfera intera è di 
+%
+\begin{align}
+\frac{A}{R^2} \SI{}{sr} = \frac{4 \pi R^2}{R^2} \SI{}{sr} = 4 \pi \SI{}{sr} 
+\,,
+\end{align}
+%
+che possiamo esprimere in gradi quadrati utilizzando il fatto che uno steradiante è un radiante al quadrato, quindi 
+%
+\begin{align}
+\SI{}{sr} = \SI{}{rad}^2 = \qty( \frac{360}{2 \pi } )^2 \qty(\frac{2 \pi \SI{}{rad}}{\SI{360}{\degree}})^2 (\SI{}{\degree})^2 
+= \frac{360^2}{4 \pi^2} \qty(\SI{}{\degree})^2
+\,.
+\end{align}
+
+Dati tre cerchi massimi (intersezioni sfera - piano che passa per il suo centro), un \textbf{triangolo sferico} che definiscono è una porzione definita da questi, con tutti i lati minori di \(\pi \). 
+
+Per i triangoli sferici le leggi precedenti diventano le seguenti: 
+%
+\begin{align}
+\frac{\sin(A)}{\sin(a)} &=
+\frac{\sin(B)}{\sin(b)} =
+\frac{\sin(C)}{\sin(c)}   \\
+\sin(a) \cos(B) &= \cos(b) \sin(c) - \sin(b) \cos(c) \cos(A)  \\
+\cos(a) \cos(C) &= \sin(a) \cot(b) - \sin(C) \cot(B)  \\
+\cos(A) &= - \cos(B) \cos(C) + \sin(B) \sin(C) \cos(a)
+\,,
+\end{align}
+%
+e la questione interessante da notare è che ora anche solo conoscere i tre angoli è sufficiente per determinare i tre lati.
+
+Possiamo esprimere una posizione sia in coordinate cartesiane \(x, y, z\) che in coordinate sferiche \(r , \theta , \varphi \). 
 
 \end{document}

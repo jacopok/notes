@@ -231,6 +231,103 @@ The Hamiltonian density is defined as usual: it is
 \,.
 \end{align}
 
+\begin{claim}
+The Hamilton equations read 
+%
+\begin{align}
+\dot{\varphi}^{*} &= \fdv{H}{\pi^{*}} 
+= \pi = \partial_0 \varphi^{*} \\
+\dot{\pi}^{*} &= - \fdv{H}{\varphi^{*}} 
+= \nabla^2 \varphi  -m^2 \varphi 
+\,,
+\end{align}
+%
+and their conjugate.
+\end{claim}
 
+\todo[inline]{TODO: derive Poincaré currents, I suspect they look very similar to the real case.}
+
+Beyond Poincaré invariance, this Lagrangian has an additional internal symmetry: the \(U(1)\) symmetry \(\varphi \to \varphi e^{i \alpha }\). 
+
+For this symmetry, we have 
+%
+\begin{align}
+\delta x^{\mu } &= 0   \\
+\delta \varphi &= i \alpha \varphi 
+\,,
+\end{align}
+%
+so the generators \(Y\) are zero, while 
+%
+\begin{align}
+X_{\varphi } = i \varphi  
+\qquad \text{and} \qquad
+X_{\varphi^{*}} = -i \varphi^{*}
+\,,
+\end{align}
+%
+so our conserved current is 
+%
+\begin{align}
+J^{\mu } &= \pdv{\mathscr{L}}{\partial_{\mu} \varphi} X_{\varphi } + \pdv{\mathscr{L}}{\partial_{\mu} \varphi^{*}} X_{\varphi^{*}}  \\
+&= i \qty(\partial^{\mu } \varphi^{*}) \varphi 
+- i \qty(\partial^{\mu} \varphi ) \varphi^{*}  \\
+&= i \qty(\varphi \partial^{\mu} \varphi^{*}- \varphi^{*} \partial^{\mu } \varphi )
+\,.
+\end{align}
+
+\begin{claim}
+This is indeed conserved.
+\end{claim}
+
+\begin{proof}
+The computation reads: 
+%
+\begin{align}
+\partial_{\mu }J^{\mu } &\propto
+\partial_{\mu } \qty(\varphi^{*} \partial^{\mu } \varphi 
+- \varphi \partial^{\mu } \varphi^{*})  \\
+&= \partial_{\mu } \varphi^{*} \partial^{\mu } \varphi  
++ \varphi^{*} \square \varphi 
+- \partial_{\mu } \varphi^{*} \partial^{\mu } \varphi 
+- \varphi \square \varphi^{*}  \\
+&= \varphi^{*} \square \varphi 
+- \varphi \square \varphi^{*}   \\
+&= \varphi^{*} m^2 \varphi - \varphi m^2 \varphi^{* } = 0
+\,.
+\end{align}
+\end{proof}
+
+We will identify this with leptonic or hadronic number conservation: it will not represent the probability of finding a particle anymore, as it did for the KG equation. 
+
+\begin{claim}
+The Hamiltonian and total momentum for the real scalar field can be expressed in terms of the coefficients \(a(k)\) as: 
+%
+\begin{align}
+H &=  \frac{1}{2} \int \dd[3]{k} \omega_{k}  \qty(a^{*}a + a a^{*})\\
+&= \int \dd[3]{k} \omega_{k} a^{*} a(k)
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+P^{i} = \frac{1}{2} \int \dd[3]{k} k^{i}  \qty(a^{*}a + a a^{*})\\
+&= \int \dd[3]{k} k^{i} a^{*} a(k) 
+\,.
+\end{align}
+\end{claim}
+
+\begin{claim}
+The total charge for the complex scalar field associated with the \(U(1)\) symmetry is 
+%
+\begin{align}
+Q = q\int \dd[3]{k} \qty(a^{*}a - bb^{*})
+= q\int \dd[3]{k} \qty(a^{*}a - b^{*}b)
+\,,
+\end{align}
+%
+so the particle with negative energy has the opposite charge as the one with positive energy.
+\end{claim}
 
 \end{document}

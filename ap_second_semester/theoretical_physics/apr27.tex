@@ -101,6 +101,8 @@ Let us now discuss the \textbf{Nöther currents} associated with the symmetries 
 \,.
 \end{align}
 
+Note that, in this case, the stress-energy tensor is symmetric (\(\widetilde{T}^{\mu \nu } = \widetilde{T}^{\nu \mu }\)). This is not a general fact, but it can be shown that the canonical stress-energy tensor can be made into a symmetric tensor in general: this is the so-called Belinfante-Rosenfeld stress-energy tensor. 
+
 The components of the total momentum are given by integrating \(\widetilde{T}^{0}_{\nu }\) over 3-space: they are 
 %
 \begin{align}
@@ -133,6 +135,101 @@ The computation goes as such:
 %
 where derivatives are always intended to only act on what's directly in front of them, and where finally we recover the KG equation. 
 \end{proof}
+
+The Lagrangian is also invariant under \textbf{Lorentz transformations}: 
+since our field is a Lorentz scalar it will not change under them, therefore the generators \(X\) must be zero. 
+
+So, in equation \eqref{eq:conserved-currents-Lorentz} we will have \(\Sigma_{\rho \sigma } = 0\), which means 
+%
+\begin{align}
+J^{\mu }_{(\rho \sigma )} = 2 x_{[\rho } \widetilde{T}^{\mu }_{\sigma ]} = L^{\mu }_{\rho \sigma }
+\,,
+\end{align}
+%
+The current density associated with the regular angular momentum. 
+The integral of its \(\mu = 0\) component in \(\dd[3]{x}\) yields the total angular momentum. 
+
+\begin{claim}
+This is indeed a conserved current: \(\partial_{\mu } J^{\mu }_{\rho \sigma } = 0\). 
+\end{claim}
+
+\begin{proof}
+We take the divergence explicitly: 
+%
+\begin{align}
+\partial_{\mu } J^{\mu }_{\rho \sigma } &= \partial_{\mu } \qty(2 x_{[\rho } \widetilde{T}^{\mu }_{\sigma ]})  \\
+&= 2 \qty(\partial_{\mu } x_{[\rho } ) \widetilde{T}^{\mu }_{\sigma ]}
++ 2 x_{[\rho } \partial_{\mu } \widetilde{T}^{\mu }_{\sigma ]}   \\
+&= 2 \eta_{\mu [\rho } \widetilde{T}^{\mu }_{\sigma ]} = \widetilde{T}_{[\rho \sigma ]} = 0 
+\,,
+\end{align}
+%
+where we have used the fact that the canonical stress-energy tensor for a real scalar field is conserved: \(\partial_{\mu } \widetilde{T}^{\mu }_{\nu } = 0\), and symmetric. 
+\end{proof}
+
+\subsection{Complex scalar field}
+
+Now, let us consider a complex scalar field, such that in general \(\varphi \neq \varphi^{*}\) and \(\varphi ' (x') = \varphi (x)\) under Poincaré transformations.
+
+Then, we can write our Lagrangian as 
+%
+\begin{align}
+\mathscr{L} = \qty(\partial^{\mu } \varphi^{*}) \qty(\partial_{\mu } \varphi )
+- m^2 \abs{\varphi }^2
+\,,
+\end{align}
+%
+where we dropped the \(1/2\) factor from the real case. 
+This is equivalent, since Lagrangians are defined up to a multiplicative factor, but there is a reason for it. 
+
+The complex field \(\varphi_{\mathbb{C}}\) represents two real degrees of freedom: 
+%
+\begin{align}
+\varphi_{\mathbb{C}} (x) = \frac{\varphi_{\mathbb{R}, 1}(1) + i \varphi_{\mathbb{R}, 2}}{\sqrt{2}}
+\,,
+\end{align}
+%
+where we included a division by \(\sqrt{2}\) for normalization purposes.
+
+This is what makes us remove the \(1/2\) factor: if we take real fields to be special cases of the complex one, for each one we consider we must divide by \(\sqrt{2}\), and since the Lagrangian is quadratic this yields the global factor. 
+
+We can recover the two real DoF by either adding or subtracting  \(\varphi \) and \(\varphi^{*}\). 
+In terms of the real fields we can rewrite the Lagrangian as 
+%
+\begin{align}
+\mathscr{L} &= \qty(\partial_{\mu } \frac{\varphi_1 -i \varphi_2 }{\sqrt{2}})
+\qty(\partial^{\mu } \frac{\varphi_1 +i \varphi_2 }{\sqrt{2}})
+- m^2 \frac{\varphi_1 -i \varphi_2 }{\sqrt{2}} \frac{\varphi_1 + i \varphi_2 }{\sqrt{2}}  \\
+&= \frac{1}{2} \partial_{\mu } \varphi_1 \partial^{\mu } \varphi_1 
++ \frac{1}{2} \partial_{\mu } \varphi_2 \partial^{\mu } \varphi_2 
+- \frac{1}{2} m^2 \varphi_1^2 - \frac{1}{2} m^2 \varphi_2^2  \\
+&= \mathscr{L}_{1} + \mathscr{L}_{2}
+\,.
+\end{align}
+
+Therefore, the two scalar degrees of freedom are fully decoupled: each has its own Lagrangian, and there is no interaction between them.
+
+In order to derive the equations of motion we can differentiate with respect to either \(\varphi \) or \(\varphi^{*}\). This yields the Klein-Gordon equation for \(\varphi^{*}\) and \(\varphi \) respectively. 
+
+So, both \(\varphi \) and \(\varphi^{*}\) satisfy the KG equation. 
+
+We have the general form of the solution in terms of the coefficients \(a(k)\) and \(b^{*}(k)\).
+
+We can define the momenta 
+%
+\begin{align}
+\pi (x) &= \pdv{\mathscr{L}}{\partial_0 \varphi} = \partial_{0} \varphi^{*}  \\
+\pi^{*} (x) &= \pdv{\mathscr{L}}{\partial_0 \varphi^{*}} = \partial_{0} \varphi  
+\,.
+\end{align}
+
+In order to fully describe the field, we need both the pair \(\varphi, \pi  \) and \(\varphi^{*}, \pi^{*}\). 
+The Hamiltonian density is defined as usual: it is 
+%
+\begin{align}
+\mathscr{H} = \pi^{* } \pi + \qty(\nabla \varphi )^{*} \cdot \qty(\nabla \varphi ) + m^2\varphi^{*} \varphi \geq 0
+\,.
+\end{align}
 
 
 

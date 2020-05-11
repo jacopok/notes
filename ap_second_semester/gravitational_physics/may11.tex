@@ -3,6 +3,89 @@
 
 \marginpar{Monday\\ 2020-5-11, \\ compiled \\ \today}
 
+We have an issue if noise is strong enough to move our mirrors out of lock, even if we do not care to observe GW at the frequency of that noise.
 
+Today we will discuss the \textbf{antenna pattern}: the detector tensor is given by 
+%
+\begin{align}
+D_{ij} = \frac{1}{2} \qty(\hat{x}_{i} \hat{x}_{j} - \hat{y}_{i} \hat{y}_{j}) 
+\,,
+\end{align}
+%
+so that 
+%
+\begin{align}
+h(t) = \frac{1}{2} \qty(\ddot{h}_{xx} - \ddot{h}_{yy})
+\,,
+\end{align}
+%
+as long as the arms are aligned with the \(\hat{x}\) and \(\hat{y}\) axes. 
+The function \(D_{ij}\) describes the sensitivity of our detector in different directions. 
+
+These kinds of detectors return a scalar (a timeseries, yes, but a scalar with respect to 3D space). This scalar will be linear in the tensor \(h_{ij}\), so we can express the observation as 
+%
+\begin{align}
+h(t) = D_{ij} h_{ij} (t)
+\,.
+\end{align}
+
+We must perform a rotation with two angles \(\phi \) and \(\theta \) to go from the source frame and the detector frame. 
+
+We must make a choice to select what we call \(h_{+}\) and \(h_{ \times }\). In the end, we find 
+%
+\begin{align}
+h(t) &= F_{+} (\theta , \phi ) h_{+}+ F_{\times} (\theta , \phi ) h_{\times}  \\
+F_{+} &= \frac{1}{2} \qty(1 + \cos^2\theta ) \cos( 2 \phi )  \\
+F_{ \times } &= \cos(\theta ) \sin(2 \phi )
+\,.
+\end{align}
+
+\section{The interferometer's noise budget}
+
+The noise is dominated by the quantum noise: quantum fluctuations of the laser light. 
+The other source of noise giving us problems in the \SI{100}{Hz} region is the coating Brownian noise. 
+
+At high frequencies, the problem is that it is hard to measure small displacements with small integration time. 
+At low frequencies, the problem is that the mirrors move too much. 
+
+\subsection{Quantum noise}
+
+The fluctuation in square power --- the \emph{shot noise}, error in the count of photons ---  is given, since it is a Poisson process, by
+%
+\begin{align}
+\Delta P^2 = \frac{\Delta E^2}{T^2} = 
+\frac{\Delta N^2 \hbar^2 \omega_{l}^2}{T^2}
+= N \frac{\hbar^2   \omega_{l}^2}{T^2}
+= \frac{P_0 \hbar \omega_{l}}{T}
+= 2\frac{S_P(\omega )}{T}
+= \frac{1}{2} \int_{0}^{1/T} S_P (\omega) \dd{\omega }
+\,,
+\end{align}
+%
+so we get \(S_P (\omega ) = 2 P_0 \omega_{l}\). 
+
+We also have \emph{radiation pressure}, which scales differently. 
+So, we must reach a compromise with both power and finesse. 
+
+The shot noise is flat in frequency, the RP noise decreases with frequency. 
+At each frequency, we can define a Standard Quantum Limit, which is the lowest noise we could have at that frequency. 
+
+We can go below this limit using Quantum Vacuum Squeezing. 
+
+\subsection{Thermal Noise}
+
+We have contribution from all dissipation sources. 
+There is thermo-elastic noise: as a material bends, the side which compresses heats up a little. 
+
+The limit is the internal dissipation: 
+%
+\begin{align}
+S_{F, \text{th}} = 4 k_B T \Re[Z(\omega )]  
+\,.
+\end{align}
+
+\subsection{Seismic noise}
+
+\subsection{Newtonian noise}
 
 \end{document}

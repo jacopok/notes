@@ -1,4 +1,153 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-5-12, \\ compiled \\ \today}
+
+We should be able to finish by Wednesday June 3rd. 
+
+We keep exploring Standard Model Cosmology. 
+
+\section{Big Bang Nucleosynthesis}
+
+Around a few hundred \SI{}{MeV} to the \SI{}{GeV} we have a phase transition. 
+
+Now we move to the infrared regime, where we have the so-called slavery: we go to the range from \SI{1}{MeV} to few tens of \SI{}{keV}. 
+Neutrons and protons are the new protagonists.
+The first process is 
+%
+\begin{align}
+\ce{n} + \ce{p} \to \ce{D} + \gamma 
+\,,
+\end{align}
+%
+the formation of deuterium. 
+We are interested in the ratio of abundances of deuterium as opposed to hydrogen. 
+
+At a sufficiently high temperature, higher than the binding energy of the deuterium, the inverse process can occur. 
+
+So, we need to reach the moment at which the photodissociation does not happen anymore. 
+
+Then, more processes can occur, like 
+%
+\begin{align}
+\ce{D} + \ce{p} \to \ce{^{3}He} + \gamma 
+\,.
+\end{align}
+
+Similarly we can form tritium (\ce{^{3}H}) from deuterium and a proton, and regular Helium (\ce{^{4}He}) from two deuterii --- this is the most stable of these nuclei.
+
+The nucleosynthesis process heavily depends on the characteristics of the two standard models. 
+
+An interesting part of nuclear astrophysics is the computation of these numbers and cross-sections.
+
+A tricky thing is also to actually measure the abundances of these elements, or more precisely to distinguish what is produced by primary nucleosynthesis and what instead is produces by secondary nucleosynthesis. 
+
+We will not go into the details, but instead we will comment on what parts of our models enter in the computations. 
+
+To start, let us say we have a temperature above the \SI{}{MeV}. 
+Weak interactions decouple around this scale: the timescale for a weak interaction to occur is longer than the lifetime of the universe at that point. 
+We saw last time that \(H \sim T^2 / M_P\). 
+
+The distribution functions of the particles go like \(e^{-m / T}\), so the ratio of 
+%
+\begin{align}
+\frac{n_n}{n_p} = \frac{n}{p} \approx e^{- \Delta m / T}
+\,.
+\end{align}
+
+Here, it becomes relevant that \(m_n - m_p \approx \SI{13}{MeV} \neq 0\). 
+This ratio of number densities applies as long as the neutrons and protons are in equilibrium and nonrelativistic.
+
+At a certain point, the temperature gets as low as \(T = T_D\), the decoupling temperature. 
+
+The proton, as far as we can tell, is stable; on the on the other hand the neutron is unstable: it can beta-decay into a proton. 
+
+At \SI{1}{MeV}, which is around the moment of the freeze-out, the ratio \(n/p\) is around \(1/6\). 
+
+What is the temperature at which the deuterium can stay bound? it will depend on the ratio \(n_B / n_\gamma \), and also on the ratio \(E_{\gamma } / E_{D}\). The binding energy of deuterium is around \(E_D \approx \SI{2.2}{MeV}\). To get stable deuterium we must wait until
+%
+\begin{align}
+\frac{n_\gamma }{n_B} e^{- \frac{\SI{2.2}{MeV}}{T}} < 1
+\,.
+\end{align}
+
+We actually have to wait quite a long time, since \(n_{\gamma } \gg n_B\). 
+This is since baryons are quite massive. The ratio comes out to be around one billionth: \(n_\gamma / n_B \sim \num{e9}\). 
+So, we need a strong drop in temperature: we find that the necessary temperature is around \SI{0.1}{MeV}. 
+
+Let us try to focus on what is of interest for us. 
+
+We must compare a weak interaction rate \(\Gamma_{W}\) with the expansion rate of the universe \(H\).
+The first is computed according to the SM of particle physics, and crucially depends on the coupling strength. 
+
+The lifetime of a neutron is 
+%
+\begin{align}
+\tau_{n} = \SI{10.5(2)}{min}
+\,.
+\end{align}
+
+The coupling at the vertex:
+%
+\begin{align}
+G_F = \frac{\alpha_{W}^2}{M_W^{4}}
+\,,
+\end{align}
+%
+where \(M_W \approx \SI{100}{GeV}\), while the Hubble parameter scales like 
+%
+\begin{align}
+H \sim \frac{T^2}{M_P^{4}}
+\,.
+\end{align}
+
+We also need the coupling \(g_{*}\), which can also be derived experimentally, and \(n_\gamma / n_B\): the latter can be used as an output parameter. 
+This will then tell us about \(\Omega_{B}\), the matter fraction, which is hard to measure in the modern universe. 
+
+Why do we directly measure the neutron lifetime? This is a hard computation since we both have the strong dynamics in the nucleons and the weak dynamics moving quarks between different flavours. 
+
+The number of degrees of freedom \(g_{*}\) is interesting: it could be calculated from the Standard Model, but we know that some new degrees of freedom must exist since no SNddM particle could be Dark Matter.
+
+Finally we got \(n/p \sim 1/7\) for the \SI{0.1}{MeV} temperature; with this information we can compute 
+%
+\begin{align}
+\frac{N_{\ce{He}}}{N_{\ce{H}}} = \frac{ \frac{1}{2} n }{p - n}
+\,,
+\end{align}
+%
+since the number of hydrogen nuclei is the same as the number of unpaired protons. 
+We get 
+%
+\begin{align}
+Y_{4} = \frac{M_{\ce{He}}}{M_{\ce{H}} + M_{\ce{^{4}He}}} = \frac{4 N_{\ce{He}}}{N_{\ce{H}} + 4 N_{\ce{^{4}He}}}
+\,,
+\end{align}
+%
+which can be expressed in terms of \(n/p\). 
+
+We can plot, in terms of \(\eta_{B } = n_{\gamma } / n_{B}\), the fraction of mass of \(\ce{^{4}He}\) to \ce{H}, as well as that of deuterium and Lithium. 
+
+We finally get 
+%
+\begin{align}
+\frac{n_B}{n_\gamma } \sim \num{6e-10}
+\,,
+\end{align}
+%
+so we must have \(\Omega_{B} \sim \num{4} \divisionsymbol \SI{5}{\percent}\).
+
+Based on the Helium-4 abundance, we can put a bound like \(\abs{\Delta N _{\text{eff}}^{\nu }} < 1/2\): our candidate must contribute as half a neutrino species.
+
+So, when we propose a DM candidate, we must always ask whether it spoils nucleosynthesis. 
+
+This must be weighted by their temperature and whether these species are at equilibrium. 
+
+There are models in which we introduce a new particle which must decay into some other particle plus a photon. 
+This is dangerous: how energetic are the photons which are produces? We must ensure that they do not destroy deuterium. 
+
+Nucleosynthesis is the furthest event we can describe. 
+See ``The first three minutes'' by Weinberg.
+
+Tomorrow we will discuss Dark Matter. 
+
 \end{document}

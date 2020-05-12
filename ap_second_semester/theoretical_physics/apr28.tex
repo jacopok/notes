@@ -1,4 +1,182 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Canonical quantization}
+
+\subsection{System with finite DoF}
+
+\marginpar{Tuesday\\ 2020-5-12, \\ compiled \\ \today}
+
+The classical structure of such a system is completely determined by the equations of motion: 
+%
+\begin{align}
+\dot{q} &= \qty{q, H}  \\
+\dot{p} &= \qty{p, H}
+\,,
+\end{align}
+%
+and by the commutation relations: 
+%
+\begin{align}
+\qty{q^{i}, q^{j}} &= 0  \\
+\qty{p_{i}, p_{j}} &= 0  \\
+\qty{q^{i}, p_{j}} &= \delta_{j}^{i}
+\,.
+\end{align}
+
+Note that these Poisson brackets are to be calculated at a fixed time. 
+
+We can \textbf{quantize} such a system by the following substitutions: 
+\begin{enumerate}
+    \item the coordinates \(q\) and \(p\), which are functions of phase space in the classical case, become operators: \(X\) and \(P\), which in the Heisenberg picture are functions of time;
+    \item the Poisson brackets \(\qty{\cdot, \cdot}\) become commutators: 
+    %
+    \begin{align}
+    \qty{a, b} \to \frac{1}{i \hbar} \qty[A, B]
+    \,.
+    \end{align}    
+\end{enumerate}
+
+The Hamilton equations then read 
+%
+\begin{align}
+\dv{X}{t} &= \frac{1}{i \hbar} \qty[X, H] \\
+\dv{P}{t} &= \frac{1}{i \hbar} \qty[P, H]
+\,,
+\end{align}
+%
+and the commutation relations are also generalized; the interesting one is the position-momentum commutator which now reads 
+%
+\begin{align}
+\frac{1}{i \hbar} \qty[X,P] = 1 \implies
+\qty[X, P] = i \hbar
+\,.
+\end{align}
+
+\begin{claim}
+The Heisenberg and Schrödinger descriptions of QM are equivalent.
+\end{claim}
+
+\begin{proof}
+To say that the two approaches are equivalent means that they yield the same exact predictions for any observation.
+
+In the Schrödinger approach, the wavefunction evolves as \(\ket{\psi (t)} = U(t) \ket{\psi_0 }\) while the observables are stationary; in the Heisenberg approach the wavefunction is stationary while the operators evolve as \(A(t) = U ^\dag A U\). So, the expectation value is 
+%
+\begin{align}
+\expval{A(t)}_{\psi_0 } &\overset{?}{=} \expval{A}_{\psi (t)}  \\
+\bra{\psi_0 } A(t) \ket{\psi_0 } &\overset{?}{=} \bra{\psi (t)} A \ket{\psi (t)} 
+\bra{\psi_0 } U ^\dag A U\ket{\psi_0 } &= \bra{\psi_0 } U ^\dag A U \ket{\psi_0 } 
+\,.
+\end{align}
+\end{proof}
+
+\subsection{Field theory}
+
+The evolution of the fields is given in classical field theory as 
+%
+\begin{align}
+\dot{\varphi} &= \qty{\varphi , t}
+\dot{\pi} &= \qty{\pi , t}
+\,,
+\end{align}
+%
+and we have the commutation relations 
+%
+\begin{align}
+\qty{\varphi (x), \varphi (y)} &=0  \\
+\qty{ \pi (x), \pi (y)} &= 0  \\
+\qty{\varphi (x), \pi (y)} &= \delta^{(3)}(x-y)
+\,,
+\end{align}
+%
+all considered at constant time. 
+
+In order to \textbf{quantize} this system, we replace the fields \(\varphi \) and \(\pi \) by field operators \(\hat{\varphi}\) and \(\hat{\pi}\), and replace the Poisson brackets by commutators as in the finite-DoF case.
+
+The equations of motion will then read 
+%
+\begin{align}
+\dv{\hat{\varphi}}{t} &= \frac{1}{i \hbar} \qty[\hat{\varphi}, H] \\
+\dv{\hat{\pi}}{t} &= \frac{1}{i \hbar} \qty[\hat{\pi}, H] 
+\,,
+\end{align}
+%
+and the commutation relations will read 
+%
+\begin{align}
+\qty[\hat{\varphi}(x), \hat{\pi }(y)] = i \hbar \delta^{(3)}(x-y)
+\,,
+\end{align}
+%
+and the zero ones as usual between \(\varphi, \varphi \) and \(\pi , \pi \).
+These commutators are always taken at constant time. 
+
+\subsection{Canonical quantization of a scalar field}
+
+As we have seen before, the field and momentum of the free scalar field, which satisfies the Klein-Gordon equation, can be expressed as 
+%
+\begin{align}
+\varphi (x) &= \frac{1}{(2\pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} \qty[a(k) e^{-ikx} + a^{\dag}(k) e^{ikx}]_{k^{0} =\omega_{k}} \\
+\pi (x) &= \frac{1}{(2\pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} (-i \omega_{k}) \qty[a(k) e^{-ikx} - a^{\dag}(k) e^{ikx}]_{k^{0} =\omega_{k}} 
+\,,
+\end{align}
+%
+and we will now interpret this as an operator expression: even if we omit the hats, \(\varphi \) and \(\pi \) are intended to be operators. 
+Therefore, \(a\) and \(a^{\dag}\) must also be. 
+
+\begin{claim}
+We can invert this relation to get \(a\) and \(a^{\dag}\) in terms of \(\varphi \) and \(\pi \): 
+%
+\begin{align}
+    a(k) = \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty[\omega_{k} \varphi + i \pi ] \eval{e^{ikx}}_{k^{0}= \omega_{k}} \\
+    a^{\dag}(k) = \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty[\omega_{k} \varphi - i \pi ] \eval{e^{-ikx}}_{k^{0}= \omega_{k}} \\
+    \,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Let us compute the interesting one: 
+%
+\begin{align}
+\qty[a(k), a ^\dag (p)] &= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{x} \dd[3]{y}}{2 \omega_{k}}
+\qty[\omega_{k} \varphi + i \pi, \omega_{k} \varphi - i \pi ] e^{i(k-p)x}  \\
+&= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{x} \dd[3]{y}}{2 \omega_{k}}
+2 i (-) \omega_{k} \qty[ \varphi, \pi ] e^{i(k-p)x}  \\
+&= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{x} \dd[3]{y}}{2 \omega_{k}}
+2 i \omega_{k} (-) i \delta^{(3)} (x - y) e^{i(kx-py)}  \\
+&= \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} e^{i(k-p)x}  \\
+&= \delta^{(3)} (k-p)
+\,.
+\end{align}
+
+We have used the fact that, by linearity and antisymmetry of the commutator:
+%
+\begin{align}
+\qty[\omega_{k} \varphi + i \pi, \omega_{k} \varphi - i \pi ] 
+&= \qty[\omega_{k} \varphi , \omega_{k} \varphi ]+ \qty[\omega_{k} \varphi , -i \pi ] + \qty[i \pi, \omega_{k} \varphi ] + \qty[i \pi , -i \pi ]  \\
+&= -2 \omega_{k} i \qty[\varphi , \pi ]
+\,.
+\end{align}
+
+For the other two the computation is similar, and the difference comes about in the commutator step: for \(\qty[a, a]\) we get
+%
+\begin{align}
+\qty[\omega_{k} \varphi + i \pi, \omega_{k} \varphi + i \pi ] = 0
+\,,
+\end{align}
+%
+and for \(\qty[a ^\dag, a ^\dag]\): 
+%
+\begin{align}
+\qty[\omega_{k} \varphi - i \pi, \omega_{k} \varphi - i \pi ] = 0
+\,,
+\end{align}
+%
+since any operator commutes with itself.
+\end{proof}
+
+This algebra is the same one we would have for an infinite number of decoupled harmonic oscillators.  
+The operators \(a\) and \(a ^\dag\) are called the annihilation and creation operators. 
+
+
 \end{document}

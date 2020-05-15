@@ -1,4 +1,129 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Elements of data analysis}
+
+\marginpar{Friday\\ 2020-5-15, \\ compiled \\ \today}
+
+The issue is that our signal is noise-dominated. 
+Extracting the signal is quite hard. About half of the people working on GW do this. 
+
+The signal is something like 3 orders of magnitude below the noise.
+Also, we want to say something about the object. 
+
+We classify signals into: transient versus persistent (how long does the signal last?), and modeled versus unmodeled (do we know of a speficic waveform?). 
+\begin{enumerate}
+    \item Transient modeled signals are usually coalescing binaries;
+    \item persistent modeled signals can be binaries far from coalescence or rotating neutron stars;
+    \item transient unmodeled signals can be supernovae or some other sources;
+    \item persistent unmodeled signals are some form of stochastic background.  
+\end{enumerate}
+
+We will discuss matched filtering, which applies to transient modeled signals. The assumption is that the signal is in the form 
+%
+\begin{align}
+s(t) = \underbrace{h(t)}_{\text{known}} + \underbrace{n(t)}_{\text{noise}}
+\,.
+\end{align}
+
+The thing we can do is to calculate \(\expval{s h}\), which is equal to \(\expval{h^2} + \expval{nh}\), but we know that \(\expval{nh} \to 0\) since the noise is not correlated to the signal. Specifically, \(\expval{nh} \sim T^{-1/2}\).
+
+On the other hand, \(\expval{hh} \geq 0\), so this integral will have a positive value if the signal is there.
+This grows much faster than the standard deviation of the uncorrelated signal. 
+
+Suppose we know what \(h(t)\) is, and we want to build a linear filter \(K(t)\) which returns a low value if the signal seems to not be in the data, and a high value if the signal is in the data.
+
+We assume that \(s(t) = \alpha h(t) + n(t)\), where it is convenient to leave the amplitude of the signal as a variable. 
+
+We wat to define the signal to noise ratio \(S / N\). 
+
+\todo[inline]{What do we mean by ensemble average inside the time integral?}
+We find 
+%
+\begin{align}
+S = \expval{\hat{s}(t)} = \alpha \int \dd{f} K^{*}(f) h(f)
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+N^2 = \expval{\hat{n}^2(t)} - \expval{\hat{n}}^2
+= \frac{1}{2} \int \dd{f} \abs{K(f)}^2 S_n(f)
+\,.
+\end{align}
+
+Then, we can write 
+%
+\begin{align}
+\frac{S}{N} = \alpha \frac{\int \dd{f} K^{*} (f) h(f)}{\sqrt{\int \dd{f} \abs{K(f)}^2 S_n(f) / 2}}
+\,,
+\end{align}
+%
+and we wish to optimize \(K\) in order to maximize this. 
+
+We define a scalar product for real functions of \(f\): 
+%
+\begin{align}
+A \cdot B = \Re \int \dd{f} \frac{A^{*}(f) B(f)}{S_n (f) / 2}
+\,,
+\end{align}
+%
+so that 
+%
+\begin{align}
+\frac{S}{N} = \alpha \frac{u \cdot h}{u \cdot u }
+\,,
+\end{align}
+%
+where \(u = S_n(f) K(f) / 2\).
+So, we want \(u(f)\) to be parallel to \(h\): therefore, we want 
+%
+\begin{align}
+K(f) \propto \frac{h(f)}{S_n(f)}
+\,.
+\end{align}
+%
+\todo[inline]{Missing a square root in the denominator?}
+
+This means that our best filter is \emph{not} \(h\), as we thought: we must weigh the filter by how high the detector noise is. 
+The first thing we do not know is the \emph{time of coalescence}: we can ``slider'' our filter over our signal, varying the time of arrival. 
+
+In practice we do not know the form \(h(t)\) and we do not know the time of arrival. 
+What we do is generate hundreds of thousands of filters and move them through the data.
+
+We must decide on a coverage for our parameter space in order to run our filters, while still having a manageable thing. 
+
+The problem is that the noise is non-gaussian: its tails of extreme events are very large.
+How to reject false alarms due to local noise? Coincidences!
+
+We allow time differences of \(L/c\) at most. 
+The amount of signal which is retained after these coincidences is very little. 
+
+How to be very confident that two local sources of noise did not happen to coincide?
+We delay the output intentionally, in order to get an estimate of what we would see without GW signals. 
+
+This works as long as the events are rare. 
+
+The analysis must be done blind: we look at the delayed data stream first, and then we set the threshold. 
+
+\todo[inline]{Do people use KDE in the estimation of PDFs?}
+
+\subsection{Probability}
+
+We use the Kolmogorov axioms: consider events belonging to the powerset of \(S\), then we say that 
+\begin{enumerate}
+    \item probabilities are positive;
+    \item the probabilities of disjoint events are additive;
+    \item the probability of \(S\) is 1.
+\end{enumerate}
+
+An implementation is the frequentist approach: we assign probabilities according to the frequency of occurrence of an event after many repetitions. 
+
+So, in this approach Bayes's theorem does not really make sense: what is the probability of a die being true, given that we have gotten 1006 times the number 1 over 6000 tries?
+
+We can define probabilities, instead, as subjective beliefs. 
+
+
+
 \end{document}

@@ -145,7 +145,7 @@ Let us compute the interesting one:
 &= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{x} \dd[3]{y}}{2 \omega_{k}}
 2 i \omega_{k} (-) i \delta^{(3)} (x - y) e^{i(kx-py)}  \\
 &= \frac{1}{(2\pi )^{3/2}} \int \dd[3]{x} e^{i(k-p)x}  \\
-&= \delta^{(3)} (k-p)
+&= \delta^{(3)} (k-p) \label{eq:commutator-annihilation-creation-operators}
 \,.
 \end{align}
 
@@ -177,6 +177,71 @@ since any operator commutes with itself.
 
 This algebra is the same one we would have for an infinite number of decoupled harmonic oscillators.  
 The operators \(a\) and \(a ^\dag\) are called the annihilation and creation operators. 
+
+\subsection{Number density operator}
+
+Since, as we saw, the algebra of our operators resembles that of a harmonic oscillator, we are justified in defining the number density operator
+%
+\begin{align}
+N(k) = a ^\dag  (k) a(k)
+\,,
+\end{align}
+%
+and the total number density, 
+%
+\begin{align}
+N = \int \dd[3]{k} N(k)
+\,.
+\end{align}
+
+\begin{claim}
+Both \(N\) and \(N(k)\) are self-adjoint: \(N = N ^\dag\), and they satisfy the following commutation relations: 
+%
+\begin{align}
+\qty[N(k), a(p)] &= - a(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
+\qty[N(k), a ^\dag(p)] &= + a ^\dag(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
+\qty[N, a(p)] &= - a(p)  \\
+\qty[N, a ^\dag(p)] &= + a ^\dag(p)  
+\,.
+\end{align}
+\end{claim}
+
+\todo[inline]{There is a typo in the notes by the professor: the argument of \(a\) and \(a ^\dag\) for the local commutators is \(k\), not \(p\).}
+
+\begin{proof}
+The computation goes as follows; I use subscripts as \(a(k) = a_k\) because it makes reading the expressions easier, I think:
+%
+\begin{align}
+\qty[N_k, a_p] &= N_k a_p - a_p N_k  \\
+&= a_k a_k ^\dag a_p - a_p a_k a_k ^\dag  \\
+&= - a_k a_p a_k ^\dag + a_k a_k ^\dag a_p \marginnote{Commuted \(a_p\)  and \(a_k\) --- their commutator is zero.}  \\
+&= - a_k \qty[a_p, a_k ^\dag]  \\
+&= - a_k \delta^{(3)} (p - k) \marginnote{Used relation \eqref{eq:commutator-annihilation-creation-operators}.}
+\,.
+\end{align}
+
+The other computation is similar: 
+%
+\begin{align}
+\qty[N_k, a_p ^\dag] &= N_k a_p ^\dag - a_p ^\dag N_k  \\
+&= a_k a_k ^\dag a_p ^\dag - a_p ^\dag a_k a_k ^\dag  \\
+&= - a_p ^\dag a_k a_k ^\dag + a_k a_p ^\dag a_k ^\dag  \\
+&= - \qty[a_p, a_k ^\dag] a_k ^\dag  \\
+&= - a_k ^\dag \delta^{(3)} (p - k)    
+\,.
+\end{align}
+%
+while for the total number operator we only need to integrate over \(\dd[3]{k}\): 
+%
+\begin{align}
+\int \dd[3]{k} \qty[N(k), a(p)] &= - \int \dd[3]{k} a(k) \delta^{(3)}(\vec{p} - \vec{k})  \\
+\qty[N, a(p)] &= - a(p)
+\,.
+\end{align}
+\end{proof}
+
+\subsection{Hamiltonian density operator}
+
 
 
 \end{document}

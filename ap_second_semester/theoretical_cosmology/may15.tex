@@ -1,4 +1,96 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-5-15, \\ compiled \\ \today}
+
+Yesterday we defined correlation functions starting from probabilities. 
+
+We want to connect them to the density perturbations.
+
+We define the mean density \(\expval{\rho } = n\). To order two then we can define 
+%
+\begin{align}
+\xi (r) = \expval{\qty(\rho (x+r) - \expval{\rho }) \qty(\rho - \expval{\rho })} / n^2
+\,,
+\end{align}
+%
+which is defined so that 
+%
+\begin{align}
+\expval{\rho (x +r) \rho (x)} = n^2 \qty(1 + \xi (r))
+\,.
+\end{align}
+
+Then we define 
+%
+\begin{align}
+\delta P = n^3 \delta V_1 \delta V_2 \delta V_3 \qty(1 + \xi (r_a)+ \xi (r_b) + \xi (r_c) + \zeta (r_a, r_b, r_c))
+\,.
+\end{align}
+
+We assume the galaxy distribution to be connected to the (dark) matter density by  
+%
+\begin{align}
+\delta_{g} (\vec{x}) = b \delta (\vec{x}) 
+\,,
+\end{align}
+%
+which is ok to large enough scales, typically tens of \SI{}{Mpc}.
+The function \(\xi (s)\) has a peak around \SI{100}{Mpc}, due to \emph{baryon acoustic oscillations}.
+
+The power spectrum is easier to work with experimentally, since its values are independent for different \(k\), while the correlation function values at different radii are correlated.
+
+\section{Path integrals in cosmology}
+
+The approach here is very different from the one in field theory. 
+We do not start from an action principle here. 
+
+Consider the space of square-integrable 3D functions. 
+We consider them at fixed time, even though it does not really make sense since we can only observe our past light-cone. 
+
+We require the existence of a basis \(\phi_{n}\) such that 
+%
+\begin{align}
+\int \dd[3]{x} \phi_{m } (x) \phi_{n} (x) = \delta_{mn}
+\,,
+\end{align}
+%
+and we also ask that they are complete: 
+%
+\begin{align}
+\sum _{n} \phi_{n} (x) \phi_{m} (y) = \delta^{(3)} (x-y)
+\,.
+\end{align}
+
+A functional \(F\) takes a function and returns a real or complex number. If we write it with respect to the basis components of a function, we can express \(F\) as a (real, or complex number valued) function of an infinite number of variables. 
+
+For instance, we could have 
+%
+\begin{align}
+F_1 [q] &= \sum _{n} q_n f_n  \\
+F_2 [q] &= \sum _{mn} k_{mn} q_m q_n
+\,,
+\end{align}
+%
+where \(q_n\) are the basis components of a function \(q\). 
+
+We can discretize the space, so that the functional is given by its contribution to each small space box. 
+
+We can write a functional as a series in the form 
+%
+\begin{align}
+F[q] = \sum _{n=0}^{ \infty } \frac{1}{n!} \prod_i \dd{x_{i}} q(x_i)
+\,,
+\end{align}
+%
+for instance we can use the exponential. In that case the expression is 
+%
+\begin{align}
+e^{\int f(x)q(x) \dd{x}}
+= \sum _{n} \frac{1}{n!} \qty[\int f(x) q(x) \dd{x}]^{n}
+\,,
+\end{align}
+%
+which can be extended replacing \(\int f(x) q(x) \dd{x}\) with anything else. 
+
 \end{document}

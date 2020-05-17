@@ -11,12 +11,7 @@ end_doc = "\\end{document}\n"
 bibliography = "bibliography"
 
 def end_doc_condition(line):
-    if (end_doc in line):
-        return True
-    elif (bibliography in line):
-        return True
-    else:
-        return False
+    return end_doc in line or bibliography in line
 
 subfile_include = lambda x : "\\subfile{" + x + "}\n"
 
@@ -31,8 +26,8 @@ folder_names = {
 }
 
 schedule = {
-    0: ["tp", "gp"],
-    1: ["tp", "ap"],
+    0: ["gp"],
+    1: ["ap"],
     2: ["ap", "rp"],
     3: ["tc", "rp"],
     4: ["gp", "tc"]

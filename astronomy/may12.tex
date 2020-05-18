@@ -1,0 +1,35 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\subsection{Coordinate terrestri}
+
+\marginpar{Monday\\ 2020-5-18, \\ compiled \\ \today}
+
+Il modello più semplice per la forma della Terra è una sfera.
+Un modello un po' più accurato è un ellissoide oblato: questo è il solido di rotazione che si ottiene ruotando un'ellissi lungo il suo asse minore. Matematicamente, in coordinate cartesiane \(x\), \(y\) e \(z\) è il luogo dei punti che soddisfano 
+%
+\begin{align}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1
+\,,
+\end{align}
+%
+dove, se l'asse della Terra è lungo \(z\), abbiamo \(a = b > c\).
+
+Per la sfera abbiamo una precisione \(\sim \SI{10}{km}\), con l'ellissoide \(\sim \SI{100}{m}\) (a meno delle montagne).
+
+Eratostene aveva stimato il raggio della Terra: Alessandria - Siene sono \num{5000} stadi, l'angolo dell'ombra dell'obelisco di Alessandria è \(1/50\) di giro. 
+Uno stadio sono circa \SI{160}{m}, quindi la stima di Eratostene era estremamente vicina al valore accettato (entro l'errore con il quale conosciamo il valore dello stadio in metri).
+
+Per mettere delle coordinati sulla superficie terrestre scegliamo un asse, quello di rotazione, che definisce l'equatore come cerchio massimo normale, e fissiamo un meridiano di riferimento: comunemente si utilizza Greenwich. 
+In questo modo abbiamo due angoli: la latitudine è l'angolo dall'equatore al punto, misurato lungo il meridiano (che è il cerchio massimo definito dal punto e i due poli); la longitudine è l'angolo fra il nostro meridiano e quello di riferimento. 
+
+Un grado di latitudine corrisponde a circa \SI{111}{km}, per la longitudine dobbiamo inserire un fattore \(\cos(\theta )\). 
+
+Un miglio nautico è definito come l'angolo sotteso da un primo d'arco. 
+
+Con un orologio, un sestante e delle tavole astronomiche possiamo misurare la posizione di una nave in mare: la latitudine si vede traguardando il polo celeste Nord, la longitudine è più articolata ma con l'orologio si piò fare.
+
+Considerando la Terra come ellissoide, possiamo definire delle coordinate \emph{geodetiche}.
+Il sistema migliore, però, è il WGS84: la forma che avrebbe una superficie d'acqua se le terre emerse non ci fossero, ma la loro gravità sì. 
+
+\end{document}

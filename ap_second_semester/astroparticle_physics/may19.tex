@@ -1,4 +1,108 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{WIMP candidates for Dark Matter}
+
+\marginpar{Tuesday\\ 2020-5-19, \\ compiled \\ \today}
+
+WIMP means Weakly Interacting Massive Particle, this is a so-called heavy stable relic of the early universe. 
+
+So, we require stability; this could also be a very long-lived particle, the only requirement is that it be still abundant now. 
+
+The cross section must also be small. 
+
+Let us consider a typical WIMP, with mass \(M_x \sim \SI{100}{GeV}\).
+
+Let us consider a scenario in which the particle remains in equilibrium even when the temperature drops below the mass of the particle. 
+
+We want to request that \(T_f< M_X\), where \(T_f\) is the temperature of the freezeout.
+
+The value of \(\rho_{X} / \rho_{C} = \Omega_{X}\) is of the order \(1/4\) today. If we had \(n_X \sim n_\gamma \) before the freezeout, because then DM was radiation-like. 
+
+Today we have around a baryon every billion photons, and \(\Omega_{B} \sim \SI{5}{\percent}\). 
+The statistics of the DM distribution are given by 
+%
+\begin{align}
+(M_X T)^{3/2} \exp(- \frac{M_X}{T})
+\,,
+\end{align}
+%
+so the exponential suppression plays a very important role as the temperature decreases.
+We cannot over-close the universe, if we get \(\Omega_{X}> 1\) the universe would become strongly closed. 
+
+Now, let us compute the freezeout temperature, assuming that the particle's mass is \SI{100}{GeV}. We want to show that \(T_f < M_X\).
+
+What do we mean by ``equilibrium'' precisely? There are two possible meanings; one is the chemical equilibrium, and the other is the kinetic equilibrium. 
+
+The annihilation of \(X\) with its antiparticle changes the total number of particles. 
+In discussing the freezeout temperature we are interested in the \emph{chemical} equilibrium. 
+So, we must ask: ``what is the temperature at which the annihilation \(\Gamma_{X}\) is equal to the expansion rate of the universe \(H\)?''
+
+The first is given by 
+%
+\begin{align}
+\Gamma_{X} = \expval{\sigma v} n_X 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+n_X = \qty(M_X T )^{3/2} e^{-M_X / T}
+\,,
+\end{align}
+%
+while \(\expval{\sigma v}\) is model-dependent. Therein lies the physics of the problem.
+Without a specific model, we take something like 
+%
+\begin{align}
+\sigma \sim \frac{\alpha_{W}^2}{M_w^{4}} 
+\,.
+\end{align}
+
+We plug everything into the expression, using a standard cosmology for \(H\). 
+We can get an order-of-magnitude estimate. 
+If we did the calculation more properly, we would be able to get the Boltzmann equation: 
+%
+\begin{align}
+\dv{n_x}{t} + 3 H n_x = - \expval{\sigma v} \qty(n_x^2 -)
+\,,
+\end{align}
+%
+\todo[inline]{complete formula}
+which can be found in the notes. 
+We find 
+%
+\begin{align}
+\Omega_{X} h^2 \approx \num{e-10} \qty(\frac{\SI{}{GeV^{-2}}}{\expval{\sigma v}}) \frac{1}{\sqrt{g(T_f)}} L
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+L = \log \qty(\frac{g_X M_X }{}) \dots
+\,,
+\end{align}
+%
+\todo[inline]{complete formula}
+which is generally of the order of \num{20} to \num{30}.
+
+So in the end the temperature is given by 
+%
+\begin{align}
+T_f \approx M_X L^{-1}
+\,.
+\end{align}
+
+We are, however, assuming that the annihilation goes like the weak interaction --- is this accurate?
+If the value \(\alpha_{W} \) were different, we could get the correct number for \(\Omega_{X}\). 
+There are good reasons to think that there might be new physics in the electroweak scale. 
+
+\todo[inline]{How is the estimate for \(\Omega_{X}\) derived?}
+
+Suppose we asked for \(\Omega_{X} < \num{.3}\). Then, we need to reduce the number of \(X\), \(n_X\). 
+
+% A WIMP candidate is a baryon: if the number of baryons is equal to teh number of antibaryons.
+
 \end{document}

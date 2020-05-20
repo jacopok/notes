@@ -1,0 +1,90 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Spherical top-hat model}
+
+We start off with the discussion of curved models, which is the same as in the FAC course.
+
+We consider an Einstein-de Sitter universe, and a sphere with \(\Omega_{p} (t_i) = 1 + \delta_{i}\).
+
+The density profile is considered to be in the shape of a top-hat, which is flat in the center and at the boundaries, shaped like a plateau.
+We want to have zero peculiar velocity at the beginning; pure Hubble flow.
+Initially we have \(\delta = \delta_{+} + \delta_{-}\), and we must also have \( \frac{2}{3} \delta_{+} = \delta_{-}\).
+
+We find 
+%
+\begin{align}
+\rho_{P} (t_m) = \rho_{c} (t_i) \Omega_{P} (t_i) \qty[ \frac{\Omega_{P}(t_i) - 1}{\Omega_{P}(t_i)}]^3
+\,,
+\end{align}
+%
+where \(t_m\) is the turnaround time.
+
+With these hypotheses, we find that the ratio of the inner to the outer density is around \(5.6\): 
+%
+\begin{align}
+\frac{\rho_{P}}{\rho_{C}} = \qty( \frac{3 \pi }{4})^2
+\,.
+\end{align}
+
+If we used linear theory instead of the correct theory we would have found \(2.07\) for the ratio: the result is very different. 
+
+The total energy of our top-hat is given by 
+%
+\begin{align}
+E _{\text{eq}} = - \frac{1}{2} \frac{3}{5} \frac{GM^2}{R _{\text{eq}}}
+\,.
+\end{align}
+
+At turn-around \(T = 0\), so at that point 
+%
+\begin{align}
+E_m = - \frac{3}{5} \frac{GM^2}{R_m}
+\,,
+\end{align}
+%
+and as long as the energy is conserved, we find that \(R_m = 2 R _{\text{eq}}\). 
+This means that the volume at turnaround is 8 times that of equilibrium.
+
+Therefore, we can find what the ratio of the perturbation density to the background one is of 180 at collapse.
+If we still were to use linear theory at this time we would get \num{1.686}.
+
+Now we introduce the \emph{mass function of cosmic structure}, which is defined as 
+%
+\begin{align}
+n(M) = \dv{N}{M}
+\,,
+\end{align}
+%
+the number of objects per unit volume with mass between \(M \) and \(M + \dd{M}\). 
+
+Then we take a filter, we consider the probability that at a certain point the perturbation's magnitude is larger than \num{1.686}, which is equivalent to saying that it has virialized. 
+
+Then, the ansatz is 
+%
+\begin{align}
+n(M) M \dd{M} = \rho_{m} \qty(\mathbb{P}_{> \delta_{c}} - \mathbb{P}_{ > \delta_{c}} (M + \dd{M}))
+= \rho_{m} \abs{ \dv{\mathbb{P}_{> \delta_{c}}}{M}} \dd{M}
+\,,
+\end{align}
+%
+but the probability depends on the mass only through the variance of the distribution of density: then we write 
+%
+\begin{align}
+n(M) M \dd{M} = \rho_{m} 
+\abs{ \dv{\mathbb{P}_{> \delta_{c}}}{\sigma_{M}}}
+\abs{ \dv{\sigma_{M}}{M}}
+\dd{M}
+\,,
+\end{align}
+%
+and finally we get 
+%
+\begin{align}
+n(M) = \frac{2}{\sqrt{\pi }} \frac{\rho_{m}}{M_*^2}  \alpha \qty( \frac{M}{M_{*}})^{\alpha -2} \exp( - \qty( \frac{M}{M_{*}})^{2\alpha } )
+\,,
+\end{align}
+%
+which is equivalent to the Schecter luminosity function, where \(\alpha = 1/2\) --- that is, with white noise.
+
+\end{document}

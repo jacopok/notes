@@ -1,4 +1,105 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-5-21, \\ compiled \\ \today}
+
+We want to define the notion of a \textbf{functional derivative}. 
+
+The first order in \(\eta \) the difference of the functional applied to \(q\) and \(q + \eta \) is defined to be 
+%
+\begin{align}
+F[q + \eta ] - F[q ] = \int  \fdv{F}{q(y)} \eta (y) \dd{y}
+\,.
+\end{align}
+
+We can interpret this as 
+%
+\begin{align}
+\fdv{F}{q (y)} = \lim_{\substack{\tau \to 0 \\ q_{i} \to y} } \frac{1}{\tau } \pdv{\hat{F}}{q_{i}}
+\,,
+\end{align}
+%
+where we compute the functional using infinitesimal ``cells'' \(q_i\)  of volume \(\tau \) in coordinate space.
+
+This behaves like a derivative, and we have 
+%
+\begin{align}
+\fdv{q(x)}{q(y)} = \delta (x- y)
+\,.
+\end{align}
+
+An example: if \(q(x)\) is a 1d function, define 
+%
+\begin{align}
+F_{n}[q] = \int \prod_i \dd{x_{i}} q(x_{i}) f(x_1, \dots, x_{n})  
+\,,
+\end{align}
+%
+where \(f\) is a symmetric function of the coordinates. Then, 
+%
+\begin{align}
+\fdv{F_{n}}{q(y)} = n \int \dots \int f(x_1 , \dots, x_{n-1}, y) q(x_1 ) \dots q(x_{n-1}) \dd{x_{1}} \dots \dd{x_{n-1}}
+\,.
+\end{align}
+
+We can extend this to 
+%
+\begin{align}
+\fdv[m]{F_{n}}{q(y_1 )\dots}{ q(y_m)}
+= \frac{n!}{(n-m)!} \int  \dots \int f(x_1, \dots, x_{n-m}, y_1, \dots y_{m}) \dd{x_1 } \dots \dd{x_{n-m}}
+\,.
+\end{align}
+
+Now, \textbf{linear functional transformations}
+Consider a mapping \(q (x) \to q' (x)\) in the form 
+%
+\begin{align}
+q(x) = \int \dd{y} K(x, y) q' (y)
+\,.
+\end{align}
+
+If this is invertible, we can write 
+%
+\begin{align}
+q' (x) = \int \dd{y} K^{-1}(x, y) q(y)
+\,.
+\end{align}
+
+Often in field theory \(K(x, y)\) can be written as \(K(x-y)\) because of translation invariance. If these are compatible, then we must have 
+%
+\begin{align}
+\int \dd{y} K(x, y) K^{-1} (y, z) = \delta (x-z)
+\,.
+\end{align}
+
+We can do \textbf{Legendre Transforms} in this context as well: if we define 
+%
+\begin{align}
+p(y) = \fdv{F[q]}{q(y)}
+\,,
+\end{align}
+%
+then we can write 
+%
+\begin{align}
+G[p] = F[q] - \int q(x) p(x) \dd{x}
+\,.
+\end{align}
+
+\todo[inline]{This has a different sign than what we do classically, \(H = p \cdot \dot{q} - L\). This has to do with the signature of the metric in QFT, and Wick rotations. In dealing with probability densities we must be general.}
+
+We can also do \textbf{functional integration}: it is formally an integration over an infinite number of variables. 
+
+How do we do changes of variable? We will need the determinant of the matrix \(K\) giving the change of variables. 
+We only consider \emph{linear} ones. 
+
+We find that, for a path integral with a quadratic and a linear term, 
+%
+\begin{align}
+\mathscr{Z} [b] = \int \mathcal{D}q \exp(- \frac{1}{2} (B, K^{-1}, b))
+\,.
+\end{align}
+%
+
+
 \end{document}

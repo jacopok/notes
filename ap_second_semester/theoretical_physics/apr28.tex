@@ -64,7 +64,7 @@ In the Schrödinger approach, the wavefunction evolves as \(\ket{\psi (t)} = U(t
 %
 \begin{align}
 \expval{A(t)}_{\psi_0 } &\overset{?}{=} \expval{A}_{\psi (t)}  \\
-\bra{\psi_0 } A(t) \ket{\psi_0 } &\overset{?}{=} \bra{\psi (t)} A \ket{\psi (t)} 
+\bra{\psi_0 } A(t) \ket{\psi_0 } &\overset{?}{=} \bra{\psi (t)} A \ket{\psi (t)} \\
 \bra{\psi_0 } U ^\dag A U\ket{\psi_0 } &= \bra{\psi_0 } U ^\dag A U \ket{\psi_0 } 
 \,.
 \end{align}
@@ -240,7 +240,7 @@ while for the total number operator we only need to integrate over \(\dd[3]{k}\)
 \end{align}
 \end{proof}
 
-\subsection{Hamiltonian density operator}
+\subsection{Hamiltonian and momentum density operators}
 
 The Hamiltonian density for a real scalar field is given by 
 %
@@ -252,7 +252,61 @@ The Hamiltonian density for a real scalar field is given by
 and the total Hamiltonian is given by its integral over 3D space, which is given by 
 %
 \begin{align}
-H = 
+H = \int \frac{ \dd[3]{k}}{2} \omega_{k} \qty[ a ^\dag (k) a(k) + a(k) a ^\dag (k)]
+\,.
+\end{align}
+
+This can be derived without commuting \(a\) and \(a ^\dag\) anywhere; we can now get the desired expression in terms of the number operator by inserting a commutator: 
+%
+\begin{align}
+H &= \int \frac{ \dd[3]{k} \omega_{k} }{2} \qty[2 a ^\dag a + \qty[a, a ^\dag]]   \\
+&= \int \dd[3]{k} \omega_{k} N(k) + \int \frac{ \dd[3]{k} \omega_{k}}{2} \delta^{(3)} (k - k)
+\,,
+\end{align}
+%
+so the second term is proportional to \(\omega_{0} \delta^{(3)} (0)\), which diverges. 
+The first term, on the other hand, makes perfect sense: we count how many particles are at each energy, and add their energies to get the total. 
+
+Is the divergence a problem? Not really: Hamilton's equations only depend on the derivatives of \(H\), so a constant is not an issue. 
+Intuitively, we can imagine a regular quantum harmonic energy at each (continuous!) value of \(k\), so for each of those we will have a ground energy \( \omega \hbar /2\). 
+
+For the momentum we must integrate the \(T^{0i}\) components of the stress-energy tensor over \(\dd[3]{x}\): so, we find
+%
+\begin{align}
+P^{i} &= \int \dd[3]{x} \pi (x) \partial_{i} \varphi  
+\,,
+\end{align}
+%
+and for \(\pi \) and \(\varphi \) we must use the operator expressions in momentum space: so, we find 
+%
+\begin{align}
+\begin{split}
+P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x} 
+\qty[
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
+(-i \omega_{k}) \qty(a(k) e^{-ikx} - a ^\dag (k) e^{ikx})
+] \times  \\
+&\phantom{=}\ 
+\times \qty[
+\int \frac{ \dd[3]{k'}}{\sqrt{2 \omega_{k'}}} 
+\qty(-i k_i^{\prime } a(k') e^{-ik'x} +i k_i' a ^\dag (k') e^{ik'x})]
+\end{split} \\
+\begin{split}
+&= \int \dd[3]{k'}
+\frac{1}{(2 \pi )^{3/2}} \int \dd[3]{x} e^{ik'x}
+\frac{1}{(2 \pi )^{3/2}} \int \dd[3]{k} e^{-ikx} \times \\
+&\phantom{=}\ \times
+\qty[ \frac{-i \omega_{k}}{\sqrt{2 \omega_{k}}} \qty(a(k) - a ^\dag(-k))
+\frac{1}{\sqrt{2 \omega_{k'}}} \qty(+i k_i' a(-k') + i k_i' a ^\dag(k'))
+]
+\end{split} \\
+&= \int \frac{\dd[3]{k}}{2} \qty[-i \qty(a(k) - a ^\dag(-k)) \qty(i k_i a(-k) + i k_i a ^\dag (k))] \\ 
+&= \int \frac{\dd[3]{k}}{2} k_i\qty{ \qty(a(k) - a ^\dag(-k) ) \qty(a(-k) + a ^\dag (k))}  \\
+&= \int \frac{\dd[3]{k}}{2} k_i \qty{
+\underbrace{a(k) a (-k)}_{\text{odd}} + a (k) a ^\dag (k) - \underbrace{a ^\dag (-k) a (-k)}_{\text{change } k \to -k} - \underbrace{a ^\dag(-k) a ^\dag(k)}_{\text{odd}}
+}
+\\
+&= \int \dd[3]{k} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
 \,,
 \end{align}
 %

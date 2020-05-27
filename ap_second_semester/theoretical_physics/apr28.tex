@@ -197,7 +197,7 @@ N = \int \dd[3]{k} N(k)
 \begin{claim}
 Both \(N\) and \(N(k)\) are self-adjoint: \(N = N ^\dag\), and they satisfy the following commutation relations: 
 %
-\begin{align}
+\begin{align} \label{eq:commutation-relations-number}
 \qty[N(k), a(p)] &= - a(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
 \qty[N(k), a ^\dag(p)] &= + a ^\dag(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
 \qty[N, a(p)] &= - a(p)  \\
@@ -306,10 +306,133 @@ P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x}
 \underbrace{a(k) a (-k)}_{\text{odd}} + a (k) a ^\dag (k) - \underbrace{a ^\dag (-k) a (-k)}_{\text{change } k \to -k} - \underbrace{a ^\dag(-k) a ^\dag(k)}_{\text{odd}}
 }
 \\
-&= \int \dd[3]{k} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
+&= \int \frac{\dd[3]{k}}{2} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
+\,.
+\end{align}
+
+Now, as before we have the integral of \(a ^\dag a /2 + a a ^\dag /2\), and we can swap them getting a term proportional to \(\delta^{(3)} (0)\). This physically means that the vacuum has an infinite momentum, which we can ignore. 
+
+\todo[inline]{First thing: in the professor's notes the integral is reported as being over \(\dd[3]{x}\), but it is not!}
+
+\todo[inline]{Second thing: now the term being integrated is \(k_i \delta^{(3)}(k-k)\), which diverges, sure, but it is also odd\dots the momentum of the vacuum is ``infinite'' but also zero by symmetry? i guess it doesn't really matter either way.}
+
+If we perform this operation, we get 
+%
+\begin{align}
+P_{i} = \int \dd[3]{k} k_i N(k)
+\,.
+\end{align}
+
+\subsection{Normal ordering}
+
+This sort of procedure is very common in QFT, so it has been given a name: the \textbf{normal ordering} of operators is the process of reordering them such that the creation operators \(a ^\dag\) are on the \emph{left} while the annihilation operators \(a\) are on the \emph{right}. This corresponds physically to the choice of the positive energy.
+
+The notation we will use for the normal-ordering of a product of operators \(Q\) is \(N[Q]\). One can also find the notation \(: Q :\) used to mean the same thing. 
+As an example, consider: 
+%
+\begin{align}
+N[ a ^\dag(m) a(k_2 ) a ^\dag (k_3 ) a (k_4)]
+= a ^\dag (m ) a ^\dag (k_3 ) a (k_2  ) a (k_4 )
+\,.
+\end{align}
+
+This formalizes what we were doing before: 
+%
+\begin{align}
+N \qty[ \frac{a_k ^\dag a_k + a_k a_k ^\dag}{2}] = a_k ^\dag a_k
+\,.
+\end{align}
+
+Since the order of the product is fixed inside the normal ordering, if we work inside the normal ordering all the creation and annihilation operators commute with each other, for our \textbf{scalar bosonic theory}. 
+
+Taking the normal ordering means we are fixing the energy of the vacuum.
+
+Taking the normal ordering does not alter the harmonic oscillator algebra. 
+
+\subsection{Fock space}
+
+Up until now wee have been writing operators without being really clear about what space they are acting on. 
+The space we need is called the \textbf{Fock space}: it is a space containing multiparticle states, and we will now construct it. 
+
+We start from a vacuum state \(\ket{0}\), which must satisfy 
+%
+\begin{align}
+\forall k : 
+a(k) \ket{0} = 0
 \,,
 \end{align}
 %
+which implies \(N(k) \ket{0} = 0\). This means that there are no particles. 
+\todo[inline]{Do we assume uniqueness? What do we do if there are several vacua?}
 
+The Fock space is made up of all the states we can get by repeatedly applying the creation operators \(a ^\dag (k)\) for different values of \(k\).
+Physically, each of these operators adds a particle to the state. 
+
+If we have a set of \(N\) momenta \(k_\ell\), and we want the state describing the presence of \(n_\ell\) particles for each, we use the state 
+%
+\begin{align}
+\ket{n_1 \dots n_N} \propto \qty(a ^\dag (k_1 ))^{n_1} \dots
+\qty( a ^\dag (k_N))^{n_N} \ket{0}
+\,.
+\end{align}
+
+The labels \(n_{\ell}\) are the \emph{occupation numbers}, indicating the number of particles in each momentum ``slot''. 
+The proportionality sign is there because we have not yet decided on the normalization we want for our states. 
+
+Let us then consider the properties of the states of this Fock space. For starters, the vacuum \(\ket{0}\) obeys 
+%
+\begin{align}
+N \ket{0} = H \ket{0} = \vec{p} \ket{0} = 0
+\,,
+\end{align}
+%
+which is consistent with there being no particles, since we have normalized the vacuum energy to zero. 
+
+Now, our one-particle state will look like 
+%
+\begin{align}
+\ket{1(p)} = C a ^\dag_p \ket{0}
+\,,
+\end{align}
+%
+for some constant \(C\). 
+
+\begin{claim}
+This satisfies: 
+%
+\begin{align}
+N \ket{1(p)} &= 1\ket{1(p)} \\
+H \ket{1(p)} &= \omega_{p} \ket{1(p)} \\
+\vec{p} \ket{1(p)} &= \vec{p} \ket{1(p)}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We will need the properties outlined in the equations \eqref{eq:commutation-relations-number}. The computation is as follows: 
+%
+\begin{align}
+N a ^\dag (p) \ket{0} &= \qty( N a ^\dag (p) - a ^\dag (p) N ) \ket{0}  \marginnote{We used the fact that \(N \ket{0} = 0\).}\\
+&= \qty[N, a ^\dag (p)] \ket{0}  \\
+&= a ^\dag(p) \ket{0} = \ket{1(p)}
+\,.
+\end{align}
+
+For the energy the computation is similar: 
+%
+\begin{align}
+H a ^\dag (p) \ket{0} &= \int \dd[3]{k} \omega_{k} N(k) a ^\dag (p) \ket{0}  \\
+&= \int \dd[3]{k} \omega_{k} \qty[ N(k), a ^\dag (p)] \ket{0}  \\
+&= \int \dd[3]{k} \omega_{k} a ^\dag(k) \delta^{(3)} (p-k) \ket{0}  \\
+&= \omega_{p} a ^\dag (p) \ket{0}
+\,.
+\end{align}
+
+For the momentum the steps are almost identical. 
+\end{proof}
+
+One can construct an \(n\)-particle state (where all the particles have the same momentum) similarly, by applying \(a ^\dag\) \(n\) times: then the eigenvalues of \(N\), \(H\) and \(\vec{p}\) will be multiplied by \(n\). 
+
+Also, we can have states with many particles with different momenta: the energy, momentum and number will be the sum of the individual ones. 
 
 \end{document}

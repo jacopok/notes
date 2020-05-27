@@ -435,4 +435,87 @@ One can construct an \(n\)-particle state (where all the particles have the same
 
 Also, we can have states with many particles with different momenta: the energy, momentum and number will be the sum of the individual ones. 
 
+\subsection{Spin-statistics connection}
+
+The procedure we have employed so far implicitly assumed we were using \textbf{Bose-Einstein} statistics, which is consistent with the fact that our field is spin-0.
+
+This can be seen by the fact that in our Fock space we are allowing more than one particle to have the same momentum; also, the state vector does not change sign when we swap the particles, since \(a ^\dag_{p}\) and \(a ^\dag_{k} \) commute.
+
+\subsection{Normalization of Fock states}
+
+We start by setting \(\braket{0}{0}= 1\).
+What do we do for states with stuff in them? If we were to set \(\ket{1} = a ^\dag _k \ket{0}\), we would have an issue:  if we wanted to compute the norm we would have 
+%
+\begin{align}
+\braket{1(k)}{1(p)} = \bra{0} a (k) a ^\dag (p) \ket{0} = \delta^{(3)} (k - p)
+\,,
+\end{align}
+%
+and we know that the Dirac delta is not covariant.
+We can fix this issue: if we impose 
+%
+\begin{align}
+\ket{1(k)} = (2 \pi )^{3/2} \sqrt{2 \omega_{k}} a ^\dag_{k} \ket{0}
+\,,
+\end{align}
+%
+so that when we compute the modulus we get 
+%
+\begin{align}
+\braket{1(k)}{1(p)} = (2 \pi )^3 2 \omega_{k} \bra{0} a (k) a ^\dag (p) \ket{0} = \delta^{(3)} (k - p) =
+(2 \pi )^3 2 \omega_{k} \delta^{(3)} (k - p)
+\,.
+\end{align}
+
+\begin{claim}
+This is covariant. 
+\end{claim}
+
+\begin{proof}
+This is explained very well in Peskin's textbook \cite[section 3.5]{peskinConceptsElementaryParticle2019}.
+
+We want to show that \(\omega_{k}  \delta^{(3)} (\vec{k} - \vec{p})\) is a Lorentz invariant (also a Poincarè invariant, but translation invariance is manifest). In order to do so, we must perform a boost: the system is spherically symmetric, so we choose arbitrarily to perform a boost in the direction \(z\), with parameter \(\beta \). 
+
+Then, we know that since \(p^{\mu }\) is a contravariant 4-vector it transforms like 
+%
+\begin{align}
+E' &= \gamma (E - \beta p_{z}) \\
+p_{x}' &= p_{x} \\
+p_{y}' &= p_{y} \\
+p_{z}' &= \gamma (p_{z} - \beta E)
+\,.
+\end{align}
+
+In the expression \(\delta^{(3)} (\vec{k} - \vec{p})\) the only thing which changes is \(p_{z}\). The triple delta function is the tensor product of three deltas, but two of them are unchanged in the transformation.
+So, we must check how \(\delta (k_{z} - p_{z})\) transforms: recall that 
+%
+\begin{align}
+\delta \qty(f(x)) = \frac{1}{\abs{\dv*{f}{x}}} \delta (x) 
+\,,
+\end{align}
+%
+as long as \(f(x)\) has a single zero at \(x=0\), which holds in our case since Lorentz transforms are linear.
+
+The conversion factor between the \(\delta \)s will be given by the inverse of the absolute value of
+%
+\begin{align}
+\pdv{p_{z}'}{p_{z}} &= \pdv{}{p_{z}} \qty(\gamma (p_{z} + \beta E))  \\
+&= \gamma \qty(1 + \beta \pdv{E}{p_{z}})  \\
+&= \gamma \qty(1 + \beta \frac{p_{z}}{E})  \\
+&= \frac{\gamma \qty(E + \beta p_z)}{E} = \frac{E'}{E}
+\,,
+\end{align}
+%
+which means that the product \(E \delta^{(3)} (\vec{k} - \vec{p})\) is covariant. 
+\end{proof}
+
+This makes sense: the covariant integration element is \(\dd[3]{p} / 2 E\), so if we want to apply the \(\delta \) linear functional to a Lorentz scalar function \(f(k)\) we can do it simply as 
+%
+\begin{align}
+\int \frac{ \dd[3]{p}}{2E} 2 E \delta^{(3)} (p-k) f (k) 
+\,,
+\end{align}
+%
+which yields an invariant number.
+
 \end{document}

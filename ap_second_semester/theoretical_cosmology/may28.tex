@@ -1,4 +1,65 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-5-28, \\ compiled \\ \today}
+
+The idea is to have today's and tomorrow's lectures, and a final one next Thursday. 
+
+For today and tomorrow we will continue discussing the path integral in cosmology. 
+
+We only rarely have infrared divergences, so we usually only apply low-pass filters. 
+The moments depend on the characteristic scale of our filter \(R\). We define them as 
+%
+\begin{align}
+\expval{q_R^N} = C_R^{(N)} (x, \dots, x)
+\,.
+\end{align}
+
+We suppose \emph{stationarity}: in this context, this means homogeneity and isotropy, since we are not considering a timeseries but a spatial distribution instead. 
+
+If we send \(R \to 0\) the smoothing disappears, and the moments higher than the mean typically diverge. 
+For \(R \to \infty \) typically we have \(\expval{q_R^N} \sim \expval{q}^{N}\), and the cumulant goes to 0 since it is defined by subtracting the average.
+
+We define a generating function. 
+
+The PDF of the smoothed field is found by averaging a delta function. We can relate the generating function for the moments with this PDF. 
+
+We find that 
+%
+\begin{align}
+\expval{q_R^N} = \int_{- \infty }^{ \infty } \dd{\alpha } \alpha^{N} \mathbb{P}_{q_R} (\alpha ; \vec{x})
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\mathbb{P}_{q_R} (\alpha ; \vec{x}) = \expval{ \delta (q-\alpha )}
+\,.
+\end{align}
+
+We can also take a noninteger value of \(N\), which is useful if we are dealing with fractals. 
+
+We can express 
+%
+\begin{align}
+\mathbb{P}_{q_R} = \sum _{N} \frac{ \expval{q_R}^{N}}{N!} \qty( \dv{}{\alpha })^{N} \delta (\alpha )
+\,.
+\end{align}
+
+So far the measure of the path integral has been fixed, but we may wish to change it. 
+
+We next show an example for this. We take a random Gaussian field with a powerlaw PSD with index \(n\). 
+
+We can describe the properties of this PSD as \(n\) varies. 
+
+We must impose, by mass conservation, that 
+%
+\begin{align}
+\int_{0}^{ \infty } \dd{r} r^2 G_R(r) =  0
+\,.
+\end{align}
+
+
+
 \end{document}

@@ -462,7 +462,7 @@ We can fix this issue: if we impose
 so that when we compute the modulus we get 
 %
 \begin{align}
-\braket{1(k)}{1(p)} = (2 \pi )^3 2 \omega_{k} \bra{0} a (k) a ^\dag (p) \ket{0} = \delta^{(3)} (k - p) =
+\braket{1(k)}{1(p)} = (2 \pi )^3 2 \omega_{k} \bra{0} a (k) a ^\dag (p) \ket{0} = % \delta^{(3)} (k - p) =
 (2 \pi )^3 2 \omega_{k} \delta^{(3)} (k - p)
 \,.
 \end{align}
@@ -517,5 +517,56 @@ This makes sense: the covariant integration element is \(\dd[3]{p} / 2 E\), so i
 \end{align}
 %
 which yields an invariant number.
+
+\subsection{Field operators and particle interpretation}
+
+Up until now we have been using the operators \(a\) and \(a ^\dag\) in momentum space, since their physical interpretation is more intuitive. 
+Let us now consider how to interpret the field operators \(\varphi \) and \(\pi \). 
+
+Recall, the real scalar field is given in general by 
+%
+\begin{align}
+\varphi (x) = \frac{1}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty( a_k e^{-ikx} + a ^\dag_{k} e^{ikx}) = \varphi_{+} (x) + \varphi_{-} (x)
+\,.
+\end{align}
+
+\begin{claim}
+We have the following transition amplitudes: 
+%
+\begin{align}
+\bra{0} \varphi_{+} (x) \ket{1(p)} &= e^{-ipx} \\
+\bra{1(p)} \varphi_{-} (x) \ket{0} &= e^{ipx}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+In order to compute this we substitute in directly:  
+%
+\begin{align}
+\bra{0} \varphi_{+} (x) \ket{1(p)} &=
+\bra{0} \frac{1}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
+e^{-ikx} a(k) \ket{1(p)}  \\
+&= \bra{0} \frac{1}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
+e^{-ikx} a(k) (2 \pi )^{3/2} \sqrt{2 \omega_{p}} a ^\dag (p) \ket{0}  \\
+&= \braket{0}{0} \int \dd[3]{k} e^{-ikx} \delta^{(3)} (k-p) = e^{-ipx}
+\,,
+\end{align}
+%
+where we used the fact that \(a_k a ^\dag_p \ket{0} = \qty[a_k, a ^\dag_p] \ket{0}\).
+
+For the other one the computation is similar: we work from the other direction.
+\end{proof}
+
+The interpretation for this is that the field operator \(\varphi_{+}\) can annihilate a particle with generic momentum \(p\) at the point \(x\) in space, since when we apply it to \(\ket{1(p)}\) the result is proportional to the vacuum. Similarly, \(\varphi_{-}\) can create a particle with completely undetermined momentum at the position \(x\). 
+
+\subsection{Covariant commutators}
+
+In order to perform canonical quantization we started with the commutators at equal time between the fields \(\varphi \) and \(\pi \). 
+Are the expressions for these covariant? 
 
 \end{document}

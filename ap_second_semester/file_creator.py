@@ -27,7 +27,7 @@ folder_names = {
 
 schedule = {
     0: ["gp"],
-    1: ["ap"],
+    # 1: ["ap"],
     2: ["ap", "rp"],
     3: ["tc", "rp"],
     4: ["gp", "tc"]

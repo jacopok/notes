@@ -592,6 +592,117 @@ We have used the fact that \(\varphi_{\pm}\) commute with themselves at differen
 %
 since \(\qty[\hat{a}(k), \hat{a}(p)] = 0\). The computation for \(\varphi_{+}\) is analogous. 
 
+Then, we can compute \(D_{+} (x-y)\) similarly as well: we find 
+%
+\begin{align}
+D_{+} (x-y) &= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{k} }{2 \omega_{k}}
+e^{-ik(x-y)} = - D_{-} (y-x)  
+\,.
+\end{align}
 
+Then, we can make use of the relation \(\sin(x) = \qty(e^{ix} - e^{-ix}) / 2i\) since we have the difference of two exponentials with opposite arguments: we find 
+%
+\begin{align}
+D(x-y) = \frac{-i}{(2 \pi )^3}
+\int \frac{ \dd[3]{k}}{\omega_{k}} \sin(k (x-y))
+\,,
+\end{align}
+%
+which is covariant, but not \emph{manifestly} so: we need to manipulate it to see it.
+
+\begin{claim}
+The two \(D_{\pm } \) can be written as: 
+%
+\begin{align}
+    D_{\pm } (x-y) = i \int_{C_{\pm}} \frac{ \dd[4]{k}}{(2 \pi )^{4}} \frac{e^{-ik(x-y)}}{k^2- m^2}
+    \,,
+\end{align}
+%
+where \(C_{\pm}\) is a small clockwise contour in the complex plane around \(k_0 = \omega_{k}\). The integral is over all of 3D space --- the coordinates \(\vec{k}\) --- and over a complex contour for the coordinate \(k_0 \). 
+\end{claim}
+
+\begin{proof}
+The claim we want to prove is 
+%
+\begin{align}
+D_{\pm} (x-y) 
+= i \int_{C_{\pm}} \frac{ \dd[4]{k}}{(2\pi )^{4}}
+\frac{e^{-ik(x-y)}}{k^2 - m^2}
+&\overset{?}{=}
+\pm \frac{1}{(2 \pi)^3} \eval{\int \frac{ \dd[3]{k}}{2 \omega_{k}} e^{\mp ik (x-y)}}_{k_0 = \omega_{k}}  \\
+\frac{i}{2 \pi }
+\int_{C_{\pm}} \dd{k_0 } \frac{e^{-ik(x-y)}}{k^2-m^2}
+&\overset{?}{=}
+\pm \eval{\frac{e^{\mp ik(x-y)}}{2 \omega_{k}}}_{k_0 = \omega_{k}}
+\,.
+\end{align}
+
+We do not write the \(\dd[3]{k}\) integral anymore and consider \(\vec{k}\) as fixed. 
+
+The complex residue theorem comes to our aid: it states that if we have a complex function \(f(z)\) and a closed contour \(\gamma \), then 
+%
+\begin{align}
+\int_{\gamma } f(z) \dd{z} = 2 \pi i \sum _{j} \Res_{z = a_j} f(z)
+\,,
+\end{align}
+%
+where \(a_j\) is a collection of the poles of the function which are contained in the contour \(\gamma \). 
+
+The \emph{residual} of the function \(f(z)\) at a pole \(a\) is the \(-1\)th coefficient in its Laurent series around \(a\), which is the expression 
+%
+\begin{align}
+f(z) = \sum _{j= - \infty }^{ \infty } c_j (z-a)^{j}
+\,.
+\end{align}
+
+So, we have 
+%
+\begin{align}
+\frac{i}{2 \pi } 
+\int_{C_{\pm}} \dd{k_0} 
+\frac{e^{-ik(x-y)}}{k^2-m^2} 
+= - \Res_{k_0 = \pm \omega_{k}} 
+\frac{e^{-ik(x-y)}}{k^2-m^2} 
+\,,
+\end{align}
+%
+and we can write \(k^2 - m^2 = k_0^2 - \abs{\vec{k}}^2 - m^2 = k_0^2 - \omega_{k}^2\); so that we need to take the residual of 
+%
+\begin{align}
+\frac{e^{-ik(k-y)}}{(k_0 - \omega_{k}) (k_0 + \omega_{k})}
+\,.
+\end{align}
+
+We are working near \(k_0 = \omega_{k}\), where the exponential is basically constant.
+For a first order pole like this, the residual is simple to compute: 
+%
+\begin{align}
+\Res_{k_0 = \pm \omega_{k}} 
+\frac{e^{-ik(x-y)}}{(k_0 - \omega_{k}) (k_0 + \omega_{k})}
+&= \lim_{k_0 \to \pm \omega_{k}} 
+(k_0 \mp \omega_{k})
+\frac{e^{-ik(x-y)}}{(k_0 - \omega_{k}) (k_0 + \omega_{k})}  \\
+&= \eval{\frac{e^{-ik(x-y)}}{(k_0 \pm \omega_{k})}}_{k_0 = \pm \omega_{k}}  \\
+&= \pm \eval{\frac{e^{\mp ik (x-y)}}{2 \omega_{k}}}_{k_0 = \pm \omega_{k}} 
+\,,
+\end{align}
+%
+as we desired. Note that we have switched the sign of the \(\vec{k}\) coordinates in the exponent: this would not be possible in general, but we are working implicitly inside of the \(\dd[3]{k} \) integral, so a map \(\vec{k} \to - \vec{k}\) does not pose an issue.
+\end{proof}
+
+\subsection{Covariance and microcausality}
+
+We have shown that \(D(x-y)\) are covariant under proper Lorentz transformations. Now we know that the commutator between two 4D points \(x\) and \(y\) is given by 
+%
+\begin{align}
+\qty[\varphi (x), \varphi (y)] = D(x-y)
+\,,
+\end{align}
+%
+but if we consider \(x\) and \(y\) to be along the same time-slice (that is, \(x_0 = y_0 \)), then we get back the equal-time commutator, which is equal to zero. 
+
+So, we get that \(D(x-y)\) must be equal to zero if \(x\) and \(y\) are generally spacelike separated, since any spacelike interval can be mapped onto another, and \(D\) must be covariant. 
+
+This is called a \textbf{microcausality} conditions: there cannot be influence between the creation and annihilation of particles if the two events are spacelike separated. 
 
 \end{document}

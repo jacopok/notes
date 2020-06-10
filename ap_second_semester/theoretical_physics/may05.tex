@@ -16,4 +16,77 @@ V^{\prime \mu } (x') = \tensor{\Lambda }{^{\mu }_{\nu }} V^{\nu } (x)
 where \(\Lambda \in SO(1, 3)\) is a Lorentz transformation.
 This theory will describe a spin-1 particle. 
 
+Now, we know that massive spin-1 particles have three possible \(s_z\) values while massless ones only have two. Will this be an issue? Stay tuned to find out. We shall start with the massive theory. 
+
+\subsection{Massive vector field theory}
+
+We need to make an ansatz for our Lagrangian --- we require it to be of second order in the derivatives and Lorentz invariant. We define the field strength as in the electromagnetic case: \(V_{\mu \nu } = 2 \partial_{[\mu} V_{\nu ]}\). With it we write the Lagrangian:
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4}  V^{\mu \nu } V_{\mu \nu } + \frac{1}{2} M^2 V^{\mu }V_{\mu }
+\,.
+\end{align}
+
+Let us compute its EL equations: they read 
+%
+\begin{align}
+\pdv{\mathscr{L}}{V_{\sigma }} - \partial_{\rho } \pdv{\mathscr{L}}{\partial_{ \rho } V_{\sigma }} = 0
+\,;
+\end{align}
+%
+so we need to compute these two derivatives. In the derivative with respect to \(\partial_{\rho } V_{\sigma }\) we get: 
+%
+\begin{align}
+\pdv{V_{\mu \nu } V^{\mu \nu }}{\partial_{\rho }V_{\sigma }}
+&= 2 V_{\mu \nu } \pdv{V^{\mu \nu }}{\partial_{\rho }V_{\sigma }}  \\
+&= 2 V_{\mu \nu }\qty(\eta^{\mu \rho } \eta^{\nu \sigma } - \eta^{\nu \rho } \eta^{\mu \sigma })  \\
+&= 2 V^{\rho \sigma } - 2 V^{\sigma \rho } = 4 V^{\rho \sigma }
+\,.
+\end{align}
+
+Finally then, we find 
+%
+\begin{align}
+M^2 V^{\sigma } + \partial_{\rho } \qty(V^{\rho \sigma }) = \qty(M^2 + \square ) + \partial^{\sigma }\qty(\partial_{\rho }V^{\rho }) = 0
+\,.
+\end{align}
+
+This is the \textbf{Proca equation}. If we take its divergence, we find the condition \( \partial_{\sigma } V^{\sigma } = 0\): we can then impose this constraint to simplify the equation to 
+%
+\begin{align}
+\qty(\square + M^2 ) V^{\sigma } &= 0   \\
+\partial_{\sigma } V^{\sigma } &= 0
+\,.
+\end{align}
+
+Note that this works \emph{only because} \(M \neq 0\): if the mass vanishes the divergence of the Proca equation vanishes identically, and the condition \(\partial_{\sigma } V^{\sigma }\) is not imposed. 
+
+\subsection{Solving the massive Proca equation}
+
+The procedure we will follow is to write a generic vector solution to the Klein-Gordon equation, and then to impose the vanishing divergence constraint to it. 
+In the real-valued case, it will look like 
+%
+\begin{align}
+V^{\mu } (x) &= \int \frac{ \dd[4]{k}}{(2 \pi )^{4}} \qty(f^{\mu }(k) e^{-ikx} + f^{\mu *} (k) e^{ikx}) 
+\,.
+\end{align}
+
+If we impose the constraint that it be a solution of the KG equation \(\square V^{\sigma } + M^2 V^{\sigma } = 0\), we get 
+%
+\begin{align}
+0= \int \frac{ \dd[4]{k}}{(2 \pi )^{4}} \qty(- k^2 + M^2) \qty(f^{\mu }(k) e^{-ikx} + f^{\mu *} (k) e^{ikx}) 
+\,,
+\end{align}
+%
+and like we did before we can force the particle to be on-shell with a delta-function, so we can remove a degree of freedom:
+%
+\begin{align}
+f^{\mu }(k) = (2 \pi )^{5/2} \sqrt{2 \omega_{k}} \delta (k^2 - M^2)
+\sum _{\lambda=0}^{3}
+\epsilon^{\mu }_{\lambda }(k) a_\lambda (k)
+\,.
+\end{align}
+
+The four vectors \(\epsilon^{\mu }_{\lambda }\) are called the \textbf{polarization vectors}; they describe the independent degrees of freedom in momentum space.
+
 \end{document}

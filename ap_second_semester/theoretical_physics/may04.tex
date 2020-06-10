@@ -1,4 +1,391 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Free Dirac field theory}
+
+\subsection{The Dirac Lagrangian}
+
+\marginpar{Sunday\\ 2020-6-7, \\ compiled \\ \today}
+
+Our ansatz for the Lagrangian of a theory whose EOM is the Dirac equation is: 
+%
+\begin{align}
+\mathscr{L} = \frac{i}{2} \qty[\overline{\psi} \gamma^{\mu } \qty(\partial_{\mu } \psi )
+- \qty(\partial_{\mu } \overline{\psi}) \gamma^{\mu } \psi ]
+- m \overline{\psi} \psi 
+\,,
+\end{align}
+%
+since the Dirac equation is linear in the derivatives.
+
+\begin{claim}
+This Lagrangian is \begin{enumerate}
+    \item real; 
+    \item invariant under Lorentz transformation (which act on \(\psi \) as \(\psi \to S(\Lambda ) \psi \));
+    \item equivalent to the Lagrangian density \(\mathscr{L} = \overline{\psi} \qty(i \slashed{\partial} - m) \psi \). 
+\end{enumerate}
+\end{claim}
+
+\begin{proof}
+To see that the Lagrangian is real, we need to show that \(\mathscr{L} = \mathscr{L} ^\dag\). For the mass term we have: 
+%
+\begin{align}
+\qty(m \overline{\psi} \psi ) ^\dag &= m \psi ^\dag \qty(\gamma^{0} )^\dag \psi = m \overline{\psi} \psi 
+\,,
+\end{align}
+%
+since \(\gamma^{0}\) is self-adjoint. Now, the kinetic terms are mapped into each other --- because of the \(i\) in front, this means that the Lagrangian is conserved. Let us show it for one of them: 
+%
+\begin{align}
+\qty(\overline{\psi} \gamma^{\mu } \partial_{\mu } \psi )^\dag &=
+\qty(\partial_{\mu } \psi ) ^\dag \qty(\gamma^{\mu })^\dag \qty(\gamma^{0})^\dag \psi  \\
+&= \partial_{\mu } \psi ^\dag \gamma^{0} \gamma^{0} \qty(\gamma^{\mu }) ^\dag \gamma^{0} \psi  \\
+&= \partial_{\mu } \psi ^\dag \gamma^{0} \gamma^{\mu } \psi  \marginnote{Used \eqref{eq:gamma-matrices-identity}}\\
+&= \qty(\partial_{\mu } \overline{\psi}) \gamma^{\mu } \psi 
+\,.
+\end{align}
+
+The fact that the Lagrangian is invariant under Lorentz transformations follows directly from the fact that, while \(\psi \to S \psi \), the conjugate spinor transforms as \(\overline{\psi} \to \overline{\psi} S^{-1}\) (see \eqref{eq:dirac-conjugate-spinor-transformation}). 
+
+As for the equivalence: certain terms in the two Lagrangians are equal, the difference lies in the fact that one of them has a term 
+%
+\begin{align}
+\frac{i}{2} \overline{\psi} \gamma^{\mu } \partial_{\mu } \psi 
+\,,
+\end{align}
+%
+while the other has a term 
+%
+\begin{align}
+- \frac{i}{2} \qty(\partial_{\mu } \overline{\psi}) \gamma^{\mu } \psi  
+\,.
+\end{align}
+
+To see that they are equivalent, we can show that their difference is a 4-divergence: 
+%
+\begin{align}
+\frac{i}{2} \overline{\psi} \gamma^{\mu } \partial_{\mu } \psi + (-)^2 \frac{i}{2} \qty(\partial_{\mu } \overline{\psi} )\gamma^{\mu } \psi 
+= \frac{i}{2} \gamma^{\mu } \partial_{\mu } \qty(\overline{\psi} \psi )
+\,.
+\end{align}
+
+Basically, the difference lies in an integration by parts. 
+\end{proof}
+
+The dimension of the Lagrangian density must be that of a length to the fourth, so the wavefunction's is \([\psi ] \sim M^{3/2}\).
+
+\subsection{The Euler-Lagrange equations}
+
+In order to get the equations for \(\psi \) we differentiate with respect to \(\overline{\psi}\), and vice versa. We can write the Lagrangian as 
+%
+\begin{align}
+\mathscr{L} = \frac{i}{2} \qty[ \overline{\psi} \overset{\rightarrow}{\slashed{\partial}} \psi - \overline{\psi} \overset{\leftarrow}{\slashed{\partial}} \psi  ] - m \overline{\psi} \psi 
+\,,
+\end{align}
+%
+so that it is easier to compute the derivatives: let us compute the EOM for \(\psi \), using 
+%
+\begin{align}
+\pdv{\mathscr{L}}{\overline{\psi}} = \frac{i}{2} \overset{\rightarrow}{\slashed{\partial}} \psi - m \psi 
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+\pdv{\mathscr{L}}{\partial_{\mu } \overline{\psi}}
+= \frac{i}{2} \gamma^{\mu } \psi 
+\,,
+\end{align}
+%
+so the EL equations read 
+%
+\begin{align}
+(i \overset{\rightarrow}{\slashed{\partial}} - m) \psi = 0
+\,.
+\end{align}
+
+The equations for the conjugate spinor are derived similarly; they read 
+%
+\begin{align}
+- \overline{\psi} \qty(i \overset{\leftarrow}{\slashed{\partial}} + m) = 0
+\,.
+\end{align}
+
+\begin{claim}
+These can also be derived from the alternate formulation of the Lagrangian; \(\mathscr{L} = \overline{\psi} (i \slashed{\partial} - m) \psi \). 
+\end{claim}
+
+\subsection{General solution}
+
+The general solution reads 
+%
+\begin{align} \label{eq:dirac-general-solution}
+\psi (x) &= \frac{1}{(2 \pi )^{3/2}}
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty(c_r (k) u_r (k) e^{-ikx} + d^{*}_{r} (k) v_r (k) e^{ikx})_{k_0 = \omega_{k}}  \\
+\psi ^\dag (x) &= \frac{1}{(2 \pi )^{3/2}}
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty(d_r (k) v_r ^\dag (k) e^{-ikx} + c ^\dag_{r} (k) u_r ^\dag (k) e^{ikx})_{k_0 = \omega_{k}}  
+\,,
+\end{align}
+%
+where a sum over \(r\) is implied: we account for both of the polarization states. 
+\(c\) and \(d\) are coefficients, \(u\) and \(v\) are unit vectors in spinor space.
+
+\subsection{Nöther currents}
+
+The current associated with translation invariance is given by 
+%
+\begin{align}
+\widetilde{T}^{\mu }_{\nu } =
+\pdv{\mathscr{L}}{\partial_{\mu } \psi } \partial_{\nu } \psi 
++ 
+\partial_{\nu } \overline{\psi} 
+\pdv{\mathscr{L}}{\partial_{\mu } \overline{\psi}} 
+- \delta^{\mu }_{\nu } \mathscr{L}
+\,,
+\end{align}
+%
+but if we impose the equations of motion we find \(\mathscr{L} = 0\); so we can neglect that term.
+Notice the order of operations in the contractions: \(\psi \) is a spinor, \(\overline{\psi}\) is a dual spinor, the derivative of the Lagrangian with respect to an object is of dual type to that object (so, \(\pdv*{\mathscr{L}}{\partial_{\mu } \psi }\) is a dual spinor), and the conserved quantity must be a scalar in spinor space. 
+
+Explicitly, this current reads 
+%
+\begin{align}
+\widetilde{T}^{\mu }_{\nu } 
+= i \overline{\psi} \gamma^{\mu }\partial_{\nu } \psi 
+\sim
+\frac{i}{2} \qty(\overline{\psi} \gamma^{\mu }\partial_{\nu } \psi - \qty(\partial_{\nu } \overline{\psi}) \gamma^{\mu } \psi )
+\,;
+\end{align}
+%
+the two ways of writing it are equivalent (which one we get depends on which formulation of the Lagrangian we choose), they differ by a divergence.
+
+\todo[inline]{Is this actually true?}
+
+Let us check that this is indeed conserved: 
+%
+\begin{align}
+\partial_{\mu } \widetilde{T}^{\mu \nu } &= i\partial_{\mu }
+\qty(\overline{\psi} \gamma^{\mu } \partial^{\nu } \psi )  \\
+&= i \overline{\psi} \overset{\leftarrow}{\slashed{\partial}} \partial^{\nu } \psi 
++ i \overline{\psi} \overset{\rightarrow}{\slashed{\partial}}\partial^{\nu} \psi  \\
+&= -m \overline{\psi} \partial^{\nu } \psi + \overline{\psi} \partial^{\nu } (m \psi ) = 0 \marginnote{Used the EOM for both \(\psi \) and \(\overline{\psi}\).}
+\,. 
+\end{align}
+
+Now, it is the case that we also have the conservation law \(\partial_{\nu } \widetilde{T}^{\mu \nu } = 0\) --- it can be proven if we choose the other formulation of the stress-energy tensor:
+%
+\begin{align}
+\partial_{\nu } \qty[\frac{i}{2} \qty(\overline{\psi} \gamma^{\mu }\partial{\nu } \psi - \qty(\partial^{\nu } \overline{\psi}) \gamma^{\mu } \psi )]
+&= \frac{i}{2} \qty[\qty(\partial_{\nu } \overline{\psi}) \gamma^{\mu } \partial^{\nu } \psi 
++ \overline{\psi} \gamma^{\mu } \partial_{\nu } \partial^{\nu } \psi 
+- \qty(\partial_{\nu } \overline{\psi}) \gamma^{\mu } \partial^{\nu } \psi 
+- \qty(\partial^{\nu } \partial_{\nu } \overline{\psi}) \gamma^{\mu } \psi  ]  \\
+&= \frac{i}{2} 
+\qty[ \overline{\psi} \gamma^{\mu }\square \psi - \square \overline{\psi} \gamma^{\mu } \psi ] = 0
+\,.
+\end{align}
+
+The result follows from the fact that a spinor satisfying the Dirac equation must also satisfy the Klein-Gordon one, \(\square \psi  +m^2 \psi = 0\), and so must its conjugate. 
+
+So, the symmetrized stress-energy tensor \(T^{\mu \nu } = \widetilde{T}^{(\mu \nu )}\) is conserved. 
+
+The conserved charge --- the total 4-momentum --- is given by 
+%
+\begin{align}
+P_{\mu } = \int \dd[3]{x} \widetilde{T}^{0}_{\mu } = \frac{i}{2} 
+\int \dd[3]{x} \psi ^\dag \overset{\leftrightarrow}{\partial}_{\mu }\psi   
+\,.
+\end{align}
+
+Notice the dagger instead of the bar: when we set the first index to zero we get a \(\gamma^{0}\) matrix, which simplifies the one in the definition of \(\overline{\psi}\). 
+
+\subsection{Lorentz invariance}
+
+For an infinitesimal Lorentz transformation defined by the antisymmtric tensor \(\omega_{\mu \nu }\) the position and spinor change with: 
+%
+\begin{align}
+x^{\prime \mu } = x^{\mu } + \omega^{\mu }_{\nu } x^{\nu }
+\qquad \text{and} \qquad
+\psi^{\prime }( x') 
+= \qty(1 - \frac{i}{2} \omega^{\rho \sigma } \Sigma_{\rho \sigma }) \psi (x)
+\,,
+\end{align}
+%
+so the generators of their variations are \(X\) and \(Y\), defined by 
+%
+\begin{align}
+\delta x^{\mu } = \frac{1}{2} \omega^{\rho \sigma } Y^{\mu }_{\rho \sigma }
+\qquad \text{and} \qquad
+\delta \psi = \frac{1}{2} \omega^{\rho \sigma } X_{\mu \nu }
+\,.
+\end{align}
+
+Explicitly, they can be expressed as 
+%
+\begin{align}
+Y^{\mu }_{\rho \sigma } = 2 \delta^{\mu }_{[\rho \sigma ]}
+\qquad \text{and} \qquad
+X_{\rho \sigma } = -i \Sigma_{\rho \sigma } \psi 
+\,;
+\end{align}
+%
+besides, we can conjugate \(X\) to get an expression for the generators of the variation of the conjugate spinor: 
+%
+\begin{align}
+\overline{X}_{\rho \sigma } = i \overline{\psi} \Sigma_{\rho \sigma }
+\,.
+\end{align}
+
+The conserved currents read (see section \ref{sec:poincare-invariance-noether}): 
+%
+\begin{align}
+J^{\mu }_{\rho \sigma } = 2 x_{[\rho }\widetilde{T}^{\mu }_{\sigma ]}
++ \overline{\psi} \gamma^{\mu } \Sigma_{\rho \sigma } \psi 
+\,,
+\end{align}
+%
+with the corresponding charges: 
+%
+\begin{align}
+Q_{ \rho \sigma }
+= \int \dd[3]{x} \qty(x_{[\rho } p_{\sigma ]}
++ \psi ^\dag \Sigma_{\rho \sigma } \psi )
+= L_{ \rho \sigma } + S_{ \rho \sigma }
+\,.
+\end{align}
+
+The fact that we can distinguish a regular angular momentum part as well as a spin part means that we have a spin 1/2 field. 
+
+\subsection{Global \(U(1)\) invariance}
+
+Another symmetry of the Dirac field is an internal one, which leaves the position unchanged and acts on the field as 
+%
+\begin{align}
+\psi'(x) = e^{i \alpha } \psi (x)
+\,,
+\end{align}
+%
+so its generator is \(X = i \alpha \psi \). The corresponding current is 
+%
+\begin{align}
+J^{\mu } &= \pdv{\mathscr{L}}{\partial_{\mu }\psi } X + \overline{X} \pdv{\mathscr{L}}{\partial_{\mu } \overline{\psi}} = i \overline{\psi} \gamma^{\mu } i \alpha \psi   \\
+&= - \alpha \overline{\psi} \gamma^{\mu } \psi \propto \overline{\psi} \gamma^{\mu } \psi 
+\,. 
+\end{align}
+
+The corresponding conserved charge is 
+%
+\begin{align}
+Q = \int \dd[3]{x} J^{0} = \int \dd[3]{x} \psi ^\dag \gamma^{0} \gamma^{0} \psi = \int \dd[3]{x} \psi ^\dag \psi 
+\,.
+\end{align}
+
+\subsection{Hamiltonian description}
+
+The conjugate fields are: 
+%
+\begin{align}
+\pi = \pdv{\mathscr{L}}{\partial_0 \psi } = \pdv{}{\partial_0 \psi} \qty(\psi ^\dag \gamma^{0} \frac{i}{2} \gamma^{\mu } \partial_{\mu } \psi )= 
+\frac{i}{2} \psi ^\dag
+\qquad \text{and} \qquad
+\pi ^\dag = \pdv{\mathscr{L}}{\partial_0 \psi ^\dag} = - \frac{i}{2} \psi 
+\,,
+\end{align}
+%
+and with these we can write the Hamiltonian density: 
+%
+\begin{align}
+\mathscr{H} &= \pi \partial_0 \psi + \qty(\partial_0 \psi ^\dag) \pi ^\dag - \mathscr{L}  \\
+&= \frac{i}{2} \qty[ \psi ^\dag \partial_0 \psi - \partial_0 \psi ^\dag \psi - \overline{\psi} \gamma^{\mu } \partial_{\mu } \psi + \qty(\partial_{\mu } \overline{\psi})\gamma^{\mu } \psi ]
++m \overline{\psi} \psi   \\
+&= \frac{i}{2} \qty[
+\psi ^\dag \overset{\leftrightarrow}{\partial_0 } -
+\psi ^\dag \qty(\gamma^{0})^2 \overset{\leftrightarrow}{\partial_0 }
+\psi 
+- \overline{\psi}  \gamma^{i}\overset{\leftrightarrow}{\partial_i }
+\psi
+]
++m \overline{\psi} \psi   \\
+&= -\frac{i}{2} \overline{\psi}  \gamma^{i}\overset{\leftrightarrow}{\partial_i }
+\psi
++ m \overline{\psi} \psi  \\
+&= \frac{i}{2} \psi ^\dag \overset{\leftrightarrow}{\partial_0 } \psi 
+\,,
+\end{align}
+%
+the last step uses the Dirac equation, \(\qty(i \slashed{\partial} -m) \psi =0\).
+
+\todo[inline]{So the conj momenta change if we switch between equivalent Lagrangians?}
+
+The Hamiltonian is given by 
+%
+\begin{align}
+H = \int \dd[3]{x} \mathscr{H} = i \int \dd[3]{x} \psi ^\dag \partial_0 \psi 
+\,,
+\end{align}
+%
+up to global constants like \(\int \psi ^\dag \psi \dd[3]{x}\). 
+
+It is not manifestly positive definite. 
+
+\subsection{Hamilton equations}
+
+Hamilton's equations in terms of the fields and conjugate fields read: 
+%
+\begin{align}
+\dot{\psi}_{\alpha } (\vec{x}) &= \fdv{H}{\pi_{\alpha }(\vec{x})} = \qty{\psi_{\alpha }, H} = \partial_0 \psi_{\alpha } (\vec{x}, t)\\
+\dot{\pi }_{\alpha } (\vec{x}) &= - \fdv{H}{\psi _{\alpha }(\vec{x})} = \qty{\pi_{\alpha }, H} 
+\,,
+\end{align}
+%
+where \(\alpha \) is a spinorial index. 
+The equal-time anticommutation relations are 
+%
+\begin{align}
+\qty{\psi_{\alpha } (\vec{x}), \pi_{\beta } (\vec{y})} &= \delta_{\alpha \beta } \delta^{(3)} (\vec{x}-\vec{y})  \\
+\qty{\psi_{\alpha }(\vec{x}), \psi_{\beta }(\vec{y})} 
+&= 0 = 
+\qty{\pi_{\alpha }(\vec{x}), \pi_{\beta }(\vec{y})} 
+\,.
+\end{align}
+
+Do note that the Hamiltonian description is redundant: between the fields \(\psi \), \(\psi ^\dag\), \(\pi \) and \(\pi ^\dag\) there are actually only two degrees of freedom. 
+
+We now show the EOM for the conjugate field: it reads 
+%
+\begin{align}
+\dot{\pi}_{\alpha } (\vec{x}, t)
+&= - \fdv{}{\psi_{\alpha }(\vec{x}, t)}
+\qty(\int \dd[3]{y} \psi ^\dag(\vec{y}, t) \partial_0 \psi (\vec{y}, t))  \\
+&= - \fdv{}{\psi_{\alpha }(\vec{x}, t)}
+\qty(\dv{}{t} \int \dd[3]{y} \psi ^\dag(\vec{y}, t) \psi (\vec{y}, t)
+- \int \dd[3]{y} \qty(\partial_0 \psi ^\dag (\vec{y},t) ) \psi (\vec{y}, t)
+)  \\
+&= \partial_0 \psi ^\dag_{\alpha } (\vec{x}, t)
+\,.
+\end{align}
+
+The total derivative term vanishes because of the global \(U(1)\) symmetry. 
+
+\section{Canonical quantization of the Dirac field}
+
+We start from the general solution of the Dirac equation \eqref{eq:dirac-general-solution}. We can invert it to get the expressions for the coefficients \(c_r\) and \(d_r\) in momentum space: 
+%
+\begin{align}
+c_r (k) &= \frac{1}{(2\pi )^{3/2}} \int \eval{\frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} 
+u_{r} ^\dag (k) \psi (\vec{x}, t) e^{-ikx}}_{k_0 = \omega_{k}}  \\
+d_r (k) &= \frac{1}{(2\pi )^{3/2}} \int \eval{\frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} 
+\psi ^\dag (\vec{x}, t) v_{r} ^\dag (k)  e^{ikx}}_{k_0 = \omega_{k}}
+\,.
+\end{align}
+
+\todo[inline]{Wrong sign in the exponential in the notes?}
+
+\todo[inline]{To verify - we plug the expression for \(\psi  \) inside the definition and check that we get an identity.}
+
+
+
 \end{document}

@@ -572,7 +572,7 @@ Are the expressions for these covariant?
 We start by defining 
 %
 \begin{align}
-D(x - y) = \qty[\varphi (x), \varphi (y)]  \\
+D(x - y) &= \qty[\varphi (x), \varphi (y)]  \\
 &= \qty[\varphi_{+} (x) + \varphi_{-} (x), \varphi_{+} (x) + \varphi_{-} (x)]  \\
 &= \qty[\varphi_{+} (x), \varphi_{-} (x)] + \qty[\varphi_{-} (x) + \varphi_{+} (x)]  \\
 &= D_+ (x-y) + D_- (x-y)
@@ -728,5 +728,132 @@ The equal time commutators are given by substituting the Poisson brackets with \
 \end{align}
 %
 while all the other equal-time commutators vanish.
+
+We know that the general solution  is given in terms of the operators \(a\) and \(b\); with its expression we find that the commutation relations between these are 
+%
+\begin{align}
+\qty[a(k), a ^\dag(p)] = \qty[b(k), b ^\dag (p)] &= \delta^{(3)} (k-p)
+\,,
+\end{align}
+%
+and all the others between these operators vanish. 
+So, we have two independent infinite sets of decoupled harmonic oscillators, describing particles with the same mass and arbitrary momenta. 
+
+\subsection{Summary}
+
+We have the \textbf{number} density operators, \(\mathscr{N}_{a} (k) = a(k) ^\dag a(k)\) and \(\mathscr{N}_{b} (k) = b(k) ^\dag b(k)\). 
+Their integrals over \(\dd[3]{k}\) give the total number operators \(N_a\) and \(N_b\). 
+
+The \textbf{Hamiltonian} density is given by 
+%
+\begin{align}
+\mathscr{H}(x) = \pi ^\dag \pi 
++ \qty(\vec{\nabla} \varphi ) ^\dag \qty(\vec{\nabla} \varphi )
++ m^2 \varphi ^\dag \varphi  
+\,,
+\end{align}
+%
+and its integral is 
+%
+\begin{align}
+H = \int \dd[3]{x} \mathscr{H} = 
+\int \dd[3]{k} \omega_{k} \qty(\mathscr{N}_a (k) + \mathscr{N}_b (k))
+\,.
+\end{align}
+
+The normal ordering is implied, by \(H\) we really mean \(N[H]\).
+
+The \textbf{momentum} density operator is given by 
+%
+\begin{align}
+\mathscr{P}_{i} = \pi \qty(\partial_{i} \varphi )
++ \qty(\partial_{i} \varphi ) ^\dag \pi ^\dag
+\,,
+\end{align}
+%
+and its integral gives the total momentum: 
+%
+\begin{align}
+P_i = \int \dd[3]{x} \mathscr{P}_{i} = \int \dd[3]{k} k_i \qty(\mathscr{N}_a (k) + \mathscr{N}_b (k))
+\,.
+\end{align}
+
+This is all analogous to the real case, but now we have an additional \(U(1)\) symmetry: this gives us a conserved current, 
+%
+\begin{align}
+J^{\mu }_{U(1)} = i q \qty[ \varphi ^\dag \qty(\partial^{\mu } \varphi )
+- \qty(\partial^{\mu } \varphi )^\dag \varphi ] 
+\,,
+\end{align}
+%
+whose associated charge is 
+%
+\begin{align}
+Q_{U(1)} = \int \dd[3]{x} J^{0}_{U(1)}
+= \int \dd[3]{k} \qty(q \mathscr{N}_a (k) - q \mathscr{N}_b(k))
+\,.
+\end{align}
+
+This has a direct physical interpretation: the particles which are created by \(a ^\dag\), carry a charge \(+q\), while the particles which are created by \(b ^\dag\) carry a charge \(-q\). 
+
+The \textbf{Fock space} is defined constructively just like the real case: the vacuum must satisfy \(a (k) \ket{0} = b(k) \ket{0} = 0\); we can create any pure Fock state by repeatedly applying \(a ^\dag\) and \(b ^\dag\). 
+
+
+\begin{claim}
+If we denote these states, with the appropriate normalizations, by \(\ket{1(p)} \propto a ^\dag (p) \ket{0}\) and \(\ket{\overline{1} (p)} \propto b ^\dag(p) \ket{0}\), then we have: 
+%
+\begin{align}
+N \ket{1 (p)} &= 1 \ket{1 (p)} &
+N \ket{\overline{1} (p)} &= 1 \ket{\overline{1} (p)}  \\
+H \ket{1 (p)} &= \omega_{p} \ket{1 (p)} &
+H \ket{\overline{1} (p)} &= \omega_{p} \ket{\overline{1} (p)}  \\
+Q \ket{1 (p)} &= +q \ket{1 (p)} &
+Q \ket{\overline{1} (p)} &= -q \ket{\overline{1} (p)}  
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Let us show it for one of them: 
+%
+\begin{align}
+N \ket{1 (p)} &\propto
+\qty(\int \dd[3]{k} \qty(a ^\dag(k) a(k) + b ^\dag(k) b (k))) 
+a ^\dag (p) \ket{0}  \\
+&= \int \dd[3]{k} \qty( a ^\dag (k) a (k) a ^\dag(p) + b ^\dag(k) b(k) a ^\dag (p)) \ket{0}  \\
+&= \int \dd[3]{k} \qty( a ^\dag (k) \qty( a ^\dag(p) a (k) + \qty[a(k), a ^\dag(p)]) + b ^\dag(k) a ^\dag (p) b(k)) \ket{0}  \\
+&= \int \dd[3]{k} a ^\dag (k) \qty[a(k), a ^\dag(p) ]  \ket{0}   \\
+&= \int \dd[3]{k} \delta^{(3)} (k-p) a ^\dag(k) \ket{0} \\
+&= a ^\dag(p) \ket{0}
+\,.
+\end{align}
+
+The basic reasoning for the others is the same. 
+\end{proof}
+
+As for the \textbf{commutators}, the same field calculated at different events in spacetime commutes with itself. On the other hand, 
+%
+\begin{align}
+\qty[ \varphi (x), \varphi ^\dag(y)]
+= \qty[\varphi_{+} (x), \varphi ^\dag_{-} (y)]
++ \qty[\varphi_{-} (x), \varphi ^\dag_{+} (y)]
+= D(x-y)
+\,,
+\end{align}
+%
+the same function we found in the real case. 
+
+\begin{claim}
+\begin{align}
+\qty[\varphi_{\pm} (x), \varphi ^\dag_{\mp}(y)] = D_{\pm} (x-y)
+\,.
+\end{align}
+\end{claim}
+
+\begin{claim}
+The commutator between \(\varphi (x)\) and \(\pi (y)\) gives: 
+\end{claim}
+
+Just like the real scalar field, we have microcausality. 
 
 \end{document}

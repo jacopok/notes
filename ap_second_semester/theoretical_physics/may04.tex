@@ -342,7 +342,7 @@ Hamilton's equations in terms of the fields and conjugate fields read:
 \end{align}
 %
 where \(\alpha \) is a spinorial index. 
-The equal-time anticommutation relations are 
+The equal-time Poisson brackets between the fields are 
 %
 \begin{align}
 \qty{\psi_{\alpha } (\vec{x}), \pi_{\beta } (\vec{y})} &= \delta_{\alpha \beta } \delta^{(3)} (\vec{x}-\vec{y})  \\
@@ -370,7 +370,8 @@ We now show the EOM for the conjugate field: it reads
 
 The total derivative term vanishes because of the global \(U(1)\) symmetry. 
 
-\section{Canonical quantization of the Dirac field}
+\section{Quantization of the Dirac field}
+
 
 We start from the general solution of the Dirac equation \eqref{eq:dirac-general-solution}. We can invert it to get the expressions for the coefficients \(c_r\) and \(d_r\) in momentum space: 
 %
@@ -386,6 +387,229 @@ d_r (k) &= \frac{1}{(2\pi )^{3/2}} \int \eval{\frac{ \dd[3]{x}}{\sqrt{2 \omega_{
 
 \todo[inline]{To verify - we plug the expression for \(\psi  \) inside the definition and check that we get an identity.}
 
+\begin{claim}
+The Hamiltonian \(H\) and the \(U(1)\) charge \(Q\) are given by:
+%
+\begin{align}
+    H &= \int \dd[3]{x} \psi ^\dag \partial_0 \psi  = \int \dd[3]{k} \omega_{k} \qty(c_r ^\dag c_r - d_r  d_r ^\dag)  \\
+    Q &= \int \dd[3]{x} \psi ^\dag \psi = \int \dd[3]{k} \qty(c_r ^\dag c_r  + d_r d_r ^\dag) 
+    \,.
+\end{align}   
+\end{claim}
 
+\begin{proof}
+\todo[inline]{Still to do. Probably direct substitution works.}
+\end{proof}
+
+\subsection{Canonical quantization with commutators}
+
+We try to quantize our theory of a Dirac field substituting commutators (divided by \(i \hbar\)) for Poisson brackets. So, the time evolution will become (in  the Heisenberg picture): 
+%
+\begin{align}
+\dot{\psi}_{\alpha } (\vec{x}, t) =- i \qty[ \psi_{\alpha } (\vec{x}, t), H] \\
+\dot{\pi}_{\alpha } (\vec{x}, t) =- i \qty[ \pi_{\alpha } (\vec{x}, t), H]
+\,,
+\end{align}
+%
+and the commutators between the fields will be 
+%
+\begin{align}
+\qty[\psi_{\alpha }(\vec{x}, t), \pi_{\beta } (\vec{y}, t)] = i \delta^{(3)} (\vec{x} - \vec{y}) \delta_{\alpha \beta }
+\,,
+\end{align}
+%
+while those of \(\psi \) and \(\pi \) with themselves vanish. 
+Since \(\pi  = i \psi ^\dag\), we also have 
+%
+\begin{align}
+\qty[ \psi_{\alpha } (\vec{x}, t), \psi ^\dag_{\beta} (\vec{y}, t)] = \delta^{(3)} (\vec{x}- \vec{y}) \delta_{\alpha \beta }
+\,.
+\end{align}
+
+We have similar relations in momentum space: 
+%
+\begin{align}
+\qty[c_r (k), c_s ^\dag (p)] = \delta^{(3)} (\vec{k} - \vec{p}) \delta_{rs} = - \qty[d_r (k), d_r ^\dag (p)]
+\,,
+\end{align}
+%
+and the others vanish. Notice the minus sign! 
+Because of it, we define the \(d\) number operator in the opposite order: 
+%
+\begin{align}
+N_c^{r} (k) = c_r ^\dag (k) c_r (k)
+\qquad \text{and} \qquad
+N_d^{r} (k) = d_r (k) d_r  ^\dag (k)
+\,,
+\end{align}
+%
+as usual the total number operators are their integrals over momentum space. 
+The commutation relations read: 
+%
+\begin{align}
+\qty[N_c^{r}, c_s ^{(\dag)} (k)] &= \pm c_s ^{(\dag)} (k) \delta_{rs} \\
+\qty[N_d^{r}, d_s ^{(\dag)} (k)] &= \mp d_s ^{(\dag)} (k) \delta_{rs}
+\,,
+\end{align}
+%
+where the dagger in parentheses means that the relations hold both with it and without it. 
+
+So, we have an opposite sign in the \(d\) operator relations. This may bee fixed with some redefinitions of the wavefunction, but is an indication of a larger problem: this type of quantization of Dirac theory is inconsistent. 
+
+This can be seen in two ways. First of all, \textbf{the Hamiltonian is not positive definite}: it depends on an integral of \(N_c - N_d\); on the other hand the charge \(Q\) is positive!
+
+Secondly, the Fock space can be constructed much like we did for the scalar field, and therefore it will \textbf{contain identical particle states}. But we know that fermions' wavefunction is antisymmetric under exchange of particles, so this is wrong. 
+
+The way to solve this issue is to quantize the theory using \textbf{anticommutators}. 
+
+\subsection{Anticommutator quantization}
+
+We do everything as we did before, except for the fact that we substitute Poisson brackets for \textbf{anticommutators} divided by \(i \hbar\).
+
+The anticommutators of the fields will then read 
+%
+\begin{align}
+\qty{\psi_{\alpha } (\vec{x}), \pi_{\beta } (\vec{y})} &= i \delta_{\alpha \beta } \delta^{(3)} (\vec{x}-\vec{y})  \\
+\qty{\psi_{\alpha }(\vec{x}), \psi_{\beta }(\vec{y})} 
+&= 0 = 
+\qty{\pi_{\alpha }(\vec{x}), \pi_{\beta }(\vec{y})} 
+\,,
+\end{align}
+%
+as before the first line is equivalent to \(\qty{\psi, \psi ^\dag} = \delta^{(3)} \delta_{\alpha \beta }\).
+In momentum space, this corresponds to 
+%
+\begin{align}
+\qty{c_r (k), c_s ^\dag (p)} = \delta^{(3)} (k-p) \delta_{rs} = \qty{d_r (k), d_s ^\dag (p)}
+\,,
+\end{align}
+%
+whereas the other anticommutators vanish. 
+
+\todo[inline]{``So we have obtained the anticommutator algebra for the harmonic oscillator'' --- ok, but we never described the HO with anticommutators, right? Are we just saying that it's the same thing with anticommutators instad of commutators?}
+
+Now, we can define all of our objects of interest. The number density operators are given by
+%
+\begin{align}
+\mathscr{N}^{r}_{c} (k) = c ^\dag_{r} (k) c_r (k) \qquad \text{and} \qquad
+\mathscr{N}^{r}_{d} (k) = d ^\dag_{r} (k) d_r (k)
+\,,
+\end{align}
+%
+and as usual the total number is given by their integral over momentum space. 
+
+The rules that these need to follow in order to be proper number operators are still written in terms of commutators: in order to verify them, we can write them in terms of the anticommutators, which we know. 
+
+We start with 
+%
+\begin{align}
+\qty[N_c^{r} (k), c_s (p)] &= c_r ^\dag (k) c_r (k) c_s (p) -  c_s (p) c_r ^\dag (k) c_r (k)  \\
+&= c_r ^\dag (k) c_r (k) c_s (p) + c_r ^\dag (k) c_s (p) c_r (k)
+- c_r ^\dag (k) c_s (p) c_r (k) -  c_s (p) c_r ^\dag (k) c_r (k)  \\
+&= c_r ^\dag (k) \qty{c_r (k), c_s (p)} - \qty{c_r ^\dag (k), c_s (p)} c_r (k)  \\
+&= - c_r (k) \delta_{rk} \delta^{(3)} (\vec{k} - \vec{p})
+\,.
+\end{align}
+
+Similarly we get 
+%
+\begin{align}
+\qty[N_c^{r} (k), c_s ^\dag (p)] &= c_r ^\dag (k) \delta_{rs} \delta^{(3)} (\vec{k} - \vec{p})  \\
+\qty[N_c^{r} (k), d_s (p)] &= - d_r (k) \delta_{rk} \delta^{(3)} (\vec{k} - \vec{p}) \\
+\qty[N_c^{r} (k), d_s ^\dag (p)] &= d_r ^\dag (k) \delta_{rs} \delta^{(3)} (\vec{k} - \vec{p}) 
+\,,
+\end{align}
+%
+so all the harmonic oscillator properties we have found still hold. 
+
+The Hamiltonian density operator can now be normal-ordered as usual: the density is \(\mathscr{H} = \frac{i}{2} \overline{\psi} \overset{\leftrightarrow}{\partial_0 } \psi \), so we find
+%
+\begin{align}
+H &= \int \dd[3]{k} \omega_{k} \qty(c_r ^\dag c_r - d_r d_r ^\dag)  \\
+&= \int \dd[3]{k} \omega_{k} \sum _{r} \qty(N_c^{r} + N_d^{r}) + \int \dd[3]{k} \omega_{k} \sum_{r} \delta^{(3)} (0)
+\,.
+\end{align}
+
+The conserved charge reads 
+%
+\begin{align}
+Q &= \int \dd[3]{k}  \qty(c_r ^\dag c_r + d_r d_r ^\dag)  \\
+&= \int \dd[3]{k}  \sum _{r} \qty(N_c^{r} - N_d^{r}) + \int \dd[3]{k} \omega_{k} \sum_{r} \delta^{(3)} (0) 
+\,,
+\end{align}
+%
+so we have recovered the physically meaningful conditions \(H \geq 0\), \(Q \lessgtr 0\). 
+As before, we ignore the infinite energy of the vacuum. 
+
+\subsection{Normal ordering for fermions}
+
+As opposed to the bosonic case, for fermions normal ordering does not just mean putting the operators in the right order (annihilation first, creation later). Since we are dealing with anticommutation, we have to insert an additional \textbf{sign}, which is \((-1)^{n}\), where \(n\) is the number of pair swaps needed to reach the final configuration. 
+
+So, inside the normal ordering sign, operators anticommute.
+
+\subsection{Fock space for fermions}
+
+As before, we define the vacuum by \(c_r \ket{0} = d_r \ket{0} = 0\) for any \(k\) and add particles with \(c_r ^\dag\) and \(d_r ^\dag\).
+
+The one-particle states have exactly the properties we'd expect for number, Hamiltonian and charge \eqref{eq:fock-one-particle-state-properties}: the proof follows the same steps, the only difference is that instead of a commutator we insert an anticommutator. 
+
+So, we can indeed interpret \(c_r ^\dag\) as creating a particle, while \(d_r ^\dag\) creates its antiparticle. 
+
+The algebra we have does not modify the properties of one-particle states, but it very much affects two-particle states: specifically, the anticommutation rules enforce \textbf{Fermi-Dirac statistics}. If we try to create a state with two identical particles, we get 
+%
+\begin{align}
+\ket{2(p)} \propto \qty(c_r ^\dag)^2 \ket{0} = \frac{1}{2} \qty{c_r ^\dag, c_r ^\dag} \ket{0} = 0
+\,.
+\end{align}
+
+In general, it can be stated that there is only one consistent way to quantize a relativistic field theory: 
+\begin{enumerate}
+    \item with commutators for bosonic (iteger-spin) fields;
+    \item with anticommutators for fermionic (half-integer spin) fields.
+\end{enumerate}
+
+For our scalar (spin-0) theory, if we had tried to use anticommutators we would have gotten an inconsistency: when we normal-order the operators in the Hamiltonian we would have gotten \(N_a - N_b\), making it non-positive definite. 
+
+\subsection{Covariant anticommutators}
+
+\begin{claim}
+Just like the complex scalar field, same-field anticommutators vanish: 
+%
+\begin{align}
+\qty{\psi_{\alpha }(\vec{x}), \psi_{\beta }(\vec{y})} = 0 = \qty{\overline{\psi}_{\alpha }(\vec{x}), \overline{\psi}_{\beta }(\vec{y})}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+The only nonvanishing anticommutators are \(\qty{c_r , c_r ^\dag}\) and \(\qty{d_r, d_r ^\dag}\). In the expression for the anticommutator between \(\psi \), \(\psi \) or any same-field anticommutator we cannot get these, so the whole thing vanishes. 
+\end{proof}
+
+So, we consider 
+%
+\begin{align}
+S_{\alpha \beta } (x-y) &= \qty{ \psi_{\alpha }(x), \overline{\psi}_{\beta }(y)}  \\
+&= \qty{\psi_{+}(x), \overline{\psi}_{-}(y)}_{\alpha \beta } + 
+\qty{\psi_{-}(x), \overline{\psi}_{+}(y)}_{\alpha \beta }  \\
+&= S_{\alpha \beta }^{+}(x-y) + S_{\alpha \beta }^{-} (x-y)
+\,.
+\end{align}
+
+With the anticommutation relations we can write 
+%
+\begin{align}
+S^{+}_{\alpha \beta }(x-y) &= \frac{1}{(2 \pi )^3}
+\int \frac{ \dd[3]{k}}{2 \omega_{k}}
+\qty(\slashed{k} + m)_{\alpha \beta } \eval{e^{-ik(x-y)} }_{k_0 = \omega_{k}} = \qty(i \slashed{\partial} + m) D_+ (x-y)\\
+S^{-}_{\alpha \beta }(x-y) &= \frac{1}{(2 \pi )^3}
+\int \frac{ \dd[3]{k}}{2 \omega_{k}}
+\qty(\slashed{k} - m)_{\alpha \beta } \eval{e^{ik(x-y)} }_{k_0 = \omega_{k}}
+=\qty(i \slashed{\partial} + m) D_- (x-y)
+\,,
+\end{align}
+%
+so \(S(x-y) = \qty(i \slashed{\partial} + m )D(x-y) \); everything we proved for \(D(x-y)\) in section \ref{sec:covariance-microcausality} will still hold --- specifically, we still have Lorentz \textbf{covariance} and \textbf{microcausality}. 
+
+Note that \(\slashed{\partial}\) is implicitly \(\slashed{\partial_{(x)}}\). 
 
 \end{document}

@@ -47,7 +47,7 @@ so we need to compute these two derivatives. In the derivative with respect to \
 Finally then, we find 
 %
 \begin{align}
-M^2 V^{\sigma } + \partial_{\rho } \qty(V^{\rho \sigma }) = \qty(M^2 + \square ) + \partial^{\sigma }\qty(\partial_{\rho }V^{\rho }) = 0
+M^2 V^{\sigma } + \partial_{\rho } \qty(V^{\rho \sigma }) = \qty(M^2 + \square )V^{\sigma } + \partial^{\sigma }\qty(\partial_{\rho }V^{\rho }) = 0
 \,.
 \end{align}
 
@@ -87,6 +87,190 @@ f^{\mu }(k) = (2 \pi )^{5/2} \sqrt{2 \omega_{k}} \delta (k^2 - M^2)
 \,.
 \end{align}
 
-The four vectors \(\epsilon^{\mu }_{\lambda }\) are called the \textbf{polarization vectors}; they describe the independent degrees of freedom in momentum space.
+The four vectors \(\epsilon^{\mu }_{\lambda }\) are called the \textbf{polarization vectors}; they describe the independent degrees of freedom in momentum space. Note that the index \(\mu \) is a four-vector index, while \(\lambda \) is a label for the position of the vector in the tuple. 
+
+With this definition we can write 
+%
+\begin{align}
+V^{\mu } (x) = \frac{1}{(2 \pi )^{3/2}}
+\int 
+\frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{\lambda } \qty[
+\underbrace{\epsilon^{\mu }_{\lambda }(k) a_\lambda e^{-ikx}}_{V_{+}^{\mu }(x)}
++
+\underbrace{\epsilon^{\mu *}_{\lambda } (k) a_\lambda^{*} e^{ikx}}_{V_{-}^{\mu }(x)}
+]_{k_0 = \omega_{k}}
+\,,
+\end{align}
+%
+and now we can impose the condition of vanishing divergence. This brings down a \(k_{\mu }\) from the exponentials, so we find 
+%
+\begin{align}
+\epsilon^{\mu }_{\lambda } a_{\lambda } (-i k_\mu ) + \epsilon^{\mu *}_{\lambda } a^{*}_{\lambda } i k_\mu = 0 \implies \Re \qty[\epsilon^{\mu }_{\lambda } a_{\lambda } k_\mu ] = 0
+\,.
+\end{align}
+
+\todo[inline]{The professor's notes do not mention the fact that we need to take the real part\dots}
+
+This constraint removes one of the degrees of freedom for the polarization vector, leaving three, which is consistent with the fact that we have a massive spin-1 particle. 
+
+\begin{claim}
+If \(k^{\mu } = (\omega_{k}, 0, 0, k)^{\top}\) we can form a basis for the polarization vectors with 
+%
+\begin{align}
+\epsilon^{\mu }_{1} &= (0, 1, 0, 0)^{\top}  \\
+\epsilon^{\mu }_{2} &= (0, 0, 1, 0)^{\top}  \\
+\epsilon^{\mu }_{3} &= (k/M, 0, 0 , \omega_{k} / M)^{\top}  \\
+\,.
+\end{align}
+
+They satisfy the following completeness and orthogonality relations: 
+%
+\begin{align}
+\epsilon^{\mu }_{ (\lambda )} \epsilon^{(\lambda' )}_{\mu } &= - \delta_{\lambda \lambda '} = \eta_{\lambda \lambda '} \\
+\epsilon^{\mu }_{(\lambda )} \epsilon^{\nu }_{(\lambda )} &= -\eta^{\mu \nu } + \frac{1}{M^2} k^{\mu } k^{\nu }
+\,.
+\end{align}
+
+So, they form an orthonormal basis for the spacelike subspace orthogonal to the timelike vector \(k^{\mu }\). 
+\end{claim}
+
+\begin{proof}
+The conditions to be checked are that these are orthogonal to \(k_\mu \) and independent. 
+
+For the orthogonality relation the interesting component to show is 
+%
+\begin{align}
+\epsilon^{\mu }_{3} \epsilon^{3}_{\mu } = \frac{k^2}{M^2} - \frac{\omega_{k}^2}{M^2} = -1
+\,.
+\end{align}
+
+The completeness relation is long to show directly but fast to see intuitively. The outer product of a basis vector with itself, \(\epsilon^{\mu }_{(\lambda )} \epsilon^{\nu }_{(\lambda )}\) (not summed) gives a rank-1 projection tensor onto the vector's subspace; adding all of these together yields the projection matrix onto the subspace \(k^{\perp}\). 
+\end{proof}
+
+The Nöther energy-momentum tensor reads: 
+%
+\begin{align}
+\widetilde{T}^{\mu }_{\nu } &= \pdv{\mathscr{L}}{\partial_{\mu } V_{\rho }} \partial_{\nu } V_{\rho } - \mathscr{L} \delta^{\mu }_{\nu }  \\
+&= - V^{\mu \rho } \partial_{\nu } V_{\rho } + \frac{1}{4} V^{\alpha \beta } V_{\alpha \beta } \delta^{\mu }_{\nu } - \frac{1}{2} M^2 V^{\alpha} V_{\alpha } \delta^{\mu }_{\nu }
+\,,
+\end{align}
+%
+and its corresponding charges are:
+%
+\begin{align}
+P_{\mu } &= \int \dd[3]{x} \widetilde{T}^{0}_{\mu }  \\
+&= \int \dd[3]{x} \qty(- V^{0 \rho } V_{\nu \rho } + \frac{1}{4} V^{\alpha \beta } V_{\alpha \beta } \delta^{0}_{\nu } - \frac{1}{2} M^2V^{\alpha }V_{\alpha } \delta^{0}_{\nu }) 
+\,,
+\end{align}
+%
+while the conserved currents corresponding to Lorentz transformations are: 
+%
+\begin{align}
+J^{\mu }_{(\rho \sigma )} = 
+2 x_{[\rho } \widetilde{T}^{\mu }_{\sigma ]}
++ (\mathscr{J}_{\mu \nu })_{\rho \sigma } V^{\mu \nu } V^{\lambda }
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+(\mathscr{J}_{\mu \nu })_{\rho \sigma } = 2 i \eta_{\mu [\rho |} \eta_{\nu |\sigma ]}
+\,.
+\end{align}
+
+\begin{proof}
+Under an infinitesimal Lorentz transformation \(\omega_{\mu \nu }\) the vector \(V^{\mu } \) transforms like: 
+%
+\begin{align}
+V^{\prime \mu }(x') = V^{\mu } (x) + \tensor{\omega }{^{\mu }_{\nu }} V^{\nu }(x)
+\,,
+\end{align}
+%
+where the variation can be written as 
+%
+\begin{align}
+\delta V^{\mu } = \frac{1}{2} \omega^{\rho \sigma } X^{\mu }_{\rho \sigma }
+\,,
+\end{align}
+%
+with 
+%
+\begin{align}
+X^{\mu }_{\rho \sigma } = -i (\mathscr{J}^{\mu \nu })_{\rho \sigma } V_{\nu }
+\,.
+\end{align}
+
+This holds, since it reduces to 
+%
+\begin{align}
+\tensor{\omega }{^{\mu }_{\nu }} V^{\nu } = \frac{2}{2} \omega^{\rho \sigma } \delta^{\mu }_{[\rho } \delta^{\nu }_{\sigma ]} V_{\nu }
+\,.
+\end{align}
+
+The same applies for the position vector, for which we have 
+%
+\begin{align}
+Y^{\mu }_{\rho \sigma } = -i (\mathscr{J}^{\mu \nu })_{ \rho \sigma } x_{\nu }
+\,.
+\end{align}
+
+Now we can apply the general formula: 
+%
+\begin{align}
+J^{\mu }_{(a)} &= \widetilde{T}^{\mu }_{\nu } Y^{\nu }_{(a)} - \pdv{\mathscr{L}}{\partial_{\mu } V^{\nu }} X_{(a)}^{\nu }  \\
+J^{\mu }_{\rho \sigma }&= 2\widetilde{T}^{\mu }_{\nu  } \delta^{\nu  }_{[\rho  } \delta^{\alpha }_{\sigma ]} x_{\alpha } 
++ 2 V^{\mu}_{\nu } \delta^{\nu}_{[\rho } \delta^{\alpha }_{\sigma ]} V_{\alpha }  \\
+&= 2\widetilde{T}^{\mu }_{[\rho } x_{\sigma ]}
++ V^{\mu }_{[\rho } V_{\sigma ]}
+\,.
+\end{align}
+\end{proof}
+
+The corresponding conserved charges can then be decomposed into \(L_{\rho \sigma } \) and \(S_{\rho \sigma }\). 
+
+\begin{claim}
+The Pauli-Lubanski pseudovector's modulus square in the rest frame is given by 
+%
+\begin{align}
+W^2 = -2 M^2 \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 1
+\end{array}\right]
+\,.
+\end{align}
+\end{claim}
+
+\todo[inline]{Kinda confusing statement in the professor's notes\dots}
+
+\subsection{Hamiltonian formalism}
+
+The conjugate field is given by 
+%
+\begin{align}
+\pi^{\mu } = \pdv{\mathscr{L}}{\partial_0 V_{\mu }} = - V^{0 \mu }
+\,,
+\end{align}
+%
+so \(\pi^{0} = 0\), while \(\pi^{i} = V^{i0}\). 
+Because one of Hamilton's equations is \(\partial_0 V_0 = \qty{\pi_0, H}\) we have that \(V_0 = \const\).
+So, WLOG we set it to zero (with a gauge choice). 
+
+\begin{claim}
+The Hamiltonian density is given by \(\mathscr{H} = \pi^{\mu } \partial_0 V_{\mu } - \mathscr{L}\), or equivalently \(\widetilde{T}^{00}\). Its explicit expression is 
+%
+\begin{align}
+    \mathscr{H} = \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{M^2}{2} V_{i}^2
+    \,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{Yeah}
+\end{proof}
+
 
 \end{document}

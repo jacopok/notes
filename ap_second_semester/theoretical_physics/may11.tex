@@ -3,10 +3,119 @@
 
 \chapter{Interacting field theories}
 
+We have studied free field theories for spin-0, spin-\(1/2\) and spin-1 particles. Now we introduce interaction terms between these, starting from the classical description of interaction. 
+
 \section{Interactions in classical field theories}
 
 \marginpar{Thursday\\ 2020-6-11, \\ compiled \\ \today}
 
+\subsection{Scalar field self-interactions}
 
+Scalar fields have acted like systems of decoupled harmonic oscillators up to now. So, we introduce the complication of a self-interaction between the field: we write a Lagrangian density like 
+%
+\begin{align}
+\mathscr{L} = \underbrace{\frac{1}{2} \qty(\partial_{\mu }\varphi ) \qty(\partial^{\mu} \varphi ) - \frac{1}{2} m^2 \varphi^2}_{\mathscr{L}_{0}} \underbrace{- V(\varphi )}_{\mathscr{L} _{\text{int}}}
+\,.
+\end{align}
+
+The added interaction term is a potential in the form 
+%
+\begin{align}
+V(\varphi ) = k \varphi^3 + \lambda \varphi^{4} + \mu \varphi^{5} \dots
+\,,
+\end{align}
+%
+with an arbitrary number of added positive powers of \(\varphi \). 
+
+We require \(V(\varphi )\) to have a stable minimum, which constrains the coefficients. 
+We will discuss this aspect in more detail later, when we treat Spontaneous Symmetry Breaking. 
+
+\todo[inline]{Add reference}
+
+Since the dimensions of the field are those of a mass and the Lagrangian density must be dimensionally a mass to the fourth, the coefficients must have dimensions of decreasing integer powers of \(M\): for the term \(\alpha_{i} \varphi^{i}\), the dimension of \(\alpha_{i}\) will be \(M^{4-i} = M^{D}\). 
+
+Terms whose mass dimension has an exponent \(D \geq 0 \) are said to be \textbf{renormalizable}.
+So, in our case the only renormalizable terms are the first two, \(k \varphi^{3 } + \lambda \varphi^{4}\). 
+
+For a complex field the potential needs to be expressed in terms of \(\varphi^{*} \varphi \) in order to be \(U(1)\) gauge invariant, so the only renormalizable term we can add is \(\lambda (\varphi^{*} \varphi )^2\). 
+
+\subsection{Dirac field self-interactions}
+
+The interaction term is added to the Dirac Lagrangian as follows: 
+%
+\begin{align}
+\mathscr{L} 
+= \underbrace{\overline{\psi} \qty(i \slashed{\partial} - m) \psi }_{\mathscr{L}_{0}}
++ 
+\underbrace{G \qty(\overline{\psi} \Gamma \psi ) \qty(\overline{\psi} \Gamma \psi )}_{\mathscr{L} _{\text{int}}}
+\,,
+\end{align}
+%
+where \(\Gamma \) is a (1, 1) tensor in spinorial space. 
+
+Fermi theory, for example, is given by 
+%
+\begin{align}
+\mathscr{L} _{\text{int}} = \frac{G_F}{\sqrt{2}}
+\qty(\overline{\psi}_{p} \gamma^{\mu } \psi_{n}) \qty(\overline{\psi}_{e} \gamma_{\mu } \psi_{\nu })
+\,,
+\end{align}
+%
+and it gives an effective description of beta decay, 
+%
+\begin{align}
+n \to p + e^{-} + \overline{\nu}_{e}
+\,.
+\end{align}
+
+Since \(\psi \) has dimension \(M^{3/2}\), we find that the coupling constant \(G_F\) must have dimension \(M^{-2}\): so, this interaction is \textbf{not renormalizable}.
+
+\subsection{Scalar - Dirac field interaction (Yukawa)}
+
+We want to describe an interaction between a real scalar field \(\varphi \) and a spinor field \(\psi \). The interaction Lagrangian is: 
+%
+\begin{align}
+\mathscr{L} = \frac{1}{2} \qty(\partial_{\mu } \varphi ) \qty(\partial^{\mu} \varphi )
+- \frac{1}{2} m^2\varphi^2
++ \overline{\psi} \qty(i \slashed{\partial} - m)\psi 
++ y_{s}  \varphi \overline{\psi} \psi 
++ y_{p} \varphi \overline{\psi} \gamma_{5} \psi 
++ \omega_{1} \varphi^2 \overline{\psi} \psi 
+\,,
+\end{align}
+%
+where \(y_s\) and \(y_p\) are known as the Yukawa couplings; one is a scalar, the other is a pseudoscalar (because of the presence of \(\gamma_{5}\)); both are renormalizable. 
+
+We always require Poincaré invariance, sometimes we do not require invariance under discrete symmetries like parity. 
+
+\subsection{Massless vector - Dirac field interaction}
+
+The base Lagrangian is the sum of those describing the fields: 
+%
+\begin{align}
+\mathscr{L}_{0}
+= - \frac{1}{4} F^{\mu \nu }
++ \overline{\psi} \qty(i \slashed{\partial} - m ) \psi 
+\,,
+\end{align}
+%
+while the leading terms in the interaction term will be: 
+%
+\begin{align}
+\begin{split}
+\mathscr{L} _{\text{int}}
+&= g_{\nu } \qty(\overline{\psi} \gamma^{\mu } \psi ) A_{\mu }
++ g_{A} \qty(\overline{\psi} \gamma^{\mu } \gamma_{5} \psi )A_{\mu }
++ c_{\nu } \qty(\overline{\psi} \psi ) A^{\mu } A_{\mu } 
+\\
+&\phantom{=}\ 
++ i c_A \overline{\psi} \gamma_{5} \psi A_{\mu }A^{\mu }
++ d_{\nu } \qty(\overline{\psi} \sigma^{\mu \nu }\psi )F_{\mu \nu }
++ i d_A  \qty(\overline{\psi} \sigma^{\mu \nu } \gamma_5 \psi) F_{\mu\nu  } + \dots
+\,.
+\end{split}
+\end{align}
+
+To find the dimensionality, recall that \([A_{\mu }] = M^{1}\), so we get that \(g_\nu \) and \(g_A\) have dimension \(M^{0}\), while the other coefficients have dimension \(M^{-1}\). 
 
 \end{document}

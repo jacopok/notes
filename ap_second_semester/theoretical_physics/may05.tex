@@ -516,19 +516,18 @@ and
 \mathscr{H} &= \pi^{\mu } \partial_0 A_{\mu }
 - \mathscr{L}   \\
 &= - \pi^{\mu } \pi_{\mu }
-- \frac{1}{2} \qty(\partial_{\mu } A_{\nu })\qty(\partial^{\mu } A^{\nu })  \\
-&= - \pi^{\mu } \pi_{\mu } - \frac{1}{2} \qty(-\pi_{\mu }\pi^{\mu } + \qty( \partial_{i } A_{0}) \qty(\partial^{i }A^{0})
++ \frac{1}{2} \qty(\partial_{\mu } A_{\nu })\qty(\partial^{\mu } A^{\nu })  \\
+&= - \pi^{\mu } \pi_{\mu } + \frac{1}{2} \qty(+ \pi_{\mu }\pi^{\mu } + \qty( \partial_{i } A_{0}) \qty(\partial^{i }A^{0})
 + \qty(\partial_{i} A_{j}) \qty(\partial^{i} A^{j}) )  \\
 &= - \frac{1}{2} \pi^{\mu } \pi_{\mu }
-- \frac{1}{2}\qty(\partial_{i } A_{0})\qty(\partial^{i }A^{0})
-- \frac{1}{2} \qty(\partial_{i } A_{j})^2  \\
++ \frac{1}{2}\qty(\partial_{i } A_{0})\qty(\partial^{i }A^{0})
++ \frac{1}{2} \qty(\partial_{i } A_{j})^2  \\
 &=-\frac{1}{2} \pi_{0}^2
 + \frac{1}{2} \pi_{i}^2
-+ \frac{1}{2}\qty(\partial_{i} A_{0})^2
-- \frac{1}{2} \qty(\partial_{i } A_{j})^2 
-\,,
+- \frac{1}{2}\qty(\partial_{i} A_{0})^2
++ \frac{1}{2} \qty(\partial_{i } A_{j})^2 
+\,.
 \end{align}
-%
 
 This is not positive definite, due to the unphysical degree of freedom \(A_0 \).
 However, we can still proceed. The total Hamiltonian is 
@@ -551,9 +550,31 @@ We also have the Poisson brackets:
 \end{align}
 %
 while the same-field brackets vanish.
-\end{claim}
+\end{claim} 
+
+\begin{proof}
+The bracket reads: 
+%
+\begin{align}
+\qty{A^{\mu } (\vec{x}, t), \pi^{\nu }(\vec{y}, t)}
+&= \int \dd[3]{z} \qty(
+\fdv{A^{\mu }(\vec{x}, t)}{A^{\rho }(\vec{z}, t)}
+\fdv{\pi ^{\nu }(\vec{y}, t)}{\pi _{\rho }(\vec{z}, t)}
+-
+\fdv{A^{\mu }(\vec{x}, t)}{\pi _{\rho }(\vec{z}, t)}
+\fdv{\pi ^{\nu }(\vec{y}, t)}{A^{\rho }(\vec{z}, t)}
+)  \\
+&= \int \dd[3]{z} \delta^{(3)} (\vec{x} - \vec{z}) \delta^{\mu }_{\rho }
+\delta^{(3)}(y-z) \eta^{\nu \rho }  \\
+&= \delta^{(3)} (\vec{x} - \vec{y}) \eta^{\mu \nu }
+\,.
+\end{align}
+\end{proof}
 
 \begin{claim}
 Starting from the original gauge-fixing Lagrangian with \(\xi = 1\) we obtain the same results. 
 \end{claim}
+
+\todo[inline]{Still to do exercise.}
+
 \end{document}

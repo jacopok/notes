@@ -257,7 +257,7 @@ The conjugate field is given by
 %
 so \(\pi^{0} = 0\), while \(\pi^{i} = V^{i0}\). 
 Because one of Hamilton's equations is \(\partial_0 V_0 = \qty{\pi_0, H}\) we have that \(V_0 = \const\).
-So, WLOG we set it to zero (with a gauge choice). 
+So, without loss of generality we set it to zero --- this essentially amounts to a constant shift of the Hamiltonian, as we will see in a moment. 
 
 \begin{claim}
 The Hamiltonian density is given by \(\mathscr{H} = \pi^{\mu } \partial_0 V_{\mu } - \mathscr{L}\), or equivalently \(\widetilde{T}^{00}\). Its explicit expression is 
@@ -269,8 +269,291 @@ The Hamiltonian density is given by \(\mathscr{H} = \pi^{\mu } \partial_0 V_{\mu
 \end{claim}
 
 \begin{proof}
-\todo[inline]{Yeah}
+
+%
+\begin{align}
+\mathscr{H} &= \pi^{\mu }\partial_{0} V_{\mu } - \mathscr{L} \\
+&= \cancelto{}{\pi^{0} \partial_0 V_0} + \pi^{i} \partial_0 V_{i} 
++ \frac{1}{2} V^{0i} V_{0i} + \frac{1}{4} V^{ij} V_{ij} - \frac{1}{2} M^2 \qty(\cancelto{}{V^{0} V_0} + V^{i} V_i )  \marginnote{There is a factor \(2\) multiplying the \(V^{0i}\) term since we also account for \(V^{i0}\).}\\
+&= \pi^{i}\partial_0 V_{i} - \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{1}{2} M^2 V_i^2  \\
+&= \pi^{i} \underbrace{\qty(\partial_0 V_{i} - \partial_{i} V_{0})}_{-\pi_{i}} + \pi^{i} \partial_{i} V_0 - \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{1}{2} M^2 V_i^2  \\
+&= \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{1}{2} M^2 V_i^2  
++ \pi^{i} \partial_{i} V_0 
+\\
+&= \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{1}{2} M^2 V_i^2  
+\,,
+\end{align}
+%
+where we have neglected all the terms containing \(V_0 \). 
+What we have neglected can be written as \(- \partial_{i} \qty(\pi_{i} V_0 ) + M^2 V_0^2 /2\), by integrating by parts and using the equations of motion, which tell us that \(\partial_{i} \pi_{i} = M^2 V_0 \). 
 \end{proof}
 
+We have the following Poisson brackets: 
+%
+\begin{align}
+\qty{V^{i} (\vec{x}, t), \pi^{j}(\vec{y}, t)} = \delta_{ij} \delta^{(3)} (\vec{x} - \vec{y})
+\,,
+\end{align}
+%
+while the \(\qty{V, V}\) and \(\qty{\pi, \pi }\) brackets vanish. 
 
+\subsection{Canonical quantization}
+
+We can quantize this theory using commutators (since it has integer spin).
+The quantization procedure breaks the covariance of the theory, since we impose the condition \(V_0 = 0\), which is not covariant. 
+
+\subsection{Massless classical vector field}
+
+The massless case of the Proca Lagrangian is the usual Maxwell Lagrangian: 
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu }
+\,,
+\end{align}
+%
+where \(F_{\mu \nu } = 2 \partial_{[\mu } A_{\nu ]}\). 
+The Euler-Lagrange equations read \(\partial_{\mu } F^{\mu \nu } = 0\), or 
+%
+\begin{align}
+\square A^{\mu } + \partial^{\mu } \partial_{\nu } A^{\nu } = 0
+\,.
+\end{align}
+
+As we mentioned before, differentiating this equation yields an identity, not an additional constraint. So, we must say that this Lagrangian describes four degrees of freedom!?
+
+\subsubsection{Gauge invariance}
+
+An element which was not present in the massive case is gauge invariance. A gauge transformation is an internal transformation of the field \(A^{\mu } \) which is a symmetry of the Lagrangian. In the electromagnetic case, the gauge is \(A^{\prime \mu } (x) = A^{\mu } (x) + \partial^{\mu } \alpha (x)\), where \(\alpha (x)\) is a generic scalar function of spacetime. 
+
+This symmetry is known as a \(U(1)\) symmetry, since in the minimal coupling approach it corresponds to a phase shift of the wave function by \(e^{i \alpha }\). 
+
+In this case, the field strength is invariant under this transformation as well as the Lagrangian density. 
+
+The massive Proca Lagrangian does not have this symmetry: the term \(A^{\mu } A_{\mu }\) changes if we change the gauge. 
+
+So, in order to have a one-to-one mapping between a physical field configuration and a mathematical field we need to make a gauge choice. 
+
+A commonly adopted one is the Coulomb gauge, \(\nabla \cdot \vec{A} = 0\); however this is not covariant. A covariant choice is 
+%
+\begin{align}
+\partial_{\mu } A^{\mu } = 0
+\,,
+\end{align}
+%
+the \textbf{Lorentz gauge}. It can be always be reached by choosing \(\alpha \) such that \(\square \alpha = - \partial_{\mu } A^{\mu }\). 
+
+This does not in fact fix the gauge, since we can still perform transformations which preserve the divergence of \(A\) --- specifically, the residual gauge \(\beta \) must satisfy \(\square \beta = 0\). 
+
+If we forget this fact for a minute and only consider the Lorentz gauge, the EOM look like a \(M=0\) version of the  Proca 3-dof ones: 
+%
+\begin{align}
+\square A^{\mu } = 0 \qquad \text{and} \qquad \partial_{\mu } A^{\mu } = 0 
+\,.
+\end{align}
+
+\subsubsection{Hamiltonian description}
+
+Even though the Lorentz gauge condition is covariant, the Poisson brackets we write are not; the conjugate fields as in the Proca case are \(\pi^{\mu} = - F^{0\mu}\), and the fact that \(\pi^{0} = 0\) means that they force \(A^{0} = \const\), which is not covariant. 
+
+So, this theory \textbf{cannot be quantized in a covariant way}. 
+
+Now we can either quantize it ignoring this problem, or we can change the Lagrangian and quantize a different theory. We choose the latter. 
+
+\subsection{Gauge fixing Lagrangian}
+
+What we can do is then to write the following Lagrangian: 
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu } - \frac{1}{2 \xi } 
+\qty(\partial_{\mu } A^{\mu })^2
+\,,
+\end{align}
+%
+where \(\xi \) is an arbitrary real parameter. This is known as a \textbf{gauge fixing Lagrangian}. This still has all the good properties the old one had, except for gauge invariance --- it explicitly depends on the divergence of \(A^{\mu }\), which as we saw can be arbitrarily determined by the gauge. 
+
+\begin{claim}
+This Lagrangian is equivalent to 
+%
+\begin{align}
+\mathscr{L}' = - \frac{1}{2} \qty(\partial_{\mu } A_{\nu })\qty(\partial^{\mu }A^{\nu }) + \frac{1}{2} \frac{\xi-1}{\xi } \qty(\partial_{\mu } A^{\mu })^2
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+The term \(1/(2\xi) (\partial A)^2 \) is the same in both Lagrangians. So, we are asking whether 
+%
+\begin{align}
+- \frac{1}{4} F^{\mu \nu} F_{\mu \nu } \sim -\frac{1}{2} (\partial_{\mu } A_{\nu }) \qty(\partial^{\mu } A^{\nu }) + \frac{1}{2} \qty(\partial_{\mu } A^{\mu })^2
+\,.
+\end{align}
+
+Let us open the field strength: 
+%
+\begin{align}
+F^{\mu \nu } F_{\mu \nu } =
+\qty(\partial_{\mu } A_{\nu } - \partial_{\nu } A_{\mu })
+\qty(\partial^{\mu } A^{\nu } - \partial^{\nu } A^{\mu })
+&= 2 \qty(\partial_{\mu } A_{\nu }) \partial^{\mu} A^{\nu }
+- 2 \qty(\partial_{\mu } A_{\nu }) \partial^{\nu }A^{\mu }  
+\,,
+\end{align}
+%
+so we have recovered the term \((\partial_{\mu } A_{\nu })(\partial^{\mu } A^{\nu })\) in \(\mathscr{L}'\), now what is left to show is that 
+%
+\begin{align}
+\frac{1}{2} \qty(\partial_{\mu } A_{\nu }) \partial^{\nu }A^{\mu }  
+\sim \frac{1}{2} \qty(\partial_{\mu } A^{\mu })^2
+\,.
+\end{align}
+
+This is accomplished by two integrations by parts: 
+%
+\begin{align}
+\qty(\partial_{\mu } A_{\nu }) \partial^{\nu }A^{\mu }
+&\sim \cancelto{}{\partial_{\mu } \qty(A_{\nu } \partial^{\nu } A^{\mu })}
+- A_{\nu} \partial^{\nu }\partial_{\mu } A^{\mu }   \\
+&\sim
+-\cancelto{}{\partial^{\nu } \qty(A_{\nu } \partial_{\mu }A^{\mu })}
++ \qty(\partial^{\nu } A_{\nu }) \qty(\partial_{\mu }A^{\mu })
+\sim
+ \qty(\partial_{\mu }A^{\mu })^2
+\,.
+\end{align}
+\end{proof}
+
+\begin{claim}
+The Euler-Lagrange equations now read 
+%
+\begin{align}
+\square A^{\sigma } - \qty(\frac{\xi -1}{\xi }) \partial^{\sigma }
+\qty(\partial_{\mu } A^{ \mu })^2 = 0
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We start from the Lagrangian \(\mathscr{L}'\), which is easier. 
+
+The term \(\pdv*{\mathscr{L}'}{A_{\sigma }}\) vanishes, so we only get 
+%
+\begin{align}
+0=\partial_{\rho } \qty(\pdv{\mathscr{L}'}{\partial_{\rho } A_{\sigma }}) 
+&= \partial_{\rho } \partial^{\rho } A^{\sigma } - \partial_{\rho } 
+\frac{\xi - 1}{\xi } \qty(\partial_{\mu } A^{\mu }) \pdv{}{\partial_{\rho } A_{\sigma }} \qty(\partial_{\mu } A_{\nu } \eta^{\mu \nu })  \\
+&= \partial_{\rho } \partial^{\rho } A^{\sigma } - \partial_{\rho } 
+\frac{\xi - 1}{\xi } \qty(\partial_{\mu } A^{\mu }) \eta^{\rho \sigma }  \\
+&= \square A^{\sigma } - \partial^{\sigma } 
+\frac{\xi - 1}{\xi } \qty(\partial_{\mu } A^{\mu }) =0
+\,. 
+\end{align}
+\end{proof}
+
+Now comes the kicker: since \(\xi \) is arbitrary, we can set it to \(\xi = 1\), so that the equations of motion become \(\square A^{\sigma } = 0\). This is known as the \textbf{Feynman gauge fixing term}.
+
+\subsubsection{General solution}
+
+With the condition \(\xi = 1\), the general solution reads 
+%
+\begin{align}
+A^{\mu } (x) = \frac{1}{(2\pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
+\sum _{\lambda } \epsilon^{\mu }_{(\lambda )}(k)
+\qty(a_{(\lambda )}(k) e^{-ikx} + a^{*}_{(\lambda )} (l) e^{ikx})_{k_0 = \abs{k}}
+\,.
+\end{align}
+
+This solution has no constraints on the polarization vectors \(\epsilon^{\mu }_{\lambda }\): there are four independent ones, so this is not electromagnetism. 
+The four polarization vectors can be chosen to be an orthonormal basis. 
+
+\subsubsection{Choices of polarization}
+
+If we are given the photon wavevector \(k^{\mu }\), which is null, we can set the \(0-\)th polarization vector to 
+%
+\begin{align}
+\epsilon^{\mu }_{(0)} = \left[\begin{array}{cccc}
+1 & 0 & 0 & 0
+\end{array}\right]^{\top}
+= n^{\mu }
+\,,
+\end{align}
+%
+the third one to 
+%
+\begin{align}
+\epsilon^{\mu }_{(3)} = \left[\begin{array}{cccc}
+0 & 0 & 0 & 1
+\end{array}\right]^{\top}
+= \frac{k^{\mu } - \qty(n^{\nu }k_{\nu })n^{\mu }}{n^{\nu }k_{\nu }}
+\,.
+\end{align}
+
+The other two can be chosen as an arbitrary orthonormal basis of the spacelike two-dimensional space which is left.
+These will be the \textbf{transverse} polarizations. 
+
+From what we know about photons, they are the only ones which are actually physical. 
+We will need a way to remove the other two ones to recover electromagnetic theory; for now we keep them since they are needed in order to quantize the spin-1 theory in a covariant way. 
+
+\subsubsection{Hamiltonian description}
+
+We use the Lagrangian \(\mathscr{L}'\), with \(\xi =1 \): 
+%
+\begin{align}
+\mathscr{L}' = - \frac{1}{2} \qty(\partial_{\mu } A_{\nu })\qty(\partial^{\mu } A^{\nu } )
+\,.
+\end{align}
+
+So, we find 
+%
+\begin{align}
+\pi^{\mu } = \pdv{\mathscr{L}}{\partial_0 A_{\mu }}
+= - \partial^{0} A^{\mu }
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\mathscr{H} &= \pi^{\mu } \partial_0 A_{\mu }
+- \mathscr{L}   \\
+&= - \pi^{\mu } \pi_{\mu }
+- \frac{1}{2} \qty(\partial_{\mu } A_{\nu })\qty(\partial^{\mu } A^{\nu })  \\
+&= - \pi^{\mu } \pi_{\mu } - \frac{1}{2} \qty(-\pi_{\mu }\pi^{\mu } + \qty( \partial_{i } A_{0}) \qty(\partial^{i }A^{0})
++ \qty(\partial_{i} A_{j}) \qty(\partial^{i} A^{j}) )  \\
+&= - \frac{1}{2} \pi^{\mu } \pi_{\mu }
+- \frac{1}{2}\qty(\partial_{i } A_{0})\qty(\partial^{i }A^{0})
+- \frac{1}{2} \qty(\partial_{i } A_{j})^2  \\
+&=-\frac{1}{2} \pi_{0}^2
++ \frac{1}{2} \pi_{i}^2
++ \frac{1}{2}\qty(\partial_{i} A_{0})^2
+- \frac{1}{2} \qty(\partial_{i } A_{j})^2 
+\,,
+\end{align}
+%
+
+This is not positive definite, due to the unphysical degree of freedom \(A_0 \).
+However, we can still proceed. The total Hamiltonian is 
+%
+\begin{align}
+H = \int \dd[3]{x} \mathscr{H} = \frac{1}{2} \dd[3]{x}
+\qty{ \pi_{i}^2  + \qty(\partial_{i} A_{j})^2 - \pi_0^2 - \qty(\partial_{i} A_{0})^2}
+\,.
+\end{align}
+
+With it, we also have the functional version of Hamilton's equations written for \(A^{\mu }\) and \(\pi^{\mu }\). 
+
+\begin{claim}
+We also have the Poisson brackets: 
+%
+\begin{align}
+    \qty{A^{\mu } (\vec{x}, t), \pi^{\nu }(\vec{y}, t)} = \eta^{\mu \nu }
+    \delta^{(3)} (\vec{x} - \vec{y})
+    \,,
+\end{align}
+%
+while the same-field brackets vanish.
+\end{claim}
+
+\begin{claim}
+Starting from the original gauge-fixing Lagrangian with \(\xi = 1\) we obtain the same results. 
+\end{claim}
 \end{document}

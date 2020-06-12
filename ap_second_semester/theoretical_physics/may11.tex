@@ -403,13 +403,129 @@ i \dv{}{t} \ket{\psi (t)}_{I} = H _{\text{int}}^{I} \ket{\psi (t)}_{I}
 The evolution operator for states, \(U_I (t)\), can be written as 
 %
 \begin{align}
-U_I (t, t_0 ) = U_0(t,0) ^\dag U (t, t_0 ) U_0 (t_0, 0) 
+U_I (t, t_0 ) = U_0^\dag(t,0)  U (t, t_0 ) U_0 (t_0, 0) 
 \,,
 \end{align}
 %
-and it is unitary, satisfies \(U_{I}(t_2, t_0 ) = U_I (t2, t_1 ) U_I (t_1 , t_0 )\) and \(U_I (t, t_0 ) = U ^\dag (t_0, t)\).  
+and it is unitary, satisfies \(U_{I}(t_2, t_0 ) = U_I (t_2 , t_1 ) U_I (t_1 , t_0 )\) and \(U_I (t, t_0 ) = U ^\dag_I (t_0, t)\).  
 \end{claim}
 
 \todo[inline]{The last one looks weird\dots}
+
+\begin{proof}
+First of all, we derive the expression for the evolution operator: a state \(\ket{\psi (t)}_{I}\) evolves as
+%
+\begin{align}
+\ket{\psi (t)}_{I} &= U_0 ^\dag (t, 0) \ket{\psi (t)}_{S}  \\
+&= U_0 ^\dag (t, 0) U (t, t_0 ) \ket{\psi (t_0 )}_{S}  \\
+&= U_0 ^\dag (t, 0) U(t, t_0 ) U_0 (t_0, 0) \ket{\psi (t_0 )}_{I}  \\
+&= U_{I} (t, t_0 ) \ket{\psi (t_0 )}_{I}
+\,.
+\end{align}
+
+To show unitarity: 
+%
+\begin{align}
+U_I (t, t_0 ) ^\dag U_I (t, t_0 )
+&= 
+U_0 ^\dag(t_0 , 0)  
+U ^\dag (t, t_0 )  
+U_0 (t, 0) 
+U_0 ^\dag (t, 0)  
+U (t, t_0 ) 
+U_0 (t_0 , 0)  \\
+&= 
+U_0 ^\dag(t_0 , 0)  
+U ^\dag (t, t_0 )  
+U (t, t_0 ) 
+U_0 (t_0 , 0)  \\
+&= 
+U_0 ^\dag(t_0 , 0)  
+U_0 (t_0 , 0)  
+= \mathbb{1}
+\,.
+\end{align}
+
+To show that it works well with successive times: 
+%
+\begin{align}
+U_I (t_2, t_1 ) U_I (t_1 , t_0 )
+&= U_0 ^\dag (t_2 , 0) U (t_2, t_1 ) U_0 (t_1, 0)
+U_0 ^\dag (t_1, 0) U(t_1, t_0 ) U_0 (t_0, 0)  \\
+&= U_0 ^\dag (t_2 , 0) U (t_2, t_1 ) U(t_1, t_0 ) U_0 (t_0, 0)  \\
+&= U_0 ^\dag (t_2 , 0) U (t_2, t_0 ) U_0 (t_0, 0)  \\
+&= U_I (t_2, t_0 )
+\,.
+\end{align}
+
+The last property can be shown as follows: we have
+%
+\begin{align}
+U_I (t_0, t) = U_0 ^\dag (t_0 , 0) U(t_0, t) U_0 (t ,0 )
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+U_I ^\dag (t_0, t) 
+= U_0 ^\dag (t, 0) U ^\dag (t_0 , t) U_0 (t_0, 0) 
+= U_0 ^\dag (t, 0) U (t , t_0 ) U_0 (t_0, 0) 
+\,,
+\end{align}
+%
+since \(U(t, t_0 ) = \exp(-i H (t - t_0) )\). 
+\end{proof}
+
+\subsubsection{Differential equation for the evolution operator}
+
+We know that 
+%
+\begin{align}
+i \dv{}{t} U (t, t_0 ) = H U (t, t_0 )
+\,,
+\end{align}
+%
+so we can take its conjugate: 
+%
+\begin{align}
+- i \dv{}{t} U ^\dag (t, t_0 ) = U ^\dag (t, t_0 ) H 
+\,.
+\end{align}
+
+This allows us to compute the differential equation for the evolution of the evolution operator: 
+%
+\begin{align}
+i \dv{}{t} U_I (t, t_0 ) 
+= H _{\text{int}}^{I} (t) U_I (t, t_0 )
+\,,
+\end{align}
+%
+where as usual \(H_{\text{int}}^{I} = H - H_0 \). 
+
+Now, since the Hamiltonian is not constant this differential equation cannot be solved directly. However, we can cast it into an integral form: 
+%
+\begin{align}
+U_I (t, t_0 ) = \mathbb{1} - i \int_{t_0 }^{t} \dd{\tau }
+H _{\text{int}}^{I} (\tau ) U(\tau , t_0 )
+\,.
+\end{align}
+
+Crucially, in the interaction picture operators evolve with the free Hamiltonian (which we know well), while states evolve in a complicated way involving the interaction Hamiltonian. 
+
+\subsection{Perturbative solution for the evolution operator}
+
+We assume that the interaction term in the Hamiltonian is proportional to some small parameter \(\lambda \ll 1 \), and then we look for solutions of the form 
+%
+\begin{align}
+U_I (t, t_0 ) = \sum _{n=0}^{\infty } C_n (t, t_0 )
+\,,
+\end{align}
+%
+such that the term \(C_n\) is of order \(\lambda^{n }\).
+
+As long as \(\lambda \) is actually small, this series converges to the true result.
+
+This perturbative approach can be made more explicit with the integral formulation.
 
 \end{document}

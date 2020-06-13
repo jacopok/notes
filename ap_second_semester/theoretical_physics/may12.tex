@@ -98,20 +98,20 @@ We prove this by writing the term \(T[\varphi \varphi ] - N[ \varphi \varphi ]\)
 \end{split}  \\
 \begin{split}
 &= 
-[x_0 > y_0 ] \qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{+} (x) \varphi_{-} (y)) \\
+[x_0 > y_0 ] \qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \hlc{teal}{\varphi_{+} (x) \varphi_{-} (y)}) \\
 & 
 + 
-[x_0 < y_0 ] \qty(\varphi_{-} (y) \varphi_{-} (x) + \varphi_{+} (y) \varphi_{+} (x) + \varphi_{-} (y) \varphi_{+} (x) + \varphi_{+} (y) \varphi_{-} (x)) 
+[x_0 < y_0 ] \qty(\varphi_{-} (y) \varphi_{-} (x) + \varphi_{+} (y) \varphi_{+} (x) + \varphi_{-} (y) \varphi_{+} (x) + \hlc{teal}{\varphi_{+} (y) \varphi_{-} (x)}) 
 \\
 & 
 -
 [x_0 > y_0 ]
-\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{-} (y) \varphi_{+} (x) ) 
+\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \hlc{teal}{\varphi_{-} (y) \varphi_{+} (x)} ) 
 \\
 & 
 -
 [x_0 < y_0 ]
-\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{-} (y) \varphi_{+} (x) ) 
+\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \hlc{teal}{\varphi_{-} (y) \varphi_{+} (x)} ) 
 \end{split}  \\
 &= [x_0 > y_0 ] \qty(\varphi_{+} (x) \varphi_{-} (y) - \varphi_{-} (y) \varphi_{+} (x))
 - [x_0 < y_0 ] \qty(\varphi_{-} (x) \varphi_{+} (y) - \varphi_{+}(y) \varphi_{-}(x))  \\
@@ -125,5 +125,24 @@ D_- (x-y) \\
 \,.
 \end{align}
 \end{proof}
+
+Wick's theorem for scalar fields is the generalization of this result to \(n\) fields: 
+It states that 
+%
+\begin{align}
+\begin{split}
+T [\varphi (x_1 ) \varphi (x_2 ) \dots \varphi (x_n)]
+&=
+N [\varphi (x_1 ) \varphi (x_2 )\dots \varphi (x_n)] \\
+&+ \sum_{i} N[\varphi (x_1 )\dots \varphi (x_{i-1}) D_F (x_i- x_{i+1}) \varphi (x_{i+2}) \dots \varphi (x_n)]  \\
+&+ \sum _{ij}
+N[\varphi (x_1 )\dots \varphi (x_{i-1}) D_F (x_i- x_{i+1}) \varphi (x_{i+2}) \dots \\
+& \dots \varphi (x_{j-1}) D_F (x_j- x_{j+1}) \varphi (x_{j+2}) \dots \varphi (x_n)]  \\
+&+ \text{all possible contractions}
+\,.
+\end{split}
+\end{align}
+
+A \textbf{corollary} of Wick's theorem states that contractions of fields evaluated at the same time do not contribute to the \(T\)-product. 
 
 \end{document}

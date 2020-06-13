@@ -1,4 +1,129 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{T-products and Wick's theorem}
+
+\marginpar{Saturday\\ 2020-6-13, \\ compiled \\ \today}
+
+We have shown up to now that in order to describe an interacting QFT it is sufficient to: 
+\begin{enumerate}
+    \item know the free evolution of the fields, which is governed by \(H_0 \) and described in the Heisenberg picture;
+    \item be able to calculate the time-evolution operator up to an arbitrary perturbative order with \eqref{eq:dyson-series}. 
+\end{enumerate}
+
+When we write the Hamiltonian, we always mean the \textbf{normal-ordered} Hamiltonian. 
+
+\begin{definition}
+The \(S\)-matrix evolution operator is given by:
+%
+\begin{align}
+S = U_I (- \infty , \infty )
+&= T \qty[\exp(-i \int_{- \infty }^{\infty } \dd{\tau }H _{\text{int}}^{I} (\tau ))]  \\
+&= T \qty[\exp(-i \int \dd[4]{x} \mathscr{H} _{\text{int}}^{I} (x))]
+\,.
+\end{align}
+\end{definition}
+
+This object describes all the interaction that can happen over all of time (this is used when describing actual interactions, temporal infinity is asymptotically the same as the particles flying away and not interacting anymore).
+
+In the calculation of such an object, we will need to compute products such as 
+%
+\begin{align}
+T \qty[\mathscr{H} _{\text{int}}^{I}(x_1 ) \mathscr{H} _{\text{int}}^{I}(x_2 )] 
+= T \qty[ N[\overline{\psi} \slashed{A} \psi ]_{x_1 }N[\overline{\psi} \slashed{A} \psi ]_{x_2 }]
+\,,
+\end{align}
+%
+where we wrote the QED interaction Hamiltonian density. The way to compute these objects is to make use of \textbf{Wick's theorem}. 
+
+\subsection{Wick theorem for a real scalar field}
+
+We start from the simplest case and then generalize to more complex ones. 
+
+\begin{definition}
+The \textbf{Feynman propagator} for a real scalar field is defined as 
+%
+\begin{align}
+D_F (x-y) = \bra{0} T[\varphi (x) \varphi (y)] \ket{0} 
+\,.
+\end{align}
+\end{definition}
+\todo[inline]{Also written by connecting two \(\varphi \)s with a line underneath, to figure out how to tex it.}
+
+Now, from the definition of the time-ordered product we have that 
+%
+\begin{align}
+D_F (x-y) &= 
+[x_0 > y_0 ]
+\bra{0} \varphi (x) \varphi (y) \ket{0}
++
+[x_0 < y_0 ]
+\bra{0} \varphi (y) \varphi (x) \ket{0}  \\
+&= 
+[x_0 > y_0 ]
+\bra{0} \varphi_{+} (x) \varphi_{-} (y) \ket{0}
++
+[x_0 < y_0 ]
+\bra{0} \varphi_{+} (y) \varphi_{-} (x) \ket{0}  \\
+&= 
+[x_0 > y_0 ]
+D_+ (x-y)
+-
+[x_0 < y_0 ]
+D_- (x-y) 
+\,,
+\end{align}
+%
+since \(\varphi_{+} \ket{0} = 0\) and \(\bra{0} \varphi_{-} = 0 \), as \(\varphi_{+} \sim a\) and \(\varphi_{-} \sim a ^\dag\).
+
+Here \(D_{\pm}\) are the components of the covariant commutator defined in section \ref{sec:covariant-commutators}. 
+
+Then, the crucial statement is that
+\begin{claim}
+\begin{align}
+T [\varphi (x) \varphi (y)] = N[\varphi (x) \varphi (y)] + D_F (x-y)
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We prove this by writing the term \(T[\varphi \varphi ] - N[ \varphi \varphi ]\) explicitly: we get 
+%
+\begin{align}
+& T[\varphi (x)\varphi (y)] - N[\varphi (x) \varphi (y)] = \\
+\begin{split}
+&= [x_0 > y_0 ] \qty(\varphi (x) \varphi (y)) + [x_0 < y_0 ] \qty(\varphi (y) \varphi (x)) \\
+& 
+- \qty([x_0 > y_0 ] + [x_0 < y_0 ]) N [\varphi (x)\varphi (y)] 
+\end{split}  \\
+\begin{split}
+&= 
+[x_0 > y_0 ] \qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{+} (x) \varphi_{-} (y)) \\
+& 
++ 
+[x_0 < y_0 ] \qty(\varphi_{-} (y) \varphi_{-} (x) + \varphi_{+} (y) \varphi_{+} (x) + \varphi_{-} (y) \varphi_{+} (x) + \varphi_{+} (y) \varphi_{-} (x)) 
+\\
+& 
+-
+[x_0 > y_0 ]
+\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{-} (y) \varphi_{+} (x) ) 
+\\
+& 
+-
+[x_0 < y_0 ]
+\qty(\varphi_{-} (x) \varphi_{-} (y) + \varphi_{+} (x) \varphi_{+} (y) + \varphi_{-} (x) \varphi_{+} (y) + \varphi_{-} (y) \varphi_{+} (x) ) 
+\end{split}  \\
+&= [x_0 > y_0 ] \qty(\varphi_{+} (x) \varphi_{-} (y) - \varphi_{-} (y) \varphi_{+} (x))
+- [x_0 < y_0 ] \qty(\varphi_{-} (x) \varphi_{+} (y) - \varphi_{+}(y) \varphi_{-}(x))  \\
+&= 
+[x_0 > y_0 ]
+D_+ (x-y)
+-
+[x_0 < y_0 ]
+D_- (x-y) \\
+&= D_F (x-y)
+\,.
+\end{align}
+\end{proof}
+
 \end{document}

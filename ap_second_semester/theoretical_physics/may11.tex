@@ -505,7 +505,7 @@ where as usual \(H_{\text{int}}^{I} = H - H_0 \).
 
 Now, since the Hamiltonian is not constant this differential equation cannot be solved directly. However, we can cast it into an integral form: 
 %
-\begin{align}
+\begin{align} \label{eq:integral-expression-evolution-operator-interaction}
 U_I (t, t_0 ) = \mathbb{1} - i \int_{t_0 }^{t} \dd{\tau }
 H _{\text{int}}^{I} (\tau ) U(\tau , t_0 )
 \,.
@@ -526,6 +526,202 @@ such that the term \(C_n\) is of order \(\lambda^{n }\).
 
 As long as \(\lambda \) is actually small, this series converges to the true result.
 
-This perturbative approach can be made more explicit with the integral formulation.
+This perturbative approach can be made more explicit with the integral formulation \eqref{eq:integral-expression-evolution-operator-interaction}.
+We know that \(H _{\text{int}} \sim \lambda \), so if we take the integral expression and plug the perturbative expression \(\sum _{n} C_n\) for the evolution operator into both sides, we get 
+%
+\begin{align}
+\sum _{n} C_n(t, t_0 ) = \mathbb{1} - i \int_{t_0 }^{t} \dd{\tau }
+H _{\text{int}}^{I} (\tau ) \qty(\sum _{n} C_n(\tau , t_0 ))
+\,,
+\end{align}
+%
+and now, if we set these two expressions to be equal at any order in \(\lambda \), we find that 
+%
+\begin{align}
+C_0 (t, t_0 ) &= \mathbb{1}   \\
+C_1 (t, t_0 ) &=  - i \int_{t_0 }^{t} H _{\text{int}}^{I} (\tau) \label{eq:first-order-perturbative-evolution} \\
+C_2 (t, t_0 ) &=  - i \int_{t_0 }^{t} H _{\text{int}}^{I} (\tau) C_1 (\tau , t_0 ) \label{eq:second-order-perturbative-evolution}
+\,
+\end{align}
+%
+and so on, in general if we sum these up to an order \(N\) to get the evolution operator to \(N\)-th order we find the recursive expression for \(U^{(N)} = \sum _{n=0}^{N} C_n\):
+%
+\begin{align}
+U^{(N)} (t,  t_0  )
+\approx \mathbb{1} - i \int_{t_0 }^{t} \dd{\tau } H _{\text{int}}^{I} U^{(N-1)} (\tau , t_0 ) + \mathcal{O} (\lambda^{N+1})
+\,.
+\end{align}
+
+So, we can work to ever higher orders in \(\lambda \) to obtain better approximations as we go! 
+The zeroth order is the \textbf{free theory}, since it is equivalent to setting \(\lambda = 0\). At this order, the interaction picture is equivalent to the Heisenberg picture: states are constant, while operators evolve according to 
+%
+\begin{align}
+i \dv{}{t} X_I (t ) = \qty[X_I (t), H_0 ]
+\,.
+\end{align}
+
+The first order is given by equation \eqref{eq:first-order-perturbative-evolution}, which we can substitute into the next equation \eqref{eq:second-order-perturbative-evolution} to get the explicit integral: 
+%
+\begin{align}
+C_2 (t, t_0 ) &=  
+- i \int_{t_0 }^{t} \dd{\tau } H _{\text{int}}^{I} (\tau ) C_1 (\tau, t_0 )  \\ 
+&= (-i)^2 \int_{t_0}^{t} \dd{\tau_1 } \int_{t_0 }^{\tau_1 } \dd{\tau_2 }
+H _{\text{int}}^{I} (\tau_1 ) 
+H _{\text{int}}^{I} (\tau_2 ) 
+\label{eq:second-order-correction-no-time-ordering}
+\,,
+\end{align}
+%
+which generalizes to 
+%
+\begin{align}
+C_N (t, t_0 ) &=
+(-i)^{n}
+\int_{t_0 }^{t} \dd{\tau_1 }
+\prod_{n=1}^{N-1} \qty(\int_{t_0 }^{\tau_{n}} \dd{\tau_{n+1}})
+\prod_{n=1}^{N} H _{\text{int}}^{I} (\tau_{n})
+\,.
+\end{align}
+
+This is a complicated but explicit expression: as \(N\) increases, we are basically evolving linearly with the Hamiltonian for ever decreasing amounts of time, which approaches the actual evolution. 
+
+Formally, we can recover the \textbf{exact solution} by summing the series \(\sum _{n} C_n\) (as long as it converges). 
+This is often impossible to do in practice, but we can compute to any required precision, so we can compute to below the experimental precision and we can make the required prediction. 
+
+\begin{claim}
+With some manipulations, we can rewrite the general expression for \(C_n\) as: 
+%
+\begin{align}
+C_n (t, t_0 ) = \frac{(-i)^{n}}{n!} 
+\int_{t_0 }^{t} \dd{\tau_1} \dots \dd{\tau_n} T [H _{\text{int}}^{I} (\tau_1 ) \dots H _{\text{int}}^{I}(\tau_{n})] 
+\,,
+\end{align}
+%
+where \(T\) is the time ordered product, defined by 
+%
+\begin{align}
+T[A(t_1 ) B(t_2 )]
+= \begin{cases}
+    A(t_1 ) B(t_2 ) \qquad \text{if } t_1 > t_2 \\
+    \pm B(t_2 ) A(t_1 ) \qquad \text{if } t_1 < t_2 \\
+\end{cases}
+\,,
+\end{align}
+%
+where \(+\) refers to bosonic operators, \(-\) to fermionic operators.
+\end{claim}
+
+The \(\pm\) allows the time-ordered product to be consistent with both bosonic and fermionic quantizations. 
+We can also write this as 
+%
+\begin{align}
+T[A(t_1 ) B(t_2 )]
+= \theta (t_1 - t_2 ) A(t_1 ) B(t_2 )
+\pm \theta (t_2 - t_1 ) B(t_2 ) A(t_1 )
+\,.
+\end{align}
+
+Note that when time-ordering Hamiltonians we always have a \(+\) sign, even if they describe fermions: fermionic operators always appear in pairs in the Hamiltonian, so we will always make an even number of swaps when we commute two Hamiltonians. 
+
+The definition of time-ordering can be generalized to any number of operators recursively: we write them in decreasing order of time, and add a sign \((-)^{\text{\# of fermion operator swaps}}\). 
+
+Then, we can write a full expression for the evolution operator: 
+%
+\boxalign{
+\begin{align}
+U_I (t, t_0 ) &= \sum _{n=0}^{\infty }
+\frac{(-i)^{n}}{n!}
+\int_{t_0 }^{t} \dd{\tau_1 } \dots \dd{\tau_{n}} T [H _{\text{int}}^{I} (\tau_1 ) \dots H _{\text{int}}^{I}(\tau_{n})]  \\
+&= T \qty[\exp(-i \int_{t_0 }^{t} \dd{ \tau } H _{\text{int}}^{I}(\tau ))]
+\,.
+\end{align}}
+%
+
+What we have done is basically to bring the expression for the time evolution into a form which is close to the one we have in the free case, in which we can just exponentiate the Hamiltonian: 
+%
+\begin{align}
+U_0 (t, t_0 ) = \exp( - i H_0 (t - t_0 ))
+\,.
+\end{align}
+
+\begin{claim}
+The interaction Hamiltonian 
+%
+\begin{align}
+H _{\text{int}}^{I} = - q \overline{\psi}_{I} \slashed{A}_{I} \psi_{I}
+\,,
+\end{align}
+%
+is a bosonic operator. 
+\end{claim}
+
+\begin{proof}
+Suppose we had to compute the time-ordered product 
+%
+\begin{align}
+T \qty[
+(\overline{\psi}\slashed{A} \psi )_{t_1 }
+(\overline{\psi}\slashed{A} \psi )_{t_2 }
+]
+\,,
+\end{align}
+%
+where \(t_1 < t_2\): then we would need to bring the \(t_2 \) operators to the left; each of them would need to ``hop over'' two fermionic operators and a bosonic one. So, the total number of fermion-over-fermion hops will be 4: an even number.
+\end{proof}
+
+\todo[inline]{While swapping a fermionic operator and a bosonic one is always fine, right?}
+
+We can show explicitly (and graphically) that 
+%
+\begin{align}
+C_2 (t, t_0 ) = \frac{(-i)^2}{2!} 
+\int_{t_0 }^{t} \dd{\tau_1} \dd{\tau_2 } T \qty[H _{\text{int}}^{I}(\tau_1 ) H _{\text{int}}^{I} (\tau_2 )]
+\,.
+\end{align}
+
+\begin{proof}
+Our integration region in \eqref{eq:second-order-correction-no-time-ordering} is a triangle, the set of \((\tau_1 , \tau_2 )\) such that \(\tau_1 \in [t_0 , t]\) and \(\tau_2 \in [t_0, \tau_1 ]\). 
+
+We can also write this region as the set of \((\tau_1 , \tau_2 )\) such that \(\tau_2 \in [t_0 , t]\) and \(\tau_1 \in [\tau_2, t]\). They are the same pairs, so we can split the integral in two equal rewritings (and dividing by two, since we are doubling the integral): 
+%
+\begin{align}
+C_2 (t, t_0 )
+&= \frac{(-i)^2}{2} \qty(\int_{t_0}^{t} \dd{\tau_1 } \int_{t_0 }^{\tau_1 } \dd{\tau_2 }
++ \int_{t_0 }^{t} \dd{\tau_2 } \int_{\tau_2}^{t} \dd{\tau_1 }
+)
+H _{\text{int}}^{I} (\tau_1 ) 
+H _{\text{int}}^{I} (\tau_2 ) 
+\,,
+\end{align}
+%
+but now we can change the names of the integration variables in the second integration: then we get 
+%
+\begin{align}
+C_2 (t, t_0 )
+&= \frac{(-i)^2}{2} \int_{t_0}^{t} \dd{\tau_1 } \int_{t_0 }^{\tau_1 } \dd{\tau_2 }
+H _{\text{int}}^{I} (\tau_1 )
+H _{\text{int}}^{I} (\tau_2 )
++ \frac{(-i)^2}{2} \int_{t_0 }^{t} \dd{\tau_1 } \int_{\tau_1}^{t} \dd{\tau_2 }
+H _{\text{int}}^{I} (\tau_2 )
+H _{\text{int}}^{I} (\tau_1 )
+\,,
+\end{align}
+%
+which we can write in a simpler way using theta functions (written as Iverson brackets \cite[]{knuthTwoNotesNotation1992}) and enlarging the domain of integration: 
+%
+\begin{align}
+C_2 (t, t_0 ) &=
+\frac{(-i)^2}{2} \int_{t_0 }^{t} \dd{\tau_1 } \int_{t_0 }^{t} \dd{\tau_2 
+}
+\qty([t_1 > t_2  ] H _{\text{int}}^{I} (\tau_1 )
+H _{\text{int}}^{I} (\tau_2 ) 
++ [t_1 < t_2 ] H _{\text{int}}^{I} (\tau_2 )
+H _{\text{int}}^{I} (\tau_1 ) )  \\
+&= \frac{(-i)^2}{2} \int_{t_0 }^{t} \dd{\tau_1 } \int_{t_0 }^{t} \dd{\tau_2 }
+T \qty[H _{\text{int}}^{I} (\tau_1 )
+H _{\text{int}}^{I} (\tau_2 )]
+\,.
+\end{align}
+\end{proof}
 
 \end{document}

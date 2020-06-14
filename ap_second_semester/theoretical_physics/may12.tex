@@ -273,7 +273,64 @@ T[\psi_{\alpha }(x) \overline{\psi}_{\beta }(y)]
 \end{claim}
 
 \begin{proof}
-Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overline{\psi}]\). 
+Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overline{\psi}]\). We find something that is similar to the scalar case, but there is a crucial difference: instead of commuting operators when we switch them around for normal or time ordering, we anticommute them, so we swap their positions and change the sign. This then yields: 
+%
+\begin{align}
+&T[\psi_{\alpha } (x) \overline{\psi}_{\beta } (y)] - N[\psi_{\alpha } (x) \overline{\psi}_{\beta } (y)] = \\
+\begin{split}
+&= 
+[x_0 > y_0 ] \qty(
+    \psi_{\alpha }^{-} (x) \overline{\psi}^{-}_{\beta }(y)+
+    \psi_{\alpha }^{+} (x) \overline{\psi}^{+}_{\beta }(y)+
+    \psi_{\alpha }^{-} (x) \overline{\psi}^{+}_{\beta }(y)+
+    \psi_{\alpha }^{+} (x) \overline{\psi}^{-}_{\beta }(y)
+) \\
+&-
+[x_0 < y_0 ]\qty(
+    \overline{\psi}_{\beta }^{-} (y) \psi^{-}_{\alpha } (x)+
+    \overline{\psi}_{\beta }^{+} (y) \psi^{+}_{\alpha } (x)+
+    \overline{\psi}_{\beta }^{-} (y) \psi^{+}_{\alpha } (x)+
+    \overline{\psi}_{\beta }^{+} (y) \psi^{-}_{\alpha } (x)
+)  \\
+&- 
+[x_0 > y_0 ] \qty(
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{-}(y)+
+    \psi_{\alpha }^{+}(x) \overline{\psi}_{\beta }^{+}(y)+
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{+}(y)-
+    \overline{\psi}_{\beta }^{-}(y) \psi_{\alpha }^{+}(x) 
+)\\
+&- 
+[x_0 < y_0 ] \qty(
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{-}(y)+
+    \psi_{\alpha }^{+}(x) \overline{\psi}_{\beta }^{+}(y)+
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{+}(y)-
+    \overline{\psi}_{\beta }^{-}(y) \psi_{\alpha }^{+}(x) 
+)
+\end{split}\\
+\begin{split}
+&= [x_0 > y_0 ]\qty(
+    \psi_{\alpha }^{-} (x) \overline{\psi}^{+}_{\beta }(y)+
+    \psi_{\alpha }^{+} (x) \overline{\psi}^{-}_{\beta }(y)-
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{+}(y)+
+    \overline{\psi}_{\beta }^{-}(y) \psi_{\alpha }^{+}(x) 
+) \\ 
+&+
+[x_0 < y_0 ]\bigg(-
+    \overline{\psi}_{\beta }^{-} (y) \psi^{-}_{\alpha } (x)-
+    \overline{\psi}_{\beta }^{+} (y) \psi^{+}_{\alpha } (x)-
+    \overline{\psi}_{\beta }^{-} (y) \psi^{+}_{\alpha } (x)-
+    \overline{\psi}_{\beta }^{+} (y) \psi^{-}_{\alpha } (x)+\\
+    &\phantom{=}\ 
+    -\psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{-}(y)-
+    \psi_{\alpha }^{+}(x) \overline{\psi}_{\beta }^{+}(y)-
+    \psi_{\alpha }^{-}(x) \overline{\psi}_{\beta }^{+}(y)+
+    \overline{\psi}_{\beta }^{-}(y) \psi_{\alpha }^{+}(x) 
+\bigg)
+\end{split}
+\,.
+\end{align}
+
+\todo[inline]{Man, this is a tedious calculation}
 \end{proof}
 
 \end{document}

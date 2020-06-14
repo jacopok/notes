@@ -143,6 +143,137 @@ N[\varphi (x_1 )\dots \varphi (x_{i-1}) D_F (x_i- x_{i+1}) \varphi (x_{i+2}) \do
 \end{split}
 \end{align}
 
-A \textbf{corollary} of Wick's theorem states that contractions of fields evaluated at the same time do not contribute to the \(T\)-product. 
+A \textbf{corollary} of Wick's theorem states that contractions of fields evaluated at the same time do not contribute to the \(T\)-product. Formally, this is stated as: 
+%
+\begin{align}
+T \qty[N[\varphi (x) \varphi (x)] \varphi (x_1 )\dots \varphi (x_n)]
+= T \qty[\varphi^2(x) \varphi (x_1 )\dots \varphi (x_n)] _{\text{NCET}}
+\,,
+\end{align}
+%
+where the left hand side contains No Contractions at Equal Time --- that is, when we compute the time-ordered product using Wick's theorem we ignore the contractions we would have to compute at equal time.
+
+\begin{proof}
+The product \(N[\varphi (x) \varphi (x)]\) can be written, by Wick's theorem, as
+%
+\begin{align}
+N[\varphi (x) \varphi (x)] = T[\varphi (x) \varphi (x)] - D_F (x - x)
+\,,
+\end{align}
+%
+where \(T[\varphi (x) \varphi (x)] = \varphi (x) \varphi (x)\). So, if we multiply by the field at the other times and take the time-ordering we find 
+%
+\begin{align}
+T \qty[N[\varphi (x) \varphi (x)] \varphi (x_1 )\dots \varphi (x_n)]
+= T[\varphi^2(x) \varphi_1 (x) \dots \varphi_n (x)]
+- D_F(x-x) T[\varphi_1 (x) \dots \varphi_n (x)] 
+\,,
+\end{align}
+%
+and the term containing \(D_F( x-x)\) is precisely a contraction at equal time, which we ignore. 
+\end{proof}
+
+This statement can be \textbf{generalized} to complex scalar fields and to vector fields. 
+
+\begin{definition}
+For a complex scalar field \(\varphi \), the Feynman propagator is given by 
+%
+\begin{align}
+D_F (x-y) = \bra{0} T [\varphi (x) \varphi ^\dag (x)] \ket{0}
+\,.
+\end{align}
+\end{definition}
+
+\begin{claim}
+This is the same function which was calculated for the real scalar field; one can show that the other contractions vanish: 
+%
+\begin{align}
+\bra{0} T[\varphi (x) \varphi (x)] \ket{0} 
+= 0 = 
+\bra{0} T[\varphi ^\dag(x) \varphi ^\dag (x)] \ket{0} 
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{Still to state properly, but this is due to the fact that \(a\) (\(a ^\dag\)) and \(b\) (\(b ^\dag\)) commute with each other, whereas \(a\) does not commute with \(a ^\dag\).}
+\end{proof}
+
+\begin{definition}
+For a real vector field \(A^{\mu }\) and a complex vector field \(\omega^{\mu }\) the Feynman propagator reads: 
+%
+\begin{align}
+D^{\mu \nu }_{F, \text{ real}} (x-y) &= \bra{0} T[A^{\mu }(x) A^{\nu }(y) ]\ket{0} \\
+D^{\mu \nu }_{F, \text{ complex}} (x-y) &= \bra{0} T[\omega^{\mu }(x) \omega^{\nu \dag}(y) ]\ket{0}
+\,.
+\end{align}
+\end{definition}
+
+\begin{claim}
+In the Feynman gauge \(\xi = 1\) we have that 
+%
+\begin{align}
+D^{\mu \nu }_{F} (x-y) = [x_0 > y_0 ]
+D^{\mu \nu }_{+ } (x-y) 
++
+[x_0 < y_0 ]
+D^{\mu \nu }_{-}(x-y) 
+= - \eta^{\mu \nu } D_F (x-y)
+\,.
+\end{align}
+\end{claim}
+
+Note that for a complex vector field the propagators between \(\omega^{\mu } \omega^{\nu }\) and \(\omega^{\mu \dag} \omega^{\nu \dag}\) vanish. 
+
+The Wick theorem generalizes to the complex scalar, and to the real and complex vector: we have 
+%
+\begin{align}
+T[\varphi (x) \varphi ^\dag (y)] &= N[\varphi (x) \varphi ^\dag (y)] + D_F (x-y) \\
+T[A^{\mu } (x) A^{\nu } (y)] &= N[A^{\mu } (x) A^{\nu } (y)] + D_F^{\mu \nu } (x-y) \\
+T[\omega^{\mu } (x) \omega^{\nu  \dag} (y)] &= N[\omega^{\mu } (x) \omega^{\nu \dag } (y)] + D_F^{\mu \nu } (x-y) 
+\,.
+\end{align}
+
+\subsection{Feynman propagator for fermions}
+
+For fermionic fields the discussion gets a little more complicated because of the minus signs coming from the anticommutators. 
+
+\begin{definition}
+The Feynman propagator for fermions is defined as 
+%
+\begin{align}
+S^{F}_{\alpha \beta } (x-y)
+&= \bra{0}T[\psi_{\alpha }(x) \overline{\psi}_{\beta }(y)] \ket{0}
+= - \bra{0} T[\overline{\psi}_\alpha (x) \psi_{\beta }(y)] \ket{0}
+\,.
+\end{align}
+\end{definition}
+
+\begin{claim}
+We have the following expression for the propagator: 
+%
+\begin{align}
+S_F(x-y) &= [x_0 > y_0 ] S_+ (x-y) - [x_0 < y_0 ] S_- (x-y)  \\
+&= \qty(i \slashed{\partial} + m) D_F (x-y)
+\,.
+\end{align}
+\end{claim}
+
+\todo[inline]{Missing some indices?}
+
+\begin{claim}
+Wick's theorem holds in this case as well: 
+%
+\begin{align}
+T[\psi_{\alpha }(x) \overline{\psi}_{\beta }(y)]
+= N [\psi_{\alpha }(x) \overline{\psi}_{\beta }(y)]
++ S^{F}_{\alpha \beta }
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overline{\psi}]\). 
+\end{proof}
 
 \end{document}

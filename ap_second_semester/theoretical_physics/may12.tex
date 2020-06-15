@@ -611,4 +611,170 @@ S^{\alpha \beta }_{F} (x-y) = \bra{0} \psi_{+}^{\alpha }(x) \overline{\psi}_{-}^
 %
 and since \(\psi_{+} \sim c\), while \(\psi_{-} \sim c ^\dag\), this represents a particle of type \(c\) being created and then annihilated.
 
+We represent this with a full line with an arrow, going in the same direction as the particle.
+The contribution we have when \(x_0 < y_0 \), on the other hand, is given by 
+%
+\begin{align}
+S^{\alpha \beta }_{F}(x- y) = 
+- \bra{0} \overline{\psi}^{\beta }_{+}(y) \psi^{\alpha }_{-}(x) \ket{0}
+\,.
+\end{align}
+
+This is represented with a full line as well, and now the arrow goes in the opposite direction to the antiparticle. This is because \(\overline{\psi}_{+} \sim d\), while \(\psi_{-} \sim d ^\dag\). So, the total (Lorentz-invariant) propagator is represented as shown in figure \ref{fig:virtual-photon-diagram}.
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram [horizontal = y to x]{
+    y [particle={\(y\), \(\beta\)}] -- [fermion, momentum={\(e^{-} = c\)}, reversed momentum'={\(e^{+} = d\)}] x [particle={\(x\), \(\alpha \)}]
+};
+\caption{Virtual fermion.}
+\label{fig:virtual-fermion-diagram}
+\end{figure}
+
+The analytic expression for the propagator in position and momentum space is given by: 
+%
+\begin{align}
+S_F (x-y) &= \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}} e^{-ik (x-y)}
+\widetilde{S}_{F} (k) = \qty(i \slashed{\partial} + m )D_F(x-y) \\
+S_F (k) &= \frac{i}{\slashed{k} - m} = i \frac{\slashed{k} + m }{k^2- m^2}
+\,.
+\end{align}
+
+Note that these integrals are often written in an \textbf{equivalent} way, using the \(+i \epsilon \) prescription: 
+%
+\begin{align}
+D_F (x-y) &= \int \frac{ \dd[4]{k}}{(2 \pi )^{4}} \frac{e^{-ik(x-y)}}{k^2- m^2 + i \epsilon }  \\
+\widetilde{D}_{F} &= \frac{i}{k^2- m^2 + i \epsilon }
+\,,
+\end{align}
+%
+where the integral is now straight along the real axis for the coordinate \(k_0 \); this way of writing is equivalent as long as we send \(\epsilon \to 0 \). Instead of integrating around the poles, we integrate straight and move the poles out of the way.\footnote{Like a galactic highway.}
+
+\subsection{Uncontracted fields: physical interpretation}
+
+In the expansion of the time-ordered product with the use of Wick's theorem we get contractions of fields (propagators) and normal-ordered products of uncontracted fields. What is the physical interpretation oof the latter?
+
+\subsubsection{Uncontracted real scalar field}
+
+We only have two possible terms: \(\varphi_{+}\) and \(\varphi_{-}\). 
+The first of these can be written as 
+%
+\begin{align}
+\varphi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+a(k) e^{-ikx}  \\
+&= \feynmandiagram[baseline=(a.base), horizontal = a to x]{
+    a -- [scalar, momentum = \(a\)] x [particle = \(x\)]
+};
+\end{align}
+
+So, we interpret it as a particle of intederminate momentum being annihilated at \(x\).
+On the other hand, we have  
+\begin{align}
+\varphi_{-}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+a ^\dag(k) e^{ikx}  \\
+&= \feynmandiagram[baseline=(x.base), horizontal = x to a]{
+    x [particle = \(x\)] -- [scalar, reversed momentum = \(a\)] a
+};
+\end{align}
+
+So, \(\varphi_{-} (x)\) represents a particle being created ad \(x\) with indeterminate momentum. 
+
+\subsubsection{Uncontracted complex scalar field}
+
+Now we have: 
+\begin{align}
+\varphi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+a(k) e^{-ikx}  \\
+&= \feynmandiagram[baseline=(a.base), horizontal = a to x]{
+    a -- [charged scalar, momentum = \(a\)] x [particle = \(x\)]
+};
+\end{align}
+
+\begin{align}
+\varphi_{-} ^\dag(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+a ^\dag(k) e^{ikx}  \\
+&= \feynmandiagram[baseline=(x.base), horizontal = x to a]{
+    x [particle = \(x\)] -- [charged scalar, reversed momentum = \(a\)] a
+};
+\end{align}
+
+\begin{align}
+\varphi_{+} ^\dag(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+b(k) e^{-ikx}  \\
+&= \feynmandiagram[baseline=(a.base), horizontal = a to x]{
+    a -- [anti charged scalar, momentum = \(b\)] x [particle = \(x\)]
+};
+\end{align}
+
+\begin{align}
+\varphi_{-} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+b ^\dag(k) e^{ikx}  \\
+&= \feynmandiagram[baseline=(x.base), horizontal = x to a]{
+    x [particle = \(x\)] -- [anti charged scalar, reversed momentum = \(b\)] a
+};
+\end{align}
+
+Notice that the arrow tracks the direction in which the charge flows. 
+
+\subsubsection{Uncontracted real vector field}
+
+The interpretation is always the same, I will write all the diagrams for completeness. 
+%
+\begin{align}
+A^{\mu }_{+}(x) &= \frac{1}{(2\pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{\lambda } \epsilon^{\mu}_{\lambda } (k )a_{\lambda }(k) e^{-ikx}  \\
+&= \feynmandiagram[inline=(a.base), horizontal = a to x]{
+    a -- [photon, momentum] x [particle={\(x\), \(\mu \)}]
+};
+\end{align}
+%
+%
+\begin{align}
+A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{\lambda } \epsilon^{\mu, *}_{\lambda } (k )a ^\dag_{\lambda }(k) e^{ikx}  \\
+&= \feynmandiagram[inline=(x.base), horizontal = x to a]{
+    x [particle={\(x\), \(\mu \)}] -- [photon, momentum] a
+};
+\end{align}
+
+\subsubsection{Uncontracted Dirac fermion}
+
+\begin{align}
+\psi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r} c_r (k) u_r (k) e^{-ikx}
+\\
+&= \feynmandiagram[baseline=(a.base), horizontal = a to x]{
+    a -- [fermion, momentum = \(c\)] x [particle = \(x\)]
+};
+\end{align}
+
+\begin{align}
+\overline{\psi}_{-}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r} c_r ^\dag (k) \overline{u}_r (k) e^{+ikx}
+\\
+&= \feynmandiagram[baseline=(x.base), horizontal = x to a]{
+    x [particle = \(x\)] -- [fermion, reversed momentum = \(c\)] a
+};
+\end{align}
+
+\begin{align}
+\overline{\psi}_{+} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r} d_r (k) \overline{v}_r (k) e^{-ikx}
+\\
+&= \feynmandiagram[baseline=(a.base), horizontal = a to x]{
+    a -- [anti fermion, momentum = \(d\)] x [particle = \(x\)]
+};
+\end{align}
+
+\begin{align}
+\psi_{-} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\sum _{r} d_r ^\dag (k) v_r (k) e^{ikx}
+\\
+&= \feynmandiagram[baseline=(x.base), horizontal = x to a]{
+    x [particle = \(x\)] -- [anti fermion, reversed momentum = \(d\)] a
+};
+\end{align}
+
 \end{document}

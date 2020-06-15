@@ -447,14 +447,14 @@ Neither of these two is Lorentz invariant; however the full propagator is. So, w
 
 \begin{figure}[ht]
 \centering
-\feynmandiagram [horizontal = x to y]{
-    x [particle=\(x\)] -- [scalar, momentum=\(a\), reversed momentum'=\(a\)] y [particle=\(y\)]
+\feynmandiagram [horizontal = y to x]{
+    y [particle=\(y\)] -- [scalar, momentum=\(a\), reversed momentum'=\(a\)] x [particle=\(x\)]
 };
 \caption{Scalar virtual particle. Time goes either upward or downward.}
 \label{fig:virtual-scalar-particle-diagram}
 \end{figure}
 
-\todo[inline]{What does \(a\) mean here?}
+% \todo[inline]{What does \(a\) mean here?}
 
 A note of caution: the diagrammatic approach is nice but it does not represent the physical trajectory of a particle, since it does not enforce it being on shell. 
 Nevertheless, just like a quantum particle can tunnel through a potential barrier higher than its energy, the propagator describes a probabilistic physical process.
@@ -501,10 +501,114 @@ So, the propagator is given by
 %
 \begin{align}
 D_F (x-y) &= \bra{0} T [\varphi (x) \varphi ^\dag (y)] \ket{0}  \\
-&= 
+&= [x_0 > y_0 ] \bra{0} \varphi_{+} (x) \varphi_{-}^\dag(y) \ket{0}
++ [x_0 < y_0 ] \bra{0} \varphi_{+}^\dag(y) \varphi_{-}(x) \ket{0}
 \,,
 \end{align}
 %
+since we get the only nonvanishing contributions when we have coupled operators together, such as \(a \) and \(a ^\dag\). 
 
+So, if \(x_0 > y_0 \) we have the particle \(a\) propagating from \(y\) to \(x\), while if \(x_0 < y_0 \) the antiparticle \(b\) propagates from \(x\) to \(y\). 
+Then, we can draw our diagram as shown in figure \ref{fig:virtual-charged-scalar-particle-diagram}: the arrow denotes the direction of propagation of the virtual particle \(a\), while the antiparticle \(b\) propagates in the other direction. 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram [horizontal = x to y]{
+    x [particle=\(x\)] -- [charged scalar, momentum=\(a\), reversed momentum'=\(b\)] y [particle=\(y\)]
+};
+\caption{Scalar charged virtual particle. Time goes either upward or downward.}
+\label{fig:virtual-charged-scalar-particle-diagram}
+\end{figure}
+
+\begin{claim}
+While the real scalar particle propagator is symmetric: 
+%
+\begin{align}
+D_F^{\mathbb{R}} (x-y)  =D_F^{\mathbb{R}} (y-x)
+\,,
+\end{align}
+%
+the complex scalar particle propagator is not: 
+%
+\begin{align}
+D_F^{\mathbb{C}} (x-y) \neq D_F^{\mathbb{C}} (y-x)
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+The expression for the real scalar field propagator is explicitly symmetric under \(x \leftrightarrow y\), while for the complex field the term with \(x_0 > y_0 \) depends on \(a\), while the other one depends on \(b\).  
+\end{proof}
+
+Because of this, we need to have an arrow to represent the direction of the particle flow. 
+
+\subsubsection{Propagator for a real vector}
+
+The interpretation in this case is similar to the real scalar: the propagator is written as 
+%
+\begin{align}
+D^{\mu \nu }_{F} (x-y) &= \bra{0} T[A^{\mu }(x) A^{\nu }(y)] \ket{0}  \\
+&= [x_0 > y_0 ] \bra{0} A^{\mu }_{+}(x) A^{\nu }_{-}(y) \ket{0}
++ [x_0 < y_0 ] \bra{0} A^{\nu }_{+} y A^{\mu }_{-}(x) \ket{0} 
+\,.
+\end{align}
+
+This is represented diagrammatically as shown in figure \ref{fig:virtual-photon-diagram}.
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram [horizontal = y to x]{
+    y [particle={\(y\), \(\nu \)}] -- [photon, momentum=, reversed momentum'=] x [particle={\(x\), \(\mu \)}]
+};
+\caption{Virtual photon.}
+\label{fig:virtual-photon-diagram}
+\end{figure}
+
+Since the vector field has an index, this index must be attached to both of the points. 
+
+The explicit expression for the photon propagator is given by 
+%
+\begin{align}
+D^{\mu \nu }_{F} (x-y) = \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}}
+e^{-ik(x-y)} \widetilde{D}^{\mu \nu }_{F} (k) \overset{\xi = 1}{=} - \eta^{\mu \nu } D_F (x-y)
+\,,
+\end{align}
+%
+where the momentum-space propagator is generally given by
+%
+\begin{align}
+\widetilde{D}^{\mu \nu }_{F} (k) = - \frac{i}{k^2} \qty(\eta^{ \mu \nu } - (1 - \xi ) \frac{k^{\mu }k^{\nu }}{k^2}) 
+\overset{\xi = 1}{=}
+- i \frac{\eta^{\mu \nu }}{k^2}
+\,.
+\end{align}
+
+The integration circuit is the same one we had in the scalar case; now \(\omega_{k} = \abs{k}\) since the photon is massless.
+
+The \textbf{complex vector} does not have any more complications than those found in combining the complex scalar and the real vector.
+
+\subsubsection{Propagator for a fermion}
+
+We have seen that the definition of the propagator for a Dirac fermion is 
+%
+\begin{align}
+S^{\alpha \beta }_{F}(x-y) 
+&= \bra{0} T \qty[ \psi^{\alpha } (x) \overline{\psi}^{\beta }(y)] \ket{0}  \\
+&= [x_0 > y_0 ]
+\bra{0} \psi_{+}^{\alpha }(x) \overline{\psi}_{-}^{\beta } (y)\ket{0}
+- [x_0 < y_0 ]
+\bra{0} \overline{\psi}^{\beta }_{+}(y) \psi^{\alpha }_{-}(x) \ket{0}
+\,.
+\end{align}
+
+The interpretation now follows that of the complex scalar field, since the fermion is complex-valued. 
+If \(x_0 > y_0 \), we only have the first piece: 
+%
+\begin{align}
+S^{\alpha \beta }_{F} (x-y) = \bra{0} \psi_{+}^{\alpha }(x) \overline{\psi}_{-}^{\beta } (y)\ket{0}
+\,,
+\end{align}
+%
+and since \(\psi_{+} \sim c\), while \(\psi_{-} \sim c ^\dag\), this represents a particle of type \(c\) being created and then annihilated.
 
 \end{document}

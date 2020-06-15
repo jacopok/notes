@@ -333,4 +333,81 @@ Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overl
 \todo[inline]{Man, this is a tedious calculation}
 \end{proof}
 
+\subsection{General statement of Wick's theorem}
+
+We denote by \(B_i (x_i)\) a generic field, which may be real or complex, of spin 0, \(1/2\) or 1. Then, Wick's theorem states that \textbf{the \(T\)-product of \(n\) such fields can be written as}: 
+%
+\begin{align}
+\begin{split}
+& T[B_1 (x_1 ) B_2 (x_2 ) \dots B_n (x_n)]= \\
+&= N[B_1 (x_1 ) B_2 (x_2 ) \dots B_n (x_n)]  \\
+&+ \sum _{ij} (-)^{P_{ij}} D_F^{ij}(x_i - x_j) N[ \dots \hat{B}_{i}(x_i) \hat{B}_{j}(x_j)\dots]  \\
+&+ \sum _{ijkl} (-)^{P_{ij}+P_{kl}} D_F^{ij}(x_i - x_j) D_F^{kl}(x_k - x_l)  N[\dots \hat{B}_{i}(x_i) \hat{B}_{i}(x_j)\dots \hat{B}_{k}(x_k) \hat{B}_{l}(x_l)\dots]  \\
+&+ \dots \,,
+\end{split}
+\end{align}
+%
+where \(P_{ij}\) is the number of fermion operator swaps we need to perform to bring \(B_i\) and \(B_j\) to the front; the normal-ordered product with \(\hat{B}_i\) means that it is taken removing \(B_i\). 
+
+\todo[inline]{``Taking out fermionic propagators has a meaning only as components'': what does this mean?}
+
+Note that, while we are summing over all possible pairings, the only nonvanishing propagators are those between two copies of the same field. 
+
+We have the same \textbf{corollary} as before: normal-ordered contractions of fields at the same time do not contribute; we have 
+%
+\begin{align}
+T \qty[N[B_1 (x) B_2 (x)] B_3 (x_3 ) \dots B_n (x_n)] 
+= T \qty[B_1 (x) B_2 (x) B_3 (x_3) \dots B_n (n_n)]_{NCET}
+\,.
+\end{align}
+
+\subsection{Feynman propagators}
+
+The Feynman propagators play a central role in the perturbative expansion. What is their physical interpretation?
+
+\subsubsection{Real scalar}
+
+As we saw, the propagator for a real scalar field can be written in terms of the Vacuum Expectation Value of the fields as:
+%
+\begin{align}
+D_F(x-y) = [x_0 > y_0 ] \bra{0} \varphi_+ (x) \varphi_{-} (y) \ket{0}
++ [x_0 < y_0 ] \bra{0}\varphi_{+} (y) \varphi_{-}(x) \ket{0}
+\,.
+\end{align}
+
+What do these pieces mean? Let us first consider the case where \(x_0 > y_0 \): then we only have 
+%
+\begin{align}
+D_F (x-y) = \bra{0} \varphi_{+} (x) \varphi_{-} (y) \ket{0} \sim \bra{0} a a ^\dag \ket{0}
+\,,
+\end{align}
+%
+which can be read from right to left as: 
+\begin{enumerate}
+    \item we start from the vacuum \(\ket{0}\);
+    \item we apply the operator \(\varphi_{-} (y)\), which creates a particle of indeterminate momentum at the position \(y\);
+    \item the particle is destroyed at the position \(x\) by the operator \(\varphi_{+}(x)\);
+    \item we return to the vacuum state \(\bra{0}\). 
+\end{enumerate}
+
+This can be represented graphically as shown in 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{feynman}
+\vertex (y) {\(y\)};    
+\vertex [below right = 2cm and 2cm of y] (x) {\(x\)};
+\vertex [right = 4cm of y] (y0) {\(y_0 \)};
+\vertex [below right = 2cm and 4cm of y] (x0) {\(x_0 \)};
+\diagram*{
+    (y)  -- [scalar, momentum] (x),
+    (y0) -- [fermion, edge label = \(t\)] (x0)
+};
+\end{feynman}
+\end{tikzpicture}
+\caption{Virtual scalar particle.}
+\label{fig:virtual-scalar-particle-diagram}
+\end{figure}
+
 \end{document}

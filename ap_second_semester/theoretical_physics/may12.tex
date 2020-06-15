@@ -406,8 +406,105 @@ This can be represented graphically as shown in
 };
 \end{feynman}
 \end{tikzpicture}
-\caption{Virtual scalar particle.}
+\caption{Virtual scalar particle. Time is shown as going downward, the diagram shows the virtual scalar particle being created at \(y\) and then destroyed at \(x\).}
+\label{fig:virtual-scalar-particle-diagram-1}
+\end{figure}
+
+Now, let us consider the other case: \(x_0 < y_0 \). Now, the second term contributes, so we have 
+%
+\begin{align}
+D_F (x-y) = \bra{0} \varphi_{+} (y) \varphi_{-} (x) \ket{0} \sim \bra{0} a a ^\dag \ket{0}
+\,,
+\end{align}
+%
+so we can interpret it again as: 
+\begin{enumerate}
+    \item we start from the vacuum \(\ket{0}\);
+    \item we apply the operator \(\varphi_{-} (x)\), which creates a particle of indeterminate momentum at the position \(x\);
+    \item the particle is destroyed at the position \(y\) by the operator \(\varphi_{+}(y)\);
+    \item we return to the vacuum state \(\bra{0}\). 
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{feynman}
+\vertex (x) {\(x\)};    
+\vertex [below left = 2cm and 2cm of x] (y) {\(y\)};
+\vertex [right = 2cm of x] (x0) {\(x_0 \)};
+\vertex [below right = 2cm and 2cm of x] (y0) {\(y_0 \)};
+\diagram*{
+    (x)  -- [scalar, momentum] (y),
+    (x0) -- [fermion, edge label = \(t\)] (y0)
+};
+\end{feynman}
+\end{tikzpicture}
+\caption{Virtual scalar particle. Time is shown as going downward, the diagram shows the virtual scalar particle being created at \(x\) and then destroyed at \(y\).}
+\label{fig:virtual-scalar-particle-diagram-2}
+\end{figure}
+
+Neither of these two is Lorentz invariant; however the full propagator is. So, we depict it as shown in figure \ref{fig:virtual-scalar-particle-diagram}.
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram [horizontal = x to y]{
+    x [particle=\(x\)] -- [scalar, momentum=\(a\), reversed momentum'=\(a\)] y [particle=\(y\)]
+};
+\caption{Scalar virtual particle. Time goes either upward or downward.}
 \label{fig:virtual-scalar-particle-diagram}
 \end{figure}
+
+\todo[inline]{What does \(a\) mean here?}
+
+A note of caution: the diagrammatic approach is nice but it does not represent the physical trajectory of a particle, since it does not enforce it being on shell. 
+Nevertheless, just like a quantum particle can tunnel through a potential barrier higher than its energy, the propagator describes a probabilistic physical process.
+
+\subsubsection{Explicit calculation of the scalar propagator}
+
+Starting from the expression we derived in an earlier chapter for the propagator \eqref{eq:scalar-field-propagator} as an integral in momentum space, we can write 
+%
+\begin{align}
+D_F (x-y) &= [x_0 > y_0 ] D_+ (x-y) + [x_0 < y_0 ] D_- (x-y)  \\
+&= \frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
+\qty[[x_0 > y_0 ] e^{-ik(x-y)} + [x_0 < y_0 ] e^{ik(x-y)}]  \\
+&= i \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}}\frac{e^{-ik(x-y)}}{k^2-m^2}\\
+&= \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}} \widetilde{D}_{F} (k)
+\,.
+\end{align}
+
+This defines the scalar propagator in momentum space 
+%
+\begin{align}
+\widetilde{D}_{F}(k) = \frac{i}{k^2- m^2}
+\,,
+\end{align}
+%
+while the integration region is \(\mathbb{R}^{3}\) for the coordinates \(\vec{k}\), and for the coordinate \(k^{0}\) it is a contour following the real axis rightward, except for circling the singularity \(k_0 = - \omega_{k}\) from below, and \(k^{0} = \omega_{k}\) from above. 
+
+This shows explicitly that the propagator \emph{must} represent an \textbf{off-shell} particle: we must have \(k^2 \neq m^2\), otherwise the propagator diverges.
+
+\subsubsection{Complex scalar field}
+
+For the complex scalar field we have that 
+%
+\begin{align}
+\varphi_{+} &\sim a(k) e^{-ikx} 
+&
+\varphi_{-} &\sim b ^\dag(k) e^{ikx}  \\
+\varphi_{+}^\dag &\sim b(k) e^{-ikx} 
+&
+\varphi_{-}^\dag &\sim a ^\dag(k) e^{ikx}
+\,.
+\end{align}
+
+So, the propagator is given by 
+%
+\begin{align}
+D_F (x-y) &= \bra{0} T [\varphi (x) \varphi ^\dag (y)] \ket{0}  \\
+&= 
+\,,
+\end{align}
+%
+
 
 \end{document}

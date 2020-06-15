@@ -36,6 +36,7 @@ Let us compute its EL equations: they read
 %
 so we need to compute these two derivatives. In the derivative with respect to \(\partial_{\rho } V_{\sigma }\) we get: 
 %
+\begin{subequations}
 \begin{align} \label{eq:derivative-kinetic-term-vector}
 \pdv{V_{\mu \nu } V^{\mu \nu }}{\partial_{\rho }V_{\sigma }}
 &= 2 V_{\mu \nu } \pdv{V^{\mu \nu }}{\partial_{\rho }V_{\sigma }}  \\
@@ -43,6 +44,7 @@ so we need to compute these two derivatives. In the derivative with respect to \
 &= 2 V^{\rho \sigma } - 2 V^{\sigma \rho } = 4 V^{\rho \sigma }
 \,.
 \end{align}
+\end{subequations}
 
 Finally then, we find 
 %
@@ -53,11 +55,13 @@ M^2 V^{\sigma } + \partial_{\rho } \qty(V^{\rho \sigma }) = \qty(M^2 + \square )
 
 This is the \textbf{Proca equation}. If we take its divergence, we find the condition \( \partial_{\sigma } V^{\sigma } = 0\): we can then impose this constraint to simplify the equation to 
 %
+\begin{subequations}
 \begin{align}
 \qty(\square + M^2 ) V^{\sigma } &= 0   \\
 \partial_{\sigma } V^{\sigma } &= 0
 \,.
 \end{align}
+\end{subequations}
 
 Note that this works \emph{only because} \(M \neq 0\): if the mass vanishes the divergence of the Proca equation vanishes identically, and the condition \(\partial_{\sigma } V^{\sigma }\) is not imposed. 
 
@@ -117,20 +121,24 @@ This constraint removes one of the degrees of freedom for the polarization vecto
 \begin{claim}
 If \(k^{\mu } = (\omega_{k}, 0, 0, k)^{\top}\) we can form a basis for the polarization vectors with 
 %
+\begin{subequations}
 \begin{align}
 \epsilon^{\mu }_{1} &= (0, 1, 0, 0)^{\top}  \\
 \epsilon^{\mu }_{2} &= (0, 0, 1, 0)^{\top}  \\
 \epsilon^{\mu }_{3} &= (k/M, 0, 0 , \omega_{k} / M)^{\top}  \\
 \,.
 \end{align}
+\end{subequations}
 
 They satisfy the following completeness and orthogonality relations: 
 %
+\begin{subequations}
 \begin{align}
 \epsilon^{\mu }_{ (\lambda )} \epsilon^{(\lambda' )}_{\mu } &= - \delta_{\lambda \lambda '} = \eta_{\lambda \lambda '} \\
 \epsilon^{\mu }_{(\lambda )} \epsilon^{\nu }_{(\lambda )} &= -\eta^{\mu \nu } + \frac{1}{M^2} k^{\mu } k^{\nu }
 \,.
 \end{align}
+\end{subequations}
 
 So, they form an orthonormal basis for the spacelike subspace orthogonal to the timelike vector \(k^{\mu }\). 
 \end{claim}
@@ -150,19 +158,23 @@ The completeness relation is long to show directly but fast to see intuitively. 
 
 The Nöther energy-momentum tensor reads: 
 %
+\begin{subequations}
 \begin{align}
 \widetilde{T}^{\mu }_{\nu } &= \pdv{\mathscr{L}}{\partial_{\mu } V_{\rho }} \partial_{\nu } V_{\rho } - \mathscr{L} \delta^{\mu }_{\nu }  \\
 &= - V^{\mu \rho } \partial_{\nu } V_{\rho } + \frac{1}{4} V^{\alpha \beta } V_{\alpha \beta } \delta^{\mu }_{\nu } - \frac{1}{2} M^2 V^{\alpha} V_{\alpha } \delta^{\mu }_{\nu }
 \,,
 \end{align}
+\end{subequations}
 %
 and its corresponding charges are:
 %
+\begin{subequations}
 \begin{align}
 P_{\mu } &= \int \dd[3]{x} \widetilde{T}^{0}_{\mu }  \\
 &= \int \dd[3]{x} \qty(- V^{0 \rho } V_{\nu \rho } + \frac{1}{4} V^{\alpha \beta } V_{\alpha \beta } \delta^{0}_{\nu } - \frac{1}{2} M^2V^{\alpha }V_{\alpha } \delta^{0}_{\nu }) 
 \,,
 \end{align}
+\end{subequations}
 %
 while the conserved currents corresponding to Lorentz transformations are: 
 %
@@ -218,6 +230,7 @@ Y^{\mu }_{\rho \sigma } = -i (\mathscr{J}^{\mu \nu })_{ \rho \sigma } x_{\nu }
 
 Now we can apply the general formula: 
 %
+\begin{subequations}
 \begin{align}
 J^{\mu }_{(a)} &= \widetilde{T}^{\mu }_{\nu } Y^{\nu }_{(a)} - \pdv{\mathscr{L}}{\partial_{\mu } V^{\nu }} X_{(a)}^{\nu }  \\
 J^{\mu }_{\rho \sigma }&= 2\widetilde{T}^{\mu }_{\nu  } \delta^{\nu  }_{[\rho  } \delta^{\alpha }_{\sigma ]} x_{\alpha } 
@@ -226,6 +239,7 @@ J^{\mu }_{\rho \sigma }&= 2\widetilde{T}^{\mu }_{\nu  } \delta^{\nu  }_{[\rho  }
 + V^{\mu }_{[\rho } V_{\sigma ]}
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 The corresponding conserved charges can then be decomposed into \(L_{\rho \sigma } \) and \(S_{\rho \sigma }\). 
@@ -233,6 +247,7 @@ The corresponding conserved charges can then be decomposed into \(L_{\rho \sigma
 \begin{claim}
 The Pauli-Lubanski pseudovector's modulus square in the rest frame is given by 
 %
+\begin{subequations}
 \begin{align}
 W^2 = -2 M^2 \left[\begin{array}{cccc}
 0 & 0 & 0 & 0 \\ 
@@ -242,6 +257,7 @@ W^2 = -2 M^2 \left[\begin{array}{cccc}
 \end{array}\right]
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \todo[inline]{Kinda confusing statement in the professor's notes\dots}
@@ -271,6 +287,7 @@ The Hamiltonian density is given by \(\mathscr{H} = \pi^{\mu } \partial_0 V_{\mu
 \begin{proof}
 
 %
+\begin{subequations}
 \begin{align}
 \mathscr{H} &= \pi^{\mu }\partial_{0} V_{\mu } - \mathscr{L} \\
 &= \cancelto{}{\pi^{0} \partial_0 V_0} + \pi^{i} \partial_0 V_{i} 
@@ -283,6 +300,7 @@ The Hamiltonian density is given by \(\mathscr{H} = \pi^{\mu } \partial_0 V_{\mu
 &= \frac{1}{2} \pi_{i}^2 + \frac{1}{4} V_{ij}^2 + \frac{1}{2} M^2 V_i^2  
 \,,
 \end{align}
+\end{subequations}
 %
 where we have neglected all the terms containing \(V_0 \). 
 What we have neglected can be written as \(- \partial_{i} \qty(\pi_{i} V_0 ) + M^2 V_0^2 /2\), by integrating by parts and using the equations of motion, which tell us that \(\partial_{i} \pi_{i} = M^2 V_0 \). 
@@ -409,6 +427,7 @@ so we have recovered the term \((\partial_{\mu } A_{\nu })(\partial^{\mu } A^{\n
 
 This is accomplished by two integrations by parts: 
 %
+\begin{subequations}
 \begin{align}
 \qty(\partial_{\mu } A_{\nu }) \partial^{\nu }A^{\mu }
 &\sim \cancelto{}{\partial_{\mu } \qty(A_{\nu } \partial^{\nu } A^{\mu })}
@@ -420,6 +439,7 @@ This is accomplished by two integrations by parts:
  \qty(\partial_{\mu }A^{\mu })^2
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 \begin{claim}
@@ -437,6 +457,7 @@ We start from the Lagrangian \(\mathscr{L}'\), which is easier.
 
 The term \(\pdv*{\mathscr{L}'}{A_{\sigma }}\) vanishes, so we only get 
 %
+\begin{subequations}
 \begin{align}
 0=\partial_{\rho } \qty(\pdv{\mathscr{L}'}{\partial_{\rho } A_{\sigma }}) 
 &= \partial_{\rho } \partial^{\rho } A^{\sigma } - \partial_{\rho } 
@@ -447,6 +468,7 @@ The term \(\pdv*{\mathscr{L}'}{A_{\sigma }}\) vanishes, so we only get
 \frac{\xi - 1}{\xi } \qty(\partial_{\mu } A^{\mu }) =0
 \,. 
 \end{align}
+\end{subequations}
 \end{proof}
 
 Now comes the kicker: since \(\xi \) is arbitrary, we can set it to \(\xi = 1\), so that the equations of motion become \(\square A^{\sigma } = 0\). This is known as the \textbf{Feynman gauge fixing term}.
@@ -512,6 +534,7 @@ So, we find
 %
 and 
 %
+\begin{subequations}
 \begin{align}
 \mathscr{H} &= \pi^{\mu } \partial_0 A_{\mu }
 - \mathscr{L}   \\
@@ -528,6 +551,7 @@ and
 + \frac{1}{2} \qty(\partial_{i } A_{j})^2 
 \,.
 \end{align}
+\end{subequations}
 
 This is not positive definite, due to the unphysical degree of freedom \(A_0 \).
 However, we can still proceed. The total Hamiltonian is 
@@ -555,6 +579,7 @@ while the same-field brackets vanish.
 \begin{proof}
 The bracket reads: 
 %
+\begin{subequations}
 \begin{align}
 \qty{A^{\mu } (\vec{x}, t), \pi^{\nu }(\vec{y}, t)}
 &= \int \dd[3]{z} \qty(
@@ -569,6 +594,7 @@ The bracket reads:
 &= \delta^{(3)} (\vec{x} - \vec{y}) \eta^{\mu \nu }
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 \begin{claim}

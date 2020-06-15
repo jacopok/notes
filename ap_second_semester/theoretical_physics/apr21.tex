@@ -74,12 +74,14 @@ The index \(a\) runs from 1 to \(n\), the dimension of the symmetry group.
 
 So, we can take the variation of the perturbed action \(\delta S[\varphi + \delta_0 \varphi ]\) and set it to zero. An important note, though: the variation of the action must be zero \emph{locally} as well as globally, so we can perform our integral in an arbitrary spacetime volume \(V\). We find: 
 %
+\begin{subequations}
 \begin{align}
 \eval{\delta S [ \varphi + \delta_0 \varphi ]}_{V} &= \delta  \int_{V} \dd[4]{x} \mathscr{L} \qty(\varphi + \delta_0 \varphi , \partial_{\mu } \varphi + \partial_{\mu } \delta_0 \varphi  )  \\
 &= \int_{V} \dd[4]{x} \pdv{\mathscr{L}}{\varphi } \delta_0 \varphi + \pdv{\mathscr{L}}{\partial_{\mu}\varphi } \qty(\partial_{\mu } \delta_0 \varphi )  \\
 &= \int_{V} \dd[4]{x} \pdv{\mathscr{L}}{\varphi } \delta_0 \varphi - \partial_{\mu } \qty(\pdv{\mathscr{L}}{\partial_{\mu}\varphi } ) \delta_0 \varphi  + \partial_{\mu } \qty( \pdv{\mathscr{L}}{\partial_{\mu } \varphi } \delta_0 \varphi ) \marginnote{Integrated by parts.}
 \,.
 \end{align}
+\end{subequations}
 
 Unlike what we usually do when we derive the EL equations, we cannot neglect the boundary term: since we are integrating in an arbitrary volume, there is no reason why the variation of the field should vanish at the boundary (\(\eval{\delta_0 \varphi }_{\partial V} =0\)). 
 
@@ -126,22 +128,26 @@ Let us consider a more general formulation of the theorem: the statement is the 
 
 The variations will be 
 %
+\begin{subequations}
 \begin{align}
 \delta {x^{\mu }} &= \epsilon^{(a)} Y_{(a)}^{\mu }  \\
 \delta \varphi &= \epsilon^{(a)} X_{(a)}(\varphi )
 \,.
 \end{align}
+\end{subequations}
 
 Here, \(X_{(a)}\) are the generators of the action of the group on \(\varphi \), while \(Y_{(a)}\) are the generators of its action on \(x^{\mu }\). 
 
 The variation is now \(\delta \) instead of \(\delta_0 \): it is not synchronous anymore. To be more explicit: 
 %
+\begin{subequations}
 \begin{align}
 \delta \varphi &= \varphi' (x') - \varphi (x)  \\
 &= \varphi ' (x') - \varphi (x') + \varphi (x') - \varphi (x)  \marginnote{Added and subtracted.}\\
 &\approx  \delta_0 \varphi + (\partial_{\mu } \varphi ) \delta x^{\mu }
 \,.
 \end{align}
+\end{subequations}
 
 Here \(\varphi \) is a test field, but this reasoning holds for any function. 
 
@@ -185,6 +191,7 @@ where the Jacobian is given by:
 
 So, we can apply the formula to get: 
 %
+\begin{subequations}
 \begin{align}
 \det \qty(\pdv{x^{\prime \mu }}{x^{\nu }}) &= \exp(\Tr M)
 = \exp(\Tr(\partial_{\nu } \delta x^{\mu }))   \\
@@ -192,12 +199,14 @@ So, we can apply the formula to get:
 &\approx 1 + \partial_{\mu } \delta x^{\mu }
 \,,
 \end{align}
+\end{subequations}
 %
 which proves our claim. One plus a small value is positive, so there is no issue with the modulus. 
 \end{proof}
 
 So, let us get to the computation: as before, we integrate in a spacetime region \(V\), and we find 
 %
+\begin{subequations}
 \begin{align}
 \delta S &= \int_{V} \delta \qty(\dd[4]{x}) \mathscr{L} + \int \dd[4]{x} \delta \mathscr{L}  \\
 &= \int_V \dd[4]{x} \qty{ \partial_{\mu } \delta x^{\mu } \mathscr{L} + 
@@ -207,6 +216,7 @@ So, let us get to the computation: as before, we integrate in a spacetime region
 + \text{LE} \times \delta_0 \varphi  
 \,,
 \end{align}
+\end{subequations}
 %
 where the reasoning for the \(\delta_0 \mathscr{L}\) part is the same as in the internal symmetry case; while the two new additional terms were combined into a single derivative. 
 
@@ -214,6 +224,7 @@ As before, the Lagrange Equations vanish identically, and since we are integrati
 
 It is, however, still written in terms of \(\delta_0 \), while the variation of the field is not the synchronous one: so, we substitute the expression for \(\delta_0 \varphi \) in terms of \(\delta \varphi \). This yields 
 %
+\begin{subequations}
 \begin{align}
 \delta S &=
 \int_{V} \dd[4]{x} \partial_{\mu } \qty(\mathscr{L} \delta x^{\mu } + \pdv{\mathscr{L}}{\partial_{\mu } \varphi } \qty(\delta \varphi - \partial_{\rho  } \varphi \delta x^{\rho })  )  \\
@@ -221,6 +232,7 @@ It is, however, still written in terms of \(\delta_0 \), while the variation of 
 &= \epsilon^{(a)}\int_{V} \dd[4]{x} \partial_{\mu } \qty[ \qty(\mathscr{L} \delta^{\mu }_{\rho } - \pdv{\mathscr{L}}{\partial_{\mu } \varphi } \partial_{\rho } \varphi ) Y^{\rho }_{(a)}+ \pdv{\mathscr{L}}{\partial_{\mu }\varphi } X_{(a)} ]
 \,,
 \end{align}
+\end{subequations}
 %
 which, as before, must hold for any volume \(V\) and for any \(\epsilon^{(a)}\), therefore we get that the integrand must be conserved: our final result for the conserved current is 
 %
@@ -242,11 +254,13 @@ Translations shift the coordinates by constant amounts, and should not alter the
 
 We then have 
 %
+\begin{subequations}
 \begin{align}
 \delta x^{\mu } &= \epsilon^{\mu } = \epsilon^{\nu } \delta^{\mu }_{\nu } = \epsilon^{(\nu)} Y^{\mu }_{(\nu )}  \\
 \delta \varphi &= 0 = X
 \,.
 \end{align}
+\end{subequations}
 
 So, our conserved current reads 
 %
@@ -276,11 +290,13 @@ H = \int \dd[3]{x} \pdv{\mathscr{L}}{\partial_{0} \varphi } \partial_{0} \varphi
 
 Lorentz rotations and boosts are generated by antisymmetric tensors \(\omega_{\mu \nu  }\). These have six degrees of freedom. They alter the fields as 
 %
+\begin{subequations}
 \begin{align}
 x^{\prime \mu } &= x^{\mu } + \omega^{\mu }_{\nu }x^{\nu }  \\
 \varphi '(x') &= \varphi (x) - \frac{i}{2} \omega^{\mu \nu } \Sigma_{\mu \nu } \varphi (x)
 \,,
 \end{align}
+\end{subequations}
 %
 where \(\Sigma_{\mu \nu }\) are the representations of the generators of Lorentz transformations for our field: for scalar fields they are zero, for a Dirac spinor we found that they can be expressed as 
 %
@@ -291,38 +307,46 @@ where \(\Sigma_{\mu \nu }\) are the representations of the generators of Lorentz
 
 So, we can express the transformations in our general form:
 %
+\begin{subequations}
 \begin{align}
 \delta x^{\mu } &= \frac{1}{2} \omega^{\nu \rho } Y^{\mu }_{(\nu \rho )}  \\
 \delta \varphi  &= \frac{1}{2} \omega^{\mu \nu } X_{(\mu \nu )}
 \,,
 \end{align}
+\end{subequations}
 %
 where we included a \(1/2\) in the coordinate transformations since we are summing over two antisymmetric indices, so we will have two copies of every term. In order for these expressions to be equal, we need to set: 
 %
+\begin{subequations}
 \begin{align}
 \omega^{\mu }_{\nu }x^{\nu } &= \frac{1}{2} \omega^{\nu \rho } Y^{\mu }_{(\nu \rho )}  \\
 \frac{-i}{2} \omega^{\mu \nu } \Sigma_{\mu \nu } &=\frac{1}{2} \omega^{\mu \nu } X_{(\mu \nu )}
 \,,
 \end{align}
+\end{subequations}
 %
 which is solved by 
 %
+\begin{subequations}
 \begin{align}
 Y^{\mu }_{(\nu \rho )} &= \qty(\delta ^{\mu }_{\rho } \eta_{\nu \sigma } - \delta ^{\mu }_{\sigma } \eta_{\nu \rho })x^{\nu }  \\
 X_{(\rho \sigma )} &= -i \Sigma_{\rho \sigma }
 \varphi 
 \,.
 \end{align}
+\end{subequations}
 
 Note that although we are using two indices for the bookkeeping of these transformations there are only six independent ones by antisymmetry. 
 
 The conserved currents are then given directly from the formula: 
 %
+\begin{subequations}
 \begin{align}
 J^{\mu }_{(\rho \sigma )} &= 2 x_{[\rho } \widetilde{T}_{\sigma ]}^{\mu } - i \pdv{\mathscr{L}}{\partial_{\mu }\varphi } \Sigma_{\rho \sigma } \varphi  \label{eq:conserved-currents-Lorentz}\\
 &= L^{\mu }_{\rho \sigma } + S^{\mu }_{\rho \sigma }
 \,.
 \end{align}
+\end{subequations}
 
 \todo[inline]{Add first computation step}
 

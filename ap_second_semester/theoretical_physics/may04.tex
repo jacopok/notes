@@ -36,6 +36,7 @@ To see that the Lagrangian is real, we need to show that \(\mathscr{L} = \mathsc
 %
 since \(\gamma^{0}\) is self-adjoint. Now, the kinetic terms are mapped into each other --- because of the \(i\) in front, this means that the Lagrangian is conserved. Let us show it for one of them: 
 %
+\begin{subequations}
 \begin{align}
 \qty(\overline{\psi} \gamma^{\mu } \partial_{\mu } \psi )^\dag &=
 \qty(\partial_{\mu } \psi ) ^\dag \qty(\gamma^{\mu })^\dag \qty(\gamma^{0})^\dag \psi  \\
@@ -44,6 +45,7 @@ since \(\gamma^{0}\) is self-adjoint. Now, the kinetic terms are mapped into eac
 &= \qty(\partial_{\mu } \overline{\psi}) \gamma^{\mu } \psi 
 \,.
 \end{align}
+\end{subequations}
 
 The fact that the Lagrangian is invariant under Lorentz transformations follows directly from the fact that, while \(\psi \to S \psi \), the conjugate spinor transforms as \(\overline{\psi} \to \overline{\psi} S^{-1}\) (see \eqref{eq:dirac-conjugate-spinor-transformation}). 
 
@@ -120,6 +122,7 @@ These can also be derived from the alternate formulation of the Lagrangian; \(\m
 
 The general solution reads 
 %
+\begin{subequations}
 \begin{align} \label{eq:dirac-general-solution}
 \psi (x) &= \frac{1}{(2 \pi )^{3/2}}
 \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
@@ -129,6 +132,7 @@ The general solution reads
 \qty(d_r (k) v_r ^\dag (k) e^{-ikx} + c ^\dag_{r} (k) u_r ^\dag (k) e^{ikx})_{k_0 = \omega_{k}}  
 \,,
 \end{align}
+\end{subequations}
 %
 where a sum over \(r\) is implied: we account for both of the polarization states. 
 \(c\) and \(d\) are coefficients, \(u\) and \(v\) are unit vectors in spinor space.
@@ -166,6 +170,7 @@ the two ways of writing it are equivalent (which one we get depends on which for
 
 Let us check that this is indeed conserved: 
 %
+\begin{subequations}
 \begin{align}
 \partial_{\mu } \widetilde{T}^{\mu \nu } &= i\partial_{\mu }
 \qty(\overline{\psi} \gamma^{\mu } \partial^{\nu } \psi )  \\
@@ -174,9 +179,11 @@ Let us check that this is indeed conserved:
 &= -m \overline{\psi} \partial^{\nu } \psi + \overline{\psi} \partial^{\nu } (m \psi ) = 0 \marginnote{Used the EOM for both \(\psi \) and \(\overline{\psi}\).}
 \,. 
 \end{align}
+\end{subequations}
 
 Now, it is the case that we also have the conservation law \(\partial_{\nu } \widetilde{T}^{\mu \nu } = 0\) --- it can be proven if we choose the other formulation of the stress-energy tensor:
 %
+\begin{subequations}
 \begin{align}
 \partial_{\nu } \qty[\frac{i}{2} \qty(\overline{\psi} \gamma^{\mu }\partial{\nu } \psi - \qty(\partial^{\nu } \overline{\psi}) \gamma^{\mu } \psi )]
 &= \frac{i}{2} \qty[\qty(\partial_{\nu } \overline{\psi}) \gamma^{\mu } \partial^{\nu } \psi 
@@ -187,6 +194,7 @@ Now, it is the case that we also have the conservation law \(\partial_{\nu } \wi
 \qty[ \overline{\psi} \gamma^{\mu }\square \psi - \square \overline{\psi} \gamma^{\mu } \psi ] = 0
 \,.
 \end{align}
+\end{subequations}
 
 The result follows from the fact that a spinor satisfying the Dirac equation must also satisfy the Klein-Gordon one, \(\square \psi  +m^2 \psi = 0\), and so must its conjugate. 
 
@@ -270,11 +278,13 @@ Another symmetry of the Dirac field is an internal one, which leaves the positio
 %
 so its generator is \(X = i \alpha \psi \). The corresponding current is 
 %
+\begin{subequations}
 \begin{align}
 J^{\mu } &= \pdv{\mathscr{L}}{\partial_{\mu }\psi } X + \overline{X} \pdv{\mathscr{L}}{\partial_{\mu } \overline{\psi}} = i \overline{\psi} \gamma^{\mu } i \alpha \psi   \\
 &= - \alpha \overline{\psi} \gamma^{\mu } \psi \propto \overline{\psi} \gamma^{\mu } \psi 
 \,. 
 \end{align}
+\end{subequations}
 
 The corresponding conserved charge is 
 %
@@ -297,6 +307,7 @@ The conjugate fields are:
 %
 and with these we can write the Hamiltonian density: 
 %
+\begin{subequations}
 \begin{align}
 \mathscr{H} &= \pi \partial_0 \psi + \qty(\partial_0 \psi ^\dag) \pi ^\dag - \mathscr{L}  \\
 &= \frac{i}{2} \qty[ \psi ^\dag \partial_0 \psi - \partial_0 \psi ^\dag \psi - \overline{\psi} \gamma^{\mu } \partial_{\mu } \psi + \qty(\partial_{\mu } \overline{\psi})\gamma^{\mu } \psi ]
@@ -315,6 +326,7 @@ and with these we can write the Hamiltonian density:
 &= \frac{i}{2} \psi ^\dag \overset{\leftrightarrow}{\partial_0 } \psi 
 \,,
 \end{align}
+\end{subequations}
 %
 the last step uses the Dirac equation, \(\qty(i \slashed{\partial} -m) \psi =0\).
 
@@ -335,15 +347,18 @@ It is not manifestly positive definite.
 
 Hamilton's equations in terms of the fields and conjugate fields read: 
 %
+\begin{subequations}
 \begin{align}
 \dot{\psi}_{\alpha } (\vec{x}) &= \fdv{H}{\pi_{\alpha }(\vec{x})} = \qty{\psi_{\alpha }, H} = \partial_0 \psi_{\alpha } (\vec{x}, t)\\
 \dot{\pi }_{\alpha } (\vec{x}) &= - \fdv{H}{\psi _{\alpha }(\vec{x})} = \qty{\pi_{\alpha }, H} 
 \,,
 \end{align}
+\end{subequations}
 %
 where \(\alpha \) is a spinorial index. 
 The equal-time Poisson brackets between the fields are 
 %
+\begin{subequations}
 \begin{align}
 \qty{\psi_{\alpha } (\vec{x}), \pi_{\beta } (\vec{y})} &= \delta_{\alpha \beta } \delta^{(3)} (\vec{x}-\vec{y})  \\
 \qty{\psi_{\alpha }(\vec{x}), \psi_{\beta }(\vec{y})} 
@@ -351,11 +366,13 @@ The equal-time Poisson brackets between the fields are
 \qty{\pi_{\alpha }(\vec{x}), \pi_{\beta }(\vec{y})} 
 \,.
 \end{align}
+\end{subequations}
 
 Do note that the Hamiltonian description is redundant: between the fields \(\psi \), \(\psi ^\dag\), \(\pi \) and \(\pi ^\dag\) there are actually only two degrees of freedom. 
 
 We now show the EOM for the conjugate field: it reads 
 %
+\begin{subequations}
 \begin{align}
 \dot{\pi}_{\alpha } (\vec{x}, t)
 &= - \fdv{}{\psi_{\alpha }(\vec{x}, t)}
@@ -367,6 +384,7 @@ We now show the EOM for the conjugate field: it reads
 &= \partial_0 \psi ^\dag_{\alpha } (\vec{x}, t)
 \,.
 \end{align}
+\end{subequations}
 
 The total derivative term vanishes because of the global \(U(1)\) symmetry. 
 
@@ -375,6 +393,7 @@ The total derivative term vanishes because of the global \(U(1)\) symmetry.
 
 We start from the general solution of the Dirac equation \eqref{eq:dirac-general-solution}. We can invert it to get the expressions for the coefficients \(c_r\) and \(d_r\) in momentum space: 
 %
+\begin{subequations}
 \begin{align}
 c_r (k) &= \frac{1}{(2\pi )^{3/2}} \int \eval{\frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} 
 u_{r} ^\dag (k) \psi (\vec{x}, t) e^{ikx}}_{k_0 = \omega_{k}}  \\
@@ -382,15 +401,18 @@ d_r (k) &= \frac{1}{(2\pi )^{3/2}} \int \eval{\frac{ \dd[3]{x}}{\sqrt{2 \omega_{
 \psi ^\dag (\vec{x}, t) v_{r} ^\dag (k)  e^{ikx}}_{k_0 = \omega_{k}}
 \,.
 \end{align}
+\end{subequations}
 
 \begin{claim}
 The Hamiltonian \(H\) and the \(U(1)\) charge \(Q\) are given by:
 %
+\begin{subequations}
 \begin{align}
     H &= \int \dd[3]{x} \psi ^\dag \partial_0 \psi  = \int \dd[3]{k} \omega_{k} \qty(c_r ^\dag c_r - d_r  d_r ^\dag)  \\
     Q &= \int \dd[3]{x} \psi ^\dag \psi = \int \dd[3]{k} \qty(c_r ^\dag c_r  + d_r d_r ^\dag) 
     \,.
 \end{align}   
+\end{subequations}
 \end{claim}
 
 \begin{proof}
@@ -401,11 +423,13 @@ The Hamiltonian \(H\) and the \(U(1)\) charge \(Q\) are given by:
 
 We try to quantize our theory of a Dirac field substituting commutators (divided by \(i \hbar\)) for Poisson brackets. So, the time evolution will become (in  the Heisenberg picture): 
 %
+\begin{subequations}
 \begin{align}
 \dot{\psi}_{\alpha } (\vec{x}, t) =- i \qty[ \psi_{\alpha } (\vec{x}, t), H] \\
 \dot{\pi}_{\alpha } (\vec{x}, t) =- i \qty[ \pi_{\alpha } (\vec{x}, t), H]
 \,,
 \end{align}
+\end{subequations}
 %
 and the commutators between the fields will be 
 %
@@ -442,11 +466,13 @@ N_d^{r} (k) = d_r (k) d_r  ^\dag (k)
 as usual the total number operators are their integrals over momentum space. 
 The commutation relations read: 
 %
+\begin{subequations}
 \begin{align}
 \qty[N_c^{r}, c_s ^{(\dag)} (k)] &= \pm c_s ^{(\dag)} (k) \delta_{rs} \\
 \qty[N_d^{r}, d_s ^{(\dag)} (k)] &= \mp d_s ^{(\dag)} (k) \delta_{rs}
 \,,
 \end{align}
+\end{subequations}
 %
 where the dagger in parentheses means that the relations hold both with it and without it. 
 
@@ -464,6 +490,7 @@ We do everything as we did before, except for the fact that we substitute Poisso
 
 The anticommutators of the fields will then read 
 %
+\begin{subequations}
 \begin{align}
 \qty{\psi_{\alpha } (\vec{x}), \pi_{\beta } (\vec{y})} &= i \delta_{\alpha \beta } \delta^{(3)} (\vec{x}-\vec{y})  \\
 \qty{\psi_{\alpha }(\vec{x}), \psi_{\beta }(\vec{y})} 
@@ -471,6 +498,7 @@ The anticommutators of the fields will then read
 \qty{\pi_{\alpha }(\vec{x}), \pi_{\beta }(\vec{y})} 
 \,,
 \end{align}
+\end{subequations}
 %
 as before the first line is equivalent to \(\qty{\psi, \psi ^\dag} = \delta^{(3)} \delta_{\alpha \beta }\).
 In momentum space, this corresponds to 
@@ -498,6 +526,7 @@ The rules that these need to follow in order to be proper number operators are s
 
 We start with 
 %
+\begin{subequations}
 \begin{align}
 \qty[N_c^{r} (k), c_s (p)] &= c_r ^\dag (k) c_r (k) c_s (p) -  c_s (p) c_r ^\dag (k) c_r (k)  \\
 &= c_r ^\dag (k) c_r (k) c_s (p) + c_r ^\dag (k) c_s (p) c_r (k)
@@ -506,33 +535,40 @@ We start with
 &= - c_r (k) \delta_{rk} \delta^{(3)} (\vec{k} - \vec{p})
 \,.
 \end{align}
+\end{subequations}
 
 Similarly we get 
 %
+\begin{subequations}
 \begin{align}
 \qty[N_c^{r} (k), c_s ^\dag (p)] &= c_r ^\dag (k) \delta_{rs} \delta^{(3)} (\vec{k} - \vec{p})  \\
 \qty[N_c^{r} (k), d_s (p)] &= - d_r (k) \delta_{rk} \delta^{(3)} (\vec{k} - \vec{p}) \\
 \qty[N_c^{r} (k), d_s ^\dag (p)] &= d_r ^\dag (k) \delta_{rs} \delta^{(3)} (\vec{k} - \vec{p}) 
 \,,
 \end{align}
+\end{subequations}
 %
 so all the harmonic oscillator properties we have found still hold. 
 
 The Hamiltonian density operator can now be normal-ordered as usual: the density is \(\mathscr{H} = \frac{i}{2} \overline{\psi} \overset{\leftrightarrow}{\partial_0 } \psi \), so we find
 %
+\begin{subequations}
 \begin{align}
 H &= \int \dd[3]{k} \omega_{k} \qty(c_r ^\dag c_r - d_r d_r ^\dag)  \\
 &= \int \dd[3]{k} \omega_{k} \sum _{r} \qty(N_c^{r} + N_d^{r}) + \int \dd[3]{k} \omega_{k} \sum_{r} \delta^{(3)} (0)
 \,.
 \end{align}
+\end{subequations}
 
 The conserved charge reads 
 %
+\begin{subequations}
 \begin{align}
 Q &= \int \dd[3]{k}  \qty(c_r ^\dag c_r + d_r d_r ^\dag)  \\
 &= \int \dd[3]{k}  \sum _{r} \qty(N_c^{r} - N_d^{r}) + \int \dd[3]{k} \omega_{k} \sum_{r} \delta^{(3)} (0) 
 \,,
 \end{align}
+\end{subequations}
 %
 so we have recovered the physically meaningful conditions \(H \geq 0\), \(Q \lessgtr 0\). 
 As before, we ignore the infinite energy of the vacuum. 
@@ -583,6 +619,7 @@ The only nonvanishing anticommutators are \(\qty{c_r , c_r ^\dag}\) and \(\qty{d
 
 So, we consider 
 %
+\begin{subequations}
 \begin{align}
 S_{\alpha \beta } (x-y) &= \qty{ \psi_{\alpha }(x), \overline{\psi}_{\beta }(y)}  \\
 &= \qty{\psi_{+}(x), \overline{\psi}_{-}(y)}_{\alpha \beta } + 
@@ -590,9 +627,11 @@ S_{\alpha \beta } (x-y) &= \qty{ \psi_{\alpha }(x), \overline{\psi}_{\beta }(y)}
 &= S_{\alpha \beta }^{+}(x-y) + S_{\alpha \beta }^{-} (x-y)
 \,.
 \end{align}
+\end{subequations}
 
 With the anticommutation relations we can write 
 %
+\begin{subequations}
 \begin{align}
 S^{+}_{\alpha \beta }(x-y) &= \frac{1}{(2 \pi )^3}
 \int \frac{ \dd[3]{k}}{2 \omega_{k}}
@@ -603,6 +642,7 @@ S^{-}_{\alpha \beta }(x-y) &= \frac{1}{(2 \pi )^3}
 =\qty(i \slashed{\partial} + m) D_- (x-y)
 \,,
 \end{align}
+\end{subequations}
 %
 so \(S(x-y) = \qty(i \slashed{\partial} + m )D(x-y) \); everything we proved for \(D(x-y)\) in section \ref{sec:covariance-microcausality} will still hold --- specifically, we still have Lorentz \textbf{covariance} and \textbf{microcausality}. 
 

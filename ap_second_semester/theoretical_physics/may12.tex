@@ -16,12 +16,14 @@ When we write the Hamiltonian, we always mean the \textbf{normal-ordered} Hamilt
 \begin{definition}
 The \(S\)-matrix evolution operator is given by:
 %
+\begin{subequations}
 \begin{align}
 S = U_I (- \infty , \infty )
 &= T \qty[\exp(-i \int_{- \infty }^{\infty } \dd{\tau }H _{\text{int}}^{I} (\tau ))]  \\
 &= T \qty[\exp(-i \int \dd[4]{x} \mathscr{H} _{\text{int}}^{I} (x))]
 \,.
 \end{align}
+\end{subequations}
 \end{definition}
 
 This object describes all the interaction that can happen over all of time (this is used when describing actual interactions, temporal infinity is asymptotically the same as the particles flying away and not interacting anymore).
@@ -52,6 +54,7 @@ D_F (x-y) = \bra{0} T[\varphi (x) \varphi (y)] \ket{0}
 
 Now, from the definition of the time-ordered product we have that 
 %
+\begin{subequations}
 \begin{align}
 D_F (x-y) &= 
 [x_0 > y_0 ]
@@ -73,6 +76,7 @@ D_+ (x-y)
 D_- (x-y) 
 \,,
 \end{align}
+\end{subequations}
 %
 since \(\varphi_{+} \ket{0} = 0\) and \(\bra{0} \varphi_{-} = 0 \), as \(\varphi_{+} \sim a\) and \(\varphi_{-} \sim a ^\dag\).
 
@@ -89,6 +93,7 @@ T [\varphi (x) \varphi (y)] = N[\varphi (x) \varphi (y)] + D_F (x-y)
 \begin{proof}
 We prove this by writing the term \(T[\varphi \varphi ] - N[ \varphi \varphi ]\) explicitly: we get 
 %
+\begin{subequations}
 \begin{align}
 & T[\varphi (x)\varphi (y)] - N[\varphi (x) \varphi (y)] = \\
 \begin{split}
@@ -124,11 +129,13 @@ D_- (x-y) \\
 &= D_F (x-y)
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 Wick's theorem for scalar fields is the generalization of this result to \(n\) fields: 
 It states that 
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 T [\varphi (x_1 ) \varphi (x_2 ) \dots \varphi (x_n)]
@@ -142,6 +149,7 @@ N[\varphi (x_1 )\dots \varphi (x_{i-1}) D_F (x_i- x_{i+1}) \varphi (x_{i+2}) \do
 \,.
 \end{split}
 \end{align}
+\end{subequations}
 
 A \textbf{corollary} of Wick's theorem states that contractions of fields evaluated at the same time do not contribute to the \(T\)-product. Formally, this is stated as: 
 %
@@ -202,11 +210,13 @@ This is the same function which was calculated for the real scalar field; one ca
 \begin{definition}
 For a real vector field \(A^{\mu }\) and a complex vector field \(\omega^{\mu }\) the Feynman propagator reads: 
 %
+\begin{subequations}
 \begin{align}
 D^{\mu \nu }_{F, \text{ real}} (x-y) &= \bra{0} T[A^{\mu }(x) A^{\nu }(y) ]\ket{0} \\
 D^{\mu \nu }_{F, \text{ complex}} (x-y) &= \bra{0} T[\omega^{\mu }(x) \omega^{\nu \dag}(y) ]\ket{0}
 \,.
 \end{align}
+\end{subequations}
 \end{definition}
 
 \begin{claim}
@@ -227,12 +237,14 @@ Note that for a complex vector field the propagators between \(\omega^{\mu } \om
 
 The Wick theorem generalizes to the complex scalar, and to the real and complex vector: we have 
 %
+\begin{subequations}
 \begin{align}
 T[\varphi (x) \varphi ^\dag (y)] &= N[\varphi (x) \varphi ^\dag (y)] + D_F (x-y) \\
 T[A^{\mu } (x) A^{\nu } (y)] &= N[A^{\mu } (x) A^{\nu } (y)] + D_F^{\mu \nu } (x-y) \\
 T[\omega^{\mu } (x) \omega^{\nu  \dag} (y)] &= N[\omega^{\mu } (x) \omega^{\nu \dag } (y)] + D_F^{\mu \nu } (x-y) 
 \,.
 \end{align}
+\end{subequations}
 
 \subsection{Feynman propagator for fermions}
 
@@ -252,11 +264,13 @@ S^{F}_{\alpha \beta } (x-y)
 \begin{claim}
 We have the following expression for the propagator: 
 %
+\begin{subequations}
 \begin{align}
 S_F(x-y) &= [x_0 > y_0 ] S_+ (x-y) - [x_0 < y_0 ] S_- (x-y)  \\
 &= \qty(i \slashed{\partial} + m) D_F (x-y)
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \todo[inline]{Missing some indices?}
@@ -275,6 +289,7 @@ T[\psi_{\alpha }(x) \overline{\psi}_{\beta }(y)]
 \begin{proof}
 Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overline{\psi}]\). We find something that is similar to the scalar case, but there is a crucial difference: instead of commuting operators when we switch them around for normal or time ordering, we anticommute them, so we swap their positions and change the sign. This then yields: 
 %
+\begin{subequations}
 \begin{align}
 &T[\psi_{\alpha } (x) \overline{\psi}_{\beta } (y)] - N[\psi_{\alpha } (x) \overline{\psi}_{\beta } (y)] = \\
 \begin{split}
@@ -329,6 +344,7 @@ Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overl
 \end{split}
 \,.
 \end{align}
+\end{subequations}
 
 \todo[inline]{Man, this is a tedious calculation}
 \end{proof}
@@ -337,6 +353,7 @@ Let us write explicitly the difference \(T[\psi \overline{\psi}] - N[\psi \overl
 
 We denote by \(B_i (x_i)\) a generic field, which may be real or complex, of spin 0, \(1/2\) or 1. Then, Wick's theorem states that \textbf{the \(T\)-product of \(n\) such fields can be written as}: 
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 & T[B_1 (x_1 ) B_2 (x_2 ) \dots B_n (x_n)]= \\
@@ -346,6 +363,7 @@ We denote by \(B_i (x_i)\) a generic field, which may be real or complex, of spi
 &+ \dots \,,
 \end{split}
 \end{align}
+\end{subequations}
 %
 where \(P_{ij}\) is the number of fermion operator swaps we need to perform to bring \(B_i\) and \(B_j\) to the front; the normal-ordered product with \(\hat{B}_i\) means that it is taken removing \(B_i\). 
 
@@ -463,6 +481,7 @@ Nevertheless, just like a quantum particle can tunnel through a potential barrie
 
 Starting from the expression we derived in an earlier chapter for the propagator \eqref{eq:scalar-field-propagator} as an integral in momentum space, we can write 
 %
+\begin{subequations}
 \begin{align}
 D_F (x-y) &= [x_0 > y_0 ] D_+ (x-y) + [x_0 < y_0 ] D_- (x-y)  \\
 &= \frac{1}{(2 \pi )^3} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
@@ -471,6 +490,7 @@ D_F (x-y) &= [x_0 > y_0 ] D_+ (x-y) + [x_0 < y_0 ] D_- (x-y)  \\
 &= \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}} \widetilde{D}_{F} (k)
 \,.
 \end{align}
+\end{subequations}
 
 This defines the scalar propagator in momentum space 
 %
@@ -487,6 +507,7 @@ This shows explicitly that the propagator \emph{must} represent an \textbf{off-s
 
 For the complex scalar field we have that 
 %
+\begin{subequations}
 \begin{align}
 \varphi_{+} &\sim a(k) e^{-ikx} 
 &
@@ -496,15 +517,18 @@ For the complex scalar field we have that
 \varphi_{-}^\dag &\sim a ^\dag(k) e^{ikx}
 \,.
 \end{align}
+\end{subequations}
 
 So, the propagator is given by 
 %
+\begin{subequations}
 \begin{align}
 D_F (x-y) &= \bra{0} T [\varphi (x) \varphi ^\dag (y)] \ket{0}  \\
 &= [x_0 > y_0 ] \bra{0} \varphi_{+} (x) \varphi_{-}^\dag(y) \ket{0}
 + [x_0 < y_0 ] \bra{0} \varphi_{+}^\dag(y) \varphi_{-}(x) \ket{0}
 \,,
 \end{align}
+\end{subequations}
 %
 since we get the only nonvanishing contributions when we have coupled operators together, such as \(a \) and \(a ^\dag\). 
 
@@ -546,12 +570,14 @@ Because of this, we need to have an arrow to represent the direction of the part
 
 The interpretation in this case is similar to the real scalar: the propagator is written as 
 %
+\begin{subequations}
 \begin{align}
 D^{\mu \nu }_{F} (x-y) &= \bra{0} T[A^{\mu }(x) A^{\nu }(y)] \ket{0}  \\
 &= [x_0 > y_0 ] \bra{0} A^{\mu }_{+}(x) A^{\nu }_{-}(y) \ket{0}
 + [x_0 < y_0 ] \bra{0} A^{\nu }_{+} y A^{\mu }_{-}(x) \ket{0} 
 \,.
 \end{align}
+\end{subequations}
 
 This is represented diagrammatically as shown in figure \ref{fig:virtual-photon-diagram}.
 
@@ -591,6 +617,7 @@ The \textbf{complex vector} does not have any more complications than those foun
 
 We have seen that the definition of the propagator for a Dirac fermion is 
 %
+\begin{subequations}
 \begin{align}
 S^{\alpha \beta }_{F}(x-y) 
 &= \bra{0} T \qty[ \psi^{\alpha } (x) \overline{\psi}^{\beta }(y)] \ket{0}  \\
@@ -600,6 +627,7 @@ S^{\alpha \beta }_{F}(x-y)
 \bra{0} \overline{\psi}^{\beta }_{+}(y) \psi^{\alpha }_{-}(x) \ket{0}
 \,.
 \end{align}
+\end{subequations}
 
 The interpretation now follows that of the complex scalar field, since the fermion is complex-valued. 
 If \(x_0 > y_0 \), we only have the first piece: 
@@ -633,20 +661,24 @@ This is represented with a full line as well, and now the arrow goes in the oppo
 
 The analytic expression for the propagator in position and momentum space is given by: 
 %
+\begin{subequations}
 \begin{align}
 S_F (x-y) &= \int_{C_F} \frac{ \dd[4]{k}}{(2 \pi )^{4}} e^{-ik (x-y)}
 \widetilde{S}_{F} (k) = \qty(i \slashed{\partial} + m )D_F(x-y) \\
 S_F (k) &= \frac{i}{\slashed{k} - m} = i \frac{\slashed{k} + m }{k^2- m^2}
 \,.
 \end{align}
+\end{subequations}
 
 Note that these integrals are often written in an \textbf{equivalent} way, using the \(+i \epsilon \) prescription: 
 %
+\begin{subequations}
 \begin{align}
 D_F (x-y) &= \int \frac{ \dd[4]{k}}{(2 \pi )^{4}} \frac{e^{-ik(x-y)}}{k^2- m^2 + i \epsilon }  \\
 \widetilde{D}_{F} &= \frac{i}{k^2- m^2 + i \epsilon }
 \,,
 \end{align}
+\end{subequations}
 %
 where the integral is now straight along the real axis for the coordinate \(k_0 \); this way of writing is equivalent as long as we send \(\epsilon \to 0 \). Instead of integrating around the poles, we integrate straight and move the poles out of the way.\footnote{Like a galactic highway.}
 
@@ -659,6 +691,7 @@ In the expansion of the time-ordered product with the use of Wick's theorem we g
 We only have two possible terms: \(\varphi_{+}\) and \(\varphi_{-}\). 
 The first of these can be written as 
 %
+\begin{subequations}
 \begin{align}
 \varphi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 a(k) e^{-ikx}  \\
@@ -666,9 +699,11 @@ a(k) e^{-ikx}  \\
     a -- [scalar, momentum = \(a\)] x [particle = \(x\)]
 };
 \end{align}
+\end{subequations}
 
 So, we interpret it as a particle of intederminate momentum being annihilated at \(x\).
 On the other hand, we have  
+\begin{subequations}
 \begin{align}
 \varphi_{-}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 a ^\dag(k) e^{ikx}  \\
@@ -676,12 +711,14 @@ a ^\dag(k) e^{ikx}  \\
     x [particle = \(x\)] -- [scalar, reversed momentum = \(a\)] a
 };
 \end{align}
+\end{subequations}
 
 So, \(\varphi_{-} (x)\) represents a particle being created ad \(x\) with indeterminate momentum. 
 
 \subsubsection{Uncontracted complex scalar field}
 
 Now we have: 
+\begin{subequations}
 \begin{align}
 \varphi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 a(k) e^{-ikx}  \\
@@ -689,7 +726,9 @@ a(k) e^{-ikx}  \\
     a -- [charged scalar, momentum = \(a\)] x [particle = \(x\)]
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \varphi_{-} ^\dag(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 a ^\dag(k) e^{ikx}  \\
@@ -697,7 +736,9 @@ a ^\dag(k) e^{ikx}  \\
     x [particle = \(x\)] -- [charged scalar, reversed momentum = \(a\)] a
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \varphi_{+} ^\dag(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 b(k) e^{-ikx}  \\
@@ -705,7 +746,9 @@ b(k) e^{-ikx}  \\
     a -- [anti charged scalar, momentum = \(b\)] x [particle = \(x\)]
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \varphi_{-} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 b ^\dag(k) e^{ikx}  \\
@@ -713,6 +756,7 @@ b ^\dag(k) e^{ikx}  \\
     x [particle = \(x\)] -- [anti charged scalar, reversed momentum = \(b\)] a
 };
 \end{align}
+\end{subequations}
 
 Notice that the arrow tracks the direction in which the charge flows. 
 
@@ -720,6 +764,7 @@ Notice that the arrow tracks the direction in which the charge flows.
 
 The interpretation is always the same, I will write all the diagrams for completeness. 
 %
+\begin{subequations}
 \begin{align}
 A^{\mu }_{+}(x) &= \frac{1}{(2\pi )^{3/2}} 
 \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
@@ -728,8 +773,10 @@ A^{\mu }_{+}(x) &= \frac{1}{(2\pi )^{3/2}}
     a -- [photon, momentum] x [particle={\(x\), \(\mu \)}]
 };
 \end{align}
+\end{subequations}
 %
 %
+\begin{subequations}
 \begin{align}
 A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}} 
 \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
@@ -738,9 +785,11 @@ A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}}
     x [particle={\(x\), \(\mu \)}] -- [photon, momentum] a
 };
 \end{align}
+\end{subequations}
 
 \subsubsection{Uncontracted Dirac fermion}
 
+\begin{subequations}
 \begin{align}
 \psi_{+}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 \sum _{r} c_r (k) u_r (k) e^{-ikx}
@@ -749,7 +798,9 @@ A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}}
     a -- [fermion, momentum = \(c\)] x [particle = \(x\)]
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \overline{\psi}_{-}(x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 \sum _{r} c_r ^\dag (k) \overline{u}_r (k) e^{+ikx}
@@ -758,7 +809,9 @@ A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}}
     x [particle = \(x\)] -- [fermion, reversed momentum = \(c\)] a
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \overline{\psi}_{+} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 \sum _{r} d_r (k) \overline{v}_r (k) e^{-ikx}
@@ -767,7 +820,9 @@ A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}}
     a -- [anti fermion, momentum = \(d\)] x [particle = \(x\)]
 };
 \end{align}
+\end{subequations}
 
+\begin{subequations}
 \begin{align}
 \psi_{-} (x) &= \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}}
 \sum _{r} d_r ^\dag (k) v_r (k) e^{ikx}
@@ -776,5 +831,6 @@ A^{\mu }_{-}(x) &= \frac{1}{(2\pi )^{3/2}}
     x [particle = \(x\)] -- [anti fermion, reversed momentum = \(d\)] a
 };
 \end{align}
+\end{subequations}
 
 \end{document}

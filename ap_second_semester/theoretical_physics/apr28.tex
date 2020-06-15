@@ -9,20 +9,24 @@
 
 The classical structure of such a system is completely determined by the equations of motion: 
 %
+\begin{subequations}
 \begin{align}
 \dot{q} &= \qty{q, H}  \\
 \dot{p} &= \qty{p, H}
 \,,
 \end{align}
+\end{subequations}
 %
 and by the commutation relations: 
 %
+\begin{subequations}
 \begin{align}
 \qty{q^{i}, q^{j}} &= 0  \\
 \qty{p_{i}, p_{j}} &= 0  \\
 \qty{q^{i}, p_{j}} &= \delta_{j}^{i}
 \,.
 \end{align}
+\end{subequations}
 
 Note that these Poisson brackets are to be calculated at a fixed time. 
 
@@ -39,11 +43,13 @@ We can \textbf{quantize} such a system by the following substitutions:
 
 The Hamilton equations then read 
 %
+\begin{subequations}
 \begin{align}
 \dv{X}{t} &= \frac{1}{i \hbar} \qty[X, H] \\
 \dv{P}{t} &= \frac{1}{i \hbar} \qty[P, H]
 \,,
 \end{align}
+\end{subequations}
 %
 and the commutation relations are also generalized; the interesting one is the position-momentum commutator which now reads 
 %
@@ -62,12 +68,14 @@ To say that the two approaches are equivalent means that they yield the same exa
 
 In the Schrödinger approach, the wavefunction evolves as \(\ket{\psi (t)} = U(t) \ket{\psi_0 }\) while the observables are stationary; in the Heisenberg approach the wavefunction is stationary while the operators evolve as \(A(t) = U ^\dag A U\). So, the expectation value is 
 %
+\begin{subequations}
 \begin{align}
 \expval{A(t)}_{\psi_0 } &\overset{?}{=} \expval{A}_{\psi (t)}  \\
 \bra{\psi_0 } A(t) \ket{\psi_0 } &\overset{?}{=} \bra{\psi (t)} A \ket{\psi (t)} \\
 \bra{\psi_0 } U ^\dag A U\ket{\psi_0 } &= \bra{\psi_0 } U ^\dag A U \ket{\psi_0 } 
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 \subsection{Field theory}
@@ -82,12 +90,14 @@ The evolution of the fields is given in classical field theory as
 %
 and we have the commutation relations 
 %
+\begin{subequations}
 \begin{align}
 \qty{\varphi (x), \varphi (y)} &=0  \\
 \qty{ \pi (x), \pi (y)} &= 0  \\
 \qty{\varphi (x), \pi (y)} &= \delta^{(3)}(x-y)
 \,,
 \end{align}
+\end{subequations}
 %
 all considered at constant time. 
 
@@ -95,11 +105,13 @@ In order to \textbf{quantize} this system, we replace the fields \(\varphi \) an
 
 The equations of motion will then read 
 %
+\begin{subequations}
 \begin{align}
 \dv{\hat{\varphi}}{t} &= \frac{1}{i \hbar} \qty[\hat{\varphi}, H] \\
 \dv{\hat{\pi}}{t} &= \frac{1}{i \hbar} \qty[\hat{\pi}, H] 
 \,,
 \end{align}
+\end{subequations}
 %
 and the commutation relations will read 
 %
@@ -115,11 +127,13 @@ These commutators are always taken at constant time.
 
 As we have seen before, the field and momentum of the free scalar field, which satisfies the Klein-Gordon equation, can be expressed as 
 %
+\begin{subequations}
 \begin{align}
 \varphi (x) &= \frac{1}{(2\pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} \qty[a(k) e^{-ikx} + a^{\dag}(k) e^{ikx}]_{k^{0} =\omega_{k}} \\
 \pi (x) &= \frac{1}{(2\pi )^{3/2}} \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} (-i \omega_{k}) \qty[a(k) e^{-ikx} - a^{\dag}(k) e^{ikx}]_{k^{0} =\omega_{k}} 
 \,,
 \end{align}
+\end{subequations}
 %
 and we will now interpret this as an operator expression: even if we omit the hats, \(\varphi \) and \(\pi \) are intended to be operators. 
 Therefore, \(a\) and \(a^{\dag}\) must also be. 
@@ -127,16 +141,19 @@ Therefore, \(a\) and \(a^{\dag}\) must also be.
 \begin{claim}
 We can invert this relation to get \(a\) and \(a^{\dag}\) in terms of \(\varphi \) and \(\pi \): 
 %
+\begin{subequations}
 \begin{align}
     a(k) = \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty[\omega_{k} \varphi + i \pi ] \eval{e^{ikx}}_{k^{0}= \omega_{k}} \\
     a^{\dag}(k) = \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}} \qty[\omega_{k} \varphi - i \pi ] \eval{e^{-ikx}}_{k^{0}= \omega_{k}} \\
     \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}
 Let us compute the interesting one: 
 %
+\begin{subequations}
 \begin{align}
 \qty[a(k), a ^\dag (p)] &= \frac{1}{(2\pi )^3} \int \frac{ \dd[3]{x} \dd[3]{y}}{2 \omega_{k}}
 \qty[\omega_{k} \varphi + i \pi, \omega_{k} \varphi - i \pi ] e^{i(k-p)x}  \\
@@ -148,15 +165,18 @@ Let us compute the interesting one:
 &= \delta^{(3)} (k-p) \label{eq:commutator-annihilation-creation-operators}
 \,.
 \end{align}
+\end{subequations}
 
 We have used the fact that, by linearity and antisymmetry of the commutator:
 %
+\begin{subequations}
 \begin{align}
 \qty[\omega_{k} \varphi + i \pi, \omega_{k} \varphi - i \pi ] 
 &= \qty[\omega_{k} \varphi , \omega_{k} \varphi ]+ \qty[\omega_{k} \varphi , -i \pi ] + \qty[i \pi, \omega_{k} \varphi ] + \qty[i \pi , -i \pi ]  \\
 &= -2 \omega_{k} i \qty[\varphi , \pi ]
 \,.
 \end{align}
+\end{subequations}
 
 For the other two the computation is similar, and the difference comes about in the commutator step: for \(\qty[a, a]\) we get
 %
@@ -197,6 +217,7 @@ N = \int \dd[3]{k} N(k)
 \begin{claim}
 Both \(N\) and \(N(k)\) are self-adjoint: \(N = N ^\dag\), and they satisfy the following commutation relations: 
 %
+\begin{subequations}
 \begin{align} \label{eq:commutation-relations-number}
 \qty[N(k), a(p)] &= - a(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
 \qty[N(k), a ^\dag(p)] &= + a ^\dag(k) \delta^{(3)}(\vec{p} - \vec{k}) \\
@@ -204,6 +225,7 @@ Both \(N\) and \(N(k)\) are self-adjoint: \(N = N ^\dag\), and they satisfy the 
 \qty[N, a ^\dag(p)] &= + a ^\dag(p)  
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \todo[inline]{There is a typo in the notes by the professor: the argument of \(a\) and \(a ^\dag\) for the local commutators is \(k\), not \(p\).}
@@ -211,6 +233,7 @@ Both \(N\) and \(N(k)\) are self-adjoint: \(N = N ^\dag\), and they satisfy the 
 \begin{proof}
 The computation goes as follows; I use subscripts as \(a(k) = a_k\) because it makes reading the expressions easier, I think:
 %
+\begin{subequations}
 \begin{align}
 \qty[N_k, a_p] &= N_k a_p - a_p N_k  \\
 &= a_k a_k ^\dag a_p - a_p a_k a_k ^\dag  \\
@@ -219,9 +242,11 @@ The computation goes as follows; I use subscripts as \(a(k) = a_k\) because it m
 &= - a_k \delta^{(3)} (p - k) \marginnote{Used relation \eqref{eq:commutator-annihilation-creation-operators}.}
 \,.
 \end{align}
+\end{subequations}
 
 The other computation is similar: 
 %
+\begin{subequations}
 \begin{align}
 \qty[N_k, a_p ^\dag] &= N_k a_p ^\dag - a_p ^\dag N_k  \\
 &= a_k a_k ^\dag a_p ^\dag - a_p ^\dag a_k a_k ^\dag  \\
@@ -230,14 +255,17 @@ The other computation is similar:
 &= - a_k ^\dag \delta^{(3)} (p - k)    
 \,.
 \end{align}
+\end{subequations}
 %
 while for the total number operator we only need to integrate over \(\dd[3]{k}\): 
 %
+\begin{subequations}
 \begin{align}
 \int \dd[3]{k} \qty[N(k), a(p)] &= - \int \dd[3]{k} a(k) \delta^{(3)}(\vec{p} - \vec{k})  \\
 \qty[N, a(p)] &= - a(p)
 \,.
 \end{align}
+\end{subequations}
 \end{proof}
 
 \subsection{Hamiltonian and momentum density operators}
@@ -258,11 +286,13 @@ H = \int \frac{ \dd[3]{k}}{2} \omega_{k} \qty[ a ^\dag (k) a(k) + a(k) a ^\dag (
 
 This can be derived without commuting \(a\) and \(a ^\dag\) anywhere; we can now get the desired expression in terms of the number operator by inserting a commutator: 
 %
+\begin{subequations}
 \begin{align}
 H &= \int \frac{ \dd[3]{k} \omega_{k} }{2} \qty[2 a ^\dag a + \qty[a, a ^\dag]]   \\
 &= \int \dd[3]{k} \omega_{k} N(k) + \int \frac{ \dd[3]{k} \omega_{k}}{2} \delta^{(3)} (k - k)
 \,,
 \end{align}
+\end{subequations}
 %
 so the second term is proportional to \(\omega_{0} \delta^{(3)} (0)\), which diverges. 
 The first term, on the other hand, makes perfect sense: we count how many particles are at each energy, and add their energies to get the total. 
@@ -279,6 +309,7 @@ P^{i} &= \int \dd[3]{x} \pi (x) \partial_{i} \varphi
 %
 and for \(\pi \) and \(\varphi \) we must use the operator expressions in momentum space: so, we find 
 %
+\begin{subequations}
 \begin{align}
 \begin{split}
 P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x} 
@@ -309,6 +340,7 @@ P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x}
 &= \int \frac{\dd[3]{k}}{2} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
 \,.
 \end{align}
+\end{subequations}
 
 Now, as before we have the integral of \(a ^\dag a /2 + a a ^\dag /2\), and we can swap them getting a term proportional to \(\delta^{(3)} (0)\). This physically means that the vacuum has an infinite momentum, which we can ignore. 
 
@@ -400,26 +432,31 @@ for some constant \(C\).
 \begin{claim}
 This satisfies: 
 %
+\begin{subequations}
 \begin{align}
 N \ket{1(p)} &= 1\ket{1(p)} \\
 H \ket{1(p)} &= \omega_{p} \ket{1(p)} \\
 \vec{p} \ket{1(p)} &= \vec{p} \ket{1(p)}
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}
 We will need the properties outlined in the equations \eqref{eq:commutation-relations-number}. The computation is as follows: 
 %
+\begin{subequations}
 \begin{align}
 N a ^\dag (p) \ket{0} &= \qty( N a ^\dag (p) - a ^\dag (p) N ) \ket{0}  \marginnote{We used the fact that \(N \ket{0} = 0\).}\\
 &= \qty[N, a ^\dag (p)] \ket{0}  \\
 &= a ^\dag(p) \ket{0} = \ket{1(p)}
 \,.
 \end{align}
+\end{subequations}
 
 For the energy the computation is similar: 
 %
+\begin{subequations}
 \begin{align}
 H a ^\dag (p) \ket{0} &= \int \dd[3]{k} \omega_{k} N(k) a ^\dag (p) \ket{0}  \\
 &= \int \dd[3]{k} \omega_{k} \qty[ N(k), a ^\dag (p)] \ket{0}  \\
@@ -427,6 +464,7 @@ H a ^\dag (p) \ket{0} &= \int \dd[3]{k} \omega_{k} N(k) a ^\dag (p) \ket{0}  \\
 &= \omega_{p} a ^\dag (p) \ket{0}
 \,.
 \end{align}
+\end{subequations}
 
 For the momentum the steps are almost identical. 
 \end{proof}
@@ -478,6 +516,7 @@ We want to show that \(\omega_{k}  \delta^{(3)} (\vec{k} - \vec{p})\) is a Loren
 
 Then, we know that since \(p^{\mu }\) is a contravariant 4-vector it transforms like 
 %
+\begin{subequations}
 \begin{align}
 E' &= \gamma (E - \beta p_{z}) \\
 p_{x}' &= p_{x} \\
@@ -485,6 +524,7 @@ p_{y}' &= p_{y} \\
 p_{z}' &= \gamma (p_{z} - \beta E)
 \,.
 \end{align}
+\end{subequations}
 
 In the expression \(\delta^{(3)} (\vec{k} - \vec{p})\) the only thing which changes is \(p_{z}\). The triple delta function is the tensor product of three deltas, but two of them are unchanged in the transformation.
 So, we must check how \(\delta (k_{z} - p_{z})\) transforms: recall that 
@@ -498,6 +538,7 @@ as long as \(f(x)\) has a single zero at \(x=0\), which holds in our case since 
 
 The conversion factor between the \(\delta \)s will be given by the inverse of the absolute value of
 %
+\begin{subequations}
 \begin{align}
 \pdv{p_{z}'}{p_{z}} &= \pdv{}{p_{z}} \qty(\gamma (p_{z} + \beta E))  \\
 &= \gamma \qty(1 + \beta \pdv{E}{p_{z}})  \\
@@ -505,6 +546,7 @@ The conversion factor between the \(\delta \)s will be given by the inverse of t
 &= \frac{\gamma \qty(E + \beta p_z)}{E} = \frac{E'}{E}
 \,,
 \end{align}
+\end{subequations}
 %
 which means that the product \(E \delta^{(3)} (\vec{k} - \vec{p})\) is covariant. 
 \end{proof}
@@ -535,16 +577,19 @@ Recall, the real scalar field is given in general by
 \begin{claim}
 We have the following transition amplitudes: 
 %
+\begin{subequations}
 \begin{align}
 \bra{0} \varphi_{+} (x) \ket{1(p)} &= e^{-ipx} \\
 \bra{1(p)} \varphi_{-} (x) \ket{0} &= e^{ipx}
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}
 In order to compute this we substitute in directly:  
 %
+\begin{subequations}
 \begin{align}
 \bra{0} \varphi_{+} (x) \ket{1(p)} &=
 \bra{0} \frac{1}{(2 \pi )^{3/2}} 
@@ -556,6 +601,7 @@ e^{-ikx} a(k) (2 \pi )^{3/2} \sqrt{2 \omega_{p}} a ^\dag (p) \ket{0}  \\
 &= \braket{0}{0} \int \dd[3]{k} e^{-ikx} \delta^{(3)} (k-p) = e^{-ipx}
 \,,
 \end{align}
+\end{subequations}
 %
 where we used the fact that \(a_k a ^\dag_p \ket{0} = \qty[a_k, a ^\dag_p] \ket{0}\).
 
@@ -571,6 +617,7 @@ Are the expressions for these covariant?
 
 We start by defining 
 %
+\begin{subequations}
 \begin{align}
 D(x - y) &= \qty[\varphi (x), \varphi (y)]  \\
 &= \qty[\varphi_{+} (x) + \varphi_{-} (x), \varphi_{+} (x) + \varphi_{-} (x)]  \\
@@ -578,6 +625,7 @@ D(x - y) &= \qty[\varphi (x), \varphi (y)]  \\
 &= D_+ (x-y) + D_- (x-y)
 \,.
 \end{align}
+\end{subequations}
 
 \todo[inline]{To check how the signs work out: when we use this expression later we have a negative sign in front of \(D_-\).}
 
@@ -626,6 +674,7 @@ where \(C_{\pm}\) is a small clockwise contour in the complex plane around \(k_0
 \begin{proof}
 The claim we want to prove is 
 %
+\begin{subequations}
 \begin{align}
 D_{\pm} (x-y) 
 = i \int_{C_{\pm}} \frac{ \dd[4]{k}}{(2\pi )^{4}}
@@ -638,6 +687,7 @@ D_{\pm} (x-y)
 \pm \eval{\frac{e^{\mp ik(x-y)}}{2 \omega_{k}}}_{k_0 = \omega_{k}}
 \,.
 \end{align}
+\end{subequations}
 
 We do not write the \(\dd[3]{k}\) integral anymore and consider \(\vec{k}\) as fixed. 
 
@@ -678,6 +728,7 @@ and we can write \(k^2 - m^2 = k_0^2 - \abs{\vec{k}}^2 - m^2 = k_0^2 - \omega_{k
 We are working near \(k_0 = \omega_{k}\), where the exponential is basically constant.
 For a first order pole like this, the residual is simple to compute: 
 %
+\begin{subequations}
 \begin{align}
 \Res_{k_0 = \pm \omega_{k}} 
 \frac{e^{-ik(x-y)}}{(k_0 - \omega_{k}) (k_0 + \omega_{k})}
@@ -688,6 +739,7 @@ For a first order pole like this, the residual is simple to compute:
 &= \pm \eval{\frac{e^{\mp ik (x-y)}}{2 \omega_{k}}}_{k_0 = \pm \omega_{k}} 
 \,,
 \end{align}
+\end{subequations}
 %
 as we desired. Note that we have switched the sign of the \(\vec{k}\) coordinates in the exponent: this would not be possible in general, but we are working implicitly inside of the \(\dd[3]{k} \) integral, so a map \(\vec{k} \to - \vec{k}\) does not pose an issue.
 \end{proof}
@@ -804,6 +856,7 @@ The \textbf{Fock space} is defined constructively just like the real case: the v
 \begin{claim}
 If we denote these states, with the appropriate normalizations, by \(\ket{1(p)} \propto a ^\dag (p) \ket{0}\) and \(\ket{\overline{1} (p)} \propto b ^\dag(p) \ket{0}\), then we have: 
 %
+\begin{subequations}
 \begin{align} \label{eq:fock-one-particle-state-properties}
 N \ket{1 (p)} &= 1 \ket{1 (p)} &
 N \ket{\overline{1} (p)} &= 1 \ket{\overline{1} (p)}  \\
@@ -813,11 +866,13 @@ Q \ket{1 (p)} &= +q \ket{1 (p)} &
 Q \ket{\overline{1} (p)} &= -q \ket{\overline{1} (p)}  
 \,.
 \end{align}
+\end{subequations}
 \end{claim}
 
 \begin{proof}
 Let us show it for one of them: 
 %
+\begin{subequations}
 \begin{align}
 N \ket{1 (p)} &\propto
 \qty(\int \dd[3]{k} \qty(a ^\dag(k) a(k) + b ^\dag(k) b (k))) 
@@ -829,6 +884,7 @@ a ^\dag (p) \ket{0}  \\
 &= a ^\dag(p) \ket{0}
 \,.
 \end{align}
+\end{subequations}
 
 The basic reasoning for the others is the same. 
 \end{proof}

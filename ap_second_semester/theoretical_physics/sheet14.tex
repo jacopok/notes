@@ -17,11 +17,84 @@ The Lagrangian is written as
 \,,
 \end{align}
 %
-and it can be decomposed as \(\mathscr{L} = \mathscr{L}_{0} + \mathscr{L} _{\text{int}}\), with 
+where \(q\) is the charge of the fermion --- for instance, electrons have \(q = - \abs{e}\). 
+This can be decomposed as \(\mathscr{L} = \mathscr{L}_{0} + \mathscr{L} _{\text{int}}\), with 
 %
 \begin{align}
 \mathscr{L} _{\text{int}} = - q \overline{\psi} \gamma^{\mu } \psi A_{\mu } = - \mathscr{H} _{\text{int}}
 \,.
 \end{align}
+
+Notice that the interaction Lagrangian and Hamiltonian are opposite of each other: this holds in general, as long as there are no derivative terms --- basically, we have an interaction \emph{potential}. 
+
+We are working in the \textbf{interaction picture}. 
+
+The \(S\)-matrix operator \eqref{eq:s-matrix} for QED reads: 
+%
+\begin{align}
+S _{\text{QED}}
+&= T \qty[\exp(-iq \int \dd[4]{x} N [\overline{\psi}(x) \slashed{A} (x) \psi (x)])]  \\
+&= \sum _{n=0}^{ \infty }
+\frac{(-iq)^{n}}{n!}
+\int \dd[4]{x_1 } \dots \dd[4]{x_{n}}
+T \qty[N[\dots]_{x_1} \dots N[\dots]_{x_n}]
+\,.
+\end{align}
+
+\subsection{Expansion in position space}
+
+\subsubsection{0th order term}
+
+It is just the identity, since it corresponds to no interaction:
+%
+\begin{align}
+S^{(0)} = \mathbb{1}
+\,.
+\end{align}
+
+\subsubsection{1st order term}
+
+It is given by 
+%
+\begin{align}
+S^{(1)} &= - iq \int \dd[4]{x} T \qty[N[\overline{\psi}(x) \slashed{A} (x) \psi (x)]]  \\
+&= - iq \int \dd[4]{x} N[\overline{\psi}(x) \slashed{A} (x) \psi (x)]
+\,.
+\end{align}
+
+In order to remove the time-ordering we have used the corollary of Wick's theorem. 
+
+\todo[inline]{It is not clear to me how the corollary applies here. We have something like \(T[N[A(x)B(x)]]\), and the corollary tells us that it is equivalent to \(T[A(x)B(x)]_{\text{NCET}} = A(x)B(x)\): this is fine, but we lose the normal-ordering! Why does he still write it? I think it might not be actually there.}
+
+We can split \(\overline{\psi} \), \(\slashed{A}\) and \(\psi \) into their \(+\) and \(-\) components: we get eight contributions, 
+%
+\begin{align}
+N \qty[
+    \qty(\overline{\psi}_{+} + \overline{\psi}_{-})
+    \qty(\slashed{A}_{+} + \slashed{A}_{-})
+    \qty(\psi_{+} + \psi_{-})
+]
+= N \qty[
+    \sum \overline{\psi}_{\pm} \slashed{A}_{\pm} \psi_{\pm}
+]
+\,,
+\end{align}
+%
+which we can represent using Feynman diagrams.
+All of these diagram only have one vertex at \(x\), and they have a fermion, an antifermion and a photon being created/annihilated there (all the 8 possible combinations). As an example, we show: 
+%
+\begin{align}
+\overline{\psi}_{+} \slashed{A}_{-} \psi_{+}
+= \feynmandiagram[inline=(c.base), horizontal = c to p]{
+    c [particle=\(x\)] -- [photon] p [particle=\(\gamma \)],
+    a [particle=\(e^{-}\)] -- [fermion] c -- [fermion] b [particle=\(e^{+}\)]
+};
+\end{align}
+%
+here we have an electron and a positron annihilating to form a photon.
+
+\todo[inline]{Incidentally, this is the only vertex which is wrong in the professor's notes.}
+
+In general, particles which are created (so, with subscript \(-\)) go rightward, particles which are annihilated come from the left.
 
 \end{document}

@@ -16,7 +16,7 @@ When we write the Hamiltonian, we always mean the \textbf{normal-ordered} Hamilt
 \begin{definition}
 The \(S\)-matrix evolution operator is given by:
 %
-\begin{subequations}
+\begin{subequations} \label{eq:s-matrix}
 \begin{align}
 S = U_I (- \infty , \infty )
 &= T \qty[\exp(-i \int_{- \infty }^{\infty } \dd{\tau }H _{\text{int}}^{I} (\tau ))]  \\
@@ -358,8 +358,12 @@ We denote by \(B_i (x_i)\) a generic field, which may be real or complex, of spi
 \begin{split}
 & T[B_1 (x_1 ) B_2 (x_2 ) \dots B_n (x_n)]= \\
 &= N[B_1 (x_1 ) B_2 (x_2 ) \dots B_n (x_n)]  \\
-&+ \sum _{ij} (-)^{P_{ij}} D_F^{ij}(x_i - x_j) N[ \dots \hat{B}_{i}(x_i) \hat{B}_{j}(x_j)\dots]  \\
-&+ \sum _{ijkl} (-)^{P_{ij}+P_{kl}} D_F^{ij}(x_i - x_j) D_F^{kl}(x_k - x_l)  N[\dots \hat{B}_{i}(x_i) \hat{B}_{i}(x_j)\dots \hat{B}_{k}(x_k) \hat{B}_{l}(x_l)\dots]  \\
+&+ \sum _{ij} (-)^{P_{ij}} 
+ N[ \dots \bcontraction{}{B}{_i (x_i)}{B}
+ B_i(x_i)B_j(x_j) \dots]  \\
+&+ \sum _{ijkl} (-)^{P_{ij}+P_{kl}} N[\dots  \bcontraction{}{B}{_i (x_i)}{B}
+B_i(x_i)B_j(x_j) \dots \bcontraction{}{B}{_k (x_k)}{B}
+B_k(x_k)B_l(x_l) \dots]  \\
 &+ \dots \,,
 \end{split}
 \end{align}
@@ -375,7 +379,7 @@ We have the same \textbf{corollary} as before: normal-ordered contractions of fi
 %
 \begin{align}
 T \qty[N[B_1 (x) B_2 (x)] B_3 (x_3 ) \dots B_n (x_n)] 
-= T \qty[B_1 (x) B_2 (x) B_3 (x_3) \dots B_n (n_n)]_{NCET}
+= T \qty[B_1 (x) B_2 (x) B_3 (x_3) \dots B_n (x_n)]_{NCET}
 \,.
 \end{align}
 

@@ -445,12 +445,12 @@ Now, we know that \(D^{\mu \nu } (x-y) = - \eta^{\mu \nu } D_F\) as long as we s
 \begin{align}
 S_{e^{-}e^{+}} = - q^2 \int \dd[4]{x} \dd[4]{y} D_F^{\mu \nu } (x-y)
 \qty(\underbrace{N \qty[
-    \qty(\overline{\psi_{-}} \gamma_{\mu } \psi_{-} )_x
+    \qty(\overline{\psi}_{-} \gamma_{\mu } \psi_{-} )_x
     \qty(\overline{\psi_{+}} \gamma_{\nu } \psi_{+} )_y
 ]}_{\Circled{A}}+
 \underbrace{N \qty[
     \qty(\overline{\psi_{+}} \gamma_{\mu } \psi_{-} )_x
-    \qty(\overline{\psi_{-}} \gamma_{\nu } \psi_{+} )_y
+    \qty(\overline{\psi}_{-} \gamma_{\nu } \psi_{+} )_y
 ]}_{\Circled{B}}
 )
 \,.
@@ -461,6 +461,274 @@ The two diagrams are topologically distinct: \Circled{A} is called the \textbf{S
 On the other hand, \Circled{B} is called the \textbf{T-channel contribution}, in which the electron and positron exchange a virtual photon but are never annihilated. 
 
 \subsubsection{One photon and one fermion propagator: \(\Circled{C_1 }\)}
+
+We now consider the term 
+%
+\begin{align}
+S_{\Circled{C_1 }} &= - \frac{q^2}{2!} \int \dd[4]{x} \dd[4]{y} 
+N \left[
+    \bcontraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+    \contraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+\right]+ 
+N \left[
+    \bcontraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+    \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+\right]  \\
+&= - q^2 \int \dd[4]{x} \dd[4]{y} D^{\mu \nu }_{F} (x-y) 
+N \qty[\overline{\psi}(x) \gamma_{\mu } S_F (x-y) \gamma_{\nu } \psi (x)]
+\,,
+\end{align}
+%
+since the two components can be cast into each other by renaming \(x \leftrightarrow y\) (which can always be done since they are integrated away), and permuting 4 (\(\equiv 0 \mod 2\)) fermion operators.
+
+The \(0 \to 2\) and \(2 \to 0\) processes are not allowed (they enforce zero energy for all the particles). So, we have two possibilities: either an electron having a loop and coming back to itself, or a positron doing the same. 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, horizontal = y to x]{
+e1 -- [fermion] y -- [fermion] x -- [fermion] e2,
+y -- [photon, half left] x
+};
+\quad
+\feynmandiagram[layered layout, horizontal = y to x]{
+e1 -- [anti fermion] y -- [anti fermion] x -- [anti fermion] e2,
+y -- [photon, half left] x
+};
+\caption{Electron loop, positron loop.}
+\label{fig:electron-loop-positron-loop}
+\end{figure}
+
+This is known as the electron (positron) self-energy. 
+
+\subsubsection{Two fermion propagators: \(\Circled{C_2}\)}
+
+This term looks like 
+%
+\begin{align}
+S_{\Circled{C_2 }}
+&= - \frac{q^2}{2} \int \dd[4]{x} \dd[4]{y}
+N \left[
+    \bcontraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+    \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+\right]  \\
+&= \frac{q^2}{2} \int \dd[4]{x} \dd[4]{y} 
+\Tr \qty[S_F (y-x) \gamma^{\mu } S_F(x-y) \gamma^{ \nu }] N \qty[A_{\mu } A_{\nu }]
+\,.
+\end{align}
+
+Why can we write this as a trace? This comes from a permutation of the spinors; in order to make it explicit we restore the spinorial indices of the \(\gamma^{\mu }\) matrices, using the first letters of the Greek alphabet: 
+%
+\begin{align}
+&N \left[
+    \bcontraction{}{(\overline{\psi}_{\alpha }}{ \gamma^{\mu }_{\alpha \beta } \psi_{\beta } ) _{x} (\overline{\psi}_{\gamma } \gamma^{\nu }_{\gamma \delta }}{ \psi_{ \delta }} % 1-4
+    \acontraction{(\overline{\psi}_{\alpha } \gamma^{\mu }_{\alpha \beta } }{\psi_{\beta }}{ ) _{x} (}{\overline{\psi}_{\gamma }}  % 2-3
+    (\overline{\psi}_{\alpha } \gamma^{\mu }_{\alpha \beta } \psi_{\beta } ) _{x} (\overline{\psi}_{\gamma } \gamma^{\nu }_{\gamma \delta } \psi_{ \delta } ) _{y}
+\right]  \\
+&= 
+(-)^3 
+\bcontraction{}{\psi_{ \delta }}{}{\overline{\psi}_{\alpha }}
+\psi_{ \delta } \overline{\psi}_{\alpha }
+\bcontraction{}{\psi_{ \beta }}{}{\overline{\psi}_{\gamma }}
+\psi_{ \beta } \overline{\psi}_{\gamma }
+\gamma^{\mu }_{\alpha \beta } \gamma^{\nu }_{\gamma \delta }  \\
+&= - S_F(y-x)_{\delta \alpha } \gamma^{\mu }_{ \alpha \beta }
+S_{F}(x-y) _{\beta \gamma }
+\gamma^{\nu }_{\gamma \delta } \\
+&= - \Tr(S_F(y-x) \gamma^{\mu }
+S_F(x-y)
+\gamma^{\nu })
+\,, 
+\end{align}
+%
+where we are taking the trace since all the indices are contracted, including the first and last. 
+
+Now, we only have one diagram: it looks like 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, horizontal = y to x]{
+    a -- [photon] y,
+    y -- [half left, fermion] x,
+    y -- [half right, anti fermion] x,
+    x -- [photon] b
+};
+\caption{Photon self-energy.}
+\label{fig:photon-self-energy}
+\end{figure}
+
+This corresponds to \(A^{\mu }_{+}(y) A^{\nu }_{-} (x)\), the only other valid one is the same except for \(x \leftrightarrow y\).  
+
+\subsubsection{Three propagators: \(\Circled{D}\)}
+
+There are no uncontracted fields: this kind of process cannot contribute to the physical properties of already-existing particles, but it does alter the vacuum. This becomes relevant when QED is coupled to gravity. 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, horizontal = y to x]{
+    y -- [photon] x,
+    y -- [fermion, half left] x,
+    y -- [anti fermion, half right] x,
+};
+\caption{Vacuum diagram.}
+\label{fig:vacuum-QED}
+\end{figure}
+
+\todo[inline]{Third order diagrams}
+
+\subsection{Expansion in momentum space}
+
+We have seen that even terms which are not allowed kinematically are included in the position-space \(S\)-matrix expansion. 
+
+In order to determine which states describe physical processes we need to take the matrix element with the initial and final states: 
+%
+\begin{align}
+S_{fi} = \bra{f} S \ket{i}
+\,,
+\end{align}
+%
+where \(\ket{f} = \ket{\psi (t \to + \infty )}\) and \(\ket{i} = \ket{\psi (t \to - \infty )}\).
+This matrix element is the transition amplitude; the transition probability is given by \(\abs{S_{fi}}^2\). 
+
+This works well and is normalized, since if the states \(\ket{f}\) are a basis we have 
+%
+\begin{align}
+\sum _{f} \abs{S_{fi}}^2
+&= \sum_f \bra{i} S ^\dag \ket{f}\bra{f} S \ket{i}  \\
+&= \bra{i} S ^\dag \mathbb{1} S \ket{i}  \\
+&= 1
+\,,
+\end{align}
+%
+since \(S ^\dag S  = \mathbb{1}\). 
+
+Now, when we compute the \(T\)-product we get propagators and uncontracted fields, the latter will act on the initial states.
+Let us see how they do so. 
+
+\subsubsection{Contractions with \(\ket{i}\)}
+
+As a common QED example, consider 
+%
+\begin{align}
+\ket{i} = \ket{e^{-}_{s} (p)}
+= (2 \pi )^{3/2}
+\sqrt{2 \omega_{p}}
+c_s ^\dag (p) \ket{0}
+\,.
+\end{align}
+
+Let us calculate the applications 
+\todo[inline]{He writes "contractions" which I do not see making sense here!}
+of the annihilation operators \(\psi_{+}\) and \(\overline{\psi}_{+}\) on this state: we get 
+%
+\begin{align}
+\psi_{+} (x) \ket{e^{-}_{s} (p)}
+&= \int \dd[3]{k} \sqrt{\frac{2 \omega_{p}}{2 \omega_{k}}}
+e^{-ikx} \sum_{r} u_r (k) c_r (k) c_s ^\dag (p) \ket{0}  \\
+&= \int \dd[3]{k} \sqrt{\frac{2 \omega_{p}}{2 \omega_{k}}}
+e^{-ikx} \sum_{r} u_r (k) \qty(\qty{ c_r (k), c_s ^\dag (p)} - c_s ^\dag (p) c_r (k)) \ket{0}  \\
+&= \int \dd[3]{k} \sqrt{\frac{2 \omega_{p}}{2 \omega_{k}}}
+e^{-ikx} \sum_{r} u_r (k) \delta_{rs} \delta^{(3)}(\vec{p} - \vec{k}) \ket{0}  \\
+&= e^{-ipx} u_s (p) \ket{0}
+\,.
+\end{align}
+
+The same reasoning applied to \(\overline{\psi}_{+}(x) \ket{e^{-}_{s}(p)}\) yields 0, since \(\qty{d_r, c_s ^\dag }= 0\). 
+The same holds for any field operator which is unrelated to the state (like a photon annihilation operator). 
+
+The useful relations in this sense are: 
+%
+\begin{align}
+\psi_{+} (x) \ket{e^{-}_{s} (p)} &= e^{-ipx} u_s (p) \ket{0} \\
+\overline{\psi}_{+} (x) \ket{e^{+}_{s} (p)} &= e^{-ipx} \overline{v}_s (p) \ket{0}  \\
+A^{\mu }_{+} (x) \ket{\gamma_{\lambda } (p)} =e^{-ipx} \epsilon^{\mu }_{\lambda } (p)\ket{0}  \\
+\varphi ^\dag_{+} (x) \ket{s(p)} &= e^{-ipx} \ket{0} 
+\,.
+\end{align}
+
+\subsubsection{Contractions with \(\bra{f}\)}
+
+We take the adjoint of the example from before: 
+%
+\begin{align}
+\bra{e^{-}_{s} (p)} = (2 \pi)^{3/2} \sqrt{2 \omega_{p}}
+\bra{0} c_s (p)
+\,,
+\end{align}
+%
+and we apply from the right a creation operator \(\overline{\psi}_{-}(x)\): 
+%
+\begin{align}
+\bra{e^{-}_{s}(p)}
+\overline{\psi}_{-}(x)
+&= \bra{0} \int \dd[3]{k}
+\sqrt{ \frac{2 \omega_{k}}{2 \omega_{p}}}
+e^{ikx} \sum _{r} \overline{u}_{r} (k) c_s (k) c_r ^\dag (p)  \\
+&= \bra{0} e^{ipx} \overline{u}_{s} (p)
+\,,
+\end{align}
+%
+since \(\qty{c_s (k), c_r ^\dag (p)} = \delta_{rs} \delta^{(3)}(\vec{k} - \vec{p})\). Like before, we have 
+%
+\begin{align}
+\bra{e^{-}_{s}(p)} \psi_{-} (x) = 0
+\,.
+\end{align}
+
+A summary of useful relations: 
+%
+\begin{align}
+\bra{e^{-}_{s} (p)} \overline{\psi}_{-} (x) &= \bra{0} e^{ipx} \overline{u}_{s} (p) \\
+\bra{e^{+}_{s} (p)} \psi_{-} (x) &= \bra{0} e^{ipx} v_{s} (p) \\
+\bra{\gamma_{\lambda } (p)} A^{\mu }_{-} (x) &= \bra{0} e^{ipx} e^{\mu *}_{\lambda }(p) \\
+\bra{s(p)} \varphi ^\dag_{-} (x) &= \bra{0} e^{ipx} 
+\,.
+\end{align}
+
+\subsubsection{\(S\)-matrix expansion in momentum space}
+
+At \textbf{0th order} we get \(S^{(0)} = \mathbb{1}\), so the transition amplitude is \(\braket{f}{i}= \delta_{fi} \). 
+
+At \textbf{1st order} things get more interesting. Let us consider the process \(e^{-} \to e^{-} \gamma \): so, we are setting 
+%
+\begin{align}
+\ket{i} &= \ket{e^{-}_{s}(p)}  \\
+\ket{f} &= \ket{e^{-}_{s'} (p') \gamma_{\lambda'} (k')}
+\,,
+\end{align}
+%
+so the only term which will contribute to the \(S\)-matrix expansion will be 
+%
+\begin{align}
+S^{(1)}_{e^{-} \to e^{-}\gamma } 
+= -iq \int \dd[4]{x} N \qty[ \overline{\psi}_{-} (x) \slashed{A}_{-} \psi_{+} (x)]
+\,,
+\end{align}
+%
+so the matrix element is 
+%
+\begin{align}
+S^{(1)}_{fi} = -iq \int \dd[4]{x} \bra{e^{-}_{s'} (p') \gamma_{\lambda'} (k')} \overline{\psi}_{-} (x) \slashed{A}_{-} \psi_{+} (x) \ket{e^{-}_{s}(p)}
+\,,
+\end{align}
+%
+where any operator has a specific state it is acting on, if it acts on a state which is not its own the contribution vanishes. 
+So, using the relations which were written before we have 
+%
+\begin{align}
+S^{(1)}_{fi} &= -iq \epsilon^{\mu }_{\lambda' } (k') \overline{u}_{s'} (p') \gamma_{\mu } u_s (p) \int \dd[4]{x} e^{-i(p - p' k')x} \braket{0}{0}  \\
+&= (2 \pi )^{4} \delta^{(4)} (p - p' - k') \mathcal{M}^{(1)}_{e^{-} \to e^{-}\gamma }
+\,,
+\end{align}
+%
+where the \textbf{Feynman amplitude} \(\mathcal{M}\) is given by 
+%
+\begin{align}
+-iq \slashed{\epsilon}_{\lambda' } (k') \overline{u}_{s'} (p') \gamma_{\mu } u_s (p)
+\,.
+\end{align}
 
 
 

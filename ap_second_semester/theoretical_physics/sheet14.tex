@@ -62,9 +62,21 @@ S^{(1)} &= - iq \int \dd[4]{x} T \qty[N[\overline{\psi}(x) \slashed{A} (x) \psi 
 \,.
 \end{align}
 
-In order to remove the time-ordering we have used the corollary of Wick's theorem. 
+In order to remove the time-ordering we have used the corollary of Wick's theorem: we know that 
+%
+\begin{align}
+T[N[A(x) B(x)]] = T[A(x) B(x)]_{\text{NCET}}
+\,,
+\end{align}
+%
+so we can apply Wick's theorem to the last expression: we only have the first term, since all the possible contractions would be equal-time ones, therefore we get 
+%
+\begin{align}
+T[A(x) B(x)]_{\text{NCET}} = N[A(x)B(x)]
+\,.
+\end{align}
 
-\todo[inline]{It is not clear to me how the corollary applies here. We have something like \(T[N[A(x)B(x)]]\), and the corollary tells us that it is equivalent to \(T[A(x)B(x)]_{\text{NCET}} = A(x)B(x)\): this is fine, but we lose the normal-ordering! Why does he still write it? I think it might not be actually there.}
+For three operators the reasoning is exactly the same.
 
 We can split \(\overline{\psi} \), \(\slashed{A}\) and \(\psi \) into their \(+\) and \(-\) components: we get eight contributions, 
 %
@@ -334,7 +346,7 @@ The possible diagrams are then only six. They are:
 which contributes to Compton scattering, 
 %
 \begin{align}
-(\overline{\psi}_{-} \slashed{A}_{+})_{x} S_F (x-y) (\psi_{+} \slashed{A}_-)_{y} =
+(\overline{\psi}_{-} \slashed{A}_{+})_{x} S_F (x-y) (\psi_{+} \slashed{A}_{-})_{y} =
 \begin{tikzpicture}[baseline=(y)]
     \begin{feynman}
         \vertex (y);
@@ -356,7 +368,7 @@ which contributes to Compton scattering,
 which also contributes to Compton scattering, and 
 %
 \begin{align}
-(\overline{\psi}_{+} \slashed{A}_{-})_{x} S_F (x-y) (\psi_{-} \slashed{A}_+)_{y} =
+(\overline{\psi}_{+} \slashed{A}_{-})_{x} S_F (x-y) (\psi_{+} \slashed{A}_-)_{y} =
 \begin{tikzpicture}[baseline=(center)]
     \begin{feynman}
         \vertex (y);
@@ -377,6 +389,79 @@ which also contributes to Compton scattering, and
 \end{align}
 which contributes to electron-positron annihilation into two photons. 
 
-The other three are the left-to-right mirror symmetric of these: 
+The other three are the left-to-right mirror symmetric of these: two of them contribute to Compton scattering off a positron, one contributes to pair production from two photons. Their expressions are derived from the ones already written, mapping \(+ \leftrightarrow -\). They are: 
+%
+\begin{align}
+&\qty(\overline{\psi}_{+} \slashed{A}_{+})_{x} 
+  S_F (x-y) \qty(\psi_{-} \slashed{A}_{-})_{y} \\
+&\qty(\overline{\psi}_{+} \slashed{A}_{-})_{x} 
+  S_F (x-y) \qty(\psi_{-} \slashed{A}_{+})_{y} \\
+&\qty(\overline{\psi}_{-} \slashed{A}_{+})_{x}
+  S_F (x-y) \qty(\psi_{+} \slashed{A}_{-})_{y} 
+\,.
+\end{align}
+
+When we draw these diagrams, particles become antiparticles and creation becomes annihilation: so, we take the \(x\) and \(y\) points and swap their position, but in doing so we must keep the arrows rigidly pointing in the same direction, so the arrow in the propagator switches direction. 
+
+As we have seen, different diagrams can contribute to the same physical process. We can have either \emph{equivalent} operators, which are the same if we exchange \(x \leftrightarrow y\), and ones which are not equivalent. 
+
+The terms \((\overline{\psi}_{-} \slashed{A}_{-})_x (\psi_{+} \slashed{A}_+)_{y}\) and \((\overline{\psi}_{-} \slashed{A}_{+})_x (\psi_{+} \slashed{A})_{y}\), for example, are different and both contribute to Compton scattering. 
+
+\subsubsection{One photon propagator: \(\Circled{B_2 }\)}
+
+The term looks like: 
+%
+\begin{align}
+S_{\Circled{B_2 }} &= - \frac{q^2}{2!}
+\int \dd[4]{x} \dd[4]{y} N \qty[
+    \contraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+]  \\
+&=- \frac{q^2}{2!}
+\int \dd[4]{x} \dd[4]{y}
+D^{\mu \nu}_{F} (x-y) N \qty[
+    \qty(\overline{\psi} \gamma_{\mu } \psi )_x
+    \qty(\overline{\psi} \gamma_{\nu } \psi )_y
+]
+\,.
+\end{align}
+
+As before, we have 16 possible combinations of \(+\) and \(-\) when we open the normal-ordered product, but only the ones with two destructions and two creations are kinematically allowed. 
+
+When drawing these, notice that the bare field always has the arrow pointing towards the vertex, while for the conjugate field the arrow always points away from it. 
+
+% The \(++--\) and \(--++\) terms contribute to \(e^{+}e^{-} \to e^{+}e^{-}\), the \(+-+-\) term contributes to \(e^{-} e^{-} \to e^{-} e^{-}\), the \(-+-+\) term contributes to \(e^{+} e^{+} \to e^{+} e^{+}\).
+
+What are the diagrams contributing to \(e^{+} e^{-} \to e^{+}e^{-}\)? 
+There are exactly 4, the signs of the fermions being 
+\begin{enumerate}
+    \item \(++--\) and \(--++\);
+    \item \(-++-\) and \(+--+\).
+\end{enumerate}
+
+The first two are equivalent, as are the second two (since the photon propagator is symmetric): so, we count only one of them twice. 
+Now, we know that \(D^{\mu \nu } (x-y) = - \eta^{\mu \nu } D_F\) as long as we select \(\xi = 1\). Then, we can write 
+%
+\begin{align}
+S_{e^{-}e^{+}} = - q^2 \int \dd[4]{x} \dd[4]{y} D_F^{\mu \nu } (x-y)
+\qty(\underbrace{N \qty[
+    \qty(\overline{\psi_{-}} \gamma_{\mu } \psi_{-} )_x
+    \qty(\overline{\psi_{+}} \gamma_{\nu } \psi_{+} )_y
+]}_{\Circled{A}}+
+\underbrace{N \qty[
+    \qty(\overline{\psi_{+}} \gamma_{\mu } \psi_{-} )_x
+    \qty(\overline{\psi_{-}} \gamma_{\nu } \psi_{+} )_y
+]}_{\Circled{B}}
+)
+\,.
+\end{align}
+
+The two diagrams are topologically distinct: \Circled{A} is called the \textbf{S-channel contribution}, in which the fermions annihilate into a virtual photon which propagates and then annihilates into fermions again.
+
+On the other hand, \Circled{B} is called the \textbf{T-channel contribution}, in which the electron and positron exchange a virtual photon but are never annihilated. 
+
+\subsubsection{One photon and one fermion propagator: \(\Circled{C_1 }\)}
+
+
 
 \end{document}

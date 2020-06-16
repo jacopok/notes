@@ -83,7 +83,7 @@ N \qty[
 which we can represent using Feynman diagrams.
 All of these diagram only have one vertex at \(x\), and they have a fermion, an antifermion and a photon being created/annihilated there (all the 8 possible combinations). As an example, we show: 
 %
-\begin{align}
+\begin{align} \label{eq:fermion-fermion-photon-vertex-1}
 \overline{\psi}_{+} \slashed{A}_{-} \psi_{+}
 = \feynmandiagram[inline=(c.base), horizontal = c to p]{
     c [particle=\(x\)] -- [photon] p [particle=\(\gamma \)],
@@ -95,6 +95,288 @@ here we have an electron and a positron annihilating to form a photon.
 
 \todo[inline]{Incidentally, this is the only vertex which is wrong in the professor's notes.}
 
-In general, particles which are created (so, with subscript \(-\)) go rightward, particles which are annihilated come from the left.
+In general, particles which are created (so, with subscript \(-\)) go rightward, particles which are annihilated (with subscript \(+\)) come from the left.
+
+These diagrams are \emph{vertices}: they represent a certain interaction in QED, between 2 fermions and a photon. 
+
+Notice that the flow of the fermion arrows is continuous in the diagram we wrote: this generalizes to all of them, and it is a manifestation of the \(U(1)\) charge conservation. 
+
+Now, all these 8 diagrams represent \textbf{unphysical processes}: due to the fact that the photon is massless, relativistic kinematics forbids them. 
+
+Let us show it for the process \eqref{eq:fermion-fermion-photon-vertex-1}, which can be written in more usual notation as 
+%
+\begin{align}
+e^{+}(p) + e^{-} (p') \to \gamma (k)
+\,.
+\end{align}
+
+Relativistic kinematics tells us that \(p + p' = k\). 
+The fermions are massive, so we can go to their center-of-mass frame before the annihilation: in this frame, we will have \((p + p')_{i} = 0 \), which implies \(k_{i} = 0 \), which is not possible since \(k^{0} = \abs{\vec{k}}\) (and the photon must have positive energy). 
+
+Consider another process: 
+%
+\begin{align}
+e^{-}(p) \to e^{-} (p') + \gamma (k)
+\,,
+\end{align}
+%
+which is represented diagrammatically as 
+\begin{align} \label{eq:fermion-fermion-photon-vertex-2}
+\overline{\psi}_{-} \slashed{A}_{-} \psi_{+}
+= \feynmandiagram[inline=(c.base), horizontal = a to c]{   
+    c [particle=\(x\)] -- [photon] p [particle=\(\gamma \)],
+    a [particle=\(e^{-}\)] -- [fermion] c,
+    c -- [fermion] b [particle=\(e^{-}\)]
+};
+\end{align}
+
+This is also forbidden (all of them are). To show this, let us go to the rest frame of the incoming electron: starting from the relation \(p = p' + k\) we get 
+%
+\begin{align}
+m_e &= p^{\prime 0} + k^{0}  \\
+0 &= \vec{p}' + \vec{k}
+\,,
+\end{align}
+%
+so, since for the photon \(k^{0} = \abs{k}\), we can write the first relation as 
+%
+\begin{align}
+m_e &= p^{\prime 0} - \abs{\vec{p}'}  \\
+m_e^2 &= \qty(p^{\prime 0} - \abs{\vec{p}'})^2  \\
+\qty(p^{\prime 0})^2 - \abs{\vec{p}'}^2 &= \qty(p^{\prime 0})^2
+- 2 p^{\prime 0} \abs{\vec{p}'} + \abs{\vec{p}'}^2  \\
+0 &= - 2 p^{\prime 0} \abs{\vec{p}'} + 2 \abs{\vec{p}'}^2
+\,,
+\end{align}
+%
+which means that either \(\vec{p}' = 0\) (unacceptable, it would mean the photon has zero energy) or \(p^{\prime 0} = \abs{\vec{p}'}\), which tells us that the electron is massless, which it is not. 
+
+Some of these processes are \textbf{allowed} if the boson is \textbf{massive}: for example, we can have 
+%
+\begin{align}
+Z(k) \to e^{+}(p) + e^{-}(p')
+\,,
+\end{align}
+%
+where the mass of the \(Z\) boson satisfies \(M^2_Z > (2 m_e)^2\). 
+This works since we can go to the rest frame of the \(Z\) boson, and if the inequality is satisfied the electron and positron momenta can be real. 
+
+\subsubsection{2nd order term}
+
+Since the first order processes are unphysical, we have to go to the second order. The second term in the \(S\)-matrix expansion reads: 
+%
+\begin{align}
+S^{(2)} = \frac{(-iq)^2 }{2!}
+\int \dd[4]{x} \dd[4]{y}
+T \qty[
+    N[\overline{\psi} \slashed{A} \psi ]_{x}
+    N[\overline{\psi} \slashed{A} \psi ]_{y}
+]
+\,.
+\end{align}
+
+By the corollary of Wick's theorem, we can write 
+%
+\begin{align}
+T \qty[
+    N[\overline{\psi} \slashed{A} \psi ]_{x}
+    N[\overline{\psi} \slashed{A} \psi ]_{y}
+]
+= 
+T \qty[
+    \qty(\overline{\psi} \slashed{A} \psi) _{x}
+    \qty(\overline{\psi} \slashed{A} \psi )_{y}
+] _{\text{NCET}}
+\,,
+\end{align}
+%
+so when we compute the contractions we can only connect fields computed at \(x\) with ones computed at \(y\). Also, contractions between different types of fields vanish, as do contractions between a complex-valued field and itself. So, we have: 
+\begin{enumerate}
+    \item the 0 contraction term 
+    %
+    \begin{align}
+        \underbrace{N \qty[
+            \qty(\overline{\psi} \slashed{A} \psi) _{x}
+            \qty(\overline{\psi} \slashed{A} \psi )_{y}
+        ]}_{\Circled{A}} 
+    \,,
+    \end{align}
+    %
+    \item the 1 contraction term 
+    %
+    \begin{align}
+        \underbrace{N \left[
+            \contraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right] +
+        N \left[
+            \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]}_{\Circled{B_1}} +
+        \underbrace{N \left[
+            \contraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]}_{\Circled{B_2}}
+    \,,
+    \end{align}
+    %   
+    \item the 2 contraction term 
+    %
+    \begin{align}
+        \underbrace{N \left[
+            \bcontraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+            \contraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]+ 
+        N \left[
+            \bcontraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+            \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]}_{\Circled{C_1}}+ 
+        \underbrace{N \left[
+            \bcontraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+            \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]}_{\Circled{C_2}} 
+    \,,
+    \end{align}
+    %
+    \item and the 3 contraction term 
+    %
+    \begin{align}
+        \underbrace{N \left[
+            \contraction{(\overline{\psi} }{\slashed{A}}{ \psi ) _{x} (\overline{\psi} }{\slashed{A}} % ph-ph
+            \bcontraction[2ex]{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+            \bcontraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+            (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+        \right]}_{\Circled{D}}
+    \,.
+    \end{align}
+\end{enumerate}
+
+For any of these we can write a specific propagator, whose expression is 
+%
+\begin{align}
+S_X = \frac{(-iq)^2}{2!} \int \dd[4]{x} \dd[4]{y} \Circled{X}
+\,,
+\end{align}
+%
+where \(\Circled{X}\) is any of the terms we have just written.
+
+\subsubsection{No propagators: \(\Circled{A}\)}
+
+The diagram looks like the product of two disconnected first-order diagrams. Since they were not physically allowed, this is not allowed either. 
+
+If our vector were massive, like the \(Z\) boson, this would describe two separate decay processes. 
+
+\subsubsection{One fermion propagator: \(\Circled{B_1}\)}
+
+This term looks like 
+%
+\begin{align}
+S_{B_1 } &= \frac{(-iq)^2}{2!} \int \dd[4]{x} \dd[4]{y} \Circled{B_1}  \\
+&= \frac{- q^2}{2!} \int \dd[4]{x} \dd[4]{y}
+N \left[
+    \contraction{}{(\overline{\psi}}{ \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} }{\psi} % psibar-psi
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+\right] +
+N \left[
+    \contraction{(\overline{\psi} \slashed{A} }{\psi}{ ) _{x} (}{\overline{\psi}} % psi-psibar
+    (\overline{\psi} \slashed{A} \psi ) _{x} (\overline{\psi} \slashed{A} \psi ) _{y}
+\right]  \\
+&= - q^2 \int \dd[4]{x} \dd[4]{y} 
+N \qty[
+    \overline{\psi} (x) \slashed{A}(x)
+    S_F(x-y) 
+    \slashed{A}(y) \psi (y)
+]
+\,,
+\end{align}
+%
+since 
+%
+\begin{align}
+S_F(x-y) = \bcontraction{}{\psi}{ (x) }{\overline{\psi}}
+\psi (x) \overline{\psi} (y)
+\,,
+\end{align}
+%
+and the two contributions are equal, since inside of the normal ordering the fermion operators anticommute, we need to swap an even number of them, and changing \(x \leftrightarrow y\) is not a problem since they are both integrated away.  
+
+Now, we have 4 free fields, which correspond to \(2^{4}= 16\) terms in the \(\pm\) fields. 
+
+\begin{claim}
+The only physical processes are those in which 2 particles are created and 2 are annihilated.
+\end{claim}
+
+\begin{proof}
+4-momentum conservation must hold: its \(0\)-th component already disqualifies \(0 \leftrightarrow 4\) processes, since on one side of the process we have zero energy. 
+
+As for \(1 \leftrightarrow 3\) processes: if the 1 particle is a fermion, we go to its rest frame, then the \(0\)-th component of the momentum conservation imposes that the sum of the energies of the 3 particles must equal the mass of the fermion. One of the three particles is that kind of fermion, so its energy is \(\geq \) the mass, which implies that the photons must have zero energy. 
+
+If the 1 particle is a photon, we go to the center of mass of the three particles, where the three-momentum is zero, and find a contradiction since the photon does not have a rest frame. 
+\end{proof}
+
+The possible diagrams are then only six. They are: 
+%
+\begin{align}
+(\overline{\psi}_{-} \slashed{A}_{-})_{x} S_F (x-y) (\psi_{+} \slashed{A}_+)_{y} =
+\feynmandiagram[baseline=(y.base), large, horizontal = y to x]{
+    g1 [particle = \(\gamma \)] -- [photon, edge label = {\(\slashed{A}_+(y)\)}] y,
+    e1 [particle = \(e^{-}\)] -- [fermion, edge label = {\(\psi_{+} (y)\)}] y,
+    y -- [fermion, edge label = {\(S_F(x-y)\)}] x ,
+    x -- [photon, edge label = {\(\slashed{A}_{-}(x)\)}] g2 [particle = \(\gamma \)],
+    x -- [fermion, edge label = {\(\overline{\psi}_{-}(x)\)}] e2 [particle = {\(e^{-}\)}]
+};
+\,,
+\end{align}
+%
+which contributes to Compton scattering, 
+%
+\begin{align}
+(\overline{\psi}_{-} \slashed{A}_{+})_{x} S_F (x-y) (\psi_{+} \slashed{A}_-)_{y} =
+\begin{tikzpicture}[baseline=(y)]
+    \begin{feynman}
+        \vertex (y);
+        \vertex [below left = of y] (e1) {\(e^{-}\)};
+        \vertex [right = 2cm of y] (x);
+        \vertex [below right = of x] (e2) {\(e^{-}\)};
+        \vertex [above left = of y] (g1) {\(\gamma \)};
+        \vertex [above right = of x] (g2) {\(\gamma \)};
+        \diagram*{
+        (e1) -- [fermion] (y)  -- [fermion] (x) -- [fermion] (e2),
+        (y) -- [photon] (g2),
+        (g1) -- [photon] (x), 
+        };
+    \end{feynman}
+\end{tikzpicture}
+\,,
+\end{align}
+%
+which also contributes to Compton scattering, and 
+%
+\begin{align}
+(\overline{\psi}_{+} \slashed{A}_{-})_{x} S_F (x-y) (\psi_{-} \slashed{A}_+)_{y} =
+\begin{tikzpicture}[baseline=(center)]
+    \begin{feynman}
+        \vertex (y);
+        \vertex [above left = of y] (e1) {\(e^{-}\)};
+        \vertex [below = 2cm of y] (x);
+        \vertex [below left = of x] (e2) {\(e^{-}\)};
+        \vertex [above right = of y] (g1) {\(\gamma \)};
+        \vertex [below right = of x] (g2) {\(\gamma \)};
+        \node (center) at ($(y)!0.5!(x)$) {};
+        \diagram*{
+        (e1) -- [fermion] (y)  -- [fermion] (x) -- [fermion] (e2),
+        (y) -- [photon] (g1),
+        (g2) -- [photon] (x), 
+        };
+    \end{feynman}
+\end{tikzpicture}
+\,,
+\end{align}
+which contributes to electron-positron annihilation into two photons. 
+
+The other three are the left-to-right mirror symmetric of these: 
 
 \end{document}

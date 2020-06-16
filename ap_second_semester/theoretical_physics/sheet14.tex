@@ -726,7 +726,164 @@ S^{(1)}_{fi} &= -iq \epsilon^{\mu }_{\lambda' } (k') \overline{u}_{s'} (p') \gam
 where the \textbf{Feynman amplitude} \(\mathcal{M}\) is given by 
 %
 \begin{align}
+\mathcal{M}^{(1)}_{e^{-} \to e^{-}\gamma } =   
 -iq \slashed{\epsilon}_{\lambda' } (k') \overline{u}_{s'} (p') \gamma_{\mu } u_s (p)
+\,.
+\end{align}
+
+Let us make some observations on this result.
+
+\begin{enumerate}
+    \item The term \(\delta^{(4)}(p _{i} - p _{f})\) enforces momentum conservation in the matrix element: it removes all kinematically forbidden processes.\footnote{This is related to the fact that we are considering \emph{asymptotic} initial and final states: since they are at a diverging time difference, we are allowed to completely remove the energy uncertainty. }
+    \item All the interaction physics is contained in the Feynman amplitude: we have the terms \(\overline{u}_{s'} (p')\) and \(\epsilon^{\mu }_{\lambda '} (k ') u_s (p)\) accounting for the spins and polarizations of the incoming particles, while \(-i q \gamma_{\mu }\) describes the structure of the QED interaction. 
+    \item With the same conventions used in position space we can draw a diagram for the process in momentum space: 
+    \begin{figure}[ht]
+    \centering
+    \feynmandiagram[layered layout, large, horizontal = e to x]{
+    e [particle = {\(e^{-}_{s}\)}] -- [fermion, momentum = \(p\)] x [particle = {\(- i q \gamma^{\mu } \)}] -- [fermion, momentum = \(p'\)] e2 [particle = {\(e^{-}_{s'}\)}],
+    x -- [photon, momentum = \(k'\)] p [particle = \(\gamma_{\lambda '} \)]
+    };
+    \caption{Momentum space diagram.}   
+    \label{fig:eegamma-interaction}
+    \end{figure}
+    \item We can develop an automatic procedure to derive the Feynman amplitude directly from this diagram. 
+\end{enumerate}
+
+The rules for this procedure are as follows: 
+\begin{enumerate}
+    \item go to the end of the fermionic arrow and start moving backward;
+    \item insert a term \(\overline{u}_{s'} (p')\) based on the momentum and spin of the outgoing electron; 
+    \item encounter the vertex: insert a term \(-iq \gamma^{\mu }\) since we deal with QED;
+    \item encounter the initial electron: insert a term \(u_s (p)\) based on its spin and momentum;
+    \item include the polarization of the photon  with a term \(\epsilon^{\mu }_{\lambda '} (k')\).
+\end{enumerate}
+
+In order to develop these rules fully, we go to the second order. 
+
+\subsubsection{Second order term: \(e^{-} \gamma \to e^{-} \gamma \)}
+
+We consider the process of \textbf{Compton scattering}, so our initial and final states are: 
+%
+\begin{align}
+\ket{i} &= \ket{e^{-}_{s} (p) \gamma_\lambda (k)}  \\
+\ket{f} &= \ket{e^{-}_{s'} (p') \gamma_{\lambda'} (k')} 
+\,,
+\end{align}
+%
+and as we saw in the previous section the only diagrams which contribute are: 
+%
+\begin{align}
+\begin{split}
+S _{\text{Compton}} &= (-iq)^2
+\int \dd[4]{x} \dd[4]{y} \\
+& \underbrace{N [(\overline{\psi}_{-} \slashed{A}_{-})_{x} S_F (x-y) (\overline{\psi}_{+} \slashed{A}_{+})_{y}]}_{\Circled{A}}
++ \underbrace{N [(\overline{\psi}_{-} \slashed{A}_{+})_{x} S_F (x-y) (\overline{\psi}_{+} \slashed{A}_{-})_{y}]}_{\Circled{B}}
+\end{split}
+\,.
+\end{align}
+
+Let us start with the term \Circled{A}: 
+%
+\begin{align}
+S^{A}_{fi} &= \bra{f} S^{A} \ket{i}  \\
+&= - q^2 \int \dd[4]{x} \dd[4]{y} 
+\bra{e^{-}_{s'} (p') \gamma_{\lambda'} (k')} 
+N [(\overline{\psi}_{-} \slashed{A}_{-})_{x} S_F (x-y) (\overline{\psi}_{+} \slashed{A}_{+})_{y}]
+\ket{e^{-}_{s} (p) \gamma_\lambda (k)}  \\
+\begin{split}
+&= -q^2 \int \frac{ \dd[4]{q}}{(2 \pi )^{4}} \overline{u}_{s'} (p') \slashed{\epsilon }_{\lambda'} (k') \widetilde{S}_{F} (q) \slashed{\epsilon }_{\lambda } (k) u_s (p) \times \\
+&\phantom{=}\  \times \int \dd[4]{x} e^{-i (q - p' - k' )x}
+\int \dd[4]{y} e^{i (q-p -k) y} \braket{0}{0} 
+\end{split}  \\
+&= \mathcal{M}_{A} (2 \pi )^{4} \delta^{4} (p + k - p' - k') 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\mathcal{M}_{A} = - q^2 \overline{u}_{s'} (p') \slashed{\epsilon }_{\lambda'} (k') \widetilde{S}_{F} (p+k) \slashed{\epsilon }_{\lambda } (k) u_s (p)
+\,.
+\end{align}
+
+Note that we have substituted in \(\widetilde{S}_F(q)\), the fermion propagator in momentum space \eqref{eq:fermion-propagator-momentum-space}.
+The exponential its definition contained allowed for the connection between the momentum conservation between the initial and final states. 
+
+This can be derived from the momentum-space diagram, like before! The diagram is 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, extra large, horizontal = ia to ib]{
+e1 [particle = {\(e^{-}_{s}\)}] -- [fermion, momentum = \(p\)] ia [label = -45: \(-i q \gamma_{\mu }\)] -- [fermion, momentum = {\(q= p+k\)}] ib [label = -135 : {\(-iq \gamma_{\nu }\)}] -- [fermion, momentum = {\(p'\)}] e2 [particle = {\(e^{-}_{s'}\)}],
+p1 [particle = {\(\gamma_{\lambda }\)}] -- [photon, momentum' = \(k\)] ia,
+ib -- [photon, momentum' = \(k'\)] p2 [particle = {\(\gamma_{\lambda' }\)}]
+};
+\caption{Momentum  space, first contribution to the Compton effect. }
+\label{fig:momentum-space-compton}
+\end{figure}
+
+The algorithm to get the amplitude goes as follows: 
+\begin{enumerate}
+    \item Start from the end of the fermion line and move backward;
+    \item at the final fermion insert a term \(\overline{u}_{s'} (p')\);
+    \item at the QED vertex insert a term \(-iq \gamma_{\nu }\);
+    \item for the propagator insert a term \(\widetilde{S}_{F} (q)\);
+    \item at the QED vertex insert a term \(-iq \gamma_{\mu }\);
+    \item for the initial electron insert a term \(u_s (p)\);
+    \item for the initial and final photons insert terms \(\epsilon^{\mu }_{\lambda }(k)\) and \(\epsilon^{\nu }_{\lambda '} (k')\), the index should match that of the QED vertex at which the photon is attached. 
+\end{enumerate}
+
+This yields: 
+%
+\begin{align}
+\mathcal{M} = \overline{u}_{s'} (p')
+\qty(-iq \gamma_{\nu })
+\widetilde{S}_{F} (q)
+\qty(-iq \gamma_{\mu })
+u_s (p)
+\epsilon^{\mu }_{\lambda }(k)
+\epsilon^{\nu }_{\lambda '} (k')
+\,.
+\end{align}
+
+Since this will be multiplied by the Dirac delta in the end, we are allowed to use momentum conservation when doing the computation. 
+Following the fermion arrows ensures we preserve the spinorial structure. 
+
+Now, we can do the same for the term \Circled{B}. This reads 
+\begin{align}
+S^{B}_{fi} &= \bra{f} S^{B} \ket{i}  \\
+&= - q^2 \int \dd[4]{x} \dd[4]{y} 
+\bra{e^{-}_{s'} (p') \gamma_{\lambda'} (k')} 
+N [(\overline{\psi}_{-} \slashed{A}_{+})_{x} S_F (x-y) (\overline{\psi}_{+} \slashed{A}_{-})_{y}]
+\ket{e^{-}_{s} (p) \gamma_\lambda (k)}  \\
+\begin{split}
+&= -q^2 \int \frac{ \dd[4]{q}}{(2 \pi )^{4}} \overline{u}_{s'} (p') \slashed{\epsilon }_{\lambda} (k) \widetilde{S}_{F} (q) \slashed{\epsilon }_{\lambda' } (k') u_s (p) \times \\
+&\phantom{=}\  \times \int \dd[4]{x} e^{-i (q - p' + k )x}
+\int \dd[4]{y} e^{i (q-p +k') y} \braket{0}{0} 
+\end{split}  \\
+&= \mathcal{M}_{A} (2 \pi )^{4} \delta^{4} (p + k - p' - k') 
+\,,
+\end{align}
+%
+so now we have momentum conservation like before, but \(q = p - k' = p' - k\). 
+
+This diagram is topologically different from the one before: now the outgoing photon is created in the \emph{first} vertex, the incoming photon is destroyed in the \emph{second} vertex.
+
+Applying the same procedure as before, we find 
+%
+\begin{align}
+\mathcal{M}_{B} = \overline{u}_{s'} (p') \qty(-iq \gamma_{\mu })
+\widetilde{S}_{F} (p - k') \qty(-i q \gamma_{\nu }) u_s (p) 
+\epsilon^{\lambda }_{\mu } (k) \epsilon^{\lambda '}_{\nu } (k')
+\,.
+\end{align}
+
+Note that this is \textbf{different} from \(\mathcal{M}_A\)! 
+The total probability amplitude is then given by 
+%
+\begin{align}
+S^{(2)} (e^{-} \gamma ) = (2\pi )^{4} \delta^{(4)}
+(p + k - p' - k') \qty(\mathcal{M_A} + \mathcal{M}_{B}) 
 \,.
 \end{align}
 

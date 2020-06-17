@@ -150,7 +150,7 @@ so that
 
 Since this is the differential \emph{number} of states, we multiply by it to get the \textbf{transition probability}:  
 %
-\begin{align}
+\begin{align} \label{eq:transition-probability}
 \dd{\omega_{fi}} = \abs{S^{CN}_{fi}}^2 \prod_{j=1}^{n_f} \frac{V \dd[3]{p_j}}{(2\pi )^3 2 \omega_{j}}
 \,,
 \end{align}
@@ -285,7 +285,7 @@ Renaming \(\abs{q_1 } = x\) for convenience, we must rewrite the following delta
 
 The derivative of \(f\) is:
 %
-\begin{align}
+\begin{align} \label{eq:center-of-mass-derivative-of-sqrt-s}
 \dv{f}{x} = - \frac{x}{\omega_1 } - \frac{x}{\omega_2 } = - x \qty( \frac{1}{\omega_1 } + \frac{1}{\omega_2 }) 
 = - x \frac{\omega_1 + \omega_2 }{\omega_1 \omega_2 }
 \,.
@@ -308,13 +308,301 @@ Let us call this zero \(\hat{x}\), and denote quantities calculated with \(x = \
 %
 since the energies of the two outgoing particles always add to \(M\). 
 
-The explicit expression for \(x\) in terms of the masses is 
+The explicit expression for \(\hat{x}\) in terms of the masses is 
 %
 \begin{align}
-x = \frac{\sqrt{-2 M^2 m_1^2-2 M^2 m_2^2+M^4-2 m_1^2 m_2^2+m_1^4+m_2^4}}{2 M}
+\hat{x} &= \frac{\sqrt{-2 M^2 m_1^2-2 M^2 m_2^2+M^4-2 m_1^2 m_2^2+m_1^4+m_2^4}}{2 M}  \\
+&= \frac{M}{2} \sqrt{1 -2\frac{m_1^2+m_2^2}{M^2}+ \frac{\qty(m_1^2-m_2^2)^2}{M^{4}}}
 \,.
 \end{align}
-%
 
+Then, finally, we can write the explicit expression: 
+%
+\begin{align}
+\dv{\Gamma }{\Omega_1 } 
+&= \frac{\abs{\mathcal{M}_{fi}}^2}{2M}
+\frac{1}{16 \pi^2}
+\frac{\abs{\hat{q}_{1}}}{M}  \\
+&= \frac{1}{64 \pi^2}
+\frac{\abs{\mathcal{M}_{fi}}^2}{M}
+\sqrt{1 -2\frac{m_1^2+m_2^2}{M^2}+ \frac{\qty(m_1^2-m_2^2)^2}{M^{4}}}
+\,.
+\end{align}
+
+This is a general expression for decay into two bodies; it can be applied to any case by inserting the masses. 
+Notice that there is no angular dependence: the decay is \emph{spherically symmetric}. 
+
+Let us see some specific cases: if \(m_1 = m < M\) and \(m_2 = 0\) we have 
+%
+\begin{align}
+\dv{\Gamma }{\Omega_1 } &= \frac{1}{64 \pi^2}
+\frac{\abs{\mathcal{M}_{fi}}^2}{M}
+\sqrt{1 - 2\frac{m^2}{M^2} + \frac{m^4}{M^{4}}}  \\
+&= \frac{1}{64 \pi^2}
+\frac{\abs{\mathcal{M}_{fi}}^2}{M}
+\qty(1 - \frac{m^2}{M^2})
+\,.
+\end{align}
+
+An example of this is \(W^{-} \to e^{-} \nu_{e}\) (in the SM, where neutrinos are massless).
+
+If, instead, \(m_1 = m_2 \) then we get 
+%
+\begin{align}
+\dv{\Gamma }{\Omega_1 } &= \frac{1}{64 \pi^2}
+\frac{\abs{\mathcal{M}_{fi}}^2}{M}
+\sqrt{1 - 4\frac{m^2}{M^2}}
+\,.
+\end{align}
+
+This holds as long as the two decay products are of equal mass but distinguishable, for example in \(Z \to e^{-} e^{+}\). 
+If they are indistinguishable, an extra factor \(1/2\) must be included in the phase space. 
+
+\todo[inline]{How is this formally justified?}
+
+\subsection{Cross section}
+
+We use the cross section in order to describe processes in which there are two incoming particles. 
+
+Let us define its \textbf{experimental} meaning in the laboratory frame: we have a beam of particles of type 1 and mass mass \(m_1 \) coming towards a target of type 2 and mass \(m_2 \). 
+Particles will be scattered with an angle \(\theta \) with respect to the direction the incoming particles are coming from. 
+
+Let us denote with \(n_{i}^{(0)}\) the number densities of the beam and target, and with \(v_{1}^{(0)}\) the velocity of the particles of the beam. 
+The total number of particles can be recovered as \(N_i = V n_i^{(0)}\).
+
+The number of scattering events per unit time and unit volume is proportional to: 
+%
+\begin{align}
+\frac{N_S}{T V} &\propto \underbrace{n_1^{(0)} v_1 ^{(0)}}_{\phi_1 } n^{(0)}_{2}  \\
+\frac{N_S}{T V} &= \sigma \phi_1 n^{(0)}_{2} 
+N_S &= \sigma \phi_1 N_2 T
+\,.
+\end{align}
+
+The proportionality constant \(\sigma \) has the dimensions of an area, and it depends on the specifics of the interaction. 
+
+Now let us give the \textbf{theoretical} definition: we look at the differential transition probability to go from the initial state \(i = 1+2\) to the final state \(f\) with momenta in an interval near \(p_f\) \eqref{eq:transition-probability}
+\todo[inline]{He writes ``rate'', which is wrong dimensionally}
+%
+\begin{align}
+\dd{\omega}_{fi} &= \abs{S^{CN}_{fi}}^2 \prod_{j=1}^{n_f} \frac{ \dd[3]{p_j} V}{(2 \pi )^3}  \\
+&= (2\pi )^{4} \delta^{(4)} (p_i - p_f) VT \frac{1}{2 \omega_{1} V}
+\frac{1}{2 \omega_{2}V}
+\prod_{j=1}^{n_f} \frac{ \dd[3]{p_j}}{(2 \pi )^3 2 \omega_{j}}
+\abs{\mathcal{M}_{fi}}^2
+\,,
+\end{align}
+%
+which is analogous to what was done before: \(VT = \delta^{(4)}(0)\), we include \(1 / 2 \omega_{1, 2} V\) to get the canonical normalization of the initial states. 
+
+Then, we adapt the definition of the cross section to this language, to get
+%
+\begin{align}
+\dd{\sigma }_{\text{lab}} = \frac{ (\dd{\omega_{fi}} ) _{\text{lab}}}{VT} 
+\frac{1}{n_1^{(0)} v_1 ^{(0)}} 
+\frac{1}{n_2^{(0)}} 
+\,,
+\end{align}
+%
+since \(\dd{N_S} = L \dd{\sigma }\), where \(L\) is the luminosity.
+
+\todo[inline]{What? I'm missing a step here.} 
+
+So, we get 
+%
+\begin{align}
+\qty(\dd{\sigma }) _{\text{lab}} =
+(2 \pi )^{4} \delta^{(4)} (p_i - p_f) 
+\prod_{j=1}^{n_f} 
+\eval{\frac{ \dd[3]{p_j}}{(2 \pi )^3 2 \omega_{j}}}_{\text{lab}}
+\frac{\abs{\mathcal{M}_{fi}}^2 _{\text{lab}}}{4 \omega^{(0)}_{1} v_1^{(0)} m_2 }  
+\,.
+\end{align}
+
+In order to derive this expression we need to normalize our states so that there is one particle per volume \(V\), at which point the following holds: \(n_{1, 2} = 1/ V\). 
+
+Also, notice that we have substituted \(\omega_2 \) with \(m_2 \), since we are in the lab frame. 
+
+This expression does not diverge for \(V, T \to \infty \), so we can take its continuum limit. 
+
+% Many of the objects in the expression are Lorentz invariant, but some of them are not, and they have to be all written in a chosen frame for consistency.
+
+How does the ``flux term'' \(\omega^{(0)}_{1} v_1^{(0)} m_2\) transform under a change of coordinates? If we do not figure this out the other objects --- which are Lorentz invariant --- have to be expressed only in its frame.
+We must write it in a covariant way to find out. We define the \textbf{flux factor}: 
+%
+\begin{align}
+I_{12} = \sqrt{\qty(p_1 \cdot p_2 )^2 - m_1^2 m_2^2 }
+\,,
+\end{align}
+%
+where the product is a 4-d one: this quantity is a Lorentz scalar.
+In the laboratory frame, this reads: 
+%
+\begin{align}
+I_{12}^{\text{lab}} = \sqrt{m_2^2 (\omega_1^{\text{lab}})^2 -m_1^2 m_2^2}
+= m_2 \abs{p_1 }_{\text{lab}} = \omega_{1} v_1 m_2
+\,,
+\end{align}
+%
+since \(\abs{p_1 } = \omega_1 v_1 \), since \(\abs{p} = m \gamma \abs{v} \) while \(E = m \gamma \). 
+
+So, in a general frame we will have 
+%
+\begin{align}
+\dd{\sigma } = \frac{\abs{\mathcal{M}_{fi}}^2}{4 I_{12} } \dd{\phi}^{(n_)}
+\,,
+\end{align}
+%
+where the phase space element is the same as before: 
+%
+\begin{align}
+\dd{\phi}^{(n_f)} = 
+(2 \pi )^{4}
+\delta^{(4)} (p_i - p_f)
+\prod_{j=1}^{n_f} \frac{ \dd[3]{p_j}}{(2 \pi)^3 2 \omega_{j}}
+\,.
+\end{align}
+
+Then, we can see that the differential cross section is a Lorentz scalar. 
+
+\subsubsection{Two-output cross section}
+
+Many types of processes are in the form \(1 + 2 \to 1' + 2'\), so we calculate the cross section for this process. 
+
+The incoming momenta are \(p_i = (\omega_{i}, \vec{p}_{i}) \) for \(i=1, 2\); the outgoing ones are \(p'_i\). 
+
+The differential cross-section, from the formula we just derived, reads 
+%
+\begin{align}
+\dd{\sigma } =
+\frac{\abs{\mathcal{M}_{fi}}^2}{4 I_{12} }
+(2 \pi )^{4}
+\delta^{(4)} (p_1+p_2 - p_1' - p_2')
+\frac{ \dd[3]{p_1'}}{(2 \pi)^3 2 \omega_{1}'}
+\frac{ \dd[3]{p_2'}}{(2 \pi)^3 2 \omega_{2}'}
+\,.
+\end{align}
+
+Just like the decay-rate case, we have \(3n_f - 4 = 2\) free momenta.
+We integrate away \(p_2 '\):
+% setting ourselves in the \textbf{center-of-mass} frame, so that \(\vec{p}_1 + \vec{p}_2 = 0 = \vec{p}_1' + \vec{p}_2'\).  
+%
+\begin{align}
+\dd{\sigma }' = \frac{\abs{\mathcal{M}_{fi}}^2}{4 I_{12} }
+\eval{\frac{1}{(2 \pi )^2 4 \omega_1 \omega_2 }
+\delta (\omega_1 + \omega_2 - \omega_1 ' - \omega_2 ')
+}_{\vec{p}_2' = -\vec{p}_1' + \vec{p}_1 + \vec{p}_2} 
+\dd[3]{p_1'}
+\,.
+\end{align}
+
+Then, we integrate over \(\abs{p_1'}\) in order to remove the last delta: we find 
+%
+\begin{align} \label{eq:covariant-two-particle-cross-section}
+\dv{\sigma ''}{\Omega_1 } =\frac{\abs{\mathcal{M}_{fi}}^2}{64 \pi^2 I_{12} } \frac{1}{\omega_1' \omega_2 '} 
+\frac{\abs{\hat{p}_1'}^2}{ \displaystyle\abs{\pdv{(\omega_1 ' + \omega_2 ')}{\abs{p_1'}}}}
+\,,
+\end{align}
+%
+where as before \(\hat{p}\) is the solution to the the energy conservation equation written in terms of the modulus of the momentum of particle \(1'\). Note that the modulus of the momentum will not be the only variable involved: because of the freedom we now have, there will be a dependence on the angular coordinates as well. 
+
+This all can be done independently of the reference frame chosen. 
+In order to make the calculation even more explicit, we need to choose a reference frame. A useful one is the \textbf{center-of-mass} frame, in which the sum of the two momenta is purely timelike: 
+%
+\begin{align}
+p_1 + p_2 = \qty(\omega_1 + \omega_2, \vec{p}_{1} + \vec{p}_{2}) = \qty(\sqrt{s}, \vec{0}) = p'_1 + p'_2
+\,,
+\end{align}
+%
+where \(s\) is the Lorentz invariant \(s = \qty(p_1 + p_2 )^2 = (\omega_1 + \omega_2 )^2\). 
+
+The momenta of the two particles, both \(1, 2\) and \(1', 2'\), will add to zero in this frame. 
+Then, since \(\vec{p}_1' = -\vec{p}_2'\), we can do the exact same calculation we did in the decay rate section \eqref{eq:center-of-mass-derivative-of-sqrt-s} to find 
+%
+\begin{align}
+\pdv{(\omega_1 ' + \omega_2 ')}{\abs{p_1'}}
+= \sqrt{s} \frac{\abs{\hat{p}_1'}}{\omega_1 ' \omega_2 '}
+\,,
+\end{align}
+%
+so that we have 
+%
+\begin{align}
+I^{CM}_{12} &= \sqrt{\qty(
+\omega_1 \omega_2 + p^2
+)^2
+-
+\qty(\omega_1^2 - p^2) 
+\qty(\omega_2^2 - p^2) 
+}  \\
+&= \sqrt{
+\omega_1^2 \omega_2^2 + 2 \omega_1 \omega_2 p^2 + p^{4} - \omega_1^2 \omega_2^2+ \omega_1^2 p^2 + \omega_2^2p^2 - p^{4}
+}  \\
+&= \sqrt{p^2(\omega_1^2 + \omega_2^2+ 2 \omega_1 \omega_2 )} 
+= p (\omega_1 +\omega_2 ) = \abs{p'_1} \sqrt{s}
+\,.
+\end{align}
+
+We then insert these results in the formula \eqref{eq:covariant-two-particle-cross-section}: 
+%
+\begin{align}
+\dv{\sigma ''}{\Omega_1 } &= \frac{\abs{\mathcal{M}_{fi}}^2}{64 \pi^2 \abs{p'_1} \sqrt{s} } \frac{1}{\omega_1' \omega_2 '} 
+\frac{\abs{\hat{p}_1'}^2}{ \sqrt{s} \frac{\abs{\hat{p}_1'}}{\omega_1 ' \omega_2 '}}  \\
+&= \frac{\abs{\mathcal{M}_{fi}}^2}{64 \pi^2 s }
+\frac{\abs{\hat{p}_1'}}{\abs{\vec{p}_1}}
+\,,
+\end{align}
+%
+where \(\abs{\hat{p}_1}\) is fixed as the solution to the equation \(s = \omega_1 ' (\abs{\hat{p}_1}) + \omega_2 '(\abs{\hat{p}_1})\). Explicitly, it is 
+%
+\begin{align}
+\abs{\hat{p}_1} =
+\frac{1}{2 \sqrt{s}}
+\sqrt{
+s^2 + \qty(m^{\prime 2}_1 - m^{\prime 2}_2)^2
+- 2s \qty(m^{\prime 2}_1- m^{\prime 2}_2)
+}
+\,.
+\end{align}
+
+The formula cannot be simplified further in general, but it can if we make some assumptions about the masses. 
+\begin{enumerate}
+    \item If \(m_1 = m_1'\) and \(m_2 = m_2 '\) (that is, we are looking at a scattering process), then \(\abs{\vec{p}_1 }= \abs{\vec{p}'_1}\) and \(\omega_1 = \omega_1 '\) and the same holds for \(2\). This follows directly from the fact that the solution to the equation of energy conservation in terms of the modulus of the momentum is unique: then, given the masses, the momentum will have the same moduluss. The cross section is given by 
+    %
+    \begin{align}
+    \eval{\dv{\sigma }{\Omega_1 }}_{CM} = \frac{1}{64 \pi^2} \frac{\abs{\mathcal{M}_{fi}}^2}{s}
+    \,;
+    \end{align}
+    %
+    \item  if \(m_1 = m_2 =0 \) while \(m_1 ' = m_2 ' = M\), which is the case for instance in pair production \(\gamma \gamma \to e^{+} e^{-} \), the kinematics are \(\abs{\vec{p}_1} = \omega_1 = \sqrt{s} / 2\) and \(\abs{\vec{p}_1'} = \abs{\vec{p}_1} \sqrt{1 - 4M^2/s}\).
+    This follows from the relations \(m_1 =0 \implies \abs{\vec{p}_1} = \omega_{1} = \omega_2 \), \(\sqrt{s} = \omega_1 + \omega_2 \) and \(M^2 = \omega_{f}^2 - \abs{p_f}^2\), where \(f\) is either final particle.
+    
+    The cross section is given by 
+    %
+    \begin{align}
+    \eval{\dv{\sigma }{\Omega_1 }}_{CM} = \frac{1}{64 \pi^2} \frac{\abs{\mathcal{M}_{fi}}^2}{s}
+    \sqrt{1 - \frac{4 M^2}{s}}
+    \,.
+    \end{align}
+\end{enumerate}
+
+\subsection{Sum over spins and polarizations}
+
+Up until now we have assumed that the initial and final spins and polarizations are known. 
+
+However, practically speaking, beams usually contain statistical mixtures of all spins and polarizations; also we often do not measure the spin of the outgoing particles. 
+
+So, we need a way to calculate the probability associated with an \textbf{unpolarized} decay or cross section. 
+
+This is computed by \emph{averaging} over the initial polarizations and \emph{adding} all the final ones. 
+We are considering classical mixtures, so we add probabilities, not amplitudes. The general formula is:
+%
+\begin{align}
+\abs{\overline{\mathcal{M}}_{fi}}^2
+= \underbrace{\frac{1}{n_{p_i}} \sum _{\substack{\text{initial} \\ \text{polarizations}}}}_{\text{average}} \underbrace{\sum _{\substack{\text{final} \\ \text{polarizations}}}}_{\text{sum}} \abs{\mathcal{M}_{fi}}^2
+\,,
+\end{align}
+%
+where \(n_{p_i}\) is the number of possible initial polarizations.
 
 \end{document}

@@ -83,7 +83,7 @@ In the Schrödinger approach, the wavefunction evolves as \(\ket{\psi (t)} = U(t
 The evolution of the fields is given in classical field theory as 
 %
 \begin{align}
-\dot{\varphi} &= \qty{\varphi , t}
+\dot{\varphi} &= \qty{\varphi , t} &
 \dot{\pi} &= \qty{\pi , t}
 \,,
 \end{align}
@@ -312,7 +312,7 @@ and for \(\pi \) and \(\varphi \) we must use the operator expressions in moment
 \begin{subequations}
 \begin{align}
 \begin{split}
-P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x} 
+P_{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x} 
 \qty[
 \int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
 (-i \omega_{k}) \qty(a(k) e^{-ikx} - a ^\dag (k) e^{ikx})
@@ -322,22 +322,55 @@ P^{i}&= \frac{1}{(2 \pi)^3} \int \dd[3]{x}
 \int \frac{ \dd[3]{k'}}{\sqrt{2 \omega_{k'}}} 
 \qty(-i k_i^{\prime } a(k') e^{-ik'x} +i k_i' a ^\dag (k') e^{ik'x})]
 \end{split} \\
+% \begin{split}
+% &= \int \dd[3]{k'}
+% \frac{1}{(2 \pi )^{3/2}} \int \dd[3]{x} e^{ik'x}
+% \frac{1}{(2 \pi )^{3/2}} \int \dd[3]{k} e^{-ikx} \times \\
+% &\phantom{=}\ \times
+% \qty[ \frac{-i \omega_{k}}{\sqrt{2 \omega_{k}}} \qty(a(k) - a ^\dag(-k))
+% \frac{1}{\sqrt{2 \omega_{k'}}} \qty(+i k_i' a(-k') + i k_i' a ^\dag(k'))
+% ]
+% \end{split} \\
+% &= \int \frac{\dd[3]{k}}{2} \qty[-i \qty(a(k) - a ^\dag(-k)) \qty(i k_i a(-k) + i k_i a ^\dag (k))] \\ 
+% &= \int \frac{\dd[3]{k}}{2} k_i\qty{ \qty(a(k) - a ^\dag(-k) ) \qty(a(-k) + a ^\dag (k))}  \\
+% &= \int \frac{\dd[3]{k}}{2} k_i \qty{
+% \underbrace{a(k) a (-k)}_{\text{odd}} + a (k) a ^\dag (k) - \underbrace{a ^\dag (-k) a (-k)}_{\text{change } k \to -k} - \underbrace{a ^\dag(-k) a ^\dag(k)}_{\text{odd}}
+% }
+% \\
+% &= \int \frac{\dd[3]{k}}{2} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
 \begin{split}
-&= \int \dd[3]{k'}
-\frac{1}{(2 \pi )^{3/2}} \int \dd[3]{x} e^{ik'x}
-\frac{1}{(2 \pi )^{3/2}} \int \dd[3]{k} e^{-ikx} \times \\
-&\phantom{=}\ \times
-\qty[ \frac{-i \omega_{k}}{\sqrt{2 \omega_{k}}} \qty(a(k) - a ^\dag(-k))
-\frac{1}{\sqrt{2 \omega_{k'}}} \qty(+i k_i' a(-k') + i k_i' a ^\dag(k'))
-]
-\end{split} \\
-&= \int \frac{\dd[3]{k}}{2} \qty[-i \qty(a(k) - a ^\dag(-k)) \qty(i k_i a(-k) + i k_i a ^\dag (k))] \\ 
-&= \int \frac{\dd[3]{k}}{2} k_i\qty{ \qty(a(k) - a ^\dag(-k) ) \qty(a(-k) + a ^\dag (k))}  \\
-&= \int \frac{\dd[3]{k}}{2} k_i \qty{
-\underbrace{a(k) a (-k)}_{\text{odd}} + a (k) a ^\dag (k) - \underbrace{a ^\dag (-k) a (-k)}_{\text{change } k \to -k} - \underbrace{a ^\dag(-k) a ^\dag(k)}_{\text{odd}}
-}
-\\
-&= \int \frac{\dd[3]{k}}{2} k^{i} \qty{ a (k) a ^\dag (k) + a ^\dag (k) a (k)}
+&= \int \frac{ \dd[3]{x}}{(2 \pi )^3} \int \frac{ \dd[3]{k}}{2} 
+\int \frac{ \dd[3]{k'}}{\sqrt{\omega_{k} \omega_{k'}}} 
+(- \omega_{k} k_i')  \\
+&\phantom{=}\ 
+\bigg[
+a(k) a(k') e^{-i (\omega_{k} + \omega_{k}') x_0 + i (\vec{k} + \vec{k}')\cdot \vec{x}} 
+-a(k) a ^\dag(k') e^{-i(\omega_{k} - \omega_{k}') x_0 + i (\vec{k} - \vec{k}')\cdot \vec{x}} \\
+&\phantom{=}\ -a ^\dag(k) a(k') e^{-i (-\omega_{k} + \omega_{k}') x_0 + i (-\vec{k} + \vec{k}')\cdot \vec{x}} 
++ a ^\dag(k) a ^\dag(k') e^{-i(-\omega_{k} - \omega_{k}') x_0 + i (-\vec{k} - \vec{k}')\cdot \vec{x}} 
+\bigg]
+\end{split}  \\
+\begin{split}
+&= \int \frac{ \dd[3]{k}}{2} 
+\int \frac{ \dd[3]{k'}}{\sqrt{\omega_{k} \omega_{k'}}} (- \omega_{k} k_i')  \\
+&\phantom{=}\ 
+\bigg[
+a(k) a(k') e^{-i (\omega_{k} + \omega_{k}') x_0} \delta^{(3)} (\vec{k} + \vec{k}') 
+-a(k) a ^\dag(k') e^{-i(\omega_{k} - \omega_{k}') x_0} \delta^{(3)}(\vec{k} - \vec{k}') \\
+&\phantom{=}\ -a ^\dag(k) a(k') e^{-i (-\omega_{k} + \omega_{k}') x_0}
+\delta^{(3)} (\vec{k} - \vec{k}') 
++ a ^\dag(k) a ^\dag(k') e^{-i(-\omega_{k} - \omega_{k}') x_0} \delta^{(3)} (\vec{k} + \vec{k}') 
+\bigg]
+\end{split}\\
+&= \int \frac{ \dd[3]{k}}{2 \omega_{k}} (- \omega_{k} k_i)
+\bigg[
+- a(k) a(-k) e^{- 2i\omega_{k} x_0}
+- a(k) a ^\dag(k) 
+- a ^\dag(k) a(k') 
+- a ^\dag(k) a ^\dag(-k) e^{2i\omega_{k} x_0} 
+\bigg]  \\
+&= \int \frac{ \dd[3]{k}}{2} k_i \qty[a(k) a ^\dag (k) + a ^\dag(k) a(k)]
++ \underbrace{k_i \qty( a(k) a(-k) e^{- 2i\omega_{k} x_0} + a ^\dag(k) a ^\dag(-k) e^{2i\omega_{k} x_0} )}_{\text{odd under \(\vec{k} \to - \vec{k}\)}}
 \,.
 \end{align}
 \end{subequations}

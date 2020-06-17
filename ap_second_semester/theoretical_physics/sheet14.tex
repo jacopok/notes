@@ -478,6 +478,7 @@ N \left[
 \right]  \\
 &= - q^2 \int \dd[4]{x} \dd[4]{y} D^{\mu \nu }_{F} (x-y) 
 N \qty[\overline{\psi}(x) \gamma_{\mu } S_F (x-y) \gamma_{\nu } \psi (x)]
+\label{eq:fermion-self-energy}
 \,,
 \end{align}
 %
@@ -643,7 +644,7 @@ The useful relations in this sense are:
 \begin{align}
 \psi_{+} (x) \ket{e^{-}_{s} (p)} &= e^{-ipx} u_s (p) \ket{0} \\
 \overline{\psi}_{+} (x) \ket{e^{+}_{s} (p)} &= e^{-ipx} \overline{v}_s (p) \ket{0}  \\
-A^{\mu }_{+} (x) \ket{\gamma_{\lambda } (p)} =e^{-ipx} \epsilon^{\mu }_{\lambda } (p)\ket{0}  \\
+A^{\mu }_{+} (x) \ket{\gamma_{\lambda } (p)} &= e^{-ipx} \epsilon^{\mu }_{\lambda } (p)\ket{0}  \\
 \varphi ^\dag_{+} (x) \ket{s(p)} &= e^{-ipx} \ket{0} 
 \,.
 \end{align}
@@ -814,7 +815,7 @@ This can be derived from the momentum-space diagram, like before! The diagram is
 \begin{figure}[ht]
 \centering
 \feynmandiagram[layered layout, extra large, horizontal = ia to ib]{
-e1 [particle = {\(e^{-}_{s}\)}] -- [fermion, momentum = \(p\)] ia [label = -45: \(-i q \gamma_{\mu }\)] -- [fermion, momentum = {\(q= p+k\)}] ib [label = -135 : {\(-iq \gamma_{\nu }\)}] -- [fermion, momentum = {\(p'\)}] e2 [particle = {\(e^{-}_{s'}\)}],
+e1 [particle = {\(e^{-}_{s}\)}] -- [fermion, momentum = \(p\)] ia [label = -45: \(-i q \gamma_{\mu }\)] -- [fermion, momentum = {\(q= p+k\)}] ib [label = 235 : {\(-iq \gamma_{\nu }\)}] -- [fermion, momentum = {\(p'\)}] e2 [particle = {\(e^{-}_{s'}\)}],
 p1 [particle = {\(\gamma_{\lambda }\)}] -- [photon, momentum' = \(k\)] ia,
 ib -- [photon, momentum' = \(k'\)] p2 [particle = {\(\gamma_{\lambda' }\)}]
 };
@@ -836,7 +837,7 @@ The algorithm to get the amplitude goes as follows:
 This yields: 
 %
 \begin{align}
-\mathcal{M} = \overline{u}_{s'} (p')
+\mathcal{M}_{A} = \overline{u}_{s'} (p')
 \qty(-iq \gamma_{\nu })
 \widetilde{S}_{F} (q)
 \qty(-iq \gamma_{\mu })
@@ -878,7 +879,8 @@ Applying the same procedure as before, we find
 \,.
 \end{align}
 
-Note that this is \textbf{different} from \(\mathcal{M}_A\)! 
+% Note that this is \textbf{different} from \(\mathcal{M}_A\)! 
+\todo[inline]{How does the different argument of the propagator manifest in the actual numbers?}
 The total probability amplitude is then given by 
 %
 \begin{align}
@@ -887,6 +889,133 @@ S^{(2)} (e^{-} \gamma ) = (2\pi )^{4} \delta^{(4)}
 \,.
 \end{align}
 
+\subsubsection{Second order term: photon self-energy}
 
+We have seen that there is a second-order QED term in which both the initial and final states are photons, the \textbf{photon self-energy}: 
+%
+\begin{align}
+\ket{i} &= \ket{\gamma_{\lambda } (p)} \\
+\ket{f} &= \ket{\gamma_{\lambda' } (p')}
+\,,
+\end{align}
+%
+so that we have both a fermion and an antifermion propagator: 
+%
+\begin{align}
+S^{(2)}_{\gamma \gamma } = 
+- \frac{q^2}{2} \int \dd[4]{x} \dd[4]{y}
+(-) \Tr \qty(S_F(y-x) \gamma^{\mu } S_F(x-y) \gamma^{\nu })
+N[A_{\mu } (x) A_{\nu } (y)]
+\,.
+\end{align}
+
+As we calculate the matrix element we get a factor two, since the signs of the two \(A_{\mu }\), \(A_{\nu }\) can be either \(+ -\) or \(- +\) equivalently: we have 
+%
+\begin{align}
+N[A_{\mu }(x) A_{\nu } (y)] = N \qty[
+    A_{\mu +} (x) A_{\nu -} (y) +
+    A_{\mu -} (x) A_{\nu +} (y) 
+]
+\,,
+\end{align}
+%
+since there is \emph{a priori} no causal constraint between \(x\) and \(y\). These two terms give an equal contribution (they are symmetric if we substitute \(\mu \leftrightarrow \nu \) ad \(x \leftrightarrow y\)), so we find 
+%
+\begin{align}
+\begin{split}
+S^{(2)}_{fi} &=
+q^2 \int \frac{ \dd[4]{k_1 }}{(2 \pi )^{4}}
+\int \frac{ \dd[4]{k_2 }}{(2 \pi )^{4}}
+\epsilon^{\mu}_{\lambda }(p) \epsilon^{\nu }_{\lambda '} (p') 
+\Tr \qty[\widetilde{S}_{F}(k_2 ) \gamma_{\mu } \widetilde{S}_{F} (k_1 )\gamma_{\nu }] \times \\
+&\phantom{=}\ \times 
+\int \dd[4]{x} e^{-i(p - k_2 + k_1 )x}  
+\int \dd[4]{y} e^{-i (p' - k_2 + k_1 ) x}
+\end{split}
+\,.
+\end{align}
+
+The diagram for this interaction is that shown in figure \ref{fig:photon-self-energy}. 
+Now, we can do one of the integrals in momentum space, but the other remains: we have 
+%
+\begin{align}
+S^{(2)}_{fi} &= q^2 \int \dd[4]{k_1 } \int \dd[4]{k_2 } \delta^{(4)}(p - k_1 + k_2 )
+\delta^{(4)} (p' - k_2 + k_1 )
+\epsilon^{\nu }_{\lambda }( p) \epsilon^{\mu }_{\lambda '} (p') \Tr[\dots]  \\
+&= q^2 \int \dd[4]{k_1 } \delta^{(4)} (p' - (p + k_1 ) + k_1 ) \epsilon^{\nu }_{\lambda }( p) \epsilon^{\mu }_{\lambda '} (p') \Tr[\dots]  \\
+&= ( 2 \pi )^{4} \delta^{(4)} (p - p') \underbrace{q^2\int \frac{ \dd[4]{k_1 }}{(2 \pi )^{4}}
+\epsilon^{\nu }_{\lambda }( p) \epsilon^{\mu }_{\lambda '} (p') \Tr[\widetilde{S}_{F}(p' + k_1  ) \gamma_{\mu } \widetilde{S}_{F} (k_1 )\gamma_{\nu }]}_{\mathcal{M}}
+\,.
+\end{align}
+
+Note that inside of \(\mathcal{M}\) we have a factor \(-1\) because of the fact that it is a fermionic loop, so we need to swap an odd number of fields. 
+
+Momentum conservation is enforced by the delta, but there is a degree of arbitrariness in the momentum of the loop: \(k_1 \) is free to vary, as long as \(k_2 \) varies with it. We integrate over all of the possible configurations in which this loop can occur.  
+
+In general, the number of loops \(L\) is given in terms of the number of fermion propagators \(P_e\), of photon propagators \(P_{\gamma }\), of vertices \(V\) as: 
+%
+\begin{align}
+L = P_e - P_\gamma - V + 1
+\,.
+\end{align}
+
+In this case, we have \(L =1 \).
+
+\subsubsection{Divergences}
+
+Let us give an estimate of this self-energy, assuming \(k \gg m, p\) (so, in the ``ultraviolet'': the loop is extremely energetic). 
+
+We then have 
+%
+\begin{align}
+S^{(2)}_{fi} \sim \int \dd[4]{k} \frac{\Tr[(\slashed{p+k} +m) \slashed{\epsilon } \qty(\slashed{k} + m) \slashed{\epsilon }]}{(k^2-m^2) \qty((k+p)^2- m^2)} \sim \int \dd[4]{k} \frac{k^2}{k^{4}} \to \infty 
+\,,
+\end{align}
+%
+where we have used the expression \eqref{eq:fermion-propagator-momentum-space-explicit} for the propagator; in terms of orders of \(k\) we can switch the integral to \(\int \dd[4]{k} \sim \int k^3 \dd{k} \). So, we are left with \(\int k \dd{k}\), which diverges \textbf{quadratically}. 
+
+\begin{claim}
+    A similar argument can be applied to show that the electron self-energy is divergent as well.
+\end{claim}
+
+\begin{proof}    
+The matrix element comes from the \(S\)-matrix in equation \eqref{eq:fermion-self-energy}; expressing everything in momentum space we find: 
+%
+\begin{align}
+\begin{split}
+S^{(2)}_{fi} &= - q^2 \int \frac{ \dd[4]{k_{\gamma }}}{(2 \pi )^{4}}
+\int \frac{ \dd[4]{k_{F}}}{(2 \pi )^{4}}
+\widetilde{D}^{\mu \nu }(k_\gamma )
+\overline{u}_{s'} (p') \gamma_{\mu } \widetilde{S}_{F}(k_F) \gamma_{\nu } u_s (p) \\
+&\phantom{=}\ 
+\underbrace{\int \dd[4]{x} e^{i (p' -k_\gamma - k_F) x}  }_{(2 \pi )^{4} \delta^{(4)} (p' - k_\gamma - k_F)}
+\underbrace{\int \dd[4]{y} e^{-i (p - k_{\gamma } - k_F) y}}_{(2 \pi )^{4} \delta^{(4)} (p - k_\gamma - k_F)}
+\end{split}  \\
+&= - q^2 
+( 2\pi )^{4} \delta^{(4)} (p - p')
+\int \frac{ \dd[4]{k_{\gamma }}}{(2 \pi )^{4}}
+\widetilde{D}^{\mu \nu }(k_\gamma )
+\overline{u}_{s'} (p') \gamma_{\mu } \widetilde{S}_{F}(p' - k_{\gamma }) \gamma_{\nu } u_s (p) 
+\,,
+\end{align}
+%
+so like before we can do power-counting to the integral in \(\dd[4]{k_\gamma }\): we have 
+%
+\begin{align}
+\mathcal{M} &= - q^2 \int \frac{ \dd[4]{k_{\gamma }}}{(2 \pi )^{4}}
+\widetilde{D}^{\mu \nu }(k_\gamma )
+\overline{u}_{s'} (p') \gamma_{\mu } \widetilde{S}_{F}(p' - k_{\gamma }) \gamma_{\nu } u_s (p)   \\
+&= - q^2 \int \frac{ \dd[4]{k_{\gamma }}}{(2 \pi )^{4}}
+\frac{-i \eta^{\mu \nu }}{k^2+ i \epsilon }
+\overline{u}_{s'} (p') \gamma_{\mu } 
+% \frac{\slashed{p' - k_\gamma } + m}{\qty(p' - k_\gamma )^2 - m}
+\frac{(p' - k_\gamma )_{\alpha}\gamma^{\alpha} + m}{\qty(p' - k_\gamma )^2 - m}
+\gamma_{\nu } u_s (p)  \\
+&\sim \int \dd[4]{k_\gamma } \frac{1}{k^2} \frac{k}{k^2} \sim \int \dd{k_\gamma } k_{\gamma }^3 k_\gamma^{-2} k_\gamma^{-1} \sim \int \dd{k_\gamma }
+\,,
+\end{align}
+%
+which still diverges, but this time only linearly. 
+\end{proof}
 
 \end{document}

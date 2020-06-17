@@ -1,0 +1,320 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Observables: decay rate and cross section}
+
+\marginpar{Wednesday\\ 2020-6-17, \\ compiled \\ \today}
+
+In the last section we have shown how to calculate perturbatively 
+%
+\begin{align}
+S_{fi} = (2 \pi )^{4} \delta^{(4)}(p_i - p_f) \mathcal{M}_{fi}
+\,,
+\end{align}
+%
+using Feynman rules. 
+Now we want to connect the result we have gotten with experimentally observable quantities: 
+\begin{enumerate}
+    \item the \textbf{decay rate} describes the case in which we have 1 incoming particle and \(n_f\) outgoing ones;
+    \item the \textbf{cross section} describes the case in which the initial state consists of 2 particles, which scatter to produce \(n_f\) particles.
+\end{enumerate}
+
+We will discuss how to connect these to the \(S\)-matrix; but first, we must make sure we are using the correct normalizations. 
+
+\subsection{Normalizations}
+
+\subsubsection{Covariant versus canonical}
+
+In deriving the expression for the conservation of probability for the \(S\)-matrix evolution we have used the fact that the initial and final states were \textbf{canonically}s normalized (i.\ e.\ to 1). 
+
+However, in the last section our states were \textbf{covariantly} normalized, as 
+%
+\begin{align}
+\braket{1(p)}{1(k)} = (2 \pi )^3 2 \omega_{p} \delta^{(3)} (\vec{p} - \vec{k}) 
+\,,
+\end{align}
+%
+since the canonical normalization is not covariant. 
+
+The relation connecting the two normalizations is: 
+%
+\begin{align}
+S^{CN}_{fi} = \bra{\psi_{f}}_{CN} S \ket{\psi_{i}}_{CN}
+= \frac{\bra{\psi_{f}} S \ket{\psi_{i}}}{\abs{\psi_{f}} \abs{\psi_{i}}} = \frac{S_{fi}}{\abs{\psi_{f}} \abs{\psi_{i}}}
+\,,
+\end{align}
+%
+where if we do not specify \(CN\) we mean that the states are covariantly normalized. 
+The covariant-normalization \(S_{fi}\) is the one we derived in the last section. 
+In terms of the Feynman amplitude, this reads 
+%
+\begin{align}
+S^{CN}_{fi} = (2 \pi )^{4} \delta^{(4)} (p_i - p_f)
+\frac{\mathcal{M}_{fi}}{\abs{\psi_{i}} \abs{\psi_{f}}}
+= (2 \pi )^{4} \delta^{(4)} (p_i - p_f) \mathcal{M}_{fi}^{CN}
+\,.
+\end{align}
+
+\subsubsection{The normalization issue}
+
+In order to investigate the normalization issue we use a discrete system --- we will take the continuum limit at the end. 
+We consider a cubic box of side \(L\) and volume \(V = L^3\).
+
+From quantum mechanics we know that the momenta of the particles inside the box are quantized according to 
+%
+\begin{align}
+p_{i} = \frac{2 \pi }{L} n_i
+\,,
+\end{align}
+%
+where \(i = 1, 2, 3\) and \(n_i \in \mathbb{Z}\). 
+
+The continuum expressions we wrote can be converted into discrete ones with: 
+%
+\begin{align}
+\int \dd[3]{p} f (\vec{p})  &\to \sum _{\vec{n}} \qty(\frac{2 \pi }{L})^3 f_{\vec{n}}  \\
+\delta^{(3)} (p-k) & \to \qty(\frac{L}{2 \pi })^3 \delta_{\vec{n}, \vec{m}}
+\,.
+\end{align}
+
+The relation \(\int \dd[3]{p } \delta^{(3)} (p-k) = 1\) then becomes \(\sum _{\vec{n}} (2\pi / L)^{3-3} \delta_{\vec{n}, \vec{m}}  = 1\). 
+This is all consistent. 
+
+Then, this discrete version of the delta is an actual function, which can be evaluated at zero: 
+%
+\begin{align}
+\delta^{(3)}(0) \to \qty( \frac{L}{2 \pi })^{3}
+\qquad \text{and} \qquad
+\delta^{(4)}(0) \to \qty( \frac{L}{2 \pi })^{3} \frac{T}{2 \pi }
+\,,
+\end{align}
+%
+so now the covariant normalization reads: 
+%
+\begin{align}
+\braket{1(p)}{1(p)} &= 2 \omega_{p} (2 \pi )^3 \delta^{(3)}(0) = 2 \omega_{p} V  \\
+\ket{1(p)} &= \sqrt{2 \omega_{p} V} \ket{1(p)}_{CN}
+\,.
+\end{align}
+
+So, if we have \(n_i\) particles initially and \(n_f\) particles later, the relation between the Feynman amplitudes is 
+%
+\begin{align}
+\mathcal{M}_{fi}^{CN} = \prod_{i=1}^{n_i} \frac{1}{\sqrt{2 \omega_{i}V}}
+\prod_{j=1}^{n_f} \frac{1}{\sqrt{2 \omega_{j}V}} \mathcal{M}_{fi}
+\,.
+\end{align}
+
+\todo[inline]{By the way this is used later, it is written improperly: for multiparticle states, we divide by \(V\) a single time, so it should be outside of the product!}
+
+\subsection{Decay rate}
+
+\todo[inline]{What is the graph about? Do we turn on and then off the interaction Hamiltonian?}
+
+It describes the decay of an unstable particle. There are no decays in QED, because of the fact that the photon is massless they are not kinematically allowed. 
+
+Decays, however, occur in theories which have massive vectors or scalars (and the standard model has them). 
+
+The probability (actually, a probability \emph{density} in momentum space) of the decay is given by 
+%
+\begin{align}
+\mathbb{P} = \abs{S^{CN}_{fi}} 
+&= \abs{(2 \pi )^{4} \delta^{(4)} (p_i - p_f) \mathcal{M}^{CN}_{fi}}^2  \\
+&= (2 \pi )^{4} \delta^{(4)} (p_i-p_f) \underbrace{VT}_{(2 \pi )^{4} \delta^{(4)}(0)} \abs{\mathcal{M}_{fi}^{CN}}^2  \\
+&=  (2 \pi )^{4} \delta^{(4)} (p_i-p_f) VT \frac{1}{2 \omega_{i} V} \prod_{j=1}^{n_f} \frac{1}{2 \omega_{f} V} \abs{\mathcal{M}_{fi}}^2   \\
+&= (2 \pi )^{4} \delta^{(4)} (p_i - p_f) \frac{T}{2 \omega_{i}}
+\prod_{j=1}^{n_f} \frac{1}{2 \omega_{f} V} \abs{\mathcal{M}_{fi}}^2
+\,,
+\end{align}
+%
+which goes to zero as \(V \to \infty \), which reflects the fact that the number of states with an exact momentum \(p_f\) goes to zero. 
+
+So, instead of using total probabilities we want to move to probability densities, and accordingly we will not look at a final state with an exact momentum \(p_f\); instead, we will consider states with a momentum \(p \in (p_f, p_f + \dd{p_f})\). 
+
+In the ``particle in a box'' language, this means we consider 
+%
+\begin{align}
+\dd{n_i} = \frac{L}{2 \pi } \dd{p_i}
+\,,
+\end{align}
+%
+so that 
+%
+\begin{align}
+\dd[3]{n} = \qty( \frac{L}{2 \pi })^3 \dd[3]{p} 
+= \frac{V}{(2\pi )^3} \dd[3]{p} 
+\,.
+\end{align}
+
+\todo[inline]{The uncertainty principle argument is not really convincing to me. This is a statement about probability densities, it should hold for classical systems as well\dots}
+
+Since this is the differential \emph{number} of states, we multiply by it to get the \textbf{transition probability}:  
+%
+\begin{align}
+\dd{\omega_{fi}} = \abs{S^{CN}_{fi}}^2 \prod_{j=1}^{n_f} \frac{V \dd[3]{p_j}}{(2\pi )^3 2 \omega_{j}}
+\,,
+\end{align}
+%
+where \(p_f = \sum_j p_j\); we also can divide by the decay time \(T\)
+
+\todo[inline]{Ok, but properly speaking shouldn't we differentiate with respect to \(T\) to get the probability per unit time? The result is the same since the expression is linear, but still\dots}
+
+to get 
+%
+\begin{align}
+\dd{\Gamma_{fi}} &= \frac{ \dd{\omega_{fi}}}{T} =
+(2\pi )^{4} \delta^{(4)} (p_i - p_f) 
+\frac{\abs{\mathcal{M}_{fi}}^2}{2 \omega_{i}}
+\prod_{j=1}^{n_f} \frac{\dd[3]{p_j}}{(2\pi )^3 2 \omega_{j}}  \\
+&= \frac{\abs{\mathcal{M}_{fi}}^2}{2 \omega_{i}} \dd{\phi}^{(n_f)}
+\,,
+\end{align}
+%
+where we define the \(n_f\)-particles \textbf{phase space} element: 
+%
+\begin{align}
+\dd{\phi}^{(n_f)}
+=
+(2\pi )^{4} \delta^{(4)} (p_i - p_f) 
+\prod_{j=1}^{n_f} \frac{\dd[3]{p_j}}{(2\pi )^3 2 \omega_{j}}
+\,.
+\end{align}
+
+Note that in the continuum limit the differential decay rate \(\dd{\Gamma }_{fi}\) and the phase space element \(\dd{\phi }^{(n_f)}\) are \textbf{finite}. 
+
+The \textbf{total decay rate} is defined as the integral over all of the possible phase space of the differential decay rate: 
+%
+\begin{align}
+\Gamma_{fi} = \int \dd{\Gamma}_{fi}
+\,.
+\end{align}
+
+This has a direct physical interpretation: it is the probability per unit time that the initial particle will decay into the particles \(f\).
+
+The number of particles \(i\) will then exponentially decay according to 
+%
+\begin{align}
+\dv{N_i}{t} = - \Gamma N_i = - \frac{N_i}{\tau }
+\,.
+\end{align}
+
+The quantity \(\tau  = 1/ \Gamma \) is called the \textbf{lifetime} of the particle. 
+
+Note that the dimensions of \(\Gamma \) are those of an energy in natural units; it is \emph{not} Lorentz invariant! Under a boost of Lorentz factor \(\gamma \) from the rest frame it transforms like 
+%
+\begin{align}
+\Gamma \to \frac{\Gamma}{\gamma } < \Gamma 
+\,,
+\end{align}
+%
+which corresponds to the lifetime \(\tau \) being longer in the boosted frame. 
+This corresponds to the observed decay of muons in the usual example of time dilation. 
+
+\subsubsection{Example: differential decay rate with two products}
+
+We put ourselves in the rest frame of the initial particle: so
+we have a particle of 4-momentum \((M, 0)\) decaying into two ones with 4-momenta 
+%
+\begin{align}
+q_{j} = (\omega_{j}, \vec{q}_{j}) 
+\,,
+\end{align}
+%
+for \(j=1, 2\), and by momentum conservation we have 
+%
+\begin{align}
+M &= \omega_{1} + \omega_2  \\
+0 &= \vec{q}_{1} + \vec{q}_{2}
+\,.
+\end{align}
+
+The masses of the two products are \(m_j\), they are potentially different. 
+
+The general formula for the decay rate in the \emph{rest frame} reads: 
+%
+\begin{align}
+\dd{\Gamma} &= \frac{\abs{\mathcal{M}_{fi}}^2}{2M} \dd{\phi }^{(2)}  \\
+&= \frac{\abs{\mathcal{M}_{fi}}^2}{2M} (2 \pi )^{4} \delta^{(4)}(p - q_1 - q_2 ) 
+\frac{ \dd[3]{q_1 }}{(2\pi )^3 2 \omega_1}
+\frac{ \dd[3]{q_2 }}{(2\pi )^3 2 \omega_2}
+\,.
+\end{align}
+
+We have six integration variables and four constraints, so really there will be two integrals to do. In general for \(n\) outgoing particles we will have \(3n - 4\) integrals. 
+
+We integrate the \(\dd[3]{q_2 }\) first, as is the convention. This yields 
+%
+\begin{align}
+\dd{\phi}_{(2)}' 
+= \frac{(2\pi )^{4}}{4 \omega_1 \omega_2 (2 \pi )^3 } \delta (M - \omega_1 - \omega_2 ) \frac{ \dd[3]{q_1 }}{(2 \pi )^3} 
+= \frac{1}{(2\pi )^2} \frac{1}{4 \omega_1 \omega_2 } \delta (M - \omega_1 - \omega_2 ) \dd[3]{q_1 }
+\,.
+\end{align}
+
+We can now move to angular coordinates for \(q_1 \): we insert 
+%
+\begin{align}
+\dd[3]{q_1 } = \abs{q_1 }^2 \dd{ \abs{q_1 }} \dd{\Omega_1 }
+\,,
+\end{align}
+%
+and we have still one integral to do, to remove the energy delta.
+Since the energies are fixed if we set \(\abs{q_1 }\), we do that integral: 
+%
+\begin{align}
+\dd{\phi }_{(2)}'' = \frac{1}{(2\pi )^2}
+\dd{\Omega_1 }
+\int \frac{\delta (M - \omega_1 - \omega_2 )}{4 \omega_1 \omega_2 }\abs{q_1 }^2 \dd{ \abs{q_1 }}
+\,,
+\end{align}
+%
+and now we must apply the properties of the \(\delta\) to integrate this: recall that 
+%
+\begin{align}
+\delta (f(x)) = \sum _{x_i \text{ zero of } f(x)}
+\frac{ \delta (x- x_i)}{\abs{f'(x_i)}}
+\,.
+\end{align}
+
+Renaming \(\abs{q_1 } = x\) for convenience, we must rewrite the following delta function: 
+%
+\begin{align}
+\delta \qty(M - \sqrt{m_1^2 + x^2} - \sqrt{m_2^2 + x^2}) = \delta (f(x))
+\,.
+\end{align}
+
+The derivative of \(f\) is:
+%
+\begin{align}
+\dv{f}{x} = - \frac{x}{\omega_1 } - \frac{x}{\omega_2 } = - x \qty( \frac{1}{\omega_1 } + \frac{1}{\omega_2 }) 
+= - x \frac{\omega_1 + \omega_2 }{\omega_1 \omega_2 }
+\,.
+\end{align}
+
+How many zeroes does \(f\) have in the region which interests us? only one, since it is strictly decreasing. 
+Let us call this zero \(\hat{x}\), and denote quantities calculated with \(x = \hat{x}\) with a hat as well. Then we can remove the integral: 
+%
+\begin{align}
+\dd{\phi }_{(2)}'' &= \frac{1}{(2\pi )^2}
+\dd{\Omega_1 }
+\frac{1}{4 \hat{\omega}_{1} \hat{\omega}_{2}} \frac{\hat{\omega}_{1} \hat{\omega}_{2}}{\hat{x} (\hat{\omega}_{1} + \hat{\omega}_{2})}
+\hat{x}^2  \\
+&= \frac{1}{(2\pi )^2}
+\dd{\Omega_1 }
+\frac{1}{4M} \hat{x} 
+= \frac{1}{16 \pi^2} \frac{\abs{\hat{q}_{1}}}{M} \dd{\Omega_1 }
+\,,
+\end{align}
+%
+since the energies of the two outgoing particles always add to \(M\). 
+
+The explicit expression for \(x\) in terms of the masses is 
+%
+\begin{align}
+x = \frac{\sqrt{-2 M^2 m_1^2-2 M^2 m_2^2+M^4-2 m_1^2 m_2^2+m_1^4+m_2^4}}{2 M}
+\,.
+\end{align}
+%
+
+
+\end{document}

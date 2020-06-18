@@ -529,4 +529,129 @@ p - q' = p' - q
 where either \(-p'\) or \(-q'\) is the ``new second incoming momentum''. This is equivalent to switching to the other Mandelstam variables.
 \end{proof}
 
+\subsection{\(e^{-}f^{-} \to e^{-}f^{-}\) and crossing symmetries}
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[vertical = x to y]{
+    e1 [particle = {\(e^{-}\)}] -- [fermion] x -- [fermion] e2 [particle = {\(e^{-}\)}],
+    x -- [photon, momentum = {\(k = p-p' = q-q'\)}] y ,
+    f1 [particle = {\(f^{-}\)}] -- [anti fermion] y -- [anti fermion] f2 [particle = {\(f^{-}\)}]  
+};
+\caption{Diagram for \(e^{-}f^{-} \to e^{-}f^{-}\).}
+\label{fig:efef-feynman-diagram}
+\end{figure}
+
+The Feynman diagram for this interaction is shown in figure \ref{fig:efef-feynman-diagram}. The square of the modulus of \(k\) is the Mandelstam variable \(t = k^2 = (p - p')^2\). 
+Because of this, this is called the \(t\)-channel. 
+
+The corresponding Feynman amplitude (with \(\xi = 1\)) is 
+%
+\begin{align}
+\mathcal{M} = i \frac{q_e q_f}{t} 
+\qty(\overline{u}_{s'} (p') \gamma^{\mu } u_s (p))
+\qty(\overline{u}_{r'} (q') \gamma^{\mu } u_r (q))
+\,.
+\end{align}
+
+Notice that this has a pole (a divergence) for \(t = 0\): this is similar to what we had before, but then the pole was in \(s = 0\), which was fine since that would have meant zero center-of-mass energy. 
+
+In everything but that term the amplitude is the same as last section's. The square of the modulus of the unpolarized amplitude is 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2_{ef} 
+=\frac{q_e^2 q_f^2}{t^2} 
+\Tr [\qty(\slashed{p} + m) \gamma^{\nu } \qty(\slashed{p}' + m) \gamma^{\mu }] 
+\Tr [\qty(\slashed{q} + M) \gamma_{\nu } \qty(\slashed{q}' + m) \gamma_{\mu }] 
+\,.
+\end{align}
+
+This can be written starting from the \(ee \to ff\) amplitude with the following maps: 
+%
+\begin{align}
+p \to p 
+&&
+q \to -p'
+&&
+q' \to -q 
+&&
+p' \to -q'
+\,,
+\end{align}
+%
+which correspond to the cyclic change of Mandelstam variables: \(s, t, u \to t, u, s\). 
+
+Making these substitutions in the final probability yields, in the ultrarelativistic approximation:
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2_{ee} &= 2 e^{4} \qty(\frac{t^2+ u^2}{s^2}) \\
+\abs{\mathcal{\overline{M}}}^2_{ff} &= 2 e^{4} \qty(\frac{u^2+ s^2}{t^2})
+\,,
+\end{align}
+%
+since we have the ultrarelativistic relations 
+%
+\begin{align}
+s &= 2 p \cdot q = 2 p' \cdot q'  &
+t &= -2 p \cdot p' = -2 q \cdot q' & 
+u &= -2 p \cdot q' = -2 q \cdot p' 
+\,.
+\end{align}
+
+These can all be derived from the definitions, assuming \(0=p^2= q^2=\dots\)
+
+In the center of mass frame we have 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2_{CM} (ef \to ef) &= 2 e^{4} \qty[\frac{4 + (1 + \cos \theta )^2}{(1 - \cos \theta )^2}]  \\
+\dv{\sigma }{\Omega_1 }_{CM}(ef \to ef) &= \frac{\alpha^2}{2s}
+\qty[\frac{4 + (1 + \cos \theta )^2}{(1 - \cos \theta )^2}]
+\,,
+\end{align}
+%
+where \(\theta \) is the angle between the incoming and outgoing electrons. This diverges for \(\theta \to 0\)! 
+
+The relation between the \(e e \to f f \) process and the \(ef \to ef\) process is known as a \textbf{crossing symmetry}. It can be generalized to any process with this structure.
+
+\begin{claim}
+If we have a process in which a particle \(\varphi \) appears in the initial state with a momentum \(\vec{p}\), its \(S\)-matrix is equivalent to the matrix of a process in which \(\varphi \)'s antiparticle appears in the final state with its momentum reversed: 
+%
+\begin{align}
+\mathcal{M} (\varphi (\vec{p}) \dots \to \dots)
+= \pm \mathcal{M} (\dots \to \overline{\varphi}(-\vec{p}) \dots)
+\,.
+\end{align}
+\end{claim}
+
+Under certain conditions (unspecified here) when considering fermionic lines the minus sign can appear. 
+
+\todo[inline]{Exercise: derive cross section of \(e^{-} f^{+} \to e^{-}f^{+}\).}
+
+\subsection{Scattering by an external EM field}
+
+We have seen how to quantize the electromagnetic field; often though we do not care to analyze its quantum nature, but instead we want to approximate an external EM field as classical. 
+
+\subsubsection{\(e^{-} p \to e^{-} p\) scattering}
+
+Let us consider the process of scattering \(e^{-} p \to e^{-} p\). We choose to work at such energies that the internal structure of the proton does not affect the process, and we just model the proton as a spin \(1/2\) fermion. So, our Lagrangian will be 
+%
+\begin{align}
+\mathscr{L}_{D} &= 
+\overline{\psi}_{e} \qty(i \slashed{\partial} -m_e ) \psi_{e} +
+\overline{\psi}_{p} \qty(i \slashed{\partial} -M_p ) \psi_{p} +
+\mathscr{L} _{\text{int}} \\
+\mathscr{L} _{\text{int}} &= \qty(q_e \overline{\psi}_{e} \gamma^{\mu } \psi_{e} + q_p \overline{\psi}_{p} \gamma^{\mu }\psi_{p}) A_{\mu }
+\,.
+\end{align}
+
+The lowest order of the scattering is given by the second-order matrix element 
+%
+\begin{align}
+S_{(2)} = (-i q_e)(-i q_p) \int \dd[4]{x} \dd[4]{y}
+N \qty[ \qty(\overline{\psi} \slashed{A} \psi )_{x}^{e} \qty(\overline{\psi} \slashed{A} \psi )_{y}^{p}]
+\,,
+\end{align}
+%
+which can be represented by the usual \(t\)-channel diagram, just like that which is shown in figure \ref{fig:efef-feynman-diagram}. 
+
 \end{document}

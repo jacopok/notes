@@ -5,6 +5,301 @@
 
 \marginpar{Wednesday\\ 2020-6-17, \\ compiled \\ \today}
 
+We will now study \textbf{tree level} processes in QED: this means that we only consider QED processes which have \emph{no loops}.
+This usually corresponds to considering the leading order. 
 
+We will look at three processes explicitly: 
+\begin{enumerate}
+    \item \(e^{+} e^{-} \to \mu^+ \mu^-\) scattering;
+    \item \(e^{-}\) scattering by an external EM field;
+    \item \(e^{-} \gamma \to e^{-} \gamma \) (Compton) scattering.
+\end{enumerate}
+
+The techniques we will apply here will generalize to any tree-level QED process. 
+
+\subsection{Two-flavoured QED Lagrangian}
+
+In order to consider the \(e^{+} e^{-} \to \mu^+ \mu^-\) process we need a QFT description of the muon as well as the electron: so, we write a Lagrangian with both terms. It reads: 
+%
+\begin{align}
+\mathscr{L}^{(2)}_{\text{QED}} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu }
+- \frac{1}{2 \xi } \qty(\partial_{\mu } A^{\mu })^2
++ \overline{\psi}_{e} \qty(i \slashed{\DD}_e - m_e) \psi_{e}
++ \overline{\psi}_{\mu} \qty(i \slashed{\DD}_\mu - m_\mu) \psi_{\mu}
+\,,
+\end{align}
+%
+where the covariant derivative associated with the particle species \(j\) contains the charge of that particle, \(q_j\):
+%
+\begin{align}
+\slashed{\DD}_j = \gamma^{\mu } \qty(\partial_{\mu } + i q_j A_{\mu })
+\,.
+\end{align}
+
+This holds in general, but in our case \(q_e = q_\mu = -e\). 
+The Lagrangian \(\mathscr{L}^{(2)} _{\text{QED}}\) has a \(U(1)\) gauge symmetry, whose action is 
+%
+\begin{align}
+A^{\mu }(x) & \to A^{\mu }(x ) - \partial_{\mu } \alpha (x)  \\
+\psi_{e, \mu }(x) & \to e^{iq \alpha (x)} \psi_{e, \mu }(x)
+\,;
+\end{align}
+%
+and a \(U(1)_{e} \times U(1)_{\mu }\) global symmetry, whose action is 
+%
+\begin{align}
+A^{\mu }(x) &\to A^{\mu }(x)  \\
+\psi_{e, \mu } (x ) & \to e^{i \beta_{{e, \mu }}} \psi_{e, \mu }
+\,,
+\end{align}
+%
+where \(\beta_{e, \mu }\) are two (possibly different) constants. 
+
+\subsection{\(e^{+}e^{-} \to f^{+} f^{-}\) unpolarized scattering}
+
+Here, \(e^{\pm}\) are electron and positron, while \(f\) is a generic spin \(1/2\) fermion. 
+
+We make the assumption that the couplings are \textbf{diagonal} in flavour space: this means that there is no term in the Lagrangian which couples \(e\) and \(f\) explicitly, instead they are both coupled to the EM field and interact in that way. 
+
+\todo[inline]{Is this the correct interpretation?}
+
+Then, the QED vertex for this interaction looks like 
+%
+\begin{align}
+\feynmandiagram[baseline=(v.base), horizontal=v to p]{
+    f1 [particle = {\(f^{-}\)}] -- [fermion] v [label= left : \(\mu \)],
+    f2 [particle = {\(f^{+}\)}] -- [anti fermion] v,
+    v -- [photon] p [particle = \(\gamma \)]
+};
+= - i q_f \gamma^{\mu }
+\,.
+\end{align}
+
+This holds for the generic fermion \(f\), so for the electron as well. 
+So, if \(f \neq e\) we only have one diagram contributing to this interaction, at second order and at tree level: 
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, extra large, horizontal = ia to ib]{
+e1 [particle = {\(e^{-}_{r}\)}] -- [fermion, momentum = \(\vec{p}\)] ia [label = -45: \(-i q_e \gamma_{\mu }\)] -- [photon, momentum = {\(\vec{k}= \vec{p}+\vec{q}\)}] ib [label = 235 : {\(-iq_f \gamma_{\nu }\)}] -- [fermion, momentum = {\(\vec{p}'\)}] e2 [particle = {\(f^{-}_{r'}\)}],
+p1 [particle = {\(e^{+}_{s}\)}] -- [anti fermion, momentum' = \(\vec{q}\)] ia,
+ib -- [anti fermion, momentum' = \(\vec{q}'\)] p2 [particle = {\(f^{+}_{s'}\)}]
+};
+\caption{Tree level diagram for electron-fermion interaction.}
+\label{fig:electron-fermion-tree-level}
+\end{figure}
+
+Also, we denote the mass of the electron as \(m\) and the mass of the other fermion as \(M\).
+
+The whole diagram can just as well be flipped: the incoming and outgoing direction of the momenta is arbitrary. 
+Because of momentum conservation, \(\vec{k} = \vec{p} + \vec{q} = \vec{p}' + \vec{q}'\).
+
+The Feynman amplitude is given by the Feynman rules: 
+%
+\begin{align}
+\mathcal{M}_{ef} = (-i q_f) (-i q_e)
+\overline{u}_{r'} (p') \gamma_{\nu } v_s' (q')
+\overline{v}_{s} (q) \gamma_{\mu} u_r (p)
+\widetilde{D}^{\mu \nu } (k)
+\,,
+\end{align}
+%
+where the photon propagator in the gauge-fixing Lagrangian is given by 
+%
+\begin{align}
+\widetilde{D}^{\mu \nu } (k) = \frac{-i}{k^2 + i \epsilon }
+\qty(\eta^{\mu \nu } - \frac{k^{\mu }k^{\nu }}{k^2} (1 - \xi ))
+\overset{\xi =1}{=}
+\frac{-i}{k^2 + i \epsilon }
+\eta^{\mu \nu }
+\,.
+\end{align}
+
+Observables do not depend on the choice for \(\xi \), so we can set it to one without worry. 
+
+\todo[inline]{But the EOM for the EM field depend on \(\xi \) explicitly!}
+
+Also, we will now start implying the \(+i \epsilon \) term.
+
+Now, in order to write the Feynman amplitude more explicitly we introduce the Mandelstam variables: 
+%
+\begin{align}
+s &= (p+q)^2 = (p' + q')^2 \\
+t &= (p-p')^2 = (q - q')^2 \\
+u &= (p-q')^2 = (q - p')^2 
+\,,
+\end{align}
+%
+which are a useful covariant scalar description of the kinematics. 
+With these conventions, the Feynman amplitude reads: 
+%
+\begin{align}
+\mathcal{M}_{ef} = \frac{i q_e q_f}{s} 
+\overline{u}_{r'} (p') \gamma^{\mu } v_s' (q')
+\overline{v}_{s} (q) \gamma_{\mu} u_r (p)
+\,,
+\end{align}
+%
+since \(k^2 = s\), as \(k = p+q\).
+Now the real matrix-crunching starts: we want to find \(\abs{\mathcal{M}}^2 = \mathcal{M} \mathcal{M}^{*}\), which will be needed in the computation of the cross section, so we make it explicit: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 = \qty(\frac{q_e q_f}{s})^2 
+\qty(\overline{u} (p') \gamma^{\mu } v (q')) \qty(\overline{v}(q) \gamma_{\mu } u(p)) 
+\qty(\overline{u} (p') \gamma^{\nu } v (q'))^{*} \qty(\overline{v}(q) \gamma_{\nu } u(p))^{*}
+\,,
+\end{align}
+%
+which we can manipulate: consider the conjugate bits
+%
+\begin{align}
+\qty(\overline{u} (p') \gamma^{\nu } v (q'))^{*} 
+&= u_{\alpha }(p') \qty( \gamma^{0 *} \gamma^{\nu *})_{\alpha \beta } v^{*}_{\beta } (q')  \\
+&= v^{*}_{\beta }(q')\qty( \gamma^{0 *} \gamma^{\nu *} \gamma^{0} \gamma^{0})_{\alpha \beta }
+u_\alpha (p')    \\
+&= v^{*}_{\beta }(q')\qty( \gamma^{\nu \top} \gamma^{0})_{\alpha \beta }
+u_\alpha (p')  \\
+&= v^{*}_{\beta } (q') (\gamma^{0 \top} \gamma^{\nu })_{\beta \alpha } u_\alpha (p')  \\
+&= \overline{v}_{\beta } (q') \gamma^{\nu  } u_\alpha (p')
+\,,
+\end{align}
+%
+where we used the identity \eqref{eq:gamma-matrices-identity}, noticing the fact that it can be adapted into 
+%
+\begin{align}
+\gamma^{0} \gamma^{\nu , \top} \gamma^{0} = \gamma^{\nu *}
+\,,
+\end{align}
+%
+since \(\gamma^{0} = \gamma^{0 \dag} = \gamma^{0 \top} = \gamma^{0 *}\). The symbol \(\top\) means transpose, so that \(\top * = \dag\). Also, \(\qty(\gamma^{0})^2 = \mathbb{1}\) so a pair of them can be inserted anywhere.
+
+This all means that our Dirac spinor construction is well-behaved under conjugation: \((\overline{u} \gamma v)^{*} = \overline{v} \gamma u\), as it should be. 
+This means that we can write the probability as: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 = \qty(\frac{q_e q_f}{s})^2 
+\underbrace{\qty(
+\overline{u}_{r'}(p') \gamma^{\mu } v_{s'}(q') \overline{v}_{s'} (q') \gamma^{\nu } u_{r'}(p')
+)}_{\text{muon}}
+\underbrace{\qty(
+\overline{v}_{s}(q) \gamma_{\mu} u_r (p) \overline{u}_{r}(p) \gamma_{\nu } v_s(q)
+)}_{\text{electron}}
+\,.
+\end{align}
+
+We want to consider the \textbf{unpolarized} \(\abs{\mathcal{M}}^2\), so we need to average over the 4 initial polarizations (\(r, s\)), and sum over the final polarizations (\(r', s'\)).
+The factor \(4\) is calculated as \((2s_{e^{-}}+1) (2s_{e^{+}}+1)\). 
+
+We make the spinorial indices explicit and find: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 = 
+\qty( \frac{q_e q_f}{2 s})^2 
+\underbrace{\sum _{r'} u_{r'}^{ \delta'} \overline{u}^{\alpha '}_{r'}
+\sum _{s'} v_{s'}^{ \beta'} \overline{v}^{\gamma '}_{s'}}_{\text{muon, mass }M}
+(\gamma^{\mu })_{ \alpha ' \beta '}
+(\gamma^{\nu })_{ \gamma ' \delta '}
+\underbrace{\sum _{r} u_{r}^{ \delta} \overline{u}^{\alpha }_{r}
+\sum _{s} v_{s}^{ \beta} \overline{v}^{\gamma }_{s}
+}_{\text{electron, mass }m}
+(\gamma_{\mu })_{ \alpha  \beta }
+(\gamma_{\nu })_{ \gamma  \delta }
+\,.
+\end{align}
+
+Now, objects in the form \(\sum _{r} u_r \overline{u}_{r}\) are \textbf{projectors} in spinor space: specifically, they are the ones defined in equation \eqref{eq:energy-projectors-spinor} (without the mass in the denominator). 
+So, we can write the ones corresponding to the electron as: 
+%
+\begin{align}
+\sum _{r} u_r (p) \overline{u}_r (p) &= 2 m \Lambda_{+} (p) = \slashed{p} + m \\
+\sum _{s} v_s (p) \overline{v}_s (p) &= -2 m \Lambda_{-} (p) = \slashed{p} - m
+\,,
+\end{align}
+%
+and similarly for the ones of the other fermion.
+So, writing all the terms in order we find: 
+%
+\begin{align}
+\begin{split}
+\abs{\mathcal{M}}^2 &= 
+\qty( \frac{q_e q_f}{2 s})^2 
+(\gamma^{\mu })_{ \alpha ' \beta '}
+(\slashed{q}' - M)_{\beta ' \gamma '}
+(\gamma^{\nu })_{ \gamma ' \delta '}
+\qty(\slashed{p}' + M)_{ \delta ' \alpha '} \\
+&\phantom{=}\ 
+(\gamma_{\mu })_{ \alpha  \beta }
+(\slashed{q} - m)_{\beta  \gamma }
+(\gamma_{\nu })_{ \gamma  \delta }
+\qty(\slashed{p} + m)_{ \delta  \alpha }
+\end{split}  \\
+&= 
+\qty( \frac{q_e q_f}{2 s})^2 
+\Tr [\gamma^{\mu } (\slashed{q}' - M) \gamma^{\nu } (\slashed{p}' + M)]
+\Tr [\gamma_{\mu } (\slashed{q} - m) \gamma_{\nu } (\slashed{p} + m)]
+\,,
+\end{align}
+%
+so we have the result: summing over the initial and final polarizations corresponds to taking a trace over the fermionic lines. 
+
+This makes sense: there are no free spinorial indices in the probability, so we must trace them all away. 
+
+\todo[inline]{He then makes an example in which we have a fermionic loop which yields a trace, but this was not the case here... How do these connect? Do we need a loop or not?}
+
+This is similar to the Feynman rules: instead of the propagator \(\widetilde{S}(p)\) we plug in the projector \(\Lambda_{\pm }(p)\). 
+
+\begin{claim}
+The traces are equal to: 
+%
+\begin{align}
+\Tr [\gamma_{\mu } (\slashed{q} - m) \gamma_{\nu } (\slashed{p} + m)] &= 
+4 \qty[\qty(p_{\mu } p_{\nu } + q_{\mu } p_{\nu }) - (m^2 + p \cdot q) \eta_{\mu \nu}] \\
+\Tr [\gamma^{\mu } (\slashed{q}' - M) \gamma^{\nu } (\slashed{p}' + M)] 
+&= 4 \qty[\qty(p_{\mu }' p_{\nu }' + q_{\mu }' p_{\nu }') - (M^2 + p' \cdot q') \eta_{\mu \nu}] 
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+We do the first one (so we do not have to write many primes), the other one is precisely analogous. 
+We make the product explicit, using the linearity of the trace:
+%
+\begin{align}
+\Tr [\gamma_{\mu } (\slashed{q} - m) \gamma_{\nu } (\slashed{p} + m)]
+&= \Tr[ \gamma_{\mu } \slashed{q} \gamma_{\nu } \slashed{p}]
+-m\Tr[\gamma_{\mu } \gamma_{\nu } \slashed{p}]
++m\Tr[\gamma_{\mu } \slashed{q} \gamma_{\nu }]
++m^2 \Tr[\gamma_{\mu } \gamma_{\nu }]
+\,.
+\end{align}
+%
+
+\end{proof}
+
+The masses are \(p^2 = q^2 = m^2\) and \(p^{\prime 2} = q^{\prime 2} = M^2\); in certain cases (like in electron-muon decay) we can assume that since \(M \gg m\) the mass \(m\) is negligible: \(m \approx 0\). 
+
+With this simplification, several terms cancel and we find: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 \approx \qty(\frac{8 q_e^2 q_{\mu}^2}{s^2})
+\qty[(p \cdot p') (q \cdot q') + (p \cdot q')(q \cdot p') + M^2 (p \cdot q)]
+\,.
+\end{align}
+
+\begin{claim}
+If, instead, we do not want to neglect \(m\) we find: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 = \qty(\frac{8 q_e^2 q_{\mu}^2}{s^2})
+\qty[(p \cdot p') (q \cdot q') + (p \cdot q')(q \cdot p') + M^2 (p \cdot q) 
++ m^2 (p' \cdot q') + 2 m^2M^2]
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{To do.}
+\end{proof}
+
+Everything we have derived so far is Lorentz-invariant, and the probability is a Lorentz scalar. 
 
 \end{document}

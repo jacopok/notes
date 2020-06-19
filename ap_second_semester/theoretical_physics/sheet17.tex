@@ -7,8 +7,262 @@
 
 \marginpar{Friday\\ 2020-6-19, \\ compiled \\ \today}
 
+We consider a \textbf{massive real vector field}. The generalization to a complex one is simple. 
+The Lagrangian, describing the massive vector \(V^{\mu }\) and the fermion \(\psi \), is: 
+%
+\begin{align}
+\mathscr{L} &= - \frac{1}{4} V^{\mu \nu } V_{\mu \nu } 
++ \frac{1}{2} M^2 V^{\mu } V_{\mu } 
++ \overline{\psi} \qty(i \slashed{\partial} - m) \psi 
++ \mathscr{L} _{\text{int}} \\ 
+\mathscr{L} _{\text{int}} &= 
+\frac{g}{c_{w}} \overline{\psi} \qty(
+    c_L \gamma^{\mu } p_L +
+    c_R \gamma^{\mu } p_R 
+) \psi V_{\mu }
+\,,
+\end{align}
+%
+where as usual the field strength is defined as \(V^{\mu \nu } = 2 \partial^{[\mu } V^{\nu ]}\), while \(\theta_{w}\) is the Weinberg angle, whose cosine is denoted \(c_w = \cos \theta_{w} \approx \num{.88}\). 
+
+It is experimentally measured that \(\sin^2\theta \approx \num{.22}\). 
+On the other hand, the coupling \(g\) is \(g = e / \sin \theta \approx \num{.64} \) in natural units. 
+
+The couplings \(c_{L, R}\) depend on the specific particle considered. 
+
+The terms \(P_L\) and \(P_R\) are the projection operators defined in \eqref{eq:chirality-projection-operators}: they project onto the left- or right-handed subspaces. 
+
+\subsection{Massive vector diagrams}
+
+If we have a free field term for the massive vector in which it is incoming we get a factor \(\epsilon^{\mu }_{\lambda } (p)\), if the massive vector is outgoing we have its conjugate, \(\epsilon^{\mu *}_{\lambda } (p)\). 
+
+The propagator (in momentum space) is given by 
+%
+\begin{align}
+\widetilde{D}^{\mu \nu }_F (q) &=- 
+\frac{i}{q^2 - M^2} 
+\qty(
+    \eta^{\mu \nu } 
+    - \frac{p^{\mu }p^{\nu }}{M^2}
+)
+\,,
+\end{align}
+%
+while for a vertex in which the massive vector interacts with a fermion with \(\mathscr{L} _{\text{int}}\) we get a term: 
+%
+\begin{align}
+-i \frac{g}{c_w} \qty(c_L \gamma^{\mu }_{L} + c_R \gamma^{\mu }_{R})
+\,,
+\end{align}
+%
+where the matrices \(\gamma^{\mu }_{L, R}\) are defined as \(\gamma^{\mu} P_{L, R}\). 
+
+A useful relation is this pseudo-completeness one:
+%
+\begin{align}
+\sum _{\lambda = 1}^{3} \epsilon^{\mu }_{\lambda }(p) \epsilon^{\nu }_{\lambda } (p) &= - \eta^{\mu \nu } + \frac{p^{\mu } p^{\nu }}{M^2}
+\,.
+\end{align}
+
+Notice the fact that we have three independent polarizations now, as opposed to the massless vector which has two; the polarizations of the massive vector span the whole spacelike section of spacetime orthogonal to \(p^{\mu }\), whereas the polarizations of the massless vector only span the two-dimensional region which is spacelike \emph{and} orthogonal to the 3D wavevector \(\vec{k}\). 
+This is also relevant when averaging over polarizations: we will need to divide by \(3\). 
+
+Now, since we have the Feynman rules we can quickly calculate the Feynman amplitude for the decay \(V \to \overline{f} f\), which now is permitted: 
+%
+\begin{align}
+\mathcal{M}_{V \to \overline{f}f}
+= -i \frac{g}{c_w} \overline{u}_{r} (k)  
+\qty(c_L \gamma^{\mu }_{L} + c_R \gamma^{\mu }_{R})
+u_{r'} (k') \epsilon_{\mu }^{\lambda} (p)
+\,,
+\end{align}
+%
+and from it we can sum and average to get the unpolarized square amplitude: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 &=
+\frac{g^2}{c_w^2} \frac{1}{3} 
+\sum _{\lambda } \epsilon_{\mu }^{\lambda }(p) \epsilon_{\nu }^{\lambda *}(p) 
+\sum _{r r'} (\overline{u}_r (\dots)^{\mu } v_{r'}  )
+( \overline{v}_{r'} (\dots)^{\nu } u_r )  \\
+&= \frac{1}{3} \frac{g^2}{c_w^2} 
+\qty(- \eta_{\mu\nu } \frac{p_{\mu }p_{\nu}}{M^2})
+\Tr[(\slashed{k} - m)\qty(c_L \gamma^{\mu }_{L} + c_R \gamma^{\mu }_{R})
+ (\slashed{k}' + m)\qty(c_L \gamma^{\nu }_{L} + c_R \gamma^{\nu }_{R})]
+\,.
+\end{align}
+
+\begin{claim}
+The trace can be explicitly calculated to give 
+%
+\begin{align}
+\begin{split}
+&\Tr[(\slashed{k} - m)\qty(c_L \gamma^{\mu }_{L} + c_R \gamma^{\mu }_{R})
+(\slashed{k}' + m)\qty(c_L \gamma^{\nu }_{L} + c_R \gamma^{\nu }_{R})] = \\
+&\phantom{=}\ = 2 (c_L^2 + c_R^2) \qty(k^{\prime \nu } k^{\mu } - \eta^{\mu \nu } \qty(k \cdot k') + k^{\prime \mu } k^{\nu })
+- 4 m^2 c_L c_R \eta^{\mu \nu }
+\end{split}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{To do.}
+\end{proof}
+
+Using this result, we find 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 &= 
+\frac{1}{3} \frac{g^2}{c_w^2} \qty(2 (c_L^2 + c_R^2)
+\qty(k \cdot k' + 2 \frac{(p \cdot k) (p \cdot k')}{M^2}) 
++ 12 m^2 c_L c_R
+)
+\,.
+\end{align}
+
+Now, we can specify the kinematics to the rest frame of the massive vector. Then, we can see that the ``Mandelstam variables'' are given by \(s = p^2 = M^2\), \(t = u = (p-k)^2 = (k')^2 = m^2\), and that 
+%
+\begin{align}
+k \cdot k' = \frac{M^2}{2} - m^2
+&&
+p \cdot k = p \cdot k' = \frac{M^2}{2}
+\,.
+\end{align}
+
+So the amplitude reads: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 &= 
+\frac{1}{3} \frac{g^2}{c_w^2} \qty(2 (c_L^2 + c_R^2)
+\qty( \frac{M^2}{2} - m^2 + 2 \frac{M^2}{4}) + 12 m^2 c_L c_R )  \\
+&= \frac{g^2}{c_w^2} \frac{M^2}{3} 
+\qty(2 (c_L^2 + c_R^2) \qty(1 - \frac{m^2}{M^2}) + 12 c_L c_R \frac{m^2}{M^2})
+\,.
+\end{align}
+
+If the vector is very massive compared to the fermion (\(m \ll M\)) then this simplifies heavily: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2
+\overset{m \ll M}{\approx}
+\frac{g^2}{c_w^2} \frac{M^2}{3} 2 (c_L^2 + c_R^2)
+\,,
+\end{align}
+%
+however we will not make this assumption.
+
+We can apply the general formula for the \textbf{differential decay rate} (in the lab frame): 
+%
+\begin{align}
+\eval{\dv{\overline{\Gamma} }{\Omega }}_{\text{lab}}
+= \frac{1}{64 \pi^2} \frac{1}{M} 
+\sqrt{1- \frac{4m^2}{M^2}} \abs{\mathcal{\overline{M}}}^2_{\text{lab}}
+\,,
+\end{align}
+%
+but this does not depend on the angles (as it should: this is the decay of a particle in its frame, it better be isotropic!) we can integrate over the angles, which gives a factor \(4 \pi \), so we get 
+%
+\begin{align}
+\eval{\overline{\Gamma}}_{\text{lab}}=
+\frac{g^2}{c_w^2}
+\frac{M}{48 \pi } \sqrt{1 - \frac{4m^2}{M^2}}
+\qty(2 (c_L^2 + c_R^2) \qty(1 - \frac{m^2}{M^2}) + 12 c_L c_R \frac{m^2}{M^2})
+\,,
+\end{align}
+%
+which, in the limit \(m \ll M\), becomes  
+%
+\begin{align}
+\eval{\overline{\Gamma}}_{\text{lab}}
+\overset{m \ll M}{\approx}
+\frac{g^2}{c_w^2}
+\frac{M}{24 \pi }
+(c_L^2 + c_R^2)
+\,.
+\end{align}
+
+For example, in the decay \(Z \to \nu \overline{\nu}\) we have \(c_L = 1/2\), \(c_R = 0\) so the result is 
+%
+\begin{align}
+\overline{\Gamma}_{\text{lab}}
+= \frac{g^2}{c_w^2} \frac{M}{96 \pi }
+\,.
+\end{align}
+
+This is known as the \emph{invisible decay width} of the \(Z\) boson, since it is extremely difficult to detect the neutrino pair generated by the decay, so at a collider one would see a fraction of the \(Z\) bosons effectively disappear without a trace.
+
 \section{Spontaneous Symmetry Breaking}
 
+Consider the following Lagrangian for a real scalar field \(\varphi \): 
+%
+\begin{align}
+\mathscr{L} &= \underbrace{\frac{1}{2} \qty( \partial_{\mu } \varphi ) \qty(\partial^{\mu } \varphi )}_{\text{kinetic term}}
+\underbrace{- \frac{1}{2} m^2 \varphi^2 - \frac{\lambda}{4!} \varphi^{4} }_{V(\varphi )}
+\,.
+\end{align}
 
+The potential \(V(\varphi )\) can also be written as 
+%
+\begin{align}
+V(\varphi ) = \frac{\lambda}{4!} \qty(\varphi^2 + \mu^2)^2 + C
+\,,
+\end{align}
+%
+where \(\mu^2 = 6 m^2 / \lambda \) and \(C\) is an inessential constant (which does not affect the EOM). 
+
+The Lagrangian has a discrete symmetry: \(\varphi \to -\varphi \). 
+
+The Hamiltonian for the theory is 
+%
+\begin{align}
+\mathscr{H} = \frac{1}{2} \qty(\partial_0 \varphi )^2 + \frac{1}{2} \qty(\nabla \varphi )^2 + V(\varphi )
+\,,
+\end{align}
+%
+and it is positive definite as long as \(\lambda > 0\), while \(\lambda = 0\) returns us to the free theory. The parameter \(\mu \), instead, is unconstrained.
+
+We are interested in the study of the \textbf{ground state} \(\varphi_0 \) of the theory: the field configuration which has the minimum energy. 
+What are the requirements we must ask in order for it to actually be the ground state? 
+
+\begin{enumerate}
+    \item It must be stationary: \(\partial_{\mu } \varphi_0 = 0\). This corresponds to the kinetic part of the Lagrangian vanishing, so that the kinetic energy of the configuration is zero. 
+    \item The value of the constant \(\varphi_0 \) is determined by minimizing the potential \(V (\varphi_0 )\). 
+\end{enumerate}
+
+\todo[inline]{Why do we ask \(\partial_{\mu } \varphi =0\) and not just the time derivative? In the expression for the momentum it appears as though \(\partial_0 \varphi_0 =0\) would be enough to make everything vanish\dots}
+
+Let us consider two separate cases. 
+
+\subsubsection{Positive mass: \(\mu^2> 0\)} 
+
+In this case the state \(\varphi_0  = 0\) is a stable minimum: we have \(V' (\varphi  = 0) = 0\) and \(V'' (\varphi = 0) > 0\). 
+
+This is the same vacuum we have in the free theory. 
+
+\subsubsection{Negative mass: \(\mu^2 <0\)}
+
+Now we have \(V'(\varphi =0) = 0\) and \(V'' (\varphi=0) < 0\): the configuration \(\varphi_0 = 0\) is an \emph{unstable} maximum. 
+
+Now, however, we have two new minima at \(\varphi = \pm \abs{\mu }^2\): these are stable.
+
+Now, a perturbation of the ground state will look like 
+%
+\begin{align}
+\varphi (x) = \sigma (x) + \abs{\mu }
+\,,
+\end{align}
+%
+where we have arbitrarily chosen the right vacuum: in order to perturb around the vacuum we lose the parity symmetry. 
+
+Then, we can express the Lagrangian with respect to this fluctuation: 
+%
+\begin{align}
+\mathscr{L} = \frac{1}{2} \qty(\partial_{\mu }\sigma ) \qty(\partial^{\mu }\sigma ) - \frac{1}{2} \qty(\frac{\lambda }{3} \abs{\mu }^2)\sigma^2 - \frac{\lambda}{3!} \abs{\mu } \sigma^3 + \frac{\lambda}{4!} \sigma^{4}
+\,,
+\end{align}
+%
+which appears to have no parity symmetry anymore! 
+In fact the symmetry is still there, but it will have to be expressed in a complicated way in terms of the powers of \(\sigma \). 
 
 \end{document}

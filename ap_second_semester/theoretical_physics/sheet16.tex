@@ -250,7 +250,7 @@ This is similar to the Feynman rules: instead of the propagator \(\widetilde{S}(
 \begin{claim}
 The traces are equal to: 
 %
-\begin{align}
+\begin{align} \label{eq:fermion-loop-trace-identity}
 \Tr [\gamma_{\mu } (\slashed{q} - m) \gamma_{\nu } (\slashed{p} + m)] &= 
 4 \qty[\qty(p_{\mu } p_{\nu } + q_{\mu } p_{\nu }) - (m^2 + p \cdot q) \eta_{\mu \nu}] \\
 \Tr [\gamma^{\mu } (\slashed{q}' - M) \gamma^{\nu } (\slashed{p}' + M)] 
@@ -653,5 +653,125 @@ N \qty[ \qty(\overline{\psi} \slashed{A} \psi )_{x}^{e} \qty(\overline{\psi} \sl
 \end{align}
 %
 which can be represented by the usual \(t\)-channel diagram, just like that which is shown in figure \ref{fig:efef-feynman-diagram}. 
+The four-momentum of the photon is \(k\), and its square is the Mandelstam variable \(t\). 
+
+The difference from the last section is that then we studied it in the center-of-mass frame, while we want to consider this one in the \textbf{laboratory} frame (in which the proton is at rest) and assuming \(\omega_{e} \ll M\): the collision is at an energy much smaller than a \SI{}{GeV}.
+
+\begin{claim}
+The initial momentum of the proton is then \(p_p = (M, \vec{0})\) and its final one is approximately \(p_p' \approx (M, \vec{p}_p') \approx (M, \vec{0})\).
+\end{claim}
+
+% This may be non-obvious intuitively: it is a result from kinematics that momentum after the collision is distributed inversely proportionally to the masses of the particles. 
+
+% \todo[inline]{Is the correction to the momentum of the proton also small \emph{compared to the electron's momentum}? This seems relevant.}
+
+This implies that the collision for the electron is approximately elastic: it ``bounces against a wall'', 
+
+\begin{proof}
+This is because the energy conservation equation can be written as 
+%
+\begin{align}
+\omega_{e} + M &= \omega'_e  +M + \frac{\abs{p_p'}^2}{2M}  + \order{\frac{\abs{p_p'}^2}{M^2}} \\
+\omega_{e} &= \omega'_e + \order{\frac{\abs{p_p'}}{M}}
+\,,
+\end{align}
+%
+so we can approximate \(\omega_{e} = \omega_{e}'\), which implies that the scattering is elastic. This also gives us \(\abs{p_e} = \abs{p_e'}\); however the direction of the momentum is not determined. 
+\end{proof}
+
+The Mandelstam variable \(t\) is given by: 
+%
+\begin{align}
+t &= (p_e - p_e')^2 = 2 m_e^2 - 2 p_e \cdot p' = 2 m_e^2 - 2 \omega_{e}^2 + 2 \vec{p}_e \cdot \vec{p}_e ' \\
+&\approx 2 \abs{p_e}^2 \qty(\cos \theta - 1)  \\
+t &= (p_e - p_p')^2 = 2 M^2 - 2 M \omega_{p}' = - \abs{\vec{p}_p'}^2
+\,,
+\end{align}
+%
+so we have the following approximate expression for the scattering angle: 
+%
+\begin{align}
+\cos \theta \approx 1 - \frac{1}{2} \frac{\abs{\vec{p}_p'}^2}{\abs{p_e}^2}
+\,.
+\end{align}
+
+Now we can take two approaches: either we calculate the cross section imposing the laboratory-frame kinematics and the elastic-scattering approximation; or we consider the classical particle as the source of an external electromagnetic field. 
+
+\subsubsection{Lab-frame quantum calculation}
+
+With the \(\xi = 1 \) gauge fixing for the EM field, the Feynman amplitude reads: 
+%
+\begin{align}
+\mathcal{M} = i \frac{q_e q_p}{k^2} 
+\qty(\overline{u}_{r'} (p'_e) \gamma^{\mu } u_r (p_e))
+\qty(\overline{u}_{s'} (p'_p) \gamma_{\mu } u_s (p_p))
+\,,
+\end{align}
+%
+and with our approximations the proton current reads: 
+%
+\begin{align}
+\overline{u}_{s'} (p'_p) \gamma_{\mu } u_s (p_p)
+= 2 M \left[\begin{array}{cc}
+\xi ^{\top}_{s'} & 0
+\end{array}\right]
+\gamma^{\mu } 
+\left[\begin{array}{c}
+\xi_{s} \\ 
+0
+\end{array}\right]
+= 2 M \delta_{s s'}
+\eta^{\mu 0}
+\,,
+\end{align}
+%
+since only \(\gamma^{0}\) has nonvanishing entries in the upper left \(2 \times 2\) block. 
+Therefore, we have 
+%
+\begin{align}
+\mathcal{M} = i \frac{q_e q_p}{k^2} 
+\qty(\overline{u}_{r'} (p'_e) \gamma^{0 } u_r (p_e))
+2M \delta_{s s'}
+\,,
+\end{align}
+%
+so we can calculate the unpolarized amplitude as usual: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2
+&= \qty(\frac{q_e q_p}{k^2})^2
+\qty( \frac{1}{2} \sum _{s s'}) \qty( \frac{1}{2} \sum _{rr'})
+4M^2 \delta_{s s'}
+\overline{u}_{r'} (p'_e) \gamma^{0} u_r (p_e) 
+\overline{u}_{r} (p_e) \gamma^{0} u_{r'} (p_e')  \\
+&= \qty(\frac{q_e q_p}{k^2})^2
+2 M^2 \Tr[(\slashed{p}_e + m_e) \gamma^{0} (\slashed{p}' + m_e)\gamma^{0}]
+\marginnote{\(\sum _{ss'} \delta_{ss'} = 2\).}  \\
+% &= \qty(\frac{q_e q_p}{k^2})^2
+% 2 M^2 
+% \Tr[(\slashed{p}_e + m_e) \gamma^{0} (\slashed{p}' + m_e)\gamma^{0}]  \\
+&= \qty(\frac{q_e q_p}{k^2})^2
+2 M^2
+\times 4
+\qty(2 p_e^{0} p_e^{\prime 0} - (- m_e^2 + p_e \cdot p_e^{\prime })\eta_{00}) \marginnote{Used \eqref{eq:fermion-loop-trace-identity}, adapting the sign of the \(m^2\) term: here it is plus.}  \\
+&= \qty(\frac{q_e q_p}{k^2})^2
+2 M^2
+\times 4
+\qty(2 \omega_{e}^2 - (- m_e^2 + \omega_{e}^2- \abs{p_e}^2 \cos \theta ) )  \\
+&= \qty(\frac{q_e q_p}{k^2})^2
+2 M^2
+\times 4  \qty(\omega_{e}^2 + m_e^2 + \abs{p_e}^2 \cos \theta )  \\
+&\overset{?}{=} 16 \qty(\frac{q_e q_p}{k^2})^2
+M^2 \omega_{e}^2 \qty(1 - v_e^2 \sin^2 \theta / 2)  \\
+&= (q_e q_p)^2 \frac{\omega_{e}^2 M^2}{\abs{p_e}^4}
+\frac{(1 - v_e^2 \sin^2\theta /2)}{\sin^{4} \theta / 2}
+\,,
+\end{align}
+%
+where we used the facts that \(v_e = \abs{p_e} / \omega_{e}\), and \(k^2= t = -4 \omega_{e}^2 v_e^2 \sin^2 \theta / 2\). 
+
+\todo[inline]{The second-to-last step in the calculation is unclear. How does the sine come out? his second-to-last equation from the bottom seems wrong.}
+
+
 
 \end{document}

@@ -682,7 +682,7 @@ so we can approximate \(\omega_{e} = \omega_{e}'\), which implies that the scatt
 The Mandelstam variable \(t\) is given by: 
 %
 \begin{align}
-t &= (p_e - p_e')^2 = 2 m_e^2 - 2 p_e \cdot p' = 2 m_e^2 - 2 \omega_{e}^2 + 2 \vec{p}_e \cdot \vec{p}_e ' \\
+t &= (p_e - p_e')^2 = 2 m_e^2 - 2 p_e \cdot p_e' = 2 m_e^2 - 2 \omega_{e}^2 + 2 \vec{p}_e \cdot \vec{p}_e ' \\
 &\approx 2 \abs{p_e}^2 \qty(\cos \theta - 1)  \\
 t &= (p_e - p_p')^2 = 2 M^2 - 2 M \omega_{p}' = - \abs{\vec{p}_p'}^2
 \,,
@@ -905,13 +905,249 @@ g1 [crossed dot, label = left : {\(A^{\mu }_{\text{ext}}\)}] -- [photon] x
 \end{figure}
 
 This approach is still very versatile: we can include any electromagnetic potential we want. 
-We will simplify the discussion by only considering a static external potential: \(\dv[*]{A^{\mu } _{\text{ext}}}{t} = 0\), so that it can be expressed as 
+We will simplify the discussion by only considering a static external potential: \(\dv*{A^{\mu } _{\text{ext}}}{t} = 0\), so that it can be expressed as 
 %
 \begin{align}
 A^{\mu } _{\text{ext}} (x) = \frac{1}{(2\pi )^3} \int \dd[3]{k} e^{i \vec{k} \cdot \vec{x}} \epsilon^{\mu } _{\text{ext}} (\vec{k})
 \,.
 \end{align}
 
+This is justified for the process we want to describe, which is Rutherford scattering off a stationary potential.  
+Substituting this expression for the potential into the \(S\)-matrix element we get: 
+%
+\begin{align}
+\bra{f} S \ket{i} &= i q \int \dd[4]{x}
+\bra{e^{-}_{s} (p'_e)} 
+(\overline{\psi}_{e} \gamma^{\mu} \psi_{e})_x 
+\ket{e^{-}_{s}(p_e)}
+A_{\mu }^{\text{ext}}  \\
+&= iq \int \dd[3]{k} \overline{u} (p') \gamma_{\mu } u(p) \frac{\epsilon^{\mu }_{\text{ext}}}{(2 \pi )^3} (\vec{k}) \int  \dd[4]{x} e^{ip'x - i px + i \vec{k} \cdot \vec{x}}  \\
+&= (2\pi)^3 iq \int \dd[3]{k} \overline{u} (p') \gamma_{\mu } u(p) \epsilon^{\mu }_{\text{ext}} (\vec{k}) \delta^{(3)} (\vec{p}' + \vec{k} - \vec{p})
+\int \dd{x_0 } e^{ix^{0} (p^{\prime 0} - p^{0})}  \\
+&= (2 \pi ) \delta(\omega_{p'} - \omega_{p}) \mathcal{M} _{\text{ext}}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\mathcal{M} _{\text{ext}} = i q \eval{\overline{u} (p') \gamma_{\mu } u(p) \epsilon^{\mu }_{\text{ext}} (\vec{k}) }_{\vec{p}' = \vec{p} + \vec{k}}
+\,.
+\end{align}
+%
+\todo[inline]{Times \((2\pi )^3\), right? We get that factor when we integrate in \(\dd[3]{x}\)\dots}
+
+The momentum \(\vec{k}\) is provided by the external EM field, whose reaction we do not consider: it is arbitrary. However, energy conservation is enforced, so \(\abs{\vec{p}'} = \abs{\vec{p}}\). 
+
+\todo[inline]{So the momentum only changes direction\dots but how do we account for the decrease in kinetic energy due to the increase in electromagnetic energy?}
+
+We can now calculate the cross section: 
+%
+\begin{align}
+\dd{w_{fi}} &= \abs{S}_{fi}^2  \frac{V \dd[3]{p_e'}}{(2 \pi )^3}  \\
+&= ( 2\pi ) \delta(\omega_{e} - \omega_{e}') \frac{T}{2 \omega_{e}V} 
+\frac{ \dd[3]{p_e'}}{(2 \pi )^3 2 \omega_e'} \abs{\mathcal{M}}^2_{fi}
+\,,
+\end{align}
+%
+so the differential cross section is 
+%
+\begin{align}
+\dd{\sigma } = \frac{ \dd{w}}{T}
+\frac{1}{n_e^{(0)} v_e^{(0)}}
+= \frac{1}{16 \pi^2} \delta(\omega_{e} - \omega_{e}')
+\frac{\abs{\mathcal{M}}^2_{fi}}{\omega_{e} \omega_{e}' v_e^{(0)}} \dd[3]{p_e'}
+\,,
+\end{align}
+%
+so we can integrate, using \(\dd[3]{p_e'} = \abs{p_e'}^2 \dd{\abs{p_e'}} \dd{\Omega_{e}'}\). Also, notice that since \(m_e^2= \omega_{e}^{\prime 2} - \abs{p_e'}^2 = \const\) we can differentiate it to find \(\abs{p_e'} \dd{\abs{p_e'}} = \omega_{e}' \dd{\omega_{e}'}\). With this, we get 
+%
+\begin{align}
+\dv{\sigma }{\Omega'_e} = \frac{1}{16 \pi^2} \frac{\abs{p_e'}}{\omega_{e} v_e^{(0)}}
+\abs{\mathcal{M}}^2 _{\text{lab}} 
+= \frac{1}{16 \pi^2}
+\abs{\mathcal{M}}^2 _{\text{lab}} 
+\,,
+\end{align}
+%
+since \(\omega_{e} = \omega_{e}'\). 
+Now all that is left to do is to calculate the squared Feynman amplitude.
+We find: 
+%
+\begin{align}
+\abs{\mathcal{M}}^2 _{\text{lab}} &= \frac{q_e^2}{2}
+\sum _{rr'} 
+\overline{u}_{r'} (p_e') \gamma_{\mu } u_r (p_e)
+\qty(\overline{u}_{r} (p_e) \gamma^{\nu} u_{r'} (p_e'))^{*}
+\epsilon^{\mu } _{\text{ext}} \epsilon^{\nu *} _{\text{ext}}   \\
+&= \frac{q_e^2}{2}  \epsilon^{\mu } _{\text{ext}} \epsilon^{\nu *} _{\text{ext}} 
+\Tr[(\slashed{p}_e + m_e) \gamma_{\mu } (\slashed{p}_e' + m_e) \gamma_{\nu }]
+\,.
+\end{align}
+
+\todo[inline]{Professor's notes are missing a conjugate in the first line!}
+
+Our potential however has a specific form: it is the Coulomb potential generated from a stationary proton, which looks like 
+%
+\begin{align}
+A^{\mu } _{\text{ext}} (x) = \qty( \frac{q_p}{4 \pi \abs{x}}, \vec{0})
+\qquad \text{and} \qquad
+\epsilon^{\mu } _{\text{ext}} = \qty( \frac{q_p}{\abs{\vec{k}}^2}, \vec{0})
+\,.
+\end{align}
+
+\begin{proof}
+We want to show that this works (not a complete proof, but a reasonableness argument). Specifically, the claim is that 
+%
+\begin{align}
+\frac{q_p}{4 \pi \abs{x}} = \frac{1}{(2 \pi )^3} \int \dd[3]{k} \frac{e^{i \vec{k} \cdot \vec{x}}}{\abs{\vec{k}}^2}
+\,.
+\end{align}
+
+We take the Laplacian of both sides with respect to the \(x\) coordinates: it is known that \(\partial_{i} (1/ \abs{x}) = - x_i / \abs{x}^3\) and \(\partial_{i} (x_i / \abs{x}^3) = 4 \pi \delta^{(3)} (\vec{\vec{x}})\). So, we find 
+%
+\begin{align}
+\nabla^2 \frac{q_p}{4 \pi \abs{x}} &\overset{?}{=}
+\nabla^2 \int \frac{ \dd[3]{k}}{(2 \pi )^3}
+\frac{q_p e^{i \vec{k} \cdot \vec{x}}}{\abs{\vec{k}}^2}  \\
+\delta^{(3)}(\vec{x}) &\overset{?}{=}
+\int \frac{ \dd[3]{k}}{(2 \pi )^3}
+\frac{q_p \abs{\vec{k}}^2 e^{i \vec{k} \cdot \vec{x}}}{\abs{\vec{k}}^2}  \\
+\delta^{(3)} (\vec{x}) &= \delta^{(3)}(\vec{x}) 
+\,.
+\end{align}
+\end{proof}
+
+Since it only has a time component, we only get the \(\gamma^{0}\) matrix components: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 _{\text{lab}} 
+&= \frac{q_e^2 q_p^2}{2} 
+\frac{1}{\abs{\vec{k}}^4} 
+\Tr[(\slashed{p}_e + m_e) \gamma_{0} (\slashed{p}_e' + m_e) \gamma_{0}]  \\
+&= \frac{q_e^2 q_p^2}{4} \frac{1}{\omega_{e}^2 v_e^4} \frac{1 - v_e^2 \sin^2 \theta/2}{\sin^{4} \theta /2} 
+\,.
+\end{align}
+
+This is consistent with what we found before, so we are happy. 
+
+We will then be able to apply this procedure to any electromagnetic potential. 
+
+\subsection{\(e^{-} \gamma \to e^{-} \gamma \): Compton scattering}
+
+We have two diagrams which are not topologically equivalent to each other: the \(s\)-channel and the \(u\)-channel. 
+
+\todo[inline]{Todo: include Feynman diagrams}
+
+They both include a fermionic propagator, which in the \(s\)-channel carries momentum \(p+q\) (whose square is \(s\)) and in the \(u\)-channel carries momentum \(p - q'\) (whose square is \(u\)). 
+
+The fermionic lines in the \(u\)-channel diagram are the same as the ones in the \(s\)-channel one: so, we expect the contributions of these two to constructively interfere, without relative signs. 
+
+The amplitudes for these processes are: 
+%
+\begin{align}
+\mathcal{M}_{s} &= - q_e^2 
+\epsilon^{\lambda^{\prime} *}_{\mu } (k')
+\epsilon^{\lambda }_{\nu } (k)
+\qty[
+\overline{u}_{r'} (p') \gamma^{\mu }
+\widetilde{S}_{F} (p+k) \gamma^{\nu }  u_r (p) 
+] \\
+\mathcal{M}_{u} &= - q_e^2 
+\epsilon^{\lambda^{\prime} *}_{\mu } (k')
+\epsilon^{\lambda }_{\nu } (k)
+\qty[
+\overline{u}_{r'} (p') \gamma^{\mu }
+\widetilde{S}_{F} (p-k') \gamma^{\nu }  u_r (p) 
+]
+\,,
+\end{align}
+%
+where as usual \(\widetilde{S}_F (q)\) is the fermion propagator in momentum space: 
+%
+\begin{align}
+\widetilde{S}_{F} (q) = i \frac{\slashed{q} + m}{q^2 - m^2 + i \epsilon } = \frac{i}{\slashed{q} - m + i \epsilon }
+\,.
+\end{align}
+
+We can simplify the propagators with the relations 
+%
+\begin{align}
+s - m^2 &= m^2+ 2 p \cdot k + k^2 - m^2 = 2 p \cdot k  \\
+u - m^2 &= m^2- 2 p \cdot k' + k^{\prime 2} - m^2 = -2 p \cdot k'  \\
+(\slashed{p} + m)\gamma^{\nu } u(p) &= 
+\qty(- \gamma^{\nu} \slashed{p} + 2 p^{\nu } + \gamma^{\nu }m) u(p) = 2 p^{\nu } u(p)
+\,,
+\end{align}
+%
+where in the last equality we have cancelled the term \(\slashed{p} + m\) by Dirac's equation. So, the total amplitude is given by the sum of the two: it reads 
+%
+\begin{align}
+\mathcal{M} _{\text{tot}}
+&= - i q_e^2 
+\epsilon^{\lambda^{\prime} *}_{\mu } (k')
+\epsilon^{\lambda }_{\nu } (k)
+\overline{u}_{r} (p') \qty[\gamma^{\mu } \frac{\slashed{k} \gamma^{\nu } + 2 p^{\nu }}{2 p \cdot k} + \gamma^{\nu } \frac{\slashed{k}' \gamma^{\mu} - 2 p^{\mu }}{2 p \cdot k'}] u_r (p)  \\
+&= \epsilon^{\lambda^{\prime} *}_{\mu } (k')
+\epsilon^{\lambda }_{\nu } (k)
+L^{\mu \nu }_{r r '} (k, k', p, p')
+\,,
+\end{align}
+%
+where we defined the object \(L^{\mu \nu }\) to contain all the ugly stuff. 
+
+\begin{claim}
+We have the following identities: 
+%
+\begin{align}
+k^{\prime }_{\nu } L^{\mu \nu } = 0 = k_\nu L^{\mu \nu }
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{If I have some time later\dots}
+\end{proof}
+
+\subsubsection{Ward identities}
+
+This can be generalized to the following: 
+\begin{claim}[Ward identities]
+In any QED amplitude with external photons it is possible to factor the amplitude as 
+%
+\begin{align}
+\mathcal{M} = \epsilon_{\mu } (k) L^{\mu } (k, \dots)
+\,,
+\end{align}
+%
+where \(k_\mu L^{\mu } (k, \dots) = 0\), and \(k^{\mu }\) are the momenta of the external photons.
+
+\todo[inline]{So, \(k^{\mu }\) is the sum of these momenta?}
+\end{claim}
+
+These are connected to \textbf{gauge invariance}: a \(U(1)\) gauge transformation in position space reads 
+%
+\begin{align}
+A^{\prime }_{\mu } (x) = A_{\mu } (x) + \partial_{\mu} \alpha (x)
+\,
+\end{align}
+%
+for some scalar function \(\alpha (x)\). In momentum space, the potential and the scalar are expressed as 
+%
+\begin{align}
+A_{\mu } (x) \sim \int \dd[3]{k} e^{-ikx} \epsilon_{\mu } (k) 
+\qquad \text{and} \qquad
+\alpha (x) \sim \int \dd[3]{k} e^{-ikx} \widetilde{\alpha}(k)
+\,,
+\end{align}
+%
+so in momentum space the gauge transformation is written as 
+%
+\begin{align}
+\epsilon^{\mu }(k) \to \epsilon^{\mu }(k) - i k^{\mu } \widetilde{\alpha} (k)
+\,,
+\end{align}
+%
 
 
 \end{document}

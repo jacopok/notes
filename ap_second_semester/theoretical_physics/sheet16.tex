@@ -1148,6 +1148,251 @@ so in momentum space the gauge transformation is written as
 \,,
 \end{align}
 %
+and the gauge invariance condition tells us that observables (like the Feynman amplitude) should not depend on \(\alpha\): so, if we can factor it as \(\mathcal{M} = \epsilon_{\mu } L^{\mu }\) then we must have 
+%
+\begin{align}
+\mathcal{M} = \epsilon_{\mu } L^{\mu }
+= \mathcal{M}' = \epsilon_{\mu } L^{\mu } - i L^{\mu } k_{\mu } \widetilde{\alpha}
+\,,
+\end{align}
+%
+so for it to be invariant, since \(\widetilde{\alpha} \) is arbitrary, we must have \(k_{\mu } L^{\mu } = 0\).
 
+% This is good as long as the decomposition is possible.
+
+\subsubsection{Sum over photon polarizations}
+
+Let us consider the case of one external photon,  so that 
+%
+\begin{align}
+\mathcal{M} = \epsilon_{\mu } (k) L^{\mu } (p, k)
+\,,
+\end{align}
+%
+and compute the sum over the photon polarizations to get \(\abs{\mathcal{\overline{M}}}^2\). 
+
+\begin{claim}
+This sum can be written as:
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 &=
+\sum _{\lambda = 1}^{2} 
+\abs{\epsilon_{\mu }^{(\lambda )} L^{\mu }}^2  \\
+&=
+\sum _{\lambda = 1}^{2} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu } L^{\mu }L^{\nu \dag}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+This can be shown in two different ways: in one we choose a reference frame, in the other we work in an invariant way. 
+
+\todo[inline]{Still to finish, when I do Gupta-Bleuer}
+\end{proof}
+
+We now come back to Compton scattering. The unpolarized amplitude is given by 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 &= 
+\frac{1}{4} 
+\underbrace{\sum_{\lambda' } 
+\epsilon_{\mu }^{(\lambda' )*} (k')
+\epsilon_{\rho }^{(\lambda' )} (k')}_{- \eta_{\mu \rho }}
+\underbrace{\sum_{\lambda } 
+\epsilon_{\nu }^{(\lambda )} (k)
+\epsilon_{\sigma }^{(\lambda )*} (k)}_{- \eta_{\nu \sigma }}
+\sum _{r r'} 
+L^{\mu \nu }_{r r'}
+L^{\dag \rho \sigma  }_{r r'}  \\
+&= \frac{1}{4} 
+\sum _{rr'}
+L^{\mu \nu }_{r r'}
+L^{\dag}_{ \mu \nu, r r'}  \\
+&= \frac{q^{4}}{4}
+\qty[ \frac{T_{AA}}{(2 p \cdot k)^2} +\frac{T_{AB} + T_{BA}}{(2 p \cdot k) (2 p \cdot k')} + \frac{T_{BB}}{(2 p \cdot k')^2}]
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+A &= \gamma^{\mu } \slashed{k} \gamma^{\nu } + 2 \gamma^{\mu } p^{\nu } \\
+B &= \gamma^{\nu } \slashed{k}' \gamma^{\mu } - 2 \gamma^{\nu } p^{\mu } 
+\,,
+\end{align}
+%
+and \(T_{AB}\) and such means \(\Tr[AB]\), with the Minkowski indices appropriately contracted. They are related by \(T{AA} = T_{BB} (\vec{k} \to -\vec{k})\) and \(T_{AB} = T_{BA}\). 
+
+\begin{claim}
+They can be expressed explicitly as 
+%
+\begin{align}
+T_{AA} &= 16 \qty( 2 m^{4} + m^2 (s - m^2) - \frac{1}{2} (s - m^2) (u - m^2)) \\
+T_{BB} &= 16 \qty( 2 m^{4} + m^2 (u - m^2) - \frac{1}{2} (s - m^2) (u - m^2)) \\
+T_{AB} &= - 16 \qty( 2 m^{4} + m^2 ((p \cdot k) - (p \cdot k')))  \\
+&= - 16 \qty( 2 m^{4} + \frac{m^2}{2} \qty(s + u - 2 m^2) )
+\,.
+\end{align}
+\end{claim}
+
+So, we have the following expression in terms of the Mandelstam variables: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 
+&= 2 q_e^{4}  \qty[
+\qty(
+    \frac{p \cdot k}{p \cdot k'} +
+    \frac{p \cdot k'}{p \cdot k}
+)
++ 2 m^2
+\qty(
+    \frac{1}{p \cdot k} -
+    \frac{1}{p \cdot k '} 
+)
++ m^{4} 
+\qty(
+    \frac{1}{p \cdot k} -
+    \frac{1}{p \cdot k '} 
+)^2  
+]\\
+&=
+2 q_e^{4}
+\qty[
+- \qty(
+    \frac{u - m^2}{s - m^2} + 
+    \frac{s - m^2}{u - m^2}
+)
++ 4 m^2 
+\qty(
+    \frac{1}{s - m^2} + 
+    \frac{1}{u - m^2} 
+)
++ m^{4} 
+\qty(
+    \frac{1}{s - m^2} + 
+    \frac{1}{u - m^2} 
+)^2
+]
+\,.
+\end{align}
+
+In order to obtain more specific results we must go to two different limits. 
+
+\subsubsection{Low energy limit in the lab frame}
+
+By ``lab frame'' we mean that the electron is initially at rest. 
+
+Then, if the 4-momentum of the electron is initially \(p = (m_e, \vec{0})\) and then \(p'\), while the momentum of the incoming photon is \(k\) and that of the outgoing photon is \(k'\), then we have 
+%
+\begin{align}
+m_e^2 = (p')^2 &= (p + k - k')^2 = m_e^2 + 2 p \cdot k - 2 p \cdot k' - 2 k \cdot k' (\cancelto{}{+ k^2 + k^{\prime 2}})  \\
+k \cdot k' &= p \cdot (k - k')  \\
+\omega_{\gamma } \omega_{\gamma }' (1- \cos \theta ) &= m_e (\omega_{\gamma } - \omega_{\gamma }')
+\,,
+\end{align}
+%
+which gives us the well-known Compton scattering result: its two alternative formulations are 
+%
+\begin{align}
+\omega_{\gamma }' &= \frac{\omega_{\gamma }}{1 + \frac{\omega_{\gamma }}{m_e} (1 - \cos \theta )}  \\
+\frac{1}{m_e} \qty(1 - \cos \theta ) &= \frac{1}{\omega_{\gamma }'}
+- \frac{1}{\omega_{\gamma }} = \Delta \lambda 
+\,.
+\end{align}
+
+We can substitute this result into the cross section: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 
+&= 2 q_e^{4}  \qty[
+\qty(
+    \frac{\omega_\gamma}{\omega_\gamma'} +
+    \frac{\omega_\gamma'}{\omega_\gamma}
+)
++ 2 m
+\qty(
+    \frac{1}{\omega_\gamma} -
+    \frac{1}{\omega_\gamma '} 
+)
++ m^{2} 
+\qty(
+    \frac{1}{\omega_\gamma} -
+    \frac{1}{\omega_\gamma '} 
+)^2  
+]  \\
+&= 2 q_e^{4} \qty[
+\qty(
+    \frac{\omega_\gamma}{\omega_\gamma'} +
+    \frac{\omega_\gamma'}{\omega_\gamma}
+)
+-\sin^2\theta 
+]
+\,,
+\end{align}
+%
+where we have done the following manipulation: 
+%
+\begin{align}
+2 m
+\qty(
+    \frac{1}{\omega_\gamma} -
+    \frac{1}{\omega_\gamma '} 
+)
++ m^2
+\qty(
+    \frac{1}{\omega_\gamma} -
+    \frac{1}{\omega_\gamma '} 
+)^2  \\
+&= 2m \frac{1}{m} (-) \qty(1 - \cos \theta )
++ m^2 \frac{1}{m^2} (-)^2 \qty(1 - \cos \theta )^2  \\
+&= -2 + 2 \cos \theta + 1 - 2 \cos \theta + \cos^2 \theta   \\
+&= - 1 + \cos^2\theta = -\sin^2\theta 
+\,.
+\end{align}
+
+The differential cross section is then given by 
+%
+\begin{align}
+\dv{\sigma }{\Omega } = \frac{1}{64 \pi^2} \frac{\abs{k'}^2}{I _{\text{lab}} E' \omega_{\gamma}'}
+\frac{\abs{\mathcal{\overline{M}}}^2 _{\text{lab}}}{\displaystyle \abs{\pdv{(E' + \omega_{\gamma }')}{\abs{\vec{k}'}} }_{\text{lab}}}
+\,,
+\end{align}
+%
+where \(I _{\text{lab}} = m_e \omega_{\gamma }\)
+
+\todo[inline]{and more calculations in the lab frame\dots}
+
+Finally we get 
+%
+\begin{align}
+\dv{\sigma }{\Omega } _{\text{lab}} &= \frac{1}{64 \pi^2} \frac{1}{m_e^2} \qty(\frac{\omega_{\gamma }'}{\omega_{\gamma }})^2 
+\abs{\mathcal{\overline{M}}}^2 _{\text{lab}}  \\
+&= \frac{q_e^{4}}{32 \pi^2} \frac{1}{m_e^2} \qty(\frac{\omega_{\gamma }'}{\omega_{\gamma }})^2 
+\qty(\frac{\omega_{\gamma }'}{\omega_{\gamma }} + \frac{\omega_{\gamma }}{\omega_{\gamma }'} - \sin^2\theta )
+\,,
+\end{align}
+%
+which does not depend on the angle \(\varphi  \) in \(\dd{\Omega } = \sin \theta \dd{\theta } \dd{\varphi } = \dd{\varphi } \dd{\cos \theta }\), which we can then integrate away; we also substitute \(\alpha = e^2 / 4 \pi \) to find 
+%
+\begin{align}
+\dv{\sigma }{\cos \theta } 
+&= \frac{\pi \alpha^2}{m^2} \qty(\frac{\omega_{\gamma }}{\omega_{\gamma }'})
+\qty(\frac{\omega_{\gamma }'}{\omega_{\gamma }} + \frac{\omega_{\gamma }}{\omega_{\gamma }'} - \sin^2\theta )
+\,.
+\end{align}
+
+This is the \textbf{Klein-Nishima formula}. It is analytic (up to the fact that it is perturbative in QED): we did not make any assumptions about the masses. 
+
+If we use the fact that \(\omega_{\gamma }' \approx \omega_{\gamma } \), which holds for Thomson scattering (where \(\omega_{\gamma } \ll m_e \)), then we have 
+%
+\begin{align}
+\eval{\dv{\sigma }{\cos \theta }}_{\text{lab}} &= \frac{\pi \alpha^2}{m^2}
+\qty( 1 + \cos^2 \theta )  \\
+\sigma _{\text{lab}} &= \frac{8 \pi \alpha^2}{3 m_e^2} = \frac{8}{3} \pi r_e^2
+\,,
+\end{align}
+%
+where \(r_e = \alpha / m_e^2 \approx \SI{3}{fm}\) is the \textbf{classical electron radius}. 
 
 \end{document}

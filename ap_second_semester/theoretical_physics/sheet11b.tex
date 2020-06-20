@@ -5,6 +5,261 @@
 
 \marginpar{Saturday\\ 2020-6-20, \\ compiled \\ \today}
 
+We try to apply the canonical quantization procedure with commutators to our massless vector field theory, with the gauge fixing term in the Feynman gauge \(\xi = 1\). 
+
+From the Poisson brackets we derived from the fields we obtain the quantization conditions: 
+%
+\begin{align}
+\qty[A^{\mu }(\vec{x}, t), \pi^{\prime, \nu }(\vec{y}, t)] = i \eta^{\mu \nu } \delta^{(3)} (\vec{x}-\vec{y})
+\,,
+\end{align}
+%
+while the commutators of \(\qty[A, A]\) and \(\qty[\pi , \pi ]\) vanish. 
+Here we have \(\pi^{\prime \nu } = - \partial_0 A^{\mu }\): so, we can write everything in terms of \(A\),
+%
+\begin{align}
+\qty[A^{0} (\vec{x}, t), \partial_0 A^{0} (\vec{y}, t)] &= - i \delta^{(3)} (\vec{x} - \vec{y}) \\
+\qty[A^{i} (\vec{x}, t), \partial_0 A^{i} (\vec{y}, t)] &= + i \delta^{(3)} (\vec{x} - \vec{y})
+\,,
+\end{align}
+%
+so the spatial components \(A^{i}\) obey the same quantization conditions as the \emph{real scalar field}, while the temporal component has an extra minus sign. 
+This is a qualitative indication of the fact that something will be wrong with the quantization of \(A^{0}\). 
+
+\begin{claim}
+The creation and annihilation operators for the massless vector field can be written as 
+%
+\begin{align}
+a_0 (k) &= - \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}}
+\epsilon^{\mu }_{(0)} (k) \qty(\omega_{k} A_{\mu } (x) + i \partial_0 A_{\mu }(x))\eval{e^{ikx}}_{k_0 = \abs{\vec{k}}} \\
+a_i (k) &= + \frac{1}{(2 \pi )^{3/2}} \int \frac{ \dd[3]{x}}{\sqrt{2 \omega_{k}}}
+\epsilon^{\mu }_{(i)} (k) \qty(\omega_{k} A_{\mu } (x) + i \partial_i A_{\mu }(x))\eval{e^{ikx}}_{k_0 = \abs{\vec{k}}}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{To do.}
+\end{proof}
+
+With this, the canonical quantization conditions needed to recover the harmonic oscillator algebra with these creation and annihilation operators read: 
+%
+\begin{align}
+\qty[a_{\lambda } (k), a ^\dag_{\lambda '} (p)] = - \eta_{\lambda \lambda'} \delta^{(3)} (\vec{k} - \vec{p})
+\,,
+\end{align}
+%
+while the \(\qty[a, a]\) and \(\qty[a ^\dag, a ^\dag]\) commutators vanish. So, we have \textbf{four} sets of harmonic oscillators, parametrized by \(\lambda \). 
+Once again the \(\lambda = 0\) polarization has the wrong sign (\(- \eta_{00 } = -1\)). 
+
+Let us now try and define the observables of this theory. 
+
+\subsubsection{Number density operator}
+
+Let us define 
+%
+\begin{align}
+\mathscr{N}_{0}(k) = - a_0  ^\dag (k) a_0 (k)
+\qquad \text{and} \qquad
+\mathscr{N}_{i}(k) = + a_i  ^\dag (k) a_i (k)
+\,,
+\end{align}
+%
+and the corresponding number operators \(N_{\mu } = \int \dd[3]{k} \mathscr{N}_{\mu } (k) \).
+
+The different sign for \(a_0 \) is needed in order to ensure the correct commutation relations, which read: 
+%
+\begin{align}
+\qty[N_{\mu }, a_\mu^{(\dag)}(k)] = \mp a_{\mu }^{(\dag)}(k)
+\,,
+\end{align}
+%
+where we have the \(+\) if the dagger is present, \(-\) if it is not present. 
+
+\subsubsection{Hamiltonian and momentum density}
+
+Since we have defined the number density \(\mathscr{N}_{\lambda } (k)\), we can also define the Hamiltonian as 
+%
+\begin{align}
+H = \int \dd[3]{x} \mathscr{H}' = 
+\int \dd[3]{k} \omega_{k} \sum _{\lambda } \mathscr{N}_{\lambda } (k)
+\,.
+\end{align}
+
+As usual, normal ordering is implied. Similarly, the momentum operator is 
+%
+\begin{align}
+P_{i} = - \int \dd[3]{x} \eta^{\mu \nu } \qty(\partial_0 A_{\mu } \partial_{i} A_{\nu }) 
+= \int \dd[3]{k} k_i \sum _{\lambda=0}^{3} \mathscr{N}_{\lambda } (k)
+\,.
+\end{align}
+
+These look sensible: however, the issue lies in the definition of the number density operator. 
+
+\begin{claim}
+The Heisenberg-picture evolution equations read 
+%
+\begin{align}
+\dv{A_{\mu }}{t} (\vec{x}, t) &= -i \qty[A_{\mu }(\vec{x}, t), H] \\
+\dv{\pi'_{\mu }}{t} (\vec{x}, t) &= -i \qty[\pi '_{\mu }(\vec{x}, t), H]
+\,,
+\end{align}
+%
+where the Hamiltonian can be found by integrating the Hamiltonian density 
+%
+\begin{align}
+\mathscr{H}' = \frac{1}{2} \qty(\pi^{\prime 2}_i + \qty(\partial_{i} A_{j})^2 - \pi_0^2 - \qty(\partial_{i} A_0 )^2)
+\,,
+\end{align}
+%
+so we can see again that the issue lies in the \(0\)-index part. 
+\end{claim}
+
+\subsection{Fock space and indefinite metric} 
+
+We want to discuss how the Fock space for a vector field can be defined. 
+
+The definition of the \textbf{vacuum}, as usual, is \(a_{\lambda } (k) \ket{0} = 0\) for all \(k\).
+
+For \(\lambda \in (1, 2, 3)\) there are no issues, we proceed as in the scalar case by populating the vacuum with particles. The unphysical behaviour comes out for \(\lambda = 0\): then, we would try to define a 1-particle state by 
+%
+\begin{align}
+\ket{1(k, 0)} \propto a ^\dag_{0} (k) \ket{0}
+\,,
+\end{align}
+%
+but then we can see that the norm of this state is negative: 
+%
+\begin{align}
+\braket{1(k, 0)}{1(p, 0)} &\propto \bra{0} a_0 (k) a_0 ^\dag (p) \ket{0}  \\
+&= \bra{0} \qty[ a_0 (k),  a_0 ^\dag (p)] \ket{0} - \underbrace{\bra{0} a_0 ^\dag (p) a_0 (k)  \ket{0}}_{= 0}  \\
+&= - \delta^{(3)} (k-p) \leq 0
+\,,
+\end{align}
+%
+which means that the metric on the Hilbert space of states is \textbf{not positive definite}!
+This is a problem: it directly leads to negative probabilities. 
+We have the expectation values: 
+%
+\begin{align}
+\bra{1(k, 0)} N_{0} \ket{1(k, 0)} = - 1 
+\qquad \text{and} \qquad
+\bra{1(k, 0)} H_{0} \ket{1(k, 0)} = - \omega_{k} 
+\,.
+\end{align}
+
+So, this new gauge-fixing theory we are trying to quantize leads to inconsistent results! We surely will need to throw it out, right?
+
+\subsection{The Gupta-Bleuer condition}
+
+The Fock space we have constructed contains unphysical states. However, we also know that the theory we have quantized is not electromagnetism, and in fact it is larger, since it has 4 degrees of freedom. 
+
+Right now the equations of motion for our theory (with \(\xi = 1\)) read \(\square A^{\mu } = 0\); however in classical electromagnetism this condition only holds as long as \(\partial_{\mu } A^{\mu } = 0\). 
+
+So, we need a way to enforce this condition. We have seen that we \emph{cannot impose \(\partial_{\mu } A^{\mu } = 0\) in an operatorial sense}, since the condition it leads to is not a covariant one. 
+
+The \textbf{Gupta-Bleuer} condition is a workaround: instead of imposing the condition on operators, we impose it by restricting the Fock space: if \(\ket{\text{phys}}\) is any physical state, we ask that 
+%
+\begin{align}
+\bra{\text{phys}'} \partial_{\mu } A^{\mu } \ket{\text{phys}} =0
+\,.
+\end{align}
+
+The set of states \(\qty{\ket{\text{phys}}}\) which satisfy this condition is a subset of the Fock space. 
+
+\begin{claim}
+We can state the GB condition equivalently as 
+%
+\begin{align}
+\partial_{\mu }A^{\mu }_{+ } \ket{\text{phys}} = 0 
+\qquad \text{or} \qquad
+\bra{\text{phys}} \partial_{\mu }A^{\mu }_{- }  = 0 
+\,.
+\end{align}
+\end{claim}
+
+The \(+\) solution for the EM field gives us 
+%
+\begin{align}
+\partial_{\mu } A^{\mu }_{+} (x) = \frac{- i}{(2 \pi )^{3/2}} 
+\int \frac{ \dd[3]{k}}{\sqrt{2 \omega_{k}}} 
+\underbrace{k_\mu \sum _{\lambda = 0 }^{3} \epsilon^{\mu }_{\lambda }(k) a_\lambda (k) \eval{e^{-ikx}}_{k_0 = \abs{\vec{k}.}}}_{L(k)} 
+\,.
+\end{align}
+
+We can use the operator \(L(k)\) in order to understand what the Gupta-Bleuer condition tells us in momentum space: it is 
+%
+\begin{align}
+L(k) \ket{\text{phys}} = 0 
+\qquad \text{or} \qquad
+\bra{\text{phys}} L ^\dag (k) = 0
+\,.
+\end{align}
+
+This can be understood better if it is expressed in terms of the polarization vectors: recall that \(\epsilon^{\mu }_{(0)} = n^{\mu }\), \(\epsilon^{\mu }_{(3)} = (k^{\mu } - (n \cdot k) n^{\mu }) / (n \cdot k)\) while the other two polarizations are orthogonal: \(\epsilon^{\mu }_{(1, 2)} k_\mu =0 \). 
+
+In terms of these, we have 
+%
+\begin{align}
+L(k) &= k_{\mu } \qty(n^{\mu } a_0 (k) + \qty(\frac{k^{\mu }}{(n \cdot k)} - n^{\mu } ) a_3(k))   \\
+&= (k \cdot n) \qty(a_0 (k ) - a_3 (k))
+\,,
+\end{align}
+%
+since \(k^2=0\). 
+Then, we can explicitly write that \(L (k) \ket{\text{phys}} =0 \) means:
+%
+\begin{align}
+a_0 (k) \ket{\text{phys}} = 
+a_3 (k) \ket{\text{phys}} 
+\,,
+\end{align}
+%
+while \(\bra{\text{phys}} L ^\dag (k) = 0\) means:
+%
+\begin{align}
+\bra{\text{phys}} a_0 ^\dag (k) = 
+\bra{\text{phys}} a_3 ^\dag (k) 
+\,.
+\end{align}
+
+Let us see what this means in terms of actual measurable properties of these physical states: first of all, it means that 
+%
+\begin{align}
+\expval{\mathscr{N}_{0} + \mathscr{N}_{3}} _{\text{phys}} &= 
+\expval{
+    a ^\dag_{3} (k) a_3 (k ) - 
+    a ^\dag_{0} (k) a_0 (k )
+    }
+_{\text{phys}}  \\
+&= 
+\expval{
+    a ^\dag_{3} (k) a_3 (k ) +
+    L ^\dag (k) a_0(k) -
+    a ^\dag_{0} (k) a_0 (k )
+    }
+_{\text{phys}}   \\
+&= 
+\expval{
+    a ^\dag_{3} (k) a_3 (k ) +
+    a ^\dag_{0}(k) a_0(k) -
+    a ^\dag_{3} (k) a_0 (k) - 
+    a ^\dag_{0} (k) a_0 (k )
+    }
+_{\text{phys}}  \\
+&= 
+\expval{
+    a ^\dag_{3} (k) a_3 (k ) -
+    a ^\dag_{3} (k) a_0 (k) 
+    }
+_{\text{phys}}   \\
+&= - \expval{
+    a ^\dag_{3} (k) L(k)
+    }
+_{\text{phys}}  = 0
+\,,
+\end{align}
+%
 
 
 \end{document}

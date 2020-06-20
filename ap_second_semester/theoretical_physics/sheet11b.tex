@@ -260,6 +260,128 @@ _{\text{phys}}  = 0
 \,,
 \end{align}
 %
+therefore when we compute the expectation of \(\sum _{\lambda } \mathscr{N}_{\lambda }(k)\) on physical states we find only the contributions from the transverse (\(1\) and \(2\)) polarizations. 
+This also applies to the Hamiltonian, since in momentum space it is proportional to \(\sum _{\lambda } \mathscr{N}_{\lambda }\). 
 
+So, if we require the Gupta-Blauer condition the observables do not depend on the 0 and 3 polarizations; so we can only consider the two transverse ones and be left with a theory that now corresponds to a true quantization of classical electromagnetism, since we have the three conditions
+\begin{enumerate}
+    \item \(\square A^{\mu } = 0\);
+    \item \(\partial_{\mu } A^{\mu } = 0\) for physical states;
+    \item two polarizations.
+\end{enumerate}
+
+We define \textbf{pseudophoton states} as ones which are obtained by applying \(L ^\dag\) to a physical state (note: the vacuum is a physical state, since \(a_{\mu } \ket{0} = 0\) for any \(\mu \)). 
+
+\begin{claim}
+A pseudophoton state \(\ket{\psi }\) satisfies the following properties: 
+\begin{enumerate}
+    \item \(\braket{\psi }{\psi } = 0\): zero norm;
+    \item \(\braket{\psi }{\text{phys}} = 0\): orthogonality to physical states;
+    \item \(\ev{H}{\psi } = 0\): zero energy. 
+\end{enumerate}
+
+Also, the operator \(L(k)\) has the following properties: 
+\begin{enumerate}
+    \item \(\qty[L(k), L ^\dag(p)] = 0\);
+    \item \(\qty[L(k), H] = \omega_{k} L(k)\). 
+\end{enumerate}
+\end{claim}
+
+\begin{proof}
+\todo[inline]{To do.}
+\end{proof}
+
+Any state which is the sum of a physical state and a pseudophoton state is physically indistinguishable: if \(\ket{\psi }\) is a pseudophoton state while \(\ket{\text{phys}}\) is a physical state, we have that for any observable \(A\): 
+%
+\begin{align}
+\bra{\text{phys}} A \ket{\text{phys}} = \qty(\bra{\text{phys}} + \bra{\psi }) A \qty(\ket{\text{phys}} + \ket{\psi })
+\,.
+\end{align}
+
+\todo[inline]{...is what he's stating, but instead we prove:}
+
+\begin{claim}
+If \(\ket{P}\) is a physical state, and \(\ket{Q} = \ket{P} + \ket{\psi }\) where \(\psi \) is a pseudophoton state then we have 
+%
+\begin{align}
+\braket{Q}{Q} = \braket{P}{P} 
+\qquad \text{and} \qquad
+\bra{Q} H \ket{Q} = \bra{P} H \ket{P}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+The first statement is proven using the facts that pseudophoton states are orthogonal to physical ones and have zero norm: 
+%
+\begin{align}
+\braket{Q}{Q} = \braket{P}{P} +
+\underbrace{\braket{P}{\psi } +\braket{\psi }{P} + \braket{\psi }{\psi }}_{0}
+\,.
+\end{align}
+
+The second statement is similarly proven: if can be expressed in terms of \emph{physical} energy eigenvectors as \(\ket{P} = \sum _{n} a_n\ket{n}\)
+%
+\begin{align}
+\bra{Q} H \ket{Q} &= 
+\bra{P} H \ket{P} 
++ \bra{P} H \ket{\psi }
++ \bra{\psi } H \ket{P }
++ \underbrace{\bra{\psi } H \ket{\psi }}_{0}  \\
+&= 
+\bra{P} H \ket{P} 
++ \qty(\sum _{n} a_n \bra{n}) H \ket{\psi }
++ \bra{\psi } H \qty(\sum _{n} a_n \ket{n})  \\
+&= \bra{P} H \ket{P} 
++ \sum _{n} a_n E_n \underbrace{\braket{n}{\psi }}_{0}
++ \sum _{n} a_n E_n \underbrace{\braket{\psi }{n }}_{0}
+\,.
+\end{align}
+\end{proof}
+
+So, we can take as our states \textbf{equivalence classes} of states, up to addition of pseudophoton states. 
+We generate physical Fock states by repeatedly applying the transverse polarization creation operators to them; and then add an arbitrary amout of pseudophoton states. 
+
+\begin{claim}
+These equivalence classes are related to residual gauge invariance.  
+\end{claim} 
+
+\subsection{Covariant commutators for the photon}
+
+The covariant commutator can be calculated as 
+%
+\begin{align}
+D^{\mu \nu } (x-y) &= \qty[A^{\mu  }(x), A^{\nu }(y)]  = D^{\mu \nu }_{+}(x-y) + D^{\mu \nu }_{-} (x-y)  \\
+&= \qty[A^{\mu }_{+} (x), A^{\nu }_{-}(y)]
++ \qty[A^{\mu }_{-} (x), A^{\nu }_{+}(y)]
+\,,
+\end{align}
+%
+and if we plug in the solution to the Maxwell equations \(\square A^{\mu } = 0\) we find 
+%
+\begin{align}
+\qty[A^{\mu }_{+} (x), A^{\nu }_{-}(y)] &= - \eta^{\mu \nu } D_{+}(x-y) \\
+\qty[A^{\mu }_{-} (x), A^{\nu }_{+}(y)] &= - \eta^{\mu \nu } D_{-}(x-y)
+\,,
+\end{align}
+%
+so their sum is 
+%
+\begin{align}
+D^{\mu \nu } (x-y) = - \eta^{\mu \nu } D_F(x-y)
+\,,
+\end{align}
+%
+and all the good results from the scalar case generalize. 
+
+\subsubsection{Summary}
+
+We can quantize electromagnetism in a non-covariant way in either the Coulomb or Lorentz gauge. 
+
+In order to quantize it \textbf{covariantly} we need a different theory: we quantize a theory with an additional \textbf{gauge-fixing} term in the Lagrangian. 
+This theory's Fock space includes unphysical states, with negative norm and negative energy. 
+
+If we \emph{select} a subset of the Fock space with the \textbf{Gupta-Bleuer} condition we recover electromagnetism. 
+Different choices for the gauge-fixing Lagrangian give rise to different gauge choices. 
 
 \end{document}

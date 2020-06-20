@@ -243,7 +243,9 @@ so we have the result: summing over the initial and final polarizations correspo
 
 This makes sense: there are no free spinorial indices in the probability, so we must trace them all away. 
 
-\todo[inline]{He then makes an example in which we have a fermionic loop which yields a trace, but this was not the case here... How do these connect? Do we need a loop or not?}
+% \todo[inline]{He then makes an example in which we have a fermionic loop which yields a trace, but this was not the case here... How do these connect? Do we need a loop or not?}
+
+In general, if we have a vertex with a fermionic line coming through it, we are computing the square modulus of the Feynman amplitude and we are summing over all the polarizations we will get a trace. 
 
 This is similar to the Feynman rules: instead of the propagator \(\widetilde{S}(p)\) we plug in the projector \(\Lambda_{\pm }(p)\). 
 
@@ -279,7 +281,7 @@ The trace of an odd number of gamma matrices vanishes.
 \end{claim}
 
 \begin{proof}
-Recall the definition of the matrix \(\gamma5 \) \eqref{eq:gamma5-definition}. Its square is the identity: so, we can insert it anywhere. So, let us take: 
+Recall the definition of the matrix \(\gamma_5  \) \eqref{eq:gamma5-definition}. Its square is the identity: so, we can insert it anywhere. So, let us take: 
 %
 \begin{align}
 \Tr[ \prod_{i=1}^{2n+1} \gamma^{\mu_{i}} ] &= \Tr[\gamma^{5} \gamma^{5}\prod_{i=1}^{2n+1} \gamma^{\mu_{i}}]  \\
@@ -839,7 +841,7 @@ A_{\mu }^{ \text{ext}}(x)
 \,,
 \end{align}
 %
-which is the Green's function formulation of the generation of the electromagnetic field by an external current: if we take the Dalambertian (with respect to the \(x\) coordinates: \(\square = \partial^{\rho }_{(x)} \partial_{\mu, (x)}\)) of this equation we get 
+which is the Green's function formulation of the generation of the electromagnetic field by an external current: if we take the Dalambertian (with respect to the \(x\) coordinates: \(\square = \partial^{\rho }_{(x)} \partial_{\rho, (x)}\)) of this equation we get 
 %
 \begin{align}
 \square A^{\text{ext}}_{\mu } &= -i 
@@ -922,7 +924,7 @@ Substituting this expression for the potential into the \(S\)-matrix element we 
 \ket{e^{-}_{s}(p_e)}
 A_{\mu }^{\text{ext}}  \\
 &= iq \int \dd[3]{k} \overline{u} (p') \gamma_{\mu } u(p) \frac{\epsilon^{\mu }_{\text{ext}}}{(2 \pi )^3} (\vec{k}) \int  \dd[4]{x} e^{ip'x - i px + i \vec{k} \cdot \vec{x}}  \\
-&= (2\pi)^3 iq \int \dd[3]{k} \overline{u} (p') \gamma_{\mu } u(p) \epsilon^{\mu }_{\text{ext}} (\vec{k}) \delta^{(3)} (\vec{p}' + \vec{k} - \vec{p})
+&= (2\pi)^3 iq \int \dd[3]{k} \overline{u} (p') \gamma_{\mu } u(p) \frac{\epsilon^{\mu }_{\text{ext}}}{(2 \pi )^3} (\vec{k}) \delta^{(3)} (\vec{p}' + \vec{k} - \vec{p})
 \int \dd{x_0 } e^{ix^{0} (p^{\prime 0} - p^{0})}  \\
 &= (2 \pi ) \delta(\omega_{p'} - \omega_{p}) \mathcal{M} _{\text{ext}}
 \,,
@@ -934,12 +936,14 @@ where
 \mathcal{M} _{\text{ext}} = i q \eval{\overline{u} (p') \gamma_{\mu } u(p) \epsilon^{\mu }_{\text{ext}} (\vec{k}) }_{\vec{p}' = \vec{p} + \vec{k}}
 \,.
 \end{align}
-%
-\todo[inline]{Times \((2\pi )^3\), right? We get that factor when we integrate in \(\dd[3]{x}\)\dots}
 
 The momentum \(\vec{k}\) is provided by the external EM field, whose reaction we do not consider: it is arbitrary. However, energy conservation is enforced, so \(\abs{\vec{p}'} = \abs{\vec{p}}\). 
 
-\todo[inline]{So the momentum only changes direction\dots but how do we account for the decrease in kinetic energy due to the increase in electromagnetic energy?}
+In the kind of interaction we are considering, the collision is perfectly \textbf{elastic}: the momentum can change direction but not magnitude; the kinetic energy is conserved. 
+But, one might say, what about electromagnetic potential energy? Surely a particle can enter in a region of higher voltage and thus lose kinetic energy! 
+
+Well, the answer to that is that the formalism we are using is not equipped to describe that kind of process: we are perturbatively analyzing the interaction at a specific time by looking at the initial states at \(t = - \infty\) and at the final ones at \(t = + \infty \), and we know that the fields (including the external EM one) must go to zero at infinity.
+If we look at the electron-proton interaction, which was our motivating example, this is verified: the potential decreases like \(1 / \abs{\vec{x}}\). 
 
 We can now calculate the cross section: 
 %
@@ -992,7 +996,7 @@ Our potential however has a specific form: it is the Coulomb potential generated
 \begin{align}
 A^{\mu } _{\text{ext}} (x) = \qty( \frac{q_p}{4 \pi \abs{x}}, \vec{0})
 \qquad \text{and} \qquad
-\epsilon^{\mu } _{\text{ext}} = \qty( \frac{q_p}{\abs{\vec{k}}^2}, \vec{0})
+\epsilon^{\mu } _{\text{ext}} = \qty( q_p / \vec{k}^2, \vec{0})
 \,.
 \end{align}
 
@@ -1113,16 +1117,14 @@ k^{\prime }_{\nu } L^{\mu \nu } = 0 = k_\nu L^{\mu \nu }
 
 This can be generalized to the following: 
 \begin{claim}[Ward identities]
-In any QED amplitude with external photons it is possible to factor the amplitude as 
+In any QED amplitude with an external photon it is possible to factor the amplitude as 
 %
 \begin{align}
 \mathcal{M} = \epsilon_{\mu } (k) L^{\mu } (k, \dots)
 \,,
 \end{align}
 %
-where \(k_\mu L^{\mu } (k, \dots) = 0\), and \(k^{\mu }\) are the momenta of the external photons.
-
-\todo[inline]{So, \(k^{\mu }\) is the sum of these momenta?}
+where \(k_\mu L^{\mu } (k, \dots) = 0\), and \(k^{\mu }\) is the momentum of the external photon.
 \end{claim}
 
 These are connected to \textbf{gauge invariance}: a \(U(1)\) gauge transformation in position space reads 
@@ -1334,7 +1336,7 @@ We can substitute this result into the cross section:
 where we have done the following manipulation: 
 %
 \begin{align}
-2 m
+&2 m
 \qty(
     \frac{1}{\omega_\gamma} -
     \frac{1}{\omega_\gamma '} 
@@ -1343,7 +1345,7 @@ where we have done the following manipulation:
 \qty(
     \frac{1}{\omega_\gamma} -
     \frac{1}{\omega_\gamma '} 
-)^2  \\
+)^2  = \\
 &= 2m \frac{1}{m} (-) \qty(1 - \cos \theta )
 + m^2 \frac{1}{m^2} (-)^2 \qty(1 - \cos \theta )^2  \\
 &= -2 + 2 \cos \theta + 1 - 2 \cos \theta + \cos^2 \theta   \\

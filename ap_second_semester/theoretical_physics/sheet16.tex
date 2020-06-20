@@ -61,7 +61,7 @@ Here, \(e^{\pm}\) are electron and positron, while \(f\) is a generic spin \(1/2
 
 We make the assumption that the couplings are \textbf{diagonal} in flavour space: this means that there is no term in the Lagrangian which couples \(e\) and \(f\) explicitly, instead they are both coupled to the EM field and interact in that way. 
 
-\todo[inline]{Is this the correct interpretation?}
+% \todo[inline]{Is this the correct interpretation?}
 
 Then, the QED vertex for this interaction looks like 
 %
@@ -1104,13 +1104,38 @@ where we defined the object \(L^{\mu \nu }\) to contain all the ugly stuff.
 We have the following identities: 
 %
 \begin{align}
-k^{\prime }_{\nu } L^{\mu \nu } = 0 = k_\nu L^{\mu \nu }
+k^{\prime }_{\mu } L^{\mu \nu } = 0 = k_\nu L^{\mu \nu }
 \,.
 \end{align}
 \end{claim}
 
 \begin{proof}
-\todo[inline]{If I have some time later\dots}
+We neglect the \(-iq^2\) at the start and the contraction with \(\overline{u}_{r}(p')\) and \(u_r(p)\), although they are a part of \(L^{\mu \nu }\) they do not affect this computation. 
+We only prove \(k_{\nu } L^{\mu  \nu }\): we get 
+%
+\begin{align}
+k_{\nu }
+\qty[\gamma^{\mu } \frac{\slashed{k} \gamma^{\nu } + 2 p^{\nu }}{2 p \cdot k} + \gamma^{\nu } \frac{\slashed{k}' \gamma^{\mu} - 2 p^{\mu }}{2 p \cdot k'}] &=
+\gamma^{\mu } \frac{\slashed{k}^2 + 2 p \cdot k}{2 p \cdot k} + \frac{\slashed{k}' \slashed{k} \gamma^{\mu} - 2 p^{\mu } \slashed{k}}{2 p \cdot k'}
+\marginnote{\(k^2 = 0\), since the incoming photon is on-shell.} \\
+&= \gamma^{\mu } + \frac{\slashed{k}' \slashed{k} \gamma^{\mu} - 2 p^{\mu } \slashed{k}}{2 p \cdot k'}  \\
+&= \gamma^{\mu } + \frac{\qty(\slashed{k} + \slashed{p} + \slashed{p}')\slashed{k}  \gamma^{\mu} - 2 p^{\mu } \slashed{k}}{2 p \cdot k'}  \\
+&= \gamma^{\mu } + \frac{\slashed{p}\slashed{k} \gamma^{\mu } + \slashed{p}' \slashed{k} \gamma^{\mu} - 2 p^{\mu } \slashed{k}}{2 p \cdot k'}   \\
+&= \gamma^{\mu } + \frac{-\slashed{k} \gamma^{\mu } \slashed{p} +2 \slashed{k} p^{\mu } + \slashed{p}' \slashed{k} \gamma^{\mu } - 2 p' \cdot k \gamma^{\mu } -2 \slashed{k} p^{\mu }} {2 p \cdot k'}   \\
+&= \gamma^{\mu } - \frac{2 p' \cdot k}{p \cdot k'} \gamma^{\mu } = 0
+\,,
+\end{align}
+%
+where we used the fact that for any two vectors \(a \) and \(b\) we have \(\slashed{a}\slashed{b} + \slashed{b} \slashed{a} = 2 a \cdot b\) and \(\slashed{a} \gamma^{\mu } + \gamma^{\mu } \slashed{a} = 2 a^{\mu } \).
+
+Also, we simplified \(-\slashed{k} \gamma^{\mu } \slashed{p}+ \slashed{p}' \slashed{k} \gamma^{\mu } \sim 0\): this is possible since our equation is contracted on the left and the right with two electrons, so by Dirac's equation \(\slashed{p} - m = \slashed{p}' -m = 0\) (as long as the momentum can act on the wavefunction); making this substitution we are left with \(-\slashed{k} \gamma^{\mu } m + m \slashed{k} \gamma^{\mu } = 0\). 
+
+Lastly, we simplified \(p' \cdot k = p \cdot k'\): this is justified by the fact that the Mandelstam variable can be expressed both as \((p' - k)^2 = (p - k')^2\), and when expanding the squares we get 
+%
+\begin{align}
+t = m^2 -2 p' \cdot k = m^2 - 2 p \cdot k'
+\,.
+\end{align}
 \end{proof}
 
 \subsubsection{Ward identities}
@@ -1119,7 +1144,7 @@ This can be generalized to the following:
 \begin{claim}[Ward identities]
 In any QED amplitude with an external photon it is possible to factor the amplitude as 
 %
-\begin{align}
+\begin{align} \label{eq:ward-identities}
 \mathcal{M} = \epsilon_{\mu } (k) L^{\mu } (k, \dots)
 \,,
 \end{align}
@@ -1172,8 +1197,6 @@ Let us consider the case of one external photon,  so that
 \end{align}
 %
 and compute the sum over the photon polarizations to get \(\abs{\mathcal{\overline{M}}}^2\). 
-
-\begin{claim}
 This sum can be written as:
 %
 \begin{align}
@@ -1185,12 +1208,65 @@ This sum can be written as:
 \epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu } L^{\mu }L^{\nu \dag}
 \,.
 \end{align}
+
+\begin{claim}
+The following identity holds:
+\begin{align}
+\sum _{\lambda = 1}^{2} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu }
+L^{\mu } L^{\nu \dag}
+= 
+\sum _{\lambda \lambda '} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu }
+L^{\mu } L^{\nu \dag}
+= - \eta_{\mu \nu }
+L^{\mu } L^{\nu \dag}
+\,.
+\end{align}
 \end{claim}
 
 \begin{proof}
 This can be shown in two different ways: in one we choose a reference frame, in the other we work in an invariant way. 
 
-\todo[inline]{Still to finish, when I do Gupta-Bleuer}
+% \todo[inline]{Still to finish, when I do Gupta-Bleuer}
+Let us start by choosing a frame in which \(k^{\mu } = (k, 0, 0, k)\) and where the physical polarizations read: 
+%
+\begin{align}
+\epsilon^{\mu }_{(1)} = (0, 1, 0, 0)
+\qquad \text{and} \qquad
+\epsilon^{\mu }_{(2)} = (0, 0, 1, 0)
+\,.
+\end{align}
+
+Both of these are orthogonal to \(k_{\mu }\). From this, we get that for each \(\lambda \) the operator \(\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu }\) acts as a projector onto the subspace corresponding to the direction \(x^{\lambda }\). So, we get 
+%
+\begin{align}
+\sum _{\lambda = 1}^{2} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu } L^{\mu }L^{\nu \dag}
+= \abs{L_1 }^2 + \abs{L_2 }^2
+\,.
+\end{align}
+
+Now, the Ward identities tell us that \(k_{\mu }L^{\mu } = 0\), so by the form \(k^{\mu }\) has in our frame this tells us that \(\abs{k} \qty(L_0 - L_3 ) =0\). Therefore \(L_0 = L_3 \), and we can add a difference of these two terms anywhere without worry: we then find 
+%
+\begin{align}
+\sum _{\lambda = 1}^{2} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu } L^{\mu }L^{\nu \dag}
+= \abs{L_1 }^2 + \abs{L_2 }^2
+\underbrace{- \abs{L_0 }^2 + \abs{L_3 }^2}_{=0} = - \eta^{\mu \nu }L_{\mu } L_{\nu} ^\dag
+\,.
+\end{align}
+
+The sum in the first term can be extended, in order to make it more symmetric, as 
+%
+\begin{align}
+\sum _{\lambda \lambda '} 
+\epsilon_{\mu }^{(\lambda )} \epsilon^{(\lambda )*}_{\nu } L^{\mu }L^{\nu \dag} = - \eta^{\mu \nu } L_{\mu } L_{\nu } ^\dag
+\,,
+\end{align}
+%
+so we have the desired identity.
+From a generic basis we can go to this one and the result is covariant.
 \end{proof}
 
 We now come back to Compton scattering. The unpolarized amplitude is given by 

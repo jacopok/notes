@@ -27,6 +27,8 @@ It is self-adjoint: its conjugate reads
 %
 where we switched the sign when anticommuting \(\gamma_5\) and \(\gamma^{0}\).
 
+\subsection{Vertex contribution}
+
 The Feynman rule for this interaction is given from the interaction Hamiltonian; in our case there are no derivative couplings so that is just minus the interaction Lagrangian. The vertex contribution to the diagram is given by the first-order term in the expansion of the \(S\)-matrix: in momentum space we do not have to include the integral over \(\dd[4]{x}\) so the vertex contribution is simply \(-i \mathscr{H} _{\text{int}} = i \mathscr{L} _{\text{int}}\), with all the fields removed: so it is 
 %
 \begin{align}
@@ -34,6 +36,115 @@ i \qty(a_{\ell} + i b_\ell \gamma_{5})
 \,.
 \end{align}
 
-We want to consider an initial state of \(\ket{i} = \ket{e^{-i}(p)}\), and a final state of \(\ket{f} = \ket{s(q) e^{-}(k)}\). 
+We want to consider an initial state of \(\ket{i} = \ket{e^{-}(p)}\), and a final state of \(\ket{f} = \ket{s(q) e^{-}(k)}\). 
+The transition amplitude \(\bra{f} S \ket{i}\) will be given by 
+%
+\begin{align}
+S_{fi}
+= (2 \pi )^{4} \delta^{(4)} (p - q - k)
+\overline{u}_{s'}(k) \qty(a_e + i b_e \gamma_{5}) u_s (p)
+\,,
+\end{align}
+%
+where there is no trace of the scalar: in fact, its contribution is only  \(\varphi_{+} ^\dag (x) \ket{s(p)} = e^{-ipx} \ket{0}\), which only comes up in the momentum conservation. 
+
+\subsection{\(e^{+} e^{-} \to \mu^+ \mu^-\) scalar-mediated scattering}
+
+This is similar to the QED scattering in terms of incoming and outgoing particles, but the coupling is different: the Feynman diagram to second order is shown in figure \ref{fig:scalar-mediator-eemumu}.
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[horizontal = y to x]{
+e1 -- [fermion] y -- [fermion] e2,
+y -- [scalar] x,
+mu1 -- [fermion] x -- [fermion] mu2
+};
+\caption{\(e^{+} e^{-} \to \mu^+ \mu^-\) scattering with a scalar mediator.}
+\label{fig:scalar-mediator-eemumu}
+\end{figure}
+
+Let us denote \(a = a_e = a_\mu \) and similarly for \(b\).
+Then, the unpolarized Feynman amplitude will read: 
+%
+\begin{align}
+\begin{split}
+\abs{\mathcal{\overline{M}}}^2
+&= \frac{1}{4 (k^2- M^2 + i \epsilon)^2 }
+\Tr[ (a + i b \gamma_5 ) (\slashed{p} + m_e) \qty(a + i b \gamma_5 ) \qty(\slashed{q} - m_e)] \times \\
+&\phantom{=}\ 
+\times \Tr[ (a + i b \gamma_5 ) (\slashed{p}' + m_\mu ) \qty(a + i b \gamma_5 ) \qty(\slashed{q}' - m_\mu )]
+\end{split}
+\,,
+\end{align}
+%
+since the scalar propagator in momentum space is \(1/ (k^2 - m^2)\), and we get two of them from taking the square modulus.
+The factor \(1/4\) is due to the average being taken on the initial polarizations. 
+\(M\) is the mass of the scalar, \(m_e\) and \(m_\mu\) are those of the electron and muon respectively. 
+
+The traces to compute seem to be many, but actually only three terms survive for each: this is because of the fact that, beyond the fact that traces of an odd number of \(\gamma^{\mu }\) vanish, we also have 
+%
+\begin{align}
+\Tr[\gamma_5 ] 
+= \Tr[\gamma_5 \gamma^{\mu }]
+= \Tr[\gamma_5 \gamma^{\mu } \gamma^{\nu }]
+= \Tr[\gamma_5 \gamma^{\mu } \gamma^{\nu } \gamma^{\rho }]
+= 0
+\,,
+\end{align}
+%
+while the nonvanishing ones are \cite[section 6.3]{kumerickiFeynmanDiagramsBeginners2016}: 
+%
+\begin{align}
+\Tr[\gamma_5 \gamma_5 ] = 4 \qquad \text{and} \qquad
+\Tr[\gamma_5 \gamma^{\mu } \gamma^{\nu } \gamma^{\rho } \gamma^{\sigma }] = -4i \epsilon^{\mu \nu \rho \sigma }
+\,,
+\end{align}
+%
+since \(\gamma_{5} \gamma_5  = \mathbb{1} \). 
+
+So, we get: 
+%
+\begin{align}
+\Tr[ (a + i b \gamma_5 ) (\slashed{p} + m_e) \qty(a + i b \gamma_5 ) \qty(\slashed{q} - m_e)] &= 4 \qty( (a^2 + b^2) p \cdot q +  m_e^2 ( b^2 -a ^2))
+\,.
+\end{align}
+
+This was found by writing all the pieces on paper. Recall that the matrices \emph{anticommute}, so if we need to bring two \(\gamma_5\)s together we have to keep count of the number of swaps. 
+
+Then, our polarization-averaged square amplitude reads: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2
+&=
+\frac{4 \qty( (a^2 + b^2) p \cdot q +  m_e^2 ( b^2 -a ^2)) \qty( (a^2 + b^2) p' \cdot q' +  m_\mu^2 ( b^2 -a ^2))}{ (k^2- M^2 + i \epsilon)^2 }
+\,.
+\end{align}
+
+This is an \(s\)-channel diagram: \(s = k^2\), and we can also express this Mandelstam variable as \(s = (p + q)^2 = (p'+ q')^2 = 2 m_e^2 + 2p \cdot q  = 2 m_\mu^2 + 2 p' \cdot q'\).
+
+Now, we can calculate the cross section: for simplicity, let us move to the center of mass frame. Then, we will have 
+%
+\begin{align}
+\dd{\sigma } = \frac{\abs{\mathcal{\overline{M}}}^2}{4 I_{12}} \dd{\phi }^{(n_f)}
+\,,
+\end{align}
+%
+where the phase space element is given by 
+%
+\begin{align}
+\dd{\phi } = (2 \pi )^{4} \delta^{(4)} (p+q-p'-q') 
+\frac{ \dd[3]{p'}}{(2 \pi )^3 2 \omega_{p}'} 
+\frac{ \dd[3]{q'}}{(2 \pi )^3 2 \omega_{q}'} 
+\,,
+\end{align}
+%
+while in our frame 
+%
+\begin{align}
+I_{12} =  \sqrt{(p \cdot q)^2 + m_e^{4}}
+\,,
+\end{align}
+%
+
 
 \end{document}

@@ -232,7 +232,8 @@ its Euler-Lagrange equations read:
 \begin{subequations}
 \begin{align}
 \DD_{\mu } \DD^{\mu } \varphi &= 0   \\
-\square A^{\sigma } + \partial^{\sigma } \qty(\partial_{\rho } A^{\rho })
+\square A_{\rho } 
++ \partial_\rho \qty(\partial_{\sigma} A^{\sigma})
 -iq \qty(\varphi^{*} \partial_{\rho } \varphi - \varphi \partial_{\rho } \varphi^{*})
 + 2 q^2 A_{\rho } \varphi^{*} \varphi 
 &=0
@@ -374,13 +375,13 @@ A_{I}(t) = U_0 ^\dag (t) A U_0 (t)
 \,,
 \end{align}
 %
-so that expectation values are preserves: 
+so that expectation values are preserved:
 %
 \begin{subequations}
 \begin{align}
-\expval{A} &= \bra{\psi (t)}_{I} A_I (t) \ket{\psi (t)}_{I}   \\
+\expval{A}_{I} &= \bra{\psi (t)}_{I} A_I (t) \ket{\psi (t)}_{I}   \\
 &= \bra{\psi (t)}_{S} U_0 (t) U_0 ^\dag(t) A U_0 (t) U_0 ^\dag \ket{\psi (t)}_{S}  \\
-&=  \bra{\psi (t)}_{S} A \ket{\psi (t)}_{S}
+&=  \bra{\psi (t)}_{S} A \ket{\psi (t)}_{S} = \expval{A}_{S}
 \,.
 \end{align}
 \end{subequations}
@@ -391,7 +392,7 @@ This picture allows us to ``factor out'' the uninteresting free evolution, and f
 Operators obey the evolution law 
 %
 \begin{align}
-i \dv{}{t} A_I (t) = \qty[X_I(t), H_0 ]
+i \dv{}{t} A_I (t) = \qty[A_I(t), H_0 ]
 \,.
 \end{align}
 

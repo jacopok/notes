@@ -122,6 +122,15 @@ Then, our polarization-averaged square amplitude reads:
 
 This is an \(s\)-channel diagram: \(s = k^2\), and we can also express this Mandelstam variable as \(s = (p + q)^2 = (p'+ q')^2 = 2 m_e^2 + 2p \cdot q  = 2 m_\mu^2 + 2 p' \cdot q'\).
 
+We can assume the electron mass to be zero, since it is small compared to the muon's: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2
+&=
+\frac{4 (a^2 + b^2) p \cdot q \qty( (a^2 + b^2) \qty( p \cdot q - m_\mu^2) +  m_\mu^2 ( b^2 -a ^2))}{ (k^2- M^2 + i \epsilon)^2 }
+\,.
+\end{align}
+
 Now, we can calculate the cross section: for simplicity, let us move to the center of mass frame. Then, we will have 
 %
 \begin{align}
@@ -141,10 +150,52 @@ where the phase space element is given by
 while in our frame 
 %
 \begin{align}
-I_{12} =  \sqrt{(p \cdot q)^2 + m_e^{4}}
-\,,
+I_{12} &=  \sqrt{(p \cdot q)^2 - m_e^{4}}  \\
+&= \sqrt{\omega_{e}^{4} + 2 \omega_{e}^2 \abs{\vec{p}}^2 + \abs{p}^{4} - m_e^{4}}  \\
+&= \sqrt{4 \omega_{e}^2 \abs{p}^2} = 2 \omega_{e} \abs{p}
+\,.
 \end{align}
+
+We are basically replicating what we have done when deriving the two-output cross section: the result, in the approximation \(m_e \approx 0\), is given by \eqref{eq:zero-initial-mass-cross-section}: 
 %
+\begin{align}
+\dv{\sigma }{\Omega_1 } &= \frac{1}{64 \pi^2}\frac{\abs{\mathcal{\overline{M}}}^2 }{s} \sqrt{1 - \frac{4 m_\mu^2}{s}}  \\
+&= \frac{(a^2 + b^2) (s/2) \qty( (a^2 + b^2) \qty( s/2 - m_\mu^2) +  m_\mu^2 ( b^2 -a ^2))}{ (16 \pi^2 s) (s- M^2 + i \epsilon)^2 }
+\sqrt{1 - \frac{4 m_\mu^2}{s}}  \\
+&= \frac{(a^2 + b^2)\qty( (a^2 + b^2) \qty( s/2 - m_\mu^2) +  m_\mu^2 ( b^2 -a ^2))}{ 32 \pi^2 (s- M^2 + i \epsilon)^2 }
+\sqrt{1 - \frac{4 m_\mu^2}{s}}
+\,.
+\end{align}
+
+There is no angular dependence! Scalar-mediated interactions are \textbf{isotropic}. 
+
+\subsection{Scalar decay rate}
+
+We want to calculate the decay rate of the process with initial state \(\ket{i} = \ket{s(p)}\) and final state \(\ket{f} = \ket{e^{-}(p') e^{+} (q')}\).
+
+The polarization-averaged amplitude is given (in the lab=center of mass frame) by: 
+%
+\begin{align}
+\abs{\mathcal{\overline{M}}}^2 
+&= \frac{1}{(k^2 - M^2 + i \epsilon )^2}
+\Tr[ (a + i b \gamma_5 ) (\slashed{p} + m_e) \qty(a + i b \gamma_5 ) \qty(\slashed{q} - m_e)]  \\
+&= \frac{(a^2 + b^2)(p' \cdot q') + m_e^2 (b^2 - a^2)}{(k^2 -M^2+ i \epsilon)^2}  \\
+&=\frac{(a^2 + b^2)(M^2 / 2- m_e^2) + m_e^2 (b^2 - a^2)}{(k^2 -M^2+ i \epsilon)^2}
+\,.
+\end{align}
+
+Then, we can compute the differential decay rate \eqref{eq:differential-decay-rate-equal-masses}: 
+%
+\begin{align}
+\dv{\Gamma}{\Omega_1 } &= \frac{\abs{\mathcal{\overline{M}}}^2}{64 \pi^2 M}\sqrt{1 - \frac{4 m_e^2}{M^2}}  \\ 
+&=\frac{(a^2 + b^2)(M^2 /2- m_e^2) + m_e^2 (b^2 - a^2)}{64 \pi^2 M (k^2 -M^2+ i \epsilon)^2}
+\sqrt{1 - \frac{4 m_e^2}{M^2}}  \\
+&= \qty[2 a^2 \qty( \frac{M^2}{4 } - m_e^2) + b^2 \frac{M^2}{2}] \frac{1}{64 \pi^2 M (k^2 -M^2+ i \epsilon)^2}
+\sqrt{1 - \frac{4 m_e^2}{M^2}}  \\
+\Gamma &= \qty[2 a^2 \qty( \frac{M^2}{4 } - m_e^2) + b^2 \frac{M^2}{2}] \frac{1}{16 \pi M (k^2 -M^2+ i \epsilon)^2}
+\sqrt{1 - \frac{4 m_e^2}{M^2}}
+\,.
+\end{align}
 
 
 \end{document}

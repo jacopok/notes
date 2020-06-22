@@ -1040,7 +1040,36 @@ We will then be able to apply this procedure to any electromagnetic potential.
 
 We have two diagrams which are not topologically equivalent to each other: the \(s\)-channel and the \(u\)-channel. 
 
-\todo[inline]{Todo: include Feynman diagrams}
+\begin{figure}[ht]
+\centering
+\subfloat{
+\feynmandiagram[horizontal = y to x]{
+e1 [particle = {\(e^{-}\)}] -- [fermion] y -- [fermion] x -- [fermion] e2 [particle = {\(e^{-}\)}],
+g1 [particle = {\(\gamma\)}] -- [photon] y,
+x -- [photon] g2 [particle = {\(\gamma \)}]
+};
+}\qquad
+\subfloat{
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (y);
+        \vertex [below left = of y] (e1) {\(e^{-}\)};
+        \vertex [right = 2cm of y] (x);
+        \vertex [below right = of x] (e2) {\(e^{-}\)};
+        \vertex [above left = of y] (g1) {\(\gamma \)};
+        \vertex [above right = of x] (g2) {\(\gamma \)};
+        \diagram*{
+        (e1) -- [fermion] (y)  -- [fermion] (x) -- [fermion] (e2),
+        (y) -- [photon] (g2),
+        (g1) -- [photon] (x), 
+        };
+    \end{feynman}
+\end{tikzpicture}
+}
+\caption{Compton scattering Feynman diagram: \(s\)-channel on the left, \(u\)-channel on the right.}
+\label{fig:compton-scattering-feynman}
+\end{figure}
+
 
 They both include a fermionic propagator, which in the \(s\)-channel carries momentum \(p+q\) (whose square is \(s\)) and in the \(u\)-channel carries momentum \(p - q'\) (whose square is \(u\)). 
 

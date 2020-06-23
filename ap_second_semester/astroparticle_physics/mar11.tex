@@ -38,14 +38,15 @@ S \qty[q_i(t), \dot{q}_{i}(t)] = \int_{t_0 }^{t_f} L (q_i (t), \dot{q}_{i}(t)) \
 \end{align}
 %
 which means that the Lagrangian must have the dimensions of an energy. 
-We will make use of a quantity called the Lagrangian density: 
+
+Moving on from classical mechanics to classical field theory, we will make use of a quantity called the Lagrangian density \(\mathscr{L}\), such that we recover the Lagrangian as: 
 %
 \begin{align}
 L = \int \mathscr{L} \qty(\phi (\vec{x}), \partial_{\mu } \phi (\vec{x})) \dd[3]{x}
 \,.
 \end{align}
 
-From a finite number of particles we move to considering a field \(\phi (\vec{x})\): this means that, in a certain sense, we are considering an infinite number of particles. 
+From a finite number of particles we move to considering a field \(\phi (\vec{x})\): this means that, in a certain sense, we are considering an ``infinite number of particles'', the values of the field at each point in space. 
 
 The dependence of the Lagrangian on the \(q_i\) and \(\dot{q}_{i}\) shifted to a dependence on the spacetime coordinates \(x\) and their 4-derivatives \(\partial_{\mu } x\).
 It could depend on many fields simultaneously, we omit this dependence for simplicity.
@@ -66,7 +67,7 @@ We require this variation to vanish not only at the initial and final time, but 
 \,.
 \end{align}
 
-Then, imposing \(\delta S =0\) is equivalent to the Euler-Lagrange equations: 
+Then, it can be shown with an integration by parts that imposing \(\delta S =0\) in the region \(\Omega \) is equivalent to the Euler-Lagrange equations: 
 %
 \begin{align}
 \pdv{\mathscr{L}}{\phi (x)} - \pdv{}{x^{\mu }} \qty(\pdv{\mathscr{L}}{\qty(\partial_{\mu} \phi (x))}) = 0
@@ -76,15 +77,15 @@ Then, imposing \(\delta S =0\) is equivalent to the Euler-Lagrange equations:
 If we have many fields \(\phi_{r}\), then we have a set of E-L equations for each of them. 
 This is still classical: for example, classical (relativistic) electrodynamics is formulated in this way.
 
-The momenta are 
+In order to write the Hamiltonian formulation of the theory we need the momenta, which are 
 %
 \begin{align}
 \pi (x) = \pdv{\mathscr{L}}{\dot{\phi} (x)}
 \,,
 \end{align}
 %
-where a dot denotes a time derivative
-and using this we define the Hamiltonian density by 
+where a dot denotes a time derivative.
+Using these we define the Hamiltonian density by 
 %
 \begin{align}
 \mathscr{H} (x) = \pi (x) \dot{\phi} (x) - \mathscr{L}(\phi, \partial_{\mu }\phi )
@@ -98,8 +99,24 @@ H = \int \dd[3]{x} \mathscr{H}
 \,.
 \end{align}
 
-Now, these fields (\(\phi \) and \(\pi \)) are classical fields: we will apply classical quantization to them. 
-They will need to satisfy the classical commutation relations: 
+Now, as we quantize the theory the fields (\(\phi \) and \(\pi \)) go from classical fields to Heisenberg-picture \textbf{operators}. 
+As classical fields, \(\phi \) and \(\pi \) satisfy Poisson bracket relations: 
+%
+\begin{align}
+\qty{\phi (\vec{x}, t), \pi (\vec{x}', t)} &= \delta^{(3)} (\vec{x}, \vec{x}')
+\qty{\phi (\vec{x}, t), \phi  (\vec{x}', t)} &= 0 = 
+\qty{\pi (\vec{x}, t), \pi  (\vec{x}', t)}  
+\,.
+\end{align}
+
+The operatorial version, instead, will need to satisfy the classical commutation relations, which are found by substituting the Poisson bracket with a commutator divided by \(i \hbar\) \cite[section 2.4.2]{tissinoTheoreticalPhysicsNotes2020}: 
+%
+\begin{align}
+\qty{\phi , \pi } \to \frac{1}{i \hbar} \qty[\hat{\phi}, \hat{\pi}]
+\,.
+\end{align}
+
+So, we get the following: 
 %
 \begin{subequations}
 \begin{align}
@@ -109,15 +126,12 @@ They will need to satisfy the classical commutation relations:
 \,.
 \end{align}
 \end{subequations}
-%
-% \todo[inline]{\(\pi \) or \(\dot{\phi}\)?}
-% \todo[inline]{What does dot mean?}
-% \todo[inline]{Dependence on \(x\)?}
+
+Note that the commutation relations are computed \emph{at equal time}. 
 
 \subsection{A relativistic reminder}
 
-
-the energy-momentum four-vector is 
+The energy-momentum four-vector is 
 %
 \begin{subequations}
 \begin{align}
@@ -128,7 +142,7 @@ E \\ \vec{p} c
 \end{align}
 \end{subequations}
 %
-where the greek index \(\mu \) can take values from 0 to 3. 
+where the greek index \(\mu \) can take values from 0 to 3. A four-vector is an element of the tangent bundle to the spacetime manifold; concretely speaking, under a coordinate transformation which is locally linear and represented by a Lorentz matrix \(\tensor{\Lambda }{^{\mu }_{\nu }}\) a four-vector transforms as \(p^{\mu } \to \tensor{\Lambda }{^{\mu }_{\nu }} p^{\nu } \). 
 
 The metric signature used here is the the mostly minus one. So, \(p^{\mu } q_{\mu } = E_{p} E_{q} - \vec{p} \cdot \vec{q}\), since we raise and lower indices using the metric \(\eta_{\mu \nu }\). 
 
@@ -149,7 +163,8 @@ E &= c \sqrt{\abs{p}^2 + (mc)^2}
 
 % \todo[inline]{There is an extra \(c\) in the notes.}
 
-When this relation is satisfied we say we are \emph{on shell}: for virtual particles, instead, this might not be satisfied.
+When this relation is satisfied we say we are \emph{on shell}: for virtual particles, instead, this might not be satisfied. This is allowed because virtual particles are described in a \emph{quantum} theory: because of the uncertainty principle, we have uncertainty in energy if we consider short times and uncertainty in momentum if we consider small position intervals.
+This uncertainty means that we cannot enforce the on-shell condition as an exact equality if we are considering processes on these small scales, such as those which we find in quantum field theory. 
 
 We will use natural units: \(\hbar = c = 1\). 
 

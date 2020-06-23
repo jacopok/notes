@@ -12,9 +12,9 @@ A guiding principle on the description of these fundamental particles is based o
 We have Nöether's theorem in Quantum Field Theory: from these symmetries we are able to find conserved quantities. 
 
 These symmetries are described with groups, since we can compose their application; the theory describing groups is very rich. 
-For this lecture we will base ourselves on Peskin's chapter 2 \cite[]{peskinConceptsElementaryParticle2019}. 
+For this lecture we will base ourselves on Peskin's chapter 2 \cite[]{peskinConceptsElementaryParticle2019}.
 
-A group \(G\) is a set of elements endowed with an operation. The set of elements can be either discrete or continuous. Most of the time, in theoretical physics, we use continuous groups. 
+A group \(G\) is a set of elements endowed with an operation. The set of elements can be either discrete or continuous. Examples of discrete transformations are the parity transformation \(P\): \(P \vec{x} = -\vec{x}\) and the time swap \(T\): \(T x^{\mu } = (-x^{0}, \vec{x})\). Continuous symmetries, on the other hand, are parametrized by one or more continuous-valued parameters. 
 
 We distinguish: 
 \begin{enumerate}
@@ -29,18 +29,18 @@ For our set to be a group, we need to be able to define an operation --- we will
   \item existence of inverses: there exists \(a^{-1}\) such that \(a a^{-1} = a^{-1} a = \mathbb{1}\). 
 \end{enumerate}
 
-What is of interest to us is the association of the group with a transformation which is a symmetry: this is called a \emph{representation}. 
+What is of interest to us is the association of the group with a transformation which is a symmetry: this is called a \emph{representation}, which associates to each \(g \in G\) a unitary operator \(U_g\) acting on the quantum states. We ask that this representation should preserve the group structure, that is to say, \(U_{gh} = U_g U_h\) and \(U_{g^{-1}} = U_{g}^{-1}\).
 
 We call a transformation a symmetry if, after performing the transformation, the dynamics of the system do not change. 
 
 For a quantum mechanical system, we are interested in the observables: these are described by operators, whose eigenvalues are the observations we make, and which in the Heisenberg picture evolve like 
 %
 \begin{align}
-\dv{}{t} O(t) = [H, O(t)]
+- i \hbar \dv{}{t} O(t) = [H, O(t)]
 \,;
 \end{align}
 %
-if an operator commutes with the Hamiltonian, \([H,O]=0\), then the operator is constant. 
+if an operator commutes with the Hamiltonian, \([H,O]=0\), then the operator's expectation value on any state is constant --- which is to say, the operator is constant. 
 
 If we perform a transformation in the form 
 %
@@ -78,9 +78,17 @@ A transformation \(G\) is a symmetry if \(\forall a \in G\) we have
 %
 that is, the unitary representation of the group element always commutes with the Hamiltonian.
 
-If we have a state \(\ket{\psi }\) with energy \(H \ket{\psi } = E \ket{\psi }\), then the transformation commuting with the Hamiltonian means that \(\ket{\psi'} = U \ket{\psi }\) has the same energy.
+If we have a state \(\ket{\psi }\) with energy \(H \ket{\psi } = E \ket{\psi }\), then the transformation commuting with the Hamiltonian means that \(\ket{\psi'} = U \ket{\psi }\) has the same energy: 
+%
+\begin{align}
+H (U \ket{\psi }) = HU \ket{\psi } \overset{[H. U] = 0}{=} UH \ket{\psi } =
+ U E \ket{\psi } = E \qty(u \ket{\psi })
+\,,
+\end{align}
+%
+so the eigenvalue of \(U \ket{\psi }\) is the same as that of \(\ket{\psi }\).
 
-Now, we can move to an example, taken from Peskin \cite[]{peskinConceptsElementaryParticle2019}. 
+Now, we can move to an example, taken from Peskin \cite[eq.\ 2.38 onward]{peskinConceptsElementaryParticle2019}. 
 Consider the discrete group \(\mathbb{Z}_{2}\), which only has the elements \(1\) and \(-1\), with the same multiplication rules as those we would have if these elements were integers. 
 So, the group is closed with respect to multiplication.
 It can be easily checked that this is indeed a group based on our definition. 
@@ -105,7 +113,7 @@ U(1) = \mathbb{1} =\left[\begin{array}{cc}
 0 & 1
 \end{array}\right] 
 \qquad \text{and} \qquad
-U(-1) = \sigma_{x} - \left[\begin{array}{cc}
+U(-1) = \sigma_{x} = \left[\begin{array}{cc}
 0 & 1 \\ 
 1 & 0
 \end{array}\right]
@@ -122,13 +130,13 @@ So, we can say that our unitary representation looks like
 \,.
 \end{align}
 
-Now, if \([C, H] =0\) (and \(\mathbb{1}\) commutes with \(H\), which is always the case) then we say that ``\(H\) has the symmetry \(\mathbb{Z}_{2}\)''.
+Now, if \([C, H] =0\) (and \(\mathbb{1}\) commutes with \(H\), which is always the case) then we say that ``\(H\) has the symmetry \(\mathbb{Z}_{2}\)'': this implies that the energies of the two \(\pi_{\pm}\) particles are equal.
 
 The interesting question to determine will be whether this is actually the case for our given group. 
 
 Groups can be subdivided into abelian and non-abelian ones.
 A group is abelian if for every \(a, b\) in \(G\) we have \(ab = ba\), or equivalently, \([a, b] =0\). 
-It is not if this is not the case, that is, there exist \(a, b\) such that \(ab \neq ba\). 
+It is not if this is not the case, that is, there exist \(a, b\) such that \(ab \neq ba\).
 
 The condition on the elements directly translates to a condition on the matrices of the unitary representation. 
 If we have commuting matrices, we can simultaneously diagonalize them: for example, in the case of \(\mathbb{Z}_{2}\) we can go to a basis in which 
@@ -143,7 +151,7 @@ C = \left[\begin{array}{cc}
 \end{align}
 \end{subequations}
 %
-specifically the states need to be 
+specifically the states on which this matrix will act will need to be 
 %
 \begin{align}
 \ket{\pi_{1}} = \frac{\ket{\pi^{+}} + \ket{\pi^{-}}}{\sqrt{2}} 
@@ -164,9 +172,13 @@ U_1  & 0 & 0 \\
 0 & U_2  & 0 \\ 
 0 & 0 & \dots
 \end{array}\right] 
-\,.
+\,,
 \end{align}
 \end{subequations}
+%
+where the matrices \(U_i\) are called the \textbf{irreducible unitary representations of \(G\)}. The dimension of the matrices \(U_i\) tells us the dimension of these irreducible unitary representations.
+
+\todo[inline]{Add more details on irreps --- maybe not here? They can be found in professor Rigolin's intro to groups.}
 
 Do note that some elements of a nonabelian group can commute: for example, in the rotation group we have 
 %

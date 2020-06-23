@@ -1,8 +1,6 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section{Relativistic wave equations}
-
 \marginpar{Tuesday\\ 2020-3-24, \\ compiled \\ \today}
 
 Last week, we moved from the usual Schrödinger equation to the Klein Gordon equation by moving from \(E = p^2 / 2m\) to \(E^2 = p^2 + m^2\). 
@@ -25,7 +23,7 @@ We start from the quantization of the Hamiltonian density, \(\mathscr{H}\): we c
 This corresponds to a state in which there is no particle, and is called the \textbf{vacuum} state. 
 
 We will also have higher-energy states, in which we will have one or more particles: how do we describe these? 
-A one particle state \(\ket{\varphi_{1 } (p)}\) can be acted upon by the operator \(\phi (x)\): it is destroyed, yielding a state which is aligned with the vacuum. Formally, we have 
+A one particle state \(\ket{\varphi_{1 } (p)}\) can be acted upon by the operator \(\phi (x)\): it is destroyed, yielding a state which is proportional to the vacuum. Formally, we have 
 %
 \begin{align}
 \bra{0} \phi (x) \ket{\varphi_1 (p)} = e^{-ipx}
@@ -33,29 +31,34 @@ A one particle state \(\ket{\varphi_{1 } (p)}\) can be acted upon by the operato
 \end{align}
 %
 where \(p^{0}\) is the positive energy: \(p^{0} = + E_p = + \sqrt{\vec{p}^2 + m^2}\). 
+For a more in-depth discussion of the second-quantization formalism, see the Theoretical Physics notes \cite[section 2.4]{tissinoTheoreticalPhysicsNotes2020}.
 
 Now, let us consider the complex conjugate of this matrix element: we swap the bra and ket and take the adjoint of the operator, to get 
 %
 \begin{align}
-\bra{\varphi_1 (p)} \phi ^\dag \ket{0} = e^{ipx}
+\bra{\varphi_1 (p)} \phi ^\dag (x) \ket{0} = e^{ipx}
 \,.
 \end{align}
+
+If we interpret \(\phi ^\dag\) as acting on the right on the vacuum, we must say that it creates a particle at the location \(x\), with indeterminate momentum.
 
 This means that, if the first equation describes a particle propagating with momentum \(p^{\mu }\), this new equation will now describe a particle propagating with momentum \(- p^{\mu }\). 
 
 This will now have a negative energy. 
 This was a problem historically, now we give the solution directly. 
 
-Let us introduce a particle \(\ket{\varphi_2 (p)}\), such that 
+The field \(\phi \) can be either real or complex: that is, \(\phi \) can be either equal to \(\phi ^\dag\) or not. Let us consider the complex case:
+we introduce a particle \(\ket{\varphi_2 (p)}\), such that it is destroyed by the operator \(\phi ^\dag \):
 %
 \begin{align}
 \bra{0} \phi ^\dag (x) \ket{\varphi_2 (p)} = e^{-ipx}
 \,,
 \end{align}
 %
-so now this particle  has the same mass \(m\), but this new particle \(\ket{\varphi_2}\) differs from \(\ket{\varphi_1 }\) only for the charge, which is now opposite. 
+so now this particle  has the same mass \(m\), but --- as it is shown by Peskin \cite[sec.\ 3.5]{peskinConceptsElementaryParticle2019}, this new particle \(\ket{\varphi_2}\) differs from \(\ket{\varphi_1 }\) for the charge, which is now opposite. 
 
-\todo[inline]{Add clarification: in general we change the sign of the coupling, which is in front of the V in the Lagrangian.}
+This means that the complex field describes a \textbf{charged} particle.
+The particle described by \(\phi ^\dag\) is called the \textbf{antiparticle} of that described by \(\phi\).  
 
 Do note that charge does not exclusively mean electric charge! We can also have other kinds of charges. 
 For example, neutrinos have the charge of lepton number. 
@@ -75,12 +78,14 @@ and if we impose \(\var{S}=0\) we get precisely the KG equation as our equation 
 
 \subsection{Spin 1}
 
-We discuss 3D vectors \(V^{i}\), which transform under rotations \(R_{ij} \in SO(3)\) as 
+We discuss 3D vectors \(V^{i}\), which transform under rotations \(\tensor{R}{^{i}_{j}} \in SO(3)\) as 
 %
 \begin{align}
-V^{i} \rightarrow V^{\prime i} = R_{ij}V^{j}
+V^{i} (x) \rightarrow V^{\prime i} (x') = \tensor{R}{^{i}_{j}} V^{j} (R^{-1}x)
 \,.
 \end{align}
+
+\todo[inline]{What? \(x\) is controvariant\dots}
 
 Now, the matrix element from before reads 
 %
@@ -98,16 +103,14 @@ If we want to move to a relativistic description, we get the same thing, with th
 \end{align}
 
 The problem is now the normalization of these states: what is the value of \(\braket{v}{v}\)? 
-With the definition we gave, this is equal to \(\epsilon^{\mu } \epsilon_{\mu }\), not 1! 
-In general this will not be positive. Take the photon: then, we have the two helicities, which are transverse degrees of freedom. 
-For example, we can have \(\epsilon ^{\mu } = (0,1,1,0)\), which in our choice of metric, which is the mostly negative one. 
+This will be proportional to  \(\epsilon^{\mu } \epsilon_{\mu }\); but in general this is neither positive definite nor negative definite, since \(\epsilon^{\mu }\) could be timelike or spacelike \emph{a priori}. 
+We know that the photon has two physical helicities, which are transverse degrees of freedom.
+Since we know that those are physical, we are tempted to say that the probability must be a positive multiple of \(-\epsilon^{\mu }\epsilon_{\mu }\): but then the timelike polarization has negative probability, and the longitudinal one does not belong (since it is known from classical electromagnetism that the photon only has the two transverse ones).
+The longitudinal polarization and the timelike one must be somehow forbidden.
 
-So, we could impose \(\braket{v}{v} = - \epsilon^{\mu } \epsilon_{\mu }\): but what if we make a boost?
-\todo[inline]{The square modulus is covariant though!}
+This is in general a problem. It can be solved by a hack which is called the Gupta-Bleuer condition \cite[sec.\ 2.8]{tissinoTheoreticalPhysicsNotes2020}.
 
-This is in general a problem. 
-
-The electromagnetic field strength is defined as 
+The electromagnetic four-potential is defined as 
 %
 \begin{align}
 A^{\mu }  = \qty(\varphi (x), \vec{A})

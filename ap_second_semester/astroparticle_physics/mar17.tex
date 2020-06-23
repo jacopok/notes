@@ -81,7 +81,7 @@ that is, the unitary representation of the group element always commutes with th
 If we have a state \(\ket{\psi }\) with energy \(H \ket{\psi } = E \ket{\psi }\), then the transformation commuting with the Hamiltonian means that \(\ket{\psi'} = U \ket{\psi }\) has the same energy: 
 %
 \begin{align}
-H (U \ket{\psi }) = HU \ket{\psi } \overset{[H. U] = 0}{=} UH \ket{\psi } =
+H (U \ket{\psi }) = HU \ket{\psi } \overset{[H, U] = 0}{=} UH \ket{\psi } =
  U E \ket{\psi } = E \qty(u \ket{\psi })
 \,,
 \end{align}
@@ -163,7 +163,7 @@ specifically the states on which this matrix will act will need to be
 since then \(C \ket{\pi_1 } = \ket{\pi_1 }\) (we write \(C = +1\)) and \(C \ket{\pi_{2}} = - \ket{\pi_2 }\) (we write \(C = -1\)). 
 We will often use this notation, confusing operator and eigenvalue.
 
-In the case of nonabelian groups it is not in general possible to diagonalize all the matrices; we can however write the matrices as a block matrix: 
+In the case of nonabelian groups it is not in general possible to diagonalize all the matrices; we can however do a change of basis and write the matrices as a block matrix with the smallest possible blocks:
 %
 \begin{subequations}
 \begin{align}
@@ -176,7 +176,8 @@ U_1  & 0 & 0 \\
 \end{align}
 \end{subequations}
 %
-where the matrices \(U_i\) are called the \textbf{irreducible unitary representations of \(G\)}. The dimension of the matrices \(U_i\) tells us the dimension of these irreducible unitary representations.
+where the matrices \(U_i\) are called the \textbf{irreducible unitary representations of \(G\)}.
+The dimension of the matrices \(U_i\) tells us the dimension of these irreducible unitary representations.
 
 \todo[inline]{Add more details on irreps --- maybe not here? They can be found in professor Rigolin's intro to groups.}
 
@@ -189,36 +190,38 @@ Do note that some elements of a nonabelian group can commute: for example, in th
 %
 so if we take \(i = j\), that is, we consider rotations along the same axis, they will commute since then the Kronecker symbol is equal to zero. 
 
-\subsection{Space translations}
+\subsection{Continuous transformations: space translations}
 
 An element of the group can be written as 
 %
 \begin{align}
-U(a) = e^{i a P }
+U(a) = e^{ - i a P }
 \,,
 \end{align}
 %
 where the operator \(P\), whose eigenvalue is the momentum, is called the generator of the transformation. 
 
-If we take a plane wave, for example,
+If we consider a plane wave we can clearly see how this action works: if we start from
 %
 \begin{align}
 \braket{x}{p} = e^{i p x}
 \,,
 \end{align}
 %
-then we have 
+we can apply the operator \(U(a)\) to \(\ket{p}\), which will yield \(e^{-ipa}\) (since eigenvectors of an operator are also eigenvectors of its exponential): so we find
 %
 \begin{align}
 \bra{x} U(a) \ket{p} = e^{i p (x-a)}
-\,.
+\,,
 \end{align}
+%
+which means that by acting with this operator we have effectively performed a translation with displacement \(a\). 
 
 If our system is invariant under translations, then Nöether's theorem tells us that the momentum is conserved. 
 
 In order to be a physical observable \(P\) needs to be Hermitian: \(P = P ^\dag\). 
 
-So, the adjoint of the unitary transformation is 
+So, the adjoint of the transformation \(U(a)\) is 
 %
 \begin{align}
 U ^\dag (a) =
@@ -231,16 +234,26 @@ e^{i a P ^\dag} = e^{iaP} = U^{-1}(a)
 %
 which confirms the fact that the transformation is unitary. 
 
-Let us say that the momentum operator \(P\) commutes with the Hamiltonian: \([P,H] = 0\). Then, 
+Let us suppose that the momentum operator \(P\) commutes with the Hamiltonian: \([P,H] = 0\). Then, 
 %
 \begin{align}
 [U(a), H] = 0 
+\,,
+\end{align}
+%
+that is, the Hamiltonian is translation-invariant. 
+
+All this is to say that a constant of motion \(O\) corresponds to an operator \(O\) which commutes with the Hamiltonian. 
+This is formalized by Nöther's theorem, which establishes the equivalence between symmetries and conservation laws:
+%
+\begin{align}
+[O, H] = 0 
+\iff 
+[U_O, H] = 0
 \,.
 \end{align}
 
-All this is to say that a constant of motion \(O\) corresponds to an operator \(O\) which commutes with the Hamiltonian. 
-
-An example: the group \(G\) of 3D rotations. 
+As an example, take the group \(G\) of 3D rotations. 
 They depend on a continuous parameter \(\vec{\alpha}\), just like translations depended on the parameter \(a\). 
 
 The rotation is written as 
@@ -253,21 +266,23 @@ U(\vec{\alpha}) = e^{-i \vec{\alpha} \cdot \vec{J}}
 where the components of the angular momentum have the following commutation relations: 
 %
 \begin{align}
-[J^{i}, J^{j}] = \epsilon^{ijk} J^{k}
+[J^{i}, J^{j}] = i \epsilon^{ijk} J^{k}
 \,.
 \end{align}
 
-We can multiply rotation matrices: 
+We will be able to compose the representations of rotations: 
 %
 \begin{align}
 U(\vec{\beta}) U(\vec{\alpha}) = U(\vec{\gamma})
 \,.
 \end{align}
 
-This space of 3D rotations is called SO(3), since every rotation corresponds to a 3x3 matrix which is a rotation matrix --- so it is orthogonal and has determinant 1.
+This space of 3D rotations is called SO(3), since every rotation corresponds to a 3x3 matrix which is a rotation matrix --- it is orthogonal and has determinant 1.
 
-We can look for 1D representations of the generators \(J^{i}\): we get \(J^{i} = 0\), which means that we are not actually performing a rotation.
-Which states transform this way? These are scalar states, spin 0. 
+Now, we seek \textbf{representations} of these rotations: so, we choose the dimension \(d\) of a quantum-mechanical vector and describe how it changes upon the action of the unitary matrices found by exponentiating certain \(d\)-dimensional generators \(J^{i}\), which must have the algebra discussed above. 
+
+If we look for 1D representations of the generators \(J^{i}\) the only option we find is \(J^{i} = 0\), which means that we are not actually performing a rotation. This is because scalars commute with each other.
+Which states transform this way? These are scalar states, with spin 0. 
 
 For 2D representations, we have 
 %
@@ -278,7 +293,7 @@ J^{i} =\frac{1}{2} \sigma^{i}
 %
 where the \(\sigma^{i}\) are the Pauli matrices.
 
-We can also find 3D spin-1/2 representations, which look like 
+We can also find 3D representations, which look like 
 %
 \begin{subequations}
 \begin{align}
@@ -299,16 +314,16 @@ J^{1}= \left[\begin{array}{ccc}
 i & 0 & 0 \\ 
 0 & 0 & 0
 \end{array}\right] 
-\,,
+\,
 \end{align}
 \end{subequations}
 %
-
+and represent a spin 1 particle. In general, spin \(s\) corresponds to a \(2s+1\)-dimensional representation.
 
 A rotation in 2D, represented by an element of SO(2), corresponds to a phase shift, so we can say that it is equivalent to an element of U(1).
 This then allows us to see that SO(2) is abelian. 
 
-In general, we write for a unitary \(n \times n\) unitary representation
+In general, we write for a unitary \(n \times n\) representation
 %
 \begin{align}
 U(n) \rightarrow e^{-i \alpha^{n} t^{a}}
@@ -316,9 +331,18 @@ U(n) \rightarrow e^{-i \alpha^{n} t^{a}}
 \end{align}
 %
 where the generators \(t^{a}\) are Hermitian matrices corresponding to Hermitian operators. 
-In particular, one of these is the identity: \(t^{0} = \mathbb{1}\). 
+In particular, conventionally we say that one of these is the identity: \(t^{0} = \mathbb{1}\) (which must always be included in the group, lest we lose closure).
 
-So, we omit it and  say that we have \(n^2-1\) generators for the SU\((n)\) group.
+So, we omit it and say that we have \(n^2-1\) generators for the SU\((n)\) group.
 We shall see that each of these generators corresponds to a particle, and for the weak interaction we will have \(2^2-1 = 3\) particles, while for the strong one we will have \(3^2-1=8\). 
+
+In general, if \(t^{a}\) are the generators of an abstract Lie group, we can describe the algebra of the group by 
+%
+\begin{align}
+\qty[t^{a}, t^{b}] = i f^{abc} t^{c}
+\,,
+\end{align}
+%
+so, the commutator is decomposed into a linear combination of the generators, whose coefficients \(f^{abc}\) are called the \textbf{structure constants} of the group.
 
 \end{document}

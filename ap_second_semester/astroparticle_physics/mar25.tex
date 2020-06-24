@@ -8,26 +8,36 @@ Today we are going to examine the third case of wave equations: we discussed the
 
 One has to prove that the equation \(\qty(i \slashed{\partial} - m)  \varphi (x )=0\) is Lorentz-covariant. 
 Also, solutions of the Dirac equation are also solutions of the Klein-Gordon equation, therefore they satisfy \(E^2=p^2+m^2\). 
+The latter is relatively easy to prove: we apply the operator \(i \slashed{\partial} + m\) to the Dirac equation and find 
+%
+\begin{align}
+\qty(i \slashed{\partial} + m) \qty(i \slashed{\partial} - m) \psi (x) &= 0  \\
+\qty(- \gamma^{\mu } \gamma^{\nu } \partial_{\mu } \partial_{\nu } - m^2 ) \psi (x) &= 0  \\
+(\square + m^2 )\psi (x) &= 0 
+\,,
+\end{align}
+%
+where we used the fact that, since the derivatives \(\partial_{\mu } \partial_{\nu } \) commute, we can substitute \(\gamma^{\mu } \gamma^{\nu }\) with half of their anticommutator, which equals \(\eta^{\mu \nu }\). 
 
-The first is hard, the second is comparatively easy to prove. 
-The first is hard, even though it looks covariant, since \(\gamma^{\mu }\) does not transform as a vector \emph{a priori}. 
-Nevertheless, these are both true statements. 
+Since we have proven the equivalence, we expect the Dirac equation to also have negative energy solutions.
 
-The result is that under a Lorentz transformation we have 
+Proving the covariance is harder, even though the equation looks covariant, since \(\gamma^{\mu }\) does not transform as a vector \emph{a priori}. 
+
+The object \(\psi (x)\) is a spinor: it is neither a scalar, nor a vector. A priori we can say that its transformation law will look like 
 %
 \begin{align}
 \psi (x) \rightarrow \psi^{\prime } (x) = S(\Lambda ) \psi (x)
 \,,
 \end{align}
 %
-where \(S(\Lambda )\) is a unitary transformation associated with the Lorentz transformation \(\Lambda \), defined by 
+where \(S(\Lambda )\) is a unitary transformation associated with the Lorentz transformation \(\Lambda \), and by imposing the covariance of the Dirac equation we find that we must have 
 %
 \begin{align}
 S (\Lambda ) \gamma^{\mu } S^{-1} (\Lambda ) = \qty(\Lambda^{-1})^{\mu }_{\nu } \gamma^{\nu }
 \,.
 \end{align}
 
-So, in order to do this we need to write an infinitesimal Lorentz transformation 
+So, in order to find the explicit form of \(S(\Lambda )\) we write an infinitesimal Lorentz transformation: it can be shown that we can write it as
 %
 \begin{align}
 \tensor{\Lambda }{^{\mu }_{\nu }} = \tensor{\eta }{^{\mu }_{\nu }} + \delta \tensor{\omega}{^{\mu }_{\nu }}
@@ -56,10 +66,27 @@ and typically one uses the shorthand rotation
 \,.
 \end{align}
 
-[see notes for an explicit example]
+If, for example, we want to perform a rotation by an angle \(\varphi \) around the \(z\) axis we get 
+%
+\begin{align}
+\psi' (x') = S(\Lambda) \psi (x) = \exp( \frac{i}{2} \varphi \sigma_{12}) \psi (x)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\sigma_{12} = \frac{i}{2} \qty[\gamma^{1}, \gamma^{2}]
+= \left[\begin{array}{cc}
+\sigma_3 & 0 \\ 
+0 & \sigma_3 
+\end{array}\right]
+\,,
+\end{align}
+%
+where we used the fact that \(\qty[\sigma_i, \sigma_{j}] = i \epsilon_{ijk}\sigma_{k}\). 
 
-A spinor \(\psi (x)\) reacts in a peculiar way to rotations: it rotates by an angle \( \varphi /2 \) if we perform a Lorentz rotation of an angle \(\varphi \). 
-This means that its periodicity is \(4\pi \).  
+This means that a spinor \(\psi (x)\) reacts in a peculiar way to rotations: it rotates by an angle \( \varphi /2 \) if we perform a Lorentz rotation of an angle \(\varphi \); its periodicity is \(4\pi \).  
 
 We introduce the \emph{chiral representation} of the gamma matrices: 
 %
@@ -67,7 +94,7 @@ We introduce the \emph{chiral representation} of the gamma matrices:
 \begin{align}
 \gamma^{0} = \left[\begin{array}{cc}
 0 & -\mathbb{1} \\ 
-\mathbb{1} & 0
+- \mathbb{1} & 0
 \end{array}\right]
 \qquad \text{and} \qquad
 \vec{\gamma} = \left[\begin{array}{cc}
@@ -123,6 +150,7 @@ So, we can interpret the spinor as being made up of two components:
 %
 on which Lorentz transformations act independently. 
 This is relevant since, for example, if we deal with an electron, we  will describe it with a 4-component spinor, however we will be able to divide it into two components \(e_L\) and \(e_R\), which are two component spinors on which we can act independently. 
+We have effectively divided our representation of the Lorentz group into the sum of two irreps, of dimension \((1/2, 0)\) and \((0, 1/2)\) respectively. 
 
 This will become very concrete when we will discuss how many degrees of freedom were present in the original plasma. 
 
@@ -207,6 +235,8 @@ so we get a solution in which \(E=m\), and a solution in which \(E = -m \). So, 
 \end{align}
 \end{subequations}
 
+The negative energy solution, as we will see, represents the antiparticle of the Dirac fermion.
+
 The assumption we made, \(\vec{p} = 0\), does not actually mean we lose generality: we can simply boost into the rest frame of the particle.
 If we do this, we get the general 
 %
@@ -227,6 +257,7 @@ d
 \end{array}\right]
 \end{array}\right]
 e^{-imt + i \vec{p} \cdot \vec{x}}
+= 0
 \,,
 \end{align}
 \end{subequations}
@@ -234,12 +265,13 @@ e^{-imt + i \vec{p} \cdot \vec{x}}
 so we can decompose our solution into 
 %
 \begin{align}
-\psi &= u^{s} e^{-i \vec{p} \cdot \vec{x}} & E&>0
-\psi &= v^{s} e^{i \vec{p} \cdot \vec{x}} & E&<0
+\psi &= u^{s} e^{-i p  x} & E&>0 \\
+\psi &= v^{s} e^{i p x} & E&<0
 \,,
 \end{align}
 %
-so now we come to the interpretation: we introduce the existence of an antifermion, which corresponds to the solution to the Dirac equation with negative energy, but it has the opposed momentum: so, it has positive energy.
+where \(s\) is an index denoting which 2D unit vector we are considering, that is, \(s = 1, 2\). 
+So, now we come to the interpretation: we introduce the existence of an antifermion, which corresponds to the solution to the Dirac equation with negative energy, but it has the opposed momentum: so, it has positive energy.
 Then, both of our solutions have positive energy and evolve forward in time, and both have the same mass. 
 
 Now, we make the jump to second quantization: we start interpreting \(\psi (x) \) as an operator, which can destroy a one-state particle or create a particle starting from the vacuum. 
@@ -255,17 +287,17 @@ Now, the one-particle state \(\ket{e^{-}(p, s)}\) is promoted to a spinor.
 On the other hand, we have the creation operator \(\psi ^\dag\): 
 %
 \begin{align}
-\bra{e^{-}(p,s)} \psi ^\dag (x) \ket{0} = u^{s ^\dag} e^{-ipx}
+\bra{e^{-}(p,s)} \psi ^\dag (x) \ket{0} = u^{s\dag} e^{-ipx}
 \,.
 \end{align}
 
 Now, the tricky question is to introduce the negative-energy solution. 
-Then, the \(\psi ^\dag\) operator will destroy this state, while \(\psi \) will create it. 
+The \(\psi ^\dag\) operator will destroy this state, while \(\psi \) will create it. 
 So we will write an equation like 
 %
 \begin{align}
 \bra{0} \psi ^\dag (x) \ket{e^{+} (p, s)} 
-= v^{s ^\dag} (p) e^{-ipx} 
+= v^{s \dag} (p) e^{-ipx} 
 \,,
 \end{align}
 %
@@ -277,6 +309,8 @@ Now, we will be able to operate with \(\psi (x)\) on the vacuum, to find
 \bra{e^{+}(p, s)} \psi (x) \ket{0} = v^{s} (p) e^{ipx}
 \,.
 \end{align}
+
+\subsection{Photon-fermion coupling}
 
 Yesterday we discussed the Lagrangian of the free photon field, 
 %
@@ -327,9 +361,9 @@ j^{\mu } = \overline{\psi} \gamma^{\mu } \psi
 \,
 \end{align}
 %
-is the correct definition. This, then, transforms as a 4-vector. 
+is the correct definition. This, then, transforms as a 4-vector; it can also be shown starting from Dirac's equation (and its conjugate) that this is a conserved current: \(\partial_{\mu } j^{\mu } = 0\). 
 
-Now, in order to introduce the EM field we will use minimal coupling: 
+Now, in order to couple the EM field to the electron we will use minimal coupling: 
 %
 \begin{align}
 \partial_{\mu } \rightarrow \DD_{\mu } = \partial_{\mu } + ie A_{\mu }
@@ -357,9 +391,10 @@ From which density Lagrangian can we derive the Dirac equation? It turns out to 
 so if we want to describe both the EM field, the electron and their interaction, we have 
 %
 \begin{align}
-\mathscr{L} (e, A_{\mu }) = 
-\underbrace{- \frac{1}{4} F^{\mu \nu } F_{\mu \nu }}_{\text{free EM field}} + \underbrace{\overline{\psi} \qty(i \slashed{\DD} - m) \psi}_{\text{electron}} 
-- \underbrace{e\overline{\psi} \slashed{A} \psi}_{\text{electron-EM coupling}} 
+\mathscr{L} (e, A_{\mu }) &= 
+\underbrace{- \frac{1}{4} F^{\mu \nu } F_{\mu \nu }}_{\text{free EM field}} + \underbrace{\overline{\psi} \qty(i \slashed{\partial} - m) \psi}_{\text{electron}} 
+- \underbrace{e\overline{\psi} \slashed{A} \psi}_{\text{electron-EM coupling}}  \\
+&= - \frac{1}{4} F^{\mu \nu }F_{\mu \nu } + \overline{\psi} \qty(i \slashed{\DD} - m )\psi 
 \,.
 \end{align}
 

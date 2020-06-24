@@ -3,17 +3,20 @@
 
 \marginpar{Tuesday\\ 2020-3-31, \\ compiled \\ \today}
 
-Last time we saw our first field theory: QED. 
+% Last time we saw our first field theory: QED. 
 
 We have associated spin \(1/2\) fermions to matter fields. 
 Spin \(1\) particles, instead, are vector bosons, such as the photon \(\gamma\), the gluon \(g\) and the weak \(W^{\pm}\) and \(Z^{0}\) bosons. These are the radiation fields.  
 We will explore this in more detail. 
 
 This connection comes from the \textbf{spin-statistics} theorem: it states that particles with integer spin obey Bose-Einstein statistics, while particles with half-integer spin obey Fermi-Dirac statistics.
+Particles which are ``matter'' (electrons, quarks and such) are fermions, while particles which are ``force carriers'' (photons, weak-interaction \(W\) and \(Z\) particles,  gluons) are bosons.
+
+This is due to the fact that in order to consistently quantize Dirac's theory we need to use \textbf{anticommutators} instead of field commutators to replace the Poisson brackets of the classical theory. 
 
 Up until now, we have observed only particles with spins \(0\), \(1/2\) and \(1\). 
 
-We could have a symmetry called supersymmetry, in which fermions and bosons are associated. 
+We could have a symmetry called supersymmetry, which connects fermions and bosons.
 
 The graviton has spin \(2\); in supergravity the graviton has a fermion partner called the ``gravitino'' with spin \(3/2\). 
 
@@ -34,6 +37,8 @@ in the relativistic case instead we will do
 \,.
 \end{align}
 
+This is a Lorentz invariant normalization (although not manifestly so --- see Peskin \cite[sec.\ 3.5]{peskinConceptsElementaryParticle2019} for a proof). 
+
 The relativistic volume element is given by 
 %
 \begin{align}
@@ -45,16 +50,20 @@ The relativistic volume element is given by
 %
 where we integrated over the variable \(p^{0}=E\), which removed the \(\delta (p^2-m^2) = \delta (E - \sqrt{p^2+m^2}) / 2E\). 
 
-Let us consider a \textbf{decay} process: we have a particle \(A\) decaying into a possibly multi-particle state \(f\). 
+This way, we have the completeness relation 
+%
+\begin{align}
+\int \frac{ \dd[3]{p}}{(2 \pi )^3} \frac{1}{2 E_p } \dyad{p} = \mathbb{1}
+\,.
+\end{align}
+
+States have the dimension of an energy to the -1, field operators have the dimension of an energy. 
+
+There are two main kinds of processes which are considered in particle physics. 
+The first is a \textbf{decay} process: we have a particle \(A\) decaying into a possibly multi-particle state \(f\). 
 We are interested in the decay \emph{rate} of this process. 
 
-Another process of interest is a \textbf{scattering} process of \(n \to m \) particles. 
-There is no particle number conservation: we can create and destroy as many particles as we like. 
-These types of processes are described by their \emph{cross section}, which is an effective area corresponding to how aligned the trajectories of the incoming particles must be in order to interact.
-
-This cross section allows us to compute the average time for an interaction to occur: if two particles' interaction becomes so rare that they cannot interact within a Hubble time then they are said to have \emph{decoupled}. 
-
-The probability of survival of particle \(A\) at time \(t\) is in the form \(\mathbb{P}(t) = \exp(-t / \tau_{A})\), so we define 
+The probability of survival of particle \(A\) at time \(t\) is in the form \(\mathbb{P}(t) = \exp(-t / \tau_{A})\), so we define the decay rate
 %
 \begin{align}
 \Gamma_{A} = \frac{1}{\tau_{A}}
@@ -63,6 +72,7 @@ The probability of survival of particle \(A\) at time \(t\) is in the form \(\ma
 %
 which has the dimensions of a frequency, or equivalently an energy. 
 
+Generally the decay of a certain particle species can happen through different \textbf{channels}, that is, into different kinds of particles.
 We can define the branching ratios as 
 %
 \begin{align}
@@ -70,14 +80,21 @@ BR(A \to f) = \frac{ \Gamma (A \to f)}{\Gamma_{A}}
 \,.
 \end{align}
 
-We can consider fixed-target experiments: we want to know how many events per second we will have, which will be given by 
+Another process of interest is a \textbf{scattering} process of \(n \to m \) particles. 
+There is no particle number conservation: we can create and destroy as many particles as we like. 
+These types of processes are described by their \emph{cross section}, which is an effective area corresponding to how aligned the trajectories of the incoming particles must be in order for them to interact.
+
+This cross section allows us to compute the average time for an interaction to occur: if two particles' interaction becomes so rare that they cannot interact within a Hubble time then they are said to have \emph{decoupled}. 
+
+We start by considering fixed-target experiments: we want to know how many events per second we will have, which will be given by 
 %
 \begin{align}
-\frac{\text{\# events}}{s} = n_A \times v_A \times \sigma 
+\frac{\text{\# events}}{\text{second}} = n_A \times v_A \times \sigma 
 \,,
 \end{align}
 %
-where \(\sigma \) is the cross section, \(v_A\) is the velocity of the incoming particles, while \(n_A\) is the number density of particles in the target. 
+where \(\sigma \) is the cross section, \(v_A\) is the velocity of the incoming particles, while \(n_A\) is the number density of particles in the beam. The number density of the particles in the target is accounted for inside of \(\sigma \). 
+This tells us that \(\sigma\) has the dimensions of an area. 
 
 If we have two beams of particles coming towards each other, the term will look like \(n_A n_B (v_A - v_B) \ell_B A_b \sigma \). 
 
@@ -88,12 +105,12 @@ In general, we will be interested in the differential cross section
 \,.
 \end{align}
 
-This is just a definition, and it is not covariant, if we want to integrate we still need to use the covariant momentum element. 
+This is just a definition, and it is not covariant, if we want to integrate we still need to use the covariant momentum element. We can integrate it in \(\dd[3]{p_1} \dots \dd[3]{p_n}\) in order to recover the total cross section, but inside it we have more information about the angular properties of the process.
 
 For a scattering process like \(A+B \rightarrow 1 + \dots + n\)
 we will need to compute things like 
 %
-\begin{align}
+\begin{align} \label{eq:s-matrix-element-feynman-amplitude-decay}
 \bra{12 \dots n} T \ket{AB} = \mathcal{M} (A+B \rightarrow 1 + \dots + n) (2\pi )^{4} \delta^{(4)} (P_A + P_B - \sum p_i)
 \,,
 \end{align}
@@ -116,9 +133,38 @@ so we will have what is called Fermi's golden rule:
 %
 since in order to get the probability we need to take the square of the amplitude. 
 
-[Discussion on the dimensionality of \(\mathcal{M}\)]
+Now, the Feynman amplitude \(\mathcal{M}\)'s dimensionality can be inferred from equation \eqref{eq:s-matrix-element-feynman-amplitude-decay}: the dimension of a state is \(1 / [M]\), the dimension of a four dimensional delta function is \(1/ [M]^{4}\), while the time evolution operator is dimensionless, so we have 
+%
+\begin{align}
+[M]^{-n-1} = 
+[\mathcal{M}]  [M]^{-4} \implies [\mathcal{M}] = [M]^{3-n}
+\,,
+\end{align}
+%
+where \(n\) is the number of outgoing particles. Here by \([M]\) we mean the dimensions of a mass, energy, inverse length or inverse time. 
+The dimension of the phase space element can similarly be found to be \([M]^{2n - 4}\); so we can check that Fermi's golden rule is dimensionally consistent: its dimensions read 
+%
+\begin{align}
+[\Gamma_A ] = [M]^{-1} [M]^{2n-4}  \qty([M]^{3-n})^2 = [M]
+\,,
+\end{align}
+%
+which makes sense, since the decay rate is an inverse time.
 
-If we are in the COM frame, the phase space integral for the initial particles reads: 
+The expression we gave is \textbf{polarized}, that is, by deciding on the initial and final states we are fixing the spins of the particles.
+This may be useful in some cases, but often we cannot control the spins of the incoming particles, and/or we cannot select only outgoing ones with a certain spin configuration.
+So, what is done usually is to \textbf{average} over the initial polarizations' probabilities, and to \textbf{sum} over the final ones. Note that in doing this we must add probabilities, not amplitudes: in this context we are dealing with classical mixtures.
+
+For cross sections, Fermi's golden rule reads: 
+%
+\begin{align}
+\sigma (A+B \to f) = \frac{1}{2 E_A E_B \abs{v_A - v_B}}
+\int \dd{\Pi_2 } \abs{\mathcal{M}(A+B \to f)}^2
+\,,
+\end{align}
+%
+where (if we are in the COM frame) the phase space integral for the two final particles case is (nontrivially! see the TP notes \cite[sec.
+ 4.2.3]{tissinoTheoreticalPhysicsNotes2020}) given by: 
 %
 \begin{subequations}
 \begin{align}
@@ -128,16 +174,26 @@ If we are in the COM frame, the phase space integral for the initial particles r
 \end{align}
 \end{subequations}
 
-The nonrelativistic Breit-Wigner formula is given by 
+The dimensionality check now gives \([\mathcal{M}] = [M]^{2-n}\), so 
 %
 \begin{align}
-\mathcal{M} \sim \frac{1}{E - E_R + i \Gamma/ 2}  
-\,.
+[\sigma ] = [M]^{-2} [M]^{2n-4} \qty([M]^{2-n})^2 = [M]^{-2}
+\,,
 \end{align}
+%
+which makes sense: it is a length squared, and lengths are inverse masses.
+
+A kind of process which appears often is a \textbf{resonance}: something like \(A+B \to X \to A+B\), where we have a certain short-lived intermediate state \(X\), whose decay rate is \(\Gamma \).
+The nonrelativistic Breit-Wigner formula describes this: it is given by 
+%
+\begin{align}
+\mathcal{M} \sim \frac{1}{E - E_X + i \Gamma/ 2}  
+\,,
+\end{align}
+%
+where \(E_X\) is the energy of \(X\), while \(E\) is the center-of-mass energy of the process. 
 
 The paradigmatic process for these kinds of interactions is the process \(e^{+}e^{-} \to \mu^{+}\mu^- \). 
 In the noted it is sketched how one would go about discussing such a process. 
-
-\todo[inline]{So we are assuming \(\abs{\psi (t)}^2 \sim \exp( - \Gamma t)\), but then how does the probability of finding increase? The two exponentials do not meet nicely!}
 
 \end{document}

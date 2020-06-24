@@ -1,6 +1,8 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{A decay example}
+
 \marginpar{Wednesday\\ 2020-4-1, \\ compiled \\ \today}
 
 This and next week we will finish the introduction to particle physics, then we will start discussing the open problems in cosmology and astroparticle physics. 
@@ -14,24 +16,24 @@ e^{+} e^{-} \to \mu^- \mu^+
 %
 where the mass of the electron is around \(m_e \sim \SI{.5}{MeV}\), the mass of the muon is around \(m_{\mu } \sim \SI{100}{MeV}\). 
 
-Digression: there are different families of leptons, the first encompasses \(e, \nu_{e}, u, d\); the second encompasses \(\mu, \nu_{\mu }, c, s\) and the third encompasses \(\tau, \nu_{\tau }, t, b\). 
+Digression: there are different families of fermions (leptons and quarks), the first encompasses \(e, \nu_{e}, u, d\); the second encompasses \(\mu, \nu_{\mu }, c, s\) and the third encompasses \(\tau, \nu_{\tau }, t, b\). 
 The characteristics of the four members of the family are well-known, and between families the characteristics are the same: the only thing which varies between the families is the mass. 
 
 So, Rabi famously asked ``who ordered the fermions''? 
 
-Coming back to our problem: the state \(\ket{e^{+}e^{-}}\) must be annihilated by the EM current \(j^{\mu } = \overline{\psi} \gamma^{\mu } \psi \); it is then converted to a photon, which however is not on mass shell --- it cannot be since we cannot go to its rest frame. 
-It is then called a \emph{virtual photon}. 
+Coming back to our problem: the state \(\ket{e^{+}e^{-}}\) must be annihilated by the EM current \(j^{\mu }_{EM} = \overline{\psi}_e \gamma^{\mu } \psi_e \); it is then converted to a photon, which however is not on mass shell --- it cannot be, since its momentum must be that of the electron-positron pair, so a timelike vector. 
+It is then called a \emph{virtual photon}: it can exist, as long as it does so for a short time. 
 
-Then, this photon decays to a muon-antimuon pair: then we will have a term \(\bra{\mu^- \mu^+} j^{\mu }\).
+Then, this photon decays to a muon-antimuon pair: then we will have a term \(\bra{\mu^- \mu^+} j^{\mu }_(\mu )\). The index between parenthesis is not a Lorentz one, it just means that this is a muonic current, different from the electronic one.
 
 Let us call \(p_{-}\) and \(p_{+}\) the momenta of the electron and positron, and \(p^{\prime }_{-}\) and \(p^{\prime }_{+}\) those of the muon and antimuon. 
 
 The momentum \(q\) of the photon cannot have \(q^2  =0 \), but this is fine: it is just an excitation. 
 
-The physics of the process is all contained in the matrix element \(\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-)\). How do we calculate it? we have 
+The physics of the process is all contained in the matrix element \(\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-)\). How do we calculate it? We will not go into details here, but it can be directly derived from the Feynman diagram of the interaction \cite[sec.\ 4.1.2]{tissinoTheoreticalPhysicsNotes2020}: we have 
 %
 \begin{align}
-\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-)
+\mathcal{M}(e^{+}e^{-} \to \mu^+ \mu^-) = 
 (-e)
 \bra{\mu^- \mu^+} j^{\mu } \ket{0}
 \frac{1}{q^2}
@@ -49,8 +51,6 @@ The Breit-Wigner factor looks like
 \end{align}
 %
 but for the photon we have no mass, therefore we only get a factor \(1/q^2\). 
-
-\todo[inline]{What is \(j^{\mu }\) explicitly?}
 
 The Feynman diagrams are just a way to collect the Feynman rules needed to compute the process, they are not meant to represent how the process ``looks like''. 
 
@@ -76,7 +76,7 @@ Let us use the chiral representation for the \(\gamma \) matrices:
 \end{align}
 \end{subequations}
 %
-where we mean by \(\sigma^{0} = \mathbb{1}\), and \(\overline{\sigma}^{\mu } = (\sigma^{0}, - \sigma^{i})\).
+where we mean by \(\sigma^{0} = \mathbb{1}\), \(\sigma^{\mu } = (\sigma^{0}, \sigma^{i})\) and \(\overline{\sigma}^{\mu } = (\sigma^{0}, - \sigma^{i})\).
 
 Let us then split the spinor \(\psi \) into 
 %
@@ -100,32 +100,32 @@ i \sigma^{\mu } \partial_{\mu } \psi_{R} &= 0
 \end{align}
 \end{subequations}
 %
-so if we have no mass the equations decouple. 
+where we get no interaction terms between the two: if we have no mass the equations decouple. 
 
-We can do the same thing if the Dirac equation is coupled to the EM field, since the issue is with the structure of the \(\gamma^{\mu }\), it does not matter if we have \(\gamma^{\mu } \DD_{\mu }\) or \(\gamma^{\mu } \partial_{\mu }\). 
+We can do the same thing if the Dirac equation is coupled to the EM field, since the issue is with the structure of the \(\gamma^{\mu }\), it does not matter if we have \(\gamma^{\mu } \DD_{\mu }\) or \(\gamma^{\mu } \partial_{\mu }\); however we will write the decoupled solution for now.
 
 So, for the right-handed spinor we have:
 %
 \begin{align}
-\qty(i \partial_{t} + i \sigma_{3} \partial_3 ) \psi_{R}
+\qty(i \partial_{t} + i \vec{\sigma} \cdot \vec{\partial}) \psi_{R}
 \,,
 \end{align}
 %
-so if we have a plane wave 
+which is solved by a plane wave: 
 %
 \begin{align}
-\psi_{R} = U_R (p) e^{-iEt + i \vec{p} \cdot \vec{x}}
+\psi_{R} = u_R (p) e^{-iEt + i \vec{p} \cdot \vec{x}}
 \,.
 \end{align}
-%
-the equation reads 
+
+Let us suppose the equation reads 
 %
 \begin{subequations}
 \begin{align}
-\qty(E - p \sigma^{3}) U_R = \left[\begin{array}{cc}
+\qty(E - p \sigma^{3}) u_R = \left[\begin{array}{cc}
 E-p & 0 \\ 
 0 & E+p
-\end{array}\right] U_{R} = 0
+\end{array}\right] u_{R} = 0
 \,,
 \end{align}
 \end{subequations}
@@ -147,27 +147,39 @@ so we must have two solutions: they look like
 \end{align}
 \end{subequations}
 
-\todo[inline]{How can we move between these using \(P\), \(C\) and \(T\)?}
+The solution \(\psi_{R} \sim \exp(-iEt + i E x_3)\) describes a right-handed electron with spin eigenvalue \(+1/2\) along the direction of motion (this is called the \emph{helicity} \cite[sec.\ 1.4.9]{tissinoTheoreticalPhysicsNotes2020})
 
-In the end, we have that our quantum field operator \(\psi_{R}\) acts as 
+On the other hand, the solution \(\psi_{R} \sim \exp(iEt + iE x_3)\) describes a right-handed electron with spin eigenvalue \(s = - 1/2\). 
+
+Our quantum field operator \(\psi_{R}\) acts as on the right by destroying a right-handed electron:
 %
 \begin{align}
-\bra{0}\psi_{R} \ket{e^{-}_{E} (p)} = U_R(p) e^{-ipx}
+\bra{0}\psi_{R} \ket{e^{-}_{R} (p)} = u_R(p) e^{-ipx}
 \,.
 \end{align}
 
-Then, we can have it acting in the other way as 
+Then, we can have it acting on the left by destroying a left-handed positron:
 %
 \begin{align}
 \bra{e^{+}_{L}(p)} \psi_{R} \ket{0} = v_L (p) e^{+ipx}
 \,.
 \end{align}
 
-\todo[inline]{Why is it flipped like this?}
-
 If we were to repeat the analysis for the other spinor, we would get the specular result. 
 
-At high energies we can move from electron-left to an electron-right, but at a price \(m / E\). 
+The Lagrangian can be written as 
+%
+\begin{align}
+\mathscr{L} = 
+\psi_R ^\dag \qty(i \sigma \cdot \partial) \psi_{R}+
+\psi_L ^\dag \qty(i \overline{\sigma} \cdot \partial) \psi_{L}
+- m \qty( \psi ^\dag _R \psi_{L}
++ \psi ^\dag_L \psi_{R})
+\,,
+\end{align}
+%
+so the coupling between the left and right handed fermions depends on the mass, if we are in a situation in which \(T \gg m\) they effectively decouple.
+
 
 In order to describe this spin, we introduce the helicity quantum number, which is defined as 
 %
@@ -179,24 +191,126 @@ h = \hat{p} \cdot \vec{s}
 the projection of the spin along the direction of motion. 
 For \(\psi_{R}\), we have the \((1,0)\) state with helicity \(h = 1/2\), while the state \((0,1)\) is a positron with helicity \(h = - 1/2\). 
 
-If \(m=0\), then helicity is exactly conserved. 
+If \(m=0\), then helicity is exactly conserved. At high energies, it is suppressed by a factor \(m / E\). 
 
-Accounting for everything, the cross section comes out to be 
+Let us compute the cross section: we must calculate  
+%
+\begin{align}
+\bra{0} j^{\mu } \ket{e^{-}_{R} (p_{-}) e^{+}_{L} (p_+)} 
+\,,
+\end{align}
+%
+where we have a term \(j^{\mu } = \overline{\psi} \gamma^{\mu } \psi = \psi ^\dag \gamma^{0} \gamma^{\mu } \psi \); the term \(\gamma^{0} \gamma^{\mu }\) reads 
+%
+\begin{align}
+\gamma^{0} \gamma^{\mu } = \left[\begin{array}{cc}
+0 & \mathbb{1} \\ 
+\mathbb{1} & 0
+\end{array}\right]
+\left[\begin{array}{cc}
+0 & \sigma^{\mu } \\ 
+\overline{\sigma}^{\mu } & 0
+\end{array}\right] 
+= \left[\begin{array}{cc}
+\overline{\sigma}^{\mu } & 0 \\ 
+0 & \sigma^{\mu }
+\end{array}\right]
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+j^{\mu } = \psi_{L} ^\dag \overline{\sigma}^{\mu } \psi_{L} + \psi_{R} ^\dag \sigma^{\mu } \psi_{R}
+\,.
+\end{align}
+
+We describe the process in the center-of-mass frame, and we choose to align the axes so that the electron and positron have momenta \(p^{\mu } = (E, 0, 0, \pm E)\) respectively (minus for the positron).
+
+The wavefunction \(\psi ^\dag_{R}\) annihilates the positron \(e^{+}_{L}\) yielding a term \(v ^\dag _L (p_+)\), the wavefunction \(\psi_{R}\) annihilates the electron \(e^{-}_{R}\) yielding a term \(u_R (p_-)\). 
+
+Then, we are left with  
+%
+\begin{align}
+v_L ^\dag (p_+) \sigma^{\mu } u_R (p_-) &= \sqrt{2E} 
+\left[\begin{array}{cc}
+0 & 1
+\end{array}\right]
+(\mathbb{1}, \vec{\sigma}) \sqrt{2E}
+\left[\begin{array}{c}
+1 \\ 
+0
+\end{array}\right]  \\
+&= 2E (0, 1, i, 0)^{\mu }
+\,,
+\end{align}
+%
+so if we define the vector \(\vec{\epsilon}_{+} = (\hat{1} + i \hat{2}) / \sqrt{2}\) we can write 
+%
+\begin{align}
+\bra{0}
+j^{\mu } 
+\ket{e^{-}_R (p_-) e^{+}_L (p_+)}
+= 2 E \sqrt{2} \qty(0, \vec{\epsilon}_{+})^{\mu }
+\,,
+\end{align}
+%
+while we would have 
+%
+\begin{align}
+\bra{0}
+j^{\mu } 
+\ket{e^{-}_L (p_-) e^{+}_R (p_+)}
+= - 2 E \sqrt{2} \qty(0, \vec{\epsilon}_{-})^{\mu }
+\,,
+\end{align}
+%
+with \(\vec{\epsilon}_{-} =(\hat{1} + i \hat{2}) / \sqrt{2} \). 
+
+On the other hand, the terms \(e_{R}^{-} e_{R}^{+}\) and \(e_{L}^{-} e_{L}^{+}\) do not contribute (in our \(m = 0\) approximation).
+
+The muons are massless fermions as well in our treatment, so we get analogous terms: 
+%
+\begin{align}
+\bra{\mu^-_R (p'_-) \mu^+_L (p'_+)} j^{\mu } \ket{0} &= 2E \sqrt{2} \qty(0, \vec{\epsilon}^{\prime *}_+)^{\mu } \\
+\bra{\mu^-_L (p'_-) \mu^+_R (p'_+)} j^{\mu } \ket{0} &= - 2E \sqrt{2} \qty(0, \vec{\epsilon}^{\prime *}_-)^{\mu }
+\,,
+\end{align}
+%
+so in the end we find 
+%
+\begin{align}
+\mathcal{M} (e^{-}_{L} e^{+}_{R} \to \mu^-_R \mu^+_L) 
+&= - \frac{e^2}{q^2} 2 (2E)^2 
+\vec{\epsilon}^{\prime *}_{+} \cdot \vec{\epsilon}_{+}  \\
+&= - 2 e^2 \vec{\epsilon}^{\prime *}_{+} \cdot \vec{\epsilon}_{+}
+\,,
+\end{align}
+%
+since \(q  =2 E\). 
+The scalar product here depends on the direction of emission of the muons in the center of mass frame, \(\theta \); we find the absolute value \(\abs{\mathcal{M}}^2 = e^{4} (1 \pm \cos \theta )^2\), depending on whether we are looking at an \(LR \to LR\) process or \(LR \to RL\) process. The unpolarized (spin-averaged) differential cross section comes out to be: 
+%
+\begin{align}
+\dv{\sigma }{\cos \theta } = \frac{1}{2} \frac{\pi \alpha^2}{2 E_{CM}^2} \qty(1 + \cos^2\theta )
+\,,
+\end{align}
+%
+which can be integrated across the sphere to get the total cross section for the process \(e^{-} e^{+} \to \mu^- \mu^+\): 
 %
 \begin{align}
 \sigma = \frac{4 \pi }{3} \frac{\alpha^2}{E^2_{CM}}
 \,.
 \end{align}
-%
-we could have guessed the dependence on \(\alpha^2  / E^2_{CM}\), but for the numerical factor we needed to do the full computation. 
+
+We could have guessed the dependence on \(\alpha^2  / E^2_{CM}\), but for the numerical factor we needed to do the full computation. 
 This is because the cross section is a length square, so it must depend on the inverse square of our only energy parameter, \(E_{CM}\). 
 
 Also, the coupling was fixed: we are working in QED, so we only have a coupling constant: \(e\), so we will have terms \(e^2 / 4 \pi = \alpha \) inside of \(\mathcal{M}\), so we will get \(\alpha^2\) inside of \(\abs{\mathcal{M}}^2\). 
 The \(4 \pi \)s will cancel because of the phase-space angular integrals.
 
-If we have done this, can we apply it? suppose we want to compute the cross section \(\sigma (e^{+}e^{-} \to \text{hadrons})\). How could we do it?
-% Well, all these processes look similar, but 
-We can make a similar kind of reasoning, but we get a multiplicity of 3: this indicates that we have a different type of charge.
+Once we have done this, can we generalize it? suppose we want to compute the cross section \(\sigma (e^{+}e^{-} \to \text{hadrons})\). How could we do it?
+
+We can make a similar kind of reasoning, but in experiments we get a cross section which is 3 times larger than expected: this indicates that we have a different type of charge.
 
 We shall see that this is related to certain kinds of internal symmetries of our field theory. 
 

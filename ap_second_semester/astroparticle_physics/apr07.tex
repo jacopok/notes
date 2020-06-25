@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section{Quarks and color charge}
+\subsection{Gauge symmetries in QED}
 
 \marginpar{Tuesday\\ 2020-4-7, \\ compiled \\ \today}
 
@@ -20,8 +20,8 @@ This possesses several symmetries: Lorentz (actually, Poincaré) invariance, \(P
 We are also interested in the \emph{internal} symmetries of this Lagrangian: all the aforementioned symmetries were spacetime ones.
 
 We know that \(\overline{\psi} = \psi ^\dag \gamma^{0}\), so if we transform \(\psi \to e^{i \theta } \psi \) the Lagrangian is unchanged, since we also have \(\overline{\psi} \to e^{-i \theta } \overline{\psi} \).
-Here, we are taking a constant phase angle \(\theta \): it comes out of the derivative unchanged. 
-This is called a \(U(1)\) global symmetry, since it is the same everywhere in space and since a phase is the same as a \(1 \times 1 \) unitary matrix.
+Here, we are taking a \emph{constant} phase angle \(\theta \): it comes out of the derivative unchanged. 
+This is called a \(U(1)\) \textbf{global} symmetry, since it is the same everywhere in space and since a phase is the same as a \(1 \times 1 \) unitary matrix.
 
 The following section differs from the notes. 
 Let us ignore the interactions of electrons with the EM fields in QED. 
@@ -29,7 +29,7 @@ Our world is made of electrons, and we want to describe these free propagating e
 We take the Lagrangian 
 %
 \begin{align}
-\mathscr{L}_{\text{Dirac}} = \overline{\psi} \qty(i \partial_{\mu } \gamma^{\mu } -m) \psi 
+\mathscr{L}_{\text{Dirac}} = \overline{\psi} \qty(i \gamma^{\mu } \partial_{\mu }  -m) \psi 
 \,,
 \end{align}
 %
@@ -67,7 +67,7 @@ A_{\mu } \to A_{\mu } - \frac{1}{e} \partial_{\mu } \alpha
 this compensates the change, as long as the vector is coupled to the fermion with a term \(\overline{\psi} e \gamma^{\mu } A_{\mu } \psi \) in the Lagrangian. 
 This is a profound result: if we wanted to describe a world with only electrons, and we want to have this electron be symmetric with respect to the \(U(1)\) gauge symmetry \(e \to e^{i \alpha (x)} e\) then we \emph{must} have a vector coupled to it. 
 
-Then, we should also insert a term describing the propagation of the free vector \(A_{\mu }\). 
+Then, we should also insert a term describing the propagation of the free vector \(A_{\mu }\), the kinetic term \(\propto F^{\mu \nu } F_{\mu \nu }\).
 
 A quote: ``And she said `let there be symmetry', and there was light''.
 
@@ -78,29 +78,40 @@ The method is trial and error.
 
 Could we have something which is more complicated than a spin 1 mediator? It is basically a guessing game, we see what works. 
 
-\subsection{QCD}
+\section{QCD}
 
-This \(U(1)\) gauge symmetry is an abelian symmetry, but we also have non-abelian ones: the \(T^{a}\) are Hermitian operators called generators, their Lie algebra which is defined by 
+This section can also be followed from Peskin \cite[sec.\ II.11]{peskinConceptsElementaryParticle2019}.
+
+This \(U(1)\) gauge symmetry is an abelian symmetry, but we also have non-abelian ones: we denote by \(T^{a}\) the generators of the group, their Lie algebra is defined by 
 %
 \begin{align}
 \qty[T^{a}, T^{b}] = if^{abc} T^{c}
 \,.
 \end{align}
 
-The \emph{structure coefficients} \(f^{abc}\) are antisymmetric in their first two indices. 
+The \emph{structure coefficients} \(f^{abc}\) are manifestly antisymmetric in their first two indices. It can also be shown that they are fully antisymmetric. If the group is abelian, we have \(f^{abc}\) identically, but this need not be the case.
 
 To say that these are generators means that any infinitesimal transformation can be written as 
 %
 \begin{align}
 \Phi \to \qty(1 + i \alpha^{a} t^{a}_{R}) \Phi 
+\,,
+\end{align}
+%
+where \(\alpha^{a}\) are the parameters of the infinitesimal transformation, while \(t^{a}_{R}\) are Hermitian matrices of dimension \(d_R\) which make up the representation of the group. There are \(d_G\) of them, where \(d_G\) is the dimension of the group.
+
+The finite unitary transformation mapping \(\Phi \to U(\alpha ) \Phi \) can be recovered from here by 
+%
+\begin{align}
+U(\alpha ) = e^{i \alpha^{a} t^{a}_{R}} 
 \,.
 \end{align}
 
 We will be interested in Lie groups \(SU(n)\) with \(N\geq 2\), which are \(N \times N\) unitary matrices with determinant \(1\).
 
-For example, recall that \(SU(2)\) corresponds to \(SO(3)\). 
+For example, recall that \(SU(2)\) has a 2-to-1 correspondence with \(SO(3)\). \(SU(2)\) describes the rotation of spinors, the generators of their rotation are \(\sigma^{i} / 2\). 
 
-Some time ago we discussed the annihilation  of \(e^{+} e^{-}\) into hadrons: we can get protons and neutrons, pions, kaons\dots
+Last time we discussed the annihilation  of \(e^{+} e^{-}\) into hadrons: we can get protons and neutrons, pions, kaons\dots
 
 However we can simplify by discussing only the creation of quarks. 
 
@@ -112,76 +123,84 @@ Can we do this with the weak interaction as well?
 
 Since there are three quarks, we are drawn to represent them as triplets. 
 Since we know that unitary matrices are nice, we try \(SU(3)\). 
-
 We call this symmetry \(SU(3)_{\text{color}}\). 
 
-Consider now \(SU(N)\): we have 
+We start by giving some general results for \(N\)-dimensional groups \(SU(N)\): we normalize their representation by imposing
 %
 \begin{align}
 \Tr \qty[t^{a}_{N} t^{b}_{N}] = \frac{1}{2} \delta^{ab}
 \,,
 \end{align}
 %
-where \(t^{a}_{N}\) are the generators of the Lie algebra. 
-
-We define the following: 
+where \(t^{a}_{N}\) are the Hermitian generators of an \(N\)-dimensional unitary representation. If we generalize to an \(R\)-dimensional representation, we will have 
 %
 \begin{align}
-\qty(t^{a}_{G})^{bc} \overset{\text{def}}{=} f^{abc}
+\Tr \qty[t^{a}_{G} t^{b}_{G}] = C(R) \delta^{ab}
 \,,
 \end{align}
 %
-which satisfy 
+where \(C(R)\) is some constant depending only on the dimension of the representation. 
+
+A special representation we can choose is the \textbf{adjoint} representation, which is the one under which the generators of the Lie algebra transform; it is defined by: 
+%
+\begin{align}
+\qty(t^{a}_{G})^{bc} \overset{\text{def}}{=} i f^{abc}
+\,.
+\end{align}
+
+By making use of the Jacobi identities we can show that this is indeed a valid representation of the group, its dimension is that of the group and we have:
 %
 \begin{align}
 \Tr \qty[t^{a}_{G} t^{b}_{G}] = f^{acd} f^{bcd} = C(G) \delta^{ab}
 \,,
 \end{align}
 %
-where the constant \(C(G)\) is just the dimension \(N\) in our case. 
+where the constant \(C(G)\) is just the dimension \(N\) for the adjoint representation.
+For \(SU(N)\) the dimension is \(N^2 - 1\): the representation consists of \(N^2-1\) matrices, each \(N \times N\).
+
+\subsection{Non-abelian gauge theory: Yang-Mills}
 
 Consider the Lagrangian 
 %
 \begin{align}
-\mathscr{L} = \overline{\psi} \qty(i \gamma^{\mu } \partial_{\mu } - m ) \psi 
+\mathscr{L} = \overline{\psi} i \gamma^{\mu } \partial_{\mu }  \psi 
 \,.
 \end{align}
 
 This can describe an electron. Now, let us add an index \(j\) in the group \(G\), according to which the particle transforms in the \(R\)-dimensional (in our case \(R=3\)) representation:
 \begin{align}
-\mathscr{L} = \overline{\psi}_{j} \qty(i \gamma^{\mu } \partial_{\mu } - m ) \psi_{j}
+\mathscr{L} = \overline{\psi}_{j} i \gamma^{\mu } \partial_{\mu } \psi_{j}
 \,.
 \end{align}
 
 Under the local action of a group \(G\) the particle transforms like 
 %
 \begin{align}
-\psi_{j} (x) \overbrace{\to}^{G} 
+\psi_{j} (x) \overset{G}{\to} 
 \psi^{'}_{j} (x)
 = \qty(1 + i \alpha^{a}(x) t^{a}_{R})_{jk} \psi_{k} 
 \,,
 \end{align}
 %
-where \(a\) is an index going from 0 to \(N^2-1\). 
+where \(a\) is an index going from 1 to \(N^2-1\). 
 
-Now we have to do the same thing we did in the \(U(1)_{\text{em}}\) case. 
-
-We have the same problem as before: we need to cancel a term with one index. So, we will need to take a derivative like 
+We have the same problem we had with \(U(1)_{\text{em}}\): we need to cancel the term coming from the derivative of \(\alpha (x)\), with a one-index object.
+The variation in the Lagrangian is
 %
 \begin{align}
-\partial_{\mu } \qty(\alpha (x) \psi ) = \qty(\partial_{\mu } \alpha ) \psi  
-\,,
+\delta \mathscr{L} = \overline{\psi}_{j} i \gamma^{\mu } \qty(i \partial_{\mu } \alpha^{a} (x) t^{a}_{R, jk}) \psi_{k}
+\,.
 \end{align}
-%
-even though now ``\(\alpha \)'' is actually a product of many terms. The solution will still be in the form 
+
+The solution is the same: we introduce a coupling to the derivative, which takes the form
 %
 \begin{align}
 \DD_{\mu } \to \partial_{\mu } - i g A_{\mu }^{a} t^{a}_{R}
 \,,
 \end{align}
 %
-where \(g\) is the strength of the interaction, commonly written as \(g_{s}\) in the case of the strong force. 
-The index \(a\) goes from \(1\) to \(N^2-1 = 8\). 
+where \(g\) is the strength of the interaction, which is also written as \(g_{s}\) in the case of the strong force. 
+The index \(a\) goes from \(1\) to \(N^2-1 = 8\): we must introduce a vector field \(A\) for each \emph{generator} of the required symmetry. 
 
 The beautiful thing is the fact that starting only from the symmetry requirement we can get a full theory. 
 
@@ -189,11 +208,13 @@ We now attribute actual \emph{existence} to these quantum fields: they are inter
 They must transform like 
 %
 \begin{align}
-A^{a}_{\mu }(x) \to A^{a}_{\mu } (x) + \frac{1}{g} \DD_{\mu } \alpha^{a}(x)
+A^{a}_{\mu }(x) &\to  A^{a}_{\mu } (x) + \frac{1}{g} \partial_{\mu } \alpha^{a} (x) + A^{b}_{\mu } f^{abc} \alpha^{c} (x) 
+ \\
+&=  A^{a}_{\mu } (x) + \frac{1}{g} \DD_{\mu } \alpha^{a}(x)
 \,,
 \end{align}
 %
-and then the Lagrangian will be 
+and then we can give them kinetic terms in the Lagrangian, which will then be 
 %
 \boxalign{
 \begin{align}

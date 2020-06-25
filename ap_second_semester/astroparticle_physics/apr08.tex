@@ -28,63 +28,137 @@ In fact, in the aforementioned decay the photon is off mass shell; but we can go
 
 The vacuum is a \emph{quantum} vacuum, which does correspond to a minimal energy but it is filled by the continuous creation and annihilation of these particle-antiparticle pairs, since there is an indetermination between time and energy. 
 It is important that after being created these pairs are indeed destroyed.
-This is called \emph{vacuum polarization}
+This is called \emph{vacuum polarization}.
 
 The pairs are virtual but they have an effect. The coupling constant \(\alpha \) has a numerical value of around \(1 / 137\), and the loop diagrams of increasing number of loops depend on increasing powers of \(\alpha \). 
 The fact that \(\alpha \) is small allows us to work perturbatively. 
 
 This works, the predictions of QED are extremely precise and correspond to experiment.
-For instance, the anomalous magnetic moment of the electron: in a QFT, when an electron interacts with a photon, there can be other particles. 
+For instance, the anomalous magnetic moment of the electron: in a QFT, when an electron interacts with a photon, there can be other particles.
 
-The polarization of the vacuum creates a screening effect. 
-So, we expect the effective \(\alpha_{EM}\) to be larger. 
-We compare the Millikan experiment (\(E \sim 0\)), where we find \(\alpha \sim 1/137\), with LEP: now \(E \sim \SI{100}{GeV}\), and we find \(\alpha \sim 1/128\)!
+The Feynman diagram which governs the interaction of an external electromagnetic field with a fermion is a one-vertex one; however we can draw diagrams with loops (the first correction is shown in figure \ref{fig:fermion-external-EM-field-feynman-diagram}) to calculate the perturbative corrections.
 
-What is the theoretical relation between \(\alpha \) and \(Q\)? It comes out to be 
+\begin{figure}[ht]
+\centering
+\feynmandiagram[horizontal = e1 to e2]{
+e1 -- [fermion] x -- [fermion] e2,
+gamma [crossed dot] -- [photon] x
+};
+\qquad
+\feynmandiagram[horizontal = e1 to e2]{
+e1 -- [fermion] a -- [fermion] x -- [fermion] b -- [fermion] e2,
+gamma [crossed dot] -- [photon] x,
+a -- [photon] b
+};
+\caption{Interaction of a fermion with an external electromagnetic field, to first and third order respectively.}
+\label{fig:fermion-external-EM-field-feynman-diagram}
+\end{figure}
+
+The polarization of the vacuum creates a screening effect, as shown in an example scattering in figure \ref{fig:vacuum-polarization-feynman-diagram}.
+This is hard to compute analytically, but the result can be readily described: the vacuum acts as a dielectric medium, screening part of the electromagnetic charge and making the interaction weaker. 
+
+\begin{figure}[ht]
+\centering
+\feynmandiagram[vertical = x to y]{
+e1 -- [fermion] x -- [fermion]  e2,
+x -- [photon] y,
+m1 -- [anti fermion] y -- [anti fermion] m2
+};
+\qquad
+\feynmandiagram[vertical = x to y]{
+e1 -- [anti fermion] x -- [anti fermion] e2,
+x -- [photon] z,
+z -- [fermion, half right] w,
+z -- [anti fermion, half left] w,
+w -- [photon] y,
+m1 -- [fermion] y -- [fermion] m2
+};
+\caption{Vacuum polarization: second and fourth order contributions to \(e^{-}e^{-} \to e^{-}e^{-}\) scattering.}
+\label{fig:vacuum-polarization-feynman-diagram}
+\end{figure}
+
+So, we expect the effective \(\alpha_{EM}\) to be larger: if the vacuum is filled with a sea of screening pairs, at large distances (low energies) it is effectively uniform, while if we get at distances lower than \(1/m_e\) we start to be on smaller scales than the maximum size of these dipoles, so screening is harder and we can see the ``bare charge'', which formally diverges at a point called the \textbf{Landau pole}.
+
+This is an illustrative description of a mathematical process called \textbf{renormalization}: we impose the fact that the loop contributions to the theory should not diverge, and this forces us to have a running coupling to the theory, which corresponds to increased pair production (since the EM field is coupled more strongly with the fermions!).
+
+We compare the Millikan experiment (\(E \sim 0\)), where we find \(\alpha \sim 1/137\), with LEP: now \(E \sim \SI{100}{GeV}\), and we find \(\alpha \sim 1/128\)! 
+A figure depicting the complete relation can be found in Peskin \cite[fig.\ 11.1]{peskinConceptsElementaryParticle2019}.
+At very high energies we must also account for pair production of higher-mass fermions, such as muons.
+
+What is the theoretical relation between \(\alpha \) and \(Q\), the momentum transfer of the process at hand? It comes out to be (the calculation can be found in an older book by Peskin and Schroeder \cite[sec.\ 7.5]{peskinIntroductionQuantumField1995})
 %
 \begin{align}
 \alpha (Q) = \frac{\alpha_0 }{1 - \frac{2 \alpha_0 }{3 \pi } \log(\frac{Q}{Q_0 })}
-\,,
+\,.
 \end{align}
-%
-where \(Q\) is the energy at which we measure. 
 
-What happens if we compute this for the strong interaction? We will have 
+At energies \(Q \lesssim m_e\) the correction is negligible and \(\alpha \sim 1/136\), it becomes significantly different at higher energies.
+
+We also define the function \(\beta \): it is a function of the coupling constant \(\alpha \), defined by 
 %
 \begin{align}
-\alpha_3 = \alpha _{\text{strong}} = \frac{g^2_{s}}{4 \pi }
+\beta (g_e ) = \dv{g_e }{\log Q}
+\,.
+\end{align}
+
+What happens if we compute this for the strong interaction? We define, analogously to the electromagnetic case: 
+%
+\begin{align}
+\alpha_s = \alpha _{\text{strong}} = \frac{g^2_{s}}{4 \pi }
 \,.
 \end{align}
 
 The problem is that this is a large number: but our tools are perturbative! How do we compute the cross sections then? 
-The thing is, with increasing energy this \(\alpha \) becomes \emph{smaller}! 
+The thing is, with increasing energy this \(\alpha_s \) becomes \emph{smaller}!
 Why is this? The gluons are self interacting, because of the \(A \wedge A\) term in the field strength of the strong interaction, as opposed to photons. 
 
-In the EM case, we had \(\gamma \to e^{+} e^{-} \to \gamma \) as a virtual particle process; in the chromodynamics case instead we have \(g \to g + g \to g \): it is the case (even though it is not easy to prove) that this loop contribution has the opposite sign! We have 
+In the EM case, we had \(\gamma \to e^{+} e^{-} \to \gamma \) as a virtual particle process; in the chromodynamics case instead we have \(g \to g + g \to g \): it is the case (even though it is not easy to prove) that this loop contribution has the opposite sign! We define \(\beta \) in the same way as the one from QED, so we find \cite[eq.\ 11.65]{peskinConceptsElementaryParticle2019}:
 %
 \begin{align}
 \dv{g_{s}}{\log Q} = \beta (g_s) 
 \qquad \text{where} \qquad
-\beta = - \frac{11}{3} C(G) +  \frac{4}{3} n_f \frac{1}{2}  
+\beta = - \frac{11}{3} C(G) +  \frac{4}{3} n_f C(R) 
 \,,
 \end{align}
 %
-where \(C(G)\) is the Casimir of the adjoint representation, so for QCD it is 3, while \(n_f\), the number of fermions, is 6. Then, the final result is negative! 
+where \(C(G)\) is the Casimir\footnote{This means that it is the constant depending on the dimension of the representation which appears in 
+%
+\begin{align}
+\Tr[t^{a}_{N} t^{b}_{N}] = C(N) \delta^{ab}
+\,.
+\end{align}} of the \textbf{adjoint} representation: \(C(G) = 3\), while \(C(R) = 1/2\) pertains to the \textbf{fundamental} representation, to which fermions belong: \(n_f\), the number of fermions, is 6. Then, the final result is negative! 
 
-This is called asymptotic freedom: \(\alpha \) goes to zero with \(Q\). 
-If the energy is high enough, the quarks and gluons are effectively decoupled. 
+This is called asymptotic freedom: \(\alpha \) decreases as \(Q\) increases.
+If the energy is high enough, the quarks and gluons are effectively decoupled.
+On the other hand, at low energy their coupling is very large.
 
-So, at the low energies we look at in atomic nuclei the quarks are confined: no one has ever observed a free quark, not even at LHC. 
-This is called hadronization, since the quarks are always bound into hadrons. ALICE, at LHC, is looking for the phase transition between this ``infrared slavery'' of the quarks and their free state. 
+So, at the low energies we look at in atomic nuclei the quarks are confined by an extremely high coupling: no one has ever observed a free quark, not even at LHC. 
+This is called hadronization, since the quarks are always bound into hadrons.
+ALICE, at LHC, is looking for the phase transition between this ``infrared slavery'' of the quarks and their free state. 
 
 Since \(\alpha_{S}\) decreases, while \(\alpha_{EM}\) increases, there should be a point at which they cross and the electromagnetic interaction becomes stronger than the strong one. 
 
+There might be a point at which they merge, like the weak and electromagnetic interactions do. 
 Actually, it might be possible that all of the interactions are manifestations of the same kind of interaction. 
 
-The crucial point is that the strength of an interaction depends on the energy. 
+The crucial point is that the strength of an interaction depends on the energy. If we define \(b_0 = 11 - 2 n_f / 3\) we find 
+%
+\begin{align}
+\alpha_s (Q) = \frac{ 2 \pi / b_0 }{\log(Q / \Lambda )}
+&&
+\Lambda = Q_0 \exp(\frac{-2 \pi }{b_0 \alpha_{s}(Q_0 )})
+\,,
+\end{align}
+%
+where we defined \(\Lambda \), the QCD scale: it is the energy at which the QCD coupling becomes strong.
 
-We know that the time needed for hadronization is of the order \(\tau _{\text{had}} \sim \SI{e-23}{s}\), while the time for a pion's decay is \(\tau (\pi^{+}) \sim \SI{3e-8}{s}\). 
-The time for beta decay is \(\tau (n \to p + e^{-} + \overline{\nu}_{e}) \sim \SI{880}{s}\). 
+In QED (and more generally in abelian gauge theories) the vertex only has one photon line, so there can be no photon loops. 
+In QCD, instead, we can have gluon loops.
+
+How do we formally describe whether an interaction is ``strong''?
+We know that the time needed for hadronization  is of the order \(\tau _{\text{had}} \sim \SI{e-23}{s}\), while the time for a pion's decay is \(\tau (\pi^{+}) \sim \SI{3e-8}{s}\). These are strong interaction-mediated processes.
+
+The time for beta decay --- a weak interaction mediated process --- is \(\tau (n \to p + e^{-} + \overline{\nu}_{e}) \sim \SI{880}{s}\). 
 
 This can give us a first signal for the fact that the weak interaction is \emph{weak}. 
 

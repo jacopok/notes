@@ -143,7 +143,7 @@ where \(C(R)\) is some constant depending only on the dimension of the represent
 
 A special representation we can choose is the \textbf{adjoint} representation, which is the one under which the generators of the Lie algebra transform; it is defined by: 
 %
-\begin{align}
+\begin{align} \label{eq:adjoint-representation-definition}
 \qty(t^{a}_{G})^{bc} \overset{\text{def}}{=} i f^{abc}
 \,.
 \end{align}
@@ -208,13 +208,23 @@ We now attribute actual \emph{existence} to these quantum fields: they are inter
 They must transform like 
 %
 \begin{align}
-A^{a}_{\mu }(x) &\to  A^{a}_{\mu } (x) + \frac{1}{g} \partial_{\mu } \alpha^{a} (x) + A^{b}_{\mu } f^{abc} \alpha^{c} (x) 
+A^{a}_{\mu }(x) &\to  A^{a}_{\mu } (x) + \frac{1}{g} \partial_{\mu } \alpha^{a} (x) + \overbrace{A^{b}_{\mu } f^{abc} \alpha^{c} (x)}^{\text{new nonabelian term}} 
  \\
 &=  A^{a}_{\mu } (x) + \frac{1}{g} \DD_{\mu } \alpha^{a}(x)
-\,,
+\,.
 \end{align}
+
+This is derived making use of the adjoint representation definition \eqref{eq:adjoint-representation-definition}: we are equating 
 %
-and then we can give them kinetic terms in the Lagrangian, which will then be 
+\begin{align}
+A^{b}_{\mu } f^{abc} \alpha^{c} &= -i A^{b}_{\mu } t^{b}_{R} \alpha^{a}  \\
+A^{b}_{\mu } f^{abc} \alpha^{c} &= -i A^{b}_{\mu } (i f^{bca}) \alpha^{c} \\
+A^{b}_{\mu } f^{abc} \alpha^{c} &= + A^{b}_{\mu } f^{abc} \alpha^{c} 
+\marginnote{We can do cyclic permutations of the indices of \(f^{abc}\).}
+\,.
+\end{align}
+
+If we assign physical reality to these fields we must give them kinetic terms in the Lagrangian, which will then be 
 %
 \boxalign{
 \begin{align}
@@ -224,7 +234,8 @@ and then we can give them kinetic terms in the Lagrangian, which will then be
 \,,
 \end{align}}
 %
-which looks the same as the QED Lagrangian, but we must be careful: what is \(F_{\mu \nu }^{a}\)? We might think it is 
+which looks the same as the QED Lagrangian, but we must be careful: what is \(F_{\mu \nu }^{a}\)?
+We might think it is 
 %
 \begin{align}
 F^{a}_{\mu \nu } = 2 \partial_{[\mu } A^{a}_{\nu ]}
@@ -239,7 +250,35 @@ F^{a}_{\mu \nu } = 2 \partial_{[\mu } A^{a}_{\nu ]} + g f^{abc} A^{b}_{\mu } A^{
 \end{align}
 
 This corresponds to the fact that, while there is no photon-photon interaction since \(U(1)\) is abelian,  \(SU(3)\) is not: so, we do have gluon-gluon interaction. 
+Notice that this expression has abelian symmetries as a special case: the term \(fAA\) is antisymmetric in the two bosons, so if they commute it vanishes. 
+The square of this field strength is then both Lorentz and gauge invariant.
 
-This is crucial in very high energy situations, such as in the early universe. 
+This field strength can be interpreted as the Riemann tensor of the Lie group manifold: 
+%
+\begin{align}
+\qty[\DD_\mu , \DD_\nu] = -ig F^{a}_{\mu \nu } t^{a}_{R}
+\,.
+\end{align}
+
+This is crucial in very high energy situations, such as in the early universe. The dynamics of the field are now more complicated than the ones we find in electrodynamics due to the nonlinear terms.
+
+The wavefunction \(\psi\) which appears in the Lagrangian will transform in some \(d\)-di\-men\-sio\-nal representation of \(G = SU(3)_c\). 
+It will have indices like \(\psi_{\alpha , i}\): \(\alpha \) is a four-dimensional spinorial index, while \(i\) is a three-dimensional color index. 
+
+The strong-interaction coupling constant \(g_s \) is dimensionless, we also define the parameter
+%
+\begin{align}
+\alpha_{s} = \frac{g_s^2}{4 \pi }
+\,.
+\end{align}
+
+The coupling term of the gluons with the fields can be made explicit as 
+%
+\begin{align}
+\overline{\psi}_{\alpha, i} \gamma^{\mu }_{\alpha \beta } A^{a}_{\mu } \qty(t^{a})_{ij} \psi_{\alpha \beta }
+\,,
+\end{align}
+%
+where \(\mu \) is a Lorentz index, \(i\) and \(j\) are color indices, while \(\alpha \) and \(\beta \) are spinorial indices.
 
 \end{document}

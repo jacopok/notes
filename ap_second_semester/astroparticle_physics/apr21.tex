@@ -3,9 +3,9 @@
 
 \marginpar{Tuesday\\ 2020-4-21, \\ compiled \\ \today}
 
-Last time we stopped at the dilemma of beauty versus pragmatism.
+Now we have a dilemma: beauty versus pragmatism.
 
-How do we provide a mass to the \(W\) vector boson? 
+How do we provide a mass to the \(W\) vector boson?
 
 % We could introduce an \(SU(2)\) symmetry. 
 
@@ -19,17 +19,22 @@ As we were discussing, we could add a mass term and write
 but this term \emph{brutally} breaks the symmetry.
 This is explicit breaking of the symmetry. 
 
-So, we introduce \textbf{Spontaneous Symmetry Breaking}. 
-This is not exclusive to HEP: it happens in ferromagnets for example. As we cool them, at a certain stage all the spins align.
+However, if we do not break the symmetry we cannot reproduce the data\dots or can we?
 
-We cannot predict the direction along which the spins will align.
+\subsection{Spontaneous Symmetry Breaking}
 
-Let us introduce the Lagrangian of a scalar field \(\phi \): 
+We introduce \textbf{Spontaneous Symmetry Breaking}. 
+This is a phenomenon which is not exclusive to HEP: it happens in ferromagnets, for example.
+They start off (above the Curie temperature) with the spins pointing in uniformly distributed directions: the situation is symmetric.
+As we cool them, at a certain stage all the spins align.
+We cannot predict the direction along which they will align (since the initial state is symmetric), but once they do the symmetry is \emph{spontaneously broken}.
+
+Let us take the standard approach (also done in the Theoretical Physics course \cite[sec.\ 5.2]{tissinoTheoreticalPhysicsNotes2020}) introduce the Lagrangian of a complex scalar field \(\phi \): 
 %
 \begin{align}
 \mathscr{L} = \qty(\partial^{\mu  } \phi^{*}(x)) \qty(\partial_{\mu } \phi (x)) 
-+ \mu^2 \abs{\phi (x)}^2
-+ \lambda^{4} \abs{\phi (x)}^{4}
+\underbrace{- \mu^2 \abs{\phi (x)}^2
+- \lambda^{4} \abs{\phi (x)}^{4}}_{- V(\phi )}
 \,,
 \end{align}
 %
@@ -40,27 +45,66 @@ and to find the ground state we can move to the Hamiltonian:
 \,.
 \end{align}
 
-\todo[inline]{Recover a few minutes.}
+The parameter \(\lambda \) must be \(>0\), while \(\mu^2\) has no constraints.
 
-The ground state is not symmetric under the whole symmetry of the Lagrangian.
+It is a critical parameter: if \(\mu^2\) is positive we are in the symmetric phase of the system, and the vacuum is only \(\phi = 0\): the VEV is \(\bra{0} \phi \ket{0} = 0\). 
 
-There is a critical parameter: if \(\mu^2\) is positive we are in the symmetric phase of the system, if instead \(\mu^2\) is negative we transition to a new phase which is not symmetric.
-The system still has the symmetry, but the ground state does not.
+If, on the other hand, \(\mu^2\) is negative we transition to a new phase which is not symmetric: the vacuum becomes a whole circle, whose VEV is \(v = \sqrt{- \mu^2 / 2 \lambda }\). The whole region parametrized as \(v e^{i \theta }\), with \(\theta \in \mathbb{R}\), provides equivalent vacua:
+a specific ground state is not symmetric under the whole symmetry of the Lagrangian.
 
 Why do we only have terms in \(\phi^2\) and \(\phi^{4}\)? we basically constructed the simplest potential which has the properties we want.
 
 If \(\mu^2>0\) we can perturb around the state without the quartic term, which is described by the KG equation.
 
-\todo[inline]{Recover a few minutes}
+If, instead, we want to perturb around a vacuum in the \(\mu^2<0\) case we need to distinguish two directions, since the Hessian of the potential has two different eigenvalues, one positive and one equal to zero. We parametrize 
+%
+\begin{align}
+\phi = \frac{1}{\sqrt{2}} \qty(v + \sigma (x) + i\eta (x))
+\,,
+\end{align}
+%
+where \(\sigma \) and \(\eta \) are both real. 
 
-Goldstone theorem and VEV different from zero.
-We have two problems which solve each other. 
+The Lagrangian can then be rewritten as 
+%
+\begin{align}
+\mathscr{L} = \frac{1}{2} \partial^{\mu } \sigma \partial_{\mu } \sigma 
++ \frac{1}{2} \partial^{\mu } \eta \partial_{\mu } \eta 
++ 2 \lambda v^2 \frac{1}{2} \sigma^2 
+- \frac{\lambda}{4} \qty(\sigma^2 + \eta^2)^2
+- \lambda v \sigma \qty(\sigma^2 + \eta^2)
+\,,
+\end{align}
+%
+so we have two real fields, one massive  (\(\sigma \)) and one massless (\(\eta \)). The massless field is called a \textbf{Goldstone boson}.
 
-If we explicitly break a \(U(1)\) global symmetry, we have a Goldstone boson. If we break a \(U(1)\) local symmetry, instead, we get a massless vector boson and a massless scalar.
+If we compute the VEV of \(\phi \) in this configuration we get     \(v / \sqrt{2 }\). 
 
-The wonderful thing is that the two dof of the massless vector ad the single degree of freedom of the massless scalar couple to give a massive vector with three degrees of freedom.
+In general, the Golstone theorem states that for each broken symmetry generator we get a massless boson. 
+
+It seems that instead of solving the problem of our massless gauge bosons we have created another problem, predicting more massless particles; but in fact our two problems solve each other.
+
+We must break a different symmetry, though: a gauge local symmetry, instead of a global one.
+If we explicitly break a \(U(1)\) global symmetry, we have a Goldstone boson.
+If we break a \(U(1)\) local symmetry, instead, we get a massless vector boson and a massless scalar.
 This spontaneous breaking of local gauge symmetry is the \textbf{Higgs mechanism}.
 
-It is a ``transmutation'' of degrees of freedom.
+\subsubsection{SQED Higgs mechanism}
+
+We will see this explicitly, with the breaking of the scalar-QED \(U(1)\) symmetry: let us consider a Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \qty(\DD^{\mu } \phi )^{*} \DD_{\mu } \phi 
+- \mu^2 \abs{\phi}^2 - \lambda \abs{\phi }^4
+- \frac{1}{4} F^{\mu \nu } F_{\mu \nu }
+\,,
+\end{align}
+%
+where \(\DD_{\mu } = \partial_{\mu } + iq A_{\mu} \).
+
+
+% The wonderful thing is that the two dof of the massless vector ad the single degree of freedom of the massless scalar couple to give a massive vector with three degrees of freedom.
+
+% It is a ``transmutation'' of degrees of freedom.
 
 \end{document}

@@ -3,9 +3,9 @@
 
 \marginpar{Wednesday\\ 2020-4-15, \\ compiled \\ \today}
 
-Last lecture we started the discussion of a new kind of interaction: we had treated QED and QCD, now we introduced the nuclear weak interaction. 
+We would like to introduce a sort of ``Quantum Weak Dynamic'' theory, and we will see that this is possible in the standard model, by unifying the electromagnetic and weak interactions. 
 
-We would like to introduce a sort of ``QWD'', and we will see that this is possible in the standard model, by unifying the electromagnetic and weak interactions. 
+\subsection{The current-current model for the weak interaction}
 
 We have seen that fermions are described by a four-component spinor: 
 %
@@ -19,16 +19,15 @@ We have seen that fermions are described by a four-component spinor:
 \end{align}
 \end{subequations}
 %
-where \(\psi_{L, R}\) are both two-component vector. The right handed part has helicity \(h = + 1/ 2\), the left handed part has helicity \(h = - 1 / 2\).
+where \(\psi_{L, R}\) are both two-component vectors. The right handed part has helicity \(h = + 1/ 2\), the left handed part has helicity \(h = - 1 / 2\).
 
 The puzzling part of the weak interaction is that it seems like the only part of the fermion entering \(\beta \)-decay is the left-handed part.
 In the late seventies, the professor's master thesis stated that this was a mystery. Still, we do not know why this interaction breaks parity. 
 
-We need to describe the experimental results: so, we need a projector onto the left-handed components. 
+We need to describe the experimental results mathematically: so, we need a projector onto the left-handed components. 
 We already introduced the Dirac \(\gamma^{\mu }\) matrices. 
-Now we introduce 
+Now we introduce the \textbf{fifth} gamma matrix: in the chiral representation it reads
 %
-\begin{subequations}
 \begin{align}
 \gamma^{5} = \left[\begin{array}{cc}
 - \mathbb{1} & 0 \\ 
@@ -36,7 +35,6 @@ Now we introduce
 \end{array}\right]
 \,,
 \end{align}
-\end{subequations}
 %
 which has the important property that it anticommutes with all the Dirac matrices: 
 %
@@ -48,7 +46,7 @@ which has the important property that it anticommutes with all the Dirac matrice
 and actually we can write it as 
 %
 \begin{align}
-\gamma^{5} = i \gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}
+\gamma^{5} = \frac{i}{4!} \epsilon_{\mu \nu \rho \sigma } \gamma^{\mu } \gamma^{\nu } \gamma^{\rho } \gamma^{\sigma } =  i \gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}
 \,.
 \end{align}
 
@@ -56,11 +54,13 @@ By its form we can readily see that \(\psi_{L}\) is an eigenstate of \(\gamma^{5
 So, the matrix 
 %
 \begin{align}
-\frac{\mathbb{1} - \gamma^{5}}{2} 
+\frac{\mathbb{1} \pm \gamma^{5}}{2} 
 \,
 \end{align}
 %
-projects a state onto the left-handed subspace.
+projects a state onto the left- or right-handed subspace (minus for the left handed one).
+If we apply a parity transformation \(P \vec{x} \to - \vec{x}\) to the current \(\overline{\psi} \gamma^{5} \psi \) we get \(- \overline{\psi} \gamma^{5} \psi \). 
+
 The Dirac matrices can be written as 
 %
 \begin{subequations}
@@ -87,52 +87,78 @@ where
 \end{align}
 %
 
-Now, then, we discard the left handed components: for \(m=0\) we write 
+We have already seen that if we set \(m=0\) the Dirac equation for the two left- and right-handed spinors decouples:
 %
 \begin{subequations}
 \begin{align}
-i \overline{\sigma} \partial \psi_{L} =0\\
-i \sigma \partial \psi_{R}=0
-\,,
+i \overline{\sigma} \cdot \partial \psi_{L} =0\\
+i \sigma \cdot \partial \psi_{R}=0
+\,.
 \end{align}
 \end{subequations}
-%
-so we can discard the second equation. 
-We can introduce a current involving only the left-handed component: 
+
+We know that neutrons are made up of \(ddu\) quarks, while protons are \(uud\), so we must have a down quark turning into an up:
+the Feynman diagram for \(\beta^{-}\) decay (from far away) looks like:
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, horizontal = x to c]{
+x [particle = {\(d_L\)}] -- [fermion] c [blob] -- [fermion] u [particle={\(u_L\)}],
+c -- [fermion] e [particle = {\(e^{-}_{L}\)}],
+c -- [anti fermion] nu [particle = {\(\nu_{L}\)}]
+};
+\caption{Beta decay: an unknown weak process.}
+\label{fig:beta-decay}
+\end{figure}
+
+Only the left-handed spinors appear in the process. In order to describe this, we can introduce a current involving only the left-handed components: 
 %
 \begin{align}
-j^{\mu +}_{L} = \nu ^+_{L} \overline{\sigma}^{\mu } e_{L} + u ^+_{L} \overline{\sigma}^{\mu } d_{L} + \dots
+j^{\mu +}_{L} &= \nu ^+_{L} \overline{\sigma}^{\mu } e_{L} + u ^+_{L} \overline{\sigma}^{\mu } d_{L} + \dots \\
+j^{\mu -}_{L} &= e ^+_{L} \overline{\sigma}^{\mu } \nu_{L} + d ^+_{L} \overline{\sigma}^{\mu } u_{L} + \dots
+\,.
+\end{align}
+
+This current will appear in the Feynman amplitude in this fashion: 
+%
+\begin{align}
+\mathcal{M} \sim \frac{4 G_F}{\sqrt{2}} j^{\mu +}_{L} j^{\mu -}_{L} 
+\,.
+\end{align}
+
+These terms can be written without specifying \(L\) or \(R\), as:
+%
+\begin{align}
+\overline{u} \gamma^{\mu } \qty( \frac{1-\gamma^{5}}{2})d 
+= \frac{1}{2} \qty(\underbrace{\overline{u}\gamma^{\mu } d}_{V} - \underbrace{\overline{u}\gamma^{\mu } \gamma^{5} d}_{A} )
+= \overline{u}_L \gamma^{\mu } d_L
 \,.
 \end{align}
 
 Notice that we did not introduce here an index \(a\) as we had done for the color charge. 
 
-This is a charged current.
+The interaction boson mediating the weak interaction is called a \textbf{charged current}, since it must have an electric charge.
 
-Why are there no terms involving \(\sigma^{\mu }\)? We projected along the first two components, so in the terms 
+This theory of weak interaction is called a \(V-A\) theory: in the current we have distinguished the terms \(V\) --- a vector current --- and  \(A\), an axial current. This distinction is a group representation one: the vector term transforms like a vector, while the axial term transforms like a pseudovector.
+
+We know that a density Lagrangian has a dimension of 4, so from the expression \(\mathscr{L} = \overline{\psi} m \psi \) we get that the fermion must have dimension \(3/2\).\footnote{By ``dimension'' we mean mass dimension: the dimension of a mass \(m\) is 1.} 
+So, the current \(j^{\mu } \sim \overline{\psi} \gamma^{\mu } \psi \) has a dimension of 3.
+In the Lagrangian the current term will look like \(G_F j^{\mu } j_{\mu }\), so the constant \(G_F\) must have a dimension of \(-2\). 
+
+Experimentally, we find \(G_F \sim \SI{e-5}{GeV^{-2}}\). 
+
+This kind of \(V-A\) theory has been successful in the description of processes such as: 
 %
 \begin{align}
-\overline{u} \gamma^{\mu } \qty( \frac{1-\gamma^{5}}{2})d = \overline{u} \gamma^{\mu } d_L
-\,
+n &\to p e^{-} \overline{\nu}_{e}  \\
+\mu &\to \nu_{\mu }  e^{-} \overline{\nu}_{e}  \\
+\pi^{-} &\to \mu^- \overline{\nu}_{\mu } \text{ or } e^{-} \overline{\nu}_{e}
+\,.
 \end{align}
-%
-the last two terms vanish, we do not need to write them.
-This theory of weak interaction is called a \(V-A\) theory: in the current we have the terms 
-%
-\begin{align}
-\frac{1}{2} \qty[ \underbrace{\overline{u} \gamma^{\mu } d}_{V} - \underbrace{\overline{u} \gamma^{\mu } \gamma^{5} d}_{A}]
-\,,
-\end{align}
-%
-where the term \(V\) is a vector current, while the term \(A\) is an axial current. 
 
-We know that a density Lagrangian has a dimension of 4, so from the expression \(\mathscr{L} = \overline{\psi} m \psi \) we get that the fermion must have dimension \(3/2\). 
-By dimension, we mean power of the mass.
+% The constant is called \(G_F\), and we have that the cross section goes like \(\sigma \sim G_F^{2} \sim [m]^{-4}\)? this does not work, we need something with dimension \(2\) multiplying it, since the cross section has dimension \(-2\). 
+We can estimate the order of magnitude of the cross section of weak interaction processes without drawing any Feynman diagrams: we know that they must depend on \(G_F^2\), which has dimension \(-4\), while the cross section has dimension \(-2\): what can we multiply it by to fix the dimensionality?
 
-When we have a term like \(j^{\mu } j_{\mu } \times \const\), the constant must have a dimension of \(-2\). 
-The constant is called \(G_F\), and we have that the cross section goes like \(\sigma \sim G_F^{2} \sim [m]^{-4}\)? this does not work, we need something with dimension \(2\) multiplying it, since the cross section has dimension \(-2\). 
-
-Our only free parameter is \(s\), the square of the center of mass energy. So, we will have 
+Our only free parameter is \(s = (p_1 + p_2 )^2\), the square of the center of mass energy. So, we will have 
 %
 \begin{align}
 \sigma \sim G_F^2 s
@@ -140,40 +166,73 @@ Our only free parameter is \(s\), the square of the center of mass energy. So, w
 \end{align}
 %
 which means that if we increase the beam energy the cross section increases. 
-\(s\) can diverge in principle, but \(\sigma \) is connected to a probability: this means that we have a unitarity violation. 
 
-This can be fixed with the introduction of a charged mediator \(W\).
+This is a problem: \(s\) can diverge as we raise the energy of our colliders, but \(\sigma \) is connected to a probability: this means that we have a unitarity violation. 
 
-How massive must it be? We can measure \(G_F \sim \SI{e-5}{GeV^{-2}}\). 
+The problem becomes worse if we consider \(n\) loops: then we will have \(\sigma \sim G_F^{2n} s^{m}\), where by dimensional analysis we find \(m = 2n-1\): this increases with \(n\)!
 
-In the Breit-Wigner resonance formula we will need to insert 
+This can be fixed with the introduction of a charged mediator \(W\) instead of a four-current vertex with a coupling \(G_F\).
+This new boson will have a vertex with both of the currents. 
+This is called \textbf{Intermediate Vector Boson} theory. 
+
+The mass of this boson is denoted as \(M_W\); then in the amplitude we will need to insert a factor 
 %
 \begin{align}
 \frac{1}{q^2- M_W^2}
 \,,
 \end{align}
 %
-which avoids the divergence. 
-In order for this to work, we need this boson to be of the order of \SI{10}{GeV} to \SI{100}{GeV}.
-
-Now we need to describe this as a gauge theory. The symmetry group will be \(SU(2)_{L}\). We will have \(2^2-1 = \) three generators. 
-
-This process is going to fail: the kinetic term of these vector bosons will look like 
+which avoids the divergence. Here \(q^2\) is the square of the four-momentum of the carrier: in simple processes it will just be given by \(q^2 = s\). 
+Then, we go from \(\sigma \sim G_F^2s\) to 
 %
 \begin{align}
-F^{\mu \nu, i} F_{\mu \nu }^{i}
+\sigma \sim \qty( \frac{1}{q^2 - M_W^2})^2 s 
 \,,
 \end{align}
 %
-which will never have a quadratic term \(M^2 W^{\mu } W_{\mu }\). 
-So, the bosons will never be massive like we need.
-This is called the Intermediate Vector Boson theory. 
+which scales as \(\sigma \sim 1 / s\) when \(s\) diverges.
 
-Since our plain Yang-Mills theory does not have vector bosons, we can insert them manually. 
-However, if we do we are explicitly breaking the gauge symmetry.
+A massless mediator would not work, even though it would fix the ultraviolet problems of our theory, because of the observed behaviour at low energies.
+The interaction we see does not have an infinite range, like the photon; instead it has a very short range. 
+Because of the measured value of \(G_F\), we expect this boson's mass \(M_W\) to be of the order of \SI{100}{GeV}, since at low energies the Breit-Wigner factor reduces to 
+%
+\begin{align}
+\frac{g_w^2}{q^2 - M_W^2} \sim \frac{g_w^2}{M_W^2} \sim G_F
+\implies M_W \sim \frac{g_w}{\sqrt{G_F}}
+\,,
+\end{align}
+%
+and we expect the coupling \(g_w\) to be of order one. 
+We see no \(q^2\) dependence in \(G_F\) at low energies \(\lesssim \SI{30}{GeV}\), which supports this hypothesis.
 
-We lose renormalizability: renormalization means that we can absorb all the infinities into a finite number of parameters.
+Now we need to describe this as a gauge theory. 
+The symmetry group will be \(SU(2)_{L}\) and we will have \(2^2-1 = \) three generators.
+The photon is described by \(U(1)\) symmetry, and it has no mass term \(\sim m^2 A^{\mu } A_{\mu }\). 
+If we were to insert such a term we would lose gauge symmetry. 
+We must then solve the problem of implementing a gauge theory description of a massive boson.
 
-We have a dilemma: Yang-Mills theories are based on the power of symmetry, but they predict massless mediators. 
+Let us consider the problem kinematically: if a vector boson is massive we can go to its rest frame, so the polarization vector has \emph{three} degrees of freedom: so, this new boson will need to have a new degree of freedom.
+
+If we break gauge freedom, there will be no way anymore to describe our vector boson by imposing it with the Gupta-Bleuer condition: so, we will get states of negative probability. 
+
+Also, gauge invariance ensures the \textbf{renormalizability} of the theory: the possibility to be able to change the parameters off the theory with the energy so that we do not get diverging contributions from loop diagrams. 
+
+% This process is going to fail: the kinetic term of these vector bosons will look like 
+% %
+% \begin{align}
+% F^{\mu \nu, i} F_{\mu \nu }^{i}
+% \,,
+% \end{align}
+% %
+% which will never have a quadratic term \(M^2 W^{\mu } W_{\mu }\). 
+% So, the bosons will never be massive like we need.
+% This is called the Intermediate Vector Boson theory. 
+
+% Since our plain Yang-Mills theory does not have massive vector bosons, we can insert them manually. 
+% However, if we do we are explicitly breaking the gauge symmetry.
+
+% We lose renormalizability: renormalization means that we can absorb all the infinities into a finite number of parameters.
+
+% We have a dilemma: Yang-Mills theories are based on the power of symmetry, but they predict massless mediators. 
 
 \end{document}

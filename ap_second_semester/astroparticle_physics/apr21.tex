@@ -101,10 +101,70 @@ We will see this explicitly, with the breaking of the scalar-QED \(U(1)\) symmet
 \end{align}
 %
 where \(\DD_{\mu } = \partial_{\mu } + iq A_{\mu} \).
+This is similar to a Lagrangian describing a fermion, but we substitute it with a complex scalar field with charge \(q\). 
 
+This Lagrangian has a \(U(1)\) gauge symmetry, whose action is 
+%
+\begin{align}
+\phi &\to e^{-iq \alpha (x)} \phi \\
+\phi^{*} &\to e^{iq \alpha (x)} \phi^{*} \\
+A_{\mu } &\to A_{\mu } + \partial_{\mu } \alpha     
+\,.
+\end{align}
+
+If \(\mu^2>0\) we have no issues: the only minimum is the global one at \(\phi = A_{\mu } = 0\). This is the only configuration which is Lorentz invariant: any other vector would define a direction, breaking Lorentz symmetry. 
+
+The last point also holds if \(\mu^2 < 0\); so the possible vacua are those defined as \(\phi = v e^{i \theta } / \sqrt{2}\) and \(A^{\mu } = 0 \).
+Let us perturb as we did before: if we define 
+%
+\begin{align}
+\phi (x) = \frac{1}{\sqrt{2}} \qty(v + \sigma (x) + i \eta (x))
+\,,
+\end{align}
+%
+the Lagrangian can be rewritten as 
+%
+\begin{align}
+\begin{split}
+\mathscr{L} &= \frac{1}{2} \partial^{\mu } \sigma \partial_{\mu }\sigma 
+- \frac{1}{2} (2 \lambda v^2) \sigma^2(x)  
+- \frac{1}{4} F^{\mu \nu } F_{\mu \nu } \\
+&\phantom{=}\ 
++ \frac{1}{2} (q v)^2 A_{\mu } A^{\mu }
++ \frac{1}{2} \partial^{\mu }\eta \partial_{\mu } \eta 
++ qv A^{\mu } \partial_{\mu } \eta 
++ \text{higher-order interactions}   
+\,.
+\end{split}
+\end{align}
+
+This Lagrangian describes a real scalar \(\sigma \) with mass \(\sqrt{2 \lambda v^2}\); a massless real scalar \(\eta \); a massive vector boson and the interactions between them. 
+
+Let us count degrees of freedom: we started with a complex scalar \(\phi \) (2 dof) and a massless vector (2 dof); now we have two real scalars (1 dof each) and a massive vector (3 dof): we have gone from a total of four to a total of five! 
+So, there must be an unphysical field between these. 
+
+In fact, we can do a gauge transformation (going to the \emph{unitary gauge}) so that \(\phi \) is real everywhere: this removes the need for \(\eta \). 
+After this manipulation, the Lagrangian will read 
+%
+\begin{align}
+\begin{split}
+\mathscr{L} &= \frac{1}{2} \partial^{\mu } \sigma \partial_{\mu } \sigma 
+- \frac{1}{2} (2 \lambda v^2) \sigma^2 
+- \frac{1}{4} F_{\mu \nu } F^{\mu \nu } \\
+&\phantom{=}\ 
++ \frac{1}{2} (qv)^2 A_{\mu} A^{\mu }  
++ \text{higher-order interactions}
+\,,
+\end{split}
+\end{align}
+%
+so we are left with a massive scalar \(\sigma \) (1 dof) and a massive vector \(A_{\mu } \) (3 dof): the total is 4 again! 
+
+It is a ``transmutation'' of degrees of freedom: one dof has gone from the scalar to the vector making it massive. 
+
+This is the \textbf{Higgs mechanism}.
 
 % The wonderful thing is that the two dof of the massless vector ad the single degree of freedom of the massless scalar couple to give a massive vector with three degrees of freedom.
 
-% It is a ``transmutation'' of degrees of freedom.
 
 \end{document}

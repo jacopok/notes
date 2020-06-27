@@ -9,6 +9,8 @@
 % We had a quadratic term in the Lagrangian, and a quartic term. 
 
 What would \(\mu^2<0\) physically mean? It would be a tachyonic particle.
+
+The field \(\sigma (x)\) is called the \textbf{Higgs field}; the would-be Goldstone boson disappears yielding the longitudinal polarization of \(A_{\mu } (x)\). 
 % The Vacuum Expectation Value goes from 0 to \(v\): in this case we have broken the \(U(1)\) symmetry.
 
 % The imaginary part of the field \(\phi \) corresponds to a massless scalar field.
@@ -32,15 +34,138 @@ What would \(\mu^2<0\) physically mean? It would be a tachyonic particle.
 
 % This is the \emph{transmutation}, the scalar degree of freedom is absorbed to a degree of freedom in the vector field.
 
-We can repeat this in the general case, with the group \(G\) being broken to \(G'\). Suppose, for clarity, that this is \(SU(2)\) being broken to \(U(1)\). 
-
 We are curing two different problems: we have found massive gauge bosons, and removed the unphysical Goldstone bosons.
 
-As \(SU(2)\) is broken to \(U(1)\), the 3 generators \(A_{\mu }^{a}\), with \(a = 1, 2, 3\) are broken to give two massive vector bosons (\(Z^{\pm}\)) and one massless vector boson (the photon), while the real field \(\sigma \) is the Higgs field.
+\subsubsection{A more general formulation: \(SU(2)\) symmetry breaking}
 
-We are missing the \(Z\) boson: this is just an example to clarify what this mechanism looks like, it is not what we actually will use: we will have to choose another symmetry group.
+This section follows Peskin pretty closely \cite[sec.\ 16.2]{peskinConceptsElementaryParticle2019}.
+
+We can repeat this in the general case, with the group \(G\) being broken to \(G'\). Suppose, for clarity, that this is \(SU(2)\) being broken to \(U(1)\).
+
+The three vectors \(A^{a}_{\mu }\) generate rotations around the axes \(x^{a}\) respectively, as \(a = 1, 2, 3\). 
+
+The adjoint representation of \(SU(2)\) is given by three real scalar fields \(\phi^{a}\); their covariant derivative is given by 
+%
+\begin{align}
+\DD_{\mu } \phi^{a} 
+= \partial_{\mu } \phi^{a}
++ g \epsilon^{abc} A^{b}_{\mu } \phi^{c}
+\,,
+\end{align}
+%
+since the representation matrices in the adjoint representation are \((t^{b}_{G})_{ac} = i f^{abc}\). 
+
+We want to choose a potential \(V(\phi )\) which is minimized by a configuration with \(\expval{\abs{\phi^{a}}} = v\). 
+A vacuum for this potential is, for example, given by \(\phi^{a }= v \delta^{a3}\): it retains some rotational invariance (around the \(\hat{3}\) axis), but invariance for rotations around the other two axis is broken. 
+
+A perturbative expansion around such a vacuum will then be given by 
+%
+\begin{align}
+\phi (x) = \qty(\pi^{1} (x), \pi^{2}(x), v + h(x))
+\,,
+\end{align}
+%
+where \(\pi^{1, 2}\) are the would-be goldstone bosons, which will contribute to the longitudinal components of \(A^{1,2}_{\mu }\), the bosons which become massive. 
+
+On the other hand, \(A^{3}_{\mu } \) remains massless. 
+As we go to the unitary gauge we can eliminate \(\pi^{1, 2}\): so we get 
+%
+\begin{align}
+\phi (x) = (0, 0, v + h(x))
+\,.
+\end{align}
+
+We know that 
+%
+\begin{align}
+\DD_{\mu } \phi^{a} 
+&= \partial_{\mu } h \delta^{3a} 
++ g \epsilon^{abc} A^{b}_{\mu } \phi^{c}  \\
+&= \partial_{\mu } h \delta^{3a}
++ g \epsilon^{ab3} A^{b}_{\mu } (v + h(x))
+\,.
+\end{align}
+
+The kinetic term of \(\phi^{a}\) will then become: 
+%
+\begin{align}
+\frac{1}{2} \qty(\DD_{\mu } \phi^{a})^2
+&= \frac{1}{2} \DD_{\mu } \left[\begin{array}{ccc}
+0 & 0 & v+h
+\end{array}\right]
+\DD^{\mu } \left[\begin{array}{c}
+0 \\ 
+0 \\ 
+v+h
+\end{array}\right]  \\
+&= \frac{1}{2} \qty[
+    g \epsilon^{ab3} A^{b}_{\mu } (v+h) 
+    + \partial_{\mu } h \delta^{a3}
+]^2  \marginnote{Square entails contraction of both \(a\) and \(\mu \).}\\
+&= \frac{g^2 v^2}{2} \epsilon^{ab3} A^{b}_{\mu } \epsilon^{ad3} A^{d, \mu } + \mathcal{O}(h) \\
+&= \frac{g^2 v^2}{2} \qty(A^{1}_{\mu } A^{\mu 1} + A^{2}_{\mu } A^{\mu 2 } ) + \mathcal{O}(h)
+\,.
+\end{align}
+
+So, \(A^{1, 2}\) became massive, with mass \(M_W^2 = g^2 v^2\), while \(A^{3}\) remained massless.
+
+As \(SU(2)\) is broken to \(U(1)\), the 3 generators \(A_{\mu }^{a}\), with \(a = 1, 2, 3\) are broken to give two massive vector bosons (\(W^{\pm}\)) and one massless vector boson (the photon), while the real field \(\sigma \) is the Higgs field.
+
+The two \(W\) bosons are not actually the components \(A^{1, 2}\): instead, we choose them to be the eigenvalues of rotations around the \(z\) axis: 
+%
+\begin{align}
+W^{\pm}_{\mu } = \frac{1}{\sqrt{2}} \qty(A^{1}_{\mu } \mp i A^{2}_{\mu }) 
+\,,
+\end{align}
+%
+since the rotation matrix around the \(z\) axis in the spin-1 representation is given by 
+%
+\begin{align}
+J^{3} = \left[\begin{array}{ccc}
+0 & -i & 0 \\ 
+i & 0 & 0 \\ 
+0 & 0 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+whose eigenvectors are indeed \((1, \mp i, 0)\) with eigenvalues \(\pm 1\). 
+
+This is called the \textbf{Georgi-Glashow model}. It predicts two massive bosons of the \(V-A\) interaction. 
+However, it does not work well phenomenologically. 
+
+\subsubsection{Hypercharge: why the GG model does not work}
+
+This was a computationally easy example to clarify what this mechanism looks like, not the one we actually will use: we will have to choose another symmetry group.
+
+The issue lies with the fact that we are associating electric charge with the generator of rotations about \(\hat{3}\).
+We know that an electron current can be turned into an electronic neutrino current, and that the neutrino is electrically neutral.
+They must belong to the same isospin multiplet in order for this to happen.
+
+\todo[inline]{Isospin means the quantum number associated with \(SO(3)\), right?}
+
+We cannot have a doublet with only \(\nu \) and \(e^{-}\) because of the fact that the neutrino is neutral: the eigenvalues of the rotation about the \(3\) axis would have to be \(0\) and \(1\).
+
+\todo[inline]{and why does this not work? should the sum of the eigenvalues of the same multiplet always be zero?} 
+
+We then predict the existence of a heavy electron \(E^{+}\), such that the triplet looks like 
+%
+\begin{align}
+\left[\begin{array}{c}
+E^{+} \\ 
+\nu  \\ 
+e^{-}
+\end{array}\right]
+\,,
+\end{align}
+%
+where the eigenvalues of this rotation around the 
+\todo[inline]{why?}
+but this heavy electron was not observed; the experimental bound is at \SI{400}{GeV} currently. 
 
 This will be a way to unify electromagnetic and weak interactions, and we will get to use a single coupling constant for our new electroweak theory.
+
+\subsection{Electroweak symmetry breaking}
 
 The correct symmetry group for the electroweak theory is 
 %

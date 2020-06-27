@@ -1,11 +1,63 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Neutral current interactions}
+
 \marginpar{Tuesday\\ 2020-4-28, \\ compiled \\ \today}
 
-Let us discuss the Standard Model of Particle Physics. 
+We have introduced a term in our model which yields an important and testable prediction: the existence of a weak \emph{neutral} current in addition to the charged ones.
+Let us make some simple examples for the three types of currents we have: the charged current with the \(W^{\pm}\) bosons mediates interactions like 
+%
+\begin{align}
+\nu_{L} + d_L \to e^{-}_{L} + u_L
+\,,
+\end{align}
+%
+the electromagnetic current \(A_{\mu }\) and the neutral current \(Z^{0}_{\mu }\) mediate interactions like 
+%
+\begin{align}
+e^{-}_{L} + u_L \to e^{-}_{L} + u_L
+\,,
+\end{align}
+%
+however there is a distinction to be made: the electromagnetic current can only be coupled to charged particles, so a process like 
+%
+\begin{align}
+\nu_{L} + u_L \to \nu_{L} + u_L
+\,
+\end{align}
+%
+can only be mediated by the \(Z^{0}\) boson, since the neutrino is neutral!
+This kind of interaction has been experimentally observed!
 
-Our symmetry is 
+\todo[inline]{So, there are certain processes which can be mediated by both the \(Z^{0}\) boson and the photon. Does this mean that people needed to revise their estimate of the electromagnetic coupling, since electromagnetism was not the only contributor to those scatterings?}
+
+\section{The Standard Model of particle physics}
+
+The Lagrangian reads:
+%
+\boxalign{
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F_{\mu \nu } F^{\mu \nu }
++ i \overline{\psi} \slashed{\DD} \psi  
++ \psi_{i} y_{ij} \psi_{j} \phi 
++ \text{h.\ c.} 
++\abs{\DD_{\mu } \phi }^2 - V(\phi )
+\,.
+\end{align}}
+
+Let us unpack the terms: 
+\begin{enumerate}
+    \item \(F_{\mu \nu } F^{\mu \nu }\) encompasses the kinetic and self-interaction terms of all the interaction bosons (photon, \(W^{\pm}\), \(Z^{0}\), gluons);
+    \item \(i \overline{\psi} \slashed{\DD} \psi \) encompasses all the kinetic terms of the fermions (\(\overline{\psi} \gamma^{\mu } \partial_{\mu } \psi  \)) and the interaction terms between the fermions and the gauge bosons: \(g \overline{\psi} \gamma^{\mu }A_{\mu } \psi \);
+    \item \(\psi_{i} y_{ij} \psi_{j} \phi \) is the interaction between the Higgs field and the fermions, which gives mass to the fermions and which we will discuss in the next section;
+    \item \(\abs{\DD_{\mu } \phi }^2\) is the kinetic term of the scalar (Higgs) field \(\phi \), also including the interactions between it and the vector bosons;
+    \item \(V(\phi )\) is the potential for the scalar field, it must be at least quartic.  
+\end{enumerate}
+
+``h.\ c.'' means Hermitian Conjugate, it is needed in order to ensure that everything is self-adjoint. 
+
+The symmetry which determines this theory is 
 %
 \begin{align}
 \text{Lorentz} \otimes 
@@ -16,6 +68,7 @@ U(1)_{Y}
 \end{align}
 
 Starting from the symmetry, the only other prescription needed are the quantum numbers of the various particles: we can make a table. 
+As we have seen, the fermions are divided into left-handed isospin doublets and right-handed singlets. 
 
 \begin{figure}[H]
 \centering
@@ -43,12 +96,13 @@ Starting from the symmetry, the only other prescription needed are the quantum n
 \end{figure}
 
 Here we write only one of the generations for both leptons and quarks.
-The quantum numbers for the other generations are the same. An unanswered question is \emph{why} exactly there are three families.
+The quantum numbers for the other generations are the same.
+An unanswered question is \emph{why} exactly there are three families.
 
-We are always computing the electric charge as \(Q = T_3 + Y\).
+We are always computing the electric charge as \(Q = T_3 + Y\), where \(T_3\) is the generator of \(SU(2)_L\) rotations around the \(\hat{3}\) axis.
 Sometimes we write ``1'' for the right-handed quarks under \(T_3 \), this is not the eigenvalue but it is used to mean ``singlet''.
 
-For the \(SU(3)\) we have 8 generators, for \(SU(2)\) we have three generators, for \(U(1)\) we only have 1 generator.
+For the \(SU(3)\) we have 8 generators (corresponding to the gluons), for \(SU(2)\) we have three generators, for \(U(1)\) we only have 1 generator: these four, after SSB, are three massive bosons and the photon.
 
 The assignment of the charges cannot come from the symmetry, it must be determined experimentally.
 

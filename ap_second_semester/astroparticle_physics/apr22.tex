@@ -141,12 +141,12 @@ This was a computationally easy example to clarify what this mechanism looks lik
 The issue lies with the fact that we are associating electric charge with the generator of rotations about \(\hat{3}\).
 We know that an electron current can be turned into an electronic neutrino current, and that the neutrino is electrically neutral.
 They must belong to the same isospin multiplet in order for this to happen.
-
-\todo[inline]{Isospin means the quantum number associated with \(SO(3)\), right?}
+Isospin (\(I\)) is what we call rotation in the three-dimensional space the \(SU(2)\) symmetry was initially defined in. 
+Rotation about the \(\hat{3}\) axis then corresponds to the operator \(I_3\); the algebra of these operators is that of a rotation representation, \([I_i, I_j] = i \epsilon_{ijk} I_k\).
+When we say ``isospin multiplet'' we mean that the value of \(I^2 = j (j+1)\) is fixed; then the value of \(I_3\) will go from \(-j\) to \(j\).
 
 We cannot have a doublet with only \(\nu \) and \(e^{-}\) because of the fact that the neutrino is neutral: the eigenvalues of the rotation about the \(3\) axis would have to be \(0\) and \(1\).
-
-\todo[inline]{and why does this not work? should the sum of the eigenvalues of the same multiplet always be zero?} 
+We need a particle with eigenvalue \(-1\) with respect to rotations about the \(\hat{3}\) axis, so with positive charge.
 
 We then predict the existence of a heavy electron \(E^{+}\), such that the triplet looks like 
 %
@@ -159,15 +159,17 @@ e^{-}
 \,,
 \end{align}
 %
-where the eigenvalues of this rotation around the 
-\todo[inline]{why?}
-but this heavy electron was not observed; the experimental bound is at \SI{400}{GeV} currently. 
+where the eigenvalues of this rotation around the \(\hat{3}\) axis are \(-1, 0, 1 \) respectively.
+This heavy electron was not observed; the experimental bound is at \(M_{E^{+}}\leq \SI{400}{GeV}\) currently. 
+We would expect to then see processes like \(u + E^{+} \to d + \nu \), but we do not.
+
+\todo[inline]{Is the positron \(e^{+}\) not a candidate for this? Why do we say that this particle would need to be ``heavy''? Or are we already implicitly considering antiparticles maybe?}
 
 This will be a way to unify electromagnetic and weak interactions, and we will get to use a single coupling constant for our new electroweak theory.
 
 \subsection{Electroweak symmetry breaking}
 
-The correct symmetry group for the electroweak theory is 
+The correct symmetry group for the electroweak theory, as Glashow showed in 1961, is 
 %
 \begin{align}
 SU(2)_{L} \otimes U(1) _{\text{hypercharge}}
@@ -175,84 +177,341 @@ SU(2)_{L} \otimes U(1) _{\text{hypercharge}}
 \end{align}
 %
 where the hypercharge is usually denoted as \(Y\).
-
-We have a doublet under \(SU(2)\), we will see that one component of this doublet has charge \(+\) while the other has charge 0.
-
 We have three vector fields for \(SU(2)\), which we call \(A_{\mu}^{i}\), and also a vector field for \(U(1)\): \(B_{\mu }\).
+Note that these do not have a direct correspondence with the fields we get after SSB: hypercharge is different from electromagnetic charge.
 
-The VEV of our field will be 
+The pair neutrino-electron is a \(I = 1/2\) doublet under \(SU(2) \times U(1)\), we will see that one component of this doublet has charge \(+\) while the other has charge 0: its transformation will look like 
 %
-\begin{subequations}
 \begin{align}
-\expval{\phi }= \left[\begin{array}{c}
+\left[\begin{array}{c}
+\nu_{L} \\ 
+e^{-}_{L}
+\end{array}\right]
+\to 
+\underbrace{e^{-i \vec{\alpha} \cdot \vec{\sigma} / 2}}_{SU(2)}
+\underbrace{e^{-i \beta  /2 }}_{U(1)}
+\left[\begin{array}{c}
+\nu_{L} \\ 
+e^{-}_{L}
+\end{array}\right]
+\,.
+\end{align}
+
+The bosons in this theory start off as massless, and therefore the fields 
+%
+\begin{align}
+W^{\pm}_{\mu } = \frac{1}{\sqrt{2}}  \qty(A^{1}_{\mu } \mp i A^{2}_{\mu })
+\,
+\end{align}
+%
+are massless as well. However, we want massive \(W\) bosons with \(M_W \sim \SI{100}{Gev}\)! 
+At the end of the sixties Weinberg and Salam introduced the Higgs mechanism in this theory. 
+The idea is to interpret the scalar field as a \(I= 1/2\) representation of rotation: it will transform under the symmetries of the theory as 
+%
+\begin{align}
+\varphi =
+\left[\begin{array}{c}
+\varphi^{+} \\ 
+\varphi^{0}
+\end{array}\right]
+\to 
+e^{i \vec{\alpha} \cdot \vec{\sigma} /2}
+e^{i \beta / 2}
+\left[\begin{array}{c}
+\varphi^{+} \\ 
+\varphi^{0}
+\end{array}\right]
+\,.
+\end{align}
+
+So, the lepton doublet has a charge \(-1/2\) with respect to the \(U(1)\) symmetry, while the field has a symmetry \(+1/2\). 
+
+Suppose the potential of the field reads: 
+%
+\begin{align}
+V(\phi ) = - \mu^2 \abs{\phi }^2 + \lambda \abs{\phi }^{4}
+\,,
+\end{align}
+%
+whose minimum is defined by 
+%
+\begin{align}
+0= - 2 \mu^2 \phi + 4 \lambda \phi \abs{\phi }^2
+\,,
+\end{align}
+%
+therefore the minimum is a sphere (since the two complex fields correspond to four real degrees of freedom) with \(\abs{\phi }^2 =  \abs{\phi^{+}}^2 + \abs{\phi^{0}}^2 = \mu^2 / 2 \lambda \); so we define \(v = \mu / \sqrt{\lambda }\).
+
+Up to a rotation, the VEV of our field will be 
+%
+\begin{align}
+\expval{\phi }_{0} = \frac{1}{\sqrt{2}}
+\left[\begin{array}{c}
 0 \\ 
 v
 \end{array}\right]
 \,.
 \end{align}
-\end{subequations}
 
-The residual gauge symmetry can be identified with \(U(1)_{\text{em}}\). Do note that \(U(1)\)-hypercharge \emph{is} broken. However, a certain combination of the generators gives us the \(U(1)\) electromagnetic.
-The combination is 
+This vacuum breaks the \(SU(2)_L \times U(1)_{Y}\) symmetry. 
+We can expand around it in the following manner: 
+%
+\begin{align}
+\phi (x) 
+= 
+\left[\begin{array}{c}
+\pi^{+}(x) \\ 
+\frac{v + h(x) + i \pi^{3}(x)}{\sqrt{2}}
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\pi^{+} = (\pi^{1} + i\pi^{2}) / \sqrt{2}\) is a complex perturbation encompassing two real degrees of freedom. 
+
+As we did before, we can gauge away the unphysical Goldstone bosons \(\pi^{1, 2, 3}\); the real field \(h(x)\) remains. 
+
+How do the bosons of this theory \textbf{couple to fermions}? The couplings can only have specific forms, fixed by gauge invariance: the covariant derivative will read: 
+%
+\begin{align}
+\DD_{\mu } \Psi  = 
+\qty(\partial_{\mu } 
+- i g A^{a}_{\mu } I^{a} 
+- i g' B_{\mu } Y
+)\Psi 
+\,,
+\end{align}
+%
+where \(g\) and \(g'\) are the coupling of \(SU(2)\) weak isospin and \(U(1)\) hypercharge respectively; \(I^{a}\) are the generators of \(SU(2)\) in the \(SU(2)\) representation acting on \(\Psi \), and \(Y\) is the hypercharge, a scalar. 
+
+In principle, \(g\) and \(g'\) are independent, so we keep them distinct. Let us now apply \(\DD_{\mu } \) to the field \(\phi \) around the vacuum with only the \(h \) perturbation, as 
+%
+\begin{align}
+\DD_{\mu } \phi = \qty(\partial_{\mu } 
+- i g A^{a}_{\mu } I^{a} 
+- i g' B_{\mu } Y
+) \left[\begin{array}{c}
+0 \\ 
+\frac{v + h(x)}{\sqrt{2}}
+\end{array}\right]
+\,,
+\end{align}
+%
+of which we take the square norm, up to zeroth order in \(h\): 
+%
+\begin{align}
+\abs{\DD_{\mu } \phi }^2
+&= \frac{1}{2} \left[\begin{array}{cc}
+0 & v
+\end{array}\right]
+\qty(g A^{a}_{\mu } \frac{\sigma^{a}}{2} + g' B_{\mu } \frac{1}{2})
+\qty(g A^{b, \mu } \frac{\sigma^{b}}{2} + g' B^{\mu } \frac{1}{2})
+\left[\begin{array}{c}
+0 \\ 
+v
+\end{array}\right] \qty(+ \mathcal{O}(h)) \\
+&= \frac{1}{2} \underbrace{ g^2v^2  \frac{1}{4} 
+\qty(A^{1}_{\mu } A^{1, \mu } + A^{2}_{\mu } A^{2, \mu })}_{\underbrace{(gv/2)^2}_{M_W^2} W^{+}_{\mu } W^{\mu, -}}
++ \frac{1}{2} \frac{v^2}{4} 
+\qty(- g A^{3}_{\mu } + g' B_{\mu })^2
+\,.
+\end{align}
+
+So, we have found two massive \(W^{\pm}\) bosons, and the \textbf{combination} \(- g A^{3}_{\mu } + g' B_{\mu }\) has also gained mass. 
+
+Let us define \(\theta_{w}\), the Weinberg angle, by \(\tan \theta_{w} = g ' / g\). 
+Then we will have 
+%
+\begin{align}
+\cos \theta_{w} = \frac{g}{\sqrt{g^2 + g^{\prime 2}}}
+\qquad \text{and} \qquad
+\sin \theta_{w} = \frac{g'}{\sqrt{g^2 + g^{\prime 2}}}
+\,,
+\end{align}
+%
+and we define the electromagnetic field \(A_{\mu }\) and the \(Z_{\mu }\) boson by the two orthogonal combinations: 
+%
+\begin{align}
+A_{\mu } &= \sin \theta_{w} A^{3}_{\mu } + \cos \theta_{w} B_\mu \\
+Z_{\mu } &= \cos \theta_{w} A^{3}_{\mu } - \sin \theta_{w} B_\mu  
+\,,
+\end{align}
+%
+so that the kinetic term reads 
+%
+\begin{align}
+\frac{1}{2} \frac{v^2}{4} \qty(- g A^{3}_{\mu } + g' B_{\mu })^2 
+&= \frac{m_Z^2}{2} Z^{\mu }Z_{\mu } 
+\,,
+\end{align}
+%
+where \(m_Z^2 = (g^2 + g^{\prime 2}) v^2/ 4 \), while there is no mass term for \(A\): so, \(m_A = 0\).
+
+The residual gauge symmetry can be identified with \(U(1)_{\text{em}}\).
+When the symmetry is broken, we are left with a long-range interaction and a short range one.
+
+% Do note that \(U(1)\)-hypercharge \emph{is} broken.
+% However, a certain combination of the generators gives us the \(U(1)\) electromagnetic.
+The combination under which the vacuum is invariant is 
 %
 \begin{align}
 T^{3} + Y
 \,,
 \end{align}
 %
-where \(T^{3}\) is the third generator of \(SU(2)\), while \(Y\) is the generator of hypercharge. 
-A combination which is broken is 
+where \(T^{3}\) is the third generator of \(SU(2)\), while \(Y\) is the generator of hypercharge.
+This corresponds to 
 %
 \begin{align}
-Q_{z} = T^{3} - \sin^2 (\theta_{w}) Q
+\phi \to e^{i \vec{\alpha} \cdot \vec{\sigma} / 2} e^{i \beta /2} \phi 
 \,,
 \end{align}
 %
-where \(\theta_{w}\) is the Weak, or Wonder angle, defined by 
+with \(\alpha^{3} = \beta \): this is due to the fact that 
 %
 \begin{align}
-\tan(\theta_{w}) = \frac{g'}{g}
+\frac{1}{2} \qty(\sigma^{3} + \mathbb{1}) =  \left[\begin{array}{cc}
+1 & 0 \\ 
+0 & 0
+\end{array}\right]
 \,,
 \end{align}
 %
-where \(g'\) and \(g\) are the coupling constants relative to \(U(1)\) and \(SU(2)\) respectively.
+whose exponential leaves the second component of \(\phi = (0, v/\sqrt{2})\) invariant.
 
-The model is called the Glashow-Weinberg-Salam model. This is the Standard Model of the electroweak interaction.
-
-How is this unification since we have two coupling constants? The constants are not the coupling constants of weak and electromagnetic interaction. The photon is given by
+In summary, the SSB has the form 
 %
 \begin{align}
-A_{\mu } = \sin(\theta_{w}) A^{3}_{\mu } + \cos(\theta_{w}) B_{\mu }
+SU(2)_L \times U(1)_{Y} \to U(1)_{\text{em}}
 \,,
 \end{align}
 %
-while the orthogonal combination is 
+and it yields the two \(W^{\pm}\) bosons, each with mass \(gv/2\), and the \(Z\) boson with mass \(\sqrt{g^2+g^{\prime 2}} v/2\). 
+The masses of the \(W\) and \(Z\) bosons are related by: 
 %
 \begin{align}
-Z^{0}_{\mu } = \cos(\theta_{w}) A^{3}_{\mu } - \sin(\theta_{w}) B_{\mu }
+m_W = m_Z \cos \theta_{w}
 \,,
 \end{align}
 %
-so we cannot decouple the weak and electromagnetic bosons.
-This is why the symmetry is called the electroweak symmetry.
+so if we can devise some experiment which will measure \(\theta_{w}\) we can predict \(m_W / m_Z\). 
 
-When the symmetry is broken, we are left with a long-range interaction and a short range one.
+The full expression of the covariant derivative reads, using the notation \(c_w = \cos \theta_{w}\), \(s_w = \sin \theta_{w}\) and \(\sigma^{\pm} = \qty(\sigma^{1} \mp i \sigma^{2}) / \sqrt{2}\):
+\todo[inline]{not sure about the last one} 
+%
+\begin{align}
+\DD_{\mu } \Psi &= \qty[
+    \partial_{\mu } 
+    -i \frac{g}{\sqrt{2}} \qty(W^{+}_{\mu } \sigma^{+}+ W^{-}\sigma^{-})
+    - ig \qty(c_{w} Z_\mu + s_{w}A_{\mu }) I^{3}
+    - ig \qty(- s_{w} Z_\mu + c_{w} A_{\mu }Y)
+] \Psi  \\
+&= \qty[\partial_{\mu } 
+    - i \frac{g}{\sqrt{2}} \qty(W^{+}_{\mu } \sigma^{+}+ W^{-}\sigma^{-})
+    - i e A_{\mu }Q 
+    - i \frac{g}{c_w} Z_\mu Q_Z
+] \Psi 
+\,,
+\end{align}
+%
+where we defined \(e = g s_w = g' c_w \), and 
+%
+\begin{align}
+Q = I^{3} + Y 
+\qquad \text{and} \qquad
+Q_Z = I^{3} - s_w^2 Q
+\,.
+\end{align}
 
+\todo[inline]{The next bit is not super clear.}
+
+If the mass of the fermion described by \(\Psi \) is zero we can decouple the left- and right-handed parts of the spinor. 
+We will get interactions between the left handed components, not between the right-handed components, since the \(W^{\pm}\) do not couple with them.
+\todo[inline]{How does that come about exactly?}
+
+We recover the \(V-A\) structure: the left- and right-handed spinors have different quantum numbers with respect to \(SU(2)_L\) and \(U(1)_Y\) but the same \(Q\), which is the quantum number corresponding to \(U(1)_{\text{em}}\). 
+
+The \(\psi_{L}\) are \(SU(2)_L\) \textbf{doublets}, with \(I = 1/2\); the \(\psi_{R}\) are \(SU(2)_L\) \textbf{singlets}, with \(I = 0\).
+
+We then choose the values of the hypercharge such that the values of \(Q\) are compatible with experiment. 
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{cccc}
+Particle & \(I^{3}\) & \(Y\) & \(Q\)\\
+\hline
+\(\nu_{e, L}\) & \(+ 1 /2\) & \(- 1/2\)& \(0\) \\
+\(\nu_{e, R}\) & \(0\) & \(0\)& \(0\) \\
+\(e^-_{L}\) & \(- 1 /2\) & \(- 1/2\)& \(-1\) \\
+\(e^-_{R}\) & \(0\) & \(-1\)& \(-1\) \\
+\(u^-_{L}\) & \(+ 1 /2\) & \(1/6\)& \(2/3\) \\
+\(u^-_{R}\) & \(0\) & \(2/3\)& \(2/3\) \\
+\(d^-_{L}\) & \(-1 /2\) & \(1/6\)& \(-1/3\) \\
+\(d^-_{R}\) & \(0\) & \(-1/3\)& \(-1/3\) \\
+\end{tabular}
+\label{tab:fermions-quantum-numbers}
+\caption{Electroweak quantum numbers of the fermions.}
+\end{figure}
+
+% A combination which is broken is 
+% %
+% \begin{align}
+% Q_{z} = T^{3} - \sin^2 (\theta_{w}) Q
+% \,,
+% \end{align}
+% %
+% where \(\theta_{w}\) is the Weak, or Wonder angle, defined by 
+% %
+% \begin{align}
+% \tan(\theta_{w}) = \frac{g'}{g}
+% \,,
+% \end{align}
+% %
+% where \(g'\) and \(g\) are the coupling constants relative to \(U(1)\) and \(SU(2)\) respectively.
+
+% The model is called the Glashow-Weinberg-Salam model. This is the Standard Model of the electroweak interaction.
+
+% How is this unification since we have two coupling constants? The constants are not the coupling constants of weak and electromagnetic interaction. The photon is given by
+% %
+% \begin{align}
+% A_{\mu } = \sin(\theta_{w}) A^{3}_{\mu } + \cos(\theta_{w}) B_{\mu }
+% \,,
+% \end{align}
+% %
+% while the orthogonal combination is 
+% %
+% \begin{align}
+% Z^{0}_{\mu } = \cos(\theta_{w}) A^{3}_{\mu } - \sin(\theta_{w}) B_{\mu }
+% \,,
+% \end{align}
+% %
+% so we cannot decouple the weak and electromagnetic bosons.
+% This is why the symmetry is called the electroweak symmetry.
+
+In terms of \(SU(2)_L\) multiplets, we separate: 
+%
+\begin{align}
+\left[\begin{array}{c}
+\nu_{L} \\ 
+e^{-}_{L}
+\end{array}\right]
+&&
+e^{-}_{R}
+&& 
+\left[\begin{array}{c}
+u_L \\ 
+d_L
+\end{array}\right]
+&&
+u_R
+&&
+d_R
+\,.
+\end{align}
+
+This is a \textbf{generation} (or family) of fermions: the ``electronic'' one, and we have two more: the muonic and tauonic ones.
+
+\todo[inline]{Is this next bit useful?}
 If \(\mu^2\) is a function of \(T\), then we can get a phase transition.
 This is called the electroweak phase transition.
-
-Standard Model Lagrangian: 
-%
-\boxalign{
-\begin{align}
-\mathscr{L} = - \frac{1}{4} F_{\mu \nu } F^{\mu \nu }
-+ i \overline{\psi} \slashed{\DD} \psi  
-+ \psi_{i} y_{ij} \psi_{j} \phi 
-+ \text{h. c.} 
-+\abs{\DD_{\mu } \phi }^2 - V(\phi )
-\,.
-\end{align}}
-
-We have not seen the \(y_{ij}\) bit yet, it is responsible for the fermion masses.
 
 \end{document}

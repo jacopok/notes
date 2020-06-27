@@ -126,24 +126,48 @@ The issue is that, before including the Higgs boson, everything is massless.
 
 Gluons and quarks have the same ``destiny'': there is confinement when \(g_S\) becomes large.
 
-The \(SU(2) \times U(1)_{Y}\) symmetry is spontaneously broken to \(U(1)_{\text{em}}\). If we had 4 massless DoF before, they must still be there but they have become massive.
+% The \(SU(2)_L \times U(1)_{Y}\) symmetry is spontaneously broken to \(U(1)_{\text{em}}\). If we had 4 massless DoF before, they must still be there but they have become massive.
 
-These three particles would have become Goldstone bosons, but instead they become the longitudinal component of the three vector bosons.
+% These three particles would have become Goldstone bosons, but instead they become the longitudinal component of the three vector bosons.
 
 The charged Higgs component \(\phi^{+}\) gives mass to the \(W^{\pm}\) vector bosons of the electroweak interaction, the \(\phi^{0}\) gives mass to the \(Z^{0}\) vector boson. 
 
-So, we know how to write the kinetic terms \(F^{\mu \nu } F_{\mu \nu }\), and the mass terms \(\overline{\psi} \slashed{D} \psi \). 
+% So, we know how to write the kinetic terms \(F^{\mu \nu } F_{\mu \nu }\), and the mass terms \(\overline{\psi} \slashed{D} \psi \). 
 
-Now we move to the terms coming from the spontaneous breaking of the symmetry. 
+Now we move to the mass terms of the fermions. 
 
 We have the massless \(G^{a}\) and \(A^{\mu }\), and the massive \(W^{\pm}\) and \(Z^{0}\). These are the terms we've written so far: where do the \(\overline{\psi} m  \psi \) terms come from?
 
+
+
 The kinetic term has dimension \(2^2\), which is fine, the wavefunction has dimension \(3/2\) while the derivative has dimension \(1\).
-So, also a term \(\overline{\psi} m \psi \) would be fine, dimension-wise: but is it symmetric? we can write it as \(\overline{\psi}_{L} \psi_{R}\). Let us consider electrons for example.
+So, also a term \(\overline{\psi} m \psi \) would be fine dimensionally. Is it symmetric? 
+Let us consider the issue with the left- and right-handed components. If we were to write something like \(\overline{\psi}_L \psi_L \) or \(\overline{\psi}_{R} \psi_{R}\) we would get 
+%
+\begin{align}
+\overline{\psi}_{L/R} \psi_{L/R} = \overline{\psi} 
+\qty(\frac{1 \mp \gamma_5 }{2}) 
+\qty(\frac{1 \pm \gamma_5 }{2}) 
+\psi 
+= 0
+\,,
+\end{align}
+%
+since we are computing the product of two orthogonal projectors. 
 
-But \(e_L\) is in an \(SU(2)\) doublet, while the \(e_R\) is an \(SU(2)\) singlet. So, the object is not a singlet. This is not invariant under \(SU(2)_{L}\).
+So, the only terms which do not vanish look like \(\overline{\psi}_{L} \psi_{R} = \overline{\psi}_{R} \psi_{L} = \overline{\psi} \psi \).
 
-So, does this mean that fermions are massless? Before introducing \(\phi \), in the pure Yang-Mills theory, they indeed are.
+\todo[inline]{So he writes, but it does not work! We have two different components, \(\overline{\psi} \psi \) and \(\overline{\psi} \gamma^{5} \psi \)!}
+
+Let us consider electrons for example: an object like \(m \overline{e}_{L} e_R\) is a Lorentz invariant, but is it also gauge invariant?
+
+The spinor \(e_L\) is in an \(SU(2)\) doublet, while the \(e_R\) is an \(SU(2)\) singlet.
+So, the object is not a singlet: it is not invariant under \(SU(2)_{L}\), but each term in the Lagrangian must be a scalar with respect to the symmetry group (that is, it must be \emph{symmetric}). 
+In fact, this term is only \(U(1) _{\text{em}}\) invariant, neither its isospin nor its hypercharge are zero.
+
+So, we cannot include this term.
+Does this mean that fermions are massless?
+Before introducing \(\phi \), in the pure Yang-Mills theory, they indeed are.
 
 There is only one kind of field which is invariant under spacetime transformations: a scalar. So, we could introduce a term like 
 %
@@ -152,10 +176,11 @@ There is only one kind of field which is invariant under spacetime transformatio
 \,,
 \end{align}
 %
-where \(i\) is an index going from 1 to 2, an \(SU(2)\) index. 
+where \(i\) is an index going from 1 to 2, an \(SU(2)\) index: \(\phi \), the Higgs field, is an \(SU(2)_L\) doublet!
 This is not a mass term, but an interaction term between the Higgs field and the electron-left and electron-right.
 
-Then, the way the mechanism works is by the fact that the VEV of \(\phi \) is \(v \neq 0\), so at low energies we will see an effective mass term. The constant we put before this will look like 
+Then, the way the mechanism works is by the fact that the VEV of \(\phi \) is \(v \neq 0\), so at low energies we will see an effective mass term.
+The term we put in the Lagrangian will look like 
 %
 \begin{align}
 y^{ij} \overline{\psi}^{i}_{L} \phi \psi_{R}^{j}
@@ -174,7 +199,7 @@ and the matrix will be \(y^{ij} = \delta^{ij} y^{j}\).
 
 Similarly we will have mass terms for the leptons, up and down quarks.
 These are free parameters of the theory, and they must be different. 
-The VEV of the Higgs field is fixed by the masses of the \(W\) and \(Z\) bosons: so it is of the order \SI{100}{GeV}.
+The VEV of the Higgs field is fixed by the masses of the \(W\) and \(Z\) bosons: it is of the order \SI{100}{GeV}.
 
 But the mass of the electron is \(m_e \sim \SI{511}{keV}\): so, we must have \(y_e \sim \num{e-5}\). 
 
@@ -182,25 +207,40 @@ The price we pay for this is the fact that the number of free parameters increas
 
 Why are these parameters so different? This is the \emph{flavour problem}.
 
-We could have a term which looks like 
+\todo[inline]{Stuff is not super clear here.}
+
+Let us write the most general set of Yukawa couplings \cite[eq.\ 18.24]{peskinConceptsElementaryParticle2019}: 
 %
 \begin{align}
-\overline{u}_{L} \gamma^{\mu } d_{L} W_{\mu }
-\,.
-\end{align}
-
-Thi is not the most general thing: we could write 
-%
-\begin{align}
-\overline{u}_{L} U_{L} ^{\dag, (u)} \gamma^{\mu } U_{L}^{(d)} d_{L} W_{\mu }
-\,.
+\mathscr{L} _{\text{coupling}}
+= - y^{ij}_{e} L ^{\dag, i}_{a} \phi_{a} e^{j}_{R}
++ y^{ij}_{d} Q ^{\dag, i}_{a} \phi_{a} d^{j}_{R}
+- y^{ij}_{u} Q ^{\dag, i}_{a} \epsilon_{ab} \phi_{b}^{*} u^{j}_{R} 
++ \text{h.\ c.}
+\,, 
 \end{align}
 %
-The product \(U ^\dag U\) is called \(V_{CKM}\), the Cabibbo matrix, which gives us \(CP\) violation in the Standard model.
 
-It does seem, though, that the amount of CP violation in the Standard Model is too small to satisfy the Sacharov conditions.
 
-There are many parameters: the couplings, the mass terms inside \(y^{ij}\), the terms \(\mu \) and \(\lambda \) inside of \(V(\phi )\).
+% We could have a term which looks like 
+% %
+% \begin{align}
+% \overline{u}_{L} \gamma^{\mu } d_{L} W_{\mu }
+% \,.
+% \end{align}
+
+% Thi is not the most general thing: we could write 
+% %
+% \begin{align}
+% \overline{u}_{L} U_{L} ^{\dag, (u)} \gamma^{\mu } U_{L}^{(d)} d_{L} W_{\mu }
+% \,.
+% \end{align}
+% %
+% The product \(U ^\dag U\) is called \(V_{CKM}\), the Cabibbo matrix, which gives us \(CP\) violation in the Standard model.
+
+% It does seem, though, that the amount of CP violation in the Standard Model is too small to satisfy the Sacharov conditions.
+
+% There are many parameters: the couplings, the mass terms inside \(y^{ij}\), the terms \(\mu \) and \(\lambda \) inside of \(V(\phi )\).
 
 
 

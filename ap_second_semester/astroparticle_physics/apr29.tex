@@ -1,9 +1,90 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\subsection{Neutrinos}
+\subsection{Symmetries of the SM}
 
 \marginpar{Wednesday\\ 2020-4-29, \\ compiled \\ \today}
+
+Let us write the Standard Model Lagrangian \emph{after} spontaneous symmetry breaking (so, at low energies): 
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} \sum _{a} \qty(F_{\mu \nu }^{a})^2
++ m_W^2 W^{+}_{\mu } W^{-, \mu }
++ \frac{1}{2} m_Z^2 Z_{\mu } Z^{\mu }
++ \sum _{f} \overline{\psi}_{f} \qty(i \slashed{\DD} - m_f) \psi_{f} 
++ \frac{1}{2} \qty(\partial_{\mu } h)^2 - V(h)
+\,,
+\end{align}
+%
+where \(a\) runs over all our \(8 + 3 + 1 = 12\) gauge bosons (8 gluons, the \(W^{\pm }\) and \(Z^{0}\), the photon), and the covariant derivative is given by: 
+%
+\begin{align}
+\DD_{\mu f} = \partial_{\mu } - i e Q_f A_{\mu } 
+- i \frac{g}{\cos \theta_{w}} Q_{Zf} Z_{\mu } 
+- i g_s A^{a}_{\mu } t^{a}
+\,.
+\end{align}
+
+\todo[inline]{Something that should have come up before: what's up with the \(W\) mass term? It does not look like a usual mass term\dots }
+
+The weak force interactions are diagonal for the leptons, proportional to \(V_{CKM}\) for the quarks.
+
+Let us discuss the remaining symmetries of the model. 
+These are symmetries which are not imposed on the model by hand, instead they follow automatically from the terms which are allowed by the chosen gauge symmetries.
+
+\subsubsection{Baryon and Lepton number conservation}
+
+We define 
+%
+\begin{align}
+B(\text{Quark}) = \frac{1}{3} \qquad \text{and} \qquad
+B(\text{antiQuark}) = - \frac{1}{3}
+\,,
+\end{align}
+%
+while for any other particle we assign 0.
+This is conserved, but we need not impose it: the most general Lagrangian we write with our symmetries has it.
+This is a global symmetry: \(U(1)_{B}\). 
+
+The way to find it is to construct a baryonic current \(j^{\mu }_{B}\), in such a way that it is conserved in our Lagrangian, then the integral of \(j^{0}_{B}\) will give the conserved charge.
+
+This has heavy consequences: the lightest baryon is the proton. If it were to decay, this would not conserve baryon number. 
+
+If we are allowed to violate baryon number conservation we can have a decay like \(p \to e^{+ } + \gamma \), which would occur and destabilize atoms.
+
+We get a bound on the lifetime of the proton of 
+%
+\begin{align}
+\tau _{\text{proton}} > \SI{e32}{yr}
+\,.
+\end{align}
+
+We also have lepton number conservation.
+This is more interesting since we have neutrinos, which are hard to detect.
+
+We will see a method to give mass to neutrinos, which will however violate lepton number conservation.
+
+\subsubsection{\(C\), \(P\) and \(T\) symmetries}
+
+Strong and EM interaction conserve these three symmetries, while the coupling of the weak bosons to the fermions violate \(C\) and \(P\) maximally.
+If the couplings were real-valued, \(CP\) symmetry would be preserved, but the \(V_{CKM}\) matrix has a physical phase, so this is not the case. 
+
+By the \(CPT\) theorem, \(T\) is also violated.
+
+\subsubsection{Flavour number conservation}
+
+The only thing which couples different families of fermions together is the \(CKM\) matrix, which gives mixing terms between the quarks, as 
+%
+\begin{align}
+\overline{u}_{i} \gamma^{\mu } (V_{CKM})_{ij} \phi_{j}
+\,,
+\end{align}
+%
+and the Cabibbo angle measures how much this happens; we then expect to see decays like \(u \to s + W^{+}\). 
+
+For leptons, instead, we expect perfect conservation of lepton number since there is no mixing. Experimentally this seems to be quite well verified: if process like \(\mu \to e \gamma \) or \(\tau \to e \gamma \) happen they must do so extremely rarely. 
+
+\subsection{Neutrinos}
 
 The Yukawa Lagrangian is written as 
 %
@@ -67,40 +148,10 @@ So, we get Dirac mass terms for the electron but not for the neutrino.
 
 Ettore Majorana proposed a way to give a mass for the neutrino (or any neutral fermion, really).
 
-The symmetries of the SM are, generally, \(\text{Lorentz} \otimes \text{Gauge}\).
-We then write all the terms we can which are invariant under these. 
+% The symmetries of the SM are, generally, \(\text{Lorentz} \otimes \text{Gauge}\).
+% We then write all the terms we can which are invariant under these. 
 
-From these we can derive conservation laws, such as that for the Baryon number. We define 
-%
-\begin{align}
-B(\text{Quark}) = \frac{1}{3} \qquad \text{and} \qquad
-B(\text{antiQuark}) = - \frac{1}{3}
-\,,
-\end{align}
-%
-while for any other particle we assign 0.
-This is conserved, but we need not impose it: the most general Lagrangian we write with our symmetries has it.
-This is a global symmetry: \(U(1)_{B}\). 
-
-The way to find it is to construct a baryonic current \(j^{\mu }_{B}\), in such a way that it is conserved in our Lagrangian, then the integral of \(j^{0}_{B}\) will give the conserved charge.
-
-This has heavy consequences: the lightest baryon is the proton. If it were to decay, this would not conserve baryon number. 
-
-If we are allowed to violate baryon number conservation we can have a decay like \(p \to e^{+ } + \gamma \), which would occur and destabilize atoms.
-
-\todo[inline]{Recover a couple minutes}
-
-We get a bound on the lifetime of the proton of 
-%
-\begin{align}
-\tau _{\text{proton}} > \SI{e32}{yr}
-\,.
-\end{align}
-
-We also have lepton number conservation.
-This is more interesting since we have neutrinos, which are hard to detect.
-
-We will see a method to give mass to neutrinos, which will however violate lepton number conservation.
+% From these we can derive conservation laws, such as that for the Baryon number. 
 
 Parity and charge are massively violated.
 

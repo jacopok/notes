@@ -134,7 +134,7 @@ The charged Higgs component \(\phi^{+}\) gives mass to the \(W^{\pm}\) vector bo
 
 % So, we know how to write the kinetic terms \(F^{\mu \nu } F_{\mu \nu }\), and the mass terms \(\overline{\psi} \slashed{D} \psi \). 
 
-Now we move to the mass terms of the fermions. 
+\subsection{Fermions' mass terms}
 
 We have the massless \(G^{a}\) and \(A^{\mu }\), and the massive \(W^{\pm}\) and \(Z^{0}\). These are the terms we've written so far: where do the \(\overline{\psi} m  \psi \) terms come from?
 
@@ -217,10 +217,47 @@ Let us write the most general set of Yukawa couplings \cite[eq.\ 18.24]{peskinCo
 + y^{ij}_{d} Q ^{\dag, i}_{a} \phi_{a} d^{j}_{R}
 - y^{ij}_{u} Q ^{\dag, i}_{a} \epsilon_{ab} \phi_{b}^{*} u^{j}_{R} 
 + \text{h.\ c.}
-\,, 
+\end{align}
+
+The matrices \(y^{ij}_{f}\) are called the Yukawa matrices. The indices \(i \) and \(j\) label fermion generations (1, 2, 3 for electron-lik, muon-like and tau-like).
+They are not Hermitian in general, however we can construct 
+%
+\begin{align}
+y_f y_f ^\dag = U_L^{(f)} Y_f U_L^{(f), \dag} 
+\qquad \text{and} \qquad
+y_f ^\dag y_f = U_R^{(f)} Y_f U_R^{(f), \dag}
+\,,
 \end{align}
 %
+and if the matrix \(\sqrt{Y_f}\) is block-diagonal in generation space then we can write 
+%
+\begin{align}
+y_f = U_L^{(f)} \sqrt{Y_f} U_R^{(f)\dag}
+\,.
+\end{align}
 
+So, if we change variables as 
+%
+\begin{align}
+e^{i}_{R} \to U^{(e)}_{R, ij} e^{j}_{R}
+\qquad \text{and} \qquad
+L^{i} \to U^{(e)}_{L, ij} L^{j}
+\,,
+\end{align}
+%
+the matrices \(U_{L, R}\) disappear from the couplings.
+
+This works well for the leptons; for the quarks there is an issue, in their coupling to the \(W\) boson we are left with a term 
+%
+\begin{align}
+u ^\dag_{L} (i \overline{\sigma}^{\mu }) d_L &= u ^\dag _L U_L^{(u)\dag} (i \sigma^{\mu }) U_L^{(d)} d_L  \\
+&= u ^\dag_L (i \overline{\sigma}^{\mu }) \underbrace{U_L^{(u)\dag}U_L^{(d)}}_{V_{CKM}} d_L
+\,.
+\end{align}
+
+\todo[inline]{But why does this happen? what is it about the quarks that makes those matrices not cancel?}
+
+\todo[inline]{This all has to do with the fact that mass eigenstates and flavour eigenstates are different, methinks.}
 
 % We could have a term which looks like 
 % %
@@ -242,6 +279,6 @@ Let us write the most general set of Yukawa couplings \cite[eq.\ 18.24]{peskinCo
 
 % There are many parameters: the couplings, the mass terms inside \(y^{ij}\), the terms \(\mu \) and \(\lambda \) inside of \(V(\phi )\).
 
-
+In the \(V_{CKM}\) matrix we have the freedom to choose three (Euler) angles (it is a rotation matrix basically) and a phase.
 
 \end{document}

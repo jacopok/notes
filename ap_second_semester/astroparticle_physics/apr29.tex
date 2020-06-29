@@ -307,7 +307,7 @@ Then, the probability of observing a \(\nu_{\mu }\) given that we started with o
     \cos^2\theta e^{-i (m_1^2 / 2E )x}+
     \sin^2\theta e^{-i (m_2^2 / 2E )x}
 }^2  \\
-&= 1 - \sin^2 (2 \theta ) \sin^2(\frac{ \delta m^2}{2E} x)
+&= 1 - \sin^2 (2 \theta ) \sin^2 \qty( \frac{ \delta m^2}{2E} x)
 \,,
 \end{align}
 %
@@ -365,43 +365,137 @@ We recently saw some indications of \(CP\) violations in neutrino physics: this 
 
 % But we know that the masses of the neutrinos are very small, from beta decay but also from structure formation in the early universe.
 
-So, since \(v \sim \SI{100}{GeV}\) and \(m_{\nu } \lesssim \SI{1}{eV}\) we must have \(y_{\nu } \sim \num{e-11}\).
+There are two possibilities in order to give mass to the neutrinos. 
+The first is to introduce right-handed neutrinos, so that we have a Dirac mass term: \(m \overline{\nu}_{L} \nu_{R}\). 
 
-% The Dirac mass term is 2+2 degrees of freedom. 
+This adds two degrees of freedom to our model, since each neutrino has 2 dof. 
 
-If \(L\) is a lepton doublet, we can write a term \(L \phi \).
+Now, \(\nu_{L}\) has only two degrees of freedom: denoting by \(\alpha \)and \(\beta \) a Weyl index (spinorial, from 1 to 2) we can add to the Lagrangian a term like \(\nu_{L}^{\alpha } \nu_{L}^{\beta } \epsilon_{\alpha \beta }\). This is a singlet under Lorentz transformations. 
 
-However, \(L\) has an index: but we can consider a term 
+This term would violate lepton number conservation, since each of the left handed neutrinos increases \(L\) by 2! However we did not include it at the start, it was an accidental outcome of our model. 
+
+However, \(\nu_{L}\) belongs to a \(SU(2)_L\) doublet \((\nu_{L}, e_L)\), with \(T^{\nu_{L}}_{3} = + 1/2\). Therefore, the term \(\nu_{L} \nu_{L}\) would also be a \(SU(2)_L\) triplet. 
+
+Now, the bare neutrino has nonzero hypercharge and neither do two of them. 
+\todo[inline]{And so\dots?}
+
+Could we do something like a Yukawa coupling, \(\nu_{L} \nu_{L} \phi \)? No, since \(\phi \) is a \(SU(2)_L\) doublet, and in the product between a doublet and a triplet we do not get a singlet. 
+Also, this term would have nonzero hypercharge, so it would not be \(U(1)_Y\) invariant either. 
+
+However, if we consider \(\phi \phi \) we get a doublet times a doublet, and \(2 \times 2 = 1 + 3 \). 
+
+\todo[inline]{Does the spin algebra really work just like that?}
+
+So, we can add to the Lagrangian a term like 
 %
 \begin{align}
-L^{i} \phi L^{j} \phi \epsilon_{ij}
-\,.
-\end{align}
-
-We can do this for the neutrinos but not for the other particles since they are uncharged. 
-
-So the term looks like 
-%
-\begin{align}
-\nu_{L} \phi^{0} \nu_{L} \phi^{0}
-\,.
-\end{align}
-
-When we compute the VEV we get a mass for the neutrino. 
-
-This is for the left-handed neutrino. The dimension of this term is 5, since the fermions have dimension \(3/2\), while the Higgs has dimension 1: we should put a mass term in the denominator.
-We will then have a term which looks like 
-%
-\begin{align}
-y^2_{\nu } \frac{L L \phi^2}{M}
+\Delta \mathscr{L} = 
+y^{M}_{ij}
+\qty(L^{i}_{a \alpha } \epsilon_{ab } \phi_{b })
+\qty(L^{j}_{c \beta } \epsilon_{cd } \phi_{d })
+\epsilon_{\alpha \beta }
 \,,
 \end{align}
 %
-so that in the end \(m_{\nu } = y^2_{\nu } v^2 / M\).
+where \(i, j\) are flavour indices, \(\alpha , \beta \) are Weyl spinorial indices (from 1 to 2), while \(a, b\) are \(SU(2)_L\) indices.
 
-This \(M\) must be very large in order to account for the small neutrino mass.
+The tensor \(y^{M}_{ij}\) contains the Yukawa couplings, and it is adimensional. 
 
-This is a sort of seesaw model: the mass matrix looks something like 
+If we dimension-count we find a dimension of 5, so we must divide by a mass: this will be a new mass parameter \(M\), so that the term will be 
+%
+\begin{align}
+y^{M}_{ij} \frac{L^{i} \phi L^{j} \phi }{M}
+\,.
+\end{align}
+
+Then, after SSB we substitute \(\phi \) with its VEV to get 
+%
+\begin{align}
+M^{\nu }_{ij} = y^{M}_{ij} \frac{v^2}{2M}
+\,.
+\end{align}
+
+The left handed neutrino \(\nu_{L}\) is associated with its antiparticle, \(\qty(\nu^{c})_{R}\). 
+If we draw a Feynman diagram for this interaction, we will see a vertex with two fermionic lines coming towards it and two scalar ones. 
+Both of the fermionic lines will have arrows pointing towards the vertex, since neither of them is conjugated! This shows lepton number violation graphically. 
+\begin{figure}[ht]
+\centering
+\feynmandiagram[layered layout, horizontal = x to l2 ]{
+l1 -- [fermion] x -- [anti fermion] l2, 
+a [crossed dot] -- [scalar] x,
+b [crossed dot]  -- [scalar] x,
+};
+\caption{}
+\label{fig:majorana-lepton-number-violation}
+\end{figure}
+
+This is a so-called \textbf{Majorana mass term}.
+It also entails lepton number violation. 
+
+% So, since \(v \sim \SI{100}{GeV}\) and \(m_{\nu } \lesssim \SI{1}{eV}\) we must have \(y_{\nu } \sim \num{e-11}\).
+
+% The Dirac mass term is 2+2 degrees of freedom. 
+
+% If \(L\) is a lepton doublet, we can write a term \(L \phi \).
+
+% However, \(L\) has an index: but we can consider a term 
+% %
+% \begin{align}
+% L^{i} \phi L^{j} \phi \epsilon_{ij}
+% \,.
+% \end{align}
+
+% We can do this for the neutrinos but not for the other particles since they are uncharged. 
+
+% So the term looks like 
+% %
+% \begin{align}
+% \nu_{L} \phi^{0} \nu_{L} \phi^{0}
+% \,.
+% \end{align}
+
+% When we compute the VEV we get a mass for the neutrino. 
+
+% This is for the left-handed neutrino. The dimension of this term is 5, since the fermions have dimension \(3/2\), while the Higgs has dimension 1: we should put a mass term in the denominator.
+% We will then have a term which looks like 
+% %
+% \begin{align}
+% y^2_{\nu } \frac{L L \phi^2}{M}
+% \,,
+% \end{align}
+% %
+% so that in the end \(m_{\nu } = y^2_{\nu } v^2 / M\).
+
+% This \(M\) must be very large in order to account for the small neutrino mass.
+
+By orders of magnitude, the Majorana mass term reads 
+%
+\begin{align}
+M_{ij}^{\nu } \sim \frac{y^{M}_{ij}v^2}{M}
+\,,
+\end{align}
+%
+and we know that \(v \sim \SI{100}{GeV}\). If we assume \(y \sim \num{e-1} \divisionsymbol \num{e-2}\) we find \(M \sim \num{e13} \divisionsymbol \SI{e14}{GeV}\). 
+If, on the other hand, we assume \(M \sim v\) then we must have \(y \sim \num{e-13}\). Either \(y\) is very small or \(M\) is very large, or some combination of the two.  
+
+We also have the \textbf{seesaw mechanism}. 
+If we add a right-handed neutrino to our model, we could also get terms like \(\nu_{R} \nu_{R}\) (more precisely, \(\nu_{R, \alpha } \nu_{R, \beta } \epsilon_{\alpha \beta }\)): the right-handed neutrino is a singlet with respect to all the gauge symmetries (it being a singlet with respect to hypercharge follows from the fact that it is one with respect to \(SU(2)_L\) and it is uncharged).
+This is why it is called a ``sterile'' neutrino, it is not affected by gauge transformations. 
+
+The term \(\nu_{R} \nu_{R}\) is Lorentz and gauge invariant; like the \(\nu_{L} \nu_{L}\) term it explicitly breaks lepton number conservation. 
+
+So, if we add to our Lagrangian a Majorana mass term for the right-handed neutrino:  
+%
+\begin{align}
+\Delta \mathscr{L} = \frac{1}{2} M_{ij} \nu^{i}_{R, \alpha } \nu^{j}_{R, \beta }\epsilon_{\alpha \beta }
+\,,
+\end{align}
+%
+\todo[inline]{BTW, why are we always antisymmetrizing the neutrinos' spinorial indices?}
+
+we have no issues related to SSB of the \(SU(2)_L \times U(1)_Y\) gauge symmetry: \(M_{ij}\) can be at any energy scale it likes. 
+
+This is a sort of seesaw model: the mass matrix (on both axes we have \(\nu_L\) and the \(\nu_{R}\)) looks something like 
 %
 \begin{subequations}
 \begin{align}
@@ -413,17 +507,17 @@ m _{\text{Dirac}} & M
 \end{align}
 \end{subequations}
 
-The thing is: \(\nu_{R}\) has no gauge numbers. 
+% The thing is: \(\nu_{R}\) has no gauge numbers. 
 The mass of the right-handed neutrino is not ``protected'' by the gauge symmetry, it can be as large as it likes. 
+This term then gives left-handed neutrinos very small masses by giving right-handed neutrinos very large ones. 
 
 % If neutrinos possess a Majorana mass, 
 
 It is important to find out whether the mass of the neutrino is due to a Majorana or Dirac mass term.
 
-The experiments which can determine this are called \emph{neutrinoless double beta decay}.
+The experiments which can determine this are called \emph{neutrinoless double beta decay}: a double \(\beta \) decay in which the two neutrinos produces would annihilate violating lepton number conservation.
 
-If this were found, it would mean that neutrinos have a Majorana mass.
-
+If this were found, it would mean that neutrinos have a Majorana mass term.
 This concludes the discussion of the particle physics standard model. Next week we are going to start looking at the standard model of cosmology.
 
 \end{document}

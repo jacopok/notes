@@ -84,22 +84,23 @@ and the Cabibbo angle measures how much this happens; we then expect to see deca
 
 For leptons, instead, we expect perfect conservation of lepton number since there is no mixing. Experimentally this seems to be quite well verified: if process like \(\mu \to e \gamma \) or \(\tau \to e \gamma \) happen they must do so extremely rarely. 
 
-\subsection{Neutrinos}
+\subsection{Neutrino masses}
 
-The Yukawa Lagrangian is written as 
-%
-\begin{align}
-\mathscr{L}_{\text{Yukawa}}
-= - y_{e} L ^\dag_{a} \phi_{a} e_{R}
--y_{d} O ^\dag_{a} \phi_{a} d_{r}
--y_{a} O ^\dag_{a} \epsilon_{ab} \phi ^\dag_{b} u_{R} 
-+ \text{h.c.}
-\,.
-\end{align}
+% The Yukawa Lagrangian is written as 
+% %
+% \begin{align}
+% \mathscr{L}_{\text{Yukawa}}
+% = - y_{e} L ^\dag_{a} \phi_{a} e_{R}
+% -y_{d} O ^\dag_{a} \phi_{a} d_{r}
+% -y_{a} O ^\dag_{a} \epsilon_{ab} \phi ^\dag_{b} u_{R} 
+% + \text{h.c.}
+% \,.
+% \end{align}
 
-Commonly this is written as \(\overline{\psi}_{L} \phi \psi_{R}\), this however does not mean \(\overline{\psi} = \psi ^\dag \gamma^{0}\), since it is applied to a 2-component spinor. 
+% Commonly this is written as \(\overline{\psi}_{L} \phi \psi_{R}\), this however does not mean \(\overline{\psi} = \psi ^\dag \gamma^{0}\), since it is applied to a 2-component spinor. 
 
-The index \(a\) is an SU(2) index, and the Higgs field looks like 
+In the mass term we add to the Yukawa Lagrangian,
+the index \(a\) is an SU(2) index, and the Higgs field looks like 
 %
 \begin{subequations}
 \begin{align}
@@ -143,8 +144,30 @@ e_{R}^{-}
 \end{align}
 \end{subequations}
 
-This means that the neutrino is massless: the VEV of \(\phi_{a}\) is 0 for \(\phi^{+}\), and \(v\) for \(\phi^{0}\). 
+This means that the neutrino is massless: the VEV of \(\phi_{a}\) is \((0, v)\), so only the \textbf{second} component gains mass after SSB.
 So, we get Dirac mass terms for the electron but not for the neutrino.
+
+This is equivalent to saying that the mass matrix for the charged leptons is diagonal: there is no mixing.
+
+How can we detect whether neutrinos have mass, \textbf{experimentally}? 
+A path is \textbf{\(\beta \)-decay}: 
+\begin{align}
+n \to p + e^{-} + \overline{\nu}_{e}
+\,.
+\end{align}
+
+We look at the so-called Kurie plot: on the horizontal axis we put the measured energy of the electrons \(E_e\), on the vertical axis we put the square root of the number of electrons measured at that energy (in a small range around it: it is a histogram): \(\sqrt{N_e}\). 
+This plot is expected to look like a straight line if the neutrinos are massless, with some electrons reaching the maximum center-of-mass energy; on the other hand if neutrinos are massive the kinematics of the process change and the curve dips down earlier.
+
+People have measured this to a very high degree of precision.
+What we have found up to now is a bound \(m_{\nu_{e}} < \SI{2}{eV}\) in these beta decay experiments. 
+
+The result that the neutrinos are massive did not come from here. 
+
+Other paths are \textbf{neutrino oscillations} and bounds from \textbf{cosmology}. 
+From the neutrino oscillations we have the result that, at least for some neutrinos, \(m_{\nu } \neq 0\).
+
+However, in the Standard Model neutrinos are massless. How can we model their having mass?
 
 Ettore Majorana proposed a way to give a mass for the neutrino (or any neutral fermion, really).
 
@@ -153,41 +176,91 @@ Ettore Majorana proposed a way to give a mass for the neutrino (or any neutral f
 
 % From these we can derive conservation laws, such as that for the Baryon number. 
 
-Parity and charge are massively violated.
+% Parity and charge are massively violated.
 
-CP symmetry moves us from \(e^{-}_{L}\) to \(e^{+}_{L}\) to \((e^{+})_{R}\).
-
-If we have CP symmetry, then if in our model we have a \(\nu_{L}\) we will also need to have a \(\nu^{c}_{R}\).
-That is, there are only two degrees of freedom between them.
-
-In the SM we introduce only left-handed neutrinos. However, we can also introduce 
+The Dirac Lagrangian, as we saw, after SSB reads: 
 %
 \begin{align}
-\nu_{R} \iff (\nu^{c})_{L}
-\,.
-\end{align}
-
-The beta decay is always 
-%
-\begin{align}
-n \to p + e^{-} + \overline{\nu}_{e}
+\mathscr{L} _{\text{Dirac}} = \psi ^\dag_{R} \qty(i \sigma \cdot \partial) \psi_{R} + \psi ^\dag_{L} \qty(i \overline{\sigma} \cdot \partial) \psi_{L} 
+- m \qty(
+ \psi ^\dag_{R} \psi_{L} 
++ \psi ^\dag_{L} \psi_{R} 
+)
 \,,
 \end{align}
 %
-and we look at the spectrum of the energies of the electron. 
+where \(m = m_f = y_f v/ \sqrt{2}\). 
+However, in our SM we did not introduce a right-handed neutrino! 
+So, one possibility to give mass to the left-handed neutrino is to introduce a right-handed one, with a term like 
+%
+\begin{align}
+\Delta \mathscr{L} _{\text{Yukawa}} = 
+- y^{ij}_{\nu } L ^{\dag, i}_{a} \epsilon_{ab} \phi^{*}_{b} \nu_{R}^{j}
+\,,
+\end{align}
+%
+in analogy to the term we have for quarks.
+This yields a term \(\nu_{L} ^\dag \phi_0 \nu_{R} \), which near the vacuum gives mass to the neutrinos, with a term like 
+%
+\begin{align}
+m^{ij}_{\nu } = - y^{ij}_{\nu } \frac{v}{\sqrt{2}}
+\,.
+\end{align}
 
-If the neutrinos are massless the curve gets to a certain point, if they are massive the curve stops a bit earlier. 
-People have done this to a very high degree of precision.
+We know that if the neutrinos do indeed have a mass it is very small, of the order of an \SI{}{eV} or less. 
+So, we choose a basis in which the interaction of the \(\nu_{L}\) with the charged leptons are ``diagonal'': \(\overline{\nu}_{L}^{i} \gamma^{m } \ell^{i}_{L} W_{\mu }\), where \(\ell\) is a lepton (electron, muon, tauon).
 
-What we have found up to now is \(m_{\nu_{e}} < \SI{2}{eV}\) in these beta decay experiments. 
-The result that the neutrinos are massive did not come from here. 
+As before we perform a change of variables making use of the unitary matrices \(U\): 
+%
+\begin{align}
+e^{i}_{R} \to U^{(e)}_{R, ij} e^{j}_{R}
+\qquad \text{and} \qquad
+L^{i} \to U_{L, ij}^{(e)} L^{j}
+\,.
+\end{align}
 
+Then, the fermion mass couplings will be: 
+%
+\begin{align}
+y_\ell = U_L^{(e)} Y_\ell U_R^{(e),\dag}
+\,,
+\end{align}
+%
+and they can be chosen to be diagonal. However, in general \(y_\nu \) is not diagonalized by these unitary matrices! 
+
+The current eigenstates \(\nu_{L}^{(e, \mu , \tau )}\) which are produced at the charged current vertex are \textbf{different} from the mass eigenstates \(\nu_{1, 2, 3}\) with masses \(m_{\nu_{1, 2, 3}}\).
+
+If we wish to diagonalize \(y_\nu \), we can do so as 
+%
+\begin{align}
+y_\nu' = U_L^{(e), \dag} y_\nu = U_L^{(\nu)} Y_\nu U_R^{(\nu )}
+\,.
+\end{align}
+
+The transition matrices \(U\) have three angles and one phase in freedom (which is to say, the other degrees of freedom in the matrix can be absorbed into global phases for the other fields). 
+They are the Pontecorvo-Maki-Nakagawa–Sakata mixing matrix. 
+
+% CP symmetry moves us from \(e^{-}_{L}\) to \(e^{+}_{L}\) to \((e^{+})_{R}\).
+
+% If we have CP symmetry, then if in our model we have a \(\nu_{L}\) we will also need to have a \(\nu^{c}_{R}\).
+% That is, there are only two degrees of freedom between them.
+
+% In the SM we introduce only left-handed neutrinos. However, we can also introduce 
+% %
+% \begin{align}
+% \nu_{R} \iff (\nu^{c})_{L}
+% \,.
+% \end{align}
+
+Let us connect these musings to experiment.
 From cosmic ray interactions we have charged pions, which decay into 
 %
 \begin{align}
 \pi^{+} \to \mu^+ + \nu_{\mu }
-\,.
+\,,
 \end{align}
+%
+where the muonic neutrino we get is a \emph{flavour} eigenstate, since it is produced in a weak-interaction vertex; it is a linear combination of the mass eigenstates. 
 
 Then, the muon decays into 
 %
@@ -196,32 +269,105 @@ Then, the muon decays into
 \,.
 \end{align}
 
-So, we expect twice as many \(\nu_{\mu }\) as \(\nu_{e}\).
+So, naively we expect twice as many \(\nu_{\mu }\) as \(\nu_{e}\).
 
-We can build detectors in order to see these. We expect a muonic neutrino and antineutrino. 
-
-The state \(\nu_{\mu }\) is a charge eigenstate, not a mass eigenstate: in general it will be written as \(a \nu_1 + b n_2 +c \nu_3 \).
-
-Its time-evolution will then exhibit an oscillation in the probability to still find a \(\nu_{\mu }\), since the mass components oscillate at different frequencies.
-
-The experiment OPERA found that some of the neutrinos from CERN going to Gran Sasso were converted to \(\nu_{\tau }\) and such. 
-
-Also, Kamiokande found a ratio different from 2 of \(\nu_{\mu }\) to \(\nu_{e}\).
-
-So, if there is an oscillation it means that the neutrinos must indeed be massive, or at least some of them must be.
-
-We put a Dirac mass term for the \(\nu_{R}\): the mass will look like 
+Now, we know that for any particle \(p = \sqrt{E^2 - m^2} \approx E - m^2 / 2E\) as long as \(m\) is small compared to \(E\) (which is definitely the case for our very light neutrinos). So, the momenta of the mass eigenstates of the neutrinos at a fixed energy \(E\)  are 
 %
 \begin{align}
-m_{\nu } =  y_{\nu } v
+p_i \approx E - \frac{m_i^2}{2E}
+\,,
+\end{align}
+%
+for \(i = 1, 2, 3\). So, if the masses are different then the momenta will be slightly (\(\mathcal{O} (m/E)\)) different. 
+
+The wavefunction of the muonic neutrino \(\nu_{\mu }\) will look like 
+%
+\begin{align}
+\sum _{i} V^{PMNS}_{(\mu ), i} e^{i (E - m_i^2 /2E) x}
+\,,
+\end{align}
+%
+so we can see that the different components will go out of phase! This is very interesting, since even though the difference in the momenta is small we can measure at macroscopically different values of \(x\), so that the phase difference is large! 
+
+Let us consider only two neutrino species for simplicity: \(\nu_{e}\) and \(\nu_{\mu }\). In order to get the mass eigenstates from the flavour ones we will have a matrix \(V\) depending on a mixing angle \(\theta \): 
+%
+\begin{align}
+V = \left[\begin{array}{cc}
+\cos \theta  & -\sin \theta  \\ 
+\sin \theta  & \cos \theta 
+\end{array}\right]
 \,.
 \end{align}
 
-But we know that the masses of the neutrinos are very small, from beta decay but also from structure formation in the early universe.
+Then, the probability of observing a \(\nu_{\mu }\) given that we started with one will look like 
+%
+\begin{align}
+\mathbb{P} (\nu_{\mu } \to \nu_{\mu })
+&= \abs{
+    \cos^2\theta e^{-i (m_1^2 / 2E )x}+
+    \sin^2\theta e^{-i (m_2^2 / 2E )x}
+}^2  \\
+&= 1 - \sin^2 (2 \theta ) \sin^2(\frac{ \delta m^2}{2E} x)
+\,,
+\end{align}
+%
+so we will observe an oscillation length scale of 
+%
+\begin{align}
+L = \frac{4 \pi E}{ \delta m^2} \approx \SI{2.48}{m} \qty( \frac{E}{\SI{}{MeV}}) \qty( \frac{ \SI{}{eV^2}}{ \delta m^2})
+\,.
+\end{align}
+
+The amplitude of this oscillation is maximal if \(\theta= \pi /4\). 
+Note that in order for oscillations to occur we need \(\theta \neq 0\) and \(\delta m^2 \neq 0\). 
+
+Experimentally, we see them: at a neutrino detector we distinguish downward neutrinos, which come from the sky above the detector, and upward neutrinos, which come from the other side of the Earth (through it). 
+We see the correct ratio \(\nu_{\mu } / \nu_{e} \approx 2\) for downward neutrinos, while for upward neutrinos the muonic flux is suppressed (and the electron-neutrino flux is isotropic).
+
+So, we are seeing \(\nu_{\mu } \leftrightarrow \nu_{\tau }\) flavour mixing with a length scale comparable to the Earth's diameter. 
+
+\todo[inline]{Are we sure about this? could it not be that the length scale is (much) smaller, and we are underestimating the suppression?}
+
+The parameters we get are 
+%
+\begin{align}
+\delta m^2_{(\mu, \tau )} \approx \SI{2.4e-3}{eV^2} \approx \qty(\SI{5e-2}{eV})^2
+\,,
+\end{align}
+%
+and \(\sin^2\theta \approx 0.4\).
+
+Also, we detect fewer neutrinos from the Sun than we'd expect from the standard Solar model; this gives us bounds with regards to \(e\) to \(\mu , \tau \) oscillations on the order of \(\abs{\delta m} \approx \SI{e-2}{eV}\) and \(\sin^2\theta \approx 0.3\).
+
+From these measurement, we get that all the neutrino masses are within about a tenth of an electronVolt of each other, two of them being close.
+We do not know the hierarchy: is the lone one (conventionally \(3\)) heavier or lighter than the other two?
+
+We recently saw some indications of \(CP\) violations in neutrino physics: this is indicated by differences in the probabilities when considering oscillations between neutrino flavours and ones between \emph{anti}neutrino flavours.
+
+% We can build detectors in order to see these. We expect a muonic neutrino and antineutrino. 
+
+% The state \(\nu_{\mu }\) is a charge eigenstate, not a mass eigenstate: in general it will be written as \(a \nu_1 + b n_2 +c \nu_3 \).
+
+% Its time-evolution will then exhibit an oscillation in the probability to still find a \(\nu_{\mu }\), since the mass components oscillate at different frequencies.
+
+% The experiment OPERA found that some of the neutrinos from CERN going to Gran Sasso were converted to \(\nu_{\tau }\) and such. 
+
+% Also, Kamiokande found a ratio different from 2 of \(\nu_{\mu }\) to \(\nu_{e}\).
+
+% So, if there is an oscillation it means that the neutrinos must indeed be massive, or at least some of them must be.
+
+% We put a Dirac mass term for the \(\nu_{R}\): the mass will look like 
+% %
+% \begin{align}
+% m_{\nu } =  y_{\nu } v
+% \,.
+% \end{align}
+
+% But we know that the masses of the neutrinos are very small, from beta decay but also from structure formation in the early universe.
 
 So, since \(v \sim \SI{100}{GeV}\) and \(m_{\nu } \lesssim \SI{1}{eV}\) we must have \(y_{\nu } \sim \num{e-11}\).
 
-The Dirac mass term is 2+2 degrees of freedom. 
+% The Dirac mass term is 2+2 degrees of freedom. 
 
 If \(L\) is a lepton doublet, we can write a term \(L \phi \).
 

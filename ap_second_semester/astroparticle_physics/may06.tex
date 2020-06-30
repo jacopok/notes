@@ -1,47 +1,116 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\marginpar{Wednesday\\ 2020-5-6, \\ compiled \\ \today}
+\section{Thermodynamics of the early universe}
 
-Today we will discuss the \textbf{thermodynamics of the early universe}. 
+\marginpar{Wednesday\\ 2020-5-6, \\ compiled \\ \today}
 
 We start off by discussing particles in thermal equilibrium, but the interesting thing is the transition between this equilibrium and non-equilibrium.
 
-We use the usual approximation of a dilute gas, we take a Boltzmann distribution function \(f(p)\), from which we can compute \(n\), \(\rho \) and \(P\).
+We use the usual approximation of a dilute gas with \(g\) degrees of freedom, we take a Boltzmann distribution function in momentum space \(f(p)\), from which we can compute \(n\), \(\rho \) and \(P\): 
+%
+\begin{align}
+n &= \frac{g}{(2\pi )^3} \int f(\vec{p}) \dd[3]{p} \\
+\rho  &= \frac{g}{(2\pi )^3} \int E(\vec{p}) f(\vec{p}) \dd[3]{p} \\
+P  &= \frac{g}{(2\pi )^3} \int \frac{\abs{p}^2}{3E} f(\vec{p}) \dd[3]{p} 
+\,.
+\end{align}
 
-We can make some useful approximations in the relativistic limit \(T \gg m\) and in the nonrelativistic limit \(T \ll m\).
+In thermal equilibrium the distribution function in momentum space is 
+%
+\begin{align}
+f(\vec{p}) = \frac{1}{\exp(\frac{E-\mu }{T}) \pm 1}
+\,,
+\end{align}
+%
+where we have \(+\) for fermions and \(-\) for bosons.
+The energy as a function of momentum is given by 
+%
+\begin{align}
+E(\vec{p}) = \sqrt{\abs{\vec{p}}^2 + m^2}
+\,.
+\end{align}
 
-\todo[inline]{Add reference to Fundamentals notes, chapter 3}
+We can make some useful approximations in the relativistic limit \(T \gg m\) and in the nonrelativistic limit \(T \ll m\): 
+in the \textbf{relativistic} limit we find 
+%
+\begin{align}
+\rho = 
+\begin{cases}
+  \displaystyle \frac{\pi^2}{30 } g T^{4} &  \text{bosons} \\
+  \displaystyle \frac{7}{8} \frac{\pi^2}{30 } g T^{4} &  \text{fermions}
+\end{cases}
+\qquad \text{and} \qquad
+n = 
+\begin{cases}
+  \displaystyle \frac{\zeta (3) g T^{3}}{\pi^2} &  \text{bosons} \\
+  \displaystyle \frac{3}{4}\frac{\zeta (3) g T^{3}}{\pi^2} &  \text{fermions},
+\end{cases}
+\end{align}
 
-A very important parameter is \(g_{*}\): it is the \emph{effective} number of degrees of freedom: it is computed as 
+where \(\zeta \) is the Riemann zeta function, so that \(\zeta (3) = \sum _{n \in \mathbb{N}} n^{-3} \approx \num{1.2}\). 
+Since we are in the ultrarelativistic approximation, we will have \(P  = \rho /3\).
+
+In the \textbf{nonrelativistic} limit, instead, we get 
+%
+\begin{align}
+n = g \qty(\frac{mT}{2 \pi })^{3/2} e^{-(m - \mu ) / T}
+\,,
+\end{align}
+%
+while \(\rho = m n\) and \(P = n T \ll \rho \).
+
+\todo[inline]{Add reference to Fundamentals notes, chapter 3, when it will be done.}
+
+A very useful parameter to define in this context is \(g_{*}\): it is the \emph{effective} number of degrees of freedom for different particle species, computed as 
 %
 \begin{align}
 g_{*} = \sum _{i \in \text{bosons}} g_{i} \qty(\frac{T_{i}}{T})^{4} + \frac{7}{8} \sum _{i \in \text{fermions}} g_{i} \qty( \frac{T_i}{T})^{4}
 \,,
 \end{align}
 %
-since we need to weigh the contributions to the degrees of freedom according to whether the particles are in equilibrium or not, and when the particle decoupled. 
-
-Let us compute \(g_{*}\) in a couple of examples. First, let us consider \(T \ll \SI{}{MeV}\). 
-
-So, in the standard model we only have photons and the three neutrino species. So, we get 
+since we need to weigh the contributions to the degrees of freedom according to whether the particles are in equilibrium or not, and when the particle decoupled.
+With this definition, in the relativistic limit we can simply write 
 %
 \begin{align}
-g_{*} (T\ll\SI{}{MeV}) = 2 + \frac{7}{8} \times 3 \times 2
-\,,
+\rho_{R} = \sum _{i} \rho_{i} =  \frac{\pi^2}{30 } g_{*} T^{4}
+\qquad \text{and} \qquad
+P_R = \frac{\pi^2}{90 } g_{*} T^{4}
+\,.
 \end{align}
-%
-and we must ask: are these particles still coupled at the time we are considering?
-The temperature of the neutrinos is given by 
+
+\subsubsection{Effective number of degrees of freedom examples}
+
+Let us compute \(g_{*}\) in a couple of examples. First, let us consider \(T \ll \SI{}{MeV}\) --- but at a time in which the photons are still coupled, that is, \emph{before} the emission of the CMB. 
+
+So, in the standard model the only decoupled particles are photons and the three neutrino species.
+The temperature of the neutrinos, as we will see later, is given in this time period by 
 %
 \begin{align}
 T_{\nu } = \sqrt[3]{ \frac{4}{11}} T_{\gamma }
-\,,
+\,.
 \end{align}
-%
-so in the end we get \(g_{*} \approx 3.37\).
 
-If we consider a temperature around \(\SI{1}{MeV} < T < \SI{100}{MeV}\), we also will have to account for (?).
+So, since: photons have two physical polarizations and so do (left-handed) neutrinos, there are three neutrino species and neutrinos are fermions we get
+%
+\begin{align}
+g_{*} (T\ll\SI{}{MeV}) = 2 + \frac{7}{8} \times 3 \times 2 \times \qty( \frac{4}{11})^{4/3} \approx 3.37
+\,.
+\end{align}
+
+If we consider a temperature around \(\SI{1}{MeV} < T < \SI{100}{MeV}\), we also will have to account for electrons and positrons. Now, the temperature of all these species can be taken to be equal: so, we get 
+%
+\begin{align}
+g_{*} (\SI{1}{MeV} < T < \SI{100}{MeV}) \approx 2 + \frac{7}{8} \qty(3 \times 2 + 1 \times 4) \approx \num{10.75}
+\,.
+\end{align}
+
+For \(T > \SI{200}{GeV}\), all the SM particles will be relativistic, so we will find \(g_* \approx \num{106.75}\). 
+For a nice figure summarizing the evolution of \(g_*\) as the temperature decreases see figure 1 in a recent paper by Lars Husdal \cite[]{husdalEffectiveDegreesFreedom2016}.
+
+\subsubsection{The radiation domination epoch}
+
+This was the period in the early universe in which \(\rho_{R} \) was larger than \(\rho_{M}\); we will consider the early phase in which this difference was large (in order to approximate \(\rho_{M} \approx 0\)), but the inequality stayed on the radiation side for about a millennium.
 
 In the era of radiation domination, we get 
 %

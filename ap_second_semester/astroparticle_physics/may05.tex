@@ -9,7 +9,7 @@
 
 The classic textbook to be used for this part is Kolb-Turner \cite[]{kolbEarlyUniverse1994}.
 For something more recent, we have Gorbunov and Rubakov \cite[]{gorbunovIntroductionTheoryEarly2011}.
-The first part was also discussed in the course in Fundamentals of Astrophysics and Cosmology.
+The first part was also discussed in the course in Fundamentals of Astrophysics and Cosmology (whose notes are still being reviewed, they are more in-depth on these topics).
 
 We establish some basic notions in cosmology. We use natural units \(\hbar = c = k_B = 1\), so that we have the equivalence of mass, energy, temperature and angular frequency. 
 
@@ -30,6 +30,7 @@ where \(\gamma_{ij}\) is the metric of a unit 3-sphere, 3-hyperboloid or 3-plane
 Which of these three we have determines the \emph{spatial curvature} of the universe, described by a single parameter \(k\) which can be \(-1\) for an open universe, \(0\) for a flat universe and \(+1\) for a closed universe.
 
 The Hubble parameter is given in terms of \(a\), by \(H(t) = \dot{a}(t) / a(t)\). It describes the rate of expansion of the universe.
+If it is written with an index \(0\), it means we are measuring it \emph{now}. 
 
 Our model is general-relativistic, so we must solve the Einstein equations, which read 
 %
@@ -38,10 +39,16 @@ R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R= 8 \pi G T_{\mu \nu }
 \,.
 \end{align}
 
-The pressure is assumed to follow the law \(P = w \rho \), and fluids are characterized by their \(w\). 
-The stress-energy tensor is \(T_{\mu \nu } = \diag(\rho , - P, -P, -P)\).
+The pressure is assumed to linearly scale with the density, following the law \(P = w \rho \), and fluids are characterized by their value of \(w\): 
+\begin{enumerate}
+    \item matter has \(w = 0\);
+    \item radiation has \(w = 1/3\);
+    \item the vacuum has \(w = -1\).
+\end{enumerate}
 
-The Friedmann equations read 
+The stress-energy tensor is \(T^{\mu}_{ \nu } = \diag{\rho, -P, -P, -P}\) \cite[eq.\ 3.4]{kolbEarlyUniverse1994}.\footnote{Note that we must be careful with the signs of the stress-energy tensor: if we lower or raise both the indices the sign of the pressure changes. It is negative only when the tensor is \((1, 1)\).}
+
+The Friedmann equations are what we get if we substitute in the FRLW metric into the Einstein equations: 
 %
 \begin{subequations}
 \begin{align}
@@ -52,68 +59,195 @@ P &= P(\rho )
 \end{align}
 \end{subequations}
 
-The dynamical \(\ddot{a}\) Friedmann equation is a consequence of the first two. 
+Only two of these equations are independent; 
+we can interpret the dynamical \(\ddot{a}\) Friedmann equation as a consequence of the first two, which makes things easier since it is second order. 
 
-If we have nonrelativistic matter, which is commonly called ``dust'', with \(w = 0\), we get \(\rho \propto a^{-3}\) and \(a(t) \sim t^{2/3}\).
+The density \(\rho \) which appears in the equations is the sum of all the ones which make up the universe, we must account for the \(w\) of all the fluids in the model we are considering. 
+
+Now we will discuss solutions to the Friedmann equations. Ones with \(k = 0\) are \emph{spatially flat models}, and for them the first Friedmann equation reads: 
+%
+\begin{align}
+H^2 = \frac{8 \pi G}{3} \rho 
+\,,
+\end{align}
+%
+so in this case the absolute value of \(a\) at a specific time does not matter, only ratios of values of \(a\) at different times have physical meaning.
+This can be seen from the fact that the equation has a conformal global symmetry: if we map \(a \to C a\) for some constant \(C\) the equation does not change. 
+Also, the Friedmann equation is invariant under time translations. 
+
+\subsubsection{Dust solution}
+
+If we have nonrelativistic matter, which is commonly called ``dust'', with \(w = 0 \implies P = 0\), we get \(\rho \propto a^{-3}\) and \(a(t) \sim t^{2/3}\) (for time starting at a certain \(t_s = 0\)).
 So, the energy density scales like \(\rho (t) \sim t^{-2}\). 
 
-The Hubble parameter, on the other hand, is given by \(H(t) = 2 / (3 t)\). This is not actually verified, since the assumption we are making of the universe being filled with matter does not hold. 
+The Hubble parameter, on the other hand, is given by \(H(t) = 2 / (3 t)\). 
+This model predicts the current age of the universe to be \(t_0 = 2/ (3 H_0 ) \approx 9 \text{ billion years}\), which is too short (regardless of the value we take for \(H_0 \), this does not work).
+
+\subsubsection{Radiation solution}
 
 For relativistic matter, we have \(P = \rho /3\), so the density scales like \(\rho \sim a^{-4}\), \(a(t) \sim t^{1/2}\), \(H = 1/(2t)\) and \(\rho = \frac{3}{32 \pi G t^2} \).
 
-The density scales like 
+Let us assume that all the particles in the universe are in thermal equilibrium. 
+Then, the density will scale like 
 %
 \begin{align}
 \rho = \frac{\pi^2}{30} g_{*} T^{4}
 \,,
 \end{align}
 %
-and the Hubble parameter scales like 
+where 
 %
 \begin{align}
-H^2 = \frac{8\pi G}{3} \rho = \frac{8}{90} \pi^3 g_{*}
+g_{*} = \sum _{b} g_b + \frac{7}{8} \sum _{f} g_f
+\,,
+\end{align}
+%
+where the two sums are over all the bosons and fermions respectively whose masses are smaller than the current temperature (so, which are still relativistic): it is the effective number of degrees of freedom.
+The objects being summed are the number of spin states of each boson or fermion.
+This relation comes from integrating thermal distributions in momentum space in the ultrarelativistic limit (so that the particles we are considering are ``radiation''); the particulars of the different statistics makes it so that the contribution for fermions to the density is smaller than that of bosons by a factor \(7/8\).
+
+So, the Hubble parameter scales like 
+%
+\begin{align}
+H^2 &= \frac{8\pi G}{3} \rho   \\
+&= \frac{8 \pi }{3} \frac{1}{M_P^2} \frac{\pi^2 }{30} g_{*} T^{4}  \\
+&= \frac{8}{90} \pi^3 g_{*} \frac{T^{4}}{M_P^2}
 \,.
 \end{align}
 
-Let us consider the vacuum: suppose we had a relation like 
+Then, we can define a new reduced Planck mass \(M_P^{*}\), such that \(H = T^2 / M_P^{*}\): it will need to be 
+%
+\begin{align}
+M_{P}^{*} = \sqrt{\frac{90}{8 \pi^3 g_{*}}} M_P \approx \frac{M_P}{\num{1.66}\sqrt{g_*}}
+\,.
+\end{align}
+
+Now, since we know \(\rho \sim a^{-4}\) and \(\rho \sim T^{4}\) we can write \(T \sim 1/ a\), keeping in mind however that the constant in front is not truly so for the whole evolution of the universe, instead it varies depending on which particles are decoupled at that point. 
+
+\subsubsection{Vacuum}
+
+Let us consider the vacuum. In flat spacetime, its stress-energy tensor is given by 
 %
 \begin{align}
 T_{\mu \nu } = \rho _{\text{vac}} \eta_{\mu \nu }
 \,,
 \end{align}
 %
-so that \(P = - \rho _{\text{vac}}\).
+so that \(P _{\text{vac}} = - \rho _{\text{vac}}\).
 
-This is equivalent to the introduction of a \(- 8 \pi G \Lambda g_{\mu \nu }\) term to the left-hand side of the field equations. 
+This is equivalent to the introduction of a \(- 8 \pi G \Lambda g_{\mu \nu }\) term to the left-hand side of the field equations: a ``cosmological constant'' with \(\Lambda = \rho _{\text{vac}}\).
 
-\subsection{The \(\Lambda \)CDM model}
+If we only had this fluid in our model universe we would see \(a \sim e^{H _{\text{dS}}t}\), where 
+%
+\begin{align}
+H _{\text{dS}} = \sqrt{\frac{8 \pi G}{3} r _{\text{vac}}}
+\,.
+\end{align}
+
+Our spacetime will then be described by a metric like 
+%
+\begin{align}
+\dd{s^2} = \dd{t^2} - e^{2H _{\text{dS}}t } \dd{x}^2
+\,,
+\end{align}
+%
+which is called \textbf{de Sitter} spacetime.
+In this case we will have \(\ddot{a} > 0\), there will be no initial singularity.
+
+\section{The \(\Lambda \)CDM model}
 
 The ingredients are: 
 \begin{enumerate}
-    \item Nonrelativistic matter: baryons, dark matter, and also neutrinos as long as \(m_{\nu } \gtrsim \SI{-3}{eV}\). 
-    \item Relativity.
-    \item Dark energy: is it vacuum energy? 
+    \item Nonrelativistic matter: baryons, dark matter, and also neutrinos with masses \(m_{\nu } \gtrsim \SI{-3}{eV}\). Its density is denoted as \(\rho_{M}\).
+    \item Relativistic matter: photons and neutrinos with \(m_\nu \lesssim \SI{e-4}{eV}\). Its density is denoted as \(\rho _{\text{rad}}\).
+    \item Dark energy: is it vacuum energy? Its density is denoted as \(\rho_{\Lambda }\).
 \end{enumerate}
 
-The Hubble parameter is given by 
+The Hubble parameter is given by the first Friedmann equation, by accounting for all of these plus curvature:
 %
 \begin{align}
 H^2 = \frac{8 \pi G}{3} \qty(\rho_{M} + \rho _{\text{rad}} + \rho_{\Lambda } + \rho _{\text{curv}})
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\rho _{\text{curv}} = - \frac{k}{a^2} \frac{3}{8 \pi G}
 \,.
 \end{align}
 
 The critical density is given by 
 %
 \begin{align}
-\rho_{c} = \frac{3}{8 \pi G} H_0^2 \approx \SI{5e-6}{GeV / cm^3}
+\rho_{c} = \frac{3}{8 \pi G} H_0^2 \approx \SI{5e-6}{GeV / cm^3} \approx \frac{5 m_P}{\SI{}{m^3}}
+\,,
+\end{align}
+%
+where the numerical value is obtained by taking \(h = \num{.7}\). 
+
+By construction, if \(\rho = \rho_{c}\) for our universe then it is spatially flat.
+
+We can take the ratios of \(\rho_{i} / \rho_{c} = \Omega_{i}\), this quantifies how much of the density of the universe is in the form of a certain kind of fluid. 
+If we also include \(\Omega _{\text{curv}}\), we get \(\sum _{i} \Omega_{i} = 1\) always. 
+
+Let us give some values for them: for photons, we consider the CMB photons, which closely follow a thermal distribution at \(T_0 \approx \SI{2.7}{K}\). By looking at these, we find 
+%
+\begin{align}
+\Omega_{\gamma } \approx \SI{2.5e-5}{\littleh^2} \approx \num{5e-5}
 \,.
 \end{align}
 
-This is obtained by taking \(h = \num{.7}\). 
+\todo[inline]{Why do we only look at CMB photons? stellar fusion has an efficiency of the order of \SI{1}{\percent}, so I'd imagine a considerable (compared to \num{5e-5}) fraction of its mass is radiated away as high energy photons (compared to the CMB)\dots}
 
-We can take the ratios of \(\rho_{i} / \rho_{c} = \Omega_{i})\), this quantifies how much of the density of the universe is in the form of a certain kind of fluid. 
+Even if we had neutrinos with small masses such that they are radiation today, their \(\Omega \) would be smaller than the photons', so negligible overall. 
 
-What is the vacuum energy predicting by the Standard Model? 
+For the matter and dark energy contributions we get 
+%
+\begin{align}
+\Omega_{M} = \Omega_{B} + \Omega_{DM} \approx \num{.05} + \num{.27} \approx \num{.32}
+\qquad \text{and} \qquad
+\Omega_{\Lambda } \approx \num{.68}
+\,.
+\end{align}
+
+How do these depend on time? We have 
+\begin{enumerate}
+    \item \(\rho _{\text{rad}} \sim a^{-4}\);
+    \item \(\rho _M \sim a^{-3}\);
+    \item \(\rho _{\text{curv}} \sim a^{-2}\);
+    \item \(\rho _\Lambda  \sim a^{0} = \const\).
+\end{enumerate}
+
+Then, the Friedmann equation in the \(\Lambda \)CDM model looks like 
+%
+\begin{align}
+H^2 &= \frac{8 \pi G}{3} \rho_{c}
+\qty[
+    \Omega_{\text{rad}} \qty(\frac{a_0 }{a})^4    
+    +\Omega_{M} \qty(\frac{a_0 }{a})^3    
+    +\Omega_{\text{curv}} \qty(\frac{a_0 }{a})^2    
+    +\Omega_\Lambda    
+]  \\
+&= H_0^2 \qty[
+    \Omega_{\text{rad}} \qty(1 + z)^4    
+    +\Omega_{M} \qty(1 + z)^3    
+    +\Omega_{\text{curv}} \qty(1 + z)^2    
+    +\Omega_\Lambda    
+]
+\,,
+\end{align}
+%
+where we used \(1 + z = a_0 / a\), where \(z\) is the redshift, defined by 
+%
+\begin{align}
+1 + z = \frac{\lambda _{\text{absorption}}}{\lambda _{\text{emission}}}
+\,.
+\end{align}
+
+For close objects (with small \(z\)) we recover Hubble's law: \(z = H_0 \tau \).
+
+What is the vacuum energy prediction by the Standard Model? 
 We know that there is symmetry breaking. 
 
 What remains when we take the VEV are the scalar terms, since the vector fields are zero in the vacuum. Specifically, we are left with 

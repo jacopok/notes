@@ -107,83 +107,143 @@ g_{*} (\SI{1}{MeV} < T < \SI{100}{MeV}) \approx 2 + \frac{7}{8} \qty(3 \times 2 
 
 For \(T > \SI{200}{GeV}\), all the SM particles will be relativistic, so we will find \(g_* \approx \num{106.75}\). 
 For a nice figure summarizing the evolution of \(g_*\) as the temperature decreases see figure 1 in a recent paper by Lars Husdal \cite[]{husdalEffectiveDegreesFreedom2016}.
+The take-away is that, going from the \SI{}{TeV} to the \SI{}{keV}, if we plot \(g_*\) on a log scale, it has sharp drop-offs around \SI{200}{MeV} (a QCD transition) and around \SI{500}{keV} (electrons and positrons), while it is mostly flat elsewhere.
 
 \subsubsection{The radiation domination epoch}
 
 This was the period in the early universe in which \(\rho_{R} \) was larger than \(\rho_{M}\); we will consider the early phase in which this difference was large (in order to approximate \(\rho_{M} \approx 0\)), but the inequality stayed on the radiation side for about a millennium.
 
-In the era of radiation domination, we get 
+In the era of radiation domination the scale factor varies like 
+\(a(t) \propto \sqrt{t} \)
+and the Hubble parameter scales like 
+\begin{align}
+H \approx \num{1.66} \sqrt{g_{*}} \frac{T^2}{M_{\text{Pl}}}
+\,.
+\end{align}
+
+So, we get a relation between time and temperature: approximately it is 
 %
 \begin{align}
-a(t) \propto \sqrt{t}
+t \approx \qty( \frac{T}{\SI{}{MeV}})^{-2} \SI{}{s}
 \,,
 \end{align}
 %
-and the Hubble parameter scales like 
+and more precisely it is 
 %
 \begin{align}
-H \approx 166 \sqrt{g_{*}} \frac{T^2}{M_{\text{Pl}}} = \frac{T^2}{M _{\text{Pl}}}
+t T^2 = \sqrt{ \frac{90}{32 \pi^2} \frac{1}{G_N g_{*}}}
 \,.
 \end{align}
 
-So, we get a time of the order of 
+\subsection{Thermal equilibrium}
+
+If the universe were not expanding, after a certain amount of time we would reach thermal equilibrium between the particle species. 
+But this is not the case: the expansion rate of the universe is \(H\).
+
+So, we take the decay rate of a certain particle species \(i\), which is denoted by \(\Gamma_{i}\).
+A particle is said to reach equilibrium if its decay rate is \(\Gamma_{i} > H\).
+This is a rule of thumb, an order of magnitude estimate: if \(\Gamma_{i} \gg H\) then the particle has time to decay many times within the age of the universe, while if \(\Gamma_{i} \ll H\) then its decay curve has barely started since the beginning of the universe.
+We are doing cosmology so the precise details of what happens when \(\Gamma_{i} \approx H\) are not very important, that is the region in which a macroscopic fraction of our particle species has has time to decay but not all of it.
+
+Note that this is a time- (or temperature-) dependent condition: a particle may be in equilibrium at a specific time and go out of equilibrium later. 
+
+\subsubsection{Neutrino decoupling: the \emph{freeze-out}}
+
+We want to discuss processes involving the neutrino, which are things like \(e^{+} e^{-} \to \nu \overline{\nu}\) or \(e \nu \to e \nu \).
+
+This are processes mediated by the weak interaction, so it is relevant to ask whether the temperature is larger or smaller than the mediator's mass.
+Let us first suppose that \(T > M_W\), so roughly \(T > \SI{100}{GeV}\).
+This means that the Breit-Wigner term in the cross section can be approximated as 
 %
 \begin{align}
-t \approx \qty( \frac{T}{\SI{}{MeV}})^2 \SI{}{s}
+\frac{1}{T^2 - M_W^2} \sim \frac{1}{T^2}
 \,.
 \end{align}
 
-How do we quantitatively describe coupling? We take the rate \(\Gamma_{i}^{\nu }\) from our particle to another, considering all possible processes.
-
-Let us suppose that \(T > M_W\), so roughly \(T > \SI{100}{GeV}\).
-
-The rate is given by 
+The rate of these processes is given by 
 %
 \begin{align}
 \Gamma_{\nu } = \sigma n v 
 \,,
 \end{align}
 %
-and the physics is really given by the cross section \(\sigma \): the other factors are always roughly the same, \(n \sim T^{3}\) and \(v \sim 1\).
-
-We have the coupling constant 
+where the physics is really given by the cross section \(\sigma \): the other factors are always roughly the same, \(n \sim T^{3}\) and \(v \sim 1\).
+The cross section depends on the coupling and the temperature: the coupling constant for weak processes is \(\alpha_{w} = g_w^2 / 4 \pi \), and the cross section is given by \(\sigma \sim \alpha_{w}^2 / T^2\),\footnote{The factor which appears in the cross section is precisely the Breit-Wigner one.} so the decay rate is roughly
 %
 \begin{align}
-\frac{e^2}{4 \pi } = \alpha _{\text{em}}
-\,,
-\end{align}
-%
-and the charge is \(e = g \sin(\theta_{w})\), where we know experimentally that \(\sin^2\theta_{w} \approx \num{.24}\).
-
-So, we know that the scaling is 
-%
-\begin{align}
-\sigma \sim \qty( \frac{g^2_{w}}{4 \pi })^{2}
-\sim \qty(\alpha^2_{w})
-\,,
-\end{align}
-%
-and on the denominator we need a mass square: but the only energy scale we know of here is \(T\), so we finally get \(\sigma \sim \alpha^2_{w} / T^2\). So, in the end we find 
-%
-\begin{align}
-\sigma \sim \frac{\alpha^2_{w}}{T^2} T^3 \times 1 \sim \alpha^2_{w} T
+\Gamma \sim \frac{\alpha^2_{w}}{T^2} \times  T^3 \times 1 = \alpha^2_{w} T
 \,.
 \end{align}
 
-The result we get is: \(T > H\) when 
+On the other hand, the Hubble rate is roughly proportional to 
+%
+\begin{align} \label{eq:hubble-rate-temperature-scaling}
+H \sim \sqrt{g_{*}} \frac{T^2}{M_P}
+\,,
+\end{align}
+%
+so if we impose \(\Gamma_{\nu } > H\) we get  
 %
 \begin{align}
-T < \frac{\alpha^2_{w }M _{\text{Pl}}}{\sqrt{g_{*}}}
+T < \frac{\alpha^2_{w} M_{P}}{\sqrt{g_{*}}}
 \,.
 \end{align}
 
-In another case (which?) we have \(\sigma \sim T^{2}\), so \(\Gamma \sim T^{5}\). 
+So, our result is that for 
+%
+\begin{align}
+M_W < T < \frac{\alpha^2_{w} M_P}{\sqrt{g_{*}}}
+\,
+\end{align}
+%
+neutrinos are in thermal equilibrium.
+In terms of actual energies, this means \(\SI{e2}{GeV} < T < \SI{e16}{GeV}\). The higher end of this is almost at the Planck mass, so we will not worry about it.
 
-We must compare to the expansion of the universe. 
+Now let us consider the later time at which \(T < M_W\). In this case, in the Breit-Wigner the mass of the weak interaction boson will dominate, and we will have 
+%
+\begin{align}
+\sigma \sim \mathcal{O}(\num{e-2}) \frac{T^2}{M_W^4} \approx \num{e-10} \frac{T^2}{\SI{}{GeV}^{4}}
+\,.
+\end{align}
+\todo[inline]{What is the factor which is of the order 0.01?}
 
-The end result is \(\Gamma_{\nu } > H\) as long as \(T > \SI{1}{MeV}\), roughly. So, for larger temperatures the neutrinos are coupled, for smaller temperatures they are decoupled. Below \SI{1}{MeV} they completely decouple. 
+Now, since we have \(\sigma \sim T^{2}\) the rate will scale like \(\Gamma \sim T^{5}\). Specifically, 
+%
+\begin{align}
+\Gamma \sim \num{e-10} \frac{T^{5}}{\SI{}{GeV^{4}}}
+\,.
+\end{align}
+
+We must compare to the expansion rate of the universe, which as before scales according to \ref{eq:hubble-rate-temperature-scaling}. Then, we find 
+%
+\begin{align}
+\num{e-10} \frac{T^{5}}{\SI{}{GeV^{4}}} &> \sqrt{g_{*}} \frac{T^2}{\SI{e19}{GeV}}  \\
+T &> \sqrt[3]{\frac{\sqrt{g_{*}} \num{e10}}{\num{e19}}} \SI{}{GeV} 
+= \sqrt[6]{g_{*}} \SI{}{MeV}
+\,.
+\end{align}
+
+Now, \(g_{*}^{1/6} \sim 1\), so we find that for \(\SI{1}{MeV} < T < M_W\) neutrinos are coupled. 
+
+The end result is \(\Gamma_{\nu } > H\) as long as \(T > \SI{1}{MeV}\), roughly.
+So, for larger temperatures the neutrinos are coupled, for smaller temperatures they are decoupled. Below \(T_D \approx\SI{1}{MeV}\) they completely decouple. 
+At this temperature the universe becomes transparent for them, they no longer significantly interact with matter.
+The decoupling temperature is defined by the relation 
+%
+\begin{align}
+\Gamma_{\nu } \qty(T^{\nu }_{D}) = H(T^{\nu }_{D})
+\,.
+\end{align}
+
+Now, we can define the current temperature and number density of the leftover neutrinos: they are respectively \(T^{\nu }_{0}\) and \(n_\nu \).
+When the temperature was \(T > \SI{1}{MeV}\) the neutrinos and photons were in thermal equilibrium: we had \(T_\nu \sim T _{\text{plasma}} \sim T_\gamma \). In this plasma there were neutrinos, photons, electrons and positrons.
+
+At \(T < \SI{500}{keV}\) electron-positron annihilation was still occurring, but pair creation slowed: there was not enough energy for a process like \(\nu \overline{\nu} \to e^{+}e^{-}\).
+The pair annihilation poured energy into photons only, since neutrinos were decoupled by that point. 
 
 The ``relic neutrinos'' are colder than the relic photons. Moreover, their number density is smaller. 
+
+
 The entropy density is given by 
 %
 \begin{align}

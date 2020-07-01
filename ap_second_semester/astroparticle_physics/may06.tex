@@ -34,7 +34,7 @@ E(\vec{p}) = \sqrt{\abs{\vec{p}}^2 + m^2}
 We can make some useful approximations in the relativistic limit \(T \gg m\) and in the nonrelativistic limit \(T \ll m\): 
 in the \textbf{relativistic} limit we find 
 %
-\begin{align}
+\begin{align} \label{eq:density-number-density-relativistic-limit}
 \rho = 
 \begin{cases}
   \displaystyle \frac{\pi^2}{30 } g T^{4} &  \text{bosons} \\
@@ -228,7 +228,7 @@ Now, \(g_{*}^{1/6} \sim 1\), so we find that for \(\SI{1}{MeV} < T < M_W\) neutr
 The end result is \(\Gamma_{\nu } > H\) as long as \(T > \SI{1}{MeV}\), roughly.
 So, for larger temperatures the neutrinos are coupled, for smaller temperatures they are decoupled. Below \(T_D \approx\SI{1}{MeV}\) they completely decouple. 
 At this temperature the universe becomes transparent for them, they no longer significantly interact with matter.
-The decoupling temperature is defined by the relation 
+The decoupling temperature is defined by the relation given
 %
 \begin{align}
 \Gamma_{\nu } \qty(T^{\nu }_{D}) = H(T^{\nu }_{D})
@@ -241,17 +241,103 @@ When the temperature was \(T > \SI{1}{MeV}\) the neutrinos and photons were in t
 At \(T < \SI{500}{keV}\) electron-positron annihilation was still occurring, but pair creation slowed: there was not enough energy for a process like \(\nu \overline{\nu} \to e^{+}e^{-}\).
 The pair annihilation poured energy into photons only, since neutrinos were decoupled by that point. 
 
-The ``relic neutrinos'' are colder than the relic photons. Moreover, their number density is smaller. 
+So, the ``relic neutrinos'' are colder than the relic photons. Moreover, their number density is smaller. 
 
-
-The entropy density is given by 
+The entropy density for relativistic matter with \(P = \rho / 3\) is given\footnote{To see this, start from the thermodynamic relation \(T \dd{S} = \dd{E } + P \dd{V} \), divide through by \(T \dd{V}\) to get 
+%
+\begin{align}
+\dv{S}{V} = \frac{1}{T}\dv{E}{V} + \frac{P}{T} = \frac{\rho + P}{T}
+\,.
+\end{align}
+%
+} by 
 %
 \begin{align}
 s = \frac{\rho + P}{T} = \frac{4}{3} \frac{\rho}{T}
 \,.
 \end{align}
 
-The temperature of neutrinos today is around \(T^{0}_{\nu } \approx \SI{1.96}{K}\). 
+So, for the \(i\)-th particle species we can write 
+%
+\begin{align}
+s_i = \frac{4}{3} \frac{\rho_{i}}{T}
+= g_i \frac{2 \pi^2}{45} T^3
+\,
+\end{align}
+%
+for bosons, and the same result times \(7/8\) for fermions. 
+
+Now, let us define \(T_{>}\) as the temperature of the photons, \(T_\gamma \), before the disappearance of the \(e^{+}e^{-}\) pairs. This temperature will be in the range \(\SI{500}{keV} < T_> < \SI{1}{MeV}\). 
+
+Then, we can define a corresponding entropy \(s_>\): it will be given by 
+%
+\begin{align}
+s_> = \frac{4}{3} \frac{\rho_{>}}{T_>} = \frac{2 \pi^2}{45} g_* (T_>) T^3_> 
+\,,
+\end{align}
+%
+where the effective number of degrees of freedom is given by:
+%
+\begin{align}
+g_* (T_>) = 2 + \frac{7}{8} \qty(2 + 2) = \frac{11}{2}
+\,,
+\end{align}
+%
+since we need to account only for photons, electrons and positrons --- neutrinos have already decoupled. 
+
+Also, let us define another temperature, \(T_<\), such that \(T_< < \SI{500}{keV}\). The corresponding \(g_* (T_<)\) will be of 2, since electrons and positrons will have decoupled. 
+Then, the corresponding entropy density will read: 
+%
+\begin{align}
+s_< = \frac{4}{3} \frac{\rho_{<}}{T_<} = \frac{4}{3} \frac{\pi^2}{30} g_* T_<^3 = \frac{2 \pi^2}{45} g_*(T_<) T_<^3
+\,.
+\end{align}
+
+Now, we impose \(s_< = s_>\): in the phase transition the temperature can be discontinuous by the entropy is conserved. This yields 
+%
+\begin{align}
+\frac{2 \pi^2}{45} g_*(T_<) T_<^3 &= \frac{2 \pi^2}{45} g_* (T_>) T^3_> \\
+g_*(T_<) T_<^3 &= g_* (T_>) T^3_> \\
+2 T_<^3 &= \frac{11}{2} T^3_> \\
+T_< &= \sqrt[3]{\frac{11}{4}} T^3 
+\,.
+\end{align}
+
+The next step is to state that \(T_> / T_< = T_\gamma / T_\nu \). This is because photons can still thermalize at \(T_<\), while neutrinos are ``stuck'' at the temperature \(T_>\).
+
+So, the temperature of relic neutrinos today can be calculated from that of the CMB to be around \(T^{0}_{\nu } = \sqrt[3]{4/11} T^{0}_{\gamma } \approx \SI{1.96}{K}\). 
+
+We also know that the number density of relic photons today is given by 
+%
+\begin{align}
+n^{0}_{\gamma } = \frac{\zeta (3)}{\pi^2} 2 T_\gamma^3 \approx \SI{422}{cm^{-3}}
+\,,
+\end{align}
+%
+so we can calculate that of neutrinos using what we know from \eqref{eq:density-number-density-relativistic-limit}: 
+%
+\begin{align}
+\frac{n^{0}_{\nu }}{n^{0}_{\gamma }} = \frac{3}{4} \qty( \frac{T_\nu}{T_\gamma } )^3 = \frac{3}{11}
+\,.
+\end{align}
+
+So, \(n^{0}_{\nu } \approx \SI{100}{cm^{-3}}\).
+
+Another example of a particle decoupling is given by the graviton: the rate of interactions which are only gravitational is given by 
+%
+\begin{align}
+\Gamma = n \sigma v \approx G_N^2 T^{5} \sim \frac{T^{5}}{M_P^{4}}
+\,,
+\end{align}
+%
+so if we impose \(\Gamma < H \) we get the expected result: the decoupling temperature is just the Planck mass, 
+%
+\begin{align}
+\frac{T^{5}}{M_P^{4}} < \frac{T^2}{M_P} \implies T^{3} < M_P^{3} \implies T < M_P
+\,.
+\end{align}
+
+The \(g_*\) at that early time was around 100, so we find that the temperature of relic gravitational radiation should be around \(T _{\text{grav}} \approx \SI{0.8}{K}\) and its number density should be \(n _{\text{grav}} \approx \SI{15}{cm^{-3}}\)
 
 Next week we will consider nucleosynthesis. 
 

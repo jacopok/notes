@@ -1,131 +1,234 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\marginpar{Tuesday\\ 2020-5-12, \\ compiled \\ \today}
-
-We should be able to finish by Wednesday June 3rd. 
-
-We keep exploring Standard Model Cosmology. 
-
 \section{Big Bang Nucleosynthesis}
 
-Around a few hundred \SI{}{MeV} to the \SI{}{GeV} we have a phase transition. 
+\marginpar{Tuesday\\ 2020-5-12, \\ compiled \\ \today}
 
-Now we move to the infrared regime, where we have the so-called slavery: we go to the range from \SI{1}{MeV} to few tens of \SI{}{keV}. 
-Neutrons and protons are the new protagonists.
-The first process is 
+% We should be able to finish by Wednesday June 3rd. 
+
+% We keep exploring Standard Model Cosmology. 
+
+% Around a few hundred \SI{}{MeV} to the \SI{}{GeV} we have a phase transition. 
+
+Now we move to the infrared regime, from \SI{1}{MeV} to a few tens of \SI{}{keV}. 
+Neutrons and protons are the new protagonists: the quarks are in the infrared ``slavery''.
+This is the period in which we see the first combination of neutrons and protons into light nuclei, such as \ce{^{4}He}, \(\ce{D} = \ce{^{2}H}\), \ce{^{3}H}, \ce{^{7}Li}.
+
+\subsubsection{Neutron freeze-out}
+
+Neutrons and protons can turn into each other through weak processes, such as 
+%
+\begin{align}
+\ce{n} + \nu_{e} &\leftrightarrow \ce{p} + e^{-} \\
+\ce{n} + e^{+} &\leftrightarrow \ce{p} + \overline{\nu}_{e} \\
+\ce{n} &\leftrightarrow \ce{p} + e^{-} + \nu_{e}
+\,.
+\end{align}
+
+We want to consider the ratio of their number densities, denoted as \(n / p\). At equilibrium, and as long as the baryons are nonrelativistic, this is given by 
+%
+\begin{align}
+\frac{n}{p} \approx \exp(- \frac{\Delta m}{T})
+\,,
+\end{align}
+%
+where \(\Delta m = m_n - m_p \approx \SI{1.3}{MeV}\): for \(T \gg \Delta m\) this is approximately \(\exp(0) = 1\).
+
+The proton, as far as we can tell, is stable; on the on the other hand the neutron is unstable: it can beta-decay into a proton. 
+
+At \SI{1}{MeV}, which is around the moment of the freeze-out, the ratio \(n/p\) is around \(1/6\). 
+
+
+For temperatures larger than an \SI{}{MeV} nucleosynthesis cannot start: deuterium nuclei can form by
 %
 \begin{align}
 \ce{n} + \ce{p} \to \ce{D} + \gamma 
 \,,
 \end{align}
 %
-the formation of deuterium. 
-We are interested in the ratio of abundances of deuterium as opposed to hydrogen. 
+but they are readily photodissociated, since there are plenty of photons whose energy is \(E_\gamma > \SI{2.2}{MeV}\), the binding energy of deuterium.
+At this stage, the ratio of the number of photons to that of baryons is of the order of \(n_\gamma / n_b \approx \num{e10}\), way too high still. 
 
-At a sufficiently high temperature, higher than the binding energy of the deuterium, the inverse process can occur. 
-
-So, we need to reach the moment at which the photodissociation does not happen anymore. 
-
-Then, more processes can occur, like 
+Now, what is the temperature at which neutrons decouple, \(T^{\text{neutron}}_{D}\)? The decay rate of neutrons is given by 
 %
 \begin{align}
-\ce{D} + \ce{p} \to \ce{^{3}He} + \gamma 
+\Gamma_{n} = C_n G_F^2 T^{5}
+\,,
+\end{align}
+%
+where \(C_n\) is some constant which is not much different from 1. 
+As always, in order to find out at which temperature they decouple, \(T^{\text{neutron}}_{D}\), we impose \(H (T_D) = \Gamma (T_D)\). 
+
+The \(g_*\) at this temperature accounts for photons, electrons, positrons and neutrinos. So, we find 
+%
+\begin{align}
+T^{n}_{D} = \frac{1}{\qty(C_n M_P^{*} G_F)^{1/3}}
+\,,
+\end{align}
+%
+where \(M_P^{*}\) is the corrected Planck mass \eqref{eq:reduced-planck-mass}. The order-1 constant \(C_n\) can be determined experimentally from the lifetimes of neutrons: what we find is \(C_n \approx \num{1.2}\).
+If the number of neutrino species is \(N_\nu = 3\) then we get \(T^{n}_{D } \approx \SI{1.4}{MeV}\), which is very close to the mass difference between protons and neutrons! 
+
+Why is this relevant? Well, let us consider the extreme behaviours: 
+\begin{itemize}
+    \item if \(\Delta m \gg T_D\), then freezeout happens at a near-zero value of \(n/p = \exp( - \Delta m / T)\);
+    \item while if \(\Delta m \ll T_D\), freezeout happens when we still have \(n / p \approx 1\): what happens then is that all the neutrons and protons turn into \ce{^{4}He} and no hydrogen is left in the primordial plasma. 
+\end{itemize}
+
+% We are interested in the ratio of abundances of deuterium as opposed to hydrogen. 
+
+% At a sufficiently high temperature, higher than the binding energy of the deuterium, the inverse process can occur.
+
+% So, we need to reach the moment at which the photodissociation does not happen anymore. 
+
+% The nucleosynthesis process heavily depends on the characteristics of the two standard models. 
+
+% An interesting part of nuclear astrophysics is the computation of these numbers and cross-sections.
+
+% A tricky thing is also to actually measure the abundances of these elements, or more precisely to distinguish what is produced by primary nucleosynthesis and what instead is produces by secondary nucleosynthesis. 
+
+% We will not go into the details, but instead we will comment on what parts of our models enter in the computations. 
+
+% To start, let us say we have a temperature above the \SI{}{MeV}. 
+% Weak interactions decouple around this scale: the timescale for a weak interaction to occur is longer than the lifetime of the universe at that point. 
+% We saw last time that \(H \sim T^2 / M_P\). 
+
+% The distribution functions of the particles go like \(e^{-m / T}\), so the ratio of 
+% %
+% \begin{align}
+% \frac{n_n}{n_p} = \frac{n}{p} \approx e^{- \Delta m / T}
+% \,.
+% \end{align}
+
+% Here, it becomes relevant that \(m_n - m_p \approx \SI{13}{MeV} \neq 0\). 
+% This ratio of number densities applies as long as the neutrons and protons are in equilibrium and nonrelativistic.
+
+% At a certain point, the temperature gets as low as \(T = T_D\), the decoupling temperature. 
+
+An exact computation yields \(T^{n}_{D} \approx \SI{0.7}{MeV}\), which corresponds to around \(t = \SI{1.1}{s}\) after the beginning. 
+
+What is the temperature at which the deuterium can stay bound? It is the temperature after which there is more formation of deuterium than photodissociation. 
+The binding energy of deuterium is around \(E_D \approx \SI{2.2}{MeV}\). To get stable deuterium we must wait until
+%
+\begin{align}
+\Circled{A} = \frac{n_\gamma }{n_B} e^{- \frac{\SI{2.2}{MeV}}{T}} < 1
 \,.
 \end{align}
 
-Similarly we can form tritium (\ce{^{3}H}) from deuterium and a proton, and regular Helium (\ce{^{4}He}) from two deuterii --- this is the most stable of these nuclei.
+When \(\Circled{A} <1\), the rate of deuterium production surpasses that of its dissociation. 
 
-The nucleosynthesis process heavily depends on the characteristics of the two standard models. 
+We actually have to wait quite a long time for this to occur, since \(n_{\gamma } \gg n_B\).
+This is since baryons are quite massive. The ratio comes out to be around one billionth: \(n_\gamma / n_B \sim \num{e9}\).
 
-An interesting part of nuclear astrophysics is the computation of these numbers and cross-sections.
+So, we need a strong drop in temperature: we find that the necessary temperature is around \SI{0.1}{MeV}, corresponding to \(t \approx \SI{e2}{s}\). 
 
-A tricky thing is also to actually measure the abundances of these elements, or more precisely to distinguish what is produced by primary nucleosynthesis and what instead is produces by secondary nucleosynthesis. 
+So, nucleosynthesis starts at \(T < \SI{1}{MeV}\), while the weak-interaction processes freeze out at \(T \approx \SI{1}{MeV}\). 
+% Let us try to focus on what is of interest for us. 
+The neutron-to-proton ratio \(n/p\) is around \(1/6\) at freezeout, and we will see that in the time between this and the start of nucleosynthesis it reaches \(1/7\) because of neutron decay. 
 
-We will not go into the details, but instead we will comment on what parts of our models enter in the computations. 
+% We must compare a weak interaction rate \(\Gamma_{W}\) with the expansion rate of the universe \(H\).
+% The first is computed according to the SM of particle physics, and crucially depends on the coupling strength. 
 
-To start, let us say we have a temperature above the \SI{}{MeV}. 
-Weak interactions decouple around this scale: the timescale for a weak interaction to occur is longer than the lifetime of the universe at that point. 
-We saw last time that \(H \sim T^2 / M_P\). 
-
-The distribution functions of the particles go like \(e^{-m / T}\), so the ratio of 
-%
-\begin{align}
-\frac{n_n}{n_p} = \frac{n}{p} \approx e^{- \Delta m / T}
-\,.
-\end{align}
-
-Here, it becomes relevant that \(m_n - m_p \approx \SI{13}{MeV} \neq 0\). 
-This ratio of number densities applies as long as the neutrons and protons are in equilibrium and nonrelativistic.
-
-At a certain point, the temperature gets as low as \(T = T_D\), the decoupling temperature. 
-
-The proton, as far as we can tell, is stable; on the on the other hand the neutron is unstable: it can beta-decay into a proton. 
-
-At \SI{1}{MeV}, which is around the moment of the freeze-out, the ratio \(n/p\) is around \(1/6\). 
-
-What is the temperature at which the deuterium can stay bound? it will depend on the ratio \(n_B / n_\gamma \), and also on the ratio \(E_{\gamma } / E_{D}\). The binding energy of deuterium is around \(E_D \approx \SI{2.2}{MeV}\). To get stable deuterium we must wait until
-%
-\begin{align}
-\frac{n_\gamma }{n_B} e^{- \frac{\SI{2.2}{MeV}}{T}} < 1
-\,.
-\end{align}
-
-We actually have to wait quite a long time, since \(n_{\gamma } \gg n_B\). 
-This is since baryons are quite massive. The ratio comes out to be around one billionth: \(n_\gamma / n_B \sim \num{e9}\). 
-So, we need a strong drop in temperature: we find that the necessary temperature is around \SI{0.1}{MeV}. 
-
-Let us try to focus on what is of interest for us. 
-
-We must compare a weak interaction rate \(\Gamma_{W}\) with the expansion rate of the universe \(H\).
-The first is computed according to the SM of particle physics, and crucially depends on the coupling strength. 
-
-The lifetime of a neutron is 
+The lifetime of a neutron is measured experimentally to be
 %
 \begin{align}
 \tau_{n} = \SI{10.5(2)}{min}
 \,.
 \end{align}
 
-The coupling at the vertex:
+% The coupling at the vertex:
+% %
+% \begin{align}
+% G_F = \frac{\alpha_{W}^2}{M_W^{4}}
+% \,,
+% \end{align}
+%
+% where \(M_W \approx \SI{100}{GeV}\), while the Hubble parameter scales like 
+% %
+% \begin{align}
+% H \sim \frac{T^2}{M_P^{4}}
+% \,.
+% \end{align}
+
+% We also need the coupling \(g_{*}\), which can also be derived experimentally, and \(n_\gamma / n_B\): the latter can be used as an output parameter. 
+% This will then tell us about \(\Omega_{B}\), the matter fraction, which is hard to measure in the modern universe. 
+
+% Why do we directly measure the neutron lifetime? This is a hard computation since we both have the strong dynamics in the nucleons and the weak dynamics moving quarks between different flavours. 
+
+After we go below the temperature \(T \approx \SI{.1}{MeV}\) more processes can occur, like 
 %
 \begin{align}
-G_F = \frac{\alpha_{W}^2}{M_W^{4}}
-\,,
-\end{align}
-%
-where \(M_W \approx \SI{100}{GeV}\), while the Hubble parameter scales like 
-%
-\begin{align}
-H \sim \frac{T^2}{M_P^{4}}
+\ce{n}+ \ce{p} &\leftrightarrow \ce{D} + \gamma \\
+\ce{D} + \ce{p} &\leftrightarrow \ce{^{3}He} + \gamma  \\
+\ce{D} + \ce{n} &\leftrightarrow \ce{^{3}H} + \gamma  \\
+\ce{^{3}He} + \ce{n} &\leftrightarrow \ce{^{4}He} \\
+\ce{^{3}H} + \ce{p} &\leftrightarrow \ce{^{4}He} 
 \,.
 \end{align}
 
-We also need the coupling \(g_{*}\), which can also be derived experimentally, and \(n_\gamma / n_B\): the latter can be used as an output parameter. 
-This will then tell us about \(\Omega_{B}\), the matter fraction, which is hard to measure in the modern universe. 
+% Similarly we can form tritium (\ce{^{3}H}) from deuterium and a proton, and regular Helium (\ce{^{4}He}) from two deuterii --- this is the most stable of these nuclei.
+Helium-4 is the most stable of these isotopes, and most of the free neutrons end up in it. 
+The production of heavier nuclei is quite suppressed at this temperature, and we do not consider them.
 
-Why do we directly measure the neutron lifetime? This is a hard computation since we both have the strong dynamics in the nucleons and the weak dynamics moving quarks between different flavours. 
+% The number of degrees of freedom \(g_{*}\) is interesting: it could be calculated from the Standard Model, but we know that some new degrees of freedom must exist since no SNddM particle could be Dark Matter.
 
-The number of degrees of freedom \(g_{*}\) is interesting: it could be calculated from the Standard Model, but we know that some new degrees of freedom must exist since no SNddM particle could be Dark Matter.
-
-Finally we got \(n/p \sim 1/7\) for the \SI{0.1}{MeV} temperature; with this information we can compute 
+% Finally we got \(n/p \sim 1/7\) for the \SI{0.1}{MeV} temperature; with this information we can compute 
+We can now compute the number fraction of helium nuclei: 
 %
 \begin{align}
-\frac{N_{\ce{He}}}{N_{\ce{H}}} = \frac{ \frac{1}{2} n }{p - n}
-\,,
+X_4 = \frac{N_{\ce{^{4}He}}}{N_{\ce{H}}} 
+= \frac{ \frac{1}{2} n }{p - n}
+= \frac{1}{2} \frac{n/p}{1 - n/p}
+\,.
 \end{align}
 %
 since the number of hydrogen nuclei is the same as the number of unpaired protons. 
-We get 
+The mass fraction of helium, on the other hand, is
 %
 \begin{align}
-Y_{4} = \frac{M_{\ce{He}}}{M_{\ce{H}} + M_{\ce{^{4}He}}} = \frac{4 N_{\ce{He}}}{N_{\ce{H}} + 4 N_{\ce{^{4}He}}}
+Y_{4} 
+= \frac{M_{\ce{He}}}{M_{\ce{H}} + M_{\ce{^{4}He}}} 
+= \frac{4 N_{\ce{He}}}{N_{\ce{H}} + 4 N_{\ce{^{4}He}}} 
+= \frac{4 X_4}{1 + 4 X_4} = \frac{2 (n/p)}{1 + n/p}
+\,.
+\end{align}
+
+For \(n / p \approx 1/7\) this is around \(Y_4 \approx \num{.25}\), in agreement with observations.
+
+% We can plot, in terms of \(\eta_{B } = n_{\gamma } / n_{B}\), the fraction of mass of \(\ce{^{4}He}\) to \ce{H}, as well as that of deuterium and Lithium. 
+To get a more precise estimate we should properly consider all the formation channels for \ce{^{4}He}, beyond the ones we have written there are others such as ones in which the product of a reaction is not only a helium nucleus but we also get another proton or neutron. 
+
+The chain keeps going beyond Helium, skipping the mass numbers \(A = 5\) and \(A= 8 \). We can get \ce{^{5}Li} and \ce{^{6}Li}. 
+
+To summarize, there have been \textbf{three main parameters} in this calculation: 
+\begin{enumerate}
+    \item the ratio \(n_B / n_\gamma \) determines the beginning of the nucleosynthesis;
+    \item the lifetime of a neutron, \(\tau_{n}\), enters in the determination of the rate of weak processes, which is connected to the weak coupling \(G_F\) 
+    \todo[inline]{\dots and determines \(n/p\) at the beginning of nucleosynthesis, right?}
+    \item the effective number of degrees of freedom \(g_*\) at \(m < \SI{1}{MeV}\) is important since \(H \propto \sqrt{g_*}\).
+\end{enumerate}
+
+Let us investigate the effect of the variation of these parameters.
+
+If we increase \(n_B / n_\gamma = \eta_B\) nucleosynthesis starts before, so there is less time for the neutrons to \(\beta\)-decay, so the ratio \(n/p\) is higher, so \(Y_4 \) will be higher. 
+
+The number density of baryons today is given by 
+%
+\begin{align}
+n^{0}_{B} = \frac{\rho_{B}^{0}}{m_B} = \frac{\Omega_{B} \rho_{c}}{m_B}
+\approx \num{1.13e-5} \Omega_{B} h_0^2 \SI{}{cm^{-3}}
 \,,
 \end{align}
 %
-which can be expressed in terms of \(n/p\). 
+while the number density of photons today is 
+%
+\begin{align}
+n_\gamma^{0} = \frac{2 \zeta (3)}{\pi^2} T_\gamma^3 \approx 400 \qty( \frac{T_0 }{\SI{2.7}{K}})^3 \SI{}{cm^{-3}}
+\,.
+\end{align}
 
-We can plot, in terms of \(\eta_{B } = n_{\gamma } / n_{B}\), the fraction of mass of \(\ce{^{4}He}\) to \ce{H}, as well as that of deuterium and Lithium. 
+
 
 We finally get 
 %

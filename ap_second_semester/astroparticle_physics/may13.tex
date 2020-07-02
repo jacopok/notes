@@ -5,26 +5,51 @@
 
 \marginpar{Wednesday\\ 2020-5-13, \\ compiled \\ \today}
 
-Yesterday we described the formation of the first nuclei. 
-The amount of baryons in terms of energy density is of the order of 4 to \SI{5}{\percent}. 
+% Yesterday we described the formation of the first nuclei. 
+% The amount of baryons in terms of energy density is of the order of 4 to \SI{5}{\percent}. 
+Let us start our discussion of dark matter with the \textbf{baryon budget}: how much do baryons contribute to the total energy density of the universe?
+
+In the \emph{high-redshift universe} we have: 
+\begin{enumerate}
+    \item at nucleosynthesis (\(z \sim \num{e9}\)) the baryonic matter fraction was \(\Omega_{B}^{BBN} = \num{.04(2)}\); 
+    \item at CMB emission (\(z \sim \num{e3}\)) the baryonic matter fraction was \(\Omega_{B}^{CMB} \approx \Omega_{B}^{BBN} \approx \SI{5}{\percent}\);
+    \item at \(z \sim 3\) we have observations of the Lyman \(\alpha \) (``frest''?) of the intergalactic medium: this again yields \(\Omega_{B} \approx \SI{5}{\percent}\).
+\end{enumerate}
+
+\todo[inline]{what is written there?}
+
+In the recent universe (\(z \sim 0\)) we have observations of galaxy clusters, in which we measure a matter fraction of \(\Omega_{M} \approx \num{.26}\), of which about \SI{15}{\percent} is made of baryons: so, we get an estimate of around \(\Omega_{B} \approx \SI{4}{\percent}\). 
+
+So, the fraction of luminous baryonic matter is \(\Omega_{B}^{\text{lumin}} \approx \SI{1}{\percent}\), with a corresponding density of \(\rho _{\text{lumin}} \approx \SI{9e-29}{kg m^{-3}}\). 
+\todo[inline]{Not really clear how we estimate this based on what is mentioned above.}
+
+On the other hand, our estimate for the total baryonic mass fraction is \(\Omega_{B}^{\text{tot}} \approx \SI{5}{\percent}\), with a corresponding density of \(\rho_{b} \approx \SI{4e-28}{kg m^{-3}}\).
 
 We know that the total value of \(\Omega _{\text{tot}}  \sim 1\). 
-The density fraction due to dark energy is around \SI{70}{\percent}, while \(\Omega _{\text{matter}} \sim \SI{30}{\percent}\).
+
+The density fraction due to dark energy is around \SI{70}{\percent}, while \(\Omega _{\text{matter}} \sim \SI{30}{\percent}\): this can be deduced from the gravitational potential energy, which is inferred from galactic rotation curves, and the mass distribution in clusters. 
+The corresponding matter density is around \(\rho_{M} \approx \SI{2e-27}{kg m^{-3}}\).
 
 So, most (something like \SI{80}{\percent}) of the matter is not made of baryons. 
-
 We are then looking for non-baryonic matter with \(\Omega \sim \SI{25}{\percent}\).
+More precisely, the latest results give 
+%
+\begin{align}
+\Omega_{DM} \approx \SI{26.4}{\percent} = \SI{84.4}{\percent} \Omega_{M}
+\,.
+\end{align}
 
-There were interesting studies about how the lensing of light is affected by Dark Matter. 
-All the evidence is based on our knowledge of gravitational interactions. 
-Are we sure that Newton's law of gravitation is right on such large scales? There are MOND theories.
+Accounting for our uncertainty in \(H_0 \), we can write \(\Omega_{B} = \num{.022}h^{-2} \approx 4 \divisionsymbol \SI{5}{\percent}\).
 
-However, the hints about the existence of non-baryonic DM come from very different directions. 
+How sure are we that dark matter is indeed the best way to describe galactic rotation curves and such?
+
+It makes other predictions beyond them: there were interesting studies about how the lensing of light is affected by Dark Matter. 
+All the evidence is based on our knowledge of gravitational interaction: Are we sure that Newton's law of gravitation is right on such large scales? There are MOND theories, in which it does not.
+However, the hints about the existence of non-baryonic DM come from very different directions.\footnote{And I'd be remiss not to cite \url{https://xkcd.com/1758/}.}
 We then take the standard view: Dark Matter exists. 
 
 Could the Higgs boson be the source of Dark Matter? No. 
 It decays too fast.
-
 We have similar problems for the \(Z\) boson. So, in the end we must have some other neutral particle.
 
 So, neutrinos? Maybe. They are light, of course, but there are many. 
@@ -36,10 +61,18 @@ We get
 \,,
 \end{align}
 %
-where \(n^{0}_{\nu } \approx \SI{339.5}{cm^{-3}}\). So, this comes out to be 
+where we used the known neutrino number density today \(n^{0}_{\nu } \approx \SI{339.5}{cm^{-3}}\).
+So, this comes out to be 
 %
 \begin{align}
 \Omega_{\nu } = \frac{ \sum _{i} m_{\nu_{i}}}{h^2 \SI{93.14}{eV}}
+\,.
+\end{align}
+
+Now, \(h^2 \sim 1/2\), so this is very roughly 
+%
+\begin{align}
+\Omega_{\nu } \sim \frac{\sum m_\nu }{\SI{50}{eV}}
 \,.
 \end{align}
 
@@ -49,54 +82,180 @@ The bound we have is of the order \(m_{\nu_{e}} \lesssim \SI{1}{eV}\).
 We also have bounds for the square of the mass differences. 
 In the end, this means that the term \(\sum m_{\nu }\) can be at most a few \SI{}{eV}.
 
+Even if all the three neutrinos' masses were at the very top of their current experimental bounds at \( m_\nu \sim \SI{2}{eV}\) each we would have \(\Omega_{\nu } < \num{.1}\), which is too small to fit observations of \(\Omega_{DM} \sim \num{.25}\). 
+
 In spite of the fact that they are very numerous, neutrinos have too small a mass. 
 
-Dark Matter is also crucial in the formation of Large Scale Structure.
-It must ``clump'' in order to do so. This means that it must be nonrelativistic.  But neutrinos are relativistic today! 
+\subsection{Hot \& cold DM}
 
-We must ask that the mass of Dark Matter, \(M_X\), be larger than the temperature of decoupling. This is then called ``Cold Dark Matter''.
+% Dark Matter is also crucial in the formation of Large Scale Structure.
+% It must ``clump'' in order to do so: this means that it must be nonrelativistic.  But neutrinos are still relativistic today!
 
-Relativistic DM kills all of the density fluctuations. 
+Let us call a generic DM particle \(X\). It will decouple at a certain temperature \(T^{D}_{X}\). Then, \textbf{cold} DM is such that \(M_X \gg T_X^{D}\), while for \textbf{hot} DM we have \(M_X \ll T_X^{D}\). 
+So, cold DM is \emph{nonrelativistic} when it decouples, while hot DM is \emph{relativistic} when it does.
 
-If neutrinos were the source of DM, the first structures would form at a very large scale. 
+We can also have \textbf{warm} DM, in the case where \(M_X \sim T_D\).
 
-There are simulations used in order to compare these models.
+% We must ask that the mass of Dark Matter, \(M_X\), be larger than the temperature of decoupling. This is then called ``Cold Dark Matter''.
 
-What does the Dark Matter density profile look like in a galaxy? 
-CDM would have a ``cusp'' in density at the center, a really heavy region. 
+% Relativistic DM kills all the density fluctuations. 
 
-Could we also have ``Warm'' Dark Matter? An intermediate situation between HDM and CDM. 
+Neutrinos would be an example of hot dark matter, since they decouple around \SI{1}{eV} while their mass is smaller than that. 
+
+Whether DM is hot or cold\footnote{\url{https://www.youtube.com/watch?v=kTHNpusq654}} is relevant for the formation of structures: relativistic matter has a hard time clumping at small scales. 
+% If neutrinos were the source of DM, the first structures would form at a very large scale. 
+
+For HDM, in the period \(T_D > T > M_X\) the DM is free-streaming, so it quickly fills in under-dense regions, and the density perturbations are washed out.
+
+The warm case is at around \(M_X \gtrsim \SI{1}{eV}\), while HDM has \(M_X < \SI{1}{eV}\). 
+
+There are simulations used in order to compare these models: what is seen is that for HDM the first structures to form are the very largest --- superclusters of galaxies ---, which then fragment into smaller pieces. 
+This type of evolution is in stark disagreement with our observations.
+With this line of reasoning we have bounded the fraction of DM which may be hot: most of it will be cold. 
+So, neutrinos may be a part of DM, but they cannot be the dominant part of it.
+
+% What does the Dark Matter density profile look like in a galaxy? 
+% CDM would have a ``cusp'' in density at the center, a really heavy region. 
+
+% Could we also have ``Warm'' Dark Matter? An intermediate situation between HDM and CDM. 
 
 Dark Matter around \SI{1}{keV} in mass would be a candidate for this. 
 
-Let us consider \textbf{Thermal Dark Matter}: it has been in equilibrium with the plasma for some time in the early universe.
-
-This means that at that time we can know the number density of those particles. 
+Let us consider \textbf{Thermal Dark Matter}, which has been in equilibrium with the plasma for some time in the early universe, so it is cold when it decouples.
+By assuming chemical equilibrium we can figure out the number density of those particles.
 Consider a heavy particle \(\ce{X}\), with mass larger than, say, \SI{10}{GeV}, and which is stable or quasi-stable (that is, such that its lifetime is long compared to the age of the universe).
 
-We have different kinds of equilibrium: kinematic and chemical equilibrium. If we have a scattering like 
+Then, its equilibrium number density will be given by 
 %
 \begin{align}
-\ce{X} + \ce{A} \to \ce{X} + \ce{B}
+n_X ^{\text{eq}} = g_X \qty(\frac{M_X T}{2 \pi })^{3/2} \exp(- \frac{M_X}{T})
+\,.
+\end{align}
+
+The number of \(X\) in a certain comoving volume can only change by annihilation and creation: \(X \overline{X} \leftrightarrow \text{light particles}\).
+
+If the rate \(\Gamma \) of this process is \(>H\) at a certain temperature \(T\), then the number density of \(X\) is indeed the equilibrium one. 
+However, as \(T\) decreases below \(M_X\) we will reach a point at which the light particles will not be energetic enough to form \(X\) pairs. 
+At this point, only the annihilation of \(X \overline{X}\) pairs will be able to occur, so their number will diminish. 
+
+After some more time, their encounters will not be likely anymore, so we say that the abundance of \(X\) \emph{freezes out}.
+From that moment onward, \(n_X\) will not change in the comoving frame.
+
+Note that this may still be before \emph{kinetic} equilibrium is reached: scatterings like \(X + A \to X + B\) can still happen. 
+The number of \(X\)s is governed by the Boltzmann equation: 
+%
+\begin{align}
+\dv{n_X}{t} + 3 H n_X  = - \expval{\sigma _{\text{annihilation}}v } \qty(n_X^2 - n_{X, \text{eq}}^2)
+\,.
+\end{align}
+
+The cross section \(\sigma _{\text{annihilation}}\) is averaged over all the equilibrium momentum space distribution functions of the particle species, and summed over the possible annihilation channels.
+
+% We have different kinds of equilibrium: kinematic and chemical equilibrium. If we have a scattering like 
+% %
+% \begin{align}
+% \ce{X} + \ce{A} \to \ce{X} + \ce{B}
+% \,,
+% \end{align}
+% %
+% this does not change the number of particles \(\ce{X}\). It only distributes the momenta. 
+
+% If the annihilation rate of \ce{X} is lower than the expansion of the universe, it stays as it is. 
+% Then, we have the Boltzmann suppression factor in the distribution, \(\exp(- m_X / T)\). 
+
+% The final number of \ce{X} is reduced by a factor \(\exp(- m_X / T _{\text{freezeout}})\).
+
+\todo[inline]{Here start many calculations to get the density of \(X\) today\dots}
+
+\subsection{WIMPs}
+
+What is the window of the parameters of this particle which could give us the \(\Omega_{DM}\) we observe?
+
+If the particle is a Weakly Interacting Massive Particle, we get the ``WIMP miracle'': with very simple assumptions, we get \(\Omega \) between 1 and \num{e-1}. Let us show this.
+
+\begin{claim}
+For a heavy relic particle the following holds:
+%
+\begin{align}
+\Omega_{X} h^2 \approx \num{e-10} 
+\qty(\frac{\SI{}{GeV^{-2}}}{\expval{\sigma v}_{\text{eff}}})
+\frac{1}{\sqrt{g_* (t_f)}}
+\log(
+    \frac{g_X M_X M_P \expval{\sigma v}}{(2 \pi )^{3/2} \sqrt{g_*}}
+)
+\,.
+\end{align}
+\end{claim}
+
+
+We apply this to a particle with mass \(M_X \sim \SI{100}{GeV}\), which interacts through the weak interaction and therefore has 
+%
+\begin{align}
+\expval{\sigma v} \sim \frac{\alpha_{w}^2}{M_X^2} \sim \frac{\num{e-4}}{\num{e4}} \SI{}{GeV^{-2}}
+\,.
+\end{align}
+
+The values of \(\sqrt{g_*}\) we need are \(\sqrt{g_*}\sim 10\) at \(T > \SI{200}{GeV}\) and \(\sqrt{g_*} \sim 3\) at \(\SI{100}{MeV}\).
+
+Plugging these in we get 
+%
+\begin{align}
+\Omega_{X} h^2 &\approx 2 \times \num{e-10} \num{e8} \frac{1}{10} \log(\frac{\num{e2} \num{e19} \num{e-7}}{\num{e2}})  \\
+\Omega_{X} &\approx 2 \times  2\times  \num{e-3} 12 \log 10 \approx \num{e-1}
 \,,
 \end{align}
 %
-this does not change the number of particles \(\ce{X}\). It only distributes the momenta. 
+since \(h^2 \sim 1/2\).
 
-If the annihilation rate of \ce{X} is lower than the expansion of the universe, it stays as it is. 
-Then, we have the Boltzmann suppression factor in the distribution, \(\exp(- m_X / T)\). 
+So, a particle with \(M_X \sim \SI{100}{GeV}\) which is weakly coupled, \(\alpha_{w} \sim \num{.01}\) could explain our dark matter observations!
 
-The final number of \ce{X} is reduced by a factor \(\exp(- m_X / T _{\text{freezeout}})\).
+So, the WIMP possibility looks good; alas, the LHC has not seen any new particles at the electroweak scale. 
 
-What is the window of the parameters of this particle which could give us the \(\Omega_{DM}\) we observe?
-If the particle is a Weakly Interacting Massive Particle, we get the ``WIMP miracle'': with very simple assumptions, we get \(\Omega \) between 1 and \num{e-1}. 
+We have a result of \(\Omega_{X}\) between \(\num{.1}\) and \(\num{1}\), but the higher end of this range is not good for our purposes: we know that \(\Omega_{DM} < \num{.25}\). 
+So, we can put a lower limit on \(\sigma _{\text{annihilation}}\) in order to avoid the over-production of dark matter (or, more accurately, we want to avoid the fact that too much of it remains).
+What we find is 
+%
+\begin{align}
+\abs{\sigma _{\text{ann}} v} >  \num{.3} \divisionsymbol \SI{10e-8}{GeV^{-2}}
+\,.
+\end{align}
 
-The fact that the LHC has not seen any new particles at the electroweak scale poses a problem, even though the WIMP possibility looks good. 
+Now, if the mass of \(X\) were large (like, more than \SI{10}{TeV}) then we would get \(\Omega_{X} > 10\), which would definitely over-close the universe. So, we expect DM not be super massive. 
+
+There are ways to get around this restriction: one is a strongly coupled theory, in which case \(X\) would be annihilated more; then it would be a Strongly Interacting Massive Particle but it would work. 
+
+Another possibility is for \(X\) not to have been in thermal equilibrium, so that we have non-thermal DM, so that their number is not linked to the abundance of other particle species. 
+\todo[inline]{But wait, what does thermal equilibrium have to do with it? We should only consider chemical equilibrium for the variation of the number of \(X\), right?}
+
+For regular WIMPs, though, the bound \(M_X < \SI{100}{TeV}\) remains. 
 
 We can expect that there are more than one kind particle constituting DM.
 A possibility is the presence of a ``Dark Sector'' in the SM. 
 It is generally assumed that there is a sort of ``portal'', which makes the ordinary matter sector allowing the sectors to communicate.
 
 A very simple kind of dark sector would be constituted by right-handed neutrinos: they only interact with the Higgs boson, with terms like \(\overline{\nu}_{L} H^{0} \nu_{R}\).
+
+How do we \textbf{search for WIMPs}? There are two ways, one is direct: we set up a target and wait for \(X\) to hit it. 
+If we set up a target with \SI{10}{kg} of nuclei with \(A \sim 100\), and have \(M_X \sim \SI{100}{GeV}\) and \(\sigma_0 \sim \SI{e-10}{GeV^{-2}}\), then we will have 
+%
+\begin{align}
+\text{event rate} &\approx 
+v_X n_X N_A \sigma_{AX}  \\
+&\approx v_X \frac{\rho_{DM}^{\text{local}}}{M_X} N_A \sigma_{AX}
+\,,
+\end{align}
+%
+where \(N_A \approx \num{6e25}\) is the number of \(A\) nuclei, \(\sigma_{AX} \sim 10 A \sigma_0 \) is the cross section of the nucleus-\(X\) process, and \(\rho_{DM}^{\text{local}} \approx \SI{.3}{GeV / cm^3}\).
+
+This then yields (after multiplying by \(\hbar^2 c^2\), and taking \(v_X \sim  \SI{2}{km/s}\)) 
+%
+\begin{align}
+\text{event rate} \approx \SI{e-8}{s^{-1}}
+\,,
+\end{align}
+%
+or about 1 event a year.
+    
+The other method is indirect, we look for the products of \(X \overline{X}\) annihilation in our astronomical observations: photons, protons, electrons, neutrinos or their antiparticles.
 
 \end{document}

@@ -35,7 +35,7 @@ We want to consider the ratio of their number densities, denoted as \(n / p\). A
 %
 where \(\Delta m = m_n - m_p \approx \SI{1.3}{MeV}\): for \(T \gg \Delta m\) this is approximately \(\exp(0) = 1\).
 
-The proton, as far as we can tell, is stable; on the on the other hand the neutron is unstable: it can beta-decay into a proton. 
+The proton, as far as we can tell, is stable; on the other hand the neutron is unstable: it can beta-decay into a proton. 
 
 At \SI{1}{MeV}, which is around the moment of the freeze-out, the ratio \(n/p\) is around \(1/6\). 
 
@@ -70,7 +70,7 @@ T^{n}_{D} = \frac{1}{\qty(C_n M_P^{*} G_F)^{1/3}}
 where \(M_P^{*}\) is the corrected Planck mass \eqref{eq:reduced-planck-mass}. The order-1 constant \(C_n\) can be determined experimentally from the lifetimes of neutrons: what we find is \(C_n \approx \num{1.2}\).
 If the number of neutrino species is \(N_\nu = 3\) then we get \(T^{n}_{D } \approx \SI{1.4}{MeV}\), which is very close to the mass difference between protons and neutrons! 
 
-Why is this relevant? Well, let us consider the extreme behaviours: 
+Why is this relevant? Well, let us consider the extreme behaviors: 
 \begin{itemize}
     \item if \(\Delta m \gg T_D\), then freezeout happens at a near-zero value of \(n/p = \exp( - \Delta m / T)\);
     \item while if \(\Delta m \ll T_D\), freezeout happens when we still have \(n / p \approx 1\): what happens then is that all the neutrons and protons turn into \ce{^{4}He} and no hydrogen is left in the primordial plasma. 
@@ -204,7 +204,7 @@ The chain keeps going beyond Helium, skipping the mass numbers \(A = 5\) and \(A
 To summarize, there have been \textbf{three main parameters} in this calculation: 
 \begin{enumerate}
     \item the ratio \(n_B / n_\gamma \) determines the beginning of the nucleosynthesis;
-    \item the lifetime of a neutron, \(\tau_{n}\), enters in the determination of the rate of weak processes, which is connected to the weak coupling \(G_F\) 
+    \item the lifetime of a neutron, \(\tau_{n}\), enters the determination of the rate of weak processes, which is connected to the weak coupling \(G_F\) 
     \todo[inline]{\dots and determines \(n/p\) at the beginning of nucleosynthesis, right?}
     \item the effective number of degrees of freedom \(g_*\) at \(m < \SI{1}{MeV}\) is important since \(H \propto \sqrt{g_*}\).
 \end{enumerate}
@@ -212,6 +212,8 @@ To summarize, there have been \textbf{three main parameters} in this calculation
 Let us investigate the effect of the variation of these parameters.
 
 If we increase \(n_B / n_\gamma = \eta_B\) nucleosynthesis starts before, so there is less time for the neutrons to \(\beta\)-decay, so the ratio \(n/p\) is higher, so \(Y_4 \) will be higher. 
+
+% This could be 
 
 The number density of baryons today is given by 
 %
@@ -228,29 +230,134 @@ n_\gamma^{0} = \frac{2 \zeta (3)}{\pi^2} T_\gamma^3 \approx 400 \qty( \frac{T_0 
 \,.
 \end{align}
 
-
-
-We finally get 
+The value of \(\eta\) today, which equals that at nucleosynthesis\footnote{Since at that point photons were not coupled to anything which could annihilate or create them, while baryons were decoupled altogether. This line of reasoning holds as long as no later processes produce entropy: that would modify \(n_\gamma \). In some models this is not the case.}
+is then given by 
 %
 \begin{align}
-\frac{n_B}{n_\gamma } \sim \num{6e-10}
+\eta \approx \num{2.81e-8} \Omega_{B} h_0^2 \qty( \frac{\num{2.7}}{T_0 })^3
+\,.
+\end{align}
+
+Another thing which can affect helium abundance after nucleosynthesis is a variation of \(\sqrt{g_{*}}\), that is, of the number of relativistic particles' degrees of freedom at the nucleosynthesis temperature. 
+For example, this would be an issue if we were to add a new neutrino species. 
+In weighting these new degrees of freedom, we must take into account that the temperature corresponding to them may be lower than that of the plasma. 
+
+As \(\sqrt{g_*}\) increases, \(Y_4 \) increases: in more detail the causal chain of increases goes \(N_\nu\), \(g_*\), \(B\), \(T _{\text{freezeout}}\), \(n/p\), \(Y_4 \).
+
+\todo[inline]{What is meant by \(B\) is \(n_B\), right?}
+
+% We finally get 
+% %
+% \begin{align}
+% \frac{n_B}{n_\gamma } \sim \num{6e-10}
+% \,,
+% \end{align}
+% %
+% so we must have \(\Omega_{B} \sim \num{4} \divisionsymbol \SI{5}{\percent}\).
+
+
+% Nucleosynthesis is the furthest event we can describe. 
+% See ``The first three minutes'' by Weinberg.
+
+% Tomorrow we will discuss Dark Matter. 
+
+In our descriptions of nucleosynthesis we do not only have \ce{^{4}He} but also other light isotopes such as deuterium, \ce{^{3}He}, \ce{^{7}Li}.
+For the currently estimated value of \(\eta \approx \ce{6e-10}\) we predict 
+%
+\begin{align}
+\frac{\ce{Li}}{\ce{H}} \approx \num{e-10} 
+\qquad \text{and} \qquad
+\frac{\ce{D}}{\ce{H}} \approx 2 \divisionsymbol \num{3e-5}
 \,,
 \end{align}
 %
-so we must have \(\Omega_{B} \sim \num{4} \divisionsymbol \SI{5}{\percent}\).
+but we can extend our predictions for the various nuclides to different values for \(\eta \).
+The value of \(\Omega_{B}\) corresponding to this estimate is \(\Omega_{B} \approx \num{.044(5)}\).
+The estimates we get from the CMB agree with these results.
 
-Based on the Helium-4 abundance, we can put a bound like \(\abs{\Delta N _{\text{eff}}^{\nu }} < 1/2\): our candidate must contribute as half a neutrino species.
+Now, in the SM we have three neutrino species, so we can ask: how many \emph{effective} neutrino species could we accommodate in order to still reproduce data?
+Well, we have 
+%
+\begin{align}
+\frac{\Delta g_*}{g_*} = \frac{(7/8) 2 \Delta N_{\text{eff}}^{\nu }}{g_*^{SM}} = \frac{7}{43} \Delta N _{\text{eff}}^{\nu }
+\,,
+\end{align}
+%
+which we can express in terms of the (variation of the) ratio of neutron to proton number densities: 
+%
+\begin{align}
+\frac{\Delta (n/p)}{n/p} = \frac{7}{258} \frac{\Delta m}{T_n^{D}} \Delta N _{\text{eff}}^{\nu }
+\,,
+\end{align}
+%
+and our error bounds on this quantity give \(\Delta (n/p) / (n/p) \lesssim 0.025\), so we get 
+%
+\begin{align}
+\abs{\Delta N _{\text{eff}}^{\nu }} \lesssim \num{.5}
+\,.
+\end{align}
+%
 
-So, when we propose a DM candidate, we must always ask whether it spoils nucleosynthesis. 
+So, our DM candidate must contribute as half a neutrino species: when we propose a DM candidate, we must always ask whether it spoils nucleosynthesis. 
 
-This must be weighted by their temperature and whether these species are at equilibrium. 
+Again, this must be weighted by their temperature which could be different from that on the plasma depending on whether and when these species are at equilibrium. 
+If they decoupled earlier than the neutrinos they could be colder than them, and thus give a smaller contribution. 
 
 There are models in which we introduce a new particle which must decay into some other particle plus a photon. 
 This is dangerous: how energetic are the photons which are produces? We must ensure that they do not destroy deuterium. 
 
-Nucleosynthesis is the furthest event we can describe. 
-See ``The first three minutes'' by Weinberg.
+\subsubsection{Comments on nucleosynthesis}
 
-Tomorrow we will discuss Dark Matter. 
+The nucleosynthesis epoch, between \(\sim \SI{1}{s}\) and \(\sim \SI{300}{s}\), is the earliest one which has been tested observationally. 
+
+We can get estimates for relative abundances of nuclides in the early universe by looking at regions which are both far away and with low star formation rates, in which the elements' abundances are still well-preserved. 
+
+Deuterium is special: because of its low binding energy it is \emph{not produced} in stellar nucleosynthesis, it is disassociated instead.
+So, any amount of it we measure gives us a \emph{lower bound} on its primordial abundance. 
+
+As expected from BB Nucleosynthesis theory, we have variations of several orders of magnitude between the relative abundances of \ce{^{4}He}, deuterium and \ce{^{7}Li}. 
+BBN and CMB data fit the theory for \(\eta_{B} \approx \num{6e-10}\): this theory is very successful!
+
+We have a problem with \ce{^{7}Li}: the prediction for its abundance for this value of \(\eta_{B}\) is \cite[]{cyburtBigBangNucleosynthesis2016}:
+%
+\begin{align}
+\eval{\frac{\ce{^{7}Li}}{H}}_{\text{th}} = \num{4.87(67)e-10}
+\,,
+\end{align}
+%
+while the experimental observation is \cite[]{cocPrimordialNucleosynthesis2017}: 
+%
+\begin{align}
+\eval{\frac{\ce{^{7}Li}}{H}}_{\text{exp}} = \num{1.58(31)e-10}
+\,.
+\end{align}
+
+Besides this problem, the theory of BBN has generally been a very succesful marriage of the particle physics and cosmology standard models. 
+
+The impact of BBN on the standard model of particle physics are the bound 
+%
+\begin{align}
+\abs{\Delta N _{\text{eff}}^{\nu }} < \num{.5}
+\,
+\end{align}
+%
+and more bounds on radiative decays of heavy particles \(X\), in the form 
+%
+\begin{align}
+X \to \gamma + Y
+\,,
+\end{align}
+%
+where \(Y\) is some lighter particle species, since this would produce a photon with \(E_{\gamma } \sim m_X /2\), which would spoil nucleosynthesis in two ways: 
+\begin{enumerate}
+    \item it would destruct light nuclides (particularly deuterium) with its energetic photon;
+    \item it would break up \ce{^{4}He} into lighter nuclides.
+\end{enumerate}
+
+We get bounds on these kinds of processes, specifically on the lifetime \(\tau_{X}\) and on the abundance of \(X\), measured as \(m_X n_X / n_\gamma \). 
+We are safe if \(\tau_{X} < \num{e-3} \divisionsymbol \SI{e-4}{s}\).
+If we assume a very long lifetime, like \(\tau_{X} >    \SI{e8}{s}\), we must have a very small \(X\) abundance, like \(m_X n_X / n_\gamma < \num{e-12}\). 
+
+\todo[inline]{I think this is what he is saying, not sure though.} 
 
 \end{document}

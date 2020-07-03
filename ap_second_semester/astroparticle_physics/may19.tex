@@ -1,107 +1,214 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\subsection{WIMP candidates for Dark Matter}
+\subsection{Other candidates for Dark Matter}
+
+\subsubsection{Baryons}
 
 \marginpar{Tuesday\\ 2020-5-19, \\ compiled \\ \today}
 
-WIMP means Weakly Interacting Massive Particle, this is a so-called heavy stable relic of the early universe. 
+% WIMP means Weakly Interacting Massive Particle, this is a so-called heavy stable relic of the early universe. 
+We look at other kinds of heavy relics: first, we consider baryons, assuming that the universe is \(B\)-symmetric (so that \(N_B = N_{\overline{B}}\)).
 
-So, we require stability; this could also be a very long-lived particle, the only requirement is that it be still abundant now. 
-
-The cross section must also be small. 
-
-Let us consider a typical WIMP, with mass \(M_x \sim \SI{100}{GeV}\).
-
-Let us consider a scenario in which the particle remains in equilibrium even when the temperature drops below the mass of the particle. 
-
-We want to request that \(T_f< M_X\), where \(T_f\) is the temperature of the freezeout.
-
-The value of \(\rho_{X} / \rho_{C} = \Omega_{X}\) is of the order \(1/4\) today. If we had \(n_X \sim n_\gamma \) before the freezeout, because then DM was radiation-like. 
-
-Today we have around a baryon every billion photons, and \(\Omega_{B} \sim \SI{5}{\percent}\). 
-The statistics of the DM distribution are given by 
+The residual density of these (which we will still call \(X\)), as before, will be given by 
 %
-\begin{align}
-(M_X T)^{3/2} \exp(- \frac{M_X}{T})
-\,,
-\end{align}
-%
-so the exponential suppression plays a very important role as the temperature decreases.
-We cannot over-close the universe, if we get \(\Omega_{X}> 1\) the universe would become strongly closed. 
-
-Now, let us compute the freezeout temperature, assuming that the particle's mass is \SI{100}{GeV}. We want to show that \(T_f < M_X\).
-
-What do we mean by ``equilibrium'' precisely? There are two possible meanings; one is the chemical equilibrium, and the other is the kinetic equilibrium. 
-
-The annihilation of \(X\) with its antiparticle changes the total number of particles. 
-In discussing the freezeout temperature we are interested in the \emph{chemical} equilibrium. 
-So, we must ask: ``what is the temperature at which the annihilation \(\Gamma_{X}\) is equal to the expansion rate of the universe \(H\)?''
-
-The first is given by 
-%
-\begin{align}
-\Gamma_{X} = \expval{\sigma v} n_X 
+\begin{align} \label{eq:estimate-X-particle-density-fraction}
+\Omega_{X} h^2 = \num{1.8e-10} \qty(\frac{\SI{}{GeV^{-2}}}{\sigma_0 }) 
+\frac{1}{\sqrt{g_* (T_f)}} L 
 \,,
 \end{align}
 %
 where 
 %
 \begin{align}
-n_X = \qty(M_X T )^{3/2} e^{-M_X / T}
+L = \log \qty(\frac{g_X m_X M_P \sigma_0 }{(2 \pi)^{3/2} \sqrt{g_*}})
 \,,
 \end{align}
 %
-while \(\expval{\sigma v}\) is model-dependent. Therein lies the physics of the problem.
-Without a specific model, we take something like 
+and the temperature \(T_f\) at which chemical equilibrium is broken can be calculated from \(T_f / m_B = x_f \approx L^{-1}\). 
+
+If \(X\) is a baryon, we will have \(\sigma_0 \approx \qty( \SI{100}{MeV})^{-2}\).
+Then, we can compute \(T_f\) by assuming \(m_B \sim \SI{1}{GeV}\):  
 %
 \begin{align}
-\sigma \sim \frac{\alpha_{W}^2}{M_w^{4}} 
+T_f = \frac{m_B}{\log \qty(\frac{g_B m_B M_P \qty(\SI{100}{MeV})^{-2}}{(2\pi )^{3/2} \sqrt{g_*}})} \approx \SI{20}{MeV}
+\,,
+\end{align}
+%
+since the argument of the logarithm is about \(\num{e22}\), so \(L^{-1} \approx 1 / (22 \times \log 10) \approx 1/50\).
+The main contribution is the Planck mass \(M_P \sim \SI{e19}{GeV}\), the rest of the factors are corrections.
+
+So, we have \(m_B \sim \SI{1}{GeV}\) and \(T_f \sim \SI{20}{MeV}\): 
+between these temperatures, we have \(B \overline{B}\) annihilation, which means the number density must be multiplied by a suppression factor \(\exp( - m_B / T_f)\). 
+
+Our estimate for the fraction of the critical density given by baryons, according to \eqref{eq:estimate-X-particle-density-fraction}, is
+%
+\begin{align}
+\Omega_{B} \approx \num{4e-10} \num{e-2} \frac{1}{\sqrt{10}} 50 \approx \num{5e-11}
+\,,
+\end{align}
+%
+while today we have around a baryon every billion photons, and \(\Omega_{B} \sim \SI{5}{\percent}\). 
+There is a mismatch of 9 orders of magnitude!
+
+\todo[inline]{So, is this not a problem? Does the line of reasoning not hold for regular baryons?}
+
+\subsubsection{Heavy neutrinos}
+
+Another possibility for a heavy relic is a heavy neutrino of a fourth generation.   
+Neutrinos of the known generations are light, with \(m_\nu \ll T_f\); let us call this new one \(\nu_4 \), and assume \(M_{\nu_4 }> T_f^{(4)}\). 
+Let us also assume that the mass of this heavy neutrino is well below the electroweak scale of \(\sim \SI{100}{GeV}\): something like \(M_{\nu_4 } \sim \SI{1}{GeV}\). 
+
+Applying our formula again, we get: 
+%
+\begin{align}
+\Omega_{\nu_4 } h^2 &\approx \frac{\num{1.8e-10}}{G_F^2M^2_{\nu_4 }}
+\frac{1}{\sqrt{g_*(t_f)}} 
+\log \qty(\frac{2 M_{\nu_4} M_P G_F^2 M^2_{\nu_4 }}{(2 \pi )^{3/2} \sqrt{g_*}})  \\
+&\approx 
+\frac{\num{2e-10} \times \SI{e10}{GeV^{4}}}{M^2_{\nu_4 }}
+\frac{1}{\sqrt{g_*} (t_f)}
+\log \qty(
+    \frac{2}{(2 \pi )^{3/2}}
+    \frac{M^3_{\nu_4 } M_P}{\sqrt{g_*}}
+    \SI{e-10}{GeV^{-4}}
+)
+\,,
+\end{align}
+%
+where we have two things to be determined: \(M_{\nu_4 }\) and \(g_*\); for the first we assume \(M_{\nu_4 } \approx \SI{3}{GeV}\).
+We will not fully fix the  value of \(M_{\nu_4 }\), but we assume the order of magnitude, which we can then substitute into the slowly-varying parts of the equation, while we leave its appearances in the fast-varying part of the equation free.
+
+For the second we need to temperature to calculate at: we can use our formula \(T = M L^{-1}\), so that we get 
+%
+\begin{align}
+T_f^{\nu_4 } = \frac{\SI{3}{GeV}}{\log \qty(
+    \frac{2}{(2 \pi )^{3/2}}
+    \frac{3^{3} \num{e19}}{\sqrt{g_*}}
+    \num{e-10}
+)}
+\approx \frac{\SI{}{GeV}}{3 \divisionsymbol 4}
 \,.
 \end{align}
 
-We plug everything into the expression, using a standard cosmology for \(H\). 
-We can get an order-of-magnitude estimate. 
-If we did the calculation more properly, we would be able to get the Boltzmann equation: 
-%
-\begin{align}
-\dv{n_x}{t} + 3 H n_x = - \expval{\sigma v} \qty(n_x^2 -)
-\,,
-\end{align}
-%
-\todo[inline]{complete formula}
-which can be found in the notes. 
-We find 
-%
-\begin{align}
-\Omega_{X} h^2 \approx \num{e-10} \qty(\frac{\SI{}{GeV^{-2}}}{\expval{\sigma v}}) \frac{1}{\sqrt{g(T_f)}} L
-\,,
-\end{align}
-%
-where 
-%
-\begin{align}
-L = \log \qty(\frac{g_X M_X }{}) \dots
-\,,
-\end{align}
-%
-\todo[inline]{complete formula}
-which is generally of the order of \num{20} to \num{30}.
+One may be worried by the circularity of estimating \(g_*\) inside this calculation: properly speaking we should solve the equation using a model for \(g_* (T_f)\), but in this kind of order of magnitude reasoning whether \(g_*\) is 10 or 100 does not really affect the result significantly, so we do not bother. 
 
-So in the end the temperature is given by 
+At this temperature, we have photons, gluons, quarks and regular neutrinos, plus our fourth neutrino --- we are at the very limit of the time at which it is in chemical equilibrium, so we still need to account for it.
+\todo[inline]{Since the formula is found by assuming that\dots right?} 
+So, we get 
 %
 \begin{align}
-T_f \approx M_X L^{-1}
+\sqrt{g_*} = 2 + 8 \times 2 + \frac{7}{8} \qty(
+    2 \times 4
+    + 2 \times 3
+    + 3 \times 4 \times 3
+) = \sqrt{ \frac{183}{4}}
+\,,
+\end{align}
+%
+so plugging everything into the formula we get 
+%
+\begin{align}
+\Omega_{\nu_4 } \approx \num{0.55} \qty(\frac{ \SI{3}{GeV}}{M_{\nu_4 }})^2
 \,.
 \end{align}
 
-We are, however, assuming that the annihilation goes like the weak interaction --- is this accurate?
-If the value \(\alpha_{W} \) were different, we could get the correct number for \(\Omega_{X}\). 
-There are good reasons to think that there might be new physics in the electroweak scale. 
+So, we must have \(M_{\nu_4 } \gtrsim \SI{3}{GeV}\) in order to not over-produce dark matter. 
 
-\todo[inline]{How is the estimate for \(\Omega_{X}\) derived?}
+% So, we require stability; this could also be a very long-lived particle, the only requirement is that it be still abundant now. 
 
-Suppose we asked for \(\Omega_{X} < \num{.3}\). Then, we need to reduce the number of \(X\), \(n_X\). 
+% The cross section must also be small. 
+
+% Let us consider a typical WIMP, with mass \(M_x \sim \SI{100}{GeV}\).
+
+% Let us consider a scenario in which the particle remains in equilibrium even when the temperature drops below the mass of the particle. 
+
+% We want to request that \(T_f< M_X\), where \(T_f\) is the temperature of the freezeout.
+
+% The value of \(\rho_{X} / \rho_{C} = \Omega_{X}\) is of the order \(1/4\) today. If we had \(n_X \sim n_\gamma \) before the freezeout, because then DM was radiation-like. 
+
+% The statistics of the DM distribution are given by 
+% %
+% \begin{align}
+% (M_X T)^{3/2} \exp(- \frac{M_X}{T})
+% \,,
+% \end{align}
+% %
+% so the exponential suppression plays a very important role as the temperature decreases.
+% We cannot over-close the universe, if we get \(\Omega_{X}> 1\) the universe would become strongly closed. 
+
+% Now, let us compute the freezeout temperature, assuming that the particle's mass is \SI{100}{GeV}. We want to show that \(T_f < M_X\).
+
+% What do we mean by ``equilibrium'' precisely? There are two possible meanings; one is the chemical equilibrium, and the other is the kinetic equilibrium. 
+
+% The annihilation of \(X\) with its antiparticle changes the total number of particles. 
+% In discussing the freezeout temperature we are interested in the \emph{chemical} equilibrium. 
+% So, we must ask: ``what is the temperature at which the annihilation \(\Gamma_{X}\) is equal to the expansion rate of the universe \(H\)?''
+
+% The first is given by 
+% %
+% \begin{align}
+% \Gamma_{X} = \expval{\sigma v} n_X 
+% \,,
+% \end{align}
+% %
+% where 
+% %
+% \begin{align}
+% n_X = \qty(M_X T )^{3/2} e^{-M_X / T}
+% \,,
+% \end{align}
+% %
+% while \(\expval{\sigma v}\) is model-dependent. Therein lies the physics of the problem.
+% Without a specific model, we take something like 
+% %
+% \begin{align}
+% \sigma \sim \frac{\alpha_{W}^2}{M_w^{4}} 
+% \,.
+% \end{align}
+
+% We plug everything into the expression, using a standard cosmology for \(H\). 
+% We can get an order-of-magnitude estimate. 
+% If we did the calculation more properly, we would be able to get the Boltzmann equation: 
+% %
+% \begin{align}
+% \dv{n_x}{t} + 3 H n_x = - \expval{\sigma v} \qty(n_x^2 -)
+% \,,
+% \end{align}
+% %
+% \todo[inline]{complete formula}
+% which can be found in the notes. 
+% We find 
+% %
+% \begin{align}
+% \Omega_{X} h^2 \approx \num{e-10} \qty(\frac{\SI{}{GeV^{-2}}}{\expval{\sigma v}}) \frac{1}{\sqrt{g(T_f)}} L
+% \,,
+% \end{align}
+% %
+% where 
+% %
+% \begin{align}
+% L = \log \qty(\frac{g_X M_X }{}) \dots
+% \,,
+% \end{align}
+% %
+% \todo[inline]{complete formula}
+% which is generally of the order of \num{20} to \num{30}.
+
+% So in the end the temperature is given by 
+% %
+% \begin{align}
+% T_f \approx M_X L^{-1}
+% \,.
+% \end{align}
+
+% We are, however, assuming that the annihilation goes like the weak interaction --- is this accurate?
+% If the value \(\alpha_{W} \) were different, we could get the correct number for \(\Omega_{X}\). 
+% There are good reasons to think that there might be new physics in the electroweak scale. 
+
+% \todo[inline]{How is the estimate for \(\Omega_{X}\) derived?}
+
+% Suppose we asked for \(\Omega_{X} < \num{.3}\). Then, we need to reduce the number of \(X\), \(n_X\). 
 
 % A WIMP candidate is a baryon: if the number of baryons is equal to teh number of antibaryons.
 

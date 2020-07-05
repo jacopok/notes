@@ -13,50 +13,172 @@
 
 % We have our SM particles and the ``Dark Sector'': there might be a ``portal'' between them, for instance the Higgs boson.
 
-Suppose the Dark Sector had a \(U(1)\) symmetry: then, we would have a sort of ``dark photon''. 
-If this symmetry were spontaneously broken, we could then have a mixing between the two sectors.
+% Suppose the Dark Sector had a \(U(1)\) symmetry: then, we would have a sort of ``dark photon''. 
+% If this symmetry were spontaneously broken, we could then have a mixing between the two sectors.
 
 A particular light pseudoscalar DM candidate is called the \textbf{axion}. 
 Its interest is not only as a DM candidate, but also in other contexts: it is linked to BTSM physics below the electroweak scale.
 
 It was introduced by particle physicists first, and then it was understood that it might be useful as DM.
 
-Weak interactions violate CP symmetry. This is due to an effect related to the electroweak interaction. 
+% Weak interactions violate CP symmetry. This is due to an effect related to the electroweak interaction. 
 
-In the QCD Lagrangian we have a kinetic term \(G_{\mu \nu }^{a} G^{\mu \nu }_{a}\); then we can also add a term \(G_{\mu \nu } \widetilde{G}^{\mu \nu }\), where \(\widetilde{G}\) is the Hodge dual of the field strength.
-This would produce a CP-violating term. We can write it but people were not worried: this term can be written as a 4-divergence, so it could be removed.
-
-However, it could be shown that due to instantons --- nonperturbative quantum effects --- there was an anomalous current, the term could not be neglected. 
-
-% \todo[inline]{So, it could not be written as a divergence anymore?}
-The term can still be written as a divergence, but because of the instanton the asymptotic values of the field are not zero anymore: therefore, the surface integral in the action is not zero anymore. 
-
-Then, a term \(\theta_0   G \widetilde{G}\) was added. 
-This also affected the phases of quark transitions. 
-Then, we introduce a term 
+In the QCD Lagrangian we have a kinetic term \(G_{\mu \nu }^{a} G^{\mu \nu }_{a}\) written in terms of the gluon field strength \(G_{\mu \nu }^{a}\), with \(a = 1 \dots 8\).
+We can also add a term \(G_{\mu \nu } \widetilde{G}^{\mu \nu }\), where \(\widetilde{G}\) is the Hodge dual of the field strength: 
 %
 \begin{align}
+\widetilde{G}^{\mu \nu , a} = \frac{1}{2} \epsilon^{\mu \nu \rho \sigma }G_{\rho \sigma }^{a}
+\,.
+\end{align}
+
+In terms of the color fields, the term \(G \widetilde{G}\) is proportional to \(\vec{E}^{a} \cdot \vec{B}^{a}\), whereas the usual term is \(GG \propto \vec{E}^{a} \cdot \vec{E}^{a} - \vec{B}^{a} \cdot \vec{B}^{a}\).
+
+The term we would add to the Standard Model Lagrangian would be 
+%
+\begin{align}
+\Delta \mathscr{L} = 
+\frac{\alpha_{s}}{8 \pi }  \theta_0 G^{a}_{\mu \nu }
+\widetilde{G}^{\mu \nu , a}
+\,,
+\end{align}
+%
+where \(\alpha_{s} = g_s^2 / 4 \pi \) is the strong coupling constant, while \(\theta_0\) is an arbitrary dimensionless parameter.
+This term is invariant under \(SU(3)_C \times SU(2)_L \times U(1)_Y\) and Lorentz, all the symmetries of our model.
+
+This term is P and CP-violating: the usual strong interaction kinetic term is P and CP invariant, the Levi-Civita symbol is odd under parity so it yields the additional sign making this term not invariant.
+
+We can write this term but people were initially not worried: this term can be written as a 4-divergence (as \(\Delta \mathscr{L} = \partial_{\mu } J^{\mu }_A\)), so at the perturbative level it could be ignored: 
+if we calculate the action we get a surface integral at a surface at infinity, which we can ignore.
+
+However, it can be shown that due to instantons --- nonperturbative quantum effects --- there was an anomalous current, the divergence term could not be neglected. 
+The term \(\Delta \mathscr{L}\) can still be written as a divergence, but because of the instanton the asymptotic values of the field are not zero anymore: therefore, the surface integral in the action is not zero. 
+
+If this term is included, we have CP violation in the \emph{strong interaction}, albeit only at the nonperturbative level. 
+This is known as the \textbf{strong-CP} problem.
+
+The vacuum in a nonabelian gauge theory can have structure: the fields can asymptotically ``wind'' in ways that can not be continuously mapped into each other. The true vacuum of the theory is in general a superposition of all these topologically distinct vacua: let \(n\) denote the winding number of each vacuum \(\ket{n}\), then the so-called \(\theta \)-vacuum is written as 
+%
+\begin{align}
+\ket{\theta } = \sum _{n} e^{-in \theta_0 } \ket{n}
+\,,
+\end{align}
+%
+and it is the true vacuum of the theory \cite[eq.\ 10.2]{kolbEarlyUniverse1994}.
+
+This can be accounted for in our theory by writing a Lagrangian 
+%
+\begin{align}
+\mathscr{L} _{\text{QCD}} = 
+\mathscr{L} _{\text{pert}}
++ \frac{\alpha_{s}  }{8 \pi }
+\overline{\theta} G^{\mu \nu , a} G^{a}_{\mu \nu }
+\,,
+\end{align}
+%
+where 
+%
+\begin{align} \label{eq:theta-parameter-strong-CP-violation}
 \overline{\theta} = \theta_0  + \arg \qty(\det M)
 \,,
 \end{align}
 %
-where \(M\) is the quark mass matrix. This \(\overline{\theta}\) will then multiply the \(G \widetilde{G}\). This is a free parameter of the theory: the quark mass matrix depends on the Yukawa couplings, and \(\theta_0 \) is completely free.
-This should be \(\overline{\theta} < \num{e-9}\) to comply with experiment: it looks like fine-tuning!
+and \(M\) is the quark mass matrix. This is to say: this CP-violating structure in the QCD Lagrangian is due to two types of effects, one being the nontrivial winding nature of the vacuum, and the other being effects due to the phases of the quark masses.
 
-There is no physical reason why the parameter should be small.
-This is weird: there must be some hidden symmetry.
+% Then, a term \(\theta_0   G \widetilde{G}\) was added. 
+% This also affected the phases of quark transitions. 
+This term also affected the quark sector: there is an anomaly in the axial current \(J^{\mu }_{A} = \overline{f} \gamma^{\mu } \gamma^{5} f\).
+\todo[inline]{Not sure what this means really.}
 
-We can introduce a \(U(1)\) global symmetry, called the Pacci-Quinn symmetry. 
-This is discussed by Rubakov.
 
-Since the field \(H\) feels the symmetry, in terms like \(\overline{Q}_{L} H d_R\). 
-The spontaneous breaking of this symmetry yields a goldstone boson called the axion. 
+% where \(M\) is the quark mass matrix. This \(\overline{\theta}\) will then multiply the \(G \widetilde{G}\).
+The angle \(\overline{\theta}\) is a free parameter of the theory: the quark mass matrix depends on the Yukawa couplings, but \(\theta_0 \) is completely free.
 
-The mass of this pseudo-Goldstone boson depends on the scale at which this symmetry is broken, \(Q\). 
+The existence of this term in the QCD Lagrangian leads to a prediction of an electric dipole moment for the neutron of the order of \(d_n \approx \overline{\theta} \times \SI{e-16}{e cm}\), but we have bounds of \(d_n \lesssim \SI{3e-26}{e cm}\): this means that \(\overline{\theta}\) must be \(\lesssim \num{e-10}\).
+% This should be \(\overline{\theta} < \num{e-9}\) to comply with experiment: it looks like fine-tuning!
+
+There is no physical reason why the parameter should be small --- to introduce it would mean fine-tuning, which particle physicists do not like.
+
+We can solve this problem by introducing a \(U(1)\) global symmetry, called the Peccei-Quinn symmetry. 
+This is discussed by Rubakov and Gorbunov \cite[eq.\ 9.93 onward]{gorbunovIntroductionTheoryEarly2011}.
+
+The PQ symmetry acts on the quarks as: 
+%
+\begin{align}
+q_{L_n} \to \exp(i q_{PQ}^{n} \frac{\beta}{2}) q_{L_n}
+\qquad \text{and} \qquad
+q_{R_n} \to \exp(-i q_{PQ}^{n} \frac{\beta}{2}) q_{R_n}
+\,,
+\end{align}
+%
+where \(q_{PQ}^{n}\) is the Peccei-Quinn (or ``axion'') charge of \(n\)-th quark. 
+If the charges of the six quarks sum to 1, this symmetry maps 
+%
+\begin{align}
+\arg \det (M) \to \arg \det M + \beta 
+\,.
+\end{align}
+
+We will now assume that all the charges are equal to \(1/6\).
+
+This symmetry is explicitly broken by the Yukawa coupling of the quarks to the Higgs field, which reads 
+%
+\begin{align}
+L_Y = Y^{d} \overline{Q}_L \phi d_R + Y^{u} \overline{Q}_L \widetilde{\phi} u_r
+\,.
+\end{align}
+
+For more details on this see Rubakov and Gorbunov \cite[eq.\ B.8 onwards]{gorbunovIntroductionTheoryEarly2011}.
+The two terms explicitly break the symmetry since for the first to be a singlet we would need the symmetry to map \(\phi \to e^{i \beta /6} \phi \), while for the second to be a singlet we would need to map \(\phi \to e^{-i \beta /6} \phi \).
+
+% Since the field \(H\) feels the symmetry, in terms like \(\overline{Q}_{L} H d_R\). 
+% The spontaneous breaking of this symmetry yields a goldstone boson called the axion. 
+
+% The mass of this pseudo-Goldstone boson depends on the scale at which this symmetry is broken, \(Q = 1/6\).
 
 % We will have terms like \(a F^{\mu \nu } F_{\mu \nu }\) if it coupled to photons.
 
-We can introduce additional scalars, which are singlets or doublets under SU(2), whose VEV is much larger than the electroweak scale.
+% We can introduce additional scalars, which are singlets or doublets under SU(2), whose VEV is much larger than the electroweak scale.
+
+The way to solve this problem is to introduce a second Higgs doublet: \(\phi \to (H_1 , H_2 )\), so that \(H_1 \to e^{i \beta /6} H_1 \) and \(H_2 \to e^{- i \beta /6} H_2 \).
+Then, in the \(L_Y\) couplings we put \(H_1 \) in the first term and \(H_2 \) in the second. 
+The VEV of \(H_{1,2}\) is different from zero, so at low energies we have spontaneous symmetry breaking of the \(U(1)_{PQ}\) symmetry.
+
+This symmetry, though, is also explicitly broken by nonperturbative effects. 
+
+Rubakov writes:
+``One can, however, extend the Standard Model in such a way that the PQ symmetry is
+exactly at the classical level. Quark masses are not invariant under the PQ transformations, so PQ symmetry is spontaneously broken. At the classical level, this leads to the
+existence of massless Nambu–Goldstone field \(a(x)\), axion.''
+\todo[inline]{What does ``exactly at the classical level'' mean?}
+
+The axion \(a(x)\) transforms as \(a(x) \to a(x) + \beta f_{PQ}\) under a \(U(1)_{PQ}\) transformation, and in the low energy regime the quark mass terms can be written as 
+%
+\begin{align}
+\mathscr{L}_{Y} = \overline{q}_{Rn} m_{q_n}
+\exp(-i q^{n}_{PQ}  \frac{a}{f_{PQ}})
+q_{L_n}
++ \text{h.\ c.}
+\,.
+\end{align}
+
+We are effectively giving a phase to the quark mass matrix: so, by \eqref{eq:theta-parameter-strong-CP-violation} we find that our Lagrangian contains a term 
+%
+\begin{align}
+\mathscr{L}_{a} = \frac{\alpha_{s}}{8 \pi } \frac{a}{f_{PQ}} G^{a}_{\mu \nu } 
+\widetilde{G}^{a, \mu \nu }
+\,.
+\end{align}
+
+\todo[inline]{But since we are taking the \emph{trace} of the mass matrix, should this phase not be multiplied by the number of quark flavours?}
+
+The axion is a \emph{pseudo}-Goldstone boson. Its mass is found to be of the order 
+%
+\begin{align}
+m_{a} \approx \num{.5} \frac{m_\pi f_\pi }{f_{PQ}}
+\,,
+\end{align}
+%
+where \(m_\pi \approx \SI{135}{MeV} \) and \(f_\pi \approx \SI{93}{MeV} \) are the mass and decay constant of the pion, while \(f_{PQ}\) is Peccei-Quinn energy scale, which we do not know.
 
 If the photons inside a star could convert into axions, they could speed up the cooling down of a star: our stellar evolution observations then allow us to give a bound
 %
@@ -65,17 +187,133 @@ f_{PQ} > \SI{e9}{GeV}
 \,.
 \end{align}
 
-What happens to the axions after they are produced? The axion is light, since \(m_a \sim 1 / f_Q\). The mass is small, like \(< \SI{e-5}{eV}\).
-They oscillate, moving around the minimum in their potential.
-Most off the energy is contained in this oscillation, the mass contributes very little. 
+This rules out the previously-discussed \textbf{Weinberg-Wilczech} axion, which comes out of a Higgs doublet with VEV 
+%
+\begin{align}
+\expval{H_{1,2}} = e^{\pm i \beta /6 } \left[\begin{array}{c}
+0 \\ 
+v_{1, 2} / \sqrt{2}
+\end{array}\right]
+\,,
+\end{align}
+%
+since then we would have 
+%
+\begin{align}
+f_{PQ} = \frac{\sqrt{v_1^2 + v_2^2}}{6} = \frac{v}{6}
+\,,
+\end{align}
+%
+\(v\) being the electroweak scale, \(v \sim \SI{246}{GeV}\).
+The prediction would then be \(m_a \approx \SI{150}{keV}\).
 
-This is then a type of DM which is Cold, but also very light!
-In order to not over-close the universe we must also have \(f_{PQ} < \SI{e12}{GeV}\).
+So, any axions that might actually be real would have to be \textbf{invisibile axions}. The DFSZ and KSVZ models implement this.
+\begin{enumerate}
+    \item The DFSZ model introduces the complex scalar \(S\), which transforms as \(S \to e^{i \beta /6} S\) under PQ and is a singlet under the SM symmetries. Interaction term are added involving \(S ^\dag S\) and \(H_1 ^\dag H_2 S^2\).
+    Then, the scale \(f_{PQ} \sim \sqrt{v_1^2 + v_2^2 + v_s^2}\), where \(v_s \gg v_1 , v_2 \) is the VEV of \(S\). 
+    \item The KSVZ model introduces new quark fields which are \(SU(3)_c\) triplets as well as \(S\). 
+\end{enumerate}
 
-How would we detect axions? They interact with photons, so we can have an experiment in which we have photon conversion into an axion.
+In both models the breaking of the PQ breaks at a scale \(f_{PQ}\) which is much larger than the electroweak scale.
+
+\subsubsection{Axion --- SM particles interactions}
+
+As we would have for any Nambu-Goldstone field, the axion's interactions with fermions are described by the Golberger-Treiman formula: 
+%
+\begin{align}
+\mathscr{L}_{a} &= \frac{1}{f_{PQ}} \partial_{\mu }a J^{\mu }_{PQ}  \\
+&= \frac{a}{f_{PQ}} \sum_{f} q^{f}_{PQ} m_f \overline{f}\gamma^{5} f
+\,,
+\end{align}
+%
+where the PQ current of the fermions can be written as 
+%
+\begin{align}
+J^{\mu }_{PQ} = \sum _{f} \frac{q^{n}_{PQ}}{2} \overline{f} \gamma^{\mu } \gamma^{5} f
+\,.
+\end{align}
+
+The actual PQ charges of the particles are model-dependent. 
+Further, we have interactions of the axion with the gluons in the way we already saw: 
+%
+\begin{align}
+\mathscr{L}_{a \text{ --- gluons}} = \frac{\alpha_{s}}{8 \pi } \frac{a}{f_{PQ}} G_{\mu \nu }^{a} \widetilde{G}^{\mu \nu , a}
+\,
+\end{align}
+%
+and we can insert interactions with the photons as well: 
+%
+\begin{align}
+\mathscr{L}_{a --- \gamma } = C \frac{\alpha _{\text{EM}}}{8 \pi } \frac{a}{f_{PQ}} F_{\mu \nu } \widetilde{F}^{\mu \nu }
+\,,
+\end{align}
+%
+where the constant \(C\) is to be determined, it is generally assumed to be of order 1. 
+
+So, we can characterize the axion as a \textbf{light}, \textbf{weakly interacting} pseudoscalar:
+it is light, since \(m_a \sim 1 / f_{PQ}\); its is weakly interacting since its interaction terms scale like \(1 / f_{PQ}\); it is a pseudoscalar since its interaction term must be globally \(P\)-invariant, and \(F \widetilde{F}\) is a pseudoscalar. 
+
+The general form of the interaction between a BTSM scalar or pseudoscalar is given by Rubakov \cite[eq.\ 9.79]{gorbunovIntroductionTheoryEarly2011}.
+
+The mass of the axion can be expressed as 
+%
+\begin{align}
+m_a \approx \SI{.6}{eV} \qty(\frac{\SI{e7}{GeV}}{f_{PQ}})
+\,,
+\end{align}
+%
+or alternatively \(m_a f_{PQ} \sim \SI{6000}{MeV^2}\). 
+
+If we knew \(m_a\), we could determine the rates of the interactions between the axion and the other particles: a common one is the axion-photon interaction: the decay \(a \to \gamma \gamma \) is found to have a lifetime 
+%
+\begin{align}
+\tau_{a} \approx \SI{4.5e17}{s} \qty(\frac{\SI{25}{eV}}{m_a})^5
+\,,
+\end{align}
+%
+where \SI{4.5e17}{s} is close to the age of the universe. So, if \(m_a\) were larger than around \SI{25}{eV} our axions would have decayed by now. 
+
+% They oscillate, moving around the minimum in their potential.
+% Most off the energy is contained in this oscillation, the mass contributes very little. 
+
+We also have bounds coming from astrophysics: axion production would cool stars and supernovae too much, this yields the stricter bound \(m_a \lesssim \SI{e-2}{eV}\). 
+
+Now, the SSB which gives mass to the axion happens at the QCD scale: above it, it is effectively massless.
+When the temperature decreases below that scale, the axion starts rolling down to the new minimum of the Lagrangian, which looks like 
+%
+\begin{align}
+L(\overline{\theta}) = f^2_{PQ} \qty(\frac{1}{2} \qty(\dv{\overline{\theta}}{t})^2 - \frac{m_a^2}{2} \overline{\theta}^2)
+\,.
+\end{align}
+
+Here, recall that \(\overline{\theta} = \theta_0 + a / f_{PQ}\). 
+
+\todo[inline]{Rubakov also states that this mechanism provides the possibility for axions to have small initial velocities, and therefore be cold DM despite small masses. It is not really clear to me how that works, it seems to be something like ``the energy is contained in the oscillation instead of being kinetic''.}
+
+Now, after this breaking the axion oscillates, and in this phase its density \(\rho_{a}\) is approximately constant, and given by 
+%
+\begin{align}
+\rho_{a, 0} = \frac{n_a}{s} m_a s_0 \approx \frac{m_a f_{PQ}^2}{\sqrt{g_A} T _{\text{osc}} M_P} s_0 \overline{\theta}_{i}^2 \sim \frac{1}{m_a}
+\,.
+\end{align}
+
+If we assume \(T _{\text{osc}} \sim \Lambda_{\text{QCD}} \sim \SI{200}{MeV}\), then we get 
+%
+\begin{align}
+\Omega_{a} = \frac{\rho_{a, 0}}{\rho_{c}} = \qty(\frac{\SI{}{\micro eV}}{m_a}) \overline{\theta}_{i}^2
+\,,
+\end{align}
+%
+and as long as \(\overline{\theta}_{i}^2 \sim \num{e-1} \divisionsymbol \num{10}\) we get reasonable values with axion masses between \num{e-5} and \SI{e-7}{eV}. 
+
+% This is then a type of DM which is Cold, but also very light!
+% In order to not over-close the universe we must also have \(f_{PQ} < \SI{e12}{GeV}\).
+
+How would we detect axions? They interact with photons by the process \(a \leftrightarrow \gamma \gamma \), so we can have an experiment in which we have photon conversion into an axion.
 
 We have a spectacular effect which is called ``light shining through a wall'': we send a photon towards a wall, it will not pass through usually. 
-Suppose that we put a source of a strong magnetic field: if there are axions, we could have photon-photon conversion into an axion, which can pass through the wall and then emerges as an axion. We then put another strong source of magnetic field which can deconvert the axion into a photon.
+Suppose that we put a source of a strong magnetic field: if there are axions, we could have photon-photon conversion into an axion, which can pass through the wall and then emerges as an axion.
+We then put another strong source of magnetic field which can deconvert the axion into a photon pair.
 
 So far, this has not provided any evidence for the existence of the axion.
 

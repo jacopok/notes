@@ -5,6 +5,225 @@
 
 \marginpar{Sunday\\ 2020-7-5, \\ compiled \\ \today}
 
+A Grand Unified Theory would unify strong, electromagnetic and weak interactions. 
 
+The electromagnetic and weak interactions were unified into a \(SU(2)_L \times U(1)_Y\) theory, where the coupling constants for the two groups, \(g_2 \) and \(g_1 \), are pretty close. 
+The strong coupling, \(g_s\), is instead quite far from these.
+
+All of these are running couplings: we have 
+%
+\begin{align} \label{eq:first-order-running-coupling}
+\dv{\alpha _i}{\log q^2} = b_i \alpha_{i} + \mathcal{O}(\alpha_{i}^3)
+\,,
+\end{align}
+%
+\todo[inline]{what's up with the \(q^2\)?}
+where \(b_i\) is given by: 
+%
+\begin{align}
+b_i = - \frac{1}{4 \pi } \qty[ \frac{11}{3} C(G_i) - \sum _{f} \frac{4}{3} T(R)_f]
+\,,
+\end{align}
+%
+where we are neglecting the contributions from scalars, and where the Casimirs in the \(SU(N)\) case are \(C(SU(N)) = N\) and \(T(R)_{SU(N)} = 1/2\).
+
+So, if we label electromagnetism, weak and strong interactions with the numbers 1, 2 and 3 we find 
+%
+\begin{align}
+b_3 &= - \frac{1}{4 \pi } \qty[ \frac{11}{3} \times 3 - \frac{4}{3} \qty( \frac{1}{2} + \frac{1}{2}) n _{\text{fermion generations}}] \\
+b_2 &= - \frac{1}{4 \pi } \qty[ \frac{11}{3} \times 2 - \frac{4}{3} \frac{1}{2}  4 \frac{1}{2} n _{\text{fermion generations}} ] \\
+b_1 &= - \frac{1}{4 \pi } \qty[ 0  - \frac{20}{9} n _{\text{fermion generations}} ]
+\,.
+\end{align}
+
+\todo[inline]{The calculation is not super clear: what are we counting exactly for each interaction? Are the fermions not the same?}
+
+By integrating \eqref{eq:first-order-running-coupling} we get the \textbf{Renormalization Group Equations}: 
+%
+\boxalign{
+\begin{align}
+\frac{1}{\alpha_{i} (q^2)} = \frac{1}{\alpha_{i} (M_X^2)} + b_i \log \qty( \frac{M_X^2}{q^2})
+\,.
+\end{align}}
+
+Could we find a scale such that the three couplings become equal?
+If it exists, such a scale would be called the \textbf{Grand Unified Theory} Energy scale. 
+
+So, we have three equations for the values of the three couplings: 
+we can input two of the low-energy couplings and predict the GUT scale \(M _{\text{GUT}} \sim \SI{e15}{GeV}\), the GUT coupling \(\alpha _{\text{GUT}}\), and one low energy parameter.
+
+One possible prediction is \(\sin^2\theta_{w} = e^2 / g^2\), where \(\theta_{w}\) is the weak mixing angle. 
+
+This kind of works: the three couplings come close but do not reach simultaneous equality.
+A key piece of the puzzle is the fact that the way the running coupling changes depends on the \emph{particle content} at each energy from the electroweak scale \(M_W \sim \SI{200}{GeV}\) and the GUT scale. 
+
+The thing we try to do is to embed our gauge group into some larger symmetry group: 
+%
+\begin{align}
+SU(3)_c \otimes SU(2)_L \otimes U(1)_Y \subset G _{\text{GUT}}
+\,.
+\end{align}
+
+For example, we could have \(G _{\text{GUT}} = SU(5)\). This group has \(5^2 - 1 = 24\) generators, 12 of which are the known ones, and 12 of which would be new ones.
+
+What would be the charges of such a boson with respect to the known symmetries? Let us work with electric charge instead oh hypercharge directly. Then, we would have 6 bosons \(X^{\mu }\) with charges \(3, 2, 4/3\) respectively with respect to \(SU(3)_c\), \(SU(2)_L\) and \(U(1) _{\text{em}}\); and 6 bosons \(Y^{\mu } \) with charges \(3, 2, 1/3\). 
+
+These would mediate baryon- and lepton-number violating interactions, such as \(d_L + e^{+} \to X^{\mu } \to u_L + u^{c}_{L}\).
+This kind of interaction would allow a process like the decay of a proton \(p\) into a positron and a pion: \(p \to e^{+} + \pi^{0}\). 
+
+The decay rate of this process is  \(\Gamma \propto M_X^{4} / m_p^{5}\), so the lifetime of a proton would be 
+%
+\begin{align}
+\tau_{p} \sim \frac{M_X^{4}}{\alpha^2 m_p^{5}} \sim \SI{5e32}{yr}
+\,,
+\end{align}
+%
+\todo[inline]{not what he writes, but his formulas are dimensionally inconsistent as well so I don't know}
+
+but our experimental bounds are already higher, at \(\tau_{p} \gtrsim \SI{e33}{yr}\). 
+The way this theory would work is by introducing a new Higgs-like field, whose VEV would be of the order of \(M _{\text{GUT}}\). 
+
+So, there are two phase transitions: one at \(E \sim T \sim M _{\text{GUT}}\), from the big symmetry group \(G\) to \(G _{\text{SM}}\), and then one around \(M_W\), from \(G _{\text{SM}}\) to \(SU(3)_c \times U(1) _{\text{em}}\).
+
+\subsection{GUTs and neutrino mass}
+
+In the Standard Model we only have \(\nu_{L}\) in an isospin doublet with \(e_L\), and no \(\nu_{R}\). 
+So, a neutrino mass term could only be written as 
+%
+\begin{align}
+\nu_{L}^{\alpha } \nu_{R}^{\beta } \epsilon_{\alpha \beta }
+\,,
+\end{align}
+%
+where \(\alpha \) and \(\beta \) are Lorentz indices. 
+Lorentz transformations \(\Lambda \in SO(1, 3)\) are locally isomorphic to \(SU(2)_L \times SU(2)_R\) acting on the left- and right-handed components of a spinor. Note that this \(SU(2)\) is \emph{not} the isospin \(SU(2)_L\): it is, instead, a different way to write our Lorentz transformation. 
+
+The issue is with the way that the term \(\nu_{L}^{\alpha } \nu_{R}^{\beta } \epsilon_{\alpha \beta } \) transforms under an \(SU(2)_L\) transformation: \(\nu_L \) has \(T_3 = + 1/2\), while \(e_L\) has \(T_3 = - 1/2\). So, \(\nu_{L } \nu_{L}\) has \(T_3 = +1\): a component of a  triplet! 
+
+If we define \(L = (\nu , e)_L\) we can write a term like \(L^{i} L^{j} \Delta^{ij}\), where \(i\) and \(j\) are \(SU(2)_L\) gauge indices, and \(\Delta \) is an \(SU(2)_L\) triplet, which without loss of generality can be taken to be symmetric. 
+
+However, in the SM we only have a Higgs scalar doublet: we cannot write a term like \(LLH\); we could write \(LHLH\), which would have dimension 5: we would need to introduce a new energy scale \(M\), so that after SSB the term looked like 
+%
+\begin{align}
+\frac{L \expval{H} L \expval{H}}{M} \implies m_\nu \sim \frac{\expval{H}^2}{M} \sim \frac{v^2}{M}
+\,.
+\end{align}
+
+In order to comply with the bounds we have for the neutrino masses, we would need \(M \gg v \sim M_W \sim \SI{100}{GeV}\).
+
+Adding to the Standard Model an operator of dimension larger than 4 coming from physics above the electroweak scale makes the SM an \emph{effective} field theory. 
+We could have \(M\) be the GUT scale (which would work: \(v^2 / M _{\text{GUT}} \sim \SI{10}{meV}\)). 
+
+This would allow us to embed the SM symmetry into a parity-conserving Lagrangian, which becomes P-breaking only at low energies.
+
+\subsubsection{Pati-Salam theory: \(SO(10)\)}
+
+For example, if \(G _{\text{GUT}}\) was \(SO(10)\) (Pati-Salam theory) we would have the subgroup \(SU(4) \times SU(2)_L \times SU(2)_R\). 
+
+In this theory, all fermions of a generation (both left and right for all: up and down quarks (three each, for color charge), electrons, neutrinos) are different components in a spinor which has dimension 16. 
+
+In this theory, the scalar coupling to the right-handed neutrino is in the form 
+%
+\begin{align}
+\nu_{R}^{\alpha , i} \nu_{R}^{\beta, j } \epsilon_{\alpha \beta } \Delta^{ij}_{R}
+\,,
+\end{align}
+%
+where \(ij\) are \(SU(2)_R\) indices, and \(\alpha \beta \) are Lorentz indices.
+This is a Majorana mass term for the right-handed neutrino.
+Now, the VEV \(\expval{\Delta_{R}}\) will be approximately at the GUT energy scale.
+
+Then, electroweak symmetry breaking provides the Dirac term \(\overline{\nu}_{L} \nu_{R} \expval{H}\) at \(\expval{H} \sim \SI{100}{GeV}\). 
+\todo[inline]{Recall how}
+
+The neutrino mass matrix then reads 
+%
+\begin{align}
+\left[\begin{array}{cc}
+0 & v \\ 
+v & V _{\text{GUT}}
+\end{array}\right]
+\,,
+\end{align}
+%
+where the vector space is \((L, R)\). 
+The light neutrino mass eigenstate is then mostly \(m_{\nu_{L}} \sim v^2 / V _{\text{GUT}}\) while the other one is mostly \(m_{\nu_{R}} sim
+ V _{\text{GUT}}\). 
+ 
+This simultaneously explains the lightness of the observed neutrinos and  the fact that we have only observed left-handed ones in the weak interactions we tested. 
+
+\subsubsection{Baryon and lepton number conservation}
+
+In the SM, baryon and lepton number conservation are ``accidental'' (not imposed from on high) symmetries.  
+
+In general GUTs, they are violated in couplings of new super-heavy gauge bosons with fermions.
+So, the new bosons interact both with leptons and quarks. 
+However, in many GUTs the combination \(B - L\) is conserved. 
+
+This is not the case, for example, in \(SO(10)\): the term \(\nu_{R} \nu_{R} \) has \(\Delta L = 2\) and \(\Delta B = 0\). 
+
+\subsection{The gauge hierarchy problem}
+
+Even in low (electroweak-scale and lower) energy processes we can have GUT superheavy virtual particles appearing. These should be accounted for in the loop integrals. 
+
+The situation is different for fermions and gauge bosons on one side, versus the scalar Higgs field. 
+
+Fermions and gauge bosons only acquire mass after SSB: so, if we draw a diagram representing the interaction between the fermion field and the Higgs field, we must have a Higgs line as well as two fermion lines. For the gauge bosons the thing is the same, but we need two Higgs lines as well as two vector boson lines, in order to contract their Lorentz indices. 
+
+So, loop corrections will build on this diagram, but they cannot change the incoming lines:
+therefore, their mass terms will always be proportional to \(v\), and never to \(M _{\text{GUT}}\). 
+
+There is no such SSB protection for the mass of the Higgs boson, which already has a mass term \(\mu^2 \abs{\phi}^2\) before SSB: GUT loop corrections can indeed affect it. 
+
+Let us describe the way these perturb the mass like \(\mu^2 = \mu_0^2 + \delta \mu^2\). If \(\mu_0\) is at the electroweak scale while \(\delta \mu\) is at the GUT scale, this breaks everything!
+
+The VEV of our Higgs would be at the GUT scale, even though at tree level it might start off at the electroweak scale. 
+There are two ways to solve this problem: 
+one is to fine-tune the parameters in the Lagrangian to cancel the radiative corrections to \(\mathscr{L} _{\text{Higgs}}\). 
+
+The alternative is to introduce a cutoff scale for the corrections: this can either be achieved by supersymmetry which is broken around \SI{100}{GeV} to \SI{1}{TeV}, or by the introduction of new spacetime dimensions.
+
+\subsubsection{Supersymmetry}
+
+The idea of SUSY is to introduce a symmetry transformation mapping bosons to fermions: each SM particle would have a SUSY partner with a different spin. 
+
+These are characterized by their funny names.
+\begin{figure}
+\begin{tabular}{cc}
+SM particle & SUSY partner\\
+\hline
+electron \(e^{-}\), spin \(1/2\) & selectron \(\widetilde{e}^{-}\), spin \(0\) \\
+\(W^{\mu }\) boson, spin \(1\) & \(W\)-ino \(\widetilde{W}\), spin \(1/2\) \\
+Higgs boson \(H\), spin \(1\) & Higgsino \(\widetilde{H}\), spin \(1/2\) \\
+neutrino \(\nu \), spin \(1/2\) & sneutrino \(\widetilde{\nu }\), spin \(0\) \\
+photon \(\gamma  \), spin \(1\) & photino \(\widetilde{\gamma  }\), spin \(1/2\) \\
+graviton, spin \(2\) & gravitino, spin \(3/2\) 
+\end{tabular}
+\label{tab:supersymmetric-partners}
+\caption{Supersymmetric partners.}
+\end{figure}
+
+If we start off with \(\mu_0^2 \phi^2\) at the correct scale, we are done: the correction \(\delta \mu^2\) vanishes for a SUSY theory, since the contributions for a fermion loop for the Higgs self-interaction diagram precisely cancel with the sfermion loops. 
+
+This works as long as SUSY is broken around the \SI{}{TeV}, so that the electroweak breaking scale are protected (they do not vanish like the other ones). 
+
+If SUSY is an exact symmetry, then we expect the masses of the particles and of their SUSY partners to be equal. 
+If, instead, it is broken around the electroweak scale we may have \(m_{\widetilde{f}}  - m_f \sim M_W\).
+
+The important thing is then that this predicts that the SUSY partners are not very much more massive than the normal particles; and they have not been found at LHC. 
+
+As we go to higher energies in the search for new particles without finding SUSY ones we get ever stricter bounds on the SUSY breaking scale.
+
+SUSY is a discrete symmetry, an \(R\)-parity such that fermions have \(R = +1\) while bosons have \(R = -1\). 
+
+\subsubsection{Extra dimensions}
+
+The idea here is to suppose that our 1+3-dimensional spacetime is embedded into a higher-dimensional one, for example a 1+4-dimensional one. 
+Then, suppose that only gravity ``feels'' this extra dimension: then, if would be very weak in comparison to the other interactions. 
+
+\todo[inline]{REALLY not clear what this means formally}
+
+This way, instead of having the gravitational interaction be weak because of \(M_P\) being very large we could have \(M_P\) at the electroweak scale with \(G_N\) being still small; most of the gravitational flux lines could be flowing in these new spatial directions.  
 
 \end{document}
+

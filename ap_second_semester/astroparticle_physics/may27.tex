@@ -106,9 +106,124 @@ Working nonperturbatively, one finds that the transition is of second order or e
 
 \subsubsection{Phase transitions and inflation}
 
+\todo[inline]{Graph of \(V(\phi )\) with a bump, a slow decrease region, and then an absolute minimum: where does this shape come from?}
 
+At the GUT temperature, the average energy of the Higgs field is around the GUT energy scale.
+After the temperature goes below this, the GUT symmetry is broken. 
+
+The scale factor scales like \(H \sim T^2 / M_P^{*}\), where \(M_P^{*} \approx M_P / \sqrt{g_{*}} \approx \SI{e18}{GeV}\). 
+Then, if we take \(M _{\text{GUT}} \sim \SI{e16}{GeV}\) we get 
+%
+\begin{align}
+t = H^{-1} = \frac{\num{e2}}{M _{\text{GUT}}}
+\,.
+\end{align}
+
+The vacuum energy density will be given by the potential at \(\phi  = 0\). In this dark energy dominated period, the scale factor will scale like \(a \sim e^{Ht}\).
+
+The energy of this false vacuum is much larger than the one of the true vacuum. 
+
+If the time it takes for \(\phi \) to evolve from 0 to \(v\) is of the order \(t \sim 100 H^{-1}\), then initial smooth patches whose size is comparable to \(H^{-1} \sim \SI{e-28}{cm}\) will be blown out by \(e^{H t} = e^{100}\): they will become of a size \SI{3e15}{cm}, or about \SI{200}{AU}.
+
+The entropy increase is enormous: we can compute it like \(S = T_C^3 / H^3\). 
+This is because the entropy density \(s\) scales like \(T^3\) \cite[eq.\ 8.46]{bergstromCosmologyParticleAstrophysics2003}, and we retrieve the total entropy by multiplying by \(V \sim a^{3}\). 
+
+\todo[inline]{Hold on, the volume is \(a^3\), not \(H^{-3}\)! In a steady-state solution \(H\) is constant. The reasoning works out, since it is \(t\) which scales by 100, but what he wrote is incorrect\dots}
+
+So, even if the transition does not correspond to a temperature change, the variation in temperature is \(\qty( e^{Ht})^3 \sim \num{e130}\), since \(t\) is multiplied by 100.
+
+Some early models of slow-roll inflation are based on a transition between \(SU(5)\) to the SM symmetries.
+
+The idea is to get a GUT potential which is very close to flat near the origin, so that the quadratic term \(m^2\phi^2\) vanishes. 
+
+This way, we have no SSB in the tree-level GUT Higgs potential (since the self-interaction terms are only relevant at higher powers of \(\phi  \)).
+The only corrections are \emph{loop} corrections, possibly with loops constituted by \(SU(5) \) gauge bosons. 
+
+\subsubsection{Coleman-Weinberg mechanism}
+
+We take 
+%
+\begin{align}
+V(\phi ) = \const \times \phi^{4} \qty[\log \qty( \frac{\phi^2}{v^2}) - \frac{1}{2}] + \const \times v^4
+\,,
+\end{align}
+%
+where \(v = \expval{\phi } \sim \SI{e16}{GeV}\). 
+
+If \(\phi \ll v\), the potential looks like \(V \sim v^{4} - \lambda \phi^{4} / 4\), where \(\lambda = \const \log (\phi^2 / v^2) - 1/2 \sim \num{e-1} \divisionsymbol \num{e-2}\). 
+
+If \(\phi \) is close to 0, then, the potential is approximated up to third order as 
+%
+\begin{align}
+V(\phi ) \sim \alpha^2 _{\text{GUT}} \frac{v^{4}}{2}
+\,,
+\end{align}
+%
+where \(\alpha^2 _{\text{GUT}} \sim \num{e-3}\). 
+\todo[inline]{Should \(\alpha^2 \) not be related to \(\lambda \)? Also, I do not understand the characterization of the situations: how is \(\phi \ll v\) different from \(\phi \sim 0\)? }
+
+In this model, the expansion rate is given by 
+%
+\begin{align}
+H^2 \approx \frac{4 \pi }{3} \frac{\const v^{4}}{M_P^2} \approx \qty( \SI{e11}{GeV})^2
+\,.
+\end{align}
+
+With this model we get a phase transition which is first order at \(T_C \sim \SI{e16}{GeV}\).
+There are, however, issues with this model. 
+
+\todo[inline]{What can we say about this model?}
 
 \section{Cosmic matter-antimatter asymmetry}
 
+The matter-antimatter asymmetry problem is two-fold: 
+\begin{enumerate}
+    \item we want to find a way to generate a nonzero baryon number \(\Delta B = n_B - n_{\overline{B}}\) starting from a symmetric \(\Delta B = 0\) universe;
+    \item we want to account for the smallness of the baryon-to-photon ratio: 
+    %
+    \begin{align}
+    \eta_{B} = \frac{n_{B, 0}}{n_{\gamma , 0}} \approx \num{6e-10}
+    \,.
+    \end{align}
+\end{enumerate}
+
+We can express the latter using 
+%
+\begin{align}
+\Delta B = \frac{n_B - n_{\overline{B}}}{s} \approx \num{9e-11}
+\,,
+\end{align}
+%
+the baryon-to-entropy ratio. 
+
+If we had \(\Delta B = 0\), the fraction of the matter density in the universe which is represented by baryons would be very much smaller than \SI{5}{\percent}. 
+
+So far, there is no experimental evidence for large antimatter regions.
+If it existed, it would have to be separated from regular matter by extremely large distances, since otherwise we would detect a gamma-ray background from the common annihilation. 
+
+\subsection{Sakharov's conditions}
+
+They are necessary conditions for the creation of baryon asymmetry starting from a baryon-symmetric situation. 
+They are: 
+\begin{enumerate}
+    \item Baryon number non-conservation;
+    \item \(C\) and \(CP\) violation;
+    \item out-of-equilibrium processes.
+\end{enumerate}
+
+The first condition arises because if all processes conserved baryon number then there could be no formation of asymmetry. 
+The second condition arises because if there was charge-conjugation symmetry then processes generating matter and antimatter would have the exact same properties, and would therefore statistically occur in the same amounts.
+Out-of-equilibrium processes are needed since otherwise, because of \(CPT\) symmetry, \(\Delta B\) increasing and decreasing processes would occur in the same amounts. 
+
+\subsection{Baryogenesis in a GUT}
+
+Let us suppose that there is a GUT scalar particle \(X\) which has two decay channels, either \(qq\) or \(\overline{q} \overline{\ell}\), where \(q\) is a quark and \(\ell\) is a lepton. 
+
+These are both \(B\)-violating, the first introduces \(B = +2/3\) and the second introduces \(B = - 1/3\).
+Let us suppose that the branching ratios are \(\tau \) and \(1 - \tau \) respectively. 
+
+The antiparticle \(\overline{X}\) can decay into \(\overline{q} \overline{q}\) or \(q \ell\), which have \(B = - 2/3\) and \(B = + 1/3\) and branching ratios \(\overline{\tau}\) and \(1 - \overline{\tau}\).
+
+If we have \(C\) violation we can see \(\tau \neq \overline{\tau}\). 
 
 \end{document}

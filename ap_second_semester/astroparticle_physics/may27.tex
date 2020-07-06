@@ -215,15 +215,136 @@ The first condition arises because if all processes conserved baryon number then
 The second condition arises because if there was charge-conjugation symmetry then processes generating matter and antimatter would have the exact same properties, and would therefore statistically occur in the same amounts.
 Out-of-equilibrium processes are needed since otherwise, because of \(CPT\) symmetry, \(\Delta B\) increasing and decreasing processes would occur in the same amounts. 
 
-\subsection{Baryogenesis in a GUT}
+\subsubsection{Baryogenesis in a GUT}
 
 Let us suppose that there is a GUT scalar particle \(X\) which has two decay channels, either \(qq\) or \(\overline{q} \overline{\ell}\), where \(q\) is a quark and \(\ell\) is a lepton. 
 
 These are both \(B\)-violating, the first introduces \(B = +2/3\) and the second introduces \(B = - 1/3\).
 Let us suppose that the branching ratios are \(\tau \) and \(1 - \tau \) respectively. 
 
-The antiparticle \(\overline{X}\) can decay into \(\overline{q} \overline{q}\) or \(q \ell\), which have \(B = - 2/3\) and \(B = + 1/3\) and branching ratios \(\overline{\tau}\) and \(1 - \overline{\tau}\).
+The antiparticle \(\overline{X}\) can decay into \(\overline{q} \overline{q}\) or \(q \ell\), which have \(B = - 2/3\) and \(B = + 1/3\) and branching ratios \(\overline{\tau}\) and \(1 - \overline{\tau}\) respectively.
 
-If we have \(C\) violation we can see \(\tau \neq \overline{\tau}\). 
+If there is \(C\) violation, we can have \(\tau \neq \overline{\tau}\). 
+So, if we have a \(X \overline{X}\) pair, and both of the particles decay, then the changes of baryon number are \( \tau - 1/3\) and \(- \overline{\tau} + 1/3\) respectively, so in total we find \(\Delta B_{X \overline{X}} = \tau - \overline{\tau}\).
+
+This yields baryon number violation by violating the first two Sakharov conditions: where does the third one come in? 
+
+Let us again consider the boson \(X\), a ``leptoquark'' gauge boson which is coupled to all fermions. Its coupling constant will be \(\alpha = \alpha _{\text{GUT}}\). 
+Its SM charges can either be \((3, 2, +4/3)\) or \((3,2, + 1/3)\). 
+
+The decay rate of \(X\) into fermions will be given by \(\Gamma^{X}_{D} \approx \alpha M_X\). 
+The decay of \(X\) can occur as long as \(\Gamma^{X}_{D} \geq H \sim
+ T^2 / M_P^{*}\), so that on average a particle has good odds to have actually managed to decay since the beginning of the universe. 
+ 
+This condition can be written as \(T^2< \alpha M_X M^{*}_{P}\), and if we consider the time at which \(T = M_X\) it becomes \(M_X < \alpha M_P^{*}\).
+The condition of this \(X\) being able to decay means that it can reach equilibrium: so, at \(T = M_X\) equilibrium can be achieved as long as \(X\) is less massive than \(\alpha \times \SI{e18}{GeV}\). 
+
+If this condition is fulfilled, then as \(T\) drops below \(M_X\) the particle \(X\) is still in equilibrium and the \(B\) violating processes are still happening. So, as this happens, all the \(B\) violation is erased. 
+\todo[inline]{Wait, how?}
+
+If, on the other hand, \(M_X \geq \alpha \SI{e18}{GeV}\), the lifetime of \(X\) is longer than the age of the universe when the temperature reaches its mass. 
+Therefore, it only starts decaying \emph{later}, when \(T < M_X\), and these decays are occurring out of equilibrium. 
+
+The ratio \(n_X / n_\gamma \) is approximately 1, but the density of \(X\) is far from the equilibrium one, which would satisfy 
+%
+\begin{align}
+n_X^{\text{eq}} \sim (M_X T)^{3/2} e^{-M_X / T} 
+\,,
+\end{align}
+%
+and since \(M_X > T\) this would be suppressed, and we'd have \(n_X^{\text{eq}} \ll n_\gamma \).
+Intuitively, if we \emph{did} have equilibrium almost all the \(X\)s would have decayed earlier, many more of them are left than this. 
+
+So, the net \(\Delta B \neq 0\) cannot be erased. If we define \(\Delta B = \tau - \overline{\tau}\), then we will be left with a number density of baryons 
+%
+\begin{align}
+n_B = \Delta B n_X
+\,
+\end{align}
+%
+at the time when \(T = M_X\). Since \(n_X \sim n_\gamma \), we also have \(n_B \approx \Delta B n_\gamma \).
+
+At this point, \(\Delta B\) is frozen
+\todo[inline]{Is it? Many \(X\)s still have to decay, and when they do they violate \(B\)!}
+however \(n_\gamma \) is not conserved in later stages of the evolution --- for example, when electron-positron annihilation happens ---, so we cannot rely on the ratio \(n_B / n_\gamma \) to be constant. 
+
+Instead, we can use the specific entropy ratio \(n_B / s\), where \cite[eqs.\ 8.46 and 8.49]{bergstromCosmologyParticleAstrophysics2003}
+%
+\begin{align}
+s = \frac{2 \pi^2}{45} g_s (T) T^3 
+= \frac{\pi^{4}}{45 \zeta (3)} g_s (T) n_\gamma 
+\,,
+\end{align}
+%
+where, at \(T \sim M_X\), we have \(g_s (T) \sim 100\), so this means \(s \sim 100 n_\gamma \).
+
+Note that this \(g_s(T)\) is not the same as the \(g(T)\) we get when computing the density, although they are close in value \cite[fig.\ 1]{husdalEffectiveDegreesFreedom2016}.
+For an in-depth review of how they are defined, refer to Husdal \cite[sec.\ 4.5]{husdalEffectiveDegreesFreedom2016}; the gist is that thermodynamic quantities have different dependencies on the phase space density and the temperature, so when we weigh the various particles we must account for these differences. The \(g_s\) describes the effective degrees of freedom associated with the computation of the entropy, while \(g\) refers to the degrees of freedom associated with the energy density. 
+
+Therefore, 
+%
+\begin{align}
+\frac{n_B}{s} \sim \frac{\Delta B}{100}
+\,.
+\end{align}
+
+From Big Bang Nucleosynthesis we can place a bound on \(\eta  = n_B / n_\gamma \), namely \(\num{5e-10} < \eta < \num{7e-10}\).
+
+The same reasoning can be applied today: now we have \(g_s(T) \approx 4\), so we find \(s \approx 7 n_\gamma \).
+Then, using the same bound from BBN we get 
+%
+\begin{align}
+\num{7e-11} < 
+\frac{n_B}{s}
+< \num{e-10}
+\,.
+\end{align}
+
+\todo[inline]{And this is incompatible with the earlier one\dots which should we use?}
+
+Now, since \(n_B / s \approx \num{e-2} \Delta B\) we get that we can have \(\tau - \overline{\tau} \sim \num{e-8}\) to explain observations. 
+
+In order to have \(\tau \neq \overline{\tau}\) we need \(B\), \(C\) and \(CP\) violation. 
+However, even if these symmetries are violated, at tree level the decay rates for \(\Gamma (X \to qq)\) and \(\Gamma (\overline{X} \to \overline{q} \overline{q})\) are equal: all the kinematics is the same, and we will get 
+%
+\begin{align}
+\Gamma (X \to qq) \propto \abs{g}^2 M_X
+\qquad \text{and} \qquad
+\Gamma (\overline{X} \to \overline{q} \overline{q}) \propto \abs{g^{*}}^2 M_X
+\,,
+\end{align}
+%
+so they will be equal! 
+This can change if we consider loops. 
+
+\begin{claim}
+Say \(I\) is the complex-valued loop integral, and we assume that a particle \(Y\) propagates between the quarks with a coupling \(g'\).
+Then, the result reads:
+%
+\begin{align}
+\tau - \overline{\tau} = \frac{2 \Im I \Im \qty(g_2 g_1^{*} g_1' g^{\prime *}_2)}{\abs{g_1 }^2 + \abs{g_2 }^2}
+\approx \frac{g^2}{4 \pi } f \qty( \frac{m_X}{m_Y})
+\,,
+\end{align}
+%
+where \(f\) is a function such that \(f(1) = 0\), and which is of order 1 for large arguments. 
+\end{claim}
+
+Since we want \(\tau - \overline{\tau} \lesssim g^2 / 4 \pi \), we must have \(g^2 / 4 \pi \gtrsim \num{e-8}\). 
+
+This allows us to specify our out-of-equilibrium condition better: it was \(M_X \gtrsim \alpha M_P^{*}\), but with the new bound on \(\alpha \) we can write it as 
+%
+\begin{align}
+M_X > \SI{e10}{GeV}
+\,.
+\end{align}
+
+So, \(X\) must be a superheavy particle.
+In order to implement this baryogenesis process the reheating temperature must be quite high, \(T _{\text{RH}} > \SI{e10}{GeV}\).
+
+Is \(\Delta B\) preserved after the breaking of \(G _{\text{GUT}}\)? If, under the SM symmetries, \(B\) is conserved we should have no issue. 
+This, as we shall see, might not be the case. 
+
+\todo[inline]{Hold up: if the decay channel of the superheavy \(X\) are \(B\)-breaking, what does the temperature have to do with it? If there are \(X\)s leftover they still need to decay\dots}
 
 \end{document}

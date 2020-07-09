@@ -3,19 +3,19 @@
 
 \marginpar{Friday\\ 2020-3-13, \\ compiled \\ \today}
 
-What we will do in the first lessons: 
-\begin{enumerate}
-  \item A quick review of GR;
-  \item linearization and GW in free space;
-  \item the physical effect of GW: free falling reference frames, detector frame;
-  \item GW sources : binary systems, multipole expansion and quadrupole approximation, GW back reaction: energy \& momentum loss, Hulse-Taylor pulsar;
-  \item GW sources: a rotating rigid body.
-\end{enumerate}
+% What we will do in the first lessons: 
+% \begin{enumerate}
+%   \item A quick review of GR;
+%   \item linearization and GW in free space;
+%   \item the physical effect of GW: free falling reference frames, detector frame;
+%   \item GW sources : binary systems, multipole expansion and quadrupole approximation, GW back reaction: energy \& momentum loss, Hulse-Taylor pulsar;
+%   \item GW sources: a rotating rigid body.
+% \end{enumerate}
 
 \section{A quick review of GR}
 
 We start from special relativity. 
-The ``old'' way to do transformations are galilean transformations: in 2D they are
+The ``old'' way to do transformations are Galilean transformations: in 2D they are
 %
 \begin{subequations}
 \begin{align}
@@ -25,7 +25,8 @@ x' &= x - vt
 \end{align}
 \end{subequations}
 
-There are issues with these, such as the invariance of the speed of light. So, we use Lorentz transformations: 
+There are issues with these: they do not respect the equivalence principle and the invariance of the speed of light.
+So, we move to Lorentz transformations: 
 %
 \begin{subequations}
 \begin{align}
@@ -37,14 +38,14 @@ x' &= \gamma \qty(x - \beta ct)
 %
 where \(\beta = v/c \leq 1\), \(c\) being the speed of light, and \(\gamma = 1/\sqrt{1 - \beta^2} \geq 1\). 
 
-These preserve the spacetime interval 
+These preserve the spacetime interval, which in our mostly plus metric convention reads:
 %
 \begin{align}
 \Delta s^2 = - c^2 \Delta t^2 + \Delta x^2
 \,.
 \end{align}
 
-The intervals between two events can be spacelike (\(\Delta s^2 > 0\)), null (\(\Delta s^2 = 0\)) or timelike (\(\Delta s^2 < 0\)). 
+The interval between two events can be spacelike (\(\Delta s^2 > 0\)), null (\(\Delta s^2 = 0\)) or timelike (\(\Delta s^2 < 0\)). 
 
 We can express this using an infinitesimal time interval  
 %
@@ -54,7 +55,7 @@ We can express this using an infinitesimal time interval
 \end{align}
 %
 where we use Einstein summation convention. 
-We are going to use the mostly plus metric convention. 
+% We are going to use the mostly plus metric convention. 
 
 We can define the differential \emph{proper time} along a curve, by 
 %
@@ -64,25 +65,28 @@ c^2 \dd{\tau^2}  = - \dd{s^2} = c^2 \dd{t^2} \qty(1 - \beta^2) = \frac{c^2}{\gam
 \end{align}
 %
 which means that \(\dd{\tau } = \dd{t} / \gamma \). 
-We can use this as a \emph{covariant} parametrization of a spacetime curve. 
+The parameter \(\tau \) can then be used as a natural \emph{covariant} parametrization of a spacetime curve. 
 
-For curved spacetime, we model it as a 4D semi-Riemannian manifold with signature \((1, 3)\). 
+We model spacetime it as a 4D semi-Riemannian manifold with metric signature \((1, 3)\). 
 Since it is a manifold, the parametrization of points in spacetime must be a homeomorphism, and we ask for the \emph{transition maps} between two regions of spacetime to be infinitely differentiable. 
 The set of local charts is called an atlas. 
 The charts are maps from \(\mathbb{R}^{4}\) to the manifold. 
 
-The metric is a function of the point at which we are, and (the way it changes) describes the local geometry of the manifold. 
+The coordinates we use are arbitrary: this is very powerful, but it is tricky to find the right ones.
+
+The \textbf{metric} is a function of the point at which we are, and (the way it changes) describes the local geometry of the manifold. 
 Only the symmetric part of the  metric appears in the spacetime interval, therefore we say that the metric is always symmetric without losing any generality. 
 
 The metric is a bilinear form at each point of the manifold, and it transforms as a \((0,2)\) tensor. 
 The components of this tensor in our chosen reference frame are \(g_{\mu \nu }\). 
-The choice of coordinates is arbitrary and tricky. 
+% The choice of coordinates is arbitrary and tricky. 
 
 In a neighborhood of a point we can always choose a reference frame (Riemann normal coordinates) such that \(g_{\mu \nu } = \eta_{\mu \nu }\), and \(g_{\mu \nu , \alpha } = 0\) (partial derivatives calculated \emph{at that point}), but the second derivatives \(g_{\mu \nu , \alpha \beta }\) cannot all be set to zero. 
 
 Vectors in a manifold are defined in the tangent space \emph{at a point}. 
-Formally, we define curves parametrically as \(X^{\mu }(\lambda )\). 
+Intuitively, at each point we can define locally Cartesian coordinates, and the tangent is the space they span. 
 
+Formally, we define curves parametrically as functions from the real numbers to the manifold: \(X^{\mu }(\lambda )\). 
 Then, we define the tangent vector to the curve as the \emph{directional derivative} operator along the curve: 
 %
 \begin{align}
@@ -90,22 +94,21 @@ Then, we define the tangent vector to the curve as the \emph{directional derivat
 \,,
 \end{align}
 %
-for any scalar field \(f\). The motivation for this definition, as opposed to just taking the tangent vector to the curve, is the fact that there is no \emph{intrinsic} way to to that. 
+which associates to any scalar field \(f\) its directional derivative. 
+The motivation for this definition, as opposed to just taking the tangent vector to the curve, is the fact that there is no \emph{intrinsic} way to do that. 
 
 If we define a curve using a coordinate as a parameter, with the other coordinates staying constant along the curve, this is called a \emph{coordinate curve}. 
 
 Vectors defined at different points are in different spaces, we cannot compare them directly. 
 
-Tangent vectors to coordinate lines are called coordinate basis vectors \(e_{(\mu )}\), where \(\mu \) is not a vector index but instead it spans the basis vectors. So, any vector can be written as a linear combination as \(\vec{v} = v^{\mu } e_{\mu }\).
-We also have \(e_{\mu } \cdot e_{\nu } = g_{\mu \nu }\), so, in order to find the components of the scalar product \(v \cdot w\) we need to do \(v^{\mu } w^{\nu } g_{\mu \nu  }\). 
-
+Tangent vectors to coordinate lines are called coordinate basis vectors \(e_{(\mu )}\), where \(\mu \) is not a vector index but instead it spans the basis vectors.
+Any vector can be written as a linear combination of these as \(\vec{v} = v^{\mu } e_{\mu }\).
+We always have \(e_{\mu } \cdot e_{\nu } = g_{\mu \nu }\), so, in order to find the components of the scalar product \(v \cdot w\) we need to do \(v^{\mu } w^{\nu } g_{\mu \nu  }\). 
 This is because \(g_{\mu \nu } \dd{x^{\mu } } \dd{x^{\nu }} = \dd{s} \cdot \dd{s} = \qty(\dd{x^{\mu }} e_{\mu }) \cdot \qty(\dd{x^{\nu }} e_{\nu })\). 
 
-An orthonormal basis in one for which \(e_{\mu } \cdot e_{\nu } = \eta_{\mu \nu }\). 
-
+An \emph{orthonormal basis} in one for which \(e_{\mu } \cdot e_{\nu } = \eta_{\mu \nu }\). 
 Dual basis vectors \(e^{\mu }\) are defined by \(e^{\mu } e_{\nu } = \delta^{\mu }_{\nu }\). 
-
-We write a co-vector (or dual vector) as a linear combination of these: \(v = v_{\mu } e^{\mu }\). 
+We write a co-vector (or dual vector) as a linear combination of these: \(v = v_{\mu } e^{(\mu)}\). 
 
 Then, we can raise and lower indices like 
 %
@@ -114,13 +117,13 @@ g_{\mu \nu } v^{\mu } w^{\nu } = v \cdot w = v_{\mu } e^{\mu } \cdot w^{\nu } e_
 \,.
 \end{align}
 
-The inverse metric is defined as \(g^{\mu \nu } g_{\nu \rho } = \delta^{\mu }_{\rho }\). 
+The inverse metric \(g^{\mu \nu }\) is defined by the relation \(g^{\mu \nu } g_{\nu \rho } = \delta^{\mu }_{\rho }\). 
 
-Tensors are geometrical objects which belong to the dual space to the cartesian product of \(n\) copies of the tangent space and \(m\) copies of the dual tangent space. 
-The type of such a tensor is then said to be  \((n, m)\), and its rank is \(n+m\). 
-This definition means that the tensor is a \emph{multilinear} transformation. 
+Tensors are geometrical objects which belong to the dual space of the Cartesian product of \(n\) copies of the tangent space and \(m\) copies of the dual tangent space.
+The type of a tensor in this space is then said to be \((n, m)\), and its rank is \(n+m\). 
+This definition means that the tensor is a \emph{multilinear} transformation, associating a scalar to \(n\) vectors and \(m\) covectors in a multilinear way. 
 
-Once we have a coordinate system, we can move to another via a coordinate transformation 
+Once we have a coordinate system, we can move to another via a coordinate transformation \(x^{\prime \mu } = x^{\prime \mu } (x^{\mu }) \), and then the differential of the coordinates will transform like
 %
 \begin{align}
 x^{\prime \mu } = x^{\prime \mu } \qty(x^{\mu })
@@ -129,14 +132,32 @@ x^{\prime \mu } = x^{\prime \mu } \qty(x^{\mu })
 \,.
 \end{align}
 
-A scalar does not transform: \(\phi (x) = \phi^{\prime } (x^{\prime })\).
-A vector's component do transform: we find the transformation law by imposing \(v = v'\) in components. 
-This works both for covariant and contravariant vectors, and we find that these transform using either the Jacobian of the transformation or its inverse. 
+A scalar is something which does not transform: \(\phi (x) = \phi^{\prime } (x^{\prime })\).
+A vector's and a covector's components do transform: we find the transformation law by imposing \(v = v'\) in components, so that we get 
+%
+\begin{align}
+V^{\prime \mu } = \pdv{x^{\prime \mu }}{x^{\nu }} V^{\nu }
+\qquad \text{and} \qquad
+V_{\mu } = \pdv{x^{\nu }}{x^{\prime \mu }}V_{\nu }
+\,.
+\end{align}
+
+% This works both for covariant and contravariant vectors, and we find that these transform using either the Jacobian of the transformation or its inverse. 
+This can be generalized to the transformation law of a tensor of arbitrary rank, which will transform with the product of a Jacobian for each upper index and an inverse Jacobian for each lower index.
 
 In order to compute derivatives we need to compare vectors in different tangent spaces: we need to ``connect'' infinitesimally close tangent spaces, and the tool to do so is indeed called a connection, or covariant derivative. 
+The covariant derivative of a tensor is required to still be a tensor, with a rank which is higher by one: 
 
-For a scalar field \(S\) the covariant derivative is \(\nabla_{\alpha } S = \partial_{\alpha } S\). 
+The covariant derivative of a vector \(V^{\mu }\) is defined by introducing the \emph{Christoffel symbols} \(\Gamma \), which are objects with three indices which do \emph{not} transform like tensors and which account for the ``shifting of the basis vectors'':
+%
+\begin{align}
+\nabla_{\mu } V^{\nu } = \partial_{\mu } V^{\nu } + \Gamma^{\nu }_{\mu \rho } V^{\rho }
+\,.
+\end{align}
 
+For a scalar \(S\) the covariant derivative is \(\nabla_{\alpha } S = \partial_{\alpha } S\). 
+
+We require the manifold we work in to be torsionless.
 A torsionless manifold is one in which 
 %
 \begin{align}
@@ -150,15 +171,17 @@ This means that
 \begin{align}
 \nabla_{[\mu  } \nabla_{\nu ]} S = \nabla_{[\mu  } \partial_{\nu ]} S = \partial_{[\mu } \partial_{\nu ]} S - \Gamma^{\alpha }_{[\mu \nu ]} \partial_{\alpha } = 0
 \implies \Gamma^{\alpha }_{[\mu \nu ]} = 0
-\,.
+\,,
 \end{align}
 %
-
+so the Christoffel symbols are symmetric in their lower indices.  
 
 Parallel transport: intuitively, we move along a curve and keep the angle with respect to the tangent vector constant. 
 Formally, if \(u^{\mu }\) is the tangent vector to the curve and \(V^{\mu }\) is the vector we want to transport, we set \(u^{\mu } \nabla_{\mu } V^{\nu }= 0\). 
 
-The Riemann tensor is defined as the commutator of the covariant derivatives:
+This parallel-transport is path-dependent: in general a vector which is transported along a curve does not come back to itself.
+
+The Riemann tensor \(R^{\alpha}_{\beta \mu \nu }\) is defined from the commutator of the covariant derivatives:
 %
 \begin{align}
 [\nabla_{\mu }, \nabla_{\nu }] V^{\alpha } = R^{\alpha }_{\beta \mu \nu } V^{\beta }
@@ -172,49 +195,57 @@ R^{\mu }_{\nu \rho \sigma } = -2 \qty(\Gamma^{\mu }_{\nu [\rho , \sigma ]} + \Ga
 \,.
 \end{align}
 
-Geodesics: they are ``the straightest possible path between two points''.
-They stationarize the proper length.
-Formally, they are curves whose tangent vector is parallel-transported along the curve. 
+This tensor measures the curvature of the manifold: if it is zero, then the manifold is flat (\(g_{\mu \nu } = \eta_{\mu \nu }\)).
+We define its trace \(R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu }\) as the Ricci tensor, whose trace \(R = R_{\mu \nu } g^{\mu \nu }\) is called the Ricci scalar, or curvature scalar.
 
-We actually do not need to say that the derivative of the tangent vector with respect to the parameter is zero: it can be nonzero, as long as it is parallel to the tangent vector. 
+The Riemann tensor has several symmetries, both differential (related to its derivatives) and not (antisymmetries and symmetries of its indices) \cite[eqs.\ 7.14-7.18]{hobsonGeneralRelativityIntroduction2006a}, making it so that its free components in \(N\) spatial dimensions are not \(N^{4}\) but instead \(N^2 (N^2 -1 )  /12\). In 4D, this means 20 free components.
 
-So, we could say that 
-%
-\begin{align}
-h_{\nu \rho } \qty(u^{\mu } \nabla_{\mu } u^{\nu }) =0
-\,,
-\end{align}
-%
-?
+Geodesics: they are ``the straightest possible path between two points''; they stationarize the proper length.
+Formally, they are curves whose tangent vector is parallel-transported along the curve (it ``always points in the same direction''). 
 
+% We actually do not need to say that the derivative of the tangent vector with respect to the parameter is zero: it can be nonzero, as long as it is parallel to the tangent vector. 
+
+% So, we could say that 
+% %
+% \begin{align}
+% h_{\nu \rho } \qty(u^{\mu } \nabla_{\mu } u^{\nu }) =0
+% \,,
+% \end{align}
+% %
+% ?
 
 The path that a massive particle follows in the absence of external forces is a geodesic. 
-We can describe the separation between two particles which follow geodesics: this is described by the equation of geodesic deviation. 
+We can describe the evolution of the separation between two nearby particles which follow geodesics: this is described by the equation of geodesic deviation. 
 We take a geodesic \(x^{\mu }\) and another \(y^{\mu } = x^{\mu }+ \xi^{\mu }\), with \(\xi^{\mu }\) being (at least initially) small. 
+Let us call the starting point of \(x^{\mu }\) \(P\) and the starting point of \(y^{\mu }\) \(Q\),
+also let us take a coordinate system in which \(\eval{\Gamma^{\mu }_{\nu \rho }}_{P} =0\). This can always be done, but note that the \emph{derivatives} of the Christoffel symbols cannot all be set to zero. 
 
-We can choose a coordinate system in which \(\Gamma^{\mu }_{\nu \rho } =0\). So, 
+So, we can write the geodesic equation for the two curves at their starting points as 
 %
 \begin{align}
 \eval{\dv[2]{x^{\mu }}{u}}_{P} = 0
-\,,
-\end{align} 
-%
-\begin{align}
-\eval{\qty(\dv[2]{y^{\mu }}{u} + \Gamma^{\mu }_{\nu \rho } \dv{y^{\nu }}{u} \dv{y^{\rho }}{u})}_{P} = 0
+\qquad \text{and} \qquad
+\eval{\qty(\dv[2]{y^{\mu }}{u} + \Gamma^{\mu }_{\nu \rho } \dv{y^{\nu }}{u} \dv{y^{\rho }}{u})}_{Q} = 0
 \,,
 \end{align}
 %
-where \(u\) is the tangent vector to the geodesics. We approximate the Christoffel symbols to first order as 
+where \(u\) is the tangent vector to the geodesics.
+We approximate the Christoffel symbols to first order as 
 %
 \begin{align}
-\eval{\Gamma^{\mu }_{\nu \rho }}_{Q} = \xi^{\alpha } \partial_{\alpha } \Gamma^{\mu }_{\nu \rho }
+\eval{\Gamma^{\mu }_{\nu \rho }}_{Q} = \xi^{\alpha } \partial_{\alpha } \eval{\Gamma^{\mu }_{\nu \rho }}_{P}
 \,.
 \end{align}
-%
-If we subtract the two, we get 
+
+If we subtract the two and only keep the first order in \(\xi \), we get 
 %
 \begin{align}
-\ddot{\xi}^{\mu } + \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \dot{x}^{\nu } \dot{x}^{\rho } \xi^{\alpha } = 0
+0= \qty(\dv[2]{y^{\mu }}{u} + \Gamma^{\mu }_{\nu \rho } \dv{y^{\nu }}{u} \dv{y^{\rho }}{u}) - \dv[2]{x^{\mu }}{u} &= 
+\dv[2]{\xi^{\mu }}{u} + \xi^{\alpha } \partial_{\alpha } \Gamma^{\mu }_{\nu \rho } \dv{\qty(x^{\nu } + \xi^{\nu })}{u} \dv{\qty(x^{\rho } + \xi^{\rho })}{u} \\
+&= \dv[2]{\xi^{\mu }}{u} + \xi^{\alpha } \partial_{\alpha } \Gamma^{\mu }_{\nu \rho } \dot{x}^{\nu }\dot{x}^{\rho } + \mathcal{O}(\xi^2)
+\marginnote{A dot denotes \(u\) differentiation.}
+\\
+&\approx \ddot{\xi}^{\mu } + \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \dot{x}^{\nu } \dot{x}^{\rho } \xi^{\alpha }  = 0 
 \,,
 \end{align}
 %
@@ -222,25 +253,53 @@ but the first term is not an intrinsic derivative: that would be given by
 %
 \begin{align}
 \frac{\mathrm{D}^2 \xi^{\mu }}{\mathrm{D} u^2} 
-= \dv{}{u} \qty(\dot{\xi}^{\mu } + \Gamma^{\mu }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }) = \ddot{\xi}^{\mu }+ \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \xi^{\alpha } \dot{x}^{\nu } \dot{x}^{\rho }
+= \dv{}{u} \qty(\dot{\xi}^{\mu } + \Gamma^{\mu }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }) + \mathcal{O}(\xi^2) 
+&= \ddot{\xi}^{\mu }
++ \dot{x}^{\alpha  } \partial_{\alpha }\Gamma^{\mu  }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }
+% + \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \xi^{\alpha } \dot{x}^{\nu } \dot{x}^{\rho } 
++ \mathcal{O}(\xi^2)  \\
+&= \ddot{\xi}^{\mu }
++ \dot{x}^{\nu  } \partial_{\nu }\Gamma^{\mu  }_{\alpha \rho } \xi^{\alpha } \dot{x}^{\rho }
+% + \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \xi^{\alpha } \dot{x}^{\nu } \dot{x}^{\rho } 
++ \mathcal{O}(\xi^2) \marginnote{Relabeled the contracted indices.}
 \,,
 \end{align}
 %
-which means that 
+so we can write the differential equation we have found by inserting this expression for \(\ddot{\xi}\): 
 %
 \begin{align}
 0= \frac{\mathrm{D}^2 \xi^{\mu }}{\mathrm{D} u^2} 
-+ \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho } - \partial_{\rho } \Gamma^{\mu }_{\nu \alpha }) \xi^{\alpha } \dot{x}^{\mu } \dot{x}^{\nu }
++ \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho } - \partial_{\nu } \Gamma^{\mu }_{\alpha \rho }) \xi^{\alpha }\dot{x}^{\nu } \dot{x}^{\rho }
 = \frac{\mathrm{D}^2 \xi^{\mu }}{\mathrm{D} u^2} 
-+ R^{\mu }_{\nu \rho \sigma } u^{\nu } u^{\rho } \xi ^{\sigma }
++ R^{\mu }_{\nu \alpha \rho } \xi^{\alpha }\dot{x}^{\nu } \dot{x}^{\rho }
 \,.
 \end{align}
 
-The gravitational field is described by the Einstein Field Equations: 
+In the last step we used the fact that in the frame we chose, a Local Inertial Frame, the Christoffel symbols are zero so \(R = \partial \Gamma  + \Gamma \Gamma \) simplifies to \(R = \partial \Gamma \). 
+
+The gravitational field's dependence on the matter content of the universe is described by the Einstein Field Equations: 
 %
 \begin{align}
 R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = \frac{8 \pi G}{c^{4}} T_{\mu \nu } 
-\,.
+\,,
 \end{align}
+%
+which follow from the assumptions that 
+\begin{enumerate}
+  \item they should be a local tensorial equation;
+  \item they should relate \(T_{\mu \nu } \) with \(g_{\mu \nu }\) and its derivatives;
+  \item they should reduce to Newton's equation for the gravitational potential \(\phi \), \(\nabla^2 \phi = 4 \pi G \rho \), in the weak field limit.
+\end{enumerate}
+
+They look rather simple, but there is a lot of hidden complexity: the Einstein tensor \(G_{\mu \nu } = R_{\mu \nu } - R g_{\mu \nu } / 2\) is  calculated from the Riemann tensor by taking a trace; the Riemann tensor \(R^{\mu }_{\nu \rho \sigma } \) is calculated from the Christoffel symbols by differentiating and multiplying them (\(R \sim \partial \Gamma  + \Gamma \Gamma \)), the Christoffel symbols are calculated from the metric by differentiating it and multiplying it by the inverse \(\Gamma \sim g^{-1} \partial g\).  
+
+In this course we will be using the sign conventions adopted by Misner, Thorne and Wheeler \cite[page 3]{misnerGravitation1973}; some authors adopt different signs for 
+\begin{enumerate}
+  \item the metric \(\eta_{\mu \nu } = \pm \diag{-1, 1, 1, 1}\);
+  \item the Riemann tensor \(R^{\mu }_{\nu \rho \sigma } = \mp 2 \qty(\Gamma^{\mu }_{\nu [\rho , \sigma] } + \Gamma^{\alpha }_{\nu [\rho }\Gamma^{\mu }_{\sigma ] \alpha })\);
+  \item the Einstein Equations: \(G_{\mu \nu } = \pm T_{\mu \nu } / M_P^2\).
+\end{enumerate} 
+
+All of these conventions are equivalent, but one must be careful when comparing different sources.
 
 \end{document}

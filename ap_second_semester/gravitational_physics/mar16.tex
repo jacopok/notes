@@ -9,54 +9,61 @@
 
 % There might be some disruption in late March because the professor is having a child. 
 
-Let us assume that our metric tensor is almost flat: \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }\), with \(\abs{h_{\mu \nu }} \ll 1\).
+Let us assume that there exists a reference frame in which our metric tensor is almost flat: \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }\), with \(\abs{h_{\mu \nu }} \ll 1\).
 
-This is a coordinate dependent statement: however the physical situation is clear --- almost flat spacetime --- and the way we will proceed is to expand in \(h\).
+This is a coordinate dependent statement: however the physical situation is clear --- almost flat spacetime --- and the way we will proceed is to work to linear order in \(h_{\mu \nu }\).
 
-Do note that \(g^{\mu \nu } = \eta^{\mu \nu } - h^{\mu \nu }\). 
+Do note that the inverse metric is given by \(g^{\mu \nu } = \eta^{\mu \nu } - h^{\mu \nu }\), and that we can raise and lower the indices of \(h_{\mu \nu }\) using \(\eta_{\mu \nu }\), since the corrections would be second order.
 
-Choosing a reference in which these components are small limits our gauge freedom: we will be able to do only transformations which preserve the condition. 
+Choosing a reference in which these components are small limits our gauge freedom: we will only be able to do transformations which preserve the condition. Let us now discuss explicitly \textbf{which transformations we will still be able to use}. 
 
-We will be able to do global Lorentz transformations: 
+We will be able to apply global Lorentz transformations \(\Lambda \), which act on the metric as: 
 %
 \begin{align}
-g' = \Lambda \Lambda g
+g' = \Lambda^{-1} \Lambda^{-1} g
+= \Lambda^{-1} \Lambda^{-1} \qty(\eta + h) 
+= \eta + \Lambda^{-1} \Lambda^{-1} h
 \,,
 \end{align}
 %
-therefore 
-%
-\begin{align}
-g' = \Lambda \Lambda \qty(\eta + h) = \eta + \Lambda \Lambda h
-\,,
-\end{align}
-%
-so the flat metric does not change, while \(h\) changes to  \(h' = \Lambda \Lambda h\). We are omitting indices, they are in the usual positions. 
+so the flat metric part does not change, while \(h\) changes to  \(h' = \Lambda^{-1} \Lambda^{-1} h\).
+We are omitting indices for clarity, they are in the usual positions. 
 
-A more general class of transformation is given by those which can be expressed as 
+A more general class of transformation is given by \emph{infinitesimal translations}, which can be expressed as 
 %
 \begin{align}
-x^{\mu } \rightarrow x^{\prime \mu } + \xi^{\mu }
+x^{\mu } \rightarrow x^{\prime \mu } = x^{\mu } + \xi^{\mu }
 \,,
 \end{align}
 %
-so the Jacobian will look like 
+and whose Jacobian looks like 
 %
 \begin{align}
+\pdv{x^{\prime \mu }}{x^{\nu }} = 
 \delta^{ \mu }_{\nu } + \partial_{\nu } \xi^{ \mu }
-\,,
-\end{align}
-%
-and we ask that \(\partial \xi \) is small --- formally, first order in \(h_{\mu \nu }\). This yields 
-%
-\begin{align}
-g^{\prime }_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu } - 2 \partial_{(\mu  }\xi_{\nu )}
 \,.
 \end{align}
-%
-For an alternative reference on this derivation, see the notes on General Relativity in the course by Marco Peloso \cite[section 10]{tissinoGeneralRelativityNotes2020}.
 
-Now, we wish to linearize the Riemann tensor: we start from the Christoffel symbols. We get 
+We ask that \(\partial \xi \) is small --- formally, the first order in \(\partial_{\mu } \xi_{\nu }\) is the same as the first order in \(h_{\mu \nu }\).
+
+This yields, always to first order:
+%
+\begin{align}
+g^{\prime }_{\mu \nu } 
+&=
+\qty(\delta^{\rho }_{\mu } - \partial_{\mu }\xi^{\rho })
+\qty(\delta^{\sigma }_{\nu } - \partial_{\nu }\xi^{\sigma })
+\qty(\eta_{\rho \sigma } + h_{\rho \sigma }) \\
+&= \eta_{\mu \nu } + h_{\mu \nu } - \partial_{\mu } \xi^{\rho } \eta_{\rho \sigma } 
+- \partial_{\nu }\xi^{\sigma } \eta_{\rho \sigma } \\
+&= \eta_{\mu \nu } + h_{\mu \nu } - 2 \partial_{(\mu  }\xi_{\nu )}
+\,.
+\end{align}
+
+For an alternative reference on this derivation, see the notes on General Relativity in the course by Marco Peloso \cite[section 10]{tissinoGeneralRelativityNotes2020}.
+The crucial thing here is that our transformation left the metric in the form ``flat + first-order infinitesimal'', so we still are satisfying the assumptions we set at the start. 
+
+Now, we wish to linearize the Riemann tensor: we must start from the Christoffel symbols. We can discard the derivatives of the flat metric and substitute the inverse metric at the start of the expression with the flat one, since the parenthesis is already first order: 
 %
 \begin{subequations}
 \begin{align}
@@ -96,35 +103,49 @@ and the Ricci scalar is
 \begin{align}
 R = \eta^{\mu \nu } R_{\mu \nu } 
 = \square h - \partial_{\nu }\partial_{\sigma } h^{\sigma \nu }
-\,.
+\,,
 \end{align}
-
-Now, the field equations read 
+%
+where \(h\) is the trace of the perturbation, \(h = h^{\sigma }_{\sigma }\), while \(\square = \partial_{\mu }\partial^{\mu }\) is the Dalambertian operator. 
+The field equations read 
 %
 \begin{align}
 R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R 
-\approx \frac{1}{2} \qty[
-  \partial_{\nu } \partial_{\mu } h + \square h_{\mu \nu } 
-  - \partial_{\nu } \partial_{\sigma } h^{\sigma }_{\mu }
-  - \partial_{\sigma} \partial_{\mu } h^{\sigma }_{\nu }
-  - \eta_{\mu \nu }
-  \qty(\square h - \partial_{\nu }\partial_{\sigma } h^{\sigma \nu })
-] = - \frac{1}{M_P^2} T_{\mu \nu }
-\,.
+&\approx \frac{1}{2} \qty[
+\partial_{\nu } \partial_{\mu } h + \square h_{\mu \nu } 
+- \partial_{\nu } \partial_{\sigma } h^{\sigma }_{\mu }
+- \partial_{\sigma} \partial_{\mu } h^{\sigma }_{\nu }
+- \eta_{\mu \nu }
+\qty(\square h - \partial_{\nu }\partial_{\sigma } h^{\sigma \nu })
+] 
+\marginnote{The metric multiplying \(h\) can be written as the flat one, since \(h\) is first order already.} \\
+&= - \frac{1}{M_P^2} T_{\mu \nu }
+\,,
 \end{align}
+%
+where \(M_P = 1/ \sqrt{8 \pi  G}\) in natural units is the reduced Planck mass.
 
-Now, we define the trace reverse perturbation as 
+We define the trace-reversed perturbation as 
 %
 \begin{align}
 \overline{h}_{\mu \nu } = h_{\mu \nu } - \frac{1}{2} \eta_{\mu \nu } h  
 \,,
 \end{align}
 %
-so the doubly-trace reverse is the perturbation itself, and \(\overline{h} = - h\). 
+so the doubly-trace reverse is the perturbation itself, \(\overline{\overline{h}}_{\mu \nu } = h_{\mu \nu }\), and the trace-reversed trace is the negative of the trace: \(\overline{h} = - h\). 
+In terms of this, the linearized equations read 
+%
+\begin{align}
+\square \overline{h}_{\mu \nu } 
++ \eta_{\mu \nu } \partial_{\rho }\partial_{\sigma } \overline{h}^{\rho \sigma } 
+-  \partial_{\nu } \partial_{\rho } \overline{h}^{\rho  }_{\mu } - \partial_{\mu } \partial_{\rho } \overline{h}^{\rho }_{\nu } = -2 \frac{T_{\mu \nu }}{M_P^2}
+\,,
+\end{align}
+%
+which we can simplify greatly using our gauge freedom:
+we shall use the so-called Lorenz gauge\footnote{This is not the same as Loren\emph{t}z, after whom Lorentz covariance is called.}.
 
-Now we shall use Lorenz gauge\footnote{This is not the same as Loren\emph{t}z, after whom Lorentz covariance is called.}
-
-We shall use our gauge freedom. How does the trace-reverse perturbation transform? 
+How does the trace-reverse perturbation transform? 
 %
 \begin{subequations}
 \begin{align}
@@ -136,44 +157,40 @@ h^{\mu \rho } - 2 \partial^{(\mu} \xi^{\rho )} - \frac{1}{2 } \eta^{\mu \rho } \
 \,.
 \end{align}
 \end{subequations}
-%
 
 The derivatives of the new and old perturbations differ by 
 %
 \begin{align}
 \partial_{\rho } \overline{h}^{\prime \mu \rho }
-- \partial_{\rho } \overline{h}^{\mu \rho } = - \square \xi^{\mu }
+- \partial_{\rho } \overline{h}^{\mu \rho } =
+\partial_{\rho } \qty(- \partial^{\mu } \xi^{\rho } - \partial^{\rho }\xi^{\mu } + \eta^{\mu \rho } \partial_{\sigma } \xi^{\sigma})
+= - \square \xi^{\mu }
 \,,
 \end{align}
 %
-so we can choose a variable change \(\xi^{\mu } \) such that \(\partial_{\rho} \overline{h}^{\prime \mu \rho }\).
+so we can choose our gauge with a transformation defined by \(\xi^{\mu } \) such that \(\partial_{\rho} \overline{h}^{\prime \mu \rho }\), since the field \(\square \xi^{\mu }\) can be chosen arbitrarily with a suitable choice of \(\xi^{\mu }\).
 
-Then, the linearized field equations will read 
+This means we can remove all the \(\partial \overline{h}\) terms and find: 
 %
-\begin{align}
-\square \overline{h}_{\mu \nu } 
-+ \eta_{\mu \nu } \partial_{\rho }\partial_{\sigma } h^{\rho \sigma } 
--  \partial_{\nu } \partial_{\rho } \overline{h}^{\rho  }_{\mu } - \partial_{\mu } \partial_{\rho } \overline{h}^{\rho }_{\nu } = -2 \frac{T_{\mu \nu }}{M_P^2}
-\,,
-\end{align}
-%
-which finally yields 
-%
+\boxalign{
 \begin{align}
 \square \overline{h}_{\mu \nu } = - \frac{2 T_{\mu \nu }}{M_P^2}
-\,.
-\end{align}
+\,,
+\end{align}}
+%
 
 \paragraph{Comments on the linearized equations}
 
-Since we expanded in \(\eta_{\mu \nu }\), the quantities \(h_{\mu \nu }\) have a geometric meaning but we are treating them as 16 scalar fields. 
+Since we expanded in \(\eta_{\mu \nu }\), the quantities \(h_{\mu \nu }\) have a geometric meaning, but we are treating them as 16 scalar fields on a flat background. 
 
 When we look at the geodesic equations, we get a prediction of the gravity having no effect on matter. 
-We are treating gravity as a linear theory, so we have the superposition principle. 
+We are treating gravity as a linear theory, so we have the superposition principle, according to which the fields due to different particles can be added.
 
-We are ignoring the physical principle that ``gravity gravitates'': curvature of spacetime is associated to a SEMT in a nonlinear way. 
+\todo[inline]{To clarify this point: the geodesic equations are nontrivial!}
 
-\paragraph{GWs in empty space}
+We are ignoring the physical principle that ``gravity gravitates'': curvature of spacetime is associated to a SEMT in a nonlinear way.
+
+\paragraph{GW in empty space}
 
 We set \(T_{\mu  \nu }\) to zero, so we get 
 %
@@ -182,16 +199,18 @@ We set \(T_{\mu  \nu }\) to zero, so we get
 \,,
 \end{align}
 %
-which is the usual wave equation, with solutions \(\overline{h}_{\mu \nu } = A_{\mu \nu } e^{i k_{\lambda }x^{\lambda }}\). 
+which is the usual wave equation: its solutions are superpositions of plane waves \(\overline{h}_{\mu \nu } = A_{\mu \nu } e^{i k_{\lambda }x^{\lambda }}\). 
 
-In general \(A_{\mu \nu } \) is symmetric, constant, complex. \(k_{\lambda }\) is constant and real, and we must have 
+In general \(A_{\mu \nu } \) is symmetric, constant, complex. \(k_{\lambda }\) is constant and real, and by taking the derivative we find that we must have
 %
 \begin{align}
 \eta^{\rho \sigma } k_{\rho } k_{\sigma } A_{\mu \nu } e^{i k \cdot x } \implies k^2=0
-\,.
+\,,
 \end{align}
+%
+which means that the wave travels at light speed, since \(k^{\lambda } = (\omega / c, \vec{k})\).
 
-In order to have these conditions, we must still have 
+In order to have these conditions, we must still impose the Lorenz gauge condition we chose in the derivation:
 %
 \begin{align}
 \partial_{\mu } \overline{h}^{\mu \nu } 
@@ -202,8 +221,7 @@ In order to have these conditions, we must still have
 
 The conjugate of the wave equation also holds, so after our manipulations we will always be able to take the real part. 
 
-We still have gauge freedom: we can perform transformations if they satisfy \(\square \xi^{\mu }=0\).
-
+We still have gauge freedom: we can perform transformations if they satisfy \(\square \xi^{\mu }=0\), so that we do not alter the value of \(\partial_{\rho } \overline{h}^{\mu \rho }\). 
 We define 
 %
 \begin{align}
@@ -211,11 +229,11 @@ We define
 \,,
 \end{align}
 %
-and we will have \(\square \xi^{\mu \nu } =0 \)  since the Dalambertian commutes with the other derivatives.
+which satisfies the wave equation \(\square \xi^{\mu \nu } =0 \) if \(\xi^{\mu }\) does, since the Dalambertian commutes with the other derivatives.
 
-So, if \(\overline{h}^{\mu \rho }\) satisties the Vacuum field equations, then \(\overline{h}^{\prime \mu \nu } = \overline{h}^{\mu \nu } - \xi^{\mu \nu }\) also does. 
+So, if \(\overline{h}^{\mu \rho }\) satisfies the vacuum field equations, then \(\overline{h}^{\prime \mu \nu } = \overline{h}^{\mu \nu } - \xi^{\mu \nu }\) also does. 
 
-So, we can use the 4 functions \(\xi^{\mu }\) to set 4 constraints on \(\overline{h}^{\mu \rho }\): 
+Then, we can use the 4 functions \(\xi^{\mu }\) to set 4 constraints on \(\overline{h}^{\mu \rho }\): we choose to set
 %
 \begin{subequations}
 \begin{align}
@@ -225,33 +243,38 @@ So, we can use the 4 functions \(\xi^{\mu }\) to set 4 constraints on \(\overlin
 \end{align}
 \end{subequations}
 %
-which conveniently means that \(\overline{h}_{\mu \nu } = h_{\mu \nu }\). This is called TT-gauge. 
-
-Combined with the Lorenz gauge, which says 
+which conveniently means that \(\overline{h}_{\mu \nu } = h_{\mu \nu }\).
+This is called Transverse-Traceless gauge. 
+We want to write out \textbf{all the gauge constraints} on our perturbation.
+The Lorenz gauge \(\partial_{\rho} \overline{h}^{\mu \rho } = 0\) consists of four equations: the \(\mu = 0\) one reads
 %
 \begin{align}
-0= \partial_{\rho } \overline{h}^{0 \rho }_{TT} = \partial_{0} \overline{h}^{00}_{TT} = 0
+0= \partial_{\rho } \overline{h}^{0 \rho }_{TT} = \partial_{0} \overline{h}^{00}_{TT} 
+\marginnote{\(h^{i0}=  0\).}
 \,,
 \end{align}
 %
-which means that the metric element is constant, so we can rescale time in order to set it to zero. 
+which means that the metric element \(\overline{h}^{00}\) is constant, so we can set it to zero, since a constant in the metric is not relevant for our study of oscillations.\footnote{Also, a constant can be reabsorbed into the background metric: it amounts to measuring all of time with a slightly slower or faster clock.}
+Right now, the only nonzero components are the \(h_{ij}\), which must be traceless and symmetric.
 
-Also, the other Lorenz gauge conditions are 
+The other \(\mu = j\) Lorenz gauge conditions are the three constraints
 %
 \begin{align}
 0= \partial_{\rho } \overline{h}^{j \rho }_{TT} = \partial_{i} \overline{h}^{ji}_{TT}
 \,,
 \end{align}
 %
-which means that, of the 6 potentially free components of the \(h^{ij}\), we actually have only 2 degrees of freedom.
+which means that, of the 5 potentially free components of the traceless symmetric \(h^{ij}\), we actually have only 2 true degrees of freedom.
 
-Now, if we assume \(\vec{k} = k \hat{z}\) then we will have \(k^{\mu } = (k, 0, 0, k)\); also, in the matrix \(A_{\mu \nu }\) we will have \(A^{ij}k_{j} = 0\), so \(A^{i3}=0\). 
+Now, if we align our reference frame so that \(\vec{k} = k \hat{z}\) we will have \(k^{\mu } = (k, 0, 0, k)\); also, in the matrix \(A_{\mu \nu }\) we will have \(A^{ij}k_{j} = 0\), so \(A^{i3}=0\). 
 
 Then, in full generality under our gauge choices we shall have 
 %
 \begin{subequations}
 \begin{align}
-\overline{h}^{\mu \nu }_{TT} = \left[\begin{array}{cccc}
+\overline{h}^{\mu \nu }_{TT} =
+h^{\mu \nu }_{TT} = 
+\left[\begin{array}{cccc}
 0 & 0 & 0 & 0 \\ 
 0 & h_{+} & h_{ \times } & 0 \\ 
 0 & h_{ \times } & - h_{+} & 0 \\ 

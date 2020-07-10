@@ -183,10 +183,8 @@ This means we can remove all the \(\partial \overline{h}\) terms and find:
 
 Since we expanded in \(\eta_{\mu \nu }\), the quantities \(h_{\mu \nu }\) have a geometric meaning, but we are treating them as 16 scalar fields on a flat background. 
 
-When we look at the geodesic equations, we get a prediction of the gravity having no effect on matter. 
+When we look at the geodesic equations, we get a prediction of the gravity having no effect on matter: there is no \emph{backreaction}, and if we want to model the effect of GW energy and angular momentum loss we will have to insert them by hand. 
 We are treating gravity as a linear theory, so we have the superposition principle, according to which the fields due to different particles can be added.
-
-\todo[inline]{To clarify this point: the geodesic equations are nontrivial!}
 
 We are ignoring the physical principle that ``gravity gravitates'': curvature of spacetime is associated to a SEMT in a nonlinear way.
 
@@ -266,8 +264,9 @@ The other \(\mu = j\) Lorenz gauge conditions are the three constraints
 %
 which means that, of the 5 potentially free components of the traceless symmetric \(h^{ij}\), we actually have only 2 true degrees of freedom.
 
-Now, if we align our reference frame so that \(\vec{k} = k \hat{z}\) we will have \(k^{\mu } = (k, 0, 0, k)\); also, in the matrix \(A_{\mu \nu }\) we will have \(A^{ij}k_{j} = 0\), so \(A^{i3}=0\). 
+Now, if we align our reference frame so that \(\vec{k} = k \hat{z}\) we will have \(k^{\mu } = (k, 0, 0, k)\); also, the matrix \(A_{\mu \nu }\) will need to be symmetric and satisfy \(A^{ij}k_{j} = 0\), so \(A^{i3}=0\).
 
+This means that the only nonzero components are \(A_{ij}\), with \(i, j\) between 1 and 2; also \(A_{11} = - A_{22} \overset{\text{def}}{=} h_+\) and \(A_{12} = A_{21} \overset{\text{def}}{=} h_{ \times }\).
 Then, in full generality under our gauge choices we shall have 
 %
 \begin{subequations}
@@ -285,11 +284,60 @@ e^{i k \qty(t -z)}
 \end{align}
 \end{subequations}
 
-For a generic direction of propagation, we can define a projector onto the direction orthogonal to the direction of propagation \(k_{i}\): \(P_{ij} = \delta_{ij} - k_i k_j\), so we will have 
+\begin{claim}
+For a generic direction of propagation, we can define a projector onto the directions orthogonal to the direction of propagation \(k_{i}\): \(P_{ij} = \delta_{ij} - n_i n_j\), where \(n_i = k_i / \abs{\vec{k}}\).
+\end{claim}
+
+\begin{proof}
+The conditions we need to check for this to be a projector onto the directions we want are: 
+\begin{enumerate}
+    \item idempotency: \(P_{ij} P_{jk} = P_{ik}\);
+    \item orthogonality: \(P_{ij} = P_{ji}\);
+    \item that it projects on the right space: \(P_{ij} k_{j} = 0\) and \(P_{ij} y_{j} = y_{j}\) if \(y_{j} k_{j} = 0\).
+\end{enumerate}
+
+The computations are: 
 %
 \begin{align}
-A^{ij}_{TT} = \qty(P^{i}_{k} P^{j}_{l} - \frac{1}{2} P^{ij} P_{kl})A^{kl}
+P_{ij} P_{jk} &= \qty(\delta_{ij} - n_i n_j)
+\qty(\delta_{jk} - n_j n_k)  \\
+&= \delta_{ik} - 2 n_i n_k + n_i \underbrace{n_j n_j}_{+1} n_k 
+\,,
+\end{align}
+%
+where we used the fact that \(n_j\) is chosen to be normalized, and we are using the \(- +++\) metric convention. Note that \(k_i\) is not the full four-vector \(k^{\mu }\), which is null, but instead it is only its spatial part. 
+As for projecting on the right space, we have:
+%
+\begin{align}
+P_{ij} k_j = k_i - k_i \underbrace{k_j k_j}_{+1} = 0
+\qquad \text{and} \qquad
+P_{ij} y_j = y_i - k_i \underbrace{k_j y_j}_{0} = y_i    
 \,.
 \end{align}
+\end{proof}
+
+Using this \(P_{ij}\) we might try to calculate the transverse traceless \(A_{ij}^{TT}\) like 
+%
+\begin{align}
+A^{TT}_{ij} \overset{?}{=} P^{k}_{i} P^{l}_{j} A_{kl} 
+\,,
+\end{align}
+%
+but the resulting tensor is not in general traceless: we need to subtract the trace, so the correct expression reads
+%
+\begin{align}
+A^{ij}_{TT} = \underbrace{\qty(P^{i}_{k} P^{j}_{l} - \frac{1}{2} P^{ij} P_{kl})}_{\Lambda_{ij, kl}} A^{kl}
+\,.
+\end{align}
+
+The tensor we defined, 
+%
+\begin{align}
+\Lambda_{ij, kl} (\hat{n}) = P_{ik} P_{jl} - \frac{1}{2} P_{ij} P_{kl}
+\,,
+\end{align}
+%
+is a projector, it is transverse with respect to all of its indices, and its traces where we set \(i = j\) or \(k = l\) are zero \cite[eqs.\ 
+1.36 to 1.39]{maggioreGravitationalWavesVolume2007}.
 
 \end{document}

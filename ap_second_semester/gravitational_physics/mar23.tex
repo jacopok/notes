@@ -231,8 +231,8 @@ We introduce \(\kappa = 1/ M_P^2\) for simplicity, multiply the previous equalit
 %
 so we will have as a solution a superposition of the homogeneous solution and the source term:
 %
-\begin{align}
-\overline{h}_{\mu \nu } (x) = \underbrace{\overline{h}^{(0)}_{\mu \nu }(x)}_{\square \overline{h}^{0} = 0}
+\begin{align} \label{eq:green-function-solution-linearized-EFE}
+\overline{h}_{\mu \nu } (x) = \underbrace{\overline{h}^{(0)}_{\mu \nu }(x)}_{\square \overline{h}^{(0)}_{\mu \nu } = 0}
 - 2\kappa  \int \dd[4]{y} G(x-y) T_{\mu \nu }(y)
 \,.
 \end{align}
@@ -274,52 +274,88 @@ so we can get an explicit expression for the function \(f(r)\):
 4 \pi r^2 \partial_{r} f(r) = 1 \implies 
 f(r) = - \frac{1}{4 \pi r}
 \implies G(x^{\sigma }) = - \frac{ \delta (x^{0} - \abs{\vec{x}})}{4 \pi \abs{\vec{x}}} \theta_H (x^{0})
-\,,
+\marginnote{The integration constant is set to zero so that the Green function vanishes at infinity.}
+\,.
 \end{align}
-%
-and after some more passages we finally get 
+
+We can then plug this into the general solution \eqref{eq:green-function-solution-linearized-EFE} to find
 %
 \begin{align}
 \overline{h}_{\mu \nu } 
-(t, \vec{x}) = 
+(t, \vec{x}) 
+&= (-)^2 2 \kappa \int \dd[4]{y} \frac{ \delta (x^{0} - y^{0} - \abs{\vec{x} - \vec{y}})}{4 \pi \abs{\vec{x} - \vec{y}}} \theta_H (x^{0} - y^{0}) T_{\mu \nu } (y)  \\
+&= \frac{4G}{c^{4}} \int \dd[4]{y}  \frac{ \delta (y^{0} - (ct - \abs{\vec{x} - \vec{y}}))}{\abs{\vec{x} - \vec{y}}} T_{\mu \nu } (y^{0}, \vec{y})
+\marginnote{\(\kappa = 8 \pi G / c^{4}\).}
+\\ &=
 \frac{4G}{c^{4}}
 \int \dd[3]{y} \frac{T_{\mu \nu } (ct - \abs{\vec{x}-\vec{y}}, \vec{y})}{\abs{\vec{x} - \vec{y}}}
 \,.
 \end{align}
 
-We can move to the TT gauge if we are outside of the source, since there the equation \(\square \overline{h}_{\mu \nu }\) satisfies the FE. 
-
-Far from the source, \(\abs{\vec{x}} \gg \abs{\vec{y}}\) for any \(\vec{y}\) inside the source. So, we can expand: 
+As long as we are outside the source we can move to the TT gauge, since there the equation \(\square \overline{h}_{\mu \nu }\) satisfies the EFE, so we can do the required gauge change of variables with \(\square \xi^{\mu \nu } = 0\). 
+Now, in order to move to the TT gauge we can use the \(\Lambda \) tensor. It is equivalent to apply it to the trace-reversed \(\overline{h}_{ij}\) or to \(h_{ij}\), since the tensor is projected into the space of traceless tensors anyways.\footnote{Formally, this is shown as 
 %
 \begin{align}
-\abs{\vec{x} - \vec{y}} = r (1 - \frac{\vec{y} \cdot \hat{n}}{r} + \order{\frac{d^2}{r^2}})
+\Lambda_{ij, kl} \overline{h}_{kl} = \Lambda_{ij, kl} \qty(h_{kl} - \frac{1}{2} \eta_{kl} h) = \Lambda_{ij, kl} h_{kl} - \underbrace{\frac{1}{2} \Lambda_{ij, kk}}_{= 0} h = \Lambda_{ij, kl} h_{kl} 
+\,.
+\end{align}
+}
+
+So, the general expression for our TT-gauge tensor measured at a position \(\vec{x}\) outside the source, with \(\hat{n} = \vec{x} / \abs{x}\):
+%
+\boxalign{
+\begin{align}
+h_{ij}^{TT} (ct, \vec{x}) =  \Lambda_{ij, kl} (\hat{n}) \overline{h}_{kl}
+= \frac{4G}{c^{4}} \Lambda_{ij, kl} (\hat{n}) \int \dd[3]{y} \frac{T_{\mu \nu } (ct - \abs{\vec{x} - \vec{y}}, \vec{y})}{\abs{\vec{x} - \vec{y}}}
+\,.
+\end{align}}
+
+Far from the source, \(\abs{\vec{x}} \gg \abs{\vec{y}}\) for any \(\vec{y}\) inside the source.
+So, we can expand:\footnote{
+  The full calculation goes as follows: 
+  %
+  \begin{align}
+  \abs{x - y} &= \sqrt{(x - y)^2} = \sqrt{x^2 + y^2 - 2 x \cdot y} = r \sqrt{1 - 2 \frac{\hat{n} \cdot y}{r} + \frac{y^2}{r^2}}  \\
+  &\approx r \qty(1 - \frac{\hat{n} \cdot y}{r} + \order{\frac{d^2}{r^2}} )
+  \,,
+  \end{align}
+  %
+  where \(d\) is the length scale of the source, such that \(\abs{y} \leq d\).
+}
+%
+\begin{align}
+\abs{\vec{x} - \vec{y}} = r \qty(1 - \frac{\vec{y} \cdot \hat{n}}{r} + \order{\frac{d^2}{r^2}})
 \,.
 \end{align}
 
-If we want to keep only the terms at \(\order{1/r}\) we get 
+Keeping only the terms at \(\order{1/r}\) we get\footnote{At this point we change the first argument of the stress-energy tensor's dimensionality from a space \(ct\) to a time \(t\); this is just a matter of convention, it makes it easier to write the Taylor expansion later. }
 %
 \begin{align}
 h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}}
-\Lambda_{ij, kl} \int \dd[3]{y} \frac{1}{\abs{\vec{x} - \vec{y}}}
+\Lambda_{ij, kl} \int \dd[3]{y} 
 T_{kl} \qty(t - \frac{r}{c} + \frac{\vec{y} \cdot \hat{n}}{c}, \vec{y})
 \,.
 \end{align}
 
-If the object is moving periodically with frequency \(\omega \), then we will have 
+If the object is moving periodically with frequency \(\omega_s \), then we will have 
 %
 \begin{align}
-\frac{1}{\omega } \sim \frac{d}{v}
+\frac{1}{\omega_s } \sim \frac{d}{v}
 \,,
 \end{align}
 %
-so we assume \(d/c \ll d/v\). Expanding the stress energy tensor, we find 
+and we assume \(d/c \ll d/v\), which is equivalent to \(v \ll c\): the characteristic velocities of the source should be nonrelativistic. 
+Under these assumptions we can expand the stress-energy tensor in powers of \(\xi = \vec{y} \cdot \hat{n} / c\)
+
+
+Expanding the stress energy tensor, we find 
 %
 \begin{align}
 h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}\qty[T_{kl} + \frac{y^{m} n^{p}}{c} \partial_0 T_{kl}  + \frac{y^{m} y^{p} n^{m} n^{p}}{2c^2} \partial_0^2 T_{kl} + \dots]
 \,.
 \end{align}
 
-If we define the multiplole moments: 
+If we define the multipole moments: 
 %
 \begin{align}
 S^{ij m_1 m_2 \dots} = \int \dd[3]{x} T^{ij} \prod_\alpha  x^{m_\alpha }

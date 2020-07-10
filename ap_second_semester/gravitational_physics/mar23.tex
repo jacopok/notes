@@ -345,32 +345,84 @@ If the object is moving periodically with frequency \(\omega_s \), then we will 
 \end{align}
 %
 and we assume \(d/c \ll d/v\), which is equivalent to \(v \ll c\): the characteristic velocities of the source should be nonrelativistic. 
-Under these assumptions we can expand the stress-energy tensor in powers of \(\xi = \vec{y} \cdot \hat{n} / c\)
-
-
-Expanding the stress energy tensor, we find 
+Under these assumptions we can expand the stress-energy tensor in powers of \(\xi = \vec{y} \cdot \hat{n} / c \sim d/c \ll d/v\): 
 %
 \begin{align}
-h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}\qty[T_{kl} + \frac{y^{m} n^{p}}{c} \partial_0 T_{kl}  + \frac{y^{m} y^{p} n^{m} n^{p}}{2c^2} \partial_0^2 T_{kl} + \dots]
+T_{kl} \qty(t - \frac{r}{c} + \xi, \vec{y}) &= T_{kl} \qty(t - \frac{r}{c}, \vec{y}) + \eval{\pdv{T_{kl}}{\xi }}_{\xi = 0} \xi  + \frac{1}{2} \eval{\pdv[2]{T_{kl}}{\xi }}_{\xi = 0} \xi^2 + \order{\xi^3}  \\
+&\approx T_{kl} \qty(t - \frac{r}{c}, \vec{y}) + 
+\xi \partial_0 T_kl + \frac{\xi^2}{2} \partial_{0} \partial_0 T_{kl}  \\
+&= T_{kl} \qty(t - \frac{r}{c}, \vec{y}) + 
+\frac{y^{i}n^{i}}{c} \partial_0 T_kl + \frac{y^{i}n^{i}y^{j}n^{j}}{2 c^2} \partial_{0} \partial_0 T_{kl}
 \,.
 \end{align}
 
-If we define the multipole moments: 
+Inserting this into the expression we get
 %
 \begin{align}
-S^{ij m_1 m_2 \dots} = \int \dd[3]{x} T^{ij} \prod_\alpha  x^{m_\alpha }
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}\qty[T_{kl} + \frac{y^{m} n^{m}}{c} \partial_0 T_{kl}  + \frac{y^{m} y^{p} n^{m} n^{p}}{2c^2} \partial_0^2 T_{kl} + \order{\xi^3}]_{\text{ret}}
+\,,
+\end{align}
+%
+where ``ret'' means that the stress-energy tensor should be computed at a retarded time: \(t - r/c\) instead of \(t\).
+
+We define the multipole moments: they are tensors with an arbitrary amount of indices,
+%
+\begin{align}
+S^{ij, m_1 m_2 \dots} (t) = \int \dd[3]{y} T^{ij}(t, y) \prod_\alpha  y^{m_\alpha }
 \,.
 \end{align}
 
-[definitions and stuff, too fast to write]
-
-We get that the quadrupole term dominates: 
+In terms of these, the expression for \(h_{ij}^{TT}\) can be written as 
 %
 \begin{align}
-h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}}
-\Lambda_{ij, kl} S^{kl}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}
+\qty(S^{kl} + \frac{1}{c} n_{m} S^{kl, m} + \frac{1}{2 c^2} n_m n_p S^{kl, mp} + \order{\xi^3})_{\text{ret}}
 \,.
 \end{align}
+
+As we go up a perturbative order, we insert a factor \(1/c\), we add an index to the multipole, which corresponds to a multiplication by \(y \sim d\), and we differentiate, corresponding to a division by a timescale \(t\) of the evolution of the system: so, the \(n\)-th order perturbative term is of order \((d/ct)^{n} \sim (v/c)^{n}\).
+Since the system is nonrelativistic, \(v/c\) is small compared to 1, so we can stop at the first order and still get a good result:
+%
+\begin{align}
+h_{ij}^{TT} (t, \vec{x}) \approx \frac{1}{r} \frac{4G}{c^{4}}
+\Lambda_{ij, kl} \qty( S^{kl} + \frac{1}{c} n_m \dot{S}^{kl, m})_{\text{ret}}
+\,.
+\end{align}
+
+Let us define the moments of the energy and momentum densities: 
+%
+\begin{align}
+M &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y}) = \frac{1}{c^2} S^{00} \\ 
+M^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{i} = \frac{1}{c^2} S^{00,i} \\ 
+M^{ij} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{j} = \frac{1}{c^2} S^{00,ij} \\ 
+P^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) = \frac{1}{c^2} S^{0i} \\  
+P^{i,j} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j} = \frac{1}{c^2} S^{0i,j} \\  
+P^{i,jk} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j}y^{k} = \frac{1}{c^2} S^{0i,jk}
+\,.
+\end{align}
+
+We might want to compute the \textbf{backreaction} of the GW emission onto the system, the energy lost per unit time: since \(M\) corresponds to the total energy, we could try to compute \(\dot{M}\).\footnote{A small technical note: since we are bothering to keep the \(c\)s, we should recall that the time derivative denoted by a dot is actually a derivative with respect to \(ct\).}
+Let us try to do this, recalling that by the stress-energy tensor's conservation we have \(\partial_{\mu } T^{\mu \nu } = 0\), which means \(\partial_{0} T^{00} = - \partial_{i} T^{0i}\): 
+%
+\begin{align}
+c\dot{M} = \int_{V} \dd[3]{y} \partial_{0} T^{00}
+= - \int_{V} \dd[3]{y} \partial_{i} T^{0i}
+= - \int_{\partial V} \dd{S}_i T^{0i} \to 0
+\,,
+\end{align}
+%
+since the flux is computed in a region outside the source, where its stess-energy tensor vanishes. 
+What this means is that the leading order is too low to see the energy loss. 
+If we move up an order we find 
+%
+\begin{align}
+c \dot{M}^{i} &= \int_{V} \dd[3]{y} y^{i} \underbrace{\partial_{0} T^{00}}_{= - \partial_{j} T^{0j}}
+= + \int_{V} \qty(\partial_{j} y^{i}) T^{0j} = cP^{i}
+\,,
+\end{align}
+%
+\todo[inline]{Some signs are wrong in the slides at this point.
+Also, not really clear what meaning should be drawn from this.}
 
 The quadrupole moment is defined as 
 %

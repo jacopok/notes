@@ -7,8 +7,8 @@
 
 We want to discuss how we can build instruments which can detect gravitational waves. 
 
-An open question for decades was to see whether the effects of gravitational waves could be removed using a proper gauge choice. 
-There was a conference in Chapel Hill (?) which showed examples of non-removable gravitational wave effects, such as the ``beads on a stick'', which move and dissipate energy if a GW passes through them: a non removable effects. 
+An open question for decades (from 1916 to 1957) was to theoretically determine whether the effects of gravitational waves could be removed using a proper gauge choice. 
+At a conference in Chapel Hill a thought experiment was presented describing a non-removable gravitational wave effect: two beads on a stick which is positioned orthogonal to the GW propagation. As the GW passes by they move since their proper distance changes (while the stick is held in place by atomic forces), so they dissipate energy. 
 
 What happens to free particles in the TT gauge? The geodesic equation for the spatial indices reads 
 %
@@ -39,48 +39,58 @@ Let us consider geodesic deviation between two particles instead: say that the f
 %
 \begin{subequations}
 \begin{align}
-\dv[2]{x^{\sigma }}{\tau } + \Gamma^{\sigma }_{\mu \nu } (x) \dv{x^{\mu  }}{\tau } \dv{x^{\nu }}{\tau } &= 0 \\
-\dv[2]{(x^{\sigma } + \xi (\sigma )) }{\tau } + \Gamma^{\sigma }_{\mu \nu } (x + \xi ) \dv{x^{\mu  } + \xi^{\mu }}{\tau } \dv{x^{\nu } + x^{\nu }}{\tau } &= 0 
+\dv[2]{x^{\sigma }}{\tau } + \Gamma^{\sigma }_{\mu \nu } (x) \dv{x^{\mu  }}{\tau } \dv{x^{\nu }}{\tau } &= 0 \label{eq:geodesic-equation-stationary}\\
+\dv[2]{(x^{\sigma } + \xi^{\sigma}) }{\tau } + \Gamma^{\sigma }_{\mu \nu } (x + \xi ) \dv{(x^{\mu  } + \xi^{\mu })}{\tau } \dv{(x^{\nu } + x^{\nu })}{\tau } &= 0 
 \,,
 \end{align}
 \end{subequations}
 %
- which we can expand to first order using the perturbation: \(\Gamma^{\sigma }_{\mu \nu } (x + \xi ) = \Gamma^{\sigma }_{\mu \nu } (x) + \partial_{\gamma } \Gamma^{\sigma }_{\mu \nu } \xi^{\gamma } \), using which and expanding we finally get 
- %
- \begin{align}
- \dv[2]{\xi^{\sigma }}{\tau } + 2 \Gamma^{\sigma}_{\mu \nu } \dv{x^{\mu }}{\tau } \dv{\xi^{\nu }}{\tau } + \xi^{\gamma } \partial_{\gamma } \Gamma^{\sigma}_{\mu \nu } \dv{x^{\mu }}{\tau } \dv{x^{\nu }}{\tau }
- \,,
- \end{align}
- %
- so if we restrict ourselves to only spatial components, and assume that the particles start out stationary we get 
- %
- \begin{align}
- \dv[2]{\xi ^{i}}{\tau } = - 2 \Gamma^{i}_{0 \nu } \dv{x^{0}}{\tau } \dv{\xi^{\nu }}{\tau } + \xi^{\gamma  } \partial_{\gamma } \Gamma^{i}_{00} \dv{x^{0}}{\tau }  \dv{x^{0}}{\tau }
- \,,
- \end{align}
- %
-so, using the expressions for the Christoffel symbols in the TT gauge we get 
+which we can expand to first order using the perturbative expression: \(\Gamma^{\sigma }_{\mu \nu } (x + \xi ) = \Gamma^{\sigma }_{\mu \nu } (x) + \partial_{\gamma } \Gamma^{\sigma }_{\mu \nu } \xi^{\gamma } \). We use this, keep only the first order terms, subtract equation \eqref{eq:geodesic-equation-stationary} and finally get 
+%
+\begin{align}
+\dv[2]{\xi^{\sigma }}{\tau } + 2 \Gamma^{\sigma}_{\mu \nu } \dv{x^{\mu }}{\tau } \dv{\xi^{\nu }}{\tau } + \xi^{\gamma } \partial_{\gamma } \Gamma^{\sigma}_{\mu \nu } \dv{x^{\mu }}{\tau } \dv{x^{\nu }}{\tau } = 0
+\,,
+\end{align}
+%
+so if we restrict ourselves to only spatial components, and assume that the particles start out stationary we get, at \(\tau = 0\):
+%
+\begin{align} \label{eq:geodesic-deviation-equation-slow-objects}
+\dv[2]{\xi ^{i}}{\tau } &= - 2 \Gamma^{i}_{0 \nu } \dv{x^{0}}{\tau } \dv{\xi^{\nu }}{\tau } + \xi^{\gamma  } \partial_{\gamma } \Gamma^{i}_{00} \dv{x^{0}}{\tau }  \dv{x^{0}}{\tau }  \\
+&= -2 c \Gamma^{i}_{0 \nu } \dv{\xi^{\nu }}{\tau } + \xi^{\gamma }\partial_{\gamma } \Gamma^{i}_{00} c^2
+\marginnote{We are keeping \(c \neq 1\) here.}
+\,,
+\end{align}
+%
+so, using the expressions for the Christoffel symbols in the TT gauge, where \(\Gamma^{i}_{00} = 0\) and \(\Gamma^{i}_{ 0 \nu} \) is nonzero only for \(\nu = j\), we get\footnote{We use the fact that, since in the TT gauge \(h^{0}_{\mu } = 0\),
+%
+\begin{align}
+\Gamma^{i}_{0j} = \frac{1}{2} \qty( \partial_{0}h^{i}_{j} + \partial_{j} h^{i}_{0} - \partial^{i}h_{0j}) = \frac{1}{2} \partial_0 h^{i}_{j}
+\,.
+\end{align}
+} 
 %
 \begin{align}
 \dv[2]{\xi^{i}}{\tau } = - 2 c \Gamma^{i}_{0j} \dv{\xi^{j}}{\tau } = -c \partial_0  h^{ij} \dv{\xi^{j}}{\tau }
 \,,
 \end{align}
 %
-so, parallel geodesics remain parallel: if the separation initially is stationary, it will remain so. 
+but \(\dv*{\xi^{j}}{\tau }\) is zero if evaluated at \(\tau =0 \) for parallel geodesics! 
+So, parallel geodesics remain parallel: if the separation initially is stationary, it will remain so. 
 
 The issue is that in the TT gauge we are using a special set of coordinates which ``follow'' the gravitational wave. 
-We see no change in coordinate distance since the coordinates are moving around with the gravitational wave: we did a coordinate change using \(\xi^{\mu }\) satisfying \(\square \xi^{\mu } = 0\), so the coordinates are harmonically moving, together with the GW. 
+We see \textbf{no change in coordinate distance} since the coordinates are moving around with the gravitational wave: we did a coordinate change using \(\xi^{\mu }\) satisfying \(\square \xi^{\mu } = 0\), so the coordinates are harmonically moving, together with the GW. 
 
 It is like we defined wave-like coordinates, ``gauging away'' the wave-like motion. 
 
-We can overcome this issue by calculating \emph{proper distances} instead of coordinate distances: for two space-like separated objects along the \(x\) axis we get
+This is only an issue with our coordinates: the physically measurable quantities are \emph{proper distances}, not coordinate distances, which in general are computed as
 %
 \begin{align}
 \dd{s^2} = g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }} = \dd{x^2} + h^{TT}_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }} 
 \,.
 \end{align}
 
-Let us apply this to the case of a GW propagating along the \(z\) axis, for particles separated along the \(x\) axis. The full metric perturbation looks like 
+Let us apply this to the case of a GW propagating along the \(z\) axis, for two particles initially separated along the \(x\) axis, whose coordinates are \(x_1 \) and \(x_2 \) (initially and also later, since as we saw the coordinate distance does not change in the TT gauge).
+The full metric perturbation looks like 
 %
 \begin{subequations}
 \begin{align}
@@ -102,31 +112,35 @@ s = (x_1 - x_2 ) \sqrt{1 + h_{+} \cos(\omega t)}
 \,.
 \end{align}
 
-So, the fractional change is given by \(h_{+} / 2\). 
-
-For two general events separated by the 4-vector \(L\): 
+So, the amplitude of the oscillation in the distance is given by \(h_{+} / 2\). 
+For two general events separated by the spacelike vector \(L^{\mu }\), whose norm is \(L > 0\): 
 %
 \begin{align}
 s^2 = \qty(\eta_{\mu \nu } + h_{\mu \nu } )L^{\mu } L^{\nu }
-\approx L \qty(1 + \frac{1}{2} h_{ij} L^{i} L^{})
+\approx L \qty(1 + \frac{1}{2 L^2} h_{ij} L^{i} L^{j})
 \,.
 \end{align}
 
-We would, however, like to work in coordinates. 
-The useful frame to define is the \emph{free falling frame}, whose coordinates are rigid and not perturbed by the GW. 
+We would, however, like to work in coordinates which do not oscillate with the GW.
 
-In order to build such a frame, a local inertial frame which will be inertial, we will need to define 4 orthogonal vectors on the point \(P\): 
+\subsubsection{Free-falling frames}
+
+The useful frame to define is the \emph{free-falling frame}, whose coordinates are rigid and not perturbed by the GW. 
+
+In order to build such a frame \textbf{in theory}, we will need to define 4 orthogonal vectors on the point \(P\): 
 %
 \begin{align}
 \eta_{\mu \nu } e^{\mu }_{\alpha } e^{\nu }_{\beta } = \eta_{\alpha \beta }
 \,.
 \end{align}
 
-Consider a geodesic through point \(P\) whose tangent vector at \(P\) is a unit vector \(\hat{n}\). If it is spacelike, we parametrize it by \(s\) (defined with \(\dd{s^2}\) from the metric), if it is timelike we parametrize it with \(\tau\) (defined by \(\dd{\tau^2 } = - \dd{s^2}\)).  We call \(\lambda \) a generic one of those. 
+Consider a geodesic through point \(P\) whose tangent vector at \(P\) is a unit vector \(\hat{n}\).
+If this unit vector is spacelike, we parametrize the geodesic by \(s\) (defined with \(\dd{s^2}\), from the metric), if it is timelike we parametrize it with \(\tau\) (defined by \(\dd{\tau^2 } = - \dd{s^2}\)).
+We denote as \(\lambda \) either of \(s\) or \(\tau \). 
 
 Now, the coordinates of point \(Q\) are generically \(\lambda \hat{n}\), if the geodesic starting with unit vector \(\hat{n}\) reaches \(Q\) when its parameter is \(\lambda \). 
 
-We can reach almost every point this way, the points which are only connected through null geodesics can be reached by continuity, and in a small enough region the coordinates of a point \(Q\) are unique --- that is, the geodesics do not cross. 
+We can reach almost every point this way, the points which are only connected through null geodesics to \(P\) can be reached by continuity, and in a small enough region the coordinates of a point \(Q\) are unique --- that is, the geodesics do not cross.
 
 In this frame, then, \(g_{\mu \nu } (P) = \eta_{\mu \nu } (P)\); also, in the geodesic equation 
 %
@@ -135,81 +149,101 @@ In this frame, then, \(g_{\mu \nu } (P) = \eta_{\mu \nu } (P)\); also, in the ge
 \,,
 \end{align}
 %
-we have that the second derivatives are zero since \(x^{\mu}(\lambda )\) is linear, so we must have \(\Gamma^{\mu }_{\nu \rho } n^{\nu } n^{\rho } = 0\). This must be true for any unit vector, therefore we have \(\Gamma^{\mu }_{\nu \rho } =0 \). The system giving \(g_{\mu \nu , \rho } (P) \) from \(\Gamma^{\mu }_{\nu \rho }\) is nondegenerate, so we also have \(g_{\mu \nu , \rho }(P) =0\).\footnote{Do note that this reasoning works only at the point, since if we moved along a geodesic we do not have access to the other unit vectors anymore (in these coordinates).}
+we have that the second derivatives are zero since \(x^{\mu}(\lambda )\) is linear in \(\lambda \), so we must have \(\Gamma^{\mu }_{\nu \rho } n^{\nu } n^{\rho } = 0\).
+This must be true for any unit vector \(n^{\mu }\), therefore we have \(\Gamma^{\mu }_{\nu \rho } =0 \).
+The linear system giving \(g_{\mu \nu , \rho } (P) \) from \(\Gamma^{\mu }_{\nu \rho }\) is nondegenerate, so the first derivatives of the metric also vanish: \(g_{\mu \nu , \rho }(P) =0\).\footnote{Do note that this reasoning works only at the point, since if we moved along a geodesic we do not have access to the other unit vectors anymore (in these coordinates).
+
+This better be so: otherwise we would have proven that the first derivatives of the metric are zero in a neighborhood of a generic point \(P\), so the metric is constant in the whole neighborhood, which is nonphysical.}
 These are called \textbf{Riemann normal coordinates}. 
 
-The conditions on the metric and its derivatives only hold at the point. We can do slightly better with \emph{Fermi normal coordinates}, where we require a gyroscope's angular momentum to be parallel-transported along the geodesics. 
+The conditions on the metric and its derivatives only hold at the point. We can do slightly better with \emph{Fermi normal coordinates}, where we require a gyroscope's angular momentum to be parallel-transported along the geodesics, so that an observer moving along a geodesic is indeed free-falling. 
 
-How do we make such a frame? we use free falling particles: we could put them in orbit. 
-This is not actually that simple: consider \emph{drag-free satellites}. 
+How do we make such a frame \textbf{experimentally}? We might think to use free-falling particles, and put them in orbit. 
+This is not actually that simple.
+A satellite which accomplishes this task is called a \emph{drag-free satellite}. 
 
 Consider a particle orbiting the Sun. 
 The Sun's radiation pressure pushes the particle away from a geodesic. 
+The way to solve this issue is to put a thrusted spacecraft around our test mass to balance the Sun's radiation pressure, constantly measuring the distance to the test mass without touching it, and then balancing the thrusters by keeping at a constant distance from it.
 
-Maybe we could put a thrusted spacecraft around our test mass: it balances the sun's radiation pressure; we measure the distance to the test mass without touching it, and then balance the thrusters by keeping at a constant distance from it.
+\subsubsection{LISA's drag-free navigation}
 
-This is the idea behind LISA. 
+This is the idea behind the satellites making up the space-based GW interferometer LISA (which we will discuss in greater detail later in the course). 
 The distances between the spacecrafts should be about \SI{5}{Gm} apart.
-We do not measure the distances between the spacecrafts, but instead the distances between the test masses inside them, which are \SI{2}{kg}, \SI{4.6}{cm} side, gold-platinum shielded cubes: this is known as \emph{drag-free} navigation. 
+We do not measure the distances between the spacecrafts, but instead the distances between the test masses inside them, which are \SI{2}{kg}, \SI{4.6}{cm} side, gold-platinum shielded cubes. 
 
 The interferometric measurements have pico-meter (\SI{e-12}{m}) sensitivity. 
 It takes about \SI{30}{s} for light to move between the mirrors: this time-delayed interferometry needs special consideration. 
 
 We have a \emph{gravitational reference sensor}, a cubic shell around the cube: we keep measuring the distances between the two. 
-We also need to discharge the masses, otherwise electrostatic forces are too strong.  
+We also need to precisely discharge the masses with a Charge Management System, otherwise electrostatic forces are too strong.
 Also, the thrusters need to be very weak, on the order of the \(\SI{}{\micro N }\). 
 
-The LISA Pathfinder mission checked all of these boxes, except for time-delayed interferometry. 
+The LISA Pathfinder mission successfully tested all of these technologies, except for time-delayed interferometry. 
 It only used one spacecraft, and measured how well the drag-free navigation worked. 
 
-Using two masses, we need to account for the gravitational pull between them. 
-
-Even accounting for this by relaxing the acceleration precision requirement 10-fold, the results were exceptional. 
+In the final mission there will be two masses inside each satellite, so we will need to account for the gravitational pull between them. 
+Even accounting for this by relaxing the acceleration precision requirement 10-fold, the results of LISA Pathfinder were exceptional. 
 
 Let us discuss the sources of noise: at high frequencies, inertia prevents a force from creating significant displacement. 
-This applies to external forces, not to gravitational forces, since the latter are proportional to the mass. 
+This applies to external forces, not to gravitational forces, since the latter are proportional to the mass.
 So, there is a limit at high frequencies because of our inability to measure that fast. 
-
 At low frequencies, it is easy to measure, but it is hard to verify whether the mass is indeed in free fall. 
+We can also have issues with the parasitic coupling of the test mass to the spacecraft. 
 
 In the end, it was verified that we can do 
 %
 \begin{align}
-s^{1/2}_{a} \leq \SI{3e-14}{m / s^2 / \sqrt{Hz}}
+S^{1/2}_{a} \leq \SI{3e-14}{m / s^2 / \sqrt{Hz}}
 \,
 \end{align}
 %
-at \SI{1}{mHz}. Solar radiation pressure is two orders of magnitude higher. 
+at \SI{1}{mHz}.
+Solar radiation pressure is two orders of magnitude higher. 
+The LISA Pathfinder mission greatly outperformed its original requirements --- see figure 6 in the paper published by the LISA Pathfinder collaboration \cite[]{lisapathfindercollaborationLISAPathfinderFirst2017}. 
 
-We can have issues with the parasitic coupling of the test mass to the spacecraft. 
+\subsection{Proper detector frame}
 
 Let us now come back to theory by discussing the \emph{proper detector frame}: coordinates defined by a rigid ruler. 
-Rigid rulers do not really exist, but we can approximate it well enough. If the gravitational pull is small compared to the restoring forces in the ruler than its length will approximately not change. 
+Rigid rulers do not really exist, but we can approximate it well enough. If the gravitational pull is small compared to the restoring forces in the ruler, then its length will approximately not change. 
 
-Let us put ourselves in a free falling frame in Fermi local coordinates; in the origin, the metric is always flat. Let us expand to second order in the spatial coordinates 
+Let us put ourselves in a free-falling frame in Fermi local coordinates, so that in the origin the metric is flat.
+Then, we can expand it to second order in the spatial coordinates 
 %
 \begin{subequations}
 \begin{align}
 g_{\mu \nu } (x) &\approx g_{\mu \nu } (0)
 + x^{i} \partial_{i} \eval{g_{\mu \nu }}_{x=0} 
-+ \frac{1}{2} x^{i} x^{j} \eval{\partial_{i} \partial_{j} g_{\mu \nu }}_{x=0}  \\
++ \frac{1}{2} x^{i} x^{j} \eval{\partial_{i} \partial_{j} g_{\mu \nu }}_{x=0} + \dots  \\
 &= \eta_{\mu \nu } + \frac{1}{2} x^{i} x^{j} \eval{\partial_{i} \partial_{j} g_{\mu \nu }}_{x=0}
 \,,
 \end{align}
 \end{subequations}
 %
-which we can rewrite in terms of the Riemann tensor by making use of the expression of the Riemann tensor in the LIF: we get 
+which we can rewrite in terms of the Riemann tensor by making use of the expression of the Riemann tensor in the LIF, which is 
+%
+\begin{align}
+R_{iklm} = \frac{1}{2} \qty(
+  \partial_{k} \partial_{l} g_{im} +
+  \partial_{i} \partial_{m} g_{kl} -
+  \partial_{k} \partial_{m} g_{il} -
+  \partial_{i} \partial_{l} g_{km}  
+)
+\,,
+\end{align}
+%
+we get 
 %
 \begin{align}
 \dd{s^2} \approx - c^2 \dd{t^2} \qty(1 + R_{0i0j} x^{i}x^{j})
 -2 c \dd{t} \dd{x^{i}} \qty(\frac{2}{3}R_{0ijk} x^{j}x^{k})
 + \dd{x^{i}} \dd{x^{j}} \qty(\delta_{ij} - \frac{1}{3} R_{ijkl} x^{k} x^{l})
-\,,
+\,.
 \end{align}
-%
-so the corrections are of the order \(\order{r^2 / L_B^2}\), where \(r^2\) is the square distance from the origin, while \(L_B\) is the typical spatial scale of the variation of the metric, such that \(R_{0ijk} = \order{L_B^{-2}}\). 
-This \(L_B\) is the wavelength of the GW if we are describing a GW.
 
-So, this coordinate description works as long as the scale of the region we are describing is small compared to the wavelength of the GW. 
+The corrections to the flat metric are of the order \(\order{r^2 / L_B^2}\), where \(r^2\) is the square distance from the origin, while \(L_B\) is the typical spatial scale of the variation of the metric, such that \(R_{0ijk} = \order{L_B^{-2}}\). 
+This \(L_B\) is the wavelength of the GW, if we are describing a GW.
+
+So, the flat coordinate description works as long as the scale of the region we are describing is very small compared to the characteristic scale of the variations in the metric. 
 
 \end{document}

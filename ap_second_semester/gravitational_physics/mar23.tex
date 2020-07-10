@@ -1,11 +1,13 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{Geodesic deviation in the proper detector frame}
+
 \marginpar{Monday\\ 2020-3-23, \\ compiled \\ \today}
 
-We were discussing the proper detector frame: it is defined by rigid rulers around one point in free fall. 
+% We were discussing the proper detector frame: it is defined by rigid rulers around one point in free fall.
 
-What happens in this frame? the equation of geodesic deviation looks like 
+What happens in this frame? The equation of geodesic deviation can be calculated from \eqref{eq:geodesic-deviation-equation-slow-objects}:
 %
 \begin{subequations}
 \begin{align}
@@ -18,7 +20,7 @@ What happens in this frame? the equation of geodesic deviation looks like
 \end{align}
 \end{subequations}
 %
-where we made the nonrelativistic approximation, and accounted for the fact that in this frame we have  
+where we made the nonrelativistic approximation where the spacelike components of the four-velocity are negligible, and accounted for the fact that in this frame we have  
 %
 \begin{align}
 \Gamma^{\mu }_{\nu \rho } = 0
@@ -29,14 +31,22 @@ R^{i}_{0j0} = \partial_{j} \Gamma^{j}_{00}
 \,,
 \end{align}
 %
-so we have 
+so we can write the geodesic equation in terms of the Riemann tensor as:
 %
 \begin{align}
 0= \dv[2]{\xi^{i}}{\tau } + R^{i}_{0j0} \xi^{j} \qty(\dv{x^{0}}{\tau })^2
 \,,
 \end{align}
 %
-and since the Riemann tensor is \emph{invariant} (rather than covariant) under coordinate transformations, we can compute it in the TT gauge: 
+and since in linearized gravity the Riemann tensor is \emph{invariant} (rather than covariant) under coordinate transformations,\footnote{This can be seen by plugging the transformation law which is allowed in linearized gravity, \(h_{\mu \nu } \to h_{\mu \nu } + \partial_{(\mu } h_{\nu )}\), into the LIF expression for the Riemann tensor, 
+%
+\begin{align}
+R_{\mu \nu \rho \sigma } = -\frac{1}{2} g_{[\mu | [\rho | , |\nu ] \sigma] }
+\,,
+\end{align}
+%
+which yields no change. This is discussed by Maggiore \cite[below eq.\ 1.13]{maggioreGravitationalWavesVolume2007}.}
+we can compute it in the TT gauge: 
 %
 \begin{align}
  R^{i}_{0j0} = - \frac{1}{2} \partial_0 \partial_0 h_{ij} = - \frac{1}{2} \ddot{h}_{ij}^{TT}

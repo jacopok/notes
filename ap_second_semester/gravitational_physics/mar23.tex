@@ -38,46 +38,107 @@ so we can write the geodesic equation in terms of the Riemann tensor as:
 \,,
 \end{align}
 %
-and since in linearized gravity the Riemann tensor is \emph{invariant} (rather than covariant) under coordinate transformations,\footnote{This can be seen by plugging the transformation law which is allowed in linearized gravity, \(h_{\mu \nu } \to h_{\mu \nu } + \partial_{(\mu } h_{\nu )}\), into the LIF expression for the Riemann tensor, 
+and since in linearized gravity the Riemann tensor is \emph{invariant} (rather than covariant) under coordinate transformations\footnote{This can be seen by plugging the transformation law which is allowed in linearized gravity, \(h_{\mu \nu } \to h_{\mu \nu } + \partial_{(\mu } h_{\nu )}\), into the LIF expression for the Riemann tensor, 
 %
 \begin{align}
-R_{\mu \nu \rho \sigma } = -\frac{1}{2} g_{[\mu | [\rho | , |\nu ] \sigma] }
+R_{\mu \nu \rho \sigma } = -2 g_{[\mu | [\rho | , |\nu ] \sigma] }
 \,,
 \end{align}
 %
-which yields no change. This is discussed by Maggiore \cite[below eq.\ 1.13]{maggioreGravitationalWavesVolume2007}.}
-we can compute it in the TT gauge: 
+which yields no change (the expression is a compact way to write that the indices to antisymmetrize are both \(\mu \nu \) and \(\rho \sigma \)). This is discussed by Maggiore \cite[below eq.\ 1.13]{maggioreGravitationalWavesVolume2007}.}
+such as those we used to move between the TT gauge and the detector frame, 
+we can compute it in the TT gauge starting from equation \eqref{eq:riemann-tensor-LIF}: 
 %
 \begin{align}
- R^{i}_{0j0} = - \frac{1}{2} \partial_0 \partial_0 h_{ij} = - \frac{1}{2} \ddot{h}_{ij}^{TT}
+R^{i}_{0j0} &= \frac{1}{2} \qty(
+  \partial_{j} \partial_0 h^{i}_{0}
+  + \partial_0 \partial^{i} h_{0j} 
+  - \partial_{j} \partial^{i} h_{00} 
+  - \partial_0 \partial_0 h^i_{j}
+) = R_{i0j0} \\
+&= - \frac{1}{2} \partial_0 \partial_0 h_{ij} = - \frac{1}{2} \ddot{h}_{ij}^{TT}
 \,,
 \end{align}
 %
-so our final result reads 
+so our final result for the geodesic deviation equation in the detector frame is:
 %
+\boxalign{
 \begin{align}
-\xi^{i} = \frac{1}{2} \ddot{h}^{TT}_{ij} \xi^{j}
+\ddot{\xi}^{i} = \frac{1}{2} \ddot{h}^{TT}_{ij} \xi^{j}
 \,,
-\end{align}
+\end{align}}
 %
-which is physically significant since we can interpret the effect of the GW as that of a Newtonian force: 
+which is physically significant since we can interpret the effect of the GW as that of a Newtonian force, given by
 %
 \begin{align}
 F^{i} = \frac{m}{2} \ddot{h}^{TT}_{ij} \xi^{j}
 \,.
 \end{align}
 
-How do we decide whether these approximations are justified?
-We need to impose \(r^2 / L_B^2 \ll 1 \), where \(L_B\) is the scale of the variations of the metric while \(r\) is the scale of our detector. 
+This seems great! We can have particles move under the influence of the GW, work with \(h_{ij}\) in the simple TT gauge, while still being in almost flat spacetime.
 
-This allows us to see that the GWs are transverse: for a wave along the \(z\) direction we get 
+However, to get here we made some approximations, and we need to check whether they are justified.
+% How do we decide whether these approximations are justified?
+We imposed \(r^2 / L_B^2 \ll 1 \), where \(L_B\) is the scale of the variations of the metric while \(r\) is the scale of our detector. 
+For ground-based detectors which are \(\sim \SI{3}{km}\) long and sensitive in the \(\sim \SI{100}{Hz}\) range (corresponding to \(\lambda \sim \SI{3000}{km}\)) this is perfectly fine. 
+For space-based detectors like LISA it is not!
+
+What we have calculated applies to proper distances as well, which are the same as coordinate distances up to first order in our coordinates.
+So, since proper distances are invariant, we have an approximate expression which we can use in general, by substituting \(s\) for \(\xi \) in the differential equation. 
+
+\subsubsection{Effects of GW}
+
+This result allows us to see that the GWs are \textbf{transverse}: for a wave along the \(z\) direction the equation reads 
 %
 \begin{align}
 \ddot{\xi}^{3} = \frac{1}{2} \ddot{h}_{3j}^{TT} \xi^{j} = 0
 \,,
 \end{align}
 %
-while we can do the calculations for small displacements along \(x\) or \(y\): for the plus polarization we get 
+so the particle does not move along the direction of propagation;
+on the other hand we can do the calculations for particles starting out with small separations along \(x\) or \(y\).
+
+We consider an initial displacement vector \(\xi_{i} (t = 0) = (x_0, y_0 , 0)\), allow it to vary denoting it as \(\xi_i (t) = (x_0 + \delta x, y_0 + \delta y, 0) = \xi_i (t=0) + \delta \xi_i (t)\) and compute: 
+%
+\begin{align}
+\ddot{x}_{i} = \delta \ddot{\xi}_{i} = \frac{1}{2} \ddot{h}_{ij}^{TT} (\xi_{j} + \delta \xi_j)
+\approx \frac{1}{2} \ddot{h}_{ij}^{TT} \xi_{j}
+\,,
+\end{align}
+%
+since the variation \(\delta \xi \) is of the same perturbative order as \(h_{ij}\), making the term containing it second order. 
+
+So, after we take the real part of the exponential in \(h_{ij}\) and ignore the \(z\) dependence (which just gives a constant phase, since \(z\) is fixed) we get
+%
+\begin{align}
+\dv[2]{}{t} \left[\begin{array}{c}
+\delta x \\ 
+\delta y
+\end{array}\right]
+&= \frac{1}{2} \left[\begin{array}{cc}
+h_+ & h_{ \times } \\ 
+h_{ \times } & - h_+
+\end{array}\right]
+\dv[2]{}{t} \qty(\cos(\omega t))
+\left[\begin{array}{c}
+x_0 \\ 
+y_0 
+\end{array}\right]  \\
+&= \frac{1}{2} \left[\begin{array}{cc}
+h_+ & h_{ \times } \\ 
+h_{ \times } & - h_+
+\end{array}\right]
+\left[\begin{array}{c}
+x_0 \\ 
+y_0 
+\end{array}\right]
+\qty(- \omega^2 \cos(\omega t))
+\,.
+\end{align}
+
+When we integrate to get \(\delta x\) and \(\delta y\) the factor \(- \omega^2 \) gets reabsorbed. 
+
+For the plus polarization \(h_+\) (setting \(h_{ \times } = 0\)) we find 
 %
 \begin{subequations}
 \begin{align}
@@ -87,7 +148,7 @@ while we can do the calculations for small displacements along \(x\) or \(y\): f
 \end{align}
 \end{subequations}
 %
-while for the cross polarization we get 
+while for the cross polarization \(h_{ \times }\) (setting \(h_{+} = 0\)) we get 
 %
 \begin{subequations}
 \begin{align}
@@ -97,31 +158,33 @@ while for the cross polarization we get
 \end{align}
 \end{subequations}
 
-(possibly minus)
-We can also have circular polarizations, like \(h_+ \pm i h_{  \times }\). 
+\todo[inline]{There is a wrong sign in the slides here.}
 
-What about Earth-based detectors? 
+% We can also have circular polarizations, like \(h_+ \pm i h_{  \times }\). 
+
+Are these considerations valid for \textbf{Earth-based detectors}? 
 They are definitely not free-falling, in fact: 
 \begin{enumerate}
   \item at zeroth order the metric is flat;
-  \item at first order we have the Newtonian forces;
-  \item at second order we get the GW and the background metric.
+  \item at first order we have the Newtonian forces, such as the Earth's gravity, the Coriolis force, the centrifugal force and such;
+  \item at second order we get the curvature contributions from GW and the background metric.
 \end{enumerate}
 
-So, how do we distinguish these effects? We can isolate them by Fourier analysis, there will be a dominant frequency. 
+So, how do we distinguish these second-order GW effects from other second-order effects?
+We can isolate them by Fourier analysis: we only look at the Fourier window in which they are dominant. 
 
-How do we know that our ``free-falling'' mass is moving because of the GW and not because of other noises?
-We can bound the mass and distance of a source of GW we detect in a certain frequency region. 
+% How do we know that our ``free-falling'' mass is moving because of the GW and not because of other noises?
+% We can bound the mass and distance of a source of GW we detect in a certain frequency region. 
 
-At the low frequencies, we have objects on the Earth making noise. 
+% At the low frequencies, we have objects on the Earth making noise. 
 
-Now, let us move towards GW \emph{generation}.
+% Now, let us move towards GW \emph{generation}.
 
 \section{GW generation}
 
-Some assumptions: we will 
+The assumptions we will make are 
 \begin{enumerate}
-  \item expand around flat spacetime;
+  \item expanding around flat spacetime;
   \item consider nonrelativistic systems;
   \item assume the stress energy tensor is conserved: to first order, this reads 
   %
@@ -131,7 +194,7 @@ Some assumptions: we will
   \end{align}  
 \end{enumerate}
 
-If the system is nonrelativistic, we have that it is also large with respect to its Schwarzschild radius:
+If the system we consider is self-gravitating (like a binary), then being nonrelativistic means that it is also large with respect to its Schwarzschild radius:
 %
 \begin{align}
 E _{\text{kin}} = - \frac{1}{2} U \implies 
@@ -139,64 +202,73 @@ E _{\text{kin}} = - \frac{1}{2} U \implies
 \,.
 \end{align}
 
-The expression of the gravitational force is that since we have \(m_1 m_2 = \mu M = m_1 m_2 /  (m_1 + m_2 ) * (m_1 + m_2 )\). 
+The expression of the gravitational force is that since, by the definition of the reduced mass, we have \(m_1 m_2 = \mu M \). 
 
-The lambda tensor is a projector onto the subspace orthogonal to \(\hat{n} = \vec{k} / \abs{\vec{k}}\). 
-It obeys some identities [see slides].
+Recall the \(\Lambda_{ij, kl}\) tensor \eqref{eq:lambda-projection-tensor}, which can be used to project a rank-two spacelike tensor to the TT gauge. 
 
-In order to solve the linearized equations, we use Green's functions: 
+We will proceed as section 17.6 in Hobson \cite[]{hobsonGeneralRelativityIntroduction2006a}.
+In order to solve the linearized equations \eqref{eq:linearized-wave-equations}, we use Green's functions, which are defined by: 
 %
 \begin{align}
 \square_x G(x -y) = \delta^{(4)} (x-y)
 \,,
 \end{align}
 %
-where \(x\) is our variable, while \(y\) is just a parameter. 
+where \(x\) is our variable, while \(y\) is a coordinate which will span the positions in the source.
+The operator \(\square_x\) is the Dalambertian with respect to the \(x\) coordinates. 
 
-So, we get 
+The idea of this method is to calculate the wave response to a single impulsive source, and then superimpose the effects of many of these. 
+We introduce \(\kappa = 1/ M_P^2\) for simplicity, multiply the previous equality by \(T_{\mu \nu } (y)\) and integrate in \(\dd[4]{y}\) so we get
 %
 \begin{align}
--2k \int \dd[4]{y} \square_x G(x-y) T_{\mu \nu } (y) = -2k \int \dd[4]{y} \delta^{(4)} (x-y) T_{\mu \nu }(x)
+-2 \kappa \int \dd[4]{y} \square_x G(x-y) T_{\mu \nu } (y) &= -2\kappa  \int \dd[4]{y} \delta^{(4)} (x-y) T_{\mu \nu }(x)  
+\marginnote{The argument of the right \(T_{\mu \nu }\) can be switched to \(x\) because of the delta.}
+\\
+-2 \kappa \square_x \qty(\int \dd[4]{y} G(x-y) T_{\mu \nu } (y))
+&= - 2 \kappa T_{\mu \nu }(x) = \square_x \overline{h}_{\mu \nu } (x)
 \,,
 \end{align}
 %
-so we will have as a solution a superposition of the homogeneous solution, and the source term:
+so we will have as a solution a superposition of the homogeneous solution and the source term:
 %
 \begin{align}
-\overline{h}_{\mu \nu } (x) = \overline{h}^{(0)}_{\mu \nu }(x)
-- 2k \int \dd[4]{y} G(x-y) T_{\mu \nu }(y)
+\overline{h}_{\mu \nu } (x) = \underbrace{\overline{h}^{(0)}_{\mu \nu }(x)}_{\square \overline{h}^{0} = 0}
+- 2\kappa  \int \dd[4]{y} G(x-y) T_{\mu \nu }(y)
 \,.
 \end{align}
 
-To get the solution, we do 
+In order to make the Green's function explicit, we write it as centered around the origin:
 %
 \begin{align}
 \partial_{\mu } \partial^{\mu } G(x^{\sigma }) = \delta^{(4)} (x^{\sigma })
 \,,
 \end{align}
 %
-so if we integrate over a hypersphere of radius \(r = \abs{\vec{x}}\) we have 
+and we integrate this equality over a hypercylinder \(V\) (the product of a 3-sphere of radius \(r = \abs{\vec{x}}\) and an interval \([-ct, ct]\subset \mathbb{R}\), where \(ct > r\)) we have 
 %
 \begin{subequations}
 \begin{align}
-\int_V \dd[4]{x} \delta^{(4)} (x^{\sigma }) &= 1  \\
-&= \int_{V} \dd[4]{x} \partial_{\mu } \partial^{\mu } G(x^{\sigma })  \\
+\int_V \dd[4]{x} \delta^{(4)} (x^{\sigma }) &= 1  = \int_{V} \dd[4]{x} \partial_{\mu } \partial^{\mu } G(x^{\sigma })  \\
 &= \int \dd{S} \qty(\partial_{\mu } G(x^{\sigma })) n^{\mu } 
 \,,
 \end{align}
 \end{subequations}
 %
-but the only points which matter are in the future light-cone. We get \(\dd{S} = c \dd{t}  \dd{\Omega }\), and we call \(n^{\mu } \partial_{\mu } = \partial_{r}\): 
+but the only points which can contribute are in the future light-cone because of causality, so the dependence of \(G\) upon \(x^{\sigma }\) must be in the form \(G(x^{\sigma }) = f(r) \delta (ct - r) [ct \geq 0]\).\footnote{The bracket is an Iverson bracket \cite[]{knuthTwoNotesNotation1992}, it evaluates to 1 or 0 depending on whether the expression inside it is true or false.}
+
+We write \(\dd{S} = c \dd{t} r^2 \dd{\Omega }\),\footnote{The \(r^2\) is missing in Hobson \cite[pag.\ 477]{hobsonGeneralRelativityIntroduction2006a} as well, but it should be there.} and we call \(n^{\mu } \partial_{\mu } = \partial_{r}\): 
 %
 \begin{subequations}
 \begin{align}
 1 &= \int \dd{S} \qty(\partial_{\mu } G(x^{\sigma })) n^{\mu }  \\
-&= 4 \pi r^2 \int_0^{ \infty } \dd{t} \partial_{r} \qty(f(r) \delta (ct-r) )c
+&= 4 \pi r^2 \int_0^{ \infty } \dd{t} \partial_{r} \qty(f(r) \delta (ct-r) )c  \\
+&= 4 \pi r^2 \partial_{r} f(r) c + 4 \pi r^2 f(r) \underbrace{\int_{0}^{ \infty }  \partial_{r} \delta (ct - r) c \dd{t}}_{= 0}
+\marginnote{The derivative of the delta evaluates the derivative of the thing it multiplies, which is a constant.}
 \,,
 \end{align}
 \end{subequations}
 %
-but if we integrate by parts the first integral vanishes, and the second is equal to 1: 
+so we can get an explicit expression for the function \(f(r)\):
 %
 \begin{align}
 4 \pi r^2 \partial_{r} f(r) = 1 \implies 

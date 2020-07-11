@@ -117,8 +117,9 @@ Let us put some numbers into these equations: consider the Earth-Sun system, as 
 Then, we find 
 %
 \begin{align}
-h_+ \sim h_{ \times } \sim \frac{1}{
-h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}r} \frac{G \mu \omega_{s}^2 R^2}{c^{4}} \sim \num{5e-32}
+h_+ \sim h_{ \times } \sim \frac{1}{r}
+\frac{G \mu \omega_{s}^2 R^2}{c^{4}} 
+\sim \num{5e-32}
 \,,
 \end{align}
 %
@@ -163,37 +164,49 @@ We find an amplitude of \num{4.7e-21}, which is compatible with the \(\sim \num{
 
 When their distance becomes too small, we cannot model them using Kepler's laws anymore. 
 
-Now, back-action: we saw no energy loss, which is ``by design'': GW energy is quadratic in \(h\), while our theory is linear. 
+\section{Energy and momentum of GW}
 
-Another approach: if our theory is local, it cannot describe the energy of GWs. 
-GWs do carry energy, however we cannot describe it in a local way, since for any single particle we can gauge them away. However, we can look at the tidal effects between two particles. 
+Now we will treat the back-action of gravitational waves on the source.
+As we saw, our approximations predicted no energy loss in the source (\(\dot{M} = 0\)), which is ``by design'': GW energy is quadratic in \(h\), while our theory is linear. 
+Also, at each point we can move to the LIF and completely remove the effects of GW. 
+ 
+GWs do carry energy, as shown by the ``sticky beads'' thought experiment; however we cannot describe this in a local way, since for any single particle we can gauge them away.
+The effect is related to the \emph{tidal effects} of the GW, which we must calculate by comparing different points in spacetime. 
 
-We need to perform an average in spacetime. 
+We cannot define a \emph{local} stress-energy tensor for the waves, an energy \emph{density}: we need to perform an average in spacetime. 
 
-If we introduce a stress-energy tensor for our GWs, this will curve the background spacetime: then we have 
+In our simplified treatment we perturbed around flat spacetime, but in the real world we will also have other sources of curvature, and we will need to perturb from a non-flat background metric \(\overline{g}_{\mu \nu }\): 
 %
 \begin{align}
 g_{\mu \nu } = \overline{g}_{\mu \nu } + h_{\mu \nu }
 \,,
 \end{align}
 %
-but how do we decide which deviation from flat is part of the background and what is part of \(h\)?
+but how do we decide which deviation from flat is part of the background and what is part of the gravitational wave?
+There is no formal way to define this,\footnote{There is a theoretical way to do so, which however is not really practical: if we consider the general form of a perturbation to the metric, we can decompose it into degrees of freedom which transform differently under the Poincaré group: scalar, vector and tensor perturbations (gravitational waves). 
 
-There is no formal way to define this, but we can use a heuristic, based on what they describe. 
-We say that the background \(\overline{g}_{\mu \nu }\) varies spatially slowly, across a distance \(L_B\), such that all the GWs we are considering have reduced wavelengths (\(k = \lambda /2 \pi \)) which are smaller than a fixed maximum wavelengths, so that \(\lambda  \leq \lambda_{GW} \ll L_B\). 
+Tensor perturbations are spin-2, so they come back to themselves after a \SI{180}{\degree} rotation. This distinguishes them from other background effects, but it is not an easy characteristic to measure, especially since our detectors cannot measure the shape of the wave point-by-point but instead only as an integrated effect.
+}
+but we can use a heuristic, based on what they describe. 
+What we will do is like distinguishing waves and tides in the ocean: intuitively it is easy to see how they differ, based on the scale of their effects, although it is harder to see how much each contributes to the height of a specific point.
 
-This is like distinguishing waves and tides in the ocean: intuitively it is easy to see how they differ, based on the scale of their effects.
+We say that the background \(\overline{g}_{\mu \nu }\) varies \textbf{spatially slowly}, across distances with scales \(L_B\), such that all the GW we are considering have reduced wavelengths (\(k = \lambda /2 \pi \)) satisfy \(\lambda  \leq \lambda_{GW} \ll L_B\), where \(\lambda_{GW}\) is a fixed maximum wavelength. 
 
-We also impose that all the GWs vary much faster than the background, temporally: \(f > f_{GW} \gg f_B\). 
-Do not that these two are independent, since while GWs travel at the speed of light\footnote{Which we know to within a part in \num{e-14}.} the background does not. 
-We refer to both as the short-wave approximation. 
+We can also impose that all the GWs vary much faster than the background, temporally: \(f > f_{GW} \gg f_B\). 
 
-How do GW detectors then distinguish GW from background? 
-If we impose \(f_{GW} = c / \lambda_{GW}\) with \(\lambda_{GW}\) around a kilometer we get \(f \sim \SI{300}{kHz}\). This is not interesting, and technically difficult. 
-Also, ground-based detectors do not measure the metric along the length, but only an integrated effect. 
+Do note that these two conditions are independent, since while GW travel at the speed of light\footnote{We know this to be true to within a part in \num{e-14} based on the event GW170817, for which the GW and the EM counterpart arrived within a couple of seconds from several \SI{}{Mlyr}.} the background's temporal and spatial variations are in general not constrained. 
+We refer to the combination of the two conditions as the \textbf{short-wave approximation}. 
 
-Instead, the detectors monitor local temporal variations of \(g_{\mu \nu } (t, x_0 )\). 
-So, our detectors work best between \SI{100}{Hz} to \SI{1000}{Hz}; the Earth's gravitational field is not smooth along the corresponding length scale. However, it's close to static: its variations are slower than a few \SI{}{Hz}.
-So, we can apply our distinction: GW and background can be distinguished in frequency. 
+How do ground-based \textbf{GW detectors} practically distinguish GW from background? 
+
+Their length is at most on the order of single kilometers: so, their characteristic frequency will be \(f_{GW} = c / \lambda_{GW}  \sim \SI{300}{kHz}\).
+We cannot measure at these frequencies or higher, and do not expect to find interesting astrophysical sources in this range.
+Also, ground-based detectors do not measure the metric along the whole length, but only an integrated effect. 
+
+Instead, the detectors monitor local temporal variations of \(g_{\mu \nu } (t, x_0 )\) (at what is basically a fixed point). 
+They work best between \SI{100}{Hz} to \SI{1000}{Hz}; the Earth's gravitational field is not smooth along the corresponding length scale, since the contributions from mountains, oceans, tides and such have amplitudes which are larger than those of the GW.
+However, the Earth's gravitational field is close to static at these frequencies: its variations are slower than a few \SI{}{Hz}.
+
+So, we can apply our distinction: GW and background can be \textbf{distinguished in frequency}: they will be the greatest gravitational contribution at the \(\SI{100}{Hz}\) to \SI{1}{kHz} range. 
 
 \end{document}

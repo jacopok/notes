@@ -3,48 +3,68 @@
 
 \marginpar{Friday\\ 2020-3-27, \\ compiled \\ \today}
 
-Last time we saw how to expand the solution into multipole moments, and focused on the quadrupole. 
+% Last time we saw how to expand the solution into multipole moments, and focused on the quadrupole. 
 
-We finally got, for a GW propagating along \(\hat{z}\): 
+This means that the two polarizations' amplitudes are:
 %
-\begin{subequations}
 \begin{align}
-h_{+} &= \frac{1}{r} \frac{G}{c^{4}} \qty(\ddot{M}_{11} - \ddot{M}_{22})  \\
-h_{ \times } &= \frac{2}{r} \frac{G}{c^{4}} \ddot{M}_{12}
+h_{+} = \frac{1}{r} \frac{G}{c^{4}} \qty(\ddot{M}_{11} - \ddot{M}_{22})  \qquad \text{and} \qquad
+h_{ \times } = \frac{2}{r} \frac{G}{c^{4}} \ddot{M}_{12}
 \,.
 \end{align}
-\end{subequations}
+
+For the full details on this, see Maggiore \cite[eqs.\ 3.60 to 3.72]{maggioreGravitationalWavesVolume2007}.
 
 But how do we compute the full angular distribution? 
 We can brute-force it using the full \(\Lambda \) projection tensor, but a more conceptual way is to put ourselves in a frame in which the generic vector \(\hat{n}\) is \(\hat{z}\). 
-Then we use the rotation matrices: we need two of them, one for each unit vector in a rank-2 tensor \(M_{ij}\). 
+Then we use the rotation matrices: we need two of them, one for each unit vector in a rank-2 tensor \(M_{ij}\), which will then transform like 
+%
+\begin{align}
+\ddot{M}_{ij}^{\prime } = R_{ik} R_{jl} \ddot{M}_{kl}
+\,,
+\end{align}
+
 Then we use the simple expression for \(h_{+}\) and \(h_{ \times }\), substituting in the \(\ddot{M}_{11}\), \(\ddot{M}_{12}\) and so on in the primed system. 
 
+The main results to take away are: 
 \begin{enumerate}
   \item There is no monopole radiation: \(\dot{M} = 0\), since mass is conserved.
-  \item We can move the origin so that the dipole is zero: \(M^{i} =0 \). This corresponds to linear momentum being conserved: \(\dot{P}^{i}=0\). This is in stark contrast to Electromagnetism: there, we cannot eliminate the dipole radiation. This is due to there being positive and negative electric charges, while there are no negative masses. 
+  \item We can move the origin so that the dipole is zero: \(M^{i} =0 \). This corresponds to linear momentum being conserved: \(\dot{P}^{i}=0\). In Electromagnetism, on the other hand, we cannot eliminate the dipole radiation. This is due to there being positive and negative electric charges, while there are no negative masses. 
   \item We did not account for back-action: our GWs do not carry ``away'' energy or momentum. This is unphysical, we will account for it!
 \end{enumerate}
 
-A stress-energy tensor for a system of point masses looks like 
+\subsubsection{Application to a self-gravitating system}
+
+The stress-energy tensor for a system of point masses looks like 
 %
 \begin{align}
 T^{\mu \nu }(t, \vec{x}) = \sum _{A} \frac{p^{\mu }_{A} p^{\nu }_{A}}{\gamma_{A}  m_{A}} \delta^{(3)} (x - x_{A}(t))
-\,.
+\,,
 \end{align}
+%
+where \(\gamma \) is the Lorentz factor, while \(p^{\mu }\) is the four-momentum.  
 
-In order to apply our system, our system must be closed: we cannot consider any particle trajectory, since they must move on geodesics in order to conserve the stress-energy tensor. 
+In order to apply the calculations from before to our system, it must be closed; we cannot consider any particle trajectory, since they must move on geodesics in order to conserve the stress-energy tensor. This means that there cannot be any external forces. 
 
-However, we can use the relative coordinate in a self-gravitating system: then we have the relative \(x_0 = x_1 - x_2 \), the total mass \(m = m_1 + m_2 \), the reduced mass \(\mu = m_1 m_2 / (m_1 + m_2 )\), an the center of mass position \(x _{\text{CM}} = (m_1 x_1 +m_2 x_2 ) / (m_1 + m_2 )\). 
+However, we can use the relative coordinates in a self-gravitating system: if two particles have coordinates \(x_1\) and \(x_2\) we can define their relative distance \(x_0 = x_1 - x_2 \), the total mass \(m = m_1 + m_2 \), the reduced mass \(\mu = m_1 m_2 / (m_1 + m_2 )\), and the center of mass position \(x _{\text{CM}} = (m_1 x_1 +m_2 x_2 ) / (m_1 + m_2 )\). 
 
-If we set the position of the COM to zero identically, we find 
+If we set the position of the COM to zero identically, all the terms containing it in the second mass moment vanish, and we are left with;
 %
 \begin{align}
-M^{ij} = \mu x^{i}_{0} x^{j}_{0}
+M^{ij} = \int \dd[3]{x} \dd[3]{x} T^{00} x^{i}x^{j} = m_1 x^{i}_{1} x^{i}_{2}
+&= \mu x^{i}_{0} x^{j}_{0}
 \,.
 \end{align}
 
-We consider two particles in the XY plane moving on a trajectory, which for now we assign. so that we get 
+The quadrupole is then given by 
+%
+\begin{align}
+Q^{ij} (t) = \mu \qty(x^{i}_{0} (t)x^{j}_{0} (t) + \frac{r_0^2}{3} \delta^{ij})
+\,,
+\end{align}
+
+
+We consider two particles in the XY plane moving on a circular trajectory; for now we do not consider the Newtonian equations of motion and let all the parameters of this trajectory be independent of each other, so we write 
 %
 \begin{subequations}
 \begin{align}
@@ -55,19 +75,26 @@ z_0 (t) &= 0
 \end{align}
 \end{subequations}
 %
-so we find 
+so we can compute the mass moments: we get products of sines and cosines which can be written as:
+%
+\begin{align}
+M_{11} &= \frac{\mu^2R}{2} \qty(1 - \cos(2 \omega_{s}t)) \\
+M_{22} &= \frac{\mu^2R}{2} \qty(1 + \cos(2 \omega_{s}t)) \\
+M_{12} &= \frac{\mu^2R}{2} \sin(2 \omega_{s}t) \\
+\,,
+\end{align}
+%
+so the second derivatives also \textbf{oscillate at twice the rotational frequency} \(\omega_{s}\):
 %
 \begin{subequations}
 \begin{align}
 \ddot{M}_{11} &= - \ddot{M}_{22} = 2 \mu R^2 \omega_{s}^2 \cos(2 \omega_{s}t)  \\
 \ddot{M}_{12} &= 2 \mu R^2\omega_{s}^2  \sin( 2 \omega_{s}t)
-\,,
+\,.
 \end{align}
 \end{subequations}
-%
-which means the GW emission has twice the rotational frequency. 
 
-If we look at emission in a generic direction \(\hat{n}\), described by the angles \(\theta \) and \(\varphi \), we will receive 
+If we look at this emission as an observer placed in a generic direction \(\hat{n}\), described by the angles \(\theta \) and \(\varphi \), we will receive 
 %
 \begin{subequations}
 \begin{align}
@@ -77,29 +104,62 @@ h_{ \times } (t, \theta , \varphi ) = \frac{1}{r} \frac{4G \mu \omega_{s}^2 R^2}
 \end{align}
 \end{subequations}
 %
-so the two scale differently as \(\theta \) varies. 
+so the two scale differently as \(\theta \) varies.
+The variation of \(\varphi \) does not change the amplitude of the wave, as we would expect, but only the phase.
 
 Do note that \(h_{+} + h_{ \times }\) looks like a circular polarization moving counter-clockwise, while \(h_{+} - h_{ \times }\) moves clockwise. This is what we see for \(\theta = 0, \pi \); on the other hand for \(\theta = \pi /2\) we only have \(h_{+}\). 
+\todo[inline]{Check this!}
 
 \todo[inline]{Plot effects! }
 
-Some numbers: the Earth-Sun system, seen \SI{1e5}{lyr} away, has a strain on the order \num{5e-32}. 
-Let us try a BNS in our galaxy: we use Newtonian orbits to model the binary. 
+Let us put some numbers into these equations: consider the Earth-Sun system, as seen from \(r \sim\SI{e5}{lyr} \sim \SI{e21}{m}\) away. The reduced mass is \(\mu \sim m_{\oplus} \sim \SI{6e24}{kg}\), the frequency is \(\omega_{s} \sim \SI{2e-7}{rad/s}\), the radius of the orbit is \(R \sim \SI{150e9}{m}\).
 
-Note that the strain is inversely proportional to \(r\): this is because we are not measuring the intensity, but directly the amplitude. 
-
-If we put in the expression for the radius from Kepler's law: we find 
+Then, we find 
 %
 \begin{align}
-h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}
-\,.
+h_+ \sim h_{ \times } \sim \frac{1}{
+h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}r} \frac{G \mu \omega_{s}^2 R^2}{c^{4}} \sim \num{5e-32}
+\,,
 \end{align}
 %
-Let us consider a BNS with masses \(m_1 = m_2 = 1.5 M_{\odot}\) in our galaxy: then, the strain will be  of the order \num{e-20}.
+which is definitely undetectable with current technologies. 
+Note that the strain is inversely proportional to \(r\): this is because we are not measuring the intensity, but directly the amplitude. 
 
-We have seen a BNS outside of our galaxy, at \SI{40}{Mpc} away. 
+Let us try a BNS in our galaxy, using Newtonian orbits to model the binary.
+Now we will have \(r \sim \SI{e21}{m}\), \(m_1 = m_2 \sim M_{\odot} \sim \SI{e30}{kg}\), \(\omega_{s} \sim 2 \pi \SI{}{Hz}\), and we need to calculate \(R\).
+Kepler's third law for circular orbits gives simply 
+%
+\begin{align}
+\omega_{s}^2 R^3 = GM
+\,,
+\end{align}
+%
+which we can put into the expression from before as \(R^2 = G^{2/3} M^{2/3} \omega_{s}^{-4/3}\) to find 
+%
+\begin{align}
+h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}} \sim \num{e-20}
+\,.
+\end{align}
 
-Do this with GW150914: \(m_1 \sim 36 M_{\odot}\), \(m_2 \sim 31 M_{\odot}\), \(f_s \sim \SI{250}{Hz}\), \(r \sim \SI{440}{Mpc}\).
+% Let us consider a BNS with masses \(m_1 = m_2 = 1.5 M_{\odot}\) in our galaxy: then, the strain will be  of the order \num{e-20}.
+
+This was for a BNS at \SI{e5}{lyr};
+we have seen a BNS outside our galaxy, at \(\SI{40}{Mpc} \sim \SI{e8}{lyr}\) away, whose signal had an amplitude as low as \(\num{e-23}\). 
+
+We can try to do the computation for the actual event GW150914, for which \(m_1 \sim 36 M_{\odot}\), \(m_2 \sim 31 M_{\odot}\), \(f_s \sim \SI{250}{Hz}\), \(r \sim \SI{440}{Mpc}\). 
+We find an amplitude of \num{4.7e-21}, which is compatible with the \(\sim \num{5e-22}\) shown in the paper \cite[fig.\ 2]{ligoscientificcollaborationandvirgocollaborationObservationGravitationalWaves2016} for the inspiral phase.
+
+\todo[inline]{The figure is not compatible with the one given in the paper, it's too large by an order of magnitude!}
+
+% % In [2]: m1 = 36 * u.Msun
+% In [3]: m2 = 31 * u.Msun
+% In [4]: m = (m1 * m2 ) / (m1 + m2)
+% In [6]: M = m1 + m2             
+% In [7]: fs = 250 * u.Hz         
+% In [12]: r = 440 * u.Mpc
+% In [22]: (4 * ac.G**(5/3) * (2 * np.pi * fs)**(2/3) * m * M**(2/3) / r / ac.c**4).to(1)
+% Out[22]: <Quantity 4.6760505e-21>
+% not gud! 
 
 When their distance becomes too small, we cannot model them using Kepler's laws anymore. 
 

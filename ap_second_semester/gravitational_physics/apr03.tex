@@ -40,7 +40,7 @@ This can be integrated directly, by separating the variables as \(f^{-11/3} \dd{
 where \(t _{\text{coal}}\) is an integration constant, chosen so that \(t = t _{\text{coal}}\) when the frequency diverges.
 We can get the frequency as a function of the time until coalescence \(\tau \):
 %
-\begin{align}
+\begin{align} \label{eq:gw-frequency-evolution}
 f_{GW} = \qty( \frac{3}{8 k \tau })^{3/8} 
 = \frac{1}{\pi } \qty( \frac{5}{256 \tau })^{3/8} \qty(\frac{c^3}{G M_c})^{5/8}
 \,.
@@ -55,41 +55,124 @@ Inverting this expression we can get the time until coalescence from the frequen
 \,.
 \end{align}
 
-Now, we want to get an expression for the \textbf{evolution of the radius}. We know that \(f_{GW} \propto \tau^{-3/8}\), 
-
-We can also get an expression for the radius at a given time from coalescence: 
+Now, we want to get an expression for the \textbf{evolution of the radius}. We know that \(\omega_{GW} \propto \tau^{-3/8}\), so we can calculate 
+%
+\begin{align}
+\frac{1}{\omega_{GW}} \dv{\omega_{GW}}{t} = 
+- \frac{1}{\omega_{GW}} \dv{\omega_{GW}}{\tau } = 
++ \frac{3}{8} \frac{\tau^{-11/8}}{\tau^{-3/8} }
+= \frac{3}{8} \frac{1}{\tau }
+\,,
+\end{align}
+%
+which is also equal to \(\dot{\omega}_{s} / \omega_{s}\), since it is a constant multiple of \(\omega_{GW}\). Then, by using the relation between the logarithmic derivatives of \(R\) and \(\omega_{s}\) \eqref{eq:log-derivatives-radius-angular-velocity-binary} we can write 
+%
+\begin{align}
+\frac{\dot{\omega}_{s}}{\omega_{s}} = \frac{3}{8} \frac{1}{\tau } = - \frac{3}{2} \frac{\dot{R}}{R} 
+\implies \frac{\dot{R}}{R} = - \frac{1}{4 \tau }
+\,,
+\end{align}
+%
+which is solved by 
 %
 \begin{align}
 R(\tau ) = R_0 \qty(\frac{\tau }{\tau_0 })^{1/4} = R_0 \qty(\frac{t _{\text{coal}} - t}{t _{\text{coal}} - t_0 })^{1/4}
 \,,
 \end{align}
 %
-where \(\tau_0 \) is the time to coalescence at \(t_0 \).
+where \(\tau_0 \) is the time to coalescence at \(t_0 \), and \(R_0 \) is the orbital radius at \(t_0 \). 
 
-If we plot this, it has a ``plunge'' phase, up to which we can trust our plot. 
+If we plot this, it has a ``plunge'' phase near \(\tau = 0\), near which our assumptions of a nonrelativistic system break down. 
+
+\todo[inline]{Add plot maybe}
+
+The radius and frequency at \(R = R_0 \) are related by Kepler's third law: 
+%
+\begin{align}
+R_0 = \sqrt[3]{ \frac{GM}{\omega_{s}^2 (\tau_0 )}}
+= \sqrt[3]{ \frac{GM}{\pi^2 f_{GW}^2 (\tau_0 )}}
+\,,
+\end{align}
+%
+which can be combined with the equation for the evolution of the GW frequency \eqref{eq:gw-frequency-evolution} to yield the following expression for the time until coalescence given the orbital parameters: 
+%
+\begin{align}
+\tau_0 = \frac{5}{256}  \frac{c^{5} R_0^{4}}{G^3M^2 \mu }
+\,.
+\end{align}
 
 \subsection{Chirping waveform}
 
-The \emph{phase} is the argument of the cosine, so we write \(\cos(\phi (t))\). 
-The angular frequency is given by \(\omega_{GW} = \phi'\).
+The argument of the cosine is in general denoted as \(\phi (t)\) and called the \textbf{phase}, it is defined by the relation 
+%
+\begin{align}
+\phi (t) = \int_{t_0 }^{t} \omega_{GW}(t') \dd{t'} &= -\int_{\tau_0 }^{\tau } \dd{\tau '} \frac{2 \pi }{\pi } \qty(\frac{5}{256} \frac{1}{\tau'})^{3/8} \qty(\frac{c^{3}}{G M_c})^{5/8} \\
+&= - 2 \qty( \frac{c^3}{5 G M_c})^{5/8} \tau^{5/8} + \phi_0 
+\,,
+\end{align}
+%
+which for a circular orbit is instead just a linear function of \(t\); the angular frequency is given by its constant derivative \(\omega_{GW} = \phi'\).
 
-The chirping waveform cannot be trusted near the end. 
-We know that if 
+For a quasi-circular orbit we need to generalize, and the mass moments will look like 
+%
+\begin{align}
+M_{11} = \frac{\mu R^2(t) \qty(1 + \cos(\phi (t)))}{2}
+\qquad \text{and} \qquad
+M_{12} = \frac{\mu R^2(t) \sin(\phi (t))}{2}
+\,,
+\end{align}
+%
+however since \(\dot{\omega}_{GW} \ll \omega^2_{GW}\) and \(\dot{R} \ll R  \omega_{GW}\) we will be able to neglect the derivatives of \(R\) and \(\omega_{GW}\) when computing the second time derivatives of the mass moments.
+So, our two polarizations' amplitudes will read 
+%
+\begin{align}
+h_{+} (t) &= \frac{4}{r} \qty(\frac{GM_c}{c^2})^{5/3} \qty(\frac{\pi f_{GW} (t _{\text{ret}})}{c})^{2/3} \frac{1 + \cos^2\theta}{2} 
+\cos(\phi (t _{\text{ret}})) \\
+h_{ \times } (t) &= \frac{4}{r} \qty(\frac{GM_c}{c^2})^{5/3} \qty(\frac{\pi f_{GW} (t _{\text{ret}})}{c})^{2/3} \cos\theta  
+\sin(\phi (t _{\text{ret}})) 
+\,,
+\end{align}
+%
+which can be expressed in terms of the time to coalescence \(\tau \) as 
+%
+\begin{align}
+h_{+} (t) &= \frac{1}{r} \qty( \frac{G M_c}{c^2})^{5/4} \qty( \frac{5}{c \tau })^{1/4} \frac{1 + \cos^2\theta }{2} \cos(\phi (\tau )) \\
+h_{ \times } (t) &= \frac{1}{r} \qty( \frac{G M_c}{c^2})^{5/4} \qty( \frac{5}{c \tau })^{1/4} \cos \theta  \sin(\phi (\tau )) 
+\,,
+\end{align}
+%
+since as long as we are measuring from a fixed position the time to coalescence is the same for any observer seeing the same part of the signal: we can compute \(\tau = t _{\text{coal}} -t = \qty(t _{\text{coal}}+ \Delta t) - (t + \Delta t)\) for any fixed shift \(\Delta t\).
+
+This model predicts a signal with a \textbf{chirping waveform}, whose amplitude increases and frequency both increase.
+The chirping waveform cannot be trusted near the end, when our quasi-circular orbit approximation breaks down. 
+
+A result from the study of the orbit of a test particle around a Schwarzschild black hole is that when the radius of the orbit goes below the Innermost Stable Circular Orbit:
 %
 \begin{align}
 R < R _{\text{ISCO}} = \frac{6GM}{c^2}
 \,
 \end{align}
 %
-then orbits are not stable. This formula only holds for extreme mass ratios (we actually could have these SMBHs merging with solar mass ones!). 
-Anyway, we use it as a guideline to see when our approximations break down. 
+the orbit becomes unstable.
+This formula holds for extreme mass ratios which can approximate the scenario of a test mass in a large masses' gravitational field. 
+We have not seen any mergers like this yet, although it is definitely possible that they might exist.
+ 
+Anyway, we can use the Schwarzschild radius as a rough guideline to see when the system becomes very relativistic and our approximations break down.
 
-The shape of the chirping waveform is basically correct; it goes out of phase with the numerical relativity calculation, but it works somewhat. 
+The frequency corresponding to the ISCO can be also calculated: 
+%
+\begin{align}
+f_{GW, ISCO} = \frac{1}{6 \sqrt{6} \pi } \frac{c^3}{GM}
+\,.
+\end{align}
+
+From numerical full-GR simulations and the measured GW signals we can see that the shape of the chirping waveform is basically correct even after the approximations break down; it only slightly goes out of phase with the numerical relativity calculation. 
 
 \todo[inline]{Numerical relativity has a \emph{lower} frequency than the quadrupole approx!}
 
-What about eccentric binaries? 
-We can also analyze them. The formula is 
+\subsection{Eccentric binaries}
+
+We only present the results of the rather long computations; radiated power is higher than the corresponding circular binary, it is given by
 %
 \begin{align}
 \dv{E}{t} = \frac{32}{5} \frac{G \mu^2}{c^{5}} a^{4} \omega_0^{6} f(e)
@@ -103,12 +186,22 @@ f(e) = \frac{1}{(1 - e^2)^{7/2}} \qty(1 + \frac{73}{24} e^2 + \frac{37}{96} e^{4
 \,.
 \end{align}
 
-We have emission at frequencies other than the orbital one; also, the GW emission has the effect of circularizing the orbit. 
-So, we usually observe circular systems. 
+Here the parameter \(e\) is the eccentricity of the elliptical orbit: the major semiaxis is given in terms of the minor one by \(a = b / \sqrt{1 - e^2}\).
+This enhancement is due to the fact that the emission is large at the point of closest approach. 
+
+This means that the time to coalescence is \emph{shorter} for elliptical binaries: for an initial eccentricity \(e_0 \sim 1\) we have \(\tau \sim 2 \qty(1- e_0^2)^{7/2} \tau _{\text{circ}}\).
+
+We have emission at frequencies which are integer multiples of the circular-orbit one; the peak of this spectrum shifts upward as \(e\) increases. 
+
+GW emission has the effect of circularizing the orbit rapidly --- by the time the merger arrives it is usually quite close to circular, so we usually detect circular systems. 
 
 \section{Hulse-Taylor binaries}
 
+
 It is debatable whether the observation of this was the first observation of gravitational waves. 
+
+\subsection{Pulsars}
+
 
 This is a binary system in which one star is a pulsar. 
 

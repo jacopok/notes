@@ -382,63 +382,144 @@ so if we take the average, substituting the derivative of the angular momentum f
 
 \section{Back-reaction and the evolution of binary systems}
 
-We use the reduced mass formalism, the amplitude is 
+\subsection{Compact circular inspiral}
+
+We use the reduced mass formalism for a two-body problem: we define the total mass \(M = m_1 +m_2 \), the reduced mass \(\mu = m_1 m_2 / M\), the relative coordinate \(\vec{x} = \vec{x}_1 - \vec{x}_2\) whose modulus is \(R = \abs{\vec{x}}\). 
+The angular velocity of the circular motion is \(\omega_{s}\), satisfying Kepler's law \(\omega_{s}^2 R^3 = GM\).
+
+As we saw, the amplitude of the emitted gravitational waves is given by 
 %
 \begin{align}
 A = \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{4}}
 \,,
 \end{align}
 %
-so we have the polarizations 
+and the amplitudes of the two polarizations in time are given in terms of \(A\) by
 %
 \begin{subequations}
 \begin{align}
 h_{+} &= A \frac{1 - \cos^2\theta   }{2} \cos(2 \omega_{s} t _{\text{ret}} + 2 \varphi ) \\ 
 h_{\times } &= A \cos \theta  \sin(2 \omega_{s} t _{\text{ret}} + 2 \varphi )  
-\,,
+\,.
 \end{align}
 \end{subequations}
-%
-we define the chirp mass: 
+
+In order to make these expressions easier to interpret, we define the chirp mass: 
 %
 \begin{align}
 M_c = \mu ^{3/5} M^{2/5} = \frac{\qty(m_1 m_2 )^{3/5}}{(m_1 + m_2 )^{1/5}}
+\,.
+\end{align}
+
+Also, since the frequency of the emitted GW is double that of the binary we define \(f_{GW} = 2 f_s = 2 \omega_{s} / (2 \pi )\), and \(\omega_{GW} = 2 \pi f_{GW}\).
+The reduced wavelength corresponding to this frequency is \(\lambdabar = c / \omega_{GW}\); also we can define a Schwarzschild radius corresponding to the chirp mass: \(R_C = 2GM_c / c^2\). 
+
+With these definitions we can rewrite \(A\) as: 
+%
+\begin{align}
+A = \frac{4}{r} \qty( \frac{G M_C}{c^2})^{5/3} \qty( \frac{\pi f_{GW}}{c})^{2/3}
+= \frac{1}{\sqrt[3]{2}} \frac{R_C}{r} \qty( \frac{R_C}{\lambdabar})^{2/3}
 \,,
 \end{align}
-%
-also the frequency of the GW is twice the frequency of the orbit. 
 
-Coming back to the radiated power: it is 
+As we have shown, in the quadrupole approximation the radiated power is: 
 %
 \begin{align}
 \dv{E}{t} = \frac{G}{5 c^{5}} \expval{\dot{\ddot{M}}_{ij} \dot{\ddot{M}}_{ij} - \frac{1}{3} \qty(\dot{\ddot{M}}_{kk})^2}
 \,,
 \end{align}
 %
-so we can calculate this explicitly for our binary: we need to average over a period, so we get a factor \(\expval{\sin^2\varphi } = 1/2\): 
+which we can calculate explicitly for our binary.
+We have already derived expressions for the second time derivatives of the second mass moment, \(\ddot{M}_{ij}\) for motion in the \(xy\) plane \eqref{eq:second-mass-moment-xy-components}; taking their derivative we get 
 %
 \begin{align}
-\dv{E}{t} = \frac{32}{5} \frac{c^{5}}{G} \qty(\frac{GM_c \omega_{GW}}{2 c^{3}})^{ 10 /3}
+\dot{\ddot{M}}_{11} = - \dot{\ddot{M}}_{22} = 
+- 4 \mu R^2 \omega_{s}^3 \sin(2 \omega_{s}t )
+\qquad \text{and} \qquad
+\dot{\ddot{M}}_{12} = 4 \mu R^2 \omega_{s}^3 \cos(\omega_{s}t)
 \,,
 \end{align}
 %
-where we used the fact \(R^3 = GM / \omega_{s}^2\).
-We can do a similar thing for the angular momentum: 
+so the term \(\qty(\dot{\ddot{M}}_{ij})^2\) vanishes (\(\dot{\ddot{M}}_{ij}\) is traceless) and \(\dot{\ddot{M}}_{11}^2 = \dot{\ddot{M}}_{22}^2\), so the contribution we get is 
 %
 \begin{align}
-\dv{L}{t} = \dots
+\dv{E}{t} &= \frac{G}{5 c^{5}} \expval{2 \dot{\ddot{M}}_{11}^2 + 2 \dot{\ddot{M}}_{12}^2 }  \\
+&= \frac{G}{5 c^{5}} 2 \qty(4 \mu R^2 \omega_{s}^3)^2 \underbrace{\qty(\expval{\sin^2(2 \omega_{s}t)} + \expval{\cos^2(2\omega_{s}t)})}_{= 1/2 + 1/2 = 1}
+\,,
+\end{align}
+%
+since the average of the squared sine or cosine is \(1/2\). 
+Now, we can simplify this expression by using \(R^3 = GM / \omega_{s}^2\) and substituting in the GW angular velocity:
+%
+\begin{align}
+\dv{E_{GW}}{t} &= \frac{32G}{5c^{5}} \mu^2 R^{4} \omega_{s}^{6}  \\
+&= \frac{32G}{5c^{5}} \mu^2 \qty( \frac{GM}{\omega_{s}})^{4/3} \omega_{s}^{6}  \\
+&= \frac{32}{5c^{5}} \mu^2 G^{7/3} M^{4/3} \omega_{s}^{10/3} \\
+&= \frac{32}{5} \frac{c^{5}}{G} \qty( \frac{G M_c \omega_{GW}}{2 c^{3}})^{10/3} \label{eq:gravitational-wave-total-power-emitted}
 \,.
 \end{align}
 
-Now, let us consider masses in quasi-circular orbit: by the virial theorem, 
+We can apply a similar reasoning for the angular momentum loss (here \(L = \abs{\vec{L}}\)): 
 %
 \begin{align}
+\dv{L}{t} = 
+\frac{32}{5} \frac{c^{5}}{G} \qty( \frac{G M_c \omega_{GW}}{2 c^{3}})^{10/3} \frac{2}{\omega_{GW}}
+= \frac{32}{5} \frac{c^{5}}{G} \qty(\frac{G M_c}{c^{3}})^{10/3} \qty(\frac{\omega_{GW}}{2})^{7/3}
+\,.
+\end{align}
+
+If we have masses in circular orbit, then by the virial theorem their total energy is given by half of the potential energy: 
+%
+\begin{align}
+E = - \frac{1}{2} \frac{G m_1 m_2  }{R}
+\,,
+\end{align}
+%
+which we can differentiate with respect to time to get \(\dot{E} = G m_1 m_2 / (2 R^2) \dot{R}\); this can be also written as
+%
+\begin{align} \label{eq:radius-evolution-binary}
 \dot{R} = - \frac{2R^2}{G m_1 m_2 } \dot{E}_{GW}
+\,,
+\end{align}
+%
+as long as the orbital energy is only lost through gravitational wave emission. 
+
+This means that, as the GW carry away energy, the radius shrinks; this corresponds to an increase in frequency, and a corresponding increase in gravitational wave emission. 
+
+In all our calculations we assumed the orbits to be circular!
+This is fine, as long as they are almost-circular: the condition to require is that the variation of the radius across a single orbit is very small: 
+%
+\begin{align}
+\abs{\frac{\dot{R} T}{R}} \ll 1
+\,,
+\end{align}
+%
+where \(T\) is the period.
+In order to express this conditions in terms of the orbital angular velocity \(\omega_{s}\) we use Kepler's law: if we differentiate \(R = \qty(GM / \omega_{s}^2)^{1/3}\) we get 
+%
+\begin{align} \label{eq:derivative-radius-evolution-binary}
+\dot{R} = - \frac{2}{3} \omega_{s}^{-5/3} \qty(GM)^{1/3} \dot{\omega}_{s}
+= - \frac{2}{3} \frac{R}{\omega_{s}} \dot{\omega}_{s}
 \,.
 \end{align}
 
-Therefore, as the GWs carry away energy the radius shrinks. 
-But we assumed the orbits to be circular! This is fine: they are almost-circular usually. 
-This is fine for most of the inspiral, until the merger phase. 
+This equality can also be written in terms of logarithmic derivatives as 
+%
+\begin{align}
+\frac{\dot{R}}{T} + \frac{2}{3} \frac{\dot{\omega}_{s}}{\omega_{s}} = 0
+\,.
+\end{align}
+
+Starting from this, and using \(T = 2 \pi / \omega_{s}\) we can write 
+%
+\begin{align}
+\abs{\frac{\dot{R}T}{R}} = \frac{2}{3} \frac{R}{\omega_{s}} \dot{\omega}_{s} \frac{2\pi}{\omega_{s}} \frac{1}{R} = \frac{4 \pi }{3} \frac{\dot{\omega}_{s}}{\omega_{s}^2} 
+\,,
+\end{align}
+% 
+which means that we need to require \(\dot{\omega}_{s} \ll \omega_{s}^2\).
+
+In practice, this condition is quite well satisfied for most of the inspiral, right up until the merger phase. 
+Motion satisfying this condition is called \textbf{quasi-circular}. 
 
 \end{document}

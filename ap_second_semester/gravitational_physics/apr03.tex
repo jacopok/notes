@@ -1,43 +1,72 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Frequency evolution and time to coalesce}
+
 \marginpar{Friday\\ 2020-4-3, \\ compiled \\ \today}
 
-As we were discussing yesterday, we can approximate every orbit as a circular one. 
-
-We finally get the relation 
+% As we were discussing yesterday, we can approximate every orbit as a circular one. 
+From the equation for the evolution of the binary's radius \eqref{eq:radius-evolution-binary}, its explicit expression in terms of \(\omega_{s}\) \eqref{eq:derivative-radius-evolution-binary} and the expression for the gravitational wave emitted power \eqref{eq:gravitational-wave-total-power-emitted} we can write 
 %
 \begin{align}
-\dot{\omega}_{GW} = \frac{12}{5} 2^{1/3}
-\qty(\frac{M_c G}{c^{3}})^{5/3} \omega_{GW}^{11/3}
-\,,
+- \frac{2}{3} \frac{\dot{\omega}_{s}}{\omega_{s}} R &= - \frac{R^2}{GM \mu } \dot{E}_{GW} \\
+\dot{\omega}_{s} &= \frac{3}{\mu } \qty(GM)^{-2/3} \omega_{s}^{1/3} 
+\frac{32}{5} \frac{c^{5}}{G} 
+\qty( \frac{G M_c \omega_{GW}}{2 c^{3}})^{10/3} \marginnote{Substituted in \(\dot{E}\), used \(R = (GM)^{1/3} \omega_{s}^{-2/3} \).}  \\
+&= \frac{6}{5} \sqrt[3]{2} \qty(\frac{M_c G}{c^{3}})^{5/3} \omega_{GW}^{11/3}
+\,.
 \end{align}
-%
-where \(M_c\) is the chirp mass. 
-So, we can integrate this: since 
+
+If we substitute in \(\omega_{GW}\) from \(\omega_{s}\)
+we finally get the relation 
 %
 \begin{align}
-\dv{f_{GW}}{t} = k f^{11/3}_{GW} \implies - \frac{3}{8k} f^{-8/3} = t - t _{\text{coalescence}} 
+\dot{\omega}_{GW} = \frac{12}{5} \sqrt[3]{2}
+\qty(\frac{M_c G}{c^{3}})^{5/3} \omega_{GW}^{11/3}
+\qquad \text{or} \qquad
+\dot{f}_{GW} = \underbrace{\frac{96}{5} \pi^{8/3} \qty(\frac{M_c G}{c^{3}})^{5/3}}_{k}
+f_{GW}^{11/3} 
+\,.
+\end{align}
+
+This can be integrated directly, by separating the variables as \(f^{-11/3} \dd{f} = \dd{t}\): the result is 
+%
+\begin{align}
+- \frac{3}{8k} f^{-8/3} = t - t _{\text{coal}} 
 \overset{\text{def}}{=} -\tau 
 \,,
 \end{align}
 %
-so that we can get the frequency as a function of the time until coalescence: 
+where \(t _{\text{coal}}\) is an integration constant, chosen so that \(t = t _{\text{coal}}\) when the frequency diverges.
+We can get the frequency as a function of the time until coalescence \(\tau \):
 %
 \begin{align}
-\tau = \frac{5}{256} \qty( \frac{1}{\pi f_{GW}})^{8/3} \dots
+f_{GW} = \qty( \frac{3}{8 k \tau })^{3/8} 
+= \frac{1}{\pi } \qty( \frac{5}{256 \tau })^{3/8} \qty(\frac{c^3}{G M_c})^{5/8}
 \,.
 \end{align}
+
+\todo[inline]{Wrong sign in the slides at this point.}
+
+Inverting this expression we can get the time until coalescence from the frequency: 
+%
+\begin{align}
+\tau = \frac{5}{256} \qty( \frac{1}{\pi f_{GW}})^{8/3} \qty( \frac{c^3}{G M_c})^{5/3}
+\,.
+\end{align}
+
+Now, we want to get an expression for the \textbf{evolution of the radius}. We know that \(f_{GW} \propto \tau^{-3/8}\), 
 
 We can also get an expression for the radius at a given time from coalescence: 
 %
 \begin{align}
-R(\tau ) = R_0 \qty(\frac{\tau }{\tau_0 })^{1/4}
+R(\tau ) = R_0 \qty(\frac{\tau }{\tau_0 })^{1/4} = R_0 \qty(\frac{t _{\text{coal}} - t}{t _{\text{coal}} - t_0 })^{1/4}
 \,,
 \end{align}
 %
-where \(\tau_0 \) is the time to coalescence at \(t_0 \). 
-If we plot this, it has a ``plunge'' phase, and up to it we can trust our plot. 
+where \(\tau_0 \) is the time to coalescence at \(t_0 \).
+
+If we plot this, it has a ``plunge'' phase, up to which we can trust our plot. 
 
 \subsection{Chirping waveform}
 

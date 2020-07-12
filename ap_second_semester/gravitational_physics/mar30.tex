@@ -185,79 +185,198 @@ If we are far enough away from the source, we can compute the energy crossing a 
 
 In order to get the total power \(\dv*{E}{t}\) which is emitted by the source we can integrate this expression in \(R^2 \dd{\Omega }\); however we will need to use the general expression \(\expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}}\) since we cannot have alignment with the \(z\) axis across the whole sphere. 
 
-In order to do this calculation, we can use the explicit expression for the \(\Delta_{ij,kl}\) projection tensor. We find 
+To get the momentum density the reasoning is similar: we start from \(\dd{P^{k}} = \dd{A} c \dd{t} t^{0k}/c\) to get 
+%
+\begin{align}
+\frac{ \dd{P^{k}}}{ \dd{A} \dd{t}} = \frac{c^{4}}{32 \pi G} \expval{ \partial^{0} h_{\alpha \beta } \partial^{ k} h^{\alpha \beta }} 
+= - \frac{c^3}{32 \pi G} \expval{\dot{h}^{TT}_{ij} \partial^{k} h_{ij}^{TT}}
+\,,
+\end{align}
+%
+where we used the fact that \(\partial^{0} = -\partial_0  =-  \pdv*{}{(ct)}\). 
+
+So, the general expressions for the energy and momentum density emitted at a distance will be 
+%
+\begin{align}
+\dv{E}{t} = \frac{c^3}{32 \pi G} r^2 \int 
+\expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}} \dd{\Omega }
+\qquad \text{and} \qquad
+\dv{P^{k}}{t} = - \frac{c^3}{32 \pi G} r^2 
+\int \expval{\dot{h}^{TT}_{ij} \partial^{k} h_{ij}^{TT}} \dd{\Omega }
+\,.
+\end{align}
+
+We want to express this explicitly in terms of the quadrupole moment. We start from the expression of the TT-gauge amplitude in terms of the quadrupole \eqref{eq:traceless-transverse-amplitude-from-quadrupole}: its derivative reads 
+%
+\begin{align}
+\dot{h}_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij, kl} \dot{\ddot{Q}}^{kl} (t - r/c)
+\,.
+\end{align}
+
+Inserting this into the expression we get 
 %
 \begin{subequations}
 \begin{align}
 \dv{E}{t} &= \frac{r^2c^{3}}{32 \pi G} \int \dd{\Omega }
 \expval{
 \frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij,kl} \dot{\ddot{Q}}^{kl}
-\frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij,kl} \dot{\ddot{Q}}^{kl}
+\frac{1}{r} \frac{2G}{c^{4}} \Lambda_{ij,mn} \dot{\ddot{Q}}^{mn}
 }  \\
 &=\frac{G}{8 \pi c^{5}} \int \dd{\Omega }
 \Lambda_{ij, kl} \expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{kl}}
+\marginnote{\(\Lambda \) is idempotent and symmetric under swaps of index pairs: so \(\Lambda_{ij, kl} \Lambda_{ij, mn} = \Lambda_{kl, mn}\).}
 \,,
 \end{align}
 \end{subequations}
 %
-where the only expression depending on the angle is \(\Lambda_{ij, kl} \): then we integrate and find 
-%
-\begin{align}
-\dv{E}{t} = \dots
-\,.
-\end{align}
+where the only expression depending on the angle is \(\Lambda_{ij, kl} \), since the quadrupole only depends on the source, not on an observer's position. 
 
-When we do the same from the momentum density, we get an integral in the form 
+\begin{claim}
+The explicit expression for the projection tensor \(\Lambda_{ij,kl}(\hat{n})\) in terms of the unit vector \(\hat{n}\) is: 
 %
 \begin{align}
-\dv{P^{k}}{t} \propto \int \dd{\Omega } \ddot{Q} \partial^{k} \dot{\ddot{Q}}
+\Lambda_{ij, kl} (\hat{n}) = \delta_{ik} \delta_{jl} - \frac{1}{2} \delta_{ij} \delta_{kl} - n_j n_l \delta_{ik} - n_i n_k \delta_{jl}
++ \frac{1}{2} n_k n_l \delta_{ij} 
++ \frac{1}{2} n_i n_j \delta_{kl}
++ \frac{1}{2} n_i n_j n_k n_l
 \,,
 \end{align}
 %
-but the integrand is odd under spatial inversion, so there is no contribution! This is not true if we go beyond the quadrupole, instead full GR calculations/simulations show that there are kicks at the merger. 
-
-We can calculate the angular distribution in a relatively simple way, since it is easy to go to TT gauge at a point. 
-
-The energy lost by the source at \(t _{\text{ret}} = t - r/c \) is the same as the energy measured in GW. 
-\todo[inline]{Clarify: why are the two expressions calculated at the same time?}
-
-If we model the back-reaction as a force, we have 
+and its integral in \(\dd{\Omega }\) is given by 
 %
 \begin{align}
-\dv{E _{\text{source}}}{t} = 
-\expval{\int  \dd[3]{x} \dv{F_i}{V} \dot{x}_{i}} = 
-= - \frac{G}{5 c^{5}} \expval{\dv{Q_{ij}}{t} \dv[5]{Q_{ij}}{t}}
+\int \dd{\Omega } \Lambda_{ij, kl} = \frac{4 \pi }{30} 
+\qty(11 \delta_{ik} \delta_{jl} - 4 \delta_{ij} \delta_{kl} + \delta_{il} \delta_{jk} )
+\,.
+\end{align}
+\end{claim}
+
+With this result, we can write 
+%
+\begin{align}
+\dv{E}{t} &= \frac{G}{8 \pi c^{5}} \frac{2\pi}{15} \qty(11 \delta_{ik} \delta_{jl} - 4 \delta_{ij} \delta_{kl} + \delta_{il} \delta_{jk} )
+\expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{kl}}
+\,,
+\end{align}
+%
+but since the quadrupole moment derivatives \(\dot{\ddot{Q}}^{ij}\) are both traceless and symmetric the first and third delta combinations are equal (so the factor multiplying them will be 12), while the second combination will vanish. So, we will get 
+%
+\begin{align}
+\dv{E}{t} = \frac{G}{8 \pi c^{5}} \frac{2 \pi }{15} 12 
+\expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{ij}}
+= \frac{G }{5 c^{5}}
+\expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{ij}}
+= \frac{G}{5 c^{5}} 
+\expval{\dot{\ddot{M}}_{ij} \dot{\ddot{M}}_{ij} - \frac{1}{3} \dot{\ddot{M}}_{kk}^{2} }
 \,.
 \end{align}
 
-Equating terms and making some considerations, we get 
+When we do the same from the \textbf{momentum loss}, we get an integral in the form 
+%
+\begin{align}
+\dv{P^{k}}{t} \propto \int \dd{\Omega } \dot{\ddot{Q}}^{TT}_{ij} \partial^{k} \ddot{Q}^{TT}_{ij}
+\,,
+\end{align}
+%
+which is odd under spatial inversion because of the spatial derivative, so there is no contribution!
+
+This is not true if we go beyond the quadrupole approximation: full GR calculations/simulations show that there can be kicks at the merger. 
+
+In linearized gravity, we can calculate the power loss by energy conservation: 
+%
+\begin{align}
+\dv{E _{\text{source}}}{t} = - \dv{E _{\text{far-field}}}{t} = - \frac{G}{5c^{5}} \expval{\dot{\ddot{Q}}^{ij} \dot{\ddot{Q}}^{ij}}
+\,,
+\end{align}
+%
+although this is not exact moment-by-moment in full GR, since there some of the emission can be delayed. 
+In our approximation, the two sides of the equation should be calculated at the same retarded time: the power loss by the source at \(t - r/c\) will be the power detected a distance \(r\) away at a time \(t\). 
+
+\subsection{Angular momentum loss from GW}
+
+\subsubsection{Effective back-action force}
+
+% We can calculate the angular distribution in a relatively simple way, since it is easy to go to TT gauge at a point. 
+
+We can model the back-action from GW as a force applied on the source \cite[sec.\ 3.3.4]{maggioreGravitationalWavesVolume2007}, whose power is the average of \(\vec{F} \cdot \vec{v}\) as in classical mechanics; since we consider a continuous medium we have:
+%
+\begin{align}
+- \frac{G}{5 c^{5}} \expval{\dv[3]{Q_{ij}}{t} \dv[3]{Q_{ij}}{t}}
+= \dv{E _{\text{source}}}{t} = 
+\expval{\int  \dd[3]{x} \dv{F_i}{V} \dot{x}_{i}} 
+\,.
+\end{align}
+
+We can integrate by parts twice to write the two third derivatives as 
+%
+\begin{align}
+\expval{\dv[3]{Q_{ij}}{t} \dv[3]{Q_{ij}}{t}}
+= \expval{\dv{Q_{ij}}{t} \dv[5]{Q_{ij}}{t}}
+\,.
+\end{align}
+
+Also, the 0th component of the conservation of the stress-energy tensor \(\partial_{\mu } T^{0 \mu }\) for a classical source reads \(\partial_{t} \rho + \partial_{i} \qty(\rho v_i) = 0 \). Using this fact, we can rewrite the first derivative of \(Q_{ij}\) as 
+%
+\begin{align}
+\dv{Q_{ij}}{t} &= \dv{}{t} \int  \dd[3]{x} 
+\rho \bigg( x_{i} x_{j} - \underbrace{\frac{1}{3} r^2 \delta_{ij}}_{\mathclap{\text{contracted with traceless \(\dot{\ddot{\ddot{Q}}}_{ij}\)}}}\bigg) 
+= - \int \dd[3]{x} \partial_{k} \qty(\rho v_k) 
+ x_{i} x_{j}  \\
+&= + \int \dd[3]{x} \rho v_k \partial_{k} \qty(x_i x_j) = 
+2 \int \dd[3]{x} \rho v_{(i } x_{j)}
+\,.
+\end{align}
+%
+\todo[inline]{Missing symmetrization in the slides! Although it is implicit when contracting with \(Q\)\dots}
+
+Then our equation reads: 
+%
+\begin{align}
+\expval{\int \dd[3]{x} \dv{F_i}{V} \dot{x}_{i}} = - \frac{2G}{5c^{5}}\expval{\int \dd[3]{x} \dv[5]{Q_{ij}}{t} \rho \dot{x}_{i} x_{j}}
+\,,
+\end{align}
+%
+so we can identify the terms to get
 %
 \begin{align}
 \dv{F_{i}}{V} = - \frac{2G}{5c^{5}} \dv[5]{Q_{ij}}{t} \rho (t, \vec{x}) x_{j}
 \,,
 \end{align}
 %
-so finally 
+so finally, since the only position-dependent terms on the right-hand side are the density and the position we get that the effective force is: 
 %
+\boxalign{
 \begin{align}
 F_{i} = - \frac{2G}{5c^{5}} \dv[5]{Q_{ij}}{t} m \overline{x}_{j}
 \,,
-\end{align}
+\end{align}}
 %
 where \(\overline{x}_{j} \) is the center-of-mass coordinate. 
 
-Then, we can calculate the torque explicitly: we get 
+\subsubsection{Angular momentum}
+
+With this effective force we can calculate the torque explicitly: in general it is given by \(T_i = \epsilon_{ijk} x_j F_k\), which we can make into a local relation by substituting \(T_i\) and \(F_k\) with their densities. With this we can write 
 %
 \begin{align}
-T_{i} = - \frac{2G}{5c^{5}} \epsilon_{ijk} Q_{il} \dv[5]{Q_{kl}}{t}
+\dv{T_i}{V} = \epsilon_{ijk} x_j  \dv{F_k}{V} = -
+\epsilon_{ijk} x_j  \frac{2G}{5 c^{5}} \dv[5]{Q_{kl}}{t} \rho (t, \vec{x}) x_l
 \,,
 \end{align}
 %
-so if we take the average we get 
+so the total torque is given by
+%
+\begin{align}
+T_{i} &= - \frac{2G}{5 c^{5}} \epsilon_{ijk} \dv[5]{Q_{kl}}{t}
+\int \dd[3]{x} \rho (t, \vec{x}) x_l x_j \underbrace{- \frac{1}{3} r^2 \delta_{lj}}_{\mathclap{\text{does not contribute, since \(Q\) is traceless}}} \\
+&= - \frac{2G}{5 c^{5}} \epsilon_{ijk} \dv[5]{Q_{kl}}{t} Q_{lj} 
+\,,
+\end{align}
+%
+so if we take the average, substituting the derivative of the angular momentum for the torque and integrating by parts twice to get a second and a third derivative, we find:
 %
 \begin{align}
 \expval{\dv{L_{i}}{t}} = -\frac{2G}{5c^{5}} \epsilon_{ijk} 
-\expval{\dot{\ddot{Q}}_{jl} \dot{\ddot{Q}}_{kl}}
+\expval{\ddot{Q}_{jl} \dot{\ddot{Q}}_{kl}}
 \,.
 \end{align}
 

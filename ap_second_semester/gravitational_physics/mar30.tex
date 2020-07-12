@@ -10,7 +10,7 @@
 
 % We can precisely map the effect of the GW in time, by sampling with a frequency which is much higher than the one of the GW.
 
-So, let us do this formally: we consider \(g = \overline{g} + h\) where \(\overline{g}\) only contains low frequency components while \(h\) contains high frequency ones, we expand the Ricci tensor to second order in \(h_{\mu \nu }\) and rewrite the Einstein equations as
+So, let us do this formally: we consider \(g = \overline{g} + h\) where \(\overline{g}\) only contains low frequency components while \(h\) contains high frequency ones, we expand the Ricci tensor in powers of \(h_{\mu \nu }\) up to second order and rewrite the Einstein equations as 
 %
 \begin{align}
 \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu }T)
@@ -20,18 +20,29 @@ So, let us do this formally: we consider \(g = \overline{g} + h\) where \(\overl
 \,,
 \end{align}
 %
-where the second order in \(h_{\mu \nu }\) term, \(R^{(2)}_{\mu \nu }\), has both high and low frequency components. 
+where the second order in \(h_{\mu \nu }\) term, \(R^{(2)}_{\mu \nu }\), has both high and low frequency components, while the term \(\overline{R}_{\mu \nu }\) is exclusively low frequency and \(R_{\mu \nu }^{(1)}\) is exclusively high frequency.
 
-This is because, when we have a term like 
+Let us give a heuristic argument for this statement: the gravitational waves contained in \(h_{\mu \nu } \) will have several high frequencies; let us call two of them \(\omega_1  \) and \(\omega_2 \), so as we compute a term which is quadratic in \(h\) we will get
 %
 \begin{align}
-\qty(\sin(\omega_{1} t)\sin(\omega_2 t))^2
+\qty(\sin(\omega_{1} t) + \sin(\omega_2 t))^2 
+= \\ =
+\frac{1}{2} \left(-\cos \left(2 t \omega _1\right)-\cos \left(2 t \omega _2\right)-2 \cos \left(t \omega _1+t \omega _2\right)+2 \cos \left(t \omega _1-t \omega _2\right)+2\right)
 \,,
 \end{align}
 %
-by the prostapheresis formulas we will gets terms like \(\omega_1 + \omega 2 \) and \(\omega_1 - \omega_2 \), one of which is high frequency and the other is low frequency, since we are considering a high-frequency wavepacket.
+where we used the prostapheresis formulas: we get terms oscillating with \(\omega_1 + \omega_2 \) as well as \(\omega_1 - \omega_2 \), one of which is high frequency while the other is low frequency, since we are considering a high-frequency wavepacket.
 
-Recall, we expand in two parameters: \(h\) and \(\lambda / L_B\). Then, we have 
+So, what we want to do is to separate the field equation into its low and high frequency parts: 
+%
+\begin{align} \label{eq:low-frequency-ricci-tensor-contribution}
+\overline{R}_{\mu \nu } &= - \qty(R_{\mu \nu }^{(2)})^{\text{low}} + \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T)^{\text{low}} \\
+R_{\mu \nu }^{(1)} &= - \qty(R_{\mu \nu }^{(2)})^{\text{high}} + \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T)^{\text{high}} 
+\,.
+\end{align}
+
+How might we define these formally?
+Recall, we expand in two parameters: \(h\) and \(\lambda / L_B \sim  f_B / f\). Then, in terms of orders of magnitude we have\footnote{The fact that the derivatives correspond to divisions by lengths is justified since we are looking at harmonic expansions, the metric will be a sum of sinusoids around a characteristic frequency.} 
 %
 \begin{align}
 \overline{R}_{\mu \nu } \sim \partial^2 \overline{g}_{\mu \nu } \sim \frac{1}{L_B^2} 
@@ -41,35 +52,41 @@ Recall, we expand in two parameters: \(h\) and \(\lambda / L_B\). Then, we have
 while 
 %
 \begin{align}
-\qty[R^{(2)}_{\mu \nu }]^{\text{low frequency}} \sim \qty(\partial h)^2
+\qty[R^{(2)}_{\mu \nu }]^{\text{low}} \sim \qty(\partial h)^2
  \sim \qty(\frac{h}{\lambda })^2
 \,.
 \end{align}
 
-See Maggiore, page 31 for more details. 
-So, the EFE low-frequency components are 
+See Maggiore \cite[pag.\ 31]{maggioreGravitationalWavesVolume2007} for more details. 
+So, inserting these order-of-magnitude estimates inside equation \eqref{eq:low-frequency-ricci-tensor-contribution} we get
 %
 \begin{align}
-\overline{R}_{\mu \nu } = - \qty[R^{(2)}_{\mu \nu }]^{\text{low freq}} 
-+ \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T)^{\text{low freq}}
-\,,
+\frac{1}{L_B^2} \sim \frac{h^2}{\lambda^2} + \qty(T_{\mu \nu } \text{ contribution})
+\,.
 \end{align}
-%
-so we either have \(T_{\mu \nu }=0\), in which case
+
+If we are in a vacuum (\(T_{\mu \nu }=0\)) then
 %
 \begin{align}
 \frac{1}{L_B^2} \sim \qty(\frac{h}{\lambda })^2
+\implies h \sim \frac{\lambda }{L_B}
 \,,
 \end{align}
 %
-or 
+while if the stress-energy tensor is nonvanishing we get
 %
 \begin{align}
-\frac{1}{L_B^2} \sim \qty(\frac{h}{\lambda })^2 + T_{\mu \nu } \gg \qty(\frac{h}{\lambda })^2
+\frac{1}{L_B^2} \sim \qty(\frac{h}{\lambda })^2 + (T_{\mu \nu } \text{ contribution}) \gg \qty(\frac{h}{\lambda })^2
 \,,
 \end{align}
 %
-so we will have \(h \ll \lambda / L_B\): so we can take averages on a scale \(\ell\) such that \(\lambda_{GW} \ll \ell \ll L_B\): then we wil find 
+which means \(h \ll \lambda / L_B\). This shows that \textbf{the linearized expansion cannot be extended beyond linear order} starting from a flat background: if we start from a flat metric then \(1/L_B = 0\), so any \(h > 0\) violates the condition \(h \lesssim \lambda / L_B\).
+We can also see that the notion of a gravitational wave only makes sense as long as \(h\) is small: if \(h\) were close to 1, then we would have \(\lambda \sim L_B\), but our only way to distinguish GW from background is through their wavelength! 
+
+\todo[inline]{Unclear what the problem is: we cannot use the flat metric, but the real world's metric is not flat anyways! Why can we not go to second order with a curved background?}
+
+The solution to this problem is to take averages on a scale \(\ell\) such that \(\lambda_{GW} \ll \ell \ll L_B\), so that the gravitational wave is fully averaged out, while the background metric is approximately constant across the integration volume.
+This low-frequency projection reads:
 %
 \begin{align}
 \overline{R}_{\mu \nu } =
@@ -77,14 +94,15 @@ so we will have \(h \ll \lambda / L_B\): so we can take averages on a scale \(\e
 \,.
 \end{align}
 
-After some math (see Maggiore): we can define a stress tensor of the GW, which looks like 
+After some math (see Maggiore \cite[eqs.\ 1.122-1.123]{maggioreGravitationalWavesVolume2007}) we can define a stress tensor of the GW, which looks like 
 %
 \begin{align}
 t_{\mu \nu } = - \frac{c^{4}}{8 \pi G} \expval{R^{(2)}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu } R^{(2)}}
 \,,
 \end{align}
 %
-and a ``smoothed out'' SEMT of matter: 
+where the Ricci scalar is computed using the smoothed metric: \(R^{(2)} = \overline{g}^{\mu \nu } R_{\mu \nu }^{(2)}\). 
+Also, we define a  ``smoothed out'' stress-energy tensor of matter: 
 %
 \begin{align}
 \expval{T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T}
@@ -93,27 +111,32 @@ and a ``smoothed out'' SEMT of matter:
 \,,
 \end{align}
 %
-soo the equation which will hold is 
+so the equation which will hold is the equivalence of the smoothed Einstein tensor with the sum of the smoothed and GW stress-energy tensors:
 %
+\boxalign{
 \begin{align}
 \overline{R}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu } \overline{R} = 
 \frac{8 \pi G}{c^{4}} \qty(\overline{T}_{\mu \nu } + t_{\mu \nu })
 \,.
-\end{align}
+\end{align}}
 
-Do note that if we work with these, the tensor which is conserved is \(\overline{T}_{\mu \nu } + t_{\mu \nu }\): 
+Do note that if we work with these, the stress-energy tensor which is conserved is \(\overline{T}_{\mu \nu } + t_{\mu \nu }\): if we take the divergence of the equation we get, by the Bianchi identities,
 %
 \begin{align}
 \nabla^{\mu } \qty(\overline{R}_{\mu \nu } - \frac{1}{2} \overline{g}_{\mu \nu }\overline{R}) = 0 = \nabla^{\mu } \qty(\overline{T}_{\mu \nu } + t_{\mu \nu })
 \,.
 \end{align}
 
-How does this look like far from the source? there, we can approximate \(\overline{g} \approx \eta_{\mu \nu }\) and \(\nabla_{\mu } \approx \partial_{\mu }\). 
+This means that gravitational waves and matter can exchange energy and momentum. If the stress-energy tensor is slowly-varying enough, as often happens practically, we can just use \(\overline{T}^{\mu \nu } \approx T^{\mu \nu }\).
 
-This \(t_{\mu \nu }\) only has 2 physical degrees of freedom: how do we gauge the others away? The Lorentz gauge plus \(h=0\) eliminates \(5\) degrees of freedom. 
+How does this look like far from the source?
+There, we can approximate \(\overline{g} \approx \eta_{\mu \nu }\) and \(\nabla_{\mu } \approx \partial_{\mu }\). 
+This \(t_{\mu \nu }\) only has 2 physical degrees of freedom (those of the gravitational wave): we need to gauge the others away.
+
+The Lorentz gauge plus \(h=0\) eliminates \(5\) degrees of freedom. 
 
 When we have terms like \(h \partial \partial h\), we can integrate by parts on a sufficiently large volume to turn them into \(\partial(h \partial ) - \partial h \partial h\). 
-Using the facts \(\partial^{\mu }h_{\mu \nu } = h = \square h_{\mu \nu } = 0\) we can simplify several terms: in the end we get 
+Using the facts \(\partial^{\mu }h_{\mu \nu } = h = \square h_{\mu \nu } = 0\) we can also simplify several terms: in the end we get 
 %
 \boxalign{
 \begin{align}
@@ -121,25 +144,46 @@ t_{\mu \nu } = \frac{c^{4}}{32 \pi G} \expval{\partial_{\mu } h_{\alpha \beta } 
 \,.
 \end{align}}
 
-This is actually coordinate-independent, it can be computed in any frame we like. In the TT-gauge, we will have 
+This is invariant under the residual gauge transformations, and coordinate independent: we can compute it in any frame we like.
+
+\subsubsection{Explicit TT-gauge expression}
+
+Let us compute this in the simplest case: a gravitational wave travelling along the \(z\) axis, described in the TT-gauge.
+The 00 component will read: 
 %
 \begin{align}
-t^{00 }= \frac{c^2}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+t^{00 } = \frac{c^{4}}{32 \pi G} \expval{\partial^{0} h_{\alpha \beta } \partial^{0} h^{\alpha \beta }} = \frac{c^2}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+\,,
+\end{align}
+%
+since: 
+%
+\begin{align}
+\partial^{0} h_{\alpha \beta } \partial^{0} h^{\alpha \beta } =
+\frac{\dot{h}^{TT}_{ij}}{c} \frac{\dot{h}^{TT}_{ij}}{c} 
+= \frac{1}{c^2}\sum _{i, j =1}^{2} \qty(\dot{h}_{ij}^{TT})^2 
+= \frac{2}{c^2} \qty(\dot{h}_{+}^2 + \dot{h}_{ \times }^2)
 \,.
 \end{align}
 
-Also, we will have \(t^{01} = t^{02} =0 \) by symmetry, and also \(t^{03}= t^{00}\). 
-
-Then, if we are far enough away from the source we can compute 
+As for the other components, we will have \(t^{01} = t^{02} =0 \) by symmetry (they would represent momentum transfer in a direction orthogonal to the propagation, also formally \(\partial_{1,2} h_{ij}^{TT} = 0\) since it only depends on \(t\) and \(z\)), and also \(t^{03}= t^{00}\), since the perturbation is a function of \((t - z/c)\): so, we have 
 %
 \begin{align}
-\dd{E} &= \dd{A} c \dd{t} \frac{c^2}{32 \pi G} \expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}}
-\frac{ \dd{E}}{ \dd{t} \dd{A}} = \frac{c^3}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+\partial_{3} h_{ij}^{TT} = - \partial_{0} h_{ij}^{TT} = + \partial^{0} h_{ij}^{TT}
 \,.
 \end{align}
+
+\subsection{Energy and momentum flux far from the source}
+
+If we are far enough away from the source, we can compute the energy crossing a surface \(\dd{A}\) in a time \(\dd{t}\) as the spacetime density contained in a volume \(\dd{A} c \dd{t}\): if we are considering a specific direction (say, the flux coming the way of the Earth) then we can say that the wave's propagation is aligned with the \(z\) axis and so we can write 
 %
-so, in order to get the total power \(\dv*{E}{t}\) we can integrate this expression in \(R^2 \dd{\Omega }\). 
-In order to compute the momentum carried away, we can do a similar thing, and get the momentum flux. 
+\begin{align}
+\dd{E} &= \dd{A} c \dd{t} \frac{c^2}{32 \pi G} \expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}} \\
+\frac{ \dd{E}}{ \dd{t} \dd{A}} &= \frac{c^3}{16 \pi G} \expval{\dot{h}^2_{+} + \dot{h}^2_{ \times }}
+\,.
+\end{align}
+
+In order to get the total power \(\dv*{E}{t}\) which is emitted by the source we can integrate this expression in \(R^2 \dd{\Omega }\); however we will need to use the general expression \(\expval{\dot{h}^{TT}_{ij}\dot{h}^{TT}_{ij}}\) since we cannot have alignment with the \(z\) axis across the whole sphere. 
 
 In order to do this calculation, we can use the explicit expression for the \(\Delta_{ij,kl}\) projection tensor. We find 
 %

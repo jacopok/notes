@@ -1,12 +1,100 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{Rømer delay (observer)}
+
 \marginpar{Monday\\ 2020-4-6, \\ compiled \\ \today}
 
-We are discussing the Hulse-Taylor pulsar, which is a very precise clock.
-There are many effects by which the time-of-arrival is shifted, if we take them all out we can get the effect from the source. 
+% We are discussing the Hulse-Taylor pulsar, which is a very precise clock.
+% There are many effects by which the time-of-arrival is shifted, if we take them all out we can get the effect from the source. 
 
-We will have the Shapiro delay from the Sun, the Einstein delay at the receiver from the curvature of the spacetime around the Earth, which is given by 
+This effect is denoted as \(\Delta_{R, {\odot}}\), it is due to the fact that if Earth is on the far side of the Sun the radio signal takes longer to get to it than it would if it were on the near side to the pulsar. The simplest way to model it is  
+%
+\begin{align}
+\Delta_{R, {\odot}} = t_0 \cos(\Omega t - \lambda ) \cos(\beta )
+\,,
+\end{align}
+%
+where \(t_0 = R / c\), \(R\) being the radius of the Earth's orbit (here taken to be circular), while \(\lambda \) and \(\beta \) define the position of the source in the orbital plane. 
+
+Proper modelling would require us to also take into account the ellipticity of the orbit and the Earth's rotation. 
+In general, the effect can be written as 
+%
+\begin{align}
+\Delta_{R, {\odot}} = - \frac{\vec{r} _{\text{ob}} \cdot \hat{n}}{c}
+\,,
+\end{align}
+%
+where \(\hat{n}\) denotes the direction of the source in barycentric coordinates for the solar system, while \(\vec{r} _{\text{ob}}\) is the vector connecting the barycenter of the Solar System to the observer, which can be decomposed as a sum of vectors to the Sun's center, Earth's center and finally to the observer:
+%
+\begin{align}
+\vec{r} _{\text{ob}} = \vec{r}_{\text{ob}, \oplus} + \vec{r}_{\oplus, \odot} + \vec{r}_{\odot, \text{barycenter}}
+\,.
+\end{align}
+
+Modeling this allows us get information about \(\lambda \) and \(\beta \), which define \(\hat{n}\). 
+The \textbf{effect size} is dominated by the Earth's motion around the Sun, and it has a magnitude of about \(\pm \SI{e3}{s}\) in the span of six months.
+
+\subsubsection{Shapiro delay (observer)}
+
+% We will have the Shapiro delay from the Sun, the Einstein delay at the receiver from the curvature of the spacetime around the Earth, which is given by 
+
+This effect is due to the curvature introduced by the gravitational potential of the Sun. 
+The Schwarzschild metric in Cartesian coordinates reads: 
+%
+\begin{align}
+\dd{s^2} &= - \qty(1 + 2 \phi (x)) c^2 \dd{t^2} + \frac{1}{\qty(1 + 2 \phi (x))} \dd{\vec{x}}^2  \\
+&\approx - \qty(1 + 2 \phi (x)) c^2 \dd{t^2} + \qty(1 - 2 \phi (x)) \dd{\vec{x}}^2
+\,,
+\end{align}
+%
+where \(\phi (x) = -GM / \abs{x}c^2 \ll 1\) is the gravitational potential in the weak-field approximation.
+Photons travel along null geodesics, so they have \(\dd{s}^2 = 0\): this means that 
+%
+\begin{align}
+c\dd{t} = \pm\sqrt{\frac{1 - 2 \phi }{1 + 2 \phi }} \abs{\dd{x}}
+\approx \pm \qty(1 - 2 \phi ) \abs{ \dd{x}} 
+\,,
+\end{align}
+%
+so we can compute the Shapiro delay as the correction to the total travel time:
+%
+\begin{align}
+c \qty(t _{\text{obs}} - t _{\text{emit}}) 
+&= \int_{r _{\text{obs}}}^{t _{\text{emit}}} \abs{ \dd{x}} \abs{1 - 2 \phi (r)} 
+\,,
+\end{align}
+%
+which automatically incorporates the Rømer delay, since we find 
+%
+\begin{align}
+t _{\text{obs}} - t _{\text{emit}} =  \underbrace{\frac{\abs{\vec{r} _{\text{emit}} - \vec{r} _{\text{bary}}}}{c}}_{\text{simple propagation}} + \underbrace{\frac{\vec{r} _{\text{obs}} \cdot \hat{n}}{c}}_{\text{Rømer delay}}
+\underbrace{- \frac{2}{c} \int_{r _{\text{obs}}}^{t _{\text{emit}}} \abs{ \dd{x}} \phi (x)}_{\text{Shapiro delay: } \Delta_{S, \odot}}
+\,.
+\end{align}
+%
+\todo[inline]{The sign of the Rømer effect is different here!}
+
+Let us explicitly compute \(\Delta_{S, \odot}\): we consider a reference frame in which the Sun is at the center, the Earth is on the \(x\) axis at a distance \(r_{\oplus \odot}\), while the pulsar is at a distance \(\rho \) from the Earth and at an angle \(\theta \) with respect to the Sun-Earth axis: so, the Sun-pulsar distance \(r\) is given by 
+%
+\begin{align}
+r^2 = \qty(r_{\oplus \odot} + \rho \cos \theta )^2 + \qty(\rho \sin \theta )^2
+= r_{\oplus \odot }^2 \qty(u^2 + 2 u \cos \theta + 1)
+\marginnote{Used \(\cos^2\theta+ \sin^2\theta = 1\).}
+\,,
+\end{align}
+%
+where \(u = \rho / r_{\oplus \odot}\).
+Using these coordinates, we find 
+%
+\begin{align}
+\Delta_{S, \odot} = - \frac{2}{c} \int_{r _{\text{obs}}}^{t _{\text{emit}}} \abs{ \dd{x}} \phi (x)
+= \frac{2}{c} \int_{0}^{d} \dd{\rho } \frac{G M_{\odot}}{ c^2 r}
+\,,
+\end{align}
+%
+
+
 %
 \begin{align}
 \dv{\tau }{t} \approx 1 + \phi \qty(x _{\text{obs}}) - \frac{v^2 _{\text{obs}}}{2c^2}

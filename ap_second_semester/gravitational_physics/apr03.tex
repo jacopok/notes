@@ -197,30 +197,81 @@ GW emission has the effect of circularizing the orbit rapidly --- by the time th
 
 \section{Hulse-Taylor binaries}
 
+The detection of gravitational waves in 2015 \cite[]{ligoscientificcollaborationandvirgocollaborationObservationGravitationalWaves2016} was the first \emph{direct} one, but the existence of gravitational waves was established before that through indirect observations. 
+By what we have shown in the last section, GW emission causes the decay of the orbit of a binary. 
 
-It is debatable whether the observation of this was the first observation of gravitational waves. 
+
+Weisberg and Taylor measured this effect \cite[fig.\ 6 especially]{taylorNewTestGeneral1982} on a binary pulsar discovered by Hulse and Taylor in the seventies \cite[]{hulseDiscoveryPulsarBinary1975}.
+It is debatable whether this was the first observation of gravitational waves, but anyway it is an interesting case study for us.
+
+In this section we will explore the nature of pulsar radioastronomy, the sources of delays in the signal and the compatibility of the period decay result with theoretical GR predictions. 
 
 \subsection{Pulsars}
 
+A \textbf{neutron star} is a kind of stellar remnant which is very dense, although not quite dense enough to form a black hole. 
+It has the density of nuclear matter, \(\rho \sim \SI{e17}{kg/m^3}\), since in it electronic repulsion between atoms has been overcome.
+Its mass is generally of the order of the mass of the Sun, so its radius is of the order of \SI{10}{km} --- on the scale of the Schwarzschild radius, but with a bit of a margin.
 
-This is a binary system in which one star is a pulsar. 
+Neutron stars generally have very high angular velocities, which follows from conservation of angular momentum at the moment of collapse. 
+Their moments of inertia, \(I = (2/5) M R^2 = (8 \pi /15) \rho R^{5} \sim \SI{e38}{kg m^2} \), are very high, so their angular velocities are very stable.
 
-What is a pulsar? It's a kind of neutron star.
-Not a moral judgement, but you are completely empty.
+They also generally have very high magnetic field, on the order of \(B \sim \SI{e8}{T}\); the magnetic poles are often misaligned with the rotation axis of the NS, causing the magnetic field lines to spin with the star.
 
-A pulsar has a large magnetic field; at a distance \(r_c = c/\omega \) the field lines cannot close so a radio beam escapes. 
-This provides a clock!
+% This is a binary system in which one star is a pulsar. 
 
-``Taking the pulse'' of a pulsar: they usually have a certain well-defined shape, if we average over a few periods. 
+% What is a pulsar? It's a kind of neutron star.
+% Not a moral judgement, but you are completely empty.
 
-The procedure is: take signal, FFT to get the fundamental, average over periods. 
+At a distance \(r_c = c/\omega \) the field lines cannot close since they would need to move faster than \(c\), so a radio beam escapes. 
+% This provides a clock!
+This beam sweeps around with the same frequency as the pulsar, and since the period is very stable it provides a stable clock. 
+
+\subsubsection{Pulsar signal measurement}
+
+% ``Taking the pulse'' of a pulsar: they usually have a certain well-defined shape, if we average over a few periods. 
+
+Generally the radio signals coming from pulsars arrive buried in noise. 
+However, we can still measure the signal, since it is characterized by a precise periodicity. 
+We take a \emph{Fourier transform} of the radio signal and identify a peak corresponding to the fundamental frequency of the pulsar's emission. 
+Then, we average the signal across periods corresponding to this frequency. 
+
+The external noise will then average out, while the signal builds with each additional period.
+
+% The procedure is: take signal, FFT to get the fundamental, average over periods. 
 
 The period can then be measured precisely, and we can observe its variations. 
 
-Some relevant frequencies: the radio waves are on the order of \SI{e8}{Hz}, the pulsar's frequency is of the order \SI{10}{Hz}, the frequency of the binary period is \SI{e-5}{Hz}, the motion of the Earth around the Sun at \SI{e-8}{Hz} is also relevant. 
+The pulsar which was discovered by Hulse and Taylor is called PSR 1913+16 \cite[]{hulseDiscoveryPulsarBinary1975}: it was discovered in 1974; its period (corrected for the effects which we will now mention) is \(T = \SI{59.030(1)}{ms}\).
 
-Since the pulsar frequency is very small, we can still average many pulses and still be measuring at what is basically ``a single point''. 
+\todo[inline]{The slides say that the \SI{20}{\micro s} measurement error is random and does not accumulate: we can identify the pulse number even after years of not observing the pulsar.
+However, the paper reports a \SI{1}{\micro s} error: where is the \SI{20}{\micro s} figure coming from? Is it referring to the daily variations?}
 
+We can identify fluctuations in the radio signal  period of around \SI{80}{\micro s} daily: this is very large compared to what is typically observed for pulsars, variations around \SI{10}{\micro s} \emph{yearly}.
+This atypical behavior was understood by H\&T to correspond to a \textbf{binary} pulsar, where the mass of the pulsar is \(M_p = \num{1.4414} M_{\odot}\) (around the Chandrasekhar mass!), while the mass of the companion is  \(M_c = \num{1.3867} M_{\odot}\). 
+As for the orbital parameters, the period is \(T \approx \SI{.323}{d}\), the eccentricity is \(e \approx \num{.6171338}\).
 
+\todo[inline]{These are modern measurements, right? the paper has a much larger uncertainty on \(e\).}
+
+These parameters are gathered by assuming that in the pulsar's frame the emission is stable, and that the delays come from effects pertaining, for example, to the orbit.
+
+\subsection{All the delays}
+
+\subsubsection{Frequencies' timescales and effect summary} 
+
+Let us discuss the magnitudes of the frequencies at hand: the radio waves are on the order of \(f _{\text{radio}}\sim\SI{e8}{Hz}\), the pulsar's frequency is of the order of \(f _{\text{pulsar}}\sim\SI{10}{Hz}\), the frequency of the binary period is \(f _{\text{binary}} \sim\SI{e-5}{Hz}\), the motion of the Earth around the Sun at \(f _{\text{Earth}} \sim \SI{e-8}{Hz}\) is also relevant. 
+
+It is advantageous for us that there are many orders of magnitude between these: since the pulsar frequency is very small, we can still average many pulses and still be measuring at what is basically ``a single point'' in the orbit of the binary.
+
+The effects which we will account for are: 
+\begin{enumerate}
+    \item Rømer delay (observer): due to the position of the Earth with respect to the solar system barycenter;
+    \item Einstein delay (observer): gravitational and Doppler shift at the observer due to the Earth's motion and gravitational field;
+    \item Shapiro delay (observer): delay due to propagation in the Sun's gravitational field;
+    \item propagation in the interstellar medium;
+    \item Rømer delay and aberration (emitter): position of the source with respect to the barycenter of the binary, must account for a relativistic orbit;
+    \item Einstein delay (emitter): gravitational and Doppler shift due to the pulsar's motion and gravitational field;
+    \item Shapiro delay (emitter): delay due to the propagation in the companion's gravitational field;
+    \item \textbf{secular changes}: reduction of the period due to GW emission!
+\end{enumerate}
 
 \end{document}

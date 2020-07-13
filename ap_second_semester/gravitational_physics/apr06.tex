@@ -69,7 +69,7 @@ which automatically incorporates the Rømer delay, since we find
 %
 \begin{align}
 t _{\text{obs}} - t _{\text{emit}} =  \underbrace{\frac{\abs{\vec{r} _{\text{emit}} - \vec{r} _{\text{bary}}}}{c}}_{\text{simple propagation}} + \underbrace{\frac{\vec{r} _{\text{obs}} \cdot \hat{n}}{c}}_{\text{Rømer delay}}
-\underbrace{- \frac{2}{c} \int_{r _{\text{obs}}}^{t _{\text{emit}}} \abs{ \dd{x}} \phi (x)}_{\text{Shapiro delay: } \Delta_{S, \odot}}
+\underbrace{- \frac{2}{c} \int_{r _{\text{obs}}}^{r _{\text{emit}}} \abs{ \dd{x}} \phi (x)}_{\text{Shapiro delay: } \Delta_{S, \odot}}
 \,.
 \end{align}
 %
@@ -85,15 +85,94 @@ r^2 = \qty(r_{\oplus \odot} + \rho \cos \theta )^2 + \qty(\rho \sin \theta )^2
 \end{align}
 %
 where \(u = \rho / r_{\oplus \odot}\).
-Using these coordinates, we find 
+The delay is given by
 %
 \begin{align}
-\Delta_{S, \odot} = - \frac{2}{c} \int_{r _{\text{obs}}}^{t _{\text{emit}}} \abs{ \dd{x}} \phi (x)
-= \frac{2}{c} \int_{0}^{d} \dd{\rho } \frac{G M_{\odot}}{ c^2 r}
+\Delta_{S, \odot} &= - \frac{2}{c} \int_{r _{\text{obs}}}^{r _{\text{emit}}} \abs{ \dd{x}} \phi (x)
+= \frac{2}{c} \int_{0}^{d} \dd{\rho } \frac{G M_{\odot}}{ c^2 r}  \\
+&= \frac{2 G M_{\odot}}{c^3} \int_{0}^{d / r_{\oplus \odot} }
+\dd{u} \frac{r_{\oplus \odot}}{r}   \\
+&= \frac{R_{S, \odot}}{c} \int_{0}^{d / r_{\oplus \odot} }
+\dd{u} \frac{1}{\sqrt{u^2 + 2 u \cos \theta  +1}}
 \,,
 \end{align}
 %
+where \(R_{S, \odot}\) is the Sun's Schwarzschild radius, while \(d\) is the distance from the Earth to the pulsar.
+We used the fact that \(\abs{ \dd{x}} = \dd{ \rho }\): the differential \(\abs{\dd{x}}\) represents the \emph{coordinate distance} along the path from the Earth to the pulsar, which is linearly parametrized by \(\rho \); \(r\) on the other hand can be used to parametrize the curve but that would be a \emph{nonlinear} parametrization, not useful for our purposes.
 
+We need to estimate this integral; it is a divergent one but the divergence is only logarithmic. It is reasonable to estimate it assuming \(d/r_{\oplus \odot} \gg 1\) --- realistically this is of the order of \num{e9}, since the distance to the pulsar is of the order \SI{5}{kpc} \cite[pag.\ L53]{hulseDiscoveryPulsarBinary1975}.
+
+
+So, we add and subtract \(1/ \sqrt{u^2 + 1}\) in the integrand: then we find 
+%
+\begin{align}
+\Delta_{S, \odot} = \frac{R_{S, \odot}}{c} \qty[ 
+    \int_{0}^{d/r_{\oplus \odot}} \dd{u} \frac{1}{\sqrt{u^2+ 1}}
+    +
+    \int_{0}^{d/r_{\oplus \odot}} \dd{u} 
+    \frac{1}{\sqrt{u^2 + 2 u \cos \theta +1}}
+    -\frac{1}{\sqrt{u^2+ 1}}
+]
+\,,
+\end{align}
+%
+where the first integral is a hyperbolic arcsine, which can be estimated by \(\log (2 d/ r_{\oplus \odot})\); the second term can be estimated with the following 
+\begin{claim}
+\begin{align}
+\int_{0}^{ \infty } \dd{u} \qty[
+\frac{1}{\sqrt{u^2 + 2 u \cos \theta +1}}
+-\frac{1}{\sqrt{u^2+ 1}}]
+= - \log \qty(1 + \cos \theta )
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Mathematica says so.
+\end{proof}
+
+Then finally our estimate is 
+%
+\boxalign{
+\begin{align}
+\Delta_{S, \odot} = \frac{R_{S, \odot}}{c} \qty(\log ( \frac{2d}{r_{\oplus \odot}}) - \log (1 + \cos \theta ) )
+\,,
+\end{align}}
+%
+where \(\theta \) varies seasonally, as the Earth moves around the Sun, while \(d\) is basically constant. 
+
+It might seem that this can diverge as \(\theta \to \pi \), but this is not actually the case: that would correspond to the radiation coming through the center of the Sun, which it cannot. Actually, there is a range of values of \(\theta \) around \(\pi \) for which the radiation cannot reach us since the Sun is in the way. The maximum value of \(\theta \) that can be reached, as the radiation is tangent to the surface of the Sun, is called the grazing angle \(\theta_{g}\). 
+This angle can be estimated by \(\theta_{g} \approx \pi - R_{\odot} / r_{\oplus \odot}\). 
+
+The delay is maximal when the radiation grazes the Sun, and minimal when it is coming from the opposite direction as the Sun: \(\theta = 0\).
+So, the \textbf{maximum size of the effect} is given by the difference 
+%
+\begin{align}
+\Delta_{S, \odot} (\theta = \theta_{g}) - 
+\Delta_{S, \odot} (\theta = 0) 
+&= \frac{R_{S, \odot}}{c} \qty[
+    \log( \frac{2d}{r_{\oplus \odot}} )
+    - \log (1 + \theta_{g})
+    -\log( \frac{2d - 2 r_{\oplus \odot}}{r_{\oplus \odot}})
+] \marginnote{\(\log 1 = 0\).}  \\
+&\approx - \frac{R_{S, \odot}}{c}
+\log (1 + \cos(\pi - \frac{R_{\odot}}{r_{\oplus \odot}}))  \\
+&\approx - \frac{R_{S, \odot}}{c}
+\log (1 - 1 + \frac{1}{2}\qty(\frac{R_{\odot}}{r_{\oplus \odot}})^2)  \\
+&\approx - \frac{R_{S, \odot}}{c}
+\log (\frac{1}{2}\qty(\frac{R_{\odot}}{r_{\oplus \odot}})^2)
+\approx + \SI{56}{\micro s}
+\,,
+\end{align}
+%
+where we discarded the difference of the two logarithms with \(d\) since the relative difference between their arguments is on the order \num{e-9}.
+\todo[inline]{In the slides this is reported as being on the scale of \SI{100}{\micro s} with the logarithm's argument being \(2 r_{\oplus \odot} / d\): I do not see how that could come about, and a dependence on \(d\) seems not to make sense physically.}  
+
+\todo[inline]{Also, the slide is repeated twice.}
+
+\subsubsection{Einstein delay (observer)}
+
+This effect is about the 
 
 %
 \begin{align}

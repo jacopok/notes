@@ -158,7 +158,9 @@ So, the \textbf{maximum size of the effect} is given by the difference
 &\approx - \frac{R_{S, \odot}}{c}
 \log (1 + \cos(\pi - \frac{R_{\odot}}{r_{\oplus \odot}}))  \\
 &\approx - \frac{R_{S, \odot}}{c}
-\log (1 - 1 + \frac{1}{2}\qty(\frac{R_{\odot}}{r_{\oplus \odot}})^2)  \\
+\log (1 - 1 + \frac{1}{2}\qty(\frac{R_{\odot}}{r_{\oplus \odot}})^2)  
+\marginnote{Used \(\cos(\pi - x) = - \cos(x)\) and expanded.}
+\\
 &\approx - \frac{R_{S, \odot}}{c}
 \log (\frac{1}{2}\qty(\frac{R_{\odot}}{r_{\oplus \odot}})^2)
 \approx + \SI{56}{\micro s}
@@ -172,8 +174,17 @@ where we discarded the difference of the two logarithms with \(d\) since the rel
 
 \subsubsection{Einstein delay (observer)}
 
-This effect is about the 
-
+This effect is about the gravitational shift and \emph{transverse} Doppler shift due to gravitational field of the Earth. We start from the proper time at the observer:
+%
+\begin{align}
+c^2 \dd{\tau^2} &\approx \qty(1 + 2 \phi (x _{\text{obs}})) \dd{t^2}
+ - \qty(1 - 2 \phi (x _{\text{obs}})) \dd{\vec{x}}^2 _{\text{obs}}  \\
+\frac{ \dd{\tau^2}}{ \dd{t^2}} &\approx 1 + 2 \phi (x) - \frac{1 - 2 \phi (x)}{c^2} \frac{ \dd{x^2}}{ \dd{t^2}}  \\
+&= 1 + 2 \phi (x) - \frac{v^2}{c^2} + \mathcal{O}(\phi v^2 / c^2)
+\,,
+\end{align}
+%
+and if we discard the higher order terms (both \(\phi \) and \(v/c\) are small for an Earth-bound observer, so a term containing their product is negligible) we can expand the square root as
 %
 \begin{align}
 \dv{\tau }{t} \approx 1 + \phi \qty(x _{\text{obs}}) - \frac{v^2 _{\text{obs}}}{2c^2}
@@ -183,12 +194,21 @@ This effect is about the
 so 
 %
 \begin{align}
-\tau \approx t + \int^{t} \dd{\widetilde{t}} \qty(\phi \qty(x _{\text{obs}}) - \frac{v^2 _{\text{obs}}}{2c^2})
+\tau \approx t + \int^{t} \dd{\widetilde{t}} \qty(\phi \qty(x _{\text{obs}} (\widetilde{t})) - \frac{v^2 _{\text{obs}} (\widetilde{t})}{2c^2})
 = t - \Delta_{\oplus, \odot}
-\,.
+\,,
 \end{align}
+%
+where the lower bound of the integration is arbitrary, amounting only to a shift in the origin from which we measure times. 
 
-If most of the velocity is due to the motion of the Earth in its elliptic orbit, we have from conservation of energy
+If most of the velocity is due to the motion of the Earth in its elliptic orbit, from Keplerian dynamics we know that the energy is given by the \emph{vis viva} equation:
+%
+\begin{align}
+E = - \frac{G M \mu }{2 a} = \frac{1}{2} \mu v _{\text{obs}}^2- \frac{GM \mu }{r}
+\,,
+\end{align}
+%
+which means that the square velocity can be written as
 %
 \begin{align}
 \frac{v^2 _{\text{obs}}}{2} = \frac{GM}{r} - \frac{GM}{2a}
@@ -198,76 +218,149 @@ If most of the velocity is due to the motion of the Earth in its elliptic orbit,
 so that we find 
 %
 \begin{align}
-\dv{ \Delta}{t} \approx \frac{v^2}{2c^2} - \phi = \frac{GM_{\odot}}{c^2} \qty( \frac{1}{r} - \frac{1}{2a} - \frac{1}{r})
-= R_{\text{earth-Sun}} \qty( \frac{1}{r} - \frac{1}{4a})
-\,.
-\end{align}
-
-However, we must also consider the group velocity of the signal which travels through the ISM, which is ionized gas. Then, we get a delay which depends on the frequency: 
-%
-\begin{align}
-t_L = \frac{L}{c} + \frac{e^2}{2 \pi m_e c} \frac{1}{\nu^2} DM
+\dv{ \Delta_{E, \odot}}{t} \approx \frac{v^2}{2c^2} - \phi = \frac{GM_{\odot}}{c^2} \qty( \frac{1}{r} - \frac{1}{2a} + \frac{1}{r})
+= R_{S, \odot} \qty( \frac{1}{r} - \frac{1}{4a})
 \,,
 \end{align}
 %
-where \(DM\) is the Dispersion Measurement. 
-For the HT pulsar, this spreads the time over a \SI{4}{MHz} bandwidth: 
-however, we can measure precisely in the spectral domain, and we can ``connect the dots'' to find what corresponds to a single pulse. 
+where \(R_{S, \odot} = 2 GM_{\odot} / c^2\) is the Schwarzschild radius of the Sun. 
+\todo[inline]{Wrong sign in the slides!}
 
-This allows us to reconstruct the original pulse.
+The term depending on \(r\) is relevant to the modulation of our signal; the other one is a correction to apply to our estimates of the parameters of the binary and pulsar but it is not relevant to the modulation as it is a constant. 
 
-Taking these effects out, we get 
+In order to estimate the magnitude of this modulation we need to ask by how much the radius of the Earth's orbit changes: the average orbital distance is around \SI{150e9}{m}, with annual variations of the order of \SI{2e9}{m}. So, the magnitude of the first term is around \num{e-8} seconds per second, with annual variations on the order of \num{e-10} seconds per second.
+
+\todo[inline]{Not sure about the \(\pm \SI{4}{ns} / \SI{}{s}\): that would mean \num{4e-9} seconds per second\dots but the number we get is not the \emph{amplitude} of the oscillation, it is the value of the correction: the oscillation is much smaller, corresponding to the variation of the orbital radius of the Earth!}
+
+\subsubsection{Interstellar medium propagation}
+
+% We must also consider the group velocity of a signal of frequency which travels through the ISM, which is ionized gas.
+The ISM is made of ionized gas mostly, and it causes the group velocity of the radio signal to not be precisely \(c\): there is a correction depending on the frequency \(\nu \) of the signal, given by 
+%
+\begin{align}
+v_g \approx c \qty(1 - \frac{n_e e^2}{2 \pi m_e} \frac{1}{\nu^2})
+\,,
+\end{align}
+%
+which causes a total time lag in the arrival of a pulse of fixed frequency:
+%
+\begin{align}
+t_d &= \int_{0}^{d} \frac{ \dd{l}}{v_g}
+\approx \frac{d}{c} + \frac{e^2}{2 \pi m_e} \frac{1}{\nu^2} \int_{0}^{d} n_e \dd{l}
+\marginnote{First order approximation of \(1/(1-x) \sim 1+x\).} \\
+&= \frac{d}{c} + \frac{e^2}{2 \pi m_e c} \frac{1}{\nu^2} DM
+\,,
+\end{align}
+%
+where \(DM\) is the Dispersion Measurement: it corresponds to the column number density of electrons between us and the pulsar, and it has the units of an inverse area.
+
+For the HT pulsar, the bandwidth of the interesting signal is around \SI{4}{MHz}, and from the top to the bottom of the band the time delay is of the order of \SI{70}{ms}!
+
+Fortunately we can measure precisely in the spectral domain: the arrival times for spectral bands which are near to each other will be very close, and they will form a continuous line:
+so, we can ``connect the dots'' to find what corresponds to a single pulse.
+The process of doing this and correcting for the DM is called \textbf{de-dispersion}; after doing it we can sum all the components in order to get the original pulse. 
+
+\subsubsection{Combination of local effects}
+
+Taking all the effects pertaining to the source into account, we get 
 %
 \begin{align}
 t _{\text{ssb}} = \tau - \frac{D}{\nu^2} + \Delta_{E, {\odot}} - \Delta_{S, {\odot}} + \Delta_{R, {\odot}}
-\,.
+\,,
 \end{align}
-
-This is ``time in solar-system barycenter''.
-where
+%
+where \(t _{\text{ssb}}\) means ``time in solar-system barycenter'', and
 %
 \begin{align}
 D = \frac{e^2}{2 \pi m_e c} DM
 \,.
 \end{align}
 
-We need to look at the gravitational time delay at the source: there is a contribution from the gravitational field of the NS itself, which is hard to calculate but constant, so we do not worry about it. 
-The combined gravitational field, instead, is time-varying: so, we find 
+\subsubsection{Einstein delay at the source}
+
+We need to look at the gravitational time delay at the source: the gravitational field will be able to be written as 
+%
+\begin{align}
+\phi (x) = 
+- \frac{G m_p}{c^2 \abs{\vec{x} - \vec{x}_p}}
+- \frac{G m_c}{c^2 \abs{\vec{x} - \vec{x}_c}}
+\,,
+\end{align}
+%
+% there is a contribution from the gravitational field of the NS itself, which is hard to calculate but constant, so we do not worry about it. 
+where \(p\) and \(c\) denote ``pulsar'' and ``companion'' respectively. 
+When we compute the delay due to the source we cannot apply the weak-field approximation, which makes the calculation hard; however, this effect gives a constant frequency shift, which we cannot observe.
+
+The potential from the companion, on the other hand, modulates the signal and is therefore observable. So, like we did for the Earth-Sun system we can write the proper-to-coordinate time ratio as
 %
 \begin{subequations}
 \begin{align}
 \dv{T}{t} &= 1 - \frac{G m_c}{c^2 \abs{x_p - x_c}} - \frac{v_p^2}{2 c^2}  \\
- \dv{T}{u} &\approx \frac{P_b}{2 \pi } \qty(1 - \frac{G}{c^2} \frac{2 m_c m_p + 3 m_c^2}{2 a (m_p + m_c)})\qty(1 - e \cos u \qty(1 + \frac{G}{c^2})) \dots
+\dv{T}{u} &\approx \frac{P_b}{2 \pi } \qty(1 - \frac{G}{c^2} \frac{2 m_c m_p + 3 m_c^2}{2 a (m_p + m_c)})\qty(1 - e \cos u \qty(1 + \frac{G}{c^2} \frac{m_c (m_p + 2 m_c)}{a (m_p + m_c)}))  \\
+&= \frac{P_b}{2\pi } \qty(1 - e \cos u) - \gamma \cos u
 \,,
 \end{align}
 \end{subequations}
 %
-[to finish]
-where \(u\) is the angular parameter describing the orbit, while \(e\) is the eccentricity.
+where we plugged in the equation for relativistic eccentric motion; \(u\) is the adimensional angular parameter describing the orbit, which is related to the coordinate time by \(u - e \sin u = (2 \pi / P_b) (t - t_0 )\), while \(e\) is the eccentricity.
+This expression is post-Newtonian: it is valid up to first order in \(G\).
+Its simpler formulation is given in terms of the \textbf{Einstein parameter} 
+%
+\begin{align}
+\gamma = e \frac{P_b}{2 \pi } \frac{G}{c^2} \frac{m_c (m_p + 2 m_c)}{a (m_p + m_c)}
+= e \qty(\frac{P_b}{2 \pi })^{1/3} \frac{G^{2/3}}{c^2}  \frac{m_c (m_p + 2 m_c)}{(m_p + m_c)^{4/3}}
+\,.
+\end{align}
 
-Also, we have the Romer delay: \(\Delta_{R} = \hat{z} \cdot x_{pb} / c\). 
+What is the magnitude of this effect? Well, we define the Einstein time difference \(\Delta_{E}\) by \(T = t - \Delta_{E}\); we can differentiate this equality with respect to \(u\) to find 
+%
+\begin{align}
+\dv{ \Delta_{E}}{u} = \dv{t}{u} - \dv{T}{u}
+= \frac{P_b}{2 \pi } \qty(1 - e \cos u) - 
+\frac{P_b}{2\pi } \qty(1 - e \cos u) + \gamma \cos u = \gamma \cos u
+\,,
+\end{align}
+%
+where we computed \(\dv*{t}{u}\) starting from \(t = (P_b / 2\pi ) (u - e \sin u) + \const\), which comes from the definition. 
+So, the amplitude of the modulation comes from the parameter \(\gamma \), which has the units of a time, roughly on the order of magnitude of the period of the binary multiplied by the ratio between the Schwarzschild radius of the companion and the semimajor axis of the binary: for the Hulse-Taylor pulsar it comes out to be of the order \SI{4.292}{ms}.
 
-The coordinates, for a Keplerian orbit, are 
+\subsubsection{Rømer delay (source)}
+
+Like in the Solar System, we have the Rømer delay, which is given in general by 
+%
+\begin{align}
+\Delta_{R} = \frac{\hat{z} \cdot x_{pb}}{c}
+\,,
+\end{align}
+%
+where \(\hat{z}\) is the direction of the Earth, while \(x_{pb}\) is the vector connecting the binary barycenter to the pulsar. 
+
+The polar coordinates \(r_1 \) and \(\psi \) for a Keplerian orbit are given by
 %
 \begin{align}
 r_{pb} = r_1 = a_1 \qty(1 - e \cos u )
 \qquad \text{and} \qquad
 \cos \psi = \frac{\cos u - e}{1- e \cos u}
-\,.
-\end{align}
-
-The Romer delay then is 
-%
-\begin{align}
-\Delta_{R} = r_1 \sin \iota \sin(\omega+\psi ) 
-= r_1 \sin \iota \qty(\cos \psi \sin \omega + \cos \omega \sin \psi )
 \,,
 \end{align}
 %
-where \(\iota \) is the observation angle, while \(\psi \) is the angle from the line of notes (see drawing). 
+where \(u\) is the angular parameter of the orbit, while \(a_1 \) is its semimajor axis.
 
-The relativistic effect, however, is large. 
-We will not do the calculation, we find 
+The Rømer delay can then be written in terms of the \emph{observation angle} \(\iota \) (the angle between the observation direction and the normal to the orbital plane) and the \emph{argument of periapsis} \(\omega\) (the angle of the orbit at the point in which the body is closest to us --- this is simply \(\pi /2\) for circular orbits, it can differ for elliptic ones):
+%
+\begin{align}
+\Delta_{R} = r_1 \sin \iota \sin(\omega+\psi ) 
+&= r_1 \sin \iota \qty(\cos \psi \sin \omega + \cos \omega \sin \psi )  \\
+& =r_1 \sin \iota \qty( (\cos u - e) \sin \omega + \sqrt{1 - e^2} \sin u \cos \omega )
+\,.
+\end{align}
+%
+% where \(\iota \) is the observation angle, while \(\psi \) is the angle from the line of notes (see drawing). 
+
+Note that if \(\psi \) is measured from the \emph{line of nodes}, the line where the orbital plane crosses the plane drawn from the barycenter and normal to the observation direction, \(\omega + \psi \) gives the angle of the pulsar from the line of nodes.
+
+This is all classical --- the relativistic corrections, however, are large. 
+We will not do the calculation, instead we show the result: it is written similarly,
 %
 \begin{align}
 \Delta_{R} = a_1 \sin \iota 
@@ -281,18 +374,66 @@ where
 \begin{align}
 e_{r, \theta } &= e (1 + \delta_{r, \theta })  \\
 \delta_{r} &= \frac{G}{c^2} \frac{3 m_p^2 + 6 m_p m_c + 2 m_c^2}{a (m_p + m_c)}  \\
-\delta_{\theta } &= 
-\,,
+\delta_{\theta } &= \frac{G}{c^2} 
+\frac{(7/2) m_p^2 + 6 m_p m_c + 2 m_c^2}{a (m_p + m_c)}
+\,.
 \end{align}
 \end{subequations}
+
+To get a feeling for the numbers: if the masses of the objects are comparable and similar to \(m\), the order of magnitude of the corrections is given by the ratio \(G m / a c^2\), the ratio of the Schwarzschild radius corresponding to the mass to the binary's radius.
+
+Also, note that here the advance of the periastron is much more significant than it is for Mercury, it is given by 
 %
-also here the advance of the periastron is much more significant than it is for Mercury. 
+\begin{align}
+\expval{\dot{\omega}}
+= \frac{3G }{c^2} \qty(m_p +m_c)^{2/3} \qty( \frac{2 \pi }{P_b})^{5/3}
+\frac{1}{1 - e^2} \sim \SI{4.2}{\degree / yr}
+\,.
+\end{align}
 
-The Shapiro delay at the source must also be accounted for. 
+\subsubsection{Shapiro delay (source)}
 
-If we get all the Keplerian parameters and two of the post-Newtonian ones then we should know everything.
+The computation to get the Shapiro delay at the source is similar to that of the Solar System.  
+We only need to account for the companion's gravitational field, the pulsar's is included in the Einstein delay.
 
-We measure \(P_b, T_0, x= a \sin \iota /c, e, \omega \) and the post-Newtonian \(\dot{\omega}, \gamma \) and finally we make a prediction for \(\dot{P}\). This matches the data very well.
+The expression comes out to be 
+%
+\begin{align}
+\Delta_{S} = - 2 \frac{G m_c}{c^3} \log
+((1 - e \cos u) - \sin \iota \qty(\sin \omega \qty(\cos u - e) + \sqrt{1 - e^2} \cos \omega \sin u)) 
+\,.
+\end{align}
+
+To get all the corrections we need to account for the \emph{relativistic aberration} due to the motion of the source, as well as the \emph{Doppler shift} due to the relative motion of the barycenters of the Solar System and the binary system.
+
+% If we get all the Keplerian parameters and two of the post-Newtonian ones then we should know everything.
+
+\subsection{Putting all the parameters together}
+
+The parameters of the system can be categorized into: 
+\begin{enumerate}
+    \item the pulsar's parameters: position, frequency, phase, spin-down and others;
+    \item the Keplerian parameters of the orbit: \(P_b, T_0, x= (a/c) \sin \iota , e, \omega \);
+    \item the relativistic corrections to the orbit: \(\dot{\omega}
+    , \gamma, P_b, r, s, \delta_{\theta }, \dot{e}, \dot{x}\).
+\end{enumerate}
+
+The system is fully characterized by all the classical parameters, plus two of the relativistic ones. 
+If we can measure three relativistic parameters, we can use the third as a GR test.
+
+We extract from the data the classical parameters, the precession of the periastron \(\expval{\dot{\omega}}\) and the Einstein parameter \(\gamma \). Then,  we use the derivative of the orbital period \(\dot{P}\) to test GR.
+% We measure \(P_b, T_0, x= a \sin \iota /c, e, \omega \) and the post-Newtonian \(\dot{\omega}, \gamma \) and finally we make a prediction for \(\dot{P}\). This matches the data very well.
+
+The prediction from the calculations is 
+%
+\begin{align}
+\dot{P}_{b, GR} = - \frac{192 \pi G^{5/3}}{5 c^{5}}
+\frac{m_p m_c}{(m_p + m_c)^{1/3}} \qty( \frac{P_b}{2 \pi })^{- 5/3}
+\frac{1}{(1 - e^2)^{7/2}} \qty(1 + \frac{73}{24} e^2 + \frac{37}{96}e^{4}) \approx -\num{2.40242(2)e-12}
+\,,
+\end{align}
+%
+and the measured value is \(- \num{2.4056(51)e-12}\).
 
 \section{GW from a rotating rigid body}
 

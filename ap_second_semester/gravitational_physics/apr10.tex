@@ -8,7 +8,7 @@ For a neutron star this corresponds to ``mountains'' of about \(\delta R \sim \S
 
 Then, we can define a typical amplitude \(h_0 \) as: 
 %
-\begin{align}
+\begin{align} \label{eq:typical-amplitude-rigid-nonprecessing-body}
 h_0 = \frac{4 \pi^2G}{c^{4}} \frac{f_{GW}^2}{r} I_3 \epsilon 
 \,,
 \end{align}
@@ -89,36 +89,221 @@ R = R_{\gamma }^{(z)} R_{\alpha }^{(x)} R_{\beta }^{(z)}
 \,.
 \end{align}
 
+We call the \emph{line of nodes} the intersection between the plane orthogonal to \(x_3 \) and that orthogonal to \(x_3'\).
 The \(\beta \) rotation brings \(x_1 \) on the line of nodes, the \(\alpha \) rotation brings \(x_3 \) onto \(x_3'\), the \(\gamma \) rotation aligns \(x_1 \) with \(x_1'\). 
 In order to understand this, it is customary to look at the figure \cite[fig.\ 4.15]{maggioreGravitationalWavesVolume2007} and fiddle around with your fingers in the ``right-hand-rule'' position. 
 
-All three of these angles will in general be time-dependent. 
+All three of these angles will in general be time-dependent, and their time evolution will completely determine the motion of the body.
 
+We can recover the angular velocity vector \(\vec{\omega}\) by looking at the components of the three angular velocity vectors in the body frame:
+%
+\begin{align}
+\dv{\vec{\alpha}}{t} &= \dot{\alpha} \left[\begin{array}{ccc}
+\cos \gamma  &  - \sin \gamma  &  0 
+\end{array}\right]^{\top}  \\
+\dv{\vec{\beta}}{t} &= \dot{\beta} 
+\left[\begin{array}{ccc}
+\sin \alpha \sin \gamma  & \sin \alpha \cos \gamma  & \cos \alpha 
+\end{array}\right]^{\top} \\
+\dv{\vec{\gamma}}{t} &= \dot{\gamma} \left[\begin{array}{ccc}
+0 & 0 & 1
+\end{array}\right]^{\top}
+\,,
+\end{align}
+%
+so that then  \(\vec{\omega} = \vec{\dot{\alpha}} + \vec{\dot{\beta}} + \vec{\dot{\gamma}}\).
+These expressions can be derived geometrically by looking at the figure. 
+So, in the body frame the components of the angular velocity are 
+%
+\begin{align}
+\vec{\omega} = \left[\begin{array}{c}
+\dot{\alpha} \cos \gamma + \dot{\beta} \sin \alpha \sin \gamma  \\ 
+- \dot{\alpha} \sin \gamma + \dot{\beta} \sin \alpha \cos \gamma  \\ 
+\dot{\gamma} + \dot{\beta}\cos \alpha 
+\end{array}\right]
+\,.
+\end{align}
+
+In the body frame the angular momentum \(\vec{J}\) is \emph{not} conserved: we can recover its time-dependent expression in the body frame \(J'\) by applying a rotation, and then we can use \(J'_i = I_i \omega'_i\): this gives us 
+%
+\begin{align}
+J'_1 &= I_1 \omega_1' &&\implies & J \sin \alpha \sin \gamma &= I_1 \qty(\dot{\alpha} \cos \gamma + \dot{\beta} \sin \alpha \sin \gamma ) \\
+J'_2 &= I_2 \omega_2' &&\implies & J \sin \alpha \cos \gamma &= I_2 \qty(- \dot{\alpha} \sin \gamma + \dot{\beta} \sin \alpha \cos \gamma) \\
+J'_3 &= I_3 \omega_3' &&\implies & J \cos \alpha  &= I_3 \qty(\dot{\gamma} + \dot{\beta} \cos \alpha ) 
+\,.
+\end{align}
+
+Now we make the assumption that \(I_1 = I_2 \): we consider an \textbf{axisymmetric body}.
 An astrophysical example of this will usually look like an ellipsoid.
-We should ``clean our minds'' from the idea of a spinning spintop precessing.
 
-Here, the axis going around is the faster motion, the rotation of the body around its axis is slower. 
+Then, we perform the following manipulation (written in a formally peculiar way, which should make it easier to remember --- we are ``applying a rotation matrix to the system of equations''): 
+%
+\begin{align}
+&\left[\begin{array}{cc}
+\cos \gamma  & \sin \gamma  \\ 
+- \sin \gamma  & \cos \gamma 
+\end{array}\right]
+\left[\begin{array}{c}
+J \sin \alpha \sin \gamma = I_1 \qty(\dot{\alpha} \cos \gamma + \dot{\beta} \sin \alpha \sin \gamma ) \\ 
+J \sin \alpha \cos \gamma = I_2 \qty(- \dot{\alpha} \sin \gamma + \dot{\beta} \sin \alpha \cos \gamma)
+\end{array}\right] = \\
+&= \left[\begin{array}{c}
+I_1 \dot{\alpha} \qty(\cos^2 \gamma + \sin^2 \gamma ) = 0 \\ 
+J \sin \alpha \qty(\cos^2\gamma + \sin^2 \gamma ) = \dot{\beta} I_1 \sin \alpha \qty(\sin^2\gamma + \cos^2\gamma ) 
+\end{array}\right] = 
+\left[\begin{array}{c}
+\dot{\alpha} = 0 \\ 
+\dot{\beta} = J / I_1 \overset{\text{def}}{=} \Omega 
+\end{array}\right]
+\,.
+\end{align}
 
-This wobbling motion is similar to the one of a coin thrown on a table.
+So, \(\alpha \) is constant while \(\beta \) changes linearly. We can substitute these relations into the third equation to get 
+%
+\begin{align}
+J \cos \alpha &= I_3 \qty(\dot{\gamma} + \frac{J \cos \alpha }{I_1 }) \\
+\dot{\gamma} &= \frac{J \cos \alpha }{I_3 } - \frac{J \cos \alpha }{I_1 }
+= J \cos \alpha \frac{I_1 - I_3 }{I_1 I_3 } = \Omega \cos \alpha \frac{I_1 - I_3 }{I_3 } \overset{\text{def}}{=} - \omega_{p}
+\,,
+\end{align}
+%
+where the sign is a convention, such that when \(I_3 > I_1 \) (an oblate object, like a grapefruit or a coin) we have \(\omega_{p} > 0\).
 
-If we compute the evolution of the inertial tensor, we get terms both at \(\omega \) and at \(2 \omega \). 
+Now, what do these represent? The fact that \(\dot{\alpha} = 0\) means that the angle between \(x_3 \) and \(x_3'\) stays the same. 
+The rotation around \(\beta \) is the ``main'' one, as \(\vec{\beta} \) is aligned with \(\vec{J}\), and \(\dot{\beta}= \Omega \gg \abs{\omega_{p}} = \abs{\dot{\gamma}}\) typically. 
 
-We are interested in the projection of this variation onto the plane orthogonal to the direction of a propagation. 
+The rotation around \(\vec{\gamma}\) corresponds to a \emph{precession} of the angular velocity vector around the \(x_3'\) axis: the body's rotation axis precesses around its third principal axis.
 
-If we have a distribution which looks like a coin (\(I_1 \sim I_2 \ll I_3 \)) then it looks to us like a binary if we look at it from the top (in terms of periodicity at least), so we expect \(2 \omega \) emission, since the system looks the same to us, since it repeats after a rotation of \(\pi \). 
+Not that this is not the same as the precession of the body axis around the angular momentum. 
+We should ``clean our minds'' from the idea of a spinning spintop precessing, this is not what is happening here.
+This wobbling motion is similar to the one of a coin thrown on a table, although this is a \emph{free} wobble, happening without any external torque. 
 
-If, instead, we look at it from the side, the periodicity is the full period: after half a rotation the coin is edge-on, but it appears at two different angles with respect to the vertical direction.
+% Here, the axis going around is the faster motion, the rotation of the body around its axis is slower. 
 
+The time evolution of the inertia tensor reads 
+%
+\begin{align}
+I (t) = R^{\top} I' R = 
+R_{\beta }^{\top} R_{\alpha }^{\top} R_{\gamma }^{\top} I' 
+R_{\gamma } R_{\alpha } R_{\beta }
+\,,
+\end{align}
+%
+but the matrices \(R_{\gamma }\) and \(R_{\gamma }^{\top}\) rotate the \(xy\) components of a matrix between each other: if \(I_1 = I_2 \) the components \(I'_{11} = I'_{22}\), so we have \(R_{\gamma }^{\top} I' = I' = I' R_{\gamma }\). So, we can write the expression as 
+%
+\begin{align}
+I (t) = 
+R_{\beta }^{\top} R_{\alpha }^{\top}  I' 
+R_{\alpha } R_{\beta }
+\,,
+\end{align}
+%
+so the only time dependence which is left is inside \(\beta (t) = \Omega t\). 
+We can expand the calculation, the result is given by Maggiore \cite[eq.\ 4.245]{maggioreGravitationalWavesVolume2007}. 
+We are only interested in the projection of this variation onto the plane orthogonal to the direction of a propagation. 
+The amplitudes in the two GW polarizations are also given by Maggiore \cite[eq.\ 4.246 -- 252]{maggioreGravitationalWavesVolume2007}.
+
+% If we compute the evolution of the inertial tensor, we get terms both at \(\omega \) and at \(2 \omega \). 
+
+What we find is both emission at \(\Omega \) and at \(2 \Omega \), while the frequency corresponding to the precession \(\omega_{p}\) does not appear: 
+%
+\boxalign{
+\begin{align}
+h_{+} &= h_0' \qty[ \sin (2 \alpha) \sin \iota \cos \iota \cos(\Omega t) 
++ 2 \sin^2\alpha \qty(1 + \cos^2\iota ) \cos(2\Omega t)]  \\
+h_{ \times } &= h_0' \qty[\sin(2 \alpha  ) \sin \iota \sin(\Omega t)
++ 4 \sin^2 \alpha \cos \iota \sin(2 \Omega t)]  \\
+h_0' &= - \frac{G}{c^{4}} \frac{I_3 - I_1 }{r} \Omega^2
+\,,
+\end{align}}
+%
+where this \(h_0'\) should be compared with \eqref{eq:typical-amplitude-rigid-nonprecessing-body}. 
+
+\todo[inline]{Not sure about what comparison should be drawn: the formulas are the same with \(\omega_{s} \to \Omega \) and \(I_2 \to I_3 \)\dots}
+
+We have four measurable amplitudes (corresponding to two polarizations and two frequencies), and we need to reconstruct the unknowns \(\alpha \), \(\iota \), \(r\) and \(I_3 - I_1 \).
+This would in general be possible, however because of correlations we need to measure one more parameter externally (like the distance \(r\)).
+
+To get an \textbf{intuition} for the biperiodicity: if we have a distribution which looks like a coin (\(I_1 \sim I_2 \ll I_3 \)) then it looks to us like a binary if we look at it from the top (in terms of periodicity at least), so we expect \(2 \omega \) emission, since the system looks the same to us after a rotation of \(\pi \). 
+
+If, instead, we look at it from the side, the periodicity is the full period: after half a rotation the coin is edge-on (and this happens every \(\pi \)), but it will appear at two different angles with respect to the vertical direction, so the real periodicity is \(2 \pi \).
 Therefore, we both have \(\omega \) and \(2 \omega \) emission. 
 
-If we were able to determine the amplitude at different inclinations, we would be able to determine the inclination \(\iota \). 
+% If we were able to determine the amplitude at different inclinations, we would be able to determine the inclination \(\iota \). 
 
-[formula for back reaction is wrong!]
+\subsubsection{Backreaction}
 
-In order to calculate the backreaction we assume that the motion is approximately constant during a single period. 
+% [formula for back reaction is wrong!]
 
-We find differential equations telling us that \(\dot{\beta}
-\) and \(\alpha \) both decrease: the first means that the motion is slowing down; the second means that the wobbling is decreasing, as the rotation is aligning with the angular momentum.
+% In order to calculate the backreaction we assume that the motion is approximately constant during a single period. 
+The radiated power is given by \cite[eq.\ 4.254]{maggioreGravitationalWavesVolume2007}: 
+%
+\begin{align}
+\dv{E _{\text{rot}}}{t} &= - \frac{G}{5c^{5}} 
+\expval{\dot{\ddot{M}}_{ij} \dot{\ddot{M}}_{ij}}  \\
+&= - \frac{2G}{5c^{5}} 
+(I_1 - I_3 )^2 \Omega^{6}
+\sin^2\alpha  \qty(\underbrace{\cos^2\alpha}_{\mathclap{\text{at } \Omega }}  +\underbrace{16 \sin^2\alpha}_{\mathclap{\text{at }2 \Omega }} )
+\,.
+\end{align}
+%
+\todo[inline]{Wrong sign in the slides! }
+
+So, we can see that the emission at \(\Omega \) is dominant for \(\alpha \sim 0\) (systems for which \(x_3\) and \(x_3'\) are almost aligned --- the ``coin seen head-on''), while the emission at \(2 \Omega \) is dominant for larger \(\alpha \) (the ``coin seen edge-on'').
+
+The radiated angular momentum is instead given by 
+%
+\begin{align}
+\dv{J}{t} &= - \frac{2G}{5c^{5}} \epsilon_{3jk}\expval{\ddot{Q}_{jl} \dot{\ddot{Q}}_{kl}}  \\
+&= - \frac{4G}{5c^{5}} \expval{\ddot{M}_{1a} \dot{\ddot{M}}_{2a}}  \\
+&= - \frac{2G}{5c^{5}} (I_1 - I_3 )^2 \Omega^{5} \sin^2\alpha \qty(\cos^2\alpha  + 16 \sin^2\alpha ) = \frac{1}{\Omega } \dv{E _{\text{rot}}}{t}
+\,,
+\end{align}
+%
+where we swapped \(Q\) for \(M\) since the terms \(\epsilon^{3kl} \delta_{ka} Q_{la} \) and \(\epsilon^{3kl} Q_{kl}\) do not contribute (by symmetry and tracelessness of \(Q\) respectively); also we integrated by parts.\footnote{To move from \(\expval{\ddot{M}_{1a} \dot{\ddot{M}}_{2a} - \ddot{M}_{2a} \dot{\ddot{M}}_{1a}}\) to \(2 \expval{\ddot{M}_{1a} \dot{\ddot{M}}_{2a}}\).} 
+
+In order to understand how the rotation decays we need to express this in terms of the angles: recall the definition of \(\Omega = \dot{\beta} = J / I_1 \). This means that 
+%
+\begin{align}
+\ddot{\beta} = \frac{1}{I_1 } \dv{J}{t} = 
+- \frac{2G}{5c^{5}} \frac{(I_1-I_3)^2}{I_1 } \dot{\beta}^{5} \sin^2\alpha \qty(\cos^2\alpha  + 16 \sin^2\alpha )
+\,,
+\end{align}
+%
+which tells us that \(\dot{\beta} = \Omega \) is decreasing. 
+
+To find the evolution of \(\alpha \) we need to write the rotational energy as 
+%
+\begin{align}
+E _{\text{rot}} &= \frac{1}{2} I'_i \omega_{i}^{\prime 2} = \frac{1}{2} \frac{J_i^{\prime 2}}{I_i} 
+= \frac{J^2}{2} \qty(\frac{\sin^2\alpha \sin^2 \gamma }{I_1 }
++ \frac{\sin^2 \alpha \sin^2 \gamma }{I_2 } + \frac{\cos^2 \alpha }{I_3 } ) \\
+&= \frac{J^2}{2} \qty(\frac{\sin^2\alpha }{I_1 } + \frac{\cos^2 \alpha }{I_3 }) \marginnote{\(I_1 = I_2 \).}
+\,,
+\end{align}
+%
+which can be differentiated to yield 
+%
+\begin{align}
+\dot{\alpha} = - \frac{2G}{5c^{5}} \frac{(I_1 - I_3 )^2}{I_1 } 
+\dot{\beta}^{4} \sin \alpha \cos \alpha \qty(\cos^2\alpha + 16 \sin^2 \alpha )
+\,,
+\end{align}
+%
+so \(\alpha \) also decreases due to GW emission. 
+This means that the wobble is decreasing, the rotation is aligning with the angular momentum. 
+
+However, the combination \(J \cos \alpha \) is constant: 
+%
+\begin{align}
+\dv{}{t} \qty(J \cos \alpha ) = \dv{J}{t} \cos \alpha - J \dot{\alpha} \sin \alpha 
+\,,
+\end{align}
+%
+ 
+
+% We find differential equations telling us that \(\dot{\beta}
+% \) and \(\alpha \) both decrease: the first means that the motion is slowing down; the second means that the wobbling is decreasing, as the rotation is aligning with the angular momentum.
 
 We can define the parameter \(u(t) = \dot{\beta} / \dot{\beta}_{0}\), and a characteristic time \(\tau_0 \): 
 %

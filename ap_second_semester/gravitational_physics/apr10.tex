@@ -3,7 +3,96 @@
 
 \marginpar{Friday\\ 2020-4-10, \\ compiled \\ \today}
 
-Now we are considering a body which is axisymmetric, and rotating along an axis which is not aligned with its axes of inertia. 
+We define the \textbf{ellipticity} \(\epsilon = (I_1 - I_2 ) / I_3 \). Typical values of this parameter for astrophysical objects are at most of the order of \num{e-6}, which can be calculated as \(\epsilon \sim ( \delta R / R_0 )^2\), where \(\delta R\) is the scale of the radial anomaly while  \(R_0 \) is the scale of the radius of the object.
+For a neutron star this corresponds to ``mountains'' of about \(\delta R \sim \SI{10}{m}\).
+
+Then, we can define a typical amplitude \(h_0 \) as: 
+%
+\begin{align}
+h_0 = \frac{4 \pi^2G}{c^{4}} \frac{f_{GW}^2}{r} I_3 \epsilon 
+\,,
+\end{align}
+%
+where, as usual, \(f_{GW} = \omega_{r} / \pi = 2 f _{\text{rotation}}\).
+
+In terms of typical orders of magnitude, this variable looks like
+%
+\begin{align}
+h_0 \sim \num{e-25} \qty(\frac{\epsilon }{\num{e-6}})
+\qty( \frac{I_3}{\SI{e38}{kg m^2}})
+\qty( \frac{\SI{10}{kpc}}{r})
+\qty( \frac{f_{GW}}{\SI{1}{kHz}})^2
+\,.
+\end{align}
+
+With this, we can rewrite the amplitudes in the two polarizations as 
+%
+\boxalign{
+\begin{align}
+h_{+} &= h_0 \frac{1 + \cos^2 \iota }{2} \cos(2 \pi f_{GW} t) \\
+h_{ \times } &= h_0 \cos \iota  \sin(2 \pi f_{GW} t) 
+\,.
+\end{align}}
+
+To find the radiated power by this mechanism we can use the quadrupole formula \eqref{eq:radiated-power-GW}: 
+%
+\begin{align}
+\dv{E_{GW}}{t} &= \frac{G}{5 c^{5}} \expval{
+    \dot{\ddot{M}}_{ij} \dot{\ddot{M}}_{ij} - \frac{1}{3} \underbrace{\qty(\dot{\ddot{M}}_{kk})^2}_{= 0}
+}  \\
+&= \frac{G}{5c^{5}} 2 \expval{ \dot{\ddot{M}}_{11}^2 + \dot{\ddot{M}}_{12}^2}  \\
+&= \frac{2G}{5c^{5}} \qty(4 \omega_{r}^3 (I_1 - I_2 ))^2 \underbrace{\expval{ \cos^2(2 \omega_{r}t) + \sin^2(2 \omega_{r}t)}}_{= 1/2 + 1/2}  \\
+&= \frac{32 G}{5 c^{5}} \omega_{r}^{6} \epsilon^2 I_3^2
+\,,
+\end{align}
+%
+so by conservation of energy the neutron star will lose just as much energy. 
+The rotational energy is given by \(E _{\text{rot}} = I_{3} \omega_{r}^2 / 2\), so we have 
+%
+\begin{align}
+\dv{E _{\text{rot}}}{t} = - \dv{E_{GW}}{t} &= I_3 \omega_{r} \dot{\omega}_{r}  \\
+- \frac{32 G}{5 c^{5}} \omega_{r}^{6} \epsilon^2 I_3^2 &= I_3 \omega_{r} \dot{\omega}_{r}  \\
+\dot{\omega}_{r} &= - \frac{32G}{5 c^{5}} \omega_{r}^{5} \epsilon^2 I_3 <0
+\,,
+\end{align}
+%
+so, \emph{as opposed to binaries}, the orbit \textbf{slows down} because of GW emission.
+Observations of binaries show \(\dot{\omega} \sim - \omega^{n} \) with \(n < 5\), meaning that there probably is another breaking mechanism contributing.   
+
+\subsection{Precession}
+
+Now, let us consider a body whose angular momentum \(\vec{J}\) is \emph{not aligned} with its axes of inertia \cite[sec.\ 4.2.2]{maggioreGravitationalWavesVolume2007}. 
+
+We want to proceed like we did before, so we will need two reference frames. 
+The first reference, \(S\), is a frame in which \(\vec{J} = J \hat{z}\); this will be at least approximately an inertial reference frame, so \(\vec{J}\) will be conserved.  
+The second reference, \(S'\), is the \emph{body frame} of the object, in which it is stationary, and whose axes coincide with the principal axes of rotation. 
+
+The transformation between these two frames will be a rotation matrix \(R\) (such that \(x' = R x\)), which we decompose as 
+%
+\begin{align}
+R = R_{\gamma }^{(z)} R_{\alpha }^{(x)} R_{\beta }^{(z)} 
+= \left[\begin{array}{ccc}
+\cos \gamma  & \sin \gamma  & 0 \\ 
+- \sin \gamma  & \cos \gamma  & 0 \\ 
+0 & 0 & 1
+\end{array}\right]
+\left[\begin{array}{ccc}
+1 & 0 & 0 \\ 
+0 & \cos \alpha  & \sin \alpha  \\ 
+0 & -\sin \alpha  & \cos \alpha 
+\end{array}\right]
+\left[\begin{array}{ccc}
+\cos \beta  & \sin \beta  & 0 \\ 
+- \sin \beta  & \cos \beta  & 0 \\ 
+0 & 0 & 1
+\end{array}\right]
+\,.
+\end{align}
+
+The \(\beta \) rotation brings \(x_1 \) on the line of nodes, the \(\alpha \) rotation brings \(x_3 \) onto \(x_3'\), the \(\gamma \) rotation aligns \(x_1 \) with \(x_1'\). 
+In order to understand this, it is customary to look at the figure \cite[fig.\ 4.15]{maggioreGravitationalWavesVolume2007} and fiddle around with your fingers in the ``right-hand-rule'' position. 
+
+All three of these angles will in general be time-dependent. 
 
 An astrophysical example of this will usually look like an ellipsoid.
 We should ``clean our minds'' from the idea of a spinning spintop precessing.

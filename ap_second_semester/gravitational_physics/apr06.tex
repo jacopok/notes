@@ -73,7 +73,7 @@ t _{\text{obs}} - t _{\text{emit}} =  \underbrace{\frac{\abs{\vec{r} _{\text{emi
 \,.
 \end{align}
 %
-\todo[inline]{The sign of the Rømer effect is different here!}
+\todo[inline]{The sign of the Rømer effect is different here! Intuitively we should expect the delay \(\Delta_R \) to be \(>0\) when \(\hat{n} \cdot \vec{r} < 0\), since then the Earth is \emph{behind the barycenter}.}
 
 Let us explicitly compute \(\Delta_{S, \odot}\): we consider a reference frame in which the Sun is at the center, the Earth is on the \(x\) axis at a distance \(r_{\oplus \odot}\), while the pulsar is at a distance \(\rho \) from the Earth and at an angle \(\theta \) with respect to the Sun-Earth axis: so, the Sun-pulsar distance \(r\) is given by 
 %
@@ -427,15 +427,19 @@ We extract from the data the classical parameters, the precession of the periast
 The prediction from the calculations is 
 %
 \begin{align}
-\dot{P}_{b, GR} = - \frac{192 \pi G^{5/3}}{5 c^{5}}
+\dot{P}_{b, GR} &= - \frac{192 \pi G^{5/3}}{5 c^{5}}
 \frac{m_p m_c}{(m_p + m_c)^{1/3}} \qty( \frac{P_b}{2 \pi })^{- 5/3}
-\frac{1}{(1 - e^2)^{7/2}} \qty(1 + \frac{73}{24} e^2 + \frac{37}{96}e^{4}) \approx -\num{2.40242(2)e-12}
+\frac{1}{(1 - e^2)^{7/2}} \qty(1 + \frac{73}{24} e^2 + \frac{37}{96}e^{4})  \\
+&\approx -\num{2.40242(2)e-12}
 \,,
 \end{align}
 %
 and the measured value is \(- \num{2.4056(51)e-12}\).
+The GR prediction (not a fit to the data, the theoretical prediction starting from the measured parameters!) fits the data extremely well.
 
 \section{GW from a rotating rigid body}
+
+\subsubsection{Classical mechanics recap}
 
 The moment of inertia tensor can be defined as 
 %
@@ -444,48 +448,134 @@ I^{ij} = \int \dd[3]{x} \rho (x) \qty(r^2 \delta^{ij} - x^{i} x^{j})
 \,.
 \end{align}
 
-There exists a frame in which this tensor is diagonal, its eigenvalues are the moments of inertia, its eigenvectors are the axes of inertia.
-They are then defined by equations like 
+There exists an \emph{orthogonal} frame in which this tensor is diagonal, its eigenvalues are the moments of inertia, its eigenvectors are the axes of inertia: \(I^{\prime, ij} = \diag{I_1 , I_2 , I_3 }\). This is called the \textbf{body frame}.
+The moments in this frame can be written as: 
 %
 \begin{align}
-I_1 = \int \dd[3]{x} \rho \qty(x_2^2 + x_3^2) 
+I_1' = \int \dd[3]{x}' \rho \qty(\qty(x_1^{\prime, 2} + x_2^{\prime, 2} + x_3^{\prime, 2}) \delta^{11} - x^{\prime, 1} x^{\prime, 1})
+= \int \dd[3]{x} \rho \qty(x_2^{\prime, 2} + x_3^{\prime, 2})
 \,.
 \end{align}
- 
-For an ellipsoid with axes \(a, b, c\) and mass \(m\) we have 
+
+If the body is shaped like an ellipsoid with axes \(a, b, c\) and mass \(m\) then we have 
 %
 \begin{align}
 I_1 = \frac{m}{5} \qty(b^2 +c^2)
 \,.
 \end{align}
 
+In general the angular momentum is given in terms of the angular velocity by the tensor equation \(J_{i} = I_{ij} \omega_{j} \); in the body frame this simplifies to three scalar equations: \(J_1' = I_1' \omega_1' \) and so on.
+
 The rotational kinetic energy is given by 
 %
 \begin{subequations}
 \begin{align}
 E _{\text{rot}} &= \frac{1}{2} I_{ij} \omega_{i} \omega_{j} \\ 
-&= \frac{1}{2} I_i \omega_{i}^2
+&= \frac{1}{2} I_i' \omega_{i}^{\prime, 2}
 \,,
 \end{align}
 \end{subequations}
 %
 where the last equality holds in the body frame. 
 
-Suppose we have a body spinning around an axis, such that the position of any point shifts by a rotation matrix \(R_{ij}\). 
+\subsection{GW emission from a rigid body}
 
-The inertia tensor shifts by \(I \rightarrow R^{\top} I R\).
-
-The tensor we defined before, 
+Suppose we have a body spinning its principal axis \(x_3'\) with angular velocity \(\omega_{r}\); then the position of any point can be recovered from the body frame using a time-dependent rotation matrix \(R_{ij}\): 
 %
 \begin{align}
-M^{ij} = \frac{1}{c^2} \int \dd[3]{x} T^{00} (x) x^{i} x^{j} 
-\approx - I^{ij} + \int \dd[3]{x} \rho (x) r^2 \delta^{ij}
+x^{\prime }_{i} = R_{ij} x_{j} =
+\left[\begin{array}{ccc}
+\cos(\omega_{r}t) & \sin(\omega_{r}t) & 0 \\ 
+- \sin(\omega_{r} t) & \cos(\omega_{r}t) & 0 \\ 
+0 & 0 & 1
+\end{array}\right]_{ij} x_{j}
+\,.
+\end{align}
+
+The inertia tensor transforms as \(I^{\prime }_{ij} = R_{ik} R_{jl} I_{kl} = (R I R^{\top})_{ij}\), and we can reverse this relation to express the time-dependent inertia tensor as a time-dependent rotation of the fixed body frame tensor:
+%
+\begin{align}
+I = R^{\top} I' R
+\,.
+\end{align}
+
+Let us write this transformation law explicitly, using \(c = \cos(\omega_{r}t)\) and \(s = \sin(\omega_{r}t)\) for compactness and writing only the \(xy\) components, since the \(I_{3j}\) components for any \(j\) are unchanged: 
+%
+\begin{align}
+R^{\top} I' R &= \left[\begin{array}{cc}
+c & -s \\ 
+s & c
+\end{array}\right]
+\left[\begin{array}{cc}
+I_1  & 0 \\ 
+0 & I_2 
+\end{array}\right]
+\left[\begin{array}{cc}
+c & s \\ 
+-s & c
+\end{array}\right]  \\
+&= \left[\begin{array}{cc}
+c I_1  & -s I_2  \\ 
+cI_1  & c I_2 
+\end{array}\right]
+\left[\begin{array}{cc}
+c & s \\ 
+-s & c
+\end{array}\right]  \\
+&= \left[\begin{array}{cc}
+c^2 I_1 - s^2 I_2  & cs (I_1 - I_2 )  \\ 
+cs (I_1 - I_2 ) & s^2 I_1 - c^2 I_2 
+\end{array}\right]  \\
+&= \left[\begin{array}{cc}
+\frac{I_1 + I_2 }{2} + \frac{I_1 - I_2 }{2} \cos(2 \omega_{r}t) 
+& \frac{I_1 - I_2 }{2} \sin(2 \omega_{r} t) \\ 
+\frac{I_1 - I_2 }{2} \sin(2 \omega_{r} t) 
+& \frac{I_1 + I_2 }{2} - \frac{I_1 - I_2 }{2} \cos(2 \omega_{r}t)
+\end{array}\right]
 \,,
 \end{align}
 %
-which we can substitute in. This is the trace of the inertia tensor. 
+where we used the identities \(2\cos^2x = \cos(0) + \cos x\), \(2 \sin^2(x) = \cos(0) - \cos x\) and \(2 \sin x \cos x = \sin (2x) \).
 
-Suppose we had a body whose angular momentum is not aligned with the moment of inertia: we can use Euler angles to express the rotation matrix.
+The second mass moment \(M^{ij}\) can be written in the nonrelativistic approximation as
+%
+\begin{align}
+M^{ij} = \frac{1}{c^2} \int \dd[3]{x} T^{00} (x) x^{i} x^{j} 
+\approx \int \dd[3]{x} \rho (x) x^{i} x^{j} =
+ - I^{ij} + \int \dd[3]{x} \rho (x) r^2 \delta^{ij}
+\,.
+\end{align}
 
+\begin{claim}
+When we compute the time derivative of \(M^{ij}\) the integral of \(\rho r^2 \delta^{ij}\) does not contribute.
+\end{claim}
+
+\begin{proof}
+We can write the term (without the delta, which is a constant anyway) as 
+%
+\begin{align}
+\int \dd[3]{x} \rho (x) r^2  &=
+\Tr[ \int \dd[3]{x} \rho (x) x^{i}x^{j}] = \Tr[K^{ij}]
+\,,
+\end{align}
+%
+but this \(K^{ij}\) is a tensor, so it can be written as \(K = R^{\top} K' R\) where \(K'\) is in the body frame. 
+Then, we can use the cyclic property of the trace to show that \(\Tr[R^{\top} K' R] = \Tr[K' R R^{\top}] = \Tr[K']\), which is a constant.
+\end{proof}
+
+So, we can write \(\ddot{M}^{ij} = - \ddot{I}^{ij}\): explicitly, 
+%
+\begin{align}
+\ddot{M}^{11}= - \ddot{M}^{22} = - \ddot{I}^{11} = + \ddot{I}^{22} 
+&= 2 \omega_{r}^2 (I_1 - I_2 ) \cos(2 \omega_{r} t)   \\
+\ddot{M}^{12} = - \ddot{I}^{12} 
+&= 2 \omega_{r}^2 (I_1 - I_2 ) \sin(2 \omega_{r} t)
+\,,
+\end{align}
+%
+while the other components of \(\ddot{M}^{ij}\) vanish. 
+
+% Suppose we had a body whose angular momentum is not aligned with the moment of inertia: we can use Euler angles to express the rotation matrix.
+We have general expressions for the GW amplitudes in the two polarizations if we observe from a generic direction \((\theta, \phi )\). 
 
 \end{document}

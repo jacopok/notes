@@ -296,16 +296,25 @@ This means that the wobble is decreasing, the rotation is aligning with the angu
 However, the combination \(J \cos \alpha \) is constant: 
 %
 \begin{align}
-\dv{}{t} \qty(J \cos \alpha ) = \dv{J}{t} \cos \alpha - J \dot{\alpha} \sin \alpha 
+\dv{}{t} \qty(J \cos \alpha ) &= \dv{J}{t} \cos \alpha - J \dot{\alpha} \sin \alpha   \\
+\begin{split}
+&= - \frac{2G}{5c^{5}} (I_1-I_3)^2 \dot{\beta}^{5} \sin^2\alpha \qty(\cos^2\alpha  + 16 \sin^2\alpha ) \cos \alpha + \\
+&\phantom{=}\ 
+- \dot{\beta} I_1 \sin \alpha \qty(- \frac{2G}{5c^{5}} \frac{(I_1 - I_3 )^2}{I_1 } 
+\dot{\beta}^{4} \sin \alpha \cos \alpha \qty(\cos^2\alpha + 16 \sin^2 \alpha ))
+\end{split}  \\
+&= 0
 \,,
 \end{align}
 %
- 
+which means that \(\omega_{3}' = J \cos \alpha  / I_3 \) is a constant: this is the rotation speed of the body around its axis; \(J \cos \alpha \) is the projection of the angular momentum of the body around its axis \(x_3'\).
 
 % We find differential equations telling us that \(\dot{\beta}
 % \) and \(\alpha \) both decrease: the first means that the motion is slowing down; the second means that the wobbling is decreasing, as the rotation is aligning with the angular momentum.
 
-We can define the parameter \(u(t) = \dot{\beta} / \dot{\beta}_{0}\), and a characteristic time \(\tau_0 \): 
+\subsubsection{Backreaction}
+
+In order to study the differential equations for \(\ddot{\beta}\) and \(\dot{\alpha}\) we can define the parameter \(u(t) = \dot{\beta} / \dot{\beta}_{0}\), and a characteristic time \(\tau_0 \): 
 %
 \begin{align}
 \tau_0  = \qty( \frac{2G}{5 c^{5}} \frac{(I_1 - I_3 )^2}{I_1  } \dot{\beta}_{0}^{4})^{-1}
@@ -315,30 +324,79 @@ We can define the parameter \(u(t) = \dot{\beta} / \dot{\beta}_{0}\), and a char
 which has a typical value of 
 %
 \begin{align}
-\tau_0 = \SI{1.8e6}{yr} \qty(\num{e-7} \frac{I_3 }{I_1 - I_3 })^2 \qty( \frac{ \SI{1}{kHz}}{f_0 })^{4} \qty(\num{e38} \frac{\SI{}{kg m^2}}{I_1 })
+\tau_0 = \SI{1.8e6}{yr} \qty(\num{e-7} \frac{I_3 }{I_1 - I_3 })^2 \qty( \frac{ \SI{1}{kHz}}{f_0 })^{4} \qty(\frac{\SI{e38}{kg m^2}}{I_1 })
 \,,
 \end{align}
 %
-and we can write differential equations for \(\dot{u}\) and \(\dot{\alpha}\): but we must have \(\dot{\beta} \cos(\alpha ) = \const\). 
-This implies that the boundary conditions must be \(\alpha_{ \infty } = 0\) and \(u_{ \infty } = \cos \alpha_0 \). Also, asymptotically, 
+and we can write differential equations for \(\dot{u}\) and \(\dot{\alpha}\) as 
 %
 \begin{align}
-\dot{\alpha}_{t \to \infty } = \dots
-\,.
+\dot{u} &= - \frac{u^{5}}{\tau_0 } \sin^2\alpha  \qty(\cos^2 \alpha + 16 \sin^2\alpha ) \\
+\dot{\alpha} &= - \frac{ u^{4}}{\tau_0 } \sin \alpha \cos \alpha 
+\qty(\cos^2 \alpha + 16 \sin^2\alpha )
+\,,
 \end{align}
+%
+with initial conditions at the origin \(u(0) = 1\) (meaning \(\beta = \beta_0 \)) and \(\alpha(0) = \alpha_0 \). 
 
-These conditions do not apply in general, neutron stars are not truly rigid bodies since they have an internal structure. 
-In a generic case we will have emission at different frequencies. 
+We have shown that \(J \cos \alpha \) is a constant: this means that we must have \(\dot{\beta} \cos(\alpha ) = \const\). 
+This can aid us in the search of a steady state, by providing a constraint. The constant can be calculated at any time, so we compute it at \(t = 0\): then we get \(\dot{\beta}_{0} \cos(\alpha_0 ) = \cos(\alpha_0 )=  \const\).
+
+This implies that the boundary condition at infinity must satisfy \(u_{ \infty } \cos(\alpha_{ \infty }) = \cos \alpha_0 \), which in general is different from 0 (unless \(\alpha_0 = \pi /2\), but it can be shown that this is an unstable equilibrium).
+
+Having a steady state means that we require \(\dot{\alpha} = \dot{u} = 0\).
+Since the factor \(\cos^2 + 16 \sin^2 \) is always positive for \(\alpha \in [0, \pi ]\) this can be either satisfied by \(u = 0\) or \(\sin \alpha = 0\), meaning \(\alpha = 0\) or \(\pi \).
+
+The condition \(u = 0\) cannot in general obey the \(J \cos \alpha \) constraint, so we are left with \(\alpha = 0, \pi \).
+
+\todo[inline]{Can we discard \(\alpha > \pi /2\) because otherwise we could just flip the axes until it became \(\alpha < \pi /2\)?}
+
+So, we get the asymptotic state 
+%
+\begin{align}
+\alpha_{ \infty } = 0 
+\qquad \text{and} \qquad
+u_{ \infty } = \cos \alpha_0 
+\,,
+\end{align}
+%
+and the way \(\alpha \) approaches this value asymptotically is 
+%
+\begin{align}
+\dot{\alpha} \sim \alpha \frac{ u^{4}_{ \infty }  }{\tau_0 }
+\qquad \text{as} \qquad
+t \to \infty 
+\,,
+\end{align}
+%
+so asymptotically the decay is exponential, with a timescale \(\sim \tau_0 / u_{ \infty }^{4} \gtrsim \tau_0 \). 
+
+\subsection{Observations}
+
+The conditions we discussed do not apply in general: first of all, neutron stars are not truly rigid bodies since they have an internal structure. 
+Even if they were, a generic rigid body's principal axes are all different. Maggiore discusses the triaxial case briefly \cite[pagg.\ 211--214]{maggioreGravitationalWavesVolume2007}.
+
+In the triaxial case we will have emission at different frequencies, for example \(2 \omega_{r} \), \(2 \omega_{r} + \omega_{p} \), \(2 (\omega_{r} + \omega_{p})\).
+There are even more: for each base frequency \(\omega \), radiation is emitted with decreasing amplitude for \(\omega + n \omega_{p}\), \(n \in \mathbb{N}\).
 
 We have not seen pulsars yet in GW, but we can put upper bounds to the amplitude of their emission. 
+What we do is to search for \textbf{quasi-stationary} GW signals close to known pulsars, accounting for the modulations due to the proper motion of the Earth, of the source etc.
+There are about 400 pulsars in the LIGO-Virgo bandwidth which would be eligible for this kind of observation.
 
 ``Beating the spin-down limit'' means that we know that we would be able to see the GW emission in a certain case if the spin-down was only due to GW.
+We have beaten it by a factor 10 for the Crab and Vela pulsars: a very tiny fraction \(\lesssim \SI{1}{\percent}\) of the rotational energy is lost to GW. 
+
+\emph{Scorpius X-1} is low-mass X-ray binary: we see X-ray emission caused by accretion of the NS from the companion. 
+This is a plausible mechanism for the deformation of the NS. 
+We know its position and orbital period, not its spin frequency! 
+The amplitude of its GW emission is expected to be of the order of \(h_0 \sim \num{5e-25}\).
+
+\todo[inline]{What is this bit about? It does not seem really relevant.}
 
 Could we differentiate a pulsar rotating and seen head-on and a binary system? 
-Surely they are phenomena which happen in different frequency ranges, and last very much different times. 
+Surely they are phenomena which happen in different frequency ranges, and last for different times. 
 If the binary is spinning at those frequencies it's evolving very rapidly, instead a pulsar can give out a stable signal. 
 
 Also, in full numerical relativity the waveform looks different. 
-
 
 \end{document}

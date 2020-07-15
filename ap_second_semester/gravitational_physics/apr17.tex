@@ -5,78 +5,96 @@
 
 \section{Noise theory}
 
-\subsection{A simple experiment}
+\subsubsection{A simple experiment}
 
 \marginpar{Friday\\ 2020-4-17, \\ compiled \\ \today}
 
-We want to use a pendulum to measure \(g\). We want to use small oscillations, which should have \(g = \omega^2L\), and we want to fit \(a(t)\).
+In order to guide our description of noise theory, we start from a simple example: suppose we want to use a pendulum to measure the gravitational acceleration \(g\).
+We want to use small oscillations, which should satisfy \(g \approx \omega^2L\), and we want to fit \(a(t)\).
 
-However, our signal can be very noisy compared to the theoretical waveform. 
+Our signal can be very noisy compared to the theoretical waveform.
+If we perform a \textbf{precision experiment} then the magnitude of the noise is comparable to (or smaller than) that of the signal: this is not a bad thing necessarily, it means we are operating at the very limit of our experimental capabilities. 
 
-It \emph{is} a good idea to use the whole timeseries instead of just counting oscillations, since we are using more data then. 
+It \emph{is} a good idea to fit the whole timeseries instead of just counting oscillations, since we are using more data then. 
+
+\subsection{Noise in experiments: a general formulation}
 
 The physical system gives us a signal \(s(t)\), we have some measurement apparatus which gives us an output \(s'(t)\).
-The output \(s'(t)\) can be also affected by noise: we can have physical noise \(n_1 (t)\) in the form of a random concurrent phenomenon, noise \(n_2 (t)\) in the transducer, and \(n_3 (t)\) in the readout. 
 
-In our example: \(n_1 \) can be due to air currents, vibrations of the suspension points. The transducer in our case is the accelerometer, so we can have input voltage instability, imperfect mechanical coupling, thermal vibrations contributing to \(n_2 \). 
-In the readout, we have have reference voltage instability, quantization if we digitize the signal, and electronic pick-up.
+The output \(s'(t)\) can be also affected by noise: we can have physical noise \(n_1 (t)\) in the form of a \emph{random concurrent phenomenon}, noise \(n_2 (t)\) in the \emph{transducer}, and \(n_3 (t)\) in the \emph{readout}. The term \(n_1 \) comes from the phenomenon itself, the terms \(n_2\) and \(n_3 \) come from our measurement apparatus.  
+This is a description of a very simple system, real-world experiments often are even more complicated than this! 
 
-We want to distinguish the output signal \(s'\) from the output noise \(n'\).
+In our example: \(n_1 \) could be due to air currents or vibrations of the suspension points.
+The transducer in our case is the accelerometer, so we can have input voltage instability, imperfect mechanical coupling, thermal vibrations contributing to \(n_2 \). 
+In the readout noise \(n_3 \) we can have reference voltage instability, quantization if we digitize the signal, and electronic pick-up.
 
-We define \textbf{precision experiments} as experiments where the signal amplitude is generally comparable or smaller than the noise amplitude.
+Also, in the signal \(s(t)\) there could be phenomena we do not want to measure and would regard as noise! 
+
+% We want to distinguish the output signal \(s'\) from the output noise \(n'\).
+
+% We define \textbf{precision experiments} as experiments where the signal amplitude is generally comparable or smaller than the noise amplitude.
 
 We call \textbf{noise} any unwanted signal. 
+In the classical realm, \(n(t)\) is the sum of deterministic processes, but in practice it is random since there are so many of them. We usually assume that they are zero-mean, while \(s(t)\) is macroscopically deterministic.
 
-In the classical realm, \(n(t)\) is the sum of deterministic processes, but in practice it is random since there are so many of them. We usually assume that they are zero-mean.
+The question the experimenter must ask are: how do we \textbf{distinguish} signal from noise, and how can we \textbf{recover} the original signal? How do we \textbf{characterize} the noise in a given experiment? 
 
 \subsection{Random processes}
 
 A random variable is a number \(x\) associated to a possible experimental outcome. Any outcome has an associated probability.
-In the continuous realm, we use probability density functions: 
+In the continuous realm, this is described by a probability density function \(f(x)\), defined so that: 
 %
 \begin{align}
-\mathbb{P} (x_0 \leq x \leq x_1 ) \int_{x_0 }^{x_1 } f(x) \dd{x}
+\mathbb{P} (x_0 \leq x \leq x_1 ) =  \int_{x_0 }^{x_1 } f(x) \dd{x}
 \,,
 \end{align}
 %
-and we can use it to compute mean values: 
+which we can use to compute mean values:
 %
 \begin{align}
 \int g(x) f(x) \dd{x} = \expval{g(x)}_{f}
 \,,
 \end{align}
 %
-while the variance is 
+and variances:
 %
 \begin{align}
-\sigma^2  = \expval{(x - \expval{x})^2} = \expval{x^2} - \expval{x}^2
+\sigma^2  &= \int \dd{x} f(x) \qty(x - \expval{x})^2 = \expval{(x - \expval{x})^2} = \expval{x^2} - \expval{x}^2
 \,.
 \end{align}
 
-Do note that these are ensemble averages, what we expect to be the average of a sample. They are not time averages. 
+Do note that at this point these are \emph{ensemble averages}: what we expect to be the average of a sample, \emph{not} time averages. 
+The way to ideally compute the ensemble average of a signal would be to repeat the experiment an ``infinite number of times''. 
 
-A random signal is a time series \(x(t)\).
-Every time we repeat the experiment we get a new \(x(t)\). 
+A random signal is a time series \(x(t)\); every time we repeat the experiment we get a new realization of \(x(t)\). 
 
-Knowing \(x(\widetilde{t})\) at a specific time \(\widetilde{t}\) we have partial predictive power for \(x(\widetilde{t} + T)\). 
+Knowing \(x(\widetilde{t})\) at a specific time \(\widetilde{t}\) we only have \emph{partial} predictive power for \(x(\widetilde{t} + T)\). 
 
-At a fixed time \(\widetilde{t}\), the possible values of \(x(\widetilde{t})\) have a certain probability distribution \(f(x; \widetilde{t})\). Then we have the following functions of time: \(\mu (t) = \expval{x(t)}\) and \(\sigma^2(t)\). 
+At a fixed time \(t\), the possible values of \(x(t)\) have a certain probability distribution \(f(x; t)\).
+Then we can define the following functions of time: \(\mu (t) = \expval{x(t)}\) and \(\sigma^2(t)\). 
 
-Ideally these are averages over an infinite number of realizations. We can, however, assume \emph{ergodicity}: this means that in stead of an ensemble mean value we can compute a time average, and similarly for other statistical properties. 
+% Ideally these are averages over an infinite number of realizations.
 
-Also, we assume stationarity: the statistical properties are time-independent. 
+Some properties our signal can have are: 
+\begin{enumerate}
+    \item \textbf{stochasticity}: the noise results from many uncorrelated processes, and correlation between the signal at a time \(t\) and at a time \(t + \Delta t\) decreases quickly with \(\Delta t\);
+    \item \textbf{ergodicity}: this means that instead of an ensemble mean value we can compute a time average, and similarly for other statistical properties; 
+    \item \textbf{stationarity}: statistical properties are time-independent;
+    \item \textbf{gaussianity}: \(x(t)\) is normally distributed for a  fixed \(t\). 
+\end{enumerate}
 
-Also, we can assume gaussianity: \(x(t)\) is normally distributed at fixed \(t\). 
-This is qualitatively justified by the central limit theorem. 
+The assumption of gaussianity for a specific signal is qualitatively justified by the central limit theorem, as long as the noise signal is stochastic. 
 
-These assumptions are almost always made, but it is important to keep them in mind.
+The assumption of stationarity is not justified in general: there are several seasonal and daily phenomena which can alter the experimental apparatus; it is important to tread carefully here and only apply this assumption for small enough times.
 
-We assume that the noise is \textbf{stochastic}, so it results from many different uncorrelated processes, and the correlation between the noise at a time \(t\) and \(t + \Delta t\) decreases quickly with \(\Delta t\). 
+Apart from this last consideration, these assumptions are almost always made in order to analyze the signal, but it is important to keep them in mind.
 
-\todo[inline]{So, we meand that the noise is high-frequency?}
+% We assume that the noise is \textbf{stochastic}, so it results from many different uncorrelated processes, and the correlation between the noise at a time \(t\) and \(t + \Delta t\) decreases quickly with \(\Delta t\). 
 
-\textbf{Stationarity}: the apparatus is stable in time, and so are the processes that generate the noise.
-This is valid only for somewhat small periods. 
+% \todo[inline]{So, we meand that the noise is high-frequency?}
+
+% \textbf{Stationarity}: the apparatus is stable in time, and so are the processes that generate the noise.
+% This is valid only for somewhat small periods. 
 
 \subsection{Fourier transforms}
 

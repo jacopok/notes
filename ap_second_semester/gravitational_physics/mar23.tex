@@ -27,7 +27,7 @@ where we made the nonrelativistic approximation where the spacelike components o
 \qquad \text{and} \qquad
 \partial_0 \Gamma^{i}_{0j} =0 
 \implies 
-R^{i}_{0j0} = \partial_{j} \Gamma^{j}_{00} 
+R^{i}_{0j0} = \partial_{j} \Gamma^{i}_{00} 
 \,,
 \end{align}
 %
@@ -312,7 +312,7 @@ So, the general expression for our TT-gauge tensor measured at a position \(\vec
 \boxalign{
 \begin{align}
 h_{ij}^{TT} (ct, \vec{x}) =  \Lambda_{ij, kl} (\hat{n}) \overline{h}_{kl}
-= \frac{4G}{c^{4}} \Lambda_{ij, kl} (\hat{n}) \int \dd[3]{y} \frac{T_{\mu \nu } (ct - \abs{\vec{x} - \vec{y}}, \vec{y})}{\abs{\vec{x} - \vec{y}}}
+= \frac{4G}{c^{4}} \Lambda_{ij, kl} (\hat{n}) \int \dd[3]{y} \frac{T_{kl } (ct - \abs{\vec{x} - \vec{y}}, \vec{y})}{\abs{\vec{x} - \vec{y}}}
 \,.
 \end{align}}
 
@@ -381,8 +381,8 @@ S^{ij, m_1 m_2 \dots} (t) = \int \dd[3]{y} T^{ij}(t, y) \prod_\alpha  y^{m_\alph
 In terms of these, the expression for \(h_{ij}^{TT}\) can be written as 
 %
 \begin{align}
-h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} \int \dd[3]{y}
-\qty(S^{kl} + \frac{1}{c} n_{m} S^{kl, m} + \frac{1}{2 c^2} n_m n_p S^{kl, mp} + \order{\xi^3})_{\text{ret}}
+h_{ij}^{TT} (t, \vec{x}) = \frac{1}{r} \frac{4G}{c^{4}} \Lambda_{ij, kl} 
+\qty(S^{kl} + \frac{1}{c} n_{m} \dot{S}^{kl, m} + \frac{1}{2 c^2} n_m n_p \ddot{S}^{kl, mp} + \order{\xi^3})_{\text{ret}}
 \,.
 \end{align}
 
@@ -398,14 +398,16 @@ h_{ij}^{TT} (t, \vec{x}) \approx \frac{1}{r} \frac{4G}{c^{4}}
 Let us define the moments of the energy and momentum densities: 
 %
 \begin{align}
-M &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y}) = \frac{1}{c^2} S^{00} \\ 
-M^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{i} = \frac{1}{c^2} S^{00,i} \\ 
-M^{ij} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{i}y^{j} = \frac{1}{c^2} S^{00,ij} \\ 
-P^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) = \frac{1}{c^2} S^{0i} \\  
-P^{i,j} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j} = \frac{1}{c^2} S^{0i,j} \\  
-P^{i,jk} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j}y^{k} = \frac{1}{c^2} S^{0i,jk}
-\,.
+M &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y}) \sim \frac{1}{c^2} S^{00} \\ 
+M^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{i} \sim \frac{1}{c^2} S^{00,i} \\ 
+M^{ij} &= \frac{1}{c^2} \int \dd[3]{y} T^{00}(t, \vec{y})y^{i}y^{j} \sim \frac{1}{c^2} S^{00,ij} \\ 
+P^{i} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) \sim \frac{1}{c^2} S^{0i} \\  
+P^{i,j} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j} \sim \frac{1}{c^2} S^{0i,j} \\  
+P^{i,jk} &= \frac{1}{c^2} \int \dd[3]{y} T^{0i} (t, \vec{y}) y^{j}y^{k} \sim \frac{1}{c^2} S^{0i,jk}
+\,,
 \end{align}
+%
+where we have an analogy (\(\sim\)) instead of an equality because the \(S^{ij,m_1 m_2 \dots}\) are defined only with spatial indices. 
 
 We might want to compute the \textbf{backreaction} of the GW emission onto the system, the energy lost per unit time: since \(M\) corresponds to the total energy, we could try to compute \(\dot{M}\).\footnote{A small technical note: since we are bothering to keep the \(c\)s, we should recall that the time derivative denoted by a dot is actually a derivative with respect to \(ct\).}
 Let us try to do this, recalling that by the stress-energy tensor's conservation we have \(\partial_{\mu } T^{\mu \nu } = 0\), which means \(\partial_{0} T^{00} = - \partial_{i} T^{0i}\): 
@@ -417,18 +419,23 @@ c\dot{M} = \int_{V} \dd[3]{y} \partial_{0} T^{00}
 \,,
 \end{align}
 %
-since the flux is computed in a region outside the source, where its stess-energy tensor vanishes. 
+since the flux is computed in a region outside the source, where its stress-energy tensor vanishes. 
 What this means is that the leading order is too low to see the energy loss. 
 If we move up an order we find 
 %
 \begin{align}
 c \dot{M}^{i} &= \int_{V} \dd[3]{y} y^{i} \underbrace{\partial_{0} T^{00}}_{= - \partial_{j} T^{0j}}
-= + \int_{V} \qty(\partial_{j} y^{i}) T^{0j} = cP^{i}
+= + \int_{V} \dd[3]{y} \qty(\partial_{j} y^{i}) T^{0j} = cP^{i}
 \,,
 \end{align}
 %
-\todo[inline]{Some signs are wrong in the slides at this point.
-Also, not really clear what meaning should be drawn from this.}
+which means that the time derivative of the center of mass \(M^{i}\) gives the total linear momentum.
+Like the total energy, this is conserved: it can be shown like 
+%
+\begin{align}
+\dot{P}^{i} = \int_V \dd[3]{y} \partial_{0} T^{0i} = -\int_V \dd[3]{y} \partial_{j} T^{ji} = - \int_{\partial V} \dd{S_j} T^{ji}  \to 0 
+\,.
+\end{align}
 
 We also can show that \(\dot{M}^{ij} = 2 P^{(i, j)}\), \(\dot{M}^{ijk} = P^{i,jk} + P^{j, ik} + P^{k, ij}\) and \(\dot{P}^{i,j} = 2 S^{ij}\), which means \(\ddot{M}^{ij} = 2 S^{ij}\).
 The computation is done by repeatedly applying integration by parts and the continuity equation: 
@@ -443,6 +450,8 @@ The computation is done by repeatedly applying integration by parts and the cont
 = \int T^{kl} + T^{lk} = 2 S^{kl}
 \,.
 \end{align}
+
+To give a physical intuition: the spatial components \(S^{kl}\) describe the \emph{pressure} and \emph{shears} in the source --- they make up the stress tensor. On the other hand, \(M^{kl}\) is the second moment of the mass density; its second derivative is somewhat analogous to a mass times an acceleration. So, this equation is a way to relate the forces and the accelerations inside the source.
 
 \subsubsection{Quadrupole radiation}
 

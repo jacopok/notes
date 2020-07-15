@@ -51,7 +51,8 @@ However, we can use the relative coordinates in a self-gravitating system: if tw
 If we set the position of the COM to zero identically, all the terms containing it in the second mass moment vanish, and we are left with;
 %
 \begin{align}
-M^{ij} = \int \dd[3]{x} \dd[3]{x} T^{00} x^{i}x^{j} = m_1 x^{i}_{1} x^{i}_{2}
+M^{ij} = \int \dd[3]{x} T^{00} x^{i}x^{j} = m_1 x^{i}_{1} x^{i}_{1}
++ m_2 x^{i}_{2} x^{j}_{2}
 &= \mu x^{i}_{0} x^{j}_{0}
 \,.
 \end{align}
@@ -59,12 +60,13 @@ M^{ij} = \int \dd[3]{x} \dd[3]{x} T^{00} x^{i}x^{j} = m_1 x^{i}_{1} x^{i}_{2}
 The quadrupole is then given by 
 %
 \begin{align}
-Q^{ij} (t) = \mu \qty(x^{i}_{0} (t)x^{j}_{0} (t) + \frac{r_0^2}{3} \delta^{ij})
+Q^{ij} (t) = \mu \qty(x^{i}_{0} (t)x^{j}_{0} (t) - \frac{r_0^2}{3} \delta^{ij})
 \,,
 \end{align}
+%
+where \(r_0^2 = \abs{x_0 }^2\).
 
-
-We consider two particles in the XY plane moving on a circular trajectory; for now we do not consider the Newtonian equations of motion and let all the parameters of this trajectory be independent of each other, so we write 
+We consider two particles in the \(xy\) plane moving on a circular trajectory; for now we do not consider the Newtonian equations of motion and let all the parameters of this trajectory be independent of each other, so we write 
 %
 \begin{subequations}
 \begin{align}
@@ -78,9 +80,9 @@ z_0 (t) &= 0
 so we can compute the mass moments: we get products of sines and cosines which can be written as:
 %
 \begin{align}
-M_{11} &= \frac{\mu^2R}{2} \qty(1 - \cos(2 \omega_{s}t)) \\
-M_{22} &= \frac{\mu^2R}{2} \qty(1 + \cos(2 \omega_{s}t)) \\
-M_{12} &= \frac{\mu^2R}{2} \sin(2 \omega_{s}t) 
+M_{11} &= \frac{\mu R^2}{2} \qty(1 - \cos(2 \omega_{s}t)) \\
+M_{22} &= \frac{\mu R^2}{2} \qty(1 + \cos(2 \omega_{s}t)) \\
+M_{12} &= \frac{\mu R^2}{2} \sin(2 \omega_{s}t) 
 \,,
 \end{align}
 %
@@ -107,8 +109,8 @@ h_{ \times } (t, \theta , \varphi ) = \frac{1}{r} \frac{4G \mu \omega_{s}^2 R^2}
 so the two scale differently as \(\theta \) varies.
 The variation of \(\varphi \) does not change the amplitude of the wave, as we would expect, but only the phase.
 
-Do note that \(h_{+} + h_{ \times }\) looks like a circular polarization moving counter-clockwise, while \(h_{+} - h_{ \times }\) moves clockwise. This is what we see for \(\theta = 0, \pi \); on the other hand for \(\theta = \pi /2\) we only have \(h_{+}\). 
-\todo[inline]{Check this!}
+Do note that \(h_{+}\), and \(+ h_{ \times }\) looks like a circular polarization moving counter-clockwise, while \(h_{+}\), \(- h_{ \times }\) moves clockwise. This is what we see for \(\theta = 0, \pi \); on the other hand for \(\theta = \pi /2\) we only have \(h_{+}\). 
+So, if we can measure the magnitudes and relative phases of the \(+\) and \(\times \) polarizations then we can determine in which direction the binary is spinning relative to us. 
 
 \todo[inline]{Plot effects! }
 
@@ -118,7 +120,7 @@ Then, we find
 %
 \begin{align}
 h_+ \sim h_{ \times } \sim \frac{1}{r}
-\frac{G \mu \omega_{s}^2 R^2}{c^{4}} 
+\frac{4 G \mu \omega_{s}^2 R^2}{c^{4}} 
 \sim \num{5e-32}
 \,,
 \end{align}
@@ -147,12 +149,11 @@ h_{+} \sim h_{ \times } \sim \frac{4 G^{5/3} \omega_{s}^{2/3} \mu M^{2/3}}{r c^{
 This was for a BNS at \SI{e5}{lyr};
 we have seen a BNS outside our galaxy, at \(\SI{40}{Mpc} \sim \SI{e8}{lyr}\) away, whose signal had an amplitude as low as \(\num{e-23}\). 
 
-We can try to do the computation for the actual event GW150914, for which \(m_1 \sim 36 M_{\odot}\), \(m_2 \sim 31 M_{\odot}\), \(f_s \sim \SI{250}{Hz}\), \(r \sim \SI{440}{Mpc}\). 
-We find an amplitude of \num{4.7e-21}, which is compatible with the \(\sim \num{5e-22}\) shown in the paper \cite[fig.\ 2]{ligoscientificcollaborationandvirgocollaborationObservationGravitationalWaves2016} for the inspiral phase.
+We can try to do the computation for the actual event GW150914, for which \(m_1 \sim 36 M_{\odot}\), \(m_2 \sim 29 M_{\odot}\), \(f_{GW} = 2 f_s  \sim \SI{35}{Hz}\) in the inspiral phase, \(r \sim \SI{410}{Mpc}\).
+The amplitude we find is approximately \num{8e-22}.
+The amplitude which was measured was \(\sim \num{5e-22}\) \cite[fig.\ 2]{ligoscientificcollaborationandvirgocollaborationObservationGravitationalWaves2016} for the inspiral phase; the difference of a factor \(5/8\) is due to the angular distribution --- we are not looking at the source head-on, but instead at a certain angle.
 
-\todo[inline]{The figure is not compatible with the one given in the paper, it's too large by an order of magnitude!}
-
-When their distance becomes too small, we cannot model them using Kepler's laws anymore. 
+When the distance between the bodies in the binary becomes too small, we cannot model them using Kepler's laws anymore. 
 
 \section{Energy and momentum of GW}
 
@@ -189,7 +190,7 @@ We refer to the combination of the two conditions as the \textbf{short-wave appr
 
 How do ground-based \textbf{GW detectors} practically distinguish GW from background? 
 
-Their length is at most on the order of single kilometers: so, their characteristic frequency will be \(f_{GW} = c / \lambda_{GW}  \sim \SI{300}{kHz}\).
+Their length is at most on the order of single kilometers: so, their characteristic frequency will be \(f_{GW} = c / \lambda_{GW}  \sim \SI{300}{kHz}\): the idea of measuring a GW's variation in space and checking that its wavelength is small with respect to the background is doomed to fail.
 We cannot measure at these frequencies or higher, and do not expect to find interesting astrophysical sources in this range.
 Also, ground-based detectors do not measure the metric along the whole length, but only an integrated effect. 
 

@@ -169,7 +169,7 @@ for a scalar field \(S\).
 This means that 
 %
 \begin{align}
-\nabla_{[\mu  } \nabla_{\nu ]} S = \nabla_{[\mu  } \partial_{\nu ]} S = \partial_{[\mu } \partial_{\nu ]} S - \Gamma^{\alpha }_{[\mu \nu ]} \partial_{\alpha } = 0
+\nabla_{[\mu  } \nabla_{\nu ]} S = \nabla_{[\mu  } \partial_{\nu ]} S = \partial_{[\mu } \partial_{\nu ]} S - \Gamma^{\alpha }_{[\mu \nu ]} \partial_{\alpha } S = 0
 \implies \Gamma^{\alpha }_{[\mu \nu ]} = 0
 \,,
 \end{align}
@@ -249,11 +249,11 @@ If we subtract the two and only keep the first order in \(\xi \), we get
 \,,
 \end{align}
 %
-but the first term is not an intrinsic derivative: that would be given by 
+so the first term is not an intrinsic derivative: that would be given by 
 %
 \begin{align}
 \frac{\mathrm{D}^2 \xi^{\mu }}{\mathrm{D} u^2} 
-= \dv{}{u} \qty(\dot{\xi}^{\mu } + \Gamma^{\mu }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }) + \mathcal{O}(\xi^2) 
+= \bigd{}{u} \qty(\dot{\xi}^{\mu } + \Gamma^{\mu }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }) + \mathcal{O}(\xi^2) 
 &= \ddot{\xi}^{\mu }
 + \dot{x}^{\alpha  } \partial_{\alpha }\Gamma^{\mu  }_{\nu \rho } \xi^{\nu } \dot{x}^{\rho }
 % + \qty(\partial_{\alpha } \Gamma^{\mu }_{\nu \rho }) \xi^{\alpha } \dot{x}^{\nu } \dot{x}^{\rho } 
@@ -265,7 +265,17 @@ but the first term is not an intrinsic derivative: that would be given by
 \,,
 \end{align}
 %
-so we can write the differential equation we have found by inserting this expression for \(\ddot{\xi}\): 
+where the two derivatives are defined by 
+%
+\begin{align}
+\bigd{}{u} = \dot{x}^{\mu } \nabla_{\mu } 
+\qquad \text{and} \qquad
+\dv{}{u} = \dot{x}^{\mu } \partial_{\mu }
+\,.
+\end{align}
+%
+
+We can then write the differential equation we have found by inserting this expression for \(\ddot{\xi}\): 
 %
 \begin{align}
 0= \frac{\mathrm{D}^2 \xi^{\mu }}{\mathrm{D} u^2} 

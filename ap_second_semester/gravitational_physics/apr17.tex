@@ -98,14 +98,16 @@ Apart from this last consideration, these assumptions are almost always made in 
 
 \subsection{Fourier transforms}
 
-For square-integrable functions, 
+In order to move to Fourier space we must make sure that our time signal \(s(t)\) is square-integrable: 
 %
 \begin{align}
 \int \abs{s(t)}^2 \dd{t} < \infty 
 \,,
 \end{align}
 %
-we define 
+where the integration bounds are implied to be \(- \infty \) to \(\infty \), unless otherwise specified. 
+
+As long as this is the case, we can define the Fourier transform and antitransform:  
 %
 \begin{align}
 s(\omega ) = \int s(t) e^{-i \omega t} \dd{t}
@@ -114,105 +116,182 @@ s(t) = \frac{1}{2 \pi } \int s(\omega ) e^{i \omega t} \dd{\omega }
 \,.
 \end{align}
 
-Important properties are linearity, the fact that in Fourier space derivatives become multiplication by \(i \omega \). 
-Also, the convolution theorem: multiplication in time domain is the same as convolution in frequency domain: 
+The normalization factors before the integrals are conventional --- their product however needs to be \((2 \pi )^{-1}\) in order for the composition of the transform and antitransform to give back the original function. 
+The signs of the arguments of the exponentials could be swapped as well, they just need to be opposite of each other. 
+
+Important properties are: linearity; the fact that in Fourier space derivatives become multiplication by \(i \omega \);\footnote{This can be shown by integrating by parts, the boundary terms must vanish since our function is in \(L^2(\mathbb{R})\).}
+the convolution theorem: multiplication in time domain is the same as convolution in frequency domain,
 %
 \begin{align}
 \int s(t) q(t) e^{-i \omega t} \dd{t} = \frac{1}{2 \pi } \int s(\omega') q (\omega - \omega') \dd{\omega'}
 \,.
 \end{align}
 
-The transform of the Dirac \(\delta(t) \) function is 1.
-Almost any signal can be described as an infinite superposition of oscillatory terms. 
+The transform of the Dirac \(\delta(t) \) function is 1: a signal which is very well localized in time is very delocalized in frequency (and vice versa).
+The Fourier transform corresponds to a \emph{unitary} transformation of the space of square-integrable functions: no information is lost by transforming, so under these assumptions any signal can be described as an infinite superposition of oscillatory terms in an equivalent. 
 
 The transform is a complex-valued function, telling us the amplitude and phase of any component of the oscillation.
 
-In practice, the frequency domain is very useful. Many interesting signals are well-defined in frequency.
+In practice, the frequency domain is very useful. Many interesting signals are well-defined in frequency, less so in time.
 
-Even multiple signals can be easily separated in frequency. 
-Also, random noise is easier to characterize in frequency domain: the shape of the noise is interesting.
+% Even multiple signals can be easily separated in frequency. 
+Also, random noise is easier to characterize in frequency domain, especially if it is \emph{stationary}: the specific value of the noise at a specific time is random, but the statistics of the Fourier transform are fixed.
 
-Some other properties: the Fourier transform preserves the energy (in the sense of the integral of the square modulus). 
-It also preserves the information. It returns a Hermitian function. 
+Some other properties: the Fourier transform preserves the energy (in the sense of the integral of the square modulus): \(\int \abs{s(t)}^2 \dd{t} = \int \abs{s(\omega )}^2 \dd{\omega }\). 
+% It also preserves the information.
 
-We have the uncertainty principle: 
+If the signal \(s(t)\) is real-valued, then we have \(s(\omega ) = s^{*}(- \omega )\), so all the information is contained in the \(\omega > 0\) part of the transform.
+
+We can associate a \emph{probability density} to the signal, by 
+%
+\begin{align}
+f(t) = \frac{\abs{s(t)}^2}{\int \dd{t} \abs{s(t)}^2}
+\qquad \text{and} \qquad
+f(\omega) = \frac{\abs{s(\omega)}^2}{\int \dd{\omega} \abs{s(\omega)}^2}
+\,,
+\end{align}
+%
+and we can compute the moments of this probability density like we would for any other PDF.
+The \textbf{average values} of \(\omega \) and \(t\) (can be made to) \textbf{vanish}: for the frequency we have 
+%
+\begin{align}
+\expval{\omega } = \int \dd{\omega } \omega f(\omega )
+\propto \int \dd{\omega } \omega \abs{s(\omega )}^2 
+\,,
+\end{align}
+%
+which is odd under \(\omega \to - \omega \), since \(s(- \omega ) = s(\omega )^{*}\), whose square modulus is the same. 
+For the time, on the other hand, we will in general have some nonzero result:
+%
+\begin{align}
+\expval{t} = \int \dd{t} t f(t) = t_0 
+\,,
+\end{align}
+%
+which can be made to vanish by shifting \(t\) by \(t_0 \). 
+
+On the other hand, the second moments are nonvanishing: they are defined by 
+%
+\begin{align}
+\expval{\omega^2} = \Delta \omega^2 = \int \dd{\omega } \omega^2 f(\omega ) = \frac{\int \dd{\omega } \abs{\dv{s(t)}{t}}^2}{\int \dd{t} \abs{s(t)}^2}
+\qquad \text{and} \qquad
+\expval{t^2} = \Delta t^2 = \int \dd{t } t^2 f(t )
+\,.
+\end{align}
+
+We have the uncertainty principle, giving an intrinsic trade off between the localization of a signal in momentum space and in position space:\footnote{In order to prove this result, one writes \(\Delta \omega^2 \Delta t^2 \) explicitly and applies the Cauchy-Schwartz inequality: with \(E = \int \abs{s(\omega )}^2 \dd{\omega }\) we can write
+%
+\begin{align}
+\Delta \omega^2 \Delta t^2 
+= \frac{1}{E^2} \int \dd{t} \abs{\dv{s}{t}}^2
+ \int \dd{t'} t^{\prime 2} \abs{s(t')}^2 \geq \frac{1}{E^2} \abs{\int t \dv{s}{t} s(t) \dd{t}}^2 
+ = \frac{1}{4 E^2} \abs{\int t \dv{}{t} \qty(s^2)  \dd{t} }^2  
+ = \frac{1}{4}
+\,,
+\end{align}
+%
+since \(\int t \dv{(s^2)}{t} \dd{t} = - \int s^2 \dd{t} = - E\). 
+}
 %
 \begin{align}
 \Delta \omega \Delta t \geq \frac{1}{2} 
 \,.
 \end{align}
 
-Depending on the physical characteristics of the signal, we should select a large observation time or a large frequency band.
+Depending on the physical characteristics of the signal, we should select a large observation time or a large frequency band, knowing that with a short observation time we will not be able to determine a frequency precisely.    
 
 \subsection{Power spectral density}
 
-The phase of the noise will be completely different from one realization to the other.
+The phase of the noise will be completely different from one realization to the other: if the noise is stochastic then its Fourier transform is stochastic as well. 
 
-We define the autocorrelation function: 
+We define the autocorrelation function: for a \emph{stationary process} it is given by
 %
 \begin{align}
-R(t, t')  = \expval{x(t) x(t')} = R(\tau) 
-\,,
+R(t, t')  = \expval{x(t) x(t')} = R(\tau =  t - t') 
+\,.
 \end{align}
-%
-where \(\tau = t - t'\). So, we define the power spectral density (PSD) as:
+
+This function measures how quickly the signal loses memory. For a random process we expect \(R\) to go to zero relatively quickly as \(\tau \) increases. 
+So, we define the power spectral density (PSD) as the \textbf{Fourier transform of the autocorrelation function}: 
 %
 \begin{align}
 S_x (\omega ) = \int  \dd{\tau } R(\tau ) e^{i \omega \tau } 
 \,.
 \end{align}
 
-White noise has no correlation between a point and another: its auto-correlation function is a delta. It has all the frequency components. 
-The autocorrelation function measures how fast the signal loses memory. 
+White noise has no correlation between a point and another: its auto-correlation function is a delta. It has all the frequency components. So, its PSD will be flat.
+% The autocorrelation function measures how fast the signal loses memory. 
 
-A more loose and intuitive definition is the ensemble average: 
+A more loose and intuitive definition is the \emph{ensemble average} of the frequency components of the signal: 
 %
 \begin{align}
 S_x(\omega ) \delta (\omega - \omega') = \expval{x(\omega ) x^{*} (\omega')}
+\,,
+\end{align}
+%
+so that we can recover the power of the signal by integrating it \cite[eq.\ 7.12]{maggioreGravitationalWavesVolume2007}: 
+%
+\begin{align}
+\expval{s^2} = \int S_x (\omega ) \dd{\omega }
 \,.
 \end{align}
 
-It is the average of the amplitude square, which is a power.
+This is not the formal definition since \(x(\omega )\) may not exist, but it clarifies the meaning: the phase of the signal is randomly distributed, but its \emph{amplitude} has a well-defined average. 
 
-This is not the formal definition since \(x(\omega )\) may not exist.
+% It is the average of the amplitude square, which is a power.
 
 If we build a window filter which only allows \([\omega_1 \leq \omega \leq \omega_2 ]\), then the residual power will be 
 %
 \begin{align}
-P = \int_{\omega_1 }^{\omega_2 } S(\omega ) \dd{\omega }
+P _{\text{window}} = \int_{\omega_1 }^{\omega_2 } S(\omega ) \dd{\omega }
 \,.
 \end{align}
 
 For real signals, \(S\) is symmetric: \(S_x (-\omega ) = S_x (\omega )\). 
 If we do not care about negative frequencies, we keep only the \([\omega \geq_0 ]\) region and multiply by 2.
 
-The root mean square of the signal in time is the integral of the PSD: 
+The mean square of the signal in time is the integral of the PSD: 
 %
 \begin{align}
 \sigma^2_{x} = \int_{0}^{ \infty } S_x (\omega )
 \,.
 \end{align}
 
-Here we are assuming that the signal has zero mean.
-If two signals are uncorrelated, the power spectral density of their sum is the sum of their PSDs. 
+% Here we are assuming that the signal has zero mean.
+If two signals are uncorrelated, the power spectral density of their sum is the sum of their PSDs: 
+%
+\begin{align}
+S_{x + y} (\omega ) = S_x (\omega ) + S_y (\omega )
+\,.
+\end{align}
+%
 
-The amplitude, or linear, spectral density, is \(\sqrt{S_x(\omega )}\). 
+Often instead of the \emph{power} spectral density we use the amplitude, or linear, spectral density, defined by \(\sqrt{S_x(\omega )}\). 
 
-If our signal has units of \SI{}{m}, then \([S_x(\omega )] = \SI{}{m^2/Hz}\), so the linear PSD has units of \([\sqrt{S_x(\omega )}] \SI{}{m / \sqrt{Hz}}\).
+If our signal has units of \SI{}{m}, then the dimensions of the power spectral density are \([S_x(\omega )] = \SI{}{m^2/Hz}\), while the linear PSD has units of \([\sqrt{S_x(\omega )}] = \SI{}{m / \sqrt{Hz}}\).
 
-In practice, we measure for a limited time \(T\). So, \(x\) will only have Fourier components at frequencies \(f_n = n / T\). The frequency resolution is \(\Delta f = 1 / T\). 
+\subsubsection{PSD, bandwidth and windowing}
 
-Having a measurement which is limited in time with a window \(w(t)\), we are actually measuring \(x(t) w(t)\): so, in frequency space we have 
+In practice, we measure for a limited time \(T\), either because the funding runs out or because the signal has an intrinsically short duration.
+So, the measured signal \(x(t)\) will only have Fourier components at frequencies \(f_n = n / T\), where \(n \in \mathbb{N}\).
+We express this by saying that the frequency resolution is \(\Delta f = 1 / T\). 
+
+In general, we express a time-constrained measurement as a product of the signal \(x(t)\) with a window \(w(t)\), so that the measured signal is \(x(t) w(t)\), where the window \(w(t)\) is only nonzero in a certain region of length \(\leq T\).
+In frequency space products become convolutions, so we get 
 %
 \begin{align}
 x _{\text{measured}} (\omega ) = \int \dd{\widetilde{\omega}} x(\widetilde{\omega}) w(\omega - \widetilde{\omega} ) 
-\,,
+\,:
 \end{align}
 %
-so the Fourier transform of the window spreads out our signal.
+the Fourier transform of the window \emph{spreads out} our signal.
+We must also be careful: windows with sharp boundaries (like a box window) introduce high-frequency components, dirtying the Fourier representation of our signal.
+In order to avoid this effect we must ``ease into'' the window somehow, for example we can consider a window shaped like a Gaussian. 
+Counterintuitively, this means that we must \emph{ignore} or consider less some of our data points. 
 
-We can deconvolve if we know what the window looks like. However, we do not usually do it. 
-In fact, if we were to take out this windowing effect it would mean we are assuming that if we were to observe our signal for a longer time than we did we would see the same thing.
-This might be justified sometimes, some other times it is not.
+We could deconvolve to get the signal back if we knew what the window looks like. We often know all about the window, but we do not usually apply this procedure. 
+In fact, if we were to take out this windowing effect it would mean we are assuming that if we were to observe our signal \emph{for a longer time than we actually did} we would see the same thing over and over.
+
+This is quite a strong assumption, which might be justified sometimes, but usually it is not.
 
 \end{document}

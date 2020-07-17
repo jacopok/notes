@@ -3,31 +3,44 @@
 
 \marginpar{Monday\\ 2020-4-20, \\ compiled \\ \today}
 
-The Fourier transform is stochastic since the noise is stochastic: however, the PSD encompasses the statistical properties of the signal in a way that is stationary and well-defined. 
+% The Fourier transform is stochastic since the noise is stochastic: however, the PSD encompasses the statistical properties of the signal in a way that is stationary and well-defined. 
 
-A physical system is a functional \(F\) which transforms input time series \(i_j (t)\) into output time series \(o_j (t) = F(i_j(t))\). 
+A physical system is a \textbf{functional} \(F\) which transforms one or many input time series \(i_j (t)\) into one or many output time series \(o_j (t) = F(i_j(t))\). 
 
-Real systems are causal: there cannot be causality going backward in time. 
+In principle, any output time series at any time could be a function of any input time series at any time.
+However, real systems are causal: there cannot be causality going backward in time, so \(o(t_0 ) = \eval{F (i(t))}_{t \leq t_0 }\). 
 
-Also, often we can approximate systems as linear ones, as long as we work near a single point. 
-Also, we can sometimes approximate them as stationary. 
+% Also, often we can approximate systems as linear ones. as long as we work near a single point. 
+% Also, we can sometimes approximate them as stationary. 
+We can also make two assumptions: that the functional \(F\) is \textbf{linear} --- this is justified as long as we are always working near a fixed point, so that the higher order terms are negligible; and that the functional \(F\) is \textbf{stationary}: this means that it is invariant under translations \(t \to t + a\).
 
-Under all of these assumptions, we can express everything using an impulse response function: 
+Under all of these assumptions, we can express the effect of the system through an \textbf{impulse response function} \(h\), defined so that: 
 %
 \begin{align}
-o(t) = \int \dd{\widetilde{t}} i(\widetilde{t}) F( \delta (t - \widetilde{t})) 
-= \int \dd{\widetilde{t}} h(t - \widetilde{t})
-\,,
+o(t) = F \qty[\int \dd{\widetilde{t}} i (\widetilde{t}) \delta(t - \widetilde{t})]
+= \int \dd{\widetilde{t}} i(\widetilde{t}) F( \delta (t - \widetilde{t})) 
+= \int \dd{\widetilde{t}} i(\widetilde{t}) h(t - \widetilde{t})
+\,.
 \end{align}
-%
-and this is a convolution: so we can express it as 
+
+We can say that \(F[i(\widetilde{t}) \delta] = i(\widetilde{t}) F[\delta ]\) because \(t'\) is fixed inside the integral, so \(i(\widetilde{t})\) is just a constant. 
+
+We used stationarity to write \(h(\widetilde{t}, t)\) as \(h( \widetilde{t} - t)\); also, causality tell us that the IRF \(h(\tau )\) must satisfy \(h(\tau ) = 0\) for \(\tau < 0\).
+
+The expression for the output as a function of the input is a convolution, so in Fourier space it is a product;
 %
 \begin{align}
 o(\omega ) = i(\omega ) h(\omega )
 \,.
 \end{align}
 
-The power spectral density then transforms as \(S_o (\omega ) = \abs{h(\omega )}^2 S_i (\omega )\), and if we have systems in series we can just multiply the impulse responses together. 
+The power spectral density then transforms as \(S_o (\omega ) = \abs{h(\omega )}^2 S_i (\omega )\), and if we have systems in series we can just multiply the impulse responses together, like 
+%
+\begin{align}
+o (\omega ) = i(\omega )\prod_{j = 1}^{N} h_j (\omega ) 
+\,.
+\end{align}
+
 
 \subsection{Sampling}
 

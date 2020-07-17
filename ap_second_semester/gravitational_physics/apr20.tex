@@ -150,24 +150,30 @@ F _{\text{GW}} - k (L - \Delta x) = m \Delta \ddot{x}
 \,,
 \end{align}
 %
-where the force is given by
+where the force is given by (equation \eqref{eq:geodesic-deviation-detector-frame} multiplied by \(m\)):
 %
 \begin{align}
 F_{\text{GW}} = \frac{m}{2} \ddot{h}^{TT}_{xx} \Delta x \approx \frac{m}{2} L \ddot{h}^{TT}_{xx}
 \,.
 \end{align}
 
-This, however, is only valid as long as \(L \ll \lambda _{\text{GW}}\). 
+Since we can only see \(h_{xx}\), we are only sensitive to the \(h_{+}\) polarization: this is not surprising, since our detector is one-dimensional. 
 
-For a continuous bas, we will have 
+Note that this expression is only valid as long as we are in the short arm approximation: \(L \ll \lambda _{\text{GW}}\), which means \(f _{\text{GW}} \ll c/ L \approx \SI{3e8}{Hz}\), if \(L \approx \SI{1}{m}\). 
+
+Intuitively, what the equation is describing is the force of the GW competing with the intrinsic one of the oscillator to move the mass.
+
+The oscillator was a convenient approximation to give an idea of the system, but really for our detector we will use a continuous \textbf{resonant bar}; we can describe its movement by introducing the variable \(u(x, t)\), which denotes the displacement from equilibrium at a certain point (still in only \emph{one dimension}). The dynamics of the bar can be shown to obey the law
 %
 \begin{align}
 \dd{m} \qty(\pdv[2]{u}{t} - v_s^2 \pdv[2]{u}{x}) = \dd{F_x} = \dd{m} \frac{1}{2} x \ddot{h}_{xx}^{TT}
-\,.
+\,,
 \end{align}
 %
+where \(v_s\) is the speed of sound in the medium. 
+\todo[inline]{Lagrangian or Eulerian?}
 
-We further assume that 
+We assume that the ends of the bar are kept stationary:
 %
 \begin{align}
 \eval{\pdv{u}{x}}_{x = \pm L/2} = 0
@@ -176,21 +182,40 @@ We further assume that
 
 The general solution will be given by a sum of sines and cosines, but the cosines will move the center of the bar. 
 
-We will have 
+\todo[inline]{They will, but we imposed the ends being stationary, not the center (and why should the center be stationary)! Why should we not use that condition instead? It works just as well, since \emph{cosines} satisfy the condition of being zero at \(\pm L/2\), and we get cosines from the first derivative of sines.}
+
+Keeping only the physical sines we will then have the harmonic decomposition
 %
 \begin{align}
 u(t, x) = \sum _{n=0}^{ \infty } \xi_{n} \sin( \frac{\pi x}{L} (2 n + 1))
 \,,
 \end{align}
 %
-and we can take the scalar product in the \(L^{2}\) space with the basis sinusoids: so we find 
+which we can plug into the differential equation: computing the derivatives explicitly we find 
+%
+\begin{align}
+\sum _{n=0}^{ \infty } \bigg(\ddot{\xi}_{n} + \underbrace{\qty( \frac{v_s \pi (2n+1)}{L})^2}_{\mathclap{\omega_{n}^2}}\bigg) \sin( \frac{\pi x}{L} (2 n+1)) = \frac{1}{2} x \ddot{h}^{TT}_{xx}
+\,,
+\end{align}
+%
+which, in \(L^2\) space, is in the form \(\sum _{n} c_n \hat{e}_{n} = \vec{v}\), where \(\hat{e}_n\) are orthogonal basis vectors while \(\vec{v}\) is a vector (recall that \(\ddot{h}_{xx}^{TT}\) is approximately  constant with respect to \(x\), but it is multiplied by \(x\)).
+In order to solve it, we take its scalar \(L^2\) product with an arbitrary basis vector, which amounts to multiplying by another sinusoid and integrating. 
+
+The sinusoids \(\hat{e}_{n} = \sin((2n+1) \pi x / L)\) are not orthonormal, they instead satisfy \(\hat{e}_n \cdot \hat{e}_{m} = (L/2) \delta_{nm}\) as can be checked by direct computation. On the other side of the equation we find 
+%
+\begin{align}
+\hat{e}_{m} \cdot \vec{v} &= \frac{1}{2} \ddot{h}^{TT}_{xx} \int_{-L/2}^{L/2}  \dd{x} x \sin( \frac{\pi x}{L} (2 m + 1))  \\
+&= \frac{1}{2} \ddot{h}^{TT}_{xx} \frac{L^2}{\pi^2 (2m+1)^2} \underbrace{\eval{\sin( \frac{\pi x}{L} (2 m + 1))}_{-L/2}^{L/2}}_{= 2 (-)^{m}} \marginnote{The indefinite integral also has a term like \(x \cos(x)\), which is odd and vanishes.}  
+\,,
+\end{align}
+%
+so the final equation reads: 
 %
 \begin{align}
 \ddot{\xi}_{n} + \omega^2_{n} \xi_{n} = \frac{(-)^{n}}{(2n+1)^2} \frac{2L}{\pi^2} \ddot{h}^{TT}_{xx}
 \,.
 \end{align}
 
-We have basically eliminated the spatial part. 
-We can analyze the time evolution by itself. 
+We have eliminated (``integrated out'') the spatial part: we can analyze the time evolution by itself. 
 
 \end{document}

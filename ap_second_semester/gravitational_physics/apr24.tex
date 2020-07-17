@@ -3,25 +3,94 @@
 
 \marginpar{Friday\\ 2020-4-24, \\ compiled \\ \today}
 
-\todo[inline]{Recover ten minutes}
-
-Resonant bars are resonant: their transfer function is very much peaked. 
-
-The transfer function is the response to the strain as a function of signal frequency.
-
-The displacement function \(\xi_0 \) is a sinusoid, it looks like 
+% \todo[inline]{Recover ten minutes}
+It is interesting to consider the fundamental mode for the oscillator, which is given by setting \(n =0\): this yields 
 %
 \begin{align}
-\xi_0 (t) = \frac{2 L \omega^2 h_0 }{\pi^2} \frac{(\omega^2 - \omega^2_{0}) \cos(\omega t) - \gamma_0 \sin(\omega t)}{(\omega^2-\omega_0^2)^2 + \omega^2 \gamma_0^2}
+\ddot{\xi}_{0} + \omega_0^2 \xi_{n} = \frac{2L}{\pi^2} \ddot{h}^{TT}_{xx}
+\,,
+\end{align}
+%
+where \(\omega_0 = \pi v_s /L\). 
+The total energy in the bar can be recovered from this mode, by 
+%
+\begin{align}
+E = \frac{M}{4} \qty(\dot{\xi}_{0}^2 + \omega_0^2 \xi_0^2 )
+= \frac{1}{2} \int \dd{m} \qty(\dot{u}^2 + v_s^2 \qty(\pdv{u}{x})^2)
+\,,
+\end{align}
+%
+where \(M\) is the total mass of the bar. This basically amounts to integrating \(1/2 m v^2\), where \(v\) is calculated including both temporal and spatial variations. 
+
+The equation for this fundamental mode has the same form as the one of a simple harmonic oscillator, whose mass is \(m_0 = M/2\), whose frequency is \(\omega_0 \) and which is subject to an effective force 
+%
+\begin{align}
+F(t) = \frac{2  m_0  L}{\pi^2} \ddot{h}_{xx}^{TT} = \frac{LM}{\pi^2}
+\ddot{h}^{TT}_{xx}
 \,.
 \end{align}
 
-In Fourier space this is easier: 
+Like we did in the harmonic oscillator case we introduce a damping term to model the physical imperfections in the resonance: then the equation will read 
+%
+\begin{align} \label{eq:damped-zeroth-mode-resonant-bar}
+\ddot{\xi}_{0} + \gamma_0 \dot{\xi}_{0} + \omega_0^2 \xi_0 = \frac{2L}{\pi^2} \ddot{h}^{TT}_{xx}
+\,,
+\end{align}
+%
+where \(\gamma_0 = \omega_0 / Q_0 \). 
+After Fourier-transforming we find 
+%
+\begin{align}
+\xi_0 (\omega ) 
+&= \frac{2L}{\pi^2} \frac{\ddot{h}_{xx}^{TT} (\omega )}{\omega^2- \omega^2 - i \omega \gamma_0 }  \\
+&= \underbrace{-\frac{2L}{\pi^2} \frac{\omega^2}{\omega^2- \omega^2 - i \omega \gamma_0 }}_{H_{h \to \xi_0 } (\omega )}  h_{xx}^{TT} (\omega )
+\,,
+\end{align}
+%
+so we have the expression from the transfer function, allowing us to quantify the response of the system to the oscillatory stimulus of the GW. 
+
+Typical values for the parameters at play are a length of \(L \sim \SI{3}{m}\), a mass of \(M \sim \SI{2e3}{kg}\) and a speed of sound of the order \(v_s \sim \SI{5e3}{m/s}\), which means we have a characteristic frequency of the order of \(\omega_0 \sim \SI{5e3}{rad / s}\), so the long-wavelength approximation is valid. 
+
+The value of the decay parameter \(Q_0 \) is of the order \num{e6} typically, which means that the characteristic time for an oscillation to die out is of the order \(\tau_0 \sim 1/ \gamma_0 = Q_0 / \omega_0 \sim \num{e2} \divisionsymbol \SI{e3}{s}\): oscillations need \textbf{several minutes to die out}. 
+
+This only applies when \(\omega \) from the GW is \textbf{very close} to \(\omega_0 \), as the transfer function is very peaked. 
+% Resonant bars are resonant: their transfer function is very much peaked. 
+
+% The transfer function is the response to the strain as a function of signal frequency.
+
+\subsubsection{Response to periodic signals}
+
+If we have an incoming GW propagating along the \(z\) axis, while the bar is positioned along the \(x\) axis, then the GW amplitude will be described by 
+%
+\begin{align}
+h_{xx}^{TT} (t, z) = h_0 \Re[\exp(-i \omega (t - z/c))]
+\,,
+\end{align}
+%
+so, fixing \(z =0 \) for simplicity (and without losing generality, it is only a phase shift) its second derivative is 
+%
+\begin{align}
+\ddot{h}_{xx}^{TT} = - \omega^2 h_0 \Re[\exp(-i \omega t)]
+\,.
+\end{align}
+
+A steady-state solution to the coupled differential equation \eqref{eq:damped-zeroth-mode-resonant-bar} is:
+%
+\begin{align}
+\xi_0 (t) &= \frac{2L \omega^2 h_0 }{\pi^2}
+\Re[\frac{\exp(-i \omega t)}{\omega^2 - \omega_0^2 + i \omega \gamma_0 }]
+&= \frac{2 L \omega^2 h_0 }{\pi^2} \frac{(\omega^2 - \omega^2_{0}) \cos(\omega t) - \gamma_0 \sin(\omega t)}{(\omega^2-\omega_0^2)^2 + \omega^2 \gamma_0^2}
+\,,
+\end{align}
+%
+which has a simpler expression in Fourier space:
 %
 \begin{align}
 \xi_0 (\omega ) = - \frac{2L}{\pi^2} \frac{\omega^2}{\omega_0^2 - \omega^2 - i \omega \gamma_0 } h_0 \delta (\omega )
 \,.
 \end{align}
+
+\subsubsection{Response to bursts}
 
 It is a fact from classical mechanics that the absorbed energy of an oscillator subject to an external impulsive force is 
 %

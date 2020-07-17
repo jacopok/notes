@@ -41,24 +41,26 @@ o (\omega ) = i(\omega )\prod_{j = 1}^{N} h_j (\omega )
 \,.
 \end{align}
 
-
 \subsection{Sampling}
 
 Often we sample signals digitally.
-Analogic systems are faster, but electronics are getting very fast as well and they are easier to use.
+Analogic systems can be faster, but electronics are getting very fast as well, and they are easier to use.
 
 The signal is quantized in two ways: we quantize both in time by sampling at an interval \(t_s\) and in amplitude, by encoding it with a finite number of bits.
+This introduces noise, which is well-known and easy to calculate.
+We still need to do Fourier analysis, but we will use a discrete Fourier transform.
 
-This introduces noise, which is however well-known and easy to calculate.
+\subsubsection{Aliasing}
 
-If we have a signal at a frequency \(f\) and we want to reconstruct it, we need to sample at a frequency \(2f\). 
+If we have a signal at a frequency \(f\), and we want to reconstruct it, we need to sample at a frequency \(\geq 2f\).
+
 If we sample at \SI{100}{Hz}, we can only accurately describe signals up to \SI{50}{Hz}. 
-This is the Nyquist theorem.
+This is the \textbf{Nyquist-Shannon sampling theorem}.
 
-This is true if we want to fit the data with the slowest sinusoid, if we know in which frequency range we should look.
-If we work below the Nyquist frequency we can be sure of each frequency.
+This is true if we want to fit the data with the slowest sinusoid possible; if we know in which frequency range we should look we can try to fit higher-frequency sinusoids but this is risky business.
+If we work below the Nyquist frequency we can be sure of each frequency we see.
 
-\section{Gravitational wave detection}
+\section{Resonant bar detectors}
 
 We can use an \textbf{elastic body} which resonates: we have the pro that this might enhance the effect of a GW through resonance and extend the duration of burst signals. 
 However, it is only sensitive around its resonant frequency. 

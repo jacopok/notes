@@ -62,57 +62,98 @@ If we work below the Nyquist frequency we can be sure of each frequency we see.
 
 \section{Resonant bar detectors}
 
-We can use an \textbf{elastic body} which resonates: we have the pro that this might enhance the effect of a GW through resonance and extend the duration of burst signals. 
-However, it is only sensitive around its resonant frequency. 
-Also, since it extends the signal it is hard to precisely reconstruct the time profile of the signal. 
+\subsection{Two paths to GW detection}
 
-These need to be isolated solid objects: they will fit in a lab, but the GW displacements are small. 
+Most modern and planned GW detectors operate by constructing \textbf{free-falling masses}: ground-based interferometers bounce signals off of suspended mirrors, space based ones have masses in actual geodesic motion. 
+These detectors are \emph{broad-band}, which is useful, but each frequency has to be detected at its native amplitude with no amplification. 
+They can be made on \emph{large scales}, on the order of \SI{e3}{m} on Earth, \SI{e9}{m} in space. This is very useful scientifically, since then the GW-induced displacement is larger; however it requires a lot of infrastructure and investment. 
+These must then be built and operated by large collaborations, with hundreds of people at least. 
 
-On the other side, we have \textbf{interferometers} which measure the distance between free falling masses. 
+Another option, which was quite popular a few years ago, is to use an \textbf{elastic body} which resonates at a specific frequency. 
+This might \emph{enhance} the effect of a GW through resonance and \emph{extend} the duration of burst signals. 
 
-If we have a perfect harmonic oscillator with rest position \(x_0 \): then we will have 
+However, this kind of detector is only sensitive \emph{around its resonant frequency}. 
+Also, since it extends the signal it is hard to precisely reconstruct the \emph{temporal profile} of the signal. 
+
+These need to be isolated solid objects: they will fit in a lab (at scales of \SI{e1}{m} at most), but the GW-induced displacements will be small. 
+
+% On the other side, we have \textbf{interferometers} which measure the distance between free-falling masses. 
+
+\subsection{Harmonic oscillators and GW}
+
+\subsubsection{Harmonic oscillators}
+
+Suppose we have a perfect harmonic oscillator with a time-dependent rest position \(x_0(t) \) and a time-dependent external force \(F _{\text{ext}} (t)\): its evolution will be determined by the differential equation 
 %
 \begin{align}
-x(\omega ) = \frac{k x_0 + F _{\text{ext}}(\omega )}{k - m \omega^2}
+m \ddot{x} = -k (x(t) - x_0 (t) ) + F _{\text{ext}} (t)
 \,,
 \end{align}
 %
-while if there is damping we will have 
+which in Fourier space can be written as 
+%
+\begin{align}
+- m \omega^2 x(\omega ) &= - k (x(\omega ) - x_0 (\omega )) + F _{\text{ext}} (\omega )  \\
+x(\omega ) &= \frac{k x_0 (\omega ) + F _{\text{ext}}(\omega )}{k - m \omega^2} = \frac{k x_0 (\omega ) + F _{\text{ext}}(\omega )}{k \qty(1 - \omega^2 / \omega_0^2)}  \\
+&= \underbrace{\frac{\omega_0^2}{1 - \omega^2 /\omega_0^2}}_{H_{x_0 }(\omega )}
+x_0 (\omega ) + 
+\underbrace{\frac{F _{\text{ext}} (\omega )}{k (1 - \omega^2 / \omega_0^2)} }_{H_{F _{\text{ext}}} (\omega )}
+F _{\text{ext}}(\omega )
+\,,
+\end{align}
+%
+where we defined \(\omega_0 = \sqrt{k / m}\) and the two transfer functions \(H_{x_0 }\) and \(H_{F _{\text{ext}}}\).
+
+This diverges for \(\omega = \omega_0 \); but let us consider the effect of \textbf{velocity damping}: we add a term \(- \beta \dot{x}\) to the RHS of the differential equation,
 %
 \begin{align}
 m \ddot{x} = - k \qty(x(t) - x_0 (t)) - \beta \dot{x}(t) + F _{\text{ext}}(t)
 \,,
 \end{align}
 %
-which means we have 
+which in Fourier space becomes:
 %
 \begin{align}
-x(\omega ) = \frac{k x_0 + F _{\text{ext}}(t)}{k \qty(1 - \qty( \frac{\omega}{\omega_0 })^2 + \frac{i \omega \beta }{k})}
+x(\omega ) = \frac{k x_0 (\omega ) + F _{\text{ext}}(\omega )}{k \qty(1 - \qty( \frac{\omega}{\omega_0 })^2 - \frac{i \omega \beta }{k})}
 \,,
 \end{align}
 %
-otherwise, we can have structural internal damping, which looks like 
+since every derivative becomes \(- i \omega \). 
+
+Another kind of damping we can have is called \textbf{structural internal damping}, which means modifying the differential equation as:
 %
 \begin{align}
 m \ddot{x} = - k (1 + i \delta ) \qty(x(t) - x_0 (t)) + F _{\text{ext}}(t)
-\,.
+\,;
 \end{align}
+%
+concretely speaking this means that there is some \emph{delay} between the action of the force and the response of the system. In Fourier space, this means 
+%
+\begin{align}
+x(\omega ) = \frac{k x_0 (\omega ) + F _{\text{ext}}(\omega )}{k \qty(1 - \qty( \frac{\omega}{\omega_0 })^2 + i \delta )}
+\,,
+\end{align}
+%
+so, since both terms add a purely imaginary constant to the denominator, we encapsulate them into a term \(i / Q\), for an arbitrary \(Q\). 
 
-The transfer function is more peaked for less damping. 
+This \(Q\) quantifies damping (inversely: large \(Q\) means small damping). For non-infinite values of \(Q\), the transfer function does not diverge.
+% The transfer function is more peaked for less damping. 
 
-How do we see the effect of GW on an elastic body? Consider two masses, which are free falling, and connect them by a spring: they now will not move along geodesics.
+\subsubsection{GW interactions}
 
-We will have the equation 
+How do we see the effect of GW on an elastic body?
+Consider two masses, which start out free-falling, and connect them by a spring: they now will not move along geodesics.
+If we move to the \textbf{proper detector frame}, the effect of a GW can be described as a Newtonian force on the test masses, which together with the reaction of the spring determines the motion of the system:
 %
 \begin{align}
 F _{\text{GW}} - k (L - \Delta x) = m \Delta \ddot{x}
-\,.
+\,,
 \end{align}
-
-This is given by 
+%
+where the force is given by
 %
 \begin{align}
-F = \frac{m}{2} \ddot{h}^{TT}_{xx} \Delta x \approx \frac{m}{2} L \ddot{h}^{TT}_{xx}
+F_{\text{GW}} = \frac{m}{2} \ddot{h}^{TT}_{xx} \Delta x \approx \frac{m}{2} L \ddot{h}^{TT}_{xx}
 \,.
 \end{align}
 

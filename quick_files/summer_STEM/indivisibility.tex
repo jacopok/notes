@@ -1,6 +1,62 @@
-\documentclass{article}
-\input{../header.tex}
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage{commath}
+\usepackage{bbold}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\usepackage{footnotebackref}
+\usepackage{framed}
+\usepackage{thmtools}
+\usepackage{etoolbox}
+\usepackage{fancybox}
+\usepackage{slashed}
+\newcommand{\DD}{\mathrm{D}}
+\usepackage{mathrsfs}
+
+\newenvironment{myleftbar}{%
+\def\FrameCommand{\hspace{0.6em}\vrule width 2pt\hspace{0.6em}}%
+\MakeFramed{\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\declaretheoremstyle[
+spaceabove=6pt,
+spacebelow=6pt
+headfont=\normalfont\bfseries,
+headpunct={} ,
+headformat={\cornersize*{2pt}\ovalbox{\NAME~\NUMBER\ifstrequal{\NOTE}{}{\relax}{\NOTE}:}},
+bodyfont=\normalfont,
+]{exobreak}
+
+\declaretheorem[style=exobreak, name=Esercizio,%
+postheadhook=\leavevmode\myleftbar, %
+prefoothook = \endmyleftbar]{exo}
+
+\newcommand{\boxalign}[2][0.986\textwidth]{
+  \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
+  \begin{center}\begin{tikzpicture}
+   \node [mybox] (box){%
+    \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
+   };
+\end{tikzpicture}\end{center}}
+
+\usepackage{alumnistem}
+
+\author{Jacopo Tissino}
+\title{Indivisibilità del fotone alla STEM Academy}
+\date{Luglio 2020}
 
 \usepackage[
 backend=biber,
@@ -11,7 +67,7 @@ backref=true
 
 \addbibresource{STEM_Indivisibility.bib}
 
-\title{L'indivisibilità del fotone: Summer STEM Academy 2020}
+% \title{L'indivisibilità del fotone: Summer STEM Academy 2020}
 
 \begin{document}
 
@@ -522,9 +578,7 @@ Come si quantifica esattamente ``nel picco''? C'è sicuramente un grado di arbit
 
 Come troviamo le coincidenze triple? Ne abbiamo una quando allo stesso evento del gate corrisponde sia un fotone riflesso che uno trasmesso.
 
-\section{In laboratorio}
-
-
+% \section{In laboratorio}
 
 \printbibliography
 

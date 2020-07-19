@@ -121,7 +121,7 @@ La riflessione invece è ciò che accade per uno specchio: la luce ``rimbalza'' 
 La teoria di Newton ha delle spiegazioni per questi fenomeni, seppur non completamente soddisfacenti.
 Newton la mette in pratica per costruire telescopi: il telescopio Newtoniano utilizza solo specchi invece che lenti, eliminando quindi l'aberrazione cromatica che le caratterizza. 
 
-La teoria corpuscolare ha dietro l'apparato della nuovissima meccanica Newtoniana: la luce viene descritta come un insieme di piccole particelle con massa molto ridotta che si muovono molto velocemente rispettando le leggi di Newton: inerzia, \(\vec{F} = m \vec{a}\) e azione-reazione.
+La teoria corpuscolare ha dietro l'apparato della nuovissima meccanica Newtoniana: la luce viene descritta come un insieme di piccole particelle con massa molto ridotta (o nulla? al tempo  di Newton non c'era davvero modo di determinarlo) che si muovono molto velocemente rispettando le leggi di Newton: inerzia, \(\vec{F} = m \vec{a}\) e azione-reazione.
 
 Un vantaggio della teoria corpuscolare è il fatto che non richiede un \emph{etere luminifero} (portatore della luce). 
 
@@ -277,6 +277,8 @@ Cosa comporta fisicamente questa differenza? la luce può avere una \emph{polari
 
 \todo[inline]{Inserire schema con \(\vec{k} \perp \vec{E} \perp \vec{B}\).}
 
+\todo[inline]{Se c'è tempo: mostrare ``diagramma di Venn'' delle polarizzazioni, ci sono tre polarizzatori lineari, due di essi ortogonali e il terzo a \SI{45}{\degree} rispetto ad entrambi. Sono tutti a forma di cerchio, messi in modo tale da vedere tutte le possibili combinazioni. In questo modo, nell'intersezione dei due ortogonali si vede nero, mentre con tutti e tre si vede un po' di luce che passa.}
+
 Questo ha delle applicazioni pratiche: ad esempio, gli occhiali che si usano per vedere i film 3D usano due lenti con filtri polarizzatori perpendicolari, una orizzontale e una verticale; in questo modo possono mostrare due immagini diverse ad ogni occhio.
 
 \todo[inline]{Inserire tabella/grafico con le varie lunghezze d'onda della luce.}
@@ -287,7 +289,7 @@ Detta in sintesi, la questione è questa: se si manda della luce su certi materi
 La parte che non funziona con la teoria ondulatoria di Maxwell è il fatto che, mantenendo la stessa intensità di luce ma aumentandone la \emph{frequenza} l'energia cinetica degli elettroni strappati aumenta. 
 
 Questo non sembra avere senso: stiamo mandando la stessa quantità di energia, e gli elettroni uscenti ne hanno di più? 
-(Non c'è violazione della conservazione dell'energia: gli elettroni sono più energetici ma ce ne sono di meno)
+(Non c'è violazione della conservazione dell'energia: gli elettroni sono più energetici ma ce ne sono di meno).
 
 Si scopre così che a ogni frequenza si può associare una energia caratteristica, e la relazione che lega energia e frequenza è \emph{lineare}! La relazione è 
 %
@@ -475,7 +477,7 @@ g^{(2)} = \frac{\mathbb{P}(\text{coincidenza})}{\mathbb{P}(\text{riflesso})\math
 \,,
 \end{align}
 %
-dove le probabilità sono riferite alla nostra \emph{misura} dell'evento descritto: \(\mathbb{P} (\text{riflesso})\) è la probabilità che un certo fotone sia riflesso, e che lo rileviamo come tale.
+dove le probabilità sono riferite alla nostra \emph{misura} dell'evento descritto: \(\mathbb{P} (\text{riflesso})\) è la probabilità che un certo fotone sia riflesso, e che lo rileviamo come tale; item per \(\mathbb{P}(\text{trasmesso})\), mentre per \(\mathbb{P}(\text{coincidenza})\) intendiamo la probabilità di osservare ``contemporaneamente'' (questo è impreciso, sarà chiarificato a breve) un fotone trasmesso e un fotone riflesso.
 
 \todo[inline]{inserire schema dell'apparato ``semplificato'', senza gate}
 
@@ -560,7 +562,9 @@ g^{(2)} = \frac{\mathbb{P}(RT | G)}{\mathbb{P}(R|G) \mathbb{P}(T|G)}
 
 Abbiamo quasi esaurito i problemi sperimentali, ma ne rimane ancora uno grosso: cosa intendiamo esattamente con ``concidenza''? 
 
-I detector mandano i segnali che vedono ad un oggetto detto \textbf{timetagger}, che li prende e li digitalizza, convertendoli in un numero intero. Questo numero intero corrisponde al numero di ``tick'' di un suo orologio interno, fra due di questi passano circa \SI{81}{ps} (ovvero poco più di  2 centimetri-luce!).
+I detector mandano i segnali che vedono ad un oggetto detto \textbf{timetagger}, che li riceve e digitalizza, convertendoli in un numero intero. Questo numero intero corrisponde al numero di ``tick'' di un suo orologio interno passati da quando è stato acceso e quando è arrivato il fotone.
+La spaziatura temporale fra due ``tick'' è all'incirca di \SI{81}{ps}.
+% (ovvero poco più di  2 centimetri-luce!).
 
 Questo è un tempo così breve che riusciamo a distinguere dei fenomeni molto rapidi: vedremo la differenza temporale dovuta al fatto che i cammini della luce sono di lunghezze leggermente diverse, e una dispersione dovuta a fenomeni come le variazioni temporali intrinseche dei sensori, e i minimi ritardi dell'elettronica.
 
@@ -569,9 +573,16 @@ Ci segnamo il valore di \(t_R - t_G\), e ripetiamo questa operazione per ogni cl
 
 Facciamo un istogramma di queste differenze di tempi: l'altezza di ogni barra rappresenta il numero di volte che abbiamo trovato quel valore.
 
-\todo[inline]{Inserire grafico}
 
-Vediamo un fondo di rumore, e un distinto picco. Questo non è centrato a \(t_R = t_G\) (perché?). 
+Vediamo un fondo di rumore, e un distinto picco.
+
+\begin{exo}[Picchi delle differenze nei tempi]
+    Dove ti aspetti che sia centrato il picco dei valori di \(t_R - t_G\)? E il picco di \(t_T - t_G\)? 
+    (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
+\end{exo}
+
+% \todo[inline]{Inserire grafico}
+% Questo non è centrato a \(t_R = t_G\).
 
 Gli eventi che stanno nel picco sono quelli che possiamo considerare come coincidenze. 
 Come si quantifica esattamente ``nel picco''? C'è sicuramente un grado di arbitrarietà nella scelta, ma questa andrà a influenzare esattamente dove tagliamo le code: il grosso della curva sarà preso.

@@ -24,7 +24,7 @@ where \(M\) is the total mass of the bar. This basically amounts to integrating 
 
 The equation for this fundamental mode has the same form as the one of a simple harmonic oscillator, whose mass is \(m_0 = M/2\), whose frequency is \(\omega_0 \) and which is subject to an effective force 
 %
-\begin{align}
+\begin{align} \label{eq:effective-force-harmonic-oscillator-bar-fundamental}
 F(t) = \frac{2  m_0  L}{\pi^2} \ddot{h}_{xx}^{TT} = \frac{LM}{\pi^2}
 \ddot{h}^{TT}_{xx}
 \,.
@@ -40,7 +40,7 @@ Like we did in the harmonic oscillator case we introduce a damping term to model
 where \(\gamma_0 = \omega_0 / Q_0 \). 
 After Fourier-transforming we find 
 %
-\begin{align}
+\begin{align} \label{eq:transfer-function-resonant-bar-fundamental}
 \xi_0 (\omega ) 
 &= \frac{2L}{\pi^2} \frac{\ddot{h}_{xx}^{TT} (\omega )}{\omega^2- \omega_0 ^2 - i \omega \gamma_0 }  \\
 &= \underbrace{-\frac{2L}{\pi^2} \frac{\omega^2}{\omega^2- \omega_0 ^2 - i \omega \gamma_0 }}_{H_{h \to \xi_0 } (\omega )}  h_{xx}^{TT} (\omega )
@@ -92,75 +92,159 @@ which has a simpler expression in Fourier space:
 
 \subsubsection{Response to bursts}
 
-It is a fact from classical mechanics that the absorbed energy of an oscillator subject to an external impulsive force is 
+It is a fact from classical mechanics that the absorbed energy \(E\) of an oscillator with mass \(m_0 \) subject to an external impulsive force \(F(t)\) is:\footnote{The reference from Maggiore is to Landau and Liftsis, volume 1, equation 22.12.} 
 %
 \begin{align}
 E 
 = \frac{1}{2 m_0 } \abs{ \int_{ - \infty }^{ \infty  } F(t) e^{-i \omega_0 t} \dd{t}}^2
-= \frac{ML^2}{\pi^{4} } \abs{ \int_{ - \infty }^{ \infty  } \ddot{h}_{xx}^{TT}(t) e^{-i \omega_0 t} \dd{t}}^2
 \,,
 \end{align}
 %
-and since the force is impulsive we can integrate by parts twice: so, we get 
+so if we suppose our force has the form \(F(t) = (2 / \pi^2) m_0 L \ddot{h}_{xx}\), where \(m_0 = M/2\) (both of these come from what we found for the equivalence to a simple harmonic oscillator of the fundamental mode of the resonant bar, \eqref{eq:effective-force-harmonic-oscillator-bar-fundamental}), we find
 %
 \begin{align}
-E = 16 M L^2 f_0^{4} \abs{h_{xx}^{TT} (f_0 )}^2
+E = \frac{ML^2}{\pi^{4} } \abs{ \int_{ - \infty }^{ \infty  } \ddot{h}_{xx}^{TT}(t) e^{-i \omega_0 t} \dd{t}}^2
 \,,
 \end{align}
 %
-which is the energy of the GW component at frequency \(\omega_0 \): we can invert it as 
+and since the force is impulsive \(h(t)\) goes to zero quickly for \(t \to \pm \infty \), so we can integrate by parts twice: 
 %
+\begin{align}
+E &= \frac{M L^2 (2 \pi f_0 )^{4}}{\pi^{4}} 
+\abs{\int_{- \infty }^{\infty} \dd{t} h_{xx}^{TT} (t) e^{-i \omega_0 t}}^2  \\
+&= 16 M L^2 f_0^{4} \abs{h_{xx}^{TT} (f_0 )}^2
+\,,
+\end{align}
+%
+since the integral is precisely the Fourier transform of \(h(t)\) evaluated at \(f_0\).
+This is the energy of the GW component at frequency \(\omega_0 \): we can invert this expression to recover the energy of the component of the GW at a frequency \(f_0 \) from the energy we measure at the detector, \(E\): 
+%
+\boxalign{
 \begin{align}
 \abs{h_{xx}^{TT} (f_0 )}^2 = \frac{1}{16L^2 f_0^{4}} \frac{E}{M}
 \,.
-\end{align}
+\end{align}}
 
-The transfer function can be written as 
+\subsubsection{Ringdown}
+
+The transfer function in \eqref{eq:transfer-function-resonant-bar-fundamental} can be written as 
 %
 \begin{align}
 \xi_0 (\omega ) = - \frac{2L}{\pi^2} \frac{\omega^2}{(\omega - \omega_{+}) (\omega-\omega_{-})} h^{TT}_{xx} (\omega )
-\qquad \text{where} \qquad
-\omega_{\pm} = \pm \sqrt{\omega_0 ^2 - \qty(\frac{\gamma_0 }{2})^2} - i \frac{\gamma_0 }{2}
+\,,
+\end{align}
+%
+where the frequencies \(\omega_{\pm}\) are defined by: 
+%
+\begin{align}
+\omega_{\pm} = \pm \sqrt{\omega_0 ^2 - \qty(\frac{\gamma_0 }{2})^2} - i \frac{\gamma_0 }{2} \approx \pm \omega_0 - i \frac{\gamma_0 }{2}
+\,,
+\end{align}
+%
+where the approximation holds when the quality factor \(Q = \omega_0 / \gamma_0 \) is large. 
+
+\todo[inline]{The minus sign in this equation is not there in Maggiore! Should check all signs here\dots}
+
+We suppose that the incoming burst is a delta in time: then, its spectral decomposition will be uniform.
+Specifically, let us rescale it so that it has the same integral (so, the same energy) as a rectangular impulse: 
+%
+\begin{align}
+h_{xx }^{TT} (t) = h_0 \tau_{GW} \delta (t) \implies h_{xx}^{TT} (\omega ) = h_0 \tau_{GW}
 \,.
 \end{align}
-
-We suppose that the incoming burst is a delta in time: then, it has components at all possible frequencies.
 
 Then, we get 
 %
 \begin{align}
-\xi_0 (t) = \frac{2L}{\pi^2} h_0 \tau_{GW} \int_{- \infty }^{ \infty } \frac{ \dd{\omega }}{2 \pi } \frac{\omega^2}{(\omega - \omega_{+}) (\omega-\omega_{-})} e^{-i \omega t} \approx \frac{2L }{\pi^2} h_0 \omega_0 \tau_{GW} e^{-\gamma_0 t / 2} \sin(\omega_0 t)
+\xi_0 (t) &= \int \frac{ \dd{\omega }}{2 \pi } \xi_0 (\omega ) e^{-i \omega t}
+\\
+&= \frac{2L}{\pi^2} h_0 \tau_{GW} \int_{- \infty }^{ \infty } \frac{ \dd{\omega }}{2 \pi } \frac{\omega^2}{(\omega - \omega_{+}) (\omega-\omega_{-})} e^{-i \omega t}  \\
+&\approx \frac{2L }{\pi^2} h_0 \omega_0 \tau_{GW} e^{-\gamma_0 t / 2} \sin(\omega_0 t)
 \,.
 \end{align}
 
-By saying that the signal is a delta, do we mean that \(\tau_{GW} \ll 1 / \omega_0 \)? YES, where \(\omega_0 \) is the frequency of the oscillator, which in our case is faster than the characteristic frequency of the dissipation. 
+\todo[inline]{Probably the integral is solved by looking at the complex residuals\dots }
 
-\subsection{Antenna pattern}
+The GW ``burst'' excites the fundamental mode, which then decays with a characteristic time \(1/ \gamma_0 \). 
 
-The sensitivity of the detector depends both on the direction from which che GW comes and the polarization.
+By saying that the signal is a delta, do we mean that \(\tau_{GW} \ll 1 / \omega_0 \)?
+Yes, where \(\omega_0 \) is the frequency of the oscillator, which is much faster than the characteristic frequency of the dissipation. 
 
-Specifically, if \(\vec{J}\) is the orientation of the bar, then we have 
+\subsubsection{Antenna pattern}
+
+The sensitivity of the detector depends both on the direction from which the GW comes and the polarization.
+
+If \(\vec{J}\) is the orientation of the bar, then we have 
 %
 \begin{align}
 h _{\text{out}} = \hat{J}^{i} \hat{J}^{j} h_{ij} (t)
 \,.
 \end{align}
 
-If \(\theta \) is the angle between the bar direction and the source-Earth vector, we will have 
+Let us consider a ``detector-centric'' reference frame in which the bar is along the \(x\) axis, while the source is positioned in the \(xz\) plane (this is fully general, we rotate around the \(x\) axis until the condition is satisfied).
+Let us also consider a ``source-centric'' reference frame in which the \(z'\) axis points towards the source of the GW, while the \(x' z'\) plane coincides with the \(xz\) one.
+
+Since these two planes coincide, the \(\hat{y}\) vector also will: we will be able to move between the two references with a rotation around it, 
 %
 \begin{align}
-h _{\text{out}} = h_{+} \sin^2\theta 
+R = \left[\begin{array}{ccc}
+\cos \alpha  & 0 & \sin \alpha  \\ 
+0 & 1 & 0 \\ 
+- \sin \alpha  & 0 & \cos \alpha 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\alpha = \pi /2 - \theta \), and \(\theta \) is the angle between the bar and the observation direction. 
+
+If we consider the polarizations of the GW to be expressed with respect to the primed frame: 
+%
+\begin{align}
+h_{ij}' = \left[\begin{array}{ccc}
+h_{+} & h_{ \times } & 0 \\ 
+h_{ \times } & -h_{+} & 0 \\ 
+0 & 0 & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+then by applying the rotation matrix (twice, once for each index) we will see:
+%
+\begin{align}
+h _{\text{out}} = h_{xx} = 
+R_{1k} R_{1l} h_{kl}'
+= h_{+} \sin^2\theta 
 \,.
 \end{align}
 
-For a generic rotation, including a rotation of angle \(\varphi \) around the axis \(z'\) of the source system where the \(+\) and \(\times \) polarizations are defined, we get 
+This reference for the source is rather restrictive; we might want to align our axes so that a binary system is more easily described. 
+
+To move to a generic source reference frame, we must a rotation of angle \(\varphi \) around the axis \(z'\) of the source system, so that the \(x' z'\) plane is free to differ from the \(xz\) one. 
+
+With this generalization, we find:
 %
 \begin{align}
 h _{\text{out}} (t) = h_{+}' \sin^2\theta \cos 2 \varphi + h_{ \times }' \sin^2 \theta \sin 2 \varphi 
 \,.
 \end{align}
 
-The response of the bar is quite small: we cannot really measure it; however we can transfer the energy to a lighter oscillator, which will move more. 
+\subsubsection{Resonant amplification}
+
+The response of the bar is quite small: we cannot really measure it; however we can transfer the energy to a lighter oscillator called the \textbf{transducer}, which will move more. 
+The coupled equations of motion read: 
+%
+\begin{align}
+\ddot{\xi}_{0} + \omega_0^2 \xi_0 + \mu \omega_{t}^2 \qty(\xi_0 - \xi_t)
+&= \frac{F_0}{m_0 }  \\
+\ddot{\xi}_{t} + \mu \omega_{t}^2 \qty(\xi_0 - \xi_t) &= \frac{F_t}{m_t}
+\,,
+\end{align}
+%
+where the label \(t\) refers to the transducer while \(0\) is the fundamental mode of the resonant bar, and \(\mu \) is defined as the mass ratio \(m_t / m_0\). 
+
+The force on the transducer \(F_t\) can be approximated to be zero if the experimental apparatus is well-built, since the influence of GW onto such a small mass will be negligible.
+
+If we apply an impulsive force in the form \(F_0 = a_0 \delta (t)\) we will see a response 
 
 We need to tune the bar so that its resonant frequency is the same as the one of the other bar. 
 

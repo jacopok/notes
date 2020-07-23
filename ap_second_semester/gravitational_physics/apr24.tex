@@ -244,45 +244,145 @@ where the label \(t\) refers to the transducer while \(0\) is the fundamental mo
 
 The force on the transducer \(F_t\) can be approximated to be zero if the experimental apparatus is well-built, since the influence of GW onto such a small mass will be negligible.
 
-If we apply an impulsive force in the form \(F_0 = a_0 \delta (t)\) we will see a response 
+If we apply an impulsive force in the form \(F_0 = a_0 \delta (t)\) we will see a response which can be calculated directly from the transfer function: for the two oscillators we find 
+%
+\begin{align}
+\xi_0 (\omega ) &= a_0 \frac{\omega_{t}^2 - \omega^2}{(\omega^2 - \omega^2_{+} ) (\omega^2- \omega^2_{-})}  \\
+\xi_{t} (\omega ) &= a_0 \frac{\omega_{t}^2}{(\omega^2 - \omega^2_{+}) (\omega^2- \omega^2_{-})}
+\,,
+\end{align}
+%
+where \(\omega_{\pm}\) are the solutions (in terms of \(\omega \)) of 
+%
+\begin{align}
+\omega^4 - (\omega^2_{0} + (1+\mu )\omega_{t}^2) \omega^2 + \omega_0^2 \omega_t^2 = 0
+\,,
+\end{align}
+%
+so the response of this coupled system has \textbf{two resonant frequencies}, and with the aid of the Cauchy residue theorem we can calculate the temporal form of the solution, a linear combination of sinusouds at \(\omega_{\pm}\) \cite[eqs.\ 8.79--80]{maggioreGravitationalWavesVolume2007}, for both oscillators.
 
-We need to tune the bar so that its resonant frequency is the same as the one of the other bar. 
-
-The ratio of masses is \(\mu \), then we will have 
+We need to tune the bar so that its resonant frequency is the same as the one of the other bar: then we will get a \textbf{resonant transducer}, and the resonant frequencies will be 
+%
+\begin{align}
+\omega_{\pm} = \omega_0 \qty(1 \pm \frac{\sqrt{\mu }}{2} + \mathcal{O}(\mu ))= \omega_0 \pm \omega_{b}
+\,,
+\end{align}
+%
+and the temporal form of the two oscillations will be 
+%
+\begin{align}
+\xi_0 (t) &\approx \frac{a_0 }{\omega_0} \sin(\omega_0 t) \cos(\omega_{b}t)  \\
+\xi_t (t) &\approx - \frac{a_0 }{\omega_0 \sqrt{\mu }} \cos(\omega_0 t) \sin(\omega_{b} t)
+\,,
+\end{align}
+%
+which means (since they are out of phase) that \textbf{energy is transferred} back and forth between the two oscillators; but the amplitudes differ by a factor \(\sqrt{\mu }\): 
 %
 \begin{align}
 A_t = \frac{A_0 }{\sqrt{\mu }}
 \,,
 \end{align}
 %
-and we typically can choose \(\mu \lesssim \num{e-4}\), if we go lower other noise sources dominate.
+and we typically go as low as \(\mu \lesssim \num{e-4}\), if we go lower other noise sources dominate.
+This amplitude ratio is the best we could get by \textbf{energy conservation}: the energy is proportional to \(m \omega^2 A^2\), so if we impose the energy being \emph{completely} transferred back and forth between the two oscillators we \(A_0^2 / A_t^2 = m_0 / m_t \), since \(\omega \) is the same for the two oscillators.
 
-\section{Thermal and readout noise}
+Still, this amplifies the signal at our desired frequency by two orders of magnitude!
 
-We saw that we can represent the stages of our processing by their transfer functions \(H_{i}(\omega )\). At each stage, though, we can get noise.
-
-This noise is then processed by the later transfer functions. 
-
-Say we have 
+The transfer function with a transducer, and introducing dissipation for both oscillators, looks like: 
 %
 \begin{align}
-y(\omega ) = H_1 (\omega ) H_2 (\omega ) H_3 (\omega ) x(\omega )
+H_{h \to \xi_{t}} (\omega ) &= - \frac{2L}{\pi^2} \frac{\omega_0^2 \omega^2}{ (\omega^2 - \omega_{+}^2 + i \omega \overline{\gamma})(\omega^2 - \omega_{-}^2 + i \omega \overline{\gamma})}
 \,,
 \end{align}
 %
-and we have noise after each stage. 
+where \(\overline{\gamma} = (\gamma_0 + \gamma_{t}) / 2\).
+This should be compared with \eqref{eq:transfer-function-resonant-bar-fundamental}: since now we have \emph{two} terms going to zero quadratically with \(\omega \to \omega_0 \) (at least near zero, because of the dissipation) the graph now has two peaks which are both higher than the single one we had before.  
 
-We can have thermal noise: noisy signals are described by a deterministic part plus a stochastic noisy part.
+\subsection{Thermal noise}
 
-We can model this thermal noise using a Green's function: we get 
+We saw that we can represent the stages of our processing by their transfer functions \(H_{i}(\omega )\). These are multiplied in the amplitude modulation, while we have to take the square modulus of their product if we want to compute the PSD: 
 %
 \begin{align}
-x(t) = \dots
+y(\omega ) = x(\omega ) \prod_{i=1}^{n} H_i(\omega )
+\qquad \text{and} \qquad
+S_y(\omega ) = S_x(\omega ) \abs{\prod_{i=1}^{n} H_i(\omega )}^2
+\,.
+\end{align}
+%
+
+At each stage, though, we can get noise,
+which is then processed by the later transfer functions: if we have three stages we will get 
+%
+\begin{align}
+y &= H_3 \qty( H_2 \qty( H_1 \qty(x) + n_2) + n_3) + n_4  \\
+&= H_1 H_2 H_3 x + H_2 H_3 n_2 + H_2 n_3 + n_4 
 \,.
 \end{align}
 
-For thermal noise, we can assume that it is completely uncorrelated: it is due to billions of atomic interactions, so it loses memory quickly.
-This means that the noise is white noise: the PSD is constant in freqency. Therefore, we can show that 
+Now, from the output \(y\) we want to reverse-engineer the signal: this will give us a signal \(x'\), calculated as 
+%
+\begin{align}
+x' = \frac{y}{H_1 H_2 H_3 } = 
+x + \underbrace{\frac{n_4 }{H_1 H_2 H_3 }}_{x_{n_4}} + \underbrace{\frac{n_3 }{H_1 H_2  }}_{x_{n_3 }}
++ \underbrace{\frac{n_2}{H_1 }}_{x_{n_2 }}
+\,.
+\end{align}
+
+A similar reasoning can be applied to the power spectral density: then we will find 
+%
+\begin{align}
+S_{x_{n_2}} &= \frac{S_{n_2}}{\abs{H_1}^2} \\
+S_{x_{n_3}} &= \frac{S_{n_3}}{\abs{H_1 H_2 }^2} \\
+S_{x_{n_4}} &= \frac{S_{n_4}}{\abs{H_1 H_2 H_3 }^2} 
+\,.
+\end{align}
+
+Within our assumptions the signal \(z(t)\) will also consist of the sum of  a deterministic part \(z_d(t)\) plus a stochastic, noisy part \(z_n(t)\).
+
+We can model the thermal contribution as a stochastic force upon the oscillator, which is responsible both for the dissipation and fluctuations around the mean: we can then decompose it into a mean part and a zero-mean part,
+%
+\begin{align}
+m_0 \ddot{x} + k_0 x = F _{\text{th}} = \underbrace{- m_0 \gamma_0 \dot{x}}_{= \expval{F _{\text{th}}}} + F _{\text{n, th}} 
+\,,
+\end{align}
+%
+where \(\expval{F _{\text{n, th}}} = 0\). This is called the \textbf{Nyquist force}, and we will just denote it as \(F _{\text{n, th}} = F(t)\). 
+
+We can assume that thermal fluctuations are completely uncorrelated: they are due to billions of atomic interactions, so the process loses memory quickly --- instantaneously, for the time scales we are interested in: 
+%
+\begin{align}
+\expval{F(t_1 ) F(t_2 )} = A_0 \delta (t_1 - t_2 )
+\,,
+\end{align}
+%
+for some constant \(A_0 \). 
+This means that the noise is white noise: its PSD is constant in frequency.
+
+Our harmonic oscillator can be written as 
+%
+\begin{align}
+\ddot{\xi}_{0} + \gamma_0 \dot{\xi}_{0} + \omega_0^2 \xi_0 = \frac{F(t)}{m_0 }
+\,,
+\end{align}
+%
+which we can solve with a Green's function: 
+%
+\begin{align}
+x(t) = \underbrace{x_0 (t)}_{\text{hom.\ sol.}}
++ \frac{1}{m_0 } \int_{-\infty }^{\infty } \dd{t'} G(t - t') F(t')  
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+G(t) = \frac{1}{\omega_0} \theta (t) \exp(- \frac{\gamma_0t}{2}) \sin(\omega_0  t)
+\,
+\end{align}
+%
+is the Green's function, the impulse response of our system. The theta function is included in order to respect causality.
+
+Therefore, we can show that 
 %
 \begin{align}
 \expval{x^2(t)} \approx \frac{A}{m_0^2 \omega_0^2} \qty(1 - e^{- \gamma_0 t})

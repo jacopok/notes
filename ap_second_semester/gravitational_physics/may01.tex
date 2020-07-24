@@ -1,12 +1,15 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{GW interferometry in the TT gauge}
+
 \marginpar{Friday\\ 2020-5-1, \\ compiled \\ \today}
 
-We were discussing the basics of GW interferometry.
+% We were discussing the basics of GW interferometry.
 
-Moving to the TT gauge is a coordinate system in which the mirrors are free-falling. 
-However, the light propagating through spacetime is affected by the fact that the spacetime is ``stretched'': for our photons,
+The TT gauge is a coordinate system in which the mirrors are free-falling (in the \(xy\) plane at least, and for the frequencies we are considering; all the delicate considerations we must make in order to distinguish the GW from the background still hold). 
+
+So, the mirrors are still; however the light propagating through spacetime is affected by the fact that the spacetime is ``stretched'': for our photons the metric reads
 %
 \begin{align}
 \dd{s^2} = - c^2 \dd{t^2} + \qty(1 + h_{+} (t)) \dd{x}^2 + \qty(1 - h_{+}(t))^2 \dd{y}^2 + \dd{z}^2 = 0
@@ -18,10 +21,10 @@ so in the \(x\) arm, depending on the direction of propagation we will have:
 \begin{align}
 \dd{x} = \sqrt{ \frac{c^2 \dd{t^2}}{1 + h_{+}(t)}}
 \approx \pm c \dd{t} \qty(1 - \frac{1}{2} h_{+}(t))
-\,,
+\,.
 \end{align}
-%
-so if we integrate the whole round-trip of the photon we get, for the first leg: 
+
+We can integrate this along the photon's path to recover the effective travel length: for the first leg of the journey we get
 %
 \begin{align}
 L_{x} = \int_{0}^{L_x} \dd{x} = \int_{t_0 }^{t_1 } c \dd{t} = c (t_1 - t_0 ) 
@@ -32,10 +35,11 @@ L_{x} = \int_{0}^{L_x} \dd{x} = \int_{t_0 }^{t_1 } c \dd{t} = c (t_1 - t_0 )
 and for the second leg: 
 %
 \begin{align}
-- L_x = \int_{L_x}^{0} = - \int_{t_1 }^{t_2 } c \dd{t} \qty(1 - \frac{h_{+}(t)}{2}) = - c (t_2 - t_1 ) + \frac{c}{2} \int_{t_1 }^{t_2 } \dd{t} h_{+}(t) 
+- L_x = \int_{L_x}^{0} \dd{x} = - \int_{t_1 }^{t_2 } c \dd{t} \qty(1 - \frac{h_{+}(t)}{2}) = - c (t_2 - t_1 ) + \frac{c}{2} \int_{t_1 }^{t_2 } \dd{t} h_{+}(t) 
 \,,
 \end{align}
 %
+where \(t_{0, 1, 2}\) are the times at which the photon leaves the beamsplitter, bounces off the mirror, returns to the mirror. 
 so the time difference is given by 
 %
 \begin{align}
@@ -43,23 +47,54 @@ t_2 - t_0 = \frac{2L_x}{c} + \frac{1}{2} \int_{t_0 }^{t_2} \dd{t} h_{+}(t)
 \,,
 \end{align}
 %
-where we can consider \(t_2 \approx t_0  + 2 L_x  /c\) in the integration bound, since the correction would be second order. 
+where we can consider \(t_2 \approx t_0  + 2 L_x  /c = \tau\) in the integration bound, since the correction would be second order. 
 
-To first order, then, if the GW is sinusoidal we have for the \(x\) arm:
+Let us then compute the integral: 
+%
+\begin{align}
+\frac{1}{2} \int_{t_0 }^{\tau } h_+ (t) \dd{t} = \frac{1}{2} \int_{t_0 }^{\tau } \dd{t} h_0 \cos(\omega_{GW}t) = 
+\frac{h_0 }{2 \omega_{GW}} \eval{\sin(\omega_{GW} t)}_{t=t_0 }^{t = \tau } 
+\,.
+\end{align}
+
+We can simplify the expression making use of the trigonometric relation 
+%
+\begin{align}
+\sin(\alpha + 2 \beta ) - \sin(\alpha ) = 2 \sin(\beta ) \cos(\alpha + \beta )
+\,,
+\end{align}
+%
+where our \(\alpha = \omega_{GW} t_0 \), and \(\beta = \omega_{GW} L_x / c\).
+This yields:
 %
 \begin{align}
 t_2 - t_0 = \frac{2L_x}{c} + \frac{L_x}{c} h_{+} \qty(t_0 + \frac{L_x}{c}) \frac{\sin(\frac{\omega_{gw} L_x}{c})}{\frac{\omega_{gw}L_x}{c}}
 \,,
 \end{align}
 %
-while for the \(y\) arm the sign is inverted. 
+while for the \(y\) arm the sign of the corrective term is inverted --- the travel time diminishes. 
+Note that in this last expression we are computing \(h_+\) at the time \(t_0 + L_x / c\). 
 
-The argument is basically the ratio of the length of our arm to the wavelength of the GW. We have a maximum of the effect, then, when the GW perturbation is effectively static during the time in which we are detecting. 
+We have divided and multiplied by \(L_x / c\) in order to recover a sinc function, \(\operatorname{sinc} x = \sin x / x\).
+The argument of this function is the ratio of the length of our arm to the wavelength of the GW. 
+If \(L_x / c \ll T_{GW} = 2 \pi / \omega_{GW}\), the perturbation is essentially ``frozen'' during the light's travel; in the opposite limit during the travel time of the light the perturbation oscillates back and forth, cancelling out most of the effect.
 
-Keep in mind, though, that the effect also scales with \(L_x\): a very small detector wouldn't work. 
+We have a maximum of the effect, then, when the GW perturbation is effectively static during the time in which we are detecting: this suggests we should build \emph{short} GW interferometers. 
+Keep in mind, though, that the effect size also scales with \(L_x\): a very small detector wouldn't work. 
+% If the length, on the other hand, is very large the perturbation cancels out during the flight of the photon.  
+We must trade off between these two. 
+If we fix the frequency, making the detector longer and longer does not help: further full oscillations of the path length will not have any effect.
 
-If the length, on the other hand, is very large the perturbation cancels out during the flight of the photon.  
-If we fix the frequency, making the detector longer and longer does not help: further full oscillations of the path length do not have any effect.
+The light will arrive at the beamsplitter at a time \(t = t_2 \), from which we can (at least approximately) recover \(t_0 \approx t - 2L /c \).
+Similarly, we can calculate the starting times of the two beams by inverting the relation and plugging in what we have just found: 
+%
+\begin{align}
+t_0^{x} &= t - \frac{2L_x}{c} - \frac{L_x}{c} h_{+} \qty(t - \frac{L_x}{c}) \operatorname{sinc} \qty( \frac{\omega_{GW} L_x}{c}) \\
+t_0^{y} &= t - \frac{2L_y}{c} + \frac{L_y}{c} h_{+} \qty(t - \frac{L_y}{c}) \operatorname{sinc} \qty( \frac{\omega_{GW} L_y}{c})
+\,.
+\end{align}
+
+If the light arrives at a certain time \(t\) to the beamsplitter from both arms, then we can compute the phase difference of the beams by starting from \(t_0^{x} - t_0^{y}\):  \(\Delta \phi = \omega_{l} (t_0^{x} - t_0^{y})\). 
 
 The interesting thing is the phase difference: if in both arms the light reaches the detector at \(t_2 \) we have 
 %

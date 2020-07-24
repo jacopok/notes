@@ -305,33 +305,66 @@ so the output intensity is
 I _{\text{out}} &= \abs{E _{\text{out}}}^2 
 = \frac{E_0^2}{4} \qty(2 + \Re{\exp(i(k(x-y) - (\phi_{x} - \phi_{y}) ))})  \\
 &= \frac{E_0^2}{2} \qty(1 + \cos(k(x-y) + (\phi_{x} - \phi_{y})))
-\,,
+\,.
 \end{align}
+
+Now, for output 1 (perpendicular to the original laser beam) we have \(\phi_{x1} = \pi \) and \(\phi_{y1} = 2\pi \), which can be gathered by counting the number of times the \(x\) (\(y\)) beam is reflected, and adding a \(\pi \) for each. 
+Similarly, for output 2 we have \(\phi_{x2} = \pi \) and \(\phi_{y2} = 3 \pi \). 
+So, we have \(\Delta \phi_{1} = -\pi \) and \(\Delta \phi_{2} = - 2 \pi \). 
+
+Plugging this in, and using the fact that \(\cos(x + \pi ) = - \cos(x)\), we find 
 %
+\begin{align}
+I _{\text{out, 1}} &= \frac{E_0^2}{2} \qty(1 - \cos(k(x-y))) = E_0^2 \sin^2 \qty(\frac{k}{2} (x-y)) \\
+I _{\text{out, 2}} &= \frac{E_0^2}{2} \qty(1 + \cos(k(x-y))) 
+= E_0^2 \sin^2 \qty(\frac{k}{2} (x-y) + \frac{\pi}{2})
+\,.
+\end{align}
 
+So, both of the outputs heavily depend on the path length difference between the two beams. 
 
-In the detector frame we can treat the GW as a Newtonian force acting on the mirrors: 
+\subsection{GW interactions in the detector frame}
+
+In the detector frame we can treat the GW as a Newtonian force acting on the mirrors, and we can compute it using the TT-gauge perturbation \(h_{xx}^{TT} = h_0 \cos(\omega_{GW}t)\) since the Riemann tensor is invariant in linearized gravity:
 %
 \begin{align}
 F_{x} \approx \frac{m}{2} x_0 \ddot{h}_{xx}^{TT} 
 \,,
 \end{align}
 %
-so 
+since the perturbation is really small, we can treat \(x_0 \) as a constant.
+This means that the length of the arm changes according to the differential equation
 %
 \begin{align}
 \ddot{x} = \frac{1}{2} x_0 \ddot{h}^{TT}_{xx}
 \,.
 \end{align}
 
-This only holds if \(x \ll \lambda_{GW}\), which means \(f \ll c/ L  \approx \SI{100}{kHz} (L / \SI{3}{km} )\).
+This only holds in the short arm approximation: \(x \ll \lambda_{GW}\), which means \(f_{GW} \ll c/ L  \approx \SI{100}{kHz} (L / \SI{3}{km} )\) --- fortunately this is not a great constraint, since modern GW interferometers are only sensitive up to a few \SI{}{kHz} anyway. 
 
-If we insert the displacement for the mirrors we find 
+Let us consider a plus-polarized GW travelling along the \(z\) axis, and let us assume that the beamsplitter is the origin. 
+Then, let us analyze the motion of the two test masses which are in free-fall: the two mirrors, one for each arm. Their positions will be, respectively, \((x_{XTM}, y_{XTM}, z_{XTM})\) and \((x_{YTM}, y_{YTM}, z_{YTM})\). Because of the polarization of the wave, the only coordinates which will evolve in time will be 
 %
 \begin{align}
-I _{\text{out}} = E_0^2 \sin^2 \qty(k \qty(L_x - L_y + h_0 L \cos(\omega_{GW} t)))
+x_{XTM} (t ) &= L_x + \frac{h_0 L_x}{2} \cos(\omega_{GW} t) \\
+y_{YTM} (t ) &= L_y - \frac{h_0 L_y}{2} \cos(\omega_{GW} t)
 \,.
 \end{align}
 %
+
+
+If we insert the displacement for the mirrors, assuming \(L_x \sim L_y \sim L\) we find 
+%
+\begin{align}
+I _{\text{out}} 
+&= E_0^2 \sin^2(k(x-y))  \\
+&= E_0^2 \sin^2 \qty(k \qty[L_x + \frac{h_0 L_x}{2} \cos(\omega_{GW} t) - L_y + \frac{h_0 L_y}{2} \cos(\omega_{GW} t)]) \\
+&= E_0^2 \sin^2 \qty(k \qty(L_x - L_y + h_0 L \cos(\omega_{GW} t)))
+\,.
+\end{align}
+
+One might think that we should not be able to see any effect, since the GW also stretches the wavelength of the light: this is not the case, since each wavefront will still be travelling at \(c\) and so its travel time will change for a change in the spatial components of the metric. 
+
+However, this detector-frame approach is not great, since it neglects all time-of-flight effects. Let us consider the problem in the TT-gauge. 
 
 \end{document}

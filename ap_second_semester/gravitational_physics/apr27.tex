@@ -219,39 +219,96 @@ If \(\Gamma \) becomes lower, of the order of \num{e-9}, then the PSD becomes un
 
 \subsection{Mach-Zender interferometer}
 
-We consider a laser with the electric field 
+The setup here is the following: the laser impacts onto a first beamsplitter, is split onto two orthogonal paths which are made to converge onto a second beamsplitter through two mirrors. After this second beamsplitter, the signal is measured. Depending on the phase, the interference is either constructive or destructive at the second beamsplitter. 
+
+The laser's electric field will be given by
 %
 \begin{align}
 \vec{E} _{\text{in}} = \vec{E}_{0} \exp(-i \qty(\omega_{l} t - k_l t))
 \,,
 \end{align}
 %
-where the subscript \(l\) means ``laser'', we include it to remind ourselves with the GW parameters.
+where the subscript \(l\) means ``laser'', we include it in order to distinguish these parameters from the GW ones.
 
-After the first beamsplitter the reflected wave picked up a phase: 
+In general: 
+\begin{enumerate}
+    \item at reflection the beam picks up a phase \(\pi \);
+    \item at transmission the beam picks up no phase;
+    \item between the two paths there is a phase difference due to their different lengths: \(\Delta \phi \). 
+\end{enumerate}
+
+So, the fields incoming to the second beamsplitter are:
 %
 \begin{align}
 E_T = \frac{E _{\text{in}}}{\sqrt{2}} e^{i \pi }
 \qquad \text{and} \qquad
 E_R = \frac{E _{\text{in}}}{\sqrt{2}} e^{i \Delta \phi } 
-\,,
+\,.
 \end{align}
-%
-where we insert some prism which delays the reflected wave by \(\Delta \phi \). 
 
-So the output value is 
+At the second beamsplitter there are two outputs: the outgoing fields are 
 %
 \begin{align}
-E _{\text{out}} = \frac{E_{T}}{\sqrt{2}} e^{i \pi }
-+ \frac{E_{R}}{\sqrt{2}} = E _{\text{in}} \qty(1 + e^{i \Delta \phi })
+E _{\text{out, }1} &= \frac{E_{T}}{\sqrt{2}} e^{i \pi }
++ \frac{E_{R}}{\sqrt{2}} = \frac{E_{\text{in}}}{2} \qty(1 + e^{i \Delta \phi })  \\
+E _{\text{out, }2} &= \frac{E_{T}}{\sqrt{2}}
++ \frac{E_{R}}{\sqrt{2}} e^{i \pi } = \frac{E_{\text{in}}}{2} \qty(- 1 - e^{i \Delta \phi }) 
 \,,
 \end{align}
 %
 so the initial power is multiplied by \((1 + \cos( \Delta \phi )) / 2 \). 
+So, is energy not conserved? This output is the same on both ends of the beamsplitter, and these two do not sum to the initial power.
 
-So, is energy not conserved? This output is the same on both ends of the beamsplitter. The phase of \(\pi \) is picked up only if the index of refraction increases. This includes a correction: then energy is conserved.
+This result is due to an oversight: the phase of \(\pi \) is actually picked up only if the index of refraction increases along the path of the beam. Correcting for this, we find 
+%
+\begin{align}
+E _{\text{out, }2}= \frac{E_{\text{in}}}{2} \qty(-1 + e^{i \Delta \phi })
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\abs{E _{\text{out, }2}}^2 = \frac{\abs{E _{\text{in}}}^2}{2} \qty(1 - \cos(\Delta \phi))
+\,,
+\end{align}
+%
+so we recover energy conservation: \(\abs{E _{\text{out, }1}}^2 + \abs{E _{\text{out, }2}}^2 = \abs{E _{\text{in}}}^2\).
 
 \subsection{Michelson-Morley interferometer}
+
+Now the setup is different: the first and second beamsplitters are the same one, and the mirrors reflect the laser directly backwards. 
+
+The electric fields in the path from the beamsplitter to either mirror are denoted as \(E_x\) and \(E_y\); they are given by 
+%
+\begin{align}
+E_{x} &= \frac{E_0 }{\sqrt{2} \sqrt{2}}
+\exp(i \qty(kx - \omega_{l}t + \phi_{x})) \\
+E_{y} &= \frac{E_0 }{\sqrt{2} \sqrt{2}}
+\exp(i \qty(ky - \omega_{l}t + \phi_{y}))
+\,,
+\end{align}
+%
+where the double \(\sqrt{2}\) factor is due to the fact that each beam goes through the beamsplitter twice; while the factors \(\phi_{x, y}\) are the phases picked up upon reflection on each side. 
+
+The output electric field (for either output of the beamsplitter --- we will distinguish between them by varying \(\phi \)) is given by 
+%
+\begin{align}
+E _{\text{out}} = E_{x} + E_{y}
+= \frac{E_0}{2} \qty(\exp(i \qty(kx - \omega_{l}t + \phi_{x})) + \exp(i \qty(ky - \omega_{l}t + \phi_{y})))
+\,,
+\end{align}
+%
+so the output intensity is 
+%
+\begin{align}
+I _{\text{out}} &= \abs{E _{\text{out}}}^2 
+= \frac{E_0^2}{4} \qty(2 + \Re{\exp(i(k(x-y) - (\phi_{x} - \phi_{y}) ))})  \\
+&= \frac{E_0^2}{2} \qty(1 + \cos(k(x-y) + (\phi_{x} - \phi_{y})))
+\,,
+\end{align}
+%
+
 
 In the detector frame we can treat the GW as a Newtonian force acting on the mirrors: 
 %

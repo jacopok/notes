@@ -3,28 +3,217 @@
 
 \marginpar{Monday\\ 2020-4-27, \\ compiled \\ \today}
 
-We discussed the Fluctuation Dissipation Theorem last time:
-we have qualitative arguments, if by equipartition each DoF has energy \(1/2 k_B T\) and it is dissipative there must be some forcing mechanism.
+% We discussed the Fluctuation Dissipation Theorem last time:
+% we have qualitative arguments, if by equipartition each DoF has energy \(1/2 k_B T\) and it is dissipative there must be some forcing mechanism.
 
-A lossy harmonic oscillator gets from its environment a PSD given by 
+Let us consider a lossy harmonic oscillator, whose equation of motion is 
+%
+\begin{align}
+m_0 \ddot{x} + m_0 \gamma_0 \dot{x} + k_0 x = F
+\,,
+\end{align}
+%
+so in Fourier space the force can be expressed as 
+%
+\begin{align}
+F(\omega ) &= m_0 \qty(-\omega^2 - i \omega \gamma_0 + \frac{k_0}{m_0 }) x(\omega )  \\
+&= \underbrace{\frac{i m_0 }{\omega} \qty(-\omega^2 - i \omega \gamma_0 + \omega_0^2)}_{Z(\omega )}
+\dot{x}(\omega )
+\,,
+\end{align}
+%
+which means that we can write the impedance as 
+%
+\begin{align}
+Z(\omega ) = \underbrace{m_0 \gamma_0}_{\Re{Z}} + i \frac{m_0}{\omega } \qty(\omega_0^2 - \omega^2)
+\,.
+\end{align}
+%
+
+So, the thermal noise PSD of the reverse-engineered signal will be  
 %
 \begin{align}
 S_x (\omega ) = \frac{4 k_B T}{\omega^2}
 \frac{m_0 \gamma_0 }{m_0^2 \gamma_0^2 + 
 \qty( \frac{m_0}{\omega } \qty(\omega_0^2 - \omega^2))^2}
+= S_F (\omega ) \abs{H_{F \to x} (\omega )}^2
 \,.
 \end{align}
 
-What does the noise look like in the bar-transducer system?
-The noise by the transducer is very small at resonance, the noise of the bar does not have features there: the PSD is 
+For \textbf{structural damping} \(\delta \), we have \(\Re{Z(\omega )} = m_0 \delta \omega_0^2/ \omega \), so the force PSD is 
 %
 \begin{align}
-S _{\text{h, th}} = \pi \frac{k_B T}{M v_s^2} 
+S_F (\omega ) =4 k_B T m_0 \delta \frac{\omega_0^2}{\omega }
+\,.
+\end{align}
+
+\subsubsection{Thermal noise for the resonant bar}
+
+What does the noise look like in the bar-transducer system?
+We need to compare the generic \(Z(\omega )\) we wrote for the harmonic oscillator to the transfer function we found for the fundamental mode of the resonant bar, \(H_{h \to \xi_0  } (\omega )\): we find that they are related by 
+%
+\begin{align}
+H_{h \to \xi_0 } (\omega ) = - \frac{2L}{\pi^2} m_0 \omega i \frac{1}{Z(\omega )}
+\,,
+\end{align}
+%
+which, together with the fact that \(\Re{Z} = m_0 \gamma_0 \), means that the noise PSD for the fundamental mode will read 
+%
+\begin{align}
+S_{\xi_0 } 
+&= \frac{4k_BT}{\omega^2} \frac{\Re{Z(\omega )}}{\abs{Z(\omega )}^2}  
+= \frac{4k_BT}{\omega^2 } \frac{m_0 \gamma_0 }{\abs{ \frac{2L}{\pi^2} m_0 \omega_0  \frac{1}{H}}^2}
+\\
+&= \frac{4 k_B T \gamma_0 }{m_0 \omega^{4}} 
+\qty(\frac{\pi^2}{2L})^2 \abs{H_{h \to \xi_0 } (\omega )}^2
+\,.
+\end{align}
+
+If we try to reverse-engineer the original GW input, we must divide by the absolute value of the transfer function, which cancels out: so, we find 
+%
+\begin{align}
+S_{h, \text{th}} = \frac{S_{\xi_0 }}{\abs{H_{h \to \xi_0 } (\omega )}^2}
+= \frac{4 k_B T \gamma_0 }{m_0 \omega^{4}} 
+\qty(\frac{\pi^2}{2L})^2
+= \frac{\pi}{Q_0 } \frac{k_B T}{M v_s^2} \frac{f_0^3}{f^{4}}
+\,,
+\end{align}
+%
+where we used the relations \(\gamma_0 = \omega_0 / Q_0 \), \(m_0 = M / 2\) and \(L = \pi v_s / \omega_0 \).
+So, a large quality factor reduces thermal noise.
+
+\subsubsection{Thermal noise for the transducer}
+
+To treat the thermal noise for the bar-transducer system, we assume that both of them are at equilibrium at a certain temperature \(T\), but their damping factors are independent: 
+%
+\begin{align}
+S_{F_0 } = 4 k_B T m_0 \gamma_0 \qquad \text{and} \qquad
+S_{F_t} = 4 k_B T m_t \gamma_{t}
+\,.
+\end{align}
+
+The displacement of the transducer due to the two stochastic forces is given by 
+%
+\begin{align}
+\xi_{t} (\omega ) = \frac{\pi^2}{2L} \frac{H_{h \to \xi_{t} } (\omega )}{\omega^2} \qty(\frac{F_0 }{m_0 } - \frac{F_t (\omega )}{m_t} \frac{\omega^2 - \omega_0^2 + i \omega \gamma_0 }{\omega_0^2})
+\,.
+\end{align}
+
+Using these two relations we can compute the transducer's power spectral density: 
+%
+\begin{align}
+S_{\xi_{t}} (\omega ) = \frac{\pi^{4}}{4 L^{2}} 
+\frac{\abs{H_{h \to \xi_{t}}^2} (\omega )}{\omega^{4}} 
+4 k_B T \qty(\frac{\gamma_0}{m_0 } + \frac{\gamma_{t}}{m_t} \frac{(\omega^2- \omega_0^2)^2 + \omega \gamma_0^2}{\omega_0^2})
+\,.
+\end{align}
+
+\todo[inline]{Missing square modulus of the transfer function in the notes! See \cite[eq.\ 8.134]{maggioreGravitationalWavesVolume2007}.}
+
+In terms of the input, this will look like: 
+%
+\begin{align}
+S _{h, \text{th}} = \pi \frac{k_B T}{M v_s^2} 
 \frac{f_0^3}{f^{4}} \qty( \frac{1}{Q_0} + \frac{1}{\mu Q_t} \frac{\qty(f^2-f_0^2)^2 + \qty(f f_0 / Q_0 )^2}{f_0^{4}})
 \,.
 \end{align}
 
-\todo[inline]{Missing bit\dots still to understand}
+While \(Q_0 \) is quite large, both \(Q_t\) and \(\mu \) are rather small: this might seem like a big issue, since it means that the thermal noise contribution from the transducer is quite large. 
+
+Fortunately, near resonance (\(f \approx f_0 \)) the first term in the numerator goes to zero; while the second term always stays small since it is suppressed by a factor \(Q_0^{-2}\).
+This means that, while far from resonance the thermal noise from the transducer dominates, near resonance it is quite small and the thermal noise from the bar dominates.
+% The noise by the transducer is very small at resonance, the noise of the bar does not have features there: the PSD is 
+
+% \todo[inline]{Missing bit\dots still to understand}
+A qualitative explanation for this behavior is that since the response of the system is resonant even an oscillation with a large amplitude corresponds to a small GW amplitude when we reconstruct the signal. 
+
+\subsection{Readout noise}
+
+Without getting into the specifics of the electronic setup, we try to construct a system so that small displacements of the bar are mapped linearly to voltages which we can measure: 
+%
+\begin{align}
+V _{\text{out}} = \alpha \xi_{t}
+\,,
+\end{align}
+%
+and, since the PSD is 2-homogeneous, if we have some readout noise whose PSD is \(S_{V _{\text{out}}}\), then the effective PSD of the noise for the reconstructed displacement signal will be 
+%
+\begin{align}
+S_{\xi_{t}} = \frac{1}{\alpha^2} S_{V _{\text{out}}}
+\,.
+\end{align}
+
+This means that we can interpret the readout noise as an effective displacement. If we go further and consider the effective GW signal modification, we will see 
+%
+\begin{align}
+S_{h, \text{ro}} = \frac{1}{\abs{H_{h \to \xi_{t}}}^2}
+S_{\xi_{t}} = \frac{1}{\abs{H_{h \to \xi_{t}}}^2 \alpha^2} S_{V _{\text{out}}}
+\,.
+\end{align}
+
+Usually, the spectral shape of the readout noise is quite uniform, but since the transfer function is featured the effective GW PSD due to readout will be featured as well. 
+
+\subsection{Effective temperature}
+
+We want to find out how much energy the GW must carry in order to be visible above the noise. 
+
+For \textbf{thermal noise}, we have seen that the characteristic time for the decay of the decay of a fundamental mode oscillation is \(\tau_0 = 1/ \gamma_0 = Q_0 / \omega_0 \), of the order of several minutes. 
+This characterizes \emph{all} the mode's interactions with the thermal bath, so the time it takes for the bath to spoil the oscillation is \(\tau_0 \) as well: this means that, while we might naïvely expect the noise threshold for the detection of a GW to be \(E_{GW} \geq k_B T\), it is in fact much lower. 
+Specifically, if \(\Delta t\) is our sampling time, then the noise threshold is actually \(E_{GW} \geq k_B T \Delta t / \tau_0 \). 
+
+As for the \textbf{readout noise}, if our bandwidth (the inverse of the sampling time) is \(\Delta f\), then the variance of the readout noise in terms of displacement of the transducer can be recovered from the PSD by
+%
+\begin{align}
+\expval{\xi_{t}^2} &= \int_{f_0 - \Delta f / 2}^{f_0 + \Delta f / 2}
+S_{\xi_{t} , \text{ro}} \dd{f} \sim S_{\xi_{t} , \text{ro}} \Delta f
+\,,
+\end{align}
+%
+which corresponds to an energy of \(E_{\text{ro}} \sim m_t \omega_0 \expval{\xi_{t}^2} \sim m_t \omega_0  S_{\xi_{t} , \text{ro}} \Delta f\).
+
+The interesting thing to note is that the dependence of the thermal noise threshold energy on the sampling time is \textbf{direct} (if we sample for a long time the bath has a long time to interact with the oscillator), while the corresponding quantity for the readout noise has an \textbf{inverse dependence} on \(\Delta t\) (sampling very fast is error-prone since we are exposed to more high-frequency noise): 
+%
+\begin{align}
+\Delta E _{\text{min}} \sim k_B T \frac{\Delta t}{\tau_0 }
++ \frac{m_t \omega_0 S_{\xi_{t}, \text{ro}}}{\Delta t}
+\,.
+\end{align}
+
+We need to trade off these two contributions; the minimum can be found by differentiating and it comes out to be 
+%
+\begin{align}
+\Delta f _{\text{opt}} = \frac{1}{\Delta t _{\text{opt}}} \approx
+\pi \frac{f_0 }{Q \sqrt{\Gamma }}
+\qquad \text{where} \qquad
+\Gamma = \frac{m_t \omega_0^3  S_{\xi_t, \text{ro}}}{4Q k_B T} 
+\,.
+\end{align}
+%
+
+An important distinction to make is the one between the useful bandwidth \(\Delta f _{\text{opt}}\), which is quite large (tens of Hertz), and the width of the resonance peak \emph{of the transfer function}, which is \(\Delta f _{\text{res}} \sim f_0 / Q \sim \SI{1}{mHz}\). 
+The detector's actual resonance peaks are \textbf{broad}, with a bandwidth comparable to \(\Delta f _{\text{opt}}\).
+
+At the optimal sampling rate, the two contributions to the \(\Delta E\) are equal, therefore we have 
+%
+\begin{align}
+\Delta E _{\text{opt}} \sim 2 k_B T \frac{\Delta t _{\text{opt}}}{\tau_0 }
+\sim 2 k_B T \frac{\omega_0}{Q \Delta f} 
+= k_B \underbrace{T \frac{4 \pi f_0 }{Q \Delta f}}_{T _{\text{eff}}}
+\,,
+\end{align}
+%
+which can be interpreted as a new effective temperature at which the oscillator is immersed: substituting in we can find that it is given by 
+%
+\begin{align}
+T _{\text{eff}} \sim 4 \sqrt{\Gamma } T
+\,,
+\end{align}
+%
+which can be much lower than the real temperature of the object, since \(\Gamma \) can be made to be of the order \num{e-8} to \num{e-9}: this means that the effective temperature can be three orders of magnitude lower than the thermodynamic one.
+
+The definitive formula for the sum of these contributions can be found in Maggiore \cite[eq.\ 8.150]{maggioreGravitationalWavesVolume2007}; it is interesting to compare the shape of the PSD at varying values of \(\Gamma \): if it is rather high (\(\sim \num{e-7}\)) then the PSD is quite high as well with two conspicuous drops at \(\omega_0 \pm \omega_{p}\). Here, the transducer thermal noise dominates almost everywhere.
+
+If \(\Gamma \) becomes lower, of the order of \num{e-9}, then the PSD becomes uniformly low in the range \([\omega_0 - \omega_{p}, \omega_0 + \omega_{p}]\).
 
 \section{Gravitational Wave Interferometry}
 

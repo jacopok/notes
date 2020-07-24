@@ -381,15 +381,23 @@ G(t) = \frac{1}{\omega_0} \theta (t) \exp(- \frac{\gamma_0t}{2}) \sin(\omega_0  
 \end{align}
 %
 is the Green's function, the impulse response of our system. The theta function is included in order to respect causality.
-
-Therefore, we can show that 
+Plugging this into the expression for the particular solution \(x(t)\)  we find: 
 %
 \begin{align}
-\expval{x^2(t)} \approx \frac{A}{m_0^2 \omega_0^2} \qty(1 - e^{- \gamma_0 t})
+x(t) = \frac{1}{m_0 \omega_0 } \int_{0}^{t} \dd{t'} \exp(- \frac{\gamma_0}{2} (t-t')) \sin(\omega_0 (t-t')) F(t')
 \,.
 \end{align}
 
-Then, the average total energy of the mode is 
+Since \(F(t')\) corresponds to the completely-uncorrelated thermal noise, we can show by an explicit calculation that, as long as \(\gamma_0 \ll \omega_0 \) (which means that the characteristic time of dissipation is much longer than the resonant frequency's period):
+%
+\begin{align}
+\expval{x^2(t)} &= \frac{A}{m_0 \omega_0 } \int_{0}^{t} \dd{u} e^{-\gamma_0 u} \sin^2(\omega_0 u) \\
+&\approx \frac{A}{m_0^2 \omega_0^2} \qty(1 - e^{- \gamma_0 t})
+\,,
+\end{align}
+%
+since when we write out the average of \(x^2\) we find the average of the product of two copies of \(F\), yielding a delta-function.
+The average energy of the mode is in general given by 
 %
 \begin{align}
 \expval{E(t)} 
@@ -398,44 +406,117 @@ Then, the average total energy of the mode is
 \,.
 \end{align}
 
-So, we get asymptotically 
+If the mode starts out with zero energy and then is immersed in a thermal bath with temperature \(T\), then by the equipartition theorem each of its quadratic degrees of freedom will gain an energy \(k_B T /2\): so, the average energy will asymptotically approach
 %
 \begin{align}
-\expval{E(t)} \to 2 k_B T m_0 \gamma_0 
+\expval{E(t)} \to \frac{1}{2} k_B T + \frac{1}{2} k_B T = k_B T 
 \,,
 \end{align}
 %
-which is the fluctuation-dissipation theorem: the PSD of the noise is 
+which means that the normalization constant \(A\) must satisfy 
+%
+\begin{align}
+k_B T = \frac{A}{2 m_0 \gamma_0 } \implies A = 2 k_B T m_0 \gamma_0 
+\,.
+\end{align}
+%
+
+\subsection{The Fluctuation-Dissipation theorem}
+
+The Power Spectral Density is defined as the Fourier transform of the autocorrelation (times two, since we are computing it single-sided): 
+%
+\begin{align}
+S_F(\omega ) = 2 \int_{-\infty}^{\infty} \dd{t'} \expval{F(t) F(t')} e^{i \omega (t - t')} = 2 A \int_{-\infty}^{\infty} \dd{\tau } \delta(\tau ) e^{i \omega \tau } = 2A 
+\,,
+\end{align}
+%
+where \(\tau  = t - t'\). Since we know the expression for \(A\), this tells us that the PSD of the noise is flat, and equal to: 
 %
 \begin{align}
 S_F(\omega ) = 4 k_B T m_0 \gamma_0 
 \,.
 \end{align}
 
-We can always write 
+For a generic linear system, we can express the spectral shape of the force as a multiple of the velocity's spectral shape: 
 %
 \begin{align}
 F(\omega ) = Z(\omega ) \dot{x}(\omega )
 \,,
 \end{align}
 %
-for any linear system.
-So, the FDT gives us 
+where \(Z\) is called the \textbf{impedance} of the system. The electrical analog of this is the law relating the voltage and current: \(V(\omega ) = Z(\omega ) I(\omega )\).
+
+The \textbf{Fluctuation-Dissipation Theorem} tells us that the single-sided power spectral density of the force which is due to fluctuations is given in terms of the impedance of the system as:
 %
+\boxalign{
 \begin{align}
 S _{\text{F, th}} (\omega ) = 4 k_B T \Re{Z(\omega )}
 \,.
+\end{align}}
+
+Note that taking the real part of \(Z\) means considering the \emph{imaginary} term in the equation of motion: the real part of \(Z\) quantifies the dissipation. 
+% In our case 
+% %
+% \begin{align}
+% S_F(\omega ) = 4 k_B T m_0 \gamma_0 
+% \,.
+% \end{align}
+
+% We can always write 
+% %
+% \begin{align}
+% F(\omega ) = Z(\omega ) \dot{x}(\omega )
+% \,,
+% \end{align}
+% %
+% for any linear system.
+% So, the FDT gives us 
+% This is in terms of the PSD of the force, which can be connected to that of the velocity.
+
+The velocity in the linear system law can be written as \(\dot{x}(\omega) = i \omega x(\omega )\), so by the transformation law of the PSD under the application of a ``transfer function'' (which is \(i \omega \) in this case) we find 
+%
+\begin{align}
+S_{x, \text{th}} (\omega ) = \frac{S_{\dot{x}, \text{th}}}{\abs{i \omega }^2} 
+= \frac{S _{\text{F, th}} (\omega )}{\omega^2 \abs{Z(\omega )}^2}
+= \frac{4 k_B T}{\omega^2} \frac{\Re{Z(\omega )}}{\abs{Z(\omega )}^2} 
+\,.
 \end{align}
 
-This is in terms of the PSD of the force, which can be connected to that of the velocity.
+This result quantifies the thermal noise we get when we reverse-engineer the original signal, as opposed to the noise in the output.
 
-If the energy of the DoF must be asymptotically constant, there needs to be a lossy mechanism giving energy to the DoF. 
+The energy of the DoF must be asymptotically constant and equal to \(k_B T /2\), but we have dissipation! Since the system is in thermal equilibrium, there is a pumping mechanism providing the energy which is lost to dissipation --- this is a force, and it creates noise! 
+The higher the dissipation, the harder this force needs to push, so the noise increases accordingly. 
 
-\todo[inline]{Is there a problem with many transducers?}
-\todo[inline]{Could we analyze different wavelengths by modifying the frequency}
+Another way to see it is that the loss term quantifies the ``conductance'' of energy between the thermal bath and the oscillator, so if it is low the time needed to transfer energy from the noisy thermal bath to the oscillator is very long. 
 
-The temperatures are of the order of milliKelvin, we cool them to close to zero by isolating them and making liquid helium go through everything. 
-
+In real resonant-bar detectors, the temperatures are of the order of milliKelvin: we cool them to close to zero by isolating them and making liquid helium go through everything. 
 In this case the approximation of constant temperature is quite good.
+
+\subsubsection{Thermal noise examples}
+
+For an electrical circuit, we have \(Z(\omega ) \equiv R\), therefore \(S_{V, \text{th}} (\omega ) = 4 k_B T R\). 
+
+The equivalent of \(x\) in this context is the charge \(Q\), so that \(I(\omega ) = \dot{Q}(\omega )\). Its PSD contribution due to thermal noise will be 
+%
+\begin{align}
+S _{\text{Q, th}} (\omega ) = \frac{4 k_B T}{\omega^2} \frac{\Re{Z(\omega )}}{\abs{Z(\omega )}^2} = \frac{4 k_B T}{\omega^2 R}
+\,,
+\end{align}
+%
+therefore the noise on the current \(I(\omega ) = \dot{Q} (\omega )\) will be 
+%
+\begin{align}
+S _{\text{I, th}} (\omega ) = \omega^2 S _{\text{Q, th}} (\omega ) = \frac{4 k_B T}{R}
+\,.
+\end{align}
+
+\todo[inline]{How to interpret the inverse dependence on the dissipation?}
+
+% This simple result encompasses the characteristics we want to describe: we have linear dependence on the temperature, and inverse dependence on the dissipation term, the resistance \(R\).
+
+
+
+% \todo[inline]{Is there a problem with many transducers?}
+% \todo[inline]{Could we analyze different wavelengths by modifying the frequency}
 
 \end{document}

@@ -1,11 +1,49 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\subsection{Realistic interferometers}
+% \subsection{Realistic interferometers}
 
 \marginpar{Friday\\ 2020-5-8, \\ compiled \\ \today}
 
-\todo[inline]{About an hour of only listening}
+% \todo[inline]{About an hour of only listening}
+
+With a FP cavity we increase the interaction time of a photon with the GW by a factor \(\mathcal{F} / 2 \pi \), yielding  
+%
+\begin{align}
+\tau_{s} = \frac{L}{c} \frac{\mathcal{F}}{\pi }
+\,.
+\end{align}
+
+The cavity, in a way, acts as a low-pass filter, removing any effects which happen on timescales shorter than \(\tau_{s}\).
+
+Ideally, we would want to make the storage time as long as possible, but still smaller than the period of the GW: 
+%
+\begin{align}
+\tau_{s} \sim \frac{1}{2 f_{GW}} 
+\implies
+\mathcal{F} \sim \frac{\pi c }{L 2 f_{GW}} \sim \num{e3} \qty(\frac{\SI{100}{Hz}}{f_{GW}})
+\,.
+\end{align}
+
+This is an intuitive way to write it, let us make it more precise: we can model power loss at a mirror \(i\) as \(r_i^2 + t_i^2 = 1 - p_i\), where \(p_i\) is a small parameter quantifying the fraction of power lost at the mirror.  
+
+We can define an \textbf{effective power loss} \(p\) by \((1-p_1 ) r_2^2 = 1 - p\).
+Then, we will have 
+%
+\begin{align}
+r_1^2 = 1 - p_1 - t_1^2 < 1 - p_1 \implies r_1^2 r_2^2 < 1 - p
+\,,
+\end{align}
+%
+\todo[inline]{This whole calculation is kind of unclear\dots}
+so the finesse will satisfy the inequality 
+%
+\begin{align}
+r_1 r_2 \approx 1 - \frac{\pi}{\mathcal{F}} \leq 1- \frac{p}{2}
+\,.
+\end{align}
+
+Let us define the \textbf{coupling factor} \(\sigma = p \mathcal{F} / \pi \): it will be between 0 and 2, and its value will determine whether the cavity is over- or under-coupled; for \(\sigma = 1 \) it will be impedance-matched.
 
 In the TT gauge, the carrier angular frequency is \(\omega_{l}\) and we get some power in the sidebands \(\omega_{l} \pm \omega_{gw}\). 
 We express this as a vector equation: we define the vector \(\vec{B} = (\text{carrier}, \text{sidebands})\) after a round-trip, so we have  

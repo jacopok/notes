@@ -102,95 +102,190 @@ The interesting thing is the phase difference: if in both arms the light reaches
 \begin{align}
 \Delta \phi 
 &= \omega_{l} \qty(t_0^{x }- t_0^{y}) \\
-&= \omega_{l} \qty(2 \frac{L_x -L_y}{c} + \frac{2L}{c} \operatorname{sinc}(\frac{\omega_{gw} L}{c} ) h_0 \cos(\omega_{gw} t + \alpha )) = \Delta \phi_0 + \Delta \phi_{gw}
-\,.
+&= \underbrace{\omega_{l} 2 \frac{L_x -L_y}{c}}_{\Delta \phi_0 } + \underbrace{\omega_{l} \frac{2L}{c} \operatorname{sinc} \qty(\frac{\omega_{gw} L}{c} ) h_0 \cos(\omega_{gw} t + \alpha )}_{\Delta \phi_{GW}}
+\,,
 \end{align}
 \end{subequations}
+%
+where we substituted \(h_{+} (t - L / c)\) with its explicit expression, with the constant phase \(\alpha = - \omega_{GW} L / c\). 
 
-So, we have a tradeoff: we want to stay before the first zero of the sinc, but we also want to have a relatively large detector.
+The term \(\Delta \phi_0 \) is controlled by the experimenter, while the term \(\Delta \phi_{GW}\) is due to the GW.
+
+We know that the output intensity will look like: 
+%
+\begin{align}
+I _{\text{out}} = E_0^2 \sin^2 (\Delta \phi_0 + \Delta \phi_{GW})
+\,.
+\end{align}
+
+There will be two main contributions to \(\Delta \phi_0 \): 
+\begin{enumerate}
+    \item a microscopic term we can vary to change the working point of the interferometer, meaning the output with no GW;
+    \item a macroscopic term called the \textbf{Schnupp asymmetry} which allows the \emph{sideband frequency} \(\omega_{l} + \omega_{sb}\) to leak.
+\end{enumerate}
+
+We want to maximize \(\Delta \phi_{GW}\), so we have a tradeoff: we want to stay before the first zero of the sinc, but we also want to have a relatively large detector, since there is an \(L\) multiplying everything. Specifically, we have 
+%
+\begin{align}
+\Delta \phi_{GW} = \omega_{l} \frac{2L}{c} \operatorname{sinc} \qty(\frac{\omega_{GW}L}{c}) h_0 \cos(\omega_{GW} t + \alpha )
+\propto L \operatorname{sinc} \qty( \frac{2 \pi L}{\lambda_{GW}})
+\propto \sin(\frac{2 \pi L}{\lambda_{GW}})
+\,,
+\end{align}
+%
+which reaches a maximum when the argument of the sine is \(\pi /2\): so, we have 
+%
+\begin{align}
+\frac{\pi}{2} = \frac{2 \pi L}{\lambda_{GW}} \implies L = \frac{\lambda_{GW}}{4} \approx \SI{750}{km} \qty(\frac{\SI{100}{Hz}}{f_{GW}})
+\,.
+\end{align}
 
 So, our optimal length is of the order of a quarter of the wavelength.
-
 This is the same as saying we want to keep the photon in-flight for a quarter of the period of the GW. 
 
-This would mean, for a frequency of \SI{100}{Hz}, that we would need a detector of around \SI{750}{km}.
+% This would mean, for a frequency of \SI{100}{Hz}, that we would need a detector of around \SI{750}{km}.
 
 If we do the computation accounting for the oscillation of the laser light, we get that the field out of the BS is 
 %
 \begin{align}
-E = \frac{E_0}{2} e^{-i \gamma } \qty(e^{-i \omega_{l} t}
+E &= \frac{E_0}{2} \exp(i \omega_{l} t + i \Delta \phi_0 + i \Delta \phi_{GW}) \approx \frac{E_0}{2} \exp(i \omega_{l} t + i \Delta \phi_0)
+\qty(1 + i\Delta \phi_{GW}) \\
+&= \frac{E_0}{2} e^{-i \omega_{l} (t - 2L / c)}
+\qty(1 + i \omega_{l} \frac{L}{c} \operatorname{sinc} \qty(\frac{\omega_{GW} L}{c}) \frac{e^{i \omega_{GW} t + i \alpha } + e^{-i \omega_{GW} t - i \alpha }}{2})
+\\
+&= \frac{E_0}{2} e^{-i \gamma } \qty(e^{-i \omega_{l} t}
 + \beta e^{-i \alpha } e^{-i (\omega_{l} - \omega_{gw})} + \beta e^{i \alpha } e^{-i (\omega_{l} + \omega_{gw}) t})
 \,,
 \end{align}
 %
-which is the same of a single field which is modulated in amplitude.
+with a suitable definition of \(\gamma \) and \(\beta \) --- it does not really matter, the important thing is that we now have components of the oscillation at \(\omega_{l} \pm \omega_{GW}\).
+
+% We can interpret this in different ways, depending on whether we want to model it as a modulation of the amplitude (adding the sidebands' sinusoids in phase with the main one) or as a modulation in phase (adding the sidebands' sinusoids in opposition of phase to the main one).
+% This is the same as a single field which is modulated in amplitude.
+
+We can interpret the addition of two sidebands which are in phase with the signal as an \emph{amplitude modulation}:
+%
+\begin{align}
+\cos(\omega_{c}t) 
++ A_{sb} \cos((\omega_{c} + \omega_{sb}) t )
++ A_{sb} \cos((\omega_{c} - \omega_{sb}) t )
+= (1 + A_m \cos(\omega_{m} t)) \cos(\omega_{c} t )
+\,,
+\end{align}
+%
+while if the sidebands are out of phase with the signal we can interpret them as a phase modulation: 
+%
+\begin{align}
+\cos(\omega_{c}t) 
++ A_{sb} \sin((\omega_{c} + \omega_{sb}) t )
++ A_{sb} \sin((\omega_{c} - \omega_{sb}) t )
+= \cos(\omega_{c} t + A_m \cos(\omega_{m} t))
+\,.
+\end{align}
+
+These two scenarios are identical (amplitude modulation and phase modulation) if we look at the amplitude of the Fourier transform, but with different phases. 
+
+The phase modulation scenario is approximate, since there is a slight amplitude modulation (which however is second order). 
 
 \subsection{Lasers and cavities}
 
-The best mirrors in the world are built for GW detectors.
-These are dielectric mirrors.
-We stack dielectric interfaces on top of each other, so that the wave coming back has constructive interference while the wave being transmitted interferes destructively with the next layer.
+We have seen that the optimal length of our detector is of the order of several hundreds of kilometers: this is an issue! In this section we will see how to ``fold'' our interferometer so that we can reach this sensitivity.
+
+\subsubsection{Dielectric mirrors}
+
+An ideal mirror would be a sharp interface between two mediums, where the incoming electric field \(E _{\text{in}}\) is split into \(r E _{\text{in}} = E_r\) and \(t E _{\text{in}} = E_{t}\). Due to energy conservation, these must satisfy \(r^2+t^2 = 1\). 
+
+For a perfectly reflecting mirror, the transmission coefficients \(t\) are symmetric for the swap of the two materials, while \(r\) changes sign if we go from the denser to the less dense material or vice versa. 
+
+The best mirrors in the world are built for GW detectors: these are dielectric mirrors. 
+
+The idea is to stack dielectric interfaces on top of each other by alternating layers of high and low index of refraction, so that each layer has an optical depth of \(\lambda /4\) at the desired wavelength \(\lambda \). 
+So, going through two of them changes the phase by \(\pi \) (half of a wavelength has gone by). Also, if we go through two of them then we pass \emph{one} low-to-high index of refraction transition, yielding a phase difference of \(\pi \). So, the global phase is \(2 \pi \equiv 0\). 
+
+So, all the reflected light keeps going back as the interference is constructive.
+This only holds as long as the light is of the correct frequency, and its angle of incidence is a certain one.
+
+% so that the wave coming back has constructive interference while the wave being transmitted interferes destructively with the next layer.
+
+\subsubsection{Cavities}
 
 A \textbf{cavity} is an arrangement of mirrors such that we have a closed path for light.
 
 Mirrors are symmetric, if we can input some light then we are also losing the same amount.
+In the round-trip the beam can lose some energy to the environment: this is described as a ``round-trip loss''. 
 
-We have an incident field \(E _{\text{in}}\), a circulating field \(E_{c}\) and a transmitted field \(E_{t}\). The ``in'' mirror is labelled 1, the ``out'' mirror is labelled 2. 
+We consider a horizontal cavity with two mirrors: we will have an incident field \(E _{\text{in}}\), a circulating field \(E_{c}\) and a transmitted field \(E_{t}\).
+The ``in'' mirror is labelled 1, the ``out'' mirror is labelled 2. Both of these have reflection and transmission coefficients \(r_{1, 2}\) and \(t_{1, 2}\) respectively. 
 
-So, we have 
+In general the reflection and transmission coefficients will be complex since the laser can acquire a phase while passing through the mirror, however this can be disregarded: it amounts to a global phase, which can be discarded by moving the mirrors until the desired working point is reached. 
+
+The circulating field can be obtained by adding the transmitted component of the incoming field, and the circulating field itself which has been reflected by both mirrors:
 %
 \begin{align}
 E_{c} = t_1 E _{\text{in}} + r_1 r_2 E_{c} e^{-ik 2L} 
 \,,
 \end{align}
 %
-so 
+and we can simplify this to 
 %
 \begin{align}
 E_{c} = E _{\text{in}} \frac{t_1 }{1 - r_1 r_2 e^{-ik2L}}
 \,.
 \end{align}
 
-Here \(k\) is the wavevector of the electric field. The exponential is called the \emph{round-trip gain}. 
+Although it might seem that this calculation is simplistic, neglecting the field which has done more than one round-trip, the result is in fact the same as the more complete calculation. 
 
-The reflected field is given by 
+Here \(k\) is the wavevector of the electric field.
+This expression gives us the \emph{round-trip gain}: the term in the denominator can become lower than 1. 
+
+The reflected field, which is in the same place as the incoming field but moving in the opposite direction, is given by 
 %
 \begin{subequations}
 \begin{align}
 E_{r} &= -r_1 E _{\text{in}} + r_2 t_1 E_{c} e^{-ik2L}  \\
+&= E _{\text{in}} \qty(- r_1 + \frac{r_2 t_1^2 e^{-ik2L}}{1 - r_1 r_2 e^{-ik2L}}) \\
 &= -E _{\text{in}} \frac{r_1 - r_2 e^{-ik 2L}}{1 - r_1 r_2 e^{-ik2L}}
 \,.
 \end{align}
 \end{subequations}
 
-On the other hand, the transmitted field is 
-%
+On the other hand, the transmitted field going out of mirror 2 is 
+
 \begin{align}
-E_{t} = t_2 E_c 
+E_{t} = t_2 E_c = E _{\text{in}} \frac{t_1 t_2 }{1 - r_1 r_2 e^{-ik2L}}
 \,.
 \end{align}
 
-The circulating intensity can be calculated by the square modulus of the field, we then get 
+The circulating intensity can be calculated by the square modulus of the circulating field: 
 %
 \begin{align}
 I_{c} = E^2 _{\text{in}} \abs{\frac{t_1 }{1 - r_1 r_2 e^{-ik2L}}}^2
 \,,
 \end{align}
 %
-so we want to minimize the denominator: this means we want \(L = n \pi / k\). 
-
-As we increase reflectivity the peaks get narrower and higher. 
-
-The distance in frequency between the peaks, \(c / 2L\), is called the \emph{free spectral range}. 
-
-The \emph{finesse} is defined as the free spectral range divided by the FWHM of the peaks, 
+which we want to be large, so we want to minimize the denominator: this means we should tune the length to that the exponential is equal to 1, so \(ik2L = 2 \pi n\), which implies \(L = n \pi / k\), for some \(n \in \mathbb{R}\). 
+If we perform the optimal choice, we will find 
 %
 \begin{align}
-\mathcal{F} = \frac{\pi \sqrt{r_1 r_2 }}{1 - r_1 r_2 }
+I_c = \abs{\frac{t_1}{1 - r_1 r_2 }}
 \,.
 \end{align}
 
-This is \(2 \pi  / \text{losses}\).
+We can plot the intensity as \(k\) varies (which means we are varying the wavelength of the laser: as long as \(r_1 r_2 \) is close to 1, we see distinct peaks, whose distance is fixed even as we vary \(r_1 r_2 \), since it only depends on the length of the cavity.
+This distance, which is equal to \(c / 2L\), is called the \textbf{free spectral range}.
+
+As we increase the reflectivity (which is measured by \(r_1 r_2 \)) the peaks get narrower and higher. 
+
+% The distance in frequency between the peaks, \(c / 2L\), is called the \emph{free spectral range}. 
+
+The \emph{finesse} is defined as the free spectral range divided by the FWHM of the peaks, and it can be shown that it can be expressed as
+%
+\begin{align}
+\mathcal{F} = \frac{c / 2L}{\text{FWHM}} =  \frac{\pi \sqrt{r_1 r_2 }}{1 - r_1 r_2 }
+\,.
+\end{align}
+
+Actually, we take the last expression to be the definition of the finesse; it is only approximately the ratio of FSR and FWHM. 
 
 Using this, we can estimate the storage time of a photon inside the cavity: 
 %
@@ -198,5 +293,7 @@ Using this, we can estimate the storage time of a photon inside the cavity:
 \tau_{s} \approx \frac{L \mathcal{F}}{c \pi }
 \,.
 \end{align}
+
+For example, if \(r_1^2= \num{.99}\), \(r_2 = 1\) and \(L = \SI{3}{km}\) then \(\mathcal{F} \approx 625\) and \(\tau_{s} \approx \SI{2}{ms}\). 
 
 \end{document}

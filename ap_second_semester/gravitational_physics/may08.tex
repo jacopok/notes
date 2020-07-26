@@ -45,8 +45,58 @@ r_1 r_2 \approx 1 - \frac{\pi}{\mathcal{F}} \leq 1- \frac{p}{2}
 
 Let us define the \textbf{coupling factor} \(\sigma = p \mathcal{F} / \pi \): it will be between 0 and 2, and its value will determine whether the cavity is over- or under-coupled; for \(\sigma = 1 \) it will be impedance-matched.
 
-In the TT gauge, the carrier angular frequency is \(\omega_{l}\) and we get some power in the sidebands \(\omega_{l} \pm \omega_{gw}\). 
-We express this as a vector equation: we define the vector \(\vec{B} = (\text{carrier}, \text{sidebands})\) after a round-trip, so we have  
+This is interesting since it allows us to study the response of the phase of the reflected field 
+%
+\begin{align}
+E_r = - E _{\text{in}} \frac{r_1 - r_2 e^{-ik2L}}{1 - r_1 r_2 e^{-ik2L}}
+\,,
+\end{align}
+%
+to a small perturbation \(\epsilon = 2 k_l \delta L\): its phase \(\phi = \arg E_r\) responds as
+%
+\begin{align}
+\phi  = \pi + \arctan (\frac{\mathcal{F} \epsilon }{\pi } \frac{1}{1 - \sigma })
++ \arctan (\frac{\mathcal{F}\epsilon }{\pi })
+\,,
+\end{align}
+%
+so for \(\sigma > 1\) we have partial cancellation of the reflected field, if \(\sigma = 1\)  there is no reflected light at all, while if \(\sigma < 1 \) gets small we get ever more light but less sensitivity. 
+
+\todo[inline]{Why are we interested in the phase of the \emph{reflected} field?}
+
+If we suppose \(r_2 = 1 \), \(r_1 \sim 1\) and \(p_1 = 0 \) we get \(p = 1 - r_2^2 = 0\), so \(\sigma = 0\), which means that the phase sensitivity is 
+%
+\begin{align}
+\pdv{\phi }{\epsilon } = \frac{2 \mathcal{F}}{\pi  }
+\,,
+\end{align}
+%
+since we have two equal arctangent terms, both of which are linear near the origin.
+This is much better than what we have with a simple Michelson interferometer, \(\pdv*{\phi }{\epsilon } = 1\). 
+
+\subsubsection{GW response of the cavity in the detector frame}
+
+Suppose we have a Michelson interferometer with a FP cavity, which is invested by a \(h_+\) polarized GW which propagates perpendicular to the interferometer plane: then, the phase response will look like 
+%
+\begin{align}
+\Delta \phi_{FP} = \Delta \phi_{x} - \Delta \phi_{y} = 
+2 \times 2 k_l \frac{1}{2} L h_0 \cos(\omega_{GW} t) \frac{2 \mathcal{F}}{\pi }
+\,,
+\end{align}
+%
+where the first factor of 2 is because the light goes back and forth, while the second factor of 2 is because the effects on the two arms are opposite in sign; the phase difference is computed as laser wavevector times GW length difference (which in the detector frame is due to the mirrors moving around), and finally the factor \(2 \mathcal{F} / \pi \) is the enhancement due to the FP cavity. The amplitude of this variation is then 
+%
+\begin{align}
+\abs{\Delta \phi_{FP}} = \frac{4 \mathcal{F}}{\pi } k_l L h_0 
+\,.
+\end{align}
+
+\subsubsection{GW response of the cavity in the TT gauge}
+
+We treat the problem in the sidebands picture; the carrier angular frequency is \(\omega_{l}\), and we get some power in the sidebands \(\omega_{l} \pm \omega_{gw}\). 
+
+At each round-trip of the light, some of the power is moved from the carrier to the sidebands. 
+We express this as a vector equation: we define a vector containing the amplitudes of the fields, \(\vec{B} = (\text{carrier}, \text{upper sideband}, \text{lower sideband})\); if \(\vec{B}\) is calculated after a round trip while \(\vec{A}\) is calculated before it then we will have  
 %
 \begin{subequations}
 \begin{align}
@@ -66,38 +116,93 @@ A_1  \\
 A_2  \\ 
 A_3 
 \end{array}\right]
-\,,
+\,.
 \end{align}
 \end{subequations}
 %
-and in the end we get 
+
+The diagonal terms describe the in-cavity propagation of the three modes, while the \(X_{10} \) and \(X_{20} \) terms describe the GW-caused scattering of the carrier field into the sidebands. 
+
+Going through the algebra, we find the following expression: 
 %
 \begin{align}
-\abs{\Delta \phi_{x}} = h_0 k_{l} L \operatorname{sinc} \qty( \frac{\omega_{gw}L}{c}) \frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 }  \frac{1}{\abs{e^{2 i \omega_{gw} \frac{L}{c}}} - r_1 r_2 }
+\abs{\Delta \phi_{x}} 
+&= h_0 k_{l} L \operatorname{sinc} \qty( \frac{\omega_{gw}L}{c}) \frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 }  \frac{1}{\abs{e^{2 i \omega_{gw} \frac{L}{c}} - r_1 r_2} } \\ 
+&= h_0 k_{l} L \operatorname{sinc} \qty( \frac{\omega_{gw}L}{c}) \frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 }  \frac{1}{\sqrt{1 + (r_1 r_2 )^2 - 2 r_1 r_2 \cos( 2 \omega_{GW} L / c)}}
 \,.
 \end{align}
 
-We can make some approximations: \(p \approx 0 \), \(r_2 \approx 1\), \(r_1 \sim 1\). We get 
+We can make some approximations: a typical interferometer will work with \(p \approx 0 \), \(r_2 \approx 1\), \(r_1 \sim 1\). Applying these, we can write  
 %
 \begin{align}
-\frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 } \approx 1 + r_1 \approx 2 \qty(1 + \epsilon (r1, r2, p))
+\frac{r_2 \qty(1 - r_1^2 - p )}{r_2 (1 - p) - r_1 } \approx \frac{1 - r_1^2}{1 - r_1 } =  1 + r_1 \approx 2 \qty(1 + \epsilon (r1, r2, p))
+\,,
+\end{align}
+%
+where we defined the small parameter \(\epsilon \): what we are saying is that globally the term will be close to 2. 
+
+Also, our finesse is large, of the order \(\mathcal{F} L / c \sim 1 / \omega_{GW}\), so \(\omega_{GW} L / c\) is very small: therefore the value of \(\operatorname{sinc} (\omega_{GW} L / c)\) is around 1, and 
+%
+\begin{align}
+\cos(\frac{2 \omega_{GW} L}{c})\approx 1 - \frac{1}{2} \qty(\frac{2 \omega_{GW}L }{c})^2
 \,.
 \end{align}
 
-Also, our finesse is large so that the value of the sinc is around 1. 
+With all of these approximations, we can write the phase response of teh cavity as 
+%
+\begin{align}
+\abs{\Delta \phi_{x}} &\approx 2 h_0 k_l L \frac{1 + \epsilon (r_1, r_2, p)}{1 - r_1 r_2 } \frac{1}{\sqrt{1 + \frac{r_1 r_2 }{(1 - r_1 r_2 )^2} \qty( \frac{2 \omega_{GW} L}{c})^2}}  \\
+&\approx 2 h_0 k_l L \frac{\mathcal{F}}{\pi } \frac{1}{\sqrt{1 + \qty(4 \pi f_{GW} \tau_{s})^2}}
+\,,
+\end{align}
+%
+where we have used the definition of the finesse: \(\mathcal{F} = \pi \sqrt{r_1 r_2 } / (1 - r_1 r_2 )\) and the storage time \(\tau_{s} = (L/c)(\mathcal{F} / \pi )\).  
+\todo[inline]{The square should not include the 1! mistake in the slides.}
 
-The cavity acts as a low-pass frequency: the cutoff is called the \emph{cavity pole}, 
+This is only for an arm: we recover the factor \(2\) which appears in the detector-frame expression if we consider both. 
+
+So, we can see an additional effect which was hidden in the detector frame expression: the cavity acts as a low-pass filter, whose cutoff is called the \emph{cavity pole}, 
 %
 \begin{align}
 f_p = \frac{1}{4 \pi \tau_{s}} \approx \frac{c}{4 \mathcal{F}L} 
 \,,
 \end{align}
 %
-so the response looks like 
+using which we can write the response of the cavity as 
 %
+\boxalign{
 \begin{align}
 \abs{\Delta \phi_{FP}} = h_0 \frac{4 \mathcal{F}}{\pi } k_l L \frac{1}{\sqrt{1 + \qty( \frac{f_{gw}}{f_p})^2}}
 \,.
-\end{align}
+\end{align}}
+
+This is the \textbf{transfer function} of the cavity, from the GW signal \(h\) to the phase difference! We can also express it in terms of the laser wavelength \(\lambda_{l} = 2 \pi / k_l\) as 
+%
+\boxalign{
+\begin{align}
+T_{FP} (f_{GW}) = \frac{8 \mathcal{F} L}{\lambda_{l}}
+\frac{1}{\sqrt{1 + (f_{GW} / f_p)^2}}
+\,.
+\end{align}}
+
+This is of the order of \num{e13} radians per unit strain for typical values of the finesse \(\mathcal{F} \sim 500\), arm length \(L \sim \SI{3}{km}\) and laser wavelength \(\lambda_{l} \sim \SI{1000}{nm}\), if \(f_{GW} < f_p\). 
+The cavity pole is of the order \(f_p \sim \SI{50}{Hz}\). 
+
+For GW frequencies of the order of \SI{500}{Hz} the response drops to about \num{e12}. 
+
+\subsubsection{Double-recycled Fabry-Perot interferometer}
+
+This is the setup used by actual interferometers: we have 
+\begin{enumerate}
+    \item an input laser with a power of \SI{100}{W} and a wavelength of \(\lambda_{l} \approx \SI{1064}{nm}\); 
+    \item an \textbf{input mode cleaner}, which filters out the high-order modes and stabilizes the frequency;
+    \item a first \textbf{power-recycling cavity}, inside which the power is of the order \SI{5}{kW}, and which increases the effective power seen by the actual FP cavities;
+    \item the beamsplitter;
+    \item for each arm, the \SI{3}{km}-long \textbf{FP arm cavity}; the circulating power inside which is of the order \SI{750}{kW};
+    \item the output of the beamsplitter, to which is connected a \textbf{signal extraction cavity}, which resonantly enhances the GW sidebands, and a \textbf{output mode cleaner}, which rejects any high-order modes which might have been generated.
+\end{enumerate}
+ 
+The FP arm cavities also act as mode filters and frequency stabilizers.
+The signal extraction cavity can be tuned to change the response of the interferometer. 
 
 \end{document}

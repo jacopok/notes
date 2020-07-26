@@ -1,18 +1,49 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{Locking and alignment}
+
+So far, we have always assumed that the cavity is at resonance. 
+
 \marginpar{Monday\\ 2020-5-11, \\ compiled \\ \today}
 
 We have an issue if noise is strong enough to move our mirrors out of lock, even if we do not care to observe GW at the frequency of that noise.
 
-Today we will discuss the \textbf{antenna pattern}: the detector tensor is given by 
+Our cavities have a finesse of \(\mathcal{F} \sim 500\), and the free spectral range will be of the order of \(c / 2L \sim \SI{50}{kHz}\). 
+This means that the FWHM of the peaks will be of the order of \(\text{FWHM} \approx \text{FSR} / \mathcal{F} \approx \SI{100}{Hz} = \Delta f\).
+
+If the variation of the frequency is due to a variation of the length of the cavity then the relative variations will be equal (at least to the linear level): \(\Delta L / L = \Delta f / f\), which means that, \emph{at the very least}, we will need to control the length of the cavity to the order of 
+%
+\begin{align}
+\Delta L = L \frac{ \Delta f}{f} \approx \SI{e-9}{m}
+\,.
+\end{align}
+
+In reality, we are able to control arm lengths to within \SI{e-15}{m} (root-mean-square of the position variation). 
+There are many sources of noise in this respect: the seismic motion of the ground, the moon's pull, the intrinsic laser noise. 
+Fortunately, there is a technique we can use to \textbf{keep} the cavity locked onto the wavelength of the laser. 
+
+The first thing we might try is to measure the transmitted intensity of the laser light from the FP cavity to check whether the length is the correct one.
+This has two issues: if the power decreases we cannot tell whether the cavity is slightly too \emph{long} or too \emph{short}; also, we cannot distinguish an intensity fluctuation due to a length imperfection from an intrinsic fluctuation of the laser. 
+
+The solution is the \textbf{Pound-Drever-Hall} technique: an electro-optical modulator is used in order to insert sidebands at \(\omega_{l} \pm \Omega \) by doing phase modulation. 
+These can be used as oscillators which detect any departure from resonance: they are \emph{not} at resonance in the cavity, so while a length fluctuation of the cavity affect the carrier frequency a lot, it leaves them basically unchanged. 
+So, we see a term oscillating at \(\Omega \) whose amplitude is linear in \(\Delta \phi \), measuring it we can tell the sign of the length variation, and we can distinguish it from a laser power oscillation. 
+
+If we know this, we can then actuate the cavity to follow the laser. 
+
+Also, we need actuators to control the beam position: the angular control we need in order to prevent noise is of the order of \SI{e-9}{rad}.
+
+\subsubsection{Antenna pattern}
+
+The antenna pattern of the interferometer is described by the \textbf{detector tensor} \(D_{ij}\), which transforms the perturbation \(h_{ij}\) into the observed scalar as \(h (t) = D_{ij} h_{ij}(t)\). It is given by 
 %
 \begin{align}
 D_{ij} = \frac{1}{2} \qty(\hat{x}_{i} \hat{x}_{j} - \hat{y}_{i} \hat{y}_{j}) 
 \,,
 \end{align}
 %
-so that 
+so the output of the detector will look like
 %
 \begin{align}
 h(t) = \frac{1}{2} \qty(\ddot{h}_{xx} - \ddot{h}_{yy})

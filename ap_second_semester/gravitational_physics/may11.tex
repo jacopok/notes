@@ -36,7 +36,7 @@ Also, we need actuators to control the beam position: the angular control we nee
 
 \subsubsection{Antenna pattern}
 
-The antenna pattern of the interferometer is described by the \textbf{detector tensor} \(D_{ij}\), which transforms the perturbation \(h_{ij}\) into the observed scalar as \(h (t) = D_{ij} h_{ij}(t)\). It is given by 
+The antenna pattern of the interferometer is described by the \textbf{detector tensor} \(D_{ij}\), which transforms the perturbation \(h_{ij}\) into the observed time-dependent scalar as \(h (t) = D_{ij} h_{ij}(t)\). It is given by 
 %
 \begin{align}
 D_{ij} = \frac{1}{2} \qty(\hat{x}_{i} \hat{x}_{j} - \hat{y}_{i} \hat{y}_{j}) 
@@ -51,54 +51,145 @@ h(t) = \frac{1}{2} \qty(\ddot{h}_{xx} - \ddot{h}_{yy})
 \end{align}
 %
 as long as the arms are aligned with the \(\hat{x}\) and \(\hat{y}\) axes. 
-The function \(D_{ij}\) describes the sensitivity of our detector in different directions. 
+Note that this is similar to the antenna pattern of the resonant bar, but now we have two arms, as opposed to the single ``arm'' we had in that case. 
+% The function \(D_{ij}\) describes the sensitivity of our detector in different directions. 
 
-These kinds of detectors return a scalar (a timeseries, yes, but a scalar with respect to 3D space). This scalar will be linear in the tensor \(h_{ij}\), so we can express the observation as 
+% These kinds of detectors return a scalar (a timeseries, yes, but a scalar with respect to 3D space). This scalar will be linear in the tensor \(h_{ij}\), so we can express the observation as 
+% %
+% \begin{align}
+% h(t) = D_{ij} h_{ij} (t)
+% \,.
+% \end{align}
+
+We must perform a rotation with two angles \(\phi \) and \(\theta \) to go from the orthogonal frame of the source and the orthogonal frame of the detector: it will look like 
 %
 \begin{align}
-h(t) = D_{ij} h_{ij} (t)
+R = \left[\begin{array}{ccc}
+\cos \phi  & \sin \phi  & 0 \\ 
+- \sin \phi  & \cos \phi  & 0 \\ 
+0 & 0 & 1
+\end{array}\right]
+\left[\begin{array}{ccc}
+\cos \theta  & 0 & \sin \theta  \\ 
+0 & 1 & 0 \\ 
+-\sin \theta  & 0 & \cos \theta 
+\end{array}\right]
+\,,
+\end{align}
+%
+\todo[inline]{Missing ones in the rotation matrices in the slides.}
+and applying it (twice, once for each index of the perturbation tensor) we will find 
+%
+\begin{align}
+h_{xx} &= h_{+} \qty(\cos^2\theta  \cos^2\phi - \sin^2 \phi ) + 2 h_{\times } \cos \theta \sin \phi \cos \phi   \\
+h_{yy} &= h_{+} \qty(\cos^2\theta \cos^2\phi  - \cos^2\phi )
+- 2 h_{\times}  \cos \theta \sin \phi \cos \phi 
+\,,
+\end{align}
+%
+so the output timeseries will look like 
+%
+\begin{align}
+h(t) &=  F_{+} (\theta, \phi ) h_{+} + F_\times (\theta , \phi ) h_{\times }  \\
+F_{+} (\theta, \phi ) &= \frac{1}{2} \qty(1 + \cos^2 \theta ) \cos 2 \phi  \\
+F_{\times} (\theta, \phi ) &= \cos \theta \sin 2 \phi 
 \,.
 \end{align}
 
-We must perform a rotation with two angles \(\phi \) and \(\theta \) to go from the source frame and the detector frame. 
-
-We must make a choice to select what we call \(h_{+}\) and \(h_{ \times }\). In the end, we find 
-%
-\begin{subequations}
-\begin{align}
-h(t) &= F_{+} (\theta , \phi ) h_{+}+ F_{\times} (\theta , \phi ) h_{\times}  \\
-F_{+} &= \frac{1}{2} \qty(1 + \cos^2\theta ) \cos( 2 \phi )  \\
-F_{ \times } &= \cos(\theta ) \sin(2 \phi )
-\,.
-\end{align}
-\end{subequations}
+We have no way to distinguish these two components if we only have one detector; we must compare the outputs of different ones. 
 
 \subsection{The interferometer's noise budget}
 
-The noise is dominated by the quantum noise: quantum fluctuations of the laser light. 
-The other source of noise giving us problems in the \SI{100}{Hz} region is the coating Brownian noise. 
+The main sources of noise in the interferometer are 
+\begin{enumerate}
+    \item \textbf{quantum noise}: it is not actually fundamental, we can decrease it by clever design;
+    \item \textbf{seismic noise}: ground vibrations, this can be suppressed with better suspensions;
+    \item \textbf{gravity gradients}: this is also a metric perturbation, so it is the hardest to work around, it is fundamental in a way;
+    \item \textbf{thermal noise}, especially in the mirror coatings (which are exposed to hundreds of \SI{}{kW} of laser power!) is currently a big limiting factor.
+\end{enumerate}
+
+% The noise is dominated by the quantum noise, quantum fluctuations of the laser light. 
+% The other source of noise giving us problems in the \SI{100}{Hz} region is the coating Brownian noise. 
 
 At high frequencies, the problem is that it is hard to measure small displacements with small integration time. 
 At low frequencies, the problem is that the mirrors move too much. 
 
 \subsubsection{Quantum noise}
 
-The fluctuation in square power --- the \emph{shot noise}, error in the count of photons ---  is given, since it is a Poisson process, by
+The \textbf{shot noise} is the error in the count of photons --- this is a Poisson process, since the photon arrivals are uncorrelated (the autocorrelation function is a \(\delta (t)\), the power spectrum is flat).
+The power seen at the beamsplitter in an observation time \(T\) will look like 
+%
+\begin{align}
+P_0  = \frac{N_\gamma \overline{h}\omega_{L}}{T} = \frac{\Delta E}{T}
+\,.
+\end{align}
+
+Its square fluctuation will be given by
 %
 \begin{align}
 \Delta P^2 = \frac{\Delta E^2}{T^2} = 
 \frac{\Delta N^2 \hbar^2 \omega_{l}^2}{T^2}
 = N \frac{\hbar^2   \omega_{l}^2}{T^2}
 = \frac{P_0 \hbar \omega_{l}}{T}
-= 2\frac{S_P(\omega )}{T}
 = \frac{1}{2} \int_{0}^{1/T} S_P (\omega) \dd{\omega }
+= \frac{1}{2} \frac{S_P(\omega )}{T}
 \,,
 \end{align}
 %
-so we get \(S_P (\omega ) = 2 P_0 \omega_{l}\). 
+so we get \(S_P (\omega ) = 2 P_0 \hbar \omega_{l}\). 
+\todo[inline]{Wrong factor of 2 in the slides!}
 
-We also have \emph{radiation pressure}, which scales differently. 
-So, we must reach a compromise with both power and finesse. 
+Note that this is a power-PSD: it measures the average square \emph{power}, so it has the dimensions of a power squared over a frequency (\(\SI{}{W^2}/\SI{}{Hz} = \SI{}{W J}\)). 
+
+The output of the detector, \(\Delta \phi \), is proportional to \(P_0\)..
+It can be shown that the contribution to the noise PSD of the phase due to shot noise will be 
+%
+\begin{align}
+\sqrt{S_{\Delta \phi , \text{ shot}} (\omega )}  = 
+\frac{C}{P_0 } \sqrt{S_{P} (\omega )} = C \sqrt{\frac{2 \hbar \omega_{l}}{P_0 }}
+\,,
+\end{align}
+%
+where \(C\) is a dimensionless constant of order 1, accounting for the working point and the photodetector efficiency. 
+We can refer this to the input by making use of the \(T_{FP}\) transfer function: we will then have 
+%
+\begin{align}
+\sqrt{S_{h, \text{ shot}}} = \frac{\sqrt{S_{\Delta \phi, \text{ shot}}}}{T_{FP}} =
+\frac{c}{8 \mathcal{F} L} \sqrt{\frac{4 \pi \hbar c \lambda_{l}}{P_0 }}
+\sqrt{1 + \qty( \frac{f_{GW}}{f_{p}})^2}
+\,.
+\end{align}
+
+This then diminishes as we increase the effective length of the cavity. 
+So, one might say, why would we build a cavity which is several km long, instead of a tabletop experiment with a very high finesse? We shall answer shortly.
+
+We also have \textbf{radiation pressure} noise, which scales differently: it is due to the fact that each photon impacting on the mirror gives it a bump of momentum \(2 \omega_{l} \hbar / c\). 
+With a reasoning not unlike the previous one we find 
+%
+\begin{align}
+\sqrt{S_{F, \text{ rp}}} = 2 \sqrt{\frac{2 P_0 \omega_{l}}{c^2}}
+\,,
+\end{align}
+%
+so the spectral density of the displacement of the mirror will be 
+%
+\begin{align}
+\sqrt{S_{x, \text{ rp}}} = \frac{2}{M \omega^2} \sqrt{\frac{2 P_0 \hbar \omega_{l}}{c^2}} 
+\,,
+\end{align}
+%
+which means that the amplitude spectral density of the input will be 
+%
+\begin{align}
+\sqrt{S_{h, \text{ rp}}} = \frac{16 \sqrt{2} \mathcal{F}}{ML (2 \pi f_{GW})^2} \sqrt{\frac{P_0 \hbar}{2 \pi c^2 \lambda_{l}}} \frac{1}{1 + (f_{GW} / f_{p})^2}
+\,.
+\end{align}
+
+The interesting thing to note here is that this noise scales \emph{directly} with the finesse. 
+This answers the question: if we try to raise the finesse too much, the power inside the laser increases by a lot, and this creates a huge amount of radiation pressure noise on the mirrors. 
+The fact that we found a factor \(\mathcal{F}\) is due to the fact that a photon makes \(\mathcal{F} / 2 \pi \) bounces inside the cavity, creating noise for each. 
+
+So, we must reach a compromise for the finesse (or, equivalently, for the circulating power).
 
 The shot noise is flat in frequency, the RP noise decreases with frequency. 
 At each frequency, we can define a Standard Quantum Limit, which is the lowest noise we could have at that frequency. 

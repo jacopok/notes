@@ -5,53 +5,88 @@
 
 \marginpar{Friday\\ 2020-5-15, \\ compiled \\ \today}
 
-The issue is that our signal is noise-dominated. 
-Extracting the signal is quite hard. About half of the people working on GW do this. 
+The issue is that our data are noise-dominated: extracting the signal is quite hard.
+% About half of the people working on GW do this. 
 
 The signal is something like 3 orders of magnitude below the noise.
-Also, we want to say something about the object. 
+Also, we want to say something about the source, extracting parameters like the masses of the BHs, the distance, the spins. 
 
-We classify signals into: transient versus persistent (how long does the signal last?), and modeled versus unmodeled (do we know of a speficic waveform?). 
+We classify signals into: transient versus persistent (how long does the signal last?), and modeled versus unmodeled (do we know of a speficic waveform?).
+ 
 \begin{enumerate}
     \item Transient modeled signals are usually coalescing binaries;
     \item persistent modeled signals can be binaries far from coalescence or rotating neutron stars;
     \item transient unmodeled signals can be supernovae or some other sources;
-    \item persistent unmodeled signals are some form of stochastic background.  
+    \item persistent unmodeled signals are some form of stochastic background.
 \end{enumerate}
 
-We will discuss matched filtering, which applies to transient modeled signals. The assumption is that the signal is in the form 
+\subsection{Matched filtering}
+
+We will discuss matched filtering, which applies to \textbf{transient modeled} signals.
+The assumption is that the signal is in the form 
 %
 \begin{align}
 s(t) = \underbrace{h(t)}_{\text{known}} + \underbrace{n(t)}_{\text{noise}}
-\,.
-\end{align}
-
-The thing we can do is to calculate \(\expval{s h}\), which is equal to \(\expval{h^2} + \expval{nh}\), but we know that \(\expval{nh} \to 0\) since the noise is not correlated to the signal. Specifically, \(\expval{nh} \sim T^{-1/2}\).
-
-On the other hand, \(\expval{hh} \geq 0\), so this integral will have a positive value if the signal is there.
-This grows much faster than the standard deviation of the uncorrelated signal. 
-
-Suppose we know what \(h(t)\) is, and we want to build a linear filter \(K(t)\) which returns a low value if the signal seems to not be in the data, and a high value if the signal is in the data.
-
-We assume that \(s(t) = \alpha h(t) + n(t)\), where it is convenient to leave the amplitude of the signal as a variable. 
-
-We wat to define the signal to noise ratio \(S / N\). 
-
-\todo[inline]{What do we mean by ensemble average inside the time integral?}
-We find 
-%
-\begin{align}
-S = \expval{\hat{s}(t)} = \alpha \int \dd{f} K^{*}(f) h(f)
 \,,
 \end{align}
 %
-while 
+where by saying that \(h\) is known we mean that we have an idea of the waveform it should have, we do not know its precise parameters nor where it is in the signal. 
+
+If we define the time averaging 
 %
 \begin{align}
-N^2 = \expval{\hat{n}^2(t)} - \expval{\hat{n}}^2
-= \frac{1}{2} \int \dd{f} \abs{K(f)}^2 S_n(f)
+\expval{x} = \frac{1}{T} \int_{0}^{T} x(t) \dd{t}
+\,,
+\end{align}
+%
+then we can  calculate \(\expval{s h}\), which is equal to \(\expval{h^2} + \expval{nh}\). 
+We know that \(\expval{nh} \to 0\), since the noise is not correlated to the signal; specifically, \(\expval{nh} \sim T^{-1/2}\).
+
+On the other hand, \(\expval{hh}\) will approach a constant nonzero value, so this integral will have a positive value if the signal is there.
+% This grows much faster than the standard deviation of the uncorrelated signal. 
+So, asymptotically we will expect \(\expval{sh} \to \expval{h^2}\).
+
+Suppose we know what \(h(t)\) is, and we want to build a \textbf{linear filter} \(K(t)\) which returns a low value if the signal seems to not be in the data, and a high value if the signal seems not to be in the data.
+The response of this filter will look like 
+%
+\begin{align}
+s(t) \to \hat{s} = \int_{- \infty}^{\infty } \dd{t} s(t) K(t)
 \,.
 \end{align}
+
+We assume that \(s(t) = \alpha h(t) + n(t)\), leaving the amplitude of the signal \(h(t)\) as a variable. 
+We want to define the signal-to-noise ratio \(S / N\), where by \(S\) we mean the expectation value of \(\hat{s}\) when \(\alpha \neq 0\) and by \(N\) we mean the expectation value of \(\hat{s}\) when \(\alpha = 0\).
+
+% \todo[inline]{What do we mean by ensemble average inside the time integral?}
+The value of \(K(t)\) is fixed (we built the filter after all) so we can factor it out of ensemble averages. So, we find 
+%
+\begin{align}
+S 
+&= \expval{\hat{s}(t)}  = \int \dd{t} \expval{s(t)} K(t)  \\
+&= \alpha \int \dd{t} \expval{h(t)} K(t) + \int \dd{t} \cancelto{}{\expval{n(t)}} K(t) \\
+&= \alpha \int \dd{f} K^{*}(f) h(f)
+\,,
+\end{align}
+%
+\todo[inline]{Why does the last step work exactly? where is the conjugate coming from?}
+while for the noise we have
+%
+\begin{align}
+N^2 &= \eval{\expval{\hat{s}^2(t)} - \cancelto{}{\expval{\hat{s}}^2}}_{\alpha = 0 } \\
+&= \int \dd{t_1 } \dd{t_2 } K(t_1) K(t_2) \expval{n(t_1 ) n(t_2 )}  \\
+&= \int \dd{t_1 } \dd{t_2 } K(t_1) K(t_2)
+\int \dd{f_1 } \dd{f_2 } e^{2 \pi i t_1 f_1 } e^{2 \pi i t_2 f_2 } \expval{n(f_1 ) n(f_2 )}  \\
+&= \int \dd{t_1 } \dd{t_2 } K(t_1) K(t_2)
+\int \dd{f_1 } \dd{f_2 } e^{-2 \pi i t_1 f_1 } e^{2 \pi i t_2 f_2 } \underbrace{\expval{n^{*}(f_1 ) n(f_2 )}}_{= \frac{1}{2} \delta (f_1 - f_2) S_N(f_1 )} \\
+&= \frac{1}{2} \int \dd{t_1 } \dd{t_2 } K(t_1) K(t_2) 
+\int \dd{f_1 } S_n(f_1 ) \underbrace{e^{2 \pi i f_1 (t_2 - t_2 )}}_{= \delta (t_2 - t_1 )} \\
+&= \frac{1}{2} \int \dd{t_1 } K(t_1 )K(t_1 ) \int \dd{f_1 } S_n(f_1 ) \\
+&= \frac{1}{2} \int \dd{f_3 } \abs{K(f_3 )}^2 \int \dd{f_1 } S_n (f_1 ) \\
+&= \frac{1}{2} \int \dd{f} \abs{K(f)}^2 S_n(f)
+\,.
+\end{align}
+
+\todo[inline]{A step is not clear here either\dots}
 
 Then, we can write 
 %
@@ -65,7 +100,7 @@ and we wish to optimize \(K\) in order to maximize this.
 We define a scalar product for real functions of \(f\): 
 %
 \begin{align}
-A \cdot B = \Re \int \dd{f} \frac{A^{*}(f) B(f)}{S_n (f) / 2}
+(A|B) = \Re \int \dd{f} \frac{A^{*}(f) B(f)}{S_n (f) / 2}
 \,,
 \end{align}
 %

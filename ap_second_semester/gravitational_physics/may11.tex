@@ -181,7 +181,7 @@ so the spectral density of the displacement of the mirror will be
 which means that the amplitude spectral density of the input will be 
 %
 \begin{align}
-\sqrt{S_{h, \text{ rp}}} = \frac{16 \sqrt{2} \mathcal{F}}{ML (2 \pi f_{GW})^2} \sqrt{\frac{P_0 \hbar}{2 \pi c^2 \lambda_{l}}} \frac{1}{1 + (f_{GW} / f_{p})^2}
+\sqrt{S_{h, \text{ rp}}} = \frac{16 \sqrt{2} \mathcal{F}}{ML (2 \pi f_{GW})^2} \sqrt{\frac{P_0 \hbar}{2 \pi c^2 \lambda_{l}}} \frac{1}{\sqrt{1 + (f_{GW} / f_{p})^2}}
 \,.
 \end{align}
 
@@ -189,27 +189,179 @@ The interesting thing to note here is that this noise scales \emph{directly} wit
 This answers the question: if we try to raise the finesse too much, the power inside the laser increases by a lot, and this creates a huge amount of radiation pressure noise on the mirrors. 
 The fact that we found a factor \(\mathcal{F}\) is due to the fact that a photon makes \(\mathcal{F} / 2 \pi \) bounces inside the cavity, creating noise for each. 
 
-So, we must reach a compromise for the finesse (or, equivalently, for the circulating power).
+So, we must reach a compromise for the finesse (or for the circulating power \(P_0 \)).
 
-The shot noise is flat in frequency, the RP noise decreases with frequency. 
-At each frequency, we can define a Standard Quantum Limit, which is the lowest noise we could have at that frequency. 
-
-We can go below this limit using Quantum Vacuum Squeezing. 
-
-\subsubsection{Thermal Noise}
-
-We have contribution from all dissipation sources. 
-There is thermo-elastic noise: as a material bends, the side which compresses heats up a little. 
-
-The limit is the internal dissipation: 
+% The shot noise is flat in frequency, the RP noise decreases with frequency. 
+% At each frequency, we can define a Standard Quantum Limit, which is the lowest noise we could have at that frequency. 
+The shot noise is proportional to \(P_0^{-1/2}\), the radiation pressure noise is proportional to \(P_0^{1/2}\). 
+Their sum gives the total quantum noise, whose expression is 
 %
 \begin{align}
-S_{F, \text{th}} = 4 k_B T \Re[Z(\omega )]  
+\sqrt{S_{h, \text{qn}}} (f) = \frac{1}{L \pi f_0 }
+\sqrt{\frac{\hbar}{M}}
+\sqrt{\qty(1 + \frac{f^2}{f_p^2}) + \frac{f_0^{4}}{f^{4}} \frac{1}{1 + f^2 / f_p^2}}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+f_0 = \frac{4 \mathcal{F}}{\pi } \sqrt{\frac{P_0 }{\pi \lambda_{l} cM}}
 \,.
 \end{align}
 
+The shot noise is flat in frequency (for \(f < f_p\)), while the radiation pressure noise decreases when frequency increases. By changing \(P_0 \) we can raise one and lower the other; for each frequency we have a minimum for the uantum noise, which is called the \textbf{Standard Quantum Limit}. This is given by minimizing the noise. 
+The optimal value for the frequency \(f_0 \) comes out to be the one satisfying 
+%
+\begin{align}
+1 + \frac{f^2}{f_p^2} = \frac{f_0^2}{f^2}
+\,,
+\end{align}
+%
+and the result for the SQL is 
+%
+\begin{align}
+\sqrt{S_{h, \text{ SQL}}} (f) = \frac{1}{2 \pi f L} \sqrt{\frac{8 \hbar}{M}}
+\,.
+\end{align}
+
+Note that this limit can be reached for a specific, fixed frequency \(f\): we cannot achieve it for all the spectrum.
+
+We can go below this limit using Quantum Vacuum Squeezing, in which we gain precision in the measurement of one variable (photon number) at the expense of another (phase). 
+
+\subsubsection{Thermal Noise}
+
+We have contribution from all dissipation sources, be they mechanical or not. 
+There is thermo-elastic noise: as a material bends, the side which compresses heats up a little, while the side which expands cools a little. 
+
+The ultimate limit is the internal dissipation: by the fluctuation-dissipation theorem,
+%
+\begin{align}
+S_{F, \text{ th}} = 4 k_B T \Re[Z(\omega )]  
+\,,
+\end{align}
+%
+where \(Z(\omega )\) is the characteristic impedance of the system. 
+
+For the \textbf{mirror suspensions} we can have loss comparable to the seismic noise. If we use high-loss materials we get lots of noise, so we try to use low-loss materials like fused silica, which can reach quality factors like \(Q \sim \num{e9}\). 
+Lowering the temperature is also a thing to do: detectors are going cryogenic. 
+
+We also have \textbf{mirror coating Browian motion}: unfortunately, the multilayer coating of the dielectric mirrors is relatively high-loss. 
+
+The expression for this kind of noise is 
+%
+\begin{align}
+S_x (f, T) = \frac{2 k_B T}{\pi^2f} \frac{d}{w^2 Y} \phi \qty(\frac{Y'}{Y} + \frac{Y}{Y'})
+\,,
+\end{align}
+%
+where \(w\) is the beam radius, \(\phi \) is the coating mirror loss and \(d\) is the coating thickness.
+\todo[inline]{what are the other variables? Eh.}
+People are investigating techniques which could lower \(\phi \): new materials, heat treatment which could aid with the relaxation of the material, new layer structures, monolithic crystalline coatings. 
+
+We could also try to have larger mirrors and/or materials with higher optical contrast.
+
 \subsubsection{Seismic noise}
+
+The ground vibrations have a very large amplitude, of the order of \SI{e-6}{m}, which is about ten orders of magnitude larger than the precision we need. 
+Fortunately, most of it has a very low frequency compared to GW: human activity gives vibrations at around \SI{1}{Hz} to \SI{10}{Hz}, while the ``oceanic peak'' is at around \SI{.1}{Hz}. 
+
+Nevertheless, this pushes the mirrors out of alignment, so we need active stabilization. 
+
+The seismic noise which is in our band is more concerning, although its amplitude is lower than the peak of the seismic noise. 
+This might \textbf{mimic a signal}: we must suppress it.
+
+We use a passive approach: a cascade of pendula, for each of them we get a transfer function 
+%
+\begin{align}
+H_{x_{n} \to x_{n+1}} (f) \sim \frac{1}{1 - f^2/f_0^2} 
+\qquad \text{where} \qquad
+f_0 \sim \sqrt{ \frac{g}{l} } \sim \SI{1}{Hz}
+\,,
+\end{align}
+%
+so each pendulum acts as a high-pass filter: if \(f \gg f_0 \) (which is the case for the high-frequency seismic noise we want to eliminate) we get an attenuation \( \sim (f / f_0 )^{-2 \text{\# pendulums}}\). We use about 5 pendula, so very roughly this will be \(100^{2 \times 5}\). 
 
 \subsubsection{Newtonian noise}
 
+This noise is about stochastic variations of the local gravitational field. Its main causes are seismic movements and variations in atmospheric pressure. 
+We cannot shield from it: it is a metric perturbation like the GW, we cannot distinguish them \emph{a priori}! 
+
+There are two main ways to deal with this: 
+\begin{enumerate}
+    \item the active approach is to have many sensors detecting ground displacements and atmospheric pressure variations, model the expected disturbances and subtract this from the GW signal;
+    \item the passive approach is to move the detector underground, where we do not need to worry about surface waves and atmospheric effects are reduced.
+\end{enumerate}
+
+\subsubsection{Quantum Vacuum Squeezing}
+
+A good reference for this is Miao's PhD thesis \cite[sec.\ 2.8]{miaoExploringMacroscopicQuantum2010}.
+
+We quantize the electromagnetic field: 
+%
+\begin{align}
+\hat{E} = u(x,y,z) \int_{0}^{\infty } \frac{ \dd{\omega }}{2 \pi }
+\sqrt{\frac{2 \pi \hbar \omega }{\mathcal{A} c}}
+\qty[ \hat{a}_{\omega } e^{ikz - i \omega t} + \hat{a}^\dag_{\omega } e^{-ikz + i \omega t}]
+\,,
+\end{align}
+%
+where \(\mathcal{A}\) is the beam area. 
+We will need creation and annihilation operators corresponding to the sidebands: \(\hat{a}_{\pm}= \hat{a}_{\omega_0 \pm\Omega }\), and we define 
+%
+\begin{align}
+\hat{a}_{1} = \frac{\hat{a}_{+} + \hat{a}^\dag_{-}}{\sqrt{2}}
+\qquad \text{and} \qquad
+\hat{a}_{2} = \frac{\hat{a}_{+} - \hat{a}^\dag_{-}}{i \sqrt{2}}
+\,.
+\end{align}
+
+The state of the laser light is a \textbf{coherent state}; it is not an eigenstate of photon number, and it can be defined as 
+%
+\begin{align}
+\ket{\alpha } = \exp(\int \frac{ \dd[]{\Omega }}{2 \pi } \qty(\alpha _{\Omega } \hat{a} ^\dag_{\Omega } - \alpha^{*}_{\Omega } \hat{a}_{\Omega })) \ket{0 }
+\,.
+\end{align}
+
+The \(\hat{a}_{1, 2}\) are the \emph{quadratures}. The product of their standard deviations \(S_{\hat{a}_{1, 2}} (\Omega )\) must be larger than a certain constant by Heisenberg, but we need not have a circular distribution: we can squeeze it in one direction and stretch it in the orthogonal one. 
+
+The result for the spectral density at the input is 
+%
+\begin{align}
+S^{h} (\Omega ) = \qty[\frac{S_{\hat{a}_2 (\Omega )}}{k} + k S_{\hat{a}_{1}} (\Omega )]\frac{h^2_{SQL}}{2}
+\,,
+\end{align}
+%
+which still does not allow us to beat the standard quantum limit: the bound is the same, although we can work on it without increasing the power which could be useful. 
+
+The trick comes from the fact that we can do \textbf{frequency-dependent} squeezing! The relation of \(\Delta \hat{a}_{1, 2}\) at a specific frequency is independent of that at another! 
+
+So, we can define 
+%
+\begin{align}
+\frac{\Delta \hat{a}_{1}}{\Delta \hat{a}_{2}} = k(\omega )
+\,,
+\end{align}
+%
+which allows us to get, if we do the rotation optimally:
+%
+\begin{align}
+S^{h} (\Omega ) =   e^{-2r} \qty[ \frac{1}{k} + k] \frac{h^2_{SQL}}{2}
+\,.
+\end{align}
+
+The way to \textbf{generate squeezed light} is through the use of nonlinear crystals (whose polarization has non-negligible terms depending on higher-than-linear powers of the field). 
+
+If we input into a nonlinear crystal a combination of a seed field at a frequency \(\omega \) and a pump field a \(2 \omega \), we can control the squeezing through their relative phase.  
+
+We can think of squeezing as generating correlations between the sidebands' oscillations. 
+
+% Qualitatively, we can say that we can make it so the qu
+We can describe a fixed-frequency EM signal with two operators in QM, for example amplitude and phase. 
+
+A squeezed vacuum is a vacuum state whose fluctuations are asymmetric. 
+At low frequency, we want to squeeze amplitude, so that the radiation pressure is more predictable and we have less test mass motion; at high frequency we want to squeeze phase, so that the number of photons is more predictable. 
+
+\todo[inline]{Hold on though: different \textbf{GW} frequencies, not different laser frequencies! How can we change what we do for different GW frequencies before seeing the signal?}
+ 
 \end{document}

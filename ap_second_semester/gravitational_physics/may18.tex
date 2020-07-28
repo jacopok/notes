@@ -1,11 +1,12 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\subsection{Parameter estimation}
+\subsubsection{Parameter estimation}
 
 \marginpar{Monday\\ 2020-5-18, \\ compiled \\ \today}
 
 Now, suppose we have found a candidate signal. How do we estimate the most likely set of parameters?
+Let us denote as \(\vec{p}\) a vector containing all the parameters of the source.
 
 We do it by 
 %
@@ -16,81 +17,184 @@ We do it by
 %
 where we usually assume a flat prior for the parameters.
 
-Thee output signal is in the form \(s(t) = h (t, \widetilde{p}) + n_0 (t)\), the GW plus the noise. So, we get  
+The signal we see is in the form \(s(t) = h (t, \widetilde{p}) + n_0 (t)\), the GW signal depending on a true set of parameters \(\widetilde{p}\) plus the noise. 
+
+If the noise is stationary and Gaussian, then the probability of getting this specific realization of the noise, \(n_0 \), is given by
 %
 \begin{align}
-\mathbb{P}(n_0 ) = N \exp( - \frac{1}{2} \int_{- \infty }^{ \infty } \frac{\abs{n_0 (f)}^2}{S_n(f)^2} \dd{f}) = N \exp( -\frac{(n_0 \cdot n_0 )}{2})
+\mathbb{P}(n_0 ) = N \exp( - \frac{1}{2} \int_{- \infty }^{ \infty } \frac{\abs{n_0 (f)}^2}{S_n(f)^2} \dd{f}) = N \exp( -\frac{(n_0 | n_0 )}{2})
 \,,
 \end{align}
 %
-by the scalar product we defined earlier.
-This gives the probability of a specific realization of the noise. So, we get 
+by the scalar product we defined earlier, where \(N\) is a normalization factor. 
+This comes from the relation 
 %
 \begin{align}
-n= s - h (\widetilde{p}) 
+\sigma^2_{n(f)} = \expval{n^{*}(f) n(f')} = \frac{1}{2} \delta (f - f') S_n (f)
+\,.
+\end{align}
+
+We can imagine this as calculating a sort of likelihood of the noise, multiplying the probability densities of each of its frequency components.
+
+The noise can also be expressed as
+%
+\begin{align}
+n = s - h (\widetilde{p}) 
 \,,
 \end{align}
 %
-so we can evaluate \(\Lambda (s | \widetilde{p})\), which is defined as the likelihood of the data given the parameter vector \(\widetilde{p}\), as 
+with which we can evaluate \(\Lambda (s | \widetilde{p}) = \mathbb{P}(\text{data} | \widetilde{p})\), the likelihood of the data given the parameter vector \(\widetilde{p}\).  
+It is given by
 %
 \begin{align}
 \Lambda (s| \widetilde{p})
-= N \exp( -\frac{(s - \widetilde{h}) \cdot (s - \widetilde{h})}{2})
-= N \exp(- \frac{s \cdot s + h \cdot h + 2 s \cdot h}{2})
+= N \exp( -\frac{(s - \widetilde{h} | s - \widetilde{h})}{2})
+= N \exp(- \frac{(s | s) + (h | h) + 2 (s | h)}{2})
 \,,
 \end{align}
 %
-which we can calculate explicitly.
-The term given by \(s \cdot s\) can be included in the normalization, since it is a constant with respect to the signal given. 
+which we can calculate explicitly;
+the term given by \((s | s)\) can be included in the normalization \(N\), since it is a constant with respect to the signal given.
 
-This allows us to compute the likelihood of the parameters. 
+Let us quickly interpret this heuristically: templates \(h\) with a higher likelihood are those for whom \((s|h)\) and \((h|h)\) are lower; the scalar product is given by a product divided by \(S_n(f)\) in the frequency domain. 
+Saying that \((h|h)\) should be low means that templates which have high values in high-noise regions in the frequency domain are suppressed. 
+The term \((s|h)\) describes the fact that we are more interested in whether the signal ``lines up'' with the template in low-noise regions than whether it does in high-noise ones.
+
+The \textbf{posterior} is then given in terms of the likelihood \(\Lambda \) as
 %
 \begin{align}
 \mathbb{P}(\widetilde{p} | \text{data}) = 
-N \exp(- \frac{h \cdot h + 2 s \cdot h}{2}) \mathbb{P}(\widetilde{p})
-\,,
+N \underbrace{\exp(- \frac{(h | h) + (s | h)}{2})}_{\Lambda (s | \widetilde{p})} \mathbb{P}(\widetilde{p})
+\,.
 \end{align}
-%
-where the scalar product is always the functional one which includes the PSD.
 
-Then, we have different approaches:
+If we apply this procedure we get a likelihood and a posterior distribution. How do we extract our best estimate for the actual values of the parameters? There are several approaches for this choice of \textbf{estimator}, which all have in common the few things we require of a good estimator: 
 \begin{enumerate}
-    \item \textbf{maximum likelihood} means that we maximize \(\Lambda (s | \hat{p})\). This ignores the prior, and is equivalent to maximizing \(S / N\) for matched filtering. 
-    \item \textbf{maximum posterior} means we maximize \(\mathbb{P}(\hat{p} | s)\). 
-    \item \textbf{Bayes estimator}: we compute 
+    \item \textbf{consistency}, that is, as the amount of data increases the estimate should converge to the true value;
+    \item \textbf{efficiency}, that is, the variance of the estimate should be as low as possible;
+    \item \textbf{robustness}, that is, if we make slight changes to either the data or our priors we should not see abrupt variations in the estimate. 
+\end{enumerate}
+
+With these things in mind, a few useful estimators are:
+\begin{enumerate}
+    \item using \textbf{maximum likelihood} means that we maximize \(\Lambda (s | \hat{p})\).
+    This ignores the prior, and is equivalent to maximizing \(S / N\) for matched filtering. 
+    \item using \textbf{maximum posterior} means we maximize \(\mathbb{P}(\hat{p} | s)\).
+    This is very useful if our priors are robust, but it has the drawback that if we marginalize over a parameter the estimate of another may change.  
+    \item usign \textbf{Bayes estimator} means we compute 
     %
     \begin{align}
     \hat{p}_{i}^{B} = \int \dd{\vec{p}} p_{i} \mathbb{P}(\vec{p} | s)
+    \,,
+    \end{align}
+    %
+    which corresponds to minimizing the error 
+    %
+    \begin{align}
+    \sum _{ij} \int \dd{\vec{p}} 
+    \qty(p_i - \hat{p}^{B}_{i})
+    \qty(p_j - \hat{p}^{B}_{j})
+    \mathbb{P}(\vec{p} | s)
     \,.
     \end{align}
     
-    This minimizes the error for each parameter.
+    If we use this, the estimated parameters are ensured to be independent of each other. 
 \end{enumerate}
 
-Some other data analysis methods: coherent wave bursts is for short-lived signals for which we do not have a model. 
+\subsubsection{Coherent wave bursts}
 
-We must give an estimate of the PSD which is ``mesoscopic'': we average on something like ten minutes, so that we average over any GW signal we could see, but do not average on too long a timescale so we have things which are normalized appropriately --- we must recalibrate often, because of wind, day-night and so on.
+This technique applies to unmodeled transient signals, like GW emission from asymmetric supernovae. It can also be applied to signals for which we only have partial models. 
 
-We can search for monochromatic signals: the stdev of their distribution in frequency around a specific one should go as the observation time to the \(-1/2\).
+We Fourier-transform the signal multiplied by a narrow windowing function of width \(w_0 \), giving us a 2D power spectrum, whose resolution is limited by the uncertainty principle between frequency \(\sim 1/ w_0 \) and time (\(\sim w_0 \)).
 
-This must be done during long times.
+We need not use the same window for all frequencies, we can make it change according to the frequency range we are looking at.
+% Some other data analysis methods: coherent wave bursts is for short-lived signals for which we do not have a model. 
 
-As for the stochastic background: we could extract it from the PSD of the signal if we knew the detector PSD precisely.
+We then compute the \textbf{normalized time-frequency map} for the detector \(k\): 
+%
+\begin{align}
+w_k (i) = \frac{x_k(i)}{\sqrt{S_k (i)}}
+\,,
+\end{align}
+%
+where \(i\) denotes the pixel in this 2D time-frequency space, while \(S_k\) is the noise PSD of detector \(k\). 
+The value of \(x_k\) indicates the amplitude at the pixel.
 
-Ideally, we would want to correlate signals from detectors at a distance \(D\) such that 
+We can then compute the energies of the pixel across all detectors: 
+%
+\begin{align}
+E(i) = \max_{\text{time-of-flight delays}} \sum _{k} w_k^2(i)
+\,,
+\end{align}
+%
+amongst which we can look for anomalies.
+
+We also might want to filter what we find by requiring a ``sweep'' (frequency increasing over time). 
+
+\todo[inline]{Unclear last point in slide.}
+
+In order to do all of this analysis we need to know what the PSD looks like: we must give an estimate of the PSD which is ``mesoscopic'': we average over something like ten minutes, so that we average over any GW signal we could see, but do not average on so long a timescale that we start to have normalization differences --- we must recalibrate the detectors often, because of wind, day-night and so on.
+
+\subsubsection{Continuous signals}
+
+We can also search for monochromatic signals: the sensitivity of the detector around a frequency \(f_0 \) is approximately 
+%
+\begin{align}
+\frac{S_n^{1/2} (f_0 )}{\sqrt{T}}
+\,,
+\end{align}
+%
+so the SNR roughly increases like \(\sqrt{T}\). 
+
+Generally, even stable sources are not perfectly monochromatic: the source can have slow changes (i.\ e.\ due to spindown) or we can have all kinds of time shifts, for an enumeration of the possibilities one can look at the discussion of the Hulse-Taylor radio pulsar. 
+
+%  of their distribution in frequency around a specific one should go as the observation time to the \(-1/2\).
+
+This analysis must be done for a long time, and for all the data stream.
+
+\subsubsection{Stochastic background}
+
+As for the stochastic background: we could extract it from the PSD of the signal if we knew the detector PSD precisely, since as it is unresolved we can only look at it through its PSD \(S_h (f)\). 
+For ground-based detectors, this is unpractical, however LISA might 
+achieve it. 
+
+We could distinguish this kind of noise from local detector noise by correlating signals from detectors at a distance \(D\) such that 
 %
 \begin{align}
 \lambda_{GW} \geq D \geq L _{\text{noise}}
-\,.
+\,,
 \end{align}
+%
+where \(L _{\text{noise}}\) is the correlation length of the local disturbances. 
+In calculating this, we must account for the different antenna patterns of the detectors.
+
+If these inequalities are respected, then all the detectors see ``the same part'' of the SGWB, but they are far enough apart that \emph{everything else} they see is uncorrelated. 
 
 \section{LISA}
 
 It's approved by ESA to launch in 2034. 
-There's no seismic noise in space. 
-It will be sensitive in the \num{.1} to \SI{100}{mHz} signals. 
-Possibly, it will be able to see even further.
-Now, the wavelengths will be in the length scale of the arm of the detector. 
+
+\subsection{Mission characteristics}
+
+It will be surely sensitive in the \num{.1} to \SI{100}{mHz} region, possibly extending down to \SI{20}{\micro Hz} and up to \SI{1}{Hz}. 
+
+The length of the arms will be of the order of \SI{2.5e9}{m}, or about 8 light-seconds. This is comparable with the wavelengths of the highest-frequency GWs which will be able to be seen by LISA. 
+
+The detector-frame picture, therefore, will definitely not hold here. 
+
+This is expected to be an extremely signal-rich region of the spectrum, since we would be able to see many stable and long-lived sources. 
+
+We might be able to identify long-lived sources by the modulation in the signal due to the variation of the orientation and velocity of the LISA satellites in their orbit.
+
+The shape of LISA will be triangular, with three different interferometers between three satellites. 
+
+\subsubsection{Technology}
+
+The masses making up LISA will truly be free-falling. 
+
+% There's no seismic noise in space. 
+% Possibly, it will be able to see even further.
+% Now, the wavelengths will be in the length scale of the arm of the detector. 
 
 
 

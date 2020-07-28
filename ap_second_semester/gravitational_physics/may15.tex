@@ -64,12 +64,23 @@ The value of \(K(t)\) is fixed (we built the filter after all) so we can factor 
 S 
 &= \expval{\hat{s}(t)}  = \int \dd{t} \expval{s(t)} K(t)  \\
 &= \alpha \int \dd{t} \expval{h(t)} K(t) + \int \dd{t} \cancelto{}{\expval{n(t)}} K(t) \\
+&= \alpha \int \dd{t} \expval{h(t)} \qty( \int \dd{f} e^{2 \pi i ft} K^{*}(f)) \\
+&= \alpha \int \dd{f} K^{*} (f) \qty(\int \dd{t} e^{2 \pi i ft} \expval{h(t)}) \\
 &= \alpha \int \dd{f} K^{*}(f) h(f)
 \,,
 \end{align}
 %
-\todo[inline]{Why does the last step work exactly? where is the conjugate coming from?}
-while for the noise we have
+where we have used the fact that, since \(K(t)\) is real (\(K(t) = K^{*}(t)\))
+%
+\begin{align}
+K(t) 
+= \int \dd{f} e^{-2 \pi i ft} K(f)
+= \int \dd{f} e^{2 \pi i ft} K^{*}(f)
+\,,
+\end{align}
+%
+and we insert the latter expression so that we can recover the expression for the \emph{antitrasform} of \(h(f)\).
+For the noise we need to compute the square modulus:
 %
 \begin{align}
 N^2 &= \eval{\expval{\hat{s}^2(t)} - \cancelto{}{\expval{\hat{s}}^2}}_{\alpha = 0 } \\
@@ -97,48 +108,71 @@ Then, we can write
 %
 and we wish to optimize \(K\) in order to maximize this. 
 
-We define a scalar product for real functions of \(f\): 
+We can express it in a clearer way if we define a scalar product for real functions of \(f\): 
 %
 \begin{align}
 (A|B) = \Re \int \dd{f} \frac{A^{*}(f) B(f)}{S_n (f) / 2}
+= 4 \Re \int_{0}^{\infty } \dd{f} \frac{A^{*}(f) B(f)}{S_n(f)}
+\marginnote{The integrand is even since we are taking the real part and \(A(f) = A^{*}(-f)\).}
 \,,
 \end{align}
 %
-so that 
+so we can write the SNR as  
 %
 \begin{align}
-\frac{S}{N} = \alpha \frac{u \cdot h}{u \cdot u }
+\frac{S}{N} = \alpha \frac{(u| h)}{(u | u)}
 \,,
 \end{align}
 %
-where \(u = S_n(f) K(f) / 2\).
-So, we want \(u(f)\) to be parallel to \(h\): therefore, we want 
+where we defined the vector \(u = S_n(f) K(f) / 2\).
+
+So, we want \(u(f)\) to be parallel (i.\ e.\ proportional) to \(h\) in order to maximize the product: this means that \(S K/2 = \beta h\) for some \(\beta \), or  
 %
 \begin{align}
-K(f) \propto \frac{h(f)}{S_n(f)}
+K(f) =  2 \beta \frac{h(f)}{S_n(f)}
 \,.
 \end{align}
 %
-\todo[inline]{Missing a square root in the denominator?}
 
-This means that our best filter is \emph{not} \(h\), as we thought: we must weigh the filter by how high the detector noise is. 
-The first thing we do not know is the \emph{time of coalescence}: we can ``slider'' our filter over our signal, varying the time of arrival. 
+This choice is called the \textbf{Wiener filter}, and with it we find the SNR 
+%
+\begin{align}
+\frac{S}{N} = \alpha \frac{2 \beta \int \dd{f} h^{*}(f) h(f) / S_n(f) }{\sqrt{2 \beta^2 \int \dd{f} \abs{h(f)}^2 / S_n(f)}}  
+= \sqrt{2} \alpha \sqrt{\int_{-\infty}^{\infty} \dd{f} \frac{\abs{h(f)}^2}{S_n(f)}}
+\,.
+\end{align}
 
-In practice we do not know the form \(h(t)\) and we do not know the time of arrival. 
-What we do is generate hundreds of thousands of filters and move them through the data.
+This means that our best filter is \emph{not} simply \(h(f)\): we must weigh the signal by the detector noise is, the noisier regions are weighted less. 
 
-We must decide on a coverage for our parameter space in order to run our filters, while still having a manageable thing. 
+We do not actually know \(h(t)\), since we do not know the time at which the signal will arriver: we can slide our filter over our signal, varying the time of arrival. 
+We do this by defining 
+%
+\begin{align}
+\hat{s} (\widetilde{t}) = \int \dd{t} s(t) K(t - \widetilde{t})
+\,,
+\end{align}
+%
+which will exhibit a peak for \(\widetilde{t}\) equal to the arrival time of the signal. 
 
-The problem is that the noise is non-gaussian: its tails of extreme events are very large.
-How to reject false alarms due to local noise? Coincidences!
+In practice, we do not know the parameters of \(h(t)\) either. 
+What we do is generate hundreds of thousands of filters spanning a reasonable parameter range and move them through the data.
 
+We must decide on a coverage for our parameter space in order to run our filters, while still having a manageable number of iterations to do. 
+
+Some problems with this: the detector noise is non-gaussian, its tails of extreme events are quite high. 
+Also, the signal is often very weak compared to detector noise.
+
+How to reject false alarms due to local noise? Coincidences between a detector network!
 We allow time differences of \(L/c\) at most. 
-The amount of signal which is retained after these coincidences is very little. 
+% The amount of signal which is retained after these coincidences is very little. 
 
 How to be very confident that two local sources of noise did not happen to coincide?
-We delay the output intentionally, in order to get an estimate of what we would see without GW signals. 
-
+We delay the output intentionally by more than \(L / c\), in order to get an estimate of what we would see without GW signals (since we effectively eliminate any GW signals there could be in the data). 
+This gives us the expected ``no-signal'' output.
 This works as long as the events are rare. 
+
+We can plot the probability density function we get for the detection statistic. 
+If we leave the true signal in, this looks quite dirty since we have coincidences of noise with the GW; if we remove the GW, the PDF becomes a nice powerlaw.
 
 The analysis must be done blind: we look at the delayed data stream first, and then we set the threshold. 
 
@@ -153,12 +187,19 @@ We use the Kolmogorov axioms: consider events belonging to the powerset of \(S\)
     \item the probability of \(S\) is 1.
 \end{enumerate}
 
-An implementation is the frequentist approach: we assign probabilities according to the frequency of occurrence of an event after many repetitions. 
+An implementation is the frequentist approach: we assign probabilities according to the frequency of occurrence of an event after many repetitions.
 
 So, in this approach Bayes's theorem does not really make sense: what is the probability of a die being true, given that we have gotten 1006 times the number 1 over 6000 tries?
+The die either is or isn't true. 
 
-We can define probabilities, instead, as subjective beliefs. 
+The alternate, Bayesian, approach is to define probabilities, instead, as subjective beliefs. 
 
+Then, we can update our subjective belief about a hypothesis like 
+%
+\begin{align}
+\mathbb{P} (\text{hyp} | \text{data}) = \frac{\mathbb{P}(\text{data} | \text{hyp}) \mathbb{P}(\text{hpy})}{\mathbb{P}(\text{data})}
+\,.
+\end{align}
 
 
 \end{document}

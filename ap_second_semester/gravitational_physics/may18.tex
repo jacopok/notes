@@ -49,7 +49,7 @@ It is given by
 \begin{align}
 \Lambda (s| \widetilde{p})
 = N \exp( -\frac{(s - \widetilde{h} | s - \widetilde{h})}{2})
-= N \exp(- \frac{(s | s) + (h | h) + 2 (s | h)}{2})
+= N \exp(- \frac{(s | s) + (h | h) - 2 (s | h)}{2})
 \,,
 \end{align}
 %
@@ -58,13 +58,14 @@ the term given by \((s | s)\) can be included in the normalization \(N\), since 
 
 Let us quickly interpret this heuristically: templates \(h\) with a higher likelihood are those for whom \((s|h)\) and \((h|h)\) are lower; the scalar product is given by a product divided by \(S_n(f)\) in the frequency domain. 
 Saying that \((h|h)\) should be low means that templates which have high values in high-noise regions in the frequency domain are suppressed. 
-The term \((s|h)\) describes the fact that we are more interested in whether the signal ``lines up'' with the template in low-noise regions than whether it does in high-noise ones.
+
+The term with \( (s|h)\) has a minus sign: so, it should be high. This describes the fact that we are more interested in whether the signal ``lines up'' with the template in low-noise regions than whether it does in high-noise ones.
 
 The \textbf{posterior} is then given in terms of the likelihood \(\Lambda \) as
 %
 \begin{align}
 \mathbb{P}(\widetilde{p} | \text{data}) = 
-N \underbrace{\exp(- \frac{(h | h) + (s | h)}{2})}_{\Lambda (s | \widetilde{p})} \mathbb{P}(\widetilde{p})
+N \underbrace{\exp(\frac{- (h | h) + 2 (s | h)}{2})}_{\Lambda (s | \widetilde{p})} \mathbb{P}(\widetilde{p})
 \,.
 \end{align}
 
@@ -170,11 +171,13 @@ In calculating this, we must account for the different antenna patterns of the d
 
 If these inequalities are respected, then all the detectors see ``the same part'' of the SGWB, but they are far enough apart that \emph{everything else} they see is uncorrelated. 
 
-\section{LISA}
+\section{More detectors}
+
+\subsection{LISA}
 
 It's approved by ESA to launch in 2034. 
 
-\subsection{Mission characteristics}
+\subsubsection{Mission characteristics}
 
 It will be surely sensitive in the \num{.1} to \SI{100}{mHz} region, possibly extending down to \SI{20}{\micro Hz} and up to \SI{1}{Hz}. 
 
@@ -191,6 +194,20 @@ The shape of LISA will be triangular, with three different interferometers betwe
 \subsubsection{Technology}
 
 The masses making up LISA will truly be free-falling. 
+
+The optics will be suboptimal: 
+\begin{enumerate}
+    \item the optical power will be limited;
+    \item there can be no cavities that long;
+    \item the capability for tuning is limited;
+    \item everything must be made with large margins, since it cannot be fixed later;
+    \item the data transfer rate back to Earth is limited.
+\end{enumerate}
+
+Therefore, as opposed to ground-based interferometers, this kind of interferometer will be far from the quantum and Newtonian limits we discussed.
+
+\todo[inline]{Synthetic IFO signal in post-processing?}
+
 
 % There's no seismic noise in space. 
 % Possibly, it will be able to see even further.

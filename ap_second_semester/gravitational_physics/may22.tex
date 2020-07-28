@@ -4,26 +4,169 @@
 \marginpar{Friday\\ 2020-5-22, \\ compiled \\ \today}
 
 % We are discussing LISA. 
+\subsubsection{Driving requirements}
 
-\section{Pulsar Timing Array}
+Let us give an estimate for the required sensitivity to see an Extreme Mass Ratio Inspiral, a typical kind of signal. 
+This would be characterized by an amplitude \(h \sim \num{e-22}\), a frequency of \(f \sim \SI{10}{mHz}\). The number of cycles we can expect to see is around \(N _{\text{cycles}} \sim 100\), so we could observe the source for around \(N _{\text{cycles}} / f \approx \SI{e4}{s}\). 
 
-We seek a method to measure SMBH mergers and other extremely long wavelength GW. 
-What we do is measure the distance from millisecond pulsars. 
-
-The light travel time depends on how the space is curved by GW. 
-
-The key to the data analysis is that the GW signal is one of the only correlated signals across the sky. The contribution is 
+So the amplitude spectral density at \SI{10}{mHz} should be around 
 %
 \begin{align}
-r_{\alpha , GW} (t) = \int_{0}^{t} \dd{t'} \frac{ \delta \nu _\alpha }{\nu _\alpha } (t')
+S^{1/2}_{h} \qty(\SI{10}{mHz}) \sim h \sqrt{T} \sim \SI{e-20}{Hz^{-1/2}}
 \,.
 \end{align}
 
-Here \(\alpha \) is an index representing which pulsar we are interested in. 
-We can divide the signal \(r\) into a part at Earth,  \(r^{e}_{\alpha }(t)\), and a part at the pulsar, \(r^{p}_{\alpha }(t)\). 
+If the arm length is around \(L \sim \lambda_{GW} / 4 \sim \num{e9} \divisionsymbol \SI{e10}{m}\), then we will need an amplitude noise spectral density for the length measurements on the order of 
+%
+\begin{align}
+S^{1/2}_{L} \sim S^{1/2}_{h} L \sim \SI{e-11}{m / \sqrt{Hz}} 
+\,.
+\end{align}
 
-\todo[inline]{Is there an averaging effect in PTA? If the GW is propagating in the same direction as the pulsar signal the signal is always in the same gravitational field\dots not clear really}
+Let us discuss the \textbf{noise sources} of LISA: at \textbf{high frequency} the limit is \textbf{shot noise}, since very few photons can arrive. 
 
-\section{Atom interferometry}
+This limit is distance-independent! The ASD on the length \(S^{1/2}_{L}\) scales like \(N_p^{-1/2}\) (because of Poisson statistics), and the number of photon received by a constant-area telescope scales like \(N_p \sim L^{-2}\), so in the end we will have 
+%
+\begin{align}
+S^{1/2}_{h} \sim \frac{S^{1/2}_{L}}{L} \sim \frac{L}{L} \sim L^{0}
+\,.
+\end{align}
+
+If we want to design our detector in order to be able to see such a signal, how much power do we need to see with our telescope? We need to impose 
+%
+\begin{align}
+\SI{e-11}{m / \sqrt{Hz}} \gtrsim
+S^{1/2}_{L} \sim \frac{\lambda }{2 \pi} \frac{1}{\sqrt{N_p}}
+\,,
+\end{align}
+%
+which we can solve to find that, if we use photons around the visible range of the spectrum, that we need about \SI{3e8}{Hz} of photons. 
+This corresponds to a received power of about \SI{50}{pW}; the least amount of power that can be sent in order to receive this much is limited by the intrinsic divergence of a Gaussian beam to 
+%
+\begin{align}
+P _{\text{sent}} \geq \frac{2 \lambda^2 L^2}{D^{4}} P _{\text{received}}
+\,,
+\end{align}
+%
+where \(D\) is the diameter of the telescope, \(\lambda \) is the wavelength of the light, while \(L\) is the distance between the spacecrafts. This gives us a least amount of power of around \SI{100}{mW}; to have a margin we transmit \SI{1}{W}. 
+
+At \textbf{low frequency} the limit is given by our ability to keep the test masses in free-fall. 
+By design, this matches shot noise around \SI{3}{mHz}. 
+If the forces are independent of frequency, then we use \(a = \omega^2 L\); this means that we need to set 
+%
+\begin{align}
+S^{1/2}_{a} ( f = \SI{3}{mHz}) = (2 \pi f)^2 L \sim \SI{5e-15}{m/s^2 / \sqrt{Hz}}
+\,.
+\end{align}
+
+This is for both masses in an interferometer combined; for a single one the requirement is relaxed by \(\sqrt{2}\). 
+The three spacecrafts orbit near Earth in an equilateral triangle with \( L \approx \SI{2.5e9}{m}\), inclined by about \SI{60}{\degree} from the ecliptic. 
+These distances and angles oscillate by a bit in the orbit; this has little effect on the scientific operation, but it creates a great problem for the engineering. 
+
+This setup has several advantages: it is \textbf{passive} (no active stabilization means one less source of errors and problems), has approximately \textbf{constant orbital radius}, excludes the Sun from the telescope's FOV, and the antenna pattern sweeps the sky predictably  in the year (so, with a \(\pi^{-1}\times\SI{e-7}{Hz}\) period).
+
+\subsubsection{Spacecraft design}
+
+The spacecrafts need to operate \textbf{drag-free}, following the test mass. Unlike most scientific missions, the spacecraft is a crucial part of the scientific investigation. 
+Each spacecraft is equipped with \textbf{two test masses}, which makes the optical setup easier and provides redundancy. 
+The spacecrafts have \SI{}{\micro N} thrusters which allow them to maintain their pointing direction. 
+
+We also have the \textbf{Gravitational Reference System}, which is the readout system for the test masses' position.
+This uses capacitors, whose capacitance depends on the distance of the test mass to the faces of the spacecraft. 
+
+\subsubsection{Long-range interferometry}
+
+The fraction of the transmitted signal which is actually received is tiny, of the order of \num{e-9}. 
+So, we use a so-called \textbf{transponder scheme}: the outgoing laser is phase-locked to the incoming one. 
+
+We cannot make the beams interfere directly --- for one, their frequencies differ by the Doppler shift. 
+So, we do interferometry indirectly --- this is called \textbf{Time-Delayed Interferometry}. 
+We measure the phases of the laser beams using \textbf{heterodyne detectors}, and interfere them in post-processing.
+The way to do this is to interfere two beams with slightly different frequencies locally --- the pulsations will then be slow (\SI{}{kHz} to \SI{}{GHz}), so we will be able to record them precisely. 
+One of the two beams is a reference beam we set up locally, the other one is the incoming one. 
+
+We do not bounce lasers from the test masses directly, we have test mass-spacecraft and spacecraft-spacecraft links.
+
+\subsection{Pulsar Timing Array}
+
+Mergers of SuperMassive Black Holes are very low-frequency: the frequency of the GW at the ISCO is given by 
+%
+\begin{align}
+f _{\text{GW, ISCO}} = \frac{1}{6 \sqrt{6} \pi } \frac{c^3}{GM}
+\,,
+\end{align}
+%
+which, for SMBHs with \(M > \num{e8} M_{\odot}\), means \(f < \SI{e-4}{Hz}\). 
+The frequency for the earlier stages is even lower, with periods of the order of several years! 
+
+\textbf{Pulsar Timing Array} is a proposed method of measuring these signals. 
+% We seek a method to measure SMBH mergers and other extremely long wavelength GW. 
+The idea is to measure the distance from millisecond pulsars over a long period of time, subtract out all the known distortions to time-of-arrival, and look for correlations in the remaining residuals.
+
+The light travel time depends on how the space is curved by GW. 
+
+The key to the data analysis is that the GW signal is one of the only correlated signals across the sky. The contribution to the ToA delay for pulsar \(\alpha \) is 
+%
+\begin{align}
+r_{\alpha , GW} (t) = \int_{0}^{t} \dd{t'} \frac{ \delta \nu _\alpha }{\nu _\alpha } (t')
+r_{\alpha }^{p} (t) - r^{a}_{\alpha } (t)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\frac{ \delta \nu_{\alpha }}{\nu_{\alpha }} = \frac{1}{2} \frac{\hat{p}^{i}_{\alpha } \hat{p}^{j}_{\alpha }}{1 + \hat{p}_{\alpha } \cdot \hat{\Omega}} \Delta h_{ij}
+\,,
+\end{align}
+%
+where \(\hat{\Omega}\) is the unit vector in the direction of the \textbf{source}, while \(\hat{p}_{\alpha }\) is the unit vector in the direction of the pulsar. \(\Delta h_{ij} \) is the \emph{difference} in strain between emission and reception, and finally the pulsar term, which is the \emph{uncorrelated} one in our data, is
+%
+\begin{align}
+t^{p}_{\alpha } = t - L_\alpha (1 + \hat{p}_{\alpha } \cdot \hat{\Omega})
+\,.
+\end{align}
+
+On the other hand, \(t^{e}_{\alpha }\) is the correlated part of the signal, measured at the Earth. 
+Note that this means that there is a great deal of \textbf{averaging effect} in PTA, the only effect we can see is \(\Delta h_{ij}\), we gain no information about the value of the field at any intermediate point. 
+
+% Here \(\alpha \) is an index representing which pulsar we are interested in. 
+% We can divide the signal \(r\) into a part at Earth,  \(r^{e}_{\alpha }(t)\), and a part at the pulsar, \(r^{p}_{\alpha }(t)\). 
+
+% \todo[inline]{Is there an averaging effect in PTA? If the GW is propagating in the same direction as the pulsar signal the signal is always in the same gravitational field\dots not clear really}
+
+We need to keep account of the fact that if we are able to see signals at SMBH merger frequencies, then we could also see a stochastic background of \emph{unresolved} sourced, which could be SMBHs or something else.
+Generally, this is modelled as a powerlaw, \(S_{GW} \sim f^{\gamma }\), where \(\gamma \sim - 2/3\) for a SMBH merger background.
+
+The \textbf{Hellings-Downs} shows the expected correlation of residuals as a function of the angle between two pulsars, as long as the background is isotropic. 
+
+The data analysis strategy is basically matched filtering on the ToA residuals; the likelihood can be written in terms of the  correlation matrix, \(C(\vec{\lambda})\). This matrix is diagonal if there is no correlation, block diagonal in the presence of correlation, and in a general non-diagonal form if there is a generic GW background. 
+
+The thing which is done for ground-based interferometers, using a template bank, cannot work here since we have too many parameters: beyond the GW ones, all the parameters of the various pulsars! 
+
+Clever data analysis techniques are needed.
+
+\subsection{Atom interferometry}
+
+Using a laser we can put atoms in superpositions of momentum states, \(\ket{p}\) and \(\ket{p + k}\); by the way we pulse the laser we can determine whether we move the atoms to a superposition or from one state to the other. 
+
+So, the idea is the following: we start from all the atoms having a certain momentum, and then
+\begin{enumerate}
+    \item put them in a superposition \(\ket{p} + \ket{p+k}\), let them propagate for a bit (at their respective velocities) (``beamsplitter'');
+    \item invert the population: map \(\ket{p}\) into \(\ket{p + k}\) and vice versa, let them propagate for a bit again (same time as before) (``mirror'');
+    \item apply the superposition-creating beam again (``beamplitter'');
+    \item measure!
+\end{enumerate}
+
+The amount of atoms in either state tells us about their relative phase. 
+The phase of the laser is affected by GWs, and it can affect the number of atoms we measure with each momentum. 
+
+The trick is that the second laser beam is actually the first one, which was reflected by a mirror: so, in the TT gauge its phase is affected by the travel time, which is affected by the presence of a GW. 
+
+This kind of detector could go beyond the quantum limits of regular interferometers and, more importantly, at low frequency even on Earth, since they are insensitive to seismic noise (movements in the position of the mirror cancel out). 
+Also, it might be able to reject Newtonian noise better than regular interferometers. 
+
+The current state-of-the-art, however, is still not close to being useful for actual GW detection. 
+There are several technical issues to solve: we need an atom cloud at a very low temperature (\(\sim \SI{}{\micro K}\)), so that it does not spread to be larger than the laser beam and so that the Doppler effects due to atom motion  does not create problems. 
 
 \end{document}

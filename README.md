@@ -2,7 +2,7 @@ Here are the notes I am taking during the lectures of the degree in [Astrophysic
 
 They are divided by semester and class: the current semester folder is `ap_second_semester`, containing notes for:
 
-* [Gravitational physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081719/N0): currently working on the notes;
+* [Gravitational physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081719/N0): finished reviewing notes, the last parts are quite short but the big conceptual bits are all there;
 * [Theoretical physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP7081638/N0): reviewed notes, some exercises are missing but on the whole they should be quite complete;
 * [Theoretical cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086384/N0): yet to review notes;
 * [Astroparticle physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081703/N0): reviewed notes, but they are not of great quality;
@@ -18,7 +18,7 @@ In the folder `ap_first_semester` one can find notes for the following courses
 * [General Relativity](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): reviewed everything, exercises included;
 * [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0): currently reviewing, by the end of the summer they should be finished.
 
-Disclaimer: unless specified, these notes were not reviewed by anyone but me, so they might contain errors, inaccuracies, typos and so on. Please do not rely on them alone.
+Disclaimer: unless specified, **these notes were not reviewed by anyone but me**, so they might contain errors, inaccuracies, typos and so on. Please do not rely on them alone.
 
 In every class folder there is a main file but the individual lectures are kept in a separate file for each day, labelled with the date.
 These can be compiled individually (with `pdflatex` for the first semester, `lualatex` for the second), but the resulting PDFs are ignored by git to have some order: only the main PDF for each class is committed here; I should remember to compile it often but sometimes it might be out of date.

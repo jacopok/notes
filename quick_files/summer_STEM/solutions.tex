@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+\usepackage{enumitem}
+\usepackage{commath}
+\usepackage{bbold}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true}
+\usepackage{footnotebackref}
+\usepackage{framed}
+\usepackage{thmtools}
+\usepackage{etoolbox}
+\usepackage{fancybox}
+\usepackage{slashed}
+\newcommand{\DD}{\mathrm{D}}
+\usepackage{mathrsfs}
+
+\newenvironment{myleftbar}{%
+\def\FrameCommand{\hspace{0.6em}\vrule width 2pt\hspace{0.6em}}%
+\MakeFramed{\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\declaretheoremstyle[
+spaceabove=6pt,
+spacebelow=6pt
+headfont=\normalfont\bfseries,
+headpunct={} ,
+headformat={\cornersize*{2pt}\ovalbox{\NAME~\NUMBER\ifstrequal{\NOTE}{}{\relax}{\NOTE}:}},
+bodyfont=\normalfont,
+]{exobreak}
+
+\declaretheorem[style=exobreak, name=Esercizio,%
+postheadhook=\leavevmode\myleftbar, %
+prefoothook = \endmyleftbar]{exo}
+
+\newcommand{\boxalign}[2][0.986\textwidth]{
+  \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
+  \begin{center}\begin{tikzpicture}
+   \node [mybox] (box){%
+    \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
+   };
+\end{tikzpicture}\end{center}}
+
+\usepackage{alumnistem}
+
+\author{Jacopo Tissino}
+\title{Soluzioni degli esercizi}
+\date{Luglio 2020}
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=nyt,
+backref=true
+]{biblatex}
+
+\addbibresource{STEM_Indivisibility.bib}
+
+% \title{L'indivisibilità del fotone: Summer STEM Academy 2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{exo}[Legge di Snell]
+% Da impostare a lezione, senza finire il conto.
+Consideriamo un'interfaccia fra due mezzi nei quali la luce si può trasmettere, ma con velocità diverse: definiamo l'\emph{indice di rifrazione} del mezzo, \(n\), il rapporto fra la velocità \(c\) della luce nel vuoto e la velocità \(v\) nel mezzo: \(n = c/v\).
+
+Consideriamo un'onda piana incidente sulla barriera tale per cui l'angolo fra il vettore d'onda e la normale all'interfaccia sia \(\theta _{\text{in}}\). 
+Chiamiamo \(\theta _{\text{out}}\) l'angolo fra la normale all'interfaccia e il vettore d'onda dell'onda uscente. 
+
+I vettori d'onda entrante e uscente sono complanari, quindi il problema può essere trattato in due dimensioni.
+
+Mostrare che vale la relazione 
+%
+\begin{align}
+n _{\text{in}} \sin(\theta _{\text{in}}) = 
+n _{\text{out}} \sin(\theta _{\text{out}})
+\,.
+\end{align}
+\end{exo}
+
+I fronti d'onda arrivano paralleli, il vettore d'onda ha un angolo \(\theta _{\text{in}}\) dalla normale. \(v = \lambda f\) deve valere sia dentro che fuori dal vetro: visto che \(f\) è la stessa (per continuità dei fronti all'interfaccia), abbiamo 
+%
+\begin{align}
+    \frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
+    \,,
+\end{align}
+%
+dove definiamo l'indice di rifrazione con \(v = c/n\). 
+    
+Se \(D\) è la distanza fra le creste misurata lungo l'interfaccia, abbiamo 
+%
+\begin{align}
+    \frac{\lambda_{i}}{D} = \sin(\theta_{i})
+    \,,
+\end{align}
+%
+per \(i = \text{in}, \text{out}\). 
+Da qui sostituendo si arriva direttamente all'espressione finale. 
+
+\begin{exo}[Esperimento di Michelson, velocità della luce]
+
+% Parametri: doppia distanza fra gli specchi \(D = \SI{3972.46}{ft}\), variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{28.672}{feet}\), rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
+
+L'apparato che lo scienziato americano Michelson ha utilizzato nel 1880 \cite[]{michelsonExperimentalDeterminationVelocity1880} per misurare la velocità della luce permette una misura molto accurata.
+Per una descrizione dell'apparato e una figura vedere Wikipedia \cite[figura 3]{wikipediacontributorsFizeauFoucaultApparatus2019}.
+
+Alcuni parametri di una singola misura di Michelson: distanza fra gli specchi \(D = \SI{605}{m}\); variazione lineare della posizione: \(d = \SI{115}{mm}\), raggio \(r = \SI{8.74}{m}\); rivoluzioni al secondo: \(n = \SI{257}{Hz}\). I valori sono presi da un set di misure di \textcite[]{michelsonExperimentalDeterminationVelocity1880}, sono solo rappresentativi (per questo motivo ho anche troncato i decimali) e la stima di \(c\) che si ottiene non è un'ottima stima, quella conclusiva di Michelson è a solo \SI{.05}{\percent} di distanza dal calore correntemente accettato.
+
+Qual'è la velocità della luce che dovrebbe calcolare Michelson?
+\end{exo}
+
+La formula corretta è: 
+%
+\begin{align}
+c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
+\,.
+\end{align}
+
+\begin{exo}[Rate atteso di conteggi]
+Il laser che useremo avrà una potenza di circa \SI{50}{mW} e la luce emessa avrà una lunghezza d'onda di circa \SI{500}{nm}. 
+
+Mettiamo un filtro attenuatore che attenui la luce di un fattore 10000, inoltre la SPDC capita solo a un fotone su \num{e7}. Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
+
+(I numeri sono molto spannometrici, da aggiornare eventualmente)
+\end{exo}
+
+\begin{exo}[Picchi delle differenze nei tempi]
+    Dove ti aspetti che sia centrato il picco dei valori di \(t_R - t_G\)? E il picco di \(t_T - t_G\)? 
+    (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
+\end{exo}
+
+\printbibliography
+
+\end{document}

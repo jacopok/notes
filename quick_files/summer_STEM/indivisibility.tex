@@ -160,6 +160,9 @@ A(x, t) = A_0 \sin(2 \pi \qty( \frac{x}{\lambda } - \frac{t}{T}) + \varphi )
 Abbiamo inserito un tempo caratteristico \(T\), chiamato \emph{periodo}: se fissiamo la posizione \(x\) e guardiamo solo un punto, l'onda torna al punto dov'era prima dopo un tempo \(T\). 
 C'è un meno perché stiamo assumendo che l'onda avanzi verso destra, ovvero verso le \(x\) positive: se \(x\) aumenta di un poco, per mantenerci nella stessa posizione (``viaggiando con l'onda'', ovvero tornando allo stesso valore dell'argomento del seno) dobbiamo aumentare un poco anche \(t\), ovvero aspettare un poco. 
 
+Questo è il caso \emph{monodimensionale}; se abbiamo un'onda in due o tre dimensioni spaziali che si propaga lungo l'asse \(x\) avrà esattamente la stessa forma; invece di una cresta avremo un \emph{fronte d'onda} lungo il quale il seno ha lo stesso valore. 
+Il vettore che definisce la direzione nella quale l'onfa si propaga è detto \emph{vettore d'onda}, nel nostro caso sarebbe parallelo all'asse \(x\) e dunque perpendicolare al fronte d'onda. Convenzionalmente lo si prende di modulo pari a ciò che moltiplica \(x\) nell'argomento del seno, quindi \(\vec{k} = \hat{x} (2 \pi / \lambda ) = k \hat{x}\).
+
 Se aspettiamo un tempo \(T\) l'onda si è spostata di una lunghezza \(\lambda \): quindi, la sua velocità è \(v = \lambda / T\). Spesso questo si scrive introducendo la \emph{frequenza}, \(f = 1 / T\), misurata in \(\SI{}{Hz} = 1 / \SI{}{s}\).
 
 Così, scriviamo 
@@ -170,34 +173,43 @@ v = \lambda f
 \,.
 \end{align}}
 
-
 \begin{exo}[Legge di Snell]
-Da impostare a lezione, senza finire il conto. 
-I fronti d'onda arrivano paralleli, il vettore d'onda ha un angolo \(\theta _{\text{in}}\) dalla normale. \(v = \lambda f\) deve valere sia dentro che fuori dal vetro: visto che \(f\) è la stessa, abbiamo 
-%
-\begin{align}
-    \frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
-    \,,
-\end{align}
-%
-dove definiamo l'indice di rifrazione con \(v = c/n\). 
-    
-Se \(D\) è la distanza fra le creste misurata lungo l'interfaccia, abbiamo 
-%
-\begin{align}
-    \frac{\lambda_{i}}{D} = \sin(\theta_{i})
-    \,,
-\end{align}
-%
-per \(i = \text{in}, \text{out}\). 
+% Da impostare a lezione, senza finire il conto.
+Consideriamo un'interfaccia fra due mezzi nei quali la luce si può trasmettere, ma con velocità diverse: definiamo l'\emph{indice di rifrazione} del mezzo, \(n\), il rapporto fra la velocità \(c\) della luce nel vuoto e la velocità \(v\) nel mezzo: \(n = c/v\).
 
-Da qui si ricava 
+Consideriamo un'onda piana incidente sulla barriera tale per cui l'angolo fra il vettore d'onda e la normale all'interfaccia sia \(\theta _{\text{in}}\). 
+Chiamiamo \(\theta _{\text{out}}\) l'angolo fra la normale all'interfaccia e il vettore d'onda dell'onda uscente. 
+
+I vettori d'onda entrante e uscente sono complanari, quindi il problema può essere trattato in due dimensioni.
+
+Mostrare che vale la relazione 
 %
 \begin{align}
 n _{\text{in}} \sin(\theta _{\text{in}}) = 
 n _{\text{out}} \sin(\theta _{\text{out}})
 \,.
 \end{align}
+
+
+% I fronti d'onda arrivano paralleli, il vettore d'onda ha un angolo \(\theta _{\text{in}}\) dalla normale. \(v = \lambda f\) deve valere sia dentro che fuori dal vetro: visto che \(f\) è la stessa, abbiamo 
+% %
+% \begin{align}
+%     \frac{ \lambda _{\text{out}}}{\lambda _{\text{in}}} = \frac{n _{\text{in}}}{n _{\text{out}}}
+%     \,,
+% \end{align}
+% %
+% dove definiamo l'indice di rifrazione con \(v = c/n\). 
+    
+% Se \(D\) è la distanza fra le creste misurata lungo l'interfaccia, abbiamo 
+% %
+% \begin{align}
+%     \frac{\lambda_{i}}{D} = \sin(\theta_{i})
+%     \,,
+% \end{align}
+% %
+% per \(i = \text{in}, \text{out}\). 
+
+% Da qui si ricava 
 \end{exo}
 
 Abbiamo menzionato prima il fatto che la teoria ondulatoria prevede che questo fenomeno di rifrazione avvenga simultaneamente a quello della riflessione. 
@@ -243,12 +255,12 @@ Alcuni parametri di una singola misura di Michelson: distanza fra gli specchi \(
 
 Qual'è la velocità della luce che dovrebbe calcolare Michelson?
 
-Formula corretta: 
-%
-\begin{align}
-c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
-\,.
-\end{align}
+% Formula corretta: 
+% %
+% \begin{align}
+% c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \num{.994} c
+% \,.
+% \end{align}
 \end{exo}
 
 \subsection{Maxwell e Einstein}
@@ -274,10 +286,16 @@ In modo simile, la teoria ondulatoria pre-elettromagnetica descrive un'onda scal
 Al contrario, i campi elettrico e magnetico sono \emph{vettoriali}: ad ogni punto dello spazio associano una ``freccia'', che ha direzione e lunghezza.
 
 Cosa comporta fisicamente questa differenza? la luce può avere una \emph{polarizzazione}, ovvero può avere orientata in modi diversi rispetto alla sua direzione di propagazione. 
+In figura \ref{fig:Electromagnetic-waves} è mostrato l'orientamento dei campi elettrico e magnetico rispetto alla direzione di propagazione.
 
-\todo[inline]{Inserire schema con \(\vec{k} \perp \vec{E} \perp \vec{B}\).}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{800px-Electromagnetic_waves.png}
+\caption{Rappresentazione di un'onda elettromagnetica \cite[]{dechammaklKnnddRr2018}.}
+\label{fig:Electromagnetic-waves}
+\end{figure}
 
-\todo[inline]{Se c'è tempo: mostrare ``diagramma di Venn'' delle polarizzazioni, ci sono tre polarizzatori lineari, due di essi ortogonali e il terzo a \SI{45}{\degree} rispetto ad entrambi. Sono tutti a forma di cerchio, messi in modo tale da vedere tutte le possibili combinazioni. In questo modo, nell'intersezione dei due ortogonali si vede nero, mentre con tutti e tre si vede un po' di luce che passa.}
+% \todo[inline]{Se c'è tempo: mostrare ``diagramma di Venn'' delle polarizzazioni, ci sono tre polarizzatori lineari, due di essi ortogonali e il terzo a \SI{45}{\degree} rispetto ad entrambi. Sono tutti a forma di cerchio, messi in modo tale da vedere tutte le possibili combinazioni. In questo modo, nell'intersezione dei due ortogonali si vede nero, mentre con tutti e tre si vede un po' di luce che passa.}
 
 Questo ha delle applicazioni pratiche: ad esempio, gli occhiali che si usano per vedere i film 3D usano due lenti con filtri polarizzatori perpendicolari, una orizzontale e una verticale; in questo modo possono mostrare due immagini diverse ad ogni occhio.
 

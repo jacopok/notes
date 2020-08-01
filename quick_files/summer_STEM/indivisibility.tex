@@ -249,11 +249,18 @@ Abbiamo definito la velocità della luce, ma quanto vale numericamente?
 % Parametri: doppia distanza fra gli specchi \(D = \SI{3972.46}{ft}\), variazione lineare della posizione: \(d = \SI{114.85}{mm}\), raggio \(r = \SI{28.672}{feet}\), rivoluzioni al secondo: \(n = \SI{257.36}{Hz}\).
 
 L'apparato che lo scienziato americano Michelson ha utilizzato nel 1880 \cite[]{michelsonExperimentalDeterminationVelocity1880} per misurare la velocità della luce permette una misura molto accurata.
-Per una descrizione dell'apparato e una figura vedere Wikipedia \cite[figura 3]{wikipediacontributorsFizeauFoucaultApparatus2019}.
+La struttura dell'apparato è schematizzata in figura \ref{fig:michelson-apparatus}.
+% Per una descrizione dell'apparato e una figura vedere Wikipedia \cite[figura 3]{wikipediacontributorsFizeauFoucaultApparatus2019}.
+La luce parte dalla sorgente \(S\), rimbalza sullo specchio nel punto \(R\), va fino allo specchio \(M\) e torna indietro sui suoi passi.
+Lo specchio mediano ruota attorno al punto \(R\), e la distanza fra il punto \(R\) e il punto \(M\) è molto grande.
+In questo modo, nel tempo che la luce impiega per andare da uno specchio all'altro (e ritorno) lo specchio si è girato abbastanza affinché la luce non sia esattamente allineata con quella entrante. 
+Misurando di quanto si sposta l'immagine della sorgente è possibile misurare la velocità di propagazione della luce.
 
-Alcuni parametri di una singola misura di Michelson: distanza fra gli specchi \(D = \SI{605}{m}\); variazione lineare della posizione: \(d = \SI{115}{mm}\), raggio \(r = \SI{8.74}{m}\); rivoluzioni al secondo: \(n = \SI{257}{Hz}\). I valori sono presi da un set di misure di \textcite[]{michelsonExperimentalDeterminationVelocity1880}, sono solo rappresentativi (per questo motivo ho anche troncato i decimali) e la stima di \(c\) che si ottiene non è un'ottima stima, quella conclusiva di Michelson è a solo \SI{.05}{\percent} di distanza dal calore correntemente accettato.
+\textcite[]{michelsonExperimentalDeterminationVelocity1880} ha ripetuto la misura innumerevoli volte, seguono i parametri ottenuti in una sola di queste misure: distanza fra gli specchi \(h = \SI{605}{m}\); variazione lineare della posizione (dal punto \(S\) al detector): \(d = \SI{115}{mm}\), raggio (dal punto \(R\) al punto \(S\)) \(r = \SI{8.74}{m}\); rivoluzioni al secondo dello specchio: \(n = \SI{257}{Hz}\).
 
-Qual'è la velocità della luce che dovrebbe calcolare Michelson?
+I valori sono solo rappresentativi (per questo motivo ho anche troncato i decimali) e la stima di \(c\) che si ottiene non è ottima, quella conclusiva di Michelson invece è a solo \SI{.05}{\percent} di distanza dal valore correntemente accettato.
+
+Qual'è la velocità della luce che dovrebbe calcolare Michelson dati questi parametri?
 
 % Formula corretta: 
 % %
@@ -262,6 +269,15 @@ Qual'è la velocità della luce che dovrebbe calcolare Michelson?
 % \,.
 % \end{align}
 \end{exo}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{Speed_of_light_calculation_using_Foucault's_rotating_mirror.png}
+\caption{Apparato di Michelson per le misurazione della velocità della luce \cite[]{aurantiacaSpeedLightCalculation2015}.
+% \footnote{La figura è stata leggermente modificata al fine di non dare troppe informazioni. }
+}
+\label{fig:michelson-apparatus}
+\end{figure}
 
 \subsection{Maxwell e Einstein}
 
@@ -551,9 +567,11 @@ Se mettiamo dei detector agli angoli corretti, vedremo che rilevano fotoni conte
 \begin{exo}[Rate atteso di conteggi]
 Il laser che useremo avrà una potenza di circa \SI{50}{mW} e la luce emessa avrà una lunghezza d'onda di circa \SI{500}{nm}. 
 
-Mettiamo un filtro attenuatore che attenui la luce di un fattore 10000, inoltre la SPDC capita solo a un fotone su \num{e7}. Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
+Mettiamo un filtro attenuatore che attenui la luce di un fattore 100, inoltre la SPDC capita solo a un fotone su \num{e7}.
+La SPDC disperde le coppie entangled in un cono di apertura \SI{4}{\degree} circa, e dopo una distanza di \SI{50}{cm} circa alcuni di questi fotoni devono entrare in una fibra ottica di diametro circa \SI{100}{\micro m} per essere rilevati. 
 
-(I numeri sono molto spannometrici, da aggiornare eventualmente)
+Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
+% (I numeri sono molto spannometrici, da aggiornare eventualmente)
 \end{exo}
 
 
@@ -569,7 +587,12 @@ Questo produce luce intrecciata; da uno dei due lati mettiamo direttamente un se
 
 Dall'altro lato mettiamo l'apparato descritto prima: beamsplitter, e i due sensori per i fotoni riflessi e trasmessi.
 
-\todo[inline]{Inserire schema}
+\begin{figure}[ht]
+\centering
+\input{spdc.tex}
+\caption{Schema dell'apparato sperimentale.}
+\label{fig:spdc}
+\end{figure}
 
 Ora abbiamo un grande vantaggio rispetto a prima: possiamo usare il detector di gate come controllo, ovvero il nostro ``insieme universo'' è costituito dalle volte in cui questo detector è scattato; il numero di volte che è scattato il gate, \(N_G\), diventa il nostro \(N _{\text{TOT}} \).
 
@@ -601,7 +624,7 @@ Vediamo un fondo di rumore, e un distinto picco.
 
 \begin{exo}[Picchi delle differenze nei tempi]
     Dove ti aspetti che sia centrato il picco dei valori di \(t_R - t_G\)? E il picco di \(t_T - t_G\)? 
-    (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
+    % (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
 \end{exo}
 
 % \todo[inline]{Inserire grafico}

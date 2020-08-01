@@ -132,15 +132,35 @@ c _{\text{exp}} = \frac{2 \times 2 \pi \times 2 D n}{\arctan(d / r)} \approx \nu
 \begin{exo}[Rate atteso di conteggi]
 Il laser che useremo avrà una potenza di circa \SI{50}{mW} e la luce emessa avrà una lunghezza d'onda di circa \SI{500}{nm}. 
 
-Mettiamo un filtro attenuatore che attenui la luce di un fattore 10000, inoltre la SPDC capita solo a un fotone su \num{e7}. Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
+Mettiamo un filtro attenuatore che attenui la luce di un fattore 100, inoltre la SPDC capita solo a un fotone su \num{e7}.
+La SPDC disperde le coppie entangled in un cono di apertura \SI{4}{\degree} circa, e dopo una distanza di \SI{50}{cm} circa alcuni di questi fotoni devono entrare in una fibra ottica di diametro circa \SI{100}{\micro m} per essere rilevati. 
 
-(I numeri sono molto spannometrici, da aggiornare eventualmente)
+Quant'è il numero di fotoni al secondo che ci aspettiamo di vedere nel gate, se il detector ha un'efficienza del \SI{10}{\percent}?
 \end{exo}
+
+Il rate atteso \(r\) è di:
+%
+\begin{align}
+r = \frac{\SI{50}{mW}}{\hbar c / (\SI{500}{nm})}
+\times 
+\frac{\SI{100}{\micro m}}{\sin(\SI{4}{\degree}) \times 2 \pi  \times \SI{50}{cm}}
+\times \num{e-7} \times \num{e-2} \times \num{e-1} \approx \SI{35}{kHz} 
+\,.
+\end{align}
+%
+
 
 \begin{exo}[Picchi delle differenze nei tempi]
     Dove ti aspetti che sia centrato il picco dei valori di \(t_R - t_G\)? E il picco di \(t_T - t_G\)? 
-    (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
+    % (Inserire foto dell'apparato con scala, in modo che si possano determinare i ritardi dovuti al tempo di viaggio della luce).
 \end{exo}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{single_photon_timedifferences}
+\caption{Differenze temporali fra i conteggi dei fotoni in una ripetizione dell'esperimento descritto. In un colore più saturato sono rappresentati gli eventi contenuti entro 5 deviazioni standard dal picco della Gaussiana con la quale si possono fittare i dati.}
+\label{fig:single_photon_timedifferences}
+\end{figure}
 
 \printbibliography
 

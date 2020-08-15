@@ -1,8 +1,38 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Thermal radiation}
+
 \marginpar{Saturday\\ 2020-8-15, \\ compiled \\ \today}
 
+Consider a blackbody enclosure at equilibrium at a certain temperature \(T\). If we open a small hole in the enclosure and measure the radiation inside it, the intensity \(I_\nu \) we will see will be isotropic, and only depending on the temperature \(T\): let us call the (still unspecified) way this dependence look \(I_\nu = B_\nu (T)\). The function \(B_\nu (T)\) will be called the \textbf{blackbody function}. 
 
+Now, imagine we put a small chunk of material inside the blackbody enclosure. If this material is characterized by a source function \(S_\nu = j_\nu / \alpha_{\nu }\), then the evolution of the intensity inside the cavity will be 
+%
+\begin{align}
+\dv{I_\nu }{\tau_{\nu }} = - I_\nu + S_\nu 
+\,.
+\end{align}
+
+If we wait for equilibrium, though, we must have \(I_\nu \equiv B_\nu \), meaning that its derivative must be zero: this implies that \(I_\nu = B_\nu = S_\nu \). 
+
+This is called \textbf{Kirkhoff theorem}: a chunk of material which can emit and absorb and which is placed in a blackbody enclosure then it must satisfy 
+%
+\begin{align}
+B_\nu = \frac{j_\nu}{\alpha_{\nu }} = S_\nu 
+\,.
+\end{align}
+
+What is the explicit expression of the blackbody function \(B_\nu \)? 
+From Bose-Einstein statistics we know that the phase space density of photons in thermal equilibrium is given by 
+%
+\begin{align}
+\frac{ \dd{N}}{ \dd[3]{x} \dd[3]{p}} = \frac{2}{h^3} \frac{1}{\exp( \frac{h \nu }{k_B T}) - 1}
+\,,
+\end{align}
+%
+where the 2 comes from the two polarizations of the photons, \(h^3\) is the size of the phase space cell, while the exponential factor is the occupation number. 
+
+% 9.14, lecture 3
 
 \end{document}

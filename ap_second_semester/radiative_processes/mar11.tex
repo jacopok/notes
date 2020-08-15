@@ -5,13 +5,13 @@
 
 The professor, Roberto Turolla, will follow the pdf of the book by Rybicki and Lightman \cite{rybickiRadiativeProcessesAstrophysics1979} on his screen. It is available for free.
 
-Radiative processes are fundamental for several processes: for example, in the Crab nebula the main process is Synchrotron radiation, in the Coma cluster we have Bremsstrahlung, in Cygnus-X1 we have Compton scattering. 
+Understanding radiative processes is fundamental for the analysis of several phenomena: for example, in the Crab nebula the main process is Synchrotron radiation, in the Coma cluster we have Bremsstrahlung, in Cygnus-X1 we have Compton scattering. 
 
-Even in the era of multimessenger astrophysics, most of the information still comes from electromagnetic radiation. 
-The required background is classical EM, special relativity and the basics of atomic structure. 
+Even in the era of multimessenger astrophysics, most of the information we receive still comes from electromagnetic radiation. 
+The required background for this course is classical EM, special relativity and the basics of atomic structure. 
 
 The exam is an oral one. The lectures will be recorded and put on the Moodle until the emergency ends, every Wednesday and Thursday. 
-The duration of recorded lectures is actually shorter than the duration of the lectures we would have in the classroom.
+The duration of recorded lectures will be shorter than the duration of the lectures we would have in the classroom.
 
 \chapter{Fundamentals of radiative transfer}
 
@@ -19,7 +19,7 @@ The duration of recorded lectures is actually shorter than the duration of the l
 
 \marginpar{Thursday\\ 2020-3-12, \\ compiled \\ \today}
 
-Electromagnetic radiation can be decomposed into a spectrum; the frequency \(\nu \) and wavelength \(\lambda \) are connected by \(c = \lambda \nu \), where \(c\) is the speed of light. 
+Electromagnetic radiation can be decomposed into a spectrum according to either the frequency \(\nu \) or the wavelength \(\lambda \); these are connected by \(c = \lambda \nu \), where \(c\) is the speed of light. 
 
 Sometimes we give the energy of the photons, which can be found using Planck's constant \(h\): \(E = h \nu \). 
 
@@ -27,7 +27,8 @@ We conventionally divide the spectrum into bands: \(\gamma \)-rays, X-rays, ultr
 
 \subsection{The radiative flux}
 
-Let us consider an area element \(\dd{A}\), through which radiation passes for a time \(\dd{t}\): the energy will be proportional to both \(\dd{A}\) and \(\dd{t}\), so we say that it is equal to \(F \dd{A} \dd{t}\). Of course we need to account for orientation: if the surface is not perpendicular to the source the energy is less. 
+Let us consider an area element \(\dd{A}\), through which radiation passes for a time \(\dd{t}\): the energy will be proportional to both \(\dd{A}\) and \(\dd{t}\), so we define the radiative flux \(F\) by saying that the energy is equal to \(F \dd{A} \dd{t}\). 
+Of course, we need to account for orientation: if the surface is not perpendicular to the source the energy is less. 
 
 Let us consider a pointlike source, and draw two spherical surfaces of radii \(r_1 \) and \(r_2 \) along which we compute the flux: if there is no energy loss we must have 
 %
@@ -40,9 +41,13 @@ F(r_1 ) A_1 \dd{t} &= F(r_2 ) A_2 \dd{t}  \\
 \end{align}
 \end{subequations}
 
+This tells us that \textbf{the flux emitted from a pointlike source decreases like \(r^{-2}\)}.
+
 The flux of energy is a measure of all the energy which passes through the surface; however we can get a more detailed description. 
-We cannot consider photons at a specific frequency: the set has measure 0. 
+We cannot consider photons at a specific frequency: the set has measure 0, we must use the language of probability densities. 
 We look at a ``pencil'' of radiation: all the radiation coming from a solid angle \(\dd{\Omega  }\) over an area \(\dd{A}\) and carried by photons of frequencies between \(\nu \) and \(\nu + \dd{\nu }\).
+
+Note that the solid angle \(\dd{\Omega }\) depends on both angles we use to describe a direction (typically \(\theta , \varphi \)).
 
 So, we define the \emph{specific intensity of brightness} \(I_{\nu }\) by
 %
@@ -51,12 +56,12 @@ So, we define the \emph{specific intensity of brightness} \(I_{\nu }\) by
 \,.
 \end{align}
 
-This will depend on position (where we put the detector area) and on direction (where we look). 
+This will depend on position (where we put the detector area with respect to any sources) and on direction (where we look). 
 
 We usually neglect the time-dependence. The units of this quantity are those of energy per unit time, area, frequency, solid angle. 
 
 How do we account for the direction? 
-The differential flux for radiation coming with an angle \(\theta \) to the normal is 
+The differential flux for radiation coming with an angle \(\theta \) to the normal is proportional to the dot product of the normal and the incidence direction:
 %
 \begin{align}
 \dd{F_{\nu } } = I_{\nu  } \cos(\theta ) \dd{\Omega }
@@ -70,7 +75,7 @@ F_{\nu } = \int I_{\nu } \cos(\theta ) \dd{\Omega }
 \,.
 \end{align}
 
-This is about energy, but we can define the momentum flux per unit time per unit area (which is the pressure) we can do the same, but we get an additional factor of \(\cos \theta \) since \(\vec{p}\) is a vector, and we are interested in its component along the normal of the surface.
+This is about energy, but we can define the momentum flux per unit time per unit area (which is the pressure) with the same procedure; we get an additional factor of \(\cos \theta \) since \(\vec{p}\) is a vector, and we are interested in its component along the normal of the surface.
 So, the global formula for this pressure is 
 %
 \begin{align}
@@ -78,7 +83,7 @@ P_{\nu } = \frac{1}{c} \int I_{\nu } \cos^2\theta \dd{\Omega }
 \,.
 \end{align}
 
-These are \emph{moments}: in general, a moment is something in the form 
+These are \emph{moments}: in general, a moment for a direction-dependent quantity like the intensity is something in the form 
 %
 \begin{align}
 \text{\(n\)-th moment} = \int I_{\nu } \cos^{n} \theta \dd{\Omega }

@@ -11,7 +11,7 @@ This is the differential amount of energy in the volume \(\dd{V}\), carried by r
 We consider a cylinder for our volume, its axis being aligned with the direction the radiation is coming from. 
 Its volume can be expressed as \(\dd{V} =\dd{A} c \dd{t}\), where \(\dd{t}\) is the time taken by light to cross the height of the cylinder.
 
-We can also express the differential energy using the definition of the specific intensity: then, we will have the following two equations: 
+We can also express the differential energy using the definition of the specific intensity: then, we can compare the following two equations: 
 %
 \begin{subequations}
 \begin{align}
@@ -21,7 +21,7 @@ We can also express the differential energy using the definition of the specific
 \end{align}
 \end{subequations}
 %
-therefore \(u_{\nu } = I_{ \nu } / c\).
+which allows us to conclude that \(u_{\nu } = I_{ \nu } / c\).
 Also, if we want to get the total energy density we just need to integrate over the volume of the whole sphere: 
 %
 \begin{align}
@@ -80,7 +80,7 @@ We wish to see how the specific intensity \(I_{\nu }\) changes along a beam of l
 \,.
 \end{align}
 
-First of all we make the assumption of the gravitational field being weak: therefore \(\dd{t_{1}} = \dd{t_2 }\) and \(\dd{\nu_{1}} = \dd{\nu_2 }\). 
+First, we make the assumption of the gravitational field being weak: therefore time dilation is negligible, so \(\dd{t_{1}} = \dd{t_2 }\) and \(\dd{\nu_{1}} = \dd{\nu_2 }\). 
 Now, we ask these two expressions to describe the same beam: the same photons will pass through \(\dd{A_1 }\) and  \(\dd{A_2 }\).  
 Therefore, by conservation of energy, \(\dd{E_1 } = \dd{E_2 }\). 
 
@@ -94,7 +94,9 @@ I_{\nu, 2} \dd{A_2 } \dd{\Omega_2 }
 %
 
 We can treat the photons' motion as time-reversal symmetric: so, whether they pass through \(\dd{A_1 }\) or \(\dd{A_2 }\) first is irrelevant. 
-So, since the linear scale of the differential are element is negligible compared to \(R\) we can consider all the photons which come through \(\dd{A_2 }\) to be coming from the apparent size of \(\dd{A_1 }\) from position \(2\). 
+The linear scale of the differential area element is infinitesimal, while the separation between the two points, \(R\), is macroscopic: so, we can consider all the photons which come through \(\dd{A_1}\) to be coming from a point source from position \(2\) and vice versa.
+This will define the angular size as seen from the ``pointlike'' position 2, \(\dd{\Omega_2 }\).
+ 
 Therefore, the differential solid angle will look like 
 %
 \begin{align}
@@ -154,14 +156,15 @@ P_{\nu } = 4 \pi j_{\nu }
 %
 the radiated power per unit volume and frequency. 
 
-Another useful concept is the emissivity \(\epsilon_{\nu }\): it is the energy added to the radiation field per unit time, frequency and mass in the direction described by \(\dd{\Omega }\). We express the infinitesimal mass as \(\dd{m}\), so that 
+Another useful concept is the emissivity \(\epsilon_{\nu }\): it is the energy added to the radiation field per unit time, frequency and mass in the directions described by the solid angle \(\dd{\Omega }\).
+We express the infinitesimal mass as \(\dd{m} = \rho \dd{V}\), so that in the case of isotropic emission we have
 %
 \begin{align}
 \dd{E} = \epsilon_{\nu } \rho \dd{V} \dd{t} \dd{\nu } \frac{ \dd{\Omega }}{4\pi }
 \,,
 \end{align}
 %
-so that the emissivity and the emission coefficient are connected by 
+so the emissivity \(\epsilon_{\nu }\) and the emission coefficient \(j_{\nu }\) are connected by 
 %
 \begin{align}
 j_{\nu } = \frac{\epsilon_{\nu } \rho }{4 \pi }
@@ -169,7 +172,7 @@ j_{\nu } = \frac{\epsilon_{\nu } \rho }{4 \pi }
 \end{align}
 
 We wish to describe the variation in specific intensity due to this emission. 
-We consider a beam of cross section \(\dd{A}\) going through a length \(\dd{s}\), so that the volume it occupies is \(\dd{V} = \dd{A} \dd{s}\). 
+Let us consider a beam of cross section \(\dd{A}\) going through a length \(\dd{s}\), so that the volume it occupies is \(\dd{V} = \dd{A} \dd{s}\). 
 
 Now, if we compare the definitions of \(j_{\nu }\) and \(I_{\nu }\) we find that they differ by a factor \(\dd{V} / \dd{A} = \dd{s}\), the length of the beam cylinder we defined. 
 
@@ -183,7 +186,7 @@ The difference between the specific intensities at the start and end of the cyli
 \subsection{Absorption}
 
 Absorption is described by a coefficient \(\alpha_{\nu }>0\), which is dimensionally an inverse length. 
-The absorption law which defined the coefficient gives the decrease in radiative intensity for radiation of intensity \(I_{\nu }\) crossing an absorbing medium of length \(\dd{s}\):
+The absorption law which defines the coefficient gives the decrease in radiative intensity for radiation of intensity \(I_{\nu }\) crossing an absorbing medium of length \(\dd{s}\):
 %
 \begin{align}
 \dd{I_{\nu }} =- \alpha_{\nu } I_{\nu } \dd{s}
@@ -201,7 +204,7 @@ The energy contained in photons in this cross sectional area will be lost: the e
 \begin{align}
 - \dd{I_{\nu }} \dd{A} \dd{t} \dd{\Omega} \dd{\nu }
 &=  I_{\nu } \qty(\sigma_{\nu } n \dd{A} \dd{s}) \dd{t} \dd{\Omega } \dd{\nu }  \\
-- \dd{I_{\nu }} &= - n \sigma_{\nu } I_{\nu } \dd{s}
+\dd{I_{\nu }} &= - n \sigma_{\nu } I_{\nu } \dd{s}
 \,,
 \end{align}
 \end{subequations}
@@ -218,7 +221,7 @@ so we can see that \(\kappa_{\nu }\) is a cross sectional area per unit mass. It
 
 \paragraph{Conditions for validity}
 
-This holds as long as the inter-absorber distances \(d \sim n^{-1/3}\) are large compared to the linear scale of the cross section \(\sigma_{\nu }^{1/2}\): we ask 
+This line of reasoning holds as long as the inter-absorber distances \(d \sim n^{-1/3}\) are large compared to the linear scale of the cross section \(\sigma_{\nu }^{1/2}\): we ask 
 %
 \begin{align}
 \sigma_{\nu }^{1/2} \ll n^{-1/3}
@@ -237,14 +240,14 @@ We can account for both absorption and emission in a combined equation for the d
 \,,
 \end{align}
 %
-and we can see that in the absence of emission and absorption it is unchanged as we have shown before.
+and we can see that in the absence of emission and absorption \(I_{\nu }\) is unchanged, as we have shown before.
 If \(j_{\nu }\) and \(\alpha_{\nu }\) are known we can integrate this differential equation to find the specific intensity. 
 
 This will \emph{not} be the case when we will include scattering: the scattering term will not just depend on \(I_{\nu }\) but in its integral on the sphere, making this an integro-differential equation. 
 
 \subsubsection{Solutions to the transfer equation in simple cases}
 
-If there is only emission, that is, only \(j_{\nu }\) is nonzero, the intensity increases linearly in \(s\): 
+If there is only emission, that is, only \(j_{\nu }\) is nonzero, the intensity increases (linearly in \(s\) for constant \(j_{\nu }\)): 
 %
 \begin{align}
 \dv{I_{\nu }}{s} = j_{\nu } \implies 
@@ -252,7 +255,7 @@ I_{\nu } = I_{\nu }(0) + \int_{s_0 }^{s} j_{\nu } (\widetilde{s}) \dd{\widetilde
 \,.
 \end{align}
 
-If there is only absorption, that is, only \(\alpha_{\nu }\) is nonzero, then the intensity decreases exponentially in \(s\):
+If there is only absorption, that is, only \(\alpha_{\nu }\) is nonzero, then the intensity decreases (exponentially in \(s\) for constant \(j_{\nu }\)):
 %
 \begin{align}
 \dv{I_{\nu }}{s} = - \alpha_{\nu } I_{\nu } \implies 
@@ -262,7 +265,7 @@ I_{\nu } = I_{\nu }(s_0 ) \exp(- \int_{s_0 }^{s} \alpha_{\nu }(\widetilde{s}) \d
 
 \subsection{Optical depth and source function}
 
-The optical depth \(\tau_{\nu }\) is defined so that it changes by 1 when the intensity of light at frequency \(\nu \) changes \(e\)-fold: its differential is
+The optical depth \(\tau_{\nu }\) is defined so that it increases by 1 when the intensity of light at frequency \(\nu \) decreases \(e\)-fold: its differential is
 %
 \begin{align}
 \dd{\tau_{\nu }} = \alpha_{\nu } \dd{s}
@@ -301,7 +304,7 @@ We can solve this equation by defining \(Y_{\nu } = I_{\nu }e^{\tau_{\nu }}\), w
 \,,
 \end{align}
 %
-so we can multiply the radiative transport equation to get 
+so we can multiply the radiative transport equation by \(e^{\tau_{\nu }}\) to get 
 %
 \begin{subequations}
 \begin{align}
@@ -320,10 +323,10 @@ If \(S_{\nu } \) is a constant, we have the simplified expression
 %
 \begin{align}
 I_{\nu } (\tau_{\nu }) = I_{\nu }(0) e^{-\tau_{\nu }} 
-+ S_{\nu } (\tau_{\nu }) \qty(1 - e^{-\tau_{\nu }})
++ S_{\nu } \qty(1 - e^{-\tau_{\nu }})
 \,,
 \end{align}
 %
-and we can see that for large optical depths the intensity is dictated purely by the source at that point. 
+and we can see that for large optical depths the intensity is dictated purely by the source at that point, since \(1 - e^{-\tau_{\nu }}\) approaches 0 for large \(\tau_{\nu }\). 
 
 \end{document}

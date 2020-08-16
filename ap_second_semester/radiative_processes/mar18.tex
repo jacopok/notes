@@ -23,6 +23,8 @@ B_\nu = \frac{j_\nu}{\alpha_{\nu }} = S_\nu
 \,.
 \end{align}
 
+\subsubsection{Planck function derivation}
+
 What is the explicit expression of the blackbody function \(B_\nu \)? 
 From Bose-Einstein statistics we know that the phase space density of photons in thermal equilibrium is given by 
 %
@@ -33,6 +35,206 @@ From Bose-Einstein statistics we know that the phase space density of photons in
 %
 where the 2 comes from the two polarizations of the photons, \(h^3\) is the size of the phase space cell, while the exponential factor is the occupation number. 
 
-% 9.14, lecture 3
+Now, we would like to write this as a function of frequency, not of the three components of the momentum. The frequency \(\nu \) and the  momentum \(p = \abs{\vec{p}}\) of a photon are connected by \(h \nu = E =  c p \); and the momentum space element \(\dd[3]{p}\) can be written as \(\dd[3]{p} = \dd{\Omega } p^2 \dd{p}\). 
+
+Bringing this to the other side and integrating over the solid angle (since the frequency of the photon does not depend on its direction we can substitute \(\int \dd{\Omega } = 4\pi \)) we can write 
+%
+\begin{align}
+\frac{ \dd{N}}{ \dd[3]{x}} = \frac{8\pi}{c^3} \frac{\nu^2 \dd{\nu }}{
+    \exp( \frac{h \nu }{k_B T}) - 1
+} 
+\,,
+\end{align}
+%
+the \textbf{number density} of photons. 
+From this we can quickly recover the \textbf{energy density} as well, since each photon with frequency \(\nu \) has energy \(h \nu \): therefore 
+%
+\begin{align}
+\frac{ \dd{E}}{ \dd[3]{x}} = \frac{8 \pi }{c^3} \frac{h \nu^3 \dd{\nu }}{\exp( \frac{h \nu }{k_B T}) - 1}
+\,.
+\end{align}
+
+If we want to recover the energy density per unit frequency and per unit solid angle we can divide by \(\dd{\Omega } \dd{\nu }\): this yields 
+%
+\begin{align}
+u_\nu (\Omega ) = \frac{ \dd{E}}{ \dd[3]{x} \dd{\Omega } \dd{\nu }} = \frac{2h}{c^3} \frac{\nu^3}{\exp( \frac{h \nu }{k_B T}) - 1}
+\,,
+\end{align}
+%
+which we have previously shown to be equal to \(u_\nu (\Omega ) = I_\nu / c\): therefore the specific intensity, which corresponds to the Planck function \(B_\nu (T)\), is 
+%
+\begin{align}
+I_\nu = B_\nu (T) =  \frac{2h}{c^2} \frac{\nu^3}{\exp( \frac{h \nu }{k_B T}) - 1}
+\,.
+\end{align}
+
+\subsubsection{Properties of the Planck function}
+
+Let us consider the limits of the Planck function. If the energy of the photon, \(h \nu \), is much lower than the average photon energies \(k_B T\) then we have 
+%
+\begin{align}
+B_\nu (T) 
+= \frac{2h}{c^2} \frac{\nu^3}{\exp( \frac{h \nu }{k_B T}) - 1}
+\approx \frac{2h}{c^2} \frac{\nu^3}{1 + \frac{h \nu }{k_B T} - 1}
+= \frac{2 k_B T}{c^2} \nu^2 
+\,,
+\end{align}
+%
+the \textbf{Rayleigh-Jeans} law. 
+
+On the other hand, if the photon energy \(h \nu \) is much larger than \(k_B T\) we can ignore the \(-1\) in the denominator and just write 
+%
+\begin{align}
+B_\nu (T) \approx \frac{2h \nu^2}{c^2} \exp(- \frac{h \nu }{k_B T})
+\,,
+\end{align}
+%
+the \textbf{Wien law}. 
+The exponential term dominates, so asymptotically the Planckian goes to  zero. 
+
+Since it is a continuously differentiable function which increases at low frequency and decreases at high frequency, it will have a maximum, which we expect to appear somewhere around \(h \nu \approx k_B T\). This is precisely what is described by the \textbf{Wien displacement law}. 
+
+Let us see where this maximum lies if the Planckian is expressed as a function of frequency, as we are doing now. 
+If we define \(x = h \nu / k_B T\), the Planck function is proportional to 
+%
+\begin{align}
+B_\nu (T ) \propto \frac{x^3}{e^{x} - 1}
+\,,
+\end{align}
+%
+so we can find its maximum by seeking the stationary point 
+%
+\begin{align}
+\pdv{B_\nu }{\nu } \propto \pdv{B_\nu }{x} = 0
+\,. 
+\end{align}
+
+The derivative reads 
+%
+\begin{align}
+\pdv{B_\nu }{x} \propto \frac{3 x^2 (e^{x}-1) - x^3 e^{x}}{\qty(e^{x} - 1)^2}
+\propto e^{x} (3 - x) - 3 
+\overset{!}{=} 0
+\,.
+\end{align}
+
+This can also be expressed as \(x = 3 (1 - e^{-x})\) as well. 
+It is a transcendental equation: there is no closed-form solution, however we can easily approximate it numerically. 
+The maximum is found to be approximately \(x = \num{2.82}\), which means that the maximum is attained at the frequency 
+%
+\begin{align}
+\nu \approx \num{2.82} \frac{k_B T}{h}
+\,.
+\end{align}
+
+The fact that the peak of the curve depends linearly on \(T\) is precisely the statement of the Wien displacement law. 
+
+Another interesting question to ask is about how \(B_\nu \) varies with \(T\): its partial derivative reads 
+%
+\begin{align}
+\pdv{B_\nu }{T} = \frac{2 h^2 \nu^4}{k_B T^2 c^2} \frac{e^{h \nu  / k_B T}}{\qty(\exp(\frac{h \nu }{k_B T}) -1)^2} > 0
+\,,
+\end{align}
+%
+so it is positive for any value of \(\nu \). 
+It will be clearer with a picture, however we can say that this increase with \(T\) is much faster for \(h \nu < k_B T\) than it is for \(h \nu > k_B T\). 
+
+The specific energy density is found from \(u_\nu = I_\nu / c\) and integrating over the solid angles (so, multiplying by \(4 \pi \)), so we have 
+%
+\begin{align}
+u_\nu (T) = \frac{4 \pi }{c} B_\nu 
+\,,
+\end{align}
+%
+and if we want to compute the total energy density we will have 
+%
+\begin{align}
+u &= \int_{0}^{ \infty } u_\nu (T) \dd{\nu } = \frac{4\pi}{c} \frac{2h}{c^2} \int_{0}^{\infty } \frac{\nu^3}{\exp( \frac{h\nu}{k_B T} ) -1 } \dd{\nu }  \\
+&= \frac{8 \pi h}{c^3} \frac{k_B^4 T^{4}}{h^{4}} \int_{0}^{\infty } \frac{x^3}{e^{x} -1} \dd{x}
+\,,
+\end{align}
+%
+where, as before, \(x = h \nu / k_B T\). This already shows the main result: \(u \propto T^{4}\), however to get a closed form expression we need to solve the integral as well.
+This integral is of the type
+%
+\begin{align}
+\int_{0}^{\infty } \frac{x^{n}}{e^{x} -1} \dd{x}   = n! \zeta (n+1)
+\,,
+\end{align}
+%
+which we need to evaluate for \(n = 3\). The Riemann zeta function fortunately has a closed form for even integers, in our case \(\zeta (4) = \pi^{4} / 90\), which we multiply by \(3! = 6\). This yields 
+%
+\begin{align}
+u = \frac{8 \pi h}{c^3} \frac{k_B^4 T^{4}}{h^{4}} \frac{\pi^{4}}{15}
+= \frac{8 \pi^{5}k_B^{4}}{15 c^3 h^3} T^{4} = aT^{4}
+\,,
+\end{align}
+%
+where the constant \(a \approx \SI{7.57e-16}{kg K^{-4} m^{-1} s^{-2}}\) is called the \textbf{blackbody constant}. 
+
+Now, we discuss the \textbf{flux} of the radiation field. If we choose a surface and measure the flux across it, our assumption of isotropy means that we will always find zero; however it is interesting to measure the \emph{outgoing} flux from an oriented surface, counting only the photons going through it in one direction. 
+
+\todo[inline]{I understand that this gives a factor 1/2, but why should it correspond to integrating over half the solid angle, except by isotropy? The half-sphere does not seem to me to have physical meaning\dots}
+
+The flux we can compute is then: 
+%
+\begin{align}
+F &= \frac{1}{2}  \int \dd{\Omega } \dd{\nu } B_\nu \cos \theta 
+= \frac{2 \pi }{2} \int_{0}^{\pi } \dd{\theta } \cos \theta \sin \theta \int_{0}^{\infty } \dd{\nu } B_\nu   \\
+&= \pi \underbrace{\int_{-1}^{1} \mu \dd{\mu }}_{=1} \underbrace{\int_{0}^{\infty } B_\nu \dd{\nu }}_{= u c / (4 \pi )} = \frac{uc}{4}
+ \\
+&= \frac{2 \pi^{5} k_B^{4}}{15 c^2h^3} T^{4}
+= \sigma T^{4}
+\,,
+\end{align}
+%
+where \(\sigma \) is called the \textbf{Stefan-Boltzmann constant}, which is related to \(a\) by \(\sigma = ca / 4\). 
+
+\subsection{Scattering}
+
+This is the third process which can affect the radiation field, besides absorption and emission. 
+In the astrophysical context, we will only need to concern ourselves with scattering by \emph{free electrons}. 
+
+When modelling absorption, we had the true absorption coefficient \(\alpha_{\nu } = n \sigma_{\nu }\), where \(\sigma_{\nu }\) was the cross section of the individual absorber. 
+We can model scattering in the same way: we can introduce a ``scattering absorption coefficient'' \(\alpha_{\nu}^{(s)}\), which differs from the true one in that in absorption photons are not destroyed but merely deflected. 
+
+However, from the point of view of the beam in a specific direction they disappear, as if they were absorbed. 
+We will then also have to consider the inverse phenomenon: photons coming into the beam we are considering from another. 
+This can be modelled as a ``scattering emission''. 
+
+We express the amount of photons lost from our beam as 
+%
+\begin{align}
+\int \alpha^{(s)}_{\nu } I_\nu \dd{\Omega }
+\,.
+\end{align}
+
+Let us make a simplifying assumption: that the scattering is \textbf{isotropic}, the scattered photon has an equal probability to go in any direction. Also, let us assume that the frequency \(\nu \) of the photon does not change upon scattering. 
+We will see that both of these conditions are satisfied for Thompson scattering but not in the general situation. 
+
+Then, we are left with \(\alpha_{\nu }^{(s)} \int I_\nu \dd{\Omega } = 4 \pi \alpha_{\nu }^{(s)} J_\nu \). 
+
+This is in any direction, while the radiation scattered in the unit solid angle will be 
+%
+\begin{align}
+j_{\nu }^{(s)} = \alpha_{\nu }^{(s)} J_\nu 
+\,.
+\end{align}
+
+In general, since we do not have either conservation of photon frequency nor isotropy we will need to write a differential scattering cross section like 
+%
+\begin{align}
+\frac{ \dd{\sigma }}{ \dd{\nu } \dd{\Omega } \dd{\nu}' \dd{\Omega }'}
+\,,
+\end{align}
+%
+while the full expression for the radiation scattered in a specific direction \(\Omega \) at a frequency \(\nu \) will read 
+%
+\begin{align}
+j_\nu^{(s)} = \int \dd{\Omega}' n \frac{ \dd{\sigma }}{ \dd{\nu } \dd{\Omega } \dd{\nu}' \dd{\Omega }'} I_{\nu'} (\Omega') \dd{\nu }
+\,. 
+\end{align}
+
+This is called the \textbf{scattering kernel}. 
 
 \end{document}

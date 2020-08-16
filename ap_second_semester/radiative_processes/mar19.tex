@@ -1,4 +1,90 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{The transfer equation for scattering}
+
+\marginpar{Sunday\\ 2020-8-16, \\ compiled \\ \today}
+
+If we only account for true emission and absorption the transfer equation looks like 
+%
+\begin{align}
+\dv{I_\nu }{s} = - \alpha_{\nu } I_\nu + j_\nu 
+\,.
+\end{align}
+
+For isotropic and conservative scattering we can modify this equation by adding on the scattering absorption and emission terms: 
+%
+\begin{align}
+\dv{I_\nu }{s} = - (\alpha_{\nu } + \alpha_{\nu }^{(s)}) I_\nu + j_\nu + \alpha_{\nu }^{(s)} J_\nu 
+\,.
+\end{align}
+
+Now we cannot give a formal solution anymore: the derivative of the intensity now depends not only on the intensity itself but on its average over all solid angles, \(J_\nu  = \expval{I_\nu }_{\Omega }\).
+This will typically pose a problem: scattering is often the dominant phenomenon in radiative transfer for astrophysical systems. 
+
+In order to solve the equation we can resort to numerical methods: for example we can use an iterative relaxation procedure in which we start off by computing the solution without scattering, calculate the mean intensity and plug it as a fixed value into the next iteration, and keep going. 
+
+We can write the transfer equation as 
+%
+\begin{align}
+\dv{I_\nu }{ s} 
+= (\alpha_{\nu } + \alpha_{\nu }^{(s)}) 
+\qty(- I_\nu + \frac{j_\nu + \alpha_{\nu }^{(s)} J_\nu }{\alpha_{\nu } + \alpha_{\nu }^{(s)}}) 
+= (\alpha_{\nu } + \alpha_{\nu }^{(s)}) 
+\qty(-I_\nu  + S_\nu )
+\,,
+\end{align}
+%
+where we define a new form for the source function: 
+%
+\begin{align}
+S_\nu = \frac{j_\nu + \alpha_{\nu }^{(s)} J_\nu }{\alpha_{\nu } + \alpha_{\nu }^{(s)}}  
+\,,
+\end{align}
+%
+where, as long as Kirkhoff's law holds, we can substitute \(j_\nu = \alpha_{\nu } B_\nu \). 
+
+The optical depth is derived from the \emph{total} absorption coefficient: 
+%
+\begin{align}
+\dd{\tau_{\nu }} = (\alpha_{\nu } + \alpha_{\nu }^{(s)}) \dd{s}
+\,.
+\end{align}
+
+With these definitions, we can write the transfer equation like before, 
+%
+\begin{align}
+\dv{I_\nu }{\tau_{\nu }} = - I_\nu + S_\nu 
+\,.
+\end{align}
+
+If there is scattering this is only apparently simple, the formulation only hides the complexity. 
+
+\subsection{Mean free path}
+
+We defined absorption as \(\alpha_{\nu } = n \sigma_{\nu }\): this is just the inverse of the mean free path, so we have (for true absorption):
+%
+\begin{align}
+\ell_{\nu } = \frac{1}{\alpha_{\nu }}
+\,,
+\end{align}
+%
+and we can define a mean free path for scattering in the exact same way, with \(\alpha_{\nu }^{(s)}\). 
+These will be the mean free paths of a photon before it undergoes that specific process, if we want to compute the mean free path of a photon before it undergoes \emph{either one} then we can just take the inverse of \(\alpha_{\nu } + \alpha_{\nu }^{(s)}\), the total absorption coefficient. 
+
+Now, consider a medium with scattering, emission and absorption. 
+Typically, a photon will be emitted, scatter a few times, and then be absorbed. Let us say that between emission and absorption it is scattered \(N\) times, and let us call the spatial intervals it travels between these scatterings \(\vec{r}_i\), where \(i\) goes from 1 to \(N\). 
+The total distance travelled will look like \(\vec{R} = \sum _{i} \vec{r}_i\). 
+
+The average of its square value will be 
+%
+\begin{align}
+\expval{R^2} = \sum _{ij} \expval{\vec{r}_i \vec{r}_j}
+= \sum _{i} \expval{r_i^2} + 2 \sum _{i<j} \expval{\vec{r}_i \vec{r}_j}
+\,.
+\end{align}
+
+The mixed averages evaluate to zero, since they are independent; on the other hand each of the \(\expval{r_i^2}\) is equal to \(\ell_\nu^2\). 
+This means that we have \(\expval{R^2} = N \ell_\nu^2\). 
+
 \end{document}

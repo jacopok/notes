@@ -6,7 +6,7 @@ They are divided by semester and class: the current semester folder is `ap_secon
 * [Theoretical physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP7081638/N0): reviewed notes, some exercises are missing but on the whole they should be quite complete;
 * [Theoretical cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086384/N0): yet to review notes;
 * [Astroparticle physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081703/N0): reviewed notes, but they are not of great quality;
-* [Radiative processes in astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086347/N0): yet to review notes;
+* [Radiative processes in astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086347/N0): currently reviewing notes;
 * Gravitational Wave Astrophysics: yet to review notes;
 * possibly [Multimessenger astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081762/N0): probably will not give that exam.
 

@@ -37,7 +37,7 @@ We can write the transfer equation as
 %
 where we define a new form for the source function: 
 %
-\begin{align}
+\begin{align} \label{eq:source-function-with-scattering}
 S_\nu = \frac{j_\nu + \alpha_{\nu }^{(s)} J_\nu }{\alpha_{\nu } + \alpha_{\nu }^{(s)}}  
 \,,
 \end{align}
@@ -245,14 +245,258 @@ I_{\nu }^{(1)} (z, \mu ) = B_\nu - \frac{\mu }{\alpha_{\nu } + \alpha_{\nu }^{(s
 An important thing to note is the linear relation between \(I_\nu \) and the cosine \(\mu \) of the angle. 
 
 With this first-order result we can compute the flux: if we were to use the zeroth-order one we would get zero, since blackbody radiation is isotropic. 
-The flux is given by the integral over the solid angle: 
+The flux is given by the integral over the solid angle: the contribution to the integral due to the \(B_\nu \) term vanishes, since it is isotropic
 %
 \begin{align}
-F_{\nu }(z) = \int I_\nu^{(1)} (z, \mu ) \mu \dd{\Omega }
-= 2 \pi \int \dd{\theta } I_\nu^{(1)} (z, \mu ) \cos \theta \sin \theta 
+F_{\nu }(z) &= \int I_\nu^{(1)} (z, \mu ) \mu \dd{\Omega }
+= 2 \pi \int_0^{\pi } I_\nu^{(1)} (z, \mu ) \cos \theta \sin \theta \dd{\theta }  \\
+&= - \frac{2 \pi }{\alpha_{\nu } + \alpha_{\nu }^{(s)}} \pdv{B_\nu }{z} 
+\underbrace{\int_{1}^{-1}  \mu^2  (-1) \dd{\mu }}_{= 2/3}  \\
+&= - \frac{4 \pi }{3 (\alpha_{\nu } + \alpha_{\nu }^{(s)})} \pdv{B_\nu }{z}  \\
+&= - \frac{4 \pi }{3 (\alpha_{\nu } + \alpha_{\nu }^{(s)})} \pdv{B_\nu }{T} \dv{T}{z} 
 \,,
 \end{align}
 %
+where we used the fact that the spatial dependence of the \(B_\nu \) only comes through the temperature \(T(z)\). This is useful since, while the derivative of \(B_\nu \) is frequency-dependent, the derivative of the temperature is not: therefore it can be factored out. 
 
+The total flux is given by 
+%
+\begin{align}
+F &= \int_{0}^{\infty } F_\nu \dd{\nu } = 
+- \frac{4 \pi }{3} \dv{T}{z} \int_0^{\infty } \frac{1}{\alpha_{\nu } + \alpha_{\nu}^{(s)}} \pdv{B_\nu }{T} \dd{\nu }  \\
+&= - \frac{4 \pi }{3} \dv{T}{z}
+\frac{\int_0^{\infty } \frac{1}{\alpha_{\nu } + \alpha_{\nu}^{(s)}} \pdv{B_\nu }{T} \dd{\nu }}{
+\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }
+}
+\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }
+\,,
+\end{align}
+%
+which is the \textbf{average value} of the function \(1 / (\alpha_{\nu }+ \alpha_{\nu }^{(s)})\) weighted by the \emph{known} function \(\pdv*{B_\nu }{T}\); the integral at the numerator can be explicitly evaluated: 
+%
+\begin{align}
+\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }
+= \pdv{}{T} \int_{0}^{\infty} B_\nu \dd{\nu }
+= \pdv{}{T} \qty( \frac{\sigma}{\pi } T^{4}) 
+= \frac{4 \sigma }{\pi } T^3
+\,,
+\end{align}
+%
+which means that the final expression is 
+%
+\begin{align}
+F = - \frac{4 \pi }{3} \frac{4 \sigma T^3}{\pi } \dv{T}{z}  
+\frac{\int_0^{\infty } \frac{1}{\alpha_{\nu } + \alpha_{\nu}^{(s)}} \pdv{B_\nu }{T} \dd{\nu }}{
+\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }
+}
+\,,
+\end{align}
+%
+which we can better understand by defining the \textbf{Rosseland mean opacity} 
+%
+\begin{align}
+\frac{1}{\alpha_{R}} = \frac{\int_0^{\infty } \frac{1}{\alpha_{\nu } + \alpha_{\nu}^{(s)}} \pdv{B_\nu }{T} \dd{\nu }}{
+\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }
+}
+\,,
+\end{align}
+%
+so that the expression reads 
+%
+\begin{align}
+F = - \frac{16}{3} \frac{\sigma T^3}{\alpha_{R}} \dv{T}{z}
+\,.
+\end{align}
+
+This is called the \textbf{Rosseland approximation}. The result is that we can find a net photon flux which is driven by the temperature gradient. 
+This has many applications, for example in stellar astrophysics. 
+
+This equation is very similar to the heat flux equation in one dimension: 
+%
+\begin{align}
+q = - k \pdv{T}{z}
+\,,
+\end{align}
+%
+which in our case has the constant (thermal conductivity) 
+%
+\begin{align}
+k = \frac{16}{3} \frac{\sigma T^3}{\alpha_{R}}
+\,.
+\end{align}
+
+We have assumed that the medium is optically thick, but we can see that if it becomes very optically thick then the photons have a hard time escaping (\(k\) becomes small). 
+
+\section{The Eddington approximation}
+
+In the Rosseland approximation we found the result 
+%
+\begin{align}
+I_\nu = B_\nu (T) + \mu \times \text{stuff} 
+\,,
+\end{align}
+%
+where the ``stuff'' is small. We then expanded in this parameter; without it we are in a perfectly isotropic condition, so we can say that we are ``expanding around isotropy''. 
+
+The idea behind the Eddington approximation is similar: we assume that the intensity can be written as 
+%
+\begin{align}
+I_\nu (\tau ) = a_\nu (\tau ) + b_\nu (\tau ) \mu  
+\,,
+\end{align}
+%
+so as before the angular dependence is linear. 
+
+Let us compute the moments of the specific intensity: the zeroth moment is the mean intensity, 
+%
+\begin{align}
+J_\nu = \frac{1}{4 \pi } \int I_\nu \dd{\Omega } 
+= \frac{2 \pi }{4 \pi } \int_{-1}^{1} (a_\nu + b_\nu \mu) \dd{\mu }
+= a_\nu 
+\,,
+\end{align}
+%
+while the first moment is equal to 
+%
+\begin{align}
+H_\nu = \frac{1}{4 \pi } \int I_\nu \mu \dd{\Omega }
+= \frac{2 \pi }{4 \pi } \int_{-1}^{1} \qty(a_\nu \mu + b_\nu \mu^2) \dd{\mu } = \frac{1}{2} \frac{2}{3} b_\nu = \frac{b_\nu }{3}
+\,.
+\end{align}
+
+The second moment is
+%
+\begin{align}
+K_\nu = \frac{1}{4 \pi } \int I_\nu \mu^2 \dd{\Omega } = \frac{a_\nu }{3}
+= \frac{1}{3} J_\nu 
+\,.
+\end{align}
+
+The fact that the second moment of the intensity  is related to the zeroth one as \(K_\nu = J_\nu / 3\) is precisely what the Eddington approximation asks. 
+
+The plane-parallel radiative transport equation can be written as  
+%
+\begin{align}
+\mu \pdv{I_\nu }{\tau } = I_\nu - S_\nu 
+\,,
+\end{align}
+%
+since \(\dd{\tau } = -(\alpha_{\nu } + \alpha_{\nu }^{(s)}) \dd{s}\) and \(\dd{z} = \mu \dd{s}\). 
+
+\todo[inline]{Why is the optical depth defined with a negative sign here? It is the same in RL \cite[eq.\ 1.115]{rybickiRadiativeProcessesAstrophysics1979}. Is this to be interpreted as the optical depth towards a far-away observer, positioned at large \(z\)?}
+
+In this equation, the source function \(S_\nu \) is assumed to be isotropic. So, if we average over the solid angle (or equivalently in \(\dd{\mu } / 2\)) we get  
+%
+\begin{align}
+\frac{1}{2}\int_{-1}^{1} \mu \pdv{I_\nu }{\tau } \dd{\mu } &= \frac{1}{2}\int_{-1}^{1} I_\nu \dd{\mu }
+- \frac{1}{2}\int_{-1}^{1} S_\nu \dd{\mu } \\
+\pdv{}{\tau } H_\nu  &= J_\nu - S_\nu 
+\,.
+\end{align}
+
+We can also take the first moment of the same equation by multiplying the equation by \(\mu \) before integrating: this yields 
+%
+\begin{align}
+\frac{1}{2}\int_{-1}^{1} \mu^2 \pdv{I_\nu }{\tau } \dd{\mu } &= \frac{1}{2}\int_{-1}^{1} I_\nu \mu  \dd{\mu }
+- \underbrace{\frac{1}{2}\int_{-1}^{1} S_\nu \mu \dd{\mu }}_{= 0 }  \\
+\pdv{K_\nu }{\tau } &= H_\nu 
+\,.
+\end{align}
+
+However, recall that in the Eddington approximation we have \(K_\nu = J_\nu / 3\): this means that we have the system of coupled differential equations 
+%
+\begin{align}
+\pdv{H_\nu }{\tau } = J_\nu - S_\nu 
+\qquad \text{and} \qquad
+\frac{1}{3} \pdv{J_\nu }{\tau } = H_\nu  
+\,,
+\end{align}
+%
+which we can combine into one second order equation by differentiating the second: this yields 
+%
+\begin{align}
+\frac{1}{3}\pdv[2]{J_\nu }{\tau } = J_\nu - S_\nu 
+\,.
+\end{align}
+
+Now, the source function can be decomposed in a part depending on \(J_\nu \) and a part depending on \(B_\nu \) according to the single scattering albedo \(\epsilon_{\nu }\) (see equation \eqref{eq:source-function-with-scattering}): 
+%
+\begin{align}
+S_\nu = \epsilon_{\nu } B_\nu + (1 - \epsilon_{\nu }) J_\nu 
+\,.
+\end{align}
+
+Substituting this in a term simplifies and we finally find 
+%
+\boxalign{
+\begin{align}
+\frac{1}{3} \pdv[2]{J_\nu }{\tau } = \epsilon_{\nu } \qty(J_\nu - B_\nu )
+\,,
+\end{align}}
+%
+the \textbf{radiative diffusion equation}. 
+This can be solved relatively simply; however it does not give us the whole intensity, instead we can only find its mean value \(J_\nu \). 
+
+If we can calculate \(S_\nu \) using this equation, then we can plug what we have found into the radiative transfer equation 
+%
+\begin{align}
+\mu \pdv{I_\nu }{\tau } = I_\nu - S_\nu 
+\,.
+\end{align}
+
+Now that we have discussed the differential equations at length, let us consider for a moment the \textbf{boundary conditions} we need to impose. 
+
+A possible way to approach the problem is called the \emph{two stream approximation}: we assume that radiation is only travelling along two angles, whose cosines are \(\mu = \pm 1/ \sqrt{3}\), so \(\theta = \pm \SI{55}{\degree}\). 
+This choice is less arbitrary than it may seem, there is good reason to suppose that in certain condition this is indeed the angle at which radiation will travel. This will be discussed later. 
+
+Let us introduce the quantities 
+%
+\begin{align}
+I_\nu^{\pm} (\tau ) = I_\nu (\tau , \pm \frac{1}{\sqrt{3}})
+\,.
+\end{align}
+
+Then, the average intensity will be given by their average: 
+%
+\begin{align}
+J_\nu = \frac{I_\nu^{+} + I_\nu^{-}}{2}
+\,.
+\end{align}
+%
+The further moments can also be computed: they will be 
+%
+\begin{align}
+H_\nu = \frac{1}{2 \sqrt{3}} \qty(I_\nu^{+} + I_\nu^{-})
+\qquad \text{and} \qquad
+K_\nu = \frac{I_\nu^{+} + I_\nu^{-}}{6}
+\,,
+\end{align}
+%
+consistently with the Eddington approximation. Note that, if we want to use a two-stream approximation, the only way for Eddington to hold is to use the values of \(\mu = \pm 1/\sqrt{3}\). 
+
+The explicit expressions of the moments allow us to recover the \(I_\nu^{\pm}\) as 
+%
+\begin{align}
+I_\nu^{+} &= J_\nu + \sqrt{3} H_\nu = J_\nu + \frac{1}{\sqrt{3}} \pdv{J_\nu }{\tau } \\
+I_\nu^{+} &= J_\nu - \sqrt{3} H_\nu = J_\nu - \frac{1}{\sqrt{3}} \pdv{J_\nu }{\tau }
+\,.
+\end{align}
+
+Now, let us fix an example for concreteness: a ``slab'' (like, for instance, a stellar atmosphere) extending from \(\tau_0\) to \(\tau =0\). 
+The point at \(\tau = 0\) is the top of the atmosphere: so, we want to impose the absence of incoming radiation there (supposing that there are no other nearby stars to influence the process): this is implemented as \(I_\nu^{-} (\tau = 0) = 0\). 
+This is called the \emph{non-illuminated atmosphere} condition. 
+
+Also suppose that there is no radiation coming into the bottom of the slab: \(I_\nu^{+} (\tau_0 ) = 0\). 
+
+This means that 
+%
+\begin{align}
+\eval{J_\nu + \frac{1}{\sqrt{3}} \pdv{J_\nu }{\tau }}_{\tau_0 } = 0
+\qquad \text{and} \qquad
+\eval{J_\nu - \frac{1}{\sqrt{3}} \pdv{J_\nu }{\tau }}_{0} = 0
+\,. 
+\end{align}
+
+With these boundary conditions, one can solve the equation numerically.
 
 \end{document}

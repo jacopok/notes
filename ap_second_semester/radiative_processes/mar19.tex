@@ -84,7 +84,175 @@ The average of its square value will be
 \,.
 \end{align}
 
-The mixed averages evaluate to zero, since they are independent; on the other hand each of the \(\expval{r_i^2}\) is equal to \(\ell_\nu^2\). 
-This means that we have \(\expval{R^2} = N \ell_\nu^2\). 
+The mixed averages \(\expval{r_i r_j}\) evaluate to zero, since each scattering is isotropic and independent; on the other hand each of the \(\expval{r_i^2}\) is equal to \(\ell_\nu^2\), the square of the mean free path. 
+This means that we have \(\expval{R^2} = N \ell_\nu^2\), meaning that the average distance occurring between each scattering is given by \(\ell_{*} = \sqrt{N} \ell_{\nu }\). 
+
+Now, let us suppose that the photon is being scattered in a medium whose characteristic length is \(L\). Then typically a photon will need to be scattered \(N\) times before escaping the medium, where \(L = \sqrt{N} \ell_{\nu }\). 
+This means that 
+%
+\begin{align}
+\sqrt{N} = \frac{L}{\ell_{\nu }} = \alpha_{\nu } L \sim \tau_{\nu }
+\,,
+\end{align}
+%
+where the last order-of-magnitude relation comes from the fact that the \emph{differential} of the optical path is given by \(\dd{\tau }_{\nu } = \alpha_{\nu } \dd{s}\). 
+
+This means that, at least in terms of order of magnitude, \(N \sim \tau_{\nu }^2\). This holds as long as the medium is optically thick, that it, \(\tau_{\nu }\) is larger (ideally much larger) than 1. 
+
+What happens instead if the medium is optically thin, with \(\tau_{\nu } < 1\)? 
+Then, we can neglect emission and scattering emission, and only consider scattering absorption. Then, the transfer equation will read 
+%
+\begin{align}
+\dv{I_\nu }{\tau_{\nu }} = - I_\nu 
+\,,
+\end{align}
+%
+which is solved by \(I_\nu = I_\nu (0) e^{-\tau_{\nu }}\). 
+This can also be written, by adding \(I_\nu (0)\) to both sides, as 
+%
+\begin{align}
+I_\nu (0 ) - I_\nu  &= I_\nu (0) \qty(1 - e^{-\tau_{\nu }}) \\
+\frac{I_\nu (0) - I_\nu }{I_\nu } &= 1 - e^{-\tau_{\nu }} \approx \tau_{\nu }
+\,.
+\end{align}
+
+Now, the average number of scatterings will be less than 1 and will correspond to the average relative intensity lost, \(N = \Delta I_\nu / I_\nu (0)\). Therefore, in this case we will have \(N \sim \tau_{\nu }\). 
+
+Putting together these two limiting cases, we can roughly say that we will have 
+%
+\begin{align}
+N \approx \max \qty(\tau_{\nu },  \tau_{\nu }^2)
+\,.
+\end{align}
+
+After a mean free path the photon can be either scattered or absorbed. 
+The probability that it is absorbed as opposed to being scattered is given by 
+%
+\begin{align}
+\epsilon_{\nu } = \frac{\alpha_{\nu }}{\alpha_{\nu } + \alpha_{\nu }^{(s)}}
+\,,
+\end{align}
+%
+while the probability that it is scattered is \(1 - \epsilon_{\nu }\), and this last quantity is typically called the \textbf{single scattering albedo}.
+
+The average number of mean free paths travelled before absorption will be\footnote{This can be shown using the identity 
+%
+\begin{align}
+\sum _{i=1}^{\infty } i p^{i-1} = \frac{1}{(1-p)^2}
+\,,
+\end{align}
+%
+which can be proven by differentiating the geometric series and bringing the derivative into the sum, which converges absolutely. 
+
+Then, we can compute the average number of scatterings as 
+%
+\begin{align}
+\expval{N} = \sum _{i=1}^{\infty } \epsilon_{\nu } i (1 - \epsilon_{\nu })^{i-1} = \frac{\epsilon_{\nu }}{(1 - (1 - \epsilon_{\nu }))^2} = \frac{1}{\epsilon_{\nu }}
+\,.
+\end{align}} 
+%
+\begin{align}
+N = \frac{1}{\epsilon_{\nu }}
+\,,
+\end{align}
+%
+so we can make the following manipulation to find an explicit expression for the mean path between emission and absorption: 
+%
+\begin{align}
+\ell_{*} = N \ell_{\nu }^2 = \frac{\ell_{\nu }^2}{\epsilon_{\nu }}
+= \frac{1}{(\alpha_{\nu } + \alpha_{\nu }^{(s)} )^2} \frac{\alpha_{\nu }+ \alpha_{\nu }^{(s)}}{\alpha_{\nu }} 
+= \frac{1}{\alpha_{\nu } (\alpha_{\nu } + \alpha_{\nu }^{(s)})}
+\,.
+\end{align}
+
+This means that 
+%
+\begin{align}
+\ell_{*} = \frac{1}{\sqrt{\alpha_{\nu } (\alpha_{\nu } + \alpha_{\nu }^{(s)})}}
+\,.
+\end{align}
+
+Now we make use again of the order-of-magnitude relation \(\tau \sim \alpha L\) where \(L\) is the length scale of the medium; if we multiply \(L\) by \(1 / \ell_{*}\), the effective absorption coefficient, we get 
+%
+\begin{align}
+\tau \sim \frac{L}{\ell_{*}} = \sqrt{L^2 \alpha_{\nu } (\alpha_{\nu } + \alpha_{\nu }^{(s)})} = \sqrt{\tau_{\nu } (\tau_{\nu } + \tau_{\nu }^{(s)})}
+\,,
+\end{align}
+%
+which is larger than \(\tau_{\nu }\) alone would be. This is called the \textbf{effective optical depth}; the fact that this is larger than \(\tau_{\nu }\) means that scattering traps the photon in the region for a longer time than it would remain there with absorption alone. 
+
+\section{Radiative diffusion}
+
+This is a way to approximately solve the radiative transfer equation under certain assumptions, the main one being that the medium should be very \textbf{optically thick}.
+
+Another assumption we will make is the \textbf{plane-parallel} approximation: this means that the properties of the medium only vary with respect to one coordinate, which we will call \(z\). 
+We will further assume that the properties of the radiation also only vary along \(z\). 
+
+Now, this is about the \emph{spatial} dependence of the quantities, however certain ones like the radiation intensity \(I_\nu \) are also intrinsically vectors, so they also depend on the direction. 
+However, we will have cylindrical symmetry for rotations around the \(z\) axis: therefore, the intensity will be a function of \(z\) and of the angle \(\theta \) between the ray and the \(z\) axis. 
+
+The differential length travelled by the ray can be expressed in terms of the distance travelled along the \(z\) axis as
+%
+\begin{align}
+\dd{s} = \frac{ \dd{z}}{\cos \theta } = \frac{ \dd{z}}{\mu }
+\,,
+\end{align}
+%
+where we define the usual shorthand, \(\mu  = \cos \theta \).
+
+The radiative transfer equation reads 
+%
+\begin{align}
+\dv{I_\nu }{s} = \qty(- I_\nu + S_\nu ) \qty(\alpha_{\nu } + \alpha_{\nu }^{(s)})
+\,,
+\end{align}
+%
+where we can substitute 
+%
+\begin{align}
+\dv{I_\nu }{s} = \mu \pdv{I_\nu }{z}
+\,,
+\end{align}
+%
+and using this we can express the radiative transfer equation like 
+%
+\begin{align}
+I_\nu (z, \mu ) = S_\nu - \frac{1}{\alpha_{\nu } + \alpha_{\nu }^{(s)}}
+\mu \pdv{I_\nu }{z}
+\,.
+\end{align}
+
+Now we make use of the assumption that the optical depth is large. This means that \(\tau \sim (\alpha_{\nu }+ \alpha_{\nu }^{(s)}) \ell\) is large, where \(\ell\) is the characteristic scale of the system. 
+
+\todo[inline]{Should we not say explicitly that, besides being optically thick, the medium's thickness should be ``slowly varying''?}
+
+This means that the term proportional to \(\pdv*{I_\nu }{z}\) is small compared to the source function, so we can apply perturbation theory. 
+
+To zeroth order, assuming thermal equilibrium, we will have 
+%
+\begin{align}
+I_\nu^{(0)} \approx S_\nu^{(0)} = B_\nu (T)
+\,.
+\end{align}
+
+Then, the first-order approximation can be found by inserting the zeroth-order expression into the equation: 
+%
+\begin{align}
+I_{\nu }^{(1)} (z, \mu ) = B_\nu - \frac{\mu }{\alpha_{\nu } + \alpha_{\nu }^{(s)}} \pdv{B_\nu }{z} 
+\,.
+\end{align}
+
+An important thing to note is the linear relation between \(I_\nu \) and the cosine \(\mu \) of the angle. 
+
+With this first-order result we can compute the flux: if we were to use the zeroth-order one we would get zero, since blackbody radiation is isotropic. 
+The flux is given by the integral over the solid angle: 
+%
+\begin{align}
+F_{\nu }(z) = \int I_\nu^{(1)} (z, \mu ) \mu \dd{\Omega }
+= 2 \pi \int \dd{\theta } I_\nu^{(1)} (z, \mu ) \cos \theta \sin \theta 
+\,,
+\end{align}
+%
+
 
 \end{document}

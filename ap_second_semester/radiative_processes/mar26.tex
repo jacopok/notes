@@ -1,4 +1,78 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-8-18, \\ compiled \\ \today}
+
+Let us go into some more details regarding how the radiation field looks. 
+Let us suppose that the angle between the acceleration \(\dot{\vec{u}}\) and the observation unit vector \(\vec{n}\) is \(\Theta \): then the absolute value of the electric field and magnetic fields will be 
+%
+\begin{align}
+E_r = \frac{q}{Rc^2} \dot{u} \sin \Theta = B_r
+\,.
+\end{align}
+
+\(\vec{E}\) and \(\vec{B}\) are orthogonal, so the magnitude of the Poynting vector will be 
+%
+\begin{align}
+\abs{\vec{S}} = \frac{c}{4 \pi } \abs{\vec{E} \times \vec{B}} =
+\frac{c}{4 \pi } E_r^2 = \frac{q^2}{4 \pi c^3 R^2} \dot{u}^2 \sin^2 \Theta 
+\,,
+\end{align}
+%
+which, as is expected, decays like \(R^{-2}\), since it is the power radiated per unit area. If we instead want the power radiated per unit solid angle then we must use \(\dd{A} = R^2 \dd{\Omega }\): 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\Omega }} = SR^2 = \frac{q^2}{4 \pi c^3} \dot{u}^2 \sin^2 \Theta 
+\,.
+\end{align}
+
+Integrating this over the solid angle allows us to calculate the total power emitted: 
+%
+\begin{align}
+\dv{w}{t} &= \int \frac{q^2}{4 \pi c^3} \dot{u}^2 \sin^2 \Theta \dd{\Omega }  \\
+&= \frac{q^2 \dot{u}^2}{2 c^3} \underbrace{\int_{-1}^{1} (1 - \mu^2) \dd{\mu }}_{= 2 - 2/3}
+\marginnote{Reparametrized \(\mu = \cos \Theta \), integrated over \(\phi \).}  \\
+&= \frac{2q^2 \dot{u}^2}{3 c^3}
+\,,
+\end{align}
+%
+which is the well-known \textbf{Larmor formula}. 
+
+What we want to do now is to generalize this result to a system of \emph{many charges}. 
+Each of these will have a charge \(q_i\), a distance \(R_i\) from the observer, an acceleration \(\dot{u}_i\).
+In principle the generalization is simple: the electromagnetic field obeys the superposition principle, so we can just add the \(E_{i, r}\) from all the charges together.
+
+The issue is that the retarded time for each of the particles is  slightly different from that of another particle. 
+This is a treatable problem, but it makes the calculation more cumbersome. 
+
+What we can do in order to mitigate it is to make the \textbf{dipole approximation}. 
+Suppose that the system of \(N\) charges is contained within a volume whose characteristic length scale is \(L\). 
+Also suppose that \(\tau \) is the typical scale across which the system evolves. 
+If the evolution time \(\tau \) is slow compared to \(L / c\), then we can ignore the differences between the retarded times. 
+
+Now, if the system changes significantly over a time \(\tau \) then the electric field also changes significantly over that time, so we can estimate the frequency of the emitted radiation as \(\nu \sim 1/ \tau \). 
+
+What we are asking, \(\tau \gg L / c\), then becomes \(\nu \approx 1/\tau  \ll c/ L\), or equivalently \(\lambda \gg L\). 
+
+We can also give an order of magnitude for the typical velocity of the particles: if \(\ell\) is the typical path length of a particle, then the typical velocity will be \(u \sim \ell / \tau \).  
+This means that \(\ell / u = \tau\) must be larger than \(L / c\): rearranging, we have 
+%
+\begin{align}
+\frac{\ell}{L} \gg \frac{u}{c}
+\,,
+\end{align}
+%
+but since \(\ell \lesssim L\) this means that \(u / c \ll 1\).
+
+If these conditions are satisfied, then we can get the total electric field by adding all the electric field contributions from all the various particles: 
+%
+\begin{align}
+\vec{E}_r &= \sum _{i} \vec{E}_{r, i} 
+= \sum _{i} \frac{q_i}{R_i c^2} \vec{n}_i \times \qty(\vec{n}_i \times \dot{\vec{u}}_i)  \\ 
+&= \sum _{i} \frac{1}{R_i c^2} \vec{n}_i \times \qty(\vec{n}_i \times q_i \dot{\vec{u}}_i) 
+\,,
+\end{align}
+%
+
+
 \end{document}

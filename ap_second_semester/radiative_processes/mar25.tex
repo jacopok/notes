@@ -1,4 +1,259 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-8-18, \\ compiled \\ \today}
+
+This parametric equation is expressed with respect to the principal axes of the ellipse; if we want to write in a different coordinate system which is obtained from a rotation of the principal axes we must use the rotation matrix 
+%
+\begin{align}
+\left[\begin{array}{c}
+x \\ 
+y
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+\cos \chi  & -\sin \chi   \\ 
+\sin \chi  &  \cos \chi 
+\end{array}\right]
+\left[\begin{array}{c}
+x' \\ 
+y'
+\end{array}\right]
+\,;
+\end{align}
+%
+if we make \(x'\) and \(y'\) explicit we can find 
+%
+\begin{align}
+x &= A \cos \beta \cos \chi \cos \omega t + A \sin \beta \sin \chi \sin \omega t \\
+y &= A \cos \beta \sin \chi \cos \omega t - A \sin \beta \cos \chi \sin \omega t 
+\,.
+\end{align}
+
+The expressions for \(x\) and \(y\) and the ones for \(E_x\) and \(E_y\) are quite similar: we must identify 
+%
+\begin{align}
+\xi_1 \cos \phi_1 &= A \cos \beta \cos \chi \\
+\xi_1 \sin \phi_1 &= A \sin \beta \sin \chi \\
+\xi_2 \cos \phi_2 &= A \cos \beta \sin \chi \\
+\xi_2 \sin \phi_2 &= -A \sin \beta \cos \chi 
+\,,
+\end{align}
+%
+which means that the electric field rotates in the shape of an ellipse, which is tilted about the \(x\), \(y\) axes by and angle \(\chi \). 
+
+\subsubsection{Stokes parameters}
+
+From these four equations, we find that (after working through the simplifications of the trigonometric functions)
+%
+\begin{align}
+\xi_1 + \xi_2 &= A^2 \overset{\text{def}}{=} I \\
+\xi_1 - \xi_2 &= A^2 \cos 2 \beta \cos 2 \chi  \overset{\text{def}}{=} Q \\
+2 \xi_1 \xi_2 \cos(\phi_1 - \phi_2 ) &= A^2 \sin 2 \chi \cos 2 \beta \overset{\text{def}}{=} U \\
+2 \xi_1 \xi_2 \sin(\phi_1 - \phi_2 ) &= A^2 \sin 2 \beta \overset{\text{def}}{=} V
+\,,
+\end{align}
+%
+where we defined the \textbf{Stokes parameters} \(I\), \(Q\), \(U\) and \(V\). They completely describe the state of an elliptically polarized monochromatic wave. 
+
+We can reverse their definitions as 
+%
+\begin{align}
+A &= \sqrt{I}  \\
+\sin 2 \beta &= \frac{V}{I} \\
+\tan 2 \chi &= \frac{U}{Q}
+\,.
+\end{align}
+
+Now let us discuss the meaning of these parameters. Since \(A = \xi_0 \), \(I = \xi_0^2\), while the energy flux is given by 
+%
+\begin{align}
+S = \frac{c}{4 \pi } \xi_0^2 = \frac{c}{4 \pi } I
+\,.
+\end{align}
+
+So, the parameter \(I\) is directly proportional to the energy flux.
+The major axes of the polarization ellipse are \(2A \cos \beta \) and \(2 A \sin \beta \) respectively; therefore their ratio \(\tan \beta \) measures the eccentricity of the ellipse, and the ratio \(V/I\) can be used to recover \(\beta \).
+
+The ratio \(U/Q\) describes the orientation  of the ellipse with respect to the \(x\), \(y\) axes.
+If the wave is linearly polarized then  \(V =0 \) (this is a degenerate case for our description); if \(V > 0\) the polarization  is left-handed, while if \(V< 0\) the polarization is right-handed.
+
+If we have \(U = Q = 0\), this corresponds to circular polarization. 
+
+The ellipse is fully determined by three numbers (\(\beta \), \(\chi \), \(A\)): why are there 4 Stokes parameters? They cannot all be independent if this is the case\dots  
+
+In fact, they are connected by the relation 
+%
+\begin{align}
+I^2= Q^2 + V^2+ U^2
+\,.
+\end{align}
+
+The reason we use four parameters instead of just three is that this line of reasoning only holds for perfectly polarized monochromatic waves: in the general case, for partially polarized radiation, we have 
+%
+\begin{align}
+I^2 \geq Q^2 + V^2 + U^2
+\,.
+\end{align}
+
+For completely \emph{un}polarized light we have \(Q = V = U = 0\). 
+
+A useful property is that these parameters are \textbf{additive}: the superposition of waves with different Stokes parameters can be the described by the sum of the Stokes parameters, as \(I _{\text{total}} = \sum _{k} I_k\) and so on. 
+
+This suggests that we write them in a vector: 
+%
+\begin{align}
+\vec{S} = \left[\begin{array}{c}
+I \\ 
+Q \\ 
+U \\ 
+V
+\end{array}\right]
+\,.
+\end{align}
+
+In general, we can decompose radiation which is partially polarized into a completely unpolarized part and a completely polarized part: 
+%
+\begin{align}
+\vec{S} = \underbrace{\left[\begin{array}{c}
+I - \sqrt{Q^2+V^2+U^2} \\ 
+0 \\ 
+0 \\ 
+0
+\end{array}\right]}_{\text{unpolarized}}
++ 
+\underbrace{\left[\begin{array}{c}
+\sqrt{Q^2+V^2+U^2} \\ 
+Q \\ 
+U \\ 
+V
+\end{array}\right]}_{\text{polarized}}
+\,.
+\end{align}
+
+This allows us to define the \textbf{polarization degree}: the fraction of the radiation which is polarized, calculated as 
+%
+\begin{align}
+\Pi_{L} = \frac{I _{\text{polarized}}}{I} = \frac{\sqrt{Q^2+U^2+V^2}}{I}
+\,,
+\end{align}
+%
+which is measurable with an instrument.
+
+\subsubsection{Electromagnetic potentials}
+
+We can express the electric and magnetic fields through the scalar and vector potentials \(\phi \) and \(\vec{A}\): 
+%
+\begin{align}
+\vec{B} = \vec{\nabla} \times \vec{A} 
+\qquad \text{and} \qquad
+\vec{E} = - \vec{\nabla} \phi - \frac{1}{c} \pdv{\vec{A}}{t}
+\,.
+\end{align}
+
+In terms of these potentials Maxwell's equations read 
+%
+\begin{align}
+\nabla^2 \phi - \frac{1}{c^2} \pdv[2]{\phi }{t} &= - 4 \pi \rho \\
+\nabla^2 \vec{A} - \frac{1}{c^2} \pdv[2]{\vec{A}}{t} &= - \frac{4 \pi }{c} \vec{j} 
+\,.
+\end{align}
+
+The potentials are redundant, we can impose some conditions on them while still being able to describe any physical system. One we can impose is the \emph{Lorentz gauge}: 
+%
+\begin{align}
+\vec{\nabla} \cdot \vec{A} + \frac{1}{c} \pdv{\phi }{t} = 0
+\,,
+\end{align}
+%
+under which we can get a formal solution for the potentials in terms of the charge and current densities: 
+%
+\begin{align}
+\phi (\vec{r}, t) &= \int \frac{[ \rho ]}{\abs{\vec{r} - \vec{r}'}} \dd[3]{r'} \\
+\vec{A} (\vec{r}, t) &= \frac{1}{c} \int \frac{[ \vec{j} ]}{\abs{\vec{r} - \vec{r}'}} \dd[3]{r'}
+\,.
+\end{align}
+
+The square brackets are a notation meaning that the densities must be evaluated at the \emph{retarded time} \(t - \abs{\vec{r} - \vec{r}'} / c\). 
+This accounts for the finite speed of the propagation of light. 
+
+\subsubsection{Radiation from moving charges}
+
+Consider a particle of mass \(m\) and charge \(q\) moving along a path described by the vector \(\vec{r}_0 (t)\). The charge and current densities will then be 
+%
+\begin{align}
+\rho (\vec{r}, t) &= q \delta (\vec{r} - \vec{r}_0(t)) \\s
+\vec{j} (\vec{r}, t) &= q \underbrace{\dv{\vec{r}_0}{t}}_{\vec{u}(t)} \delta (\vec{r} - \vec{r}_0(t))
+\,.
+\end{align}
+
+From these expressions we can calculate the potentials generated by the moving charge. Let us introduce the relative radius \(\vec{R} = \vec{r} - \vec{r}_0\) and its corresponding unit vector \(\vec{n} = \vec{R} / \abs{\vec{R}}\). 
+
+The potentials will then be 
+%
+\begin{align}
+\phi = \qty[\frac{q}{kR}] \qquad \text{and} \qquad
+\vec{A} = \qty[\frac{q \vec{n}}{ckR}]
+\,,
+\end{align}
+%
+where \(k = 1 - \vec{n} \cdot \vec{u} / c\), while \(R = \abs{\vec{R}}\).
+These are called the \textbf{Liénard-Wiechert} potentials. 
+From them we can perform the differentiation in order to recover the fields, which will be called the Liénard-Wiechert fields. 
+The final expressions for the fields are 
+%
+\begin{align}
+\vec{E} (\vec{r}, t) &= q \qty[\frac{(\vec{n} - \vec{\beta}) (1- \beta^2)}{ k^3 R^2}] + \frac{q}{c} \qty[\frac{\vec{n}}{k^3R} \times \qty((\vec{n} - \vec{\beta}) \times \dot{\vec{\beta}})] \\
+\vec{B}(\vec{r}, t) &= \qty[\vec{n} \times \vec{E}]
+\,,
+\end{align}
+%
+where \(\vec{\beta} = \vec{u} / c\).
+The important thing to notice here is that there are two contributions to the electric field: one goes as \(R^{-2}\) and is called the \textbf{Coulomb field} \(\vec{E}_c\) and the other goes as \(R^{-1}\) and is called the \textbf{radiation field} \(\vec{E}_r\).
+
+Now we will discuss the radiation field mainly. Since the magnetic field can be found by taking a product with the electric field, we can make the same decomposition there.
+
+The radiation field \(\vec{E}_r\) must be perpendicular to \(\vec{n}\), and so must be \(\vec{B}_r\). So, they form an orthogonal triple. 
+
+Let us consider some simple cases. 
+
+\subsubsection{Nonrelativistic charge}
+
+Let us first suppose that the particle is moving slowly, \(\abs{u}/ c = \abs{\beta } \ll 1 \): this means that \(\abs{\vec{n} - \beta } \sim 1\) and also \(k \sim 1\). 
+
+With these simplifications we find that the ratio of the magnitudes of the two components of the electric field is  
+%
+\begin{align}
+\frac{E_r}{E_c} \sim \frac{R \dot{u}}{c^2}
+\,.
+\end{align}
+
+If the characteristic time across which the velocity of the particle changes is \(\tau \), then we have \(\dot{u} \sim u / \tau\). 
+This time \(\tau \) will be associated with a characteristic frequency \(\nu = 1 / \tau \) and a characteristic wavelength \(\lambda = c / \nu \). 
+Then we will get 
+%
+\begin{align}
+\frac{E_r}{E_c} \sim \frac{R u \nu }{c^2} \sim \frac{R u}{\lambda c}
+\,,
+\end{align}
+%
+so we can see that if 
+%
+\begin{align}
+\frac{R}{\lambda } \lesssim 1
+\,
+\end{align}
+%
+then we have \(E_r / E_c \lesssim u /c\). This defines an inner region around the emitter for which the Coulomb field dominates; outside it the radiation field dominates. 
+
+Typically, we are far enough from the emitters of radiation so that the radiation field dominates. 
+Then, under the assumption \(\beta \ll 1\) we have  
+%
+\begin{align}
+\vec{E}_r = \frac{q}{Rc^2} \qty[\vec{n} \times \qty(\vec{n} \times \dot{\vec{u}})]
+\qquad \text{and} \qquad
+\vec{B}_r = \qty[\vec{n} \times \vec{E}_r]
+\,.
+\end{align}
+
 \end{document}

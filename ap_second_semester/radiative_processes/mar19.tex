@@ -499,4 +499,156 @@ This means that
 
 With these boundary conditions, one can solve the equation numerically.
 
+\section{Plane electromagnetic waves}
+
+In a vacuum, Maxwell's equations read 
+%
+\begin{align}
+\nabla \cdot E = \nabla \cdot B =0
+\,
+\end{align}
+%
+and 
+%
+\begin{align}
+\nabla \times E &= - \frac{1}{c} \pdv{B}{t}  \\
+\nabla \times B &= \frac{1}{c} \pdv{E}{t}
+\,.
+\end{align}
+
+Using the identity \(\epsilon_{ijk} \epsilon_{klm} = \delta_{jl} \delta_{km} - \delta_{jm} \delta_{kl}\) we can combine these into a wave equation, 
+%
+\begin{align}
+\nabla^2 E - \frac{1}{c^2} \pdv[2]{E}{t} = 0 
+\,,
+\end{align}
+%
+which is solved by plane monochromatic waves 
+%
+\begin{align}
+\vec{E}  =\vec{\epsilon} E_0 \exp(i (\vec{k} \cdot \vec{r} - \omega t))
+\,,
+\end{align}
+%
+where the angular frequency and wavevector satisfy \(\omega = c \abs{\vec{k}}\).
+These are transverse waves: the scalar product of \(\vec{\epsilon}\) and the wavevector \(\vec{k}\) is zero, there is no longitudinal oscillation along the direction of motion. 
+
+These solutions form a basis, generally the radiation we find is not monochromatic. 
+The electric field will be time-dependent, \(\vec{E} = \vec{E} (t)\). 
+
+We want to discuss the frequency decomposition of these waves; we start off by assuming that we are dealing with a pulse, such that \(\vec{E}(t) \rightarrow 0\) as \(t \to \pm \infty \).
+
+The Fourier transform of the electric field in the time domain gives us its frequency decomposition: we choose our conventions so that 
+%
+\begin{align}
+\hat{E}(\omega ) = \frac{1}{2 \pi } \int_{- \infty }^{\infty } E(t) e^{i \omega t} \dd{t} 
+\,.
+\end{align}
+
+Since \(E(t)\) is real, we must have \(\hat{E}^{*}(\omega ) = \hat{E} (- \omega )\). 
+This means that we do not need to worry about negative frequencies. 
+
+The fundamental quantity we need to compute is the \textbf{energy spectrum} from the electric field: how is the energy in the EM radiation distributed across the various frequencies? 
+The Poynting vector is useful in this context, as it quantifies the amount of energy carried per unit area and time: its modulus is given by 
+%
+\begin{align}
+S = \frac{ \dd{w}}{ \dd{t} \dd{A}} = \frac{c}{4 \pi } E^2(t)
+\,,
+\end{align}
+%
+which we need to integrate if we want to find the total energy carried by the pulse: 
+%
+\begin{align}
+\dv{w}{A} = \frac{c}{4 \pi } \int_{- \infty }^{\infty} E^2(t) \dd{t}
+\,.
+\end{align}
+
+Now, \textbf{Parseval's theorem} is a statement about Fourier transforms, telling us that the energy of the signal is conserved if we Fourier transform, meaning that 
+%
+\begin{align}
+\int_{- \infty }^{\infty } E^2(t) \dd{t} = 2 \pi \int_{-\infty}^{\infty} \abs{\hat{E}(\omega )}^2 \dd{\omega}
+\,.
+\end{align}
+
+Since this square modulus is the same for the conjugate the integrand is symmetric under \(\omega \to - \omega \), so we can compute it from 0 to \(\infty \) and multiply by 2 to get the same result. This yields 
+%
+\begin{align}
+\dv{w}{A} = \frac{4 \pi c}{4 \pi } \int_{0}^{\infty }\abs{\hat{E}(\omega )}^2 \dd{\omega}
+\,,
+\end{align}
+%
+which can be differentiated with respect to \(\omega \) to find the energy density per unit time and frequency:
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{A} \dd{\omega }} = c \abs{\hat{E}(\omega )}^2
+\,.
+\end{align}
+
+This concerns the \emph{total} energy of the pulse: we might want to calculate the energy per unit area, time and frequency! 
+However, there is an issue in doing this: the uncertainty principle. We cannot sample with arbitrarily small intervals in both \(t\) and \(\omega \), since the inequality \(\Delta \omega \Delta t \geq 1\) must be satisfied. 
+
+However, if our pulse repeats over some comparatively long time \(T\) we can formally define 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{A} \dd{\omega } \dd{t}} = \frac{1}{T} c \abs{\hat{E}(\omega )}^2
+\,,
+\end{align}
+%
+so, as long as \(T\) is relatively long we can take the limit:
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{A} \dd{\omega } \dd{t}} = \lim_{T \to \infty  } \frac{1}{T} c \abs{\hat{E}(\omega )}^2
+\,.
+\end{align}
+
+\subsection{Polarization}
+
+This is a measurable quantity in astrophysics, it is easier to perform polarization measurements for low frequencies but nowadays we are starting to be able to measure polarizations as far as X-rays. 
+
+By definition a monochromatic plane wave is \emph{linearly polarized}: it oscillates along a specific axis. 
+Consider a superposition of two electric fields at a specific point in space, for simplicity \(\vec{r} = 0 \): the total electric field will be given by 
+%
+\begin{align}
+\vec{E} = \underbrace{\qty(\vec{x} E_1 + \vec{y} E_2 )}_{\vec{E}_0 } e^{-i \omega t}
+\,,
+\end{align}
+%
+where the amplitudes \(E_{1,2} \) are in general complex: \(E_{1, 2} = \xi_{1, 2} e^{i \phi_{1,2} }\). So, we can write the total electric field 
+%
+\begin{align}
+\vec{E} = 
+\vec{x} \xi_1 e^{i (\phi_1 - \omega t)}
++
+\vec{y} \xi_2 e^{i (\phi_2 - \omega t)}
+\,.
+\end{align}
+
+The physical field along any direction will be given by the real part of the projection of this complex-valued vector along that component: 
+%
+\begin{align}
+E_x = \Re \qty{\xi_1 e^{i (\phi_1 - \omega t)}} = \xi_1 \cos(\phi_1 - \omega t)
+= \xi_1 \cos(\omega t - \phi_1 )
+\,.
+\end{align}
+
+Now, a short aside: an ellipse can be described parametrically from its principal axes with 
+%
+\begin{align}
+x' = A \cos \beta \cos \omega t
+\qquad \text{and} \qquad
+y' = - A \sin \beta \sin \omega t
+\,,
+\end{align}
+%
+since these expressions satisfy 
+%
+\begin{align}
+\frac{x^{\prime 2} }{A^2 \cos^2\beta }
++\frac{y^{\prime 2} }{A^2 \sin^2\beta }
+= 1
+\,,
+\end{align}
+%
+so we can parametrize any ellipse with an appropriate choice of \(A \in R^{+}\) and \(\beta \in [- \pi /2, \pi /2]\). 
+
 \end{document}

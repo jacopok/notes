@@ -136,7 +136,7 @@ The total cross section is found from the integral of this over all the solid an
 \,.
 \end{align}
 
-This is the \textbf{Thompson cross section} of the electron \(\sigma_{T} \approx \SI{0.665e-24}{cm^2}\). 
+This is the \textbf{Thomson cross section} of the electron \(\sigma_{T} \approx \SI{0.665e-24}{cm^2}\). 
 
 Now, for some observations. This cross section does not change depending on the frequency of the incoming wave: it is ``color blind''.
 This formula for the scattering is not always valid, but in its regime of validity (which will be discussed later) we expect no frequency dependence. 
@@ -145,7 +145,126 @@ Moreover, this scattering is \textbf{conservative} or coherent: the frequency of
 
 It also is \textbf{not isotropic} because of the factor \(\sin^2 \Theta \). This scattering ``prefers'' for the light to go along the same direction it came from, and the probability density for it goes to zero for  \(\Theta = \pi /2\), meaning for a scattered photon orthogonal to the direction of propagation. 
 Also, there is forward-backward symmetry, which will be useful to simplify certain calculations.
-The degree of anisotropy is also rather mild, it varies slowly over the solid angle, so in certain situations it will be alright to approximate Thompson scattering as isotropic.
+The degree of anisotropy is also rather mild, it varies slowly over the solid angle, so in certain situations it will be alright to approximate Thomson scattering as isotropic.
 This is the closest we can get to completely isotropic and coherent scattering. 
+
+We can apply this reasoning to any other particle, it does not need to be an electron: for example, let us apply it to a proton. 
+Their square charge is the same --- the sign does not matter. The only different is the mass, which appears with a power \(m^{-2}\) in the cross section and in the differential cross section. 
+
+So, their ratio will be 
+%
+\begin{align}
+\frac{\sigma_{p}}{\sigma_{e}} = \qty( \frac{m_e}{m_p})^2 \approx \num{3e-7}
+\,.
+\end{align}
+
+This is important in astrophysical applications: if we have a plasma with protons and electron we can almost completely ignore the protons. 
+
+Our assumptions have been to treat the electromagnetic field classically, and to assume the electron moves nonrelativistically. 
+The first of these holds as long as the energy of the individual photons is small: \(h \nu \ll m_e c^2\). If this is the case, the \textbf{recoil} of the electron due to the scattering with the single photon is negligible. 
+Since \(m_e c^2 \approx \SI{511}{keV}\), we are asking that \(h \nu \ll \SI{511}{keV}\). 
+A rough boundary for when this works is given by considering \(h \nu \approx \SI{50}{keV}\), a tenth of the electron rest energy. 
+This puts us in the medium X-rays. 
+
+We also assumed that the electron started out at rest, while in practically all situations charges are moving around, if nothing else because of thermal motion. 
+If we are considering a plasma, it must be hot for the gas to stay ionized. 
+
+In the electron's rest frame our description works, however in order to be in that frame we must perform a Lorentz boost, apply Thomson scattering, and boost back: in this way we can describe how the energy of the photon changes.
+
+In astrophysical settings, radiation is generally either completely unpolarized or partially polarized. Therefore, it is interesting to compute the cross section for unpolarized radiation.
+
+Unpolarized radiation can be described as the superposition of two orthogonal polarized waves. One of them will have an angle \(\Theta \) between the polarization vector \(\vec{\epsilon}_1 \) and the observation direction \(\vec{n}\), let us suppose that \(\vec{\epsilon}_1 \), \(\vec{k}\) and \(\vec{n}\) are coplanar. 
+This can be done, since all we are doing is choosing a convenient basis for the plane orthogonal to the propagation direction.
+
+If this is the case, then if \(\vec{\epsilon}_2 \perp \vec{\epsilon}_1\) we must have \(\Theta = \pi / 2\) for the second wave. This means that we have the two cross sections 
+%
+\begin{align}
+\eval{\dv{\sigma }{\Omega }}_{1} = r_0^2 \sin^2 \Theta 
+\qquad \text{and} \qquad
+\eval{\dv{\sigma }{\Omega }}_{2} = r_0^2 \sin^2 \frac{\pi}{2} = r_0^2
+\,.
+\end{align}
+
+The total differential cross section will be given by their average: 
+%
+\begin{align}
+\dv{\sigma }{\Omega } = r_0^2 \frac{1 + \sin^2 \Theta }{2} = r_0^2 \frac{1 + \cos^2 \theta }{2}
+\,,
+\end{align}
+%
+where we define \(\theta = \pi /2 - \Theta \), the angle between the propagation direction \(\vec{k}\) and the observation direction \(\vec{n}\). 
+
+The total unpolarized cross section is the same as the one we had for polarized light:
+%
+\begin{align}
+\sigma _{\text{unpol}} = \int \dv{\sigma }{\Omega } \dd{\Omega } =
+\frac{8 \pi }{3} r_0^2 = \sigma_{T}
+\,.
+\end{align}
+
+So, for the total cross section of Thomson scattering polarization does not matter, while it does change the differential cross section. 
+
+\subsubsection{The Eddington limit}
+
+The total momentum flux of the radiation field is given by 
+%
+\begin{align}
+P = \int_{0}^{\infty } \dd{\nu } \int_{4 \pi } \dd{\Omega } \cos^2 \theta I_\nu 
+\,.
+\end{align}
+
+Suppose we have a differential area \(\dd{A}\), and suppose that photons only cross it in the direction of its normal \(\vec{n}\). 
+If this is the case, then we have 
+%
+\begin{align}
+P = \int_0^{\infty } \dd{\nu } I_\nu  = \frac{F}{c}
+\,,
+\end{align}
+%
+since then the angular distribution function is a delta on \(\theta = 0 \) on the unit sphere. 
+
+Suppose then we have a particle at the center of the area element \(\dd{A}\), and that we want to calculate the force upon it. It will be the pressure times the cross section: 
+%
+\begin{align}
+\mathscr{F} = \frac{F}{c} \sigma = P \sigma 
+\,.
+\end{align}
+
+Now, let us consider a source which emits photons only radially, such as a star with perfect spherical symmetry. 
+The flux at any radius \(r\) will be \(F = L / 4 \pi r^2\), where \(L\) is the luminosity (power) of the source. 
+The photons will only move radially. 
+
+Then, the force onto a test particle will be 
+%
+\begin{align}
+\mathscr{F} = \frac{L \sigma }{c 4 \pi r^2}
+\,.
+\end{align}
+
+The source will have a mass \(M\), and it will attract the particles gravitationally.
+
+Now, a typical composition for the material outside a star is a plasma, made up of dissociated hydrogen: protons and electrons.
+As we have seen, the cross section of the electrons for Thomson scattering will be much larger than that of the protons, while the gravitational force will be much larger on the protons since they are more massive. 
+
+If we consider a single electron-proton pair which is bound by electrostatic forces (although not in a bound \emph{state}, since we still have a plasma), then we can calculate the equilibrium point for the forces on the pair. 
+We can then equate the radiative force on the electron to the gravitational force on the proton, since the other two forces are negligible in comparison. This yields: 
+%
+\begin{align}
+\frac{L \sigma_{T}}{c 4 \pi r^2} &= \frac{G M m_p}{r^2}  \\
+L &= \frac{4 \pi G M m_p c}{\sigma_{T}} = L _{\text{Edd}}
+\,,
+\end{align}
+%
+the \textbf{Eddington luminosity} corresponding to a mass \(M\). 
+In comparison to the Sun, this is roughly 
+%
+\begin{align}
+L _{\text{Edd}} \approx \num{3e5} L_{\odot} \frac{M}{M_{\odot}}
+\,.
+\end{align}
+
+This means that the Sun is well below the Eddington limit. 
+This is not a general limit, since it only applies if we have spherical symmetry; if this is broken the ``limit'' can be violated. 
+Also, we can define analogous limits for different kinds of processes, which will have different cross sections. 
 
 \end{document}

@@ -1,4 +1,151 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-8-19, \\ compiled \\ \today}
+
+Under our assumptions the electric field can be written as 
+%
+\begin{align}
+\vec{E} = E_0 \sin \omega_0 t \vec{\epsilon}
+\,,
+\end{align}
+%
+where \(\vec{\epsilon}\) is a unit vector which is perpendicular to the propagation direction: \(\vec{\epsilon} \cdot \vec{k} = 0\); while \(E_0 \) is the amplitude of the electric field and \(\omega_0\) is its frequency. 
+
+The equations of motion of the charge read 
+%
+\begin{align}
+m \ddot{\vec{r}} = e \vec{E} = e E_0 \sin \omega_0 t \vec{\epsilon}
+\,,
+\end{align}
+%
+which  we can also express through the dipole moment \(\vec{d} = e \vec{r}\): the equation for its evolution will then read 
+%
+\begin{align}
+\ddot{\vec{d}} = \frac{e^2}{m} E_0 \sin \omega_0 t \vec{e}
+\,.
+\end{align}
+
+If we integrate in \(\dd{t}\) two times we find 
+%
+\begin{align}
+\vec{d} (t) = - \frac{e^2 E_0 }{m \omega_0^2} \sin \omega_0 t \vec{\epsilon}
+\,,
+\end{align}
+%
+so the response to the impinging EM wave is an oscillation of the dipole, with a frequency \(\omega_0\) equal to that of the EM wave and an amplitude equal to 
+%
+\begin{align}
+d_0 = \frac{e^2 E_0 }{m \omega_0^2}
+\,.
+\end{align}
+
+The electron is accelerating, so it will radiate: the power emitted per unit solid angle will be 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\Omega }} = \frac{1}{c^3} \frac{ \ddot{d}^2}{4 \pi } \sin^2 \Theta 
+= \frac{1}{4 \pi c^3} \frac{e^{4}}{m^2} E_0^2 \sin^2 \omega_0 t \sin^2 \Theta 
+\,,
+\end{align}
+%
+where \(\Theta \) is the angle between the direction of propagation of the wave and the direction of observation. 
+This oscillates in time; we can compute the average over an oscillation: this means that we substitute the square sine with a factor \(1/2\): 
+%
+\begin{align}
+\expval{\frac{ \dd{w}}{ \dd{t} \dd{\Omega }}} = 
+\frac{e^{4} E_0^2 \sin^2 \Theta }{8 \pi c^3 m^2}
+\,.
+\end{align}
+
+Integrating over the solid angle to get the average power amounts to multiplying by \(4 \pi \) times \(2/3\), because of the solid angle in the sphere and because of the integral of \(\sin^2 \Theta\). 
+This yields 
+%
+\begin{align}
+\expval{\dv{w}{t}} = \frac{e^{4} E_0^2}{3 m^2 c^3}
+\,.
+\end{align}
+
+Now, let us compute the flux of energy which is carried away by the incident EM wave: 
+%
+\begin{align}
+S = \frac{ \dd{w}}{ \dd{A} \dd{t}} 
+= \frac{c}{4 \pi } E_r^2 
+= \frac{c}{4 \pi R^2} E_0^2 \sin^2 \omega_0t 
+\,,
+\end{align}
+%
+then the power per unit solid angle is 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{\Omega } \dd{t}} = \frac{c}{4 \pi } E_0^2 \sin^2 \omega_0 t 
+\,,
+\end{align}
+%
+whose average as before is 
+%
+\begin{align}
+\expval{ \frac{ \dd{w}}{ \dd{\Omega } \dd{t}}} = \frac{c E_0^2}{8 \pi }
+\,.
+\end{align}
+
+\todo[inline]{Except this, dimensionally, is a power per unit \emph{area}!}
+
+Now, let us define the \textbf{differential scattering cross section} as 
+%
+\begin{align}
+\dv{\sigma }{\Omega } = 
+\frac{
+    \expval{\frac{ \dd{w}}{ \dd{t} \dd{\Omega }}}_{\text{emitted}}
+    }{
+    \expval{\frac{ \dd{w}}{ \dd{t} \dd{\Omega }}}_{\text{incoming}}
+}
+\,,
+\end{align}
+%
+\todo[inline]{is this not dimensionally inconsistent? the differential scattering cross section should have the dimensions of an area / steradian\dots Maybe the incoming power should be considered per unit \emph{area}, since it is a plane wave whose source is at infinity?
+
+This seems indeed to be the case, see \cite[eq.\ 3.36]{rybickiRadiativeProcessesAstrophysics1979}}
+and if we compute this for our case we will have 
+%
+\begin{align}
+\dv{\sigma }{\Omega } = \frac{e^{4}E_0^2 \sin^2 \Theta }{8 \pi c^3 m^2}
+\frac{8 \pi }{c E_0^2} 
+= \frac{e^{4}}{c^{4} m^2} \sin^2 \Theta 
+\,.
+\end{align}
+
+This expression can also be written through the classical electron radius: 
+%
+\begin{align}
+r_0 = \frac{e^2}{mc^2} \approx \SI{2.82e-13}{cm}
+\,,
+\end{align}
+%
+whose expression is found by equating the rest energy of the electron \(m c^2\) with its electromagnetic self-energy \(e^2 / r_0 \). 
+Then, the scattering cross section can be expressed as 
+%
+\begin{align}
+\dv{\sigma }{\Omega } = r_0^2 \sin^2 \Theta 
+\,.
+\end{align}
+
+The total cross section is found from the integral of this over all the solid angle: 
+%
+\begin{align}
+\sigma_T = \int \dv{\sigma }{\Omega } \dd{\Omega } = r_0^2 \underbrace{\int (1 - \mu^2) \dd{\mu } \times 2 \pi }_{= 8 \pi /3} = \frac{8 \pi }{3} r_0^2
+\,.
+\end{align}
+
+This is the \textbf{Thompson cross section} of the electron \(\sigma_{T} \approx \SI{0.665e-24}{cm^2}\). 
+
+Now, for some observations. This cross section does not change depending on the frequency of the incoming wave: it is ``color blind''.
+This formula for the scattering is not always valid, but in its regime of validity (which will be discussed later) we expect no frequency dependence. 
+
+Moreover, this scattering is \textbf{conservative} or coherent: the frequency of the scattered radiation is the same as the frequency of the incoming radiation.
+
+It also is \textbf{not isotropic} because of the factor \(\sin^2 \Theta \). This scattering ``prefers'' for the light to go along the same direction it came from, and the probability density for it goes to zero for  \(\Theta = \pi /2\), meaning for a scattered photon orthogonal to the direction of propagation. 
+Also, there is forward-backward symmetry, which will be useful to simplify certain calculations.
+The degree of anisotropy is also rather mild, it varies slowly over the solid angle, so in certain situations it will be alright to approximate Thompson scattering as isotropic.
+This is the closest we can get to completely isotropic and coherent scattering. 
+
 \end{document}

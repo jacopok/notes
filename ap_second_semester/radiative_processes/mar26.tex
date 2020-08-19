@@ -70,6 +70,120 @@ If these conditions are satisfied, then we can get the total electric field by a
 \vec{E}_r &= \sum _{i} \vec{E}_{r, i} 
 = \sum _{i} \frac{q_i}{R_i c^2} \vec{n}_i \times \qty(\vec{n}_i \times \dot{\vec{u}}_i)  \\ 
 &= \sum _{i} \frac{1}{R_i c^2} \vec{n}_i \times \qty(\vec{n}_i \times q_i \dot{\vec{u}}_i) 
+\,.
+\end{align}
+
+All of these will still need to be computed at the retarded time, although the retarded time will be the same for all the charges. 
+
+If the length scale \(L\) of the system is smaller than all the distances \(R_i\), then we can approximate any \(R_i\) with a constant \(R_0\); also the unit vectors \(\vec{n}_i\) will be almost equal, and we can approximate them with a single \(\vec{n}\). 
+\(R_0\) does not need to be the mean of the \(R_i\), the point is that all of them are quite similar so the distance to any point inside the source works. The reasoning is similar for \(\vec{n}\). 
+
+If we make both of these approximations we find 
+%
+\begin{align}
+\vec{E}_r &= \sum _{i} \frac{1}{R_0 c^2} \vec{n} \times \qty(\vec{n} \times q_i \dot{\vec{u}}_i)  \\
+&= \frac{1}{R_0 c^2} \vec{n} \times \qty(\vec{n} \times \underbrace{\sum _{i} q_i \dot{\vec{u}}_i}_{ \ddot{d}})
+\,,
+\end{align}
+%
+where we define the dipole moment 
+%
+\begin{align}
+\vec{d} = \sum _{i} q_i \vec{r}_i
+\,.
+\end{align}
+
+Because the dipole moment appeared, this is called the \textbf{dipole approximation}. 
+If \(\Theta \) is the angle between \(\vec{n}\) and \(\ddot{\vec{d}}\), then we have 
+%
+\begin{align}
+E_r = \frac{ \ddot{d}   \sin \Theta }{R_0 c^2}
+\,,
+\end{align}
+%
+and with this we can calculate the power radiated per unit area 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{A} \dd{t}} = \frac{c}{4 \pi } E_r^2
+\,,
+\end{align}
+%
+and per unit solid angle: 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\Omega }}= \frac{c}{4 \pi } E_r^2 R_0^2
+= \frac{1}{c^3} \frac{ \ddot{d}^2}{4 \pi } \sin^2\Theta 
+\,,
+\end{align}
+%
+so if we integrate we can find the total emitted power, which generalizes the \textbf{Larmor formula}: 
+%
+\begin{align}
+\dv{w}{t}= \frac{2 \ddot{d}^2}{3 c^3}
+\,.
+\end{align}
+
+Now let us discuss the \textbf{spectral distribution} of the emitted energy. The energy per unit frequency and area will be 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{A} \dd{\omega }} = c \abs{\hat{E}_r(\omega )}^2
+\,,
+\end{align}
+%
+while the energy emitted per unit solid angle as usual is calculated by multiplying by \(R^2\): 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{\Omega } \dd{\omega }} = R^2 c \abs{\hat{E}_r (\omega )}^2 = \frac{1}{c^3} \sin^2\Theta \abs{ \hat{\ddot{d}} (\omega )}^2
+\,,
+\end{align}
+%
+where \(\hat{ \ddot{d} }\) is the Fourier transform of \(\ddot{d}\). 
+This assumes that \(\Theta \) is fixed through time; we are allowing its magnitude but not its direction to change. 
+
+Derivatives in the Fourier domain are multiplication by \(-i \omega \): so, we can recover the second derivative of the dipole moment in the time domain as 
+%
+\begin{align}
+\ddot{d} (t) = - \int_{- \infty }^{\infty } \omega^2 e^{-i \omega t} \hat{d}(\omega ) \dd{\omega }
+\,,
+\end{align}
+%
+which means that we can express the electric field in the Fourier domain as 
+%
+\begin{align}
+\hat{E} ( \omega ) = - \frac{\omega^2}{c^2 R} \hat{d}(\omega ) \sin \Theta 
+\,,
+\end{align}
+%
+so that the energy emitted per unit frequency and solid angle becomes 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{\Omega } \dd{\omega }}  = \frac{\omega^{4}}{c^3} \abs{\hat{d}(\omega  )}^2 \sin^2 \Theta 
+\,.
+\end{align}
+
+If we integrate over the sphere we find 
+%
+\begin{align}
+\dv{w}{\omega } = \frac{8 \pi }{3 c^2} \omega^{4} \abs{\hat{d}(\omega )}^2
+\,.
+\end{align}
+
+Note that the spectrum of the radiation is heavily dependent on the frequency of the radiation. 
+
+\subsection{Thompson scattering}
+
+This is scattering of radiation by free electrons. 
+Consider a plane, linearly polarized, electromagnetic wave impacting a free electron. The force onto the electron is the Lorentz force: 
+%
+\begin{align}
+\vec{F} = q \qty(\vec{E} + \frac{\vec{v}}{c} \times \vec{B})
+\,.
+\end{align}
+
+We know that \(\abs{E} = \abs{B}\) for the wave, so if the electron is nonrelativistic then the magnetic term is negligible: 
+%
+\begin{align}
+\vec{F} \approx e \vec{E}
 \,,
 \end{align}
 %

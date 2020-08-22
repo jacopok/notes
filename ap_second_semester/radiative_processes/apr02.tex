@@ -1,4 +1,223 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Bremsstrahlung}
+
+\marginpar{Saturday\\ 2020-8-22, \\ compiled \\ \today}
+
+The German word comes from the words meaning ``braking'' and ``radiation''. It is also called ``free-free emission''. 
+
+The name is historical: this kind of radiation was first observed in the lab coming from the deceleration of charges which hit a target. 
+This is the radiation emitted by electrons when a force is exerted upon them, for instance the Coulomb force by an ion. So, this kind of radiation can occur in a plasma since there we have both free protons and electrons. 
+
+We could also have electron-electron electromagnetic interactions, but in real astrophysical plasmas, as we shall see, this is less relevant. 
+
+Suppose we have an ion with a positive charge \(Ze\), and an electron with a negative charge \(-e\). Between them we have the attractive electrostatic force, whose modulus is 
+%
+\begin{align}
+F = \frac{Z e^2}{r^2}
+\,.
+\end{align}
+
+If the ion is a proton, then the acceleration on the electron and on the proton can be calculated by equating 
+%
+\begin{align}
+m_e a_e = m_p a_p = \frac{e^2}{r^2} 
+\,
+\end{align}
+%
+in modulus.
+So, the acceleration of the proton is about \(m_p / m_e \approx 1836\) times \emph{smaller} than that of the electron. This allows us to approximate the ion as a fixed source of force, neglecting its acceleration completely.  
+
+We know from the Larmor formula \eqref{eq:larmor} that the power emitted by an accelerating charge is proportional to its acceleration squared, so the power emitted by the ion is about \((m_p / m_e)^2 \approx \num{4e6}\) times smaller than that emitted by the electron. 
+
+Now, let us consider the case of the repulsion of two identical particles, such as two electrons, in the nonrelativistic dipole approximation (which is not completely justified, often electrons will be relativistic\dots however we will make it for simplicity).
+
+If \(d\) is the dipole moment, then we know from the Larmor formula for the dipole \eqref{eq:larmor-dipole} that the power emitted is proportional to \(\ddot{d}^2\). 
+The dipole moment is 
+%
+\begin{align}
+\vec{d} = -e \sum _{i}  \vec{r}_i = - \frac{e}{m_e} \sum _{i} m_e \vec{r}_i
+= - \frac{e}{m_e} \vec{r}_{CM}
+\,.
+\end{align}
+
+We can then see that the dipole moment is proportional to the center of mass of the system. 
+Now, we are always implicitly assuming that the two charges we are treating are isolated, so they are not subject to any external forces: therefore, the acceleration of the center of mass is zero.
+
+This means that \(\ddot{d} = 0\), so the power emitted is zero in the dipole approximation. 
+This is why \emph{a system of nonrelativistic identical charges does not radiate in the dipole approximation}. 
+
+Now, let us move to an actual description of bremsstrahlung radiation. 
+We will treat it approximately; a complete description, even accounting for quantum mechanics, can be given, however it is beyond the scope of this course. 
+
+We start off by making the small angle approximation: we assume that the electron moves fast enough, so that its trajectory looks like a straight line and the deviation due to the proton is only a small perturbation.
+
+We define the position vector \(\vec{r}\) as the one connecting the ion to the electron, while \(\vec{v} = \vec{\dot{r}}\) is the velocity of the electron, and the impact parameter \(b = \min \abs{\vec{r}}\) measures the distance of closest approach of the particles. 
+
+The dipole moment is given by \(\vec{d} = -e \vec{r}\), whose second derivative will be \(\ddot{\vec{d}} = -e \vec{\dot{v}}\). 
+Let us move to frequency space: 
+%
+\begin{align}
+\frac{1}{2 \pi } \int_{-\infty}^{\infty } \ddot{\vec{d}} e^{i \omega t} \dd{t} &= \frac{1}{2 \pi } \int_{-\infty }^{\infty } (- e \dot{\vec{v}})  e^{i \omega t} \dd{t} \\
+- \omega^2 \hat{d} (\omega ) &= - \frac{e}{2 \pi } \int_{-\infty }^{\infty} \dot{\vec{v}} e^{i \omega t} \dd{t}
+\,.
+\end{align}
+
+Then, we can see that if we are able to determine the value of the integral on the right-hand side we can directly calculate the dipole moment, and with it the emitted power. 
+Evaluating it exactly is hard in general, however we can do so in two limiting cases, depending on the ``duration of the interaction''.
+The timescale of the process, that is, the rough amount of time over which the electrostatic interaction between the two particles is significant, is of the order \(\tau \approx b / v\). 
+Then, we can try to simplify the problem by integrating only over a range of size \(\sim \tau \) around zero in the time domain, instead of going from \(- \infty \) to \(+ \infty \), since there we will find the largest contribution. 
+
+Now, our limiting cases refer to the frequency \(\omega \) of the emitted radiation. 
+If this frequency is very high, such that \(\omega \tau \gg 1\), then in the integral we will have a slowly-varying term \(\dot{v}\) times a quickly oscillating term \(\exp(i \omega \tau )\): thus, the value of the integral will be close to zero. 
+
+On the other hand, if \(\omega \tau \ll 1\), then the exponential will be \(\exp(i \omega \tau ) \approx 1\): therefore the integral will be 
+%
+\begin{align}
+\int_{-\infty}^{\infty } \dot{\vec{v}} e^{i \omega t}\dd{t} \approx 
+\int_{-\infty}^{\infty } \dot{\vec{v}} \dd{t} = \Delta \vec{v}
+\,.
+\end{align}
+
+Therefore, the Fourier transform of the dipole moment will be given by 
+%
+\begin{align}
+\hat{d}(\omega ) = 
+\begin{cases}
+    - \frac{e}{2 \pi } \frac{\Delta \vec{v}}{\omega^2} &\qquad \omega \tau \ll 1  \\
+    0 &\qquad \omega \tau \gg 1\,.
+\end{cases}
+\end{align}
+
+With this, we can compute the spectral distribution of the emitted radiation \eqref{eq:spectral-distribution-dipole}: 
+%
+\begin{align}
+\dv{w}{\omega } 
+&= \frac{8 \pi }{3 c^3 \omega^{4}}
+\begin{cases}
+    \frac{e^2}{4 \pi^2 } \frac{\abs{\Delta \vec{v}}^2}{\omega^4} &\qquad \omega \tau \ll 1  \\
+    0 &\qquad \omega \tau \gg 1
+\end{cases}
+\\
+&= 
+\begin{cases}
+    \frac{2e^2}{3 \pi c^3 } \abs{\Delta \vec{v}}^2 &\qquad \omega \tau \ll 1  \\
+    0 &\qquad \omega \tau \gg 1\,.
+\end{cases}
+\end{align}
+
+Now, then, we need to calculate \(\Delta \vec{v}\) in order to find the spectral distribution of the power. However, we already have an interesting result: a \textbf{flat power spectrum} in both the high- and low-frequency regimes, at a certain value to be calculated for high frequencies, and at zero for low frequencies. 
+There will need to be some smooth connection between the two regions for \(\omega \tau \sim 1 \). 
+
+Now, as long as the interaction time is short, the electron ``flies by'' the ion, which then has little time to exert a force on it, and it will do so only in the region in which the electron is close, and in which \(\vec{F}\) is approximately perpendicular to \(\vec{v}\). 
+
+Then, we can compute the variation in velocity as 
+%
+\begin{align}
+\Delta \vec{v} = \int_{- \infty }^{\infty} \vec{a} \dd{t}
+\,,
+\end{align}
+%
+and therefore, since the normal (dominant) component of the acceleration is given by \(a_N = F_N / m_e \), we have 
+%
+\begin{align}
+\abs{\Delta \vec{v}} \approx \int_{- \infty }^{\infty} \frac{F_N}{m_e} \dd{t}
+= \int_{- \infty }^{\infty}
+\frac{Ze^2}{m_e r^2} \frac{b}{r} \dd{t}
+\,,
+\end{align}
+%
+where the factor \(b/r = \cos \theta \) accounts for the fraction of the force which is indeed normal: \(\theta \) is the angle between the radial separation \(\vec{r}\) and the velocity \(\vec{v}\) (or \(\pi - \) this angle), so that \(F \cos \theta = F_N\). 
+We can then solve this using the fact that the particle moves linearly, so that \(r^2= b^2 + v^2 t^2\): substituting this in we find 
+%
+\begin{align}
+\abs{\Delta v} &= \int _{- \infty }^{\infty} \frac{Ze^2b}{m_e r^3} \dd{t}
+= \frac{Z e^2 b}{m_e} \int  _{- \infty }^{\infty} \frac{ \dd{t}}{(b^2 + v^2 t^2)^{3/2}}  \\
+&= \frac{Ze^2}{m_e bv } \underbrace{\int _{- \infty }^{\infty} \frac{ \dd{x}}{(1 + x^2)^{3/2}}}_{= 2} = \frac{2 Z e^2}{m_e bv}
+\,.
+\end{align}
+
+We can then insert this into the expression for the spectral distribution of the signal, also using \(\tau \sim b/v\): 
+%
+\begin{align}
+\dv{w}{\omega } 
+&= 
+\begin{cases}
+    \frac{8 Z^2e^6}{3 \pi c^3 b^2 v^2 m_e^2 }  &\qquad b \ll v/\omega   \\
+    0 &\qquad b \gg v/\omega \,.
+\end{cases}
+\end{align}
+
+\subsubsection{Bremsstrahlung in a plasma}
+
+We found the spectral density for a single electron: now, we wish to compute it for the whole plasma, whose ion density is \(n_i\), and whose electron density is \(n_e\).
+To simplify, we will assume that all the electrons have the same speed \(v\), but we will let their impact parameters \(b\) vary.
+
+Let us consider this for a single ion, onto which many electrons will impact. 
+The flux of electrons will be given by \(n_e v\); so the number of particles crossing an annulus of radii \(b\), \(b + \dd{b}\) will be given by \(n_e v \dd{A}  =2 \pi b \dd{b} n_e v\). 
+Let us then integrate in \(\dd{b}\) to find the total emitted power. We will integrate from some minimum impact parameter \(b _{\text{min}}\) instead of from zero: this is needed to find a physical result, and it will be explained in more detail later. We find: 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\omega }} = \int_{b _{\text{min}}}^{\infty }
+n_e v \dv{w}{\omega } 2 \pi b \dd{b}
+= 2 \pi n_e v \int_{b _{\text{min}}}^{\infty} \dv{w}{\omega } b \dd{b}
+\,,
+\end{align}
+%
+where now we need to substitute our expression; however we only have a nonzero contribution in the low-frequency limit, or equivalently the small-\(b\) limit. So, our integrand will be zero asymptotically; before that it will go as \(1/b\). We account for this by only integrating up to some cutoff \(b _{\text{max}} \sim v/ \omega \), whose exact value must be determined by a more detailed analysis. We will use the rough estimate \(b _{\text{max}} = v / \omega \). 
+If we also account for the ion density \(n_i\) to find the power per unit frequency and volume, our integral can be expressed as:
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\omega } \dd{V}}
+&= \frac{16 Z^2 e^{6}}{3 c^3 m_e^2 v } n_e n_i \int_{b _{\text{min}}}^{b _{\text{max}}} \frac{b}{b^2} \dd{b }  \\
+&= \frac{16 Z^2 e^{6}}{3 c^3 m_e^2 v } n_e n_i
+\log \qty( \frac{b _{\text{max}}}{b _{\text{min}}})
+\,.
+\end{align}
+
+Now, what should the value of \(b _{\text{min}}\) be? 
+A first approximation we made is the small-angle one, which holds as long as \(\abs{\Delta \vec{v}} / \abs{\vec{v}}\) is small, less than unity. Suppose we are at the upper limit of this condition, when \(\abs{\Delta \vec{v}} \sim \abs{\vec{v}}\). 
+
+Inserting this into our expression for \(\abs{\Delta \vec{v}}\) we find the limit where \(b\) is so small --- the electron comes so close to the ion --- that the interaction is too large to be treated perturbatively: 
+%
+\begin{align}
+\abs{\Delta \vec{v}} \sim v \sim \frac{2 Z e^2}{m_e b v} \implies b = b _{\text{min}} = \frac{2 Z e^2}{m_e v^2}
+\,.
+\end{align}
+
+A second line of reasoning comes from the quantum-mechanical uncertainty principle: \(\Delta x \Delta p \gtrsim \hbar\). If our \(\Delta x\) is \(b _{\text{min}}\), this means that we will have 
+%
+\begin{align}
+b \gtrsim b _{\text{min}} = \frac{\hbar}{m_e v}
+\,.
+\end{align}
+    
+Which of these is greater? To make it clearer, in natural units we are comparing (\(1/m_e v\) times) the quantities: \(1\) for the quantum mechanical threshold, and 
+%
+\begin{align}
+\underbrace{8 \pi \alpha}_{\approx \num{.18}} \frac{Z}{v} 
+\,
+\end{align}
+%
+for the small-angle-approximation threshold. Since we are dealing with  nonrelativistic particles \(v\) will be small, so this can easily become the larger bound of the two, even for a hydrogen ion. 
+
+Anyhow, these considerations are all heuristic, and what is typically done is to parametrize the uncertainty in this aspect with a so-called \textbf{Gaunt factor} 
+%
+\begin{align}
+g_{ff} (v, \omega ) = \frac{\sqrt{3}}{\pi } \log \qty(\frac{b _{\text{max}}}{ b _{\text{min}}})
+\,,
+\end{align}
+%
+where the prefactor is, I think, there for historic reasons. This will in general be a function of both \(v\) (inside \(b _{\text{min}}\)) and of \(\omega \) (inside of \(b _{\text{max}}\)). With it, we can write 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V} \dd{\omega }}
+&= \frac{16 \pi Z^2 e^6 \pi }{3 \sqrt{3} c^3 m_e^2 v} n_e n_i g_{ff} (v, \omega )
+\,.
+\end{align}
+
+With a proper quantum-mechanical treatment one can find an exact expression for this factor, and in the literature there are several good approximations which are good in different regimes; also, the values are tabulated. 
+One can then assume that this is a known function. 
+
 \end{document}

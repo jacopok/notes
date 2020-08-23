@@ -1,4 +1,152 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Electron scattering}
+
+\subsection{Compton scattering onto an electron at rest}
+
+\marginpar{Sunday\\ 2020-8-23, \\ compiled \\ \today}
+
+We need to account for the fact that light has a quantum nature, which is not addressed in the classical treatment of scattering. 
+Also, now we will account for the momentum of the photon. 
+
+We start of with an electron at rest, and a photon with energy \(h \nu \) and momentum \(h \nu / c\) impinging on it. 
+After the scattering, the photon will have energy \(h \nu '\) and momentum \(h \nu ' / c\), while the electron will have momentum \(m v \gamma \). 
+Let us call the angle between the direction of the incoming photon and the direction of the outgoing one \(\theta \). 
+
+In terms of four-vectors, we can express the momenta of the photon before and after as 
+%
+\begin{align}
+k^{\mu } = \frac{\epsilon}{c} \left[\begin{array}{c}
+1 \\ 
+\vec{\Omega}
+\end{array}\right]
+\qquad \text{and} \qquad
+k^{\prime \mu } = \frac{\epsilon'}{c} \left[\begin{array}{c}
+1 \\ 
+\vec{\Omega}'
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\vec{\Omega}\) and \(\vec{\Omega}'\) are unit vectors defining the propagation directions, such that \(\vec{\Omega} \cdot \vec{\Omega}' = \cos \theta \). 
+On the other hand, the momenta of the electron will be 
+%
+\begin{align}
+p^{\mu }  = \left[\begin{array}{c}
+mc \\ 
+\vec{0}
+\end{array}\right]
+\qquad \text{and} \qquad
+p^{\prime \mu } = \gamma \left[\begin{array}{c}
+mc \\ 
+m \vec{v}
+\end{array}\right]
+\,.
+\end{align}
+
+Since the particles are unchanged after the scattering, both the incoming and outgoing momenta must satisfy \(p^{\mu } p_{\mu } = - m^2 c^2\) and \(k^{\mu } k_{\mu } = 0\) (in any frame: they are Lorentz scalars). 
+Because of momentum conservation, we can also impose the four equations 
+%
+\begin{align}
+p^{\mu } + k^{\mu } = p^{\prime \mu } + k^{\prime \mu }
+\,.
+\end{align}
+
+Solving the system of equations yields 
+%
+\begin{align}
+\epsilon' = \frac{\epsilon }{1 + \frac{\epsilon }{mc} \qty(1 - \vec{\Omega} \cdot \vec{\Omega}')}
+\,,
+\end{align}
+%
+implying that we must have \(\epsilon' \leq \epsilon \): the photon will lose energy in the scattering. 
+The calculation which yields the differential cross section of the scattering is quite complicated and requires the full machinery of QED; here we just give the result: 
+%
+\begin{align}
+\frac{ \dd{\sigma }  }{ \dd{\vec{\Omega} }'} 
+= \frac{r_0^2}{2 } \qty(\frac{\epsilon '}{\epsilon })^2
+\qty[ \frac{\epsilon}{\epsilon '} + \frac{\epsilon'}{\epsilon } - 1 + \vec{\Omega} \cdot \vec{\Omega}'] 
+\,,
+\end{align}
+%
+where \(\epsilon \) is the energy divided by \(m c^2\) and \(r_0 \) is the classical electron radius. 
+If we substitute in our formula for the energy, using \(\xi = \cos \theta = \vec{\Omega} \cdot \vec{\Omega}'\), we find 
+%
+\begin{align}
+\frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }'} 
+= \frac{r_0^2}{2} \frac{1 + \xi^2}{\qty(1 + \epsilon (1 - \xi ))^2}
+\qty[1 + \frac{\epsilon^2 (1 - \xi )^2}{(1 + \xi )^2 (1 + \epsilon (1 - \xi ))}]
+\delta \qty(\epsilon ' - \frac{\epsilon }{1 + \epsilon (1 - \xi )})
+\,.
+\end{align}
+
+In the low energy limit, \(h \nu \ll m_e c^2 \) or \(\epsilon \to 0\), we find 
+%
+\begin{align}
+\frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }'} 
+=
+\frac{r_0^2}{2} (1 + \xi^2) \delta (\epsilon ' - \epsilon )
+\,,
+\end{align}
+%
+which is the Thompson cross section. 
+
+Let us now define the \textbf{Compton scattering kernel} \(\sigma \): it is the differential cross section times the electron density,
+%
+\begin{align}
+\sigma (\epsilon \to \epsilon ', \xi ) = n_e \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }'}
+\,.
+\end{align}
+
+We can integrate this in order to find the total cross section presented by the electrons to photons of an energy \(\epsilon \): 
+%
+\begin{align}
+\sigma (\epsilon ) &= \int \dd{\Omega '} \dd{\epsilon '} \sigma (\epsilon \to \epsilon ', \xi ) \\
+&= \frac{3}{4} n_e \sigma_{T} \qty[ \qty(\frac{1 + \epsilon }{\epsilon^3}) 
+\qty(\frac{2 \epsilon (1 + \epsilon )}{1 + 2 \epsilon }- \log \qty(1 + 2 \epsilon ))
++ 
+\frac{1}{2 \epsilon } \log \qty(1 + 2 \epsilon )
+- 
+\frac{1 + 3 \epsilon }{(1 + 2 \epsilon )^2}
+]
+\,.
+\end{align}
+
+How does this differ from the Thompson cross section? For \(\log \epsilon \lesssim -1 \) we have \(\sigma \approx \sigma_T\), while as \(\epsilon \) increases the cross section goes to zero. 
+In the low energy limit we have the expansion 
+%
+\begin{align}
+\sigma (\epsilon )\approx \sigma_T \qty(1 -2 \epsilon + \frac{26}{5} \epsilon^2)
+\,.
+\end{align}
+
+The introduction of these nonconservative aspects complicates the radiative transfer equation for scattering.
+The absorption term is 
+%
+\begin{align}
+- I (\epsilon , \Omega ) n_e \int \dd{\Omega }' \dd{\epsilon }' \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }' } =     - I (\epsilon , \Omega  ) \sigma (\epsilon )
+\,,
+\end{align}
+%
+while for the emission term the intensity must go inside the integral, so we have 
+%
+\begin{align}
+n_e \int \dd{\Omega }' \dd{\epsilon '} I(\epsilon ', \Omega ') \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }' } = \int \dd{\Omega }' \dd{\epsilon }' \sigma (\epsilon \to \epsilon ', \xi )
+\,,
+\end{align}
+%
+which cannot be expressed in terms of the integrated kernel \(\sigma (\epsilon )\). 
+
+For Thomson scattering the absorption term is similar, with \(n_e \sigma_T\) instead of \(\sigma (\epsilon )\). 
+The emission term, on the other hand, can now be evaluated to yield  
+%
+\begin{align}
+\int \dd{\Omega }' \dd{\epsilon }' \sigma (\epsilon \to \epsilon ', \xi )
+= \frac{r_0^2}{2} n_e \int \dd{\Omega '} \dd{\epsilon '} I(\epsilon ', \Omega ') (1 + \xi^2) \delta (\epsilon ' - \epsilon ) \sim n_e \sigma_T J(\epsilon )
+\,,
+\end{align}
+%
+as long as we neglect the angular part \(1 + \xi^2\). 
+
 \end{document}

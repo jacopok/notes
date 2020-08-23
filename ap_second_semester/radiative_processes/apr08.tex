@@ -1,4 +1,246 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Sunday\\ 2020-8-23, \\ compiled \\ \today}
+
+We have treated the bremsstrahlung emission from a single-speed electron distribution, expressing in terms of the free-free Gaunt factor \(g_{ff} ( \omega , v)\). Now we want to tackle the emission from a distribution with varying velocity. 
+
+We will consider a simple case which has broad application in an astrophysical setting: the electrons having a nonrelativistic Maxwellian (thermal) isotropic distribution, 
+%
+\begin{align}
+\dd{P} \propto \exp( -\frac{E}{k_B T}) \dd[3]{v} = \exp(- \frac{m v^2}{2 k_B T}) 4 \pi v^2 \dd{v}
+\,.
+\end{align}
+
+The last equality is imprecise, what it meant implicitly is that since the distribution is isotropic we can integrate over the solid angle getting a factor \(4 \pi \); the only true dependence is on the modulus of the velocity.
+
+Then, we will be able to recover the total power emitted by electrons whose velocity distribution looks like this as 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\omega }} 
+\propto 
+\int_{0}^{\infty} \frac{ \dd{w}}{ \dd{t} \dd{\omega } \dd{V}} (v, \omega ) v^2 \exp(- \frac{m v^2}{2 k_B T}) \dd{v}
+\,.
+\end{align}
+
+\todo[inline]{Why is the total power density also divided by \(\dd{V}\), but not the one inside the integral? are they not both densities in terms of space?}
+
+Should we really integrate from 0 to \(+ \infty \)? The upper bound is fine, we can have electrons with arbitrarily high energy, however the distribution is exponentially suppressed there so it does not pose an issue.
+The problem comes from the lower bound: at a velocity \(v\) the electron has an energy \(m v^2 / 2\), so if the frequency of the photon is \(\omega \) and \(m v^2 / 2 < \hbar \omega \) there cannot be emission, since the energy of the photon must come from the kinetic energy. 
+
+This means that we must exclude the tail of the distribution at low \(v\), specifically we impose 
+%
+\begin{align}
+v \geq v _{\text{min}} = \sqrt{\frac{2 \hbar \omega }{m}}
+\,.
+\end{align}
+
+So, we will have 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\omega }} 
+= \frac{1}{N} \int_{v _{\text{min}}}^{\infty } \frac{ \dd{w}}{ \dd{t} \dd{\omega } \dd{V}} (v, \omega  ) v^2 \exp(- \frac{m v^2}{2 k_B T}) \dd{v}
+\,,
+\end{align}
+%
+where \(N\) is the normalization, which is equal to 
+%
+\begin{align}
+N = \int_{0}^{\infty } v^2 \exp( - \frac{m v^2}{2 k_B T}) \dd{v}
+\,.
+\end{align}
+
+Note that in the normalization we still must integrate from \(0\): the electrons whose energy is lower than the threshold do not matter for our purposes, however they are still there, and so not all the electron density is available for emission. 
+
+Now, let us express the single-velocity power distribution \eqref{eq:single-velocity-bremsstrahlung-distribution} incorporating all the constants into a single constant \(A\): 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\omega } \dd{V}} (v, \omega  ) 
+= A  \frac{ g_{ff} (v, \omega )}{v}
+\,,
+\end{align}
+%
+where crucially \(A\) does not depend on \(v\). 
+Inserting this yields: 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\omega }} 
+&= \frac{A}{N}
+\int_{v _{\text{min}}}^{\infty } \frac{g_{ff}(v, \omega )}{v} 
+v^2 \exp(- \frac{m v^2}{2 k_B T} \dd{v})   \\
+&= A \frac{\frac{2k_B T}{m} \int_{x _{\text{min}}}^{\infty } g_{ff} (x, \omega ) x e^{-x^2} \dd{x}}{(\frac{2 k_B T}{m})^{3/2} \int_{0}^{\infty } x^2 e^{-x^2 } \dd{x}}
+\marginnote{Substituted \(x = v \sqrt{2 k_B T / m}\).}  \\
+&= \frac{A}{\sqrt{ 2k_B T / m}} \frac{\int_{x _{\text{min}}}^{\infty } g_{ff} (x, \omega ) x e^{- x^2} \dd{x}}{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}} 
+\frac{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}}{\int_{0}^{\infty } x^2 e^{-x^2} \dd{x}}  \\
+&= \frac{A}{\sqrt{ 2k_B T / m}}
+\overline{g}_{ff} (\omega ) 
+\frac{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}}{\int_{0}^{\infty } x^2 e^{-x^2} \dd{x}}
+\,,
+\end{align}
+%
+where we introduced the \textbf{velocity-averaged Gaunt factor} \(\overline{g}_{ff} (\omega , T)\) (it depends on the temperature through \(x\)), while the ratio of the two integrals equals 
+%
+\begin{align}
+\frac{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}}{\int_{0}^{\infty } x^2 e^{-x^2} \dd{x}}
+= \frac{ \frac{1}{2} e^{- x _{\text{min}}^2}}{\sqrt{\pi }/ 4} 
+= \frac{4}{\sqrt{\pi }} \frac{1}{2} e^{- \frac{h \nu }{k_B T}}
+\,,
+\end{align}
+%
+since \(x _{\text{min}}^2 = m v^2 _{\text{min}} / 2 k_B T \). 
+
+Therefore, our final expression will be 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\omega }} 
+&= A \sqrt{ \frac{m}{2 k_B T}} \overline{g}_{ff} (\omega , T ) \frac{1}{2} e^{- \frac{h \nu }{k_B T}} \frac{4}{\sqrt{\pi }}  \\
+&= \frac{16 \pi Z^2 e^{6}}{3 \sqrt{3} c^3 m^2 } \frac{1}{2} \frac{4}{\sqrt{\pi }} n_e n_i e^{- \frac{h \nu }{k_B T}} \sqrt{ \frac{m}{2 k_B T}} \overline{g}_{ff}(\omega , T)   \\
+&= \frac{32 \sqrt{\pi } Z^2 e^{6}}{3 \sqrt{3} c^3 m^2}
+\sqrt{ \frac{m}{2 k_B}} n_e n_i T^{-1/2} e^{- \frac{h \nu }{k_B T}} \overline{g}_{ff} (\omega, T)
+\,,
+\end{align}
+%
+which can also be written in terms of frequency \(\nu = \omega / 2 \pi \) as  
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\nu }}
+&= \frac{32 Z^2 e^{6}}{3 m c^3} \sqrt{ \frac{2 \pi }{3 k_B m}} n_e n_i \frac{1}{\sqrt{T}} \exp(- \frac{h \nu }{k_B T}) \overline{g}_{ff}(\nu , T)  
+\,.
+\end{align}
+
+We can then see that the free-free spectrum has an exponential cutoff in frequency, coming from the lower bound on the integral we imposed: if we had not done so the spectrum would be completely flat, except for \(\overline{g}_{ff}(\nu , T)\).
+This is reasonable: that effect is most significant for high-energy photons. 
+
+However, the dependence on frequency of the Gaunt factor is quite weak, and it is a reasonable first approximation to assume \(\overline{g}_{ff} \approx 1\).
+
+The shape of the spectrum, on a log-log plot, is flat for low frequencies up until \(h \nu \sim k_B T\), and then a sharp drop. 
+Now we can calculate the total radiated power per unit volume by integrating in \(\dd{\nu }\): 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V}} 
+&= \int_{0}^{\infty } A n_e n_i T^{-1/2} \overline{g}_{ff} (\nu, T) e^{-h \nu / k_B T} \dd{\nu }  \\
+&= A n_e n_i T^{-1/2} \underbrace{\frac{\int_{0}^{\infty } \overline{g}_{ff} (\nu, T) e^{-h \nu /k_B T}}{\int_0^{\infty} e^{- h \nu / k_B T} \dd{\nu } }}_{\overline{\overline{g}}_{ff}}  
+\int_0^{\infty} e^{- h \nu / k_B T} \dd{\nu }
+\\
+&= A n_e n_i T^{-1/2} \frac{k_B T}{h } \overline{\overline{g}}_{ff}(T)
+\,,
+\end{align}
+%
+where we have introduced the doubly-averaged (over frequency as well as velocity) Gaunt factor \(\overline{\overline{g}}_{ff}\), which now depends only on the temperature. The final result is then 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V}} = \frac{32 \pi Z^2 e^{6}}{3 m c^3h} \sqrt{\frac{2 \pi k_B}{3 m}} \overline{\overline{g}}_{ff}(T)  n_en_i T^{-1/2}
+\,.
+\end{align}
+
+This frequency-averaged Gaunt factor is very slowly varying, and very close to unity. 
+
+Now, let us link this with the \textbf{emission} and \textbf{absorption coefficients}: the emission coefficient \(j_\nu \) in the isotropic case is  
+%
+\begin{align}
+j_\nu = \frac{1}{4\pi } \frac{ \dd{w}}{ \dd{t} \dd{\nu } \dd{V}}
+\,,
+\end{align}
+%
+which in our case will then be 
+%
+\begin{align}
+j_\nu = \frac{8 Z^2 e^{6}}{3 m c^3} \sqrt{ \frac{2 \pi }{2 m k_B}}
+\overline{g}_{ff}(\nu, T) n_e n_i T^{-1/2 } \exp(- \frac{h \nu }{k_B T})
+\,.
+\end{align}
+
+The treatment of absorption is more interesting. Our population  is in thermal equilibrium, so Kirkhoff's law holds: this means that the ratio of the emission and absorption coefficients is given by the Planck function, 
+%
+\begin{align}
+B_\nu = \frac{j_\nu }{\alpha_{\nu }}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\alpha_{\nu } &= \frac{j_\nu }{B_\nu } 
+= \frac{\frac{8 Z^2 e^{6}}{3 m c^3} \sqrt{ \frac{2 \pi }{2 m k_B}}
+\overline{g}_{ff}(\nu, T) n_e n_i T^{-1/2 } \exp(- \frac{h \nu }{k_B T})}{\frac{2 h \nu^3}{c^2} \qty(\exp( \frac{h \nu }{k_B T}) -1)^{-1}}  \\
+&= \frac{4 Z^2 e^{6}}{3 m h c} \sqrt{\frac{2 \pi }{3 m k_B}} \overline{g}_{ff} (\nu, T) n_e n_i T^{-1/2} \nu^{-3} \qty(1 - \exp(- \frac{h \nu }{k_B T}))
+\,.
+\end{align}
+
+How does the dependence of this absorption coefficient on frequency look like? At low energy, \(h \nu \ll k_B T\), we have \(1 - \exp(- h \nu / k_B T) \approx h \nu / k_B T\), meaning that 
+%
+\begin{align}
+\alpha_{\nu } \propto \nu^{-3} \frac{h \nu }{k_B T} \propto \nu^{-2}
+\,,
+\end{align}
+%
+while for high energies \(h \nu \gg k_B T\) we have \(1 - \exp(- h \nu / k_B T) \approx 1\): this means that 
+%
+\begin{align}
+\alpha_{\nu } \propto \nu^{-3}
+\,.
+\end{align}
+
+In the middle, \(h \nu \sim k_B T\), we will have some smooth connection of the two powerlaws. 
+In a log-log plot, we have a broken powerlaw. 
+
+A quantity we defined earlier is the Rosseland mean absorption coefficient; 
+%
+\begin{align}
+\frac{1}{\alpha_{R}} = \frac{\int_0^{\infty} \frac{1}{\alpha_\nu  } \pdv{B_\nu }{T} \dd{\nu } }{\int_0^{\infty } \pdv{B_\nu }{T} \dd{\nu }}
+\,.
+\end{align}
+
+With the explicit expression we now have for the monochromatic absorption coefficient we can compute these integrals: we will need the fact that 
+%
+\begin{align}
+\pdv{B_\nu }{T} \propto \frac{\nu^3 }{(e^{h \nu / k_B T} - 1)^2} e^{h \nu / k_B T} \frac{\nu}{T^2} \propto \frac{x^3 e^{x} x}{(e^{x} - 1)^2} T^2
+\,,
+\end{align}
+%
+where, as usual, \(x = h \nu / k_B T\). We do not need to worry about prefactors since they simplify. 
+The Rosseland mean absorption coefficient is then 
+%
+\begin{align}
+\frac{1}{\alpha_{R} } \propto \frac{T^{1/2}}{n_e n_i Z^2} \frac{
+    \int_0^{\infty } \nu^3 \qty(1 - e^{-h \nu / k_B T})^{-1} \overline{g}_{ff}^{-1} \frac{x^4 e^{x}}{(e^{x} - 1)^2 T^3 \dd{x}} 
+}{
+    \int_0^{\infty } \frac{x^4 e^{x} T^3 }{(e^{x} - 1)^2} \dd{x}
+} \marginnote{Extra \(T\) in the numerator from moving from \(\dd{\nu }\) to \(\dd{x}\). }  \\
+&\propto \frac{T^{1/2}}{n_e n_i Z^2} \frac{T^3 T^3}{T^3} 
+\underbrace{\frac{\int_0^{\infty } \overline{g}_{ff}^{-1} x^{7} (e^{x}- 1)^{-3} \dd{x}}{\int_0^{\infty } x^{4} e^{x} (e^{x} - 1)^{-2} \dd{x}}}_{\overline{g}^{-1}_{R}(T) }  \\
+&\propto \frac{T^{7/2}}{n_e n_i Z^2} \overline{g}_{R}^{-1} (T)
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\alpha_{R} \propto n_e n_i Z^2 T^{-7/2} \overline{g}_{R} (T)
+\,.
+\end{align}
+
+The main result is the \(T^{-7/2}\) dependence; the constant in front of the expression can be fixed with a more precise calculation. 
+
+Now, let us discuss what kinds of corrections come up when dealing with \textbf{relativistic bremsstrahlung}: the main process which becomes relevant is \textbf{electron-electron} bremsstrahlung. 
+Even just treating electron-ion bremsstrahlung in the relativistic regime, however, requires the use of full QED. 
+The final result one gets for the frequency-integrated power is 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V}} \approx
+\num{1.4e27} T^{1/2} Z^2 n_e n_i \overline{\overline{g}}_{ff} 
+\qty( 1 + \num{4.4e-10} \frac{T}{\SI{}{K}}) \SI{}{erg cm^{-3} s^{-1}} 
+\,,
+\end{align}
+%
+where the \(\num{4.4e-10} T\) factor is the relativistic correction. 
+Thermal electrons become relativistic when \(k_B T \sim m_e c^2\), meaning that \(T \sim \SI{511 }{keV} \sim \SI{6e9}{K}\). The relativistic correction can be written as  
+%
+\begin{align}
+1 + \num{2.6} \frac{T}{m_e c^2 / k_B}
+\,,
+\end{align}
+%
+which can become significant quite early: it is of the order of \SI{25}{\percent} as early as \SI{6e8}{K}, one tenth of the relativistic temperature. 
+
 \end{document}

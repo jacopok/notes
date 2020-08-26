@@ -149,6 +149,117 @@ The emission term, on the other hand, can now be evaluated to yield
 %
 as long as we neglect the angular part \(1 + \xi^2\). 
 
+We are always restricting ourselves to electrons which are initially at rest. For them Thompson scattering is a good approximation; photons more energetic than a few tens of \SI{}{keV} (hard X-rays) hardly scatter, since the Klein-Nishina cross section drops at high energies.
+
+So, by using the Thomson limit we do not get it wrong by much. 
+
+The main conclusions we can draw from this is that we expect no spectral modifications (since Thomson scattering is conservative) but we do expect angular redistribution (since Thomson scattering is essentially isotropic).
+
+\subsection{Scattering in plasmas}
+
+Electrons are not at rest in any realistic astrophysical setting. In order to have free electrons we need a plasma, which is made of (at least partially) ionized gas. 
+So, we need a way to describe the fractional ionization.
+Let us consider only hydrogen for simplicity: we define the collisional ionization fraction \(x\) (ionized atoms divided by total atoms), which can be expressed in terms of the temperature as 
+%
+\begin{align}
+x = \frac{F}{1 + F} 
+\qquad \text{where} \qquad
+F = 2T \exp(-\frac{\SI{1.58e5}{K}}{T})
+\,.
+\end{align}
+
+The way \(x\) looks as a function of temperature is a kind of sigmoid: it is close to zero, then at \(T\) around \SI{e4}{K} it quickly rises, and becomes close to 1 at a few times \SI{e4}{K}. At temperatures larger than \SI{e5}{K} the plasma is basically fully ionized (which makes sense: the first ionization energy of hydrogen is \(\SI{13.6}{eV} \approx \SI{1.6e5}{K}\)). 
+
+At these temperatures, the electrons will be moving quite a lot because of thermal motion. 
+
+\subsection{Inverse Compton scattering}
+
+Scattering onto moving electrons is often called \textbf{inverse Compton scattering}, since in this case the photon might gain energy instead of losing it. 
+We start off with a photon with momentum \(k^{\mu } = (\epsilon /c) (1, \vec{\Omega})\) and an electron with momentum \(p^{\mu } = \gamma (mc, m \vec{v})\); the outgoing electron and momentum momenta, energies and velocities will be denoted with a prime. 
+
+We know how to deal with scattering off a stationary electron, and stationarity is relative: if we boost to the electron's rest frame we can apply the results from regular Compton scattering, and then we will need to boost back to our frame. 
+
+We shall denote quantities calculated in the ERF (electron rest frame) with a pedix \(e\): for example the energy of the photon in the ERF before the scattering will be \(\epsilon_e\).
+This means that in the ERF we will have the equality 
+%
+\begin{align}
+\epsilon_e' 
+= \frac{\epsilon_e}{1 + \frac{\epsilon_e}{mc} (1 - \cos \Theta )} 
+\approx \epsilon_e \qty(1 - \frac{\epsilon_e}{mc} (1 - \cos \Theta )) 
+\approx \epsilon_e 
+\qquad \text{if } \epsilon_e \ll m c^2 
+\,.
+\end{align}
+
+We are saying that in the rest frame the scattering will basically be conservative, this is for sure an approximation but, because of what we discussed earlier about the Klein-Nishina cross section dropping off at high energies, not a large one. 
+
+The Lorentz transform from the LAB frame to the ERF for the energy of the photon is: 
+%
+\begin{align}
+\epsilon_e = \gamma \epsilon \qty(1 - \beta \cos \theta )
+\,,
+\end{align}
+%
+while the transform back from  the ERF to the LAB frame is 
+%
+\begin{align}
+\epsilon' = \gamma \epsilon_e' \qty(1 + \beta \cos \theta _e )
+\,.
+\end{align}
+
+Note that the quantities \(\beta \) and \(\gamma \) refer to the velocity of the electron: since we are approximating the scattering as conservative in the ERF calculating them before or after the scattering is the same (the direction of the electron can change: this is accounted for by letting \(\theta\) and \(\theta '\) be different). 
+So, we can just insert these two multiplicative factors one after another to find the total change in energy of the photon: 
+%
+\begin{align}
+\epsilon ' &\approx \gamma^2 \epsilon \qty(1 - \beta \cos \theta ) \qty(1 + \beta \cos \theta'_e ) 
+\,.
+\end{align}
+
+\todo[inline]{Inaccuracy in the slides: the first formula does not really make sense, since the approximation of the nonconservativeness factor being equal to one has been made in part of it (\(\beta \) and \(\gamma \) being the same before and after), so it does not make sense to write it out.}
+
+Let us neglect the angular terms for now: generally they are of order unity. Instead, the main factor in the formula is \(\gamma^2>1\): this means that in general the energy of the scattered photon is of the order \(\epsilon ' = \gamma^2 \epsilon > \epsilon  \). 
+The boost of the energy of the photon depends on how relativistic the electron is; if the electron is very relativistic the boost in energy for the photon can be quite large. 
+
+In order to make predictions about the effect of this for a population of electrons and photons, we can Lorentz transform the Compton Scattering Kernel: the final result of the manipulation is
+%
+\begin{align}
+\sigma (\epsilon \to \epsilon ', \xi ) = \frac{D}{D'} \sigma_e \qty(\epsilon _e \to \epsilon _e', \xi _e)
+\,,
+\end{align}
+%
+where \(D = 1 - \vec{\Omega} \cdot \vec{v} / c\) and \(D' = 1 - \vec{\Omega}' \cdot \vec{v}' / c \) are the factors in the Lorentz transforms, which allow us to write \(\epsilon _e = \gamma D \epsilon \) and \(\epsilon _e' = \gamma D' \epsilon '\).
+
+The transformation law for \(\xi = \vec{\Omega} \cdot \vec{\Omega}\) is 
+%
+\begin{align}
+1 - \xi = \frac{1 - \xi _e}{\gamma^2 D D'}
+\,,
+\end{align}
+%
+while the electron energy density transforms as \(n = \gamma n_e\). 
+
+This allows us to write down an explicit expression for \(\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega})\) in the lab frame for a population of single-speed electrons:
+%
+\begin{align}
+\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}, v) 
+= 
+\frac{n r_0^2}{2 \epsilon \nu \gamma } 
+\qty[1 + \qty(1 + \frac{1 - \xi }{\gamma^2 D D'})^2
++ \frac{\epsilon \epsilon ' (1 - \xi )^2}{\gamma^2 D D'}]
+\delta \qty(\xi -1 + \frac{\gamma D}{\epsilon'} - \frac{\gamma D'}{\epsilon })
+\,,
+\end{align}
+%
+but we must also consider the fact that the electrons are distributed with different velocities: if their distribution is isotropic, so that \(\dd{n} = n f(v) \dd[3]{v}\) then we can integrate across all velocity space, getting an expression like 
+%
+\begin{align}
+\sigma (\epsilon \to \epsilon ', \xi )
+= \int \dd{v} \sin \theta_v \dd{\theta _v} \dd{\phi _v}
+ v^2 n f(v) 
+\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}, v)  
+\,.
+\end{align}
+
 
 
 \end{document}

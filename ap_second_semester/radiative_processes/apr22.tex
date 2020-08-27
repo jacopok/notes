@@ -1,4 +1,83 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{The physical effects of Comptonization}
+
+\marginpar{Thursday\\ 2020-8-27, \\ compiled \\ \today}
+
+As we have said it is hard to find numerical solutions to the Kompaneets equation, however there is an interesting quantity whose evolution we can study analytically: the photon energy density. 
+The energy density can be calculated as 
+%
+\begin{align}
+u = \int \dd[3]{p} h \nu \dv{N}{ \dd[3]{x}}
+= \int \dd[3]{p} h \nu   \frac{2 n}{h^3} 
+= \frac{8 \pi (k_B T)^{4}}{h^3c^3} \int_0^{\infty } \dd{x} x^3 n
+\,,
+\end{align}
+%
+where, as usual, \(x = h \nu / k_B T\), and the last equality comes about by substituting this and \(\dd[3]{p} = p^2 \dd{p} \dd{\Omega }\) and assuming isotropy. 
+
+In order to see how it changes, let us differentiate this energy density with respect to time (rescaled, as in the Kompaneets equation, by the mean time between two scatterings): 
+%
+\begin{align}
+\dv{u}{t_s} 
+= \frac{8 \pi (k_B T)^{4}}{h^3c^3} \int_0^{\infty } \dd{x} x^3 \pdv{n}{t_s}
+= \frac{8 \pi (k_B T)^{4}}{h^3c^3} \int_0^{\infty } \dd{x} x^3 \frac{\Theta}{x^2} \pdv{}{x} \qty[x^{4 } (n' + n + n^2)]
+\marginnote{Used the Kompaneets equation.}
+\,.
+\end{align}
+
+Now, let us suppose that \(n\) is very small, so that we can neglect \(n\) and \(n^2\) inside the derivative, keeping \(n'\)
+\todo[inline]{Not super clear why \(n \ll n'\) if \(n\) is small should hold\dots }
+: this yields 
+%
+\begin{align}
+\dv{u}{t_s} \approx \frac{8 \pi (k_B T)^{4}}{h^3 c^3} \Theta \int_0^{\infty } \dd{x} x \pdv{[x^{4} n']}{x}
+\,.
+\end{align}
+
+We integrate by parts twice and assume that \(x^{k} n' \to 0 \) for \(k> 3\): this give us 
+%
+\begin{align}
+\dv{u}{t_s} \approx \frac{8 \pi (k_B T)^{4}}{h^3 c^3} 4 \Theta \int_0^{\infty } \dd{x} x^3 n = 4 \Theta u
+\,.
+\end{align}
+
+The solution to this is an exponential: 
+%
+\begin{align}
+u(t_s) = u(0 ) \exp( 4 \Theta t_s) = u(0 ) \exp( t / t_c )
+\,,
+\end{align}
+%
+where \(t_c = 1/ (4 \Theta n \sigma _T c)\) is called the Compton time. 
+This means that the radiative energy density increases \textbf{exponentially fast}, over a characteristic time of the order \(t_c\). 
+
+\todo[inline]{Wait, is this exponential OK? it diverges as time increases! }
+
+\subsection{Relativistic Kompaneets equation}
+
+We made the hypotheses that \(\Theta \ll 1\) and \(\epsilon \ll 1\) at the start: the electrons and photons were nonrelativistic.
+If we keep all the other hypotheses (isotropy, homogeneity, small fractional energy change and so on) can we generalize the Kompaneets equation to relativistic particles?
+
+We will need to use a relativistic Maxwellian (Jüttner distribution) instead of a Maxwellian, and the Klein-Nishina cross section instead of the Thomson one. This will allow us to deal with generic \(\Theta \) and \(\epsilon \): the result is 
+%
+\begin{align}
+\pdv{n}{t} = \frac{1}{\epsilon^2} \pdv{}{\epsilon } \qty[ \alpha (\epsilon , \Theta ) \qty(\Theta \pdv{n}{\epsilon } + n + n^2)]
+\,,
+\end{align}
+%
+where \(\alpha \) is a certain known function, 
+%
+\begin{align}
+\alpha (\epsilon , \Theta ) = \frac{\epsilon^4}{2 K_2 (1 / \Theta )} \int_0^{\infty } \dd{z} z^2 \alpha_0 (\epsilon z) \exp( - \frac{z + 1/z}{2 \Theta })
+\,,
+\end{align}
+%
+where \(\alpha_0\) is a known analytical function, whose expression is omitted here. 
+
+The form of the relativistic Kompaneets equation is very similar to the nonrelativistic one. 
+
+% 15.50 
+
 \end{document}

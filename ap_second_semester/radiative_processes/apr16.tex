@@ -1,4 +1,254 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2020-8-27, \\ compiled \\ \today}
+
+We then expand the electron and photon energy distributions \emph{after} the scattering up to second order in \(\Delta \): using the fact that \(\epsilon' - \epsilon = \Delta \Theta \) (\(\Delta \) \emph{times} \(\Theta \), not the variation of \(\Theta \)) we find
+%
+\begin{align}
+f(E') &= f(E - \Delta \Theta ) \approx \qty(1 + \Delta + \frac{\Delta^2}{2}) f(E)  \\
+n(\epsilon ') &= n( \epsilon + \Delta \Theta ) \approx n(\epsilon ) + \pdv{n}{\epsilon } \Delta \Theta 
++ \pdv[2]{n}{\epsilon } \frac{(\Delta \Theta )^2}{2 }
+\,,
+\end{align}
+%
+where we have used the explicit expression we have for the thermal distribution \(f(E) \sim e^{- E/ \Theta }\), which gives us a factor \(-1/\Theta\) each we differentiate with respect to \(E\). 
+
+If we define the usual rescaled energy \(x = h \nu / k_B T = \epsilon / \Theta \) we can express the latter expansion as 
+%
+\begin{align}
+n(x') \approx n(x) + \Delta \pdv{n}{x} + \frac{\Delta^2}{2} \pdv[2]{n}{x}
+\,.
+\end{align}
+
+We will assume that the medium is \textbf{homogeneous}, \textbf{isotropic} and \textbf{infinite}, and that the photon distribution is \textbf{isotropic}. The latter point means that \(n\) is not a function of \(\Omega \). 
+This will be close to true as long as the optical depth is large, since then we will see many interactions which will spread the photons. 
+
+We can then take out of the Boltzmann integral all the terms depending only on \(n\), since they have no more angular dependence. This yields the following expression (up to second order in \(\Delta \)): 
+%
+\begin{align}
+\pdv{n}{t} = \qty[n' + n(n+1)]
+\underbrace{\int \dd[3]{p} \dd{\Omega } \dv{\sigma }{\Omega } f(E) \Delta }_{I_1 }
++ 
+\qty[\frac{n''}{2}
++ \qty(n' + \frac{n}{2})
+\qty(n+1)]
+\underbrace{\int \dd[3]{p} \dd{\Omega } \dv{\sigma }{\Omega }
+f(E) \Delta^2 }_{I_2 }
+\,.
+\end{align}
+
+Here we are denoting \(n' = \pdv*{n}{x}\) for simplicity.  
+Let us then try to evaluate the integrals \(I_1 \) and \(I_2 \), starting from the latter. It depends on \(\Delta^2\), which is given by 
+%
+\begin{align}
+\Delta^2 = x^2 \beta^2 (\vec{\Omega}' - \vec{\Omega})^2 \cos^2 \theta_v
+\,,
+\end{align}
+%
+so it evaluates to 
+%
+\begin{align}
+I_2 = 
+\int \dd[3]{p} \dd{\Omega } \dv{\sigma }{\Omega } f(E) \Delta^2
+= x^2 \int f(E) p^2 \beta^2 \cos^2 \theta _v \dd{p} \sin \theta _v \dd{\theta _v} \dd{\phi _v} \int \dd{\Omega } \dv{\sigma }{\Omega } (\vec{\Omega}' - \vec{\Omega})^2
+\,,
+\end{align}
+%
+where \(\theta _v\) and \(\phi _v\) are the two angles defining the unit vector \(\hat{p}\), so that \(\dd[3]{p} = p^2 \sin \theta _v \dd{p } \dd{\theta _v} \dd{\phi _v}\). We choose them by placing the vector \(\vec{\Omega}' - \vec{\Omega}\) on the \(z\) axis, so that the angle \(\theta _v\) is also the one appearing in \((\vec{\Omega}' - \vec{\Omega}) \cdot \vec{p} = p \abs{\vec{\Omega}' - \vec{\Omega}} \cos \theta _v\). 
+
+The angular integrals in \(\dd{\phi _v}\) and \(\dd{\theta _v}\) are standard, while for the integral in the modulus of \(p\) we need to use the actual expression of the Maxwellian: substituting \(\beta = p / mc\) and then \(z= \beta / \sqrt{\Theta }\) we get 
+%
+\begin{align}
+I_2 
+&= 2 \pi x^2m^3 c^3 \frac{2}{3} (2 \pi m k_B T)^{-3/2} n_e 
+\int_0^{\infty } \dd{\beta } \beta^{4} \exp(- \frac{\beta^2}{2 \Theta })
+\int \dd{\Omega } \dv{\sigma }{\Omega } \qty(\vec{\Omega}' - \vec{\Omega})^2 \\
+&= 2 \pi x^2m^3 c^3 \frac{2}{3} \Theta^{5/2} (2 \pi m k_B T)^{-3/2} n_e 
+\underbrace{\int_0^{\infty } \dd{z } z^{4} \exp(- \frac{z^2}{2})}_{= 3 \sqrt{2 \pi } / 2}
+\int \dd{\Omega } \dv{\sigma }{\Omega } \qty(\vec{\Omega}' - \vec{\Omega})^2   \\
+&= x^2 \Theta n_e 
+\int \dd{\Omega } \dv{\sigma }{\Omega } \qty(\vec{\Omega}' - \vec{\Omega})^2
+\,,
+\end{align}
+%
+so we are left with only the integral in the photon space: in order to evaluate it we need to substitute the expression of the modulus of the difference of the unit vectors and the differential cross section: 
+%
+\begin{align}
+\qty(\vec{\Omega}' - \vec{\Omega})^2 = 2 (1 - \cos \theta )
+\qquad \text{and} \qquad
+\dv{\sigma }{\Omega } = \frac{r_0^2}{2} \qty(1 + \cos^2 \theta )
+\,,
+\end{align}
+%
+so, also substituting the explicit expression for the radius \(r_0 \) we get 
+%
+\begin{align}
+I_2 &= n_e x^2 \Theta \int \sin \theta \dd{\theta } \underbrace{\dd{\phi }}_{= 2 \pi } \frac{3 \sigma _T}{16 \pi } 2 (1 + \cos^2 \theta ) (1 - \cos \theta )  \\
+&= 2 n_e x^2 \Theta \sigma _T \frac{3}{16 \pi } 2 \pi \underbrace{\int_{-1}^{1} (1+\mu^2) (1 - \mu ) \dd{\mu }}_{= 8/3} \\
+&= 2 \sigma _T x^2 n_e \Theta 
+\,.
+\end{align}
+
+The integral \(I_1 \) looks similar, and one might try to evaluate it similarly. This turns out to be tricky, and there is a better indirect way to do it. 
+
+The photon number density in phase space is given by 
+%
+\begin{align}
+\frac{ \dd{N}}{ \dd{V} \dd[3]{p}} = \frac{2}{h^3} n
+\,,
+\end{align}
+%
+so, since the momentum of a photon is proportional to its energy and also to \(x = h \nu / k_B T\) we can write 
+%
+\begin{align}
+\dv{N}{V} \propto \int_0^{\infty } \dd{x} n x^2
+\,.
+\end{align}
+
+\todo[inline]{If I'm interpreting this correctly, the slides use \(x\) with two different meanings in the same equation: one is position, and the other is the normalized energy. Really confusing if it is the case.}
+
+Since the medium is assumed to be homogeneous and isotropic, the photon number \emph{density} is conserved: this means that 
+%
+\begin{align}
+\dv{}{t} \qty(\dv{N}{V}) = 0 
+\implies
+\dv{}{t} \int_0^{\infty } \dd{x} n x^2 = \int_0^{\infty } \dd{x} \pdv{n}{t} x^2
+\,.
+\end{align}
+
+Now, for reasons which will become clear in a moment, we make an assumption: suppose that there is a function \(j(x, t )\) such that the derivative of the photon density can be written as 
+%
+\begin{align}
+\pdv{n}{t} = - \frac{1}{x^2} \pdv{[x^2 j(x, t)]}{x}
+\,.
+\end{align}
+
+If this is the case, then the integral which we have just seen shown to equal zero can be written as 
+%
+\begin{align}
+\int_0^{\infty } \dd{x} \pdv{n}{t} x^2  = -\int_0^{\infty } \pdv{[x^2 j(x, t)]}{x}  = \eval{- x^2 j(x, t) }_{0}^{\infty } = 0
+\,.
+\end{align}
+
+This gives us the boundary conditions for \(j\), which will have to be well-behaved at zero (non diverging) and at infinity (going to zero at least as \(1/x^2\)). 
+Now, the Boltzmann equation's dependence on \(n\) and its derivatives is in the form 
+%
+\begin{align}
+\pdv{n}{t} = C_1 (x ) n'' + C_2 (n, x) n' + C_3 (n, x)
+\,,
+\end{align}
+%
+and if we compare this expression with the one which defines \(j\)\footnote{Seeing that 
+%
+\begin{align}
+\pdv{n}{t} = - \frac{1}{x^2} 
+\pdv{[x^2 j(x, t)]}{x}
+= - \frac{2j}{x} - \pdv{j}{x}
+\,.
+\end{align}
+%
+} we can prove that its dependence on \(n\) and \(x\) looks like 
+%
+\begin{align}
+j = g(x) \qty[n' + h (n, x)]
+\,,
+\end{align}
+%
+for some functions \(g\) and \(h\). In general \(h\) is a function of both \(n\) and \(x\), but we will assume it only depends on \(n\). 
+
+\todo[inline]{Why though? Is there a physical reason for it?}
+
+Now, we substitute this general expression for \(j\) back into the Boltzmann equation: this yields 
+%
+\begin{align}
+\begin{split}
+&\frac{1}{2} I_2 n'' + \qty[(1+ n) I_2 + I_1 ]n' + \qty(I_1 + \frac{I_2}{2}) n (1+n) =
+\\
+&\phantom{=}\ = - g(x) n'' - \qty( \frac{2 g(x)}{x} + g(x) \pdv{h}{n} + \pdv{g}{x}) n' - \qty(h \frac{2 g(x)}{x} + g(x) \pdv{h}{x} + h \pdv{g}{x})
+\end{split}
+\,,
+\end{align}
+%
+from which, identifying the terms, we can recover the expressions for \(g\), \(I_1 \) and \(h\): 
+%
+\begin{align}
+g &= - \frac{I_2}{2} = - x^2 n_e \sigma_T \Theta   \\
+I_1 &= - 2 \frac{g}{x}  - \pdv{g}{x} - \frac{I_2}{2} = (4-x) x n_e \sigma_T \Theta  \\
+h &= n (1 + n)
+\,.
+\end{align}
+
+This means that the form of \(j\) is 
+%
+\begin{align}
+j= g(x) \qty[n' + h (n, x)] = - x^2 n_e \sigma_T \Theta (n' + n + n^2 )
+\,,
+\end{align}
+%
+which we can finally substitute into the Kompaneets equation: 
+%
+\begin{align}
+\pdv{n}{t} = - c \frac{1}{x^2} \pdv{[x^2 j]}{x}
+&= n_e \sigma_T c \frac{\Theta }{x^2} \pdv{[x^{4} (n' +n + n^2)]}{x}  \\
+\pdv{n}{t_s} &= \frac{\Theta}{x^2} \pdv{[x^{4} (n' + n + n^2)]}{x}
+\,,
+\end{align}
+%
+where we calculate time in units of the mean time between subsequent scatterings, \(T = \frac{1}{n_e \sigma _T c} \), so that \(t_s = t / T\).
+\todo[inline]{There is now a \(c\) which was not there before\dots}
+
+This is the \textbf{Kompaneets equation}. 
+In general this nonlinear equation must be solved numerically, it is an equation of the Fokker-Planck type, whose solution exhibit two main effects: 
+\begin{enumerate}
+    \item drift of the photon distribution to higher energies, this is called the \textbf{secular change}, and is due to the fact that \(I_1 \sim 4 k_B T - h \nu \) (as long as the photons start out with energies lower than \(4 k_B T\));
+    \item broadening of the photon distribution, due to random walk effects: this is related to the integral \(I_2 \). 
+\end{enumerate}
+
+\subsection{Stationary solutions}
+
+We expect that, after the photons have interacted with the medium for a long time, their variation in time will become ever smaller, approaching a stationary solution which will satisfy 
+%
+\begin{align}
+0= \pdv{[x^{4} (n' + n + n^2)]}{x}
+\,,
+\end{align}
+%
+meaning that 
+%
+\begin{align}
+n' + n + n^2 = \frac{A}{x^{4}}
+\,.
+\end{align}
+
+The constant \(A\) must equal zero, since otherwise the solution will not be regular at zero: recall that \(x^2 j = x^{4 }( n' + n +n^2)\) must vanish at zero and infinity. 
+Then, we can separate variables in order to integrate \(n' + n + n^2 = 0\): this yields 
+%
+\begin{align}
+\log \frac{n}{1 + n} = - x - \mu    
+\,
+\end{align}
+%
+for a constant \(\mu \),
+meaning that    
+%
+\begin{align}
+n = \frac{1}{ \exp( x + \mu ) - 1}
+\,,
+\end{align}
+%
+which is nice!
+We found a Bose-Einstein distribution with an arbitrary chemical potential \(\mu \): photons are at equilibrium with another chemical species. 
+
+The reason the photons do not achieve a Planck distribution (which is a Bose-Einstein distribution with \(\mu = 0\)) is that their number must be conserved under our assumptions. 
+
+\todo[inline]{To understand better: the chemical potential quantifies how much the (energy?) changes if we change the number of particles, right?}
+
+The Kompaneets equation is a \textbf{parabolic} PDE, like the Fourier heat transport equation. 
+This means that we need to provide boundary conditions not only in the time domain, but also in the frequency domain for \(x \to 0\) and \(x \to \infty \). We must set the distribution to zero in both regions, in order to avoid photons escaping through the boundary. 
+
+If the number of photons we initially insert in the model is smaller than the number of photons which would be contained in a blackbody at that temperature, then the evolution works out smoothly towards the blackbody distribution.
+
+On the other hand, if we insert \emph{more} photons than those which would be contained in the Planckian the numerical solution goes nuts. 
+
 \end{document}

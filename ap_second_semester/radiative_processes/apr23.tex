@@ -1,4 +1,163 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2020-8-28, \\ compiled \\ \today}
+
+An interesting case in which we have dynamical Comptonization is that of spherical infall of material, for example into a black hole: at least close to the event horizon, the particles will be in free fall. 
+
+In this case we recover a powerlaw high-energy tail for soft photon input.
+
+\subsection{Consequences of comptonization}
+
+\subsubsection{Comptonization in X-ray binaries}
+
+Comptonization plays a role in X-ray binaries, which are binary systems in which one of the objects is a compact object (black hole or neutron star).
+
+Because of Roche lobe overflow, matter forms a gas stream flowing from the donor star to the compact object; there it forms an accretion disk and sometimes a jet. 
+
+There are Low Mass and High Mass X-ray binaries, the latter have a very complex phenomenology and mostly emit in the X-rays. 
+The spectrum can change dramatically over time, but the typical ingredient is the accretion disk. 
+
+The simplest model for this is a Shakura-Sunyaev disk (SSD), which is (geometrically) thin: its height is much smaller than its width.
+The distribution of the angular velocities of matter in such a disk will be Keplerian: each element of gas will describe a circular orbit. 
+Also, these disks are optically thick in the direction normal to the disk. 
+
+This has the consequence that each annulus will need to be in local thermal equilibrium, and it will need to radiate like a blackbody at the local surface temperature, 
+%
+\begin{align}
+T(R) = \qty[\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 } \qty( \frac{R _{\text{in}}}{T})^{3} \qty(1 - \sqrt{\frac{R _{\text{in}}}{R}})]^{1/4}
+\,,
+\end{align}
+%
+where \(T\) is the temperature, \(R\) is the radius of the annulus from the center, \(R _{\text{in}}\) is the inner radius of the accretion disk, \(M\) is the mass of the compact object, \(\dot{M}\) is its accretion rate, while \(\sigma \) is the Stefan-Boltzmann constant. 
+
+The reference temperature multiplying the dependence on the radius is 
+%
+\begin{align}
+T _{\text{in}} = \qty[\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 }]^{1/4} \approx \SI{1}{keV}
+\,,
+\end{align}
+%
+so we can see that the main emission will be in the X-rays. 
+
+The total emission we see will be a superposition of the emission curves of all the annuli, which yields three regions: at the low- and high-energy boundaries the emission looks like that of a blackbody, going like \(\nu^{2}\) and \(\exp(- h \nu  / k_B T)\) respectively, but in the intermediate region there is a peculiar dependence on \(\nu^{1/3}\) of the frequency spectrum. 
+
+If we look at the X-ray spectrum of a binary like Cyg X-1, we can reproduce it by superimposing a blackbody spectrum with a powerlaw tail at high energies. 
+
+In order to understand this we must consider a slightly more complicated model: beyond the disc we need to have a region called the \textbf{corona}, which is less dense than the disk itself.
+It will contain energetic electrons --- we are not sure whether they are thermal --- which are able to up-scatter the radiation, so they must be hotter than the disc electrons. 
+Then, we will have unsaturated comptonization, which we know to produce a power-law tail. 
+
+\section{Synchrotron and cyclotron radiation}
+
+We will describe the radiation emitted by relativistic particles which are accelerated by magnetic fields. 
+
+First, we need to generalize some results we found in the dipole approximation for nonrelativistic particles.
+
+The four-momentum is defined as \(p^{\mu } = m u^{\mu }\), where \(u^{\mu }= \gamma (c, \vec{v})\) and \(\gamma = 1/ \sqrt{1 - v^2 / c^2}\). 
+
+The four-acceleration is 
+%
+\begin{align}
+a^{\mu } = \dv{ u^{\mu }}{\tau }
+\,,
+\end{align}
+%
+where \(\tau \) is the proper time. The equation of motion of a particle is 
+%
+\begin{align}
+m a^{\mu } = F^{\mu } = \dv{p^{\mu }}{\tau }
+\,.
+\end{align}
+
+This defines the four-force. If the force is electromagnetic, it can be expressed from the Faraday tensor \(F_{\mu \nu }\). 
+The force three-vector is 
+%
+\begin{align}
+\vec{F} = e \qty(\vec{E} + \frac{\vec{v}}{c} \times \vec{B})
+\,,
+\end{align}
+%
+which can be generalized to 
+%
+\begin{align}
+F^{\mu } = \frac{e}{c} F^{\mu }_{\nu } u^{\nu }
+\,,
+\end{align}
+%
+a linear multiple of the four-velocity and the Faraday tensor. 
+
+The equation of motion will then read \(m a^{\mu } = (e/c) F^{\mu }_{\nu } u^{\nu } \), whose time component will be 
+%
+\begin{align}
+\dv{p^{0}}{t} = \frac{e}{c} F^{0}_{\nu } u^{\nu } = \frac{e}{c} \vec{E} \cdot \vec{v}
+\,,
+\end{align}
+%
+where we can recall that \(p^{0}\) is the energy of the particle (divided by \(c\)), \(\gamma mc\), so this is telling us that the work on the particle is equal to \(e \vec{E} \cdot \vec{v}\).    
+
+On the other hand, the space components of the equation are 
+%
+\begin{align}
+\dv{p^{i}}{t} = e \qty(E^{i} + \frac{\vec{v}}{c} \times \vec{B})
+\,.
+\end{align}
+
+They give us the variation of the relativistic momentum, \(p^{i} = \gamma m v^{i}\).
+
+We need to generalize the Larmor formula to relativistic particles. 
+Let us start by defining the instantaneous rest frame of a particle: it is the (non-inertial) frame in which the particle is always stationary. 
+If we are in this frame at a fixed time we can use the nonrelativistic formula locally, since the particle will have nonrelativistic velocities at least for a small while around this point. 
+
+The emission from the nonrelativistic Larmor formula depends on \(\sin^2 \Theta \), so it is not isotropic; however it is (parity) symmetric, so the change of momentum due to the emission of radiation is zero. 
+
+\todo[inline]{He says that the Larmor formula has no angular dependence but this is false!}
+
+So, in the (primed) rest frame the momentum emission will be zero, \(\dd{p}' = 0\).
+This means that we can transform to the lab frame to get the energy change as \(\dd{w} = \gamma \dd{w}'\), where \(w\) denotes the energy. 
+Also, the time interval will change like \(\dd{t} = \gamma \dd{t'}\). 
+
+Therefore, the emitted power will be 
+%
+\begin{align}
+\dv{w}{t} = \frac{ \gamma \dd{w}'}{ \gamma \dd{t'}} = \dv{w'}{t'}
+\,,
+\end{align}
+%
+so the emitted power is the same in both frames, it is a Lorentz invariant (at least as long as emission has forward-backward symmetry). 
+
+In the rest frame the emitted power is 
+%
+\begin{align}
+\dv{w'}{t'} = \frac{2 q^2}{3c^3} \abs{\vec{a}'}^2
+\,,
+\end{align}
+%
+where \(\vec{a}'\) is the 3-velocity in the LRF. In frame the acceleration is nonzero, however the velocity is zero: this means that \(\gamma = 1\), and therefore \(a_0 \sim \dv*{\gamma }{t} = 0\). So, 
+%
+\begin{align}
+\abs{a^{\prime \mu } a^{\prime }_{\mu }} = \abs{\vec{a}'}
+\,.
+\end{align}
+
+We have then shown that we can calculate the power using the Lorentz-invariant quantity \(a^{\mu } a_{\mu }\) in any frame. 
+We will distinguish between the components of the acceleration which are parallel to the velocity, \(a_{\parallel}\), and the perpendicular ones, \(a_{\perp}\). 
+Under the boost, they transform like 
+%
+\begin{align}
+a'_{\parallel} = \gamma^3 a_{\parallel}
+\qquad \text{and} \qquad
+a'_{\perp} = \gamma^2 a_\perp
+\,.
+\end{align}
+ 
+Therefore, the power can be calculated using the components of the 3-acceleration in the lab frame as 
+%
+\begin{align}
+\dv{w}{t} = \frac{2 q^2}{3c^3} \qty(a^{\prime 2}_{\parallel} + a^{\prime 2}_{\perp}) = \frac{2 q^2 \gamma^{4}}{3 c^3} \qty(a^2_{\perp} + \gamma^2 a^2_{\parallel})
+\,.
+\end{align}
+
+One might wonder: since \(a_{\mu } a^{\mu }\) is an invariant, why can't we just use the acceleration in the lab frame directly without all the gammas? If we wanted to, we'd also need the \(a^{0}\) component which is nontrivial in the lab frame. What we did is a way to avoid having to compute it. 
+
 \end{document}

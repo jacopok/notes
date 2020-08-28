@@ -78,6 +78,152 @@ where \(\alpha_0\) is a known analytical function, whose expression is omitted h
 
 The form of the relativistic Kompaneets equation is very similar to the nonrelativistic one. 
 
-% 15.50 
+The shape of \(\alpha \) is quite similar to \(\epsilon^4\), its nonrelativistic counterpart, for low photon energies; while for high photon energies \(\alpha \) is lower than \(\epsilon^4\). 
+
+The take-away, here, is that if we were to need the relativistic form of the equation we can find it in the literature and apply it to our problem.
+
+\subsection{The emerging spectrum}
+
+In astrophysical (non-cosmological) settings we will not find infinite homogeneous media; instead, we need to treat clouds of finite size. 
+However, we cannot simply use the Kompaneets equation for them.
+
+What is the spectrum we expect to observe at infinity? 
+Let us suppose we have a source inside a spherical cloud of radius \(R\); this source will emit a pulse of radiation at a time \(t\), so that the density at a time \(t_0 \) is 
+%
+\begin{align}
+n(\nu , t_0 ) = n_0 (\nu ) \delta (t_0  - t )
+\,.
+\end{align}
+
+Photons will propagate and scatter in the cloud, until finally they are emitted and some of them can be observed. What will be the spectral distribution of these? 
+
+Roughly speaking, we can express the observed number density as 
+%
+\begin{align}
+n _{\text{obs}}(\epsilon ) = \sum _{i} p_i n(\epsilon , t_i)
+\,,
+\end{align}
+%
+where \(t_i\) are different times after \(t_0 \), \(n(\epsilon, t_i)\) are solutions of the Kompaneets equation at these times, and \(p_i\) are the probabilities that a photon emitted at \(t\) will exit the cloud at \(t_i\).
+Properly speaking this should be an integral, but we are just giving the rough idea. We will turn it into an integral later.
+
+The escape probability will satisfy 
+%
+\begin{align}
+p(t) \dd{t} = \frac{ \dd{n}}{n}
+\,,
+\end{align}
+%
+so that it describes the fraction of photons (\(\dd{n} / n\)) which escape the medium in a time \(\dd{t}\). 
+The observed intensity will then be 
+%
+\begin{align}
+n _{\text{obs}}(\epsilon ) = \int_0^{\infty } p(\tau) n(\epsilon , \tau ) \dd{\tau }
+\,.
+\end{align}
+
+The typical timescale for a photon to leave the cloud will be given by the mean number of scatterings times the typical time per scattering: if the medium is assumed to be optically thick we get 
+%
+\begin{align}
+t _{\text{esc}} \sim N_s t_s \sim \max \frac{\qty(\tau,\tau^2) }{n \sigma _T c} \sim \frac{\tau^2 R}{nR \sigma _T c} \sim \frac{\tau R}{c}
+\,,
+\end{align}
+%
+since \(n R \sigma _T = \tau \). 
+This result makes sense: it is the light travel time \(R / c\) times the optical depth. 
+
+The form of \(p(t)\) depends on the shape of the cloud; for example in our spherical cloud we have 
+%
+\begin{align}
+p(t) = \frac{1}{\tau } \sum _{n=1}^{\infty } \lambda_n \sin \lambda_n \exp( - \frac{\lambda _n^2}{3} \frac{t}{ t _{\text{esc}}}) 
+\,,
+\end{align}
+%
+where the coefficients \(\lambda _n\) are the solutions of \(\tan \lambda _n  = \lambda _n / (1 - 3 \tau / 2)\). 
+
+It is important to apply this procedure instead of blindly plugging the distribution inside the Kompaneets equation: we know that in that case the photons will eventually thermalize, which is not of physical interest in most situations. 
+
+\subsubsection{Unsaturated Comptonization and power-law tails}
+
+Let us consider a phenomenologically-motivated modified Kompaneets equation, which accounts for the injection and escape of photons in a finite medium: 
+%
+\begin{align}
+\dot{H} - \dot{S} = \frac{\Theta}{x^2} \pdv{[x^{4} (n' + n + n^2)]}{x}
+\,,
+\end{align}
+%
+where \(\dot{S} = Q(x)\) quantifies the photons gained per unit time, while \(\dot{H} = n / \max(\tau , \tau^2)\) quantifies the photons lost per unit time.
+
+\todo[inline]{Are the signs of the \(\dot{S}\) and \(\dot{H}\) not the other way around?}
+
+Suppose that the input is \emph{soft}, that is, low-energy. 
+This means that we will have \(Q(x)\) different from zero only for \(x\) smaller than a certain threshold, \(x< x_s \ll 1\). 
+We then look at the high-energy tail in emissions, \(x \gg 1\).
+
+We will neglect the \(n^2\) term. The equation  will then read 
+%
+\begin{align}
+0 = \frac{\Theta}{x^2} \pdv{[x^{4}(n' + n)]}{x} + \underbrace{Q(x) - \frac{n}{\max (\tau , \tau^2)}}_{\text{vanish in the high \(x\) regime}}
+\,,
+\end{align}
+%
+so we are left with \(n' + n = \const\), meaning that \(n \sim \exp(- x)\). 
+This means that at very high energies the decay of the emission is exponential.
+
+\todo[inline]{Why does the term proportional to \(n\) vanish?}
+
+Now, instead, we look for mid-energy solutions, in the range between the threshold for the emission \(x_s\) and 1. We will suppose that \(x_s \ll x \ll 1\). 
+We will then neglect the \(n\) and \(n^2\) terms, meaning that we can ignore \(Q(x)\) but not the escape term, so we have 
+%
+\begin{align}
+0 = \frac{\Theta}{x^2} \pdv{[x^{4} (n')]}{x} - \frac{n}{\max (\tau , \tau^2)}
+\,.
+\end{align}
+
+If we take a powerlaw ansatz, \(n \propto x^{m}\), we find that the equation for \(m\) becomes 
+%
+\begin{align}
+m(m+3) - \frac{4}{4 \Theta \max (\tau, \tau^2)}= 0 
+\,,
+\end{align}
+%
+where we recognize the Compton parameter \(4 \Theta \max (\tau , \tau^2) = y\), which quantifies how much the scatterings affect the spectrum. 
+The second-order equation for \(m\) then becomes 
+%
+\begin{align}
+m = \frac{-3 \pm \sqrt{9 + 16 / y^2}}{2}
+\,.
+\end{align}
+
+If we take the positive solution it will be \(m_+>0\), so the spectrum will increase at high energies, which is unphysical. 
+So, we consider the negative solution: expanding the square root under the assumption that \(y < 1\)\footnote{As \(a\) and \(b\) get further from one another in magnitude, the approximation \(\sqrt{a + b} = \sqrt{a} + \sqrt{b}\) gets closer to being true. For small \(y\) we have quite a good result, while for \(y\) closer to 1 the exponent is slowly-varying anyway.} we get 
+%
+\begin{align}
+m_- \approx -3 - \frac{2}{y}
+\,.
+\end{align}
+
+This is then a powerlaw spectrum: for any soft photon input, then, we have found a qualitative result. It is a powerlaw for medium photon energies and an exponential for high photon energies. 
+This then gives a typical signature for the observational spectrum we observe in Compton scattering. 
+
+\subsubsection{Dynamical Comptonization}
+
+We have so far discussed the effects of repeated scattering of photons onto electrons which are moving due to thermal motion. This is however not the only reason electrons may move! 
+
+An interesting situation is one in which the temperature \(T\) of the electrons is low, but the bulk velocity of the plasma \(\vec{v}\) is high, so that interaction with photons is still capable of causing inverse Compton scattering. 
+
+Suppose we have a flow of electrons moving with a uniform \(\vec{v}\), constant for all of them. Then, the Electron Rest Frame is the same for all the electrons. 
+
+So, in order to deal with the first scattering we must boost to the ERF, but then we are done: we can stay in that frame for all subsequent scatterings. 
+The energy the photon will emerge with will be \(\epsilon_2 \approx \gamma^2 \epsilon_1 \) regardless of the number of scatterings.
+
+If, on the other hand, the velocity is not uniform we need to insert a relative \(\gamma \) factor for each new electron.
+This effect will build up for each scattering. 
+So, dynamical Comptonization requires a nonvanishing velocity gradient to work. 
+
+\todo[inline]{He writes \(\nabla \cdot \vec{v} \neq 0\), which is not the same\dots why would the \emph{divergence} not vanishing specifically be the condition? what about the curl, or the other components of \(\partial_{i} v_j\) anyway?}
+
+This is similar to \emph{second-order Fermi acceleration.}
+\todo[inline]{what is that?}
 
 \end{document}

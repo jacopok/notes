@@ -1,4 +1,97 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{Angular distribution of emitted and received energy and power}
+
+\marginpar{Friday\\ 2020-8-28, \\ compiled \\ \today}
+
+We want to discuss how a relativistic particle emits radiation in the lab frame. 
+We start off in the rest frame of the particle: there, it emits an energy \(\dd{w}'\) across a solid angle \(\dd{\Omega '} = \sin \theta ' \dd{\theta '} \dd{\varphi '} = \dd{\mu '} \dd{\phi '}\); in the lab frame we can say the same thing without the primes. 
+We choose our reference frame for both lab and rest frame so that the particle is moving along the \(\hat{x}\) axis: \(\vec{v} = (v, 0, 0)\), while our observation direction is positioned at an angle \(\theta \) from the \(x\) axis. 
+
+The energies \(\dd{w}\) and \(\dd{w}'\) are related by a Lorentz transformation, which in general reads 
+%
+\begin{align}
+\dd{w} = \gamma \dd{w'} + \gamma v \dd{p'}_x
+= \gamma \qty( \dd{w'} + \frac{v}{c} \cos \theta ' \dd{w'})
+= \gamma \dd{w'} \qty(1 + \beta \mu')
+\,.
+\end{align}
+
+In the second equality we have used the fact that the radiation four-momentum satisfies \(p^{\mu } p_{\mu } = 0\) since photons are massless, and therefore \((\dd{w'}, \dd{\vec{p}}')\) must be a null vector, meaning that \(\dd{w'} = \mu ' \dd{w'}/ c\).
+
+We want to express this in terms of \(\mu \), the cosine of the angle in the lab frame. A geometric result we can derive is the \textbf{angular aberration formula}, 
+%
+\begin{align}
+\mu = \frac{\mu ' + \beta }{1 + \beta \mu '}
+\,,
+\end{align}
+%
+which can be differentiated to yield 
+%
+\begin{align}
+\dd{\mu } = \frac{ \dd{\mu '}}{\gamma^2 \qty(1 + \beta \mu ')^2}
+\,.
+\end{align}
+
+The Lorentz boost does not affect the azimuthal direction since it is orthogonal to it, so \(\dd{\phi } = \dd{\phi '}\).
+Therefore, we can transform the solid angle differential as 
+%
+\begin{align}
+\dd{\Omega } = \dd{\mu } \dd{\phi } = \frac{ \dd{\mu '} \dd{\phi }' }{\gamma^2 ( 1 + \beta \mu ')^2} = \frac{ \dd{\Omega '}}{\gamma^2 ( 1 + \beta \mu ')^2}
+\,.
+\end{align}
+
+The angular distribution of energy in the lab frame then can be expressed as 
+%
+\begin{align}
+\dv{w}{\Omega } = \frac{\gamma (1+ \beta \mu ') \dd{w'}}{ \dd{\Omega '}} \gamma^2 (1 + \beta \mu ')^2
+= \gamma^3 (1 + \beta \mu ')^3  \dv{w'}{\Omega '}
+\,.
+\end{align}
+
+This is the distribution of the \emph{energy} emission: in order to find the \emph{power} emission we need to divide by time. However, we need to choose a time by which to divide: do we choose the one in the lab or rest frame? they are related by 
+%
+\begin{align}
+\dd{t} = \gamma (1 - \beta \mu ) \dd{t}'
+\,,
+\end{align}
+%
+and it can be shown that the power emission in the two frames is related by 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\Omega }}
+= \frac{\gamma^3(1+ \beta \mu ')^3}{\gamma (1 - \beta \mu ) \dd{t'}} \dv{w'}{\Omega '}
+= \frac{1}{\gamma^{4} (1- \beta \mu )^{4}} \frac{ \dd{w'}}{ \dd{\Omega '} \dd{t'}} 
+\,.
+\end{align}
+
+Now, if radiation emission is isotropic in the particle frame then \(\dd{w'} / \dd{\Omega '}  \dd{t'}\) is independent of the angle. 
+Under this assumption, the angular distribution of the received radiation is given by the prefactor. 
+
+Let us analyze this for an ultra-relativistic particle, with \(\gamma \gg 1\).  Then, we can approximate 
+%
+\begin{align}
+\beta = \sqrt{1 - \frac{1}{\gamma^2}} \approx 1 - \frac{1}{2 \gamma^2}
+\,.
+\end{align}
+
+Inserting this into the prefactor yields 
+%
+\begin{align}
+\frac{1}{\gamma^{4} (1 - \beta \mu )^{4}}
+\approx \frac{1}{\gamma^{4} \qty[1 - \qty(1 - \frac{1}{2 \gamma^2}) \mu ]^{4}}
+\,,
+\end{align}
+%
+which in general will be small because of the \(\gamma^{-4}\) suppression. However, if \(\mu \sim 1\) then the quantity in square brackets is close to zero. We can expand \(\mu \sim 1 - \theta^2 /2\) since it is the cosine of \(\theta \): with this we can manipulate the expression into 
+%
+\begin{align}
+\frac{1}{\gamma^{4} (1 - \beta \mu )^{4}} \sim \qty(\frac{2 \gamma }{1 + \gamma^2 \theta^2})^{4}
+\,,
+\end{align}
+%
+for small \(\theta \) at least. This is sharply peaked around \(\theta = 0\), with the FWHM of the peak of the order of \(1/\gamma \). 
+This effect is \textbf{relativistic beaming}. 
+
 \end{document}

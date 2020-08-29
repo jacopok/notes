@@ -1,4 +1,132 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Spectrum of synchrotron radiation}
+
+\marginpar{Saturday\\ 2020-8-29, \\ compiled \\ \today}
+
+We will use a rough, heuristic approach. 
+Recall that the spectrum depends on 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{\omega } \dd{\Omega }} \propto \abs{\hat{E}(\omega )}^2
+\,,
+\end{align}
+%
+where \(\hat{E}(\omega )\) is the Fourier transform of the electric field \(E(t)\).
+
+When we compute the Fourier transform we do so referring to the time as seen by the observer; we will see that the observer in any specific direction will only see the radiation for a very short amount of time each revolution because of relativistic beaming. 
+In order to see this, consider a single charge moving along a helical path.  
+
+Let us choose two points 1 and 2 along the trajectory, such that the path length between them is \(\Delta s\) and the angle difference is \(\Delta \theta \). Let us also denote the radius of curvature of the trajectory as \(a\): then we will have \(\Delta s = a \Delta \theta \). 
+
+We know that radiation is emitted in a cone with aperture \(\sim 1/\gamma \): let us choose the two points so that they are at the edges of where the radiation starts and then stops being received by the observer.
+Then, radiation emitted between the two points will always hit the observer.
+
+We know that in this case \(\Delta \theta  = 2 / \gamma \) by the geometry of the setup, since \(2 / \gamma \) is the angle between two diametrically opposed points in the cone. 
+The equation of motion is 
+%
+\begin{align}
+m \gamma \dv{\vec{v}}{t} = \frac{q}{c} \vec{v} \times \vec{B}
+\,,
+\end{align}
+%
+so the modulus of the velocity change, for small enough time differences, is
+%
+\begin{align}
+\frac{ \abs{ \Delta \vec{v}}}{ \Delta t} = \frac{q}{mc \gamma } v B \sin \alpha 
+\,,
+\end{align}
+%
+where \(\alpha \) is the angle between the velocity and \(\vec{B}\), which is called the \emph{pitch angle}. 
+Since the modulus of \(\vec{v}\) is constant, we can write \(\abs{ \Delta \vec{v}} = v \Delta \theta\), so that 
+%
+\begin{align}
+v \frac{ \Delta \theta }{\Delta t} = \frac{q}{mc \gamma } vB \sin \alpha 
+\,,
+\end{align}
+%
+but since the path travelled is given by \(\Delta s = v \Delta t\) we have 
+%
+\begin{align}
+v^2 \frac{ \Delta \theta }{ \Delta s} &= \frac{q}{mc \gamma } v B \sin \alpha  \\
+ \frac{ \Delta \theta }{ \Delta s} &= \frac{q}{mc v \gamma } B \sin \alpha \\
+ \frac{ 2/ \gamma  }{ \Delta s} &= \frac{q}{mc v \gamma } B \sin \alpha \\
+ \Delta s = \frac{2 mc v}{q B \sin \alpha }
+\,,
+\end{align}
+%
+which is related to the frequency \(\omega _B = q B / mc \gamma \) by 
+%
+\begin{align}
+\Delta s = \frac{2 b}{\gamma \omega _B \sin \alpha  }
+\,.
+\end{align}
+
+Then, we can derive the time needed to go from point 1 to point 2: 
+%
+\begin{align}
+\Delta t = \frac{\Delta s}{v} = \frac{2}{\gamma \omega _B \sin \alpha }
+\,,
+\end{align}
+%
+however we must be careful: although this is the time as measured in the lab frame, the motion of the particle is highly relativistic and the radiation is emitted in two different places. 
+
+Let us call \(t_1^A\) and \(t_2^A\) the times at which the radiation corresponding to  the start and the end of the pulse arrive at the observer. 
+They will be given by 
+%
+\begin{align}
+t_1^{A} = t_1 + \frac{L}{c} + \frac{\Delta s}{c} 
+\qquad \text{and} \qquad
+t_2^{A} = t_2 + \frac{L}{c}  
+\,.
+\end{align}
+
+This means that 
+%
+\begin{align}
+t_1^A- t_2^{A} = t_2 - t_1 - \frac{\Delta s}{c}  
+= \frac{2}{\gamma \omega_B \sin \alpha } - 2 \frac{v/c}{\gamma \omega _B \sin \alpha }
+= \frac{2}{\gamma \omega_B \sin \alpha } \qty(1 - \frac{v}{c})
+\,,
+\end{align}
+%
+but if the motion is highly relativistic we can approximate 
+%
+\begin{align}
+1 - \frac{v}{c} \approx 1 - \qty(1 - \frac{1}{2 \gamma^2}) = \frac{1}{2 \gamma^2}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\Delta t^{A} = \frac{2}{\gamma \omega _B \sin \alpha } \frac{1}{2 \gamma^2} = \frac{1}{\gamma^3 \omega _B \sin \alpha }
+\,,
+\end{align}
+%
+so the reduction of the pulse duration is shorter by a factor \(\sim 1/ \gamma^3\) than \(1 / \omega _B\): it becomes \textbf{very short!}
+
+Therefore, the spectrum will be rather broad in frequency, of the order \(\sim \gamma^3 \omega _B\). 
+
+Let us define the \textbf{critical pulsation} and the \textbf{critical frequency}:
+%
+\begin{align}
+\omega _c = \frac{3}{2} \gamma^3 \omega _B \sin \alpha 
+\qquad \text{and} \qquad
+\nu _c = \frac{3}{4 \pi } \gamma^3 \omega _B \sin \alpha 
+\,,
+\end{align}
+%
+which will roughly be around the cutoff of the spectrum. 
+
+We can see by looking at the old formulas we derived that the dependence of the emitted power per unit solid angle on the angle is always in the form 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\Omega }} = F(\gamma \theta )
+\,,
+\end{align}
+%
+which is a consequence of relativistic beaming. Therefore, this will also  hold for the dependence of the electric field.
+
 \end{document}

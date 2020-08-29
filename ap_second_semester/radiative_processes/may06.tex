@@ -1,4 +1,97 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Polarization of synchrotron radiation}
+
+\marginpar{Saturday\\ 2020-8-29, \\ compiled \\ \today}
+
+Measuring polarization is in general difficult, but still it is important to be able to provide an estimate of how much radiation is actually polarized. 
+
+In order to describe synchrotron radiation we will need some reference unit vectors. Let us define \(\vec{\epsilon}_{\perp}\) and \(\vec{\epsilon}_{\parallel}\) such that, given the observation direction \(\vec{n}\) and the magnetic field \(\vec{B}\), \(\vec{\epsilon}_\perp\) is perpendicular to both, while \(\vec{\epsilon}_\parallel\) is perpendicular to \(\vec{n}\) only, while being in the plane defined by \(\vec{n}\) and \(\vec{B}\). 
+
+These two unit vectors define a basis for the radiation seen in the direction \(\vec{n}\), since as we recall the polarization of electromagnetic radiation is always transverse. 
+
+It can be shown that the power spectrum emitted in each polarization is given by 
+%
+\begin{align}
+\eval{\frac{ \dd{w}}{ \dd{t} \dd{\omega }}}_{\perp} &= \frac{\sqrt{3} q^3 B \sin \alpha }{4 \pi m c^2} \qty(F + G) \\
+\eval{\frac{ \dd{w}}{ \dd{t} \dd{\omega }}}_{\parallel} &= \frac{\sqrt{3} q^3 B \sin \alpha }{4 \pi m c^2} \qty(F - G)
+\,,
+\end{align}
+%
+where \(F\) is the function of \(\omega / \omega _c\) we defined earlier, 
+%
+\begin{align}
+F \qty(\frac{\omega }{\omega _c}) = \frac{\omega}{\omega _c} \int_{\omega / \omega _c}^{\infty } K_{5/3} (z) \dd{z} 
+\,,
+\end{align}
+%
+while the new function \(G\) is defined by 
+%
+\begin{align}
+G \qty(\frac{\omega }{\omega _c}) = \frac{\omega}{\omega _c} K_{2/3} \qty( \frac{\omega}{\omega _c})
+\,.
+\end{align}
+
+The total emitted power per unit frequency is given by the sum of the two contributions in each polarization; so the terms containing \(G\) simplify, and we are left with the \(F\) term only, the result we found earlier. 
+
+The polarization fraction at each frequency for a single electron will be given by 
+%
+\begin{align}
+\Pi (\omega ) 
+= \frac{P_\perp (\omega ) - P_\parallel (\omega )}{P_\perp (\omega ) + P_\parallel (\omega )}
+= \frac{G( \omega / \omega _c) }{F(\omega / \omega _c)}
+\,,
+\end{align}
+%
+while the polarization fraction for a whole family of electrons whose energies are distributed according to a powerlaw will be given by the ratio of the integrals of \(G\) and \(F\) weighted by the electron distributions:  
+%
+\begin{align}
+\Pi &= \frac{\int_0^{\infty } G (\omega / \omega _c) \gamma^{-P} \dd{\gamma }}{\int_0^{\infty } F(\omega  / \omega _c) \gamma^{-P} \dd{\gamma }}  \\
+&= \frac{\int_0^{\infty } G (x) \gamma^{-P} \dd{\gamma }}{\int_0^{\infty } F(x) \gamma^{-P} \dd{\gamma }}
+\,,
+\end{align}
+%
+where we must be careful, since \(x\) is a function of \(\gamma \) in the integral. Specifically, \(x = \omega / \omega _c \sim 1/ \gamma^2\), so \(\gamma \sim x^{-1/2}\), therefore \(\dd{\gamma } \propto -1/2 x^{-3/2} \dd{x}\). This yields, up to multiplicative factors which cancel out in the ratio: 
+%
+\begin{align}
+\Pi = \frac{\int_0^{\infty } G(x) x^{(P-3) / 2} \dd{x}}{\int_0^{\infty } F(x) x^{(P-3) / 2} \dd{x}}
+\,.
+\end{align}
+
+These integrals of special functions are evaluated in the literature, we have general explicit expressions for expressions like \(\int x^{\mu } F(x) \dd{x}\) and similarly for \(G\).
+
+Substituting these in, we find 
+%
+\begin{align}
+\Pi = \frac{1 + P}{P + 7/3}
+\,.
+\end{align}
+
+This is always \(<1\) as it should be, however with very steep powerlaws (high \(P\)) it can reach values of \(\Pi \) which are arbitrarily close to 1.
+
+If, on the other hand, we are only considering one electron, we can compute the \emph{frequency-integrated} polarization fraction 
+%
+\begin{align}
+\Pi 
+= \frac{\int_0^{\infty } G(x) \dd{\omega }}{\int_0^{\infty } F(x) \dd{\omega }}
+= \frac{\int_0^{\infty } G(x) \dd{x}}{\int_0^{\infty } F(x) \dd{x }}
+\,,
+\end{align}
+%
+which coincides with the polarization fraction from a population of electrons if we take \(P = 3\). Therefore, we find \(\Pi = (1+3) / (3 + 7/3) = 3/4\). 
+
+\section{Einstein coefficients}
+
+In order to understand what the absorption from synchrotron radiation looks like we need to take a step back and consider the Einstein coefficients. 
+
+Let us reconsider Kirkhoff's law: if emitters and absorbers are in thermal equilibrium, then the following relation holds: 
+%
+\begin{align}
+j_\nu = \alpha _\nu B_\nu 
+\,.
+\end{align}
+
+This law holds at the macroscopic level: 
+
 \end{document}

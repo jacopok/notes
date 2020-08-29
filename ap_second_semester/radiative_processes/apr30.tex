@@ -127,6 +127,161 @@ We can see by looking at the old formulas we derived that the dependence of the 
 \,,
 \end{align}
 %
-which is a consequence of relativistic beaming. Therefore, this will also  hold for the dependence of the electric field.
+which is a consequence of relativistic beaming. Therefore, this will also hold for the dependence of the electric field.
+
+Now, we want to find out how \(\theta \) is related to \(t\): we know that \(\theta = s/ a\) while \(t = (s/v) (1 - v/c)\); so 
+%
+\begin{align}
+t &= \frac{a \theta }{v} \qty(1 - \frac{v}{c}) \\
+\gamma t &= \frac{\gamma  a \theta }{v} \qty(1 - \frac{v}{c}) \\
+\gamma \theta &= \gamma t \frac{v}{a} \qty(1 - \frac{v}{c})^{-1}
+\approx \gamma t \omega _B \sin \alpha 2 \gamma^2 \propto \omega _c t
+\,.
+\end{align}
+
+Therefore, the electric field depends on time like \(E(t) \propto g(\omega _c t)\) for some function \(g\). 
+Its Fourier transform will then look like 
+%
+\begin{align}
+\hat{E}(\omega ) &\propto \int_{- \infty }^{\infty } g(\omega _c t) e^{-i \omega t} \dd{t}  \\
+&\propto \int_{-\infty }^{\infty } g(z) e^{-i \frac{\omega}{\omega _c} z} \dd{z}
+\,,
+\end{align}
+%
+meaning that \emph{the dependence of \(\hat{E}(\omega )\) on \(\omega \) is only through the ratio \(\omega / \omega _c\).}
+
+Recall that the power per unit solid angle is given by 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{\omega } \dd{\Omega }} \propto \abs{\hat{E}(\omega )}^2
+\,,
+\end{align}
+%
+so if we integrate over the solid angle and divide by the period we find that the power per unit frequency is 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\omega }} = c_1 F \qty(\frac{\omega }{\omega _c} )
+\,,
+\end{align}
+%
+where \(c_1 \) is some constant and \(F\) is some function. 
+We can evaluate \(c_1 \) since we know what is the total radiated power: 
+%
+\begin{align}
+\dv{w}{t} = P 
+= \frac{2}{3} r_0^2 c \gamma^2 \beta_{\perp}^2B^2 
+= \frac{2}{3} \frac{q^{4} \beta^2 \sin^2 \alpha B^2 \gamma^2}{m^2 c^3}
+\,,
+\end{align}
+%
+where we used the fact that \(\beta _\perp^2 = \beta^2 \sin^2 \alpha \) and \(r_0^2= q^{4} / m^2 c^{4}\). 
+In terms of the constant \(c_1 \) and the function \(F\) this will be the integral over the frequency space: 
+%
+\begin{align}
+\dv{w}{t} = c_1 \int_0^{\infty} F(\frac{\omega }{\omega _c}) \dd{\omega }  = 
+c_1 \omega _c \int_0^{\infty } F(z) \dd{z} \overset{!}{=} 
+\frac{2}{3} \frac{q^{4} \beta^2 \sin^2 \alpha B^2 \gamma^2}{m^2 c^3}
+\,,
+\end{align}
+%
+so we can write the value of the constant \(c_1 \) as 
+%
+\begin{align}
+c_1 &= \frac{2}{3} \frac{q^{4} \beta^2 \sin^2 \alpha B^2 \gamma^2}{m^2 c^3} \frac{2}{3 \gamma^3 \omega _B \sin \alpha } \frac{1}{
+\int_0^{\infty } F(z) \dd{z} 
+}   \\
+&= \frac{q^3 \beta^2  \sin \alpha B}{mc^2} \frac{1}{\int_0^{ \infty } F(z) \dd{z}}
+\,.
+\end{align}
+
+As we shall show later the integral will evaluate to \(\int_0^{ \infty } F(z) \dd{z} = 2 \pi / \sqrt{3}\), so, as long as the particle is ultrarelativistic (\(\beta \approx 1\)) we will have 
+%
+\begin{align}
+c_1 = \frac{q^3 \sin \alpha B}{mc^2} \frac{\sqrt{3}}{ 2 \pi }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{\omega }} = \frac{\sqrt{3}}{ 2 \pi }
+\frac{q^3 B \sin \alpha }{mc^2} F \qty( \frac{\omega }{\omega _c})
+\,.
+\end{align}
+
+The explicit expression of \(F\) can be derived \cite[par.\ 6.4]{rybickiRadiativeProcessesAstrophysics1979}, but we will not do it here. It is given by the modified Bessel function 
+%
+\begin{align}
+F(z) =  z \int_{z}^{\infty } k_{5/3} (x) \dd{x}
+\,.
+\end{align}
+
+It is a smooth function of \(z\), going to zero at 0 and \(+ \infty \), and it has its peak around \num{.29}, where it reaches a value close to 1 (this means that the peak of synchrotron radiation is around \(\omega \sim \num{.29} \omega _c\)). Its decay is then exponential.
+Asymptotically, we have that for \(z \ll 1\) 
+%
+\begin{align}
+F(z) \sim \frac{4}{\sqrt{3} \Gamma (1/3)} \qty(\frac{z}{2})^{1/3}
+\,,
+\end{align}
+%
+while for \(z \gg 1\): 
+%
+\begin{align}
+F(z) \sim \qty(\frac{\pi }{2})^{1/2} e^{-z} z^{1/2}
+\,.
+\end{align}
+
+\subsubsection{Synchrotron emission from a nonthermal electron distribution}
+
+In many astrphyiscal applications we need to consider the emission from electrons whose energies do not follow a thermal distribution but instead something like a powerlaw; the energy losses and gains caused by synchrotron emission actually cause the spectrum to get closer to a powerlaw, which gives further justification for considering this situation.
+
+So, we will consider a population such that the number density of electrons per unit energy is given by
+%
+\begin{align}
+\dv{N}{E} = C E^{-P}
+\,.
+\end{align}
+
+Since the energy is given by \(E = mc^2 \gamma \), we can also write 
+%
+\begin{align}
+\dd{N} = C \gamma^{-P} \dd{\gamma }
+\,.
+\end{align}
+
+Then, the emission per unit volume, frequency and time will be 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V} \dd{\omega }} 
+= \int_{\gamma_1 }^{\gamma_2 } \frac{ \dd{N}}{ \dd{\gamma }} \frac{ \dd{w}}{ \dd{t} \dd{\omega }}  \dd{\gamma }  \\
+&= \int_{\gamma_1 }^{\gamma_2 } c \gamma^{-P } c_1 F \qty(\frac{\omega }{\omega _c}) \dd{\gamma }
+\,.
+\end{align}
+
+Remember that \(\omega_c\) depends on \(\gamma \), as \(\omega _c \propto \gamma^{2}\), so we cannot bring it out of the integral. 
+We can write this integral, keeping only the variable parts, as 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V} \dd{\omega }} 
+&\propto \int_{\gamma_1 }^{\gamma_2 } \gamma^{-P} F \qty(\frac{\omega }{\omega _c}) \dd{\gamma }  \\
+&\propto \int_{x_1 }^{x_2 } \omega^{-P / 2} x^{P/2} \omega^{1/2} \qty(x)^{3/2} F \qty(x) \dd{ x}  \\
+&= \int_{x_1 }^{x_2 } \omega^{-(P-1)/2} x^{(P-3) / 2} F \qty(x) \dd{x}   \\
+&= \omega^{- (P-1 ) / 2} \int_{x_1 }^{x_2 } x^{(P-3) / 2} F(x) \dd{x}
+\,,
+\end{align}
+%
+\todo[inline]{in the second equality, should the integration bounds not change?}
+where \(x = \omega / \omega _c\). 
+The integral bounds \(x_1 \) and \(x_2 \) will depend on \(\omega \) in general --- depending on what the regime of validity of the powerlaw --  but we will brutally approximate \(x_1 \sim 0 \) and \(x_2 \sim + \infty \).
+In this case, the integral will not depend on \(\omega \), therefore 
+%
+\begin{align}
+\frac{ \dd{w}}{ \dd{t} \dd{V} \dd{\omega }} 
+\propto \omega^{- (P-1) / 2}
+\,.
+\end{align}
+
+So, the spectrum of the synchrotron radiation emitted by an electron population whose energies are distributed according to a powerlaw will \textbf{also be a powerlaw}.
+The new spectral index is given by \(S = (P-1) / 2\). 
 
 \end{document}

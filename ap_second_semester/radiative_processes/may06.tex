@@ -111,8 +111,119 @@ Einstein identified the three main processes which can occur when such an atom i
     \end{align}
     %
     where \(J_\nu \) is the mean intensity of the external radiation field. 
-    \item Stimulated emission
+    \item Stimulated emission, which is a consequence of the quantum nature of light. Planck's law only holds if this is included. This corresponds to the fact that the emission probability is enhanced by the presence of a radiation field. This is similar to how absorption occurs, in that the transition probability per unit time is 
+    %
+    \begin{align}
+    B_{21} \int_0^{\infty } J_\nu \phi (\nu ) \dd{\nu }
+    \,.
+    \end{align}    
 \end{enumerate}
 
+Let us consider a system of many two-level atoms, whose number density is \(n\). Some of them will be in level 1 and some will be in level 2; let us call the corresponding number densities \(n_1 \) and \(n_2 \).
+
+If we are in thermodynamic equilibrium, then the transition rate from 1 to 2 must equal that from 2 to 1. This can be written as 
+%
+\begin{align}
+\underbrace{n_1 B_{12} \overline{J}}_{\text{absorption}} &= \underbrace{n_2 A_{21}}_{\text{emission}} + \underbrace{n_2 B_{21} \overline{J}}_{\text{stimulated emission}}  \\
+\overline{J} &= \int_0^{\infty } J_\nu \phi (\nu ) \dd{\nu }
+\,.
+\end{align}
+
+We can solve this equation for \(\overline{J}\): it comes out to be 
+%
+\begin{align}
+\overline{J} = \frac{A_{21} / B_{21} }{ (n_1 / n_2 ) (B_{12} / B_{21} ) - 1}
+\,.
+\end{align}
+
+Since we know that the system is in thermodynamic equilibrium, we can also write that the ratio of the number densities of the two populations will be 
+%
+\begin{align}
+\frac{n_1}{n_2 } = \frac{g_1  \exp( - E / k_B T)}{g_2 \exp(- E / k_B T - h \nu_0 / k_B T)} = \frac{g_1}{g_2 } \exp( \frac{h \nu_0}{k_B T})
+\,.
+\end{align}
+
+Inserting this in the previous relation we find 
+%
+\begin{align}
+\overline{J} = \frac{A_{12} / B_{21} }{(g_1 B_{12} /  g_2 B_{21} ) \exp(h \nu_0 / k_B T) - 1 }
+\,.
+\end{align}
+
+Also, we know that the mean intensity \(J_\nu \) will be equal to the Planck function \(B_\nu \). The Planckian is quite slowly varying while \(\phi (\nu )\) is very peaked around \(\nu_0 \): therefore, it is safe to say that 
+%
+\begin{align}
+\overline{J} = \int_0^{\infty } B_\nu \phi (\nu ) \dd{\nu } \approx B_{\nu_0 }
+\,,
+\end{align}
+%
+since \(\phi (\nu )\) is normalized. Equating this to the expression we found above, we get 
+%
+\begin{align}
+\overline{J} =  B_{\nu_0 } = \frac{2 h \nu^3}{c^2} \frac{1}{\exp( \frac{h \nu_0 }{k_B T }) - 1} &= \frac{A_{12} / B_{21} }{(g_1 B_{12} /  g_2 B_{21} ) \exp(h \nu_0 / k_B T) - 1 }
+\,.
+\end{align}
+
+This must hold for any temperature \(T\), so we can identify the terms in the two similar expressions: this tells us that 
+%
+\begin{align}
+\frac{g_1 B_{12} }{g_2 B_{21} } = 1 
+\qquad \text{and} \qquad
+\frac{2 h \nu^3}{c^2} = \frac{A_{12} }{B_{21} }
+\,.
+\end{align}
+
+These are called the \textbf{detailed balance relations}. They must be satisfied even if the system is outside of thermal equilibrium, since the temperature \(T\) does not appear in them. 
+
+\todo[inline]{What? How? Why? We used the hypothesis of thermal equilibrium a lot\dots}
+
+\subsubsection{The emission and absorption coefficients}
+
+Let us assume that radiation which is emitted in the transition \(2 \to 1\) has the same frequency as the radiation which is absorbed in the transition \(1 \to 2\), so both processes will be characterized by the funciton \(\phi (\nu )\). 
+
+With this, we can express the energy emitted per unit volume, solid angle, frequency and time as 
+%
+\begin{align}
+J_\nu \dd{V} \dd{t} \dd{\Omega } \dd{\nu } &= \frac{h \nu_0}{4 \pi } \phi (\nu ) n_2 A_{21} \dd{\Omega } \dd{V} \dd{t} \dd{\nu }  \\ 
+J_\nu &= \frac{h \nu_0}{4 \pi } \phi (\nu ) n_2 A_{21}  
+\,.
+\end{align}
+
+For absorption, we can apply a similar line of reasoning: 
+the energy absorbed per unit volume and time is 
+%
+\begin{align}
+\dd{w}_\nu = 
+\dd{V} \dd{t} h \nu_0 n_1 B_{12} \frac{1}{4 \pi } \int \dd{\Omega } \dd{\nu } I_\nu \phi (\nu )
+\,,
+\end{align}
+%
+which we can specify to the energy taken out of the beam in the specific frequency and solid angle unit range by removing the integral. 
+If we write the volume element as \(\dd{V} = \dd{A} \dd{s}\), where \(\dd{s}\) is the distance travelled along the path of the radiation, and if we remember the radiative absorption law \(\dd{I_\nu } = - \alpha _\nu I_\nu \dd{s}\), we can write 
+%
+\begin{align}
+- \dd{I_\nu } = -\frac{ \dd{w}_\nu }{ \dd{A} \dd{t} \dd{\Omega } \dd{\nu }}
+&= \underbrace{h \nu_0 n_1 \frac{B_{12}}{4 \pi } \phi(\nu )}_{\alpha _\nu } I_\nu  \dd{s} \\ 
+\alpha_\nu &= \frac{h \nu_0  }{4 \pi } n_1 B_{12} \phi (\nu )
+\,.
+\end{align}
+
+We could also write \(h \nu\) instead of \(h \nu_0\) if we were to approximate \(\phi (\nu )\)  as a delta function \(\phi (\nu ) = \delta (\nu - \nu_0 )\).
+
+Now, since stimulated emission depends on \(\overline{J}\), it is convenient to treat it as a kind of ``negative absorption'': with the same steps as before we find that its coefficient is 
+%
+\begin{align}
+\alpha_\nu^{(s)} = - \frac{h \nu_0 }{4 \pi } n_2 B_{21} \phi (\nu ) 
+\,.
+\end{align}
+
+The total absorption coefficient will then be the sum of these: 
+%
+\begin{align}
+\alpha _\nu = \frac{h \nu_0 }{4 \pi } \phi (\nu ) \qty(n_1 B_{12} - n_2 B_{21} )
+\,.
+\end{align}
+
+In general, when we talk about absorption we always mean absorption minus stimulated emission. 
 
 \end{document}

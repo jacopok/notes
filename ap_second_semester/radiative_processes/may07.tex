@@ -1,4 +1,107 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Sychrotron absorption}
+
+\marginpar{Tuesday\\ 2020-9-1, \\ compiled \\ \today}
+
+We have seen what the total absorption coefficient (accounting for stimulated emission) is for a two-level system. 
+
+We want to use this expression in order to evaluate the total absorption due to the synchrotron process: so, we need to generalize it to a system with a continuum of energy levels, the free particle states with arbitrary velocity. 
+
+We will approach this by discretizing the space of possible energies of the particle.
+There is a slight complication, in that for a given energy \(h \nu \) there are now \emph{many} pairs of levels having that energy between them. We will need to sum over them, still denoting all the higher-energy states in the pairs by ``2'' and the lower-energy states in the pairs by ``1''.
+In this discretized description, then, we shall have an expression like 
+%
+\begin{align}
+\alpha _\nu  = \frac{h \nu }{4 \pi } \sum _{E_1 } \sum _{E_2 } 
+\qty[n(E_1 ) B_{12} - n(E_2 ) B_{21} ] \phi_{12}
+\,,
+\end{align}
+%
+where the sum is performed across all the possible energy levels \(E_1 \) and \(E_2 \) such that \(E_2 - E_1 = h \nu \), while \(n(E_1 )\) and \(n(E_2 )\) are the respective number densities of the two energy states. 
+On the other hand, \(\phi_{12} \) is the transition width. 
+
+The result we derived earlier was found by assuming that emission and absorption are isotropic; this is not true anymore since the magnetic field offers a preferential direction.
+However, we can work around this problem by assuming that the magnetic field is ``tangled'', so that the direction of its value at a randomly chosen point in space is essentially uniformly distributed along the sphere.
+
+We can also quickly evaluate the emission coefficient \(j_\nu \) (which is the power emitted per unit volume, solid angle and frequency): if the power per unit frequency emitted by a single electron is \(P(E, \nu )\) then the coefficient is 
+%
+\begin{align}
+j_\nu = \frac{ \dd{w}}{ \dd{t} \dd{\nu }} \frac{n(E)}{4 \pi }
+= P(E, \nu ) \frac{n(E)}{4 \pi }
+\,,
+\end{align}
+%
+where \(n(E)\) is the density of electrons at a specific energy \(E\). 
+Note that this is not a differential quantity since we discretized the energy levels, so that they are countable. 
+We are also assuming isotropicity, by the same reasoning as before.
+
+The coefficient \(j_\nu \) can also be expressed in terms of the Einstein coefficients, as 
+%
+\begin{align}
+j_\nu = \frac{h \nu }{4 \pi } \phi_{21}  (\nu ) n_2 A_{21} 
+\,,
+\end{align}
+%
+which like before can be generalized to the situation in which we have many possible energy levels giving rise to the same transition as 
+%
+\begin{align}
+j_\nu = \sum _{E_1 } \frac{h \nu }{4 \pi }  \phi_{21} n_2 A_{21} 
+= \frac{h \nu }{4 \pi } n_2  \sum _{E_1 } \phi_{21} A_{21} 
+= \frac{n_2 }{4 \pi } P(E_2, \nu  )
+\,,
+\end{align}
+%
+meaning that now we know 
+%
+\begin{align}
+P(E_2 , \nu ) = h \nu \sum _{E_1} \phi_{21} A_{21} 
+\,.
+\end{align}
+
+From the \emph{detailed balance} relations we can also relate the Einstein coefficients as 
+%
+\begin{align}
+A_{21} = \frac{2 h \nu^3}{c^2} B_{21} 
+\,,
+\end{align}
+%
+which we can substitute in, to find 
+%
+\begin{align} \label{eq:spectral-power-from-einstein-B}
+P(E_2 , \nu ) = h \nu \qty( \frac{2 h \nu^3}{c^2}) \sum _{E_1} \phi_{21} B_{21} 
+\,.
+\end{align}
+
+The reasoning we went to these great lengths to express the spectral power as a function of the Einstein coefficients is that we hope to invert the relation we found, giving us the coefficients as a function of the spectral power.
+
+We have an expression for \(\alpha_\nu \) in terms of the coefficients \(B_{21} \) and \(B_{12} \); however we know from the detailed balance relations that, as long as the statistical weights of the energy levels are equal (which holds for us since we are considering free states), \(B_{21} = B_{12} \), so we can write the expression as 
+%
+\begin{align}
+\alpha _\nu &=  \frac{h \nu }{4 \pi } \sum _{E_1 } \sum _{E_2 } B_{21} \qty(n(E_1 ) - n(E_2 ) ) \phi_{21} \\
+&= \frac{h \nu }{4 \pi } 
+\sum _{E_2 } \qty(n(E_2 - h \nu ) - n(E_2 ))
+\sum _{E_1 } B_{21} \phi_{21} \marginnote{Used \(E_2 - E_1 = h \nu \).}  \\
+&= \frac{h \nu }{4 \pi }
+\sum _{E_2 } \qty(n(E_2 - h \nu ) - n(E_2 ))
+\frac{P(E_2, \nu )}{h \nu \frac{2 h \nu^3}{c^2}}  \marginnote{Used equation \eqref{eq:spectral-power-from-einstein-B}.}\\
+&= \frac{c^2}{8 \pi h \nu^3 } 
+\sum _{E_2 } \qty(n(E_2 - h \nu ) - n(E_2 ))
+P(E_2 , \nu )
+\,.
+\end{align}
+
+This works well for a system which we can discretize: however, if we want to use the language of the continuum of states we will need to turn the sum into an integral.
+In order to do this, we need to introduce the distribution function of electrons in momentum space, \(f(\vec{p})\), which we assume to be isotropic. Using it, we write 
+%
+\begin{align}
+\alpha _\nu = 
+\frac{c^2}{8 \pi h \nu^3}
+\int \dd[3]{p_2 } \qty[ f(\overline{p}_2 )- f(p_2 )]P (E_2 , \nu )
+\,,
+\end{align}
+%
+where \(p_2 \) is the modulus of the momentum associated with \(E_2 \), and similarly \(\overline{p}_2\) is associated with \(E_1 = E_2 - h \nu \). 
+
 \end{document}

@@ -104,4 +104,130 @@ In order to do this, we need to introduce the distribution function of electrons
 %
 where \(p_2 \) is the modulus of the momentum associated with \(E_2 \), and similarly \(\overline{p}_2\) is associated with \(E_1 = E_2 - h \nu \). 
 
+Let us apply this for the well-known case in which the electron distribution is thermal, so that 
+%
+\begin{align}
+f(\vec{p}) = k \exp(- \frac{E}{k_B T})
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+f(\overline{p}_2) - f(p_2) &= k \qty(\exp(- \frac{E - h \nu }{k_B T}) - \exp(- \frac{E}{k_B T}))  \\
+&= k \exp(- \frac{E}{k_B T}) \qty(\exp(\frac{h \nu }{k_B T}) - 1)
+= f(p_2) \qty(\exp(\frac{h \nu }{k_B T}) - 1)
+\,.
+\end{align}
+
+We can plug this into the expression we have for the absorption  coefficient  to find 
+%
+\begin{align}
+\alpha _\nu &=
+\frac{c^2}{8 \pi h \nu^3} \int \dd[3]{p} f(p) \qty(\exp(\frac{h \nu }{k_B T}) - 1) P(E, \nu )  \\
+\frac{c^2}{8 \pi h \nu^3} \qty(\exp(\frac{h \nu }{k_B T}) - 1) \underbrace{\int \dd[3]{p} f(p) P(E, \nu ) }_{4 \pi j_\nu }  \\
+&= \frac{j_\nu}{B_\nu }
+\,,
+\end{align}
+%
+since the rest of the expression we have is precisely the inverse of the Planck function. 
+We have \textbf{recovered Kirkhoff's law}, which is expected since the electrons are assumed to be in thermal equilibrium. 
+
+Now we want to proceed in the general case in which the distribution of the electron energies is not Maxwellian; a specific case of interest is a power-law spectrum, which as we have seen can be the effect of synchrotron radiation.
+
+\todo[inline]{Are we sure about this? was the powerlaw tail not the effect of Comptonization?} 
+
+We wish to switch our integral from one over the particle momentum to one over the particle energy; in order to simplify the change of variable we will make the assumption that the particles are ultrarelativistic, therefore \(E \approx p c\). The change of variable is then 
+%
+\begin{align}
+4 \pi p^2 \dd{p}=  4 \pi \frac{E^2}{c^2} \frac{\dd{E}}{c} = \frac{4 \pi E^2}{c^3} \dd{E}
+\,.
+\end{align}
+%
+while the number of particles in this differential element is given by 
+%
+\begin{align}
+\dd{N} = N(E) \dd{E} = 4 \pi p^2 \dd{p} f(p) = \frac{4 \pi E^2}{c^3} \dd{E} f(p)
+\,,
+\end{align}
+%
+so we can identify 
+%
+\begin{align}
+N(E) = \frac{4 \pi E^2}{c^3} f(p)
+\qquad \text{or} \qquad
+f(p) = \frac{N(E)}{E^2} \frac{c^3}{4 \pi }
+\,,
+\end{align}
+%
+where \(f(p)\) is calculated at the momentum \(p = E /c\).  
+Plugging this into the expression for the absorption coefficient we find 
+%
+\begin{align}
+\alpha _\nu = \frac{c^2}{8 \pi h \nu^3} \int \frac{4 \pi }{c^3} E^2 \dd{E} \frac{c^3}{4 \pi } \qty[\frac{N(E - h \nu )}{(E - h \nu )^2} - \frac{N(E)}{E^2}] P (E, \nu )
+\,.
+\end{align}
+
+We will further assume that the particle energy \(E\) is much smaller than the photon energy \(h \nu \); this is justified by the fact that we are not using the full machinery of QED which would be required if the calculation was nonclassical. 
+
+\todo[inline]{Not clear how \(E \ll h \nu \) means classical\dots
+Is it not actually \(h \nu \ll E\)? the photon would be relativistic then}
+
+If this is the case, then we can expand the expression in a power series around \(E\), so that it reads 
+%
+\begin{align}
+\alpha _\nu  = - \frac{c^2}{8 \pi h \nu^3} \int E^2 P(E, \nu ) \pdv{}{E} \qty[ \frac{N(E)}{E^2}] h \nu 
+\,.
+\end{align}
+
+Let us restrict this result to a powerlaw electron distribution, so that \(N(E) = C E^{-P}\) for some \(P \in \mathbb{R}^{+}\). 
+If this is the case, then the expression inside the integral reads 
+%
+\begin{align}
+- E^2 \dv{}{E} \qty(\frac{N(E)}{E^2})
+= - E^2 \dv{}{E} \qty[C E^{-P-2}]
+= C E^2 (P+2) E^{-P-3} = (P+2) \frac{N(E)}{E}
+\,,
+\end{align}
+%
+so the absorption coefficient will be approximately 
+%
+\begin{align}
+\alpha _\nu = (P+2) \frac{c^2}{8 \pi \nu^2} \int \frac{N(E)}{E} P(E, \nu ) \dd{E} 
+\,.
+\end{align}
+
+We must insert the known expression for the power radiated by a single charge as \(P(E, \nu )\); this can be evaluated to finally find 
+%
+\begin{align}
+\alpha _\nu \propto \nu^{- (P+4) / 2}
+\,.
+\end{align}
+
+Now, recall that in general the definition of the source function \(S_\nu \) is 
+%
+\begin{align}
+S_\nu = \frac{j_\nu }{\alpha _\nu } = \frac{P(\nu )}{4 \pi \alpha _\nu }
+\,,
+\end{align}
+%
+where \(P(\nu )\) is the total spectral power, and since we know that its dependence on \(\nu \) is as \(P(\nu ) \propto \nu^{- (P-1) / 2}\), we can calculate the general source function for a powerlaw distribution: 
+%
+\begin{align}
+S_\nu \propto \frac{\nu^{- (P-1 ) / 2}}{\nu^{- (P+4) / 2}} = \nu^{- \frac{P - 1 + P - 4}{2}} = \nu^{5/2}
+\,,
+\end{align}
+%
+which is \textbf{independent of} \(P\)! 
+
+Knowing the source function we can make certain predictions about the emission of a medium which is optically thick at least for the low-energy part of the spectrum. 
+
+We have shown at the beginning of the course that if the optical depth in a medium is large then the specific intensity \(I_\nu \) becomes close to the source function: \(I_\nu  \sim S_\nu \). 
+In the case of synchrotron emission we have seen that \(\alpha_\nu \sim \nu^{- (P+4) / 2}\), a \emph{decreasing} function of the frequency, so the absorption will be large at low energies and small at high energies. 
+The same will generally hold for the optical depth, since it is proportional to the absorption coefficient if the length (\(\sim\) size of the medium) is fixed. 
+
+On the other hand, if the medium is optically thin then \(I_\nu \sim j_\nu \sim P(\nu )\). 
+
+So, if we make a plot (let us make it log-log as is usually done) of the specific intensity \(I_\nu \) as a function of frequency \(\nu \) we will have a ``thick'' region at low \(\nu \) where the intensity increases as \(I_\nu \sim \nu^{5/2}\), and a ``thin'' region at high \(\nu \) where the intensity decreases as \(I_\nu \sim \nu^{- (P-1) / 2}\). 
+
 \end{document}

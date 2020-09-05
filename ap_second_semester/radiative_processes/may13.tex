@@ -1,4 +1,269 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Radiative Transitions}
+
+\marginpar{Saturday\\ 2020-9-5, \\ compiled \\ \today}
+
+This topic will be treated more quickly than what was originally planned for lack of time. 
+
+The basic question we will ask today is: given the knowledge of the various energy states of a certain atom, how do we characterize the radiation emitted by the various transitions of this atom? 
+
+First, we need to find out which transitions are actually permitted and thus can be observed in reality: \textbf{selection rules} will help with this. We will then determine what is the strength of the radiation from the transitions which are allowed. 
+
+A note: no transition in the cases we will treat is strictly \emph{forbidden}, meaning that it is actually \emph{impossible} for it to happen; rather, we use the word as a shorthand to denote transitions whose probability is quite small, so that the intensity of radiation they emit is vanishingly small (at least as compared to the ``allowed'' transitions). 
+
+We will use a \textbf{semi-classical} approach, treating the atom quantum-mechanically and radiation classically. 
+The justification for this (which amounts to not using QED, basically) is that the self-interaction of photons is negligible. 
+
+\todo[inline]{Is the condition we should check not that the number of photons is very large, so that any single-photon effect washes out?}
+
+The transition probability per unit time from an initial state \(i\) to a final state \(f\) is denoted \(w_{fi}\).
+There is an explicit quantum-mechanical expression for this quantity in terms of the Hamiltonian of the system and the wavefunctions corresponding to the two states of the electrons. 
+
+Because of the detailed balance equation 
+
+\todo[inline]{\dots and  time-reversal symmetry?}
+
+we have that \(w_{fi} = w_{if}\). 
+
+The general expression for the transition rate contains integrals in the form 
+%
+\begin{align}
+\int \phi _f^{*} e^{i \vec{k} \cdot \vec{r}} \vec{\ell} \cdot \vec{\nabla}_j \phi _i \dd[3]{r}
+\,,
+\end{align}
+%
+where \(\vec{\ell}\) is a unit vector in the direction of the polarization of the wave \cite[eq.\ 10.13 onwards]{rybickiRadiativeProcessesAstrophysics1979}, while \(\vec{k}\) is the wavevector while \(\vec{r}\) is the position vector.
+
+In the \textbf{long-wave} approximation, in which the wavelength of the radiation is much larger than the characteristic scale of the atom, we can expand 
+%
+\begin{align}
+e^{i \vec{k} \cdot \vec{r}} \approx 1 + i \vec{k} \cdot \vec{r} + \frac{1}{2} \qty(i \vec{k} \cdot \vec{r})^2 + \dots
+\,.
+\end{align}
+
+Let us make the long-wave condition more explicit: typically we will have \(\abs{\vec{r}} \sim a_0 = \hbar / (m_e \alpha c)\), the Bohr radius, while the wavevector's magnitude will typically be \(\abs{\vec{k}} \sim \omega / c\). So, the quantity we want to be small is 
+%
+\begin{align}
+\vec{k} \cdot \vec{r} \sim \frac{a_0 \omega }{c} = a_0 \frac{\Delta E}{\hbar c} 
+\,,
+\end{align}
+%
+where \(\Delta E\) is the transition energy.
+Since the binding energy is electrostatic in nature, the typical value of \(\Delta E\) is \(\Delta E \sim Z e^2 / 2 a_0 \). Then, the Bohr radius simplifies, and we get 
+%
+\begin{align}
+\vec{k} \cdot \vec{r} \sim \frac{Z e^2}{2} \frac{1}{\hbar c} = \frac{Z \alpha }{2} \ll 1
+\,,
+\end{align}
+%
+so the approximation of taking the scalar product to be small works as long as we consider atoms which are not too far down the periodic table. 
+
+Truncating the series at the lowest order is equivalent to the dipole approximation. The link comes from the fact that \(Z \alpha \approx v / c\), at least to first order. 
+This means that, as long as the condition is satisfied, the electron is moving non-relativistically around the nucleus.  
+
+In the dipole approximation we do indeed have certain transitions with probability exactly equal to zero, but this is an artifact of the approximation. 
+
+If we consider an ensemble of atoms whose orientations are random, then the \emph{unpolarized} transition rate reads 
+%
+\begin{align}
+\expval{w_{fi}} = \frac{4 \pi^2}{3 \hbar^2 c}
+\abs{d_{fi}}^2 \mathcal{I}(\omega_{fi})
+\,,
+\end{align}
+%
+where \(\mathcal{I}(\omega _{fi}) = 4 \pi J(\omega _{fi})\) is the intensity of radiation integrated over all solid angles and computed at the transition frequency, while \(d_{fi}\) is the dipole operator (an operator acting on the initial wavefunction and returning its dipole moment?). 
+
+Now, this is related to the Einstein \(B\) coefficient as 
+%
+\begin{align}
+\expval{w_{lu}} = B_{lu} J(\nu _{ul})
+\,,
+\end{align}
+%
+where we switched from \(i\) and \(f\), meaning initial and final, to \(l\) and \(u\), meaning lower and upper energy state. 
+
+We have the conversion 
+%
+\begin{align}
+J(\nu _{ul}) = \frac{\mathcal{I}(\nu _{ul})}{4 \pi }
+= \frac{2 \pi }{4 \pi } \mathcal{I}(\omega _{ul})
+= \frac{\mathcal{I}(\omega _{ul})}{2}
+\,.
+\end{align}
+
+\todo[inline]{What? a change by a factor \(2 \pi \) in the \emph{argument} results in a change in \(2 \pi \) in the \emph{function}? This only holds if intensity is a \emph{linear} function of the frequency!}
+
+Therefore, 
+%
+\begin{align}
+\expval{w_{ul}} = B_{lu} \frac{\mathcal{I}(\omega _{ul})}{2}
+\,,
+\end{align}
+%
+which means that the Einstein \(B\) coefficient can be expressed in terms of the dipole operator as 
+%
+\begin{align}
+B_{lu} = \frac{8 \pi^2}{4 c \hbar^2} \abs{d_{ul}}^2
+\,.
+\end{align}
+
+It is common to express this in terms of a quantity called the \emph{oscillator strength} for that given transition, however in order to introduce that formalism we need to generalize what we have found to transitions between degenerate energy levels. 
+
+If we have several degenerate upper levels, while the final lower state has a statistical weight \(g_l\), then we can write 
+%
+\begin{align}
+B_{lu} = \frac{32 \pi^2}{3 c \hbar^2} \frac{1}{g_l} \sum _{l} \abs{d_{ul}}^2
+\,.
+\end{align}
+
+We are averaging over the initial states, and summing over the final ones.
+
+\todo[inline]{why is the statistical weight in the denominator?}
+
+\todo[inline]{why is this expression multiplied by a factor 4 compared to the nondegenerate one?}
+
+\todo[inline]{Why is \(g_l\) outside the sum?}
+
+The definition of the oscillator strength \(f_{lu}\) is then given by expressing the Einstein coefficient as 
+%
+\begin{align}
+B_{lu} &= \frac{4 \pi^2 e^2}{h \nu_{ul} m c} f_{lu}  \\
+f_{lu} &= \frac{2 m }{3 \hbar^2 g_l c^2} (E_u - E_l) \sum \abs{d_{lu}}^2  
+\,.
+\end{align}
+
+\section{Line broadening}
+
+So far, we have implicitly assumed that the transition can be described by a single frequency, but as was discussed earlier in the course this is not really the case; instead, the line should be described by a certain function \(\phi (\nu )\) which is peaked around that frequency. 
+
+There are several processes which can broaden a line beyond the most basic time-energy uncertainty relation. 
+
+\subsubsection{Doppler broadening}
+
+We are often dealing with plasmas which contain ions moving at high velocities due to thermal motion; since this is a random motion the distribution of the velocities' components along the observation direction will be quite wide. 
+Since we need to move from the atom rest frame to the observer frame, we will need to consider the Doppler effect.
+
+The velocity component along the observation direction affects the effective frequency of the radiation as measured by us. 
+Let us make this reasoning quantitative. 
+
+Suppose that the observation direction is the \(z\) axis, and let us denote the velocity component in that direction as \(v_z\). 
+Further, let us assume that the velocity is nonrelativistic so that we can work to first order in \(v/c\). Then, the Doppler shift reads 
+%
+\begin{align}
+\nu - \nu_0  = \nu_0 \frac{v_z}{c} 
+\,,
+\end{align}
+%
+where the (variable) frequency \(\nu \) is in the observer frame, while the (fixed) frequency \(\nu_0 \) is in the atom frame. 
+
+Since the velocities are assumed to be nonrelativistic and corresponding to thermal equilibrium, their distribution will be Maxwellian, meaning that each of the three components will have a Gaussian distribution: explicitly, the number density of atoms whose velocity component is near \(v_z\) in an interval of width \(\dd{v_z}\) is 
+%
+\begin{align}
+\dd{N} \propto \exp(- \frac{m v_z^2}{2 k_B T}) \dd{v_z}
+\,.
+\end{align}
+
+We can refer this expression to the frequency change by inverting the Doppler relation: we find 
+%
+\begin{align}
+v_z = c \frac{\nu - \nu_0 }{\nu_0 }
+\implies 
+\dd{v_z} = \frac{c}{\nu_0 } \dd{\nu }
+\,,
+\end{align}
+%
+using which we can refer the Gaussian distribution of the velocity components back to the emitted frequency distribution as 
+%
+\begin{align}
+\dd{N} \propto \phi (\nu ) \propto \exp(- \frac{m c^2 (\nu - \nu_0 )^2}{2 k_B T \nu_0^2}) \dd{\nu }
+\,.
+\end{align}
+
+From this, we can say that the line profile function is given by 
+%
+\begin{align}
+\phi (\nu ) = \frac{1}{ \Delta \nu _D \sqrt{\pi }} \exp(- \frac{(\nu - \nu_0 )^2}{\Delta \nu_D^2})
+\,,
+\end{align}
+%
+where the width of the line is given by
+%
+\begin{align}
+\Delta \nu _D = \frac{\nu_0 }{c} \sqrt{\frac{2 k_B T}{m}}
+\,,
+\end{align}
+%
+and the normalization is fixed by imposing \(\int_0^{\infty  } \phi (\nu ) \dd{\nu } = 1\).  
+
+\subsubsection{Natural broadening}
+
+This effect is due to the fact that if a level has a lifetime of \(\Delta t\), then there must be a spread \(\Delta E\) in the transition energies of the level so that \(\Delta t \Delta E \gtrsim \hbar\). 
+Since no level has an infinite lifetime, not even at \(T =0 \) can a transition be truly monochromatic. 
+
+The decay rate of a state \(n\) is given by 
+%
+\begin{align}
+\gamma = \sum _{n'} A _{n n'}
+\,,
+\end{align}
+%
+where \(n'\) is a state with a lower energy than \(n\) into which the atom can decay, while \(A_{nn'}\) is the Einstein \(A\) coefficient for the transition from \(n\) to \(n'\). 
+
+It can be shown that the line profile due to natural broadening is given by a Lorentzian or Lorentz profile, 
+%
+\begin{align}
+\phi (\nu ) = \frac{1}{4 \pi^2} \frac{\gamma }{(\nu - \nu_0 )^2 + (\gamma / 4 \pi )^2}
+\,.
+\end{align}
+
+It can also be shown that certain other effects, such as microturbulence, can be described by a similar profile: this is then accomplished by defining a ``generalized transition rate'' \(\Gamma \) to replace the transition rate \(\gamma \). 
+We will use the letter \(\Gamma \) in the next section. 
+
+\subsubsection{Combined Doppler and Lorentz profile}
+
+We can give a description of the combined effects of the two kinds of broadening we discussed so far, which is needed since they will both occur in general. 
+
+The Lorentz profile referred to the observed frequency of the transition (which can be shifted due to the Doppler effect) is given, like before, as 
+%
+\begin{align}
+\phi (\nu ) = \frac{\Gamma / 4 \pi^2}{(\nu - \nu_0^{\text{obs}} )^2 + (\Gamma / 4 \pi )^2}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\nu_0^{\text{obs}} = \nu_0 + \nu_0 \frac{v_z}{c}
+\,,
+\end{align}
+%
+so we can refer the profile to the atom frame like 
+%
+\begin{align}
+\phi (\nu ) = \frac{\Gamma / 4 \pi^2}{\qty[\nu - \nu_0 \qty(1 + v_z / c)]^2 + (\Gamma / 4 \pi )^2}
+\,.
+\end{align}
+
+In order to find the observed broadening we need to average this over all the possible \(v_z\) according to their Gaussian distribution: this yields 
+%
+\begin{align}
+\phi (\nu ) &= \frac{\Gamma }{4 \pi^2}
+\int_{- \infty }^{\infty } \frac{\sqrt{m / 2 \pi k_B T}\exp(- m v_z^2 / 2 k_B T)}{\qty[\nu - \nu_0 \qty(1 + v_z/c)]^2 + (\Gamma / 4 \pi )^2} \dd{v_z}  \\
+&= \frac{1}{\Delta \nu_D \sqrt{\pi }} H(a, u)
+\,,
+\end{align}
+%
+where we introduced the Voigt function, which cannot be computed analytically:
+%
+\begin{align}
+H(a, u) = \frac{a}{\pi }  \int_{- \infty }^{\infty } \frac{e^{- y^2} \dd{y}}{a^2 + (u-y)^2}
+\,,
+\end{align}
+%
+whose arguments are \(a = \Gamma / 4 \pi \Delta \nu _D\) and \(u = (\nu - \nu_0 ) / \Delta \nu _D\). 
+This finally yields the Voigt profile. 
+
+
 \end{document}

@@ -56,7 +56,7 @@ p^{\mu } + k^{\mu } = p^{\prime \mu } + k^{\prime \mu }
 Solving the system of equations yields 
 %
 \begin{align}
-\epsilon' = \frac{\epsilon }{1 + \frac{\epsilon }{mc} \qty(1 - \vec{\Omega} \cdot \vec{\Omega}')}
+\epsilon' = \frac{\epsilon }{1 + \frac{\epsilon }{mc^2} \qty(1 - \vec{\Omega} \cdot \vec{\Omega}')}
 \,,
 \end{align}
 %
@@ -66,11 +66,13 @@ The calculation which yields the differential cross section of the scattering is
 \begin{align}
 \frac{ \dd{\sigma }  }{ \dd{\vec{\Omega} }'} 
 = \frac{r_0^2}{2 } \qty(\frac{\epsilon '}{\epsilon })^2
-\qty[ \frac{\epsilon}{\epsilon '} + \frac{\epsilon'}{\epsilon } - 1 + \vec{\Omega} \cdot \vec{\Omega}'] 
+\qty[ \frac{\epsilon}{\epsilon '} + \frac{\epsilon'}{\epsilon } - (1 - \vec{\Omega} \cdot \vec{\Omega}')^2] 
 \,,
 \end{align}
 %
 where \(\epsilon \) is the energy divided by \(m c^2\) and \(r_0 \) is the classical electron radius. 
+\todo[inline]{Missing square for the \(\sin \theta \) term in the KN cross section! see \cite[eq.\ 7.4]{rybickiRadiativeProcessesAstrophysics1979}.}
+
 If we substitute in our formula for the energy, using \(\xi = \cos \theta = \vec{\Omega} \cdot \vec{\Omega}'\), we find 
 %
 \begin{align}
@@ -80,6 +82,9 @@ If we substitute in our formula for the energy, using \(\xi = \cos \theta = \vec
 \delta \qty(\epsilon ' - \frac{\epsilon }{1 + \epsilon (1 - \xi )})
 \,.
 \end{align}
+
+We have inserted a \(\dd{\epsilon '}\) differential for the outgoing photon energy, we are considering a density in one more variable but it is singular there, whence the \(\delta \) function, which describes the distribution in \(\epsilon '\) space --- concentrated at the only value allowed by 4-momentum conservation. 
+Note that this makes sense dimensionally, as the dimension of a \(\delta \) function is the inverse of the dimension of its argument. 
 
 In the low energy limit, \(h \nu \ll m_e c^2 \) or \(\epsilon \to 0\), we find 
 %

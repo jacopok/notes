@@ -60,17 +60,18 @@ Now, let us express the single-velocity power distribution \eqref{eq:single-velo
 \,,
 \end{align}
 %
-where crucially \(A\) does not depend on \(v\). 
+where, crucially, \(A\) does not depend on \(v\). 
 Inserting this yields: 
 %
 \begin{align}
 \frac{ \dd{w}}{ \dd{V} \dd{t} \dd{\omega }} 
 &= \frac{A}{N}
 \int_{v _{\text{min}}}^{\infty } \frac{g_{ff}(v, \omega )}{v} 
-v^2 \exp(- \frac{m v^2}{2 k_B T} \dd{v})   \\
+v^2 \exp(- \frac{m v^2}{2 k_B T}) \dd{v}   \\
 &= A \frac{\frac{2k_B T}{m} \int_{x _{\text{min}}}^{\infty } g_{ff} (x, \omega ) x e^{-x^2} \dd{x}}{(\frac{2 k_B T}{m})^{3/2} \int_{0}^{\infty } x^2 e^{-x^2 } \dd{x}}
 \marginnote{Substituted \(x = v \sqrt{2 k_B T / m}\).}  \\
-&= \frac{A}{\sqrt{ 2k_B T / m}} \frac{\int_{x _{\text{min}}}^{\infty } g_{ff} (x, \omega ) x e^{- x^2} \dd{x}}{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}} 
+&= \frac{A}{\sqrt{ 2k_B T / m}} 
+\underbrace{\frac{\int_{x _{\text{min}}}^{\infty } g_{ff} (x, \omega ) x e^{- x^2} \dd{x}}{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}}}_{\overline{g}_{ff}(\omega , T)} 
 \frac{\int_{x _{\text{min}}}^{\infty }x e^{-x^2} \dd{x}}{\int_{0}^{\infty } x^2 e^{-x^2} \dd{x}}  \\
 &= \frac{A}{\sqrt{ 2k_B T / m}}
 \overline{g}_{ff} (\omega ) 
@@ -119,7 +120,7 @@ Now we can calculate the total radiated power per unit volume by integrating in 
 \begin{align}
 \frac{ \dd{w}}{ \dd{t} \dd{V}} 
 &= \int_{0}^{\infty } A n_e n_i T^{-1/2} \overline{g}_{ff} (\nu, T) e^{-h \nu / k_B T} \dd{\nu }  \\
-&= A n_e n_i T^{-1/2} \underbrace{\frac{\int_{0}^{\infty } \overline{g}_{ff} (\nu, T) e^{-h \nu /k_B T}}{\int_0^{\infty} e^{- h \nu / k_B T} \dd{\nu } }}_{\overline{\overline{g}}_{ff}}  
+&= A n_e n_i T^{-1/2} \underbrace{\frac{\int_{0}^{\infty } \overline{g}_{ff} (\nu, T) e^{-h \nu /k_B T} \dd{\nu }}{\int_0^{\infty} e^{- h \nu / k_B T} \dd{\nu } }}_{\overline{\overline{g}}_{ff}}  
 \int_0^{\infty} e^{- h \nu / k_B T} \dd{\nu }
 \\
 &= A n_e n_i T^{-1/2} \frac{k_B T}{h } \overline{\overline{g}}_{ff}(T)

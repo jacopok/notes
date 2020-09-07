@@ -119,6 +119,14 @@ We can integrate this in order to find the total cross section presented by the 
 \end{align}
 
 How does this differ from the Thomson cross section? For \(\log \epsilon \lesssim -1 \) we have \(\sigma \approx \sigma_T\), while as \(\epsilon \) increases the cross section goes to zero. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/compton-sigma.pdf}
+\caption{Compton cross section as a function of \(\epsilon \), photon energy by \(m_e c^2\). }
+\label{fig:compton-sigma}
+\end{figure}
+
 In the low energy limit we have the expansion 
 %
 \begin{align}
@@ -130,6 +138,7 @@ The introduction of these nonconservative aspects complicates the radiative tran
 The absorption term is 
 %
 \begin{align}
+- \alpha _\nu ^{(s)} I _\nu =  
 - I (\epsilon , \Omega ) n_e \int \dd{\Omega }' \dd{\epsilon }' \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }' } =     - I (\epsilon , \Omega  ) \sigma (\epsilon )
 \,,
 \end{align}
@@ -137,7 +146,10 @@ The absorption term is
 while for the emission term the intensity must go inside the integral, so we have 
 %
 \begin{align}
-n_e \int \dd{\Omega }' \dd{\epsilon '} I(\epsilon ', \Omega ') \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }' } = \int \dd{\Omega }' \dd{\epsilon }' \sigma (\epsilon \to \epsilon ', \xi )
+j_\nu^{(s)} = 
+n_e \int \dd{\Omega }' \dd{\epsilon '} I(\epsilon ', \Omega ') \frac{ \dd{\sigma }}{ \dd{\Omega }' \dd{\epsilon }' } = \int \dd{\Omega }' \dd{\epsilon }'
+I(\epsilon ', \Omega ')
+ \sigma (\epsilon \to \epsilon ', \xi )
 \,,
 \end{align}
 %
@@ -152,7 +164,7 @@ The emission term, on the other hand, can now be evaluated to yield
 \,,
 \end{align}
 %
-as long as we neglect the angular part \(1 + \xi^2\). 
+as long as we neglect the angular dependence of the intensity. 
 
 We are always restricting ourselves to electrons which are initially at rest. For them Thomson scattering is a good approximation; photons more energetic than a few tens of \SI{}{keV} (hard X-rays) hardly scatter, since the Klein-Nishina cross section drops at high energies.
 
@@ -189,8 +201,8 @@ This means that in the ERF we will have the equality
 %
 \begin{align}
 \epsilon_e' 
-= \frac{\epsilon_e}{1 + \frac{\epsilon_e}{mc} (1 - \cos \Theta )} 
-\approx \epsilon_e \qty(1 - \frac{\epsilon_e}{mc} (1 - \cos \Theta )) 
+= \frac{\epsilon_e}{1 + \frac{\epsilon_e}{mc^2} (1 - \cos \Theta )} 
+\approx \epsilon_e \qty(1 - \frac{\epsilon_e}{mc^2} (1 - \cos \Theta )) 
 \approx \epsilon_e 
 \qquad \text{if } \epsilon_e \ll m c^2 
 \,.
@@ -232,7 +244,7 @@ In order to make predictions about the effect of this for a population of electr
 \,,
 \end{align}
 %
-where \(D = 1 - \vec{\Omega} \cdot \vec{v} / c\) and \(D' = 1 - \vec{\Omega}' \cdot \vec{v}' / c \) are the factors in the Lorentz transforms, which allow us to write \(\epsilon _e = \gamma D \epsilon \) and \(\epsilon _e' = \gamma D' \epsilon '\).
+where \(D = 1 - \vec{\Omega} \cdot \vec{v} / c = 1 - \beta \cos \theta \) and \(D' = 1 - \vec{\Omega}' \cdot \vec{v}' / c \approx 1 + \beta \cos \theta '_e\) are the factors in the Lorentz transforms, which allow us to write \(\epsilon _e = \gamma D \epsilon \) and \(\epsilon _e' = \gamma D' \epsilon '\).
 
 The transformation law for \(\xi = \vec{\Omega} \cdot \vec{\Omega}\) is 
 %
@@ -243,10 +255,10 @@ The transformation law for \(\xi = \vec{\Omega} \cdot \vec{\Omega}\) is
 %
 while the electron energy density transforms as \(n = \gamma n_e\). 
 
-This allows us to write down an explicit expression for \(\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega})\) in the lab frame for a population of single-speed electrons:
+This allows us to write down an explicit expression for \(\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}')\) in the lab frame for a population of single-speed electrons:
 %
 \begin{align}
-\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}, v) 
+\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}', v) 
 = 
 \frac{n r_0^2}{2 \epsilon \nu \gamma } 
 \qty[1 + \qty(1 + \frac{1 - \xi }{\gamma^2 D D'})^2
@@ -261,7 +273,7 @@ but we must also consider the fact that the electrons are distributed with diffe
 \sigma (\epsilon \to \epsilon ', \xi )
 = \int \dd{v} \sin \theta_v \dd{\theta _v} \dd{\phi _v}
  v^2 n f(v) 
-\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}, v)  
+\sigma (\epsilon \to \epsilon ', \vec{\Omega}, \vec{\Omega}', v)  
 \,.
 \end{align}
 

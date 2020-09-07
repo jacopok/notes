@@ -33,8 +33,7 @@ We can then compute the total absorption coefficient, by integrating across all 
 \end{align}
 %
 where \(\sigma_0 \) is a known function. This integral is quite easy to compute numerically. 
-What we find is shown in figure
-\todo[inline]{add figure here!}
+What we find is quite similar to the drop of the Klein-Nishina cross section, for high temperatures the drop happens at lower energies and is smoother. 
 
 \subsubsection{Energy exchange rate}
 
@@ -58,16 +57,18 @@ This is all differential: in order to get the full energy change we need to inte
 \end{align}
 
 Now, we can see that this depends on the number of scatterings, the electron and the radiation temperatures. 
-Let us assume that the distribution of the photons is Planckian as well, with a temperature \(T_r\), and define \(\Theta _r = k_B T_R / m c^2\). 
+Let us assume that the distribution of the photons is Planckian as well, with a temperature \(T_r\), and define \(\Theta _r = k_B T_r / m c^2\). 
 
 Then, we can find that for small \(\Theta _r\) and small \(\Theta \) we have 
 %
 \begin{align}
-\frac{\dot{E}_s}{E_s} = 4 \qty(\Theta - \Theta _r) \qty(1 + \frac{5}{2} \Theta - 21 \frac{\zeta (5)}{\zeta (4)} \Theta _r + \dots)
+\frac{\dot{E}_s}{E_s} = \qty(4 \Theta - \Theta _r) \qty(1 + \frac{5}{2} \Theta - 21 \frac{\zeta (5)}{\zeta (4)} \Theta _r + \dots)
 \,,
 \end{align}
 %
 where \(\zeta \) is  the Riemann zeta function.
+
+\todo[inline]{The 4 is \emph{inside} the parenthesis, right? at thermal equilibrium photons have mean energy \(4 k_B T_e\)\dots See eg \cite[eq.\ 7.36]{rybickiRadiativeProcessesAstrophysics1979}, but I've seen the result often cited elsewhere as well.}
 
 The lowest order contribution is then, for an isotropic photon distribution (not only a blackbody),
 %
@@ -76,11 +77,15 @@ The lowest order contribution is then, for an isotropic photon distribution (not
 \,,
 \end{align}
 %
-so if the photons are colder than the electrons they gain energy. 
+so if the photons are colder than \(4 k_B T_e\), where \(T_e\) is the temperature of the electrons, they gain energy.
 
-What happens if a photon scatters off the electron distribution many times? 
 
-Let us assume we have an isotropic electron distribution with number density \(n\), and that the scattering is isotropic. We shall use Thomson scattering, which is not but it has forward-backward symmetry, which is enough for our considerations. So, the cross section will be \(\sigma _T\). 
+
+What happens if a photon \textbf{scatters off the electron distribution many times}? 
+
+Let us assume we have an isotropic electron distribution with number density \(n\), and that the scattering is isotropic as well.
+We shall use the cross section for Thomson scattering, \(\sigma _T\); this scattering is not isotropic but it has forward-backward symmetry, which is enough for our considerations.
+ 
 
 The photon mean free path is then \(\lambda _s = 1 / (n \sigma _T)\), while the mean time between scatterings is \(t_s = \lambda _s / c\). 
 
@@ -93,7 +98,9 @@ N_s = \frac{L^2}{\lambda _s^2} = \qty(n \sigma _T L)^2 = \tau _s^2
 %
 where \(\tau _s\) is the average scattering optical depth, if \(\tau _s \gg 1\), and \(N_s \sim \tau _s\) if \(\tau _s\) was \(\ll 1\). Then, \(N_s \sim \max (\tau _s, \tau _s^2)\). 
 
-This is useful in order to define the Compton \(y\) parameter: 
+This is useful in order to define the Compton \(y\) parameter: as long as the photon energy \(\epsilon \) is much smaller than \(4 k_B T_e\), we have 
+
+\todo[inline]{At least, it looks to me like we need to make that assumption: the photon cannot thermalize further than that temperature}
 %
 \begin{align}
 y = \expval{\frac{\Delta \epsilon }{\epsilon }} N_s \approx \frac{4 k_B T}{mc^2 } \max(\tau _s , \tau _s^2)

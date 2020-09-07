@@ -9,7 +9,7 @@ As we have said it is hard to find numerical solutions to the Kompaneets equatio
 The energy density can be calculated as 
 %
 \begin{align}
-u = \int \dd[3]{p} h \nu \dv{N}{ \dd[3]{x}}
+u = \int \dd[3]{p} h \nu \frac{N}{ \dd[3]{p}\dd[3]{x}}
 = \int \dd[3]{p} h \nu   \frac{2 n}{h^3} 
 = \frac{8 \pi (k_B T)^{4}}{h^3c^3} \int_0^{\infty } \dd{x} x^3 n
 \,,
@@ -17,7 +17,7 @@ u = \int \dd[3]{p} h \nu \dv{N}{ \dd[3]{x}}
 %
 where, as usual, \(x = h \nu / k_B T\), and the last equality comes about by substituting this and \(\dd[3]{p} = p^2 \dd{p} \dd{\Omega }\) and assuming isotropy. 
 
-In order to see how it changes, let us differentiate this energy density with respect to time (rescaled, as in the Kompaneets equation, by the mean time between two scatterings): 
+In order to see how it changes in the first stage of the Comptonization, when the photon energy is low compared to the electron temperature, let us differentiate this energy density with respect to time (rescaled, as in the Kompaneets equation, by the mean time between two scatterings): 
 %
 \begin{align}
 \dv{u}{t_s} 
@@ -27,9 +27,8 @@ In order to see how it changes, let us differentiate this energy density with re
 \,.
 \end{align}
 
-Now, let us suppose that \(n\) is very small, so that we can neglect \(n\) and \(n^2\) inside the derivative, keeping \(n'\)
-\todo[inline]{Not super clear why \(n \ll n'\) if \(n\) is small should hold\dots }
-: this yields 
+Now, let us suppose that \(n\) is very small, so that we can neglect \(n\) and \(n^2\) inside the derivative, keeping \(n'\): this yields 
+% \todo[inline]{Not super clear why \(n \ll n'\) if \(n\) is small should hold\dots }
 %
 \begin{align}
 \dv{u}{t_s} \approx \frac{8 \pi (k_B T)^{4}}{h^3 c^3} \Theta \int_0^{\infty } \dd{x} x \pdv{[x^{4} n']}{x}
@@ -53,7 +52,7 @@ u(t_s) = u(0 ) \exp( 4 \Theta t_s) = u(0 ) \exp( t / t_c )
 where \(t_c = 1/ (4 \Theta n \sigma _T c)\) is called the Compton time. 
 This means that the radiative energy density increases \textbf{exponentially fast}, over a characteristic time of the order \(t_c\). 
 
-\todo[inline]{Wait, is this exponential OK? it diverges as time increases! }
+\todo[inline]{So, to see if I understand correctly: the contributions \(n + n^2\) are relevant as we move closer to equilibrium, while the \(n'\) term dominates the first stage of the evolution; and the exponential describes the first stage of an evolution which is shaped like some kind of sigmoid?}
 
 \subsection{Relativistic Kompaneets equation}
 
@@ -156,6 +155,8 @@ where \(\dot{S} = Q(x)\) quantifies the photons gained per unit time, while \(\d
 
 \todo[inline]{Are the signs of the \(\dot{S}\) and \(\dot{H}\) not the other way around?}
 
+\todo[inline]{How does this work dimensionally? Are \(\dot{H}\) and \(\dot{S}\) not supposed to be inverse times?}
+
 Suppose that the input is \emph{soft}, that is, low-energy. 
 This means that we will have \(Q(x)\) different from zero only for \(x\) smaller than a certain threshold, \(x< x_s \ll 1\). 
 We then look at the high-energy tail in emissions, \(x \gg 1\).
@@ -205,6 +206,8 @@ m_- \approx -3 - \frac{2}{y}
 
 This is then a powerlaw spectrum: for any soft photon input, then, we have found a qualitative result. It is a powerlaw for medium photon energies and an exponential for high photon energies. 
 This then gives a typical signature for the observational spectrum we observe in Compton scattering. 
+
+Note that, like in the Planck function, the spectrum of the observed intensity scales like \(I_\nu \sim n \nu^3\), so we expect to see \(I_\nu \sim \nu^{3+m} \sim \nu^{-2/y}\) for medium energies, and \(I_\nu \sim \nu^3 e^{-x}\). 
 
 \subsubsection{Dynamical Comptonization}
 

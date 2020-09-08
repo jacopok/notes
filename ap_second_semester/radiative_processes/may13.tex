@@ -21,11 +21,7 @@ The justification for this (which amounts to not using QED, basically) is that t
 The transition probability per unit time from an initial state \(i\) to a final state \(f\) is denoted \(w_{fi}\).
 There is an explicit quantum-mechanical expression for this quantity in terms of the Hamiltonian of the system and the wavefunctions corresponding to the two states of the electrons. 
 
-Because of the detailed balance equation 
-
-\todo[inline]{\dots and  time-reversal symmetry?}
-
-we have that \(w_{fi} = w_{if}\). 
+Because of the detailed balance equation we have that, at equilibrium, \(w_{fi} = w_{if}\). 
 
 The general expression for the transition rate contains integrals in the form 
 %
@@ -34,7 +30,7 @@ The general expression for the transition rate contains integrals in the form
 \,,
 \end{align}
 %
-where \(\vec{\ell}\) is a unit vector in the direction of the polarization of the wave \cite[eq.\ 10.13 onwards]{rybickiRadiativeProcessesAstrophysics1979}, while \(\vec{k}\) is the wavevector while \(\vec{r}\) is the position vector.
+where \(\vec{\ell}\) is a unit vector in the direction of the polarization of the wave \cite[eq.\ 10.13 onwards]{rybickiRadiativeProcessesAstrophysics1979}, while \(\vec{k}\) is the wavevector and \(\vec{r}\) is the position vector.
 
 In the \textbf{long-wave} approximation, in which the wavelength of the radiation is much larger than the characteristic scale of the atom, we can expand 
 %
@@ -73,7 +69,7 @@ If we consider an ensemble of atoms whose orientations are random, then the \emp
 \,,
 \end{align}
 %
-where \(\mathcal{I}(\omega _{fi}) = 4 \pi J(\omega _{fi})\) is the intensity of radiation integrated over all solid angles and computed at the transition frequency, while \(d_{fi}\) is the dipole operator (an operator acting on the initial wavefunction and returning its dipole moment?). 
+where \(\mathcal{I}(\omega _{fi}) = 4 \pi J(\omega _{fi})\) is the intensity of radiation integrated over all solid angles and computed at the transition frequency, while \(d_{fi}\) is the matrix element of the electric dipole operator \(\hat{d} = e \sum_j \hat{r}_j\) between the initial and final state. 
 
 Now, this is related to the Einstein \(B\) coefficient as 
 %
@@ -120,8 +116,6 @@ B_{lu} = \frac{32 \pi^2}{3 c \hbar^2} \frac{1}{g_l} \sum _{l} \abs{d_{ul}}^2
 
 We are averaging over the initial states, and summing over the final ones.
 
-\todo[inline]{why is the statistical weight in the denominator?}
-
 \todo[inline]{why is this expression multiplied by a factor 4 compared to the nondegenerate one?}
 
 \todo[inline]{Why is \(g_l\) outside the sum?}
@@ -129,10 +123,12 @@ We are averaging over the initial states, and summing over the final ones.
 The definition of the oscillator strength \(f_{lu}\) is then given by expressing the Einstein coefficient as 
 %
 \begin{align}
-B_{lu} &= \frac{4 \pi^2 e^2}{h \nu_{ul} m c} f_{lu}  \\
+B_{lu} &= \underbrace{\frac{4 \pi^2 e^2}{h \nu_{ul} m c}}_{\text{classical}} f_{lu}  \\
 f_{lu} &= \frac{2 m }{3 \hbar^2 g_l c^2} (E_u - E_l) \sum \abs{d_{lu}}^2  
 \,.
 \end{align}
+
+The quantity \(f_{lu}\) is called the \textbf{oscillator strength}; the reason for this definition is that the quantity multiplying \(f_{lu}\) in the expression for the Einstein coefficient is the coefficient we would get with a classical oscillator; the oscillator strength is the quantum correction to it.
 
 \section{Line broadening}
 
@@ -263,7 +259,6 @@ H(a, u) = \frac{a}{\pi }  \int_{- \infty }^{\infty } \frac{e^{- y^2} \dd{y}}{a^2
 \end{align}
 %
 whose arguments are \(a = \Gamma / 4 \pi \Delta \nu _D\) and \(u = (\nu - \nu_0 ) / \Delta \nu _D\). 
-This finally yields the Voigt profile. 
-
+This finally yields the Voigt profile, which is basically the convolution of the Gaussian and Lorentzian profiles. 
 
 \end{document}

@@ -63,29 +63,42 @@
 
 % The rule for the sum of the chemical potentials only holds at equilibrium.
 
-We can relate some chemical potentials by reactions, but not all of them: our system of equations will be degenerate, with degeneracy corresponding precisely to the globally conserved quantities (electric charge, lepton number, baryon number) which follow from the symmetry group of our theory.
+We can relate some chemical potentials by reactions, but not all of them: our system of equations will be degenerate, with degeneracy corresponding precisely to the globally conserved quantities (electric charge, lepton number, baryon number) which follow from the symmetry group of our theory. 
+These can have any value and are conserved in any reaction,\footnote{This holds as long as the temperature is low enough: we are considering the reactions which are allowed by the Standard Model of interactions, with its symmetry group \(SU(3)_c \times SU(2)_L \times U(1)_Y\), but it is not currently known whether at higher temperatures (i.\ e.\ earlier times) this is the most general symmetry group which is spontaneously broken to the SM group. So, the statements we make only apply at relatively late times.} so they cannot be fixed by the system.
 
-If there was a global electric charge, phenomenologically we'd expect global magnetic fields, but we see them only of the order of the \SI{1}{nT}, which gives an upper bound on the global charge density.
+If there was a global electric charge, we'd expect global magnetic fields, but we only see them with magnitudes of the order of the \SI{1}{nT}, which gives an upper bound on the global charge of the universe.
+So, any global electric charge would be quite small --- we will assume it is exactly zero. 
 
-We can estimate the orders of magnitude for the various species in the universe.
-The baryon number is very small when compared to the number of photons in the universe. The lepton number is harder to estimate, but it is reasonable to assume that it is quite small as well. For slightly more detailed discussion, see the book by Weinberg \cite[before eq. 15.6.5]{weinbergGravitationCosmologyPrinciples1972}.
+We can estimate the orders of magnitude for the abundances of the various particle species in the universe.
+The baryon number is very small when compared to the number of photons in the universe, roughly speaking \(n_\gamma / n_b \sim \num{e10}\). 
+
+The lepton number is harder to estimate, but it is reasonable to assume that it is quite small as well.
+For slightly more detailed discussion, see the book by Weinberg \cite[before eq. 15.6.5]{weinbergGravitationCosmologyPrinciples1972}.
+
 In the end, we can say that in the early universe \(\mu / T \ll 1\), so we can assume \(\mu \approx 0\).
 This is just a reasonable simplification, which we make in order to get analytic results. 
 
-Therefore, the dependence of the number density, energy density and pressure would be also on \(\mu \) but we neglect it, and keep only the temperature dependence: so, we will just write \(n(T)\), \(\rho (T)\) and \(P(T)\).
+Under this assumption the quantities characterizing the matter distribution in the universe only depend on the temperature: so, we will just write \(n(T)\), \(\rho (T)\) and \(P(T)\).
 
-\todo[inline]{There is a whole section before this in \cite[]{paccianiAppuntiCorsoPhysical2018}\dots}
+% \todo[inline]{There is a whole section before this in \cite[]{paccianiAppuntiCorsoPhysical2018}\dots}
 
-In general, when dealing with thermodynamical problems in an expanding spacetime there is a complication. In Minkowski we have symmetry under time translations, thus it makes sense to talk about stationarity. In an expanding universe instead we have no Killing vector with respect to time. There is a competition between two evolutions: the thermodynamical evolution of the system and the expansion of the universe.\\
-The way to deal with this problem is: we assume that the first evolution is much faster than the other, that is, we reach thermal equilibrium on timescales that are short if compared to the expansion. This way we can neglect the expanding universe, except for the temperature.\\
-So our problem is oversimplified: we assume thermodynamical equilibrium, which makes sense in certain periods of the life of the universe, and that allows us to embed a thermal situation into a universe which evolves in time.
+In general, when dealing with thermodynamic problems in an expanding spacetime there is a complication: in Minkowski spacetime we have symmetry under time translations, thus it makes sense to talk about stationarity.
+In an expanding universe, instead, we have no Killing vector with respect to time.
+There is a competition between two evolutions, the thermodynamic evolution of the system and the expansion of the universe: we cannot truly have equilibrium!
+
+The way to deal with this problem is: we assume that the first evolution is much faster than the other, that is, we reach thermal equilibrium on timescales that are short if compared to the expansion.
+This way, we can neglect the expansion of the universe while our system reaches equilibrium.
+
+So our problem is oversimplified: we assume thermodynamic equilibrium, which makes sense in certain periods of the life of the universe, and that allows us to embed a thermal situation into a universe which evolves in time.
+
+% A proper treatment of this issue will include a term corresponding to the expansion in the equations of motion. 
 
 \subsection{Entropy}
 
-From the second principle of thermodynamics we know that the entropy in a certain volume \(V\) at temperature \(T\), \(S(V, T)\) is given by: 
+From the second principle of thermodynamics we know that the entropy in a certain volume \(V\) at temperature \(T\), denoted \(S(V, T)\) is given by: 
 %
 \begin{equation}
-  \dd{S}  = \frac{1}{T} \qty(\dd{\qty(\rho(T) V)}  + P(T) \dd{V})
+  \dd{S}  = \frac{1}{T} \qty(\underbrace{\dd{\qty(\rho(T) V)}}_{ \dd{E}}  + P(T) \dd{V})
   = \frac{1}{T} \qty(V \dd{\rho (T)} + (P(T) + \rho(T) ) \dd{V})
 \,,
 \end{equation}
@@ -101,7 +114,7 @@ Then we can read off the partial derivatives of the entropy:
 \,.
 \end{equation}
 
-In order for the differential to be exact it needs to be closed, which means that the second partial derivatives need to commute (these are known as the \emph{Pfaff relations})\footnote{This holds in a simply connected space.}:
+In order for the differential to be exact it needs to be closed, which means that the second partial derivatives need to commute (these are known as the \emph{Pfaff relations}):\footnote{They only hold in a simply connected space.}
 %
 \begin{align}
   \pdv[2]{S}{T}{V} &= \pdv[2]{S}{V}{T} \\ 
@@ -112,33 +125,57 @@ In order for the differential to be exact it needs to be closed, which means tha
   &= \frac{1}{T} \dv{\rho }{T}   \\
   \dv{P}{T} &= \frac{1}{T} \qty(\rho +P) 
   \marginnote{Simplified \(T^{-1}(\dv*{\rho }{T})\), multiplied by \(T\) and brought \(T^{-1} (\rho +P)\) to the other side}[-1cm]
+  \label{eq:rewritten-pfaff-relations-entropy}
 \,.
 \end{align}
 
 Cosmology has not entered into the picture yet, but it can by the third Friedmann equation, which can be rewritten as 
 %
-\begin{equation}
-  a^3 \dv{P}{t} =\dv{}{t} \qty(a^3 (P + \rho ))
+\begin{align}
+\dot{\rho} &= - 3 \frac{\dot{a}}{a} (\rho + P)  \\
+0 &= 3 \dot{a} a^2 (\rho + P) + a^3 \dot{\rho} 
+\marginnote{Multiplied by \(- a^3\).}  \\
+a^3 \dot{P} &= 3 \dot{a} a^2 (\rho + P) + a^3 \dot{\rho} + a^3 \dot{P} 
+\marginnote{Added \(a^3 \dot{P}\) on both sides.}  \\
+a^3 \dot{P} &= \dv{(a^3)}{t} (\rho + P) + a^3 \dv{(\rho + P)}{t}  \\
+a^3 \dot{P} &= \dv{}{t} \qty(a^3 (\rho + P))
 \,,
-\end{equation}
+\end{align}
 %
-and these two, when put together, are equivalent (check!) to 
+% %
+% \begin{equation}
+%   a^3 \dv{P}{t} =\dv{}{t} \qty(a^3 (P + \rho ))
+% \,,
+% \end{equation}
+%
+and these two, when put together, are equivalent to 
 %
 \begin{equation}
-  \dv{}{t} \qty(\frac{a^3}{T} (\rho + P ))=0
+  \dv{}{t} \qty(\frac{a^3}{T} (\rho (T) + P (T) ))=0
 \,,
 \end{equation}
 %
 therefore this quantity is a constant of motion. 
+Let us verify this statement: expanding the derivative we get 
+%
+\begin{align}
+\dv{}{t} \qty(\frac{a^3}{T} (\rho + P )) 
+&= \frac{1}{T} \dv{}{t} \qty(a^3 (\rho + P)) + a^3 (\rho + P) \dv{}{t} \qty( \frac{1}{T})  \\
+&= \frac{1}{T} a^3 \dot{P} - a^3 (\rho + P) \frac{\dot{T}}{T^2}  \\
+&= \frac{a^3}{T} \dv{P}{T} \dot{T} - a^3 (\rho + P) \frac{\dot{T}}{T}  \\
+&= \frac{a^3}{T} \frac{(\rho + P)}{T} \dot{T} - a^3 (\rho + P) \frac{\dot{T}}{T} = 0
+\marginnote{Used equation \eqref{eq:rewritten-pfaff-relations-entropy}.}
+\,.
+\end{align}
 
+% GOT HERE
 
-(For the RW line element, the square of the determinant \(\sqrt{-g} =  a^3 \), so we get 
+For the RW line element, the square of the determinant \(\sqrt{-g} =  a^3 \), so we get 
 %
 \begin{equation}
   \dv{}{t} \qty(\sqrt{-g }  \frac{\rho + P}{T}) = 0
-\,,
+\,.
 \end{equation}
-)
 
 So the quantity which is differentiated is constant. If we plug this back into the differential expression for the entropy, we get: 
 %
@@ -158,7 +195,7 @@ therefore the differentiated quantities are equal up to a constant, but since \(
 
 Since \(\rho \propto T^{4}\) and \(\rho \propto a^{-4}\), we expect Tolman's law: \(Ta \sim 1\).
 
-Also, for photons \(P  = \rho / 3\): so we get \(S \propto \frac[i]{4}{3} (a^3/T) T^{4} \propto T^3 a^3 = \const\).
+Also, for photons \(P  = \rho / 3\): so we get \(S \propto \frac{4}{3} (a^3/T) T^{4} \propto T^3 a^3 = \const\).
 
 We only consider photons since they have a much larger number density.
 

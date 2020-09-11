@@ -168,14 +168,14 @@ Let us verify this statement: expanding the derivative we get
 \,.
 \end{align}
 
-% GOT HERE
-
-For the RW line element, the square of the determinant \(\sqrt{-g} =  a^3 \), so we get 
+For the RW line element, the square root of the determinant is given by \(\sqrt{-g} =  a^3 \), so the conserved quantity can be written as
 %
 \begin{equation}
   \dv{}{t} \qty(\sqrt{-g }  \frac{\rho + P}{T}) = 0
 \,.
 \end{equation}
+
+This is relevant because the volume of any given spatial region scales with \(\sqrt{-g}\) as the universe expands. 
 
 So the quantity which is differentiated is constant. If we plug this back into the differential expression for the entropy, we get: 
 %
@@ -183,9 +183,10 @@ So the quantity which is differentiated is constant. If we plug this back into t
   \dd{S} = \dd \qty(\frac{(\rho + P) V}{T})
 \,,
 \end{equation}
+\todo[inline]{Do we get it? cannot get the calculation to work out}
 %
-therefore the differentiated quantities are equal up to a constant, but since \(V \propto a^3\) we get that the \emph{entropy is constant}.
-
+therefore the differentiated quantities are equal up to an additive constant; from the conserved quantity we found and the fact that \(V \propto a^3\) we now get that the \textbf{entropy is constant} in a comoving volume in thermal equilibrium:
+%
 \begin{equation}
   S \equiv S(a^3, T) 
   = \frac{a^3}{T} \qty(\rho + P)
@@ -193,105 +194,134 @@ therefore the differentiated quantities are equal up to a constant, but since \(
 \,.
 \end{equation}
 
-Since \(\rho \propto T^{4}\) and \(\rho \propto a^{-4}\), we expect Tolman's law: \(Ta \sim 1\).
+Let us see what this entails: if we take photons, for example, we have \(\rho \propto P \propto a^{-4}\): if we substitute this in we find that \(a^{-4 + 3} / T = \frac{1}{aT}\) must be a constant, therefore \(T \propto a^{-1}\).
+This is known as \textbf{Tolman's law}.  
+% Since \(\rho \propto T^{4}\) and \(\rho \propto a^{-4}\), we expect Tolman's law: \(Ta \sim 1\).
+\todo[inline]{Did we derive it before?}
 
-Also, for photons \(P  = \rho / 3\): so we get \(S \propto \frac{4}{3} (a^3/T) T^{4} \propto T^3 a^3 = \const\).
+% Also, for photons \(P  = \rho / 3\): so we get \(S \propto \frac{4}{3} (a^3/T) T^{4} \propto T^3 a^3 = \const\).
 
 We only consider photons since they have a much larger number density.
 
-\todo[inline]{Is this because the suppression is exponential while the ratio of energies is somehow polynomial?}
+% \todo[inline]{Is this because the suppression is exponential while the ratio of energies is somehow polynomial?}
 
-Now we wish to do the integrals for the thermodynamical quantities: 
+\todo[inline]{Add consideration about rewriting the relation as \(g_{*S}^{1/3} T a = \const\), see \cite[pag.\ 33]{paccianiAppuntiCorsoPhysical2018}.}
+
+\subsection{Explicit expressions for the thermodynamic quantities}
+
+Let us give explicit expressions for the number density, energy density and pressure as a function of time. We are always assuming isotropy, so in all cases we will be able to simplify the angular part of the triple integral in \(\dd[3]{q}\) as
 %
 \begin{equation}
   \int  \dd[3]{\vec{q}} = 4 \pi \int_0^{\infty}  \dd{q} q^2 
 \,,
 \end{equation}
 %
-so we get 
+so the three expressions will read 
 %
 \begin{subequations}
 \begin{align}
-  n(T) &= \frac{g}{(2\pi^2} \int  \dd{q} q^2 f(q) \\ 
-  \rho (T) &= \frac{g}{2\pi^2} \int  \dd{q} q^2 f(q) E(q) \\ 
-  P (T) &= \frac{g}{6\pi^2} \int  \dd{q} q^2 f(q) \frac{q^2}{E(q)} 
-\,,
+  n(T) &= \frac{g}{2\pi^2} \int  \dd{q} q^2 f(q) \\ 
+  \rho(T) &= \frac{g}{2\pi^2} \int  \dd{q} q^2 f(q) E(q) \\ 
+  P(T) &= \frac{g}{6\pi^2} \int  \dd{q} q^2 f(q) \frac{q^2}{E(q)} 
+\,.
 \end{align}
 \end{subequations}
+
+In general these do not have analytic solutions, however if we only consider the ultrarelativistic and nonrelativistic limiting cases we can do the calculation.
+
+\paragraph{Ultrarelativistic limit}
+
+A particle being ultrarelativistic means that its momentum is much greater than its rest energy, \(q \gg m\).
+
+In our case we do not really care about any single particle being ultrarelativistic, rather, we ask that the temperature is high enough that the bulk of the particles is ultrarelativistic. 
+
+The momentum of any single particles will not always be large --- in fact the distribution has its maximum at \(q = 0\) --- but the regions in which it is large give a much greater contribution than those in which it is small, as long as the temperature is large.
+
+We define the rescaled momentum \(x = q/T\), so that then the term appearing in the exponential is \(E(q) / T = \sqrt{x^2+ m^2/T^2} \approx x = q/ T \) under the assumption that \(m / T \ll 1\). 
+
+
+With this assumption we get:
 %
-which can be solved analytically in the ultrarelativistic and nonrelativistic approximations.
-
-Ultrarelativistic means \(q \gg m\): actually we compare these to the temperature: we define \(x = q/T\), and then the energy is \(\sqrt{x^2+ m^2/T^2} \): we suppose \( m/T \ll 1\).
-
-The momentum will not always be large, but the cases in which it is large give a much greater contribution if the temperature is large.
-
-\paragraph{Ultrarelativistic}
-
-We approximate \(E(q) \sim q\), so  
-%
-\begin{equation}
-  n(T) = \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^2 \qty(\exp(q/T) \mp 1 )^{-1} 
+\begin{align}
+  n(T) &= \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^2 \qty(\exp(q/T) \mp 1 )^{-1} \\
+  \rho (T) &= \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1}  \\
+  P (T) &= \frac{g}{6 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1} 
 \,,
-\end{equation}
-%
-%
-\begin{equation}
-    \rho (T) = \frac{g}{2 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1} 
-  \,,
-\end{equation}
-%
-\begin{equation}
-    P (T) = \frac{g}{6 \pi^2} \int _{\mathbb{R}^{+}} \dd{q} q^3 \qty(\exp(q/T) \mp 1 )^{-1} 
-\,,
-\end{equation}
+\end{align}
 %
 so we can see that in this approximation, which is equivalent to \(m \approx 0\), we get matter behaving like radiation: \(P = \rho /3\).  
-The result of the integrals depends on the type of the particles, and it is 
+
+The result of the integrals depends on the statistics of the particles (which determine the \(\pm\) sign in the distribution), and it is given by the following expressions:
 %
 \begin{equation}
   n(T) = \begin{cases}
-      \frac{\xi (3)}{\pi^2} g T^3 & BE  \\
-      \frac{3}{4}\frac{\xi (3)}{\pi^2} g T^3 & FD  
+      \displaystyle
+      \frac{\xi (3)}{\pi^2} g T^3 & \text{Bose-Einstein}  \\[10pt]
+      \displaystyle
+      \frac{3}{4}\frac{\xi (3)}{\pi^2} g T^3 & \text{Fermi-Dirac}
+  \,,
   \end{cases}
-\,,
 \end{equation}
 %
+where \(\zeta (3)\) is the Riemann zeta function calculated at 3, giving 
+%
+\begin{align}
+\zeta (3) = \sum _{n=1}^{\infty } \frac{1}{n^3} \approx \num{1.202}
+\,.
+\end{align}
+%
+
 and we get the proportionality to \(T^3\).
 For the energy density:
 \begin{equation}
     \rho (T) = \begin{cases}
-        \frac{\pi^2}{30} g T^4 & BE  \\
-        \frac{7}{8}\frac{\pi^2}{30} g T^4 & FD  
+        \displaystyle
+        \frac{\pi^2}{30} g T^4 & \text{Bose-Einstein}  \\[10pt]
+        \displaystyle
+        \frac{7}{8}\frac{\pi^2}{30} g T^4 & \text{Fermi-Dirac}  
+    \,,
     \end{cases}
-  \,,
 \end{equation}
-and for the pressure we just divide by 3.
-For photons, \(g=2\) and they are bosons, so we get 
+while to get the result for the pressure \(P(T) = \rho (T) / 3\) we just divide by 3.
+
+We note that in natural units the Stefan-Boltzmann constant is \(\sigma_{\text{SB}} = \pi^2 / 15\); the result we have found coincides with the Stefan-Boltzmann law for photons, which obey Bose-Einstein statistics and have two helicity states: \(g = 2\), therefore 
 %
-\begin{equation}
-  \rho _\gamma  = \frac{\pi^2}{15} T^{4}
+\begin{align}
+\rho (T) = 2 \frac{\pi^2}{30 } T^{4} = \sigma_{\text{SB}} T^{4}
 \,.
-\end{equation}
+\end{align}
 
-\paragraph{Nonrelativistic}
+\paragraph{Nonrelativistic limit}
 
-Now \(m \gg T\), so we get \(E \approx m + \frac{q^2}{2m} + O((q/\sqrt{m})^{4})\) by expanding.
+Now we work in the opposite limit, \(m \gg T\).
+We can then expand the energy in powers of \(q/m\) (or \(T/m\): as before, the point is that the typical value of \(q\) is \(T\), so we can do it either way): 
+%
+\begin{align}
+E = m \sqrt{1 + \frac{q^2}{m^2}} \approx m + \frac{q^2}{2m} + \mathcal{O}\qty( \frac{q^2}{m^2})
+\,.
+\end{align}
 
-So, can we just substitute this? It would seem like this makes the exponential very large, so the difference between bosons and fermions becomes negligible. So, to zeroth order in (\(q^2/m\)) we get 
+The first temptation one might have is to work at the lowest possible order, approximating \(E \approx m\). 
+The exponential \(\exp(E / T)\) will be very large compared to \(1\), so we can neglect the \(\pm 1\) in the denominator (which also means that the difference between bosons and fermions becomes negligible).
+
+% It would seem like this makes the exponential very large, so the difference between bosons and fermions becomes negligible.
+So, to zeroth order in (\(q/m\)) we get 
 %
 \begin{equation}
   f \approx \exp(-\frac{m- \mu }{T}) 
 \,,
 \end{equation}
 %
-and then 
+therefore the number density will be given by
 %
 \begin{equation}
   n = \frac{g}{2 \pi^2} \exp(-\frac{m- \mu }{T}) \int _{\mathbb{R}^{+}} \dd{q}q^2 
 \,,
 \end{equation}
 %
-which diverges. This is the ultraviolet catastrophe: we need the \emph{Planckian}, by considering the first order in \(q^2/m\): then
+which diverges.
+
+This is called the ultraviolet catastrophe: it is due to the fact that, while we are assuming \(q\) is small, we are not enforcing this in any way, and approximating all states as having the same energy regardless of their momentum. If, instead, we go to first order in \(q/m\) then we find 
 %
 \begin{equation}
     n = \frac{g}{2 \pi^2} \exp(-\frac{m- \mu }{T}) \int _{\mathbb{R}^{+}} \dd{q}q^2 \exp(-\frac{q^2}{2mT}) 
@@ -306,11 +336,24 @@ where we applied the identity
 \end{equation}
 %
 
-The exponential factor is known as the Boltzmann suppression factor.
+The exponential factor \(\exp(- m /T)\) is known as the Boltzmann suppression factor, which tells us that as long as relativistic and nonrelativistic particles are in thermal equilibrium there will be a much smaller number of the latter.
 
-To recover the energy density and pressure we could do \(\rho = m n\) and \(P = n T\). 
+The energy density can be easily recovered from the number density if neglect higher order terms: 
+%
+\begin{align}
+\rho (T) = \frac{g}{2 \pi^2} \int \dd{q} q^2 E(q) f(q) \approx \frac{g}{2 \pi^2 } \int \dd{q} \qty(m + \frac{q^2}{2m}) q^2 f(q) \approx m \underbrace{\frac{g}{2 \pi^2}
+\int \dd{q} q^2 f(q)}_{n(T)}
+\,.
+\end{align}
 
-\todo[inline]{Do these come out of doing the other two integrals?}
+For the pressure, on the other hand, we have 
+%
+\begin{align}
+P(T) = \frac{g}{6 \pi^2} \int \dd{q} q^{4} \frac{f(q)}{m + \frac{q^2}{2m}} \approx n(T) T
+\,,
+\end{align}
+%
+% GOT HERE, finish calculation
 
 Therefore, \(P = T \rho / m\), so \(P \ll \rho \): for nonrelativistic particles, we can deal with them as \emph{noninteracting dust}.
 

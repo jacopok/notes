@@ -97,7 +97,7 @@ So our problem is oversimplified: we assume thermodynamic equilibrium, which mak
 
 From the second principle of thermodynamics we know that the entropy in a certain volume \(V\) at temperature \(T\), denoted \(S(V, T)\) is given by: 
 %
-\begin{equation}
+\begin{equation} \label{eq:entropy-differential-definition}
   \dd{S}  = \frac{1}{T} \qty(\underbrace{\dd{\qty(\rho(T) V)}}_{ \dd{E}}  + P(T) \dd{V})
   = \frac{1}{T} \qty(V \dd{\rho (T)} + (P(T) + \rho(T) ) \dd{V})
 \,,
@@ -177,13 +177,37 @@ For the RW line element, the square root of the determinant is given by \(\sqrt{
 
 This is relevant because the volume of any given spatial region scales with \(\sqrt{-g}\) as the universe expands. 
 
-So the quantity which is differentiated is constant. If we plug this back into the differential expression for the entropy, we get: 
+So the quantity which is differentiated is constant. If we plug this back into the differential expression for the entropy, we get:\footnote{The procedure to prove this result is as follows: the expression we want to show is equal to \(\dd{S}\) can be written like 
+%
+\begin{align}
+\dd{S} \overset{?}{=} \dd{\qty(\frac{(\rho + P)V}{T})} = \qty(- \frac{(\rho + P) V}{T^2} + \frac{V}{T} \qty(\dv{\rho }{T} + \dv{P}{T})) \dd{T} + \frac{\rho + P}{T} \dd{V} 
+\,,
+\end{align}
+%
+while the definition of \(\dd{S}\) \eqref{eq:entropy-differential-definition} can be written as 
+%
+\begin{align}
+\dd{S} = \frac{V}{T} \dv{\rho }{T} \dd{T} + \frac{\rho + P}{T} \dd{V}
+\,,
+\end{align}
+%
+so we can see that, since the term proportional to \(\dd{V}\) is the same in both cases, we only need to show that the coefficients of \(\dd{T}\) are equal, so what we need to prove is 
+%
+\begin{align}
+- \frac{(\rho + P) V}{T^2} + \frac{V}{T} \qty(\dv{\rho }{T} + \dv{P}{T})
+&\overset{?}{=} \frac{V}{T} \dv{\rho }{T}  \\
+- \frac{(\rho + P) V}{T^2} + \frac{V}{T} \dv{P}{T} &\overset{?}{=} 0  \\
+\dv{P}{T} &= \frac{\rho + P}{T}
+\,,
+\end{align}
+%
+which is precisely the statement we found to be equivalent to the Pfaff relations \eqref{eq:rewritten-pfaff-relations-entropy}. 
+}
 %
 \begin{equation}
   \dd{S} = \dd \qty(\frac{(\rho + P) V}{T})
 \,,
 \end{equation}
-\todo[inline]{Do we get it? cannot get the calculation to work out}
 %
 therefore the differentiated quantities are equal up to an additive constant; from the conserved quantity we found and the fact that \(V \propto a^3\) we now get that the \textbf{entropy is constant} in a comoving volume in thermal equilibrium:
 %
@@ -205,7 +229,7 @@ We only consider photons since they have a much larger number density.
 
 % \todo[inline]{Is this because the suppression is exponential while the ratio of energies is somehow polynomial?}
 
-\todo[inline]{Add consideration about rewriting the relation as \(g_{*S}^{1/3} T a = \const\), see \cite[pag.\ 33]{paccianiAppuntiCorsoPhysical2018}.}
+% \todo[inline]{Add consideration about rewriting the relation as \(g_{*S}^{1/3} T a = \const\), see \cite[pag.\ 33]{paccianiAppuntiCorsoPhysical2018}.}
 
 \subsection{Explicit expressions for the thermodynamic quantities}
 

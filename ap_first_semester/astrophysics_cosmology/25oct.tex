@@ -349,20 +349,34 @@ The energy density can be easily recovered from the number density if neglect hi
 For the pressure, on the other hand, we have 
 %
 \begin{align}
-P(T) = \frac{g}{6 \pi^2} \int \dd{q} q^{4} \frac{f(q)}{m + \frac{q^2}{2m}} \approx n(T) T
+P(T) &= \frac{g}{6 \pi^2} \int \dd{q} q^{4} \frac{f(q)}{m + \frac{q^2}{2m}} \approx \frac{g}{6 \pi^2} e^{-m / T} \int \dd{q} \frac{q^{4}}{m} \exp(- \frac{q^2}{2m T}) 
 \,,
 \end{align}
 %
-% GOT HERE, finish calculation
+and now we can apply the Gaussian integral identity \cite[special case of eq.\ 10.1.11 (b)]{weberEssentialMathematicalMethods2003}:
+%
+\begin{align}
+\int_{\mathbb{R}} \dd{x} x^{4} \exp(- \alpha x^2) = \frac{3}{8 \alpha^{2}} \sqrt{\frac{\pi }{\alpha}}
+\,,
+\end{align}
+%
+where for us \(\alpha = 1/2m T\), which gives us 
+%
+\begin{align}
+P(T) &= \frac{g}{6 \pi^2} \frac{e^{-m/T}}{m}
+\frac{3 (2 m T)^2}{8} \sqrt{2 m T \pi }
+= g \frac{m^{3/2} T^{5/2} }{\pi^{3/2}2^{3/2}} e^{-m/T} = g \qty(\frac{mT}{2 \pi })^{3/2} e^{-m/T} \times T  \\
+&= n(T) T
+\,.
+\end{align}
 
-Therefore, \(P = T \rho / m\), so \(P \ll \rho \): for nonrelativistic particles, we can deal with them as \emph{noninteracting dust}.
-
-\(P = nT\) is just the ideal gas law.
+Therefore, \(P = T n = (T / m) \rho \), which tells us that the pressure of the nonrelativistic particles is much smaller than their energy density, since \(T /m \ll 1\): we characterize them as \emph{noninteracting dust}.
+The result we found, \(P = nT\), is just the ideal gas law.
 
 If we compare relativistic particles to nonrelativistic ones, the former dominate the latter in terms of all of these three quantities.
 
-The physical consequence is: whenever temperature drops down to the mass of a certain particle, that particle becomes non relativistic and is forced to obey the Boltzmann distribution, which contains the Boltzmann suppression factor. The only way to obey this is to annihilate with its own antiparticle, thus producing radiation.
+The physical context in which this becomes relevant, in the early universe, is that whenever the temperature drops below the mass of a certain particle, that particle starts to become nonrelativistic and its density drops exponentially, due to the Boltzmann suppression.
 
-
+The main way for the particle to do so is generally to annihilate with its own antiparticle, thus producing radiation.
 
 \end{document}

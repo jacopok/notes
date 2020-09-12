@@ -34,7 +34,7 @@ We distinguish two different terms in the sum, depending on whether the particle
 
 This definition is constructed so that we can write the compact relation 
 %
-\begin{align}
+\begin{align} \label{eq:radiation-energy-density-effective-dof}
 \rho (T) = g_*(T) \frac{\pi^2}{30} T^{4}
 \,.
 \end{align}
@@ -239,12 +239,10 @@ which allows us to compute the neutrino temperature at any time, since \(T_< / T
 \,.
 \end{equation}
 
-Right now, the temperature will be around \(T_{0 \nu } \approx (4/11)^{1/3} T_{0 \gamma } \approx \SI{1.94}{K} \). 
+Right now, the temperature will be around \(T_{0 \nu } \approx (4/11)^{1/3} T_{0 \gamma } \approx \SI{1.94}{K} \), where \(T_{0 \gamma }\) is the current CMB temperature. 
 
-%% GOT HERE
-
-Now let us compute \(\rho_{r} (T = \SI{0.1}{MeV})\).
-Let us assume that the global temperature is the one of the photons: we get 
+As an exercise, let us compute the number of effective degrees of freedom some time after the decoupling of electrons, say at \(T = \SI{0.1}{MeV}\).
+The global temperature \(T\) we are referring to is the one of the photons: so, applying the definition we find
 %
 \begin{subequations}
 \begin{align}
@@ -256,56 +254,76 @@ Let us assume that the global temperature is the one of the photons: we get
 \end{align}
 \end{subequations}
 %
-since we need to consider neutrinos, which contribute to the total energy density, but not electrons which are not relativistic.
+since we need to consider neutrinos (of which there are three flavors, each having two polarization states), which contribute to the total energy density, but not electrons which are not relativistic anymore.
 
-\medskip
-\begin{center}
-    ***
-\end{center}
-\medskip
+With this result, we can find the energy density of radiation at that time according to \eqref{eq:radiation-energy-density-effective-dof}: we get 
+%
+\begin{align}
+\rho_r (\SI{.1}{MeV}) \approx \SI{1.1e-4}{MeV^4} = \SI{25.7}{g cm^{-3}}
+\marginnote{Multiplied by \(\hbar^{-3}c^{-5}\) to get the CGS units.}
+\,.
+\end{align}
+%
 
-Last hour we discussed the Planck mass \(m_P \approx \SI{1.2e19}{GeV}\): it also defines a wavelength, \(\lambda_{P} \approx \SI{e-33}{cm}\) and a timescale \(t_{P} \approx \SI{e-43}{s}\) (both of these are \(1/m_P\) in natural units).
 
-When the age of the universe is of this order, our theories are not guaranteed to work. 
+% \medskip
+% \begin{center}
+%     ***
+% \end{center}
+% \medskip
 
-\section{The cosmological horizon}
+% Last hour we discussed the Planck mass \(m_P \approx \SI{1.2e19}{GeV}\): it also defines a wavelength, \(\lambda_{P} \approx \SI{e-33}{cm}\) and a timescale \(t_{P} \approx \SI{e-43}{s}\) (both of these are \(1/m_P\) in natural units).
 
-Let us consider null geodesics in a De Sitter universe with a RW metric: we can take them as radial, and find 
+% When the age of the universe is of this order, our theories are not guaranteed to work. 
+
+\section{Problems with the Hot Big Bang model}
+
+Around the 1960s, cosmologies were trying to piece together a description of the early universe in terms of particle physics, as we discussed in this chapter up to here.
+However, soon it became apparent that the standard cosmological model in use has some inconsistencies.
+Let us now explore these. 
+
+\subsection{The cosmological horizon problem}
+
+This was noticed as early as 1956. 
+Let us consider radial null geodesics in a universe described by a FLRW metric. These are the worldlines of photons we can detect with telescopes.
+Imposing \(\dd{s}^2 = 0 \) we find: 
 %
 \begin{align}
   c^2 \dd{t^2} = a^2(t) \frac{1}{1-kr^2} \dd{r^2} 
 \,,
 \end{align}
 %
-therefore we get: 
+which we can integrate (taking one of the two solutions for simplicity, choosing one over the other just amounts to parametrizing time in the opposite direction) to find
 %
 \begin{align}
-  \int^{t} \frac{c \dd{t}}{a(t)} = \int^r \frac{ \dd{\widetilde{r}} }{\sqrt{1-k \widetilde{r}^2}} = f(r)
-\,,
+  \int_0^{t} \frac{c \dd{t}}{a(t)} = \int_0^r \frac{ \dd{\widetilde{r}} }{\sqrt{1-k \widetilde{r}^2}} = f(r)
+\,.
 \end{align}
-%
-but in order to get something which has the dimensions of a length we need to multiply by \(a\): 
+
+The function \(f(r)\) gives us the proper distance between emission and detection of a photon, but it does so in terms of the adimensional coordinate \(r\): in order to get something which has the dimensions of a length we need to multiply by \(a\) calculated at a certain time,\footnote{Note that this choice is arbitrary: we are computing the comoving distance \emph{as measured at detection}.}
 %
 \begin{align}
   d _{\text{Hor}} (t) = a(t) \int_0^{t} \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})}
 \,.
 \end{align}
 
-``If this integral is convergent, we should be worried''.
+\textbf{If this integral is convergent, we should be worried}: let us see why.
 
-If we integrate from the beginning of time to now, we get the spatial (current) distance elapsed by a photon which started at the start of time. This is the radius of the largest region we could in principle observe. It is of the order of \SI{3}{\giga\parsec}.
+If we integrate from the beginning of time to now, we get the spatial (current) distance elapsed by a photon which started moving at the start of time. This is the radius of the largest region we could in principle observe. It is of the order of \SI{3}{\giga\parsec}.
 
-This is not the case, for example, in Minkowski spacetime.
+%% GOT HERE
 
-If there is an end of time, there is also a future horizon.
+% This is not the case, for example, in Minkowski spacetime.
 
-The quantity \(d _{\text{Hor}} (t) \) is increasing in time: this causes the Cosmological Horizon problem.
+% If there is an end of time, there is also a future horizon.
 
-\todo[inline]{What is the problem?}
+% The quantity \(d _{\text{Hor}} (t) \) is increasing in time: this causes the Cosmological Horizon problem.
 
-An important moment is the \emph{recombination of hydrogen}: the formation of the first Hydrogen atoms, so the first moment at which Compton scattering can occur.
-This causes the decoupling of radiation and baryionic matter.
-This is the moment at which the radiation in the CMB was emitted.
+% \todo[inline]{What is the problem?}
+
+% An important moment is the \emph{recombination of hydrogen}: the formation of the first Hydrogen atoms, so the first moment at which Compton scattering can occur.
+% This causes the decoupling of radiation and baryionic matter.
+% This is the moment at which the radiation in the CMB was emitted.
 
 The CMB is very close to being uniform. It was emitted something like \(t = \SI{3.8e5}{yr}\) after the BB.
 

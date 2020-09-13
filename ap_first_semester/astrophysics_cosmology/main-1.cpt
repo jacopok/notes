@@ -1,0 +1,10 @@
+All the calculations were made automatically using the \texttt{astropy} package, using a flat \(\Lambda \)CDM model with parameters obtained from the Planck mission \cite[]{PlanckCollaboration:2016XIII}.
+\begin{lstlisting}[language=Python]
+from astropy.cosmology import Planck15 as cosmo
+import numpy as np
+import astropy.units as u
+z_LS = 1089
+dx = (cosmo.comoving_distance(np.inf) - cosmo.comoving_distance(z_LS)) * cosmo.scale_factor(z_LS)
+dA = cosmo.angular_diameter_distance(z_LS)
+(dx / dA).to(u.degree, equivalencies=u.dimensionless_angles())
+\end{lstlisting}^^E^^L 

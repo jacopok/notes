@@ -300,18 +300,22 @@ which we can integrate (taking one of the two solutions for simplicity, choosing
 \,.
 \end{align}
 
-The function \(f(r)\) gives us the proper distance between emission and detection of a photon, but it does so in terms of the adimensional coordinate \(r\): in order to get something which has the dimensions of a length we need to multiply by \(a\) calculated at a certain time,\footnote{Note that this choice is arbitrary: we are computing the comoving distance \emph{as measured at detection}.}
+The function \(f(r)\) gives us the proper distance between emission and detection of a photon, but it does so in terms of the adimensional coordinate \(r\): in order to get something which has the dimensions of a length we need to multiply by \(a\) calculated at a certain time,\footnote{Note that this choice is arbitrary: we are computing the comoving distance \emph{as measured at the cosmic time of detection}.}
 %
 \begin{align}
-  d _{\text{Hor}} (t) = a(t) \int_0^{t} \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})}
+  d _{\text{hor}} (t) = a(t) \int_0^{t} \frac{c \dd{\widetilde{t}}}{a(\widetilde{t})}
 \,.
 \end{align}
 
 \textbf{If this integral is convergent, we should be worried}: let us see why.
 
-If we integrate from the beginning of time to now, we get the spatial (current) distance elapsed by a photon which started moving at the start of time. This is the radius of the largest region we could in principle observe. It is of the order of \SI{3}{\giga\parsec}.
+If we integrate from the beginning of time to now, we get the spatial (current) comoving distance elapsed by a photon which started moving at the start of time.
+This is the radius of the largest region we could in principle observe. It is of the order of \SI{3}{\giga\parsec}.
+Since the integral is convergent this is finite, and it is increasing as time passes. So, ever-further regions are ``coming into view'' (at least in principle). 
+Roughly speaking, the issue is that the regions which we start seeing at the edges should be causally disconnected from the ones already in view, so we would not expect them to exhibit the same properties --- but \emph{they do}.
+This is the basic idea, let us formalize it slightly and connect it to observations.
 
-%% GOT HERE
+We cannot actually see light coming from the very edge of the in-principle-observable universe, since for redshifts larger than \(z _{LS} \approx 1100\) the universe was opaque to electromagnetic radiation. The surface of points at this redshift is called the \emph{Last Scattering} surface. So, we refer our expectations to the CMB, which was emitted as the primordial plasma became transparent. 
 
 % This is not the case, for example, in Minkowski spacetime.
 
@@ -325,24 +329,63 @@ If we integrate from the beginning of time to now, we get the spatial (current) 
 % This causes the decoupling of radiation and baryionic matter.
 % This is the moment at which the radiation in the CMB was emitted.
 
-The CMB is very close to being uniform. It was emitted something like \(t = \SI{3.8e5}{yr}\) after the BB.
+The CMB was emitted at a cosmic time of \(t \approx \SI{3.8e5}{yr}\) after the Big Bang.
+It is observed to be very close to being uniform, with \(\Delta T / T \sim \num{e-5}\) after correcting for the Doppler dipole modulation: 
+it looks like a distribution emitted by matter in thermal equilibrium.
+Crucially, this holds at any angular scale we choose: the equilibrium is there across the whole sphere.
 
-Let us consider the past light cones from two points diametrically opposite with respect to us, at this point in time: they do not overlap, so the CMB cannot be causally correlated. However, it seems like it is!
-
-\todo[inline]{What is the angular scale at which the light cones overlap?}
-
-We have a classification by Bianchi of non-isotropic universes (in 9 classes).
-
-There is the Mixed Master Universe.
-
-Let us consider 
+Recall that the \emph{angular diameter distance} \(d_A\) is defined so that if an object with linear size at emission \(\Delta x\) spans an angle \(\Delta \theta \) then we have (in the small-angle approximation) 
 %
 \begin{align}
-  R _{\text{Hor}} = \int_0^{t} \frac{c \dd{\widetilde{t}} }{a(\widetilde{t})}
+d_A = \frac{\Delta x}{\Delta \theta }
 \,.
 \end{align}
 
-We can hypothesize that there was a period where the comoving radius was decreasing with time. This would solve the problem. 
+The angular diameter distance to the last scattering surface  is approximately \(d_A (z_{LS}) \approx \SI{12.8}{\mega\parsec}\).
+On the other hand, the scale of the particle horizon at that redshift can be calculated by taking the difference of comoving distances \( d_C(z_\infty) - d_C(z_{LS}) \approx \SI{281}{\mega\parsec}\) and multiplying it by the scale factor, \(a(z_{LS}) \approx \num{9.2e-4}\), which yields a horizon scale of approximately \(r_H \approx \SI{260}{\kilo\parsec}\) at that time.\cprotect\footnote{All the calculations were made automatically using the \texttt{astropy} package, using a flat \(\Lambda \)CDM model with parameters obtained from the Planck mission \cite[]{PlanckCollaboration:2016XIII}.
+\begin{lstlisting}[language=Python]
+from astropy.cosmology import Planck15 as cosmo
+import numpy as np
+import astropy.units as u
+z_LS = 1089
+dx = (cosmo.comoving_distance(np.inf) - cosmo.comoving_distance(z_LS)) * cosmo.scale_factor(z_LS)
+dA = cosmo.angular_diameter_distance(z_LS)
+(dx / dA).to(u.degree, equivalencies=u.dimensionless_angles())
+\end{lstlisting}}
+
+We can then say that \(\Delta x \sim r_H\), therefore the angular scale at which we expect to be able to observe correlations since there can be causal connections is around 
+%
+\begin{align}
+\Delta \theta \approx \frac{ \Delta x}{d_A} \approx \SI{0.02}{rad} \approx \SI{1.2}{\degree}
+\,.
+\end{align}
+
+\todo[inline]{A similar calculation \cite[eqs.\ 8--12]{tojeiroUnderstandingCosmicMicrowave} yields \(\Delta \theta \sim (1+z_{LS})^{-1/2} \approx \SI{1.7}{\degree}\), using the (reasonable) assumption of matter dominance in the epoch of recombination. Some steps there are not really clear to me, so I'm not sure whether my line of reasoning is equivalent (and valid) besides the assumption.}
+
+This is in stark opposition with the scale of observed correlations, which span the whole sky! 
+
+% Let us consider the past light cones from two points diametrically opposite with respect to us, at this point in time: they do not overlap, so the CMB cannot be causally correlated. However, it seems like it is!
+
+% \todo[inline]{What is the angular scale at which the light cones overlap?}
+
+% We have a classification by Bianchi of non-isotropic universes (in 9 classes).
+
+\todo[inline]{Mention in the lecture of the Mixmaster Universe by Misner (and the Bianchi classification of Lie Algebras for context) as an alternative to inflation --- is this relevant here?}
+
+% There is the Mixed Master Universe.
+
+% Let us consider 
+% %
+% \begin{align}
+%   R _{\text{Hor}} = \int_0^{t} \frac{c \dd{\widetilde{t}} }{a(\widetilde{t})}
+% \,.
+% \end{align}
+
+Now, if the quantity \(d _{\text{Hor}}(t)\) were to diverge this would mean that we could have a causal connection with any point in the universe, provided we went far enough back in time. 
+
+We can hypothesize that there was a period where the comoving radius was decreasing with time.
+This would solve the problem. 
+
 We can approximate 
 %
 \begin{align}
@@ -351,10 +394,11 @@ We can approximate
 \,,
 \end{align}
 %
-where we defined the new \emph{Hubble distance}.
-We also define the comoving Hubble radius: \(r_H = c/(Ha) = c / \dot{a} \).
+where we defined the new \emph{Hubble distance}, \(d_H = c/H\).
+This is a physical distance, but we can also define the corresponding
+dimensionless comoving Hubble radius: \(r_H = c/(Ha) = c / \dot{a} \), which satisfies \(d_H = a r_H\).
 
-For it to be decreasing, the condition is 
+For it to be decreasing (\(\dot{r}_H\) < 0), the condition is (neglecting factors of \(c\), or working in natural units):
 %
 \begin{align}
   \dot{r}_H = - \frac{ \ddot{a} }{\dot{a}^2} <0
@@ -362,6 +406,7 @@ For it to be decreasing, the condition is
 \end{align}
 %
 therefore we need \(\ddot{a} >0\) for at least some time.
+
 We know that 
 %
 \begin{align}

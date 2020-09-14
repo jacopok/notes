@@ -276,7 +276,7 @@ With this result, we can find the energy density of radiation at that time accor
 
 % When the age of the universe is of this order, our theories are not guaranteed to work. 
 
-\section{Problems with the Hot Big Bang model}
+\section{Problems with the Hot Big Bang model, inflation}
 
 Around the 1960s, cosmologies were trying to piece together a description of the early universe in terms of particle physics, as we discussed in this chapter up to here.
 However, soon it became apparent that the standard cosmological model in use has some inconsistencies.
@@ -418,6 +418,8 @@ The second Friedmann equation (in natural units) tells us that
 therefore the condition we need to have is \(\rho + 3P <0\).
 So, since the energy density is positive, the condition is \(P < - \rho /3\).
 
+\paragraph{Types of inflation}
+
 Another way to express the parameter \(\ddot{a}\) is as the derivative of \(\dot{a} = Ha\):
 %
 \begin{align}
@@ -426,22 +428,28 @@ Another way to express the parameter \(\ddot{a}\) is as the derivative of \(\dot
 \end{align}
 %
 so the condition can also be expressed as \(H^2+ \dot{H} >0\).
-We can also characterize the solutions based on the sign of \(\dot{H}\), which determines whether \(P / \rho = w\) is larger or smaller than \(-1\): the possibilities are
+
+We have shown earlier that, neglecting curvature, the time-dependence of the scale factor looks like
+%
+\begin{align}
+  a(t) = a_{*} \qty(1 + \frac{3}{2}\qty((1+w)H_{*}\qty(t-t_{*})))^{2/ (3(1+w))}
+\,,
+\end{align}
+%
+and it is reasonable to use this result since, as we will discuss in this section, inflation makes curvature negligible. 
+
+We can characterize the solutions based on the sign of \(\dot{H}\), which determines whether the equation of state parameter \(P / \rho = w\) is larger or smaller than \(-1\): the possibilities are
 \begin{enumerate}
-    \item \(\dot{H} < 0\) while \(\dot{H} + H^2 >0\): this corresponds to \(-1 < w < -1/3\);
+    \item \(\dot{H} < 0\) while \(\dot{H} + H^2 >0\): this corresponds to \(-1 < w < -1/3\), which in General Relativity-speak is called a \emph{violation of the weak energy condition}, and inserting it in our general solution gives \(a(t) \propto t^{\alpha }\) for some \(\alpha > 0\), a \textbf{power-law inflation};
     \item \(\dot{H} =0\): this is a De Sitter, dark-energy dominated universe, whose scale factor evolves like \(a(t) = \exp(Ht) \), corresponding to \(w = -1\);
-    \item \(\dot{H} >0\) (and so also \(\dot{H} + H^2 > 0\)): here the solution looks like
-    %
-    \begin{align}
-      a(t) = a_{*} \qty(1 + \frac{3}{2}\qty((1+w)H_{*}\qty(t-t_{*})))^{2/ (3(1+w))}
-    \,,
-    \end{align}
-    %
-    which corresponds to \(w<-1\) and means \(a(t) \propto t^{p}\) for some \(p>1\). This is called power-law inflation.
+    \item \(\dot{H} >0\) (and so also \(\dot{H} + H^2 > 0\)),
+    which corresponds to \(w<-1\) and which gives us \(a(t) \propto (t - t _{\text{bounce}})^{-\alpha }\) with \(\alpha > 0\), a singularity in the future. 
 \end{enumerate}
 
 % Big Rip singularity: with \(a(t) = \abs{t - t_{as}}^{- \alpha } \) with \(\alpha >0\). This is called poli-inflation.
 The boundary at \(w = -1\) is called the \emph{phantom divide}.
+
+\paragraph{An estimate of the inflation \(e\)-foldings.}
 
 By how much does the early universe need to inflate? 
 The condition we need to impose is that the comoving radius of the universe at some early time, \(r_H (t _0)\), should be larger than the current one, \(r_H (t_0 )\). Since \(r_H = d_H / a\), we can write this inequality as 
@@ -514,7 +522,7 @@ Z _{\text{min}}
 \,.
 \end{align}
 
-The ratio \(a_0 / a _{\text{eq}}\) can be written as \(1 + z _{\text{eq}} \approx \num{2.3e4} \Omega h^2 \approx \num{e4}\).
+The ratio \(a_0 / a _{\text{eq}}\) can be written as \(1 + z _{\text{eq}} \approx \num{2.3e4} \Omega h^2 \approx \num{e4}\) (very roughly).
 The other rough estimate we make is to apply Tolman's law, so that 
 %
 \begin{align}
@@ -634,11 +642,11 @@ This means that
 
 The correct calculation, keeping track of the dominant fluid in each phase, gives \(\num{e-60}\) instead of \(\num{e-64}\): not that significant a difference when discussing these kinds of numbers.
 
-The current estimate for \(\Omega_0 \), as discussed in \ref{sec:global-omega-contributions}, is \emph{at most} of the order of \(\num{e-3}\) away from 1 --- therefore, in the Planck epoch the parameter would have needed to be different from 1 by a part in \num{e-63}. 
+The current estimate for \(\Omega_0 \), as discussed in section \ref{sec:global-omega-contributions}, is \emph{at most} of the order of \(\num{e-3}\) away from 1 --- therefore, in the Planck epoch the parameter would have needed to be different from 1 by a part in \num{e-63}. 
 
 % Then, we see that there is something deeply unnatural in the Friedmann model.
 % How is it possible that the universe is still so flat, even when the universe is so old? Oldness and flatness seem incompatible.
 This is a type of \emph{fine-tuning} problem: the initial conditions seem to require an ``unnatural'' number like \(\Omega \sim 1 \pm \num{e-63}\).
-Typically, a fine-tuning problem is interpreted as a signal that we should improve our theory.\footnote{This approach has also received criticism \cite[sec.\ 3.2]{hossenfelderScreamsExplanationFinetuning2019}: we do not know what distribution the initial conditions are drawn from, so how can we say whether a certain number is more unlikely than another?}
+Typically, a fine-tuning problem is interpreted as a signal that we should improve our theory.\footnote{This approach has also received criticism \cite[sec.\ 3.2]{hossenfelderScreamsExplanationFinetuning2019}: we do not know what distribution the initial conditions are drawn from, so how can we say whether a certain number is likely (or ``natural'') than another?}
 
 \end{document}

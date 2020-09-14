@@ -342,7 +342,7 @@ d_A = \frac{\Delta x}{\Delta \theta }
 \end{align}
 
 The angular diameter distance to the last scattering surface  is approximately \(d_A (z_{LS}) \approx \SI{12.8}{\mega\parsec}\).
-On the other hand, the scale of the particle horizon at that redshift can be calculated by taking the difference of comoving distances \( d_C(z_\infty) - d_C(z_{LS}) \approx \SI{281}{\mega\parsec}\) and multiplying it by the scale factor, \(a(z_{LS}) \approx \num{9.2e-4}\), which yields a horizon scale of approximately \(r_H \approx \SI{260}{\kilo\parsec}\) at that time.\cprotect\footnote{All the calculations were made automatically using the \texttt{astropy} package, using a flat \(\Lambda \)CDM model with parameters obtained from the Planck mission \cite[]{PlanckCollaboration:2016XIII}.
+On the other hand, the scale of the particle horizon at that redshift can be calculated by taking the difference of comoving distances to us, \( d_C(z_\infty) - d_C(z_{LS}) \approx \SI{281}{\mega\parsec}\) and multiplying it by the scale factor, \(a(z_{LS}) \approx \num{9.2e-4}\), which yields a horizon scale of approximately \(r_H \approx \SI{260}{\kilo\parsec}\) at that time.\cprotect\footnote{All the calculations were made automatically using the \texttt{astropy} package, using a flat \(\Lambda \)CDM model with parameters obtained from the Planck mission \cite[]{PlanckCollaboration:2016XIII}.
 \begin{lstlisting}[language=Python]
 from astropy.cosmology import Planck15 as cosmo
 import numpy as np
@@ -381,10 +381,9 @@ This is in stark opposition with the scale of observed correlations, which span 
 % \,.
 % \end{align}
 
-Now, if the quantity \(d _{\text{Hor}}(t)\) were to diverge this would mean that we could have a causal connection with any point in the universe, provided we went far enough back in time. 
+\paragraph{Cosmic inflation}
 
-We can hypothesize that there was a period where the comoving radius was decreasing with time.
-This would solve the problem. 
+Now, if the quantity \(d _{\text{Hor}}(t)\) were to diverge this would mean that we could have a causal connection with any point in the universe, provided we went far enough back in time.
 
 We can approximate 
 %
@@ -398,7 +397,9 @@ where we defined the new \emph{Hubble distance}, \(d_H = c/H\).
 This is a physical distance, but we can also define the corresponding
 dimensionless comoving Hubble radius: \(r_H = c/(Ha) = c / \dot{a} \), which satisfies \(d_H = a r_H\).
 
-For it to be decreasing (\(\dot{r}_H\) < 0), the condition is (neglecting factors of \(c\), or working in natural units):
+We can hypothesize that there was a period in the early universe when the comoving radius \(r_H\) was decreasing with time: if this is the case, the regions we are observing today as ``coming into view'' could actually have been in causal contact in the early universe.
+
+For the comoving radius to be decreasing (\(\dot{r}_H\) < 0), the condition is (neglecting factors of \(c\), or working in natural units):
 %
 \begin{align}
   \dot{r}_H = - \frac{ \ddot{a} }{\dot{a}^2} <0
@@ -407,47 +408,140 @@ For it to be decreasing (\(\dot{r}_H\) < 0), the condition is (neglecting factor
 %
 therefore we need \(\ddot{a} >0\) for at least some time.
 
-We know that 
+The second Friedmann equation (in natural units) tells us that
 %
 \begin{align}
-  \ddot{a} = -\frac{4 \pi G }{3} \qty(\rho + \frac{3P}{c^2})
+  \ddot{a} = -\frac{4 \pi G }{3} \qty(\rho + 3P)
 \,,
 \end{align}
 %
-therefore we need to have \(\rho + 3P/c^2 <0\).
+therefore the condition we need to have is \(\rho + 3P <0\).
 So, since the energy density is positive, the condition is \(P < - \rho /3\).
 
-Let us consider the paramter \(\ddot{a}\): it is 
+Another way to express the parameter \(\ddot{a}\) is as the derivative of \(\dot{a} = Ha\):
 %
 \begin{align}
   \ddot{a} = \dot{a}H + a \dot{H} = a (H^2 + \dot{H})>0
 \,,
 \end{align}
 %
-so the condition is \(H^2+ \dot{H} >0\). In terms of \(P/ \rho = w\) we have:
-
+so the condition can also be expressed as \(H^2+ \dot{H} >0\).
+We can also characterize the solutions based on the sign of \(\dot{H}\), which determines whether \(P / \rho = w\) is larger or smaller than \(-1\): the possibilities are
 \begin{enumerate}
     \item \(\dot{H} < 0\) while \(\dot{H} + H^2 >0\): this corresponds to \(-1 < w < -1/3\);
-    \item \(\dot{H} =0\): this is De Sitter: \(a(t) = \exp(Ht) \), corresponding to \(w = -1\);
-    \item \(\dot{H} >0\): here the solution is 
+    \item \(\dot{H} =0\): this is a De Sitter, dark-energy dominated universe, whose scale factor evolves like \(a(t) = \exp(Ht) \), corresponding to \(w = -1\);
+    \item \(\dot{H} >0\) (and so also \(\dot{H} + H^2 > 0\)): here the solution looks like
     %
     \begin{align}
       a(t) = a_{*} \qty(1 + \frac{3}{2}\qty((1+w)H_{*}\qty(t-t_{*})))^{2/ (3(1+w))}
     \,,
     \end{align}
     %
-    which corresponds to \(= w<-1\) and means \(a(t) \propto t^{p}\) for some \(p>1\). This is called power-law inflation.
+    which corresponds to \(w<-1\) and means \(a(t) \propto t^{p}\) for some \(p>1\). This is called power-law inflation.
 \end{enumerate}
 
-Big Rip singularity: with \(a(t) = \abs{t - t_{as}}^{- \alpha } \) with \(\alpha >0\). This is called poli-inflation.
-
-\todo[inline]{What is this about?}
-
-The third condition is very hard to achieve.
+% Big Rip singularity: with \(a(t) = \abs{t - t_{as}}^{- \alpha } \) with \(\alpha >0\). This is called poli-inflation.
 The boundary at \(w = -1\) is called the \emph{phantom divide}.
 
-Now, let us consider the \emph{flatness problem}:
-this was first proposed bt Dick and Peebles in 1986.
+By how much does the early universe need to inflate? 
+The condition we need to impose is that the comoving radius of the universe at some early time, \(r_H (t _0)\), should be larger than the current one, \(r_H (t_0 )\). Since \(r_H = d_H / a\), we can write this inequality as 
+%
+\begin{align}
+\frac{d_H (t _{\text{in}})}{a(t _{\text{in}})} a(t_f)
+\geq 
+\frac{d_H (t _0)}{a(t _0)} a(t_f)
+\,,
+\end{align}
+%
+where we multiplied both sides by the scale factor calculated at \(t_f\), a time corresponding to the end of inflation, a minimum for the scale factor. Let us define \(Z _{\text{min}} = a(t_f) / a(t _{\text{in}})\).
+This will be \(\gg 1\), and it will describe by how much the universe inflated. 
+
+In our rough approximation \(d_H \sim H^{-1}\), so we can say that the boundary of the inequality, the minimum inflationary expansion, will be
+%
+\begin{align}
+Z _{\text{min}} &= \frac{d_H (t_0 )}{d_H (t _{\text{in}})}
+\frac{a(t_f)}{a(t_0 )}  \\
+&= \frac{H(t _{\text{in}})}{H(t_0 )} \frac{a(t_f)}{a(t_0 )}  \\
+&= \frac{H(t _{\text{in}})}{H(t_f )}
+\frac{H(t_f)}{H(t_0 )} \frac{a(t_f)}{a(t_0 )}  \\
+Z _{\text{min}} \frac{H_f}{H _{\text{in}}} &= \frac{H_f}{H_0} \frac{a_f}{a_0} \marginnote{Denoting \(H(t_i) \equiv H_i\) and similarly for \(a\).}
+\,.
+\end{align}
+
+Now, we want to put some numbers into this expression: we know from the first Friedmann equation that (as long as there is no spatial curvature) \(H^2 \propto \rho \), while the third tells us that \(\rho \propto a^{-3 (1+ w)}\): therefore, \(H \propto a^{- 3 \frac{1 + w}{2}}\). Since we are working with ratios, proportionality is all we need. 
+Now, what \(w\) should we use? At any stage in the evolution of the universe there are several fluids, but in order to simplify the calculation we will only consider the dominant one and neglect dark energy in the current phase of the evolution of the universe. 
+In the inflationary phase we will have an undetermined \(w = w _{\text{inf}}\), so that 
+%
+\begin{align}
+\frac{H_f}{H _{\text{in}}} = \qty(\frac{a_f}{a _{\text{in}}})^{- 3\frac{1+w}{2}}
+\,,
+\end{align}
+%
+so the left-hand side of the equation reads 
+%
+\begin{align}
+Z _{\text{min}} \frac{H_f}{H _{\text{in}}} 
+= Z _{\text{min}}^{1 - 3 \frac{1+w _{\text{inf}}}{2}} 
+= Z _{\text{min}}^{\frac{-1 - 3w _{\text{inf}}}{2}} 
+= Z _{\text{min}}^{\abs{\frac{1 + 3w _{\text{inf}}}{2}}} 
+\,,
+\end{align}
+%
+since \(w _{\text{inf}} > - 1/3 \) means \(1 + 3w _{\text{inf}} > 0\).
+The right-hand side has precisely the same form, so we can express it as 
+%
+\begin{align}
+\frac{H_f}{H_0 } \frac{a_f}{a_0 } = \qty(\frac{a_f}{a_0 })^{- \frac{1 + 3 w}{2}}
+\,,
+\end{align}
+%
+where \(w\) is that of the dominant fluid from the end of inflation to now. The issue is, there is not a single one! In the early stages radiation was dominant, then matter started dominating (now dark energy is dominant, but we shall not worry about it).
+So, we split the term in two, with the radiation-matter equality being the breaking point. The earlier radiation-dominated phase is characterized by \(w = 1/3\), while the latter matter-dominated phase is characterized by \(w = 0\), so we can compactly write the term as 
+%
+\begin{align}
+\frac{H_f}{H_0 } \frac{a_f}{a_0 } = \qty(\frac{a_f}{a _{\text{eq}}})^{- \frac{1 + 1}{2}} \qty(\frac{a _{\text{eq}}}{a_0 })^{- \frac{1 + 0}{2}} 
+= \qty(\frac{a _{\text{eq}}}{a_f}) \qty(\frac{a_0}{a _{\text{eq}}})^{1/2}
+\,.
+\end{align}
+%
+
+With this result, we now have an almost explicit expression for \(Z _{\text{min}}\): 
+%
+\begin{align}
+Z _{\text{min}}
+= \qty[\qty(\frac{a _{\text{eq}}}{a_f}) \qty(\frac{a_0}{a _{\text{eq}}})^{1/2}]^{\abs{ \frac{2}{1 + 3 w _{\text{inf}}}}}
+= \qty[\qty(\frac{a _0}{a_f}) \qty(\frac{a_0}{a _{\text{eq}}})^{-1/2}]^{\abs{ \frac{2}{1 + 3 w _{\text{inf}}}}}
+\,.
+\end{align}
+
+The ratio \(a_0 / a _{\text{eq}}\) can be written as \(1 + z _{\text{eq}} \approx \num{e4}\) (very roughly).
+The other rough estimate we make is to apply Tolman's law, so that 
+%
+\begin{align}
+\frac{a_0 }{a_f} \approx \frac{T_f}{T_0 } = \frac{T_f}{m_p} \underbrace{\frac{m_p}{T_0 }}_{\sim \num{e32}}
+\,;
+\end{align}
+%
+properly speaking this only holds when there is radiation dominance so it does not apply for the whole range in which we are applying it (up to today), but we are estimating the order of magnitude \emph{of an exponent}, so even an order-of-magnitude error is not an issue.
+We normalized by the Planck mass (or temperature, since we are using natural units) since the temperature \(T_f\) at the end of inflation probably was of that order of magnitude. 
+The final estimate we get is 
+%
+\begin{align}
+Z _{\text{min}} \approx \qty[\num{e30} \frac{T_f}{m_p}]^{\abs{ \frac{2}{1 + 3 w _{\text{inf}}}}}
+\,.
+\end{align}
+
+We do not know what \(w _{\text{inf}}\) is besides it being smaller than \(- 1/3\); let us say that it is of the order of \(-1\) like the current dark-energy dominated phase. If we further assume that \(T_f / m_p \sim 1\), we find \(Z _{\text{min}} \sim \num{e30} \approx \exp(70)\). 
+
+This is often written as ``70 \(e\)-foldings'', meaning 70 \(e\)-fold increases in size. 
+ 
+% \todo[inline]{What is this about?}
+
+% The third condition is very hard to achieve.
+
+\subsection{The flatness problem}
+
+Now, let us consider the \emph{flatness problem},  which was first proposed by Dick and Peebles in 1986.
 
 The parameter \(\Omega = \frac{8 \pi G \rho(z) }{3 H^2(z)} \) diverges from 1 as time increases.
 Measurements of \(\Omega _{\text{tot}}\) gave approximately 0.1.

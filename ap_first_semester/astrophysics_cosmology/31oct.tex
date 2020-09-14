@@ -514,7 +514,7 @@ Z _{\text{min}}
 \,.
 \end{align}
 
-The ratio \(a_0 / a _{\text{eq}}\) can be written as \(1 + z _{\text{eq}} \approx \num{e4}\) (very roughly).
+The ratio \(a_0 / a _{\text{eq}}\) can be written as \(1 + z _{\text{eq}} \approx \num{2.3e4} \Omega h^2 \approx \num{e4}\).
 The other rough estimate we make is to apply Tolman's law, so that 
 %
 \begin{align}
@@ -531,7 +531,8 @@ Z _{\text{min}} \approx \qty[\num{e30} \frac{T_f}{m_p}]^{\abs{ \frac{2}{1 + 3 w 
 \,.
 \end{align}
 
-We do not know what \(w _{\text{inf}}\) is besides it being smaller than \(- 1/3\); let us say that it is of the order of \(-1\) like the current dark-energy dominated phase. If we further assume that \(T_f / m_p \sim 1\), we find \(Z _{\text{min}} \sim \num{e30} \approx \exp(70)\). 
+We do not know what \(w _{\text{inf}}\) is besides it being smaller than \(- 1/3\); let us say that it is of the order of \(-1\) like the current dark-energy dominated phase.
+If we further assume that \(T_f / m_p \sim 1\),\footnote{The constraints on \(T_f\) are the parameters of baryogenesis (we can observe it through the isotope distribution early galaxies) and the fact we have not detected gravitational waves from this early time. These tell us that \(T_f / m_p\) cannot be larger than \num{e-3}.} we find \(Z _{\text{min}} \sim \num{e30} \approx \exp(70)\). 
 
 This is often written as ``70 \(e\)-foldings'', meaning 70 \(e\)-fold increases in size. 
  
@@ -541,65 +542,103 @@ This is often written as ``70 \(e\)-foldings'', meaning 70 \(e\)-fold increases 
 
 \subsection{The flatness problem}
 
-Now, let us consider the \emph{flatness problem},  which was first proposed by Dick and Peebles in 1986.
+Now, let us consider the \emph{flatness problem}, which was first proposed by Dicke and Peebles in 1986.
 
-The parameter \(\Omega = \frac{8 \pi G \rho(z) }{3 H^2(z)} \) diverges from 1 as time increases.
-Measurements of \(\Omega _{\text{tot}}\) gave approximately 0.1.
+\todo[inline]{Cannot seem to find the paper or article\dots}
 
-How is it possible that the universe is still so flat, even when the universe is so old? Oldness and flatness seem incompatible.
+% The parameter \(\Omega = \frac{8 \pi G \rho(z) }{3 H^2(z)} \) diverges from 1 as time increases.
+% Measurements of \(\Omega _{\text{tot}}\) gave approximately 0.1.
 
-This is a type of \emph{fine-tuning} problem. Typically, if there is a fine-tuning problem then it signals that we should improve our theory.
-
-Let us assume that \(w\) is constant. Then, \(\rho (z) = \rho_{0} (1+z)^{3(1+w)}\). Recall that 
+% The first Friedmann equation gives \(H^2\) in terms of \(\rho \) and \(k/a^2\); the first term scales like \(\rho \propto a^{-3(1+w)}\), while the second scales like \(a^{-2}\), so as long as \(w > - 1/3\) (which is the case since radiation dominance) the density term is dominant over the spatial curvature term. 
+% Therefore, as \(a\) increases the 
+The first Friedmann equation can be rearranged as 
 %
-\begin{subequations}
 \begin{align}
-  H^2(z) &= \frac{8 \pi G }{3} \rho (z) - \frac{k}{a^2}  \\
-  H_0^2 &= \frac{8 \pi G}{3}\rho_0 - \frac{k}{a_0^2}
+\underbrace{\frac{3 a^2 H^2}{8 \pi G}}_{= a^2 \rho_C} &= \rho a^2 - \frac{3k}{8 \pi G}  \\
+(\rho_C - \rho ) a^2 &= 
+\qty( \frac{1}{\Omega } - 1) \rho a^2
+= - \frac{3k}{8 \pi G} = \const
 \,,
 \end{align}
-\end{subequations}
 %
-the latter of which implies \(1 = \Omega - k / (a_0^2 H_0^2)\). So, 
+where \(\rho _C = 3 H^2 / 8 \pi G\) is the critical density. The right-hand side only contains constants, therefore the left-hand side must be constant as well.
+As the universe evolves \(\rho \) decreases while \(a\) increases; however \(\rho \propto a^{-3 (1+w)}\) by the third Friedmann equation, meaning that the term scales like \(\rho a^2 \propto a^{-1 - 3 w}\): as long as \(w > -1/3\), which is the case for most of the universe's evolution (with radiation and matter dominance) the term is decreasing, meaning that the other term must be increasing. 
+
+If \(k = 0\) we also have \(\Omega \equiv 1\), so the point is moot, however as we have already mentioned there are reasons to think this is unlikely. 
+
+So, let us consider the case \(k = \pm 1\): then, the term \(\Omega^{-1}- 1\) must scale like \(a^{1 + 3 w}\) in order to balance the other. 
+
+% Let us assume that \(w\) is constant. Then, \(\rho (z) = \rho_{0} (1+z)^{3(1+w)}\). Recall that 
+% %
+% \begin{subequations}
+% \begin{align}
+%   H^2(z) &= \frac{8 \pi G }{3} \rho (z) - \frac{k}{a^2}  \\
+%   H_0^2 &= \frac{8 \pi G}{3}\rho_0 - \frac{k}{a_0^2}
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% the latter of which implies \(1 = \Omega - k / (a_0^2 H_0^2)\). So, 
+% %
+% \begin{subequations}
+% \begin{align}
+%   H^2(z) &= H_0^2 \qty(\frac{8 \pi G }{3 H_0^2} \rho (z) - \frac{k}{a^2 H_0^2}) \\
+%   &= H_0^2 \qty(\frac{\rho (t)}{\rho_0 }\Omega_0 \frac{a_0^2}{a} (1-\Omega_0 ))  \\
+%   &= H^2(z) = H_0^2 (1+z)^2 \qty(\Omega_0 (1+z)^{1+3w} + (1-\Omega_0 ))
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% so in the end 
+% %
+% \begin{subequations}
+% \begin{align}
+%   \Omega (z) &= \frac{8 \pi G \rho_0 }{3 H_0^2 } \frac{\rho (z)}{\rho_0 } \frac{H_0^2}{H^2(z)} \\
+%   &=\Omega_0 (1+z)^{1+3w} \qty(1-\Omega_0 + \Omega_0 (1+z)^{1+3w}) 
+% \,,
+% \end{align}
+% \end{subequations}
+% %
+% and since \(\rho (z) = \rho_0 (1+z)^{3(1+w)}\) we get 
+% %
+% \begin{subequations}
+% \begin{align}
+%   \Omega^{-1} (z) -1 &= \frac{\Omega_0 \qty((1-\Omega_0 ) + \Omega_0 (1+z)^{1+3w}) - (1+z)^{1+3w} }{(1+z)^{1+3w}}  \\
+%   &= (\Omega_0^{-1} -1) (1+z)^{-(1+3w)}
+% \,.
+% \end{align}
+% \end{subequations}
+
+If we assume \(w = 1/3\) for all times we get (using the fact that \(a \propto (1+z)^{-1}\) and Tolman's law) that the term calculated at a redshift \(z\) is given by:
 %
-\begin{subequations}
 \begin{align}
-  H^2(z) &= H_0^2 \qty(\frac{8 \pi G }{3 H_0^2} \rho (z) - \frac{k}{a^2 H_0^2}) \\
-  &= H_0^2 \qty(\frac{\rho (t)}{\rho_0 }\Omega_0 \frac{a_0^2}{a} (1-\Omega_0 ))  \\
-  &= H^2(z) = H_0^2 (1+z)^2 \qty(\Omega_0 (1+z)^{1+3w} + (1-\Omega_0 ))
-\,,
-\end{align}
-\end{subequations}
-%
-so in the end 
-%
-\begin{subequations}
-\begin{align}
-  \Omega (z) &= \frac{8 \pi G \rho_0 }{3 H_0^2 } \frac{\rho (z)}{\rho_0 } \frac{H_0^2}{H^2(z)} \\
-  &=\Omega_0 (1+z)^{1+3w} \qty(1-\Omega_0 + \Omega_0 (1+z)^{1+3w}) 
-\,,
-\end{align}
-\end{subequations}
-%
-and since \(\rho (z) = \rho_0 (1+z)^{3(1+w)}\) we get 
-%
-\begin{subequations}
-\begin{align}
-  \Omega^{-1} (z) -1 &= \frac{\Omega_0 \qty((1-\Omega_0 ) + \Omega_0 (1+z)^{1+3w}) - (1+z)^{1+3w} }{(1+z)^{1+3w}}  \\
-  &= (\Omega_0^{-1} -1) (1+z)^{-(1+3w)}
+  \Omega ^{-1} (z) -1
+  = (\Omega_0 ^{-1} -1) \qty(1+z)^{-2}
+  = (\Omega_0 ^{-1} -1) \qty(\frac{T_0 }{T(z)})^{2}
 \,.
 \end{align}
-\end{subequations}
 
-If we assume \(w = 1/3\) for all times (which is false, but we do it to get a result that is close enough) we get 
+\todo[inline]{The reasoning in \cite[]{paccianiAppuntiCorsoPhysical2018} looks way more complicated, but this way seems just as valid\dots}
+The assumption \(w \equiv 1/3\) is not really correct, but the result would only change by a few orders of magnitude if we did the calculation properly, and as before we are giving only a rough estimate \emph{of an exponent}.
+
+Let us extend this line of reasoning back to the Planck epoch, since beyond that our theory of gravity might behave differently so it is not justified to apply Friedmann's equations. 
+
+If we compute \(T _{\text{Pl}} / T_0 \) we get approximately \num{e32}.
+% Then when squaring we get \num{e-64}, without the approximation \(w=1/3\) we get \num{e-60}.
+This means that 
 %
 \begin{align}
-  \Omega ^{-1} (z) -1= (\Omega_0 ^{-1} -1) \qty(\frac{T_0 }{T(z)})^{2}
+\Omega^{-1}(z_{\text{Pl}}) - 1 \approx (\Omega_0^{-1} - 1) \num{e-64}
 \,.
 \end{align}
 
-If we compute \(T _{\text{Planck}} / T_0 \) we get approximately \num{4.5e32}. Then when squaring we get \num{e-64}, without the approximation \(w=1/3\) we get \num{e-60}.
+The correct calculation, keeping track of the dominant fluid in each phase, gives \(\num{e-60}\) instead of \(\num{e-64}\): not that significant a difference when discussing these kinds of numbers.
 
-Then, we see that there is something deeply unnatural in the Friedmann model.
+The current estimate for \(\Omega_0 \), as discussed in \ref{sec:global-omega-contributions}, is \emph{at most} of the order of \(\num{e-3}\) away from 1 --- therefore, in the Planck epoch the parameter would have needed to be different from 1 by a part in \num{e-63}. 
+
+% Then, we see that there is something deeply unnatural in the Friedmann model.
+% How is it possible that the universe is still so flat, even when the universe is so old? Oldness and flatness seem incompatible.
+This is a type of \emph{fine-tuning} problem: the initial conditions seem to require an ``unnatural'' number like \(\Omega \sim 1 \pm \num{e-63}\).
+Typically, a fine-tuning problem is interpreted as a signal that we should improve our theory.\footnote{This approach has also received criticism \cite[sec.\ 3.2]{hossenfelderScreamsExplanationFinetuning2019}: we do not know what distribution the initial conditions are drawn from, so how can we say whether a certain number is more unlikely than another?}
 
 \end{document}

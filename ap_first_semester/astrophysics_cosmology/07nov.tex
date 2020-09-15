@@ -187,18 +187,25 @@ The way to properly describe it is through the language of Quantum Field Theory 
 % \,.
 % \end{align}
 
-A quantum Hamiltonian for a harmonic oscillator is 
+% A quantum Hamiltonian for a harmonic oscillator is 
+In regular Quantum Field Theory the Hamiltonian of our theory is often in the form (this example is for a real scalar field, with \(a ^\dag\) and \(a\) being its creation and annihilation operator and \(k\) being the momentum):
 %
 \begin{align}
-  H = \frac{1}{2} \sum \omega \qty(a ^\dag a + a a ^\dag)
+H = \int \dd[3]{k} E_k \qty\frac{a ^\dag a + a a ^\dag}{2} = 
+\int \dd[3]{k} E_k \underbrace{a ^\dag a }_{\mathclap{\text{number operator}}} + \underbrace{\int \dd[3]{k} \frac{\omega_k}{2} \qty[a, a ^\dag]}_{ \to \infty }
 \,,
 \end{align}
 %
-but this might give infinite energy for the ground state.
-In nonrelativistic QM we know that the energy is defined up to a constant, but in GR this is not the case: this energy gravitates!
+meaning that it can be expressed in terms of an integral of the number operator times the energy, plus an integral which is constant and which diverges, since \(\qty[a, a ^\dag] = \delta^{(3)} (0)\) and the ground state of each harmonic oscillator in our continuum of possible values of the momentum is nonzero. 
 
-Another way this comes up is the Casimir effect: we have virtual particles, which can pop up for times satisfying \(\Delta E \Delta t \sim \hbar\).
-If we put two metallic plates close to each other, we get a force.
+As long as we are writing our theory in flat spacetime this is not an issue: we are just adding a constant to the Hamiltonian, which does not affect the equations of motions which depend on its derivatives.  
+In GR this is not the case: this energy \emph{gravitates}, as we have seen any energy density does. 
+
+Is the ground-state energy just an artifact of the mathematical description of the fields? If so, we do not have a problem; unfortunately this is not the case, we can see this ground state energy through the \textbf{Casimir effect}.
+
+If we put two metallic plates close to each other in a vacuum we can detect an attractive force between them, due to the fact that long-wavelength fluctuations do not ``fit'' in the gap between the plates, decreasing the energy density between the plates compared to the one outside, which is equivalent to the binding energy of an attractive force.\footnote{This was experimentally demonstrated to actually occur: the first group to do so with the original parallel-plate configuration did so in Padua \cite[]{bressiMeasurementCasimirForce2002}!}
+
+\todo[inline]{An interesting digression, but I'm not sure whether it fits in this section. }
 
 In QFT, we either have scalars, vectors or spinors.
 Can a scalar field have a nonzero expectation value, while respecting the Robertson-Walker symmetries? Yes, we just take a function of time.

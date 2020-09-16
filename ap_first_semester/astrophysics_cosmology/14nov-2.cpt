@@ -1,0 +1,8 @@
+The result comes about from the following code: \begin{lstlisting}[language=Python]
+from astropy.cosmology import Planck15 as cosmo
+import numpy as np
+import astropy.units as u
+from astropy.constants import codata2018 as ac
+z3 = np.sum([n**-3 for n in range(1, 1000000)])
+(2 * z3 / np.pi**2 * cosmo.Tcmb0**3 * (ac.k_B / ac.hbar / ac.c)**3).cgs
+\end{lstlisting}^^E^^L 

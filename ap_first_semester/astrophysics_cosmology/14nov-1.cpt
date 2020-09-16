@@ -1,0 +1,9 @@
+The result comes about from the following code: \begin{lstlisting}[language=Python]
+from astropy.cosmology import Planck15 as cosmo
+import numpy as np
+import astropy.units as u
+from astropy.constants import codata2018 as ac
+H0 =u.littleh *100 * u.km/u.s / u.Mpc
+rhoC = 3 * H0**2 / (8 * np.pi * ac.G)
+(rhoC * cosmo.Ob0 / ac.m_p).to(u.cm**-3 * u.littleh**2)
+\end{lstlisting}^^E^^L 

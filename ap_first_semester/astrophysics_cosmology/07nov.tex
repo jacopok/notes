@@ -192,7 +192,7 @@ In regular Quantum Field Theory the Hamiltonian of our theory is often in the fo
 %
 \begin{align}
 H = \int \dd[3]{k} E_k \qty\frac{a ^\dag a + a a ^\dag}{2} = 
-\int \dd[3]{k} E_k \underbrace{a ^\dag a }_{\mathclap{\text{number operator}}} + \underbrace{\int \dd[3]{k} \frac{\omega_k}{2} \qty[a, a ^\dag]}_{ \to \infty }
+\int \dd[3]{k} E_k \underbrace{a ^\dag a }_{N} + \underbrace{\int \dd[3]{k} \frac{\omega_k}{2} \qty[a, a ^\dag]}_{ \to \infty }
 \,,
 \end{align}
 %
@@ -203,58 +203,97 @@ In GR this is not the case: this energy \emph{gravitates}, as we have seen any e
 
 Is the ground-state energy just an artifact of the mathematical description of the fields? If so, we do not have a problem; unfortunately this is not the case, we can see this ground state energy through the \textbf{Casimir effect}.
 
-If we put two metallic plates close to each other in a vacuum we can detect an attractive force between them, due to the fact that long-wavelength fluctuations do not ``fit'' in the gap between the plates, decreasing the energy density between the plates compared to the one outside, which is equivalent to the binding energy of an attractive force.\footnote{This was experimentally demonstrated to actually occur: the first group to do so with the original parallel-plate configuration did so in Padua \cite[]{bressiMeasurementCasimirForce2002}!}
+If we put two metallic plates close to each other in a vacuum we can detect an attractive force between them, due to the fact that long-wavelength fluctuations do not ``fit'' in the gap between the plates, decreasing the energy density between the plates compared to the one outside, which is equivalent to the binding energy of an attractive force.\footnote{This was demonstrated to actually occur: the first group to do the experiment with the original parallel-plate configuration was in Padua \cite[]{bressiMeasurementCasimirForce2002}!}
 
 \todo[inline]{An interesting digression, but I'm not sure whether it fits in this section. }
 
-In QFT, we either have scalars, vectors or spinors.
-Can a scalar field have a nonzero expectation value, while respecting the Robertson-Walker symmetries? Yes, we just take a function of time.
+% In QFT, we either have scalars, vectors or spinors.
+In QFT fields are classified based on how they transform under rotations: scalars do not change, vectors come back to themselves after a rotation of \(2 \pi \), spinors come back to themselves after a rotation of \(4 \pi \). 
+In the standard model generally ``matter'' particles are spinors, while ``force'' particles are vectors. Scalars are rare: the only one is the Higgs boson.
 
-For a vector, we cannot have nonzero expectation: a nonzero expectation value gives us a preferred direction.
-For a spinor, the same holds.
+We want our mechanism for inflation to be a field with a nonzero expectation value, which should also satisfy the symmetries of the FLRW  metric.
+Our only option then is a scalar field which is homogeneous (and automatically isotropic since it does not define a direction), but which can change in time. 
 
-However, an object like \(\overline{\psi} \psi \) behaves like a scalar, even though it comes from a vector.
+A vector and a spinor both define a direction in space, and thus do not satisfy the requirement of isotropy. 
+A term like \(\overline{\psi} \psi \), where \(\psi \) is a spinor and \(\overline{\psi}\) is its adjoint, can actually respect the required symmetries. We will not explore this further, but it gives rise to what is called a \emph{fermion condensate}. 
 
-There are almost no scalar particles in nature! The only one is the Higgs field.
+So, we will add a scalar field \(\Phi \) to our model. 
 
-The action for GR is given by 
+% Can a scalar field have a nonzero expectation value, while respecting the Robertson-Walker symmetries? Yes, we just take a function of time.
+
+% For a vector, we cannot have nonzero expectation: a nonzero expectation value gives us a preferred direction.
+% For a spinor, the same holds.
+
+% However, an object like \(\overline{\psi} \psi \) behaves like a scalar, even though it comes from a vector.
+
+% There are almost no scalar particles in nature!
+% The only one is the Higgs field.
+
+\paragraph{The Lagrangian formulation of GR}
+
+Usually, an action for the Standard Model particles in a general-relativistic setting will have a term containing the derivatives of the metric, \(S_g\), and a term containing the actions of all the Standard Model particles, \(S _{\text{SM}}\):
 %
 \begin{align}
-  S = S_{\Phi } + S_{g_{\mu \nu }} + S_{\text{world}}
-\,,
+S = S_g + S_{\text{SM}}
+\,.
 \end{align}
+
+As in classical mechanics, the equations of motion are derived from a variational principle, \(\delta S = 0\); however since \(S\) is a function of many fields this actually contains the equations of motion for each of them. Varying with respect to the SM fields yields their equations of motion, while varying with respect to the inverse metric \(g^{\mu \nu }\) yields the Einstein equations: 
 %
-where 
+\begin{align}
+\underbrace{R_{\mu \nu } - \frac{1}{2} R g_{\mu \nu }}_{\propto\displaystyle \fdv{S_g}{g^{\mu \nu }}} 
+= \underbrace{8 \pi G T_{\mu \nu }}_{\propto\displaystyle \fdv{S _{\text{SM}}}{g^{\mu \nu }}}
+\,.
+\end{align}
+
+In this Lagrangian approach, the very \emph{definition} of the stress-energy tensor is as a certain multiple of the functional derivative of the action of the particles with respect to the inverse metric. 
+
+\paragraph{Coupling between a field and gravity}
+
+We update the action by adding a term for the field \(\Phi \):
+%
+\begin{align}
+  S = S_{\Phi } + S_{g} + S_{\text{SM}}
+\,.
+\end{align}
+
+
+As usual the action is found by integrating a Lagrangian density, but since we have a nontrivial metric we need to use the invariant volume element \(\dd[4]{x} \sqrt{-g}\) (which for FLRW is just \(\dd[4]{x} a^3\)): 
 %
 \begin{align}
   S = \int \dd[4]{x} \sqrt{-g} \mathscr{L}
-\,,
+\,.
 \end{align}
-%
-and the gravitational Lagrangian is \(\mathscr{L}_g = R /16 \pi G\).
-A kinetic Lagrangian is  
+
+The gravitational Lagrangian is given in terms of the Ricci scalar, \(\mathscr{L}_g = R /16 \pi G\), and varying it with respect to the metric yields the left-hand side of the Einstein equations.
+
+A typical Lagrangian for a particle of mass \(m\) whose position is described by the coordinates \(q\) is given by a kinetic term and a potential term:
 %
 \begin{align}
   \mathscr{L}  = \frac{m}{2} \dot{q}^2 - V(q)
 \,,
 \end{align}
 %
-for a scalar field its equivalent would be 
+for a scalar field in Minkowski spacetime its equivalent would be 
 %
 \begin{align}
-  \mathscr{L} = \frac{1}{2} \qty(\partial_{\mu } \Phi )^2-V(\Phi )
-\,,
+\mathscr{L}_\Phi  = \frac{1}{2} \qty(\partial_{\mu } \Phi ) \qty(\partial^{\mu } \Phi )
+-V(\Phi )
+\,.
 \end{align}
 %
-in Minkowski spacetime. It then becomes: 
+
+In the GR case it is customary to be more explicit about the metric appearing in the kinetic term; also, the derivatives should in general become covariant ones, although in this case there is no change since the covariant derivative of a scalar is equal to its partial one: \(\nabla_\mu \Phi  = \partial_{\mu } \Phi \). 
+The Lagrangian then becomes: 
 %
 \begin{align}
-  \mathscr{L} = \frac{1}{2} g^{\mu \nu } \nabla_{\mu } \Phi \nabla_{\nu } \Phi - V(\Phi )
-\,,
+\mathscr{L} = \frac{1}{2} g^{\mu \nu } \partial_{\mu } \Phi \partial_{\nu } \Phi - V(\Phi )
+\,.
 \end{align}
-%
-but the covariant derivative of a scalar is just its partial derivative.
+
+The potential may include different terms, a common one is a mass term, which looks like \(V(\Phi ) = m \Phi^2 / 2\). 
 
 If we add a massive term, proportional to \(R \Phi^2\), we get that adding it to the global action looks like gravity.
+\todo[inline]{Clarify}
 
 \end{document}

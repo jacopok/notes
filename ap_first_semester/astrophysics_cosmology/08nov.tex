@@ -4,61 +4,70 @@
 \marginpar{Monday\\ 2019-11-08, \\ compiled \\ \today}
 % \section*{Fri Nov 08 2019}
 
-We continue the discussion from yesterday on the dynamics of inflation.
+% We continue the discussion from yesterday on the dynamics of inflation.
 
-The Lagrangian for a scalar field in GR is 
-%
-\begin{align}
-  \mathscr{L} = \frac{1}{2} g^{\mu \nu } \nabla_{\mu } \Phi  \nabla_{\nu } \Phi - V(\Phi )
-\,.
-\end{align}
+% The Lagrangian for a scalar field in GR is 
+% %
+% \begin{align}
+%   \mathscr{L} = \frac{1}{2} g^{\mu \nu } \nabla_{\mu } \Phi  \nabla_{\nu } \Phi - V(\Phi )
+% \,.
+% \end{align}
 
-The ``contravariant derivative'' does not exist.
+% The ``contravariant derivative'' does not exist.
 
-\todo[inline]{Why?}
+% \todo[inline]{Why?}
 
-We can add a term \(\xi R \Phi^2\), which has the right dimensions. Actions are dimensionless since \(\hbar  =1\), and since \(\dd{s^2} = g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}\) the metric is also dimensionless. Therefore the dimensional analysis of \(\int \dd[4]{x} \sqrt{-g} \mathscr{L}\) gives us that \(\mathscr{L}\) must have dimensions of \(m^{-4}\).
+Actions are dimensionless since \(\hbar  =1\), and since \(\dd{s^2} = g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}\) the metric \(g_{\mu \nu }\) is also dimensionless. 
+The Riemann tensor is given by the second derivatives of the metric, so its dimension is a length to the \(-2\), or a mass squared.
 
-The field \(\Phi \) has the dimensions of a mass, which is an inverse length. The coupling constants are conventionally taken to be dimensionless: therefore if we are to add a term to the Lagrangian, it must be \( \xi \Phi^2 \) times an inverse square length: so we can insert \(R\).
+So, the dimensional analysis of \(\int \dd[4]{x} \sqrt{-g} \mathscr{L}\) gives us that \(\mathscr{L}\) must have dimensions of a length to the \(-4\), or a mass to the 4.
+The field \(\Phi \) has the dimensions of a mass, which is an inverse length.
+The coupling constants are conventionally taken to be dimensionless: therefore if we are to add a term to the Lagrangian, it must be \( \xi \Phi^2 \) times an inverse square length, which is often \(m^2\), \(m \) being the mass of the field, while \(\xi \) is a real number.
 
-The value of \(\xi \) is undetermined: \(\frac[i]{1}{6} \) gives us conformal symmetry, while in other cases we get \(\frac[i]{1}{4} \). 
-A Weyl transformation allows us to remove the additional term: we move from the Jordan frame (where we \emph{do} have coupling between our scalar field and the curvature) to the Einstein frame, in which we do not.
-
+With all of this said, in terms of dimensionality we can add to our Lagrangian a term \(\xi R \Phi^2\), where \(R\) is the Ricci scalar. 
 This is a prototype for modified GR theories.
 
-Varying the Einstein-Hilbert action with respect to the metric gives the LHS of the Einstein equations. If we vary with respect to something else we get the equations of motion of that other thing.
-
-This means that the stress-energy tensor is just the functional variation of everything but the action of the metric in the global acction, with respect to the metric.
-
-We get for our scalar field: 
+The value of \(\xi \) is undetermined: setting \(\xi = 1/6 \) gives us conformal symmetry, while in other cases it is useful to set it as \(\xi = 1/4 \). 
+A Weyl transformation (a local rescaling of the metric) allows us \cite[]{faraoniConformalTransformationsClassical1998} to remove this term: we move from the Jordan frame (where we \emph{do} have coupling between our scalar field and the curvature, with a term such as the one we described) to the Einstein frame, in which we do not have this term, but we \emph{do} have an additional matter-like term in the Einstein equations, a new component in the stress-energy tensor, which will look like:
 %
 \begin{align}
   T_{\mu \nu } (\Phi ) = \Phi_{,  \mu } \Phi_{, \nu } - g_{\mu \nu } \qty(\frac{1}{2} g^{\rho \sigma } \Phi_{, \rho } \Phi_{, \sigma } - V(\Phi ))
 \,,
 \end{align}
 %
-and then \(G_{\mu \nu } = 8 \pi G T_{\mu \nu }\).
+% and then \(G_{\mu \nu } = 8 \pi G T_{\mu \nu }\).
+where commas denote partial derivatives: \(\Phi_{,\alpha } = \partial_{\alpha } \Phi \).
 
-We can get an explicit solution by using the symmetries of our spacetime: we assume that \(\Phi (x^{\mu }) = \varphi (t)\).
-This however in QFT is an operator, but we cannot have an operator on the RHS of the EFE: so we do a semiclassical theory, an equivalent of Hartree-Fock: we take an average in the vacuum state, and our equations become 
+% Varying the Einstein-Hilbert action with respect to the metric gives the LHS of the Einstein equations. If we vary with respect to something else we get the equations of motion of that other thing.
+
+% This means that the stress-energy tensor is just the functional variation of everything but the action of the metric in the global acction, with respect to the metric.
+
+% We get for our scalar field: 
+
+We can get an explicit solution for the solution of the equations of motion of this field by using the symmetries of our spacetime: we assume that, because of homogeneity, \(\Phi (x^{\mu }) = \varphi (t)\).
+
+There is another issue: in QFT any field \(\Phi \) is an operator acting on a Fock space, while the left-hand side of the Einstein equation is a simple tensor --- we are not quantizing space!
+The solution to this problem is a semiclassical mean-field approximation, which is similar to the Hartree-Fock mean-field method: 
+we assume we are ``close'' to the ground state, and so we substitute the stress-energy tensor on the right-hand side with its mean value computed in the ground state of the theory:
 %
 \begin{align}
   G_{\mu \nu } = 8 \pi G \expval{\hat{T}_{\mu \nu } }_{0}
 \,,
 \end{align}
 %
-where we define the ground state as that one with the most symmetry allowed.
+where we define the ground state \(\ket{0}\) as that one with the most symmetry allowed (that is, it should be invariant under rotations and translations, the symmetries of the FLRW metric).
 
-The symmetries we must consider are only rotations and translations.
-There are no issues of commutation, since we do not quantize space unlike the quantum loop gravity people.
+% The symmetries we must consider are only rotations and translations.
+% There are no issues of commutation, since we do not quantize space unlike the quantum loop gravity people.
 
-If we perturb, we get \(\Phi = \varphi + \delta \Phi \): so \(\expval{\Phi^2 } = \varphi^2 + 2 \expval{\varphi \delta \Phi } + \expval{ \delta \Phi^2}\), but the second term is zero since \(\expval{ \delta \Phi } = 0 \) and \(\varphi \)is constant.
-The last term in these diverges. We do not know how to deal with it.
+If we perturb the state of thee field \(\Phi \), we get \(\Phi = \varphi + \delta \Phi \): so \(\expval{\Phi^2 } = \varphi^2 + 2 \expval{\varphi \delta \Phi } + \expval{ \delta \Phi^2}\), but the second term is zero since \(\expval{ \delta \Phi } = 0 \) and \(\varphi \) is constant.
+The last term in diverges. We do not know how to deal with it.
 We therefore assume that it is small.
+\todo[inline]{What? is this about renormalization?}
 
-So: when computing the stress energy tensor we get only diagonal terms: a perfect fluid!
+When computing the stress energy tensor we get only diagonal terms: this scalar acts like a perfect fluid!
 
-The energy density is the Hamiltonian:
+The energy density is equal to the Hamiltonian:
 %
 \begin{align}
   \rho = T_{00 } = \frac{1}{2} \dot{\varphi }^2 + V(\varphi ) = H
@@ -72,125 +81,140 @@ while the pressure is the Lagrangian:
 \,.
 \end{align}
 
-We call the stuff in the universe which is not our field ``radiation'', with energy density \(\rho_r\). 
+We assume that anything in the universe which is not our field behaves like radiation, with energy density \(\rho_r\). Then, the Friedmann equations (assuming zero spatial curvature) will read
 %
 \begin{subequations}    
 \begin{align}
     H^2 &= \frac{8 \pi G }{3} \qty(\frac{1}{2} \dot{\varphi }^2 + V + \rho_r) \\
-    \frac{\ddot{a}}{a} &= - \frac{8 \pi G }{3} \qty(\dot{\varphi }^2 - V + \rho_r) \\
+    \frac{\ddot{a}}{a} &= - \frac{8 \pi G }{3} \qty(\dot{\varphi }^2 - V + \rho_r) \marginnote{\(P_r = \rho _r / 3\).}\\
     \dot{\rho} _{\text{tot}} &= - 3 \frac{\dot{a}}{a} \qty(\rho _{\text{tot}} + P _{\text{tot}})
     \,,
 \end{align}
 \end{subequations}
 %
-but in the continuity equation we can split the contributions by inserting an unknown factor \(\Gamma \), the transfer of energy between the field and radiation. 
+but in the continuity equation we can split the contributions by inserting an unknown factor \(\Gamma \), the transfer of energy between the field and radiation, so that the respective energy densities evolve as 
 %
 \begin{subequations}
 \begin{align}
   \dot{\rho} _\varphi &=  - 3 \frac{\dot{a}}{a} \dot{\varphi }^2 + \Gamma \\  
   \dot{\rho} _r &=  - 4 \frac{\dot{a}}{a} \rho_r - \Gamma  
-\,,
-\end{align}
-\end{subequations}
-%
-which, denoting \(' = \partial_\varphi \): 
-%
-\begin{subequations}
-\begin{align}
-  \dot{\rho }_\varphi &= \dot{\varphi } \ddot{\varphi } + V^{\prime } \dot{\varphi } \\
-  \ddot{\varphi} \dot{\varphi } + V^{\prime } \dot{\varphi } &= -3 \frac{\dot{a}}{a} + \Gamma 
-\,,
-\end{align}
-\end{subequations}
-%
-but we drop \(\Gamma \) since we assume there is little radiation.
-
-One solution is \(\dot{\varphi } =0\), if not: 
-%
-\begin{align}
-  \ddot{\varphi } + 3 \frac{\dot{a}}{a} = - V^{\prime }
-\,,
-\end{align}
-%
-recall the definition of
-%
-\begin{align}
-  w = - \frac{1}{3} = \frac{P}{\rho }
-  = \frac{\frac{1}{2} \dot{\varphi }^2 - V}{\frac{1}{2} \dot{\varphi }^2 + V}
-\,,
-\end{align}
-%
-so one possibility we have is 
-%
-\begin{align}
-  \dot{\varphi }^2 \gg 2 \abs{V} \implies w = 1
-\,,
-\end{align}
-%
-or else 
-%
-\begin{align}
-\dot{\varphi }^2 \ll 2 \abs{V} \implies w = - 1
 \,.
 \end{align}
+\end{subequations}
+%
+% so, denoting \(' = \partial_\varphi \), the first of these equations can be written as 
+% %
+% \begin{subequations}
+% \begin{align}
+%   \dot{\rho }_\varphi &= \dot{\varphi } \ddot{\varphi } + V^{\prime } \dot{\varphi } \\
+%   \ddot{\varphi} \dot{\varphi } + V^{\prime } \dot{\varphi } &= -3 \frac{\dot{a}}{a} + \Gamma 
+% \,.
+% \end{align}
+% \end{subequations}
 
-The continuity equation gives us the Klein-Gordon equation again: it is tautological.
-
-\(\varphi = \const\) was one of the first solutions proposed.
-This model seems so fit the data.
-
-Several proposals were made in the late seventies, early eighties.
-
-A very simple model for a symmetry-breaking potential is the Ginzburg-Landau:
+In order to see what the evolution of the field looks like we drop \(\Gamma \), assuming that there is little energy transfer between matter and radiation. 
+The equation of motion of the field reads
 %
 \begin{align}
-  V \propto \qty(\Phi^2 - \sigma^2)^2
+  \ddot{\varphi } + 3 H \dot{\varphi} = - V^{\prime }
 \,,
 \end{align}
 %
-which gives a seeming ``mass term'' \(- 2 \varphi^2 \sigma^2\), which has the wrong sign: it is ``tachyonic''!
+where \(V' = \partial_{\varphi } V\).\footnote{This may look peculiar, but it is in fact just the Klein-Gordon equation written in curved spacetime: the difference comes about because the Dalambertian operator now reads \cite[]{natarioDecaySolutionsKleinGordon2019}
+%
+\begin{align}
+\square \varphi &= \frac{1}{\sqrt{-g}} \partial_{\mu } \qty(\sqrt{-g} \partial^{\mu } \varphi ) = \partial_{\mu } \partial^{\mu } \phi + 
+\frac{\partial_{\mu } \sqrt{-g}}{\sqrt{-g}}
+\qty(\partial^{\mu } \varphi )  = \ddot{\varphi} + \dot{\varphi} \frac{\partial_{t} (a^3)}{a^3} = \ddot{\varphi} + 3 \dot{\varphi} \frac{\dot{a}}{a}
+\,.
+\end{align}
+}
 
-The configuration at \(\Phi = 0\) is unstable. The one at \(\abs{\Phi } = \sigma \) is not symmetric under \(\Phi \rightarrow - \Phi \).
+We have already mentioned that this field behaves like a fluid: so, what is its equation of state? the definition of \(w\) is 
+%
+\begin{align}
+  % w = - \frac{1}{3} 
+w
+= \frac{P}{\rho }
+= \frac{\frac{1}{2} \dot{\varphi }^2 - V}{\frac{1}{2} \dot{\varphi }^2 + V}
+\,,
+\end{align}
+%
+% so one possibility we have is 
+% %
+% \begin{align}
+%   \dot{\varphi }^2 \gg 2 \abs{V} \implies w = 1
+% \,,
+% \end{align}
+% %
+% or else 
+% %
+% \begin{align}
+% \dot{\varphi }^2 \ll 2 \abs{V} \implies w = - 1
+% \,.
+% \end{align}
+whose limiting case, when \(\dot{\varphi}^2 \ll 2 \abs{V}\), is \(w = -1\).
+% A very simple solution, which was one of the first ones people proposed, is \(\varphi = \const\).
+% This model seems so fit the data.
+As we have seen, this corresponds to an evolution of the universe with \(a \sim \exp(Ht)\): an exponential expansion! 
 
-People realized that QFT is a subcase of a condensed matter approach in which we have a thermal bath, an \emph{environment}.
-This is \emph{finite temperature QFT}.
+% The continuity equation gives us the Klein-Gordon equation again: it is tautological.
 
-We consider then an \emph{effective potential} for the temperature: \(V_T (\Phi ) = V(\Phi ) + \) functions of \(T\).
-This might be \(V(\Phi ) + \alpha \varphi^2 T^2 + \gamma T^{4}\), with positive \(\alpha \). The quadratic term then gives us a \emph{positive} mass term: at temperatures larger than some critical temperature we get stability at \(\Phi = 0\), but what happens if we lower the temperature?
+% Several proposals were made in the late seventies, early eighties.
 
-Then, there is symmetry breaking.
+% A very simple model for a symmetry-breaking potential is the Ginzburg-Landau:
+% %
+% \begin{align}
+%   V \propto \qty(\Phi^2 - \sigma^2)^2
+% \,,
+% \end{align}
+% %
+% which gives a seeming ``mass term'' \(- 2 \varphi^2 \sigma^2\), which has the wrong sign: it is ``tachyonic''!
 
-Let us see how our Friedmann equations account for this situation.
+% The configuration at \(\Phi = 0\) is unstable. The one at \(\abs{\Phi } = \sigma \) is not symmetric under \(\Phi \rightarrow - \Phi \).
 
-The temperature of radiation is \(\rho _r  = \frac{\pi^2}{30 } g_{*} (r) T^{4}\). If we start with a universe which is radiation dominate, then it ends up to be De Sitter.
+% People realized that QFT is a subcase of a condensed matter approach in which we have a thermal bath, an \emph{environment}.
+% This is \emph{finite temperature QFT}.
 
-This is a consequence of the \emph{No Hair Cosmic Theorem}.
+% We consider then an \emph{effective potential} for the temperature: \(V_T (\Phi ) = V(\Phi ) + \) functions of \(T\).
+% This might be \(V(\Phi ) + \alpha \varphi^2 T^2 + \gamma T^{4}\), with positive \(\alpha \). The quadratic term then gives us a \emph{positive} mass term: at temperatures larger than some critical temperature we get stability at \(\Phi = 0\), but what happens if we lower the temperature?
 
-There is a potential barrier between the metastable ``\(\Phi = 0\)'' state, and the symmetry breaking other ones.
-(even though it does not show in the fourth degree potential model).
+% Then, there is symmetry breaking.
 
-This can happen through quantum tunneling, but there is a delay: a \emph{first order phase transition with supercooling} (by ``super'' what is meant is just that the temperature goes below \(T_C\) even though we still are in the center symmetric state).
+% Let us see how our Friedmann equations account for this situation.
 
-We get bubbles of symmetry broken by fluctuation, expanding through the universe but never meeting because of the expansion.
+% The temperature of radiation is \(\rho _r  = \frac{\pi^2}{30 } g_{*} (r) T^{4}\). If we start with a universe which is radiation dominate, then it ends up to be De Sitter.
 
-This is the ``old inflation model''.
+% This is a consequence of the \emph{No Hair Cosmic Theorem}.
 
-A new inflation model involves ``slow rolling''.
+% There is a potential barrier between the metastable ``\(\Phi = 0\)'' state, and the symmetry breaking other ones.
+% (even though it does not show in the fourth degree potential model).
 
-The equation \(\ddot{\varphi } + 3 H \dot{\varphi } = - V'\) looks like a regular equation of motion: after a time \(1/H\) the ``friction'' velocity-dependent term dominates.
+% This can happen through quantum tunneling, but there is a delay: a \emph{first order phase transition with supercooling} (by ``super'' what is meant is just that the temperature goes below \(T_C\) even though we still are in the center symmetric state).
 
-Then we get a slow-roll regime: \(H^2  = \frac{8 \pi G}{3} V \) and \(\dot{\varphi} \approx - V^{\prime }/3H\).
+% We get bubbles of symmetry broken by fluctuation, expanding through the universe but never meeting because of the expansion.
 
-We exploit the flatness of the potential.
-There are quantum fluctuations during inflation.
+The ``old inflation model'' has inflation being caused by the breaking of a certain symmetry through quantum tunneling, 
+while a new inflation model involves ``slow rolling''.
 
-The solution is \emph{chaotic inflation}, by Linde 1984:
-Since \(\Delta E \Delta t \approx \hbar\), we do not know at which state we are actually. 
-As time passes, the energy uncertainty decreases.
-The initial condition for the distribution of the universe is then detemined by the uncertainty principle.
+The equation \(\ddot{\varphi } + 3 H \dot{\varphi } = - V'\) looks like a regular equation of motion with a kinetic and friction term: after a time \(1/H\) the ``friction'' velocity-dependent term dominates.
 
-An alternative is \emph{eternal} chaotic inflation.
-If a fluctuation increases the potential universe, then \(H^2\) increases, then the region feels a larger volume. The case where the field goes towards the minimum is unlikely.
-Why did it happen? This can only be answered with the anthropic principle.
+Then we get a slow-roll (friction-dominated) regime: \(H^2  = \frac{8 \pi G}{3} V \) and \(\dot{\varphi} \approx - V^{\prime }/3H\).
+
+% We exploit the flatness of the potential.
+% There are quantum fluctuations during inflation.
+
+\todo[inline]{Mention of chaotic inflation and many more things\dots could not really form a coherent narrative. Should try again after reading \cite[sec.\ 7.11]{LucchinColes:2002}.}
+
+\todo[inline]{This section could probably do with some pictures of potentials\dots}
+
+% The model of \emph{chaotic inflation}, by Linde, describes the dynamics of 
+% Since \(\Delta E \Delta t \approx \hbar\), we do not know at which state we are actually. 
+% As time passes, the energy uncertainty decreases.
+% The initial condition for the distribution of the universe is then detemined by the uncertainty principle.
+
+% An alternative is \emph{eternal} chaotic inflation.
+% If a fluctuation increases the potential universe, then \(H^2\) increases, then the region feels a larger volume. The case where the field goes towards the minimum is unlikely.
+% Why did it happen? This can only be answered with the anthropic principle.
 
 \end{document}

@@ -51,7 +51,8 @@ This constitutes the problem of baryon asymmetry: it seems unnatural for the uni
 % A long time ago, it was thought that there might have been regions in the universe which were filled with antimatter by looking for a \(\gamma \)-ray background, but this was not found.
 % We did not find them.
 
-In particle physics the absolute number \(B\) is used, but in cosmology absolute numbers as usual are not convenient, so we work in terms of densities. All number densities scale like \(a^{-3}\), so we need to normalize the difference \(n_b - n_a\) with another number density: we define: \(\eta/2 = (n_b - n_a) / (n_b + n_a)\). Here \(b\) means baryons, while \(a\) means antibaryons. 
+In particle physics the absolute number \(B\) is used, but in cosmology absolute numbers are not used: we work in terms of densities.
+All number densities scale like \(a^{-3}\), so we need to normalize the difference \(n_b - n_a\) with another number density: we define: \(\eta/2 = (n_b - n_a) / (n_b + n_a)\). Here \(b\) means baryons, while \(a\) means antibaryons. 
 % This is actually computed with quark numbers, so it can be computed even when protons and neutrons have not yet formed.
 
 The reason for the factor 2 is given by how we can actually estimate this parameter: in the early universe, when the baryons were still relativistic, processes like \(b + \overline{b} \leftrightarrow 2 \gamma \) occurred at thermal equilibrium, so roughly speaking we should have had \(n_b \approx n_a \approx 2 n_\gamma \).
@@ -153,45 +154,70 @@ How do we interpret this result? It means that in the radiation-dominated epoch 
 %
 % This must then have been the case also in the matter dominated epoch, during which there was a very slight imbalance in baryons vs antibaryons.
 
-In order to generate a baryon-antibaryon asymmetry we need \begin{enumerate}
-    \item ?
+In 1966, the Soviet physicist Sakharov postulated that in order to generate baryon-antibaryon asymmetry in the early universe there are three necessary conditions:  
+\begin{enumerate}
+    \item violation of baryon number conservation;
     \item \(C\) and \(CP\) violation (while \(CPT\) symmetry must hold for any well-behaved QFT);
     \item out-of-equilibrium processes.
 \end{enumerate}
 
-These were proposed by a famous Soviet scientist.
+% These were proposed by a famous Soviet scientist.
+\(B\) violation is needed for the existence of processes which can generate more baryons than antibaryons.
+\(C\) violation is needed because otherwise any process which generates baryons would have a counterpart generating antibaryons occurring with the same probability. 
+\(CP\) violation is needed because otherwise processes generating left-handed baryons would be balanced by processes generating right-handed antibaryons, and vice versa. 
+Out-of-equilibrium processes are needed because otherwise \(B\)-increasing and \(B\)-reducing processes would balance out. 
 
-We define the interaction rate \(\Gamma \): it is the number of interactions per unit time.
+\section{Decoupling of particle species}
 
-The Hubble rate \(H = \dot{a} / a \) is also an inverse time: baryons and antibaryons are practically speaking \emph{decoupled} if \(\Gamma \leq H\): this is equivalent to saying that the time of interaction is larger than the age of the universe.
+Earlier we made the claim that neutrinos decouple at \(T \approx \SI{1}{MeV}\): let us justify this, and explore the concept of a particle species being \textbf{decoupled} in general.
 
-When are particles actually coupled or decoupled?
-\(\Gamma \) can be calculated as \(\Gamma = n \expval{\sigma v}\), where \(n\) is the number density, \(v\) is the velocity of the particles, and \(\sigma \) is the cross section of the interaction.
+We define the \emph{interaction rate} \(\Gamma \): it is the number of interactions per unit time that each particle undergoes.
 
-We need to distinguish the types of interactions we are dealing with.
-In general interactions are carried by gauge bosons. 
-Either they are massless (like the photon) or they are massive (like the the \(W^{\pm}\) and \(Z\) bosons, as long we are below the scale of electroweak symmetry breaking \(\sim \SI{e2}{GeV}\)).
+The Hubble rate \(H = \dot{a} / a \) is also, dimensionally, an inverse time, so we can compare \(H\) and \(\Gamma \) directly. 
+What does this comparison tell us?
+We have seen earlier that the age of the universe is roughly given by \(1 / H \), while \(1/ \Gamma \) is the average time for an interaction to occur (modelling the interaction times as a Poisson process). 
+So, if \(1 / H < 1 / \Gamma \), then on average the particle species has undergone on average \emph{less than one} interaction in the whole existence of the universe. This condition is called decoupling, and is equivalent to \(\Gamma < H\). 
+If \(\Gamma  \ll H\) then the interaction basically does not happen. 
 
-At larger energies than those, the weak interaction also becomes long-range.
+% baryons and antibaryons are practically speaking \emph{decoupled} if \(\Gamma \leq H\): this is equivalent to saying that the time of interaction is larger than the age of the universe.
 
-In the massless case, the cross-section is \(\sigma \sim \alpha^2 / T^2\), where \(g = \sqrt{4 \pi \alpha }\).
+% When are particles actually coupled or decoupled?
+In general, \(\Gamma \) can be calculated as \(\Gamma = n \expval{\sigma v}\), where \(n\) is the number density, \(v\) is the velocity of the particles,  \(\sigma \) is the cross section of the interaction, and we average over the velocity distribution of the particles. 
 
-In the massive case, for temperatures \(T \leq m_{x}\), the cross section is of the order \(\sigma \sim G_x^2 T^2\).
+% We need to distinguish the types of interactions we are dealing with.
+In the Standard Model, interactions are mediated by gauge bosons, which can be either massless (like the photon) or massive (like the weak interaction \(W^{\pm}\) and \(Z\) bosons\footnote{Properly speaking, these bosons are not massive in general since they acquire their mass through the spontaneous breaking of the \(SU(2)_L \times U(1)_Y\) symmetry of the Standard Model to \(U(1)_{\text{em}}\), which happens below the scale of electroweak symmetry breaking \(\sim \SI{e2}{GeV}\). The bosons being massive yields an exponential cutoff \(e^{-mr}\) in the expression of the potential for the interaction (this is the \emph{Yukawa potential}), so at energies higher than the electroweak SB scale the weak interaction becomes long-range.}).
 
-There is an inversion in the \(T\) dependence between long and short range interactions.
+% At larger energies than those, the weak interaction also becomes long-range.
 
-Typically \(G_x = \alpha / m_x^2\).  Then, \(\sigma \sim \alpha^2 T^2 / m_x^{4}\).
+For massless boson mediators, the cross-section is (roughly) given by \(\sigma \sim \alpha^2 / T^2\), where \(g = \sqrt{4 \pi \alpha }\).
 
-This difference is because in general the formula is like 
+For massive boson mediators with mass \(m_x\), we need to distinguish between two cases: for temperatures \(T \leq m_{x}\), the cross section is of the order \(\sigma \sim G_x^2 T^2\), while for higher temperatures \(T > m_x\) we have \(\sigma \sim \alpha^2 / T^2\) as in the massless case.\footnote{The reason for this is that when we compute the cross section for an interaction with a massive boson we find an expression like 
 %
 \begin{align}
-  \sigma \sim \frac{T^{2}}{E^{4}}
+\sigma \sim \frac{s}{(s - m_x^2)^2}
 \,,
 \end{align}
 %
-and we either have \(E \sim m\) in the low-speed case, or \(E \sim T\) in the high-speed case.
+where \(s\) is the square of the center-of mass energy of the interaction; if there is thermal equilibrium then typically we will have \(s \sim T^2\). We can then see that at high energies the expression is asymptotically \(\sigma \sim T^{-2}\), while at low energies it is \(\sigma \sim T^2 / m_x^{4}\). This expression also holds for \(m_x = 0\). 
+}
+% there is an inversion in the \(T\) dependence between long and short range interactions.
+Typically, \(G_x = \alpha / m_x^2\). 
 
-So, we know that \(\Gamma = n \expval{\sigma v}\). In the massless case this is something like \(\Gamma \sim T^3 \sigma \sim T^{3} \sim \alpha^2 T\) since \(T \sim 1/ a\).
+% This difference is because in general the formula is like 
+% %
+% \begin{align}
+%   \sigma \sim \frac{T^{2}}{E^{4}}
+% \,,
+% \end{align}
+% %
+% and we either have \(E \sim m\) in the low-speed case, or \(E \sim T\) in the high-speed case.
+
+% So, we know that \(\Gamma = n \expval{\sigma v}\).
+Let us then estimate the decoupling temperatures in the two cases. 
+
+\paragraph{Massless boson decoupling}
+
+In the massless case this is something like \(\Gamma \sim T^3 \sigma \sim T^{3} \sim \alpha^2 T\) since \(T \sim 1/ a\).
 
 Then, we get 
 %
@@ -211,6 +237,8 @@ so we have decoupling when \(T > \alpha^2 m _{\text{pl}}\).
 Essentially, at temperatures larger than \(T = \SI{e16}{GeV}\) this massless photon is decoupled.
 
 ``Above the Planck epoch, even gravitational interactions are decoupled''.
+
+\paragraph{Massive boson decoupling}
 
 What about the massive interactions? We have \(\Gamma \sim T^2 G_x^2 T^2\), to compare with \(H \sim T^2/ m _{\text{pl}}\): we get 
 %

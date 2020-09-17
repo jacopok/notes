@@ -214,19 +214,29 @@ Typically, \(G_x = \alpha / m_x^2\).
 
 % So, we know that \(\Gamma = n \expval{\sigma v}\).
 Let us then estimate the decoupling temperatures in the two cases. 
+In our computation, \(v\) is the relative velocity between the two particles; in both cases we assume that the particles are relativistic, therefore \(v \approx 1\). 
+We will make very rough estimates, neglecting multiples like \(\pi \) in front of our expressions; the things we want to get right are the dimensionality and the asymptotic scaling of the equations.
 
 \paragraph{Massless boson decoupling}
 
-In the massless case this is something like \(\Gamma \sim T^3 \sigma \sim T^{3} \sim \alpha^2 T\) since \(T \sim 1/ a\).
+We know that the number density of particles scales like \(n \sim T^3 \sim a^{-3}\) in this radiation-dominated epoch, therefore the interaction rate will scale like 
+%
+\begin{align}
+\Gamma \sim T^3 \sigma \sim T^{3} \frac{\alpha^2}{T^2} \sim \alpha^2 T
+\,.
+\end{align}
 
-Then, we get 
+%  since \(T \sim 1/ a\).
+What is the scaling of \(H\)? We can recover it from the first Friedmann equation (see equation \eqref{eq:time-temperature-relation}):
 %
 \begin{align}
   H = \sqrt{\frac{8 \pi G }{3}} g_{*}^{1/2} \qty(\frac{\pi^2}{30})^{1/2} T^2 \sim \frac{T^2}{m _{\text{pl}}}
 \,,
 \end{align}
 %
-since \(G \sim 1/m _{\text{pl}}^2\). Then, 
+since \(G \sim 1/m _{\text{pl}}^2\). The numeric factor we are neglecting is about a factor 10, only one order of magnitude, which is fine given the roughness of our calculation. 
+
+Let us then see when \(\Gamma / H < 1\), which corresponds to decoupling:
 %
 \begin{align}
   \frac{\Gamma}{H} \sim \frac{\alpha^2 T m _{\text{pl}}}{T^2} \sim \alpha^2 m _{\text{pl}} \frac{1}{T}
@@ -234,37 +244,60 @@ since \(G \sim 1/m _{\text{pl}}^2\). Then,
 \end{align}
 %
 so we have decoupling when \(T > \alpha^2 m _{\text{pl}}\).
-Essentially, at temperatures larger than \(T = \SI{e16}{GeV}\) this massless photon is decoupled.
 
-``Above the Planck epoch, even gravitational interactions are decoupled''.
+For electromagnetism \(\alpha \approx 1 / 137\), so at temperatures larger than \(T \approx \SI{e16}{GeV}\) this massless photon is decoupled.
+
+Note that decoupling occurs for \emph{very high} temperatures, meaning very early times, close to the Planck epoch; further, the photons start off decoupled and then couple. 
+After this, there is no lower bound: they may remain coupled for arbitrarily low temperatures. 
+
+\todo[inline]{Some comments are made about gravitational interactions, but what would \(\alpha_{\text{grav}}\) be? }
+
+\todo[inline]{The calculation seems to yield \(T \approx \SI{e15}{GeV}\), or even less if we account for \(g_*\)\dots I guess it does not really matter but it seemed curious.}
+
+% ``Above the Planck epoch, even gravitational interactions are decoupled''.
 
 \paragraph{Massive boson decoupling}
 
-What about the massive interactions? We have \(\Gamma \sim T^2 G_x^2 T^2\), to compare with \(H \sim T^2/ m _{\text{pl}}\): we get 
+It is of interest for us to consider the \emph{low-energy} situation, in which \(T < m_x\).
+The opposite limit, \(T \gg m_x\) behaves like the massless case: and we find an upper limit above which there is decoupling. 
+
+So, we have \(\Gamma \sim T^3 G_x^2 T^2 = G_x^2 T^{5}\), to compare with \(H \sim T^2/ m _{\text{pl}}\): as before we take the ratio, to find 
 %
 \begin{align}
-  \frac{\Gamma}{H} \sim \frac{T^3 G_x^2}{T^2 / m _{\text{pl}}} \sim G_x^2 m _{\text{pl}} T^3 \leq 1
+  \frac{\Gamma}{H} \sim \frac{T^5 G_x^2}{T^2 / m _{\text{pl}}} \sim G_x^2 m _{\text{pl}} T^3 
 \,,
 \end{align}
 %
-equivalently, \(T < m _{\text{pl}}^{-1/3} G_x^{-2/3}\).
+so we have decoupling (\(\Gamma / H < 1\)) when \(T < m _{\text{pl}}^{-1/3} G_x^{-2/3}\). 
+This is a \emph{lower bound}! The situation is qualitatively different from the massless case. 
 
-Suppose that we are considering the gravitational interaction: in that case, we get \(T < m _{\text{pl}}\) since \(G_x\) is related to \( G_N\) 
+% Suppose that we are considering the gravitational interaction: in that case, we get \(T < m _{\text{pl}}\) since \(G_x\) is related to \( G_N\) 
 
-\todo[inline]{What is the relation?}
-
-For the weak interaction, we have 
+% \todo[inline]{What is the relation?}
+For the weak interaction, \(G_x\) is called the Fermi constant \(G_F \sim (\SI{300}{GeV})^{-2}\):\footnote{This value can be  experimentally measured from weak interactions, but it is consistent with the masses of the mediators being of the order of \SI{100}{GeV}.} this yields the bound
 %
 \begin{align}
-    T < \qty(\frac{m_x}{\SI{100}{GeV}})^{4/3} \SI{}{MeV}
+T \lesssim \SI{1}{MeV}
 \,,
 \end{align}
 %
 which is why below \(\SI{1}{MeV}\) neutrinos are decoupled.
 
-Let us now consider the consequences of these decoupling conditions.
-First of all we look at the recombination of hydrogen.
-At very high temperatures, there are free electrons and free protons.
+\todo[inline]{Then Pacciani \cite[]{paccianiAppuntiCorsoPhysical2018} applies the formula to gravitation setting \(G_x = G\) to find that it decouples at \(T \sim m_P\), but the graviton is massless!}
+
+To summarize, interactions which are mediated by massless particles couple at a certain (high) temperature and are thereafter coupled.
+On the other hand, interactions which are mediated by massive particles couple at a certain (high) temperature, stay coupled for a while, and then decouple again at a relatively low temperature. 
+
+\section{Hydrogen recombination}
+
+% Let us now consider the consequences of these decoupling conditions.
+% First of all we look at the recombination of hydrogen.
+In the early universe, at \(z \sim\) a few \(\times 1000\), there were free electrons and free protons.
+The temperature had dropped below the binding energy of hydrogen, \SI{13.6}{eV}, quite a long time earlier, around \(z \sim \num{5e4}\), however as we will see in more detail the conditions were such that most hydrogen was still ionized. 
+
+Around \(z \sim 2000\) the process of recombination\footnote{The process \(e^{-} + p \to H + \gamma \) is known as ``recombination'' for historical reasons, although electrons and protons were not re-combining, since bound hydrogen could not have existed earlier in the history of the universe.}
+Then, around \(z \sim 1400 \divisionsymbol 1600\) \cite[table 9.1]{LucchinColes:2002} the process started really picking up, crossing the half-way point . 
+
 Protons first appeared in the universe as non-relativistic, at \(T \sim \SI{1}{MeV}\) while \(m_p \sim \SI{1}{GeV}\).
 
 At a certain point, it becomes possible to create neutral H atoms from these free particles.

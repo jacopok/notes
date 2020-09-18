@@ -151,112 +151,131 @@ With the numbers given earlier, we find \(z \sim 1120\): a very good approximati
 
 \section{Primordial nucleosynthesis}
 
-Let us describe the early universe, before the first nucleosynthesis.
-Important papers in this topic are by G. Gamow, and by Alpher, Bethe and Gamow.
+Already in the 1940s it was noticed by Alpher, Bethe as well as Gamow that the abundances of certain nuclides could not be explained if they were formed in stellar interiors alone. 
+Specifically, the issue is with the abundances of light elements: deuterium \(\ce{^{2}H}\), as well as \(\ce{^{3}He}\) and \(\ce{^{4}He}\), while heavier nuclides (with mass number \(A \geq 7\)) could not form in the early universe \cite[sec.\ 8.6.1]{LucchinColes:2002}.\footnote{Environments which allow their production (stellar interiors) have lower temperature but a higher density, since the main obstruction to their production is the absence of stable nuclides at \(A = 5\) and \(A= 8\) --- the environment needs to raise the odds of an unstable \ce{^{8}Be} nuclide colliding with an \(\alpha \) particle to form carbon before it decays.}
 
-Our hypotheses are:
+The most abundant of these light nuclides by far is \ce{^{4}He}, whose mass fraction is denoted as \(Y \approx \SI{25}{\percent}\), while its number fraction is approximately \SI{6}{\percent}. Our model will need to yield this many helium-4 nuclides after primordial nucleosynthesis. 
+
+A mechanism for the synthesis of these light nuclides in the early universe is needed. 
+% Let us describe the early universe, before the first nucleosynthesis.
+% Important papers in this topic are by G. Gamow, and by Alpher, Bethe and Gamow.
+
+We shall model this mechanism, under the following assumptions (which are, as far as we know, roughly verified):
 %
 \begin{enumerate}
-    \item the universe passed through a very high temperature phase, with \(T > \SI{e12}{K}\);
-    \item the universe is described by GR and SM;
-    \item the chemical potentials for the neutrinos \(\mu_{\nu }\) have certain upper bounds; 
-    \item there is no matter-antimatter separation (as in, ``bubbles'');
+    \item the universe passed through a very high temperature phase, with \(T > \SI{e12}{K}\), during which thermal equilibrium held;
+    \item the universe at this stage is described by General Relativity and the Standard Model of particle physics, and it is homogeneous and isotropic;
+    \item the chemical potentials for the neutrinos \(\mu_{\nu }\) have certain upper bounds, such that the number of neutrino types is approximately 3; 
+    \item there is no matter-antimatter separation (as in, antimattr ``bubbles'');
     \item there are no strong magnetic fields;
-    \item the number of exotic particles has a certain upper bound.
+    \item the number of exotic particles has a certain upper bound (it is small compared to the number of photons).
 \end{enumerate}
 
-There are magnetic fields in the universe, but they are not homogeneous and relatively weak.
-Exotic particles are predicted by certain unification theories, they are generically defined as ones which we have not observed yet.
 
-We have to explain the fact that we observe an excess of He-4 in the early universe: we define the yield 
+% There are magnetic fields in the universe, but they are not homogeneous and relatively weak.
+% Exotic particles are predicted by certain unification theories, they are generically defined as ones which we have not observed yet.
+
+% We have to explain the fact that we observe an excess of He-4 in the early universe: we define the yield 
 %
-\begin{align}
-  y \equiv \frac{m_{\ce{He-4}}}{m_b} > \num{.25}
-\,.
-\end{align}
+% \begin{align}
+%   y \equiv \frac{m_{\ce{He-4}}}{m_b} > \num{.25}
+% \,.
+% \end{align}
 
-In terms of particle number, the ratio is more like \num{.06}. 
-We do not produce Carbon or anything higher than it: the process which forms it is inefficient at high temperature, low density like the early universe.
-Higher \(Z\) elements are only produced in stars.
+% In terms of particle number, the ratio is more like \num{.06}. 
+% We do not produce Carbon or anything higher than it: the process which forms it is inefficient at high temperature, low density like the early universe.
+% Higher \(Z\) elements are only produced in stars.
 
-Helium-4 is produced but also destroyed by stars.
+% Helium-4 is produced but also destroyed by stars.
 
-The main channels in the early universe are: 
-
+The main formation channels in the early universe are: 
+%
 \begin{enumerate}
-    \item \(n+p \leftrightarrow d + \gamma \) (\(d\) denotes deuterium);
+    \item \(n+p \leftrightarrow d + \gamma \) (\(d= \ce{^{2}H}\) denotes deuterium);
     \item \(d + d \leftrightarrow \ce{^{3}He} + n\);
     \item \(\ce{^{3}He} + d \leftrightarrow \ce{^{4}He} + p\).
 \end{enumerate}
 
-There is no weak interaction here, unlike what happens in stars.
+Note that these processes, unlike the stellar ones, do not involve the weak interaction: neutrons and protons do not turn into each other.
 In stars, there are no free neutrons so this process is not possible.
 
-We cannot treat this properly, we only give a story.
-The slowest process of the three is the first, since it is heavily affected by photons: they destroy deuterium.
+The slowest process of the three is the first, since it is heavily affected by photons, which destroy deuterium.
+After we have produced deuterium, Helium-4 is readily produced.
+% We cannot treat this properly, we only give a story.
 
-The binding energy of deuterium is around \SI{2.2}{MeV}. After we have produced deuterium, Helium-4 is readily produced.
+% The binding energy of deuterium is around \SI{2.2}{MeV}.
 
-First of all, we need the neutron to proton ratio.
-We are working at energies of around \SI{1}{MeV}, so protons and neutrons are not relativistic anymore.
-This process takes place around three minutes after the beginning.
-For \(i = n, p\): 
+In order to find out how much deuterium we have, we need the proton-to-neutron ratio. 
+We are working at energies of around \SI{1}{MeV}, so protons and neutrons are not relativistic anymore; \emph{as long as they are in equilibrium} through weak processes both will obey Boltzmann statistics, so for \(i = n, p\): 
+% his process takes place around three minutes after the beginning.
 %
 \begin{align}
-  n_i = g_{i} \qty(\frac{m_i T}{2 \pi })^{3/2} \exp(\frac{\mu_i  m_i}{T})
+  n_i = g_{i} \qty(\frac{m_i T}{2 \pi })^{3/2} \exp(\frac{\mu_i - m_i}{T})
 \,,
 \end{align}
 %
-so their number ratio is around: 
+meaning that their number ratio is given by\footnote{We are neglecting the chemical potentials since, as explained by \textcite[sec.\ 8.6.2]{LucchinColes:2002}, as long as both weak and electromagnetic interactions are in chemical equilibrium the chemical potentials are forced to be zero by all the balance equations.}
+\todo[inline]{The explanation in \cite[]{LucchinColes:2002} is not the same as the one given by \textcite[]{Pacciani:2018}\dots I'm inclined to trust the former.}
 %
 \begin{align}
-  \frac{n}{p} \sim \exp(\frac{m_p- m_n}{T})
+  \frac{n_n}{n_p} \sim \exp(-\frac{m_n - m_p}{T})
 \,,
 \end{align}
 %
-where \(m_p - m_n \approx \SI{1.3}{MeV} \approx \SI{1.5e10}{K}\).
+where \(m_n - m_p \approx \SI{1.3}{MeV} \approx \SI{1.5e10}{K}\).
 
-We have the processes 
+The proton is the lightest baryon and is therefore stable; while the neutron is unstable: it can decay through the weak-interaction processes 
 \begin{enumerate}
-    \item \(n + \gamma _e \leftrightarrow p + e^{-}\);
+    \item \(n + \nu _e \leftrightarrow p + e^{-}\);
     \item \(n + e^{+} \leftrightarrow p + \overline{\nu _e} \);
     \item \(n \rightarrow p + e^{-} + \overline{\nu _e} \).
 \end{enumerate}
 
-We can replace the temperature in the exponential by \(T \rightarrow T_{d_\nu }\), the decoupling temperature of the neutrinos, since that is the moment around which this happpens.
+The neutron fraction keeps decreasing as \(T\) decreases and these processes keep happening, however as we have previously discussed at around \(T_{d \nu } \sim \SI{1}{MeV}\) neutrinos decouple, at which point the first two back-and-forth reactions stop, and we are left with \(n_n / n_p \approx \exp(- \Delta m / T_{d \nu }) \approx \num{.27}\). 
+% We can replace the temperature in the exponential by \(T \rightarrow T_{d_\nu }\), the decoupling temperature of the neutrinos, since that is the moment around which this happpens.
 
-So, we get around \(\exp(-1.5)\).
-We define: 
+We define the number fraction of neutrons, which is approximately
 %
 \begin{align}
-  X_n (t) \equiv \frac{n}{n+p} \sim \num{.17}
+  X_n (t) \equiv \frac{n_n}{n_n+n_p} \approx \num{.21}
 \,.
 \end{align}
 
-Later it will change because of \(\beta \) decay, going like: 
+The third reaction, which is \(\beta^{-} \) decay, keeps occurring since it does not require the presence of neutrinos, so after the decoupling of neutrinos the number fraction decays exponentially as:
 %
 \begin{align}
   X_n(t) = X_n(t_{d_\nu }) \exp( - \frac{t - t_{d_\nu }}{\tau _n})
 \,,
 \end{align}
 %
-where \(\tau _n = \log 2 \tau_{1/2}\), and this half-life is \(\tau_{1/2} \approx \num{10.5+-0.2}\).
+where \(\tau _n = \log 2 \tau_{1/2}\), and the half-life of neutrons is given by \(\tau_{1/2} \approx \SI{10.5+-0.2}{min}\).
+So, each minute neutrons stay unbound some of them are decaying; the process of deuterium is however rather fast as we shall see, so that not many of them are lost.
 
-The binding energy of deuterium is around \SI{2.2}{MeV}.
-Then, we proceed exactly like we did with hydrogen, and finally get 
+Let us then move to deuterium formation: its binding energy is around \(B_d = m_p + m_n - m_d \approx \SI{2.2}{MeV}\).
+We proceed exactly like we did with hydrogen: since \(\mu _p + \mu _n = \mu _d\), the deuterium number density can be expressed as 
+%
+\begin{align}
+n_d &= g_d \qty(\frac{m_d T}{2 \pi })^{3/2}  \exp(\frac{\mu _d - m_d}{T})  \\
+&= \frac{g_d}{g_p g_n} n_n n_p \qty(\frac{m_d}{m_n m_p})^{3/2} \qty(\frac{T}{2 \pi })^{-3/2} \exp( \frac{B_d}{T}) 
+\,,
+\end{align}
+%
+which, dividing through by \(n_b\) and using \(g_d = 3\) (since deuterium has spin 1) and \(g_p = g_n = 2\), can be expressed as:
 %
 \begin{subequations}
 \begin{align}
-  X_d &= \frac{3}{4} n_b X_n X_p \qty(\frac{m_d}{m_nm_p})^{3/2} \qty(\frac{T}{2 \pi })^{-3/2} \exp(\frac{B}{T}) \\
-  &= \frac{3}{4} \eta_0 X_n X_p \qty(\frac{m_d}{m_nm_p})
-  \frac{2 \zeta (3)}{\pi^2} (2 \pi )^{3/2} T^{3/2} \exp(\frac{B}{T})  \\
-  &\approx \frac{3}{4} \eta_0 X_n (1-X_n) \qty(\frac{m_d}{m_nm_p})^{3/2} \frac{2}{\pi^2} (2 \pi )^{3/2} \zeta (3) T^{3/2} \exp(\frac{B_d}{T})
+  X_d &= \frac{3}{4} n_b X_n X_p \qty(\frac{m_d}{m_nm_p})^{3/2} \qty(\frac{T}{2 \pi })^{-3/2} \exp(\frac{B_d}{T}) \\
+  &= \frac{3}{4} \eta_0 X_n X_p \qty(\frac{m_d}{m_nm_p})^{3/2}
+  \frac{2 \zeta (3)}{\pi^2} (2 \pi T)^{3/2}  \exp(\frac{B_d}{T})  
+  \marginnote{Substituted \(n_b = \eta_0 n_\gamma \).}\\
+  &\approx \frac{3}{4} \eta_0 X_n (1-X_n) \qty(\frac{m_d}{m_nm_p})^{3/2} \frac{2}{\pi^2} (2 \pi T)^{3/2} \zeta (3)  \exp(\frac{B_d}{T})
+  \marginnote{Approximated \(X_p + X_n \approx 1\), ignoring heavier nuclides.}
 \,,
 \end{align}
 \end{subequations}
-\todo[inline]{Check calculation.}
+% \todo[inline]{Check calculation.}
+\todo[inline]{Does approximating \(X_p + X_n \approx 1\) not ignore deuterium as well?}
 %
-which describes the \emph{deuterium bottleneck}, which is what impedes this process until photons are very diluted.
-As soon as photons are diluted enough, they stop bottlenecking.
+which describes the \emph{deuterium bottleneck}: similarly to hydrogen recombination, the presence of many photons for each nuclide keeps compound particles from forming for quite a long time, and this precludes the formation of Helium.
 
 \end{document}

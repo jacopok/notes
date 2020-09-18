@@ -1,72 +1,90 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Fri Nov 15 2019}
+\marginpar{Friday\\ 2019-11-15, \\ compiled \\ \today}
+% \section*{Fri Nov 15 2019}
 
-We start again from where we left off, with hydrogen recombination.
+% We start again from where we left off, with hydrogen recombination.
 
-We want to estimate the moment at which hydrogen first formed, which marks the point at which electrons and photons interact efficently: before, they interacted with Compton scattering which is very efficient; after they interact with hydrogen atoms in a way that is very inefficient.
+% We want to estimate the moment at which hydrogen first formed, which marks the point at which electrons and photons interact efficently: before, they interacted with Compton scattering which is very efficient; after they interact with hydrogen atoms in a way that is very inefficient.
 
-After this, then, we say that photons and matter are \emph{decoupled}.
+% After this, then, we say that photons and matter are \emph{decoupled}.
 
-The scattering cross section (for Compton?) goes like the inverse square of the mass.
+% The scattering cross section (for Compton?) goes like the inverse square of the mass.
 
-This means that the universe is not only \emph{globally},  but also \emph{locally} neutral.
+% This means that the universe is not only \emph{globally},  but also \emph{locally} neutral.
 
-This decoupling is what allows for star formation.
-Also, this is when the CMB starts.
-It is made of microwaves now, but it was higher earlier.
+% This decoupling is what allows for star formation.
+% Also, this is when the CMB starts.
+% It is made of microwaves now, but it was higher earlier.
 
-The phase space distribution of photons is scale-invariant since they have zero mass: so we can say that the photons' distribution \emph{looks} thermal, but it is actually not technically since there are no interactions anymore.
+% The phase space distribution of photons is scale-invariant since they have zero mass: so we can say that the photons' distribution \emph{looks} thermal, but it is actually not technically since there are no interactions anymore.
 
-However the photons travel freely and are perceived as thermal, and they give an almost perfect blackbody! The errorbars in a plot for it must be magnified by \num{e4} in order to be seen.
+% However the photons travel freely and are perceived as thermal, and they give an almost perfect blackbody! The errorbars in a plot for it must be magnified by \num{e4} in order to be seen.
 
-We have \(\Gamma_{\gamma } = n_e \sigma_T\), where \(\sigma _T\) is the Thompson cross section. 
-Neutrality implies \(n_e = n_p\).
-In principle we should account for Helium: a couple minutes after the BB He-4 nuclei started to form, but they made up only something like \(25\%\) of the mass, which means \(6\%\) of the number density: so we say that the number density of baryons is 
+% Neutrality implies \(n_e = n_p\).
+Let us now introduce the total baryon density, \(n_b\).
+In principle, we should account for Helium: as we will see, a couple of minutes after the Big Bang He-4 nuclei started to form, but they made up only something like \(25\%\) of the mass, which means \(6\%\) of the number density: so we ignore them and say that the number density of baryons is 
 %
 \begin{align}
   n_b = n_p + n_H
 \,.
 \end{align}
+
+% Our ansatz for the Boltzmann equation is \(\mu_e + \mu _p = \mu _H\) since photons have no chemical potential.
+
+% \(i\) denotes a generic one in \(e\), \(p\) and \(H\).
+% Then 
+% %
+% \begin{align}
+%   n_i = g_i\qty(\frac{m_i T}{2 \pi })^{3/2} \exp(\frac{\mu _i - m_i}{T})
+% \,,
+% \end{align}
+% %
+% we need to account for the chemical potential since it is the driver of this process.
+The quantity we want to describe is how much hydrogen is still ionized: this is given by the ratio of the free electrons to the total baryons, \(n_e / n_b\). This is called the \textbf{ionization fraction} \(X_e\), and is also equal to \(n_p / n_b\) since the universe must be globally neutral. 
+
+We expect to have \(X_e = 1\) in the early universe, and \(X_e = 0\) after the end of reionization.
+
+This is a good model to keep in mind although it is not precisely correct, since simulations show that there will be some \emph{residual ionization}: \(X_e\) only goes to around \(\num{e-4} \divisionsymbol \num{e-5}\) at the end of reionization.
+Also, in the modern universe a large fraction of the hydrogen has become ionized again, especially in the intergalactic medium; this is likely due to the energy injected into it by structure formation, which definitely breaks the approximation of global thermal and chemical equilibrium. 
+This is not a concern for us: here, we only wish to describe the processes in the interval \(1000 \lesssim z \lesssim 2000\). 
+ 
+%  naively we'd expect it to get to 0, but actually there remains some residual ionization, some free protons and electrons.
+% How much is \(n_e / n_b\)? the same as \(n_p / n_b\). We call this quantity \(X_e\), the ionization number.
+% A proper calculation would account for the non-equilibrium contributions.
+% However, we estimate the process as being in equilibrium: this will underestimate the number of electrons.
+
+% Today, most of the hydrogen is ionized (there is a ***-Peterson effect which shows this): this means that matter and radiation interact again.
+
+% This is the second important time in the history of the universe.
+
+% Can we see the early stars? Not really, we see galaxies only up to \(z \sim 10\), these stars would be at something like \(z \sim 30\)\dots
+% There might be more to this.
+
+% Inserting this and the Saha equation we get
+% So the number density of hydrogen atoms is given by: 
 %
-
-Our ansatz for the Boltzmann equation is \(\mu_e + \mu _p = \mu _H\) since photons have no chemical potential.
-
-\(i\) denotes a generic one in \(e\), \(p\) and \(H\).
-Then 
+% \begin{align}
+%   n_H = g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu_p - \mu_e - m_p - m_e + B}{T})
+% \,,
+% \end{align}
 %
-\begin{align}
-  n_i = g_i\qty(\frac{m_i T}{2 \pi })^{3/2} \exp(\frac{\mu _i - m_i}{T})
-\,,
-\end{align}
-%
-we need to account for the chemical potential since it is the driver of this process.
-How much is \(n_e / n_b\)? the same as \(n_p / n_b\). We call this quantity \(X_e\), the ionization number.
-We expect \(X_e = 1\) in the early universe, and at the end of the process it will diminish: naively we'd expect it to get to 0, but actually there remains some residual ionization, some free protons and electrons.
-A proper calculation would account for the non-equilibrium contributions.
-However, we estimate the process as being in equilibrium: this will underestimate the number of electrons.
-
-Today, most of the hydrogen is ionized (there is a ***-Peterson effect which shows this): this means that matter and radiation interact again.
-
-This is the second important time in the history of the universe.
-
-Can we see the early stars? Not really, we see galaxies only up to \(z \sim 10\), these stars would be at something like \(z \sim 30\)\dots
-There might be more to this.
-
-Let us come back to the calculation: 
+% and we can simplify things since \(m_p, m_H \gg m_e, B\), and substitute in the number densities for electrons and protons.
+The binding energy of the hydrogen is \(B=m_p+m_e-m_H=\SI{13.6}{eV}\), so instead of \(m_H\) we can write \(m_H = m_p+m_e-B\).
+Let us insert this expression and the Saha equation in the expression for the hydrogen number density; then we will recognize part of the expressions for the proton and electron number densities, which we can 
 %
 \begin{subequations}
 \begin{align}
   n_H &=  g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu _H - m_H}{T})  \\
   &= g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu_e + \mu _p - m_e - m_p + B}{T}) \\
-  &= \frac{g_H}{g_e g_p} \cancelto{}{\qty(\frac{m_H T}{2 \pi })^{3/2}}
+  &= \underbrace{\frac{g_H}{g_e g_p}}_{= 1} \cancelto{}{\qty(\frac{m_H T}{2 \pi })^{3/2}}
   \qty(\frac{m_e T}{2 \pi })^{-3/2}
   \cancelto{}{\qty(\frac{m_p T}{2 \pi })^{-3/2}}
   n_e n_p
   \exp(\frac{B}{T}) \\
   \frac{n_H}{n_e n_p} &=  \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T})  \\
-  \frac{n_b - n_p}{n_p^2} &= \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{B}{T}) 
+  \frac{n_b - n_p}{n_p^2} &= \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T}) 
 \,,
 \end{align}
 \end{subequations}
@@ -74,32 +92,60 @@ Let us come back to the calculation:
 which we can manipulate, using the following identity: 
 %
 \begin{align}
-  \frac{n_b - n_p}{n_p^2} = \frac{n_b \qty(1 - n_p / n_b)}{n_b^2 X_e^2} = \frac{1}{n_b} \frac{1 - X_e}{X_e}
+  \frac{n_b - n_p}{n_p^2} = \frac{n_b \qty(1 - n_p/ n_b)}{n_b^2 X_e^2} = \frac{1}{n_b} \frac{1 - X_e}{X_e^2}
 \,,
 \end{align}
 %
-where we use: \(n_e = n_p\), and the definition of \(X_e = n_p / n_b\). Then, we bring the \(n_b\) to the other side of the equation: we get
+where we use \(n_e = n_p\) and the definition of \(X_e = n_p / n_b\). Then, we bring the \(n_b\) to the other side of the equation and multiply and divide by the photon number density, which is given by
+%
+\begin{align} \label{eq:n-gamma}
+  n_{\gamma } = \frac{2 \zeta (3) T^3}{\pi^2}
+\,.
+\end{align}
+
+With this, we can insert the baryon fraction \(\eta_b\) (which is conserved, so we can use its current value):
 %
 \begin{subequations}
 \begin{align}
-  \frac{1- X_e}{X_e^2} &= \underbrace{\frac{n_b}{n_\gamma }}_{\eta_p} \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T})  n_\gamma  \\
-  &= \frac{4 \sqrt{2} \zeta (3)T^3}{\pi^2} \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T}) \eta _0  \\
-  &= \frac{4 \sqrt{2} \zeta (3)}{\sqrt{\pi }} \eta_0 \qty(\frac{T}{m_e})^{3/2} \exp(\frac{B}{T})
+  \frac{1- X_e}{X_e^2} &= \underbrace{\frac{n_b}{n_\gamma }}_{\eta_p} 
+  n_\gamma
+  \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T})   \\
+  &= \eta_0 \frac{2 \zeta (3)T^3}{\pi^2} \qty(\frac{m_e T}{2 \pi })^{-3/2} \exp(\frac{B}{T})   \\
+  &= \eta_0  \frac{4 \sqrt{2} \zeta (3)}{\sqrt{\pi }} \qty(\frac{T}{m_e})^{3/2} \exp(\frac{B}{T}) \label{eq:saha-equation-ionization}
 \,,
 \end{align}
 \end{subequations}
 %
-which means \(T \sim \SI{0.3}{eV}\), much lower than the ionization energy of Hydrogen.
+which we can solve numerically to find \(X_e\) as a function of temperature, or of redshift. The results are shown in figure \ref{fig:ionization}. 
 
-This does depend on the value we assign to \(\Omega_0\) and \(h\).
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/ionization}
+\caption{Ionization fraction as a function of redshift: a numerical solution of equation \eqref{eq:saha-equation-ionization}.}
+\label{fig:ionization}
+\end{figure}
 
-Approximately, it occurred somewhere around \(z \sim 1100\) (we conventionally say that recombination happened when \(X_e = 0.1\)).
+Let us try to understand what is going on. Roughly speaking, we get intermediate values for \(X_e\), like \(\num{.5}\), when the right-hand side is of order 1.
+If the right-hand side only contained the terms \((T/m_e)^{3/2}\exp(B/T)\) without any multiplicative factor in front (meaning, roughly, that we had \(\eta_0 \sim 1\)), then we would see recombination starting to occur already at \(z \sim 4000\) (\(T \sim \SI{1}{eV}\)), and by \(z \sim 2000\) if would almost be over.
+The reason this does not happen is that \(\eta_0 \) is \emph{very small}: there are a lot of photons, many more than the baryons, which are ready to dissociate any atoms which start to form.
 
-After recombination, we have the \emph{last scattering}: the moment at which the CMB was formed.
+So, hydrogen is truly formed only when \(T \sim \SI{0.3}{eV}\), much lower than its ionization energy.
 
-One Nobel prize this year was awarded to Jim Peebles, a friend of Sabino's: together with his PhD supervisor Dicke, he was the first to calculate this stuff.
+The estimates we gave do depend on the value we assign to \(\Omega_{0b}\) and \(h\), however within the currently accepted experimental ranges the main predictions do not vary substantially. 
 
-Peebles in 1964 (?) did this calculation both in GR and in Brahms-Dicke theory, a modified gravity theory.
+% Approximately, it occurred somewhere around \(z \sim 1100\) (we conventionally say that recombination happened when \(X_e = 0.1\)).
+The process of recombination is gradual, but we can choose a conventional redshift as, for example, the time when we reach an arbitrary threshold like \(X_e = \num{.1}\). 
+
+The interaction rate between photons and free electrons is \(\Gamma_{\gamma } = n_e \sigma_T c\), where \(\sigma _T\) is the Thompson cross section while \(n_e\) is the number density of free electrons, which can be estimated as \(n_e = n_b X_e \approx \rho_C \Omega_{b} X_e / m_p\). 
+% After recombination, we have the \emph{last scattering}: the moment at which the CMB was formed.
+Then, we can estimate the moment of the last scattering by checking the decoupling condition: \(\Gamma _\gamma < H\). 
+With the numbers given earlier, we find \(z \sim 1120\): a very good approximation to the currently accepted value \(z \sim 1089\)!
+
+% One Nobel prize this year was awarded to Jim Peebles, a friend of Sabino's: together with his PhD supervisor Dicke, he was the first to calculate this stuff.
+
+% Peebles in 1964 (?) did this calculation both in GR and in Brahms-Dicke theory, a modified gravity theory.
+
+\section{Primordial nucleosynthesis}
 
 Let us describe the early universe, before the first nucleosynthesis.
 Important papers in this topic are by G. Gamow, and by Alpher, Bethe and Gamow.

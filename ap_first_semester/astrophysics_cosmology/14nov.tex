@@ -295,59 +295,54 @@ On the other hand, interactions which are mediated by massive particles couple a
 In the early universe, at \(z \sim\) a few \(\times 1000\), there were free electrons and free protons.
 The temperature had dropped below the binding energy of hydrogen, \SI{13.6}{eV}, quite a long time earlier, around \(z \sim \num{5e4}\), however as we will see in more detail the conditions were such that most hydrogen was still ionized. 
 
-Around \(z \sim 2000\) the process of recombination\footnote{The process \(e^{-} + p \to H + \gamma \) is known as ``recombination'' for historical reasons, although electrons and protons were not re-combining, since bound hydrogen could not have existed earlier in the history of the universe.}
-Then, around \(z \sim 1400 \divisionsymbol 1600\) \cite[table 9.1]{LucchinColes:2002} the process started really picking up, crossing the half-way point . 
+Around \(z \sim 2000\) the process of recombination\footnote{The process \(e^{-} + p \to H + \gamma \) is known as ``recombination'' for historical reasons, although electrons and protons were not re-combining, since bound hydrogen could not have existed earlier in the history of the universe.} started.
+Then, around \(z \sim 1400 \divisionsymbol 1600\) \cite[table 9.1]{LucchinColes:2002} the process started really picking up, crossing the half-way point for the fraction of hydrogen which was ionized. 
 
-Protons first appeared in the universe as non-relativistic, at \(T \sim \SI{1}{MeV}\) while \(m_p \sim \SI{1}{GeV}\).
+At around \(z \sim 1100\) the fraction of ionized hydrogen became so low that the universe became transparent to radiation. Photons which were being constantly scattered reached their last scattering and then kept going; the temperature at that point was \(T \sim \SI{3000}{K}\), so now we see the CMB as a thermal distribution at a temperature of \(\SI{3000}{K} / (1 + z) \approx \SI{2.7}{K}\).
 
-At a certain point, it becomes possible to create neutral H atoms from these free particles.
-We will use a special case of the Boltzmann formula, which governs this and many other phenomena: the Saha equation.
+Now, let us get to the details of how this all happened. 
+% Protons first appeared in the universe as non-relativistic, at \(T \sim \SI{1}{MeV}\) while \(m_p \sim \SI{1}{GeV}\).
 
-The reaction is \(e + p \leftrightarrow H + \gamma \). We want to look at a density in phase space.
-We'd need all the scattering matrices, and all the phase space densities of the particles.
-The Saha equation is basically an ansatz at thermal and chemical equilibrium: \(\mu _e + \mu_p = \mu_H + \mu_\gamma \). The chemical potential \(\mu \) entered in the exponent of the FD and BE expressions.
+% At a certain point, it becomes possible to create neutral H atoms from these free particles.
+% We will use a special case of the Boltzmann formula, which governs this and many other phenomena: the Saha equation.
 
-We know that \(\mu_{\gamma }=0\).
-At thermal equilibrium the number density of the electrons is: 
+% The reaction is \(e + p \leftrightarrow H + \gamma \). 
+% We want to look at a density in phase space.
+In order to precisely treat the process \(e^{-} + p \leftrightarrow H + \gamma \) we would need all the scattering matrix elements, as well as all the phase space densities of the particles.
+This would allow us to treat a general distribution in phase space, even out of equilibrium.
+
+What we will do instead is to provide a bulk estimate, making use of the Saha equation, which assumes we are at both thermal and chemical equilibrium.
+It relates the chemical potentials of the particles as \(\mu _e + \mu_p = \mu_H + \mu_\gamma \); however we know that \(\mu_{\gamma }=0\), so we have 
 %
 \begin{align}
-  n_e = g_e \qty(\frac{m_e T}{2 \pi })^{3/2} \exp(\frac{\mu _e - m_e }{T}) 
-\,,
+\mu _e + \mu _p = \mu _H
+\,.
 \end{align}
-%
-and an exactly analogous formula holds for \(n_p\) and \(n_H\): for protons we have 
+
+% The chemical potential \(\mu \) entered in the exponent of the FD and BE expressions.
+Both electrons, protons and hydrogen atoms were nonrelativistic at this stage: therefore their number densities can be approximated with Boltzmann statistics (the low-energy approximation: equation \eqref{eq:boltzmann-statistics-number-density}),
 %
 \begin{align}
-    n_p = g_p \qty(\frac{m_p T}{2 \pi })^{3/2} \exp(\frac{\mu _p - m_p }{T}) 
+  n_e &= g_e \qty(\frac{m_e T}{2 \pi })^{3/2} \exp(\frac{\mu _e - m_e }{T})  \\
+  n_p &= g_p \qty(\frac{m_p T}{2 \pi })^{3/2} \exp(\frac{\mu _p - m_p }{T})  \\
+  n_H &= g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu _H - m_H }{T}) 
   \,.
 \end{align}
-Degeneracy is not an issue, since we are talking about cosmology.
 
-The number density of photons is given by 
-%
-\begin{align} \label{eq:n-gamma}
-  n_{\gamma } = \frac{2 \zeta (3) T^3}{\pi^2}
-\,,
-\end{align}
-%
+% Degeneracy is not an issue, since we are talking about cosmology.
+The statistical weights here are \(g_e = g_p = 2\) and \(g_H = 4\) \cite[pag.\ 194]{LucchinColes:2002}.\footnote{These numbers are given as fact here, they come from a quantum-mechanical study of the system.}
+Also, we will later need the fact that the universe being globally neutral implies \(n_e = n_p\). 
 
-The binding energy of the hydrogen is \(B=m_p+m_e-m_H=\SI{13.6}{eV}\). Instead of \(m_H\) we write \(+m_p+m_e-B\). So the number density of hydrogen atoms is given by: 
-%
-\begin{align}
-  n_H = g_H \qty(\frac{m_H T}{2 \pi })^{3/2} \exp(\frac{\mu_p - \mu_e - m_p - m_e + B}{T})
-\,,
-\end{align}
-%
-and we can simplify things since \(m_p, m_H \gg m_e, B\), and substitute in the number densities for electrons and protons.
-We get approximately
-%
-\begin{align}
-  n_H = \frac{g_H}{g_e g_p} n_e n_p \qty(\frac{m_e T}{2 \pi })^{-3/2}\exp(B/T)
-\,,
-\end{align}
-%
-but the universe is locally and globally neutral: \(n_e = n_p\), and \(n_b = n_p + n_H\). 
 
-We will see that most of the hydrogen we produce will not be when the temperature is of the order of the binding energy, but much later.
+% We get approximately
+% %
+% \begin{align}
+%   n_H = \frac{g_H}{g_e g_p} n_e n_p \qty(\frac{m_e T}{2 \pi })^{-3/2}\exp(B/T)
+% \,,
+% \end{align}
+% %
+% but the universe is locally and globally neutral: \(n_e = n_p\), and \(n_b = n_p + n_H\). 
+
+% We will see that most of the hydrogen we produce will not be when the temperature is of the order of the binding energy, but much later.
 
 \end{document}

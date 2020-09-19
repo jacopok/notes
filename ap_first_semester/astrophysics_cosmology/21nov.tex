@@ -23,89 +23,111 @@ The factor \(\Omega_{0b} h^2\) comes from the scaling of the baryon-to-photon ra
 
 % We want to understand why there is so much He-4 in the universe, since it is destroyed in stars! 
 Almost all the deuterium which is formed then turns into \ce{^{4}He}, so since those nuclei are as heavy as four neutrons, and two neutrons are needed to make each we can estimate that the helium mass fraction will be given by \(Y \approx 2 X_n \approx \num{.25}\). 
-\todo[inline]{Very rough calculation\dots the corrective factor of \num{.8} is kind of thrown in there}
+The calculation is quite rough, in order to do it properly we should use the Boltzmann equation. 
 
-This model fits observation as long as \(\num{.011} h^{-2}\leq \Omega_{0b} \leq \num{.25} h^{-2}\); most people agree that we are near the upper bound of this range. 
+\todo[inline]{Very rough calculation\dots the corrective factor of \num{.8} is kind of thrown in there, also I think using \(\exp(-1.5)\) instead of \(\exp(-1.3)\) helps nudging the number and hides just how rough this is}
 
-\todo[inline]{This is indirect evidence for dark energy: why?}
+% \todo[inline]{This is indirect evidence for dark energy: why?}
 
-The lifetime of the neutron, \(\tau_{1/2}\) is something that is also relevant, since it affects the baryon ratios. 
+This provides an experimental bound for many parameters: the lifetime of the neutron, for example, cannot be much shorter since otherwise too many would have decayed before forming deuterium. 
 
-The Gamow factor \(\Gamma \) is proportional to the Fermi coupling constant \(G_F^2\), which is connected to \(\tau_{1/2}\). 
+The reaction rate \(\Gamma \) for weak interactions, as we have discussed earlier, is given by \(\Gamma \sim G_F^2 T^5 \approx T^{5} / \tau _n\), where the Fermi coupling constant \(G_F\) is connected to the lifetime of the neutron \(\tau_n\) since that is also a weak-interaction process.
 
-Let us suppose we increase the lifetime of neutrons, \(\tau_{1/2}\). 
-This changes the moment at which we reach equation \(\Gamma \sim H\). 
+Then, the moment of decoupling \(\Gamma \sim H\) also constrains \(\tau _n\), since it happens at a temperature \(T_{d \nu } \sim G_F^{-2/3} m_P^{-1/3} \approx \tau_n^{4/3} m_P^{-1/3}\).\footnote{One might think that the lifetime of the neutron would be a well-established result in Earthly particle physics, but in fact there is a conflict between two different kinds of measurements \cite[]{wolchoverNeutronLifetimePuzzle}, so while the value is roughly known the error bars of these measurements do not overlap: this is the ``neutron lifetime puzzle''.}
+% Let us suppose we increase the lifetime of neutrons, \(\tau_{1/2}\). 
+% This changes the moment at which we reach equation \(\Gamma \sim H\). 
 
-Increasing the lifetime of neutrons decreases the amount of He-4 in the universe: less is produced. 
+Increasing the lifetime of neutrons decreases the amount of He-4 in the universe. 
 
-We know that 
+We know that the Hubble parameter is given by
 %
 \begin{align}
-  H^2 = \frac{8 \pi G}{3} \rho_r
+  H^2 = \frac{8 \pi G}{3} \underbrace{\frac{\pi^2}{30} g_{*}(T) T^4}_{\rho = \rho _r}
 \,,
 \end{align}
 %
-where \(G = 1 / m_p^2\) and \(\rho = \frac{\pi^2}{30} g_{*}(T) T^4\).
+so \(H(T) \sim \sqrt{g_* (T)}\): this means that if we add more particles to our model which are coupled in the \(\sim \SI{}{MeV}\) range, thus increasing \(g_*\) at that temperature, we also increase \(H\), which means that the moment at which \(\Gamma < H\) comes about earlier, meaning that we get more Helium. 
+This is very useful constraint on our models; for instance, any dark matter particle we hypothesize needs to not ``break baryogenesis''.
 
-If we fix the temperature, and change \(g_{*}\) (by adding degrees of freedom), then we get more He-4. 
+% If we fix the temperature, and change \(g_{*}\) (by adding degrees of freedom), then we get more He-4. 
 
-This gives us observational constraints on the additions of exotic particles to our theory, since that would change \(g_{*}\). 
-This bounds the number of neutrino families by \num{3.} something, so there cannot be more than \num{3} families of light neutrinos. 
+% This gives us observational constraints on the additions of exotic particles to our theory, since that would change \(g_{*}\). 
+% This bounds the number of neutrino families by \num{3.} something, so there cannot be more than \num{3} families of light neutrinos. 
 
-If gravitons are thermal, then they also contribute to radiation. 
+% If gravitons are thermal, then they also contribute to radiation. 
+
+Decreasing the baryon fraction \(\Omega_b\) inhibits the production of deuterium, since then there are more photons to disassociate them. 
+We find that the model fits observation as long as \(\num{.011} h^{-2}\leq \Omega_{0b} \leq \num{.25} h^{-2}\); most people agree that we are near the upper bound of this range.
+
+There is also another parameter, \(m_P \sim G^{-1/2}\): modified gravity theories often predict variations of the gravitational constant with time, but since this appears in our calculations we can constrain its value at that stage in the early universe.
 
 \section{Dark Matter dynamics}
 
-There is also another parameter in the Friedmann equation; it is \(m_P\): modified gravity theories often predict variations of the gravitational constant with time. 
+We have described how dark matter came to be accepted as a necessary component of the matter content of the universe, now we wish to understand what are its basic properties. 
 
-Dark matter has no relevant electromagnetic interactions: it only interacts gravitationally, and is able to cluster; dark energy, instead, is uniformly distributed. 
+Observationally, dark matter has no relevant electromagnetic interactions: in the low-redshift universe it only interacts gravitationally (it is \emph{decoupled}), and is able to cluster.
 
-We divide it into Hot and Cold dark matter: HDM and CDM. 
-There is also something called \emph{Warm} dark matter, which has intermediate properties.
+This allows us to distinguish it from dark energy, which instead is uniformly distributed. 
 
-In HDM, particles have very high thermal motion. They move fast, and tend to destroy gravitational potential wells in which they might settle by moving out of them, and thus decreasing the quantity of matter there. 
+Models of dark matter can be classified into \textbf{Hot and Cold dark matter}: HDM and CDM. 
+We can also have \emph{Warm} dark matter, which has intermediate properties.
 
-They do this on scales comparable to the maximum distance travelled by them: this is calculated as \(vt\), where \(v\) is their average thermal velocity, (and \(t\) is the age of the universe?). 
+In \textbf{HDM}, particles decoupled while they were ultrarelativistic, so they have very high thermal motion.
+They move fast, and tend to destroy gravitational potential wells in which they might settle by moving out of them, and thus decreasing the quantity of matter there. 
+Neutrinos were thought to be Dark Matter, and would have been classified as HDM. 
 
-The structures formed by these are of scales similar  to or larger than \(\num{e15} M_{\odot}\), but we observe smaller structures also! They were formed later, by fragmentation: this is the top-down approach. 
+They do this on scales comparable to the maximum distance travelled by them: this is calculated as \(vt\), where \(v\) is their average thermal velocity, and \(t\) is the age of the universe. 
 
-We also have a bottom-up approach, which is compatible with CDM. 
-
-Neutrinos were thought to be Dark Matter, and would have been hot. 
+This means that the structures formed in the presence of HDM are larger than \(\num{e15} M_{\odot}\); however this seems to conflict with observation, since we also see smaller structures!
+The hypothesis is then that they were formed later, by fragmentation: this is known as the \emph{top-down approach}. 
 
 The top-down approach, however, is falsified by the observation of high-redshift quasars combined with the scale of the anisotropies of the CMB: in order to account fo high-redshift small-scale structures (we have seen stars at \(z \sim 20\)!) we would have to increase the amplitude of the anisotropies to a scale which is not compatible to the anisotropies we see in the CMB. 
 
-Now, neutrinos are not useful for cosmology. 
+\textbf{CDM}, on the other hand, is dark matter which decoupled at a time when it was already nonrelativistic. 
+A \emph{bottom-up} approach to structure formation is compatible with the existence of CDM.
+This is the kind of dark matter which appears in the currently-accepted \(\Lambda CDM\) model of cosmology.
 
-We have \(\Gamma \sim T^{5}\), and \(\Gamma = H\): 
-\(T^{5} / \tau_{1/2} \sim T^2\) implies that \(\tau_{1/2} \sim T^{3}\). 
+% We also have a bottom-up approach, which is compatible with CDM. 
 
-The decouplig temperature for HDM is larger than the temperature at which they become nonrelativistic, which is of the order of the mass. 
+% Now, neutrinos are not useful for cosmology. 
 
-For CDM, instead, the decoupling temperature is \emph{smaller} than the temperature at which they become relativistic. 
+% We have \(\Gamma \sim T^{5}\), and \(\Gamma = H\): 
+% \(T^{5} / \tau_{1/2} \sim T^2\) implies that \(\tau_{1/2} \sim T^{3}\). 
 
-Now, we discuss the Boltzmann equation: there is an operator acting in phase space, the Liouville operator, which is equal to the collision operator.
+% The decouplig temperature for HDM is larger than the temperature at which they become nonrelativistic, which is of the order of the mass. 
+
+% For CDM, instead, the decoupling temperature is \emph{smaller} than the temperature at which they become relativistic. 
+
+In order to understand how Dark Matter evolves, let us introduce the main equation used to analyze non-equilibrium phenomena: the \textbf{Boltzmann equation}. It describes the evolution of the phase space distribution of particles, \(f\). Its compact form is:
 %
 \begin{align}
   \mathbb{L} [f] = \mathbb{C} [f]
 \,,
 \end{align}
 %
-where all the scattering operators live on the RHS. 
+where \(\mathbb{L}\) is the \emph{Liouville operator}, which is a total derivative of the phase space density with respect to changes in time, position as well as momentum; while \(\mathbb{C}\) is the \emph{collision operator}, which describes the effect (in terms of variation per unit time) on the phase space distribution of collisions between particles --- it is written in terms of scattering matrices. 
+% where all the scattering operators live on the RHS. 
 
-We start with a Newtonian description: the phase space has position, momentum and time as coordinates, and on it we define a density function \(f(\vec{q}, \vec{p}, t)\). 
+This basic form is quite general: it can be used both for a simple Newtonian calculation and to include general-relativistic and quantum-mechanical effects.
 
-The Einstein equations are blind to the momentum distribution, since \(T_{\mu \nu }\) does not depend on the momentum. We can say that all of the momentum has been marginalized. 
+We start with the Newtonian description: the phase space has position, momentum and time as coordinates, and a density function \(f(\vec{q}, \vec{p}, t)\) is defined on it. 
 
-We define the operator 
+% The Einstein equations are blind to the momentum distribution, since \(T_{\mu \nu }\) does not depend on the momentum.
+% We can say that all of the momentum has been marginalized. 
+
+The classical form of the Liouville operator is the \emph{convective derivative},
 %
 \begin{subequations}
 \begin{align}
-  \hat{\mathbb{L}} = \frac{D}{Dt} &= \pdv{}{t} + \dv{\vec{x}}{t} \cdot \nabla_x + \dv{\vec{p}}{t} \cdot \nabla_p   \\
+  \mathbb{L} = \frac{D}{Dt} &= \pdv{}{t} + \dv{\vec{x}}{t} \cdot \nabla_x + \dv{\vec{p}}{t} \cdot \nabla_p   \\
   &= \pdv{}{t} + \vec{v} \cdot \nabla_x + \frac{\vec{F}}{m} \cdot \nabla_p 
 \,. 
 \end{align}
 \end{subequations}
+
+% Applying this to a classical fluid yields the Navier-Stokes equations, as long as we distinguish the force term \(\vec{F}\) into forces proportional to volume and forces proportional to area. 
+This equation describes motion in much more detail than, say, the Navier-Stokes equations, since it allows for arbitrary momentum \emph{at each point} in space. 
+We can recover the N-S equations, as well as the energy and mass conservation equations, by taking \emph{moments} of the Boltzmann equation: we multiply it by \(m \vec{v}\), or \(m v^2 / 2\), or \(m\), and integrate in \(\dd[3]{p}\).
 
 In GR, we geometrize the gravitational force: it is included in the inertial motion of the particles. 
 

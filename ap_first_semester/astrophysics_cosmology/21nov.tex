@@ -82,6 +82,7 @@ This means that the structures formed in the presence of HDM are larger than \(\
 The hypothesis is then that they were formed later, by fragmentation: this is known as the \emph{top-down approach}. 
 
 The top-down approach, however, is falsified by the observation of high-redshift quasars combined with the scale of the anisotropies of the CMB: in order to account fo high-redshift small-scale structures (we have seen stars at \(z \sim 20\)!) we would have to increase the amplitude of the anisotropies to a scale which is not compatible to the anisotropies we see in the CMB. 
+This does not mean that HDM cannot exist, but it cannot make up most of the observed DM density. 
 
 \textbf{CDM}, on the other hand, is dark matter which decoupled at a time when it was already nonrelativistic. 
 A \emph{bottom-up} approach to structure formation is compatible with the existence of CDM.
@@ -129,108 +130,122 @@ The classical form of the Liouville operator is the \emph{convective derivative}
 This equation describes motion in much more detail than, say, the Navier-Stokes equations, since it allows for arbitrary momentum \emph{at each point} in space. 
 We can recover the N-S equations, as well as the energy and mass conservation equations, by taking \emph{moments} of the Boltzmann equation: we multiply it by \(m \vec{v}\), or \(m v^2 / 2\), or \(m\), and integrate in \(\dd[3]{p}\).
 
-In GR, we geometrize the gravitational force: it is included in the inertial motion of the particles. 
-
-The relativistic version of this is 
+In the Newtonian case, the force term \(\vec{F}\) includes gravity, which in GR instead is ``geometrized'', meaning that it is included in the inertial motion of the particles. 
+The relativistic version of the Liouville operator is written in terms of position \(x^{\alpha }\) and momentum \(p^{\alpha } = \dv*{x^{\alpha }}{\lambda }\)
 %
 \begin{align}
-  \hat{\mathbb{L}} = p^{\alpha } \partial_{\alpha } - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }}
+\mathbb{L} 
+&= \dv{x^{\alpha }}{\lambda } \pdv{}{x^{\alpha }} 
++ \dv{p^{\alpha }}{\lambda } \pdv{}{p^{\alpha }} \\ 
+&= p^{\alpha } \partial_{\alpha } - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }}
 \,.
 \end{align}
-%
 
-This is because \(p^{\alpha } = \dv*{x^{\alpha }}{\lambda }\) satisfies the geodesic equation: 
+\todo[inline]{Is the momentum supposed to be dimensionless or not? Setting \(\dv*{x^{\alpha }}{\lambda } = p^{\alpha }\) as well as \(p^2= m^2\) seems contradictory\dots}
+
+This is because, since any particle must move along geodesics, \(p^{\alpha }\) must satisfy the geodesic equation: 
 %
 \begin{align}
-  \dv{p^{\alpha }}{\lambda } + \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma }=0
-\,,
+\frac{Dp^{\alpha }}{Dt } =
+\dv{p^{\alpha }}{\lambda } + \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma }=0
+\,.
 \end{align}
-%
-or \(\frac{Dp^{\alpha }}{Dt } =0\). We can then write down the Christoffel bit of the geodesic equation instead of the derivative \(\dv*{p^{\alpha }}{\lambda }\). This is because, \emph{on shell}: 
+
+% We can then write down the Christoffel bit of the geodesic equation instead of the derivative \(\dv*{p^{\alpha }}{\lambda }\).
+We require that the particles are \emph{on shell}:
 %
 \begin{align}
   g^{\alpha \beta } p_{\alpha } p_{\beta } = m^2
-\,. 
-\end{align}
-
-We want to describe the \emph{abundance} of dark matter, in phase space: the number of DM particle per EM-interacting particle. 
-
-We then make the Liouville operator explicit, with the Christoffel symbols of the RW metric. Acting on \(f\), we get 
-%
-\begin{align}
-  \hat{\mathbb{L}}  = p^{0} \partial_t f - \frac{\dot{a}}{a} \abs{\vec{p}}^2 \pdv{f}{E}
 \,,
 \end{align}
 %
-which we will not prove. 
+meaning that we are neglecting the uncertainty principle and our discussion is relativistic but classical (not fully quantum-mechanical).
 
-The derivative with respect to the momentum must be \(\partial_{p^{0}}\),
+% We want to describe the \emph{abundance} of dark matter, in phase space: the number of DM particle per EM-interacting particle. 
 
-\todo[inline]{because of isotropy?}
-
-the Christoffel symbols of RW are 
+Let us make this explicit, using the Christoffel symbols of the FLRW metric and assuming isotropy and homogeneity (which together imply that the phase space density \(f\) only depends on \(t\) and \(p^{0} = E\)): many terms vanish, and we are left with
+% Acting on \(f\), we get 
 %
 \begin{align}
-  \Gamma^{0}_{\beta \gamma } = \frac{\dot{a}}{a} \delta_{\beta \gamma }
-\,.
+\mathbb{L}[f]  
+= p^{0} \partial_{t}f - \Gamma^{0}_{ij} p^{i} p^{j} \pdv{f}{E}
+= E \partial_t f - \frac{\dot{a}}{a} \abs{\vec{p}}^2 \pdv{f}{E}
+\,,
 \end{align}
 %
-Recall the definition of the number density 
+% which we will not prove. 
+% The derivative with respect to the momentum must be \(\partial_{p^{0}}\),
+% \todo[inline]{because of isotropy?}
+since the relevant Christoffel symbols (in Cartesian coordinates) are 
+%
+\begin{align}
+  \Gamma^{0}_{ij } = \frac{\dot{a}}{a} \delta_{ij }
+\,.
+\end{align}
+
+So, we can write the Boltzmann equation as 
+%
+\begin{align}
+\pdv{f}{t} - \frac{\dot{a}}{a} \frac{p^2}{E} \pdv{f}{E} = \frac{\mathbb{C} [f]}{E}
+\,.
+\end{align}
+
+% so in the end the equation becomes: 
+% %
+% \begin{align}
+%   \hat{\mathbb{L}} = \dot{n} + 3 \frac{\dot{a}}{a} n 
+% \,. 
+% \end{align}
+% %
+
+% % Conventionally we divide by \(p^{0}\): we get for the Boltzmann equation: 
+% %
+% \begin{align}
+%   \pdv{f}{t} - \frac{\dot{a}}{a } \frac{p^2}{E} \pdv{f}{E} = \frac{1}{E} \hat{\mathbb{C}} [f]
+% \,.
+% \end{align}
+
+Let us now do what is also done in the classical case and integrate in \(\dd[3]{\vec{p}}\): we will lose detail in the description but gain in computability.
+First, recall the definition of the number density from the phase space distribution:
 %
 \begin{align}
   n(t) = \frac{g}{(2\pi )^3} \int  \dd[3]{\vec{p}} f(\abs{\vec{p}}, t) 
 \,,
 \end{align}
 %
-so in the end the equation becomes: 
+which appears in the first term if we integrate the Boltzmann equation (also multiplying by \(g / (2 \pi )^3\)):
 %
 \begin{align}
-  \hat{\mathbb{L}} = \dot{n} + 3 \frac{\dot{a}}{a} n 
-\,. 
-\end{align}
-%
-
-Conventionally we divide by \(p^{0}\): we get for the Boltzmann equation: 
-%
-\begin{align}
-  \pdv{f}{t} - \frac{\dot{a}}{a } \frac{p^2}{E} \pdv{f}{E} = \frac{1}{E} \hat{\mathbb{C}} [f]
-\,.
-\end{align}
-
-Now we integrate in \(\dd[3]{\vec{p}}\). We get 
-%
-\begin{align}
-  \pdv{n}{t} - \frac{\dot{a}}{a } \int  \dd[3]{\vec{p}} \frac{p^2}{E} \dv{f}{E} = \frac{g }{(2\pi )^3} \int  \dd[3]{p} \frac{1}{E} \mathbb{C} [f]  
+  \pdv{n}{t} - \frac{g}{(2 \pi )^3} \frac{\dot{a}}{a } \int  \dd[3]{\vec{p}} \frac{p^2}{E} \dv{f}{E} = \frac{g }{(2\pi )^3} \int  \dd[3]{p} \frac{1}{E} \mathbb{C} [f]  
 \,.
 \end{align}
 %
-More properly, we are doing \(\mathbb{L} \expval{f}\). 
+% More properly, we are doing \(\mathbb{L} \expval{f}\). 
 
-We manipulate: 
+The number density actually also appears in the second term: we can manipulate it as
 %
 \begin{subequations}
 \begin{align}
   \int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} 
-  &= 2 \int \dd[3]{p} p^2 \pdv{f}{E^2} \\
-  = 2 \int \dd[3]{p} p^2 \pdv{f}{p^2} 
-  &= \int \dd[3]{p} p \pdv[]{f}{p} \\
+  &= 2 \int \dd[3]{p} p^2 \pdv{f}{E^2} 
+  = 2 \int \dd[3]{p} p^2 \pdv{f}{p^2}  \\
+  &= \int \dd[3]{p} p \pdv[]{f}{p} 
   = 2 \pi \int_{0}^{ \infty } \dd{p} p^3 \pdv{f}{p} 
-  &= -3 \int \dd[3]{p} f
+  = -3 \int \dd[3]{p} f = -3n \frac{(2 \pi )^3}{g}
 \,.
 \end{align}
 \end{subequations}
-%
 
 Here, we integrated by parts in the second to last step, and set to zero the boudary term \(4 \pi p^3 f\), calculated from 0 to infinity, since at \(0\) we have \(p=0\), and at (momentum) infinity we have \(f=0\).
 
-So, we can see that the LHS is equal to \(\dot{n} + 3 \dot{a}n/a \): so we find 
+So, we can see that the LHS is equal to \(\dot{n} + 3 \dot{a}n/a \), and we have the \textbf{cosmological Boltzmann equation}
 %
 \begin{align}
   \dot{n} + 3 \frac{\dot{a}}{a} n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{1}{E} \hat{\mathbb{C}} [f]
 \,.
 \end{align}
 
-This is the cosmological version of the Boltzmann equation. 
+% This is the cosmological version of the Boltzmann equation. 
 
 We model the RHS as something like 
 %

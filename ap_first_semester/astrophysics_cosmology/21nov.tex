@@ -86,7 +86,15 @@ This does not mean that HDM cannot exist, but it cannot make up most of the obse
 
 \textbf{CDM}, on the other hand, is dark matter which decoupled at a time when it was already nonrelativistic. 
 A \emph{bottom-up} approach to structure formation is compatible with the existence of CDM.
-This is the kind of dark matter which appears in the currently-accepted \(\Lambda CDM\) model of cosmology.
+This is the kind of dark matter which appears in the currently-accepted \(\Lambda\)CDM model of cosmology.
+
+Although it is the best model to date, there are also issues with CDM, which are current research topics.
+Dark matter is distributed in \emph{halos}, gravitationally-bound regions which contain dark matter and are currently decoupled from cosmic expansion.
+
+One issue is that simulations predict small-scale halos in the larger ones, which are however not observed.
+Also, the density profiles from simulations do not seem to match what is observed: they have a cusp in the center of the halo, while observations suggest that density profiles are flat in the center.
+
+There are many proposed solutions to these problems: for example, dark matter could self-interact in ways other than gravitational, or it could be warm.
 
 % We also have a bottom-up approach, which is compatible with CDM. 
 
@@ -99,6 +107,8 @@ This is the kind of dark matter which appears in the currently-accepted \(\Lambd
 
 % For CDM, instead, the decoupling temperature is \emph{smaller} than the temperature at which they become relativistic. 
 
+\subsection{The Boltzmann equation and decoupling}
+
 In order to understand how Dark Matter evolves, let us introduce the main equation used to analyze non-equilibrium phenomena: the \textbf{Boltzmann equation}. It describes the evolution of the phase space distribution of particles, \(f\). Its compact form is:
 %
 \begin{align}
@@ -108,6 +118,7 @@ In order to understand how Dark Matter evolves, let us introduce the main equati
 %
 where \(\mathbb{L}\) is the \emph{Liouville operator}, which is a total derivative of the phase space density with respect to changes in time, position as well as momentum; while \(\mathbb{C}\) is the \emph{collision operator}, which describes the effect (in terms of variation per unit time) on the phase space distribution of collisions between particles --- it is written in terms of scattering matrices. 
 % where all the scattering operators live on the RHS. 
+In general, we should consider the phase space distribution of all the particle species, writing an equation for each of theses \(f_i\); now we will treat a single particle species for simplicity. 
 
 This basic form is quite general: it can be used both for a simple Newtonian calculation and to include general-relativistic and quantum-mechanical effects.
 
@@ -227,18 +238,19 @@ The number density actually also appears in the second term: we can manipulate i
 \begin{subequations}
 \begin{align}
   \int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} 
-  &= 2 \int \dd[3]{p} p^2 \pdv{f}{E^2} 
-  = 2 \int \dd[3]{p} p^2 \pdv{f}{p^2}  \\
+  &= 2 \int \dd[3]{p} p^2 \pdv{f}{(E^2)} 
+  = 2 \int \dd[3]{p} p^2 \pdv{f}{(p^2)}  \marginnote{\(\dd{(E^2)} = 2 E \dd{E}\) and similarly for \(\dd{(p^2)}\).}\\
   &= \int \dd[3]{p} p \pdv[]{f}{p} 
-  = 2 \pi \int_{0}^{ \infty } \dd{p} p^3 \pdv{f}{p} 
+  = 4 \pi \int_{0}^{ \infty } \dd{p} p^3 \pdv{f}{p}  \\
+  &= \eval{4 \pi p^3 f}_{0}^{\infty } - 4 \pi \int_{0}^{\infty } \dd{p} 3 p^2 f 
   = -3 \int \dd[3]{p} f = -3n \frac{(2 \pi )^3}{g}
 \,.
 \end{align}
 \end{subequations}
 
-Here, we integrated by parts in the second to last step, and set to zero the boudary term \(4 \pi p^3 f\), calculated from 0 to infinity, since at \(0\) we have \(p=0\), and at (momentum) infinity we have \(f=0\).
+The boundary term vanishes since at \(0\) we have \(p=0\), and at (momentum) infinity we have \(f=0\) (since otherwise the energy would diverge). We are also moving back and forth between integrals in \(\dd[3]{p}\) and in \(\dd{p}\) times \(4 \pi \), which we can do because of isotropy.
 
-So, we can see that the LHS is equal to \(\dot{n} + 3 \dot{a}n/a \), and we have the \textbf{cosmological Boltzmann equation}
+So, we can see that the left-hand side is equal to \(\dot{n} + 3 \dot{a}n/a \), and we have the \textbf{cosmological Boltzmann equation}
 %
 \begin{align}
   \dot{n} + 3 \frac{\dot{a}}{a} n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{1}{E} \hat{\mathbb{C}} [f]
@@ -247,16 +259,32 @@ So, we can see that the LHS is equal to \(\dot{n} + 3 \dot{a}n/a \), and we have
 
 % This is the cosmological version of the Boltzmann equation. 
 
-We model the RHS as something like 
+Right away we can see that this makes sense in the decoupling limit: if there are no collisions the right-hand side must vanish, so we are left with 
 %
 \begin{align}
-  \hat{\mathbb{C}}[f] = \Psi - \expval{\sigma v } n^2
+\dot{n} + 3 \frac{\dot{a}}{a} n = \dv{}{t} \qty(n a^3) = 0
 \,,
 \end{align}
 %
-where we have \(\Gamma_A = \expval{\sigma v} n\) times \(n\), where \(\Gamma \) is the rate of annihilation. 
+meaning that \(n \propto a^{-3}\): this is the usual scaling of the number density, so our approach is working. 
 
-At equilibrium the LHS is 
-equal to zero: so we can write \(\Psi = \expval{\sigma v} n^2 _{\text{eq}}\), and the RHS becomes \(\expval{\sigma v} \qty(n^2 _{\text{eq}} - n^2)\).
+Now we need to understand what the right-hand side looks if particle species are coupled. This is difficult in general, we will give an expression using ``bulk'' parameters:
+%
+\begin{align}
+  \frac{g}{(2 \pi )^3} \int \frac{ \dd[3]{p}}{E} \hat{\mathbb{C}}[f] 
+  = \Psi - \Gamma_A n
+  = \Psi - \expval{\sigma v } n^2
+\,,
+\end{align}
+%
+where \(\Psi \) is the rate of creation of particles per unit volume, while \(\Gamma_A\) is the rate of annihilation. Note that \(\Psi \) has the dimensions \SI{}{s^{-1} m^{-3}}, while \(\Gamma _A\) has the dimensions \SI{}{s^{-1}}, so it needs to be multiplied by \(n\) in order to be dimensionally consistent. 
+Physically speaking, the reason the term has that form is that the rate of annihilation must be proportional to the number density of particles there are at the moment.
+
+The annihilation rate is found in terms of the cross section of the process, which we must average over all the momentum distribution of the particles: this is the reason for the appearance of \(\expval{\sigma v}\).
+
+% where we have \(\Gamma_A = \expval{\sigma v} n\) times \(n\), where \(\Gamma \) is the rate of annihilation. 
+
+At equilibrium, the left-hand side is equal to zero. The number density will be given by some equilibrium value, \(n _{\text{eq}}\): inserting this in the right-hand side, which must also vanish, we find \(\Psi = \expval{\sigma v} n^2 _{\text{eq}}\).
+This result can then be used in general: the right-hand side is written as \(\expval{\sigma v} \qty(n^2 _{\text{eq}} - n^2)\).
 
 \end{document}

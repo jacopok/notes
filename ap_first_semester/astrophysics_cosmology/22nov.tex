@@ -255,16 +255,23 @@ Qualitatively, we find that there is a very significant dependence on the mass o
 
 \section{Stellar formation}
 
-% Dark matter is collisionless, however it is not \emph{really}: the censorship theorem says that it cannot actually collapse into a naked singularity. 
+% Dark matter is collisionless, however it is not \emph{really}: the censorship theorem says that it cannot actually collapse into a naked singularity.
+We will now discuss the formation of stars, which started happening at a redshift \(z \sim 20\).
+We shall do so in a Newtonian approximation, neglecting the expansion of the universe --- later we will discuss how cosmology affects this.
 
-A star is a sphere of matter, usually baryonic matter, characterized by a density \(\rho (r)\): the mass enclosed in a radius \(r\) is 
+A star is a gravitationally-bound sphere of plasma, inside which fusion occurs. Stars form from the gravitational collapse of instabilities, which is followed by an increase in temperature and pressure from the release of gravitational energy. 
+
+We will model this through simple assumptions, since they already give a good picture of what this collapse looks like. Two forces are at play: gravity and pressure.
+As we will see, the gravitational force initially dominates and compresses the material up to a certain point, at which the pressure prevents it from going further.
+
+We start with a spherically symmetric region of baryonic matter, characterized by a density \(\rho (r)\): the mass enclosed in a radius \(r\) is 
 %
 \begin{align}
   m(r) = \int_{0}^{r} 4 \pi \widetilde{r}^2 \rho (\widetilde{r}) \dd{\widetilde{r}}
 \,.
 \end{align}
 
-The gravitational acceleration can be calculated from Gauss' theorem: 
+The modulus of the gravitational acceleration of the material at a radial coordinate \(r\) can be calculated from Gauss' theorem: 
 %
 \begin{align}
   g(r) = \frac{G m(r)}{r^2}
@@ -272,64 +279,68 @@ The gravitational acceleration can be calculated from Gauss' theorem:
 \end{align}
 %
 
-Let us consider a small volume, with its enclosed mass \(\Delta M = \rho (r) \Delta A \Delta r\). It can contrast the inward force due to gravity if there is a differential pressure. 
-
-Let us denote \(P\) as the pressure at the inner surface, and \(P + \Delta P\) the pressure at the outer surface. Then,
+Let us now consider a spherical shell at a radius \(r\), with its enclosed mass \(\Delta M = \rho (r) \Delta A \Delta r\), where \(\Delta A = 4 \pi r^2\).
+% It can contrast the inward force due to gravity if there is a differential pressure. 
+Let us denote \(P\) as the pressure at the inner surface, and \(P + \Delta P\) the pressure at the outer surface. Then, the net force on the surface is given by
 %
 \begin{align}
 \qty(P + \Delta P) \Delta A - P \Delta A 
 = \qty(P(r) + \dv{P}{r}\Delta r) \Delta A - P(r) \Delta A 
 = \dv{P}{r} \Delta A \Delta r
+= \dv{P}{r} \frac{\Delta M}{\rho (r)}
 \,.
 \end{align}
 
-The  minus sign in what follows is since the force is inward: 
-%
-\begin{align}
-  - \Delta M \ddot{r} = \Delta M g(r) + \dv{P}{r} \Delta r \Delta A
-\,.
-\end{align}
+Note that this is an inward force if \(\Delta P\) is positive (and so \(\dv*{P}{r}\) also is), since then there is more pressure outside than inside. 
 
-The equation of motion is 
+% The  minus sign in what follows is since the force is inward: 
+The equation of motion of the spherical shell is given by \(ma = F\):
 %
 \begin{align}
-  - \ddot{r} = g(r) + \frac{1}{\rho (r)} \dv{P}{r}
+  - \Delta M \ddot{r} &= \Delta M g(r) + \dv{P}{r} \frac{\Delta M}{\rho (r)} \\
+  - \ddot{r} &= \frac{G m(r)}{r^2} + \frac{1}{\rho (r)} \dv{P}{r} 
 \,,
 \end{align}
 %
-so we see that the pressure gradient must have a minus sign. 
+where the minus sign comes from the two forces are positive if they are directed inward.
+This means that, in order to achieve equilibrium (\(\ddot{r} = 0\)), the pressure gradient \(\dv*{P}{r} \) must be negative, since \(m(r)\) can never be.
 
-If the internal energy is used up to do internal (chemical, nuclear) work, then it cannot support the star anymore, and it then collapses. 
+% If the internal energy is used up to do internal (chemical, nuclear) work, then it cannot support the star anymore, and it then collapses. 
+Now we shall give two estimates about stellar formation: the first is the \textbf{free-fall timescale}, in which we ignore pressure forces in order to ballpark the time taken for the matter to fall onto itself.
 
-Usually, stars start from the Jeans phenomenon: dark matter and baryons collapse under their own weight. 
+Then, we will study the equilibrium configuration of the star, in order to understand what are the conditions under which it is actually gravitationally bound (that is, with negative total energy).
 
-Let us start at the decoupling of matter and radiation, something like \(z = 1100\).
+% Usually, stars start from the Jeans phenomenon: dark matter and baryons collapse under their own weight. 
 
-The clouds of matter collapse freely up to the moment at which their internal pressure starts to slow them down. Then, we get the necessary conditions for the fusion of Hydrogen. 
+% Let us start at the decoupling of matter and radiation, something like \(z = 1100\).
 
-During freefall, we do not have a pressure gradient, so we have 
+% The clouds of matter collapse freely up to the moment at which their internal pressure starts to slow them down. Then, we get the necessary conditions for the fusion of Hydrogen. 
+
+\subsection{The freefall timescale}
+
+We are ignoring pressure (or, equivalently, assuming that it is constant), so the equation of motion reads
 %
 \begin{align}
   - \ddot{r} = g(r)
 \,.
 \end{align}
 
-It is not generally the case, but let us suppose that the collapse is \emph{orderly}, the interior collapses before the outer layers. 
-We have to account for energy conservation: the total energy when our test shell is at a radius \(r\) is conserved as \(r\) changes. If the energy (per unit mass) is zero at infinity we have 
+This will not generally be the case, but let us suppose that the collapse is \emph{orderly}: the interior collapses before the outer layers. 
+
+We use the energy integral instead of directly solving the differential equation, that is, we impose energy conservation.
+% We have to account for energy conservation: the total energy when our test shell is at a radius \(r\) is conserved as \(r\) changes. If the energy (per unit mass) is zero at infinity we have 
+Computing the total energy (kinetic plus potential) at the initial radius of the cloud, \(r_0 \) (at which the gas is stationary), and at a radius \(r\) we get 
 %
 \begin{align}
-  \cancelto{}{E _{\text{tot}} (r_0 )} - \frac{G m_0 }{r_0 } = \frac{1}{2} \qty(\dv{r}{t})^2 - \frac{Gm_0 }{r}
-\,,
+  - \frac{G m_0 }{r_0 } &= \frac{1}{2} \qty(\dv{r}{t})^2 - \frac{Gm(r) }{r} \\
+  \frac{1}{2} \qty(\dv{r}{t})^2 &= G m_0 \qty( \frac{1}{r} - \frac{1}{r_0 })
+\,.
 \end{align}
-%
-therefore 
-%
-\begin{align}
-  \frac{1}{2} \qty(\dv{r}{t})^2= G m_0 \qty(r^{-1} - r_0^{-1})
-\,. 
-\end{align}
-%
-What is the freefall time? we take \(\dv*{t}{r}\) from the equation an integrate it from \(r_0 \) to \(0\)
+
+This way, we have found a first-order ODE instead of a second-order one.
+
+We can now directly compute the freefall time by integrating from \(r_0 \) to \(r\):
+% What is the freefall time? we take \(\dv*{t}{r}\) from the equation an integrate it from \(r_0 \) to \(0\)
 %
 \begin{align}
   t _{\text{free fall}} =  \int_{r_0 }^{0} \dd{r} \dv{t}{r}

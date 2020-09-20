@@ -4,194 +4,258 @@
 \marginpar{Friday\\ 2019-11-22, \\ compiled \\ \today}
 % \section*{Fri Nov 22 2019}
 
-Yesterday we arrived at the following equation: 
+This means that the equation reads
 %
 \begin{align}
-  \dot{n} + 3 \frac{\dot{a}}{a} n = \Psi - \expval{\sigma_A v} n^2
-\,,
-\end{align}
-%
-where the term \(\Psi \) is the source of new particles, while the next term accounts for the annihilation of particles. 
-
-Under decoupling, the equation reduces to 
-%
-\begin{align}
-  \dot{n} + 3 \frac{\dot{a}}{a} n = 0 \implies \dv{}{t} \qty(n a^3) = 0 
+  \dot{n} + 3 \frac{\dot{a}}{a} n = \expval{\sigma_A v} \qty(n _{\text{eq}}^2 -  n^2)
 \,.
 \end{align}
 %
+% where the term \(\Psi \) is the source of new particles, while the next term accounts for the annihilation of particles. 
 
-Under equilibrium, \(\Gamma > H\).
+% Under decoupling, the equation reduces to 
+% %
+% \begin{align}
+%   \dot{n} + 3 \frac{\dot{a}}{a} n = 0 \implies \dv{}{t} \qty(n a^3) = 0 
+% \,.
+% \end{align}
+% %
 
-Therefore \(\Psi = \expval{\sigma _A v} n^2 _{\text{eq}}\). 
-Recall that the \(\Gamma \) of annihilation is equal to \(\Gamma  = \expval{\sigma _A v} n\). 
+% Under equilibrium, \(\Gamma > H\).
 
-If the timescale of the collisions is longer than the age of the universe, \(\Gamma < H\), then once again we have \(a^3n = \const\). 
+% Therefore \(\Psi = \expval{\sigma _A v} n^2 _{\text{eq}}\). 
+% Recall that the \(\Gamma \) of annihilation is equal to \(\Gamma  = \expval{\sigma _A v} n\). 
 
-We can see thermal \emph{relics}, thermal distributions of objects which are not coupled anymore. 
+% If the timescale of the collisions is longer than the age of the universe, \(\Gamma < H\), then once again we have \(a^3n = \const\). 
 
-We define 
+% We can see thermal \emph{relics}, thermal distributions of objects which are not coupled anymore. 
+
+Since the number density \(n\) itself is not conserved, we define the \emph{comoving} number density, which is conserved if there is equilibrium
 %
 \begin{align}
   n_C = n \qty(\frac{a}{a_0 })^3
 \,,
 \end{align}
 %
-so we can simplify the expression: 
+for some arbitrary initial scale factor \(a_0 \).
+With this, we can simplify the left-hand side: 
 %
 \begin{align}
-  \dot{n} + 3 \frac{\dot{a}}{a} n = \dot{n} \qty(\frac{a_0 }{a})^3
+  \dot{n} + 3 \frac{\dot{a}}{a} n 
+  &= \dv{}{t} \qty[n_C \frac{a_0^3}{a^3}] + 3 \frac{\dot{a}}{a} n_C \frac{a_0^3}{a^3} = \dot{n}_C \frac{a_0^3}{a^3} 
+  + n_C \qty(-\frac{3 \dot{a}}{a^2}) \frac{a_0^3}{a^2}
+  + 3 \frac{\dot{a}}{a} n_C \frac{a_0^3}{a^3}  \\
+  &= \dot{n}_C \qty(\frac{a_0 }{a})^3
 \,.
 \end{align}
 
-We want to factor our a parameter \(H\). We get: 
+Similarly, we can express the right-hand side in terms of comoving densities: \(\expval{\sigma_A v}\) is the same, while 
 %
 \begin{align}
-  \dot{n}_C = - \qty(\frac{a }{a_0 })^3
-  \expval{\sigma _A v } \qty(\frac{a_0 }{a})^6 \qty(n_C^2-n^2 _{\text{eq}})
+n _{\text{eq}}^2 - n^2 = \qty(n _{C, \text{eq}}^2 - n_C^2) \frac{a_0^{6}}{a^{6}}
+= n _{C, \text{eq}}^2 \frac{a_0^{6}}{a^{6}} 
+\qty[1 - \frac{n_C^2}{n _{C, \text{eq}}^2}]
 \,,
 \end{align}
 %
-which can be written as 
+so the equation will read:
+% We want to factor our a parameter \(H\).
+% We get: 
 %
 \begin{align}
-  \frac{a}{n _{\text{C, eq}}} \dv{n_C}{a} = - \frac{\expval{\sigma _A v }n _{\text{eq}}}{\dot{a}/a} \qty(\qty(\frac{n}{n _{\text{eq}}})^2- 1)
-\,,
-\end{align}
-%
-so, if we define \(\tau _{\text{coll}}\) as \(1 / (\expval{\sigma _A v} n _{\text{eq}})\) and \(\tau _{\text{exp}} = 1/H\), we get 
-%
-\begin{align}
-  n _{\text{C, eq}} a \dv{n_C}{a}
-  = - \frac{\tau _{\text{exp}}}{\tau _{\text{coll}}} \qty(\qty(\frac{n}{n _{\text{eq}}})^2 -1 )
-\,,
-\end{align}
-%
-so if \(\Gamma \gg H\), then \(\tau _{\text{exp}} / \tau _{\text{coll}} \gg 1\), therefore \(n = n _{\text{eq}}\), which also implies \(n _{\text{C}} = n _{\text{C, eq}}\). This is the equilibrium case. 
-
-On the other hand, if \(\Gamma \ll H\), then \(\tau _{\text{exp}} / \tau _{\text{coll}} \ll 1\) we have decoupling, therefore \(n_C = \const\).
-
-We know that at temperatures below \SI{1.5}{MeV} (after decoupling), the following holds: 
-%
-\begin{align}
-  T_{\nu } = \qty(\frac{4}{11})^{1/3} T_{\gamma }
-\,,
-\end{align}
-%
-and we want to do the same for dark matter. 
-
-Neutrinos are nonrelativistic today, but they became so at a relatively low redshift, a short time ago. 
-We can parametrize the number density of neutrinos by the temperature. 
-
-The formula for the temperature of neutrinos is a special case of the following formula: 
-%
-\begin{align}
-  T_{0 \nu } = \qty(\frac{g_{*0}}{g_{*d}})^{1/3} T_{0 \gamma }
-\,,
-\end{align}
-%
-where \(0\) means \emph{now}, while  \(d\) means \emph{decoupling}. This can be applied to any species. 
-
-Let us compute this for a generic species \(x\): we find 
-%
-\begin{align}
-  n_{0x} = B g_{*} \frac{\zeta (3)}{\pi^2} T_{0x}^3
-\,,
-\end{align}
-%
-where the factor \(B\) accounts for the statistics: it is 1 for bosons, \(3/4\) for fermions. 
-It is important to note that the temperature is a parameter, but these particles are \emph{not thermal} anymore! 
-
-So, we get, using equation \eqref{eq:n-gamma}:
-%
-\begin{align}
-  n_{0x} = \frac{B}{2} n_{0 \gamma } g_x \frac{g_{*0}}{g_{*dx}}
-\,. 
-\end{align}
-%
-
-The energy density in general is given by \(\rho_{0x} = m_x n_{0x}\). We get: 
-%
-\begin{align}
-  \rho_{0x} = \frac{B}{2} m_x n_{0 \gamma } g_x \frac{g_{0x}}{g_{*gx}}
-\,,
-\end{align}
-%
-therefore 
-%
-\begin{align}
-  \Omega_{0x} h^2 = \frac{m_x n_{0x}}{\rho_{0x}} h^2 
-  = 2B g_x \frac{g_{*0}}{g_{*dx}} \frac{m_x}{\SI{e2}{eV}}
+  \dot{n}_C \frac{a_0^3}{a^3} 
+  &=
+  -\expval{\sigma _A v} 
+  n _{C, \text{eq}}^2 \frac{a_0^{6}}{a^{6}} 
+\bigg[\underbrace{\frac{n_C^2}{n _{C, \text{eq}}^2}}_{\mathclap{\text{The \(a^3\) factors simplify}}} - 1\bigg] 
+\\
+  \dot{n}_C &= - 
+  \expval{\sigma _A v } \underbrace{\qty(\frac{a_0 }{a})^3 n _{C, \text{eq}}^2}_{ = n_{C, \text{eq}} n _{\text{eq}}} \qty[\frac{n^2}{n _{ \text{eq}}^2} - 1] 
 \,.
 \end{align}
 
-CDM is made of particles which were already nonrelativistic when they decoupled. 
+We want to write this in a more intuitive way; the derivative with respect to time can be expressed in terms of the scale factor, as 
+%
+\begin{align}
+\dv{}{t} = \dot{a}\dv{}{a} = H a \dv{}{a}
+\,.
+\end{align}
 
-Then, in the formula
+With it, we can express the equation as 
+%
+\begin{align}
+\frac{a}{n _{\text{C, eq}}} \dv{n_C}{a} = - \frac{\expval{\sigma _A v }n _{\text{eq}}}{H} \qty[\qty(\frac{n}{n _{\text{eq}}})^2- 1]
+\,.
+\end{align}
+%
+
+The ratio before the parenthesis has an intuitive physical meaning:
+the characteristic time of the collisions which can annihilate this particle species is \(\tau _{\text{coll}} = 1/ \Gamma =  1 / (\expval{\sigma _A v} n _{\text{eq}})\), while the timescale of the expansion of the universe is \(\tau _{\text{exp}} = 1/H\), we get 
+\boxalign{
+\begin{align}
+   \frac{a}{n _{\text{C, eq}}} \dv{n_C}{a}
+  = - \frac{\tau _{\text{exp}}}{\tau _{\text{coll}}} \qty[\qty(\frac{n}{n _{\text{eq}}})^2 -1 ]
+\,.
+\end{align}}
+
+This allows us to characterize decoupling in a much more specific way than before.
+\begin{enumerate}
+  \item If \(\Gamma \gg H\), then \(\tau _{\text{exp}} \gg \tau _{\text{coll}} \), therefore \(n \approx n _{\text{eq}}\), which also implies \(n _{\text{C}} = n _{\text{C, eq}}\) (this quantity can vary!). This is the equilibrium case, the particles are \textbf{coupled}. 
+  \item If \(\Gamma \ll H\), then \(\tau _{\text{exp}} \ll \tau _{\text{coll}} \) we have \textbf{decoupling}, and \(n_C = \const\), therefore \(n \propto a^{-3}\).
+\end{enumerate}
+\todo[inline]{\textcite[]{Pacciani:2018} writes that in the coupled case the comoving density is constant, but this will not be the case in general: allowed annihilation processes may change over time, as other particle species decouple!}
+
+% As opposed to the qualitative description 
+This approach is much more powerful than the qualitative one we gave earlier, since while the limiting cases are the same this equation allows us to also treat all the intermediate situations.
+
+Let us apply this to both HDM and CDM.
+
+\subsection{HDM density estimate}
+
+Neutrinos are a candidate for HDM: we know that at temperatures below \(T_d = \SI{1}{MeV}\) they decoupled, after which --- as we have seen earlier --- their temperature\footnote{We call it ``temperature'' for clarity, but properly speaking it is not one, since ever since decoupling neutrinos are not thermal. It is better understood as the ``temperature parameter'' of the neutrinos' phase space distribution.} evolved like:
+%
+\begin{align}
+  T_{\nu } = \qty(\frac{g_{* \text{after decoupling}}}{g_{* \text{before decoupling}}})^{1/3} T_{\gamma }
+\,,
+\end{align}
+%
+% and we want to do the same for dark matter. 
+and so this scaled like \(T_\nu \propto a^{-1}\), while their number density scaled like \(n_\nu \propto a^{-3} \propto T_\nu^{3}\).
+
+% Neutrinos are nonrelativistic today, but they became so at a relatively low redshift, a short time ago. 
+% We can parametrize the number density of neutrinos by the temperature. 
+
+% The formula for the temperature of neutrinos is a special case of the following formula: 
+% %
+% \begin{align}
+%   T_{0 \nu } = \qty(\frac{g_{*0}}{g_{*d}})^{1/3} T_{0 \gamma }
+% \,,
+% \end{align}
+%
+% where \(0\) means \emph{now}, while  \(d\) means \emph{decoupling}. This can be applied to any species. 
+
+There is nothing special about neutrinos: we can apply the same line of reasoning to a generic HDM species \(x\), whose number density today will be then given by
+%
+\begin{align}
+  n_{0x} = B g_{x} \frac{\zeta (3)}{\pi^2} T_{0x}^3
+\,,
+\end{align}
+%
+where the factor \(B\) accounts for the statistics: it is 1 for bosons, \(3/4\) for fermions. The parameter \(g_x\) is the number of degrees of freedom \emph{of the particle species \(x\)}, 
+% It is important to note that the temperature is a parameter, but these particles are \emph{not thermal} anymore! 
+
+We can rescale this in terms of the photon number density, which is given by the same expression, with \(B = 1\) and \(g_x = 2\): using the 
+% So, we get, using equation \eqref{eq:n-gamma}:
+%
+\begin{align}
+\frac{n_{0x}}{n_{0\gamma }} &= \frac{B g_x \frac{\zeta (3)}{\pi^2} T^3_{0x}}{2 \frac{\zeta (3)}{\pi^2} T^3_{0 \gamma }} \\
+n_{0x} &= \frac{B}{2} n_{0 \gamma } g_x \frac{g_{*0}}{g_{*dx}}
+\,,
+\end{align}
+%
+where \(g_{*0}\) is the current amount of effective degrees of freedom, while \(g_{*dx}\) is the same quantity, computed at the decoupling time of particle \(x\). 
+
+\todo[inline]{It should not be \(g_{*0}\) though, right? we compute \(g_*\) on the two boundaries of the transition, the effective dof \emph{right now} are irrelevant, I'd think.}
+
+The energy density, as long as today the particles in question are nonrelativistic,\footnote{Which we assume they are. This is not meant to be interpreted as an experimental fact --- for neutrinos, say, we do not actually know what their mass is, so we are not sure, although given their mass differences (which can be inferred from neutrino oscillations) at the current temperature \(T_{0 \nu } \sim \SI{200}{\micro eV}\) at least some neutrino species must be nonrelativistic. 
+
+Rather, the point is that if the mass of one of these HDM particles were so low that they were relativistic today than their energy density would be very low, comparable to that of photons, which as we have seen earlier is negligible: they could not constitute the large fraction of the critical density \(\rho _C\) that we know DM constitutes.
+In order for HDM to have a chance to be a significant constitutent of DM it must be nonrelativistic today.} is given by \(\rho_{0x} = m_x n_{0x}\), so we can write 
+%
+\begin{align}
+  \rho_{0x} = \frac{B}{2} m_x n_{0 \gamma } g_x \frac{g_{*0x}}{g_{*dx}}
+\,,
+\end{align}
+%
+therefore the mass fraction of the HDM particle \(x\) today will be roughly
+%
+\begin{align}
+\Omega_{0x} h^2 \approx \frac{\rho_{0x}}{\rho_{0c}} h^2 
+\approx 2B g_x \frac{g_{*0}}{g_{*dx}} \frac{m_x}{\SI{e2}{eV}}
+\,.
+\end{align}
+
+This, together with what we know the \(\Omega\) of dark matter to be, allows us to check whether a candidate for HDM is viable or not, based on its mass and on when it decouples.
+We can already see that if the mass is lower than a few \SI{}{eV} the particle cannot make up most of the DM budget.
+
+\subsection{CDM density estimate}
+
+CDM is made of particles which were already nonrelativistic when they decoupled, so we can describe them using Boltzmann statistics: we keep referring to the DM candidate as \(x\), so at the temperature of decoupling \(T_{dx}\) we have
 %
 \begin{align}
   n_x (T_{dx}) = g_{x} \qty(\frac{m_x T_{dx}}{2 \pi })^{3/2} \exp(- \frac{m_x}{T_{dx}})
 \,,
 \end{align}
 %
-we can assume that \(T_{dx} \ll m_x\). So, 
+% we can assume that \(T_{dx} \ll m_x\). So, 
+after which the density will scale like \(a^{-3}\), so\footnote{Applying the ``updated'' version of Tolman's law, \(T a g_{*s}^{1/3} = \const\).}
 %
 \begin{align}
   n_{0x} = n_x (T_{dx}) \qty(\frac{a(T_{dx})}{a_0 })^3
   = n(T_{dx}) \frac{g_{*0}}{g_{*x}} \qty(\frac{T_{0 \gamma }}{T_{dx}})^3
-\,,
-\end{align}
-%
-but it is difficult to compute \(T_{dx}\), which is the solution to the equation \(\Gamma (T_{dx}) = H (T_{dx})\). 
-
-We know that 
-%
-\begin{align}
-  H^2 (T_{dx}) = \frac{8 \pi G}{3} g_{*x} \frac{\pi^2}{30} T_{dx}^{4}
-\,,
-\end{align}
-%
-or, in terms of the quantity \(\tau_{\text{exp}}= 1/H\):
-%
-\begin{align}
-  \tau_{\text{exp}} = 0.3 g_{*}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
 \,.
 \end{align}
-%
-On the other hand, \(\Gamma = n \expval{\sigma _A v}\), and \(\tau _{\text{coll}} ( T_{dx})\), and in terms of \(\tau _{\text{coll}}\) we get 
+
+The difficulty lies in determining the decoupling temperature \(T_{dx}\), which is when the collision and expansion timescales are equal. 
+
+The first Friedmann equation combined with the expression for the energy density (of radiation, but corrected according to the effective degrees of freedom at that time) tells us 
 %
 \begin{align}
-  \tau _{\text{coll}} (T_{dx}) = \qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})
+  H^2 (T_{dx}) = \frac{8 \pi G}{3} g_{*dx} \frac{\pi^2}{30} T_{dx}^{4}
 \,,
 \end{align}
 %
-where \(N = 0,1\): it is a fact from particle physics that the average has this kind of dependence: 
+which we can use to estimate the expansion timescale \(\tau_{\text{exp}}= 1/H\):
+%
+\begin{align}
+  \tau_{\text{exp}} \approx \num{.6} g_{*dx}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
+  \marginnote{\(\num{.6} \approx \qty(\frac{8\pi }{3} \frac{\pi^2}{30})^{-1/2}\).}
+\,.
+\end{align}
+
+\todo[inline]{\textcite[]{Pacciani:2018} writes \num{.3}, am I getting the calculation wrong?}
+
+Now, let us estimate the collision timescale: we know that its inverse is \(\Gamma = n \expval{\sigma _A v}\), and it is a fact from particle physics that the average cross section scales with the temperature like: 
 %
 \begin{align}
   \expval{\sigma _A v} = \sigma_0 \qty(\frac{T}{m_x})^{N}
-\,.
-\end{align}
-
-So, equaling the two \(\tau \) we get: 
-%
-\begin{align}
-\qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})= 0.3 g_{*}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
 \,,
 \end{align}
 %
-which can be solved iteratively. We solve it in terms of the parameter \(x_{dx} = m_x / T_{dx}\), which must be much larger than one: this allows us to select the physical solution to the equation among the nonphysical ones. 
-
-The solution is found to be something like: 
+where \(N = 0\) or \(1\), while \(\sigma_0 \) is a constant characteristic cross section of the process. So, the collision timescale is
 %
 \begin{align}
-  x_{dx} = \log \qty(\num{.038} \frac{g_{x}}{g_{*xd}^{1/2}} m _{\text{pl}}  m_x \sigma_0 ) - \qty(N - \frac{1}{2}) \log \log \qty(\dots)
-\,. 
+  \tau _{\text{coll}} (T_{dx}) = \qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})^{-1}
+\,.
+\end{align}
+
+Equating the two timescales we get the following equation:
+%
+\begin{align}
+\qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})^{-1} = \num{.6} g_{*}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2}
+\,,
 \end{align}
 %
+which is transcendental in \(T\), since we have an exponential as well as a polynomial term in the expression for \(n_x(T_{dx})\).
+
+We can solve it iteratively, in terms of the parameter \(x_{dx} = m_x / T_{dx}\), which are assuming to be much larger than one (in order for the procedure we have done so far to be valid, and in order for \(x\) to be CDM): this allows us to select the physical solution to the equation among the nonphysical ones. 
+
+The solution, after the second iteration, is found to be something like: 
+%
+\begin{align}
+  x_{dx} = \log \qty(\num{.038} \frac{g_{x}}{g_{*xd}^{1/2}} m _{\text{pl}}  m_x \sigma_0 ) - \qty(N - \frac{1}{2}) \log \log \qty(\num{.038} \frac{g_{x}}{g_{*xd}^{1/2}} m _{\text{pl}}  m_x \sigma_0 )
+\,. 
+\end{align}
+
+From this we can determine the contribution of this CDM particle to the current energy density.
+
+Qualitatively, we find that there is a very significant dependence on the mass of the particle (since we have an exponential suppression in its density) and on the way it interacts (\(\sigma_0 \)).
 
 \chapter{Stellar Astrophysics}
 
-Dark matter is collisionless, however it is not \emph{really}: the censorship theorem says that it cannot actually collapse into a naked singularity. 
+\section{Stellar formation}
+
+% Dark matter is collisionless, however it is not \emph{really}: the censorship theorem says that it cannot actually collapse into a naked singularity. 
 
 A star is a sphere of matter, usually baryonic matter, characterized by a density \(\rho (r)\): the mass enclosed in a radius \(r\) is 
 %

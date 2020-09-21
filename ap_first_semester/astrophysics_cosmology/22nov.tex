@@ -325,54 +325,69 @@ We are ignoring pressure (or, equivalently, assuming that it is constant), so th
 \,.
 \end{align}
 
-This will not generally be the case, but let us suppose that the collapse is \emph{orderly}: the interior collapses before the outer layers. 
+This will not generally be the case, but let us suppose that the collapse is \emph{orderly}: the ordering of the layers stays the same as they fall. 
 
 We use the energy integral instead of directly solving the differential equation, that is, we impose energy conservation.
 % We have to account for energy conservation: the total energy when our test shell is at a radius \(r\) is conserved as \(r\) changes. If the energy (per unit mass) is zero at infinity we have 
 Computing the total energy (kinetic plus potential) at the initial radius of the cloud, \(r_0 \) (at which the gas is stationary), and at a radius \(r\) we get 
 %
 \begin{align}
-  - \frac{G m_0 }{r_0 } &= \frac{1}{2} \qty(\dv{r}{t})^2 - \frac{Gm(r) }{r} \\
+  - \frac{G m_0 }{r_0 } &= \frac{1}{2} \qty(\dv{r}{t})^2 - \frac{Gm_0 }{r} \\
   \frac{1}{2} \qty(\dv{r}{t})^2 &= G m_0 \qty( \frac{1}{r} - \frac{1}{r_0 })
 \,.
 \end{align}
 
 This way, we have found a first-order ODE instead of a second-order one.
+Note that the potential energy at a radius \(r\) is computed using \(m_0 \) since as the layer falls the other layers below it are still below it, so the mass inside the layer is always equal to the initial one.
 
 We can now directly compute the freefall time by integrating from \(r_0 \) to \(r\):
 % What is the freefall time? we take \(\dv*{t}{r}\) from the equation an integrate it from \(r_0 \) to \(0\)
 %
 \begin{align}
   t _{\text{free fall}} =  \int_{r_0 }^{0} \dd{r} \dv{t}{r}
-  = - \int_{r_0 }^{0} \dd{r} \frac{1}{2GM}\qty(\frac{1}{r} - \frac{1}{r_0 })^{-1/2}
+  = - \int_{r_0 }^{0} \dd{r} \frac{1}{\sqrt{2Gm_0 }}\qty(\frac{1}{r} - \frac{1}{r_0 })^{-1/2}
 \,,
 \end{align}
 %
-where we have a minus sign since \(\dv*{r}{t}<0\). We get 
+where we have a minus sign since, when simplifying the square of the derivative \(\dot{r}^2\) we must choose the negative sign: \(\dv*{r}{t}<0\), since the material is \emph{infalling}.
+
+We can then change variables to \(x = r / r_0 \) (with \(\dd{r} = r_0 \dd{x}\)) and switch the bounds of integration, recovering the positive sign:
 %
 \begin{align}
-  t _{\text{free fall}} = \sqrt{\frac{r_0^3}{2 G m_0 }} \int_{0}^{1} \dd{x} \sqrt{\frac{x}{1-x}}
+  t _{\text{free fall}}
+  &=  \frac{1}{ \sqrt{2Gm_0 }} \int_{0}^{1} r_0 \dd{x} \qty[ \frac{1}{r_0 } \qty( \frac{1}{x} - 1)]^{-1/2}  \\
+  &= \sqrt{\frac{r_0^3}{2 G m_0 }} \int_{0}^{1} \dd{x} \sqrt{\frac{x}{1-x}}
   = \frac{\pi}{2} \sqrt{\frac{r_0^3}{2 G m_0 }}
-\,,
-\end{align}
-%
-and if we define the average density \(\bar{\rho} = m_0 / \qty(4 \pi r_0^3 / 3)\) we get the simpler expression 
-%
-\begin{align}
-  t _{\text{free fall}} = \sqrt{\frac{3 \pi }{32 G \bar{\rho} }}
 \,.
 \end{align}
 
-We might be tempted to ignore the expansion of the universe in these calculations: we know that 
+Although the integrand diverges for \(x \to 1\) (meaning, at large \(r\)) the integral converges to \(\pi /2\).\footnote{The integral can be computed with the substitution \(x = \sin^2 \theta \) and then \(y = \cos \theta \): 
+%
+\begin{align}
+\int_{0}^{1} \sqrt{ \frac{x}{1-x}} \dd{x} = \int_{0}^{\pi / 2} \sqrt{ \frac{\sin^2\theta}{\cos^2 \theta }} 2 \sin \theta \cos \theta \dd{\theta } = \int_{0}^{\pi /2} \sin^2\theta \dd{\theta } = \int_{0}^{1} \sqrt{1 - y^2} \dd{y} = \frac{\pi}{2}
+\,.
+\end{align}}
+
+The average density is given by \(\bar{\rho} = m_0 / \qty(4 \pi r_0^3 / 3)\), which we can insert into our expression to get 
+%
+\begin{align}
+  t _{\text{free fall}} = \sqrt{\frac{3 \pi }{32 G \bar{\rho} }} \approx \num{.54} G^{-1/2} \overline{\rho}^{-1/2}
+\,.
+\end{align}
+
+\paragraph{Comparison with the expansion timescale}
+
+We might be tempted to ignore the expansion of the universe in these calculations: we know that
 %
 \begin{align}
   H^2 = \frac{8 \pi G}{3} \bar{\rho}
 \,,
 \end{align}
 %
-and in the purely Newtonian case we know that \(a(t) \propto t^{2/3}\) and \(H = 2/(3t)\). 
+where we wrote \(\overline{\rho}\) to mean that this holds on the scales at which homogeneity applies; if we consider smaller scales we must take a spatial average of the density.
+In the Newtonian (matter-dominated and flat) case we know that \(a(t) \propto t^{2/3}\) and \(H = 2/(3t)\). 
 
-Therefore 
+So, we can substitute this expression to find the expansion timescale  
 %
 \begin{align}
   \frac{4}{3 t^2} = \frac{8 \pi G}{3} \bar{\rho} 
@@ -384,30 +399,34 @@ Therefore
 so 
 %
 \begin{align}
-  t _{\text{exp}} \propto \bar{\rho}^{- 1/2}
-\,. 
+  t _{\text{exp}} \approx \num{.23} G^{-1/2} \bar{\rho}^{- 1/2}
+\,.
 \end{align}
 
-\todo[inline]{what is the relation between the universe's density and the star's?
+If the universe was perfectly homogeneous we would then expect structure formation to be forbidden: however, if there are some over-dense regions to start with, their characteristic freefall time can become lower than the chracteristic expansion time of the universe. 
 
-Is the idea: the matter in the universe does not disperse too fast, stars theoretically are allowed to form? }
+\todo[inline]{But still, shouldn't we consider expansion in the computation? By how much are we getting it wrong?}
 
-At equilibrium, \(\ddot{r} = 0\): so 
+% \todo[inline]{So, the expansion of the universe is not neglibigle and our Newtonian calculation is meaningless?
+% Maybe an argument can b
+% \todo[inline]{This would seem to suggest that stellar formation is not allowed under these conditions, but gravitational instability does exist}
+% \todo[inline]{Add some considerations about the applicability of these calculations: we need some already over-dense regions in order to start stellar formation, right?}
+
+% \todo[inline]{what is the relation between the universe's density and the star's?
+% Is the idea: the matter in the universe does not disperse too fast, stars theoretically are allowed to form? }
+
+\subsection{Hydrostatic equilibrium}
+
+At equilibrium the stellar layers are static: \(\ddot{r} = 0\), so the equation of motion reads 
 %
 \begin{align}
   - \ddot{r} = 0 = g(r) + \frac{1}{\rho (r)} \dv{P}{r}
-\,,
-\end{align}
-%
-so hydrostatic equilibrium implies that, locally, 
-%
-\begin{align}
+  \implies 
   \dv{P}{r} = - G \frac{m(r) \rho (r)}{r^2}
 \,.
 \end{align}
-%
 
-We multiply both sides by \(4 \pi r^3\) and integrate in \(\dd{r}\): we get 
+We multiply both sides by \(4 \pi r^3\) and integrate in \(\dd{r}\) from the core (\(r=0\)) to the surface of the star, \(r = R\): 
 %
 \begin{align}
   \int_0^{R} \dd{r} 4 \pi r^3 \dv{P}{r} = 
@@ -415,40 +434,43 @@ We multiply both sides by \(4 \pi r^3\) and integrate in \(\dd{r}\): we get
 \,,
 \end{align}
 %
-and we can change variables: \(\rho (r) 4 \pi r^2 \dd{r} = \dd{m }\), so we can identify the LHS with the total gravitational energy: 
+and we can change variables: \(\rho (r) 4 \pi r^2 \dd{r} = \dd{m }\) (this is physically meaningful: it is the differential mass of the layer at a radius \(r\)), so we can identify the left-hand side with the total gravitational energy: 
 %
 \begin{align}
-E _{\text{grav}} = -G \int \frac{m(G) \dd{m}}{r} 
+E _{\text{grav}} = -G \int \frac{m(r) \dd{m}}{r} 
 \,. 
 \end{align}
 
 On the RHS, instead, we can integrate by parts: 
 %
 \begin{align}
+\int_0^{R} \dd{r} 4 \pi r^3 \dv{P}{r} = 
   \qty[P(r) 4 \pi r^3]_0^{R} - 3 \int_{0}^{R} \dd{r} 4 \pi r^2 P(r)
 \,,
 \end{align}
 %
-where the boundary term is zero: at the origin \(r =0\), at the surface (by definition) \(P =0\).
+where the boundary term vanishes: at the origin \(r =0\), at the surface (by definition of surface) \(P =0\).
 
-So, inserting the volume \(V(R) \equiv 4 \pi R^3/3\), we have 
+We can better understand what this means if we divide and multiply by the volume \(V(R) \equiv 4 \pi R^3/3\): 
 %
 \begin{align}
-  E _{\text{grav}} = - 3 \int_{0}^{R} \frac{ \dd{r} 4 \pi r^2   P(r)}{V(R)} V(R)
+  - 3 \int_{0}^{R} \underbrace{\dd{r} 4 \pi r^2}_{ \dd{V}} P(r) = - 3 V(R) \underbrace{\int_{0}^{R} \frac{ \dd{r} 4 \pi r^2   P(r)}{V(R)}}_{ \expval{P}} = - 3 V(R) \expval{P} 
 \,,
 \end{align}
 %
-which gives us the virial theorem: we can interpret the integral as a weighted average, so we get 
+where we interpret the integral as a weighted average, so we get 
 %
 \begin{align}
   E _{\text{grav}} = - 3 \expval{P} V 
   \qquad 
   \text{or} 
   \qquad 
-  \expval{P} = -\frac{1}{3} \frac{E _{\text{grav}}}{V}
+  \expval{P} = -\frac{1}{3} \frac{E _{\text{grav}}}{V} = - \frac{1}{3} \rho_{GR}
 \,.
 \end{align}
 
-This is Newtonian: above a certain limit, the relativistic corrections destabilize the system. 
+This is the \textbf{Virial Theorem}. 
+
+% This is Newtonian: above a certain limit, the relativistic corrections destabilize the system. 
 
 \end{document}

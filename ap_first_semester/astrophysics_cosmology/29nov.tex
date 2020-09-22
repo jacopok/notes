@@ -4,26 +4,26 @@
 \marginpar{Friday\\ 2019-11-29, \\ compiled \\ \today}
 % \section*{Fri Nov 29 2019}
 
-We want to derive the Jeans instability criterion, starting from the structure equations: 
-%
-\begin{enumerate}
-    \item continuity;
-    \item momentum conservation;
-    \item Poisson for the gravitational field;
-    \item entropy conservation. 
-\end{enumerate}
+% We want to derive the Jeans instability criterion, starting from the structure equations: 
+% %
+% \begin{enumerate}
+%     \item continuity;
+%     \item momentum conservation;
+%     \item Poisson for the gravitational field;
+%     \item entropy conservation. 
+% \end{enumerate}
 
-Yesterday there was a mistake: the entropy conservation is actually 
-%
-\begin{align}
-  \frac{\mathrm{D} s}{\mathrm{D} t} + s \nabla \cdot \vec{v} = 0 
-\,.
-\end{align}
-%
+% Yesterday there was a mistake: the entropy conservation is actually 
+% %
+% \begin{align}
+%   \frac{\mathrm{D} s}{\mathrm{D} t} + s \nabla \cdot \vec{v} = 0 
+% \,.
+% \end{align}
+% %
 
-There is no need to make an ansatz for the pressure, since we can compute \(P = P (\rho ,s )\): we have the relation seen last time, involving the speed of sound. 
+% There is no need to make an ansatz for the pressure, since we can compute \(P = P (\rho ,s )\): we have the relation seen last time, involving the speed of sound. 
 
-Our \emph{ansatz } is 
+Next, in order to solve these we need to move to Fourier space. Properly speaking, we would need to take the Fourier transform of all our variables; in terms of computation it is as if we were considering an exponential \emph{ansatz} for all of them, in that taking spatial derivatives corresponds to bringing down a factor \(i \vec{k}\): 
 %
 \begin{align}
   \delta x_i = x_{i0} \exp( i \vec{k} \cdot \vec{x} - i \omega t)
@@ -32,11 +32,13 @@ Our \emph{ansatz } is
 %
 with \(x_{i} = \rho, \vec{v}, \Phi , s\). 
 
-Our equations become: 
+To first order, then, our equations become: 
 %
+%% GOT HERE - FINISH CHECKING
+
 \begin{subequations}
 \begin{align}
-  i \omega \delta \rho_0 + \rho_0 i \vec{k} \cdot \vec{v_0} &=0  \\
+  i \omega \delta \rho + \rho_0 i \vec{k} \cdot \vec{v} &=0  \\
   i \omega \vec{v_0} &= \frac{1}{\rho_0 } i \vec{k}
   \qty(c^2_s \delta \rho_0 + \pdv{P}{s} \delta s_0 ) 
   - i \vec{k} \delta \Phi_0 \\

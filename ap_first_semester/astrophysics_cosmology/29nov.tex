@@ -34,51 +34,63 @@ with \(x_{i} = \rho, \vec{v}, \Phi , s\).
 
 To first order, then, our equations become: 
 %
-%% GOT HERE - FINISH CHECKING
-
 \begin{subequations}
 \begin{align}
   i \omega \delta \rho + \rho_0 i \vec{k} \cdot \vec{v} &=0  \\
-  i \omega \vec{v_0} &= \frac{1}{\rho_0 } i \vec{k}
-  \qty(c^2_s \delta \rho_0 + \pdv{P}{s} \delta s_0 ) 
+  i \omega \vec{v} &= -\frac{1}{\rho_0 } i \vec{k}
+  \qty(c^2_s \delta \rho_0 + \pdv{P}{s} \delta s ) 
   - i \vec{k} \delta \Phi_0 \\
-  k^2 \delta \Phi &= 4 \pi G \delta \rho_0  \\
-  \omega \delta s_0 &= 0
-\,,
+  - k^2 \delta \Phi &= 4 \pi G \delta \rho  \\
+  \omega \delta s &= 0
+\,.
 \end{align}
 \end{subequations}
-%
-so one class of solutions will have \(\omega = 0\), that is, we consider time-independent ones: 
+
+
+Now, the last equation can be solved by either \(\omega = 0\) (so, they are time-independent) or \(\delta s = 0\) (so, they are isentropic).
+%  one class of solutions will have \(\omega = 0\), that is, we consider time-independent ones: 
+
+These two cases differ substantially in the shape of the vector field they give. 
+A result from Helmholtz is the fact that every velocity field can be decomposed into a divergenceless part and an irrotational part, at least locally: there exist \(\Psi\) and \(\vec{T}\) such that \(\vec{v} = \nabla \Psi + \vec{T}\) with \(\nabla \cdot \vec{T} = 0\). 
+
+The two cases, as we will see, amount to making the velocity field fully irrotational or fully divergenceless.
+
+\paragraph{Time-independent solutions}
+We start by considering the first option, \(\omega = 0\): then, we get
 %
 \begin{subequations}
 \begin{align}
-  \rho_0 i \vec{k} \cdot \vec{v_0} &=0  \\
+  \vec{k} \cdot \vec{v} &=0  \\
   0 &= \frac{1}{\rho_0 }  \vec{k}
-  \qty(c^2_s \delta \rho_0 + \pdv{P}{s} \delta s_0 ) 
-  - \vec{k} \delta \Phi_0 \\
+  \qty(c^2_s \delta \rho + \pdv{P}{s} \delta s ) 
+  + \vec{k} \delta \Phi \\
   k^2 \delta \Phi &= 4 \pi G \delta \rho_0  
-\,,
+\,.
 \end{align}
 \end{subequations}
-%
-and we have a result from Helmholtz: the fact that every velocity field can be decomposed into \(\vec{v} = \nabla \Psi + \vec{T}\) with \(\nabla \cdot \vec{T} = 0\). 
 
-As soon as we ask the perturbation to be time independent we only find vortical motions, with \(\vec{v} \perp \vec{k}\). 
+The first equation tells us that \(\vec{k} \cdot \vec{v} = 0\), which in position space translates to \(\vec{\nabla} \cdot \vec{v} = 0\), so the velocity field describes the motion of an incompressible fluid.
 
-Now we consider the velocity to be irrotational we consider the term \(\delta s_0 =0\), since \(\omega \neq 0\) in general. 
+\todo[inline]{\dots which is turbulent? That's not the case in general, water is nearly incompressible but it can have laminar motion. This seems to be what the professor and \textcite[]{Pacciani:2018} state though. This is dismissed as uninteresting together with the \(\omega = \delta s = 0\) case.}
+
+
+% As soon as we ask the perturbation to be time independent we only find vortical motions, with \(\vec{v} \perp \vec{k}\). 
+
+\paragraph{Isentropic solutions}
+Now, we consider the case in which \(\delta s_0 =0\), while \(\omega \neq 0\) in general. The equations read
 %
 \begin{subequations}
 \begin{align}
-  \omega \delta \rho_0 + \rho_0 \vec{k} \cdot \vec{v_0} &=0  \\
+  \omega \delta \rho + \rho_0 \vec{k} \cdot \vec{v} &=0  \\
   \omega \vec{v_0} &= \frac{1}{\rho_0 } \vec{k}
-  c^2_s \delta \rho_0  
-  - \vec{k} \delta \Phi_0 \\
-  k^2 \delta \Phi &= 4 \pi G \delta \rho_0 
+  c^2_s \delta \rho
+  - \vec{k} \delta \Phi \\
+  k^2 \delta \Phi &= 4 \pi G \delta \rho 
 \,,
 \end{align}
 \end{subequations}
 %
-which we can write as a linear system for the vector \(\delta \rho_0 , v_0, \delta \Phi_0 \). 
+which we can write as a linear system for the vector \([\delta \rho, \vec{v}, \delta \Phi ]\). 
 
 The 5x5 coefficient matrix is:
 %
@@ -93,33 +105,37 @@ The 5x5 coefficient matrix is:
 \end{align}
 \end{subequations}
 %
-which has determinant 
+and in order to have more than one solution (we need a family of them, since parameters like \(\omega \) are variable) we need to set its determinant to zero, which yields:
 %
 \begin{align}
-  \omega k^2 - \rho_0 \vec{k} \cdot \qty( \frac{1}{\rho_0 }\vec{k} c_s^2 - 4 \pi G \vec{k} ) = 0
+  \omega k^2 - \rho_0 \vec{k} \cdot \qty( \frac{1}{\rho_0 }\vec{k} c_s^2 k^2 - 4 \pi G \vec{k} ) = 0
 \,,
 \end{align}
 %
 which gives the dispersion relation \(\omega^2 = c_s^2 k^2 - \rho_0 4 \pi G \). 
 
-A solution will be a combination of these. If \(\omega^2<0\), which can happen because of the minus sign. If that happens, instead of a propagating wave we have a standing wave. 
+This has a direct physical interpretation: if \(\omega^2\) is positive, then \(\omega \) is real so the solution is oscillatory; while if \(\omega^2\) is negative then \(\omega \) is imaginary, therefore the solution is given by a \emph{real} exponential, which quickly amplifies (or dampens, but that case is not interesting since it does not have macroscopic effects) the perturbation. This is the \emph{unstable} case.
 
-We have \(\omega = (4 \pi G \rho_0  )^{1/2}\), so the characteristic time is 
+A generic solution will be a combination of these, with varying \(\vec{k}\).
+% If \(\omega^2<0\), which can happen because of the minus sign. If that happens, instead of a propagating wave we have a standing wave. 
+
+We can connect this result with what we have found for the freefall timescale earlier: if the pressure is negligible then so is \(c_s\), so we have \(\omega^2 = - \rho_0 4 \pi G\): so, we have a solution increasing on a timescale dictated by \(\abs{\omega} = (4 \pi G \rho_0  )^{1/2}\), the characteristic time  
 %
 \begin{align}
-  \tau = \frac{1}{\sqrt{4 \pi G \rho_0 }}
+  \tau = \frac{1}{\abs{\omega }} = \frac{1}{\sqrt{4 \pi G \rho_0 }}
 \,,
 \end{align}
 %
-
-
-The free fall time can be computed to be: 
+which is very similar to the freefall timescale
 %
 \begin{align}
   \tau _{\text{free fall}} = \qty(\frac{3 \pi }{ 32 G \rho_0 })^{1/2}
-\,.
+\,;
 \end{align}
 %
+the difference is only the numerical factor in front, and they are quite similar (\num{.28} versus \num{.54}). 
+
+%% GOT HERE
 
 We have a typical Jeans wavenumber: 
 %

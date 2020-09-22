@@ -16,19 +16,19 @@ Now, the question we want to as is: is this equilibrium configuration \textbf{st
 
 In order to answer this question we shall use a statistical-mechanics, microscopic approach. 
 
-We consider a cubic box of volume \(V = L^3\) with \(N\) particles inside it, each of which has a velocity \(\vec{v} = (v_x, v_y, v_z)^{\top}\) and a momentum \(p\). Let us select a face of the box, which we assume to be perpendicular to the \(x\) axis. Each particle will hit it with a frequency \(t^{-1} = v_x / 2L\), and each time it hits it it imparts upon it a momentum \(2 p_x\), since it is reflected backwards.
+We consider a cubic box of volume \(V = L^3\) with \(N\) particles inside it, each of which has a velocity \(\vec{v} = (v_x, v_y, v_z)^{\top}\) and a momentum \(p\). Let us select a face of the box, which we assume to be perpendicular to the \(x\) axis. Each particle will hit it with a frequency \(t^{-1} = v_x / 2L\), and each time it does so it imparts upon it a momentum \(2 p_x\), since it is reflected backwards.
 
-Summing over all the particles, the rate of momentum transfer in the direction \(x\) is given by 
+Summing over all the particles, the rate of momentum transfer (so, the force) in the direction \(x\) is given by 
 %
 \begin{align}
-  \frac{N}{L} \expval{p_x v_x}
+  \frac{N}{2L} \expval{2p_x v_x}
 \,,
 \end{align}
 %
-so the pressure upon that face will be 
+so the pressure upon that face will be the force divided by the area of the face
 %
 \begin{align}
-P_x = \frac{N}{L} \expval{p_x v_x} \frac{1}{L^3} = \underbrace{\frac{N}{V}}_{= n} \expval{p_x v_x}
+P_x = \frac{N}{L} \expval{p_x v_x} \frac{1}{L^2} = \underbrace{\frac{N}{V}}_{= n} \expval{p_x v_x}
 \,.
 \end{align}
 
@@ -90,6 +90,36 @@ Then, for a gas of nonrelativistic particles we can write the pressure as
 %
 where \(\rho_{E_K} = n m \expval{ v^2 /2}\) is the density of translational kinetic energy.
 
+Combining this result with the fact that, as we have seen before, \(\expval{P}=- \rho _{\text{grav}} / 3\), we find 
+%
+\begin{align}
+  - \frac{1}{3} \rho _{\text{grav}} = \frac{2}{3} \rho_{E_K} \implies
+  2 E _{\text{K}} + E _{\text{grav}} = 0
+\,,
+\end{align}
+%
+% in the nonrelativistic approximation. 
+which is an alternate statement of the \textbf{nonrelativistic} case of the \textbf{virial theorem}. 
+
+The total energy is then given by \(E _{\text{tot}} = E_k + E _{\text{grav}} = - E_k\): this means that in general the system will be \textbf{bound} --- the kinetic energy is quadratic, so always positive --- and that the hotter it is, the more bound it is.
+
+% We define: \(\Delta E _{\text{tot}} = - \Delta E _{\text{K}} = \frac{1}{2} \Delta E _{\text{grav}}\). 
+
+% We know that 
+% %
+% \begin{align}
+%   \expval{P} = \frac{1}{3} \frac{E _{\text{K}}}{V} = -\frac{1}{3} \frac{E _{\text{grav}}}{V}
+% \,
+% \end{align}
+% %
+% by the virial theorem: so the total binding energy is equal to zero, since this gives us 
+% %
+% \begin{align}
+%   E _{\text{grav}} + E _{\text{K}} = E _{\text{tot}} = 0
+% \,.
+% \end{align}
+% %
+
 \paragraph{Relativistic case}
 
 In this case \(v \approx c\), so \(\expval{p \cdot \vec{v}} \approx pc\). We can apply the reasoning from before, but the density of translational kinetic energy is given by 
@@ -106,6 +136,16 @@ P = \frac{n}{3} \expval{\vec{p} \cdot \vec{v}} = \frac{\rho _{E_k}}{3}
 \,.
 \end{align}
 
+Then, we can apply the same reasoning as the nonrelativistic case, with the difference of the missing factor 2: we then get 
+%
+\begin{align}
+\rho_{E_k} + \rho_{\text{grav}} = 0 \implies
+E _{\text{grav}} + E_k = E _{\text{tot}} = 0
+\,,
+\end{align}
+%
+so the system is \textbf{unbound}, it does not have any constraint preventing it from dissociating. 
+
 % while in the relativistic case we have: 
 % %
 % \begin{align}
@@ -115,35 +155,18 @@ P = \frac{n}{3} \expval{\vec{p} \cdot \vec{v}} = \frac{\rho _{E_k}}{3}
 
 % We will show that, if a star is made of a gas of classical nonrelativistic particles it tends to be stable, if the particles are relativistic then it tends not to be stable.
 
-The virial theorem tells us that 
-%
-\begin{align}
-  2 E _{\text{K}} + E _{\text{grav}} = 0
-\,,
-\end{align}
-%
-in the nonrelativistic approximation. 
+% The virial theorem tells us that 
 
-We define: \(\Delta E _{\text{tot}} = - \Delta E _{\text{K}} = \frac{1}{2} \Delta E _{\text{grav}}\). 
+\paragraph{Adiabatic gas}
 
-We know that 
-%
-\begin{align}
-  \expval{P} = \frac{1}{3} \frac{E _{\text{K}}}{V} = -\frac{1}{3} \frac{E _{\text{grav}}}{V}
-\,
-\end{align}
-%
-by the virial theorem: so the total binding energy is equal to zero, since this gives us 
-%
-\begin{align}
-  E _{\text{grav}} + E _{\text{K}} = E _{\text{tot}} = 0
-\,.
-\end{align}
-%
+We have seen the limiting cases, now let us consider a slightly more general one: a gas undergoing an adiabatic transformation, such that \(P V^{\gamma }\) (with some real number \(\gamma \)) is constant.\footnote{A more realistic model would allow \(\gamma \) to vary, which it definitely does in the stages of stellar formation and evolution and even across a single transformation. We will not, however, get that deep in the weeds.}
+We will show that this is equivalent to the equations of state considered in cosmology, where \(P = w \rho \). 
+This will allow us to characterize the gravitational stability of the to-be star depending on the equation of state of the gas. 
 
-Now we differentiate the law \(\dd \qty(P V^{\gamma }) = 0\), since it is a constant for an adiabatic transformation: it gives us, using logarithmic derivatives, 
+We start by differentiating: \(\dd \qty(P V^{\gamma }) = 0\), which means that we also have \(\dd{ (\log (P V^{\gamma }))} = 0\), which we can expand into
 %
 \begin{align}
+  \dd{\log (V^{\gamma })} + \dd{\log (P)} = 
   \gamma \frac{ \dd{V}}{V} + \frac{ \dd{P}}{P} = 0
 \,,
 \end{align}
@@ -151,48 +174,61 @@ Now we differentiate the law \(\dd \qty(P V^{\gamma }) = 0\), since it is a cons
 so 
 %
 \begin{align}
-  \dd{(PV)} = - (\gamma -1 ) P \dd{V}
-\,,
+  - (\gamma -1 ) P \dd{V}
+  = P \dd{V} + V \dd{P} =
+  \dd{(PV)} 
+\,.
 \end{align}
 %
-and we know that for an adiabatic transformation 
+% and we know that for an adiabatic transformation 
+
+% Isentropicity of the trasformation means
+In an adiabatic transformation the entropy must not change: so, we can write
 %
 \begin{align}
+  T \dd{S} = 
   \dd{E _{\text{in}}} + P \dd{V} = 0
 \,,
 \end{align}
 %
-which implies 
+which we can then write using the relation we derived previously:
 %
 \begin{align}
-  \dd{E _{\text{in}}} = \frac{1}{\gamma -1} \dd{(PV)}
-\,,
+  \dd{E _{\text{in}}} &= \frac{1}{\gamma -1} \dd{(PV)} \\
+  E _{\text{in}} &= \frac{PV}{\gamma -1}  \\
+  P &= (\gamma - 1) \frac{E _{\text{in}}}{V} = (\gamma - 1) \rho _{\text{in}}
+\,.
 \end{align}
 %
-and let us assume that \(\gamma \) is approximately constant in the transformation: this means 
-%
-\begin{align}
-  E _{\text{in}} = \frac{PV}{\gamma -1}
-\,,
-\end{align}
-%
-so 
-%
-\begin{align}
-  P = (\gamma -1 ) \frac{E _{\text{in}}}{V}
-\,,
-\end{align}
-%
-which justifies the relations we used in cosmology, \(P = w \rho \) with \(w = \gamma -1\). 
+% and let us assume that \(\gamma \) is approximately constant in the transformation: this means 
 
-We can rewrite the equation from before as 
+We can then see that if we impose that the transformation be adiabatic, we find the equation of state \(P  =w \rho \), with \(\gamma -1 = w\). 
+
+% %
+% \begin{align}
+%   E _{\text{in}} = \frac{PV}{\gamma -1}
+% \,,
+% \end{align}
+% %
+% so 
+% %
+% \begin{align}
+%   P = (\gamma -1 ) \frac{E _{\text{in}}}{V}
+% \,,
+% \end{align}
+% %
+% which justifies the relations we used in cosmology, \(P = w \rho \) with \(w = \gamma -1\). 
+
+% We can rewrite the equation from before as 
+Using the fact that, as we have shown before, \(P = - \rho _{\text{grav}} / 3\), this means 
 %
 \begin{align}
+- \frac{\rho _{\text{grav}}}{3} = (\gamma - 1) \rho _{\text{in}} \implies
   3(\gamma -1 ) E _{\text{in}} + E _{\text{gr}} = 0
 \,,
 \end{align}
 %
-which, together with \(E _{\text{tot}} = E _{\text{in}} + E _{\text{gr}}\), give us 
+which, together with the fact that the total energy of the star after the collapse is the initial energy plus the (negative) gravitational binding energy: \(E _{\text{tot}} = E _{\text{in}} + E _{\text{gr}}\), so 
 %
 \begin{align}
   E _{\text{tot}} = - (3 \gamma - 4) E _{\text{in}}
@@ -200,8 +236,14 @@ which, together with \(E _{\text{tot}} = E _{\text{in}} + E _{\text{gr}}\), give
 \end{align}
 %
 which means that \(\gamma > 4/3\) characterizes a bound system, while \(\gamma < 4/3\) characterizes a free system. 
+This is consistent with what we have seen before: the limiting case \(\gamma = 4/3\) is equivalent to \(w = 1/3\), the equation of state of radiation (or ultrarelativistic matter), which as we have already seen is unbound.
+% \(\gamma  = 1\) is equivalent to nonrelativistic matter with \(w = 0\), meaning no pressure at all: this matter will then collapse and 
 
-There are two dangers: one is the fight against the pressure forces, one is the fight against the quantum forces (the Pauli exclusion principle) which do not allow the compression to happen further. 
+From classical thermodynamics we know that, for instance, a monoatomic gas has \(\gamma = 5 /3\).
+
+% There are two dangers: one is the fight against the pressure forces, one is the fight against the quantum forces (the Pauli exclusion principle) which do not allow the compression to happen further. 
+
+\section{Jeans instability}
 
 Now we discuss Jeans instability: 
 %

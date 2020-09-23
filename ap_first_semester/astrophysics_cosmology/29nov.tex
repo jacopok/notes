@@ -55,7 +55,7 @@ A result from Helmholtz is the fact that every velocity field can be decomposed 
 
 The two cases, as we will see, amount to making the velocity field fully irrotational or fully divergenceless.
 
-\paragraph{Time-independent solutions}
+\subparagraph{Time-independent solutions}
 We start by considering the first option, \(\omega = 0\): then, we get
 %
 \begin{subequations}
@@ -76,7 +76,7 @@ The first equation tells us that \(\vec{k} \cdot \vec{v} = 0\), which in positio
 
 % As soon as we ask the perturbation to be time independent we only find vortical motions, with \(\vec{v} \perp \vec{k}\). 
 
-\paragraph{Isentropic solutions}
+\subparagraph{Isentropic solutions}
 Now, we consider the case in which \(\delta s_0 =0\), while \(\omega \neq 0\) in general. The equations read
 %
 \begin{subequations}
@@ -135,19 +135,31 @@ which is very similar to the freefall timescale
 %
 the difference is only the numerical factor in front, and they are quite similar (\num{.28} versus \num{.54}). 
 
-%% GOT HERE
-
-We have a typical Jeans wavenumber: 
+The separation between real and imaginary \(\omega \) is reached when \(\omega^2 = 0\), which gives us the critical \emph{Jeans wavenumber}:
+% We have a typical Jeans wavenumber: 
 %
 \begin{align}
   k_J^2 = \frac{4 \pi G \rho_0 }{c_s^2}
+\,.
+\end{align}
+%
+% corresponding to when the frequency becomes imaginary. 
+
+The wavenumber \(k_J\) also defines a wavelength \(\lambda _J = 2 \pi / k_J\), which will then tell us what the length scale above which we have instability is.
+
+This is, up to a order-1 difference in the numerical factor in front, the same result we had before: we can see this if we consider the fact that, for an ideal gas, \(c_s \approx \sqrt{k_B T / \overline{m}} \) we recover 
+%
+\begin{align}
+\lambda _J \sim \frac{1}{\sqrt{G \rho_0 }} \sqrt{ \frac{k_BT}{\overline{m}}}
 \,,
 \end{align}
 %
-corresponding to when the frequency becomes imaginary. 
+which is consistent with equation \eqref{eq:jeans-density}.
 
-We can compare this to a plasma of charged particles, with the electrostatic potential instead of the gravitational field. 
-In that case we find 
+\subparagraph{A plasma analogy}
+
+The result we found is similar to what we get with a plasma of charged particles, with the electrostatic potential instead of the gravitational field. 
+In that case, the dispersion relation is given by
 %
 \begin{align}
   \omega^2 = c_s^2 k^2 + \frac{4 \pi n_e e^2}{m_e}
@@ -162,216 +174,252 @@ We have the following analogies:
 \begin{align}
   n_e &\rightarrow \rho_0 / m  \\
   m_e &\rightarrow m  \\
-  e^2 &\rightarrow Gm^2  \\
-  + &\rightarrow -
-\,;
+  e^2 &\rightarrow Gm^2 
+  % + &\rightarrow -
+\,.
 \end{align}
 \end{subequations}
 %
-the first of these are due to the inertial mass being equal to the gravitational mass; the plus becoming a minus is due to the fact that we do not have negative charge in the gravitational setting, so there cannot be a screening effect. 
+% the first of these are due to the inertial mass being equal to the gravitational mass; the plus becoming a minus is due to the fact that we do not have negative charge in the gravitational setting, so there cannot be a screening effect. 
 
-We now come back to the RW line element: 
-%
-\begin{align}
-  \dd{s^2} = c^2 \dd{t^2} 
-  -a^2(t) \qty(\frac{ \dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega^2})
-\,,
-\end{align}
-%
-in which the most important thing is that \(a\) is a function of time. 
+The equations are similar but, crucially, the sign of the additional term in the dispersion relation is positive in the gravitational case and negative in the electromagnetic case. This is due to the fact that there exists only positive gravitational ``charge'', while we have both positive and negative electric charge: in the electromagnetic case, then, we can have screening effects, not so in the gravitational one.
 
-We will now use a Newtonian approach: we ignore spatial curvature, that is, set \(k=0\): this is good for small enough scales. The thing is: the time scales of gravitational collapse are long, and we cannot ignore the effects of spacetime expansion. 
+\paragraph{Nonstatic ansatz}
 
-We use a coordinate defined by \(\vec{r} = a(t) \vec{x}\), so that the line element becomes 
-%
-\begin{align}
-  \dd{s^2} = c^2 \dd{t^2} - \dd{\abs{x}^2} - 
-\abs{x}^2 \dd{\Omega^2}
-\,. 
-\end{align}
-%
-\todo[inline]{right?}
+Now, we will study the same problem, but instead of a static background we will use an expanding one, described by a flat FLRW metric (the effects of spatial curvature will be negligible on the scale of a stellar formation cloud anyway).
 
-What will be done now could have been done by Newton: he did not just because he thought the universe was static. We have (dropping the vector sign, but still impying it): 
+% We now come back to the RW line element: 
+% %
+% \begin{align}
+%   \dd{s^2} = c^2 \dd{t^2} 
+%   -a^2(t) \qty(\frac{ \dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega^2})
+% \,,
+% \end{align}
+% %
+% in which the most important thing is that \(a\) is a function of time. 
+
+% We will, however use a Newtonian approximation: we will ignore spatial curvature, that is, set \(k=0\): this is good for small enough scales. The thing is: the time scales of gravitational collapse are long, and we cannot ignore the effects of spacetime expansion. 
+
+The physical radial vector will be given by \(\vec{r} = a(t) \vec{x}\), where \(\vec{x}\) is the radial vector in comoving coordinates.
+% %
+% \begin{align}
+%   \dd{s^2} = c^2 \dd{t^2} - \dd{\abs{x}^2} - 
+% \abs{x}^2 \dd{\Omega^2}
+% \,. 
+% \end{align}
+% %
+% \todo[inline]{right?}
+
+% What will be done now could have been done by Newton: he did not just because he thought the universe was static.
+% We have (dropping the vector sign, but still impying it): 
+We now drop the vector sign, but still imply it; the physical velocity is given by 
 %
 \begin{align}
   u = \dot{r} = \dot{a} x + a \dot{x} 
-  = \frac{\dot{a}}{a} r + v
+  = \frac{\dot{a}}{a} r + v = H r + v
 \,,
 \end{align}
 %
-where \(v = a \dot{x}\) is called the peculiar velocity which galaxies and such can have.  
+where \(v = a \dot{x}\) is called the \textbf{peculiar velocity}.
+This has a direct physical implication: the distant galaxies we observe are, generally speaking, the more redshifted the further they are from us; however, there is noise in this relation due to the Doppler shift caused by the peculiar velocity.
+An extreme example of this is the Andromeda galaxy which, despite being almost a \SI{}{Mpc} away, is actually \emph{blueshifted} to \(z \approx \num{-.001}\) since its peculiar velocity is directed towards the Solar System. 
 
-Let us forget about the pressure gradient and just look at how the instability evolves: this will also apply to dark matter which has no pressure. We look at 
+Let us then seek perturbed solutions to the equations of motion of the fluid.
+We will neglect the pressure gradient in order to simplify the considerations --- this is not a great approximation, since we are always perturbing around the equilibrium situation in which the instability has not yet formed, so in a low-pressure scenario. When the pressure will start to take over we will be far from the background anyway, so we cannot hope to describe the situation in this way. 
+This discussion will then also apply to dark-matter structure formation, since it is pressureless.
+
+% Let us forget about the pressure gradient and just look at how the instability evolves: this will also apply to dark matter which has no pressure. We look at 
+We will use a slightly different notation from before, denoting the background with an index \(b\), so that 
 %
 \begin{align}
-  \qty[\pdv[]{\rho }{t} ]_{\vec{r}} + \nabla_{\vec{r}} \qty(\rho \vec{u}) = 0 
-\,,
-\end{align}
-%
-the velocity equation is 
-%
-\begin{align}
-  \qty[\pdv{\vec{u}}{r}]_{\vec{r}} + \qty(\vec{u} \cdot \nabla_{\vec{r}}) \vec{u} = - \nabla_{\vec{r}} \Phi 
-\,,
-\end{align}
-%
-and finally 
-%
-\begin{align}
-  \nabla^2_{\vec{r}} = 4 \pi G \rho 
+\rho (\vec{r}, t) &= \rho _b (t) + \delta \rho (\vec{r}, t)  \\
+\vec{v} (\vec{r}, t) &= \vec{v}_b (\vec{r}, t) + \vec{v} (\vec{r}, t)  \\
+\Phi (\vec{r}, t) &= \Phi _b (\vec{r}, t) + \phi (\vec{r}, t)
 \,.
 \end{align}
 
-Our expression for \(\vec{u}\) is \(H \vec{r} + \vec{v}\), also we have 
+The equations, using the customary notation for a partial derivative taken while keeping a certain variable constant, read:
 %
 \begin{align}
-  \rho (\vec{r}, t) = \rho_{b} (t) + \delta \rho (\vec{r}, t)
-\,,
+  \eval{\pdv[]{\rho }{t}}_{\vec{r}} + \nabla_{\vec{r}} \cdot \qty(\rho \vec{u}) &= 0 \\ 
+  \eval{\pdv{\vec{u}}{r}}_{\vec{r}} + \qty(\vec{u} \cdot \nabla_{\vec{r}}) \vec{u} &= - \nabla_{\vec{r}} \Phi \\
+  \nabla^2_{\vec{r}} \Phi  &= 4 \pi G \rho 
+\,.
 \end{align}
-%
-a background plus a perturbation. 
 
-To find the background, we assume that the density of matter is space independent but time dependent: then we find 
+% Our expression for \(\vec{u}\) is \(H \vec{r} + \vec{v}\), also we have 
+% %
+% \begin{align}
+%   \rho (\vec{r}, t) = \rho_{b} (t) + \delta \rho (\vec{r}, t)
+% \,,
+% \end{align}
+% %
+% a background plus a perturbation. 
+
+Let us now try to find the \textbf{background} solution. We assumed that the background density of matter \(\rho _b(t)\) is space independent but time dependent: therefore, up to a constant (which we set to zero) and a linear term in \(\vec{r}\) (which would violate isotropy) we must
 %
 \begin{align}
   \Phi_{b } (\vec{r}, t) = \frac{2 \pi G}{3} \rho_{b} (t) r^2
 \,,
 \end{align}
 %
-which has gradient 
+which is consistent with what we found earlier, since its gradient and then Laplacian are:
 %
 \begin{align}
-  \nabla_{\vec{r}} \Phi_{b} = \frac{4 \pi G}{3} \rho_b (t) \vec{r} 
-\,,
-\end{align}
-%
-and laplacian 
-%
-\begin{align}
-  \nabla^2_{\vec{r}} \Phi_{b} = 4 \pi G \rho_b
-\,,
-\end{align}
-%
-but this diverges at \(r \rightarrow \infty\)! this is not an issue with the solution, but with Newtonian mechanics. 
-
-This is an elliptic differential equation: hyperbolic ones look like \( \square \Phi = 0\), elliptic ones like \(\nabla^2 \Phi =0  \), while parabolic ones (???)
-
-We want to get equations in the comoving coordinates, not the local inertial ones. Take a generic function \(f(\vec{r}, t)\), which can also be expressed with respect to \((\vec{x}, t)\). 
-
-Then, the difference between the derivatives is: 
-%
-\begin{align} \label{eq:comoving-derivatives-relation}
-  \qty[\pdv{f}{t}]_{\vec{x}} =   \qty[\pdv{f}{t}]_{\vec{r}} + H \qty(\vec{r} \cdot \nabla_{\vec{r}}) f
+  \nabla_{\vec{r}} \Phi_{b} &= \frac{4 \pi G}{3} \rho_b (t) \vec{r} 
+  \nabla^2_{\vec{r}} \Phi_{b} &= 4 \pi G \rho_b
 \,.
 \end{align}
 
-Take the convective derivative 
-%
-\begin{align}
-  \frac{\mathrm{D} f}{\mathrm{D}t } 
-  = \pdv{f}{t}_{\vec{r}} + \pdv{f}{\vec{r}} \cdot \vec{\dot{r}} 
-\,,
-\end{align}
-%
-where \(\vec{\dot{r}
-} = \vec{u} = H \vec{r} + \vec{v} \). 
-From what we saw, this can be expressed as 
-%
-\begin{align}
-  \pdv{f}{t}_{\vec{r}} + H \qty(\vec{r} \cdot \nabla_{\vec{r}}  ) + \qty(\vec{v} \cdot \nabla_{\vec{r}}) f 
-\,,
-\end{align}
-%
-but we can also do it the other way round, keeping \(\vec{x}\) constant: that way, we find 
-%
-\begin{align}
-  \frac{\mathrm{D} f}{\mathrm{D}t } 
-  = \pdv{f}{t}_{\vec{x}} + \pdv{f}{\vec{x}}
-\,,
-\end{align}
-%
-and identifying the terms we ge the desired relation, equation \eqref{eq:comoving-derivatives-relation}. 
+This potential diverges at \(r \rightarrow \infty\); however this is not an issue with the solution, but with the Newtonian approximation we made. 
+It will not affect our treatment of the problem. 
 
-Skipping some passages, from the continuity equation we get:
+% This is an elliptic differential equation: hyperbolic ones look like \( \square \Phi = 0\), elliptic ones like \(\nabla^2 \Phi =0  \), while parabolic ones (???)
+
+We want to get equations in the comoving coordinates (\(\vec{x}\)), not the local inertial ones (\(\vec{r}\)).
+Let us consider a generic function \(f(\vec{r}, t)\), which can also be expressed with respect to \((\vec{x}, t)\). 
+
+It can be shown\footnote{The way to go about it is to impose the equality of the total time derivatives of \(f(\vec{x}, t)\) and \(f(\vec{r}, t)\), which read: 
 %
 \begin{align}
-  \pdv{\rho }{t}_{\vec{x}} + 3 H \rho + 
-  \frac{1}{a} \nabla_{\vec{x}} \qty(\rho \vec{v}) = 0
-\,,
+\frac{\mathrm{D} f(\vec{r}, t)}{\mathrm{D}t } 
+&= \pdv{f}{t}_{\vec{r}} + \qty(\nabla_{\vec{r}} f) \cdot \underbrace{\qty(\vec{v} + H \vec{r})}_{\dot{r}} \\
+\frac{\mathrm{D} f(\vec{x}, t)}{\mathrm{D}t } 
+&= \pdv{f}{t}_{\vec{x}} + \qty(\nabla_{\vec{x}} f) \cdot \underbrace{\vec{v}}_{\dot{x}} 
+\,.
 \end{align}
+} that the difference between the time derivatives at fixed \(\vec{r}\) and at fixed \(\vec{x}\) of a generic function \(f\) (which can also be a vector) is given by
 %
-while for the Euler equation we have: 
+\begin{align} \label{eq:comoving-derivatives-relation}
+  \eval{\pdv{f}{t}}_{\vec{x}} =   \eval{\pdv{f}{t}}_{\vec{r}} + H \qty(\vec{r} \cdot \nabla_{\vec{r}}) f
+\,.
+\end{align}
+
+% Take the convective derivative 
+% %
+% \begin{align}
+  
+% \,,
+% \end{align}
+% %
+% where \(\vec{\dot{r}
+% } = \vec{u} = H \vec{r} + \vec{v} \). 
+% From what we saw, this can be expressed as 
+% %
+% \begin{align}
+%   \pdv{f}{t}_{\vec{r}} + H \qty(\vec{r} \cdot \nabla_{\vec{r}}  ) + \qty(\vec{v} \cdot \nabla_{\vec{r}}) f 
+% \,,
+% \end{align}
+% %
+% but we can also do it the other way round, keeping \(\vec{x}\) constant: that way, we find 
+% %
+% \begin{align}
+%   \frac{\mathrm{D} f}{\mathrm{D}t } 
+%   = \pdv{f}{t}_{\vec{x}} + \pdv{f}{\vec{x}}
+% \,,
+% \end{align}
+% %
+% and identifying the terms we ge the desired relation, equation \eqref{eq:comoving-derivatives-relation}. 
+
+% Skipping some passages, from the continuity equation we get:
+We can then mold the continuity equation:
 %
 \begin{align}
-  \pdv{H \vec{r}}{t}_{\vec{r}} + H^2 \qty(\vec{r} \cdot \nabla_{\vec{r}}) \vec{r} = - \nabla_{\vec{r}} \Phi_{b}
+\eval{\dv{\rho }{t} }_{\vec{x}}
+- H \qty(\vec{r}\cdot \nabla_{\vec{r}}) \rho 
++ \rho \vec{\nabla} \cdot \vec{u} 
++ \qty(\vec{u} \cdot \nabla_{\vec{r}}) \rho &= 0  \\
+\eval{\dv{\rho }{t} }_{\vec{x}}
+- H \qty(\vec{r}\cdot \nabla_{\vec{r}}) \rho 
++ \rho \vec{\nabla}_{\vec{r}} \cdot \qty(H \vec{r} + \vec{v}) 
++ H \qty(\vec{r} \cdot \vec{\nabla}_{\vec{r}}) \rho 
++ \qty(\vec{v} \cdot \vec{\nabla}_{\vec{r}}) \rho
+&= 0 \\
+\eval{\dv{\rho }{t}}_{\vec{x}} 
++ 3 H \rho
++ \rho \vec{\nabla}_{\vec{r}} \cdot \vec{v} + \qty(\vec{v} \cdot \vec{\nabla}_{\vec{r}}) \rho &= 0  \\
+\eval{\pdv{\rho }{t}}_{\vec{x}} + 3 H \rho + 
+  \underbrace{\frac{1}{a} \nabla_{\vec{x}}}_{\vec{\nabla}_{\vec{r}}} \cdot \qty(\rho \vec{v}) &= 0
+\,.
+\end{align}
+
+% For the Euler equation we have: 
+The computation for the Euler equation is an application of the same principles, with one exception: we can simplify the background potential term with some terms which appear on the left-hand side, using the equation
+%
+\begin{align}
+  \eval{\pdv{(H \vec{r})}{t}}_{\vec{r}} + H \qty(\vec{r} \cdot \nabla_{\vec{r}}) (H\vec{r}) = - \nabla_{\vec{r}} \Phi_{b}
 \,. 
 \end{align}
-%
-The divergence term is just \(r^{j} \partial_{j} r^{i} = r^{i}\). Inserting the expression we know for the gravitational potential, whose gradient is proportional to \(\vec{r}\), we get: 
+
+The divergence term is just \(r^{j} \partial_{j} r^{i} = r^{i}\). Inserting the expression we know for the background gravitational potential, whose gradient is proportional to \(\vec{r}\), we get: 
 %
 \begin{align}
   \vec{r} \qty(\dot{H} +  H^2 = - \frac{4 \pi G }{3} \rho_{b } )
 \,,
 \end{align}
 %
-which must hold for any \(\vec{r}\), so we drop it and recover one of the Friedmann equations! 
-Note that we did not use any GR, everything was Newtonian. 
+which must hold for any \(\vec{r}\), so we drop it and recover the second Friedmann equation (using \(\dot{H} + H^2= \ddot{a} / a\)). Working backwards, we can prove the equation. 
+% Note that we did not use any GR, everything was Newtonian. 
 
-We will get another result: 
+% We will get another result: 
+Using this, we can write the Euler equation as:
 %
 \begin{align}
-  \pdv{\vec{v}}{t} + H \vec{v} + \frac{1}{a} \qty(\vec{v} \cdot \nabla_{\vec{x}}) \vec{v} = - \frac{1}{a} \nabla_{\vec{x}} \delta \Phi 
-\,,
+  \eval{\pdv{\vec{v}}{t}}_{\vec{x}} + H \vec{v} + \frac{1}{a} \qty(\vec{v} \cdot \nabla_{\vec{x}}) \vec{v} = - \frac{1}{a} \nabla_{\vec{x}} \delta \Phi 
+\,;
 \end{align}
 %
-our new perturbed Euler equation; while the new Poisson equation is 
+getting the Poisson equation in comoving coordinates is faster and directly yields 
 %
 \begin{align}
   \nabla^2 \delta \Phi = a^2 4 \pi G \delta \rho 
 \,.
 \end{align}
 
-Some cosmologists like to define 
+% Some cosmologists like to define 
+We express the density perturbation by defining the variable \(\delta \) as
 %
 \begin{align}
   \delta (\vec{x}, t) = \frac{ \delta \rho}{\rho _b} = \frac{\rho (\vec{x}, t) - \rho _b (t)}{\rho _b (t)}
 \,,
 \end{align}
 %
-which can be anywhere from \(-1\) to \(+ \infty \). 
+which can take values anywhere from \(-1\) to \(+ \infty \): we can interpret a negative \(\delta \) as a sort of ``negative effective gravitational charge''. This has the physical meaning that we can expect screenings: under-dense and over-dense regions can ``balance out'' at large distances, just like we do not observe the effects of large-scale  electric charge imbalances.
 
-Then, we can interpret a negative \(\delta \rho \) as a negative charge. 
+% Why the Newtonian approach? Nobody knows how to write down the equations for a general relativistic self-gravitating fluid. 
 
-Why the Newtonian approach? Nobody knows how to write down the equations for a general relativistic self-gravitating fluid. 
-
-Is the Newtonian approximation a good one? In it, we have 
+% With this definition, we can define 
+We can then give a quantitative check of whether the Newtonian approximation is a good one. In terms of \(\delta \), the Poisson equation reads: 
 %
 \begin{align}
-  \nabla^2 \delta \Phi  = 4 \pi G \rho _b a^2 \delta 
+  \nabla^2 \delta \Phi  = 4 \pi G \rho _b \delta  a^2  
 \,,
 \end{align}
 %
-can we make the weak field approximation? 
+% can we make the weak field approximation? 
+which we can estimate: let us say that \(\lambda \) is the typical variation scale of the potential, so that \(\nabla^2 \delta \Phi \sim \lambda^{-2} \delta \Phi \); also let us use the first Friedmann equation relating \(H^2\) with the background density \(\rho _b\) (since the FE only hold at large scales):
+% Typically 
+% %
+% \begin{align}
+%   \delta \Phi \sim 4 \pi G \rho _b a^2 \delta \lambda^2
+% \,,
+% \end{align}
+% %
+% where \(\lambda \) is the variation scale, from the Laplacian. 
 
-Typically 
+% From the Friedmann equation, \(H^2=  \frac{8 \pi G}{3} \rho_b\), then we have 
 %
 \begin{align}
-  \delta \Phi \sim 4 \pi G \rho _b a^2 \delta \lambda^2
+  \lambda^{-2} \delta \Phi &\sim 4 \pi G \frac{H^2}{ 8 \pi G / 3} a^2 \delta  \\
+  \delta \Phi &\sim \frac{3}{2} H^2 \delta a^2 \lambda^2 \sim  \qty(\frac{\lambda^2  }{\lambda _{\text{hor}}^2}) \delta 
 \,,
 \end{align}
 %
-where \(\lambda \) is the variation scale, from the Laplacian. 
+where the typical variation of the gravitational field is \(\lambda \sim \SI{}{\mega\parsec}\), while \(c / (H a) = \lambda _{\text{hor}} \sim \SI{}{\giga\parsec}\) is the (comoving) Hubble horizon scale. 
 
-From the Friedmann equation, \(H^2=  \frac{8 \pi G}{3} \rho_b\), then we have 
-%
-\begin{align}
-  \delta \Phi \sim \frac{3}{2} H^2 \delta a^2 \lambda^2 \sim  \qty(\frac{\lambda^2  }{\lambda _{\text{hor}}^2}) \delta 
-\,,
-\end{align}
-%
-and \(\lambda \sim \SI{}{\mega\parsec}\), the galactic perturbation scale, while \(\lambda _{\text{hor}} \sim \SI{}{\giga\parsec}\). 
+% \todo[inline]{There is an implied \(c\) and \(a\) is adimensional here right? then we can have the dimensionally consistent \(c / Ha = \lambda _{\text{hor}}\)\dots otherwise I'm having a hard time making sense of this, typically we say that the horizon scale is \(c/ H\). }
 
+The density perturbation will be, at most, of order 1, so we get that \(\delta \Phi \) is indeed small.
 As long as the perturbations are only galactic, the Newtonian approximation is good. 
 
 \end{document}

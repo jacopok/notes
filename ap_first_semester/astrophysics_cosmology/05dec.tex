@@ -314,83 +314,120 @@ Typically, we are more interested in the growing mode.
 
 % and now we are assuming that \(\rho > \rho _J\). 
 
-Stars are made of baryons. 
-
-Molecular hydrogen: 
+% Stars are made of baryons. 
+Let us now actually discuss stellar formation specifically.
+The presence of molecular hydrogen, \ce{H2}, is correlated to stellar formation since it can absorb some of the kinetic energy of the collapsing cloud by dissociating, thus allowing for further collapse; it forms through the channels
 %
 \begin{subequations}
 \begin{align}
-  H + e &\leftrightarrow H^{-} + \gamma  \\
-  H^{-} + H &\leftrightarrow H_2 + e  \\
-   H+ p &\leftrightarrow H_2^{+} + \gamma  \\
-  H_2^{+} + H &\leftrightarrow H_2 + p
+  \ce{H} + e &\leftrightarrow \ce{H-} + \gamma &
+  \ce{H-} + \ce{H} &\leftrightarrow \ce{H2} + e  \\
+   \ce{H}+ p &\leftrightarrow \ce{H2+} + \gamma  &
+  \ce{H2+} + \ce{H} &\leftrightarrow \ce{H2} + \ce{p}
 \,,
 \end{align}
 \end{subequations}
 %
-and these processes are generally not very efficient: they start to be efficient at redshifts of about \(z \sim 200\). 
+and these processes, generally speaking, start to become efficient at redshifts of about \(z \sim 200\). 
 
-It is easier to get the Jeans density if the mass is high and the temperature is low. 
+As we have seen, if we fix the temperature then the Jeans critical density scales like \(\rho _J \propto M^{-2}\) \eqref{eq:jeans-critical-density-by-mass}:
+so, it is easier to get above the Jeans density if the mass is high (and the temperature is low). 
+This means that we expect the formation of stars to be a top-down process: larger structures form first. 
 
-The formation of stars is somewhat top-down: larger structures form first. 
+Let us now give some quantitative estimates of the densities at hand.
 
-The critical energy density today is  \(\rho_{0c} \sim \SI{e-29}{g cm^{-3}}\), while for baryons we have \(\rho_{0b} \sim \SI{1e-31}{g cm^{-3}}\). 
+Approximately, the baryonic density today is \(\rho_{0b} \sim \SI{1e-28}{kg m^{-3}}\). 
 
-On the other hand, at \(z \sim 200 \) we must multiply the density by a factor \((1+z)^3\) we get a density of \(\rho_{b} (z \sim 200) \sim \SI{e-22}{kg m^{-3}}\). 
+Going backwards in time, the baryonic density scales like \(\rho _b (z) = (1+z)^{3} \rho_{0b}\): at \(z \sim 200 \), for example, we have \(\rho_{b} (z \sim 200) \sim \SI{e-22}{kg m^{-3}}\). 
 
-If we take \(M = 1000 M_{\odot}\) and \(T \approx \SI{20}{K}\), we have a Jeans critical density of around \(\SI{e-20}{kg m^{-3}}\). 
+Stars will not form anywhere, they will only do so in over-dense regions, which form preferentially in the centers of dark-matter halos, acting as gravitational ``traps''. 
 
-\todo[inline]{Is \SI{20}{K} a typical temperature then?}
+Let us take, as an example, a molecular hydrogen (\(\overline{m} \approx 2 m_p\)) cloud with a mass of \(M = 1000 M_{\odot}\) and \(T \approx \SI{20}{K}\) (a typical temperature for matter at this redshift): we have a Jeans critical density of \(\rho _J \approx \SI{4e-22}{kg m^{-3}}\). 
 
-The matter starts free-falling: then the kinetic energy increases. 
-However, it is used in chemical processes. That way matter can become opaque. 
+\todo[inline]{Perhaps this is the place to put the scaling of the temperature of matter! The fact that the temperature of baryons decreases slower than the radiation's is crucial to reach a temperature low enough to reach the Jeans bound.}
 
-We have the equation 
+For a solar-mass cloud, the critical density is much lower: \(\rho _J \approx \SI{4e-16}{kg m^{-3}}\). 
+
+% \todo[inline]{Is \SI{20}{K} a typical temperature then?}
+
+% The matter starts free-falling: then the kinetic energy increases. 
+% However, it is used in chemical processes. That way matter can become opaque. 
+
+\subsection{Collapsing a solar-mass cloud}
+
+Let us suppose that, by virtue of being in a dark matter halo and after some large-scale collapse, we have indeed reached the conditions of \(\rho \sim \SI{4e-16}{kg m^{-3}}\) and \(T \sim \SI{20}{K}\).
+We will try to understand how a Sun-like star might form.
+
+Molecular hydrogen is present in the cloud, its dissociation energy is \(\epsilon _D \approx \SI{4.5}{eV}\) while, as we know, the ionization energy of hydrogen is \(\epsilon _H \approx \SI{13.6}{eV}\).
+
+% We have the equation 
+As the collapse starts, any kinetic energy which is developed is used, first to dissociate molecular hydrogen and then to ionize hydrogen, so for a while the evolution goes according to the free-fall equation of motion:
 %
 \begin{align}
   \frac{1}{2} \qty(\dv{r}{t})^2 = \frac{G m_0 }{r} - \frac{G m_0 }{r_0 }
 \,,
 \end{align}
 %
-which gives us a typical free-fall time of \SI{2e4}{yr}. 
+which, as we have seen earlier, corresponds to a free-fall time given by \eqref{eq:free-fall-time}: we get \(t_{FF} \approx \SI{100}{kyr}\). 
 
-The energy needed to ionize all the hydrogen is 
+The energy needed to dissociate all the \ce{H2} and then ionize the \ce{H} is given in terms of the mass of the cloud, \(M = M_{\odot}\), by
 %
 \begin{align}
   E = \frac{M}{2 m_H} \epsilon_{D} + \frac{M}{m_H} \epsilon_{I}
 \,,
 \end{align}
 %
-where \(M\) is the mass of the star, \(m_H\) is the mass of a hydrogen atom, while \(\epsilon_{D} \approx \SI{4.5}{eV}\) and \(\epsilon_{U} \approx \SI{13.6}{eV}\). 
+where \(m_H \approx m_p\) is the mass of hydrogen. The mass of \ce{H2} is slightly different from \(2 m_H\), but the difference is of the order of \(\epsilon _D / m_H \sim \num{e-8}\), completely negligible.
+% where \(M\) is the mass of the star, \(m_H\) is the mass of a hydrogen atom, while \(\epsilon_{D} \approx \SI{4.5}{eV}\) and \(\epsilon_{U} \approx \SI{13.6}{eV}\). 
 
-We are going from a radius \(R_1 \) to a radius \(R_2 \): we get \(R_1 \sim \sqrt[3]{3 M / 4 \pi \rho _J}\), since that is the radius at which the collapse starts. 
+The cloud starts from a radius \(R_1 \sim \sqrt[3]{3 M / 4 \pi \rho _J} \approx \SI{1e15}{m} \approx \SI{0.1}{lyr}\): what radius \(R_2 \) does it reach by the time all the hydrogen is ionized?
+% We are going from a radius \(R_1 \) to a radius \(R_2 \): we get , since that is the radius at which the collapse starts. 
 
-However, the \(R_1 \) term hardly contributes: the term \(R_2 \) is typically 4 orders of magnitude smaller. 
+% However, the \(R_1 \) term hardly contributes: the term \(R_2 \) is typically 4 orders of magnitude smaller. ˙
+We can calculate it by equating the difference in potential energy to the ionization and dissociation energy: 
+%
+\begin{align}
+GM_{\odot}^2 \qty( \frac{1}{R_2} - \frac{1}{R_1 }) = E 
+&= \frac{M_{\odot}}{2 m_H} \epsilon_{D} + \frac{M_{\odot}}{m_H} \epsilon_{I}  \\
+GM_{\odot} \qty(\frac{1}{R_2} - \frac{1}{R_1 }) &= \frac{\epsilon _D}{2 m_H} + \frac{\epsilon _I}{m_H} \approx \num{1.7e-8} c^2  \\
+\qty( \frac{1}{R_2 } - \frac{1}{R_1 })^{-1} &\approx \frac{GM_{\odot}}{c^2} \times \num{6e7} \approx \SI{9e10}{m} 
+\,,
+\end{align}
+%
+% which yields 
+so, since \(R_1 \gg \SI{e11}{m}\) the \(R_1^{-1}\) term is basically negligible, while \(R_2 \approx \SI{e11}{m}\). 
+We have shrunk our cloud from \SI{0.1}{lyr} to about \SI{0.6}{AU}, just smaller than the radius of the orbit of Venus. This is still much larger than \(R_{\odot} \approx \SI{7e8}{m}\).
 
-Our objects must still become hotter and smaller in order to reach the \SI{e7}{K} needed for ignition. 
+The rest of the collapse is much slower, and it happens under hydrostatic equilibrium; the proto-star will still shrink under its own gravity, getting ever hotter, until it reaches the temperature needed for the ignition of fusion, around \SI{e7}{K}. 
 
-The final equation we  get comes from the  virial theorem:
+% The final equation we  get comes from the  virial theorem:
+At this stage the virial theorem applies, since the plasma is optically thick, very little energy is lost to radiation: 
 %
 \begin{align}
   2E_{k} + E _{\text{gr}} =0
 \,,
 \end{align}
 %
-and 
+and we can recover the total kinetic energy from the equipartition theorem:
 %
 \begin{align}
   E_k = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{\overline{m}} k_B T \approx \frac{3M}{m_H} k_B T
 \,,
 \end{align}
 %
-since \(\overline{m} = 0.5 m_H\): so in the end, equating the energies, we have 
+where we used the fact that \(\overline{m} = 0.5 m_H\): the hydrogen is ionized, so we have both free electrons and free protons, and basically all the mass is with the latter.
+% so in the end, equating the energies, we have 
+
+The gravitational binding energy can be estimated as what was lost in the dissociation and ionization:
 %
 \begin{align}
-  2 \times 3 k_B T \frac{M}{m_H }
-  = \frac{M}{m_H} \qty(\frac{\epsilon_{D}}{2} + \epsilon_{I})
+  2 \times \underbrace{3 k_B T \frac{M}{m_H }}_{E_k}
+  &= - E _{\text{gr}} \approx \frac{M}{m_H} \qty(\frac{\epsilon_{D}}{2} + \epsilon_{I})  \\
+  k_B T &\approx \frac{1}{6} \qty( \frac{\epsilon _D}{2} + \epsilon _I) \approx \SI{2.6}{eV} \approx \SI{30}{kK}
 \,,
 \end{align}
 %
-which means that \(k_B T = \frac{1}{12} \qty(\epsilon_{D} + 2 \epsilon_{I}) \sim \SI{2.6}{eV}\), which is still very low compared to the temperature we need. 
+still very much lower than the temperature needed to ignite fusion, which is on the order of a \(\SI{}{keV} \sim \SI{10}{MK}\).
+% which means that \(k_B T = \frac{1}{12} \qty(\epsilon_{D} + 2 \epsilon_{I}) \sim \SI{2.6}{eV}\), which is still very low compared to the temperature we need. 
 
 \end{document}

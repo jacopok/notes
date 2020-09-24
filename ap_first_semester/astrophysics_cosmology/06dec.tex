@@ -1,102 +1,111 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Conditions for stardom and brown dwarfs}
+
 \marginpar{Friday\\ 2019-12-06, \\ compiled \\ \today}
 % \section*{Fri Dec 06 2019}
 
-Today we will discuss another possible \emph{caveat} for star formation: the case where the star collapses but does not ignite. 
+% Today we will discuss another possible \emph{caveat} for star formation: the case where the star collapses but does not ignite. 
 
-After recombination the baryons' temperature decays more rapidly than the radiation's, so we get a temperature low enough to satisfy the instability criterion. 
+% After recombination the baryons' temperature decays more rapidly than the radiation's, so we get a temperature low enough to satisfy the instability criterion. 
 
-The temperature stays low during the collapse: the thermal energy is used in order to break the bonds in \ce{H2} and ionize the hydrogen. 
+% The temperature stays low during the collapse: the thermal energy is used in order to break the bonds in \ce{H2} and ionize the hydrogen. 
 
-Then we have a gas which is opaque to radiation: there is scattering, which means we lose energy through radiation very slowly. 
-Then the Virial theorem is very close to being true. 
+% Then we have a gas which is opaque to radiation: there is scattering, which means we lose energy through radiation very slowly. 
+% Then the Virial theorem is very close to being true. 
 
-At the end of the process, even the mass does not matter anymore: we got \SI{2.6}{eV} as the temperature regardless of the mass. This is equivalent to around \SI{30e3}{K}.  
-We must compare this to the ignition temperature: that is in the order of \SI{}{keV} (\SI{15e6}{K} is equivalent to around \SI{1.3}{keV}). 
+% At the end of the process, even the mass does not matter anymore: we got \SI{2.6}{eV} as the temperature regardless of the mass. This is equivalent to around \SI{30e3}{K}.  
+% We must compare this to the ignition temperature: that is in the order of \SI{}{keV} (\SI{15e6}{K} is equivalent to around \SI{1.3}{keV}). 
 
-After free-fall the radius is on the order of \SI{e10}{m} for a solar mass star, while the Sun's radius is smaller by two orders of magnitude. 
+% After free-fall the radius is on the order of \SI{e10}{m} for a solar mass star, while the Sun's radius is smaller by two orders of magnitude. 
 
-Now we discuss the \emph{conditions for stardom}: we need to account for the fermionic nature of protons and electrons, which will give us a maximum density due to the Pauli exclusion principle. 
+At this point, the proto-star reaching a high enough temperature to fuse hydrogen is not a given: it may not happen. 
 
-The way we will treat this today will be quite rough. 
+In order to discuss the \emph{conditions for stardom} we need to account (albeit in an approximate way, as usual) for the fermionic nature of protons and electrons, which will give us a maximum density due to the Pauli exclusion principle: the particles will form a degenerate Fermi gas. 
+Depending on the mass of the star, this maximum density may be reached before the ignition temperature: when this is the case, a \textbf{brown dwarf} is formed.
+% The way we will treat this today will be quite rough. 
 
-We know that the De Broglie wavelength is given by 
+We estimate the minumum space a fermion can occupy with its De Broglie wavelength:
 %
 \begin{align}
   \lambda = \frac{h}{p} = \frac{2 \pi \hbar}{p}
+\,,
+\end{align}
+%
+where \(p\) is the momentum of the particle.
+Since the temperature is still less than a \SI{}{keV}, both electrons and protons are nonrelativistic, so we can approximate \(E_{k} = p^2 /2m\), which will typically be of the order \(E_K \sim k_B T\).
+
+% Objects which will not satisfy the conditions we talk about today become brown dwarves. 
+
+% The kinetic energy is of the order \(k_B T\), therefore 
+Then, the momentum and wavelength will be:
+%
+\begin{align}
+  p \sim \sqrt{2 m k_B T} \implies \lambda \sim \frac{2 \pi \hbar}{\sqrt{m k_B T}}
 \,.
 \end{align}
 
-How do we calculate \(p\)? we assume that the particles are nonrelativistic and apply \(E_{k} = p^2 /2m_e\). 
+We can see that \(\lambda \sim 1/\sqrt{m}\): this means that the wavelength is smaller (by a factor 40) for the protons than it is for the electrons, and they appear in equal numbers; therefore the first bound to be reached will be that of the degenerate electron gas, for this reason we will neglect protons now.
 
-Objects which will not satisfy the conditions we talk about today become brown dwarves. 
+% and the critical density is defined by 
+The critical density will be reached when we have an electron for each \(\lambda^3\); however in order to ensure local charge neutrality we must have protons distributed in the same way, and their mass contribution to the density will be the largest:
 
-The kinetic energy is of the order \(k_B T\), therefore 
-%
-\begin{align}
-  p \sim \sqrt{2 m_e k_B T}
-\,,
-\end{align}
-%
-and the critical density is defined by 
+\todo[inline]{I'd actually say, then, that we should write \(\rho _c = m_p / \lambda^3\)! }
 %
 \begin{align}
   \rho_c = \frac{\overline{m}}{\lambda^3}
-\,,
+  \sim \overline{m} \frac{(m_e k_B T)^{3/2}}{(2 \pi \hbar)^{3}}
+\,.
 \end{align}
+% %
+% where from the formula we found mk
+% %
+% \begin{align}
+%   \lambda = \frac{2 \pi \hbar}{\sqrt{2 m_e k_B T}}
+% \,,
+% \end{align}
 %
-where from the formula we found 
+% which gives approximately 
+% %
+% \begin{align}
+%   \rho _c \sim \overline{m} \frac{(m_e k_B T)^{3/2}}{(2 \pi \hbar)^{3}}
+% \,,
+% \end{align}
+%
+% and from the virial theorem \(2 E_k + E _{\text{gr}}=0\), with 
+% %
+% \begin{align}
+%   E_k = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{\overline{m}} k_B T
+% \,,
+% \end{align}
+% %
+% while 
+% %
+% \begin{align}
+%   E _{\text{gr}} = - \frac{G M^2}{R}
+% \,,
+% \end{align}
+% %
+% which means 
+
+As we have seen earlier, since the virial theorem applies the temperature of the proto-star is tied to its gravitational binding energy by
 %
 \begin{align}
-  \lambda = \frac{2 \pi \hbar}{\sqrt{2 m_e k_B T}}
-\,,
+  3 N k_B T = \frac{GM^2}{R} \implies k_B T = \frac{GM \overline{m}}{3  R}
+\,.
 \end{align}
-%
-which gives approximately 
-%
-\begin{align}
-  \rho _c \sim \overline{m} \frac{(m_e k_B T)^{3/2}}{(2 \pi \hbar)^{3}}
-\,,
-\end{align}
-%
-and from the virial theorem \(2 E_k + E _{\text{gr}}=0\), with 
-%
-\begin{align}
-  E_k = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{\overline{m}} k_B T
-\,,
-\end{align}
-%
-while 
-%
-\begin{align}
-  E _{\text{gr}} = - \frac{G M^2}{R}
-\,,
-\end{align}
-%
-which means 
-%
-\begin{align}
-  3 N k_B T = \frac{GM^2}{R}
-\,,
-\end{align}
-%
-and we can rewrite this as 
-%
-\begin{align}
-  \frac{3 k_B T}{\overline{m}} = \frac{GM}{R}
-\,,
-\end{align}
-%
-and we can express the mass as 
-%
-\begin{align}
-  M = \frac{4}{3} \pi \overline{\rho} R^3
-\,,
-\end{align}
-%
-so 
+% %
+% and we can rewrite this as 
+% %
+% \begin{align}
+%   \frac{3 k_B T}{\overline{m}} = \frac{GM}{R}
+% \,,
+% \end{align}
+% %
+
+The mass can be expressed in terms of the average density as 
+\(M = \frac{4}{3} \pi \overline{\rho} R^3 \), so 
 %
 \begin{align}
   \frac{1}{R} = \qty(\frac{4 \pi }{3} \frac{\overline{\rho}}{M})^{1/3}
@@ -107,36 +116,22 @@ which gives us the result
 %
 \begin{align}
   k_B T = \frac{GM \overline{m}}{3} \qty(\frac{4 \pi }{3} \frac{\overline{\rho}}{M})^{1/3}
-\,,
+\,.
 \end{align}
-%
-and if we substitute the critical density in for \(\overline{\rho}\) we will get the maximum possible temperature allowed at a given mass. 
 
-This yields
+If we substitute the critical density \(\rho _c\) for \(\overline{\rho}\) we will get the maximum possible temperature allowed at a given mass \(M\): after some manipulation we get (up to a small constant, which we neglect since the calculation is rough anyway):
 %
 \begin{align}
-  k_B T = \frac{GM \overline{m}}{3} \qty(\frac{4 \pi }{3 M})^{1/3} \frac{\overline{m}^{1/3}}{(2 \pi \hbar)} \qty(m_e k_B T)^{1/2}
-\,,
+  k_B T &= \frac{GM \overline{m}}{3} \qty(\frac{4 \pi }{3 M})^{1/3} \frac{\overline{m}^{1/3}}{(2 \pi \hbar)} \qty(m_e k_B T)^{1/2} \\
+  (k_B T)^2 &= \frac{G^2M^2 \overline{m}^2}{9} 
+  \qty(\frac{4 \pi }{3 M})^{2/3} \frac{\overline{m}^{2/3}}{(2 \pi \hbar)^2} m_e k_B T  \\
+  k_B T &\approx \frac{G^2 \overline{m}^{8/3} M^{4/3} m_e}{(2 \pi \hbar)^2} 
+\,.
 \end{align}
-%
-which it is convenient to square: 
-%
-\begin{align}
-  (k_B T)^2 = \frac{G^2M^2 \overline{m}^2}{9}
-  \qty(\frac{4 \pi }{3 M})^{2/3} \frac{\overline{m}^{2/3}}{(2 \pi \hbar)^2} m_e k_B T 
-\,,
-\end{align}
-%
-so we can simplify, and up to an order-1 constant 
-%
-\begin{align}
-  k_B T = \frac{G^2 \overline{m}^{8/3} M^{4/3}}{(2 \pi \hbar)^2} 
-\,,
-\end{align}
-%
-and inserting the ignition temperature of around \SI{1}{keV} we get \(M _{\text{min}} \sim 0.08 M_{\odot}\). 
 
-This is confirmed experimentally. 
+Inserting the ignition temperature of around \SI{1}{keV} we get \(M _{\text{min}} \approx M_{\odot}\), which is almost the right order of magnitude: more accurate models agree with the observational result of \(M _{\text{min}} \approx \num{.08} M_{\odot}\). 
+
+\section{The Sun}
 
 Let us consider the Sun. Its mass is \(M_{\odot} \approx \SI{1.99e30}{kg}\), the radius is \(R_{\odot} \approx \SI{6.96e8}{m}\), the electromagnetic luminosity is \(L_{\odot} = \SI{3.86e26}{W}\). 
 

@@ -131,104 +131,136 @@ If we substitute the critical density \(\rho _c\) for \(\overline{\rho}\) we wil
 
 Inserting the ignition temperature of around \SI{1}{keV} we get \(M _{\text{min}} \approx M_{\odot}\), which is almost the right order of magnitude: more accurate models agree with the observational result of \(M _{\text{min}} \approx \num{.08} M_{\odot}\). 
 
-\section{The Sun}
+\section{The Sun and other stars}
 
-Let us consider the Sun. Its mass is \(M_{\odot} \approx \SI{1.99e30}{kg}\), the radius is \(R_{\odot} \approx \SI{6.96e8}{m}\), the electromagnetic luminosity is \(L_{\odot} = \SI{3.86e26}{W}\). 
+Let us start off with a list of the physical characteristics of the Sun: its mass is \(M_{\odot} \approx \SI{1.99e30}{kg}\), its radius is \(R_{\odot} \approx \SI{6.96e8}{m}\), its bolometric luminosity\footnote{This means: the total luminosity, integrated across all the electromagnetic spectrum.} is \(L_{\odot} = \SI{3.86e26}{W}\). 
 
-The age of the Sun is around \(t_{\odot} \approx \SI{4.55e9}{yr}\), which is comparable to the age of the Universe. 
+Its age is around \(t_{\odot} \approx \SI{4.55e9}{yr}\), which is comparable to the age of the Universe. 
 
-The central density is \(\rho _c \approx \SI{1.48e5}{kg m^{-3}}\), while the central temperature is \(T_c = \SI{1.56e7}{K}\), and the central pressure is around \(P_c = \SI{2.29e16}{Pa}\).  
+At its core, the density is \(\rho _c \approx \SI{1.48e5}{kg m^{-3}}\), the temperature is \(T_c = \SI{1.56e7}{K} \approx \SI{1.3}{keV}\), and the pressure is around \(P_c = \SI{2.29e16}{Pa}\).  
 
-The effective temperature is around \(T_E \approx \SI{5780}{K}\). 
-\todo[inline]{Definition?}
+The radiation emitted by the Sun approximately follows a blackbody curve, whose characteristic temperature is called the \emph{effective temperature}: it is around \(T_E \approx \SI{5780}{K} \approx \SI{.5}{eV}\). 
+% \todo[inline]{Definition?}
 
-What is the corresponding free fall time? It is much shorter than the age of the Sun: the Sun is not in free fall. 
-\todo[inline]{What is the number?}
+% What is the corresponding free fall time? It is much shorter than the age of the Sun: the Sun is not in free fall. 
+% \todo[inline]{What is the number?}
 
-We know that 
+The power emitted by the Sun is quite small as a fraction of its total energy, so we can apply the virial theorem: one of its formulations we found is
 %
 \begin{align}
   \expval{P} = -\frac{1}{3} \frac{E _{\text{gr}}}{V}
 \,,
 \end{align}
 %
-where \(E _{\text{gr}} = - G M^2/R\) while \(V = 4 \pi R^3/3\): plugging the Sun's numbers we get 
+where \(E _{\text{gr}} \approx - G M^2/R\) while \(V = 4 \pi R^3/3\): plugging the Sun's numbers we get 
 %
 \begin{align}
-  \expval{P} = \SI{e14}{Pa}
+  \expval{P} 
+  = \frac{G M_{\odot}^2}{4 \pi R_{\odot}^{4}}
+  \approx \SI{e14}{Pa}
 \,,
 \end{align}
 %
-100 times less than the central density. 
+100 times less than the central pressure. 
+Similarly, the average density can be computed as \(\expval{\rho } = M _{\odot} / V \approx \SI{1.4e3}{kg/m^3}\), just slightly more than the density of water! This is also roughly 100 times less than the central value.
 
-The density of the Sun is actually very similar to the density of water. 
+% The density of the Sun is actually very similar to the density of water. 
 
-Was it correct to use nonrelativistic equations? (???)
+% Was it correct to use nonrelativistic equations? (???)
 
+By the ideal gas law (which does not precisely apply, but as we saw the Sun has a rather low density overall so it is a reasonable approximation) we can find the mean internal temperature of the Sun, \(T_I\), as:
 %
 \begin{align}
-  \expval{P} = \frac{\overline{\rho}}{\overline{m}} k_B T_I
+  \expval{P} = \frac{\expval{\rho}}{\overline{m}} k_B T_I
 \,,
 \end{align}
 %
-where \(T_I\) is the mean internal temperature of the Sun. 
-The value of \(\overline{m} \approx 0.61\) instead of 0.5 when considering the proper composition of the Sun. 
+% where \(T_I\) is the mean internal temperature of the Sun. 
+where \(\overline{m}\), the average particle mass, is \(\overline{m} \approx 0.61 m_H\) instead of \(\num{.5} m_H\) when considering the proper composition of the Sun, which has a noticeable fraction of helium and heavier elements. 
 
 We get 
 %
 \begin{align}
-  k_B T_I \approx \frac{G M_{\odot} \overline{m}}{3 R_{\odot} } \approx \SI{1.5}{keV} \approx \SI{6e6}{K}
+  k_B T_I
+  =  \frac{G M_{\odot}^2}{4 \pi R_{\odot}^{4}}
+   \qty( \frac{M_{\odot}}{4 \pi R_{\odot}^3 / 3})^{-1} \overline{m}
+  = \frac{G M_{\odot} \overline{m}}{3 R_{\odot} } \approx \SI{.5}{keV} \approx \SI{5e6}{K}
 \,.
 \end{align}
 
-We have evidence that the Sun is a blackbody, we can write 
+Again, we see the relation \(x _{\text{central}} \ll x _{\text{mean}} \ll x _{\text{surface}}\), which holds for \(x = \) density, pressure, temperature. 
+
+% We have evidence that the Sun is a blackbody, we can write 
+The measured bolometric luminosity of the Sun is consistent with 
 %
 \begin{align}
-  L_{\odot} = 4 \pi R_{\odot} \sigma T^{4}_{E}
+  L_{\odot} = 4 \pi R_{\odot}^2 \sigma T^{4}_{E}
 \,,
 \end{align}
 %
 where \(\sigma \) is Stefan's constant: \(\sigma \approx \SI{5.67e-8}{W m^{-2} K^{-4}}\). 
 
-In principle we could define another quantity: 
+Why does this hold with the comparatively low temperature \(T_E\) and not with the mean internal temperature \(T_I\)?
+We will now see that this is because the interior of the Sun is optically thick (opaque), so any photon from the interior cannot simply be emitted, it will undergo many scatterings before doing so. 
+
+% In principle we could define another quantity: 
+% %
+% \begin{align}
+%   L_{\odot}^{\prime } = 4 \pi R_{\odot}^2 \sigma T_I^4
+% \,,
+% \end{align}
+% %
+% which does not fit the data. Why is this? 
+
+\subsection{Radiative diffusion}
+
+
+% We must consider a photon which comes from the interior of the Sun and goes towards the outside: it will follow a random walk scattering many times.
+
+% However, depending on the density of electrons in the outer regions (electron scattering dominates in the outside), the last scattering is in the outermost regions of the star. 
+
+% We need to deal with the Fourier equation. 
+% First of all, we need to write the Langevin equation: this is connected to the work by Einstein on Browinan motion. 
+
+% These are processes in which there is a ``random'' force (due to the fact that our description of the microscopic state is probabilistic), and possibly deterministic forces. 
+
+% \todo[inline]{What is the stuff about viscosity?}
+
+The motion of the photon is Brownian, and the total displacement from production to emission will be written in terms of \(N\) short straight tracts, 
 %
 \begin{align}
-  L_{\odot}^{\prime } = 4 \pi R_{\odot}^2 \sigma T_I^4
-\,,
+\vec{x} = \sum _{i=1}^{N} \vec{\ell}_i
+\,.
 \end{align}
-%
-which does not fit the data. Why is this? 
 
-We must consider a photon which comes from the interior of the Sun and goes towards the outside: it will follow a random walk scattering many times. However, depending on the density of electron in the outer regions (electron scattering dominates in the outside), the last scattering is in the outermost regions of the star. 
+The process is inherently stochastic, and we will need to describe it as such. 
+We need two equations in order to describe it: the Langevin and Fokker-Planck equations.
 
-We need to deal with the Fourier equation. 
-First of all, we need to write the Langevin equation: this is connected to the work by Einstein on Browinan motion. 
-
-These are processes in which there is a ``random'' force (due to the fact that our description of the microscopic state is probabilistic), and possibly deterministic forces. 
-
-\todo[inline]{What is the stuff about viscosity?}
-
-The equation in the end is like: 
+The \textbf{Langevin} equation gives us the derivative of the position of the particle in terms of a stochastic force \(\eta\):
 %
 \begin{align}
-  \dot{\vec{x}} = \vec{\eta}
-\,,
+  \dot{\vec{x}}(t) = \vec{\eta} (t)
+\,.
 \end{align}
-\todo[inline]{What? }
-%
-with \(\expval{\eta _i (t) \eta_j (t')} = 2 D \delta_{ij} \delta (t - t')\): there is complete uncorrelation. This is the Markov property: the process has no memory.
 
-This gives us a Gaussian distribution of the positions of the particles, and we get the equation: 
+The requirements on \(\eta \) are that it should have zero mean: \(\expval{\vec{\eta}}(t) = 0\) and that it should satisfy \(\expval{\eta _i (t) \eta_j (t')} = 2 D \delta_{ij} \delta (t - t')\).
+This means that it is spatially and temporally uncorrelated, making the process a Markovian one: it has ``no memory''.
+
+% there is complete uncorrelation.
+% This is the Markov property: the process has no memory.
+
+Nontrivially (we will not discuss the details of the derivation) this gives us the \textbf{Fokker-Planck} formula: 
 %
 \begin{align}
   \pdv{P}{t} = D \nabla^2 P 
 \,,
 \end{align}
 %
-where \(P = P( \vec{x}, t)\). This is a \emph{parabolic equation}, the \emph{Fokker-Planck} formula. 
-We need to give it both initial conditions and boundary conditions. 
+where \(P\), a function of position and time, quantifies the probability density of finding a photon there.
 
-\todo[inline]{What is \(P\)?}
+This is a \emph{parabolic differential equation}, which concretely means that we need to give it both initial conditions and boundary conditions. 
+
+% \todo[inline]{What is \(P\)?}
 
 There are three kinds of boundary conditions: 
 \begin{enumerate}

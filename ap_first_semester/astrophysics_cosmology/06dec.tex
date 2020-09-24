@@ -226,10 +226,10 @@ We will now see that this is because the interior of the Sun is optically thick 
 
 % \todo[inline]{What is the stuff about viscosity?}
 
-The motion of the photon is Brownian, and the total displacement from production to emission will be written in terms of \(N\) short straight tracts, 
+The motion of the photon is Brownian, and the total displacement \(\vec{D}\) from production to emission will be written in terms of \(N\) short straight tracts, 
 %
 \begin{align}
-\vec{x} = \sum _{i=1}^{N} \vec{\ell}_i
+\vec{D} = \sum _{i=1}^{N} \vec{\ell}_i
 \,.
 \end{align}
 
@@ -239,12 +239,13 @@ We need two equations in order to describe it: the Langevin and Fokker-Planck eq
 The \textbf{Langevin} equation gives us the derivative of the position of the particle in terms of a stochastic force \(\eta\):
 %
 \begin{align}
-  \dot{\vec{x}}(t) = \vec{\eta} (t)
+  \dot{\vec{D}}(t) = \vec{\eta} (t)
 \,.
 \end{align}
 
 The requirements on \(\eta \) are that it should have zero mean: \(\expval{\vec{\eta}}(t) = 0\) and that it should satisfy \(\expval{\eta _i (t) \eta_j (t')} = 2 D \delta_{ij} \delta (t - t')\).
 This means that it is spatially and temporally uncorrelated, making the process a Markovian one: it has ``no memory''.
+The parameter \(D\) is called the \emph{diffusion constant}, its units are \SI{}{m^2 /s} (and it is not related to the displacement \(\vec{D}\)).s 
 
 % there is complete uncorrelation.
 % This is the Markov property: the process has no memory.
@@ -258,120 +259,151 @@ Nontrivially (we will not discuss the details of the derivation) this gives us t
 %
 where \(P\), a function of position and time, quantifies the probability density of finding a photon there.
 
-This is a \emph{parabolic differential equation}, which concretely means that we need to give it both initial conditions and boundary conditions. 
+Mathematically speaking this is a \emph{parabolic differential equation}, which concretely means that we need to give it both initial conditions and boundary conditions. 
 
 % \todo[inline]{What is \(P\)?}
 
-There are three kinds of boundary conditions: 
-\begin{enumerate}
-  \item nothing: free boundary, the solution can diverge;
-  \item a reflective boundary: particles ``bounce back'', in order to deal with this we use the images method, as in electromagnetism;
-  \item an absorbing boundary: particles disappear if they reach the boundary. 
-\end{enumerate}
+% In the There are three kinds of boundary conditions we can set: 
+% \begin{enumerate}
+%   \item nothing: free boundary, allowing the solution can diverge;
+%   \item a reflective boundary: particles ``bounce back'', in order to deal with this we use the images method, as in electromagnetism;
+%   \item an absorbing boundary: particles disappear if they reach the boundary. 
+% \end{enumerate}
+The kind of boundary condition we want for the study of the Sun is a so-called \emph{absorbing boundary}: physically, as a photon reaches the surface it is emitted, which from the inside looks like if the boundary ``absorbed it''.
 
-This is equivalent to the Fourier transport equation. 
+% This is equivalent to the Fourier transport equation. 
 
-The solution without boundary is a Gaussian with variance \(\expval{x^2} =  2 D t\) and centered around zero. 
-
-If \(\sigma = \sqrt{\expval{x^2}}\) becomes greater than the boundary then most of the particles have escaped. 
-
-\(\vec{D}\) is the displacement vector of the Sun: it is 
+The solution to the Fokker-Planck equation, with an impulsive initial condition like \(P(x, t=0) = \delta^{(3)} (x)\) is a Gaussian with variance \(\expval{x^2} =  2 D t\) and centered around zero: 
 %
 \begin{align}
-  \vec{D} = \sum _{i} \vec{l}_{i}
+P(x, t) = \frac{1}{(4 \pi D t)^{3/2}} \exp(- \frac{x^2}{ 4 D t})
+\,.
+\end{align}
+
+This holds for \(0 < \abs{\vec{x}} < R_{\odot}\), while for \(\abs{x} > R_{\odot}\) the particles have escaped. 
+
+Integrating the Gaussian within the stellar boundary at a time \(t\) yields the probability that any single photon emitted at the center of the Sun is still inside it after a time \(t\). 
+Roughly, this be the case with  \(\sigma = \sqrt{2 Dt } \lesssim R_{\odot} \).
+
+% If \(\sigma = \sqrt{\expval{x^2}}\) becomes greater than the boundary then most of the particles have escaped. 
+
+Let us now consider the problem geometrically. The mean square value of the displacement will be given by
+%
+\begin{align}
+  \expval{\vec{D}^2} = \sum _{i} \expval{\vec{\ell}_{i}^2} 
+  + 2\sum _{i<j} \expval{\vec{\ell}_i \cdot \vec{\ell}_j}
 \,,
 \end{align}
 %
-where the \(\vec{l}_i\) are the displacement vectors of its various steps. 
-%
-\begin{align}
-  \expval{\vec{D}^2} = \sum _{i} \expval{\vec{l}_{i}^2} 
-  + \sum _{i<j} \expval{\vec{l}_i \cdot \vec{l}_j}
-\,,
-\end{align}
-%
-but if we have isotropy then the scalar products have mean zero. This might be unphysical since the steps are larger at the boundary than at the center\dots
+but if we have isotropy then the scalar products have mean zero, since they are averages of two lengths times a cosine.
+% This might be unphysical since the steps are larger at the boundary than at the center\dots
 
-Then we find: 
+Then we find that, in order for the photon to have reached the boundary of the star on average it will need to have undergone \(N\) scatterings: if we set \(\expval{\vec{D}^2} = R_{\odot}^2\) we get
 %
 \begin{align}
-  \expval{\vec{D}^2} = N l^2 = R _{\odot}^2
+  \expval{\vec{D}^2} = N \ell^2 = R _{\odot}^2
 \,,
 \end{align}
 %
-where \(N = R _{\odot}^2 / l^2\). 
+so \(N = R _{\odot}^2 / \ell^2\), where \(\ell\) is the typical path travelled between scatterings. 
 
-The time it takes for a photon to cover a distance \(l\) is \(t= l/c\). 
-Then we have \(t_{RW} = Nt = R^2 _{\odot} l / (l^2 c)\), which means 
+The time it takes for a photon to cover a distance \(\ell\) is \(t= \ell/c\). 
+Then, the total time taken in the random walk is given by \(t_{RW} = Nt = R^2 _{\odot} \ell / (\ell^2 c)\), which means 
 %
 \begin{align}
-  t_{RW} = \frac{R _{\odot}^2}{cl}
+  t_{RW} = \frac{R _{\odot}^2}{c \ell}
 \,,
 \end{align}
 %
-while in direct flight the photon would take \(t_0 = R _{\odot}/ c\): their ratio is 
+while in direct flight the photon would only have taken \(t_0 = R _{\odot}/ c\): their ratio is 
 %
 \begin{align}
-  \frac{t_{RW}}{t_0 } = \frac{R _{\odot}}{l}
-\,,
+  \frac{t_{RW}}{t_0 } = \frac{R _{\odot}}{ \ell}
+\,.
 \end{align}
-%
-and then 
+
+\todo[inline]{The argument which follows is still unconvincing to me: the photons take \(\sim \SI{50}{kyr}\) to come out of the Sun, so this process will have stabilized in the Sun's \SI{5}{Gyr} lifetime!
+
+Estimating the mean free path as \(\ell \sim 1/ (n \sigma _T)\) could work, it yields \(\sim \SI{1}{cm}\) with the mean density and \(\sim \SI{0.1}{mm}\) with the central density, so perhaps since in the low-\(\ell\) regions the photons stay for a longer time this can average out to \SI{1}{mm} when doing the calculation properly.}
+
+If \(L' _{\odot}\) is the luminosity for the Sun calculated using the average internal temperature \(T_I\) instead of the effective temperature \(T_E\) we get
 %
 \begin{align}
-  L _{\odot} = L _{\odot}^{\prime } \frac{l}{R _{\odot}}
+  L _{\odot} = L _{\odot}^{\prime } \frac{\ell}{R _{\odot}}
 \,,
 \end{align}
 %
 which means 
 %
 \begin{align}
-  T_E = \qty(\frac{l}{R _{\odot}})^{1/4} T_I
+  T_E = \qty(\frac{\ell}{R _{\odot}})^{1/4} T_I
 \,,
 \end{align}
 %
-so we can gather \(l\) by knowing the other three parameters: we get \(l = \SI{1}{mm}\). This is actually an average of the mean free paths. 
+so we can calculate \(\ell\) by knowing the other three parameters:
+we get that the mean free path, averaged over the star, is \(\ell \approx \SI{1}{mm}\).
+% This is actually an average of the mean free paths. 
 
+The total solar luminosity is then:
+%
 \begin{align}
-  L = L' \frac{l}{R} = 4 \pi R _{\odot}^2 \sigma T_I^{4} \frac{l}{R}
+  L_{\odot} = L'_{\odot} \frac{\ell}{R} = 4 \pi R _{\odot}^2 \sigma T_I^{4} \frac{\ell}{R}
 \,,
 \end{align}
 %
-and we know that \(k_B T_I = \frac{GM \overline{m}}{3 \hbar}\): replacin this we find 
+and we know that \(k_B T_I = \frac{GM \overline{m}}{3 R_{\odot}}\): inserting this we find 
 %
 \begin{align}
-  L = 4 \pi R^2 _{\odot}\sigma  \qty(\frac{GM \overline{m}}{3 R k_B})^{4} \frac{l}{R}
-  = \frac{(4 \pi )^2}{3^{5}} \frac{\sigma }{k_B^4} G^{4} \overline{m}^{4} \overline{\rho} l M^3  
+  L = 4 \pi R^2 _{\odot}\sigma  \qty(\frac{GM \overline{m}}{3 R k_B})^{4} \frac{\ell}{R}
+  = \frac{(4 \pi )^2}{3^{5}} \frac{\sigma }{k_B^4} G^{4} \overline{m}^{4} \overline{\rho} \ell M^3  
 \,.
 \end{align}
 
-What is the typical lifespan of a star? This gives us \(L \sim M^3\), which means \(\tau \sim M/L \sim M^{-2}\). 
-Observationally, this matches the data pretty well. 
+The most important part of this result, which is observationally verifiable, is \(L \propto M^{3}\). 
+% What is the typical lifespan of a star?
+This allows us to estimate the lifespan of a star: the fraction of mass available to be turned into energy through fusion is a constant multiple of \(M\) (slighly less than \SI{1}{\percent}): therefore, we have \(\tau \propto M/L \propto M^{-2}\). 
+More massive stars die earlier.
 
-Now we discuss thermonuclear fusion. The reactions we need are 
+The relation \(L \propto M^{\alpha } \) for \(\alpha = 3\) is quite close to the data globally, in specific regions we can have better estimates for the powerlaw index: the value \(\alpha = 3.5\) is more commonly used for Main Sequence stars (which we will discuss later). 
+% This matches the data pretty well for . 
+
+The lifetime always scales like \(\tau \propto M^{1 -\alpha }\), and we always have \(\alpha >1\), so the fact that more massive stars die earlier always holds.
+
+We then expect that each galaxy there can have been several ``generations'' of heavy stars, while the very lightest are still in their first generation. This can be observationally confirmed by looking at the abundances of elements, and comparing them with the expected production inside heavy stars. 
+
+\subsection{Thermonuclear fusion}
+
+The reaction chain which produces Helium in stellar cores is the following:
 %
 \begin{subequations}
 \begin{align}
   \ce{p + p} &\rightarrow \ce{d + e+ +} \nu_e  \\
-  \ce{p + d} &\rightarrow \ce{^3He +} \gamma  \\
+  \ce{p + d} &\rightarrow \ce{^3He} + \gamma  \\
   \ce{^3He + ^3He} &\rightarrow \ce{^4He + p + p} 
 \,,
 \end{align}
 \end{subequations}
 %
-which involves the weak interaction (for the first process: \(\tau \sim \SI{5e9}{yr}\)), EM interaction (for the second process: \(\tau \sim \SI{1}{s}\)) and strong interaction (for the third process: \(\tau \sim  \SI{3e5}{yr}\)). On the other hand, the process 
+which involves the weak interaction (for the first process, whose lifetime is \(\tau \sim \SI{5e9}{yr}\)), EM interaction (for the second process: \(\tau \sim \SI{1}{s}\)) and strong interaction (for the third process: \(\tau \sim  \SI{3e5}{yr}\)).
+
+The net balance is 4 protons in, one \ce{^{4}He} and some photons and neutrinos out, accounting for the \(\approx \SI{0.66}{\percent}\) mass difference. 
+
+We can then see that the weak-interaction part of the chain is the bottleneck.
+
+The chain we had during primordial nucleosynthesis, on the other hand, did not need any weak-interaction processes:
 %
 \begin{subequations}
 \begin{align}
   \ce{n + p} &\rightarrow \ce{d} + \gamma   \\
   \ce{d + d} &\rightarrow \ce{^3He + n}  \\
   \ce{^3He + d}  &\rightarrow \ce{^4He + p}
-\,,
+\,.
 \end{align}
 \end{subequations}
-%
-which does not use the weak interactions. However, later there are no more free neutrons: this means that even if it is slower the first process is the only one which can happen. 
 
-The net balance is 4 protons in, 1 \ce{^4 He} out. 
+The issue is that all the free neutrons quickly decayed after primordial nucleosynthesis, and free deuterium is scarce: secondary production chains can then prevail. 
+% However, later there are no more free neutrons: this means that even if it is slower the first process is the only one which can happen. 
+
+% The net balance is 4 protons in, 1 \ce{^4 He} out. 
 
 \end{document}

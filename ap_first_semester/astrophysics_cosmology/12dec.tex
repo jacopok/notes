@@ -42,24 +42,20 @@ which corresponds to about \SI{6.5e11}{kg /s}.\footnote{Which, to use a gruesome
 For each process one electron neutrino is also emitted, and the first two steps of the process happen twice for each \ce{^{4}He} nucleus, so around \num{2e38} neutrinos per second are produced. 
 These travel basically undisturbed through the Sun and out.
 
-A proton's mass is around \(m_p \approx \SI{1}{GeV} \approx \SI{1.78e-27}{kg}\), so in the Sun there are around \num{e56} of them: this means that the typical lifetime of the Sun is around \num{e10} years. 
+A proton's mass is around \(m_p \approx \SI{1}{GeV} \approx \SI{1.78e-27}{kg}\), so in the Sun there are around \num{e56} protons: this means that the total lifetime of the Sun will be around \num{e10} years. 
 The Sun is approximately half-way through this lifetime.
 
 % What is the final state of the Sun? After hydrogen runs out, the Sun should start the next process: helium burning. The core contracts and heats. However we also have the degeneracy pressure. 
 
 \subsection{Stellar evolution}
 
-There is a boundary, the Chandrasekar mass \(M_C \approx \num{1.4} M_{\odot}\), between the final fate of the star being a white dwarf or a neutron star. 
+This section is massively simplified, stellar evolution is complicated, not completely understood and there can be many confounding variables. 
+We will only try to give a general overview.
 
-From the point of view of the state of matter, brown dwarves and white dwarves are very similar. 
+Throughout the evolution of the star, the interior is near equilibrium between gravitation and the pressure gradient due to the energy emitted by fusion. If the fusion starts to produce more energy, then the star expands and reaches a new equilibrium. 
 
-So the core becomes denser and hotter and starts burning helium. The external parts, by the virial theorem, must then expand. 
-
-So the possibilities, in order of mass, are white dwarf, neutron star, black hole. 
-
-The matter which is expelled can form a \emph{planetary nebula}. 
-
-
+The series of processes which can happen in stellar fusion is shown in table \label{tab:solar-processes}.
+%
 \begin{figure}[ht]
     \centering
     \begin{tabular}{ccccc}
@@ -74,15 +70,55 @@ The matter which is expelled can form a \emph{planetary nebula}.
     \end{tabular}
     \caption{Solar processes.}
     \label{tab:solar-processes}
-\end{figure}    
+\end{figure}
 
-A plot of the binding energy per nucleon \(B = E - M _{\text{nucleons}}\) shows that it is maximum for iron. 
+As one type of fusion fuel starts to run out, the pressure from the inside diminishes, therefore the interior of the star starts contracting, which typically allows the interior to start fusing the next kind of fuel, while the exterior keeps expanding. 
 
-Something about the possibility to have \ce{^{8}Be} be stable in order for potassium to be formed. 
+The required temperature to fuse every next element is ever higher, after every cycle there is the possibility of reaching the maximum density allowed by electron degeneracy pressure, which yields a mass threshold for each burning stage, denoted as \(M _{\text{min}}\) in the table.
+% The one we derived earlier is for the first stage of nuclear burning.
 
-When the nucleus cannot reach the temperature needed for the next process, the collapse is stopped by electron degeneracy. 
+For example, the Sun will reach the Helium burning phase, but it will go no further.
 
-The final radius of the red giant phase of the Sun is around \(70\) times the radius of the Sun, while the white dwarf phase is \(70\) times smaller. \todo[inline]{Is this correct? I couldn't quite hear.}
+A star with a mass of less than \(11 M_{\odot}\) will not reach the iron stage; as it starts burning helium it becomes a red giant, and it only keeps growing as it goes through the burning phases. As it runs out of its last fuel, it starts shrinking and becomes either a white dwarf or a neutron star.
+
+There is a boundary, the Chandrasekhar mass \(M_C \approx \num{1.4} M_{\odot}\), between the final fate of the star being a white dwarf or a neutron star: this is the maximum mass a star made of protons and electron can have if it must resist its own gravitational collapse only through electron degeneracy pressure. 
+
+Now, let us consider massive stars with \(M > 11M _{\odot}\). They are able to burn oxygen into iron in their cores; now, the thing to note here is that the iron nuclide \ce{^{56}Fe} has one of the highest binding energy per nucleon,\footnote{It is not the highest, since there are a couple nuclides like \ce{^{62}Ni} which slightly exceed its binding energy per nucleon. These are collectively known as the ``iron group'', and are also formed, albeit in smaller amounts, during stellar fusion. For more details, see section IV in the \textcite[]{fewellAtomicNuclideHighest1995}, a very clear (and not so technical) paper.} so once it is reached any successive burning stages would absorb energy, instead of releasing it.
+
+This region in the core will not have any way to provide pressure to counteract the gravity of all the rest of the star above it. 
+When the iron core reaches the Chandrasekhar mass, it collapses onto itself, and the rebound from this creates a supernova, which will either leave a neutron star or a black hole as a remnant.
+
+In the supernova the conditions allow for the formation of heavier elements, beyond iron.
+The matter which is expelled can form a \emph{planetary nebula}.
+
+\todo[inline]{Maybe add more details here? Not sure whether it makes sense, maybe refer to the advanced astrophysics notes.}
+
+% A plot of the binding energy per nucleon \(B = E - M _{\text{nucleons}}\) shows that it is maximum for iron. 
+
+% Something about the possibility to have \ce{^{8}Be} be stable in order for potassium to be formed. 
+
+
+% From the point of view of the state of matter, brown dwarves and white dwarves are very similar. 
+
+% So the core becomes denser and hotter and starts burning helium. The external parts, by the virial theorem, must then expand. 
+
+% So the possibilities, in order of mass, are white dwarf, neutron star, black hole. 
+
+
+% When the nucleus cannot reach the temperature needed for the next process, the collapse is stopped by electron degeneracy. 
+
+% The final radius of the red giant phase of the Sun is around \(70\) times the radius of the Sun, while the white dwarf phase is \(70\) times smaller. \todo[inline]{Is this correct? I couldn't quite hear.}
+
+\todo[inline]{Pacciani here has a discussion of HR diagrams: this would be a useful thing to insert maybe.}
+
+\subsection{The maximum mass of a Main Sequence star}
+
+We wish to calculate what is the maximum mass of a Main Sequence star --- the Main Sequence includes all the stars which are in the process of burning hydrogen. 
+
+\paragraph{The density profile}
+
+The first thing we will need is to calculate the density profile of the star, which is written as \(\rho (r)\) since as always we are assuming spherical symmetry. 
+%%% GOT HERE
 
 Our equation of hydrostatic equilibrium is:
 %

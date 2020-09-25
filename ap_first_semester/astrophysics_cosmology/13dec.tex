@@ -120,24 +120,46 @@ Proper considerations about what an appropriate critical value of \(\beta \) sho
 
 \subsection{Degenerate electron gas}
 
-Now we deal with the degenerate electron gas in stars. 
+Now, we will deal with the degenerate electron gas in stars, and see what is its effect on the minimum and maximum mass of a star.  
 
-The distribution function is approximately given by 
+The distribution function of the electrons, which are fermions, is given by 
 %
 \begin{align}
-  f(p) \propto \frac{1}{\exp(\frac{\epsilon _p - \mu }{k_B T})+1}
+  f(p) = \qty[\exp(\frac{\epsilon _p - \mu }{k_B T})+1]^{-1}
 \,,
 \end{align}
 %
-where \(\epsilon _p = c\qty(p^2+m^2c^2)^{1/2}\). 
-Then, as \(T \rightarrow 0\) we get: \(f(\epsilon _p) = 1\) if \(\epsilon _p \leq \epsilon _F\) and \(f(\epsilon _p) = 0 \) if \(\epsilon _p > \epsilon _F\); we can express this energy in terms of the momentum: 
+where \(\epsilon _p = \sqrt{m^2 c^{4} + p^2 c^2}\). With it, we can calculate the number density of electrons: 
+%
+\begin{align}
+n_e = \frac{g_s}{h^3} \int \dd[3]{p} f(p)
+\,,
+\end{align}
+%
+where \(g_s\), the number of helicity states of the electron, is equal to 2.
+
+We want to consider the degenerate case for this distribution, which corresponds to the saturation of all the low-energy configurations in phase space: this is known as a Fermi gas. 
+As the temperature approaches zero, the phase space distribution approaches the configuration 
+%
+\begin{align}
+f(p) = \lim_{T \to 0} \qty[\exp(\frac{\epsilon_p - \mu }{k_B T})+1]^{-1}= 
+\begin{cases}
+  1 \qquad \epsilon _p < \mu  \\
+  0 \qquad \epsilon _p > \mu 
+\,.
+\end{cases}
+\end{align}
+
+The chemical potential yields a critical energy, known as the Fermi energy, \(\epsilon _F\), which is also tied to a Fermi momentum:
+%
+% Then, as \(T \rightarrow 0\) we get: \(f(\epsilon _p) = 1\) if \(\epsilon _p \leq \epsilon _F\) and \(f(\epsilon _p) = 0 \) if \(\epsilon _p > \epsilon _F\); we can express this energy in terms of the momentum: 
 %
 \begin{align}
   \epsilon_F^2 = c^2p_F^2 + m^2 c^{4}
 \,.
 \end{align}
 
-The number of electrons is given by 
+The number density of electrons in this configuration is given by the integral mentioned before: since the distribution is spherically symmetric we have
 %
 \begin{align}
   n_e = 2 \int_{0}^{p_F} \dd{p} p^2 4 \pi \frac{1}{h^3}
@@ -145,149 +167,201 @@ The number of electrons is given by
 \,,
 \end{align}
 %
-where we have a factor of \(2\) to account for the spin-\(1/2\) nature of the electrons. 
-This means that 
+% where we have a factor of \(2\) to account for the spin-\(1/2\) nature of the electrons. 
+% This means that 
+which allows us to express the Fermi momentum in terms of the number density of electrons:
 %
 \begin{align}
-  p_F = \qty(\frac{3n}{8 \pi })^{1/3} h
+  p_F = \qty(\frac{3n_e}{8 \pi })^{1/3} h
 \,.
 \end{align}
 
-The density is given by 
+In natural units, this is roughly \(p_F \approx \num{6.6} \sqrt[3]{n_e}\).
+
+The energy density is given by the expression
 %
 \begin{align}
-  \rho = \frac{2}{h^3} \int_{0}^{p_F} \dd{p} p^2 4 \pi \epsilon _p
+  \rho = \frac{2}{h^3} \int_{0}^{p_F} 4 \pi p^2\dd{p} \epsilon _p
 \,,
 \end{align}
 %
-and we can consider either the nonrelativistic or the ultrarelativistic limit. In the nonrelativistic limit we find 
+which we can consider in either the nonrelativistic or the ultrarelativistic limit --- the analytic integral is complicated and not very enlightening. 
+
+\paragraph{Nonrelativistic limit}
+
+% In the nonrelativistic limit we find 
+In this limit the energy is approximately
 %
 \begin{align}
   \epsilon _p = mc^2 + \frac{p^2}{2m}
 \,,
 \end{align}
 %
-so the result becomes 
+so in the computation we need to integrate a polynomial: the result is
 %
 \begin{align}
   \rho = n \qty(mc^2 + \frac{3}{10} \frac{p_F^2}{m})
 \,,
 \end{align}
 %
-and we know that for a nonrelativistic gas the pressure is given by 
+where the first term corresponds to the rest-energy of the electrons, while the second gives their kinetic energy.
+We have derived earlier the following expression for the pressure of a nonrelativistic gas:
 %
 \begin{align}
   P  = \frac{2}{3} \frac{E_k}{V}
 \,,
 \end{align}
 %
-where \(E/V\) is the kinetic energy density. 
+% where \(E/V\) is the kinetic energy density. 
+and \(E_k / V\) is precisely the kinetic energy density, the second term of the expression for the total energy density \(\rho \); 
+so for our nonrelativistic Fermi gas we will have:
 %
 \begin{align}
-  P = n \frac{p_F^2}{5m}
-\,,
-\end{align}
-%
-\todo[inline]{where does this come from?}
-
-
-%
-\begin{align}
-  P = k_{NR} n^{5/3}
-\,,
-\end{align}
-%
-where 
-%
-\begin{align}
-  k_{NR} = \frac{h^2}{5m} \qty(\frac{3}{8 \pi })^{2/3}
+  P = n \frac{p_F^2}{5m} 
 \,.
 \end{align}
+
+Since the Fermi momentum \(p_F\) can be written as a function of the number density \(n_e\), so can the pressure \(P\): we find 
+%
+\begin{align}
+P = \underbrace{\frac{h^2}{5m} \qty(\frac{3}{8 \pi })^{2/3}}_{K_{NR}} n_e^{5/3}
+\,.
+\end{align}
+
+\paragraph{Ultra relativistic limit}
+
+% In
+% %
+% \begin{align}
+%   P = k_{NR} n^{5/3}
+% \,,
+% \end{align}
+% %
+% where 
+% %
+% \begin{align}
+%   k_{NR} = \frac{h^2}{5m} \qty(\frac{3}{8 \pi })^{2/3}
+% \,.
+% \end{align}
 %
 
-In the relativistic case, on the other hand, we get \(\epsilon _p \approx cp\), and \(\rho = \frac{3}{4} n \rho _F c \). 
+In the relativistic case, on the other hand, we can approximate the energy as \(\epsilon _p \approx cp\), so the energy density will be given by 
+%
+\begin{align}
+\rho = \frac{3}{4} n \rho _F c
+\,.
+\end{align}
+
 In this case, we also know that the pressure becomes 
 %
 \begin{align}
   P = \frac{1}{3} \frac{E_k}{V}
-\,.
-\end{align}
-
-So we find 
-%
-\begin{align}
-P = K_{VR} n^{4/3} 
 \,,
 \end{align}
 %
-where 
+so we find 
 %
 \begin{align}
-  K_{VR} = \frac{hc}{4} \qty(\frac{3}{8 \pi })^{1/3}
+P = \underbrace{\frac{hc}{4} \qty(\frac{3}{8 \pi })^{1/3}}_{K_{UR}} n^{4/3} 
 \,.
 \end{align}
 
-We make a plot: on the \(x\) axis we have the number density in \(\SI{}{m^{-3}}\), on the \(y\) axis we have the temperature in \(\SI{}{K}\).
+\paragraph{Fermion gas classification}
 
-We divide the plot into: 
-\begin{enumerate}
-    \item Classical UR: \(P \propto n k_B T\);
-    \item classical NR (like the Sun);
-    \item degenerate NR: \(P = K_{NR} n^{4/3}\)
-    \item degenerate UR. 
-\end{enumerate}
+We have discussed some expressions describing a non-relativistic or ultrarelativistic degenerate fermion gas. 
 
-Classical vs degenerate is marked by a line similar to \(T \sim n\), while we have NR for both \(T\) and \(n\) lower than certain critical values (since a degenerate gas can become ultrarelativistic even at low temperatures! this is the point).
+We have derived our results with the assumption \(T \to 0\), but a gas can behave very similarly with nonzero temperatures as well. 
+What is the temperature threshold under which the gas behaves in a degenerate-like way?
+We will not discuss how the transition region looks, but if \(k_B T \ll \epsilon _F\) then the gas behaves like a degenerate one, while if \(k_B T \gg \epsilon _F\) then there will be many unfilled gaps in the phase space distribution, so the gas will not be degenerate. 
 
-We have 
+Recall that \(p_F \propto n_e^{1/3}\): therefore, in a log-log plot of temperature \(T\) versus density of possible electron densities \(n_e\) we can draw a line distinguishing the degenerate and nondegenerate cases, with the critical temperature becoming higher for higher \(n_e\).
+
+\todo[inline]{Is it really a straight line though? If the criterion is indeed to compare \(k_B T\) and \(\epsilon _p\) then I'd expect a curve, since \(\epsilon _F\) is not a polynomial function of \(p_F\)\dots}
+
+% We make a plot: on the \(x\) axis we have the number density in \(\SI{}{m^{-3}}\), on the \(y\) axis we have the temperature in \(\SI{}{K}\).
+Having distinguished the degenerate and nondegenerate regions, we can distinguish the relativistic and nonrelativistic ones: for the nondegenerate case, as is usual, we reach the relativistic condition if we increase the temperature. 
+
+In the degenerate case this is not really the case: as long as the gas is degenerate, the temperature does not really matter, and the gas becomes relativistic when the Fermi energy \(\epsilon _F\) becomes larger than the mass of the fermion.
+Since \(\epsilon _F\) is only a function of the number density, this means that the gas can become relativistic at arbitrarily low temperatures as long as it is dense enough.
+
+\todo[inline]{Add plot --- maybe we can do a chromatic region plot, integrating numerically the distribution and coloring the region based on the fraction of relativistic particles, and for the degeneracy measure in some way how ``sharp'' the boundary is between the filled and unfilled regions?}
+
+% We divide the plot into: 
+% \begin{enumerate}
+%     \item Classical UR: \(P \propto n k_B T\);
+%     \item classical NR (like the Sun);
+%     \item degenerate NR: \(P = K_{NR} n^{4/3}\)
+%     \item degenerate UR. 
+% \end{enumerate}
+
+% Classical vs degenerate is marked by a line similar to \(T \sim n\), while we have NR for both \(T\) and \(n\) lower than certain critical values (since a degenerate gas can become ultrarelativistic even at low temperatures! this is the point).
+
+\paragraph{Application to the Sun}
+
+As we have discussed earlier, the core temperature, pressure and density of the Sun are related by the following relation:
 %
 \begin{align}
-  P_c = \frac{\rho _C}{\overline{m}} k_B T_c
-\,,
+  P_c = \frac{\rho _c}{\overline{m}} k_B T_c
+\,.
+\end{align}
+
+% and it can be (easily?) shown that 
+The average mass which appears here is a function of the chemical composition of the interior: we can neglect all the metals and only consider the mass fractions of hydrogen (\(x_1 \)) and of helium (\(x_4 \)): 
+%
+\begin{align}
+  \overline{m} = 2 m_H \times \frac{1}{1 + 3x_1 + 0.5 x_4}
+\,.
 \end{align}
 %
-and 
+% where \(x_{1, 4}\) are the concentrations of hydrogen and helium respectively. 
+
+\todo[inline]{This expression works well in the limits of \(x_1 =1\) and \(x_4 = 1\), but where does it come from? I would have expected \(\overline{m} = (x_1 m_H  + x_4 m_{He} ) /2\)\dots}
+
+The Clayton model gave us an expression for the central pressure \(P_c\), which we turned into one for the central temperature \(T_c\): 
 %
 \begin{align}
-  k_B T_c = \qty(\frac{\pi }{36})^{1/3} G \overline{m}
+P_c &=\approx \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho _c^{4/3} \\
+ k_B T_c &\approx \qty(\frac{\pi }{36})^{1/3} G \overline{m}
   M^{2/3} \rho _c^{1/3}
 \,,
 \end{align}
 %
-and it can be (easily?) shown that 
-%
-\begin{align}
-  \overline{m} = 2 m_H \times \frac{1}{1 + 3x_1 + 0.5 x_4}
-\,,
-\end{align}
-%
-where \(x_{1, 4}\) are the concentrations of hydrogen and helium respectively. 
+however when deriving it we not consider the effect of the fact that the gas there may be at least party degenerate.
 
-To estimate the maximum achievable central temperature we do: 
+Let us consider a different approximation: suppose that the electrons in the core are fully degenerate and nonrelativistic, while the ions (whose density is \(n_i\), which by local neutrality is also equal to \(n_e = \rho _c / \overline{m}\)) are completely classical.\footnote{In order to see why it makes sense to consider them as classical while the electrons are degenerate, let us look at the fact that in the nonrelativistic approximation the Fermi energy is given by \(\epsilon _F = p_F^2 / 2m \sim m^{-1} n^{2/3}\), so the critical temperature needed for a Fermi gas to become degenerate depends on the number density as well as the mass of the particle: for a higher-mass particle, the Fermi energy is lower.
+
+The electrons being degenerate means that the temperature of the core is (roughly speaking) lower than their Fermi energy; the Fermi energy of the ions however is at least three orders of magnitude lower, so it makes sense that it is not as low as the Fermi temperature of the ions.
+
+In order to have some numbers at hand, with a number density like that of the core of the Sun the Fermi temperature for electrons is \(\sim \SI{11}{MK}\), while the Fermi temperature for protons is a measly \(\sim \SI{6000}{K}\). The actual temperature of the core is \(T_c \sim \SI{15}{MK}\), slightly above the Fermi temperature of electrons. It is close enough that modelling them as degenerate works, while the assumption of the ions being nondegenerate is completely valid.}
+Our estimate for the central pressure will need to account for both electrons and ions:
+% To estimate the maximum achievable central temperature we do: 
 %
 \begin{align}
   P_c = k_{NR} n_{e}^{5/3} + n_i k_B T_c
-\,,
+\,.
 \end{align}
 %
-where \(n_e = n_i  = \rho_{c} / \overline{m}_{H}\). 
 
-
+Let us equate this expression with the one given by the Clayton model for the central pressure: we find
 %
 \begin{align}
   \qty(\frac{\pi}{36})^{1/3} G M^{2/3} \rho_{c}^{4/3}
-  = k_{NR} \qty(\frac{\rho_c}{m_{H}})^{5/3} + \frac{\rho_{c}}{m_H} k_B T_c
-\,,
+  &= k_{NR} \qty(\frac{\rho_c}{m_{H}})^{5/3} + \frac{\rho_{c}}{m_H} k_B T_c \\
+  k_B T_c &= \underbrace{\qty(\frac{\pi}{36})^{1/3} G m_{H} M^{2/3}}_{A} \rho_{c}^{1/3} - \underbrace{k_{NR} m_H^{-2/3}}_{B} \rho _c^{2/3}
+\,.
 \end{align}
 %
-which implies 
+
+We can then ask what is the maximum temperature \(T_c\) we can reach for a given mass \(M\) if we vary the core density \(\rho _c\):
+this can be calculated to be 
+% (((np.pi/36) * ac.G**3 * ac.m_p**3 )/ (2 * ac.h**6 / 5**3 / ac.m_e**3 * (3/8 /np.pi)**2 /ac.m_p**2)).to(u.kg/u.m**3 / u.M_sun**2)
 %
 \begin{align}
-  k_b T_c = \qty(\frac{\pi}{36})^{1/3} G m_{H} M^{2/3} \rho_{c}^{1/3} - k_{NR} \qty(\frac{\rho_{c}}{m_H})^{2/3}
+\rho_{c}^{\text{max}} = (A/ 2B)^{3} \approx \SI{5e7}{kg/m^3} \qty( \frac{M}{M_{\odot}})^2
 \,,
 \end{align}
 %
-which is in the shape \(k_B T_c = A \rho_{c}^{1/3} - B \rho_{c}^{2/3}  \): we can find a maximum of this function, which comes out to be at \(\rho_{c} = (A/ 2B)^{3}\), where we have 
+where we have 
 %
 \begin{align}
   k_B T_c = \frac{A^2}{2B} = \qty(\frac{\pi }{36})^{2/3} \frac{G^2m_H^{8/3}}{4 k_{NR}} M^{4/3}

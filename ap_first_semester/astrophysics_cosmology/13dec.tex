@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\marginpar{Friday\\ 2019-12-13, \\ compiled \\ \today}
+% \marginpar{Friday\\ 2019-12-13, \\ compiled \\ \today}
 % \section*{Fri Dec 13 2019}
 
 % We discuss the maximum mass of stars. 
@@ -91,6 +91,7 @@ which we can invert to find an expression for the core pressure \(P_c \) in term
   \qty(\frac{\pi }{36})^{1/3} G M^{2/3} 
   &= \qty(\frac{3}{a} \frac{(1-\beta )}{\beta^{4}})^{1/3}
   \qty(\frac{k_B}{\overline{m}})^{4/3}
+  \label{eq:maximum-mass-main-sequence}
 \,,
 \end{align}
 %
@@ -364,46 +365,55 @@ this can be calculated to be
 where we have 
 %
 \begin{align}
-  k_B T_c = \frac{A^2}{2B} = \qty(\frac{\pi }{36})^{2/3} \frac{G^2m_H^{8/3}}{4 k_{NR}} M^{4/3}
+  k_B T_c = \frac{A^2}{4B} = \qty(\frac{\pi }{36})^{2/3} \frac{G^2m_H^{8/3}}{4 k_{NR}} M^{4/3}
+  \approx \SI{5.7}{keV} \qty( \frac{M}{M_{\odot}})^{4/3}
 \,.
 \end{align}
 
-Now, we can set this temperature to be larger than the ignition temperature for any process we want, to see whether it will happen. 
-
-The minimum mass is 
+% Now, we can set this temperature to be larger than the ignition temperature for any process we want, to see whether it will happen. 
+This allows us to estimate the minimum mass a star needs to have in order to fuse hydrogen: we just need to set \(T_c\) to be equal to the ignition temperature \(T_c = T _{\text{ign}} \approx \SI{1}{keV}\) and we find
 %
 \begin{align}
   M _{\text{min}} = 
   \qty(\frac{36}{\pi })^{1/2} 
   \qty(\frac{4 k_{NR}}{G^2m_H^{8/3}})^{3/4}
   \qty(k_B T _{\text{ign}})^{3/4}
+  \approx \SI{.27}{M_{\odot}}
 \,.
 \end{align}
 
-The potential energy between two hydrogen nuclei separated by a distance equal to their quantum wavelength is 
+This is a much better estimate than the one we found earlier since we are now accounting for the degenerate Fermi gas nature of the electrons in the core (this lowers the estimate, since it means that even at relatively low temperatures there will be electrons with high energy) and since we are computing the core density \(\rho _c\) instead of the average density \(\overline{\rho}\). 
+
+\todo[inline]{The estimate is\dots still not great really, right? it is still 3 times larger than the correct value of \(\num{.08} M_{\odot}\)! How do we account for such a discrepancy?}
+
+\paragraph{Expressing the result with coupling constants}
+
+The gravitational potential energy between two hydrogen nuclei separated by a distance equal to their (reduced!) Compton wavelength \(r = \hbar / m_H c\) is 
 %
 \begin{align}
 E_g = - \frac{G m_H^2}{r} = - \frac{G m_H^{3}c }{\hbar}
-\,,
-\end{align}
-%
-where we inserted \(r = \hbar / m_H c\). This corresponds to an energy \(E = m_H c^2\), and we have a value 
-%
-\begin{align}
-  \alpha_{G} = \frac{E_g}{E} =  \frac{G m_H^2}{\hbar c} \sim \SI{5.9e-39}{}
 \,.
 \end{align}
 
-For electromagnetic interaction, we get 
+Comparing this to the rest energy of an electron, \(E = m_H c^2\), is the way to calculate the \emph{gravitational coupling constant} \(\alpha _G\), a dimensionless parameter quantifying the ``strength'' of the gravitational interaction between hydrogen nuclei:
+%
+\begin{align}
+  \alpha_{G} = \frac{E_g}{E} =  \frac{G m_H^2}{\hbar c} \sim \num{5.9e-39}
+\,.
+\end{align}
+
+In natural units, \(\alpha _G = m_H^2 / m_P^2\).
+
+By a similar line of reasoning we find the electromagnetic coupling constant:
 %
 \begin{align}
   \alpha_{EM} = \frac{e^2}{4 \pi \epsilon_{0} \hbar c} \approx \frac{1}{137}
 \,,
 \end{align}
 %
-which is \emph{much greater}. 
+which is \emph{enormously} greater. 
 
-Then we find 
+In terms of the gravitational coupling constant the minimum mass we found can be written as 
 %
 \begin{align}
   M _{\text{min}} \approx
@@ -413,63 +423,75 @@ Then we find
 \end{align}
 
 If \(T _{\text{ign}} \sim \SI{1.5e6}{K}\), one tenth of the temperature of the Sun, we find 
+\todo[inline]{Is \SI{0.1}{keV} really enough to reach ignition? This seems to contradict what was said earlier\dots}
 %
 \begin{align}
   M _{\text{min}} \sim \num{.03} \alpha_{G}^{-3/2} m_H
-\,,
-\end{align}
-%
-while for the maximum mass, from before with \(\beta = \num{.5}\) and \(\overline{m} = \num{.61} m_H\) we get 
-%
-\begin{align}
-  M _{\text{max}} \approx 56 \alpha_{G}^{-3/2} m_H
-\,,
-\end{align}
-%
-so this hints to the fact that \(m_{*} = \alpha_{G}^{-3/2} m_H \) is an important characteristic mass. This is around \(\num{1.85} M_{\odot}\). 
-
-This corresponds to a number of particles: 
-%
-\begin{align}
-  N_{*} = \frac{m_{*}}{m_H} \approx \num{2e52}
 \,.
 \end{align}
 
-Suppose the core of a star is held together by the pressure of degenerate electrons: we discuss \emph{white dwarves}.
-We define 
+We can apply a similar line of reasoning to the formula we found for the maximum mass: taking equation \eqref{eq:maximum-mass-main-sequence}  with a critical fraction of nonrelativistic matter of \(\beta = \num{.5}\) and \(\overline{m} = \num{.61} m_H\) we get a result which, once again, scales with \(\alpha _G^{-3/2} m_H\):
+%
+\begin{align}
+  M _{\text{max}} \approx 56 \alpha_{G}^{-3/2} m_H
+\,.
+\end{align}
+
+This hints to the fact that \(m_{*} = \alpha_{G}^{-3/2} m_H \) is an important characteristic mass for all of stellar evolution.
+
+This is around \(\num{1.85} M_{\odot}\), and it corresponds to a number of nucleons of
+%
+\begin{align}
+  N_{*} = \frac{m_{*}}{m_H} \approx \num{2e57}
+\,.
+\end{align}
+
+\subsection{Full degeneracy and white dwarfs}
+
+% Let us now suppose that the core of a star is held together by the pressure of degenerate electrons alone: we will discuss \emph{white dwarfs}.
+White dwarfs are the remnants of low-mass stars who have exhausted the elements they are able to fuse in their core. They glow, emitting thermal radiation, which causes their temperature to slowly decrease until they become brown dwarfs. 
+
+They are of interest to us since they allow us to apply the theory of degenerate Fermi gasses once more: they are very dense objects, since there is no fusion-induced pressure gradient inside them to balance gravity, and the electrons inside them form a degenerate gas.
+
+% We define 
+The number density of electrons inside a white dwarf is given by
 %
 \begin{align}
   n_e = Y_{e} \frac{\rho_{c}}{m_H}
 \,,
 \end{align}
 %
-where \(Y_e = (1 + x_1) /2\).
-The pressure is 
+where \(Y_e = (1 + x_1) /2\) quantifies the number of electrons per baryon (\(x_1 \) is the hydrogen mass fraction).
+
+\todo[inline]{Why would \(Y_e\) be given by that expression? hydrogen has one electron per each baryon, but helium also has half an electron per baryon\dots If the white dwarf was exclusively hydrogen, would we not expect \(Y_e = 1/2\)?}
+
+Let us start by assuming that the matter is nonrelativistic: then  
+the pressure is given by
 %
 \begin{align}
   P = k_{NR} n_e^{5/3} = k_{NR} \qty(\frac{Y_e \rho_{c}}{m_H})^{5/3}
 \,,
 \end{align}
 %
-which must compared to 
+which as usual we compare to the results of the Clayton model:
 %
 \begin{align}
   P_c = \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho_{c}^{4/3}
-\,,
-\end{align}
-%
-and we assume that \(P = P_c\): then we get 
-%
-\begin{align}
-  \rho_{c} \approx \frac{\num{3.1}}{Y_e^{5}} \frac{M}{m_{*}} \frac{m_H}{(h / m_e c^2)^{3}}
 \,.
 \end{align}
 
-\todo[inline]{
-  Missing square on the \(M / m_*\)?
-}
+Equating these two we find
+%
+\begin{align}
+  \rho_{c} \approx \frac{\num{3.1}}{Y_e^{5}} \qty(\frac{M}{m_{*}})^2 \frac{m_H}{(h / m_e c^2)^{3}}
+\,.
+\end{align}
 
-The pressure is 
+% \todo[inline]{
+%   Missing square on the \(M / m_*\)?
+% }
+
+If, on the other hand, we were to assume that the matter is ultrarelativistic the pressure would be given by
 %
 \begin{align}
 P = k_{UR} n_e^{4/3} 
@@ -477,15 +499,19 @@ P = k_{UR} n_e^{4/3}
 \,,
 \end{align}
 %
-so we get 
+so, instead of getting an expression for the central density \(\rho _c\), we would find
 %
 \begin{align}
   k_{UR} \qty(\frac{Y_e \rho_{c}}{m_H})^{4/3} \approx 
   \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho_{c}^{4/3}
-\,,
+\,:
 \end{align}
 %
-so we can see that in this limit the expression becomes independent of \(\rho_{c}\). This will give us a limit mass: the Chandrasekhar mass.  
+in this limit the expression becomes independent of \(\rho_{c}\)!
+
+This gives us a limit mass, since as we increase the mass of a white dwarf which is not relativistic we increase its density and thus its temperature, making it closer to being relativistic, and this is the mass we get for the fully relativistic configuration (which is unstable because of the usual binding energy considerations).
+
+The limit is known as the Chandrasekhar mass, the largest mass at which a fully degenerate white dwarf can support itself:
 %
 \begin{align}
   M_{CH} = 
@@ -494,7 +520,11 @@ so we can see that in this limit the expression becomes independent of \(\rho_{c
 \,.
 \end{align}
 
-This is the maximum mass of a white dwarf to remain stable, held together by the degeneracy pressure of electrons. 
-Above this, it becomes a neutron star.
+% This is the maximum mass of a white dwarf to remain stable, held together by the degeneracy pressure of electrons. 
+% Above this, it becomes a neutron star.
+
+% \todo[inline]{Pacciani includes some more detailed considerations about the Chandrasekhar mass.}
+
+\todo[inline]{Something peculiar about the Chandrasekhar mass is that its derivation does not address the actual mechanism of the collapse (which is electron capture by nuclei, I think). If I understand correctly, this is because as \(M \to M _{\text{Ch}}\) the core density diverges, so something or other is \emph{bound} to happen, be it electron capture, the formation of an event horizon\dots}
 
 \end{document}

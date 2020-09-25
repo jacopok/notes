@@ -83,7 +83,7 @@ A star with a mass of less than \(11 M_{\odot}\) will not reach the iron stage; 
 
 There is a boundary, the Chandrasekhar mass \(M_C \approx \num{1.4} M_{\odot}\), between the final fate of the star being a white dwarf or a neutron star: this is the maximum mass a star made of protons and electron can have if it must resist its own gravitational collapse only through electron degeneracy pressure. 
 
-Now, let us consider massive stars with \(M > 11M _{\odot}\). They are able to burn oxygen into iron in their cores; now, the thing to note here is that the iron nuclide \ce{^{56}Fe} has one of the highest binding energy per nucleon,\footnote{It is not the highest, since there are a couple nuclides like \ce{^{62}Ni} which slightly exceed its binding energy per nucleon. These are collectively known as the ``iron group'', and are also formed, albeit in smaller amounts, during stellar fusion. For more details, see section IV in the \textcite[]{fewellAtomicNuclideHighest1995}, a very clear (and not so technical) paper.} so once it is reached any successive burning stages would absorb energy, instead of releasing it.
+Now, let us consider massive stars with \(M > 11M _{\odot}\). They are able to burn oxygen into iron in their cores; now, the thing to note here is that the iron nuclide \ce{^{56}Fe} has one of the highest binding energy per nucleon,\footnote{It is not the highest, since there are a couple nuclides like \ce{^{62}Ni} which slightly exceed its binding energy per nucleon. These are collectively known as the ``iron group'', and are also formed, albeit in smaller amounts, during stellar fusion. For more details, see section IV in \textcite[]{fewellAtomicNuclideHighest1995}, a very clear (and not so technical) paper.} so once it is reached any successive burning stages would absorb energy, instead of releasing it.
 
 This region in the core will not have any way to provide pressure to counteract the gravity of all the rest of the star above it. 
 When the iron core reaches the Chandrasekhar mass, it collapses onto itself, and the rebound from this creates a supernova, which will either leave a neutron star or a black hole as a remnant.
@@ -109,33 +109,35 @@ The matter which is expelled can form a \emph{planetary nebula}.
 
 % The final radius of the red giant phase of the Sun is around \(70\) times the radius of the Sun, while the white dwarf phase is \(70\) times smaller. \todo[inline]{Is this correct? I couldn't quite hear.}
 
-\todo[inline]{Pacciani here has a discussion of HR diagrams: this would be a useful thing to insert maybe.}
+\subsection{The Hertzsprung-Russel diagram}
 
-\subsection{The maximum mass of a Main Sequence star}
+In the Herzsprung Russel diagram we plot \(L / L_{\odot}\) versus \(T _{\text{eff}}\), the latter increasing right to left. 
 
-We wish to calculate what is the maximum mass of a Main Sequence star --- the Main Sequence includes all the stars which are in the process of burning hydrogen. 
+The Main Sequence runs from the upper left to the lower right, we have Red Giants on the upper right and White Dwarves on the lower left. 
+Most of the stars are on the Main Sequence: the hydrogen burning phase lasts a long time. 
+
+\todo[inline]{Pacciani here has a more in-depth discussion of HR diagrams, absolute magnitudes and so on: this would be a useful thing to insert. Also, a figure would be useful.}
+
+\subsection{The interior of a Main Sequence star}
+
+We wish to describe the statics of the fluid which makes up a Main Sequence star; the goal we set is to calculate what is the maximum mass of a Main Sequence star --- the Main Sequence includes all the stars which are in the process of burning hydrogen. 
 
 \paragraph{The density profile}
 
 The first thing we will need is to calculate the density profile of the star, which is written as \(\rho (r)\) since as always we are assuming spherical symmetry. 
-%%% GOT HERE
 
-Our equation of hydrostatic equilibrium is:
+Our equation of hydrostatic equilibrium can be written as:
 %
 \begin{align}
-  \dv{P}{r} = - \frac{G m(r) \rho (r)}{r^2}
+  \dv{P}{r} &= - \frac{G m(r) \rho (r)}{r^2}  \\
+  \frac{r^2}{\rho (r)} \dv{P}{r} &= - G m(r)
 \,,
 \end{align}
 %
-and the equation giving the variation of the mass is \(\dv{m}{r} = 4 \pi r^2 \rho (r)\).
-So we get 
-%
-\begin{align}
-  \frac{r^2}{\rho (r)} \dv{P}{r} = - G m(r)
-\,,
-\end{align}
-%
-which can be restated as 
+and we can relate the differential mass of a spherical shell with the differential radius through \(\dd{m} = 4 \pi r^2 \rho (r) \dd{r}\).
+
+Differentiating the equation of hydrostatic equilibrium we find
+% which can be restated as 
 %
 \begin{align}
   \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{P}{r}) = - G \dv{m}{r} = - 4 \pi G \rho (r) r^2
@@ -146,59 +148,73 @@ more commonly stated as
 %
 \begin{align}
   \frac{1}{r^2} \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{P}{r}) = -4 \pi G \rho (r)
-\,,
-\end{align}
-%
-which holds if we have hydrostatic equilibrium. 
-
-Commonly the equation of state used for this is called \emph{polytropic}: 
-%
-\begin{align}
-  P = k \rho^{\frac{n+1}{n}}
-\,,
-\end{align}
-%
-where \(k = \const\) and \(n = 1/ (\gamma -1)\): so if \(\gamma = 5/3\), which holds for a monoatomic gas, then \(n = 3/2\) while if \(\gamma = 4/3\), which holds for an ultrarelativistic gas, then \(n = 3\). 
-
-Using this law, we can write this equation in terms of either only the density or only the pressure. 
-
-Let us kave only the density: 
-%
-\begin{align}
-  \frac{1}{r^2} \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{}{r} \qty(\rho^{\frac{n+1}{n}})) = - 4 \pi G \rho (r)
-\,,
-\end{align}
-%
-and we need two boundary conditions: we can fix the central density \(\rho(r=0) = \rho_c\) and the derivative of the density at the center: 
-%
-\begin{align}
-  \dv{\rho_c}{r} (r=0) = 0
 \,.
 \end{align}
+%
+% which holds if we have hydrostatic equilibrium. 
 
-This is because: 
+\todo[inline]{This resembles the Laplacian in spherical coordinates, \(\nabla^2 f(r) = r^{-2} \partial_{r} \qty(r^2 \partial_{r} f)\)\dots can this be stated more precisely?}
+
+We can solve this using an equation of state which gives us \(P = P (\rho )\); for stellar interiors the cosmological equations of state \(P \propto \rho \) do not in general work well, and instead we must generalize to a \emph{polytropic} equation:
+% Commonly the equation of state used for this is called \emph{polytropic}: 
+%
+\begin{align}
+  P = k \rho^{\frac{n+1}{n}} = k \rho^{\gamma }
+\,,
+\end{align}
+%
+where \(k\) and \(n\) are constants; also \(n = 1/ (\gamma -1)\).
+This \(\gamma \) is the adiabatic index: for a monoatomic nonrelativistic gas \(\gamma = 5/3\) and \(n = 3/2\), for an ultrarelativistic gas \(\gamma = 4/3\) and \(n = 3\).
+% If \(\gamma = 5/3\), which holds for a monoatomic gas, then \(n = 3/2\) (\(P \sim \rho^{5/3}\)); if \(\gamma = 4/3\), which holds for an ultrarelativistic gas, then \(n = 3\). 
+
+% Using this law, we can write this equation in terms of either only the density or only the pressure. 
+This will yield a second order differential equation for \(\rho \), which we must complement with two boundary conditions. 
+We can set the value of the central density, \(\rho (r = 0) = \rho _c\); also, in order for the density to be a differentiable function of position inside the stare we must also have \(\partial_{r}\rho (r=0) = 0 \): this is because if we move in a straight line through the center of the star, as we pass \(r = 0\) we move from a certain value of the derivative to minus that value, since \(r\) goes from decreasing to increasing. The only way for this to be continuous is if the derivative is zero. 
+
+% Let us kave only the density: 
+This is confirmed by the fact that, if we substitute the polytropic equation of state, we find
+%
+% \begin{align}
+%   \frac{1}{r^2} \dv{}{r} \qty(\frac{r^2}{\rho (r)} \dv{}{r} \qty(\rho^{\frac{n+1}{n}})) = - 4 \pi G \rho (r)
+% \,,
+% \end{align}
+%
+% and we need two boundary conditions: we can fix the central density \(\rho(r=0) = \rho_c\) and the derivative of the density at the center: 
+% %
+% \begin{align}
+%   \dv{\rho_c}{r} (r=0) = 0
+% \,.
+% \end{align}
+% This is because: 
 %
 \begin{align}
   \rho^{1/n} \dv{\rho }{r} \propto - \frac{Gm(r)}{r^2} \rho (r)
 \,,
 \end{align}
 %
-and the mass is given by \(m(r) \sim \rho_c r^3\): therefore \(\rho^{1/n} \dv*{\rho }{r} \propto r\), so it makes sense to set the derivative to zero. 
+and the mass in a small region around the origin is approximately \(m(r) \sim \rho_c r^3\): therefore \(\rho^{1/n} \dv*{\rho }{r} \propto \rho _c r\). 
 
-The radius of the star is defined as the one at which the density goes to 0: \(\rho (R) =0\), and the mass of the star is given by \(m(R) = M\). 
+These equations can be solved numerically.
+The radius of the star can be calculated as the one at which the density goes to 0: \(\rho (R) =0\), and the mass of the star is given by \(m(R) = M\). 
 
-These equations can be solved numerically. Also, we can use an ansatz. 
+This model is unphysical in that it assumes that the star's interior can be described by a constant \(\gamma \) throughout; as we have seen there are several orders of magnitude of difference in pressure, temperature and density from the core to the surface, so it is a strong assumption to say that it behaves in the same way.
 
-A model by Claytron 1986: \(P_c = \SI{2e16}{Pa}\), and since 
-%
-\begin{align}
-  \expval{P} = - \frac{1}{3} \frac{E _{\text{gr}}}{V_{\odot}}
-\,,
-\end{align}
-%
-where \(E _{\text{gr}} = G M_{\odot}^2 / R_{\odot}\), and \(V_{\odot} = \frac[i]{4}{3} \pi R_{\odot}^3\): therefore the mean pressure is approximately \(1/200\) times the pressure at the center. 
+% Also, we can use an ansatz. 
+\paragraph{The Clayton model}
 
-We can write the equation of hydrostatic equilibrium as 
+Let us discuss a model proposed by Clayton in 1986, which uses an ansatz for the density profile in order to extract information about the star.
+% \(P_c = \SI{2e16}{Pa}\), and since 
+
+% %
+% \begin{align}
+%   \expval{P} = - \frac{1}{3} \frac{E _{\text{gr}}}{V_{\odot}}
+% \,,
+% \end{align}
+% %
+% where \(E _{\text{gr}} = G M_{\odot}^2 / R_{\odot}\), and \(V_{\odot} = \frac{4}{3} \pi R_{\odot}^3\): therefore the mean pressure is approximately \(1/200\) times the pressure at the center. 
+
+Near the center of the star, we can estimate the mass contained within a spherical shell by assuming \(\rho = \rho _c\) throughout, so \(m(r) \sim \frac{4 \pi }{3} \rho _c r^3\), which we can substitute into the equation of hydrostatic equilibrium:
+% We can write the equation of hydrostatic equilibrium as 
 %
 \begin{align}
   \dv{P}{r} = - \frac{Gm \rho }{r^2} \approx -\frac{4 \pi G}{3} \rho^2_c r 
@@ -206,26 +222,31 @@ We can write the equation of hydrostatic equilibrium as
 \end{align}
 %
 so the pressure gradient goes to zero linearly in \(r\). 
-So, we know that 
-%
-\begin{align}
-  \dv{P}{r} (r=0) = 0
-\,,
-\end{align}
-%
-also, as \(r \rightarrow R\) we get \(\dv*{P}{r} \rightarrow 0\) as well, since it is proportional to \(\rho (r)\) in that region. 
 
-The pressure gradient around the center follows the density. Its variation is much larger near the center than on the outside. 
-The ansatz by Clayton is 
+% So, we know that 
+% %
+% \begin{align}
+%   \dv{P}{r} (r=0) = 0
+% \,,
+% \end{align}
+% %
+
+Also, as \(r\) approaches the radius of the star, \(R\), we get \(\dv*{P}{r} \rightarrow 0\) as well, since the pressure gradient is proportional to \(\rho (r)\) in that region, while \(r\) approaches a constant. 
+
+So, the pressure gradient approaches zero both at the core and at the surface, while in the interior it has a negative value.
+% The pressure gradient around the center follows the density. Its variation is much larger near the center than on the outside. 
+
+The ansatz by Clayton is a relatively simple expression which achieves these requirements:
 %
 \begin{align}
   \dv{P}{r} = -\frac{4 \pi }{3} G \rho _c^2 r \exp(- \frac{r^2}{a^2})
 \,,
 \end{align}
 %
-where the parameter \(a\) has the dimensions of a length, and we take it to be \(a \ll R \). This model is quite accurate near the center, not so much near the surface! 
+where the parameter \(a\) has the dimensions of a length, and we take it to be \(a \ll R \).
+This model is quite accurate near the center, not so much near the surface! 
 
-Integrating we find: 
+By integrating we can calculate the pressure profile:
 %
 \begin{align}
   P(r) = \frac{2 \pi }{3} G \rho_c^2 a^2 \qty(\exp(- \frac{r^2}{a^2}) - \exp(- \frac{R^2}{a^2}))
@@ -233,137 +254,172 @@ Integrating we find:
 \end{align}
 %
 so that the pressure is exactly zero at the surface: \(P(R) = 0\).
-We will check \emph{a posteriori} that this model makes sense for a typical star.
-\todo[inline]{Do we set the pressure to stay at zero for \(r>R\)? Maybe does not matter\dots}
+% We will check \emph{a posteriori} that this model makes sense for a typical star.
+% \todo[inline]{Do we set the pressure to stay at zero for \(r>R\)? Maybe does not matter\dots}
 
-We have the relation 
+% We have the relation 
+Substituting the relation \(\dd{m} = 4 \pi r^2\rho \dd{r}\) into the hydrostatic equilibrium equation we find
 %
 \begin{align}
   G m(r) \dd{m} = - 4 \pi r^{4} \dd{P}
 \,,
 \end{align}
 %
-which can be integrated in order to give the following result: 
+which can be integrated in order to calculate the mass from the pressure profile: 
 %
 \begin{align}
-  \frac{1}{2} G m^2(r) = - 4 \pi \int_{0}^{r} \dd{\widetilde{r}} \widetilde{r}^{4} \dv{P}{\widetilde{r}}
-\,.
-\end{align}
-
-We recover \(m(r)\) by taking the square root: 
-%
-\begin{align}
-  m(r) =  \frac{4 \pi a^3}{3} \rho_c \Phi (x)
+  \frac{1}{2} G m^2(r) &= - 4 \pi \int_{0}^{r} \dd{\widetilde{r}} \widetilde{r}^{4} \dv{P}{\widetilde{r}} \\
+  m^2(r) &= - \frac{8 \pi }{G} \qty(- \frac{4 \pi }{3}) G \rho_c^2 \int_{0}^{r} \dd{\widetilde{r}} \widetilde{r}^{5} \exp(- \frac{r^2}{a^2})\\
+  m(r) &=  \frac{4 \pi a^3}{3} \rho_c \Phi (x)
 \,,
 \end{align}
+% We recover \(m(r)\) by taking the square root: 
+% %
+% \begin{align}
+%   m(r) =  \frac{4 \pi a^3}{3} \rho_c \Phi (x)
+% \,,
+% \end{align}
 %
-where \(x = r/a\) and \(\Phi (x)\) is defined from the integral from before: 
+where we performed a change of variable to \(x = r/a\) (bringing out \(a^{6}\)) and defined \(\Phi (x)\) as the square root of the dimensionless integral: 
 %
 \begin{align}
   \Phi^2 (x) = 6 \int_{0}^{x} \dd{y} y^{5} e^{-y^2} 
   = 6 - 3 \qty(x^4 +2 x^2+2) e^{-x^2}
-\,,
+\,.
 \end{align}
-%
-and the second term is almost zero near the surface if \(a \ll R\): the power series starts from the sixth power (? what?). 
 
-The density profile then is given by:
+% and the second term is almost zero near the surface if \(a \ll R\): the power series starts from the sixth power (? what?). 
+Near the surface \(x\) is very large (since, as we mentioned, \(a \ll R\)), so the exponential dominates: we find \(\Phi^2(x) \approx 6\) there.
+
+The density profile can also be expressed in terms of \(\Phi (x)\):
 %
 \begin{align}
-  \rho (r) = \frac{1}{4 \pi r^2} \dv{m}{r}
-  = \rho_{c} \qty(\frac{x^3 e^{-x}}{\Phi (x)})
+  \rho (r) &= \frac{1}{4 \pi r^2} \dv{m}{r}
+  = \frac{1}{4 \pi a^2 x^2} \frac{1}{a} \frac{4 \pi a^3\rho _c}{3} \dv{\Phi }{x}  \\
+  &=\frac{\rho _c}{3 x^2} \frac{1}{2 \Phi} \dv{}{x} \qty( 6\int_0^{x}  y^{5} \exp(-y^2) \dd{y})
+  \\
+  &= \rho_{c} \qty(\frac{x^3 e^{-x^2}}{\Phi (x)})
 \,,
 \end{align}
 %
-and we can also recover the temperature profile from the ideal gas law: 
+which, under the assumptions of the model, is a complete description of the density profile.
+We can also recover the temperature profile from the ideal gas law (which holds as long as the gas inside the star is nonrelativistic): 
 %
 \begin{align}
   T(r) = \frac{\overline{m}}{k_B} \frac{P(r)}{\rho (r)}
-\,,
+\,.
 \end{align}
-%
-and, when \(x \ll 1\) we find 
+
+% and, when \(x \ll 1\) we find 
+Let us calculate this near the center of the star, meaning \(x \ll 1\); 
 %
 \begin{align}
-  \Phi (x) \sim \qty(x^{6} - \frac{3}{4} x^{8} + \frac{3}{10} x^{10} - \frac{1}{12} x^{12}+ \dots)^{1/2}
+  \Phi (x) &= \qty[6 - 3 (x^{4} + 2 x^2+ 2) \qty(1 - x^2  +\frac{x^{4}}{2} - \frac{x^{6}}{6})] \\
+  &\approx \qty(x^{6} - \frac{3}{4} x^{8} + \frac{3}{10} x^{10} - \frac{1}{12} x^{12}+ \dots)^{1/2}
 \,,
 \end{align}
 %
-and inserting this we find 
+% and inserting this we find 
+which we can insert into our expression for \(\rho (r)\), also let us expand \(P(r)\) to second order, so that we can also calculate \(T(r)\):
 %
 \begin{align}
-  \rho (r) \approx \rho _c \qty(1 - \frac{5}{8} \frac{\overline{r}^2}{a^2} + \dots)
+  \rho (r) &\approx \rho _c \qty(1 - \frac{5}{8} \frac{r^2}{a^2} + \dots) \\
+  P(r) &\approx \frac{2 \pi }{3} G \rho _c^2 a^2  \qty(1 - \frac{r^2}{a^2} + \dots) \\
+  T(r) &\approx T_c \qty( 1 - \frac{3}{8} \frac{r^2}{a^2} + \dots)
 \,,
 \end{align}
 %
-and 
+where 
 %
 \begin{align}
-  T(r) \approx T_c \qty( 1 - \frac{3}{8} \frac{r^2}{a^2} + \dots)
-\,,
+T_c = \frac{\overline{m}}{k_B} \frac{2 \pi }{3} G \rho _c a^2
+\,.
 \end{align}
-%
-which allows us to get the total mass 
+
+Moving to the surface, we can calculate the total mass 
 %
 \begin{align}
   M = m(R) = \frac{4 \pi \rho_c a^3}{3} \Phi (R/a) \approx
   \frac{4 \pi \rho _c a^3 \sqrt{6}}{3} 
+\,.
+\end{align}
+
+Then, the average density is given by 
+%
+\begin{align}
+\expval{\rho } = \frac{M}{\frac{4 \pi }{3} R^3} = \sqrt{6}  \qty(\frac{a}{R})^3 \rho _c
 \,,
 \end{align}
 %
-and lots of it are within a radius \(a\): 
+so if it is the case that \(a \ll R\) then we also have \(\rho _c \gg \expval{\rho }\). 
+
+We can invert this relation to find \(a\) in terms of \(M\) and \(\rho _c\); for the Sun we find \(a \approx R_{\odot} / 5.4\), \(\rho (a) = 0.53 \rho _c\) and \(m(a) = \num{.28} M_{\odot}\). 
+
+This means that, as we expected, the Sun is quite concentrated: over a quarter of its mass is contained within \((1/5.4)^3 \approx \SI{0.6}{\percent}\) of its volume.
+
+% and lots of it are within a radius \(a\): 
+% %
+% \begin{align}
+  
+%   \qquad
+%   \text{and}
+%   \qquad
+  
+% \,.
+% \end{align}
+% %
+
+% We also have the relation , and 
+%
+% \begin{align}
+%   \frac{\expval{\rho }}{\rho _c } \sim \qty(\frac{a}{R})^3 
+%   \sim 1
+% \,.
+% \end{align}
+% %
+% \todo[inline]{Where does this come from?}
+
+% We have the relations 
+% %
+% \begin{align}
+%   m(r) = \frac{4 \pi a^3}{3} \rho _c \Phi (x)
+% \,,
+% \end{align}
+% %
+% and 
+% %
+% \begin{align}
+%   P_c = \frac{2 \pi }{3} G \rho_c^2 a^2
+% \,.
+% \end{align}
+
+% Then we can combine these: 
+A useful result we can derive from this model is the central pressure expressed in terms of the mass and central density:
 %
 \begin{align}
-  \rho (a) = 0.53 \rho _c
-  \qquad
-  \text{and}
-  \qquad
-  m(a) = \num{.28} M_{\odot}
+  P_c &= \frac{2 \pi }{3} G \rho _c^2a^2 = \frac{2 \pi }{3} G \rho _c^2 \qty(\frac{3M}{4 \pi \rho _c \sqrt{6}})^{2/3} \\
+  &\approx \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho _c^{4/3}
 \,.
 \end{align}
-%
 
-We also have the relation \(a = R_{\odot} / 5.4\), and 
-%
-\begin{align}
-  \frac{\expval{\rho }}{\rho _c } \sim \qty(\frac{a}{R})^3 
-  \sim 1
-\,.
-\end{align}
-%
-\todo[inline]{Where does this come from?}
+This model then predicts the prefactor \(q = (\pi / 36)^{1/3} \approx \num{.44}\). The powers of \(M\) and \(\rho _c\) are the same in more sophisticated models.
 
-We have the relations 
+From simulations with varying \(\gamma \)  we get: for \(\gamma = 5/3 \) the factor is \(q \approx \num{.48}\), for \(\gamma = 4/3\) the factor is \(q \approx \num{.36}\). 
+The results are quite close to ours!
+
+\todo[inline]{Pacciani also states that \(q < (\pi / 6)^{1/3} \approx \num{.14}\)\dots not sure how that would make sense!}
+
+\subsection{The maximum mass}
+
+We can apply the ideal gas relation to the core of the star: then we find 
 %
 \begin{align}
-  m(r) = \frac{4 \pi a^3}{3} \rho _c \Phi (x)
-\,,
-\end{align}
-%
-and 
-%
-\begin{align}
-  P_c = \frac{2 \pi }{3} G \rho_c^2 a^2
+  k_B T_c 
+  = \overline{m} \frac{P_c}{\rho _c}
+  \approx  \qty(\frac{\pi }{36 })^{1/3} G \overline{m} M^{1/3} \rho _c^{1/3}
 \,.
 \end{align}
 
-Then we can combine these: 
-%
-\begin{align}
-  P_c = \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho _c^{4/3}
-\,.
-\end{align}
-
-The factor \((\pi / 36)^{1/3} \sim \num{.44}\). 
-Changing \(\gamma \) we get: for \(\gamma = 5/4 \) the factor is \num{.48}.
-
-We use the ideal gas relation: then we find 
-%
-\begin{align}
-  k_B T_c = \qty(\frac{\pi }{36 })^{1/3} G \overline{m} M^{1/3} \rho _c^{1/3}
-\,.
-\end{align}
-
-Then, we can figure out which processes actually can happen. 
+% Then, we can figure out which processes actually can happen. 
 
 \end{document}

@@ -1,109 +1,124 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Fri Dec 13 2019}
+\marginpar{Friday\\ 2019-12-13, \\ compiled \\ \today}
+% \section*{Fri Dec 13 2019}
 
-We discuss the maximum mass of stars. 
+% We discuss the maximum mass of stars. 
 
-We were able to give meaning to the parameter \(a\): the pressure is given by 
+% We were able to give meaning to the parameter \(a\): the pressure is given by 
+% %
+% \begin{align}
+%   P(r) =
+%   \frac{2 \pi}{3} G \rho_c^2 a^2 \qty(\exp(- \frac{r^2}{a^2}) - \exp(- \frac{R^2}{a^2}))
+% \,,
+% \end{align}
+% %
+% so we can see that 
+% %
+% \begin{align}
+% a = \qty(\frac{3M}{4 \pi \rho_c \sqrt{6}})^{1/3}
+% \,,
+% \end{align}
+% %
+% and then we got an expression for the central pressure \(P_c\): the parameter multiplying it is approximately \(\num{.44}\), while more accurate models give: if \(\gamma = 5/3\) (ideal gas) we get \(\num{.48}\) whiile if \(\gamma = 4/3\) (ultrarelativistic) we get \(\num{.36}\).
+
+% We have the relation 
+% %
+% \begin{align}
+%   P_c = \frac{\rho _c }{\overline{m}} k_B T_c
+% \,,
+% \end{align}
+% %
+% which we use to get the last relation from last time. 
+
+% This allows us to get some figures for main sequence (hydrogen burning) stars. 
+
+% What is the maximum mass for Main Sequence stars? 
+
+In the core of the star, we have both nonrelativistic and relativistic material in equilibrium: electrons and protons are nonrelativistic, while photons are relativistic.
+We have discussed earlier that if most of the material in a star were relativistic it would become unstable (since, as \(\gamma \to 4/3\), the binding energy approaches 0); let us then discuss the composition of the star. 
+
+% A star becomes unstabel when most of its material becomes ultrarelativistic: then, its total energy goes from a negative value to 0 and the adiabatic index approaches \(4/3\). 
+
+% Suppose that the central energy is partly given by radiation and partly by matter. 
+% We write
+We can decompose the pressure at the core into the fractions due to nonrelativistic matter and to radiation:
 %
 \begin{align}
-  P(r) =
-  \frac{2 \pi}{3} G \rho_c^2 a^2 \qty(\exp(- \frac{r^2}{a^2}) - \exp(- \frac{R^2}{a^2}))
+  P_c = P_m  + P_r = \beta P_c + (1 - \beta )P_c
 \,,
 \end{align}
 %
-so we can see that 
+where we define \(\beta \in (0,1)\) as the fraction of the core pressure which is due to matter: \(\beta = P_m / P_c\).
+
+% where the terms of the two sums exactly correspond to each other, and
+The two contributions can be separately expressed as:
 %
 \begin{align}
-a = \qty(\frac{3M}{4 \pi \rho_c \sqrt{6}})^{1/3}
+  \beta P_c = P_m &= \frac{\rho _c k_B T_c}{\overline{m}} \\
+  (1 - \beta ) P_c = P_r &= \frac{1}{3} a T^4
 \,,
 \end{align}
 %
-and then we got an expression for the central pressure \(P_c\): the parameter multiplying it is approximately \(\num{.44}\), while more accurate models give: if \(\gamma = 5/3\) (ideal gas) we get \(\num{.48}\) whiile if \(\gamma = 4/3\) (ultrarelativistic) we get \(\num{.36}\).
-
-We have the relation 
-%
-\begin{align}
-  P_c = \frac{\rho _c }{\overline{m}} k_B T_c
-\,,
-\end{align}
-%
-which we use to get the last relation from last time. 
-
-This allows us to get some figures for main sequence (hydrogen burning) stars. 
-In the Herzsprung Russel diagram we plot \(L / L_{\odot}\) versus \(T _{\text{eff}}\), the latter increasing right to left. 
-
-The Main Sequence runs from the upper left to the lower right, we have Red Giants on the upper right and White Dwarves on the lower left. 
-Most of the stars are on the Main Sequence: the hydrogen burning phase lasts a long time. 
-
-What is the maximum mass for Main Sequence stars? 
-A star becomes unstabel when most of its material becomes ultrarelativistic: then, its total energy goes from a negative value to 0 and the adiabatic index approaches \(4/3\). 
-
-Suppose that the central energy is partly given by radiation and partly by matter. 
-We write 
-%
-\begin{align}
-  P_c = P_\rho  + P_r = \beta P_c + (1 - \beta )P_c
-\,,
-\end{align}
-%
-where the terms of the two sums exactly correspond to each other, and
-%
-\begin{align}
-  \beta P_c = P_\rho = \frac{\rho _c k_B T_c}{\overline{m}}
-\,
-\end{align}
-%
-and 
-%
-\begin{align}
-  (1 - \beta ) P_c = P_r = \frac{1}{3} a
-\,,
-\end{align}
-%
-where 
+where \(a\) is the radiation constant, related to the Stefan-Boltzmann constant \(\sigma \):
 %
 \begin{align}
   a = \frac{\pi^2   k_B^2}{15 \hbar^3 c^3}
 \,.
 \end{align}
 
-So we have 
+We can then relate \(\beta \) to the mass of the star: in order to simplify the core temperature, we start by computing
 %
 \begin{align}
-  \qty(\beta P_c )^{4} = \frac{\rho _c^{4}}{\overline{m}^{4}} \qty(k_B T_c)^{4}
+  \frac{\qty(\beta P_c )^{4}}{(1 - \beta ) P_c} &= \frac{\rho _c^{4}}{\overline{m}^{4}} \qty(k_B T_c)^{4} \frac{3}{a T_c^{4}}  \\
+  \frac{\beta^{4}}{1 -\beta } P_c^3 &= \frac{3}{a} \qty(\frac{k_B \rho _c}{\overline{m}})^{4}
 \,,
 \end{align}
 %
-and 
+which we can invert to find an expression for the core pressure \(P_c \) in terms of \(\beta \), which we then compare to the expression we found for the core pressure as a result of the Clayton model: 
+% %
+% \begin{align}
+%   \frac{1 - \beta }{\beta^{4}} P_c^{-3} = \frac{a}{3}
+%   \qty(\frac{k_B \rho _c }{\overline{m}})^{-4}
+% \,.
+% \end{align}
+% Inverting this we can eliminate the temperature dependence: 
 %
 \begin{align}
-  \frac{1 - \beta }{\beta^{4}} P_c^{-3} = \frac{a}{3}
-  \qty(\frac{k_B \rho _c }{\overline{m}})^{-4}
-\,.
-\end{align}
-
-Inverting this we can eliminate the temperature dependence: 
-%
-\begin{align}
-  P_c = \qty(\frac{3}{a} \frac{1 - \beta  }{\beta^{4}})^{1/3} \qty(\frac{k_B \beta }{\overline{m}})^{4/3}
-  = \qty(\frac{\pi }{36})^{1/3} G M^{1/3} \rho _c^{4/3}
-\,,
-\end{align}
-%
-so 
-%
-\begin{align}
+  P_c = \qty(\frac{3}{a} \frac{1 - \beta  }{\beta^{4}})^{1/3} \qty(\frac{k_B \rho _c }{\overline{m}})^{4/3}
+  &= \qty(\frac{\pi }{36})^{1/3} G M^{1/3} \rho _c^{4/3} \\
   \qty(\frac{\pi }{36})^{1/3} G M^{2/3} 
-  = \qty(\frac{3}{a} \frac{(1-\beta )}{\beta^{4}})^{1/3}
+  &= \qty(\frac{3}{a} \frac{(1-\beta )}{\beta^{4}})^{1/3}
   \qty(\frac{k_B}{\overline{m}})^{4/3}
 \,,
 \end{align}
 %
-so as \(\beta \) decreases, \(M\) increases. 
+the core density simplifies! 
 
-[Plot of \(1 - \beta \) versus \(M / M_{\odot} \), showing this.]
+So, if we compare stars at the same stage of fusion so that \(\overline{m}\) is constant, we have \(M \propto f(\beta ) = (1 - \beta )^{1/2} / \beta^2\).  
+% so as \(\beta \) decreases, \(M\) increases. 
+
+\(f(\beta )\) decreases as \(\beta \) increases, and it diverges to \(+ \infty \) for \(\beta \to 0\). 
+
+Looking at the plot the other way, the heavier the star, the larger the contribution of radiation to the core pressure, which is what \(1-\beta \) quantifies.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/beta_star_core_pressure.png}
+\caption{A plot of \(f(\beta )\).}
+\label{fig:beta-core-pressure}
+\end{figure}
+\todo[inline]{Figure made quickly, to improve by scaling it correctly, making it vector, setting the text in the right font.}
+
+This makes sense intuitively: heavier stars reach higher temperatures and densities, so they have more radiation in the core. 
+
+We know that for \(\beta \to 0\) the star is surely unstable, but the instability is actually reached earlier, since even before the gravitational binding energy being exactly zero large parts of the star can be flung out as stellar winds.
+Proper considerations about what an appropriate critical value of \(\beta \) should be allow us to bound the stellar mass from above, at around \(50 M_{\odot}\). 
+
+% [Plot of \(1 - \beta \) versus \(M / M_{\odot} \), showing this.]
+
+\subsection{Degenerate electron gas}
 
 Now we deal with the degenerate electron gas in stars. 
 

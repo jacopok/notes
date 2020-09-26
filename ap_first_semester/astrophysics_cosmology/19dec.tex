@@ -367,80 +367,139 @@ Neutron stars can also produce gravitational waves in their rotation, as long as
 % This gives us a bound for gravitational waves of astrophysical origin. 
 % \todo[inline]{no comment on the GR corrections to this formula: however I'd expect them to be significant}
 
-\subsection{Black holes}
+\subsection{Relativistic corrections to the equation of state}
 
 % We move on to \emph{the GR issue}. 
+Black holes are objects which are so dense that their radius is smaller than the Schwarzschild radius:
+%
+\begin{align}
+R < \frac{2GM}{c^2} = R _{\text{Sch}}
+\,.
+\end{align}
 
-In a star, the classical equation of hydrostatic balance is:
+General Relativity predicts that when this is the case an \textbf{event horizon} form, a surface which forms a causal boundary: as is almost cliché, \emph{not even light can escape}.
+
+Let us see how the classical description of a star fails for objects with relativistic masses.
+The equation of hydrostatic balance, derived under classical assumptions, reads:
 %
 \begin{align}
 \dv{P}{r} = - \frac{Gm \rho }{r^2}
-\,,
+\,.
 \end{align}
 %
-while the GR equations for this are the TOV equation: Tolman-Oppenheimer-Volkov: 
+% while the GR equations for this are the TOV equation: 
+
+If we seek a relativistic analogue under similar assumption (spherical symmetry and equilibrium) we find the \textbf{Tolman-Oppenheimer-Volkov} equation: 
 %
 \begin{align}
 \dv{P}{r} = - \frac{Gm  \rho }{r^2} \qty(1 + \frac{P}{\rho c^2}) \qty(1 + \frac{4 \pi r^3 P}{m c^2}) \qty(1 - \frac{2Gm}{rc^2})^{-1}
-\,,
+\,.
 \end{align}
 %
-and the first correction is reminiscent of cosmology: \emph{the pressure itself contributes to the inertia of the system}. 
 
-If we have constant density, in the Newtonian case we get 
+This equation is exact under the assumptions we mentioned. 
+In the classical limit (\(2Gm/ c^2 \ll r\) and \(P \ll \rho c^2\)) this reduces to the classical hydrostatic balance equation.
+The first correction is reminiscent of the second Friedmann equation: \emph{the pressure itself contributes to the inertia of the system}. 
+
+Let us see how their predictions differ assuming constant density, \(\rho \equiv \rho_0 \). In the Newtonian case the mass below a radius \(r\) is given by
+% If we have constant density, in the Newtonian case we get 
 %
 \begin{align}
 m(r) = \frac{4 \pi }{3} \rho_0 r^3
 \,,
 \end{align}
 %
-so than we can integrate and get 
+% so than we can integrate and get 
+using which we can integrate the hydrostatic balance equation (from the surface, where the pressure vanishes) to find:
 %
 \begin{align}
-P(r) = \frac{2 \pi G}{3}  \rho_0^2 \qty(R^2 - r_0^2)
-\,,
+P(r) 
+= \int_{R}^{r_0 } \underbrace{\qty(- \frac{Gm \rho }{r^2})}_{\dv*{P}{r}} \dd{r}
+= \frac{2 \pi G}{3}  \rho_0^2 \qty(R^2 - r_0^2)
+\,.
 \end{align}
 %
-where we inserted the boundary condition \(P(R) = 0\). In the first-order GR case, this can still be solved analytically! We get 
-%
-\begin{align}
-P(r) = \rho_0 c^2 \qty(\frac{(1 - 2GM r^2 / R^3 c^2)^{1/2} - (1 - 2GM / Rc^2)^{1/2}}{3 \qty(1 - 2GM / Rc^2)^{1/2} - \qty(1 - 2GM r^2 / R^3c^2)^{1/2}})
-\,,
-\end{align}
-%
-\todo[inline]{Check exponents}
-so we get 
-%
-\begin{align}
-P_c = \frac{2 \pi }{3} G \rho_0^2R^2 = \qty(\frac{\pi }{6})^{1/3} GM^{2/3} \rho_{c}^{4/3}
-\,,
-\end{align}
-%
-so we can look at what happens when we consider \(r=0\): we get 
-%
-\begin{align}
-P_c = \rho_0 c^2 \qty(\frac{1 - \sqrt{1 - 2GM / Rc^2}}{3 \sqrt{1 - 2GM / Rc^2} - 1})
-\,,
-\end{align}
-%
-so we can see that the central pressure is finite as long as 
-%
-\begin{align}
-\frac{GM}{Rc^2} < \frac{4}{9}
-\,,
-\end{align}
-%
-which is not \(1/2\) since we have made some approximations. 
+% where we inserted the boundary condition \(P(R) = 0\).
 
-Then we have a bound 
+Then, the central pressure is given by 
 %
 \begin{align}
-M _{\text{max}} \approx \qty(\frac{8 \pi f}{9})^{3/2} M_{*}
-\,,
+P_c^{\text{classical}} = \frac{2 \pi }{3} G \rho_0^2 R^2 = \qty(\frac{\pi }{6})^{1/3} G M^{2/3} \rho_c^{4/3}
+\,.
+\end{align}
+
+Keeping the constant-density assumption, this can be done analytically in the relativistic case as well! We get 
+%
+\begin{align}
+P(r) &= \rho_0 c^2 \qty(\frac{(1 - 2GM r^2 / R^3 c^2)^{1/2} - (1 - 2GM / Rc^2)^{1/2}}{3 \qty(1 - 2GM / Rc^2)^{1/2} - \qty(1 - 2GM r^2 / R^3c^2)^{1/2}})  \\
+P_c^{\text{relativistic}} &= \rho_0 c^2 \frac{1 - \sqrt{1 - \frac{2GM}{Rc^2}}}{3 \sqrt{1 - \frac{2GM}{Rc^2}} - 1}
+\,.
+\end{align}
+
+%
+% \todo[inline]{Check exponents}
+% so we get 
+% %
+% \begin{align}
+% P_c = \frac{2 \pi }{3} G \rho_0^2R^2 = \qty(\frac{\pi }{6})^{1/3} GM^{2/3} \rho_{c}^{4/3}
+% \,,
+% \end{align}
+% %
+% so we can look at what happens when we consider \(r=0\): we get 
+% %
+% \begin{align}
+% P_c = \rho_0 c^2 \qty(\frac{1 - \sqrt{1 - 2GM / Rc^2}}{3 \sqrt{1 - 2GM / Rc^2} - 1})
+% \,,
+% \end{align}
+% %
+
+% so we can see that the central pressure is finite as long as 
+In the classical model we had a finite central pressure for each value of the mass and density; now, instead, in order for the pressure to not diverge we must require
+%
+\begin{align}
+% \frac{2GM}{Rc^2} < \frac{8}{9}
+R > \frac{9}{8} \frac{2GM}{c^2}
+\,.
 \end{align}
 %
-with \(f \sim 1\). This means than the objects becomes contained inside its Schwarzschild radius, \(R = 2GM/c^2\). 
+% which is not \(1/2\) since we have made some approximations. 
 
-Tomorrow we will speak of galaxy formation. 
+This is known as the \textbf{Buchdahl bound}; the radius of a non-black-hole (with constant density) cannot be arbitrarily close to the Schwarzschild radius, it must be at least \SI{12.5}{\percent} larger in order for the pressure to not diverge at the center.\footnote{
+More stringent bounds can also be derived --- in \textcite[fig.\ 2]{lattimerNeutronStarObservations2007} a plot is shown of possible equations of state of neutron stars in a mass versus radius plane.
+The bound we derived is denoted as \(P < \infty \), and we can also see a ``causality'' bound, which is related to the speed of sound in an ultrarelativistic medium.
+Realistic equations of state can reach approximately \(R \gtrsim 3GM /c^2\).}
+
+% \todo[inline]{A mass bound for neutron stars follows, both in Pacciani's notes and in the , but I don't follow the logic.}
+This also yields a mass limit for neutron stars. Let us estimate the constant density \(\rho_0\) by assuming that each neutron takes up a sphere of radius its Compton wavelength: \(r_n \approx h / m_n c\), so 
+%
+\begin{align}
+\rho_0 \approx \frac{m_n}{ \frac{4 \pi }{3} r_n^3}
+\approx \frac{3 m_n^4 c^3}{4 \pi h^3}
+\,.
+\end{align}
+
+A more accurate estimate would be given by \(r_n \approx \num{.7} h / m_n c\).
+
+so that, using the fact that \(\rho_0 = M / ( 4 \pi R^3 / 3)\), we can start manipulating the Buchdahl bound:
+%
+\begin{align}
+M &< \frac{4 c^2}{9GR} = \frac{4 c^2}{9 G} \qty(\frac{4 \pi \rho_0 }{3M})^{1/3}  \\
+M^{2/3} &< \frac{4 c^2}{9G} \qty(\frac{4 \pi }{3} \frac{3 m_n^4 c^3}{4 \pi h^3})^{1/3} \\
+M  &< \qty(\frac{8 \pi}{9})^{3/2} M_{*}
+\,.
+\end{align}
+
+This yields a bound on the order of \(M \lesssim 5 M_{\odot}\).
+% Then we have a bound 
+% %
+% \begin{align}
+
+% \,,
+% \end{align}
+% %
+% with \(f \sim 1\).
+% This means than the objects becomes contained inside its Schwarzschild radius, \(R = 2GM/c^2\). 
+
+% Tomorrow we will speak of galaxy formation. 
 
 \end{document}

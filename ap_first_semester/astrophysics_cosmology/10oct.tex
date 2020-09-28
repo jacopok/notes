@@ -83,6 +83,7 @@ the scale factor at a time \(t\), \(a(t)\), can be written as
 %
 where \(q_0 \defeq - \ddot{a}_0 a_0 / (\dot{a}_0 )^2\) is called the \emph{deceleration parameter} for historical reasons: people thought they would see deceleration (\(\ddot{a}<0\)) when first writing this, so a positive \(q_0 \), but
 the deceleration parameter is instead measured to be negative.
+The Hubble law is only correct up to first order, and we will show this by also calculating the second order correction. 
 
 % (the Hubble \emph{constant} is not constant wrt \emph{time} , but wrt \emph{direction}!)
 
@@ -226,7 +227,7 @@ d_L &= \frac{cz}{H_0}
 \,.
 \end{align}
 
-We can turn this into a relation for \(cz\) in terms of \(d_L\) by substituting in the first order expression \(d_L H_0 = cz\) into the second order term:
+We can turn this into a relation for \(cz\) in terms of \(d_L\) by substituting in the first order expression \(d_L H_0 = cz\) into the second order term (the error we make by this approximation is of third order at least):
 \begin{align}
 cz &= d_L H_0 + \frac{q_0 -1}{2} cz^2 \\
 cz &= H_0 \qty(d_L + \frac{1}{2} (q_0 -1 ) \frac{H_0}{c} d_L^2)\,,
@@ -294,7 +295,7 @@ As before, we can integrate this relation from the emission to the absorption: w
 \end{equation}
 
 If we map \(t \rightarrow t + \delta t\) and \(t_0 \rightarrow \delta t_0 \) in the integration limits, the integral must be constant since it only depends on \(r\) --- do note that all the expansion of the universe is accounted for by the increasing scale factor, objects are stationary with respect to the comoving radial coordinate \(r\).
-We are computing the integral for two successive wavefront of the light.
+We are computing the integral for two successive wavefronts of the light.
 Then, we equate the two: 
 %
 \begin{align}
@@ -345,14 +346,14 @@ The Friedmann equations are derived starting from the Einstein Field Equations f
 We will not be able to recover the full equations, since a Newtonian fluid's pressure is \(P \ll \rho c^2\): its contribution to the stress-energy-momentum tensor is negligible \cite[eqs. 441--443]{tissinoGeneralRelativityNotes2020}.
 So, through our argument we will recover the equations we would have with \(P=0\).
 
-The only non-Newtonian step in our derivation is the justification of the Newtonian approximation: we wish to make use of the theorem attributed to Birkoff, but first derived by the Norwegian physicist J.T. Jebsen \cite[]{johansenDiscoveryBirkhoffTheorem2005}.
+The only non-Newtonian step in our derivation is the justification of the Newtonian approximation: we wish to make use of the theorem attributed to Birkhoff, but first derived by the Norwegian physicist J.T. Jebsen \cite[]{johansenDiscoveryBirkhoffTheorem2005}.
 
 \begin{proposition}[Jebsen-Birkhoff]
 The only solution to the vacuum Einstein Field Equations which is spherically symmetric is given by the Schwarzschild metric \cite[sec. 32.2]{misnerGravitation1973}:\footnote{This is not relevant for what we will discuss here, but do note that there is no requirement of the generating (internal) mass distribution to be static: this is, in fact, the reason why spherically symmetric collapsing or pulsating stars cannot emit  gravitational waves.}
 %
 \begin{align}
 \dd{s^2} =  \qty(1 - \frac{2GM}{c^2r}) c^2 \dd{t^2} 
-- \qty(1 - \frac{2GM}{c^2r})^{-1} - r^2 \dd{\Omega^2}
+- \qty(1 - \frac{2GM}{c^2r})^{-1} \dd{r^2} - r^2 \dd{\Omega^2}
 \,.
 \end{align}
 \end{proposition}
@@ -438,7 +439,7 @@ or, removing the \(r^2\) term, which is a constant (since it is a comoving radiu
 
 Now, the dimensions of this constant are those of a speed, therefore we can express it as \(C / r^2 = -k_N = -k c^2\), where \(k\) is dimensionless --- we are allowed to do this since \(k_N\), the Newtonian curvature constant, has the dimensions of an energy per unit mass, or equivalently a velocity squared.
 
-This clarifies the statement that the magnitude of \(k\) is arbitrary: we get it by dividing by the dimensionless comoving radius, whose magnitude is indeed arbitrary, therefore we can normalize it however we wish: so we choose \(\abs{k} = 1\) or 0.
+This clarifies the statement that the magnitude of \(k\) is arbitrary: we get it by dividing the constant \(C\) (which is fixed) by the dimensionless comoving radius, whose magnitude is indeed arbitrary, therefore we can normalize it however we wish: so we choose \(\abs{k} = 1\) or 0.
 
 \begin{bluebox}
 The equation we found is of the form: 

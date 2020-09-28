@@ -44,12 +44,13 @@ which is the third Friedmann equation, \eqref{eq:friedmann-3}: the only manipula
 
 Why were we able to recover the relativistic term this time? The completely non-relativistic approach to this would be to write \(M = \frac{4\pi }{3} \rho a^3 \), and to write down the equation for the conservation of mass alone. 
 Indeed, this would yield the Friedmann equation without the \(P\) term.
+What we have effectively done is to consider the first relativistic order instead, since the classical kinetic energy is recovered by the first order expansion \(E = \gamma mc^2 \approx m + mv^2 / 2\).
 
 % \todo[inline]{Footnote number 5 at page 17 in \cite{Pacciani:2018} states: ``In generale si può porre \(\ell(t) = a(t)r\) con \(r\) coordinata comovente adimensionale per la validità del principio cosmologico; \(r\) può
 % essere sempre scelta piccola a piacere di modo che ad ogni istante valga la condizione di campo debole.''
 % This does not seem to make sense: the weak-field condition is not dependent on our coordinate choices, and in fact is written in terms of \(\ell\) and not \(r\).}
 
-The three Friedman equations are not independent: for example, the second one \eqref{eq:friedmann-2} can be derived from the first and third. 
+The three Friedman equations are not all independent, we only need two of them: for example, the second one \eqref{eq:friedmann-2} can be derived from the first and third. 
 
 This means that we can derive the full relativistic equations in this Newtonian context, using the derivations we have shown for the first and third equation, and then combining these to find the second.
 
@@ -105,7 +106,7 @@ which is precisely equation \eqref{eq:friedmann-2}.
 So, the equation system is underdetermined: we do not in fact have three independent Friedmann equations, but just two. 
 The variables we want to find, however, are three: \(P(t)\), \(\rho (t)\), \(a(t)\).
 
-So, we have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid, that is, one for which the pressure only depends on the density: \(P \overset{!}{=} P(\rho)\).
+We have to make an assumption: we will assume our fluid is a \emph{barotropic} perfect fluid, that is, one for which the pressure only depends on the density: \(P \overset{!}{=} P(\rho)\).
 
 Very often this equation of state will be linear: \(P = w \rho c^2\), with a dimensionless constant \(w\).\footnote{This is a latin \(w\), not a greek \(\omega \): students historically call it ``omega'' for some reason.}
 We will assume this relation to be true.
@@ -134,7 +135,7 @@ this can be derived from the third Friedmann equation \eqref{eq:friedmann-3}: in
 \,,
 \end{align}
 %
-so \(\rho \propto a^{-3(1+w)}\).
+so \(\rho \propto a^{-3(1+w)}\). 
 
 \begin{enumerate}
   \item \(w = 0\) is equivalent to \(P \equiv 0\): this is what we get in the nonrelativistic limit, for \(P \ll \rho c^2\), since there is no pressure this can be interpreted as a \emph{dust}. In this case \(\rho \propto a^{-3}\); also, we have \(c_s^2 \ll c^2\). 
@@ -146,7 +147,7 @@ so \(\rho \propto a^{-3(1+w)}\).
   \item \(w=1\) is called \emph{stiff matter}: it has \(P = \rho c^2\) and  \(c_s = c\). 
   This is an incompressible fluid: it is so difficult to set this matter in motion that once one does it travels at the speed of light. Now, \(\rho \propto P \propto a^{-6}\). 
   \item \(w=-1\) means that \(P = - \rho c^2\). We cannot compute a speed of sound (it would be imaginary).
-  Now \(\rho\) and \(p\) are constants, since they are proportional to \(a^{0}\). This is the case of dark energy: we will show in section \ref{sec:cosmological-constant} that the effect of inserting a cosmological constant \(\Lambda\) into the Einstein equations has precisely this effect.\footnote{This is shown by interpreting the additional term in the EFE as an addition to the stress-energy tensor and interpreting it as a perfect-fluid tensor \cite[eqs. 434-438]{tissinoGeneralRelativityNotes2020}.}
+  Now \(\rho\) and \(p\) are constants, since they are proportional to \(a^{0}=1\). This is the case of dark energy: we will show in section \ref{sec:cosmological-constant} that inserting a cosmological constant \(\Lambda\) into the Einstein equations has precisely this effect.\footnote{This is shown by interpreting the additional term in the EFE as an addition to the stress-energy tensor and interpreting it as a perfect-fluid tensor \cite[eqs. 434-438]{tissinoGeneralRelativityNotes2020}.}
 \end{enumerate}
 
 % Some possible equations of state are \(P \equiv 0\), or \(w =0\): this means \(\gamma =1 \). This is a \emph{dust pressureless fluid}.
@@ -176,7 +177,7 @@ So, we replace the third Friedmann Equation with \(w = \const\) and
 %
 where \(a_{*}\) and \(\rho_{*} \) are the scale factor and density at some chosen time.
 
-If we substitute this expression into the second FE we get that gravity is attractive (\(\ddot{a} < 0 \)) if and only if \(w > -1/3\). 
+If we substitute this expression into the second FE we get that gravity is attractive and the universe \emph{decelerates} (\(\ddot{a} < 0 \)) if and only if \(w > -1/3\). 
 
 Throughout this section we worked as if we had a single type of cosmic fluid in the universe: this is not really the case, we have many of them, and they will be interacting, but it is a good first approximation to consider them as separate.  
 
@@ -187,7 +188,7 @@ Throughout this section we worked as if we had a single type of cosmic fluid in 
 \label{fig:global_energy_contributions}
 \end{figure}
 
-In this plot, \(a\) can be interpreted as the time, since their relation is monotonic.
+In figure \ref{fig:global_energy_contributions}, \(a\) can be interpreted as the time, since their relation is monotonic.
 We could insert the spatial curvature \(k\) in the plot: it decreases, but slower than matter, since it appears in the first Friedmann equation with an exponent \(a^{-2}\).
 We can find an effective \(\rho (a)\) law for the curvature by defining an effective \(\rho_{k}\) for curvature with \(H^2 = \frac{8 \pi G}{3} (\rho + \rho_{k})\), which implies \(\rho_{k} = - 3 k c^2 / (8 \pi G a^2)\). 
 
@@ -212,7 +213,7 @@ We want to solve the equation system
 \,,
 \end{align}
 %
-which encompasses all of the physical content of the FE, since the second equation can be derived from these two. 
+which encompasses all the physical content of the FE, since the second equation can be derived from these two. 
 
 Inserting \eqref{eq:friedmann-3-later} into \eqref{eq:friedmann-1-later} we find:
 %
@@ -223,7 +224,7 @@ Inserting \eqref{eq:friedmann-3-later} into \eqref{eq:friedmann-1-later} we find
 
 \subsection{Einstein-De Sitter models}
 
-As we discussed before, if we had zero spatial curvature (\(k=0\)) then we would find \(\rho = \rho_{c} = 3 H^2 / (8 \pi G )\): so, we define the parameter \(\Omega = \frac{8 \pi G \rho}{3 H^2} = \rho / \rho_C\) which quantifies how close this is to being true: experimentally this is compatible with 1.
+As we discussed before, if we had zero spatial curvature (\(k=0\)) then we would find \(\rho = \rho_{c} = 3 H^2 / (8 \pi G )\): so, we define the parameter \(\Omega = \frac{8 \pi G \rho}{3 H^2} = \rho / \rho_C\) which quantifies how close this is to being true; experimentally, this is compatible with 1.
 
 The Einstein-de Sitter model is one where we take \(\Omega \equiv 1\): negligible spatial curvature, which is equivalent to setting \(k=0\). So, the equation becomes:
 \begin{equation}

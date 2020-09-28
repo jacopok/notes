@@ -1,7 +1,12 @@
 Here are the notes I am taking during the lectures of the degree in [Astrophysics and Cosmology](http://astrophysics-and-cosmology.dfa.unipd.it/) at the university of Padua (in the theoretical curriculum).
 
-They are divided by semester and class: the current semester folder is `ap_second_semester`, containing notes for:
+They are divided by semester and class: the current semester folder is `ap_third_semester`, containing notes for:
+* [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0):
+* [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0):
+* [Cosmology of the Early Universe](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081761/N0):
+* [High Energy Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP3050183/N0): might take the course, not sure yet.
 
+In the folder `ap_second_semester` one can find notes for the following courses:
 * [Gravitational physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081719/N0): finished reviewing notes, the last parts are quite short but the big conceptual bits are all there;
 * [Theoretical physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP7081638/N0): reviewed notes, some exercises are missing but on the whole they should be quite complete;
 * [Theoretical cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086384/N0): yet to review notes;
@@ -10,8 +15,7 @@ They are divided by semester and class: the current semester folder is `ap_secon
 * Gravitational Wave Astrophysics: yet to review notes;
 * possibly [Multimessenger astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081762/N0): probably will not give that exam.
 
-In the folder `ap_first_semester` one can find notes for the following courses
-
+In the folder `ap_first_semester` one can find notes for the following courses:
 * [Advanced astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086382/N0): reviewed notes for everything;
 * [Astrophysical (high energy) laboratory](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086379/A1302): not really coherent notes;
 * [Mathematical and numerical methods](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): not really coherent notes: the ones by the professor are already comprehensive, my solutions for the exercises can be found [here](https://github.com/jacopok/python-testing/tree/master/numerical_methods);

@@ -1,4 +1,82 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection*{Introduction}
+
+\marginpar{Monday\\ 2020-9-28, \\ compiled \\ \today}
+
+In this course we will discuss
+\begin{enumerate}
+    \item Bayesian statistics for parameter estimation and model comparison;
+    \item Application of these to practical data analysis problems in cosmology.
+\end{enumerate}
+
+The goal of the first part will \emph{not} be on mathematical proofs, but on \emph{applications}. We are ``customers'' of statistics.
+We need a good understanding of the theory, but not necessarily a very \emph{formal} one. 
+
+However, we will not take the ``cookbook'' approach: we need to understand the statistics in depth, blindly applying a technique is bad. 
+
+Lectures from the fifth of October will be in room P1C in the Paolotti building. 
+We have the handwritten notes from the professor, and LaTeX notes from students of the earlier years. 
+
+Email: \url{michele.liguori@unipd.it}, or \url{liguori.unipd@gmail.com} (it's the same).
+
+There will be \textbf{homework}. Some exercises to solve and other things. We should hand it in within 3 weeks of the assignment, this is not strict, but we should let him know if we cannot do it in time. 
+The final homework will require some coding, making some Monte Carlo Markov chains, and it will not have the deadline since coding takes time. We should hand it in before the exam. 
+
+We can choose whatever programming language we want (Python is good, C++ is slightly worse since the professor is not so familiar with it, but it's fine). We should have a summary of the results with plots, and show the source code. 
+
+The exam is an oral, to do whenever we want. 
+When we contact him we will be given a journal paper to read. At the exam, we will do a blackboard presentation of the paper and be asked questions about it, like in journal club.
+
+A book which does things similarly to this course is ``Data Analysis: a Bayesian tutorial'' by Silvia and Skilling \cite[]{siviaDataAnalysisBayesian2006}. 
+
+Usual COVID safety procedure if we come to class physically.
+There are 23 seats available.
+Of course, we can also follow the lectures online. 
+
+\chapter{Bayesian statistics}
+
+\section{Inference}
+
+We need to apply inductive reasoning, since deductive reasoning cannot work in real life, since we cannot know anything with certainty.
+
+We apply reasoning in the form: ``if \(A\), then \(B\) is more plausible''  and ``we see evidence for \(B\)'': so, \(A\) is more plausible.
+If ``we see evidence for \(\neg B\)'', instead, then \(A\) is less plausible. 
+
+We then need to establish clear mathematical rules for this plausible reasoning. 
+
+\subsection{Cox's theorem}
+
+This theorem gives constraint on our system of `probability', by which we mean a function which associates a real number to each `proposition/hypothesis', by which we mean a possible state of the world.
+We want the probability of a certain event to be 1, and the probability of an impossible event to be 0. The probability is denoted as \(\mathbb{P}\), and we interpret it as a \textbf{degree of belief}.
+
+We want the rules we use to be self-consistent: 
+\begin{enumerate}
+    \item if \(\mathbb{P}(A) > \mathbb{P}(B)\) and \(\mathbb{P}(B) > \mathbb{P}(C)\), then \(\mathbb{P}(A) > \mathbb{P}(C)\);
+    \item for any events, \(\mathbb{P}(A \text{ and } B) = \mathbb{P}(A | B) \mathbb{P}(B)\), where the notation \(\mathbb{P}(A|B)\) denotes the probability of \(A\), \emph{given that} \(B\) has happened;
+    \item starting from the same information, we must arrive at the same conclusions.  
+\end{enumerate}
+
+\todo[inline]{Find examples of inconsistency if these are not verified.}
+\todo[inline]{Maybe write point 2 in a more verbose way\dots}
+
+If these hold, then we have the \textbf{Kolmogorov axioms}: 
+%
+\begin{align}
+\mathbb{P}(X|I) + \mathbb{P}(\neg X|I) = 1
+\qquad \text{and} \qquad
+\mathbb{P}(AB|I) = \mathbb{P}(A|B, I) \mathbb{P}(B|I)
+\,.
+\end{align}
+
+We write the probabilities as conditioned on \emph{preexisting knowledge} \(I\). This quickly becomes annoying in the notation, so I will stop writing it, but it is always implied: we never discuss probabilities in a vacuum.
+
+A corollary of the second rue is \textbf{Bayes' theorem}: 
+%
+\begin{align}
+\mathbb{P}(A|B) = \frac{\mathbb{P}(B|A) \mathbb{P}(A)}{\mathbb{P}(B)}
+\,.
+\end{align}
+
 \end{document}

@@ -1,4 +1,70 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-9-29, \\ compiled \\ \today}
+
+The procedure for hypothesis testing will look like 
+%
+\begin{align}
+\mathbb{P}(\text{hypothesis} | \text{data})
+= \frac{\mathbb{P}(\text{data} | \text{hypothesis}) \mathbb{P}(\text{hypothesis}) }{\mathbb{P}(\text{data})}
+\,.
+\end{align}
+
+The key difference from the frequentist approach is that, while there the parameters have certain fixed values, here we can describe our \emph{belief} about their values through a probability distribution. 
+
+The things we will want to do can be classified into 
+\begin{enumerate}
+    \item \textbf{hypothesis testing}, ``are CMB data consistent with gaussianity?'';
+    \item \textbf{parameter estimation}, ``what is the value of the mass of the Sun?'';
+    \item \textbf{model selection}, ``is GR the correct theory of gravity?''.
+\end{enumerate}
+
+\subsection{Parameter estimation}
+
+We start with an example: the toss of a coin. 
+The question is: we toss it \(N\) times and get \(R\) heads. Is it a fair coin?
+
+If \(H \in [0,1]\) is the probability of getting heads in a single coin flip, then 
+%
+\begin{align}
+\mathbb{P}(R \text{ heads} | H, I) \propto H^{R} (1 - H)^{N-R} 
+\,.
+\end{align}
+
+Here, \(I\) is the other information we have about the coin: the fact that every throw is independent, the fact that there are no outcomes beyond heads or tails. 
+
+This is the \textbf{likelihood}, what we want to do is to invert the relation, finding a probability density function for \(H\) given the data. The probability \(\mathbb{P}(\text{data})\), also called the \textbf{evidence}, is not something we need to calculate when doing parameter estimation: we can just write 
+%
+\begin{align}
+\mathbb{P}(\text{parameters} | \text{data}) \propto \mathbb{P}(\text{data} | \text{parameters}) \mathbb{P}(\text{parameters})
+\,,
+\end{align}
+%
+since we are computing probability density functions, which need to be normalized in order to make sense. 
+This is a useful parameter estimation toy problem, since we only have one parameter to estimate. 
+
+In order to use the formula we need a prior, \(\mathbb{P}(\text{hypothesis})\). This is hard in general, and it depends on the problem. 
+We might want a prior which is peaked around \num{.5} for a regular coin, if we have no reason to think that it is unfair. 
+Let us suppose we have doubts about the honesty of who gave us the coin: then, we might want a noninformative prior, like a flat one. 
+Let us suppose we are in this case: \(\mathbb{P}(\text{parameters}) = \const\).
+
+Since the prior is flat, the posterior is proportional to the likelihood: 
+%
+\begin{align}
+\mathbb{P}(H | R \text{ heads}, I) \propto 
+\mathbb{P}(R \text{ heads} | H, I)
+\propto H^{R} (1 - H)^{N-R}  
+\,.
+\end{align}
+
+We can simulate this experiment! We need a binomial random number generator.
+
+\todo[inline]{Do the simulation!}
+
+As \(N\) increases, the posterior ``zeroes in'' onto the correct value.
+If we split the \(N\) simulated throws in two, and use the posterior from the first batch as a prior for the second, we get the same result!
+
+% \todo[inline]{What would be the procedure if we wanted to test the hypothesis ``the coin is fair''?}
+
 \end{document}

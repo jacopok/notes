@@ -1,4 +1,93 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{A journey into the life of a massive star}
+
+\marginpar{Wednesday\\ 2020-9-30, \\ compiled \\ \today}
+
+Stars whose mass is \(M \gtrsim 8 M_{\odot}\) go supernova at the end of their life. 
+During their lifetime, hydrogen fuses through two channels: the p-p chain and the CNO cycle. 
+
+In the CNO cycle, four protons turn into a \ce{^{4}He} nuclide, two positrons, two electron neutrinos using heavier nuclides as catalysts. 
+
+The critical temperature above which the CNO cycle dominates is around \(T_c \sim \SI{2e7}{K}\). For the Sun, less than \SI{8}{\percent} of energy production is through the CNO cycle. 
+
+When the temperature of the core reaches a value around \(1 \divisionsymbol\SI{2e8}{K}\) and the density is around \(\num{e8} \divisionsymbol \SI{e9}{g / cm^3}\), helium starts to burn in the \(3 \alpha \) process, becoming \ce{^{12}C}. 
+The \(Q\)-value here is around \SI{7.27}{MeV}.
+
+As soon as we have carbon, this can fuse with an \(\alpha \) particle giving rise to a nucleus of oxygen with \(Q \approx \SI{7.16}{MeV}\). 
+This oxygen can further catch an \(\alpha \) particle, making a \ce{^{20}Ne} nuclide. 
+
+Then, we have a temperature around \SI{5e8}{K} and a density around \SI{3e6}{g / cm^3}. Carbon starts to fuse with itself, making sodium, magnesium, and more neon (plus an \(\alpha \) particle). 
+
+% This can happen in a controlled manner as long as the matter is not degenerate. (?)
+% \todo[inline]{Understand this, mention of ``carbon flash''}
+If you want carbon burning to proceed in a steady way, it must occur in a nondegenerate electron gas.
+This occurs only if the star is quite massive, more than \(8 M_{\odot}\). Otherwise, it is an explosive process. 
+
+Now the core temperature reaches \SI{e9}{K}. The energy of a typical photon is quite high, \(h \nu \sim k_B T \sim \SI{100}{keV}\). 
+Suppose there are neon nuclei in the core (this will be the case since they are a product of fusion). 
+
+It is not hard for a Neon to lose an \(\alpha \) particle through photodissociation, this produces an Oxygen. 
+The energy required for this is of the order \SI{4.7}{MeV}, at the high energy tail we have a few photons at this energy. 
+
+This is the ``neon burning phase'', after which we have oxygen and magnesium. Oxygen is the next candidate for nuclear burning, and after a further contraction the star starts burning it. It fuses with itself to produce \ce{^{28}Si} plus an \(\alpha \), or \ce{^{32}S}.
+
+Sulfur cannot fuse with itself, the potential barrier is too high. 
+Through successive \(\alpha \) captures, the star synthesizes elements in the ``iron peak'': iron, nickel, cobalt. 
+
+The core tries to contract in the attempt to get them to burn, but they have the maximum possible binding energy per nucleon. 
+So, the contraction continues. 
+
+If the mass of the contracting core exceeds the Chandrasekhar limit, it cannot become an electron-degenerate object. 
+The mass of the core is always in excess of this limit mass for the stars which are massive enough to reach this stage of stellar burning. 
+
+Iron is photodissociated to make helium nuclei first, then bare protons, electrons and neutrons. 
+Protons and electrons can combine into neutrons. The core becomes more and more neutrons rich, but the reaction also produces neutrinos, which can fly away.
+
+The \emph{neutron} degeneracy pressure can stop the collapse in certain cases: this is how a neutron star is formed. 
+The threshold between neutron stars and black holes is hard to determine, but generally speaking with \(8 M_{\odot} < M < 25 M_{\odot}\) a neutron star is formed, while for larger masses the core collapses further to form a black hole. 
+
+The freefall velocity is a significant fraction of the speed of light.
+What are the statistics? how many NS and BH are there in our galaxy?
+
+We can model the distribution of star masses in our galaxy with the distribution, the IMF, as a Salpeter IMF,\footnote{See the evil organization in Mission Impossible.} which is given by 
+%
+\begin{align}
+N(m) \propto m^{-\alpha }
+\,,
+\end{align}
+%
+where \(\alpha \approx \num{2.35}\). Then, we can calculate the number of stars which have more than \(8 M_{\odot}\) by integrating: we find something proportional to \(8^{-1.35}\), while the number of stars which have more than \(25 M_{\odot}\) we get something proportional \(25^{-1.35}\). These will give us the amount of compact objects.
+The proportionality constant depend on the minimum and maximum mass of stars, but we can calculate the ratio of the two without concern for it. We find 
+%
+\begin{align}
+\frac{N_{BH}}{N_{NS} + N_{BH}} = \qty(\frac{8}{25})^{-1.35} \approx \num{.2}
+\,.
+\end{align}
+
+The present rate of supernova explosions in the galaxy is around 1 per century, or \SI{e-2}{yr^{-1}}. 
+In the age of the galaxy (around \SI{e10}{yr}), we will then have had around \(\num{e8}\) compact objects. 
+
+How much can we trust this figure? Kind of, the true number is closer to \num{e9}, about \SI{1}{\percent} of the number of stars in the galaxy.
+
+The galaxy roughly looks like a cylinder with radius \(R \sim \SI{60}{kpc}\) and height \(H \sim \SI{1}{kpc}\).
+Its volume will then be \(V = 2 \pi R^2 H \approx \SI{e13}{pc^{3}}\). Then, the number density of compact objects is around \SI{0.1}{pc^{-3}}.
+
+The typical separation between them will be something like \SI{20}{pc}. Compact objects are close, common! Beware!
+
+The closest compact object we know of is a neutron star \SI{60}{pc} away: this is on the same order of magnitude.
+
+\paragraph{Compactness}
+The gravitational radius characterizing an object is 
+%
+\begin{align}
+R_g = \frac{GM}{c^2}
+\,,
+\end{align}
+%
+while the Schwarzschild radius is \(2 R_g\). For the Sun, this is approximately \SI{1.5}{km}. It's small.
+
+The value \(R_g / R\) is \num{.5} for black holes, \num{.15} for neutron stars, \num{e-4} for white dwarfs.
+
 \end{document}

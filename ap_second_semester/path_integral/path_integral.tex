@@ -31,6 +31,9 @@ This will be a linear functional of \(\eta \) to first order, so we define the f
 \,.
 \end{align}
 
+The analogy to finite-dimensional spaces is as follows: the functional derivative \(\fdv*{F}{q(y)}\) corresponds to the \emph{gradient} \(\nabla^{i} F\), while the integral in the previous expression corresponds to the \emph{directional derivative} \((\nabla^{i} F) \eta^{j} g_{ij}\).
+The metric is present since the gradient is conventionally defined with a vector-like upper index; in our infinite-dimensional space the scalar product is given by the integral.
+
 Practically speaking, the most convenient way to calculate a functional derivative is by taking \(\eta (x)\) to be such that it only differs from zero in a small region near \(y\), and let us define 
 %
 \begin{align}
@@ -54,13 +57,105 @@ A common choice is then
 \,.
 \end{align}
 
-If we apply this procedure to the identity functional \(q \to q\) we find 
+If we apply this procedure to the identity functional \(q \to q\), we find 
 %
 \begin{align}
 \fdv{q(x)}{q(y)} = \lim_{ \delta \omega  \to 0} \frac{q (x) + \delta \omega \delta (x-y) -q (x)}{ \delta \omega } = \delta (x-y)
 \,.
 \end{align}
+
+The variable \(q\) is one-dimensional, if instead we wanted to consider a multi-dimensional coordinate system \(q_\alpha \) by the same reasoning we would find 
 %
+\begin{align}
+\fdv{q_\alpha (x)}{q_\beta (y)} = \delta_{\alpha \beta } \delta (x-y)
+\,.
+\end{align}
+
+An example: the functional derivative of a functional \(F_n\) defined by 
+%
+\begin{align}
+F_n[q] = \int f(x_1 , \dots, x_n) q(x_1 )\dots q(x_n) \dd{x_1} \dots \dd{x_n}
+\,,
+\end{align}
+%
+where \(f\) is a symmetric function of its arguments, is given by 
+%
+\begin{align}
+\fdv{F_n}{q(y)} = n \int f(x_1, \dots, x_{n-1}, y) q(x_1 )\dots q(x_{n-1}) \dd{x_1 } \dots \dd{x_{n-1}}
+\,,
+\end{align}
+%
+a function of \(y\). 
+
+A \textbf{linear transformation} is in the form 
+%
+\begin{align}
+q(x) = \int K(x, y) q'(y) \dd{y}
+\,.
+\end{align}
+
+If this transformation has an inverse, which is characterized by the kernel \(K^{-1}\), then we must have the orthonormality relation 
+%
+\begin{align}
+\int K(x,y) K^{-1} (y, z) \dd{y} =
+\int K^{-1}(x,y) K (y, z) \dd{y} =
+\delta (x-z)
+\,.
+\end{align}
+
+We can do \textbf{Legendre transforms}: if we have a functional \(F\) we can differentiate with respect to the coordinate \(q\) to find 
+%
+\begin{align}
+\fdv{F[q]}{q(x)} = p(x)
+\,,
+\end{align}
+%
+in analogy to the momentum in Lagrangian mechanics. Then, we can map \(F[q]\) to a new functional \(G[p]\) which will only depend on the momentum: 
+%
+\begin{align}
+G[p]= F[p] - \int q(x) p(x) \dd{x}
+\,.
+\end{align}
+
+We can also define functional integration, by 
+%
+\begin{align}
+\int F[q] \qty[ \dd{q}] = \int \hat{F}(\qty{q_i}) \prod_i \dd{q_i}
+\,.
+\end{align}
+
+On the right-hand side we are using the expression of the functional as a function of infinitely many variables which we discussed above;
+we are then integrating over each of the coordinates in this infinite dimensional function space.
+
+This integral will not always exist, however in the cases in which it does we can change variables. 
+Let us consider a linear change of variable, whose kernel is \(K(x, y)\), such that (compactly written) \(q = K q'\). 
+
+Then, we want to compute the integral 
+%
+\begin{align}
+\int F[Kq'] \qty[ \dd{Kq'}] 
+\,
+\end{align}
+%
+as an integral in \(\qty[ \dd{q}]\): in order to do so, we need to relate the two functional measures. 
+We start by expressing both \(q\) and \(q'\) in terms of an orthonormal basis \(\phi _i\): inserting this into the linear transformation law we get 
+%
+\begin{align}
+q(x) &= \int K(x, y) q'(y) \dd{y}  \\
+\sum _{i} q_i \phi _i(x) &= \int K(x, y) \sum _{j} q'_j \phi _j (y) \dd{y}  \\
+\sum _{i} q_i \underbrace{\int \phi _i (x) \phi _k (x) \dd{x}}_{ \delta_{ik}} 
+&= 
+\sum _{j} q'_j \underbrace{\int K(x, y) \phi _j (y) \phi _k (x) \dd{y} \dd{x}}_{ k_{jk}}  \\
+q_k &= \sum _{j} q'_j k_{jk}
+\,.
+\end{align}
+
+Then, the measure will transform with the determinant \(\det K = \det k\): 
+%
+\begin{align}
+\qty[ \dd{q}] = \abs{\pdv{q}{q'}} \qty[ \dd{q'}] = \det K \qty[ \dd{q'}]
+\,.
+\end{align}
 
 
 \end{document}

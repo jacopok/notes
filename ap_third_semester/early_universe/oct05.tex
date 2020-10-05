@@ -1,4 +1,220 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-10-5, \\ compiled \\ \today}
+
+These next few lectures, we will consider the motivations for inflationary models. 
+The problems they solved were the \textbf{shortcomings of the Hot Big Bang} model. 
+
+\begin{enumerate}
+    \item The horizon problem;
+    \item the flatness problem;
+    \item unwanted relics / magnetic monopole problem.
+\end{enumerate}
+
+We start by recalling some basic elements in cosmology. 
+In order to describe a homogeneous and isotropic universe we use the FLRW metric: 
+%
+\begin{align}
+\dd{s}^2  = - c^2 \dd{t}^2 + a^2(t) \qty[ \frac{ \dd{r}^2}{1 - k r^2} + r^2 \dd{\Omega}^2]
+\,,
+\end{align}
+%
+where \(\dd{\Omega}^2 = \dd{\theta}^2 + \sin^2 \theta \dd{\varphi }^2
+\). The quantity \(a(t)\) is called the \emph{scale factor}.
+The coordinates \(r\), \(\theta \) and \(\varphi \) are called \emph{comoving coordinates}. 
+
+Physical distances and comoving distances are related by 
+%
+\begin{align}
+\lambda _{\text{phys}} = a(t) \lambda _{\text{comoving}}
+\,.
+\end{align}
+
+The constant  \(k\) is the spatial curvature of the universe, which can always be rescaled so that it is equal to 
+\begin{enumerate}
+    \item \(+1\) for a spatially closed universe;
+    \item \(0\) for a spatially flat universe;
+    \item \(-1\) for a spatially open universe.
+\end{enumerate}
+
+In terms of the scale factor we define the \textbf{Hubble parameter} 
+%
+\begin{align}
+H = \frac{\dot{a}}{a}
+\,,
+\end{align}
+%
+which describes the rate at which the universe expands. 
+
+The dynamics of gravity are described by the Einstein equations: 
+%
+\begin{align}
+G_{\mu \nu } = 8 \pi G T_{\mu \nu }
+\,,
+\end{align}
+%
+where \(T_{\mu \nu }\) is the energy-momentum tensor of the particle species filling the universe, while \(G_{\mu \nu } = R_{\mu \nu } - R g_{\mu \nu } / 2\) is the Einstein tensor, describing curvature. 
+
+These can be derived from an action principle through the action 
+%
+\begin{align}
+S = \underbrace{\frac{1}{16 \pi G} \int R \sqrt{-g} \dd[4]{x}}_{S_{EH}} + 
+S_{\text{matter}}
+\,.
+\end{align}
+
+Often we use an ideal fluid energy-momentum tensor: 
+%
+\begin{align}
+T_{\mu \nu } = \rho u_{\mu } u_{\nu } + P h_{\mu \nu }
+\,,
+\end{align}
+%
+where \(h_{\mu \nu } = u_{\mu } u_{\nu } + g_{\mu \nu }\) is a projector onto the space orthogonal to the four-velocity. This does not account for any anisotropy, it is the most symmetric energy-momentum tensor. This is a diagonal 
+
+In order to solve the Einstein equations we can proceed with some assumptions, without needing to know the action for all the fundamental fields. The perfect fluid S-E tensor has all the FLRW symmetries, as long as \(\rho \) and \(P\) are only functions of time. 
+
+We are \emph{not} saying that this S-E tensor is only allowed if we are in a FLRW universe. 
+\todo[inline]{Clarify\dots }
+
+Requiring the FLRW symmetries means that the S-E tensor must be diagonal, however we can have viscosity as long as it is not \emph{shear} but \emph{bulk} viscosity, which adds onto the diagonal terms.
+
+Inserting the FLRW metric into the Einstein equation yields the Friedmann equations: 
+%
+\begin{align}
+\frac{\dot{a}^2}{a^2} &= \frac{8\pi G}{3} \rho - \frac{k}{a^2}  \\
+\frac{\ddot{a}}{a} &= - \frac{4 \pi G}{3} \qty(\rho + 3 P)  \\
+\dot{\rho} &= - 3 \frac{\dot{a}}{a} \qty(\rho + P)
+\,.
+\end{align}
+
+The first two can be derived from the Einstein equations directly, the third comes from the ``conservation law'' \(\tensor{T}{_{\mu \nu }^{;\nu }} = 0\). 
+
+They are not independent, only two are.
+We have too many parameters: \(a\), \(\rho \) and \(P\), but only two independent equations, so we ``close'' the system of equations with an equation of state, commonly \(P = P(\rho ) = w \rho \). 
+
+These equations of state describe many kinds of fluids (approximately):
+dust with \(w = 0\), which means \(\rho \propto a^{-3}\); radiation with \(w = 1/3\), which means \(\rho \propto a^{-4}\); a cosmological constant with \(w = -1\), which means \(\rho = \const\).
+
+In general as long as \(w \neq 1\) we have \(\rho \propto a^{-3(1+w)}\) and \(a \propto t^{2 / 3 (1+w)}\).
+
+\subsection{The horizon problem}
+
+The \textbf{particle horizon}, denoted as \(d_H (t)\), is given by 
+%
+\begin{align}
+d_H (t) = a(t) \int_{0}^{t} \frac{c \dd{\tau }}{a(\tau )}
+\,,
+\end{align}
+%
+and it sets the radius of a sphere centered at an observer \(O\). The points inside this sphere have been able to have causal interactions with observer \(O\) in the time from the Big Bang to \(t\).
+
+It is the proper distance (as measured today) which could have been travelled by light starting at the beginning and moving in a geodesic. 
+It can be derived from the FLRW metric by assuming radial light-like motion
+%
+\begin{align}
+\dd{s}^2 = - c^2 \dd{t}^2 + a(t)\frac{ \dd{r}^2}{1 - kr^2} = 0
+\,,
+\end{align}
+%
+and setting \(k = 0\):\footnote{This is a good approximation for early times, even if the universe is not flat.}
+%
+\begin{align}
+c \dd{t} = \pm  a(t) \dd{r}
+\,,
+\end{align}
+%
+which we can use to calculate the \emph{comoving distance} from the point of emission to today, which we then multiply by the scale factor calculated at a chosen point. 
+
+We know that the scale factor goes to 0 as \(t\) goes to 0, so the integral giving us \(r_H\) could diverge. We can show that \(d_H\) is finite as long as \(\alpha = 2 / 3 (1+w)\) is smaller than one, meaning that \(w > - 1/3\), which is equivalent to \(\ddot{a} < 0\).
+In a decelerating universe, the particle horizon is finite.
+
+In general, the calculation yields
+%
+\begin{align}
+d_H (t) = \frac{3(1 +w)}{1 + 3w} ct
+\,.
+\end{align}
+
+With \(w = 0\), a spatially flat matter-dominated universe, \(d_H = 3 ct\). This is called an Einstein-De Sitter universe. 
+With \(w = 1/3\), a spatially flat radiation-dominated universe, we have \(d_H = 2 ct\). 
+
+Another way to characterize causality is the Hubble radius: 
+%
+\begin{align}
+r_C(t) = \frac{c}{H(t)}
+\,.
+\end{align}
+
+The characteristic time of expansion is \(\tau (H ) =H^{-1}\). 
+We can show that in a FLRW universe, typically after a Hubble time the scale factor doubles. 
+
+Since 
+%
+\begin{align}
+H(t) = \frac{2}{3 (1+w)} \frac{1}{t} 
+\,,
+\end{align}
+%
+we can write
+%
+\begin{align}
+R_H \approx \frac{1 + 3w}{2} d_H (t) \approx d_H (t)
+\,.
+\end{align}
+
+\todo[inline]{check! exercise}
+
+This will \emph{not} happen in an inflationary universe.
+The two are similar in a regular FLRW universe, while they differ a lot if there is inflation. 
+The particle horizon takes into account all the past history of an observer, the Hubble radius does not care about it: it only described causal connections taking place in a time interval taking place in a Hubble time. 
+
+Let us introduce the \emph{comoving Hubble radius}: \(r_H (t)\), given by 
+%
+\begin{align}
+r_H (t) = \frac{r_C (t)}{a(t)}
+\,.
+\end{align}
+
+Let us plot this for a matter or radiation-dominated FLRW universe.
+
+In radiation domination, \(r_H \propto \sqrt{t}\), while in matter domination \(a \sim t^{2/3}\) so \(r_H \propto t^{1/3} \sim a^{1/2}\). 
+
+This comoving radius is then always increasing, initially faster and then slower. 
+
+Instead, consider the comoving particle horizon: \(d_H (t) / a(t)\), so just the integral in the definition of \(d_H(t)\): 
+%
+\begin{align}
+\frac{d_H (t)}{a(t)} = \int \frac{c \dd{t}}{a} = \int \frac{ \dd{a}}{a} \underbrace{\frac{c}{a H}}_{r_H}
+\,,
+\end{align}
+%
+so we can see that the comoving \emph{particle horizon} is the logarithmic integral over the scale factor of the comoving \emph{Hubble radius}: as we mentioned before, this takes into account the whole past history. 
+
+In a matter dominated universe, \(d_H = 2 r_C \approx 5 h^{-1} \SI{}{Gpc}\).
+
+Now we discuss the horizon problem, which is best understood in a comoving plot. We neglect dark energy for simplicity.
+
+If we choose a fixed comoving size \(\lambda \), we get in our model that in early times \(\lambda \) is super-horizon, then at a certain point it crosses the horizon, becoming smaller than \(r_H \). The time at which \(r_H = \lambda \) is called the \emph{horizon crossing} time, \(t_H (\lambda )\). 
+
+For times earlier than \(t_H (\lambda )\), by definition it is impossible for points at a distance \(\lambda \) to be causally connected. 
+This happens for every scale, and it means that for many regions we are interested in there cannot have been causal connection in the early universe. 
+But, today we observe the universe to exhibit the same properties across the whole sky, even though the regions were causally disconnected earlier. 
+
+This is most directly expressed in terms of CMB photons. They would have become causally connected at the quadrupole scale (separations of \SI{90}{\degree}) almost \emph{today}. 
+
+We can compute the size of the horizon at the last scattering epoch: this subtends an angle in the sky of around \SI{1}{\degree}; however we observe photons with the same temperature on much larger scales, this was already seen by COBE with an angular resolution of \SI{7}{\degree}. 
+
+\todo[inline]{re-do calculation!}
+
+Photons which could not have been in causal contact in the HBB model are observed to have the same temperature. 
+
+The inflationary solution to this issue is to think that, before the radiation-dominated epoch, the comoving Hubble radius decreased for a certain period of time.
+
+This allows the parts of the sky to have been in causal contact in the early universe. 
+
+This means that \(\ddot{a} > 0\) in the inflationary phase, or \(w < - 1/3\).
+These are only the \emph{kinematics} of inflation, we are not yet discussing how it might come about. 
+
 \end{document}

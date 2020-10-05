@@ -3,6 +3,64 @@
 
 \section{Path integral basics}
 
+Following \cite[]{zaidiFunctionalMethods1983}.
+
+We start from the space of square-integrable functions \(q(x)\), endowed with a product and an orthonormal basis \(\phi _n\).
+We consider (multi-)linear \emph{functionals}, which are maps from the space of square-integrable functions (or from tuples of them) to \(\mathbb{R}\) or \(\mathbb{C}\). 
+These can be represented as functions of infinitely many variables, countably so if we use the basis \(\phi _n\), uncountably so if we use the continuous basis \(x\).
+
+A functional \(F[q]\) can be represented as a power series 
+%
+\begin{align}
+F[q] = \sum _{n=0}^{\infty } \frac{1}{n!} \prod_{i=1}^{n} \int \dd{x_i} q(x_i) f(x_1, \dots, x_n)
+\,.
+\end{align}
+
+Examples of this are the exponential series corresponding to the function \(f(x)\), mapping \(q(x)\) to \(e^{(f, q)}\) where the brackets denote the scalar product in the space, and the Gaussian series corresponding to the kernel \(K(x, y)\), mapping \(q(x)\) to \(e^{(q, K, q)}\), where 
+%
+\begin{align}
+(q, K, q) = \int \dd{x} \dd{y} q(x) q(y) K(x, y)
+\,.
+\end{align}
+
+\textbf{Functional derivatives} describes how the output of the functional changes as the argument goes from \(q(x)\) to \(q(x) + \eta (x)\), where \(\eta (x)\) is small. 
+This will be a linear functional of \(\eta \) to first order, so we define the functional derivative with the expression 
+%
+\begin{align}
+\eval{F[q+\eta ] - F[q]}_{\text{linear order}} = \int \eta (y) \fdv{F}{q (y)} \dd{y}
+\,.
+\end{align}
+
+Practically speaking, the most convenient way to calculate a functional derivative is by taking \(\eta (x)\) to be such that it only differs from zero in a small region near \(y\), and let us define 
+%
+\begin{align}
+\delta \omega = \int \eta (x) \dd{x}
+\,.
+\end{align}
+
+Then, we define 
+%
+\begin{align}
+\fdv{F}{q(y)} = \lim_{ \delta \omega \to 0} \frac{F[q + \eta ] - F[q]}{ \delta \omega }
+\,.
+\end{align}
+
+In order for the limit to be computed easily, it is convenient for \(\eta (x)\) to be in the form \(\delta \omega \times \text{fixed function}\),
+so that we are only changing the normalization as we shrink \(\delta \omega \).
+A common choice is then 
+%
+\begin{align}
+\eta (x) = \delta \omega  \delta (x-y)
+\,.
+\end{align}
+
+If we apply this procedure to the identity functional \(q \to q\) we find 
+%
+\begin{align}
+\fdv{q(x)}{q(y)} = \lim_{ \delta \omega  \to 0} \frac{q (x) + \delta \omega \delta (x-y) -q (x)}{ \delta \omega } = \delta (x-y)
+\,.
+\end{align}
+%
 
 
 \end{document}

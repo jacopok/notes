@@ -1,4 +1,137 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-10-5, \\ compiled \\ \today}
+
+% after a long and arduous path towards connectivity...
+
+A completely agnostic prior in the coin-flip example would be flat.
+
+As we toss many times, the prior becomes less and less relevant. 
+\todo[inline]{As long as we never set it to zero!}
+
+Where is objectivity, if we include our beliefs in the analysis?
+There are fundamentalist bayesians and frequentists.
+In cosmology the Bayesian approach is best since we only have one realization of the universe. 
+
+Also, we want to include previous experience in our analysis. 
+We can take an objective approach to priors, by selecting a \emph{noninformative} one. 
+These are \emph{objective}, in the sense that they express the \emph{a priori} ignorance about the process. 
+
+After our analysis in parameter estimation we find a PDF, which contains everything we need, but we want to give a number in our paper in order to summarize the result.
+This does not give us \emph{more} information than the PDF. 
+
+A common approach, which works as long as the posterior is unimodal, is to give the maximum of the posterior: if the parameter is \(x\), then the central value \(x_0 \) is calculated by setting 
+%
+\begin{align}
+\eval{\dv{P}{x}}_{x_0 } = 0 
+\,.
+\end{align}
+
+This is called \emph{Maximum A-Posteriori parameter estimation}, MAP.
+
+How do we provide error bars? 
+The precision becomes higher as the peak becomes narrower. 
+Let us consider the log of the posterior, \(L = \log P\). This is typical, since the log is monotonic, and it is convenient since \(P\) is typically very ``peaky''.
+
+Around the maximum, \(L\) is given by 
+%
+\begin{align}
+L &= \log \mathbb{P}(x | \text{data}, I)  \\
+&= L (x_0 ) + \cancelto{}{\eval{\dv{L}{x}}_{x_0 }} (x- x_0 )
++ \frac{1}{2} \eval{\dv[2]{L}{x}}_{x_0 } (x- x_0 )^2 + \order{(x-x_0 )^3}
+\,.
+\end{align}
+
+If the peak is well-behaved, then we can approximate it at second order in a large enough region around the maximum: this is 
+%
+\begin{align}
+P = \exp(L) \approx \underbrace{P_0}_{e^{L(x_0 )}}
+\exp( \frac{1}{2} \eval{\dv[2]{L}{x}}_{x_0 } (x- x_0 )^2) 
+\,,
+\end{align}
+%
+which is a Gaussian whose variance is 
+%
+\begin{align}
+\sigma^2 = - \qty(\eval{\dv[2]{L}{x}}_{x_0 })^{-1}
+\,,
+\end{align}
+%
+which will be positive: if \(x_0 \) is a maximum the second derivative is negative. 
+
+\todo[inline]{So the expansion in \(L\) is justified a posteriori through the Central Limit Theorem?}
+
+There will be a theorem telling us that the posterior converges to a Gaussian, and the estimate will converge to the maximum likelihood estimate. 
+
+Typically we have many parameters, not just one. Even if the theory only has a few, the experiment will also have several. 
+
+Integration is difficult in multidimensional contexts, we want to have something better than exponential time in the parameter number. 
+
+Suppose that our posterior is very asymmetric. Then, it might be better to give the mean of the posterior instead of the maximum: 
+%
+\begin{align}
+\expval{x} = \int x \mathbb{P}(x | \text{data}, I) \dd{x}
+\,.
+\end{align}
+
+If there is symmetry, this is similar to the maximum. Quoting both if there is asymmetry might be good. 
+
+We then want to build a \textbf{credible interval}, which we define as the \emph{shortest} interval \(\qty[x_1, x_2 ]\) containing the representative value we choose, say \(\expval{x}\), and which integrates to a certain chosen value, often chosen to be \SI{95}{\percent}: 
+%
+\begin{align}
+\int_{x_1 }^{x_2 } \mathbb{P}(x | \text{data}, I) = \num{.95}
+\,.
+\end{align}
+
+Let us apply this procedure to the coin toss problem. Recall that the posterior PDF, with a flat prior, was given by 
+%
+\begin{align}
+P = \mathbb{P}(H | \text{data}, I) \propto H^{R} (1- H)^{N-R}
+\,.
+\end{align}
+
+The derivative is given by 
+%
+\begin{align}
+\dv{L}{H} &= \dv{\log P }{H} = \dv{}{H} \qty[ R \log H + (N-R) \log (1-H)]  \\
+&= \frac{R}{H} - \frac{N-R}{1-H}
+\,,
+\end{align}
+%
+which we set to zero: this yields 
+%
+\begin{align}
+\frac{R}{H_0 } = \frac{N-R}{1-H_0 } \implies R - H_0 N = 0
+\,,
+\end{align}
+%
+so \(H_0 = R / N\). 
+This is what we get in the end, when we have many data. 
+
+The errorbar can be found by differentiating again: 
+%
+\begin{align}
+\dv[2]{L}{H} &= - \frac{R}{H^2} - \frac{N-R}{(1-H)^2}  \\
+&= \frac{R (2H-1) - NH^2}{H^2 (1-H)^2} 
+\,,
+\end{align}
+%
+so we can find the errorbar by computing it in \(H = R/N\): skipping a few steps, it is
+%
+\begin{align}
+\sigma^2 = \frac{(R/N)^2 (1-R/N)^2}{N (R/N)^2 - R (2 R/N - 1)}
+&= \frac{H_0 (1-H_0 )}{N}  \\
+\sigma &= \sqrt{\frac{H_0 (1 - H_0 )}{N}}
+\,.
+\end{align}
+
+As is expected, this scales like \(1 / \sqrt{N}\). 
+The reason we're doing this with the full Bayesian machinery is that the procedure will not yield these simple results in general. 
+
+Let us solve a probability problem using Bayesian statistics: the Monty Hall problem. 
+
+There are three doors, one of which is desirable, the other two are not. 
+We choose one door; the host knows which the desirable door is, he excludes a door as undesirable and asks us whether we want to change our choice. 
+
 \end{document}

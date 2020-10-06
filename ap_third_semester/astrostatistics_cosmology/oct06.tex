@@ -1,4 +1,161 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-10-6, \\ compiled \\ \today}
+
+Coming back to the Monty Hall problem. 
+% The crucial point is that the 
+We picked \(A\), the host picked \(C\). 
+
+Let us denote the presence of the desirable object with \(1\), \(0\) its absence.
+So, we have three options: \((A, B, C) = (1, 0, 0)\), or \((0,1, 0)\), or \((0,0, 1)\). \emph{A priori}, we assign a probability of \(1/3\) to each: this is, then, our prior. 
+Let us assume that WLOG \(A\) is the door we picked. This has probability 1, since we can make it true in any case by relabeling the doors. 
+
+We want to compute 
+%
+\begin{align}
+\mathbb{P}(B = 1| \text{host picked }C, \text{ we picked } A)
+\,.
+\end{align}
+
+% The condition
+We will write the condition as \([C]\) for compactness. 
+The complement to this probability will be 
+%
+\begin{align}
+\mathbb{P}(A = 1 | [C])
+\,.
+\end{align}
+
+We can then apply Bayes' theorem: 
+%
+\begin{align}
+\mathbb{P}(B=1 | [C]) = \frac{\mathbb{P}([C] | B=1) \mathbb{P}(B=1)}{\mathbb{P}([C])}
+\,.
+\end{align}
+
+\(\mathbb{P}(B=1) = 1/3\) is our prior.
+Now, if \(B=1\) and we chose \(A\), then the host is \emph{forced} to pick \(C\) since otherwise he will uncover the prize: \(\mathbb{P}([C] | B=1) = 1\). 
+
+Then, what we are left with is the computation of \(\mathbb{P}([C])\). 
+
+% \todo[inline]{Can we not reason from the fact that \(\mathbb{P}(A =1 | [C]) + \mathbb{P}(B=1 | [C]) = 1\)?}
+
+We can write this through \emph{marginalization}, integrating over all the possible events which can happen:\footnote{We assume that, if we selected the good door, the host chooses uniformly between the two: that is, \(\mathbb{P}([C] | A = 1) = x = 1/2\). A host can actually be biased towards \(C\) or \(B\), maybe he will choose the nearest door to him or something like that. In any case, if we leave \(x\) as a variable the final probability to find the prize by switching is found to be \(1 /(1+x) \), which is always larger than \(1/2\): we are always better off switching. An interesting fact, however, is that by changing \(x\) the probability can move from \(1/2\) to \(1\).}
+%
+\begin{align}
+\mathbb{P}([C]) &= 
+\underbrace{\mathbb{P}([C] | A=1)}_{=1/2}\mathbb{P}(A=1) +
+\underbrace{\mathbb{P}([C] | B=1)}_{= 1}\mathbb{P}(B=1) +
+\underbrace{\mathbb{P}([C] | C=1)}_{=0}\mathbb{P}(C=1) \\
+&= \frac{3}{2} \times \frac{1}{3} = \frac{1}{2}
+\,.
+\end{align}
+
+Another example. This is an investigation. The probability of anybody in a neighborhood to die of overdose is \(\mathbb{P}(O) = 1/2\). 
+Also, \SI{30}{\percent} of murder victims are drug addicts: 
+%
+\begin{align}
+\mathbb{P}(\text{addict} | \text{murder victim}) = \num{.3}
+\,.
+\end{align}
+
+We want to compute the probability that someone who was an addict was indeed murdered, and did not die of overdose: \(\mathbb{P}(O | A)\): this will be given by 
+%
+\begin{align}
+\mathbb{P}(O | A) =\frac{\mathbb{P}(A | O) \mathbb{P}(O)}{\mathbb{P}(A)}
+\,.
+\end{align}
+
+We do not have \(\mathbb{P}(A | O)\), but we can estimate it, and then try to understand how much it affects the final result. Let us start out by estimating it as \(\num{.9}\), since overdoses will likely most often happen to addicts. 
+
+We can calculate the probability of being an addict by marginalizing over the cause of a drug-induced death:
+%
+\begin{align}
+\mathbb{P}(A) =
+\mathbb{P}(A | M) \mathbb{P}(M) 
++ \mathbb{P}(A | O) \mathbb{P}(O)
+\,,
+\end{align}
+%
+and since \(\mathbb{P}(O) = \num{.5}\), we can also have \(\mathbb{P}(M)= \num{.5}\). 
+This then means that \(\mathbb{P}(A) = \num{.6}\).
+If there were other possible events, we would need to sum over them.
+
+With all of this, we have 
+%
+\begin{align}
+\mathbb{P}(O | A) = \num{.75} 
+\,.
+\end{align}
+
+If we were to change \(\mathbb{P}(A | O)\) this would not change much, so it is ok to estimate this roughly.
+
+Let us discuss marginalization in some more detail.
+We typically do it for all the ``nuisance parameters'', which we must account for but do not really care about in the end: typically, parameters connected to experimental noise. 
+
+% Let us suppose that we have a joint PDF: for example, \(\mathbb{P}(A, B | I)\), quantifying the probability that both \(A\) and \(B\) are true.
+% We want to marginalize over one of them
+Suppose we have a PDF like 
+%
+\begin{align}
+\mathbb{P}(X, Y)
+\,,
+\end{align}
+%
+where \(Y\) can take values in the set of \emph{exhaustive} and \emph{mutually exclusive} events \(Y_k\). 
+Marginalization is the process of computing \(\mathbb{P}(X)\) through
+%
+\begin{align}
+\mathbb{P}(X) 
+= \sum _{k=1}^{N} \mathbb{P}(X, Y_k)
+&= \sum _{k=1}^{N} \mathbb{P}(X | Y_k) \mathbb{P}(Y_k)  \\
+&= \underbrace{\sum _{k=1}^{N} \mathbb{P}(Y_K | X)}_{= 1} \mathbb{P}(X)
+\,.
+\end{align}
+
+Thus, we have shown that \(\mathbb{P}(X)\) is indeed given by the expression above. 
+It is crucial to assume that the \(Y_k\) are exhaustive and mutually exclusive in order for the sum of \(\mathbb{P}(Y_k | X)\) to equal 1.
+
+Typically, the events are not discrete but continuous. Exhaustivity and exclusivity can still apply, however we need to turn the sum into an integral. 
+
+We are considering probability density functions of these continuous parameters: they are defined as 
+%
+\begin{align}
+\dv{p}{y}(X, Y = y) = \lim_{ \delta y \to 0} \frac{\mathbb{P}(X, y \leq Y \leq y + \delta y)}{ \delta y}
+\,.
+\end{align}
+
+Then, we can compute the finite probability of \(X\) as 
+%
+\begin{align}
+\mathbb{P}(X) = \int_{\mathbb{R}}  \dd{Y} \dv{p}{y} (X, Y)
+\,.
+\end{align}
+
+If we integrate keeping \(Y\) in a certain region we find the probability of finding a value for it in that range. 
+
+We now set up the problem for tomorrow: we do parameter estimation. 
+We have a set of measurements of the same quantity: \(\vec{d} = \qty{x_i}\). Each of the measurements is affected by error, and by the ``experimentalist's Central Limit Theorem'' their sum will resemble a Gaussian. 
+
+Each measurement \(x_i\) will then be given by \(x_i = \mu + n_i\), the mean value plus a noise term. 
+In this example, we assume that \(n_i\) is Gaussian. 
+We want to write a posterior distribution for \(\mu \): it will be given in terms of the likelihood of the data given the true value, assuming that \(\sigma^2\) is a fixed and known quantity, 
+%
+\begin{align}
+\mathscr{L} (x_i| \mu ) = \frac{1}{\sigma \sqrt{2 \pi }} \exp(- \frac{1}{2} \frac{(x_i - \mu )^2}{\sigma^2})
+\,.
+\end{align}
+
+This is the likelihood from a single value \(x_i\), while if we want to compute the joint likelihood of all the data \(\qty{x_i}\) it is harder. 
+We can assume, in this specific case, that the errors are independent: therefore, the probability factors and we can write 
+%
+\begin{align}
+\mathbb{P}(\qty{x_i} | \mu ) = \prod_i \mathbb{P}(x_i | \mu )
+= \frac{1}{\sigma^{N} \sqrt{2 \pi }^{N}} \exp(- \frac{1}{2 \sigma^2} \sum _{i} (x_i - \mu )^2)
+\,.
+\end{align}
+
+
+
 \end{document}

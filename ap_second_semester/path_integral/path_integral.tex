@@ -322,11 +322,54 @@ which actually holds for any probability density functional, we did not make use
 So, in general we will be able to write 
 %
 \begin{align}
-C^{(N)} (x_1 \dots x_n) = \frac{1}{i^{N}} \eval{\frac{ \delta Z[J]}{ \delta J(x_1 )\dots \delta J(x_n)}}_{J =0 }
+C^{(N)} (x_1 \dots x_n) = \frac{1}{i^{N}} \eval{\frac{ \delta^{n} Z[J]}{ \delta J(x_1 )\dots \delta J(x_n)}}_{J =0 }
 \,.
 \end{align}
 
 The correlation functions, which as we discussed in an earlier section are crucial when discussing structure formation, can be ``simply'' calculated by functional differentiation as long as we have the generating functional \(Z[J]\).
 This generating functional is very similar mathematically to a partition function in statistical mechanics, and it serves an analogous role: its derivatives allow us to characterize the dynamics of the system. 
+
+Now, any functional \(\mathscr{F} [q]\) can be expressed through a functional Taylor series:
+%
+\begin{align}
+\mathscr{F}[q] = \sum _{n=0}^{\infty } \frac{1}{n!}
+\int \dd{x_1} \dots \dd{x_n} \eval{\frac{ \delta^{n} \mathscr{F}[q]}{ \delta q(x_1) \dots \delta q(x_n)}}_{q = 0} q(x_1) \dots q(x_n)
+\,,
+\end{align}
+%
+so if we compute the average value \(\expval{\mathscr{F}[q]}\) we find 
+%
+\begin{align}
+\expval{\mathscr{F}[q]} &= 
+\sum _{n=0}^{\infty } \frac{1}{n!}
+\int \dd{x_1} \dots \dd{x_n} \eval{\frac{ \delta^{n} \mathscr{F}[q]}{ \delta q(x_1) \dots \delta q(x_n)}}_{q = 0} \underbrace{\expval{q(x_1) \dots q(x_n)}}_{= C^{(N)} (x_1 \dots x_n)}  \\
+&=\sum _{n=0}^{\infty } \frac{(-i)^{n}}{n!}
+\int \dd{x_1} \dots \dd{x_n} \eval{\frac{ \delta^{n} \mathscr{F}[q]}{ \delta q(x_1) \dots \delta q(x_n)}}_{q = 0} 
+\eval{\frac{ \delta^{n} Z[J]}{ \delta J(x_1 )\dots \delta J(x_n)}}_{J =0 } \\
+&= \mathscr{F}\qty[ -i \fdv{}{J}]\eval{ Z[J]}_{J=0}
+\,.
+\end{align}
+
+\todo[inline]{Formally this makes sense, but what does it mean to calculate the field at a derivation operator? Should this just be interpreted as a shorthand for the Taylor expansion or is there more to it?}
+
+An example: consider a Gaussian field whose partition function \(Z[J]\) is given by 
+%
+\begin{align}
+Z[J] = \exp( - \frac{1}{2} (J, K^{-1}, J))
+\,.
+\end{align}
+
+Then, as before we can calculate the correlation functions through functional derivatives: the first ones are 
+%
+\begin{align}
+\expval{q(x)} &= \frac{1}{i} \eval{\fdv{Z[J]}{J(x)}}_{J=0}  \\
+&= \eval{-i \int \dd{y} K^{-1}(x, y) J(y) \exp(- \frac{1}{2} (J, K^{-1}, J))}_{J =0} =0\\
+\expval{q(y)q(x)} &= -\eval{\frac{ \delta^2 Z[J]}{ \delta  J(y) \delta  J (x)}}_{J=0} \\
+&= \eval{\qty(-K^{-1}(x, y) + \int \dd{z} \dd{w} K^{-1} (x, z)K^{-1} (y, w) J(w))\exp(- \frac{1}{2} (J, K^{-1}, J))}_{J =0}  \\
+&= K^{-1} (x, y)
+\,,
+\end{align}
+%
+
 
 \end{document}

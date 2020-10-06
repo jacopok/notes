@@ -1,4 +1,241 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-10-6, \\ compiled \\ \today}
+
+As we said earlier, massive stars go type-2 supernova: this corresponds to Core-Collapse. 
+
+Compact objects are quite common in the galaxy. 
+
+% Non si può preparare un matrimonio con i fichi secchi. 
+
+A compact object is one for which the ratio of the gravitational radius \(R_g = GM / c^2\) is comparable to the radius of the true object.
+For a white dwarf, the ratio is of the order of \num{e3}.
+
+We then need GR in order to deal with them. 
+Let us quickly go over exact solutions of the Einstein Field Equations.
+
+This lecture, we consider the vacuum Schwarzschild solution.
+The most general line element which is spherically symmetric (invariant under spatial rotations) 
+must be made up of elements which are themselves invariant under spatial rotations. 
+We will use spherical coordinates: \(r, \theta , \varphi , t\). 
+
+In flat spacetime, the line element reads 
+%
+\begin{align}
+\dd{s^2} = - c^2 \dd{t^2} + \dd{r^2} + r^2 \qty( \dd{\theta^2} + \sin^2 \theta \dd{\varphi^2})
+\,,
+\end{align}
+%
+and our Schwarzschild solution will need to reduce to this in some limit.
+
+The spatial line element is given by 
+%
+\begin{align}
+\dd{\vec{r}} \cdot \dd{\vec{r}} =  \dd{r^2} + r^2 \qty( \dd{\theta^2} + \sin^2 \theta \dd{\varphi^2}) = g_{ij} \dd{x^{i}} \dd{x^{j}}
+\,.
+\end{align}
+
+Then, the most general spherically symmetric line element will read 
+%
+\begin{align}
+\dd{s^2} =  F(r ,t) \dd{t^2} + M(r, t) \dd{r^2} + G(r, t) \dd{r} \dd{t} + C(r, t) r^2 \qty( \dd{\theta^2} + \sin^2 \theta \dd{\varphi^2})
+\,,
+\end{align}
+%
+however, we can redefine the radial coordinate in order to remove the function multiplying the angular term, so we get 
+%
+\begin{align}
+\dd{s^2} = F \dd{t^2} + M \dd{r^2}  + G \dd{r} \dd{t} 
++ r^2 \qty(\dd{\theta^2} + \sin^2\theta \dd{\varphi^2}) 
+\,.
+\end{align}
+
+We can also introduce a new time variable: 
+%
+\begin{align}
+\dd{t'} = \dd{t} + \psi (r, t) \dd{r} 
+\,.
+\end{align}
+
+If \(\psi = r G / F\), then we remove the mixed term, and then we are left with the expression 
+%
+\begin{align}
+\dd{s^2} = -B (r, t) \dd{t^2} + A \dd{r^2} + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+However, we have not yet determined the two functions, and we have not said anything about the Einstein Field Equations, which are 
+%
+\begin{align}
+R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = 8 \pi G T_{\mu \nu }
+\,.
+\end{align}
+
+In vacuo, the stress-energy tensor vanishes. 
+The curvature scalar must vanish (we can show this by contracting the EFE with the inverse metric), so the equations reduce to \(R_{\mu \nu } = 0\). 
+We restrict ourselves to the static case. 
+
+The linearly independent components of the Ricci tensor read 
+%
+\begin{align}
+R_{0}^{0} = \frac{B''}{2AB} - \frac{A' B'}{4 A'' B}
+- \frac{B^{\prime 2}}{4AB^2} + \frac{B'}{rAB} &= 0 \\
+R_{1}^{1} = \frac{B''}{2AB} - \frac{A' B'}{4 A'' B}
+- \frac{B^{\prime 2}}{4AB^2} + \frac{A'}{rA^2} &= 0 \\ 
+R_{2}^{2} = \frac{1}{4rA} \qty(\frac{B'}{B} - \frac{A'}{A})
++ \frac{1}{r^2} \qty( \frac{1}{A} - 1)
+\,.
+\end{align}
+
+Computing \(R^{0}_{0} - R^{1}_{1} = 0\) we find 
+%
+\begin{align}
+\frac{1}{rA} \qty(\frac{B'}{B} + \frac{A'}{A} )&= 0  \\
+\dv{\log (AB)}{r} &= 0
+\,,
+\end{align}
+%
+so \(AB\) is constant.
+Without losing generality we can take \(A = 1/B\), since if this is not the case we can just rescale the radial or temporal coordinate until it is.
+
+Then, we can compute 
+%
+\begin{align}
+R^{2}_{2} = \frac{B}{2r} \qty(\frac{B'}{B} + \frac{B'}{B}) + \frac{1}{r^2} (B-1) &= 0  \\
+B' + \frac{B}{r} - \frac{1}{r} &= 0  \\
+\dv{}{r} \qty(rB) &= 1
+\,,
+\end{align}
+%
+so \(r B(r) = r + C\), or equivalently 
+%
+\begin{align}
+B (r) = \frac{C}{r} + 1
+\,.
+\end{align}
+
+After this, we can already substitute into the metric: 
+%
+\begin{align}
+\dd{s^2} = - \qty(1 + \frac{C}{r}) \dd{t^2} 
++ \frac{1}{1 + C/r} \dd{r^2} + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+For any value of \(C\), \(B \to 1\) as \(r \to \infty \): the metric reduces to the flat one asymptotically. 
+Right now \(C\) is an arbitrary constant, however in the weak field limit it is known that 
+%
+\begin{align}
+g_{00} = - \qty(1 + 2 \frac{\phi }{c^2})
+\,,
+\end{align}
+%
+where \(\phi = - GM / r\) is the Newtonian gravitational field.
+Equating this expression to the one for \(g_{00} \), we find 
+%
+\begin{align}
+g_{00} = - \qty(1 - \frac{2 GM}{rc^2})
+\implies C = - \frac{2GM}{c^2}
+\,.
+\end{align}
+
+The constant \(M\) in the classical case is the mass of the source, however we are computing a vacuum solution. This is the mass we would compute if we were to measure the orbits of objects around the compact object.
+
+\todo[inline]{This is then surely a \emph{gravitational} mass, is it also an \emph{inertial} mass? Can we show this in GR?}
+
+Then, we can write the Schwarzschild metric: 
+%
+\begin{align}
+\dd{s^2} = - \qty(1 - \frac{2GM}{c^2r}) \dd{t^2}
++ \qty(1 - \frac{2GM}{rc^2}) \dd{r^2} + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+This is derived by assuming time-independence, however the result is the same even in the time-dependent case by the Jebsen-Birkhoff theorem (which we will prove in a moment). 
+The element \(g_{rr} \) diverges as \(r \to R_g = 2GM/c^2\), however this does not represent any physical divergence: the scalar \(R^{\mu \nu \rho \sigma } R_{\mu \nu \rho \sigma } \propto r^{-6}\) does not diverge there. 
+
+There are coordinates which do not diverge near the horizon: one classical choice employs the ``tortoise'' coordinates, which are the same for \(r\), \(\theta \), \(\varphi \) as the Schwarzschild ones, while the time becomes (setting \(G = c =  1\))
+%
+\begin{align}
+t = t' - 2M \log \qty(1 - \frac{r'}{2M})
+\,.
+\end{align}
+
+Substituting this into the metric yields (dropping the primes for clarity):
+%
+\begin{align}
+\dd{s^2} = - \qty(1 - \frac{2M}{r}) \dd{t}^2
++ \frac{4M}{r} \dd{r} \dd{t} + \qty(1 + \frac{2M}{r}) \dd{r^2}
++ r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+There is no pathology at \(r = 2M\) anymore, so it was not a physical divergence. 
+The temporal coefficient \(g_{00} \) is the same: it can be shown that it is an invariant under coordinate transformations. 
+
+If we take two points which are very close along a particle trajectory, they must be separated by an interval \(\dd{s}^2 < 0\). 
+
+If we consider a (nongeodesic!) radial path described by \(r(t)\), we can compute the corresponding line element by neglecting the angular part: 
+%
+\begin{align}
+\dd{s^2} &= - \qty(1 - \frac{2M}{r}) \dd{t}^2
++ \frac{4M}{r} \dd{r} \dd{t} + \qty(1 + \frac{2M}{r}) \dd{r^2}  \\
+\qty( \dv{s}{t})^2 &= - \qty(1- \frac{2M}{r})
++ \frac{4M}{r} \dv{r}{t} + \qty(1 + \frac{2M}{r} ) \qty(\dv{r}{t})^2
+\,.
+\end{align}
+
+Now, the question we ask is: is it possible for the particle trajectory to be timelike or lightlike (\(\dd{s}^2 \leq 0\)) and outgoing (\(\dv*{r}{t} > 0\)) under these conditions? If this is the case, the signs of the three terms read 
+%
+\begin{align}
+\underbrace{\qty(\dv{s}{t})^2}_{< 0 ?}
+= 
+- \qty(1- \frac{2M}{r})
+\underbrace{+ \frac{4M}{r} \dv{r}{t}}_{> 0 } \underbrace{+ \qty(1 + \frac{2M}{r} ) \qty(\dv{r}{t})^2}_{> 0}
+\,,
+\end{align}
+%
+so we can see that the equality can be satisfied (a positive number cannot equal a negative one!) as long as the first term on the right-hand side is negative, which means \(r > 2M\). 
+If \(r \leq 2M\), on the other hand, this cannot be the case: a radial trajectory below the horizon \emph{cannot} be outward.
+
+This is what ``horizon'' means: it is a \emph{semi-permeable} membrane, particles can surpass it only in one direction. 
+
+\paragraph{Jebsen-Birkhoff}
+
+This theorem states that the Schwarzschild solution also describes the spacetime around an object in the spherically-symmetric but time-\emph{dependent} case. Let us give a sketch of its proof, omitting some tedious calculations. 
+If we write out the components of the Ricci tensor, we find something in the form 
+%
+\begin{align}
+R^{0}_{0} &= \eval{R^{0}_{0}}_{\text{static}} + \dot{A} \qty(\dots)\\
+R^{1}_{1} &= \eval{R^{1}_{1}}_{\text{static}} + \dot{A} \qty(\dots)
+\,,
+\end{align}
+%
+while \(R^{2}_{2}\) and \(R^{3}_{3}\) are the same. Also, the term \(R^{1}_{0}\) does not vanish unlike the static case, and is equal to 
+%
+\begin{align}
+R^{1}_{0} = - \frac{\dot{A}}{r A^2} = 0
+\,,
+\end{align}
+%
+so \(\dot{A} = 0\): the equations then are the same as the static case ones!
+This, however, is not the end, since now the equation 
+%
+\begin{align}
+\frac{A'}{A} + \frac{B'}{B} = 0
+\,
+\end{align}
+%
+is not necessarily solved by \(\log A = - \log B\), since a prime denotes a \emph{partial} derivative with respect to \(r\), so in general we will have \(\log A + \log B = f(t)\), some generic function of time. 
+The metric will then read 
+%
+\begin{align}
+\dd{s}^2 = - \qty(1 - \frac{2M}{r}) f(t)\dd{t^2} + \qty(1 - \frac{2M}{r}) \dd{r^2} + r^2 \dd{\Omega}^2
+\,,
+\end{align}
+%
+but we can simply rescale the time coordinate to \(t \to \sqrt{f} t\) in order for this to reduce to the usual expression.
+This theorem was originally discovered by the Norwegian physicist Jebsen, and only later popularized in a textbook by Birkoff \cite{johansenDiscoveryBirkhoffTheorem2005}. 
+
 \end{document}

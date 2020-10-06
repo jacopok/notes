@@ -126,6 +126,7 @@ We can also define functional integration, by
 
 On the right-hand side we are using the expression of the functional as a function of infinitely many variables which we discussed above;
 we are then integrating over each of the coordinates in this infinite dimensional function space.
+The infinite-dimensional measure is also often denoted as \(\mathcal{D}q\). 
 
 This integral will not always exist, however in the cases in which it does we can change variables. 
 Let us consider a linear change of variable, whose kernel is \(K(x, y)\), such that (compactly written) \(q = K q'\). 
@@ -150,12 +151,182 @@ q_k &= \sum _{j} q'_j k_{jk}
 \,.
 \end{align}
 
-Then, the measure will transform with the determinant \(\det K = \det k\): 
+Then, the measure will transform with the determinant \(\det K = \det k\), which we can now express as an infinite product of the eigenvalues of \(k\): 
 %
 \begin{align}
 \qty[ \dd{q}] = \abs{\pdv{q}{q'}} \qty[ \dd{q'}] = \det K \qty[ \dd{q'}]
 \,.
 \end{align}
 
+Usually functional integrals cannot be computed analytically; the exception is given by Gaussian integrals, which generalize the finite-dimensional result 
+%
+\begin{align}
+\int_{\mathbb{R}^{n}} \exp(- \frac{1}{2} A_{ij} x_i x_j + i b_j x_j) \dd{x_1 } \dots \dd{x_j} = \sqrt{\frac{(2 \pi)^{n}}{\det A}}
+\exp(- \frac{1}{2} (A^{-1})_{ij} b_i b_j)
+\,.
+\end{align}
+
+Here \(A_{ij}\) is an \(n\)-dimensional real matrix (which WLOG can be taken to be symmetric) while \(b_i\) is an \(n\)-dimensional vector.
+The result comes from a transformation of the coordinates according to the finite-dimensional 
+
+This can be interpreted as a ``functional'' (still finite-dimensional, so just a function, but we will generalize soon) of \(b_i\); we write it with an additional normalization \(N\) for convenience:
+%
+\begin{align}
+Z[b] = N \int _{\mathbb{R}^{n}} \exp(- \frac{1}{2} A_{ij} x_i x_j + b_j x_j) \dd{x_1 } \dots \dd{x_j}
+= N \sqrt{\frac{(2 \pi )^{n}}{\det A}} \exp(- \frac{1}{2} (A^{-1})_{ij}b_i b_j)
+\,,
+\end{align}
+%
+and if we rescale the normalization \(N\) so that \(Z[\vec{0}] = 1 \) we get 
+%
+\begin{align}
+Z[b] = \exp(- \frac{1}{2} (A^{-1})_{ij}b_i b_j)
+\,.
+\end{align}
+
+The infinite-dimensional generalization of this result amounts to replacing all the sums (expressed implicitly with Einstein notation here) with integrals; also conventionally we change the names of the variables to \(x \to q\), \(A \to K\), \(b \to J\): 
+%
+\begin{align}
+Z[J] &= N \int \mathcal{D}q \exp(- \frac{1}{2} \int \dd{x} \dd{y} K(x, y) q(x) q(y) + i \int \dd{x} q(x) J(x))  \\
+&= \exp(- \frac{1}{2} \int \dd{x} \dd{y} J(x) J(y) K^{-1}(x, y))
+\,.
+\end{align}
+
+Let us now give some examples of applications of this result: \(K(x,y) = \sigma^{-2} \delta (x-y)\) means \(K^{-1}(x,y) = \sigma^2 \delta (x-y) \), so 
+%
+\begin{align}
+Z[J] = \exp(- \frac{\sigma^2}{2} \int \dd{x} J^2(x))
+\,.
+\end{align}
+
+This, as we shall see, can be used to give us a description of white noise, which is uncorrelated in momentum space.
+
+Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \underbrace{\frac{1}{2} \partial_{\mu } \phi \partial^{\mu } \phi - \frac{1}{2} \mu^2 \phi^2}_{\mathscr{L}_{0}}+ \mathscr{L}_I (\phi )
+\,,
+\end{align}
+%
+where the self-interaction term is some non-quadratic function of \(\phi \), often taken to be proportional to  \(\phi^3\)  or \(\phi^{4}\). 
+
+The Feynman path integral corresponding to this Lagrangian is given by the functional 
+%
+\begin{align}
+Z[J] = N \int \mathcal{D} \phi \exp(i \int \mathscr{L}(\phi ) +  J \phi \dd{x} )
+\,.
+\end{align}
+
+Let us start with the non-interacting case, that is, we compute \(Z_0 \) with only the quadratic term in the Lagrangian. This can be expressed, in the formalism from before, using the kernel 
+%
+\begin{align}
+K(x, y )= (- \square_x - \mu^2 ) \delta (x-y)
+\,.
+\end{align}
+
+Now, the expression the functional is given in terms of \(K^{-1}\): what is the inverse of this kernel? The definition reduces to 
+%
+\begin{align}
+\int K(x, y) K^{-1}(y, z) \dd{y} &= \delta (x-z)   \\
+- \qty(\square_x + \mu^2) K^{-1} (x, z) &= \delta (x-z)
+\,,
+\end{align}
+%
+which is readily solved in momentum space, with a \(+i \epsilon \) prescription in order to avoid the pole in the integration: what we find is called the \emph{Green's function}, 
+%
+\begin{align}
+K^{-1}(x, z) = G(x-z) = \frac{1}{(2 \pi )^{4}} \int \frac{e^{-ik \cdot (x-z)}}{k^2 + \mu^2 - i \epsilon } \dd{k} 
+\,,
+\end{align}
+%
+so the unperturbed functional reads 
+%
+\begin{align}
+Z_0 [J] = \exp(- \frac{i}{2} \int \dd{x} \dd{y} G(x-y) J(x) J(y))
+\,.
+\end{align}
+
+% This, evaluated at \(J =0\), can be used to calculate the \emph{propagator}, which quantifies the probability amplitude that a particle localized at a certain position at a certain time will be found at another position, at another time.
+% This can be used to compute expectation 
+
+This by itself might not seem very useful, the motion of a free massive boson can be calculated with easier methods.
+However, the real power of this path integral is the possibility to write the interacting term perturbatively: the interaction Lagrangian is a function of \(\phi \), which is what we find if we perform a functional integration of the argument of the exponential in \(Z_0 [J]\) with respect to \(J\); so we can express the full functinal as 
+%
+\begin{align}
+Z[J] &= \exp( i\int \dd{x} \mathscr{L}_I\qty( \frac{1}{i} \fdv{}{J(x)}))
+\underbrace{\int \mathcal{D} \phi \exp(i \int \dd{x} \qty( \mathscr{L}_0 + J \phi )) }_{= Z_0 [J]}  \\
+&= \sum _{n=0}^{\infty } \frac{i^{n}}{n!} \qty[ \int \dd{x} \mathscr{L}_I\qty(\frac{1}{i} \fdv{}{J(x)})]^{n} Z_0 [J]
+\,.
+\end{align}
+
+We can use this to compute the Green's functions: 
+%
+\begin{align}
+G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 ) \dots \delta J(x_n)}}_{J = 0}
+\,.
+\end{align}
+
+\todo[inline]{Review from the PI notes why this makes sense.}
+
+\subsection{The probability density functional}
+
+We can interpret the quantity 
+%
+\begin{align}
+\exp(- \frac{1}{2} (q, K, q)) \mathcal{D}q
+\,
+\end{align}
+%
+as a \emph{probability density functional} \(\dd{P}[q]\), since 
+\begin{enumerate}
+    \item it is positive definite;
+    \item it is normalized, as long as we set its integral, \(Z[0]\), to 1;
+    \item it goes to zero as \(q \to \pm \infty \).
+\end{enumerate}
+
+If this is the case, then we ought to be able to compute the average value of a functional \(F[q]\) as 
+%
+\begin{align}
+\expval{F[q]} = \int F[q] \dd{P}[q] = \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q)) F[q]  
+\,,
+\end{align}
+%
+which we can generalize to any non-gaussian probability density functional by replacing the exponential \(\exp(- \frac{1}{2} (q, K, q))\) with a generic \(\mathcal{P}[q]\).
+
+A useful kind of average we can compute is given by the \(N\)-point correlation function, 
+%
+\begin{align}
+C^{(N)}(x_1, \dots, x_n) = \expval{q(x_1) \dots q(x_n)}
+\,.
+\end{align}
+
+With the formula we gave earlier, this can be computed as 
+%
+\begin{align}
+C^{(N)}(x_1, \dots , x_n)
+= \int \mathcal{D}q \mathcal{P}[q] \prod_i q(x_i)
+\,.
+\end{align}
+
+Here we can make use of a trick: going back to the Gaussian probability case, consider the functional derivative
+%
+\begin{align}
+\eval{\frac{1}{i}\fdv{Z[J]}{J(x_1 )}}_{J = 0} &= \frac{1}{i} \eval{\fdv{}{J(x)}}_{J=0} \int \mathcal{D}q
+\exp(- \frac{1}{2} (q, K, q) + i (J,q))  \\
+&= \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q)) q(x_1 )
+= \expval{q(x_1 )} = C^{(1)}(x_1 )
+\,,
+\end{align}
+%
+which actually holds for any probability density functional, we did not make use of the gaussianity.
+So, in general we will be able to write 
+%
+\begin{align}
+C^{(N)} (x_1 \dots x_n) = \frac{1}{i^{N}} \eval{\frac{ \delta Z[J]}{ \delta J(x_1 )\dots \delta J(x_n)}}_{J =0 }
+\,.
+\end{align}
+
+The correlation functions, which as we discussed in an earlier section are crucial when discussing structure formation, can be ``simply'' calculated by functional differentiation as long as we have the generating functional \(Z[J]\).
+This generating functional is very similar mathematically to a partition function in statistical mechanics, and it serves an analogous role: its derivatives allow us to characterize the dynamics of the system. 
 
 \end{document}

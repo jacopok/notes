@@ -286,7 +286,7 @@ as a \emph{probability density functional} \(\dd{P}[q]\), since
 
 If this is the case, then we ought to be able to compute the average value of a functional \(F[q]\) as 
 %
-\begin{align}
+\begin{align} \label{eq:average-of-a-functional}
 \expval{F[q]} = \int F[q] \dd{P}[q] = \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q)) F[q]  
 \,,
 \end{align}
@@ -460,6 +460,8 @@ With an analogous procedure we can show that
 \,.
 \end{align}
 
+\todo[inline]{So in some sense \(J\) is a covariant vector while \(q\) is a contravariant one, right? can this be said in a better way?}
+
 The effective action then reads
 %
 \begin{align}
@@ -468,20 +470,113 @@ The effective action then reads
 \,.
 \end{align}
 
-Now we have the tools to consider actual probabilities: starting from our classical field \(q\), we want to compute the probability that it takes on a certain value \(q \in (\alpha , \alpha + \dd{\alpha })\) at a point \(x\): this is expressed with a probability density function in the form 
+Now we have the tools to consider actual probabilities: starting from our classical field \(q\), we want to compute the probability that it takes on a certain value \(q \in (\alpha , \alpha + \dd{\alpha })\) at a point \(\overline{x}\): this is expressed with a probability density function in the form 
 %
 \begin{align}
-\dv{P_q}{\alpha } =P_{q(x)} (\alpha; x)
+\dv{P_q}{\alpha } =P_{q(x)} (\alpha; \overline{x})
 \,.
 \end{align}
 
 We want to write this ``\(P(\alpha ) \dd{\alpha }\)'' in terms of the functional integral; in order to do so, we start from the Fourier transform 
 %
 \begin{align}
-\int \dd{\beta } \exp(i \beta \varphi ) P_q (\beta ; x) = \expval{e^{i \beta \varphi }}_{\beta }
+\int \dd{\beta } \exp(i \beta \varphi ) P_q (\beta ; \overline{x}) = \expval{e^{i \beta \varphi }}_{\beta }
 \,.
 \end{align}
 
+The integral is a definite one, with bounds corresponding to the region in which \(P_q\) is nonzero, typically \(\mathbb{R}\).
+The right-hand side is an average over the possible values taken on by the field \(q\) at the point \(\overline{x}\), but it can also be computed by averaging over the possible \emph{overall} field configurations, computed at a point \(\overline{x}\):
+% This also holds if we average over the position \(x\): 
+%
+\begin{align}
+\int \dd{\beta } \exp(i \beta \varphi ) P_q (\beta ; \overline{x}) = \expval{e^{i q(\overline{x}) \varphi }}_{q }
+\,.
+\end{align}
 
+This will be much harder to compute: it is a proper functional integral, to be computed according to \eqref{eq:average-of-a-functional}; however it must give the same result.
+
+% \todo[inline]{In the notes this is denoted as ``averaging over \(q\)'', but I do not see how that makes sense. Is \(\overline{x}\) a typical, generic position?}
+
+If we take the Fourier antitrasform, we find 
+%
+\begin{align}
+P_q (\alpha , \overline{x}) &= \frac{1}{2 \pi } \int \dd{\varphi } e^{-i \varphi \alpha } \expval{e^{i \varphi q (\overline{x})}}_q  \\
+&= \frac{1}{2 \pi } \int \dd{\varphi } \expval{e^{i \varphi (q(\overline{x}) - \alpha )}}_q  \\
+&= \expval{ \delta (q(\overline{x}) - \alpha ) }_q
+\,.
+\end{align}
+
+This equation can be interpreted to mean the following: ``the probability that the field \(q\) is equal to \(\alpha \) at \(\overline{x}\) is given by the integral of the probabilities of all the field configurations which satisfy \(q(\overline{x}) = \alpha \)''.
+
+This formalism can be generalized to \(N\)-point functions, the notation for the probability that for \(j = 1 \dots N\) the field \(q\) takes on the value \(\alpha _j\) at position \(x_j\) is as follows: 
+%
+\begin{align}
+\dd{P}_q^{N} &= P_q \qty(\alpha_1 \dots \alpha _N; x_1 \dots x_N) \dd{\alpha_1 } \dots \dd{\alpha _N}  \\
+&= P_q \qty([\alpha _N]; [x_N]) \dd{\alpha_1 } \dots \dd{\alpha _N}  \\
+P_q \qty([\alpha _N]; [x_N]) 
+&= \expval{\prod_{j=1}^{N} \delta (q(x_j) - \alpha _j)}_q
+\,.
+\end{align}
+
+Statistical independence corresponds to the statement that the product can be brought out of the average, and we are interested in the general case, in which this does not happen.
+
+The question we generally ask is: what is this probability? We can try to find an expression for it in terms of the partition function \(Z[J]\): we use once again the fact that 
+%
+\begin{align}
+\delta (x) = \frac{1}{2 \pi } \int \dd{\varphi } e^{i \varphi x}
+\,
+\end{align}
+%
+to see that 
+%
+\begin{align}
+P_q ([\alpha _N]; [X_N]) = \frac{1}{(2 \pi )^{N}} \int \dd{\varphi_1 } \dots \dd{\varphi _N} \exp(- i \sum _{j=1}^{N} \varphi _j \alpha _j)
+\expval{\exp(i \sum _{j=1}^{N}\varphi _j q(x_j))}_q
+\,.
+\end{align}
+
+This can be brought back to the partition function by making use of the fact that 
+%
+\begin{align}
+Z[J] &= \expval{\exp(i (J, q))}_q  \\
+&= \int \mathcal{D}q P[q] \exp( i \int \dd{x} J(x) q(x))
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\expval{\exp(i \sum _{j=1}^{N}\varphi _j q(x_j))}_q
+= Z \qty[ \sum _{j=1}^{N} \varphi _j \delta (x - x_j)] 
+= Z[ \widetilde{J}_\varphi ]
+\,,
+\end{align}
+%
+where we have used the fact that 
+%
+\begin{align}
+i \int \dd{x} q(x) \qty(\sum _{j=1}^{N} \varphi _j \delta (x-x_j))
+= i \sum _{j=1}^{N} \varphi_j q(x_j) 
+\,.
+\end{align}
+
+So, we can compute the probability that the field reaches the values \(\alpha _j\) at the points \(x_j\) as long as we can compute the partition function at \(Z[\widetilde{J}_\varphi ]\), and then integrate \(N\) times: 
+%
+\begin{align}
+P_q ([\alpha _N], [x_N]) = \frac{1}{(2 \pi)^{N}} 
+\int \dd{\varphi_1 } \dots \dd{\varphi _N }
+\exp(-i \sum _{j=1}^{N} \varphi _j \alpha_j )
+Z[\widetilde{J}_\varphi ]
+\,.
+\end{align}
+
+Let us compute this for the case of a Gaussian random field \(q(x)\). The partition function evaluated at \(\widetilde{J}_\varphi = \sum _{j} \varphi _j \delta (x- x_j)\) is equal to 
+%
+\begin{align}
+Z[\widetilde{J}_\varphi ] = \exp( - \frac{1}{2} \sum _{i, j =1}^{N} \varphi _i \varphi _j K^{-1} (x_i, x_j))
+\,,
+\end{align}
+%
+\todo[inline]{Show this}
 
 \end{document}

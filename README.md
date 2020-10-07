@@ -3,9 +3,9 @@ Here are the notes I am taking during the lectures of the degree in [Astrophysic
 Also, one can find some notes for other courses (quantum optics, astronomy) and projects I did in this period, these are generally of lower quality than the ones for the main degree.
 
 They are divided by semester and class: the current semester folder is `ap_third_semester`, containing notes for:
-* [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0):
-* [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0):
-* [Cosmology of the Early Universe](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081761/N0):
+* [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0): currently taking the course, a folder can be found for the exercises as well;
+* [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0): currently taking the course;
+* [Cosmology of the Early Universe](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081761/N0): currently taking the course.
 
 In the folder `ap_second_semester` one can find notes for the following courses:
 * [Gravitational physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081719/N0): finished reviewing notes, the last parts are quite short but the big conceptual bits are all there;
@@ -13,15 +13,14 @@ In the folder `ap_second_semester` one can find notes for the following courses:
 * [Theoretical cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086384/N0): yet to review notes;
 * [Astroparticle physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081703/N0): reviewed notes, but they are not of great quality;
 * [Radiative processes in astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086347/N0): finished reviewing notes, there are still a few non-clarified doubts but I think they are generally complete;
-* Gravitational Wave Astrophysics (PhD course): yet to review notes;
-
+* Gravitational Wave Astrophysics (PhD course): yet to review notes.
 
 In the folder `ap_first_semester` one can find notes for the following courses:
 * [Advanced astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086382/N0): reviewed notes for everything;
 * [Astrophysical (high energy) laboratory](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086379/A1302): not really coherent notes;
 * [Mathematical and numerical methods](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): not really coherent notes: the ones by the professor are already comprehensive, my solutions for the exercises can be found [here](https://github.com/jacopok/python-testing/tree/master/numerical_methods);
 * [General Relativity](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081661/N0): reviewed everything, exercises included;
-* [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0): I finished reviewing, will be checked by the professor as well.
+* [Fundamental of Astrophysics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP9086381/N0): I finished reviewing, they will be checked by the professor as well.
 
 Disclaimer: unless specified, **these notes were not reviewed by anyone but me**, so they might contain errors, inaccuracies, typos and so on. Please do not rely on them alone.
 

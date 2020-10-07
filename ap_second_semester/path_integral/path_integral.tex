@@ -370,6 +370,118 @@ Then, as before we can calculate the correlation functions through functional de
 \,.
 \end{align}
 
+So, we have our result: \emph{for a Gaussian variable, the two-point correlation function is the inverse of the kernel}. 
+A similar, albeit quite long, calculation allows us to compute the \(N\)-point correlation function for the same Gaussian variable: we expand the exponential in \(Z[J]\) in a power series, and when we differentiate it an even number of times we find  
+%
+\begin{align}
+C^{2N}(x_1 \dots x_{2N}) &= \qty[K^{-1}(x_1, x_2 ) K^{-1} (x_3, x_4) \dots K^{-1} (x_{2N-1}, x_{2N})]_{\text{symmetrized}}
+\,,
+\end{align}
+%
+where ``symmetrized'' means that we must sum over all the permutations of the variables \(x_i\) in the argument of the inverse kernels; on the other hand, the odd correlation functions \(C^{2N+1}\) all vanish since they correspond to the integrals of odd functions over all space.
+
+We can also apply this process in reverse: starting from the two-point correlation function we can reconstruct the kernel, and with it the probability density functional \(\dd{P}[q]\). 
+
+In the Gaussian case, as long as we know the two-point function, which corresponds to the inverse kernel, we can reconstruct the \(N\)-point function. 
+This can also be stated by saying that the ``irreducible'' \(N\)-point functions are all zero except for \(N=2\), since all the higher ones can be reduced to that one. 
+
+We shall see that all the reduced \(N\)-point functions can be recovered starting from the \emph{generating functional} of connected correlation functions:
+%
+\begin{align}
+\mathscr{W}[J] = \log Z[J]
+\,,
+\end{align}
+%
+through the expansion 
+%
+\begin{align}
+\mathscr{W}[J] = \sum _{n=1}^{\infty } \frac{i^{n}}{n!} \int \dd{x_1} \dots \dd{x_n} C^{N}_{C} (x_1 \dots x_N) J(x_1) \dots J(x_n)
+\,.
+\end{align}
+
+These connected correlation functions \(C^{N}_{C}\) are not (in principle) related to the \(C^{N}\) from before. 
+\todo[inline]{What is the relation between them, though?}
+We could also have defined \(\mathscr{W}[J] = i \log Z[J]\), this is a matter of convention. 
+
+Now, we define the \emph{classical field}
+%
+\begin{align}
+q _{\text{cl}}(x) = \fdv{\mathscr{W}[J]}{J(x)}
+\,,
+\end{align}
+%
+and the effective action \(\Gamma [q _{\text{cl}}]\) as the Legendre transform of \(\mathscr{W}[J]\): 
+%
+\begin{align}
+\Gamma [q _{\text{cl}}] = \mathscr{W}[J] - \int \dd{x} q _{\text{cl}} (x) J(x) 
+\,,
+\end{align}
+%
+from which we can then recover \(J(x)\) as 
+%
+\begin{align}
+J(x) = - \fdv{\Gamma [q _{\text{cl}}]}{q _{\text{cl}}(x)}
+\,.
+\end{align}
+
+In the Gaussian case we have 
+%
+\begin{align}
+\mathscr{W}[J] = \log Z[J] = - \frac{1}{2} (J, K^{-1}, J)  
+\,,
+\end{align}
+%
+which, by direct comparison with the Taylor expansion, means that 
+%
+\begin{align}
+C^{2}_{C} (x_1 , x_2 ) = K^{-1} (x_1 , x_2 )
+\,,
+\end{align}
+%
+while \(C^{N} \equiv 0\) for any \(N \neq 2\). 
+Also, our expression for \(q _{\text{cl}}\) yields 
+%
+\begin{align}
+q _{\text{cl}}(x) = -\int \dd{y} K^{-1}(x, y) J(y) 
+\,,
+\end{align}
+%
+from which we can express \(J(x)\) by using the direct kernel \(K(x, y)\): 
+%
+\begin{align}
+\int \dd{x} q _{\text{cl}} (x) K (x, w) = - \int \dd{y} \dd{w} K^{-1}(x, y) K(x, w) J(y) = - \int \dd{w} \delta (y- w) J(y) = - J(w)
+\,.
+\end{align}
+
+With an analogous procedure we can show that
+%
+\begin{align}
+(J, K^{-1}, J) = (q _{\text{cl}}, K, q _{\text{cl}})
+\,.
+\end{align}
+
+The effective action then reads
+%
+\begin{align}
+\Gamma [q _{\text{cl}}] &= \eval{- \frac{1}{2} (J, K^{-1}, J) + (J, K^{-1}, J)}_{J = J(q _{\text{cl}})} \\
+&= \frac{1}{2} (q _{\text{cl}}, K, q _{\text{cl}})
+\,.
+\end{align}
+
+Now we have the tools to consider actual probabilities: starting from our classical field \(q\), we want to compute the probability that it takes on a certain value \(q \in (\alpha , \alpha + \dd{\alpha })\) at a point \(x\): this is expressed with a probability density function in the form 
+%
+\begin{align}
+\dv{P_q}{\alpha } =P_{q(x)} (\alpha; x)
+\,.
+\end{align}
+
+We want to write this ``\(P(\alpha ) \dd{\alpha }\)'' in terms of the functional integral; in order to do so, we start from the Fourier transform 
+%
+\begin{align}
+\int \dd{\beta } \exp(i \beta \varphi ) P_q (\beta ; x) = \expval{e^{i \beta \varphi }}_{\beta }
+\,.
+\end{align}
+
 
 
 \end{document}

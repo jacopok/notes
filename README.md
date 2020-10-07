@@ -1,5 +1,7 @@
 Here are the notes I am taking during the lectures of the degree in [Astrophysics and Cosmology](http://astrophysics-and-cosmology.dfa.unipd.it/) at the university of Padua (in the theoretical curriculum).
 
+Also, one can find some notes for other courses (quantum optics, astronomy) and projects I did in this period, these are generally of lower quality than the ones for the main degree.
+
 They are divided by semester and class: the current semester folder is `ap_third_semester`, containing notes for:
 * [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0):
 * [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0):
@@ -35,5 +37,5 @@ The idea for these notes is that they will be complete if somewhat untidy, while
 Besides the lecture notes, solutions for the exercises (for now, in the General Relativity class) are also present in this repository. Some python visualization of parts of the exercises will also be present when applicable, thanks to [Alessandro Lovo](https://github.com/AlessandroLovo).
 Corrections and work on the exercises and notes is also done with the collaboration of Giorgio Mentasti.
 
-Any observations,  suggestions and corrections are welcome.
+Any observations, suggestions and corrections are welcome.
 They can be submitted as issues or pull requests here, or by sending an email at jacopo@tissino.it, or just by sending me a message.

@@ -1,4 +1,245 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-7, \\ compiled \\ \today}
+
+We come back to the horizon problem. 
+[Plot of the comoving Hubble radius \(r_H\) as a function of time]
+
+The problem is solved if there is an early epoch in which \(r_H\) decreases in time, due to accelerated expansion.
+
+After the end of this inflation, the regular FLRW universe's history starts, with the radiation, then matter, then cosmological constant dominated phases. 
+An accelerated expansion, however, is not enough to solve the horizon problem: what we need is for \emph{every} observable scale, up to the largest ones, was causally connected in the early universe.
+In other words, the inflation phase must last \emph{long enough}.
+
+More specifically, our constraint on inflation is that it must start when the Hubble radius was at least as large as it is today.
+This can be expressed in terms of the \emph{number of \(e\)-folds}: 
+%
+\begin{align}
+N = \log \qty( \frac{a_f}{a _{\text{in}}})
+= \int_{t _{\text{in}}}^{t_f} H(t) \dd{t}
+\,,
+\end{align}
+%
+the ratio of the scale factor at the beginning and at the end of inflation.
+% This is a natural measure of time 
+The number of elapsed \(e\)-folds is a natural measure of time in the epoch of inflation. 
+
+We can give the bound \(N \gtrsim 60 \divisionsymbol 70\) in order to solve the horizon problem. 
+This is a \emph{huge} expansion! Typical atomic scales of \SI{e-15}{m} get stretched to the typical scales of the Solar System, \SI{e11}{m}. 
+
+The condition is \(r_H (t _{\text{in}}) \gtrsim r_H (t_0 )\). 
+We can express this as 
+%
+\begin{align}
+\frac{1}{a _{\text{in}} H _{\text{in}}} &=\gtrsim \frac{1}{a_0 H_0 }  \\
+\frac{a_f}{ a _{\text{in}}} = e^{N} &\gtrsim \frac{H_i}{H_0 } \frac{a_f}{a_0}
+\,.
+\end{align}
+%
+\todo[inline]{See on Moodle: paper with the exact computation.}
+
+We want to bring on the left all the quantities in the inflationary epoch. 
+Recall that \(H^2 \propto \rho \propto a^{-3 (1+ w_i) / 2}\), which we will apply to the inflationary epoch with an equation of state \(w_i < - 1/3\). This means that 
+%
+\begin{align}
+\frac{H_i}{H_f} H_f = \qty(\frac{a_i}{a_f})^{-3(1+ w_i) / 2} H_f
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\frac{a_f}{a_i} \qty(\frac{a_f}{a_i})^{- 3 (1+ w_i) / 2} &=\gtrsim  
+\frac{H_f}{H_0} \frac{a_f}{a_0 } \\
+\qty(\frac{a_f}{a_i})^{\frac{-(1 + 3 w_i)}{2}}
+&\gtrsim \frac{T_0 }{H_0 } \frac{H_f}{T_f}
+\,,
+\end{align}
+%
+where we applied Tolman's law, \(T \sim 1/a\), neglecting the matter dominated phase --- this is a reasonable approximation, we find a similar result to the complete calculation. This yields 
+%
+\begin{align}
+N \gtrsim - \frac{2}{1 + 3 w _i} \qty[ \log \frac{T_0 }{H_0 } + \log \frac{H_f}{T_f}]
+\,,
+\end{align}
+%
+where \(T_0 = \SI{2.7}{K} \approx \SI{e-13}{GeV}\), while \(H_0 \sim \SI{e-42}{GeV}\) in natural units. Therefore, the first logarithm is of the order \(\sim 67\). 
+We also need the \emph{pre-heating} temperature and Hubble parameter: \(H_f\) and \(T_f\). 
+This is model-dependent: it is what gives the theoretical uncertainty. 
+The dependence, however, is weak: only logarithmic. 
+
+With current measurements, we are starting to be able to measure this term as well. 
+Let us give an estimate for it: 
+%
+\begin{align}
+H_f^2 \approx \frac{8 \pi G}{3} \rho _{\text{rad}}
+\,,
+\end{align}
+%
+where \(\rho _{\text{rad}} \frac{\pi^2}{30} g_* T^{4}\). This then yields 
+%
+\begin{align}
+H^2_f = \frac{8 \pi G}{3} \frac{\pi^2}{30} g_* T^{4} \sim \frac{T_f^4}{M_P^2}
+\,.
+\end{align}
+
+There is model dependence here, in \(g_*\)! If we go BDSM (beyond de standard model) it could change. 
+We are giving a very rough estimate with the Planck mass. This then means \(H_f \sim T_f^2 / M_p\). So, 
+%
+\begin{align}
+\log \qty( \frac{H_f}{T_f}) \approx \log \frac{T_f}{M_p}
+\,.
+\end{align}
+
+Typically, models predict 
+%
+\begin{align}
+\num{e-5} < \frac{T_f}{M_p} < 1
+\,,
+\end{align}
+%
+but this is not set in stone, we could have different predictions as well. 
+
+Now, let us assume that \(w_i \sim -1\), something like a cosmological constant. Then, the prefactor is of the order \(1\), so the bound is \(N \gtrsim 60 \divisionsymbol 70\) as was mentioned before. 
+
+We now discuss the causal structure of the FLRW metric: 
+%
+\begin{align}
+\dd{s^2} = - \dd{t^2} + a^2(t) \qty[ \frac{ \dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega^2}]
+\,.
+\end{align}
+
+Let us express this in different coordinates: we introduce \(\chi \), so that 
+%
+\begin{align}
+r = S_k (\chi ) = \begin{cases}
+    \sinh \chi & k = -1  \\
+    \chi & k = 0 \\
+    \sin \chi & k = +1
+\end{cases}
+\,.
+\end{align}
+
+This allows the term \(\dd{r^2} / (1 - kr^2)\) to become simply \(\dd{\chi^2}\). 
+
+Also, we introduce conformal time: \(\dd{\eta } = \dd{t} / a(t)\), so that the metric becomes 
+%
+\begin{align}
+\dd{s^2} = a^2(\eta ) \qty[- \dd{ \eta^2} + \dd{\chi^2} + S_k^2 (\chi ) \dd{\Omega^2}]
+\,.
+\end{align}
+
+The meaning of \(\chi \) is still a comoving distance. 
+However, the interesting thing is that this metric is conformally related to (``is a time-dependent rescaling of'') the Minkowski metric (if we consider radial motion, at least), we say that it is \emph{conformally flat}.
+
+In these coordinates, light propagates at \SI{45}{\degree} in the (\(\eta \), \(\chi \)) plane. 
+
+Then, we can draw a diagram for the horizon problem in these coordinates: the Big Bang singularity looks like a straight line at constant \(\eta \). 
+The last-scattering surface is also a straight line at constant \(\eta \).
+We can then draw a past light-cone from a point in the last-scattering surface. Inflation pushes the BB surface back in conformal time, so that light has more time to propagate. 
+
+We can show (exercise) that the conformal time at the end of inflation looks like \(\eta \propto 2 / (1 + 3 w_i) a^{2 / (1 + 3w)} H_*^{-1}\). 
+
+So, if \(w < - 1/3\), we are good. 
+
+\todo[inline]{We can only detect correlations in the CMB up to the quadrupole, since the dipole is correlated with the Earth's motion\dots Roughly, this means that we can only see correlations on the scale of \(\sim r_H\), corresponding to \SI{90}{\degree} separation, instead of being able to see them on the scale of \SI{180}{\degree}. }
+
+Now, we move to the flatness problem. 
+The HBB model is not intrinsically flawed, however the shortcomings we are discussing tell us that the initial conditions which would be required in order to yield the current universe would be very specific.
+
+We should set initial conditions which are homogeneous and isotropic, with very specific small fluctuations. Inflation provides a dynamical solution to these problems, which is an attractor towards these initial conditions.\footnote{See \textcite[]{hossenfelderScreamsExplanationFinetuning2019} for a critical discussion of this fine-tuning problem.}
+
+The first Friedmann equation reads 
+%
+\begin{align}
+H^2=  \frac{8 \pi G}{3} \rho - \frac{k}{a^2}
+\,,
+\end{align}
+%
+which we can express through \(\Omega = \rho / \rho _c\), where \(\rho _c = 3 H^2 / (8 \pi G) \): 
+%
+\begin{align}
+1 - \Omega = \frac{k}{a^2 H^2} = k r_H^2 (t)
+\,,
+\end{align}
+%
+so if \(\Omega \) differs from unity even by a small amount, this difference increases with time. 
+
+At \SI{95}{\percent} CL, we know that \(\abs{\Omega - 1} = \abs{\Omega _k} < \SI{.4}{\percent}\), so the universe we observe is consistent with flatness. 
+
+Specifically, in the Planck epoch we will have 
+%
+\begin{align}
+\Omega (t _{\text{Pl}}) - 1 \approx  (\Omega_0 - 1) \times \num{e-60}
+\,,
+\end{align}
+%
+so \(\abs{\Omega (t _{\text{Pl}}) - 1} < \num{e-62}\).
+
+What can be shown is also that 
+%
+\begin{align}
+\qty(\Omega^{-1} - 1) \rho a^2 = \const
+\,.
+\end{align}
+
+For times before the matter-radiation equivalence \(\rho \propto a^{-4}\), so  \(\rho (t) = \rho _{\text{eq}} (a _{\text{eq}} / a)^{4}\). Also, during matter domination up to now (neglecting the cosmological constant)
+%
+\begin{align}
+\rho_0 = \rho _{\text{eq}} \qty(\frac{a _{\text{eq}}}{a_0 })^3
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+(\Omega^{-1} -1) \qty(\frac{a _{\text{eq}}}{a})^{4} a^2 \rho_0 \qty(\frac{a_0 }{a _{\text{eq}}})^{3} \frac{1}{\rho_0 a_0^2} &= (\Omega_0^{-1} - 1)
+\\
+\Omega^{-1} - 1 &= (\Omega_0^{-1} -1) \frac{a^2}{a _{\text{eq}} a_0 } \\
+\Omega^{-1} - 1 &= (\Omega_0^{-1} -1) (1 + z _{\text{eq}}) \frac{a^2}{a_0^2}
+\,,
+\end{align}
+%
+since \(1 + z _{\text{eq}} = a_0 / a _{\text{eq}}\). Also, we can approximate \(a/a_0 \sim T_0 / T _{\text{Pl}}\) by extending Tolman's law. 
+Then, 
+%
+\begin{align}
+\Omega^{-1} - 1 &= (\Omega_0^{-1} -1) \underbrace{(1 + z _{\text{eq}})}_{\sim \num{e4}} \underbrace{\frac{T_0 ^2}{T _{\text{Pl}}^2}}_{\sim \num{e-64}}
+\,.
+\end{align}
+
+This proves the relation we wrote earlier. It is an extreme extrapolation to go back to the Planck time, but even if we only went back to Big Bang nucleosynthesis (\(\sim \SI{1}{MeV}\)) we would get 
+%
+\begin{align}
+\abs{\Omega (t _{\text{BBN}}) - 1 } < \num{e-18}
+\,.
+\end{align}
+
+How does inflation solve the problem?
+Recall that \(\Omega -1  = k r_H^2\), and inflation is by definition a time in which \(r_H\) decreases. 
+At the end of inflation, \(\Omega - 1\) is very close to 0, meaning that \(r_H\) is small, but at the start of inflation it could have been relatively far from 1. 
+
+Next week we will discuss the proper mechanism of this process.
+During an inflationary phase, \(a (t) \approx \exp(Ht)\). So, as long as \(H\) is approximately constant, we have
+%
+\begin{align}
+r_H^2 = \frac{1}{a^2 H^2} \propto \frac{1}{a^2}
+\,.
+\end{align}
+
+Then, we have 
+%
+\begin{align}
+\frac{\abs{\Omega -1}_{t_f}}{\abs{\Omega - 1}_{t_i}} \sim \qty(\frac{a_i}{a_f})^{2} \sim \exp(- 2N)
+\,.
+\end{align}
+
+This means that, with very broad possible initial conditions, we find \(\Omega -1\) very close to zero at the end of inflation. 
+
+A De-Sitter phase is a reference example of a possible inflationary stage. 
+It would correspond to \(\rho = \const\), \(w = -1\): in general, since the ``curvature energy density'' scales like \(a^{-2}\), curvature becomes negligible. 
+
+Note, however, that this is an unrealistic example: it does not include any method for the inflation to end. 
+
 \end{document}

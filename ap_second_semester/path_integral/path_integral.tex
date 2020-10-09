@@ -400,7 +400,7 @@ through the expansion
 \end{align}
 
 These connected correlation functions \(C^{N}_{C}\) are not (in principle) related to the \(C^{N}\) from before. 
-\todo[inline]{What is the relation between them, though?}
+\todo[inline]{What is the relation between them, though? What is the physical interpretation of these connected correlation functions?}
 We could also have defined \(\mathscr{W}[J] = i \log Z[J]\), this is a matter of convention. 
 
 Now, we define the \emph{classical field}
@@ -573,10 +573,258 @@ Z[\widetilde{J}_\varphi ]
 Let us compute this for the case of a Gaussian random field \(q(x)\). The partition function evaluated at \(\widetilde{J}_\varphi = \sum _{j} \varphi _j \delta (x- x_j)\) is equal to 
 %
 \begin{align}
-Z[\widetilde{J}_\varphi ] = \exp( - \frac{1}{2} \sum _{i, j =1}^{N} \varphi _i \varphi _j K^{-1} (x_i, x_j))
+Z[\widetilde{J}_\varphi ] &= \exp( - \frac{1}{2} (\widetilde{J}_\varphi , K^{-1}, \widetilde{J}_\varphi )) \\
+&= \exp( - \frac{1}{2} \sum _{i, j =1}^{N} \varphi _i \varphi _j K^{-1} (x_i, x_j))
+\,.
+\end{align}
+
+Since it appears in the expression for the partition function, let us define the \emph{covariance matrix}
+%
+\begin{align}
+M_{ij} = K^{-1}(x_i, x_j) = C^{(2)} (x_i, x_j)
 \,,
 \end{align}
 %
-\todo[inline]{Show this}
+so that the probability reads, using the usual result about Gaussian integrals,
+%
+\begin{align}
+P_q ([\alpha _N], [x_N]) &= \frac{1}{(2 \pi)^{N}} 
+\int \dd{\varphi_1 } \dots \dd{\varphi _N }
+\exp(-i \sum _{j=1}^{N} \varphi _j \alpha_j )
+\exp(- \frac{1}{2} \varphi_i M_{ij } \varphi _j)  \\
+&= \frac{1}{\sqrt{(2 \pi)^{N} \det M}}
+\exp(- \frac{1}{2} \alpha _i (M^{-1})_{ij} \alpha _j)
+\,.
+\end{align}
+
+This is the standard expression for an \(N\)-variate Gaussian distribution whose covariance matrix is \(M_{ij}\). 
+
+\textbf{Application to Brownian motion}. 
+
+\textbf{Avoiding divergences: high- and low-pass filters}. 
+If \(W_R (x)\) is our filter function, then the general correlation function reads 
+%
+\begin{align}
+C^{(N)}_R (x_1 \dots x_N) &= \int \mathcal{D}q P[q] \prod_{r = 1}^{N}
+\int \dd{y_r} q(y_r) W_R (\abs{y_r - x_r})  \\
+&= \int \prod_{r=1}^{N} \dd{y_r} W_R(\abs{y_r - x_r}) C^{(N)} (y_1 \dots y_N)
+\,.
+\end{align}
+
+The same holds for the \emph{connected} correlation functions, so we can calculate the \(C^{(N)}_{R, C}\): \emph{smooth, connected} \(N\)-point correlation functions. 
+
+We can calculate these ``smoothed'' correlation functions through \(Z[J]\) by choosing \(J(x)\) in the form 
+%
+\begin{align}
+J(x) =\int \dd{y} \varphi (x+y) W_R (y)
+\,,
+\end{align}
+%
+where \(\varphi \) is a generic function.
+
+Since these regularized correlation functions do not explode at vanishing distances, we can define the \(N\)-th order \textbf{moment}:
+%
+\begin{align}
+\expval{q_R^{N}} = C^{(N)}_R (x \dots x) 
+\,
+\end{align}
+%
+and the \(N\)-th order \textbf{cumulant}: 
+%
+\begin{align}
+\expval{q_R^{(N)}}_C = C^{(N)}_{R, C} (x \dots x)
+\,.
+\end{align}
+
+Due to homogeneity and isotropy, neither of these depends on \(x\). 
+We expect these to diverge if we perform no filtering, which is equivalent to taking the filtering scale \(R \to 0\).
+On the opposite limit, taking \(R \to \infty \) amounts to averaging over all space, so we expect \(\expval{q_R^{N}} \sim \expval{q}^{N}\), while \(\expval{q_R^{N}}_C \sim 0\). 
+
+The moments of \(q_R\) can be obtained through the moment generating function 
+%
+\begin{align}
+Z(\varphi ) = Z[J_\varphi (x) ] = Z[\varphi W_R (\abs{x})]
+\,,
+\end{align}
+%
+and we can define the \emph{cumulant} generating function \(W(\varphi )\) analogously. 
+We can then define an effective action through a Legendre transform:
+%
+\begin{align}
+\Gamma (q_{R, \text{cl}}) = W(\varphi ) - q_{R, \text{cl}} \varphi 
+\,,
+\end{align}
+%
+where the classical field \(q_{R, \text{cl}}\) is given by 
+%
+\begin{align}
+q_{R, \text{cl}} = \dv{W(\varphi )}{\varphi }
+\,.
+\end{align}
+
+The function \(Z(\varphi )\) is just the Fourier transform of \(P_R(\alpha , \overline{x})\): 
+%
+\begin{align}
+Z(\varphi ) = \expval{e^{i \varphi q_R}}_q 
+= \int  \dd{\alpha } e^{i \varphi \alpha } P_{q_R} (\alpha ; \overline{x}) 
+\,,
+\end{align}
+%
+so we can insert the explicit expression for the probability inside the inverse of this transform: 
+%
+\begin{align}
+P_R(\alpha ; \overline{x}) &= \frac{1}{2 \pi } \int \dd{\varphi } e^{-i \alpha \varphi } Z(\varphi ) \\
+&= \frac{1}{2 \pi } \int \dd{\varphi } e^{-i \alpha \varphi }
+\int \mathcal{D}q P[q] \exp(i \varphi \int \dd{y} W_R (\abs{y - \overline{x}}) q(y) )
+\,.
+\end{align}
+
+We can expand \(Z(\varphi )\) and \(W(\varphi )\) as 
+%
+\begin{align}
+Z(\varphi ) &= 1 + \sum _{N=1}^{\infty } \frac{i^{N}}{N!} \varphi^{N} \expval{q_R^{N}} \\ 
+W(\varphi ) &=  \sum _{N=1}^{\infty } \frac{i^{N}}{N!} \varphi^{N} \expval{q_R^{N}}_C  
+\,,
+\end{align}
+%
+\todo[inline]{why?}
+therefore 
+%
+\begin{align}
+\expval{q_R^{N}} = \int \dd{\alpha } \alpha^{N} P_{q_R} (\alpha ; \overline{x})
+\,,
+\end{align}
+%
+which clarifies what was meant by saying that these are \emph{moments}. 
+\todo[inline]{Do we have a similar relation for the connected moments?}
+
+\(P_{q_R}\) can be reconstructed starting from these moments. 
+
+We can take a different path, by transforming the probability measure: we start from the probability density functional evaluated at \(q\), and calculate the expectation value of a generic functional \(F[q]\) as 
+%
+\begin{align}
+\int \mathcal{D}q P[q] F[q]
+\propto \int \mathcal{D}q_R P[(W^{-1}, q_R)] F[(W^{-1}, q_R)]
+\,.
+\end{align}
+
+The proportionality is because we need to include a Jacobian determinant, however probability densities must always be normalized to 1 so any constant is inessential. 
+
+Applying this to a Gaussian field amounts to mapping the kernel \(K\) to a ``smoothed'' kernel \(K_R\), which corresponds to the inverse of the smoothed two-point correlation function: \(\expval{q_R(x) q_R(y)}\). 
+
+Now, we move to a more physical example. We consider a Gaussian field \(q\) in three dimensions, whose mean is zero and whose two-point function in Fourier space is 
+%
+\begin{align}
+\expval{q(k) q(k')} = (2 \pi )^3 P(\abs{k}) \delta^{(3)} (k - k')
+\,,
+\end{align}
+%
+where \(P(\abs{k})\) is called the \textbf{power spectral density} of the field \(q\): it quantifies how much of the power of the field is transmitted at each frequency. 
+
+The \textbf{Wiener–Khinchin theorem} tells us that the smoothed two-point function is given by 
+%
+\begin{align}
+\expval{q_R (x) q_R(y)} &= G_R ( \abs{x-y}) = \frac{1}{(2 \pi )^3}
+\int \dd[3]{k} P(k) \widetilde{W}^2_R(k) e^{i k \cdot (x-y)}  \\
+&= \frac{1}{2 \pi^2} \int_0^{\infty } \dd{k } k^2 P(k) \widetilde{W}^2_R (k) j_0 (k \abs{x-y})
+\,,
+\end{align}
+%
+where \(j_0 \) is a Bessel function of the first kind. 
+From the first expression we can read off the Fourier transform of \(K^{-1}_R\), whose inverse will then be 
+%
+\begin{align}
+\widetilde{K}_R (k) = \frac{1}{P(k) \widetilde{W}_R^2(k)} 
+\,.
+\end{align}
+
+Now, let us consider a typical power-spectrum: \(P(k) \propto k^{n}\). 
+The smoothed two-point function will be asymptotically (in the \(r \ll R\) or \(r \gg R\) limits) be proportional to
+%
+\begin{align}
+G_R (r) \propto \qty[\max(R, r)]^{- (n+3)}
+\,.
+\end{align}
+
+The \(n = 0\) case is \textbf{white noise}, for which \(G_R(0) \sim R^{-3}\). 
+\todo[inline]{Connection with a Poisson process\dots not clear}
+
+The \(n = -3\) case is \textbf{flicker noise} corresponds to \(1/f\) noise in 1D.
+
+In the \(n > 0\) case the smoothed two-point function \(G_R(r)\) must be equal to zero somewhere, since we have the constraint\footnote{This comes from the following line of reasoning: since the field has zero mean, 
+%
+\begin{align}
+\int \dd[3]{y} \expval{q_R (x) q_R (y)} = \expval{q_R (x) \int \dd[3]{y} q_R(y)} = 0
+\,.
+\end{align}}
+%
+\begin{align}
+\int_0^{\infty } \dd{r} r^2 G_R(r) = 0
+\,.
+\end{align}
+
+\todo[inline]{What does this have to do with \(n>0\)? Isn't this constraint always present?}
+
+The first zero-crossing of the correlation function, \(r_0 \) such that \(G_R(r_0 ) = 0\), is called the \textbf{coherence length}. 
+
+If \(n < 0\), we have fractal behaviour: as long as \(G_R(r) \gg 1\), the fractal dimension is \(D_F = -n\). 
+\todo[inline]{Clarify this\dots how would we show it?}
+
+A common technique in QFT is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
+
+In general, our probability measure can be written as 
+%
+\begin{align}
+P[q] = \exp(- \frac{1}{2} (q, K, q) - V[q])
+\,,
+\end{align}
+%
+where the potential term encompasses all the non-quadratic parts of the probability. Linear terms can be removed with a change of variable, so we can expand it starting from third order: 
+%
+\begin{align}
+V[q] = \sum _{n=3}^{\infty } \dd{x_1 } \dots \dd{x_n} K^{(n)} (x_1 \dots x_n) q(x_1 )\dots q(x_n)
+\,.
+\end{align}
+
+Now, if we define 
+%
+\begin{align}
+Z[J] = \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q) - V[q] + i (q, J) )
+\,,
+\end{align}
+%
+then we can expand the potential term perturbatively: 
+%
+\begin{align}
+Z[J] &= \exp(- V \qty(-i \fdv{}{J})) 
+\int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q) + i (q, J) )  \\
+&= \exp(- V \qty(-i \fdv{}{J}))
+\underbrace{\exp(- \frac{1}{2} (J, K^{-1}, J))}_{Z_0 [J]}  \\
+&= \sum _{n=0}^{\infty } \frac{(-)^{n}}{n!} \qty[V \qty(-i \fdv{}{J})]^{n} Z_0 [J]
+\,.
+\end{align}
+
+With this approach, we can \textbf{recover the probability} of the field attaining a certain value as a function of the cumulants.
+
+The \textbf{saddle point expansion} is the following: we want to compute an integral in the form 
+%
+\begin{align}
+J = \int \dd{\tau } \exp(
+    - f(\tau )
+)
+\,,
+\end{align}
+%
+so we choose a \(\tau_0 \) such that \(f' (\tau_0 ) = 0\), and then compute 
+%
+\begin{align}
+J &\approx \int \dd{\tau } \exp(
+    - f(\tau_0 ) - \frac{1}{2} f''(\tau_0 ) (\tau - \tau 0 )^2
+)  \\
+&\approx \sqrt{\frac{2 \pi }{f''(\tau_0 )}} \exp(- f(\tau_0 ))
+\,.
+\end{align}
+%
+
 
 \end{document}

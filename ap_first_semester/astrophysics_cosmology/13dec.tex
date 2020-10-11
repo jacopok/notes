@@ -87,7 +87,7 @@ which we can invert to find an expression for the core pressure \(P_c \) in term
 %
 \begin{align}
   P_c = \qty(\frac{3}{a} \frac{1 - \beta  }{\beta^{4}})^{1/3} \qty(\frac{k_B \rho _c }{\overline{m}})^{4/3}
-  &= \qty(\frac{\pi }{36})^{1/3} G M^{1/3} \rho _c^{4/3} \\
+  &= \qty(\frac{\pi }{36})^{1/3} G M^{2/3} \rho _c^{4/3} \\
   \qty(\frac{\pi }{36})^{1/3} G M^{2/3} 
   &= \qty(\frac{3}{a} \frac{(1-\beta )}{\beta^{4}})^{1/3}
   \qty(\frac{k_B}{\overline{m}})^{4/3}
@@ -110,7 +110,7 @@ Looking at the plot the other way, the heavier the star, the larger the contribu
 \caption{A plot of \(f(\beta )\).}
 \label{fig:beta-core-pressure}
 \end{figure}
-\todo[inline]{Figure made quickly, to improve by scaling it correctly, making it vector, setting the text in the right font.}
+\todo[inline]{Figure made quickly, to improve by scaling it correctly, making it vector, setting the text in the right font. The plot is ready, but the units don't seem to work! }
 
 This makes sense intuitively: heavier stars reach higher temperatures and densities, so they have more radiation in the core. 
 
@@ -277,7 +277,7 @@ We will not discuss how the transition region looks, but if \(k_B T \ll \epsilon
 
 Recall that \(p_F \propto n_e^{1/3}\): therefore, in a log-log plot of temperature \(T\) versus density of possible electron densities \(n_e\) we can draw a line distinguishing the degenerate and nondegenerate cases, with the critical temperature becoming higher for higher \(n_e\).
 
-\todo[inline]{Is it really a straight line though? If the criterion is indeed to compare \(k_B T\) and \(\epsilon _p\) then I'd expect a curve, since \(\epsilon _F\) is not a polynomial function of \(p_F\)\dots}
+% \todo[inline]{Is it really a straight line though? If the criterion is indeed to compare \(k_B T\) and \(\epsilon _p\) then I'd expect a curve, since \(\epsilon _F\) is not a polynomial function of \(p_F\)\dots}
 
 % We make a plot: on the \(x\) axis we have the number density in \(\SI{}{m^{-3}}\), on the \(y\) axis we have the temperature in \(\SI{}{K}\).
 Having distinguished the degenerate and nondegenerate regions, we can distinguish the relativistic and nonrelativistic ones: for the nondegenerate case, as is usual, we reach the relativistic condition if we increase the temperature. 
@@ -285,7 +285,14 @@ Having distinguished the degenerate and nondegenerate regions, we can distinguis
 In the degenerate case this is not really the case: as long as the gas is degenerate, the temperature does not really matter, and the gas becomes relativistic when the Fermi energy \(\epsilon _F\) becomes larger than the mass of the fermion.
 Since \(\epsilon _F\) is only a function of the number density, this means that the gas can become relativistic at arbitrarily low temperatures as long as it is dense enough.
 
-\todo[inline]{Add plot --- maybe we can do a chromatic region plot, integrating numerically the distribution and coloring the region based on the fraction of relativistic particles, and for the degeneracy measure in some way how ``sharp'' the boundary is between the filled and unfilled regions?}
+% \todo[inline]{Add plot --- maybe we can do a chromatic region plot, integrating numerically the distribution and coloring the region based on the fraction of relativistic particles, and for the degeneracy measure in some way how ``sharp'' the boundary is between the filled and unfilled regions?}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/relativisticity_degeneracy.pdf}
+\caption{Regions in which an electron gas is degenerate (red) and/or relativistic (blue), depending on its density \(n_e\) and on its temperature \(T\). The lines are drawn defining ``degenerate'' as having \(T < T_F = \epsilon _F - m_e c^2\) and ``relativistic'' as having the average kinetic energy of an electron (\(E_k = (\gamma - 1) m_e c^2\)), be larger than \(m_e c^2\).
+Orders of magnitude are given for common objects.}
+\label{fig:relativisticity_degeneracy}
+\end{figure}
 
 % We divide the plot into: 
 % \begin{enumerate}

@@ -815,16 +815,50 @@ J = \int \dd{\tau } \exp(
 \,,
 \end{align}
 %
-so we choose a \(\tau_0 \) such that \(f' (\tau_0 ) = 0\), and then compute 
+so we choose a \(\tau_0 \) such that \(f' (\tau_0 ) = 0\), and then approximate \(f\) up to second order: 
 %
 \begin{align}
 J &\approx \int \dd{\tau } \exp(
-    - f(\tau_0 ) - \frac{1}{2} f''(\tau_0 ) (\tau - \tau 0 )^2
+    - f(\tau_0 ) - \frac{1}{2} f''(\tau_0 ) (\tau - \tau_0  )^2
 )  \\
 &\approx \sqrt{\frac{2 \pi }{f''(\tau_0 )}} \exp(- f(\tau_0 ))
 \,.
 \end{align}
+
+We are effectively approximating the integrand as a Gaussian. 
+
+We can apply this to the calculation of path integrals: if the probability \(P(q)\) can be written in terms of \(Z(\varphi ) = \exp(W(\varphi ))\), then we have 
 %
+\begin{align}
+P(q) &= \frac{1}{2 \pi } \int \dd{\varphi } \exp(-i \varphi q + W(\varphi ))
+\,.
+\end{align}
+
+The classical variable \(q _{R, \text{cl}} = \overline{q}\) is defined as \(\overline{q}= W' (\varphi ) \), and the effective action is written in terms of it: \(\Gamma (\overline{q}) = W(\varphi ) - \overline{q} \varphi \). Therefore, 
+%
+\begin{align}
+\dv{\overline{q}}{\varphi } = W''(\varphi )
+\,,
+\end{align}
+%
+while the derivative of the classical action reads 
+%
+\begin{align}
+\Gamma '' (\overline{q})
+= \dv{}{\overline{q}}
+\qty(- \varphi ) 
+= - \qty[W''(\overline{q})]^{-1}
+\,.
+\end{align}
+
+This means that \(\dd{\varphi } = - \Gamma'' (\overline{q}) \dd{\overline{q}}\), which allows us to change variable: 
+%
+\begin{align}
+P(q) = -\frac{1}{2 \pi } \int \Gamma '' (\overline{q}) \dd{\overline{q}}
+\exp( i q \Gamma '(\overline{q}) + \Gamma (\overline{q}) - \overline{q} \Gamma ' (\overline{q}))
+\,.
+\end{align}
+
 
 
 \end{document}

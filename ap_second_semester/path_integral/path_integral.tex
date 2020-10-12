@@ -856,6 +856,101 @@ This means that \(\dd{\varphi } = - \Gamma'' (\overline{q}) \dd{\overline{q}}\),
 \begin{align}
 P(q) = -\frac{1}{2 \pi } \int \Gamma '' (\overline{q}) \dd{\overline{q}}
 \exp( i q \Gamma '(\overline{q}) + \Gamma (\overline{q}) - \overline{q} \Gamma ' (\overline{q}))
+\,,
+\end{align}
+%
+where we used the fact that 
+%
+\begin{align}
+- i \varphi q + W(\varphi ) &= - i \varphi q + \Gamma (\overline{q}) + \overline{q} \varphi    \\
+&= \Gamma (\overline{q}) + (\overline{q} - iq) \dv{\Gamma (\overline{q})}{\overline{q}}
+\,.
+\end{align}
+
+For large \(q\), this oscillating integral is dominated by the points at which the phase does not change much: these are the stationary points of the argument of the exponential, 
+%
+\begin{align}
+iq \Gamma'' (\overline{q})  
++ \Gamma '(\overline{q}) - \Gamma '(\overline{q}) - \overline{q} \Gamma '' (\overline{q}) 
+=
+\Gamma'' (\overline{q}) (iq - \overline{q} )
+&= 0
+\,,
+\end{align}
+%
+meaning that \(\overline{q} = iq\).
+
+We can then apply the saddle-point approximation: 
+%
+\begin{align}
+P(q) &\approx \frac{e^{i \Gamma (iq)}}{2 \pi } \Gamma '' (iq)
+\int \dd{\overline{q}} \exp(- \Gamma ''(iq) \frac{\qty(\overline{q} - iq)^2}{2})  \\
+&\approx \sqrt{\frac{\Gamma '' (iq)}{2 \pi }} \exp(\Gamma (iq))
+\,.
+\end{align}
+
+In the Gaussian case the probability reads 
+%
+\begin{align}
+P(q) = \frac{1}{\sqrt{2 \pi \sigma _R^2}} \exp(- \frac{q^2}{2 \sigma _R^2})
+\,,
+\end{align}
+%
+so we can recognize \(\Gamma (\overline{q}) = \overline{q}^2 / (2 \sigma _R^2)\), while \(W (\varphi ) = \varphi^2 / (2 \sigma _R^2)\). 
+
+We can apply this approximation to the evaluation of the general case: 
+%
+\begin{align}
+Z[J] = \int \mathcal{D}q \underbrace{\exp(- \frac{1}{2} (q, K, q) - V[q] + i (q, J))}_{\exp(\mathscr{F}[q, J])}
+\,.
+\end{align}
+
+% The functional \(\mathscr{F}[q, J]\) is the solution of the 
+The functional integral will be dominated by the stationary points of \(\mathscr{F}[q, J]\): we define \(q_0 \) as the field configuration satisfying
+%
+\begin{align} \label{eq:functional-equation-for-q0}
+\eval{\fdv{\mathscr{F}[q, J]}{q}}_{q_0 } = (K, q_0 ) + \eval{\fdv{V[q]}{q}}_{q_0 } - iJ = 0
+\,.
+\end{align}
+
+This will depend on \(J\) in general. We then expand up to second order, as usual: 
+%
+\begin{align}
+\mathscr{F}[q, J] \approx \mathscr{F}[q_0 , J] + \frac{1}{2} \int \dd{x} \dd{y} \eval{\frac{ \delta^2 \mathscr{F}[q, J]}{ \delta q(x) \delta q(y) }}_{q_0 } \eval{(q(x) - q_0 (x)) (q(y) - q_0 (y))}_{\text{symm}}
+\,.
+\end{align}
+
+Thanks to the functional equation for \(q_0 \) \eqref{eq:functional-equation-for-q0}, we can write \(\mathscr{F}[q_0 , J]\) as 
+%
+\begin{align}
+\mathscr{F}[q_0 , J] &= \frac{1}{2} (q_0 , K, q_0 ) + V[q_0 ] - i (J, q_0 )  \\
+&= (K, q_0 ) + \eval{\fdv{V[q]}{q}}_{q_0 } - \frac{i}{2}  (q_0, J) 
+\,.
+\end{align}
+%
+
+This is usually the ``bottleneck'' in the calculation, practically speaking. It is really hard to solve this functional equation.
+Also, we define
+%
+\begin{align}
+\eval{\frac{ \delta^2 \mathscr{F}}{q(x_1 ) q(x_2 )}}_{q_0 }
+= K(x_1 , x_2 ) + \eval{\frac{ \delta^2 V[q]}{ \delta q(x_1 ) \delta q(x_2 )}}_{q_0 } = \mathscr{Q}(x_1 , x_2 )
+\,.
+\end{align}
+
+\todo[inline]{This confuses me: earlier we said that \(V\) starts from third order, since the quadratic term is brought out. What are we doing here? If we only consider the Gaussian part of \(V\) what is even the point of including it?}
+
+We then perform the integration with respect to the field \(q - q_0 \) (this amounts to adding a constant, so the measure does not change) and find 
+%
+\begin{align}
+Z[q_0 , J] \approx \mathscr{N}\frac{\exp(- \mathscr{F}[q_0, J ])}{\sqrt{\mathscr{Q} [q_0, J]}}
+\,.
+\end{align}
+
+Using the identity \(\log \det M = \Tr \log M\) we can compute 
+%
+\begin{align}
+W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, J] + \const
 \,.
 \end{align}
 

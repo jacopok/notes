@@ -1,4 +1,136 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-10-12, \\ compiled \\ \today}
+
+We come back to our noisy dataset \(x_i = \mu + n_i\). 
+If our noise comes from a Gaussian with a \emph{known}, \emph{constant} \(\sigma \), then we have 
+%
+\begin{align}
+\mathscr{L}(x_i | \mu , \sigma )
+= \frac{1}{\sigma \sqrt{2 \pi }} 
+\exp(- \frac{1}{2} \frac{(x_i - \mu )^2}{\sigma^2})
+\,.
+\end{align}
+
+We also assume that the realizations of the noise are independent. 
+So, the combined likelihood for all the data is given by 
+%
+\begin{align}
+\mathscr{L}(\vec{x} | \mu , \sigma ) = \prod_{i=1}^{N} \mathscr{L}(x_i, \mu , \sigma )
+\,.
+\end{align}
+
+Now, choosing a prior as we mentioned is difficult in general. Until now we have assumed that our noninformative prior would be constant. 
+For the type of parameter we have now --- \(\mu \) is a \emph{location} parameter --- works; however we have an issue: a uniform distribution must have a certain range in which it is nonzero, elsewhere it is zero. 
+This range must be finite.
+ 
+Zero cannot be updated: this is a problem.
+We can, however take a prior that is so wide that it is nonzero in any place the likelihood is measurably nonzero. Practically speaking we only work up to finite precision, so this is not a problem. 
+
+We only case about proportionality: the posterior is proportional to the likelihood, so
+%
+\begin{align}
+P \propto \prod_{i=1}^{N} \exp(- \frac{1}{2} \frac{(x_i - \mu )^2}{\sigma^2})
+\,,
+\end{align}
+%
+therefore the log-posterior is 
+%
+\begin{align}
+L = \log P = - \frac{1}{2 \sigma^2} \sum _{i=1}^{N} (x_i - \mu ) + \const
+\,,
+\end{align}
+%
+so if we want to find the maximum (log)-posterior: 
+%
+\begin{align}
+\dv{L}{\mu }  = \sum_{i=1}^{N} \frac{x_i- \mu }{\sigma^2}  =0 
+\,,
+\end{align}
+%
+meaning that 
+%
+\begin{align}
+N \mu = \sum_{i=1}^{N} x_i \implies \hat{\mu} = \frac{1}{N} \sum_{i=1}^{N} x_i
+\,.
+\end{align}
+
+We can also compute the estimate of the error on the estimate: 
+%
+\begin{align}
+\dv[2]{L}{\mu } =- \sum_{i=1}^{N} \frac{1}{\sigma^2} = - \frac{N}{\sigma^2}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\sigma_\mu = \qty(- \dv[2]{L}{\mu })^{-1/2} = \frac{\sigma}{\sqrt{N}}
+\,.
+\end{align}
+
+The great simplification we made here was that we are dealing with only one parameter.
+In any realistic astrophysics scenario we have at least a dozen. 
+
+\section{Multiparameter estimation}
+
+\subsection{A two-parameter example}
+
+We consider a photon counting experiment. 
+We have a diffraction experiment: we can measure light in \(M\) frequency channels, labelled by \(k\), and at different angles. 
+
+Our model (we need one for parameter estimation) is that for each frequency channel \(k\) we expect a Gaussian spatial profile centered around \(x_0 \) --- for simplicity we assume \(x_0 \) is known, and that the standard deviation \(w\) is known as well.
+We are interested in the amplitude \(A\) of this Gaussian peak.
+
+Also, we will have spatially constant noise with amplitude \(B\).
+We need to estimate \(A\) and \(B\) jointly; \(B\) is a \emph{nuisance parameter} we would ideally integrate over later. 
+
+We expect that the measured data at a frequency channel will look like 
+%
+\begin{align}
+D_k = n_0 \qty[ A\exp(- \frac{(x_k - x_0)^2}{2 w^2} + B)]
+\,.
+\end{align}
+
+The parameter \(n_0 \) accounts for the fact that if we measure for longer we see more photons. 
+
+Photons, both noise and signal, are expected to obey Poissonian statistics: 
+%
+\begin{align}
+\mathbb{P}(N_k | D_k) = \frac{D_k^{N_k} e^{- D_k}}{N_k!}
+\,,
+\end{align}
+%
+which is the likelihood: the probability of the data, given our model. 
+Our actual likelihood will be given by \(\mathscr{L} = \prod \mathbb{P}(N_k | D_k)\).
+
+What is our prior \(\mathbb{P}(A,B | I)\)? We know that these parameters cannot be negative, so we just take a uniform bivariate prior on \(A\geq 0\),  \(B \geq 0\).
+As before, this is just meant to say ``uniform over all representable values''. 
+
+We will discuss later that by the nature of \(A\) as a scale parameter it would be more reasonable to take \(\log A\) to be uniform.
+
+The posterior will then be 
+%
+\begin{align}
+\mathbb{P}(A, B | N_k, I) \propto
+= \prod_k \frac{D_k^{N_k} e^{-D_k}}{N_k!}
+\,.
+\end{align}
+
+This then depends on two parameters, and we can maximize it numerically. It is a difficult problem computationally, but not conceptually. 
+
+How can we model this in order to give an error? We can approximate it as a bivariate Gaussian. 
+
+In general, a bivariate Gaussian is given as 
+%
+\begin{align}
+\mathbb{P}(\vec{x}) = \frac{1}{(2 \pi )^{n/2} \abs{\Sigma }^{1/2}}
+\exp(- \frac{1}{2} (\vec{x} - \vec{\mu})^{\top} \Sigma^{-1} (\vec{x} - \vec{\mu}))
+\,,
+\end{align}
+%
+where \(\Sigma \) is the \textbf{covariance matrix} of the two variables. 
+On the diagonal we have the variance of each variable: \(\Sigma_{ii} = \sigma_i^2\), so \((\Sigma^{-1})_{ii} = 1 / \sigma _i^2\) as long as the covariance (meaning, the nondiagonal elements) is zero.
+
 \end{document}

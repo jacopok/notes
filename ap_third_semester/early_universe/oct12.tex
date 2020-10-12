@@ -1,0 +1,92 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2020-10-12, \\ compiled \\ \today}
+
+As we saw last time, inflation provides an ``attractor solution'' to the flatness problem. 
+
+We must impose 
+%
+\begin{align}
+\frac{1 - \Omega _i^{-1}}{1 - \Omega_0^{-1}} \gtrsim 1
+\,
+\end{align}
+%
+in order to solve the flatnesss problem. 
+Since \(( 1- \Omega^{-1}) \rho a^2\) is a constant, this ratio is equal to 
+%
+\begin{align}
+\frac{1 - \Omega _i^{-1}}{1 - \Omega_0^{-1}}
+= 
+\frac{\rho_0 a_0^2}{\rho _i a_i^2} 
+= 
+\frac{\rho_0 a_0^2}{\rho _{\text{eq}} a _{\text{eq}}^2}
+\frac{{\rho _{\text{eq}} a _{\text{eq}}^2}}{\rho _f a_f^2} 
+\frac{\rho _f a _f^2}}{\rho _i a_i^2} 
+\,,
+\end{align}
+%
+and since \(\rho \propto a^{-3 (1+w)}\) the term we are considering scales like \(\rho a^2 \propto a^{-(1 + 3w)}\). 
+Substituting this in, accounting for the fact that the first term is in the matter-dominated epoch while the second is in the radiation-dominated one we have 
+%
+\begin{align}
+\frac{1 - \Omega _i^{-1}}{1 - \Omega_0^{-1}}
+&= 
+\qty(\frac{a_0 }{ a _{\text{eq}}})^{-1} 
+\qty(\frac{a _{\text{eq}}}{a_f})^{-2}
+\qty(\frac{a_f}{ a_i})^{-(1 + 3 w_f)}
+e^{N \abs{1 + 3 w_f}} = \frac{1 - \Omega_i^{-1}}{1 - \Omega_0^{-1}} X
+\,,
+\end{align}
+%
+where \(w_f\) is the equation of state in the inflationary phase, while 
+%
+\begin{align}
+X &= \frac{a_0 }{ a _{\text{eq}}}\qty(\frac{a _{\text{eq}}}{a_f})^2 \\
+&\approx \num{60}
+\,.
+\end{align}
+
+
+Then, 
+%
+\begin{align}
+e^{N \abs{1 + 3 w_f}} &\gtrsim \underbrace{\frac{1 - \Omega _i^{-1}}{1-\Omega_0 }}_{\gtrsim 1} X \\
+N _{\text{min}} &= \frac{\log X}{\abs{1 + 3 w_f }} \approx 60 \divisionsymbol 70
+\,,
+\end{align}
+%
+where we assumed \(w_f \sim -1\). There is some model dependence, specifically regarding the transition from inflation to radiation domination. 
+
+It is interesting that this is similar to the number of \(e\)-folds needed to solve the horizon problem. 
+
+We can also write the expression, defining \(N = p N _{\text{min}}\), as
+%
+\begin{align}
+1 - \Omega_0^{-1} = \frac{1 - \Omega_i^{-1}}{\exp((p -1) N _{\text{min}} (1 + 3 w_f))}
+\,,
+\end{align}
+%
+so, taking \(p = 2\) and \(w_i = -1\) we have 
+%
+\begin{align}
+1 - \Omega_0^{-1} = (1 - \Omega _i^{-1} ) e^{-2 N _{\text{min}}} = (1-\Omega _i^{-1}) X^{-1}
+\,.
+\end{align}
+
+Constraining \(\Omega_0\) allows us to constrain \(\Delta N = N - N _{\text{min}}\). 
+Right now we have \(\abs{1 - \Omega_0 } < \SI{.4}{\percent}\) (at \SI{95}{\percent} CL) we can say \(\Delta N \gtrsim 5\).
+
+\section{???}
+
+Consider the HBB model, at \(t < t _{\text{eq}}\): the radiation-dominated epoch. 
+
+The Planck time, the only characteristic time of the universe a priori, is \(t _{\text{Pl}} \approx \SI{e-43}{s}\). 
+If the universe is spatially closed, then \(t _{\text{collapse}} = 2 t_m\). 
+We would expect for the time of collapse to be of the order of the Planck time. 
+
+If the universe was spatially open, we would expect that for \(t > t_* \sim t _{\text{Pl}}\) we would have curvature domination: \(a (t)/ a(t _{\text{t_*}}) \sim t / t_*\).
+
+Therefore, we would have \(t_0 = t _{\text{Pl}} T _{\text{Pl}} / T_0 \sim \SI{e-11}{s}\). 
+
+\end{document}

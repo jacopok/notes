@@ -1,4 +1,126 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-10-13, \\ compiled \\ \today}
+
+Homework: we have on Moodle a sheet with the same homework as last year.
+This year's will likely be quite similar, although a couple exercises might change.
+
+Coming back to two-parameter estimation:
+what is interesting now is to give error-bars on our parameters. 
+
+If our posterior for a single parameter is a Gaussian, then the errorbar for that parameter will be the \(\sigma \) for that Gaussian.
+We can compute the \(\sigma \) through the FWHM or any other height-interval. 
+
+For a multivariate Gaussian the reasoning is the same. 
+We can intercept the distribution with a plane at a given height, and project the interception (which for a perfect Gaussian will be an ellipse) onto the plane of the two variables. 
+
+We can thus find the region corresponding to a \SI{68}{\percent}, \SI{95}{\percent} or whatever percent probability contained inside: a credible region.
+
+We have a probability distribution \(P = \mathbb{P}(x, y | \vec{D}, I)\), where \(\vec{D}\) is the data vector while \(I\) represents previous information. 
+We usually work with \(L = \log P\).
+
+The MAP estimate is the pair \((x_0 , y_0 )\) such that 
+%
+\begin{align}
+\eval{\vec{\nabla} L}_{(x_0 , y_0 )} = \vec{0}
+\,.
+\end{align}
+
+We can then Taylor expand in two variables: the first derivative vanishes. Let us denote the parameter vector as \(\vec{t} = (x, y)\)
+%
+\begin{align}
+L(x, y) &= L(x_0 , y_0 ) 
++ \frac{1}{2} \eval{\pdv[2]{L}{x}}_{\vec{t}_0} (x - x_0)^2
++ \frac{1}{2} \eval{\pdv[2]{L}{y}}_{\vec{t}_0} (y - y_0)^2
++ \eval{\pdv{L}{y}{x}}_{\vec{t}_0} (x-x_0 )(y - y_0)  \\
+&= L(x_0 , y_0 ) 
++ \frac{1}{2} (\vec{t} - \vec{t}_0)^{\top} \eval{H}_{\vec{t}_0 } (\vec{t} - \vec{t}_0)
+\,,
+\end{align}
+%
+where \(H\) is the Hessian matrix, \(H_{ij} = \partial_{i} \partial_{j} L\). 
+Then, the probability reads 
+%
+\begin{align}
+P = \exp(L) = \const \times  \exp[ \frac{1}{2} (\vec{t} - \vec{t}_0)^{\top} \eval{H}_{\vec{t}_0 } (\vec{t} - \vec{t}_0)]
+\,.
+\end{align}
+
+This is precisely a multivariate Gaussian, with a covariance matrix \(\Sigma \) such that \(H = - \Sigma^{-1}\).
+
+Let us denote \(Q = (\vec{t} - \vec{t}_0)^{\top} \eval{H}_{\vec{t}_0 } (\vec{t} - \vec{t}_0)\). 
+
+This is the argument of the exponential, so having constant \(P\) means having constant \(L\) means having constant \(Q\). 
+Note that \(H\) is both \emph{negative} definite and symmetric, since the covariance matrix must be positive definite and symmetric. 
+
+The matrix \(H\) will have two eigenvectors: these define the principal axes, knowing which we will be able to draw the contours.
+If we impose \(Q = k\) for some real number \(k\), the lengths of the eigenvectors \( \vec{e}_i\) will satisfy \(\abs{\vec{e}_i} = k / \lambda _i\), where \(\lambda _i\) are the corresponding eigenvalues.
+
+If \(H_{12} = 0\), then the principal axes are aligned with the coordinate axes: the parameters are \emph{uncorrelated}.
+
+How do we compute an errorbar for a \textbf{marginalized} parameter? 
+We start by marginalizing: 
+%
+\begin{align}
+\mathbb{P}(x) = \int \exp(L) \dd{y}
+\,,
+\end{align}
+%
+which will be a function of \(x\) only. 
+The errorbar is then given by \(\sigma _x^2 = \expval{(x - x_0 )^2} = \int \mathbb{P}(x) (x-x_0 )^2 \dd{x}\). So, the final expression is given by 
+%
+\begin{align}
+\sigma^2_x = \int (x-x_0)^2 \int \exp(L) \dd{y} \dd{x}
+\,.
+\end{align}
+
+For a bivariate Gaussian, this yields \(\sigma^2_x = (-H^{-1})_{11}\). 
+Note that there is a big difference between \((H_{11})^{-1}\) and \((H^{-1})_{11}\).
+
+We can also compute the covariance: 
+%
+\begin{align}
+\operatorname{Cov}(x, y) = \expval{(x-x_0 )(y-y_0 )}
+= \int (x-x_0 ) (y - y_0 ) \exp(L) \dd{x} \dd{y}  = - \qty(H^{-1})_{12}
+\,.
+\end{align}
+
+Now, let us discuss how \(\sigma _x = \sqrt{(- H^{-1})_{11}}\) changes with the other parameters: in this bivariate case we can write it explicitly, it comes out to be
+%
+\begin{align}
+\sigma _x &= \sqrt{\frac{- H_{yy}}{\det H}}  \\
+&= \sqrt{\frac{- H_{yy}}{H_{xx} H_{yy} - H^2_{xy}}}
+\,.
+\end{align}
+
+If the two parameters are uncorrelated, this simplifies to \(\sigma _x = \sqrt{- 1 / H_{xx}}\): the same as the one-parameter case, since the Hessian is minus the inverse of the covariance matrix.
+This is expected: if the parameters are uncorrelated the probability factors.
+
+If, instead, we have correlation then the error on \(x\) increases.
+
+If the determinant vanishes, the single-parameter errorbar diverges: the parameters are completely \emph{degenerate}. 
+This happens when the effect of the noise is undistinguishable from the effect of the signal. 
+We can, though, often perform a change of variables in order to constrain some combination of the parameters. 
+
+The CMB has a temperature average of \(\expval{T(\hat{n})} \approx \SI{2.725}{K}\), but there are anisotropies. 
+These can be expanded in spherical harmonics, whose coefficients encode all the information: these represent the \emph{angular power spectrum}.
+
+The coefficients we compute are \(\expval{\abs{a_{\ell m}}^2} = C_\ell\). 
+\todo[inline]{Is there a sum there?}
+
+The problem is that the \(C_\ell\) are sensitive to cosmological parameters. The features of the spectrum we change are different depending on which parameter we change. 
+Changing \(\Omega _{0b}\) raises the odd-numbered peaks and lowers the even-numbered ones, \(\Omega _{0m}\) raises the third peak compared to the second\dots 
+
+We start off with a power spectrum \(P(k) = A k^{n}\), and then we have oscillations. Changing \(A\) has the effect of raising the whole spectrum. 
+
+After recombination there is \emph{reionization}, when the first stars form. At \(z \sim 6 \divisionsymbol 10\) the universe becomes ionized again, so there are free electrons messing up the CMB. This damps the primordial fluctuations. 
+
+The optical depth due to reionization is denoted as \(\tau \). 
+Therefore, the parameters \(A\) and \(\tau \) are very degenerate!
+The degeneracy is not complete, since \(\tau \) is causal: it can not affect the first 10-so multipoles, while \(A\) can.
+
+What must be done is finding some observable which breaks the degeneracy: one option is looking at CMB polarization.
+\(\tau \) has a polarizing effect, \(A\) does not. 
+
 \end{document}

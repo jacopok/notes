@@ -103,7 +103,7 @@ Photons, both noise and signal, are expected to obey Poissonian statistics:
 \end{align}
 %
 which is the likelihood: the probability of the data, given our model. 
-Our actual likelihood will be given by \(\mathscr{L} = \prod \mathbb{P}(N_k | D_k)\).
+Our actual likelihood will be given by \(\mathscr{L} = \prod_k \mathbb{P}(N_k | D_k)\).
 
 What is our prior \(\mathbb{P}(A,B | I)\)? We know that these parameters cannot be negative, so we just take a uniform bivariate prior on \(A\geq 0\),  \(B \geq 0\).
 As before, this is just meant to say ``uniform over all representable values''. 
@@ -114,7 +114,7 @@ The posterior will then be
 %
 \begin{align}
 \mathbb{P}(A, B | N_k, I) \propto
-= \prod_k \frac{D_k^{N_k} e^{-D_k}}{N_k!}
+ \prod_k \frac{D_k^{N_k} e^{-D_k}}{N_k!}
 \,.
 \end{align}
 
@@ -122,7 +122,7 @@ This then depends on two parameters, and we can maximize it numerically. It is a
 
 How can we model this in order to give an error? We can approximate it as a bivariate Gaussian. 
 
-In general, a bivariate Gaussian is given as 
+In general, a multivariate Gaussian is given as 
 %
 \begin{align}
 \mathbb{P}(\vec{x}) = \frac{1}{(2 \pi )^{n/2} \abs{\Sigma }^{1/2}}

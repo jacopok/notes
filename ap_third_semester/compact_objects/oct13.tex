@@ -1,4 +1,203 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-10-13, \\ compiled \\ \today}
+
+% 542129
+
+We were discussing geodesics in the external Schwarzschild solution. 
+We wrote down the locus of the inversion point \(\dot{r} = 0\): this is 
+%
+\begin{align}
+\lambda_{\pm} = \pm x \sqrt{\frac{\Gamma x + 1}{x-1}}
+\,.
+\end{align}
+
+\begin{enumerate}
+    \item For \(\Gamma > 0\) there is one extremum;
+    \item for \(- 1/9 < \Gamma < 0\) there are two extrema;
+    \item for \(-1 < \Gamma < - 1/9\) there are no extrema. 
+\end{enumerate}
+
+Let us consider the two-extrema case. Then, there is an intersection with the \(x\) axis at \(x = - 1/ \Gamma \) for the \(\lambda_{\pm }\). 
+Then the curve looks like a doorknob: it is a closed curve. 
+
+In this case, we are considering \emph{bound states}: the particle can start on the LHS of the curve, and if this is the case it must reach the inversion point and then go back and eventually cross the horizon.
+If it is in the ``doorknob region'', then it is trapped there. 
+
+These orbits are similar to the Newtonian elliptic ones, but there are differences. These are radially bound, however they are not in general periodic: they will precess.
+
+We can also have circular orbits, both stable and unstable. 
+
+In the no-extrema case there are no orbits. The limiting case \(\Gamma = - 1/9\) is interesting: the minimum becomes an inflection point, with zero second derivative.  
+This happens at \(x = 3\). 
+This is the ISCO: the Innermost Stable Circular Orbit.
+
+The corresponding energy is given by \(\epsilon^2 - 1 = - 1/9\): \(\epsilon = 2 \sqrt{2}  /3\), so 
+%
+\begin{align}
+E _{\text{ISCO}} = \frac{2 \sqrt{2}}{3} mc^2
+\,.
+\end{align}
+
+If we can bring a particle from infinity to the ISCO (which is what happens as an accretion disk is formed) it can release an energy equal to \(mc^2 - E _{\text{ISCO}} = (1 - 2 \sqrt{2} / 3) m c^2\). This is why an accretion disk can produce a large amount of energy. 
+
+The efficiency can then be computed as 
+%
+\begin{align}
+\text{efficiency} = \frac{mc^2 - 2 \sqrt{2} mc^2 / 3}{mc^2} \approx \SI{6}{\percent}
+\,.
+\end{align}
+
+This is a \emph{very large} efficiency: an order of magnitude more than the efficiency of nuclear burning. 
+
+\section{Schwarzschild internal solution}
+
+Now we try to solve the EFE under spherical symmetry \emph{with} a source: 
+%
+\begin{align}
+G_{ij} = R_{ij} - \frac{1}{2} g_{ij} R = 8 \pi T_{ij}
+\,,
+\end{align}
+%
+with a metric 
+%
+\begin{align}
+\dd{s^2} = - B(r) \dd{t^2} + A(r) \dd{r^2} + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+Birkhoff does not apply here: we are \emph{assuming} stationarity.
+We will use a very simple \(T_{ij}\): a perfect fluid, where 
+%
+\begin{align}
+T_{ij} 
+= (\rho + P) u_i u_j + P g_{ij} 
+\,,
+\end{align}
+%
+where the energy density is given by \(\rho = \rho_0 ( 1+ \epsilon )\): \(\rho_0\) is the rest energy density of the fluid, while \(\epsilon \) accounts for thermal motion and other kinds of internal energy.
+
+We will assume that the fluid is at rest with respect to the interior: we want to find an analog of the hydrostatic equilibrium equation. 
+So, \(\dd{r} = \dd{\theta } = \dd{\varphi } = 0\), while only \(\dd{t} \neq 0\). This means that only \(u^{0} \neq 0\), and normalization requires \(g_{ij} u^{i} u^{j} = -1\): this means that \(u^{0} =  1/ \sqrt{B}\), and the whole vector reads \(u^{i} = \delta^{i}_{0} / \sqrt{-g_{00} }\).
+
+Let us then write the nonzero mixed components of the stress-energy tensor: 
+%
+\begin{align}
+T^{0}_{0} = -\rho && 
+T^{1}_{1} = T^{2}_{2} = T^{3}_{3} = P
+\,,
+\end{align}
+%
+since if we have one upper and one lower index the normalization in \(u^{i} u_{j}\) simplifies. 
+
+Let us also skip the computations: the Einstein tensor reads 
+%
+\begin{align}
+G^{0}_{0} &= \frac{1}{A} \qty( \frac{1}{r^2} - \frac{A'}{rA}) - \frac{1}{r^2} = - 8 \pi \rho   \\
+G^{1}_{1} &= \frac{1}{A} \qty( \frac{1}{r^2} + \frac{B'}{rB}) - \frac{1}{r^2} = 8 \pi  P  \\
+G^{2}_{2} = G^{3}_{3}  &= - \frac{1}{2A} \qty[\frac{A'B'}{2AB} + \qty(\frac{B'}{B})^2 - \frac{B'}{Br^2} + \frac{A'}{r^2A} - \frac{B''}{2B}] = 8 \pi P
+\,.
+\end{align}
+
+We need to solve for \(\rho \), \(P\), \(A\) and \(B\): the equations of motion of the particles, \(\nabla_{i} T^{ij} = 0\), are a consequence of the Einstein equations. 
+
+We have three equations for four variables: we need an additional one, typically we combine them with an \emph{equation of state} for \(P\): a simple case, a \emph{barotropic EOS}, is in the form \(P = P(\rho )\).
+
+The first equation can be written as 
+%
+\begin{align}
+\frac{1}{A} - \frac{r A'}{A^2} = 1 - 8 \pi r^2 \rho 
+\,,
+\end{align}
+%
+which we can integrate to find 
+%
+\begin{align}
+\frac{r}{A} = r - \int_{0}^{r} 8 \pi \widetilde{r}^2\rho \dd{\widetilde{r}}
+\,.
+\end{align}
+
+We introduce the quantity 
+%
+\begin{align}
+m(r) = \int_{0}^{r} 4 \pi r^2 \rho \dd{r}
+\,,
+\end{align}
+%
+so that
+%
+\begin{align}
+A(r) = \qty(1 - \frac{2 m(r)}{r})^{-1}
+\,.
+\end{align}
+
+The problem is that \(m(r)\) is \emph{not} the total mass-energy enclosed in the region below \(r\): we are not integrating with respect to a covariant volume form.
+
+With the second two equations, we end up with 
+%
+\begin{align}
+\frac{1}{2B} \dv{B}{r} = - \frac{1}{P + \rho } \dv{P}{r}
+\,.
+\end{align}
+
+We have essentially solved for \(B\). 
+We can also manipulate the equations to find:
+%
+\begin{align}
+\dv{P}{r} = - \frac{m(r) \rho }{r^2} \qty(1 + \frac{P}{\rho })
+\qty(1 + \frac{4 \pi r^3 P}{m(r)}) \qty(1 - \frac{2 m(r)}{r})^{-1}
+\,,
+\end{align}
+%
+the \textbf{Tolman-Oppenheimer-Volkov} (TOV) equation. 
+This reduces to the hydrostatic equilibrium equation in weak gravity.
+
+The three other terms are basically three relativistic corrections, from velocity and radius: the first are applied based on whether the gas is relativistic \emph{in its own rest frame}; if this is the case, then \(P \sim \rho \).
+The first term is a local correction, the second one is a global one; the third term on the other hand is the usual GR correction, based on \(r _{\text{Schw}} / r\). 
+
+We can also write 
+%
+\begin{align}
+\dv{m}{r} = 4 \pi r^2 \rho 
+\,.
+\end{align}
+
+This equation, the TOV one and the equation of state form a closed system for \(m\), \(\rho \) and \(P\). 
+
+As for boundary conditions, we require that \(m(0) = 0\) and \(P(R) = 0\). 
+This is hard to do numerically: it is a boundary value problem, not an initial condition one. 
+
+Finally, we discuss the meaning of \(m(r)\). 
+The total \(M\) is given by 
+%
+\begin{align}
+M = \int_{0}^{R} 4 \pi r^2 \rho \dd{r}
+\,,
+\end{align}
+%
+where \(R\) is the radius of the star. This is \emph{not} the total mass, since \(\dd{V}\) is \emph{not} \(4 \pi r^2 \dd{r}\). 
+The \emph{proper} three-volume element is instead given by \(\dd{V} = 4 \pi r^2 \sqrt{A(r)} \dd{r}\), since the true radial distance is calculated through the metric: \(\dd{s^2} = A(r) \dd{r^2}\) if the measured length is radial. 
+
+We call \(M_*\) the mass which is calculated including the \(\sqrt{A}\) term. Their difference is 
+%
+\begin{align}
+M - M_* = \int_{0}^{R} 4 \pi r^2 \rho \qty(1 - \sqrt{A}) \dd{r}
+\,.
+\end{align}
+ 
+If \(r \gg 2m\) (the weak-field limit) then we can approximate \(A = 1 - 2m /r\):
+%
+\begin{align}
+M - M_* &\approx \int_{0}^{R} 4 \pi r^2 \rho \qty(1 - 1 - \frac{2m}{r}) \dd{r}    \\
+&\approx - \int_{0}^{R} \underbrace{4 \pi r^2 \rho \dd{r}}_{ \dd{m}} \frac{m}{r}   \\
+&\approx - \int_{M} \frac{Gm}{r} \dd{m} = E_g
+\,.
+\end{align}
+
+So, in the weak field limit, the mass defect is given by the gravitational potential energy! 
+This is a physical consequence of the \emph{nonlinearity} of the EFE. 
+
+The electromagnetic field behaves linearly at low energies, while in QED we can see nonlinearities.
+
 \end{document}

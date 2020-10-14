@@ -1,4 +1,234 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-14, \\ compiled \\ \today}
+
+We were talking about Spontaneous Symmetry Breaking: how does it work in a cosmological context? 
+Specifically, we ask about its effect on cosmological phase transitions at high temperatures in the early universe. 
+
+We start out with a scalar field \(\varphi \) with Lagrangian\footnote{We can write it with partial derivatives instead of covariant ones since for a scalar \(\varphi \) they are equal: \(\nabla_{\mu } \varphi = \partial_{\mu} \varphi \).}
+%
+\begin{align}
+\mathscr{L}_\varphi = 
+- \frac{1}{2} g^{\mu \nu } \partial_{\mu } \varphi \partial_{\nu } \varphi 
+- V(\varphi )
+\,,
+\end{align}
+%
+where we choose a potential 
+%
+\begin{align}
+V(\varphi ) = \frac{\lambda }{4} \qty(\varphi^2 - \sigma^2)^2
+\,.
+\end{align}
+
+This is the typical example of a potential which exhibits SSB. Its vacuum (minimum) is a pair of points at \(\abs{\varphi} = \sigma \).
+
+The Lagrangian is invariant under \(\varphi \to - \varphi \); either of the vacuum states is not. 
+
+We need to consider finite-temperature effects on the propagator of the scalar field. 
+The temperature corrections to this potentials yields a temperature-dependent mass term, which looks like 
+%
+\begin{align}
+m^2_T = \alpha \lambda T^2
+\,,
+\end{align}
+%
+where \(\lambda \) is the coupling of the field, while \(\alpha \) is a dimensionless order-1 number. 
+
+Then, the potential reads 
+%
+\begin{align}
+V_T (\varphi ) = V_{t=0}(\varphi ) + \frac{1}{2} \alpha \lambda \varphi^2 T^2
+\,.
+\end{align}
+
+If the temperature is sufficiently high, the potential will have only one vacuum again. 
+This means that if we go far enough back in time the symmetry is restored. 
+
+The moment at which the potential goes from one minimum to two is the one at which we have a \textbf{phase transition}. At which temperature does it happen? We can find out by considering the sign of the second derivative of the potential at \(\varphi = 0\): 
+%
+\begin{align}
+\eval{\dv[2]{V}{\varphi }}_{\varphi =0}  = - \lambda \sigma^2 + \lambda \alpha T^2
+\,,
+\end{align}
+%
+so we have a critical temperature \(T \approx \sigma / \sqrt{\alpha }\) at which the symmetry is broken.
+
+\subsection{Topological defects}
+
+The defects are quite similar to the defects we find in regular phase transitions we know at our scales, like water to ice: the crystal which forms is not perfect. 
+
+The minima \(\varphi = \pm \sigma \) are the \emph{true vacuum} of the system, while \(\varphi = 0\) is the \emph{false vacuum}. 
+
+There will be regions in the universe in which the scalar field goes to \(+ \sigma \), and other regions in which it goes into \(- \sigma \). 
+This is because the two minima are equivalent: there are even odds for the field at any point to fall into either. In causally connected regions it will go into the same minimum. 
+There will then be boundaries between the regions in which the field goes into \(+ \sigma \) and \(- \sigma \).
+
+In a mostly-plus metric signature, the equation of motion reads 
+%
+\begin{align}
+\square \varphi = \pdv{V}{\varphi }
+\,,
+\end{align}
+%
+so if we neglect the curvature and consider static solutions we will have 
+%
+\begin{align}
+- \nabla^2 \varphi = \pdv{V}{\varphi }
+\,.
+\end{align}
+
+Further, we consider an infinite domain wall in the \(xy\) plane, assuming that for \(z \to \pm \infty \) we have \(\varphi = \pm \sigma \). Also, we assume that the whole field has no \(x\) or \(y\) dependence.  
+Let us then substitute into the equation: 
+%
+\begin{align}
+- \pdv[2]{\varphi }{z} = - \pdv{V}{\varphi } = - \lambda \varphi (\varphi^2 - \sigma^2)
+\,.
+\end{align}
+
+Solving this yields 
+%
+\begin{align}
+\varphi (z) = \sigma \tanh \qty( \frac{z}{\Delta })
+\,,
+\end{align}
+%
+where \(\Delta \) is the \emph{thickness} of the wall, which we can estimate through energetic configurations: the surface energy will have contributions through the gradient of the field: \( \Delta (\partial_{z} \varphi)^2 \sim \Delta \sigma^2 / \Delta^2 = \sigma^2 / \Delta  \); and a potential term \(V(\varphi ) \sim \Delta V(\varphi =0) \sim \Delta \lambda \sigma^{4} / 4\). 
+
+\todo[inline]{Add clarification of the estimates.}
+
+These scale oppositely with \(\Delta \): the kinetic energy decreases for a wide wall, the potential energy decreases for a narrow wall. 
+Then, we can find an optimum at \(\Delta \sim 1 / (\sigma \sqrt{\lambda })\). 
+
+This domain wall is not removable, the configuration is topologically stable. 
+
+Now we discuss the Kibble mechanism, which demonstrates how phase transitions always generate domain walls. 
+Let us denote as \(\xi \) the typical size of the domains: it is called the \emph{correlation length} of \(\varphi \). 
+
+We know that in the radiation-dominated epoch there is a finite particle horizon \(d_H(t) = 2 ct\), so we must have \(\xi \lesssim d_H (t)\). 
+
+Then, we find a lower bound on the number density of the domain walls, \(n_X \sim \xi^{-3} \gtrsim d_H^{-3}(t)\). 
+
+Recall from regular HBB cosmology that 
+%
+\begin{align}
+H^2(t) = \frac{8 \pi G}{3} \rho _r = \frac{8 \pi G}{3} \frac{\pi^2}{30} g_* T^{4}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+t = \frac{1}{2 H} \approx \num{.3} \frac{1}{\sqrt{g_*}} \frac{M _{\text{Pl}}}{T^2}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+n_X \gtrsim \qty(\frac{\sqrt{g_*}}{\num{.6}} \frac{T}{M _{\text{Pl}}})^3 T^3 \sim \qty(\frac{\sqrt{g_*}}{\num{.6}} \frac{T}{ M _{\text{Pl}}})^3 n_\gamma (T)
+\,,
+\end{align}
+%
+since the number density of photons scales like \(n_\gamma (T) \sim T^3\).
+
+Let us evaluate this number density, for \(T \sim T _{\text{GUT}} \sim \SI{e15}{GeV}\).
+Here, \(g_* \sim 100\), meaning that we get 
+%
+\begin{align}
+n_X (T _{\text{GUT}}) > \num{e-9} \divisionsymbol \num{e-10} n_\gamma (T _{\text{GUT}})
+\,.
+\end{align}
+
+Therefore, we have the ratio 
+%
+\begin{align}
+\frac{n_X (T _{\text{GUT}})}{n_\gamma (T _{\text{GUT}})} > \num{e-9} \divisionsymbol \num{e-10}
+\,.
+\end{align}
+
+If we assume that after production these objects are stable, there are no processes which can modify their number. Then, for lower temperatures we keep the same ratio, both number densities will scale like \(n_\gamma \sim T^3 \sim a^{-3}\). 
+
+This is a very similar number to the ratio of baryons to photons, \(\eta = n_b / n_\gamma \)! 
+This means that 
+%
+\begin{align}
+\Omega_{0x} = \frac{m_x \eta _x(t_0 )}{\rho _{\text{crit}}}
+\gtrsim \frac{m_x \eta_{0b}}{\rho _{\text{crit}}} = \frac{m_x}{m_p}  \Omega_{0b}
+\,,
+\end{align}
+%
+which means that, since \(m_x \sim T _{\text{GUT}} \sim \SI{e15}{GeV}\). 
+Then, we must have \(\Omega_{0x} \gtrsim \num{e14}\)! This definitely over-closes the universe.
+
+How does inflation solve this problem? These objects are produced in these early stages, but their number density is very diluted. 
+Each \(\pm \sigma \) region is inflated to the size of the observable universe. 
+
+Now we will give some arguments as to why a scalar field makes sense, a characterization of different inflationary models, and discuss the generation of the first primordial density perturbations. 
+
+A De Sitter phase is one with a cosmological constant \(\Lambda \): 
+%
+\begin{align}
+H^2= \frac{8 \pi G}{3} \rho _\Lambda - \frac{k}{a^2}
+\,.
+\end{align}
+ 
+Here \(P_\Lambda = - \rho _\Lambda \). 
+Then, \(a(t) \propto \exp(Ht)\), with \(H = \const\). This \(\rho _\Lambda\) is constant as the universe expands. 
+
+A cosmological constant term can be written in terms of a vacuum energy density of the quantum system. It appears in the EFE as 
+%
+\begin{align}
+R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = 8 \pi G T_{\mu \nu } - \Lambda g_{\mu \nu }
+\,.
+\end{align}
+
+This can be calculated as \(\bra{0} T_{\mu \nu } \ket{0} \propto
+ - \bra{0} \varphi \ket{0} g_{\mu \nu }= - \expval{\rho } g_{\mu \nu }\). 
+ 
+Plugging this into the EFE we find 
+%
+\begin{align}
+\Lambda = - 8 \pi G \expval{\rho }
+\,.
+\end{align}
+
+We cannot get rid of the vacuum energy density of the system, since energy gravitates. 
+
+Let us come back to the Lagrangian 
+%
+\begin{align}
+\mathscr{L}_{\varphi } = - \frac{1}{2} g^{\mu \nu } \partial_{\mu } \varphi \partial_{\nu } \varphi - V(\varphi )
+\,,
+\end{align}
+%
+whose energy momentum tensor is 
+%
+\begin{align}
+T^{\varphi }_{\mu \nu } = \partial_{\mu } \varphi \partial_{\nu } \varphi + \mathscr{L}_{\varphi } g_{\mu \nu }
+\,.
+\end{align}
+
+Let us look at the Vacuum Expectation Value of the field: \(\expval{\varphi } = \bra{0} \varphi \ket{0}\). If this is a constant, it should correspond to the minimum of the classical potential: the ground state. 
+This behaves like a cosmological constant. 
+Since \(\varphi \) is a constant, we have 
+%
+\begin{align}
+\expval{T_{\mu \nu }} = g_{\mu \nu } V(\expval{\phi })
+\,,
+\end{align}
+%
+since the derivatives of a constant vanish. 
+This is an effective \(\Lambda \). 
+
+A phase transition can move us away from this VEV.
+
+The VEV of \(\varphi \) can be a function of time. 
+
+Are there other options beyond a scalar field? Say, a vector field, or a spinor?
+The first reason we do not choose this is because it breaks isotropy.
+
+
+
 \end{document}

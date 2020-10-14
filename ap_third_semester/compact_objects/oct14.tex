@@ -1,4 +1,195 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The Kerr solution}
+
+\marginpar{Wednesday\\ 2020-10-14, \\ compiled \\ \today}
+
+Some history: the Schwarzschild was found in 1915 while S.\ was serving in the army; the second exact solution was found in 1963 by a PhD student in New Zeland \cite[]{kerrGravitationalFieldSpinning1963}.
+In Cartesian coordinates the metric is extremely ugly; nowadays we use the coordinates defined by Boyer and Lyndquist: 
+%
+\begin{align}
+x &= \sqrt{r^2 + a^2} \sin \theta \sin \varphi   \\
+y &= \sqrt{r^2 + a^2} \sin \theta \cos \varphi  \\
+z &= r \cos \theta 
+\,.
+\end{align}
+
+These are then not \emph{spherical} but \emph{spheroidal} coordinates. 
+Constant-\(r\) spheroids are oblate ellipsoids in the \(z\) direction.
+
+The Kerr solution, for who wants to see the computation, is derived in ``The mathematical theory of Black Holes'' by Chandrasekhar \cite[]{chandrasekharMathematicalTheoryBlack1998}.  
+The metric reads 
+%
+\begin{align}
+\dd{s^2} = - \qty(1 - \frac{2Mr}{\Sigma }) \dd{t^2}
++ \frac{\Sigma }{\Delta } \dd{r^2} 
++ \Sigma \dd{\theta ^2} 
++ \qty(r^2 + a^2 + \frac{aA}{\Sigma }) \sin^2 \theta \dd{\varphi^2} 
+- \frac{2A}{\Sigma } \dd{t} \dd{\varphi }
+\,,
+\end{align}
+%
+where: 
+%
+\begin{align}
+\Delta = r^2 - 2Mr + a^2
+&&
+\Sigma = r^2 + a^2 \cos^2 \theta 
+&&
+A = 2Mar \sin^2 \theta 
+\,,
+\end{align}
+%
+while \(a = J / M\) is the \emph{specific angular momentum} of the black hole. 
+
+It describes the spacetime outside an axially symmetric, stationary body. 
+In the Schwarzschild spacetime we have identified an horizon at \(r = 2M\) by the properties that \(g_{00} \to 0\) and \(g_{rr} \to \infty \). 
+
+What about Kerr? Are there horizons? In this case, the two conditions do not happen in the same place. 
+The region \(g_{00} = 0\) is known as the \emph{limit of staticity}: if it is the case, an observer's worldline cannot be both \emph{timelike} and \emph{stationary} (meaning time-directed). 
+
+The condition \(g_{00} > 0\) is equivalent to \(\Sigma < 2Mr\).
+Now, consider the \(\dd{r^2}\) coefficient: \(\Sigma / \Delta \): this is positive always. 
+
+If we are in the region \(\theta = \pi /2\), at \(g_{00} > 0\) we can still have the metric's signature be \(- +++\), since we have the \(\dd{t} \dd{\varphi }\) term. 
+
+As long as \(a \dd{\varphi } > 0\), that term in the metric is negative, allowing the signature of the metric to be preserved. 
+
+This means that \textbf{the particle must be co-rotating} with the black hole if it is in the region \(g_{00} > 0\).
+ 
+As long as this is the case, however, a particle can remain at fixed \(r\) and even escape. This is, then, \emph{not} an horizon. 
+
+The horizon, instead, is found when \(g_{rr}\) diverges: this is equivalent to \(\Delta \to 0\), which means 
+%
+\begin{align}
+r^2 - 2Mr + a^2 = 0 \implies r = M \pm \sqrt{M^2 - a^2}
+\,.
+\end{align}
+
+Both of these radii correspond to an horizon. 
+Let us denote \(r_+ = r_H\), since the inner horizon cannot really affect any observations. 
+
+In order for these two solutions to be real, we must have \(a < M\). 
+There is an horizon as long as \(a/ M < 1\). 
+
+If \(a > M\), we have a \textbf{naked singularity}, since the singularity at \(\Sigma  = 0\) is still there.
+This singularity, in any case, is not shaped like a point: we only reach it along the equatorial plane. 
+
+Penrose proposed the cosmic \textbf{censorship hypothesis}: the universe is a ``prude'', it always hides singularities with horizons.
+There are good theoretical reasons to believe that this is verified. 
+
+Where is the limit of staticity? The equation is 
+%
+\begin{align}
+r^2 + a^2 \cos^2 \theta - 2Mr = 0
+\,,
+\end{align}
+%
+which  is solved by 
+%
+\begin{align}
+r_{\pm} = M \pm \sqrt{M^2- a^2 \cos^2 \theta }
+\,.
+\end{align}
+
+There are two of these surfaces as well, and we consider the outer one as before: \(r_E = r_+\). If the horizon exists, then this region also exists. 
+
+This region is called the \textbf{ergosphere}, and the region between \(r_H < r < r_E\) is called the \textbf{ergoregion}. 
+
+\todo[inline]{Insert figure for the shape of the region}
+
+The name comes from the fact that we can extract rotational energy from the BH. 
+``Ergo'' means energy. 
+
+There has been a long debate about whether the Penrose process actually occurs in a realistic astrophysical setting: the consensus is that the trajectory a particle must take in order for this to happen is way too peculiar. 
+
+Note that in this case we also have the cyclic coordinates \(\varphi \) and \(t\). We have two constants of motion like in Schwarzschild. 
+
+It can be shown that there exists a third constant of motion, beyond \(E\) and \(L_z\): \(Q\), called Carter's constant. 
+
+For motion in the equatorial plane we can write the expression 
+%
+\begin{align}
+E = \frac{r^{3/2} - 2 r^{1/2} \pm a M^{1/2}}{r^{3/2} \qty(r^{3/2}- 3M r^{1/2} \pm 2a M^{1/2})^{1/2}}
+\,,
+\end{align}
+%
+where \(\pm\) refers to whether the particle moves along a prograde or retrograde trajectory.
+
+The expression for the last stable circular orbit is 
+%
+\begin{align}
+r_{LS} = M \qty[ 3 + z_2 \mp \qty[(3 - z_1 ) (3 + z_1 +2z_2 )]^{1/2}]
+\,,
+\end{align}
+%
+\todo[inline]{check equation}
+where 
+%
+\begin{align}
+z_1 &= 1 + \qty(1 - \frac{a^2}{M^2})^{1/3} \qty[\qty(1 + \frac{a}{M})^{-1/3} + \qty(1 - \frac{a}{M})^{-1/3}]  \\
+z_2 &= \qty(3 \frac{a^2}{M^2} + z_1^2)^{1/2}
+\,.
+\end{align}
+
+This reduces to \(r_{LS} = 6 M\) in the \(a = 0\) case, since then we have \(z_1 = z_2 = 3\). 
+
+What happens for an extreme Kerr BH, with \(a = M\)? 
+Then \(z_1 = 1\), \(z_2 = 2\): so, 
+%
+\begin{align}
+r_{LS} = M \qty[3 + 2 \mp \sqrt{2 \times 8}] = M \qty[5 \mp 4]
+\,,
+\end{align}
+%
+which yields \(r_{LS} = M\) in the corotating case, and \(r_{LS} = 9M\) in the counter-rotating case.
+
+\todo[inline]{I am writing \(LS\) for last-stable, the professor uses \(MS\) for marginally-stable}. 
+
+We expect that the efficiency of a Kerr BH in the extraction of energy from matter will be higher than the Schwarzschild solution. 
+Let us use the expression we found for the specific energy \(E\), with respect to the parameter \(x = r/M\): 
+%
+\begin{align}
+E = \frac{x^{3/2} - 2 x^{1/2} \pm a/M}{x^{3/2} \sqrt{x^{3/2} - 3x^{1/2} \pm 2a /M}}
+\,,
+\end{align}
+%
+which in the extreme case becomes 
+%
+\begin{align}
+E = \frac{x^{3/2} - 2 x^{1/2} \pm 1}{x^{3/2} \sqrt{x^{3/2 }- 3 x^{1/2} \pm 2}}
+\,,
+\end{align}
+%
+so we can take the limit : in the direct case, sending \(x \to 1\) we get \(E = 1 / \sqrt{3} \approx \num{.577}\). 
+
+The efficiency is given by 
+%
+\begin{align}
+\eta = \frac{E_\infty  - E}{E_{\infty }} = 1 - 1 / \sqrt{3} \approx \SI{42}{\percent}
+\,.
+\end{align}
+
+This is a huge amount of energy: we do not expect real black holes to be extreme. 
+There are estimates of the spins of the black holes. 
+What is found is that they seem to cover the whole range \(0 < a/ M < 1\). 
+
+An issue regarding a wide-spread misconception: the parameter \(M\) in the interior Schwarzschild solution is the same as the \(M\) in the corresponding \emph{exterior} solution. Can we apply the same kind of reasoning for Kerr?
+Is there an interior Kerr solution? 
+We don't know, but most probably not. 
+Many efforts were put into seeking it, and they all failed. 
+The properties of the matter and radiation inside are weird. 
+
+The wide-spread misconception is to claim that the Kerr spacetime describes the spacetime around a rotating star. 
+It sounds reasonable, but it's wrong. 
+Numerically we can derive the true form of the spacetime outside something like a neutron star: it is very different from the Kerr spacetime. 
+
+A qualitative argument: a star will generally have a quadrupole moment and emit GWs, while Kerr does not. 
+Kerr is a Petrov-type-B spacetime, which is \emph{nonradiating}. 
+
+\todo[inline]{To clarify.}
+
+Next time, we will discuss Equations of state and degenerate gasses.
+
 \end{document}

@@ -60,10 +60,78 @@ where \(F = F(1, 2, 3) = 1\) in the Gaussian case.
 
 \todo[inline]{I do not understand the motivation behind equation 28 in the same paper? Is it meant to make it so the \(\xi^3\) term vanishes? }
 
+\todo[inline]{Is the \(\xi^3\) term predicted by Gaussian statistics but not observed?}
+
 Moving on to \cite[]{bertschingerPathIntegralMethods1987}. 
 Perturbative methods work well in the initial stages, then the nonlinearity kicks in and the higher order terms become very relevant: Monte Carlo methods are then more suitable to calculate the functional integrals. 
 
 They are able to put constrains on the realizations of the Gaussian random field! 
 BBKS gives us peaks; the path integral approach allows us to more precisely estimate the surrounding  distribution, by the use of constraints. 
+
+In \cite[]{hoffmanConstrainedRealizationsGaussian1991} an improved algorithm for constrained realizations of Gaussian fields is presented.
+
+\todo[inline]{To understand: what constrained realizations are practically useful? Do we impose the presence of a (proto-galaxy?) and generate the density distribution around it?} 
+
+\textcite[]{bertschingerPathIntegralMethods1987} found a method with complexity \(\order{(N_c^2 + 1) N}\) working in Fourier space (so, in a plane wave basis), 
+Binney and Quinn (1990) improved upon it by working in spherical harmonics --- 
+for certain symmetric types of constrains this decreases \(N_c\) significantly. 
+
+\textcite[]{hoffmanConstrainedRealizationsGaussian1991} work by constraining the Fourier \emph{phases} of the components of the random field. 
+
+\todo[inline]{I don't see where \(\overline{f}(r) = \expval{f(r) | \Gamma } = \xi _i (r) \xi^{-1}_{ij} c_j\) comes from in general --- I can see it in the specific case \(C_i = f(r_i)\) through.} 
+
+Looking at \cite[]{matarreseAbundanceHighRedshift2000}. 
+They account for non-gaussianity through field (overdensity or gravitational potential) in the form \(\alpha \phi + \epsilon (\phi^2 - \expval{\phi^2 }) \), where \(\phi \) is Gaussian with zero mean. 
+They use the Press–Schechter formalism, considering the regions in which the linearized density perturbation  goes beyond \(\Delta  _c \approx 1.687\).
+Figure 4: the effect of adding the non-Gaussian tails is to boost by an order of magnitude the probability \(\mathbb{P}(> \delta _c | z_c, R)\), where \(z_c\) is the redshift we are considering while \(R\) is the filtering scale. 
+
+If we perturb the density we need \(\abs{\epsilon} \lesssim \num{e-2}\), if we perturb the gravitational field we need \(\abs{\epsilon } \gtrsim \num{e2}\), in either case these are needed in order to see a significant departure from the Gaussian case. 
+The latter statements tells us that non-Gaussianity predicted by inflationary models would be undetectable from structure formation. 
+
+\todo[inline]{Does equation 51 solve the problem of halos-inside-halos which was mentioned as an issue in early Press-Schechter theory?}
+
+Section 5: using high-\(z\) galaxies is advantageous because ``they directly sample the galaxy scale, and are always in virialized halos''. I get the fist point, but not the second: are more recent galaxies not in virialized halos? 
+
+At higher \(z\) the density PDF is more sensitive to non-Gaussianity: the critical over-density is \(\delta _c = \Delta _c / D(z_c  | \Omega_{0, m}, \Omega_{0, \Lambda })\), where \(D\) is the linear growth factor: it seems like for most cosmological models \(D^{-1} \propto 1+z\), with an order-1 constant, from figure 3 in \cite[]{matarreseAbundanceHighRedshift2000}. 
+More details should be found in \cite[]{hamiltonFormulaeGrowthFactors2001
+}. 
+
+In the paper the functional integrals are explicitly performed to find 
+%
+\begin{align}
+\mathbb{P}(> \delta _c | z_c, R) = \frac{1}{2 \pi i} \int_{- \infty }^{\infty } \frac{ \dd{\lambda }}{\lambda } \exp( - i \lambda \delta _c (z_c) + \mathscr{W}(\lambda )) + \frac{1}{2}
+\,,
+\end{align}
+%
+where \(\mathscr{W}(\lambda )\) is the \emph{cumulant generator}, while \(\lambda \) is related to the magnitude of the source term. The explicit expression for \(\mathscr{W}\) is 
+%
+\begin{align}
+\mathscr{W}(\lambda ) =
+- i \lambda C - \frac{1}{2} \int \dd[3]{y} \dd[3]{z} 
+\qty[
+    \lambda^2 \alpha^2 F_R (\abs{y }) \qty[\mathscr{K}'_\lambda ]^{-1} (y, z)
+    F_R(\abs{z}) + \delta _D (y-z) 
+    \log \qty[ \delta _D (y-z) - 2i \lambda \epsilon F_R (\abs{y}) \xi _\phi (y-z)]
+]
+\,,
+\end{align}
+%
+where: 
+\todo[inline]{Add more details of the computation, and definitions of the parameters (?)}
+
+So, \(\delta _c\) increases with redshift, therefore we see from equation 66 that the skewness term becomes less and less relevant. 
+This can be seen in figs.\ 4 and 5 as well. 
+
+Connection with observation! 
+We have a sample of 6 \(z \sim 5 \divisionsymbol 6  \) galaxies, whose masses, SFR and \(\sigma _v\) are estimated from spectroscopic data.
+Approximately speaking, from the amount of galaxies found per area surveyes, at this redshift we find \(\sim 1\) galaxy per \SI{3e-4}{\deg^2}. 
+
+Estimating the number of galaxies formed with masses within \(\num{2e10} M_{\odot} < M < \num{4e11}M_{\odot}\) and formation redshifts within \(6 < z_c < 8\) yields a number density of galaxies about 16 times lower than the observed value; non-Gaussianity can raise the tail of the density distribution to give the required order-10 increase of galaxy formation. 
+
+Precise mass determination is crucial to figure out whether we actually need non-Gaussianity to explain the data. 
+
+Equation 4.25 in \textcite[]{verdeMultivariateJointPDF2013} is a calculation tool: it allows us to calculate the average of an observable \(A\) for a non-Gaussian random field in a discretized space. 
+
+\textcite[]{planckcollaborationPlanck2018Results2019}: I guess I can interpret the PDF for the nongaussianity parameter, but not much else\dots
 
 \end{document}

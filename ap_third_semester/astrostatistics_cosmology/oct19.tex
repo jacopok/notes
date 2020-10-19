@@ -1,4 +1,149 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The multivariate gaussian}
+
+\marginpar{Monday\\ 2020-10-19, \\ compiled \\ \today}
+
+This will be a once-in-a-lifetime calculation, we need the result practically but it is good to have seen the derivation once. 
+
+The Multi-Variate Normal is in general 
+%
+\begin{align}
+\mathcal{N} (\vec{x}, \vec{\mu}, C) = 
+\frac{1}{(2 \pi )^{n/2} \sqrt{\det C}}
+\exp(- \frac{1}{2} \qty(\vec{x} - \vec{\mu})^{\top} C^{-1} (\vec{x} - \vec{\mu}))
+\,.
+\end{align}
+
+Gaussians have many applications: with lots of data points, both the likelihood and the posterior converge to Gaussians with the same mean.
+We have many analytical results about Gaussians.
+
+\paragraph{Normalization}
+
+We define \(V = C^{-1}\), the precision matrix. 
+This is diagonalized as \(O^{\top} V O\), where \(\Lambda \) is diagonal with eigenvalues \(\lambda _k\) and \(O\) is orthogonal. 
+Then, the integral of the exponential \(\exp( -\vec{y}^{\top} V \vec{y}/2)\) can be expressed as 
+%
+\begin{align}
+\int \dd[n]{y} \exp(- \frac{1}{2} \vec{y}^{\top} O^{\top} V O \vec{y}) \det O &= 
+\int \dd[n]{y} \exp(- \frac{1}{2} \lambda _k y_k^2) 
+ \\
+&= \prod_{k=1}^{n} \int \dd{y}_k \exp(- \frac{1}{2} \lambda _k y_k^2)   \\
+&= \prod_{k=1}^{n} \sqrt{\frac{2 \pi }{\lambda _k}} = \frac{(2\pi)^{n/2}}{\sqrt{\det \Lambda }} = (2 \pi )^{n/2} \sqrt{\det C} 
+\,.
+\end{align}
+
+\paragraph{Marginalization}
+
+We have an \(n\)-variate MVN, which we want to marginalize over \(M\) parameters: the integral we want to perform is 
+%
+\begin{align}
+\int \dd{x_{n-M+1}} \dots \dd{x_n} \frac{1}{(2 \pi )^{n/2} \sqrt{\det C}} \exp(- \frac{1}{2} \vec{y}^{\top} V \vec{y})
+\,.
+\end{align}
+
+We partition the precision matrix into \(M\) and \(n-M\)-dimensional blocks: 
+%
+\begin{align}
+V = \left[\begin{array}{cc}
+V_{aa} & V_{ab} \\ 
+V_{ab} & V_{bb}
+\end{array}\right]
+\,.
+\end{align}
+
+Note that there is no one-to-one correspondence with the inverse matrix: in general \(V_{aa} \neq C^{-1}_{aa}\).
+The argument of the exponential can be written, with the notation \(\vec{y} = \vec{x} - \vec{\mu}\):
+%
+\begin{align}
+- \frac{1}{2} \vec{y}^{\top} V \vec{y} &= 
+\vec{y}_a^{\top} V_{aa} \vec{y}_a + 
+\vec{y}_b^{\top} V_{bb} \vec{y}_b + 
+2\vec{y}_a^{\top} V_{ab} \vec{y}_b 
+\,.
+\end{align}
+
+We then use the square completion formula: 
+%
+\begin{align}
+\frac{1}{2} \vec{z}^{\top} A \vec{z} + \vec{b}^{\top} \vec{z} + c 
+= \frac{1}{2} \qty(\vec{z} + A^{-1} \vec{b})^{\top} A \qty(\vec{z} + A^{-1} \vec{b}) - \frac{1}{2} \vec{b}^{\top} A^{-1} \vec{b} + c
+\,,
+\end{align}
+%
+which generalizes the procedure used to solve second-degree equations. 
+We identify \(A = V_{bb}\), \(\vec{z} = \vec{y}_b\), \(\vec{b} = V_{ab}^{\top} \vec{y}_a\),  \(c = \vec{y}_a V_{aa} \vec{y}_a / 2\). 
+
+\todo[inline]{Check calculation! something is wrong here}
+
+Finally, we get that the marginalized distribution is still Gaussian, and is written as
+%
+\begin{align}
+\mathcal{N}(\vec{x}_a | \vec{\mu}_a, (V_{aa} - V_{ab} V_{bb}^{-1} V_{ab})^{-1})
+\,.
+\end{align}
+
+The new covariance can be expressed more simply after some matrix algebra (using the Woodbury formula for block matrix inversion): 
+we can show that 
+%
+\begin{align}
+C_{aa} = \qty(V^{-1})_{aa} = \qty(V_{aa} - V_{ab} V_{bb}^{-1} V_{ab})^{-1}
+\,,
+\end{align}
+%
+so the marginal PDF is just \(\mathcal{N}(\vec{x}_a| \mu_a, C_{aa})\).
+Marginalizing for Gaussians can then be done fully analytically in \(\mathcal{O}(1)\) time: we just discard the unnecessary parts of the covariance and mean. 
+
+The Hessian (calculated at the mean) is the inverse of the opposite of the covariance matrix: \(H = - V = - C^{-1}\). 
+
+% \todo[inline]{Hold on\dots is this right?}
+
+Then, \(\sigma _m = \sqrt{(- H)^{-1}_{mm}}\).
+
+\paragraph{Conditioning}
+
+Now we want to compute the conditional probability of a certain part of the parameter vector, \(\vec{x}_b\), if we fix the rest of the vector to values \(\vec{x}_a\). 
+This can also be done analytically: now, the mean will be \(\vec{\mu}_{b | a} = \vec{\mu}_b - V^{-1}_{bb} V_{ba} \qty(\vec{x}_a - \vec{\mu}_a)\), while the covariance is \(C_{b | a} = V^{-1}_{bb}\).
+% This almost looks like the wrong thing, \(C_{bb} = V^{-1}_{bb}\), but in this case it is actually correct.
+
+If we marginalize over all the other parameters, the error looks like \(\sigma _m = \sqrt{(-H_{mm})^{-1}}\). This time we invert the single matrix element.
+This will usually be much smaller than what we would get when marginalizing. 
+
+\paragraph{Summing}
+
+If both \(\vec{x}\) and \(\vec{y}\) are MVN distributed and independent, then 
+%
+\begin{align}
+\mathbb{P}(\vec{z}) = \mathcal{N} (\vec{z} | \vec{\mu}_x + \vec{\mu}_y, C_x + C_y)
+\,.
+\end{align}
+
+The way to prove this is to start from  the fact that 
+%
+\begin{align}
+\mathbb{P}(z) &= \int \dd{x} \dd{y} \mathbb{P}(x) \mathbb{P}(y) \delta (z - (x + y))  \\
+&= \int \dd{x} \mathbb{P}(x) \mathbb{P}(z-x) 
+\,,
+\end{align}
+%
+a convolution. The convolution of two Gaussians is a Gaussian, so we can just calculate the mean, covariance, and we are done: 
+%
+\begin{align}
+\expval{x + y} = \expval{x} + \expval{y}
+\,,
+\end{align}
+%
+while the covariance is (implying a tensor product between the vectors):
+%
+\begin{align}
+\expval{(\vec{x} + \vec{y})(\vec{x} + \vec{y})} - (\vec{x}+\vec{y})(\vec{x}+\vec{y}) 
+&= \expval{\vec{x} \vec{x}} - \expval{\vec{x}}^2 + \expval{\vec{y} \vec{y}} - \expval{\vec{y}}^2
+\,,
+\end{align}
+%
+using the property that \(\expval{\vec{x} \vec{y}} - \expval{\vec{x}} \expval{\vec{y}} = 0\).
+
+Note that independence \(\implies\) uncorrelation, but not the other way around. For example, if \(x\) is normally distributed with mean zero, \(x^2\) is \emph{uncorrelated} to it (the correlation would be given by \(\expval{x^3} = 0\)); however \(x\) and \(x^2\) are related two-to-one, certainly not independent. 
+
 \end{document}

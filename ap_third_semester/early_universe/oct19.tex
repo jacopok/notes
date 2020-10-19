@@ -1,4 +1,237 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Dynamics of inflation}
+
+\marginpar{Monday\\ 2020-10-19, \\ compiled \\ \today}
+
+Our action will be in the form 
+%
+\begin{align}
+S = S_{EH} + S_\varphi + S _{\text{matter}}
+\,,
+\end{align}
+%
+where \(S_{EH}\) is the Einstein-Hilbert action for the metric, \(S_\varphi \) is the action for the field \(\varphi \), while ``matter'' encompasses all the other fields:
+%
+\begin{align}
+S = \frac{1}{16 \pi G} \int \dd[4]{x} \sqrt{-g} R 
++ \int \dd[4]{x} \sqrt{-g} \mathscr{L}_\varphi [\varphi , g_{\mu \nu }]
++ S _{\text{matter}}
+\,.
+\end{align}
+
+We are using the invariant volume element \(\dd[4]{x} \sqrt{-g}\), which represents the physical 4-volume regardless of the coordinates.
+
+The simplest possibility for the Lagrangian of a scalar field which is able to drive inflation reads: 
+%
+\begin{align}
+\mathscr{L}_{\varphi } = -\frac{1}{2} g^{\mu \nu } \nabla_{\mu } \varphi \nabla_{\nu } \varphi  - V(\varphi )
+\,,
+\end{align}
+%
+for a \emph{real} scalar field \(\varphi \).
+Also, note that we did not consider any explicit coupling of \(\varphi \) with gravity or other fields: these kinds of terms, which go by the name ``nonminimal coupling'', might look like \(\xi \varphi^2 R\).
+
+These kinds of nonminimal theories represent one of the simplest extensions of GR: they are \emph{scalar-tensor} theories, and in them the field \(\varphi \) as well as \(g_{\mu \nu }\) can mediate gravity. 
+One of the theories which currently fits the cosmological data best is of this kind. 
+
+What could we put in the potential? The mass is given by \(m_\varphi^2 = \pdv[2]*{V}{\varphi }\), so a simple mass term would look like \(m^2 \varphi^2 / 2\), but we could also have quartic terms like \(\lambda \varphi^{4} / 4\): these are self-interaction terms. 
+
+The other fields will typically be negligible during inflation since their energy density is quickly ``redshifted away''. 
+Sometimes some of them are non-negligible: this happens if they are coupled to the scalar field, and we must consider them; we typically do so in an ``effective'' way, by inserting them into the potential \(V(\varphi )\). 
+
+We can associate an energy-momentum tensor to the scalar field: in general, it is defined by 
+%
+\begin{align}
+T_{\mu \nu }^{(\varphi )} = - \frac{2}{\sqrt{-g}} \fdv{S_{\varphi }}{g^{\mu \nu }}
+\,.
+\end{align}
+
+This comes from the way we write the Einstein equations from a variational principle. 
+For our scalar field we find 
+%
+\begin{align}
+T_{\mu \nu } = \frac{2}{\sqrt{-g}} \qty[
+    -\pdv{(\sqrt{-g} \mathscr{L}_\varphi )}{g^{\mu \nu }}
+    +
+    \partial_{\alpha }
+    \pdv{(\sqrt{-g} \mathscr{L}_\varphi )}{\tensor{g}{^{\mu \nu }_{,\alpha }}} 
+    + \text{higher order terms}
+]
+\,.
+\end{align}
+
+\todo[inline]{Is the derivative covariant?}
+
+The reason for the alternating signs is that we must integrate by parts in order to get the expression in this form. 
+We then get 
+%
+\begin{align}
+T^{(\varphi )}_{\mu \nu } = 
+- 2 \frac{\mathscr{L}_\varphi }{g^{\mu \nu }} + \frac{2}{\sqrt{-g}} \mathscr{L}_\varphi \pdv{\sqrt{-g}}{g^{\mu \nu }}
+\,,
+\end{align}
+%
+since there is no dependence on the derivative of the metric in our case. We need the explicit expression 
+%
+\begin{align}
+\pdv{\sqrt{-g}}{g^{\mu \nu }} = - \frac{1}{2} \sqrt{-g} g_{\mu \nu }
+\,,
+\end{align}
+%
+which comes from the fact that \(\Tr \log M = \log \det M\), applied taking \(M = g^{\mu \nu }\), and taken considering a functional variation of the whole expression. 
+This yields 
+%
+\begin{align}
+T^{(\varphi )}_{\mu \nu } = \partial_{\mu } \varphi \partial_{\nu } \varphi 
++ g_{\mu \nu } \qty[- \frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } - V(\varphi )] 
+\,.
+\end{align}
+
+We start by considering a homogeneous and isotropic case, and then perturb it. This is done by splitting the field into the average classical background motion of \(\varphi \), called \(\varphi_0 \) 
+%
+\begin{align}
+\varphi = \varphi (\vec{x}, t) = \varphi_0 (t) + \delta \varphi (\vec{x}, t)
+\,,
+\end{align}
+%
+where \(\varphi_0 \) will be the VEV of the field: \(\varphi_0 = \bra{0} \varphi (\vec{x}, t) \ket{0}\), while \(\delta \varphi \) encompasses the quantum fluctuations. 
+
+Are we allowed to do this kind of split?
+Formally yes, but we need to guarantee that the perturbations are indeed small compared to the classical trajectory: \(\expval{ \delta \varphi^2} \ll \varphi_0^2 (t)\).
+We consider the variance since it is the first nonzero moment, as \(\expval{ \delta \varphi }= 0\). 
+
+This will not always be the case, sometimes the fluctuation will be dominating; however usually for an inflationary model to work we expect that the condition is satisfied.
+The fluctuations are what generates the density fluctuations which create the anisotropies in the CMB photons: we know that the size of these anisotropies is of the order of one part in \num{e5}, so we can give a qualitative argument for the perturbations of the scalar field to be relatively small compared to the mean value. 
+
+If we do the explicit computation for the energy-momentum tensor, we get 
+%
+\begin{align}
+T^{0}_{0} &= - \qty( \frac{1}{2} \dot{\varphi}_0(t) + V(\varphi_0 )) = - \rho_\varphi (t)   \\
+T^{i}_{j} &= \qty( \frac{1}{2} \varphi_0^2 (t) - V(\varphi_0 )) \delta^{i}_{j} = P_\varphi \delta^{i}_{j}
+\,.
+\end{align}
+
+This is a perfect-fluid energy-momentum tensor. 
+If we are in a regime for which 
+%
+\begin{align}
+\frac{1}{2} \dot{\varphi}_0^2 (t) \ll V(\varphi_0 )
+\,
+\end{align}
+%
+when we have \(P_\varphi \approx - \rho _\varphi \): this is a \emph{quasi De Sitter} expansion, with \(w_\varphi \approx -1\). 
+
+This is achieved if the potential for the scalar field is ``flat enough'': then, we reach a \emph{friction-domination} regime, which is commonly called \emph{slow-roll} inflation. 
+
+\todo[inline]{Insert picture of flat potential}
+
+If \(V(\varphi )\) is approximately a constant, then it mimics a cosmological constant. 
+Inflation is driven by the vacuum energy density associated with the scalar field. 
+
+Let us look at the slow-roll dynamics in more detail. 
+What is the equation of motion for this (quantum!) scalar field? 
+The equation reads 
+%
+\begin{align}
+\square \varphi = \pdv{V}{\varphi }
+\,,
+\end{align}
+%
+just like in the flat case, however since we are in curved spacetime we must be careful about the Dalambertian operator, which now reads 
+%
+\begin{align}
+\square \varphi = \frac{1}{\sqrt{-g}} \qty(g^{\mu \nu } \sqrt{-g} \varphi_{, \mu })_{, \nu }
+\,,
+\end{align}
+%
+since we need to use the formula for the quadri-divergence of a vector field. 
+
+Let us see what this reduces to in a flat FLRW metric: then \(\sqrt{-g} = a^3\), so 
+%
+\begin{align}
+\square \varphi = \frac{1}{a^3} \qty(g^{00} a^3\varphi_{, 0})_{, 0}
++ \frac{1}{a^3} \qty(g^{ii} a^3\varphi_{, i})_{, i} &= \pdv{V}{\varphi }  \\
+- \ddot{\varphi} - \dot{\varphi} 3\frac{\dot{a}}{a}
++ \frac{\nabla^2}{a^2} \varphi 
+&= \pdv{V}{ \varphi }  \\
+\ddot{\varphi} + 3 H \dot{\varphi} - \frac{\nabla^2 \varphi }{a^2} &= - \pdv{V}{\varphi }
+\,.
+\end{align}
+
+The term \(3 H \dot{\varphi}\) is a kind of \emph{friction} term: the propagation of the field is ``held back'' by the expansion. 
+If we consider the background field, it will be constant in space, so it will evolve as 
+%
+\begin{align}
+\ddot{\varphi}_0 + 3 H \dot{\varphi}_0 = - \pdv{V}{\varphi_0 }
+\,.
+\end{align}
+
+We then must solve this equation combined with the Friedmann equation 
+%
+\begin{align}
+H^2 = \frac{8 \pi G}{3} \qty(\rho _\varphi + \rho _m + \rho _r) - \frac{k}{a^2}
+\,.
+\end{align}
+
+The matter and radiation densities scale like \(a^{-3}\) for \(\rho _m\), \(a^{-4}\) for \(\rho _r\); in this early phase the scalar field will dominate the dynamics, so the equation will simplify to 
+%
+\begin{align}
+H^2 \approx \frac{8 \pi G}{3} V(\varphi_0 )
+\,.
+\end{align}
+
+Under these slow-roll conditions, we also have \(\ddot{\varphi}_0 \ll 3 H \dot{\varphi}_0\): therefore 
+%
+\begin{align}
+3 H \dot{\varphi}_{0} \approx - \pdv{V}{\varphi_0 }
+\,.
+\end{align}
+
+We also expect that \(V\) and all of its derivatives change very slowly with \(\varphi \). 
+This means that in this equation we have \(\pdv{V}{\varphi_0 } \approx \const\), as well as \(H \approx \const\): this is the same equation which is obeyed by a particle under a constant force and friction: it will then reach the asymptotic ``terminal velocity'' and move with a constant \(\dot{\varphi}_0 \). This solution is an attractor. 
+
+We typically write this as \(\dot{\varphi} = - V' (\varphi_0 ) / 3H\), and \(H^2 = \frac{8 \pi G}{3} V(\varphi )\). 
+
+\subsection{Slow-roll parameters}
+
+These are parameters we need to quantify how much the potential indeed looks like we expected. 
+
+The first parameter we define is
+%
+\begin{align}
+\epsilon 
+= - \frac{\dot{H}}{H^2} = 
++ 4 \pi G \frac{\dot{\varphi}^2}{H^2} \approx \frac{3}{2} \frac{\dot{\varphi}^2}{V} = \frac{1}{16 \pi G} \qty(\frac{V'}{V})^2
+\,,
+\end{align}
+%
+so requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
+%
+\begin{align}
+\frac{1}{V} \qty(\pdv{V}{\varphi })^2 \ll H^2
+\,.
+\end{align}
+
+So, \(\epsilon \) gives a bound on the first derivative of the potential; the second derivative is controlled by the parameter 
+%
+\begin{align}
+\eta = - \frac{\ddot{\varphi}}{H \dot{\varphi}
+}
+\,,
+\end{align}
+%
+and we can also define 
+%
+\begin{align}
+\eta _V = \frac{1}{3} \frac{V''}{H^2} = \frac{1}{8 \pi G} \frac{V''}{V}
+\,.
+\end{align}
+
+Asking that \(\eta _V \ll 1 \) is equivalent to \(V'' \ll H^2\). 
+
+These three parameters are related by \(\eta = \eta _V - \epsilon \).
+% We also can ask that \(\abs{\eta _V} < 1\).
+
 \end{document}

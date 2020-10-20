@@ -37,6 +37,81 @@ The integral we need to compute is given, absorbing the normalization into a fac
 \phi (\vec{k}) = N \int \dd[n]{x} \eval{\exp(- i \vec{k} \cdot \vec{x} - \frac{1}{2} \vec{y}^{\top} C^{-1} \vec{y})}_{\vec{y} = \vec{x} - \vec{\mu}}
 \,.
 \end{align}
+
+The only integrals we really know how to do are Gaussian ones, so we want to rewrite the argument of the exponential so that it is a quadratic form. The manipulation goes as follows, considering the opposite of the argument the exponential in order to have less minus signs and defining the symmetric matrix \(V = C^{-1}\):
+%
+\begin{align}
+i \vec{k} \cdot \vec{x} + \frac{1}{2} \vec{y}^{\top} V \vec{y}
+&= i \vec{k} \cdot \vec{x} + 
+\frac{1}{2} \vec{x}^{\top} V \vec{x}
+- \vec{x}^{\top} V \vec{\mu } 
++ \frac{1}{2} \vec{\mu}^{\top} V \vec{\mu}  \\
+&= \frac{1}{2} \vec{x}^{\top} V \vec{x}
++ \vec{x}^{\top}\qty(
+    i \vec{k} - V \vec{\mu}
+)
++ \frac{1}{2} \vec{\mu}^{\top} V \vec{\mu}  \\
+\begin{split}
+&= \underbrace{\frac{1}{2} \qty(\vec{x} + V^{-1} (i \vec{k} - V \vec{\mu}))^{\top} V \qty(\vec{x} + V^{-1} (i \vec{k} - V \vec{\mu}))}_{\Circled{1}} +\\
+&\phantom{=}\ \underbrace{- \frac{1}{2} \qty(i \vec{k} - V \vec{\mu})^{\top} V^{-1} \qty(i \vec{k} - V \vec{\mu}) + \frac{1}{2} \vec{\mu}^{\top} V \vec{\mu}}_{\Circled{2}}
+\,,
+\end{split} 
+\end{align}
+%
+which we can now integrate, since it is now a quadratic form in terms of a shifted variable, \(\vec{x} + \vec{p}\), where the constant (with respect to \(\vec{x}\)) vector \(\vec{p}\) is given by \(V^{-1}(i \vec{k} - V \vec{\mu} )\).\footnote{
+In the last step we applied the matrix square completion formula: for a  symmetric matrix \(A\) and vectors \(\vec{x}\), \(\vec{b}\) we have 
+%
+\begin{align}
+&\frac{1}{2} \qty(\vec{x} + A^{-1} \vec{b})^{\top} A \qty(\vec{x} + A^{-1} \vec{b}) - \frac{1}{2} \vec{b}^{\top} A^{-1} \vec{b}  =\\
+&= \frac{1}{2} \qty[ \vec{x}^{\top} A \vec{x}
++  \vec{x}^{\top} A A^{-1} \vec{b}
++  \qty(A^{-1} \vec{b})^{\top} A \vec{x}
++  \qty( A^{-1} \vec{b})^{\top} A A^{-1} \vec{b}
+-  \vec{b}^{\top} A^{-1} \vec{b}]  \\
+&=\frac{1}{2} \qty[ \vec{x}^{\top} A \vec{x}
++  \vec{x}^{\top} \vec{b}
++  \vec{b}^{\top} (A^{-1})^{\top} A \vec{x}
++  \vec{b}^{\top} (A^{-1})^{\top}  \vec{b}
+-  \vec{b}^{\top} A^{-1} \vec{b}]  \\
+&= \frac{1}{2} \vec{x}^{\top} A \vec{x}
++ \vec{b}^{\top} \vec{x}
+\,,
+\end{align}
+%
+which we used with \(\vec{b} = i \vec{k} - V \vec{\mu}\).} 
+
+Now, shifting the integral from one in  \(\dd[n]{x}\) to one in \(\dd[n]{(x + p)}\) does not change the measure, since the Jacobian of a shift  is the identity.
+Then, we have 
+%
+\begin{align}
+\phi (\vec{k}) &= N \int \dd[n]{(x+p)} \exp(- \Circled{1} - \Circled{2})  \\
+&= N \sqrt{\frac{(2\pi )^{n}}{\det V}} \exp(- \Circled{2})  \\
+&= \underbrace{\frac{1}{\sqrt{\det V \det C}}}_{= 1} \exp(- \Circled{2})
+\,,
+\end{align}
+%
+since the determinant of the inverse is the inverse of the determinant.
+
+Now, we only need to simplify \(\Circled{2}\): 
+%
+\begin{align}
+\Circled{2} &= - \frac{1}{2} \qty[
+    - \vec{k}^{\top} V^{-1} \vec{k}
+    - 2i \vec{\mu}^{\top} V V^{-1} \vec{k}
+    + \vec{\mu}^{\top} V V^{-1} V \vec{\mu}
+]
++ \frac{1}{2} \vec{\mu}^{\top} V \vec{\mu}  \\
+&= \vec{k}^{\top} C \vec{k} + i \vec{\mu}^{\top} \vec{k}
+\,,
+\end{align}
+%
+inserting which into the exponent yields the desired result. 
+\end{proof}
+
+\begin{proof}[Proof: diagonalization]
+We now follow a different approach: the covariance matrix \(C\) is symmetric, so we will always be able to find an orthogonal matrix \(O\) (satisfying \(O^{\top} = O^{-1}\)) such that \(C = O^{\top} D O\), where \(D\) is diagonal. 
+
+
 \end{proof}
 
 \end{document}

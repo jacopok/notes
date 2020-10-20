@@ -1,0 +1,42 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Exercise 4}
+
+% \marginpar{Tuesday\\ 2020-10-6, \\ compiled \\ \today}
+
+After being given a probability distribution \(\mathbb{P}(x)\), we define the \emph{characteristic function} \(\phi \) as its Fourier transform, which can also be expressed as the expectation value of \(\exp(- i \vec{k} \cdot \vec{x})\): 
+%
+\begin{align}
+\phi (\vec{k}) = \int \dd[n]{x} \exp(- i \vec{k} \cdot \vec{x}) \mathbb{P}(x) 
+= \mathbb{E} \qty[ \exp(- i \vec{k} \cdot \vec{x})]
+\,.
+\end{align}
+
+\begin{claim}
+A multivariate normal distribution 
+%
+\begin{align}
+\mathcal{N}(\vec{x} | \vec{\mu}, C)
+&= \frac{1}{(2\pi )^{n/2} \sqrt{\det C}} \eval{\exp(- \frac{1}{2} \vec{y}^{\top} C^{-1} \vec{y})}_{\vec{y} = \vec{x} - \vec{\mu}}
+\,,
+\end{align}
+%
+has a characteristic function equal to 
+%
+\begin{align}
+\phi (\vec{k}) = \exp(- i \vec{\mu}\cdot \vec{k} - \frac{1}{2} \vec{k}^{\top} C \vec{k}) 
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}[Proof: completing the square]
+The integral we need to compute is given, absorbing the normalization into a factor \(N\), by 
+%
+\begin{align}
+\phi (\vec{k}) = N \int \dd[n]{x} \eval{\exp(- i \vec{k} \cdot \vec{x} - \frac{1}{2} \vec{y}^{\top} C^{-1} \vec{y})}_{\vec{y} = \vec{x} - \vec{\mu}}
+\,.
+\end{align}
+\end{proof}
+
+\end{document}

@@ -1,4 +1,159 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Correlation}
+
+\marginpar{Tuesday\\ 2020-10-20, \\ compiled \\ \today}
+
+The correlation between the component \(x_i\) and the component \(j\) is given by 
+%
+\begin{align}
+\expval{(x_i - \mu _i) (x_j - \mu _j)} 
+= \int \dd[n]{x} (x_i - \mu _i) (x_j - \mu _j) \mathcal{N}(\vec{x} | \vec{\mu}, C) = C_{ij}
+\,.
+\end{align}
+
+If \(i = j\), this is the mean value of \((x_i - \mu _i)^2\): we can integrate out all the other parameters, so that we get the variance of that parameter. 
+
+We can show that the covariance is indeed given by the expression above: we define \(\vec{y} = \vec{x} - \vec{\mu}\) as usual, so we have 
+%
+\begin{align}
+\int \dd[n]{y} y_i y_j \mathcal{N}(\vec{y}| \vec{0}, C) = \frac{1}{N} \int \dd[n]{y} y_i y_j \exp(- \frac{1}{2} \vec{y}^{\top} V \vec{y})
+= \expval{y_i y_j}
+\,,
+\end{align}
+%
+for the usual normalization \(N\) and \(V = C^{-1}\). 
+We can compute it with a trick: 
+%
+\begin{align}
+\expval{y_i y_j} &= 2 \pdv{}{V_{ij}} \qty[\log \int \dd[n]{y} \exp(- \frac{1}{2} \vec{y}^{\top} V \vec{y})]  \\
+&= -2 \pdv{}{V_{ij}} \qty[\log \qty( \frac{(2 \pi )^{n/2}}{\sqrt{\det V}})]  \marginnote{The \(2 \pi \) factor disappears since the log of a ratio is the difference of the logs, so it becomes an additive constant.}
+\\
+&= 2 \pdv{}{V_{ij}} \qty[ \frac{1}{2} \det V]  \\
+&= \frac{1}{\det V} \pdv{}{V_{ij}} \det V
+\,,
+\end{align}
+%
+and we can express the determinant using the Laplace formula: 
+%
+\begin{align}
+\det V = \sum _{p=1}^{n} V_{ip} K_{ip} 
+\,,
+\end{align}
+%
+where \(K_{ip}\) is a cofactor, which crucially does not depend on the coefficient \(V_{ip}\). Now, since \(V\) is symmetric the cofactor also is; therefore we have 
+%
+\begin{align}
+(V^{-1})_{ij} = \frac{1}{\det V} (K^{\top})_{ij} = \frac{K_{ij}}{\det V}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\expval{y_i y_j} &= \frac{1}{\det V}\pdv{}{V_{ij}} \underbrace{\qty[\sum _{p=1}^{n} V_{ip} K_{ip} ]}_{\det V} \\
+&= \frac{K_{ij}}{\det V} = \qty(V^{-1})_{ij} = C_{ij}
+\,.
+\end{align}
+
+\section{Two-parameter estimation revisited}
+
+We have data \(\vec{d}\), for which the likelihood with a Gaussian model is 
+%
+\begin{align}
+\mathscr{L} = \mathbb{P}(\vec{d} | \mu , \sigma ) = \prod_{i=1}^{N} \mathscr{L}_i = \frac{1}{(2\pi )^{n/2}\sigma^{n}} \exp(- \frac{\sum _{i} (d_i - \mu)^2}{2 \sigma^2})
+\,.
+\end{align}
+
+We want to estimate the average, \(\mu \), but we know neither \(\mu \) nor \(\sigma \): therefore, we will need to marginalize over \(\sigma \).
+
+We choose improper uniform priors, for \(\sigma \in \mathbb{R}^{+}\) and \(\mu \in \mathbb{R}\). 
+Then, the posterior is proportional to the likelihood: 
+%
+\begin{align}
+P = \mathbb{P}(\mu , \sigma | \vec{d}) = \frac{1}{(2 \pi )^{n/2} \sigma^{n}} \exp(- \frac{1}{2} \frac{\sum _{i} (d_i - \mu)^2}{\sigma^2})
+\,
+\end{align}
+%
+for \(\sigma > 0\), 0 for \(\sigma <0\). Integrating over \(\sigma \) to marginalize means we have to compute 
+%
+\begin{align}
+\mathbb{P}(\mu | \vec{d}) = 
+\int \dd{\sigma } \frac{1}{\sigma^{n}} \exp(- \frac{1}{2} \frac{\sum _{i} (d_i - \mu)^2}{\sigma^2})
+\,.
+\end{align}
+
+We make a change of variables \(\sigma  = 1/t\), so \(\dd{\sigma } = - \dd{t} / t^2 \) then 
+%
+\begin{align}
+\mathbb{P}(\mu | \vec{d})
+&= - \int \dd{t} t^{n-2} \exp(- \frac{t^2}{2} \sum _{i}(d_i - \mu)^2)
+\,,
+\end{align}
+%
+and now set \(\tau^2 = t^2 \sum _i (d_i - \mu)^2\), so \(\dd{\tau } = \dd{t} \sqrt{\sum_i (d_i - \mu)^2}\). The integral then reads 
+%
+\begin{align}
+\mathbb{P}(\mu | \vec{d}) 
+&= \qty[\sum _{i} (d_i - \mu)^2]^{- \frac{n}{2} + 1 - \frac{1}{2}}
+\underbrace{\int \dd{\tau } \tau^{n-2} \exp(- \frac{\tau^2}{2})}_{\text{constant}}  
+\,.
+\end{align}
+
+Therefore, the log-posterior reads 
+%
+\begin{align}
+L = -\frac{n-1}{2} \log \qty(\sum _{i} (d_i - \mu)^2)
+\,.
+\end{align}
+
+The value \(\mu_0\) is defined so that \(L(\mu )\) is stationary there, which means that 
+%
+\begin{align}
+\dv{L}{\mu } &= -\frac{n-1}{2}  \frac{1}{\sum _{i} (d_i - \mu)^2} \dv{}{\mu } \qty[\sum _{i} (d_i - \mu)^2] \overset{!}{=} 0  \\
+&= -\frac{n-1}{2}  \frac{1}{\sum _{i} (d_i - \mu)^2} \sum _{i} 2 (d_i - \mu ) (-1)  \\
+&= \frac{n-1}{2} \frac{\sum _{i} (d_i - \mu ) }{\sum_i (d_i - \mu )^2}
+\,,
+\end{align}
+% \todo[inline]{Should there not be an extra \(n\) here from the differentiation?}
+%
+meaning that \(\mu_0 = n^{-1} \sum d_i\), our estimator for the mean of the distribution is the arithmetic mean of the data. 
+
+\todo[inline]{Unless \(n =1\)! if we only made one measurement and we know \emph{absolutely nothing} about \(\sigma \), then the mean could be \emph{whatever}.}
+
+The error is then defined by 
+%
+\begin{align}
+\eval{\dv[2]{L}{\mu }}_{\mu_0 } &= \dv{}{\mu } \qty[(n-1) \frac{\sum _{i} (d_i - \mu)}{\sum _{i } (d_i - \mu )^2}]  \\
+&= (n-1) \frac{- n \sum _{i} (d_i - \mu)^2 + \sum _{i} (d_i - \mu) \times 2 \overbrace{\qty[\sum_i (d_i - \mu )]}^{= 0} (n)}{\qty[\sum _{i} (d_i - \mu)^2]^2}  \\
+&= - \frac{(n-1)n}{\sum _{i} (d_i - \mu)^2}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\hat{\sigma}^2 = - \frac{1}{\dv[2]{L}{\mu }} = \frac{\sum _{i}(d_i - \mu)^2}{n ( n-1)}
+\,.
+\end{align}
+
+This is the usual estimator for the standard deviation of a set of data with Gaussian errors. 
+
+\section{Multiparameter estimation in the abstract}
+
+We always seek a parameter vector \(\vec{x}_0\) in the form 
+%
+\begin{align}
+\eval{\pdv{\log P}{x_i} }_{\vec{x}_0} = 0
+\,,
+\end{align}
+%
+or more compactly \(\nabla L (\vec{x}_0) =0 \). 
+Typically, if this is linear we can do it, if it is nonlinear then it is a mess. 
+Let us then start with the linear case, in which \(\vec{\nabla} L  = A \vec{x} + \vec{c}\).  
+
+The solution then reads \(\vec{x}_0 = -A^{-1} \vec{c}\). 
+Matrix inversion is an \(\order{N^3}\) problem: often, even in this seemingly simple case, we cannot do the computation analytically. 
+
 \end{document}

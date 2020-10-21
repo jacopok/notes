@@ -114,4 +114,77 @@ which is the usual formulation of the Lane-Emden equation.
 
 What are the boundary conditions we need to set? If we assume that \(\rho (r=0) = \rho _c\), we can set \(\lambda = \rho _c\) and \(\phi (0) = 1\).
 
+We also need to set \(\dv*{P}{r} = 0\) at \(r = 0\), which also means that \(\dv*{\phi }{\xi } =0 \) there as well. 
+
+\todo[inline]{Is that not achieved through an argument of differentiability?}
+
+After prescribing these conditions, we can solve the equation: the solution will depend on \(n\). 
+We have analytical solutions for \(n = 0, 1, 5\) (note that however \(n\) is not necessarily an integer). 
+
+The radius of the star described by the equation is given by the first zero: \(\xi_1 \). 
+As a function of \(n\), 
+
+\begin{figure}
+\centering
+\begin{tabular}{cc}
+\(n\) & \(\xi_1\)\\
+\hline
+0 & \(\sqrt{6}\)  \\
+\(3/2\) & \num{3.65}  \\
+5 & \(\infty \)
+\end{tabular}
+\label{tab:zero-crossing-lane-emden}
+\caption{First zero crossing as a function of \(n\).}
+\end{figure}
+
+Let us calculate the total mass of the star: it is given by an integral we can simplify inserting the Lane-Emden equation:
+%
+\begin{align}
+M &= \int_{0}^{\xi_1 } 4 \pi \lambda \phi^{n} \xi^2 a^3 \dd{\xi }  \\
+&= -4 \pi \lambda a^3 \int_{0}^{\xi_1 } \frac{\xi^2}{\xi^2} \dv{}{\xi } \qty( \xi^2 \dv{\phi }{\xi }) \dd{\xi }  \\
+&= - 4 \pi \lambda a^3 \eval{\xi^2 \dv{\phi }{\xi }}_{0}^{\xi_1 }  \\
+&= - 4 \pi \lambda a^3 \xi_1^2 \eval{\dv{\phi }{\xi }}_{\xi_1 }
+\,,
+\end{align}
+%
+where \(\dv*{\phi }{\xi}\) at \(\xi_1 \) is necessarily negative, since \(\xi_1\) is the first zero-crossing while \(\phi = 1\) at \(\xi= 0\). 
+
+We want expressions for \(R\) and \(M\) in terms of \(\lambda \), the central density, and the polytropic index. 
+
+Now, disregarding the constant numbers we have \(M \propto \lambda a^3\), while \(a^2 \propto \lambda^{-1 + 1/n}\), therefore \(a^3 \propto \lambda^{3 (-1 + 1/n) /2}\). 
+
+This yields a dependence of the mass \(M\) on the central density \(\rho _c = \lambda \) as follows: 
+%
+\begin{align}
+M \propto \lambda^{- \frac{3}{2} + \frac{3}{2n} + 1} = \lambda^{- \frac{1}{2} + \frac{3}{2n}}
+\,.
+\end{align}
+
+On the other hand, the radius scales like 
+%
+\begin{align}
+R = a \xi_1 \propto \lambda^{- \frac{1}{2} + \frac{2}{n}}
+\,.
+\end{align}
+
+The polytropic index for a nonrelativistic gas is given by \(1 + 1/n = 5/3\), meaning \(n = 3/2\); for an ultrarelativistic gas we have \(1 + 1/n = 4/3\), meaning \(n = 3\). 
+
+Then, we want to find solutions with varying \(\rho _c\): let us start with relatively-small central densities, \(\rho _c < \SI{e6}{g / cm^3}\), and with the star being supported by electron degeneracy pressure, in the nonrelativistic case.
+Then, we increase the central density. 
+
+In this case we have \(M \propto \rho _c^{1/2}\). Increasing the central density increases the mass, in a polynomial fashion. 
+On the other hand, \(R \propto \rho _c^{- 1/6}\). The radius decreases as we increase the central density. 
+
+Increasing \(\rho _c\), sooner or later we move towards the relativistic region of the equation of state: then, we need to change \(n\) from \(3/2\) to \(3\): this means \(M \propto \rho _c^{0} = \const\) and \(R \propto \rho _c^{- 1/3}\). \(M \propto \rho _c^{0}\) means, qualitatively,  that ``\(\rho _c \propto M^{\infty }\)'': the central density is extremely dependent on the mass, and it will diverge with an asymptote. 
+Then, we cannot go beyond this threshold, which we can compute using the first zero of the Lane-Emden equation: 
+%
+\begin{align}
+M _{\text{Ch}} &= - 4 \pi \qty[\frac{K (n+1) \rho _c^{-1 + 1/n}}{4 \pi G}]^{3/2} \rho _c \eval{\qty(\xi^2 \dv{\phi }{\xi })}_{\xi_1 }
+\,,
+\end{align}
+%
+which we can evaluate with the correct numbers for the constants \(M _{\text{Ch}} = \num{5.81} / \mu _e^2 M_{\odot} \approx \num{1.44} M_{\odot}\) in the case of a pure Helium composition. 
+
+\todo[inline]{So we need to be careful when applying this to the iron cores of supernovae!}
+
 \end{document}

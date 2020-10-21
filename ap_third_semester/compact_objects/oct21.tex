@@ -1,4 +1,117 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-21, \\ compiled \\ \today}
+
+About the differences between the Kerr spacetime and the spacetime outside a rotating star: the spacetime outside a rotating body is indeed \emph{not} Kerr. 
+
+Kerr is Petrov type D, which means nonradiative: we would need to compute the Weyl invariants of the metric. 
+If we do the calculation, we find that the quadrupole moment of Kerr is \(Q = J / M\). 
+If we compute the invariant telling us whether a spacetime is radiative or not, we find that it is nonradiative iff \(Q = J / M\). 
+The Hartle-Thorne approximation allows us to work up to a certain value of \(\Omega / \Omega _k\), close to the mass shedding limit.
+
+The thing we find is that in general for a star the quadrupole is \(Q \neq Q _{\text{Kerr}}\), however for small values of the rotation the spacetimes converge. 
+
+A reference for this: \textcite{bertiRotatingNeutronStars2005}. 
+
+To leading order, deviations from type-D are driven by deviations of \(Q \) from \(Q _{\text{Kerr}}\). 
+
+Back to what we were saying: we have an explicit expression for the pressure of a degenerate electron gas. 
+
+Let us consider the ultrarelativistic limit first, \(x_F \gg 1\): 
+%
+\begin{align}
+P &\approx \frac{\pi m^4 c^{5}}{h^3}
+\qty[x_F^2 \frac{2}{3} x_F^2 + \log \dots]  \\
+&\approx \frac{\pi m^4 c^{5}}{h^3} \frac{2}{3} x_F^{4} \propto n^{4/3} \propto \rho^{4/3}
+\,.
+\end{align}
+
+In the opposite limit, \(x_F \ll 1\), we would need to expand up to fifth order to see through all the cancellations: skipping all that mess, we find
+%
+\begin{align}
+P \approx \frac{8}{15} \frac{m^4 c^5}{h^3} x_F^{5} \propto n^{4/3}  \propto \rho^{5/3}
+\,.
+\end{align}
+
+The results are similar: in both cases, \(P \propto \rho^{\gamma }\), with \(\gamma = 5/3\) and \(4/3\) respectively.
+
+This allows us to compute the maximum mass that a spherical equilibrium configuration can reach if it is supported by the degeneracy pressure of the electron gas alone: the \textbf{Chandrasekhar mass}.
+This is the maximum mass of a white dwarf. 
+
+We need to start with the \textbf{Lane-Emden equation}, which is also due to work by Chandrasekhar. 
+
+We have a spherical star with no nuclear burning. 
+The only forces are due to gravity and pressure. This is a good description of a white dwarf. 
+Sometimes white dwarfs can have some burning on their surface if they are in binary systems, if they accrete fresh mass. 
+
+The equation of hydrostatic equilibrium reads 
+%
+\begin{align}
+\dv{P}{r} = - \frac{G m(r) \rho }{r^2}
+\,,
+\end{align}
+%
+where \(m(r)\) is the mass contained within a shell of radius \(r\):
+%
+\begin{align}
+m(r) = \int_0^{r} 4 \pi r^2 \rho \dd{r} 
+&& 
+\dv{m}{r} = 4 \pi r^2 \rho 
+\,.
+\end{align}
+
+We want to couple these two equations in order to get a single one: we will find a second-order equation. 
+We start from 
+%
+\begin{align}
+\frac{r^2}{\rho }\dv{P}{r} &= - G m  \\
+\dv{}{r} \qty(\frac{r^2}{\rho }\dv{P}{r}) &=
+- G \dv{m}{r} = - 4 \pi G r^2 \rho  \\
+\frac{1}{r^2} \dv{}{r} \qty( \frac{r^2}{\rho } \dv{P}{r}) &= - 4 \pi G \rho 
+\,.
+\end{align}
+
+We also need to specify an equation of state, which we will have in the form \(P(\rho )\): we assume \(P = K \rho^{\gamma }\), a \textbf{polytropic} EoS, with constant \(\gamma \).
+Sometimes this is also written through \(\gamma = 1 + 1/n\), where \(n\) is called the polytropic index. 
+
+A convenient way to solve the equation is to substitute \(\rho = \lambda \phi^{n}\): then, \(P = \lambda^{1+1/n} K \phi^{n+1}\). 
+Then, if we assume that the function \(\phi \) is dimensionless and such that \(\phi (0) = 1\), we have \(\lambda = \rho _c\). 
+
+We need to compute 
+%
+\begin{align}
+\dv{P}{r} &= \dv{}{r} \qty( K \lambda^{1 + 1/n} \phi^{n+1})  \\
+&= K \lambda^{1 + 1/n} (n+1) \phi^{n} \dv{\phi }{r} 
+\,.
+\end{align}
+
+Then, the equation reads 
+%
+\begin{align}
+K \lambda^{1/n} (n+1) \frac{1}{r^2} \dv{}{r} \qty(r^2 \dv{\phi }{r} )
+&= - 4 \pi G \lambda \phi^{n}  \\
+a^2 \frac{1}{r^2} \dv{}{r} \qty(r^2 \dv{\phi }{r}) &= - \phi^{n} 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+a^2 = \frac{K (n+1) \lambda^{-1 + 1/n}}{4 \pi G}
+\,.
+\end{align}
+
+The physical dimensions of \(a\) are those of a length. 
+We then introduce a new radial coordinate \(\xi = r /a\), and we have the right amount of \(a\)s on the left-hand side to adimensionalize everything: 
+%
+\begin{align}
+\frac{1}{\xi^2} \dv{}{\xi } \qty(\xi^2 \dv{\phi }{\xi }) = - \phi^{n}
+\,,
+\end{align}
+%
+which is the usual formulation of the Lane-Emden equation. 
+
+What are the boundary conditions we need to set? If we assume that \(\rho (r=0) = \rho _c\), we can set \(\lambda = \rho _c\) and \(\phi (0) = 1\).
+
 \end{document}

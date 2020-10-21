@@ -1,4 +1,212 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-21, \\ compiled \\ \today}
+
+We come back to the dynamics of slow-roll inflation. 
+We defined \(\epsilon = - \dot{H} / H^2 \), which in our model corresponds to \(\dot{\varphi}^2 / V \). 
+So, the conditions of the potential being flat (\(V'\) being small) and the kinetic energy being small compared to the potential are seen to correspond to \(\epsilon \ll 1\). 
+
+On the other hand, \(\eta = - \ddot{\varphi} / (H \dot{\varphi}) = \eta_V - \epsilon \), where 
+%
+\begin{align}
+\eta _V = \frac{1}{3} \frac{V''}{H^2} = \frac{1}{8 \pi G} \frac{V''}{V}
+\,.
+\end{align}
+
+What we ask is that all three of these parameters be small. 
+
+This means that \(H\) must change slowly over time. 
+We can manipulate the second derivative of the scale factor so that \(\epsilon \) appears:
+%
+\begin{align}
+\ddot{a} = \dv{}{t} \qty(Ha) = a \dot{H} + \dot{a} H  = a \qty(\dot{H} + H^2) = a H^2 \qty(1 + \frac{\dot{H}}{H^2}) = a H^2 \qty(1 - \epsilon )
+\,.
+\end{align}
+
+We can see that \(\ddot{a} > 0\) only if \(\epsilon < 1\). 
+What is then the relevance of \(\eta < 1\) then? 
+We must have not only a phase of accelerating expansion, but a phase of accelerating expansion which lasts \emph{sufficiently long}.
+In order for this to happen, we need \(\epsilon \sim \const\). Since \(\epsilon \sim \dot{\varphi}^2\) while \(\eta \sim \ddot{\varphi}\), requiring \(\eta \ll 1\) ensures this. 
+
+Also, \(\eta \ll 1\) is needed in order to neglect the acceleration term in the Klein-Gordon equation, so that we move towards an attractor solution in the friction-dominated regime. 
+
+There could be arbitrarily many more slow-roll parameters, defined in terms of higher-order derivatives \cite[pag.\ 406]{GravitationalWavesInflation2016}: 
+%
+\begin{align}
+\zeta ^2 = \frac{1}{8 \pi G} \qty(\frac{V' V'''}{V''})
+\,,
+\end{align}
+%
+and we will always expand in these parameters; in this course we will usually stop at second order (keeping \(\epsilon \) and \(\eta \)).
+
+We will then be able to consider both \(\epsilon \) and \(\eta\) as approximately constant: their time derivatives are of higher order in them, specifically \(\dot{\epsilon}, \dot{\eta} = \order{\epsilon^2, \eta^2}\).
+
+Forgetting about the precise coefficients, 
+%
+\begin{align}
+\epsilon \sim \frac{1}{\pi G} \qty(\frac{V'}{V})^2 \sim \frac{\alpha^2 M _{\text{Pl}}^2}{\varphi^2}
+\,,
+\end{align}
+%
+meaning that \(\varphi \gtrsim M _{\text{Pl}}\). 
+Note that we are talking about the \emph{background} solution, dropping the index \(0\) for simplicity.
+
+These are then called \emph{large-field} models, since the value of \(\varphi \) must be very large. 
+Another kind of potential is in the form 
+%
+\begin{align}
+V(\varphi ) = V_0 \qty[1 - \qty(\frac{\varphi }{\mu })^{p } + \dots]
+\,,
+\end{align}
+%
+where \(\varphi < \mu < M _{\text{Pl}}\), while \(p > 2\). 
+The dots (higher order terms) are important for the end of inflation, not for most of it. 
+This potential has a plateau near \(\varphi = 0\).
+
+In this case, 
+%
+\begin{align}
+\epsilon \sim \frac{1}{\pi G} \qty(\frac{V'}{V})^2
+\sim \frac{p^2}{\pi G} \frac{\varphi^{2 p }}{\varphi^2}  \qty[\dots]^{-2} 
+\sim \frac{p^2 \varphi^{2p} M _{\text{Pl}}^2}{\varphi^2} 
+\,,
+\end{align}
+%
+so \(\epsilon \to 0\) as \(\varphi \to 0\): these are called \emph{small-field models} of inflation, since we can have small \(\epsilon \) even with small \(\varphi \).
+
+Why do we need the condition \(\varphi < \mu < M _{\text{Pl}}\)? 
+
+\begin{claim}
+In the case \(p = 2\) and in the case \(\mu > M _{\text{Pl}}\) this model becomes a \emph{large-field} one. 
+\end{claim}
+
+There is also a third category, but it is mostly excluded by data. 
+
+The quantity we are interested in is the \emph{excursion} \(\Delta \varphi \) of the field in the \emph{observable window}: the difference between its value when the horizon crosses the largest observable scales (\(\varphi _{\text{CMB}}\) --- called so since we can measure it from CMB observations) and the value of the field at the end of inflation, \(\varphi _{\text{end}}\): \(\Delta \varphi = \varphi _{\text{CMB}} - \varphi _{\text{end}}\). 
+This interval corresponds to the \(\sim 60\) \(e\)-folds of inflation; inflation likely lasted much more, however the earliest parts of it, which correspond to scales much larger than the horizon today, are hardly observable. 
+
+We can compute \(\Delta \varphi \) as 
+%
+\begin{align}
+\Delta  \phi = \int_{\varphi _{\text{CMB}}}^{\varphi _{\text{end}}} \dd{\varphi } = \int_{t _{\text{CMB}}}^{t _{\text{end}}} \dot{\varphi} \dd{t} \approx \frac{\dot{\varphi}}{H} \int_{H t _{\text{CMB}}}^{H t _{\text{end}}} \dd{(Ht)} = \frac{\dot{\varphi}}{H} 
+N _{\text{CMB}} \sim N _{\text{CMB}} \sqrt{\epsilon } M _{\text{Pl}}
+\,,
+\end{align}
+%
+where \(N _{\text{CMB}} \sim 60 \divisionsymbol 70\) is the number of \(e\)-folds in the sub-horizon part of inflation. 
+
+If \(\epsilon \) is of the order of \(1 / N _{\text{CMB}}\), as happens in large-field models, we find \(\Delta \varphi \sim \sqrt{N _{\text{CMB}}} M _{\text{Pl}} \gtrsim M _{\text{Pl}}\).
+
+\todo[inline]{Where does this \(\epsilon \sim 1/N\) come from?}
+
+On the other hand, if we have \(\epsilon \to 0\) we can have smaller \(\Delta \varphi \lesssim M _{\text{Pl}}\). 
+
+Do we have to account for quantum gravity if \(\Delta \varphi \gtrsim M _{\text{Pl}}\)? No, since the condition required is actually \(V \leq M _{\text{Pl}}^{4}\).
+However, a large excursion of the scalar field can constitute a problem, especially if we try to include these models in a ``UV-complete'' theory, so we must be careful.
+
+We have often taken a De Sitter or quasi-De Sitter phase of expansion, but this is not necessarily the case: recall that 
+%
+\begin{align}
+\ddot{a} = a H^2 \qty(1 + \frac{\dot{H}}{H^2})
+\,,
+\end{align}
+%
+so if \(\dot{H} = 0\) (which defines De Sitter expansion) we do indeed have accelerated expansion, but \(\dot{H} \neq 0 \) does not prevent it, as long as \(\abs{\dot{H}} < H^2\) for negative \(\dot{H}\), or even more easily with \(\dot{H} > 0\). 
+
+In our models we usually had 
+%
+\begin{align}
+\dot{H} = - 4 \pi G \dot{\varphi}^2 < 0
+\,.
+\end{align}
+
+This is to say that inflation is not De Sitter, although it can be close to it in certain phases: for starters, it must end at a certain point. 
+What kind of fluid could correspond to these other two solutions? 
+
+In general, for a spatially flat FLRW universe, we have 
+%
+\begin{align}
+a(t) = a_* \qty(1 + \frac{1}{\alpha } H_*(t- t_*))^{\alpha }
+&& \alpha = \frac{2}{3 (1+w)}
+\,,
+\end{align}
+%
+with \(w = \const\). This is a good approximation, at least for the subhorizon phase of inflation.
+Accelerated expansion is achieved for \(-1 < w < - 1/3\): for these values the scale factor expands like a powerlaw, this is called \emph{powerlaw inflation}. 
+
+The De Sitter case is one we know. 
+The case in which \(\dot{H} >0\) is realized with \(w < -1\); this goes like 
+%
+\begin{align}
+a(t ) \propto (t-t _{\text{asymptote}})^{\alpha } 
+\,,
+\end{align}
+%
+with \(\alpha < 0\). This is called \emph{pole inflation}: it is \emph{superexponential}. 
+
+In the simple models we are considering we always have \(\dot{H} < 0 \), so this is not relevant. 
+
+We have always worked with equations like \(H^2 = \frac{8 \pi G}{3} V(\varphi )\), which starts us off with an \emph{unperturbed} FLRW metric.
+
+How can we be sure that the solution we find is indeed an attractor? It seems like we are requiring very specific initial conditions, not general at all! 
+
+We need the \textbf{cosmic no-hair principle} (sometimes called ``theorem'', although it is not one).
+This tells us that starting from very general initial conditions inflation moves us towards a flat FLRW metric. 
+This is discussed in \textcite[]{kolbEarlyUniverse1994}. 
+
+We do not have a full GR solution to describe an anisotropic inhomogeneous universe; we consider instead a homogeneous but anisotropic spacetime: a \emph{Bianchi model}. 
+The Bianchi classification distinguishes between different kinds of universes like these. 
+
+Bianchi class I universes expand at different rates in different directions: 
+%
+\begin{align}
+\dd{s^2} = - \dd{t}^2 + \sum _{i} a_i^2 (t) \dd{x_i}^2
+\,.
+\end{align}
+
+We can then define a volume \(V = a_1 a_2 a_3 \), and an average scale factor \(\overline{a} (t) \propto V^{1/3}\): this yields an \emph{averaged} Friedmann equation like 
+%
+\begin{align}
+\overline{H}^2 = \qty(\frac{\dot{\overline{a}}}{\overline{a}})^2 = \frac{1}{9} \qty(\frac{\dot{V}}{V})^2
+ = \frac{8 \pi G}{3} \qty[\rho _\varphi + \rho _m + \rho _r]
+ + F(a_1, a_2, a_3 )
+\,,
+\end{align}
+%
+where the term \(F\) represents the dynamical effects of the anisotropic expansion of the universe. 
+It can also include the effects of curvature, with a term like \(- k / \overline{a}^2\).
+
+Note that we could also write a full set of equation from the Einstein ones, to describe the evolution of the three anisotropic scale factors \(a_i\): the point is that writing the averaged equation we did we can explicitly see the effects of the anisotropy on the mean scale factor. This allows us 
+
+Suppose we have a model of inflation with a scalar field \(\varphi \) and a potential \(V(\varphi )\), which drives inflation if it is considered without the anisotropic term \(F\). 
+
+The question is: if we account for \(F\), does it ``destroy'' inflation? 
+This is to say: under these more general anisotropic initial conditions, can inflation move us towards a flat FLRW universe? 
+
+The evolution of \(\varphi \) will be governed by the Klein-Gordon equation:
+%
+\begin{align}
+\ddot{\varphi} + 3 \overline{H} \dot{\varphi} = - \pdv{V}{\varphi }
+\,.
+\end{align}
+
+We can then show that usually there is no problem from the anisotropy. 
+Let us start with the simplest model, in which we take \(\rho _\varphi = \const\), a cosmological constant. 
+% Here we have Wald's theorem. 
+% \todo[inline]{What does it state?}
+
+Typically, \(F \propto \overline{a}^{\alpha }\), where \(\alpha \leq -2\). This then means that, if \(\rho _\varphi \) is constant, eventually \(\rho _\varphi \) will dominate. 
+Everything else will be exponentially suppressed. 
+
+Under certain assumptions this can be proven formally, and is called Wald's Theorem. 
+
+There can be exceptions: for example, a closed universe with high \(\Omega _k\) initially can collapse before inflation starts. 
+
+We, however, do not have a cosmological constant but a field: does \(\varphi \) roll to the minimum \emph{before} inflation starts, if the anisotropic term \(F\) is present?
+It does not. The effect of \(F\) is to give an additional contribution to \(H\), usually increasing it, which modifies the ``friction'' term, which allows for the slow-roll inflation to still occur.
+
+What about completely general \emph{inhomogeneous} as well as anisotropic spacetimes? 
+Various analyses have shown (still, not as a mathematical theorem!) that also in this case typically we evolve towards a flat FLRW metric.
+
 \end{document}

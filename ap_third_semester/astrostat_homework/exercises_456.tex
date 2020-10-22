@@ -101,7 +101,7 @@ Now, we only need to simplify \(\Circled{2}\):
     + \vec{\mu}^{\top} V V^{-1} V \vec{\mu}
 ]
 + \frac{1}{2} \vec{\mu}^{\top} V \vec{\mu}  \\
-&= \vec{k}^{\top} C \vec{k} + i \vec{\mu}^{\top} \vec{k}
+&= \frac{1}{2} \vec{k}^{\top} C \vec{k} + i \vec{\mu}^{\top} \vec{k}
 \,,
 \end{align}
 %
@@ -110,8 +110,133 @@ inserting which into the exponent yields the desired result.
 
 \begin{proof}[Proof: diagonalization]
 We now follow a different approach: the covariance matrix \(C\) is symmetric, so we will always be able to find an orthogonal matrix \(O\) (satisfying \(O^{\top} = O^{-1}\)) such that \(C = O^{\top} D O\), where \(D\) is diagonal. 
+We will then also have \(V = C^{-1} = O^{\top} D^{-1} O\).
+Let us denote the eigenvalues of \(D\) as \(\lambda _i\), and the eigenvalues of \(D^{-1}\) as \(d_i = \lambda _i^{-1}\).
 
+Defining \(\vec{z} = O \vec{x}\), \(\vec{m} = O \vec{\mu}\), \(\vec{u} = O \vec{k}\) the negative of the argument of the integral becomes:
+%
+\begin{align}
+ i \vec{k} \cdot \vec{x} 
+ + \frac{1}{2}
+\qty(\vec{x} - \vec{\mu})^{\top} C^{-1} 
+\qty(\vec{x} - \vec{\mu}) &=
+ i \vec{u} \cdot \vec{z} 
++ \frac{1}{2} (\vec{z} - \vec{m})^{\top} D^{-1} (\vec{z} - \vec{m})  \\
+&= 
+i \vec{u} \cdot \vec{z} 
++ \frac{1}{2} \sum _{i} d_i (z_i - m_i)^2   \\
+&= \sum _{i} \qty[i u_i z_i + \frac{d_i}{2} \qty(z_i^2 + m_i^2 - 2 m_i z_i)]  \\
+&= \sum _{i} \qty[z_i^2 \frac{d_i}{2} + z_i \qty(i u_i - m_i d_i) + \frac{d_i}{2} m_i^2]
+\,.
+\end{align}
 
+With this, and since by \(\det O = 1\) we have \(\dd[n]{z} = \dd[n]{x}\), we can decompose our Gaussian integral into a product of Gaussian integrals:
+%
+\begin{align}
+\phi (\vec{k}) &= 
+N \int \dd[n]{x} \exp(-  i \vec{k} \cdot \vec{x} 
+ - \frac{1}{2}
+\qty(\vec{x} - \vec{\mu})^{\top} C^{-1} 
+\qty(\vec{x} - \vec{\mu}))  \\
+&= N \int \dd[n]{z} \exp(- \sum _{i} \qty[z_i^2 \frac{d_i}{2} + z_i \qty(i u_i - m_i d_i) + \frac{d_i}{2} m_i^2])  \\
+&= N \prod_i \int \dd{z_i}
+\exp(- z_i^2 \frac{d_i}{2} - z_i \qty(i u_i - m_i d_i) - \frac{d_i}{2} m_i^2)  \\
+&= N \prod_i \sqrt{\frac{2\pi }{d_i}} \exp(\frac{(i u_i - m_i d_i)^2}{2 d_i} - \frac{d_im_i^2}{2}) \\
+&= \frac{1}{\sqrt{\det C \det V}} \prod_i \exp(\frac{- u_i^2 + m_i^2 d_i^2 - 2 i u_i m_i d_i }{2 d_i} - \frac{d_i m_i^2}{2}) \\
+&= \exp(\sum _{i} \qty[- \frac{u_i^2}{2d_i} - i u_i m_i])  \\
+&= \exp(- \frac{1}{2} \vec{u}^{\top} C \vec{u} - i \vec{u} \cdot \vec{m})  \\
+&= \exp(- \frac{1}{2} \vec{k}^{\top} C \vec{k} - i \vec{k} \cdot \vec{\mu })
+\,,
+\end{align}
+%
+where we have used the expression for the single-variable Gaussian integral: 
+%
+\begin{align}
+\int \dd{z} \exp(- a z^2 + bz + c) = \sqrt{ \frac{\pi}{a}} \exp( \frac{b^2}{4 a} + c)
+\,,
+\end{align}
+%
+which comes from the one-variable completion of the square: 
+%
+\begin{align}
+-az^2 + bz + c = -a \qty(z - \frac{b}{2a})^2 + \frac{b^2}{4a} + c
+\,.
+\end{align}
+
+Also, we used the fact that orthogonal transformation do not change fully-contracted objects, such as scalar products or bilinear forms.
+\end{proof}
+
+\section{Exercise 5}
+
+We can calculate the moments of a distribution through its characteristic function: 
+%
+\begin{align}
+\mathbb{E} \qty[x_\alpha^{n_\alpha } \dots x_\beta^{n_\beta }]
+= \eval{\frac{\partial^{n_\alpha \dots n_\beta } \phi (\vec{k})}{\partial(- i k_\alpha )^{n_\alpha } \dots \partial(-i k_\beta )^{n_\beta }}}_{\vec{k} = 0}
+\,.
+\end{align}
+
+In the multivariate Gaussian case we can then calculate the mean (component by component) as 
+%
+\begin{align}
+\mathbb{E}(x_\alpha ) &= \eval{\pdv{\phi (\vec{k})}{(-i k_\alpha )}}_{\vec{k} = 0}  \\
+&= \eval{\pdv{}{(-i k_\alpha )}}_{\vec{k} = 0}
+\exp(- \frac{1}{2} \vec{k}^{\top} C \vec{k} - i \vec{k} \cdot \vec{\mu })  \\
+&= \eval{\qty[- i \sum_\beta  k_\beta  C_{\beta  \alpha } + \mu _\alpha ] \exp(- \frac{1}{2} \vec{k}^{\top} C \vec{k} - i \vec{k} \cdot \vec{\mu })}_{\vec{k} = 0}  \\
+&= \mu _\alpha 
+\,,
+\end{align}
+%
+where we used the fact that the differentiation of a symmetric bilinear form is as follows: 
+%
+\begin{align}
+\pdv{}{k_\alpha } \qty(\sum _{\beta \gamma } k_\beta k_\gamma C_{\beta \gamma }) = 2 \sum _{\beta \gamma } \delta_{\beta \alpha } k_\gamma C_{\beta \gamma } = 2 \sum_{\gamma } k_\gamma C_{\alpha \gamma }
+\,.
+\end{align}
+
+The covariance matrix can be computed by linearity as
+%
+\begin{align}
+\widetilde{C}_{\alpha \beta } = \mathbb{E}\qty[\qty(x_ \alpha - \mathbb{E}(x_\alpha )) \qty(x_\beta - \mathbb{E}(x_\beta ))] 
+= \mathbb{E}\qty[x_\alpha  x_\beta ] - \mu _\alpha \mu _\beta 
+\,,
+\end{align}
+%
+the first term of which reads as follows: 
+%
+\begin{align}
+\mathbb{E}[x_\alpha x_\beta ] &= \eval{\pdv[2]{\phi (\vec{k})}{(-i k_\beta  )}{(-i k_\alpha  )}}_{\vec{k} = 0}  \\
+&= \eval{\pdv{}{(-i k_\beta )}}_{\vec{k} = 0} \qty[-i \sum _{\beta } k_\beta C_{\beta \alpha } + \mu _\alpha ] \exp(- \frac{1}{2} \vec{k}^{\top} C \vec{k} - i \vec{k} \cdot \vec{\mu })  \\
+&= C_{\alpha \beta } + \mu _\alpha \mu _\beta 
+\,,
+\end{align}
+%
+therefore, as expected, \(\widetilde{C}_{\alpha \beta }\) is indeed \(C_{\alpha \beta }\). 
+
+\section{Exercise 6}
+
+\begin{claim}
+The characteristic function of a multivariate Gaussian is, up to normalization, a multivariate Gaussian. 
+\end{claim}
+
+\begin{proof}
+The characteristic function is the exponential of (minus) 
+%
+\begin{align}
+\frac{1}{2} \vec{k}^{\top} C \vec{k} + i \vec{k} \cdot \vec{\mu} 
+&=  \frac{1}{2} \qty(\vec{k} + i C^{-1} \vec{\mu })^{\top} C 
+\qty(\vec{k} + iC^{-1}\vec{\mu }) + \frac{1}{2} \vec{\mu }^{\top} C^{-1} \vec{\mu }  
+\,,
+\end{align}
+%
+which means that the characteristic function is in the form 
+%
+\begin{align}
+\phi (\vec{k}) = \const \times \exp(- \frac{1}{2} (\vec{k} -\vec{m})^{\top} C (\vec{k} - \vec{m}) )
+\,,
+\end{align}
+%
+a multivariate normal with mean \(\vec{m} = -i C^{-1} \vec{\mu}\) and covariance matrix \(C^{-1}\), the inverse of the covariance matrix of the corresponding MVN.  
 \end{proof}
 
 \end{document}

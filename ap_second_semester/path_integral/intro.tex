@@ -5,7 +5,7 @@
     To write
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction and motivation}
 
 The Large Scale Structure of the cosmos formed as a result of gravitational clustering, starting from ``seed'' inhomogeneities in the density field in the early universe. 
 The generation of these perturbations is commonly thought to have been the result of quantum fluctuations in the early universe, which have reached galactic scales in the inflationary stage of the expansion. 
@@ -15,6 +15,26 @@ These perturbations may be considered as pertaining to the gravitational field \
 A model which so far has not been contradicted by observation is to consider perturbations as being a realization of a Gaussian random field. 
 Even if the field were not truly Gaussian, we would expect the Gaussian approximation to be a rather good one as it happens generally for processes which arise from the combined effects of many independent random variables \cite[pag.\ 2]{celoriaPrimordialNonGaussianity2018}. 
 
-However, the study of non-Gaussianities in the primordial universe is crucial. Inflationary models commonly predict 
+However, the study of non-Gaussianities in the primordial universe is crucial. Inflationary models commonly predict a nearly-Gaussian perturbation field, and the deviations from Gaussianity can aid us in the effort to determine which one best fits the data. 
+
+It is common to model an almost-Gaussian field with something similar to a Taylor expansion \cite[eq.\ 1]{matarreseAbundanceHighRedshift2000}, \cite[eq.\ 1]{celoriaPrimordialNonGaussianity2018} in the Gaussian field \(\varphi _L\): 
+%
+\begin{align}
+\Phi = \varphi _L + f_{NL} \qty(\varphi _L^2 + \expval{\varphi _L^2}) + g_{NL} \qty(\varphi _L^3 - \expval{\varphi _L^2} \varphi _L) + \order{\varphi _L^{4}} 
+\,.
+\end{align}
+
+From the most recent Planck mission data, which measured the non-Gaussianity by looking at the Cosmic Microwave Background temperature and polarization anisotropies' correlations, the parameters \(f_{NL}\) and \(g_{NL}\) are both compatible with zero \cite[]{planckcollaborationPlanck2018Results2019}.\footnote{The parameter \(f_{{NL}}\) is divided into different contributions, corresponding to different geometric configurations in Fourier space. We shall not go into details here, but they are independently compatible with zero.}
+
+Non-Gaussianities may have a large impact on structure formation, since the over-densities which cluster into cosmic structures are heavily dependent on the \emph{tails} of the density perturbation distribution: for example, if \(\varphi \) is Gaussian then its tails decay like \(\exp(- \varphi^2)\), while \(\varphi^2\) is chi-square distributed (with one degree of freedom), and its tails decay like \(\exp(- \varphi )\).
+
+Therefore, even a small amount of non-Gaussianity may ``boost'' structure formation significantly.
+
+Modelling the initial conditions for structure formation for a general non-Gaussian field is tricky, and the formalism which is best suited for the task is that of functional integration (the Path Integral). 
+It allows us to generate \emph{constrained} realizations of the field, which are especially useful if we wish to study the tails of the distribution, which are naturally connected to rare occurrences. 
+
+In section \ref{sec:path-integral} we will describe this formalism in detail from first principles, discussing its connection to the path integral used in Quantum Field Theory, the way to compute correlation functions, the use of spatial filters, and the saddle-point approximation. 
+
+In section \ref{sec:applications} we will discuss the applications of these techniques to structure formation. 
 
 \end{document}

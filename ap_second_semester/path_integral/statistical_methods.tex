@@ -8,6 +8,116 @@
 
 % From \cite[sec.\ 4]{nataleNoteCorsoDi2017}.
 
+\subsection{The statistics of fluctuations}
+
+In order to study the statistical properties of fluctuations we need to start from an assumption: \emph{ergodicity}. 
+The probabilities we will discuss are defined formally as corresponding to the likelihood of drawing a certain ``realization of the universe'' from a statistical ensemble of possible universes. 
+We cannot, of course, analyze more than one of these realizations, but we can consider its \emph{spatial} statistics. 
+
+All statistical properties can be derived as averages of appropriate functions; ergodicity is precisely the statement that spatial averages correspond to ensemble averages. 
+
+With this established, let us discuss how we can characterize the fluctuations of, say, the density field \(\rho \) (although this approach can be applied to other fields). 
+We start by defining \(\delta = (\rho - \rho_b) / \rho_b\):  this is the dimensionless fluctuation, which can range from \(-1\) to \(+ \infty \).
+By definition, its average will be 0: \(\expval{ \delta } = 0\), so we need to average at least a product of two \(\delta \)'s in order to have a nonzero result. 
+We evaluate them at two arbitrary point, \(x\) and \(x + r\): this would correspond to six degrees of freedom, but we lose three from homogeneity and two more from isotropy, therefore we only need to account for the modulus of \(r\). This motivates the definition 
+%
+\begin{align}
+\xi (r) = \expval{ \delta (x) \delta (x+r)} 
+\,,
+\end{align}
+%
+which is called the \emph{two-point correlation function}.
+By isotropy, we expect its Fourier transform to be a function of the modulus of the wavevector.
+With this in mind, we write the following ansatz for the correlation function in Fourier space, in terms of the \textbf{power spectral density} \(P\): 
+%
+\begin{align}
+\expval{ \delta (k_1 ) \delta (k_2)} = (2 \pi )^3 \delta^{(3)}(k_1 + k_2 ) P(\abs{k_1 })
+\,,
+\end{align}
+%
+where \(\delta (k)\) is the Fourier transform of \(\delta (x)\) (they are denoted by the same letter despite being different functions, we distinguish them by the argument): 
+%
+\begin{align}
+\delta (x) = \int \frac{ \dd[3]{x}}{(2 \pi )^3} e^{i k \cdot x} \delta (k)
+\,.
+\end{align}
+% 
+
+Let us then check that the ansatz is indeed correct:
+%
+\begin{align}
+\xi (r) &= \int 
+\frac{ \dd[3]{k_1}}{(2 \pi )^3} 
+\frac{ \dd[3]{k_2}}{(2 \pi )^3} 
+\exp(i k_1 x + i k_2 x + i k_2 r)
+\expval{ \delta (k_1 ) \delta (k_2 )}  \\
+&= \int 
+\frac{ \dd[3]{k_1}}{(2 \pi )^3} 
+\frac{ \dd[3]{k_2}}{(2 \pi )^3} 
+\exp(i k_1 x + i k_2 x + i k_2 r)
+(2 \pi )^3 \delta^{(3)} (k_1 + k_2 ) P(k_1 )  \\
+&= \int 
+\frac{\dd[3]{k_1}}{(2 \pi )^3}
+\exp(- i k_1  r)
+P(k_1 )   \\
+&=
+\int \frac{ \dd[3]{k}}{(2 \pi )^3}
+\exp(i \abs{k} \abs{r} \cos \theta )
+P( \abs{k})
+\,.
+\end{align}
+
+This shows that \(P(\abs{k})\) is the Fourier transform of the two-point correlation function \(\xi (r)\). 
+We can simplify this expression making use of the fact that there is no angular dependence in the integral in \(\dd[3]{k_1}\): 
+the computation yields 
+%
+\begin{align}
+\xi (r) = \frac{1}{2 \pi^2} \int_0^{\infty } \dd{k} k^2 P(\abs{k}) j_0 (kr)
+\,,
+\end{align}
+%
+where \(j_0 \) is a Bessel function defined by 
+%
+\begin{align}
+j_0 (x) =  \frac{1}{2} \int_0^{\pi } e^{i x \cos \theta } \sin \theta \dd{\theta } 
+\,.
+\end{align}
+
+
+If we evaluate the two-point correlation function \(\xi \) at 0 we find the variance of the density fluctuation field at a generic point: \(\xi (0) = \expval{ \delta (x) \delta (x)} = \sigma^2\), which can be expressed as 
+%
+\begin{align}
+\sigma^2 = \xi (0) = \int \frac{ \dd[3]{k}}{(2 \pi )^3} P(\abs{k})
+\,.
+\end{align}
+%
+
+The physical meaning of the power spectrum \(P(\abs{k})\) is to describe the distribution of the power of the perturbations into the various spatial frequencies; the previous expression shows that the variance at each point can be recovered by integrating it. 
+
+The shape of this power spectrum in the early universe has been measured through the correlations in the CMB by the Planck satellite: the spectrum is well described by a powerlaw, \(P(k) = A k^{n_s}\), with \(n_s = \num{0.9665 +- 0.0038}\) \cite[eq.\ 38]{planckcollaborationPlanck2018Results2019}.
+
+A value of \(n_s = 0\) would correspond to frequency-independent \emph{white noise}; \(n_s = 1\) would instead indicate exact \emph{scale invariance}, and this is called a Harrison-Zel'dovich spectrum.
+The measurement of \(n_s\) being slightly smaller than 1 indicates the presence of more energy at longer wavelengths, which is called a \emph{red tilt}. 
+
+With this value, we can see that the integral giving \(\sigma^2\) diverges in the ultraviolet (\(k \to \infty\)). 
+This divergence is not physical, since cosmic structure does not extend to arbitrarily small scales. Therefore, we fix the problem by introducing a \emph{spatial filter} \(W(r, R)\), where \(r\) is the spatial radius of interest while \(R\) is a fixed characteristic radius below which we do not consider structures. This filter is better characterized through its Fourier transform, \(\widetilde{W}(k, R)\): we use a filtered field like 
+%
+\begin{align}
+\delta_R (k) &= \widetilde{W}(k, R) \delta (k)  \\
+\delta _R(r) &= \int \dd[3]{y} W(\abs{x-y}, R) \delta (x)
+\,.
+\end{align}
+
+The convolution in real space can be visually interpreted as a smoothing over scales of \(R\) (of course, the exact workings of this depend on the precise shape of \(W\)); in Fourier space we have a simpler multiplication.
+
+There are different ways of choosing \(\widetilde{W}(k, R)\), which have in common the fact that they attain high values for \(k \ll R^{-1}\) and they go to zero for \(k \gg R^{-1}\). 
+One must be careful when choosing a filter: a sharp filter in real space corresponds to a very broad filter in Fourier space, and vice versa. 
+The power spectrum is transformed like \(P(k) \to \widetilde{W}(k, R) P(k)\) by the application of the filter.
+
+\subsection{Higher-order correlations}
+
+
+
 % Two point correlation function: 
 % %
 % \begin{align}
@@ -21,9 +131,9 @@
 
 % Hierarchical models: \(N\)-point correlation functions can be calculated from the two-point one. 
 
-Bias model: \(\delta _g = b \delta \) with constant \(b\), where \(\delta_g \) is the density perturbation for galaxies and \(\delta \) is the one for dark matter.
+% Bias model: \(\delta _g = b \delta \) with constant \(b\), where \(\delta_g \) is the density perturbation for galaxies and \(\delta \) is the one for dark matter.
 
-Power spectrum definition, which by Wiener-Khinchin is the Fourier transform of the two-point correlation function. 
-Expression for \(\xi \) in terms of \(P\) and Bessel functions as a single integral. 
+% Power spectrum definition, which by Wiener-Khinchin is the Fourier transform of the two-point correlation function. 
+% Expression for \(\xi \) in terms of \(P\) and Bessel functions as a single integral. 
 
 \end{document}

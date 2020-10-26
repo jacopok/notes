@@ -1,4 +1,255 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-10-26, \\ compiled \\ \today}
+
+Our scalar field is given by 
+%
+\begin{align}
+\varphi (\vec{x}, t) = \varphi_0 (t) + \delta \varphi (\vec{x}, t)
+\,,
+\end{align}
+%
+a background value, which we have studied up to now, plus some quantum fluctuations. 
+
+The full field obeys the KG equation: 
+%
+\begin{align}
+\ddot{\varphi}(\vec{x}, t) + 3 H \varphi (\vec{x}, t)
+- \frac{\nabla^2 \varphi (\vec{x}, t)}{a^2} 
+= - \pdv{V}{\varphi }
+\,,
+\end{align}
+%
+which we can Taylor expand up to linear order around the background value if we assume that the perturbation is indeed small: 
+%
+\begin{align}
+\ddot{ \delta \varphi} + 3 H \dot{\delta \varphi}
+- \frac{\nabla^2}{a^2} \delta \varphi 
+= - \pdv[2]{V(\varphi )}{\varphi } \delta \varphi 
+\,.
+\end{align}
+
+We want to see how the dynamics of \(\delta \varphi \) affect the super-horizon scales. 
+The first order equation for \(\delta \varphi \) is coupled to the background one: 
+%
+\begin{align}
+\ddot{\varphi_0} (t) + 3 H \dot{\varphi_0 } (t) = - \eval{\pdv{V}{\varphi }}_{\varphi_0 }
+\,.
+\end{align}
+
+Let us differentiate it with respect to time, assuming that we are in a phase of De Sitter expansion with \(\dot{H} \approx 0 \): 
+%
+\begin{align}
+\dot{\ddot{\varphi_0}} + 3 H \ddot{\varphi} 
+= - \eval{\pdv[2]{V}{\varphi }}_{\varphi_0 } \dot{\varphi_0 }
+\,,
+\end{align}
+%
+which looks similar to the equation for \(\delta \varphi \), except for the Laplacian. 
+
+We can neglect the Laplacian on superhorizon scales: for one, on large scales the variations are negligible. More formally, in Fourier space that term is \(k^2 \delta \varphi / a^2\), to be compared with things like \(3 H \dot{ \delta  \varphi} \sim 3 H^2 \delta \varphi \), since the characteristic time of the variations of the field is \(1/H\).  
+
+Now, on superhorizon scales \(k \gg r_H\), which means that \(k \ll aH = r_H^{-1}\), therefore \(k^2 / a^2 \ll H^2\). 
+We can then neglect the Laplacian term. 
+
+What we should do now is to consider the Wronskian of the two-equation system:
+%
+\begin{align}
+W (x, y) &= \dot{x} y - x \dot{y}  \\
+W(\dot{\varphi_0}, \delta \varphi ) &= \ddot{\varphi_0} \delta \varphi - \dot{\varphi_0} \dot{ \delta \varphi}
+\,.
+\end{align}
+
+It can be shown that if the Hubble parameter is approximately constant then \(\dot{W} = - 3 HW\), meaning \(W \sim \exp(- 3 H t)\), which quickly goes to zero.
+
+If \(W = 0\), then the two variables \(\dot{\varphi_0} \) and \(\delta \varphi \) are dependent, then we can decompose \(\delta \varphi \) like 
+%
+\begin{align}
+\delta \varphi (\vec{x}, t) = - \delta t (\vec{x}) \dot{\varphi_0}(t)
+\,.
+\end{align}
+
+Therefore, the full field is given by reverse-Taylor expanding as 
+%
+\begin{align}
+\varphi (\vec{x}, t) &= \varphi_0 (t) - \delta t(\vec{x}) \dot{\varphi_0}(t)  \\
+&\approx \varphi_0 (t - \delta t(\vec{x}))
+\,.
+\end{align}
+
+This expression has a very clear physical interpretation: point by point, the field goes through the same evolution, taking on the same values, only at different times at each point. 
+
+This holds as long as we have a single scalar field, in multi-field models of inflation this will not be the case anymore. 
+
+What we want to compute is the final effect of these fluctuations on super-horizon scales. 
+The equation for \(\delta \varphi \) reads 
+%
+\begin{align}
+\ddot{ \delta \varphi} + 3 H \dot{ \delta \varphi} 
+- \frac{\nabla^2 \delta \varphi }{a^2} = V''(\varphi_0 ) \delta \varphi 
+\,.
+\end{align}
+
+We move to Fourier space: 
+%
+\begin{align}
+\delta \varphi (\vec{x}, t) = \frac{1}{(2\pi )^{3}} \int \dd[3]{k} 
+e^{i \vec{k} \cdot \vec{x}} \delta \varphi _{\vec{k}}(t)
+\,.
+\end{align}
+
+Since the field is real, \(\delta \varphi _{\vec{k}} = \delta \varphi _{- \vec{k}}^{*}\). 
+These Fourier modes evolve independently of each other up to linear order. 
+
+Why do we make a 3D Fourier transform and not a 4D one? We have time-dependent coefficients in the equation, such as \(H\). 
+We Fourier transform to take account of the spatial symmetry: it is not useful to transform in time since there is no time translation symmetry. 
+
+By transforming we are implicitly using a stationary wave basis, which is natural in a spatially flat universe: in a non-flat universe instead of \(e^{i \vec{k} \cdot \vec{x}}\) we should use generalized solution of the Helmholtz equation 
+%
+\begin{align}
+\nabla^2 Q_{\vec{k}} + k^2 Q_{\vec{k}} = 0
+\,,
+\end{align}
+%
+the eigenvalue equation for the Laplacian operator. 
+These are \emph{time-independent} waves, while propagating waves \(\exp(- i k_\mu x^{\mu })\) would not suit our needs. 
+In Fourier space the equation reads 
+%
+\begin{align}
+\ddot{ \delta \varphi} _{\vec{k}} + 3 H \dot{ \delta \varphi}_{\vec{k}}
++ \frac{k^2}{a^2} \delta \varphi _{\vec{k}} = - V'' (\varphi_0 ) \delta \varphi _{\vec{k}}
+\,.
+\end{align}
+
+We will need to use the standard tools of second quantization: we start by introducing \(\hat{ \delta \varphi} = a \delta \varphi \), and we use conformal time, \(a \dd{ \tau } = \dd{t}\). Then, we will have 
+%
+\begin{align}
+\delta \varphi (\vec{x}, \tau ) = \int \frac{ \dd[3]{k}}{(2 \pi)^3}
+\qty[u_k (\tau ) a_{\vec{k}} e^{i \vec{k} \cdot \vec{x}} + u_k^{*} (\tau ) a_{\vec{k}}^\dag e^{-i \vec{k} \cdot \vec{x}}] 
+\,.
+\end{align}
+
+The functions \(u\) are classical functions of time, while \(a\) and \(a ^\dag \) are the annihilation operators.
+They are defined so that \(a_{\vec{k}} \ket{0} = 0\) for any \(\vec{k}\), and similarly \(\bra{0} a ^\dag_{\vec{k}} = 0\). 
+
+Here, \(\ket{0}\) is called the \emph{free vacuum state}.
+
+We impose the normalization condition 
+%
+\begin{align}
+u_k^{*} u_k' - u_k u_k^{*, \prime} = -i
+\,,
+\end{align}
+%
+which is equivalent to requiring 
+%
+\begin{align}
+\qty[a_{\vec{k}}, a_{\vec{k}'} ^\dag] = \hbar \delta^{(3)} (\vec{k} - \vec{k}')
+\,,
+\end{align}
+%
+while \(\qty[a_k, a_{k'}] = \qty[a_k ^\dag, a_{k'}^\dag] = 0\). 
+
+In flat spacetime, once the commutation relations are fixed we are done: the solutions are known to be plane waves, with \(u_{\vec{k}} \sim \exp(- i \omega _k t) / \sqrt{2 \omega _k}\), and \(\omega _k = \sqrt{k^2 + m^2}\). 
+
+Now, instead, we need to make some assumptions. Because of the equivalence principle, for small distances and time intervals the solutions should reproduce the flat-spacetime ones. 
+From this guiding principle, we require 
+%
+\begin{align}
+\frac{k}{aH} \to \infty \implies 
+u_k (\tau ) = \frac{e^{-i k \tau }}{\sqrt{2 k}}
+\,,
+\end{align}
+%
+which is called the \emph{bunch-Davies vacuum choice}.
+In the denominator we only have \(k\) since \(k^2\gg m^2\) for the large scales we are considering. 
+
+What is the equation for \(u\)? In conformal time (\(' = \dv{}{\tau }\)) it is 
+%
+\begin{align}
+u''_k (\tau ) + \qty[k^2  - \frac{a''}{a} + a^2 \pdv[2]{V}{\varphi }] u_k (\tau ) = 0
+\,,
+\end{align}
+%
+which is associated to the rescaled variable \( \hat{ \delta \varphi} = a \delta \varphi \). 
+We can also see the reason why we have chosen to use the rescaled \(\delta \varphi \) instead of the regular one: what we have found with this ansatz is basically a harmonic oscillator with a time-dependent frequency, changing according to the accelerated expansion of the universe. 
+The ansatz yields a canonically-normalized kinetic term in the harmonic oscillator. 
+
+In order to solve the equation, we will assume de-Sitter expansion with \(H = \const\), a massless scalar field with \(m_\varphi^2 = \pdv*[2]{V}{\varphi } = 0\). 
+Then, we know that \(\dd{\tau } = \dd{t} / a = \dd{t} e^{-Ht}\), so 
+%
+\begin{align}
+\tau = - \frac{1}{H} e^{-Ht} = - \frac{1}{aH}
+\,.
+\end{align}
+
+Conventionally we choose the integration bounds so that \(\tau \) runs from negative infinity to zero. This is just a matter of convention, a constant time shift has no effect on the dynamics. We also have 
+%
+\begin{align}
+\frac{a''}{a} = \frac{2}{\tau^2}
+\,,
+\end{align}
+%
+so if \(\lambda _{\text{phys}} = a \lambda \ll H^{-1}\), therefore \(\lambda \gg aH\). Therefore, being in the subhorizon scale means that 
+%
+\begin{align}
+\frac{a''}{a} = 2 a^2 H^2 \ll k^2
+\,,
+\end{align}
+%
+therefore on subhorizon (microscopic) scales the equation reads 
+%
+\begin{align}
+u''_k + k^2 u_k = 0
+\,,
+\end{align}
+%
+solved by 
+%
+\begin{align}
+u_k = \frac{e^{-ik \tau }}{\sqrt{2 k }}
+\,.
+\end{align}
+
+As expected, we recover the regular flat-spacetime solution.
+However, what is really interesting to us are the cosmological, superhorizon solutions: this means \(k \ll a H\), so 
+%
+\begin{align}
+u''_k (\tau ) - \frac{a''}{a} u_k (\tau ) = 0
+\,,
+\end{align}
+%
+which is a second-order equation: it will have two independent solutions, and it can be shown that the generic solution is written as 
+%
+\begin{align}
+u_k(\tau ) = \underbrace{B(k) a(\tau )}_{\text{growing mode}} + \underbrace{C(k) a^{-2}(\tau )}_{\text{decaying mode}}
+\,.
+\end{align}
+
+We neglect the decaying mode, since even if it is excited it will quickly decay.
+The physical fluctuation \(\delta \varphi \) is proportional to \(u_k /a \sim B(k)\), therefore we can see that the ``growing mode'' is actually asymptotically constant on superhorizon scales. 
+
+We then want to determine the scale of \(B(k)\). 
+
+We need to match the subhorizon and superhorizon solutions, at the point \(k = aH\). 
+%
+\begin{align}
+\abs{B(k)} a &= \abs{\frac{e^{-ik \tau }}{\sqrt{2 k}}}   \\
+\abs{ \delta \varphi _k} &= \abs{B(k)} = \frac{1}{a \sqrt{2k}} 
+\,,
+\end{align}
+%
+\todo[inline]{recover last bit}
+
+The fluctuation gets ``frozen in'' at horizon crossing: 
+%
+\begin{align}
+\abs{ \delta \varphi _k} = \frac{H}{2 k^3}
+\,.
+\end{align}
+%
+This is called a \emph{gravitational amplification mechanism}.
+This is analogous to pair production from vacuum under a strong electrostatic field. The electric field separates the newly-formed electron-positron pair. 
+
 \end{document}

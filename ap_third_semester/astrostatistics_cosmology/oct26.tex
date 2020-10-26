@@ -1,4 +1,124 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-10-26, \\ compiled \\ \today}
+
+We have seen if the gradient of the log-posterior is linear in the parameters: \(\vec{\nabla} L (\vec{x}) = A \vec{x} + \vec{c}\) then the covariance matrix is \(\Sigma_{ij} = \qty(- A^{-1})_{ij}\).
+Matrix inversion is slow, so we seek faster methods in general. 
+
+Are there situations in which the gradient of the log-posterior is indeed linear?
+We need the noise to be Gaussian --- this is common, by the CLT this approximation is good if there are many concurring sources. 
+For simplicity, we will assume that the measurements are statistically independent --- this is not strictly necessary, what we will show holds even if this is not true.
+Formally, this means that for two measurements \(d_i\) and \(d_j\) we have \(\mathbb{P}(d_i, d_j) = \mathbb{P}(d_i) \mathbb{P}(d_j)\). 
+
+Then, the likelihood reads 
+%
+\begin{align}
+\mathscr{L} (d_i | \vec{x}) = \frac{1}{\sqrt{2 \pi } \sigma }
+\exp(- \frac{1}{2} \frac{(d_i - \mu )^2}{\sigma^2})
+\,.
+\end{align}
+
+Let us assume that only the \emph{mean} is a function of the parameters of our theory (and of the observation number!) \(\mu = \mu_i (\vec{x})\). 
+As usual, with the independence assumption we find 
+%
+\begin{align}
+\mathscr{L} (d_i | \vec{x}) &\propto \prod_i 
+\exp(- \frac{1}{2} \frac{(\qty(d_i - \mu (\vec{x}))^2)}{\sigma^2})   \\
+L &\propto - \frac{1}{2} \sum _{i=1}^{n} \frac{(d_i - \mu _i (\vec{x}))^2}{\sigma_i^2} 
+\,.
+\end{align}
+
+A sum of squares of Gaussian variables is distributed like a \(\chi^2\) variable (with \(n\) degrees of freedom, in our case): in this case, \(L = - \chi^2 / 2\), so minimizing the \(\chi^2\) corresponds to minimizing the likelihood.
+
+A crucial condition in order for the problem to be linear is that the mean \(\mu _i (\vec{x})\) must be a linear function of the parameter vector: \(\mu _i (\vec{x}) = A \vec{x} + \vec{c}\).
+Assuming a flat prior, our log-posterior reads 
+%
+\begin{align}
+\log P = L \propto \chi^2 = \sum _{i=1}^{n} \frac{1}{\sigma_i^2}
+\qty[ d_i - \sum _{j} A_{ij} x_j - c_i ]^2
+\,.
+\end{align}
+
+What we want to show is that this implies that the gradient of the posterior, evaluated at the maximum, is linear in the parameter: it reads 
+%
+\begin{align}
+\pdv{L}{x_k} = \sum _{i} \frac{2}{\sigma _i^2}
+\qty[ d_i - \sum _{j} A_{ij} x_j - c_i ] A_{ik}
+\,.
+\end{align}
+
+This is linear: one could see it by eye, but let us also compute its second derivative to make sure: 
+%
+\begin{align}
+\pdv[2]{L}{x_l}{x_k}
+= 
+\sum _{i} \frac{2}{\sigma _i^2}
+\qty[- A_{il} A_{ik}] = -2 \qty( A^{\top} \Sigma^{-1} A)_{lk}
+\,.
+\end{align}
+
+This is a constant, so the initial expression was indeed linear.
+This is the usual least-squares fitting: people often simply do this without much care for the assumptions they are making.
+ 
+\subsection{Frequentist vs Bayesian}
+
+The conceptual meaning of a credible interval is different from that of a confidence interval. 
+Sometimes, especially when we have few data points, they are also quantitatively different. 
+
+\begin{itemize}
+    \item For a frequentist a parameter \(T\) is a fixed unknown number, not a random variable;
+    \item data \(x\) are random variables given by their frequency with which they occur in many repetitions;
+    \item both the Bayesian and the frequentist build a \emph{statistical estimator} \(f\), which is a function giving an estimate for the parameter starting from the data: \(f(x)\) yields \(t\), an estimate for \(T\); 
+    \item the distribution of the estimator --- which is a random variable since its argument is --- is called a \emph{sampling distibution} (for example, a \(\chi^2\) distribution);
+    \item the frequentist builds a \(b \%\) confidence interval, which is an interval for \(t\) such that it will contain \(T\) \(b \%\) of the time.
+\end{itemize}
+
+In the Gaussian limit the confidence interval and the credible interval coincide. 
+In the frequentist case we write the Confidence Interval as 
+%
+\begin{align}
+\mathbb{P}\qty(-\num{1.96} 
+\leq \frac{\mu_0 - \mu }{\sigma / \sqrt{n}}
+\leq \num{1.96}) \approx \num{.95}
+\,,
+\end{align}
+%
+while in the Bayesian case we write the Credible interval as 
+%
+\begin{align}
+\mathbb{P}\qty(\mu_0 - \num{1.96} \frac{\sigma }{\sqrt{n}}
+\leq \mu \leq \mu_0 + \num{1.96} \frac{\sigma }{\sqrt{n}}) \approx \num{.95}
+\,.
+\end{align}
+
+These two are written in terms of different variables: \(\mu_0\), the estimate of the mean from the data, in the frequentist case, and the parameter \(\mu \) in the Bayesian case. 
+
+If we also need to estimate the standard deviation we need to use a Student's \(t\) distribution: it converges to a Gaussian, but with few data it has fatter tails.
+
+Now, we see an example of the failings of frequentist statistics \cite[]{FrequentismBayesianismIII}.
+The probability is given by \(\mathbb{P}(x | T) = \exp(T - x) [x \geq T]\). We are given a dataset \([10, 12,  15]\). 
+A frequentist will build an estimator: we have
+%
+\begin{align}
+\expval{x} = \int x \mathbb{P}(x) \dd{x}  = T +1
+\,,
+\end{align}
+%
+So the arithmetic mean of \(x\) converges to \(T +1\), therefore we average the results and subtract one. 
+Our confidence interval will then look like \(\hat{T} -2 \sqrt{N} \leq T \leq T + 2 \sqrt{N}\). 
+This is derived from an asymptotic estimate, but it is close to the true result.
+We find \([\num{10.2}, \num{12.5}]\): but we know that \(T \leq 10\)! 
+
+In a Bayesian approach, we do not even need to take a uniform prior for \(T \leq \min (\text{data})\). This is fixed by the data, since the likelihood includes a Heaviside theta. 
+The likelihood then looks like 
+%
+\begin{align}
+\mathbb{P}(T | x) = \exp(T - x) [T < x]
+\,.
+\end{align}
+
+The \(\alpha \)-interval we get is \(T = x _{\text{min}} + \log \alpha  / N\). 
+\todo[inline]{To include more of the discussion.}
+
 \end{document}

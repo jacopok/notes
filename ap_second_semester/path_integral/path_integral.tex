@@ -3,6 +3,8 @@
 
 \section{Path integral} \label{sec:path-integral}
 
+\subsection{Linear Functionals}
+
 Following \cite[]{zaidiFunctionalMethods1983}.
 
 We start from the space of square-integrable functions \(q(x)\), endowed with a product and an orthonormal basis \(\phi _n\).
@@ -201,6 +203,8 @@ Z[J] = \exp(- \frac{\sigma^2}{2} \int \dd{x} J^2(x))
 
 This, as we shall see, can be used to give us a description of white noise, which is uncorrelated in momentum space.
 
+\subsection{Path integrals in Quantum Field Theory}
+
 Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
 %
 \begin{align}
@@ -350,7 +354,7 @@ so if we compute the average value \(\expval{\mathscr{F}[q]}\) we find
 \,.
 \end{align}
 
-\todo[inline]{Formally this makes sense, but what does it mean to calculate the field at a derivation operator? Should this just be interpreted as a shorthand for the Taylor expansion or is there more to it?}
+The expression with the functional \(\mathscr{F}\) being calculated ``at'' the functional derivative is purely formal: it allows us to compactly write the previous Taylor expansion, and should be interpreted as a shorthand for it.  
 
 An example: consider a Gaussian field whose partition function \(Z[J]\) is given by 
 %
@@ -395,12 +399,14 @@ We shall see that all the reduced \(N\)-point functions can be recovered startin
 through the expansion 
 %
 \begin{align}
-\mathscr{W}[J] = \sum _{n=1}^{\infty } \frac{i^{n}}{n!} \int \dd{x_1} \dots \dd{x_n} C^{N}_{C} (x_1 \dots x_N) J(x_1) \dots J(x_n)
+\mathscr{W}[J] &= \sum _{n=1}^{\infty } \frac{i^{n}}{n!} \int \dd{x_1} \dots \dd{x_n} C^{N}_{C} (x_1 \dots x_N) J(x_1) \dots J(x_n)  \\
+C^{n}_C (x_1 \dots x_n) &= \frac{1}{i^{n}} 
+\eval{\frac{ \delta^{n} \mathscr{W}[J]}{\delta  J(x_1) \dots \delta J(x_n) }}_{J = 0}
 \,.
 \end{align}
 
-These connected correlation functions \(C^{N}_{C}\) are not (in principle) related to the \(C^{N}\) from before. 
-\todo[inline]{What is the relation between them, though? What is the physical interpretation of these connected correlation functions?}
+These connected correlation functions \(C^{N}_{C}\) are not the same as the \(C^{N}\) from before, although they are related.
+
 We could also have defined \(\mathscr{W}[J] = i \log Z[J]\), this is a matter of convention. 
 
 Now, we define the \emph{classical field}

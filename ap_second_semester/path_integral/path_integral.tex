@@ -1,11 +1,37 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+
 \section{Path integral} \label{sec:path-integral}
+
+% \subsection{In nonrelativistic quantum mechanics}
+
+% In order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute an integral in the form 
+% %
+% \begin{align}
+% \braket{x_2 , t_2 }{x_1 , t_1  } 
+% = \int \mathcal{D}q \exp( i \int_q L (x, \dot{x}
+% , t) \dd{t})
+% \,,
+% \end{align}
+% %
+% where \(L\) is the Lagrangian of the particle, \(q (t)\) is a possible path it can take from \(x_1 \) to \(x_2 \), and the integral extends over all of them: the integration measure can be understood as the limit
+% %
+% \begin{align}
+% \mathcal{D}q \sim \lim_{N \to \infty } \prod_{i=1}^{N-1} \dd{x_i}
+% \,,
+% \end{align}
+% %
+% where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration elements for the \(i\)-th slice. 
+
+The formalism of the path integral is about assigning a probability density to the space of possible field configurations. 
+This space is infinite-dimensional: in order to treat it as a vector space we need to find some kind of basis, such as the values of the field on a grid of points. 
+
+The way to formally treat these problems starts from the theory of linear functionals; for this first section we will follow \textcite[]{zaidiFunctionalMethods1983} quite closely.
 
 \subsection{Linear Functionals}
 
-Following \cite[]{zaidiFunctionalMethods1983}.
+% Following \cite[]{zaidiFunctionalMethods1983}.
 
 We start from the space of square-integrable functions \(q(x)\), endowed with a product and an orthonormal basis \(\phi _n\).
 We consider (multi-)linear \emph{functionals}, which are maps from the space of square-integrable functions (or from tuples of them) to \(\mathbb{R}\) or \(\mathbb{C}\). 
@@ -25,7 +51,7 @@ Examples of this are the exponential series corresponding to the function \(f(x)
 \,.
 \end{align}
 
-\textbf{Functional derivatives} describes how the output of the functional changes as the argument goes from \(q(x)\) to \(q(x) + \eta (x)\), where \(\eta (x)\) is small. 
+\textbf{Functional derivatives} describe how the output of the functional changes as the argument goes from \(q(x)\) to \(q(x) + \eta (x)\), where \(\eta (x)\) is small. 
 This will be a linear functional of \(\eta \) to first order, so we define the functional derivative with the expression 
 %
 \begin{align}
@@ -160,7 +186,7 @@ Then, the measure will transform with the determinant \(\det K = \det k\), which
 \,.
 \end{align}
 
-Usually functional integrals cannot be computed analytically; the exception is given by Gaussian integrals, which generalize the finite-dimensional result 
+Usually functional integrals cannot be computed analytically; the exception is given by \textbf{Gaussian integrals}, which generalize the finite-dimensional result 
 %
 \begin{align}
 \int_{\mathbb{R}^{n}} \exp(- \frac{1}{2} A_{ij} x_i x_j + i b_j x_j) \dd{x_1 } \dots \dd{x_j} = \sqrt{\frac{(2 \pi)^{n}}{\det A}}
@@ -203,75 +229,6 @@ Z[J] = \exp(- \frac{\sigma^2}{2} \int \dd{x} J^2(x))
 
 This, as we shall see, can be used to give us a description of white noise, which is uncorrelated in momentum space.
 
-\subsection{Path integrals in Quantum Field Theory}
-
-Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
-%
-\begin{align}
-\mathscr{L} = \underbrace{\frac{1}{2} \partial_{\mu } \phi \partial^{\mu } \phi - \frac{1}{2} \mu^2 \phi^2}_{\mathscr{L}_{0}}+ \mathscr{L}_I (\phi )
-\,,
-\end{align}
-%
-where the self-interaction term is some non-quadratic function of \(\phi \), often taken to be proportional to  \(\phi^3\)  or \(\phi^{4}\). 
-
-The Feynman path integral corresponding to this Lagrangian is given by the functional 
-%
-\begin{align}
-Z[J] = N \int \mathcal{D} \phi \exp(i \int \mathscr{L}(\phi ) +  J \phi \dd{x} )
-\,.
-\end{align}
-
-Let us start with the non-interacting case, that is, we compute \(Z_0 \) with only the quadratic term in the Lagrangian. This can be expressed, in the formalism from before, using the kernel 
-%
-\begin{align}
-K(x, y )= (- \square_x - \mu^2 ) \delta (x-y)
-\,.
-\end{align}
-
-Now, the expression the functional is given in terms of \(K^{-1}\): what is the inverse of this kernel? The definition reduces to 
-%
-\begin{align}
-\int K(x, y) K^{-1}(y, z) \dd{y} &= \delta (x-z)   \\
-- \qty(\square_x + \mu^2) K^{-1} (x, z) &= \delta (x-z)
-\,,
-\end{align}
-%
-which is readily solved in momentum space, with a \(+i \epsilon \) prescription in order to avoid the pole in the integration: what we find is called the \emph{Green's function}, 
-%
-\begin{align}
-K^{-1}(x, z) = G(x-z) = \frac{1}{(2 \pi )^{4}} \int \frac{e^{-ik \cdot (x-z)}}{k^2 + \mu^2 - i \epsilon } \dd{k} 
-\,,
-\end{align}
-%
-so the unperturbed functional reads 
-%
-\begin{align}
-Z_0 [J] = \exp(- \frac{i}{2} \int \dd{x} \dd{y} G(x-y) J(x) J(y))
-\,.
-\end{align}
-
-% This, evaluated at \(J =0\), can be used to calculate the \emph{propagator}, which quantifies the probability amplitude that a particle localized at a certain position at a certain time will be found at another position, at another time.
-% This can be used to compute expectation 
-
-This by itself might not seem very useful, the motion of a free massive boson can be calculated with easier methods.
-However, the real power of this path integral is the possibility to write the interacting term perturbatively: the interaction Lagrangian is a function of \(\phi \), which is what we find if we perform a functional integration of the argument of the exponential in \(Z_0 [J]\) with respect to \(J\); so we can express the full functinal as 
-%
-\begin{align}
-Z[J] &= \exp( i\int \dd{x} \mathscr{L}_I\qty( \frac{1}{i} \fdv{}{J(x)}))
-\underbrace{\int \mathcal{D} \phi \exp(i \int \dd{x} \qty( \mathscr{L}_0 + J \phi )) }_{= Z_0 [J]}  \\
-&= \sum _{n=0}^{\infty } \frac{i^{n}}{n!} \qty[ \int \dd{x} \mathscr{L}_I\qty(\frac{1}{i} \fdv{}{J(x)})]^{n} Z_0 [J]
-\,.
-\end{align}
-
-We can use this to compute the Green's functions: 
-%
-\begin{align}
-G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 ) \dots \delta J(x_n)}}_{J = 0}
-\,.
-\end{align}
-
-% \todo[inline]{Review from the PI notes why this makes sense.}
-
 \subsection{The probability density functional}
 
 We can interpret the quantity 
@@ -281,7 +238,7 @@ We can interpret the quantity
 \,
 \end{align}
 %
-as a \emph{probability density functional} \(\dd{P}[q]\), since 
+as a Gaussian \emph{probability density functional} \(\dd{P}[q]\), since 
 \begin{enumerate}
     \item it is positive definite;
     \item it is normalized, as long as we set its integral, \(Z[0]\), to 1;
@@ -466,7 +423,7 @@ With an analogous procedure we can show that
 \,.
 \end{align}
 
-\todo[inline]{So in some sense \(J\) is a covariant vector while \(q\) is a contravariant one, right? can this be said in a better way?}
+% \todo[inline]{So in some sense \(J\) is a covariant vector while \(q\) is a contravariant one, right? can this be said in a better way?}
 
 The effective action then reads
 %
@@ -605,7 +562,7 @@ P_q ([\alpha _N], [x_N]) &= \frac{1}{(2 \pi)^{N}}
 
 This is the standard expression for an \(N\)-variate Gaussian distribution whose covariance matrix is \(M_{ij}\). 
 
-\textbf{Application to Brownian motion}. 
+% \textbf{Application to Brownian motion}. 
 
 \textbf{Avoiding divergences: high- and low-pass filters}. 
 If \(W_R (x)\) is our filter function, then the general correlation function reads 
@@ -702,7 +659,7 @@ therefore
 \end{align}
 %
 which clarifies what was meant by saying that these are \emph{moments}. 
-\todo[inline]{Do we have a similar relation for the connected moments?}
+% \todo[inline]{Do we have a similar relation for the connected moments?}
 
 \(P_{q_R}\) can be reconstructed starting from these moments. 
 
@@ -753,7 +710,8 @@ G_R (r) \propto \qty[\max(R, r)]^{- (n+3)}
 \end{align}
 
 The \(n = 0\) case is \textbf{white noise}, for which \(G_R(0) \sim R^{-3}\). 
-\todo[inline]{Connection with a Poisson process\dots not clear}
+
+% \todo[inline]{Connection with a Poisson process\dots not clear}
 
 The \(n = -3\) case is \textbf{flicker noise} corresponds to \(1/f\) noise in 1D.
 
@@ -944,7 +902,7 @@ Also, we define
 \,.
 \end{align}
 
-\todo[inline]{This confuses me: earlier we said that \(V\) starts from third order, since the quadratic term is brought out. What are we doing here? If we only consider the Gaussian part of \(V\) what is even the point of including it?}
+% \todo[inline]{This confuses me: earlier we said that \(V\) starts from third order, since the quadratic term is brought out. What are we doing here? If we only consider the Gaussian part of \(V\) what is even the point of including it?}
 
 We then perform the integration with respect to the field \(q - q_0 \) (this amounts to adding a constant, so the measure does not change) and find 
 %
@@ -960,6 +918,74 @@ W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, 
 \,.
 \end{align}
 
+\subsection{Path integrals in Quantum Field Theory}
+
+Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \underbrace{\frac{1}{2} \partial_{\mu } \phi \partial^{\mu } \phi - \frac{1}{2} \mu^2 \phi^2}_{\mathscr{L}_{0}}+ \mathscr{L}_I (\phi )
+\,,
+\end{align}
+%
+where the self-interaction term is some non-quadratic function of \(\phi \), often taken to be proportional to  \(\phi^3\)  or \(\phi^{4}\). 
+
+The Feynman path integral corresponding to this Lagrangian is given by the functional 
+%
+\begin{align}
+Z[J] = N \int \mathcal{D} \phi \exp(i \int \mathscr{L}(\phi ) +  J \phi \dd{x} )
+\,.
+\end{align}
+
+Let us start with the non-interacting case, that is, we compute \(Z_0 \) with only the quadratic term in the Lagrangian. This can be expressed, in the formalism from before, using the kernel 
+%
+\begin{align}
+K(x, y )= (- \square_x - \mu^2 ) \delta (x-y)
+\,.
+\end{align}
+
+Now, the expression the functional is given in terms of \(K^{-1}\): what is the inverse of this kernel? The definition reduces to 
+%
+\begin{align}
+\int K(x, y) K^{-1}(y, z) \dd{y} &= \delta (x-z)   \\
+- \qty(\square_x + \mu^2) K^{-1} (x, z) &= \delta (x-z)
+\,,
+\end{align}
+%
+which is readily solved in momentum space, with a \(+i \epsilon \) prescription in order to avoid the pole in the integration: what we find is called the \emph{Green's function}, 
+%
+\begin{align}
+K^{-1}(x, z) = G(x-z) = \frac{1}{(2 \pi )^{4}} \int \frac{e^{-ik \cdot (x-z)}}{k^2 + \mu^2 - i \epsilon } \dd{k} 
+\,,
+\end{align}
+%
+so the unperturbed functional reads 
+%
+\begin{align}
+Z_0 [J] = \exp(- \frac{i}{2} \int \dd{x} \dd{y} G(x-y) J(x) J(y))
+\,.
+\end{align}
+
+% This, evaluated at \(J =0\), can be used to calculate the \emph{propagator}, which quantifies the probability amplitude that a particle localized at a certain position at a certain time will be found at another position, at another time.
+% This can be used to compute expectation 
+
+This by itself might not seem very useful, the motion of a free massive boson can be calculated with easier methods.
+However, the real power of this path integral is the possibility to write the interacting term perturbatively: the interaction Lagrangian is a function of \(\phi \), which is what we find if we perform a functional integration of the argument of the exponential in \(Z_0 [J]\) with respect to \(J\); so we can express the full functinal as 
+%
+\begin{align}
+Z[J] &= \exp( i\int \dd{x} \mathscr{L}_I\qty( \frac{1}{i} \fdv{}{J(x)}))
+\underbrace{\int \mathcal{D} \phi \exp(i \int \dd{x} \qty( \mathscr{L}_0 + J \phi )) }_{= Z_0 [J]}  \\
+&= \sum _{n=0}^{\infty } \frac{i^{n}}{n!} \qty[ \int \dd{x} \mathscr{L}_I\qty(\frac{1}{i} \fdv{}{J(x)})]^{n} Z_0 [J]
+\,.
+\end{align}
+
+We can use this to compute the Green's functions: 
+%
+\begin{align}
+G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 ) \dots \delta J(x_n)}}_{J = 0}
+\,.
+\end{align}
+
+% \todo[inline]{Review from the PI notes why this makes sense.}
 
 
 \end{document}

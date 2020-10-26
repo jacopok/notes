@@ -114,12 +114,56 @@ There are different ways of choosing \(\widetilde{W}(k, R)\), which have in comm
 One must be careful when choosing a filter: a sharp filter in real space corresponds to a very broad filter in Fourier space, and vice versa. 
 The power spectrum is transformed like \(P(k) \to \widetilde{W}(k, R) P(k)\) by the application of the filter.
 
-\subsection{Higher-order correlations}
+\subsection{Peak functions}
+
+We have two main observational channels to study perturbations: the CMB and the positions of galaxies.
+With the latter we are not probing the whole perturbation spectrum: instead, we can describe the \emph{peaks} of the perturbation, which undergo gravitational collapse to form galaxies. 
+
+The approach by \textcite[]{matarresePathintegralApproachLargescale1986} is to start from the fact that at each point we have a distribution with a variance \(\sigma_R^2\) (if we are using a smoothing scale of \(R\)), so we can define the density 
+%
+\begin{align}
+\rho_{\nu , R} = \Theta (\delta (x) - \nu \sigma _R)
+\,,
+\end{align}
+%
+where \(\nu \) is a real number of order 1, and \(\Theta \) is the Heaviside function: this density characterizes the points which are \(\nu \) standard deviations above the background. 
+We can study the \(N\)-point correlation functions of this ``boolean density'': 
+%
+\begin{align}
+\Pi^{(N)}_{\nu , R} (x_1 \dots x_N) = \expval{ \prod_{r=1}^{N} \rho _{\nu , R} (x_r)}
+\,,
+\end{align}
+%
+which, roughly, speaking, can quantify the probability that we will find galaxies in the positions \(x_1, \dots, x_N\) if we choose \(\nu \) appropriately. 
+
+A seminal paper by \textcite[]{bardeenStatisticsPeaksGaussian1986} systematically characterized the statistics of these peaks in the case of a Gaussian density perturbation field.
+
+% Path integral techniques have found many applications in the study of these peaks.
+% \textcite[]{bertschingerPathIntegralMethods1987} was the first to use them for the generation of \emph{constrained realizations}: one can generate samples of a random field which all satisfy a certain constraint, such as the presence of a galaxy in a specific location.
+
+\subsection{The bispectrum}
 
 As we will explore in more detail later, the two-point function and its associated power spectrum completely characterize a Gaussian field: all the higher-order \(n\)-point correlation functions can be derived from the two-point one.
-Since we want to characterize non-Gaussianity, then, we define the simplest object which allows us to do so: the 3-point correlation function, and its associated \emph{bispectrum}.
+Since we want to characterize non-Gaussianity, then, we define the simplest object which allows us to do so: the 3-point correlation function, and its associated \emph{bispectrum}, defined by the relation 
+%
+\begin{align}
+\expval{ \delta (\vec{k}_1 ) \delta (\vec{k}_2 ) \delta (\vec{k}_3 ) }
+= (2 \pi )^3 \delta^{(3)} (\vec{k}_1 + \vec{k}_2 + \vec{k}_3 ) B (k_1, k_2, k_3)
+\,.
+\end{align}
 
-The three-point function is 
+We stress that this kind of statistical tool can be applied to any field; in modern analyses the bispectrum associated with the gravitational field \cite[eq.\ 2]{celoriaPrimordialNonGaussianity2018} \(B_\Phi \) is used.
+
+This kind of correlation function then can be used to estimate the nongaussianity in the gravitational field distribution: it can be shown that if we consider a linear + quadratic model like that in equation \eqref{eq:perturbed-gaussian-field} (with \(g_{NL} = 0\)) we will have 
+%
+\begin{align}
+B_{\Phi } (k_1, k_2, k_3 ) = 2 f_{NL}
+\qty(B_\Phi (k_1 ) B_\Phi (k_2 ) + B_\Phi (k_2 ) B_\Phi (k_3) + B_\Phi (k_1 ) B_\Phi (k_3 ))
+\,,
+\end{align}
+%
+where \(B_\Phi (k)\) is the power spectrum. 
+This allows us to observationally compute \(f_{NL}\),  \cite[]{planckcollaborationPlanck2018Results2020}. 
 
 % Two point correlation function: 
 % %

@@ -1,4 +1,209 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Bondi accretion}
+
+\marginpar{Tuesday\\ 2020-10-27, \\ compiled \\ \today}
+
+We now start discussing the interaction of a compact object with its environment.
+Black holes are intrinsically black, however we can see them through their interactions with the surrounding medium.
+
+A neutron star might have a temperature of the order \(T \sim \num{e6} \divisionsymbol\SI{e7}{K}\); we know that the flux is given by \(F = \sigma T^{4}\), so the emitted luminosity is calculated by 
+%
+\begin{align}
+L = 4 \pi R^2 \sigma T^{4} \sim \SI{e31}{erg /s}
+\,,
+\end{align}
+%
+which comes out to be \emph{very small}, due to the fact that the radius is very small compared to a star. 
+For comparison, the Sun has a luminosity of around 100 times more. 
+
+A compact object's gravitational pull, however, induces \emph{accretion}: material falls onto the object, heating up.
+We will consider spherical accretion, the simplest geometrical situation.
+It is not fully realistic, however it can be used to model the real case. 
+We assume to have a point-like object of mass \(M\), and we make some other assumptions: 
+\begin{enumerate}
+    \item spherical symmetry;
+    \item stationarity;
+    \item the accreting matter can be treated as a gas: this is not obvious, since it means that collisions are efficient enough to couple the temperatures of the gas, or equivalently the mean free path \(\lambda _c\) should be much smaller than the radius \(r\);\footnote{This is not easily verified in astrophysical scenarios, magnetic fields make it easier for it to happen.}
+    \item the accreting matter is a perfect gas which can be treated adiabatically;
+    \item the accreting matter is non-self-gravitating: the total mass of gas surrounding the BH, \(m\), is much smaller than \(M\);
+    \item we will use Newtonian gravity, although the general-relativistic way to treat this is not very hard.\footnote{For the GR and non-ideal fluid version see my Bachelor's thesis \cite[]{tissinoRelativisticNonidealFlows2019}.}
+\end{enumerate}
+
+Under these hypotheses, the problem is called \textbf{Bondi-Hoyle accretion}, and old problem in astrophysics, dating back to the fifties \cite[]{bondiSphericallySymmetricalAccretion1952}. 
+The final treatment of accretion onto a BH was done in 1991 \cite[]{nobiliSphericalAccretionBlack1991}. 
+
+This is very much a toy model: adiabaticity precludes the production of radiation. However, we shall see how the conditions might be relaxed. 
+
+The first equation is the continuity equation, whose physical meaning is rest mass conservation. 
+The velocity field is denoted as \(u(r)\). 
+The quantity \(4\pi r_2^2 \rho (r_2) u(r_2 )\) is the rate of mass crossing the surface of radius \(r_2 \). 
+If there are no sources nor sinks of mass, this expression should be equal for another choice of radius \(r_1 \). 
+Then, in general we can write 
+%
+\begin{align}
+4 \pi r^2 \rho (r) u(r ) = \dot{M} = \const
+\,.
+\end{align}
+
+The Euler equation, coming from the conservation of momentum, reads
+%
+\begin{align}
+\dv{u}{r} = \text{force per unit mass} = - \frac{1}{\rho } \dv{P}{r} - \frac{GM}{r^2}
+\,.
+\end{align}
+
+The total time derivative of the velocity can be written as 
+%
+\begin{align}
+\dv{u}{t} = \underbrace{\pdv{u}{t}}_{= 0} + \pdv{u}{r} \dv{r}{t}
+= \pdv{u}{r} u 
+\,
+\end{align}
+%
+by stationarity. Then the Euler equation reads 
+%
+\begin{align}
+u \pdv{u}{r} + \frac{1}{\rho } \dv{P}{r} + \frac{GM}{r^2} = 0
+\,,
+\end{align}
+%
+which we can integrate: it becomes 
+%
+\begin{align}
+\frac{1}{2} u^2 + \int \frac{\dd{P}}{\rho } - \frac{GM}{r} = \const
+\,,
+\end{align}
+%
+which is Bernoulli's theorem, the conservation of energy. It is slightly different from the usual form because we are considering a compressible flow; this is a gas, and it definitely can be compressed.  
+This is our second conservation law. 
+We need a third equation: an equation of state, which we can derive from our assumption of adiabaticity, \(P = K \rho^{\Gamma }\), a polytropic EoS. 
+
+Luckily, we have managed to integrate already, so we do not have ODEs anymore: we are left with a simple algebraic system. 
+If we introduce the isentropic speed of sound,\footnote{There are other kinds of speed of sound, depending on the kind of perturbation.} \(a^2 = (\pdv*{P}{\rho })_s = k \Gamma \rho^{\Gamma -1}\) (calculated at constant entropy, but since we assumed adiabaticity this is not an additional assumption).
+
+Also, the pressure differential reads \(\dd{P} = k \Gamma \rho^{-1} \dd{\rho }\), so 
+%
+\begin{align}
+\frac{1}{2} u^2 + \int \frac{k \Gamma \rho^{\Gamma -1}}{\rho } \dd{\rho } - \frac{GM}{r} &= \const  \\
+\frac{1}{2} u^2 + \frac{a^2}{\Gamma -1} - \frac{GM}{r} &= \const
+\,.
+\end{align}
+
+This can be solved together with the continuity equation. What is this constant? We can calculate it for an arbitrary \(r\), since it is always the same. We choose \(r \to \infty \), so we get 
+%
+\begin{align}
+\frac{1}{2} u^2 + \frac{a^2}{\Gamma -1} - \frac{GM}{r} 
+&= \frac{1}{2} u^2_{\infty } + \frac{a^2_{\infty }}{\Gamma -1} 
+\,,
+\end{align}
+%
+where \(u_\infty \) and \(a_\infty \) are the velocity and speed of sound very far from the source. What can we say about them? 
+A special case we can consider is \(u_\infty  = 0\): the gas at infinity is at rest, it has no bulk motion with respect to the black hole. 
+We now need to replace \(\rho \) in the continuity equation with something in terms of the sound speed: we know that \(a^2 = k \Gamma \rho^{\Gamma -1}\), so 
+%
+\begin{align}
+\rho = \qty(\frac{a^2}{k \Gamma })^{1 / (\Gamma -1)}
+\,.
+\end{align}
+
+We can calculate this at infinity: \(\rho _\infty \) is then given in terms of \(a_\infty \). 
+Taking the ratio of the two expressions, we get 
+%
+\begin{align}
+\frac{\rho }{\rho _\infty } = \qty(\frac{a}{a_\infty })^{2 / (\Gamma -1)}
+\,.
+\end{align}
+
+Inserting this into the continuity equation we get 
+%
+\begin{align}
+4 \pi r^2 \rho _\infty \qty(\frac{a}{a_\infty })^{ 2 / (\Gamma -1)} u = \dot{M}
+\,.
+\end{align}
+
+There are several constants appearing, but only the two variables \(u(r)\) and \(a(r)\). 
+What can we say about the constants? \(\dot{M}\) is called the \emph{mass accretion rate}. The other two constants are \(a_\infty \) and \(\rho _\infty\). 
+One might think that we would need to specify all three of the constants: this is, however, not the case. Only two of these constants are actually independent. Fixing \(a_\infty \) and \(\rho _\infty \) constrains \(\dot{M}\) to a single value, an \emph{eigenvalue} of the problem.
+
+Let us select a fixed value of \(r = \overline{r}\). Then, the two equations are just functions of \(u\) and \(a\). The Euler equation looks like 
+%
+\begin{align}
+\frac{1}{2} u^2 + \frac{a^2}{\Gamma -1} = \const
+\,,
+\end{align}
+%
+an ellipse (of which we consider only a quarter, with \(u>0\), \(a>0\)). 
+The continuity equation, instead, is in the form 
+%
+\begin{align}
+u \propto  \dot{M} a^{- \frac{2}{\Gamma -1}}
+\,.
+\end{align}
+
+This is a part of a hyperbola. The two may cross in zero, one or two points. In order for a solution to exist there needs to be at least one intersection. 
+Changing \(\dot{M}\) moves the hyperbola. We get a single \(\dot{M}\) so that the two curves cross at a single point.
+For now, we can surely say that \(\dot{M}\) cannot be chosen to have any value, since we must have at least an intersection. 
+
+We can apply a similar kind of reasoning by changing \(\overline{r}\) instead of \(\dot{M}\). 
+We can connect these solutions: curves in the \((u, a)\) plane, parametrized by \(\overline{r}\). 
+The intersections always lie on opposite sides of the \(u = a\) line, which corresponds to the sonic condition. 
+One solution is always supersonic, one is always subsonic. 
+
+The solution which is always supersonic has \(u_\infty > a > 0\), which is not good for us. 
+The subsonic solution might then work: however, if the central mass is a BH, then the speed at which the matter crosses the horizon is the speed of light, and surely \(c > a\).\footnote{The largest physically possible sound of speed is \(c / \sqrt{3}\), achieved for ultrarelativistic matter.}
+
+This argument shows that we need a transsonic solution: we need a radius \(r_s\) at which the two curves are tangent to one another. 
+If we fix this, we get two solutions, only one of which has \(u_\infty = 0\). 
+The opposite solution could describe a transsonic stellar wind. 
+The consequence of this is that there is a single acceptable value for \(\dot{M}\), providing us with a radius so that the two curves are tangent. 
+
+This yields a fixed \(\dot{M} (\rho _\infty , a_\infty )\). 
+We can get more information by going back to the differential form of the equations of motion: 
+%
+\begin{align}
+4 \pi r^2 \rho u &= \dot{M}  \\
+u \pdv{u}{r} + \frac{1}{\rho } \dv{P}{r} + \frac{GM}{r^2} &= 0
+\,.
+\end{align}
+
+We can write the Euler equation as 
+%
+\begin{align}
+u \pdv{u}{r} &= - \frac{1}{\rho } \dv{P}{\rho } \dv{\rho }{r} - \frac{GM}{r^2}   \\
+u \pdv{u}{r} &= - \frac{a^2}{\rho } \dv{\rho }{r } - \frac{GM}{r^2}
+\,.
+\end{align}
+
+We can also find a differential form of the continuity equation: 
+%
+\begin{align}
+r^2 \rho u = \frac{\dot{M}}{4 \pi  } \implies
+\dv{u}{r} = - \frac{2u}{r} - \frac{u}{\rho } \dv{\rho }{r}
+\,,
+\end{align}
+%
+which we can substitute into the Euler equation: 
+%
+\begin{align}
+-2 \frac{u^2}{r} - \frac{u^2}{\rho } \dv{\rho }{r}
+&= - \frac{a^2}{\rho } \dv{\rho }{r} - \frac{GM}{r^2}  \\
+\frac{1}{\rho } \dv{\rho }{r} (a^2 - u^2) &= \frac{2u^2}{r} - \frac{GM}{r^2}  \\
+\dv{\log \rho }{r} &= \frac{1}{a^2 - u^2} \qty[\frac{2u^2}{r} - \frac{GM}{r^2}]
+\,,
+\end{align}
+%
+but we want there to exist a point at which \(a = u\): therefore, the denominator vanishes, meaning that if we do not want the derivative of the log-density to diverge we must have 
+%
+\begin{align}
+2 u^2 (r_s) = \frac{GM}{r_s^2}
+\,,
+\end{align}
+%
+and \(u (r_s) = a( r_s)\). 
+
+This ensures that there is no divergence at the transsonic point. 
+This is a \emph{regularity condition}, imposed at a \emph{critical point}.
+
 \end{document}

@@ -1,4 +1,115 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-10-27, \\ compiled \\ \today}
+
+We were not very fair to the frequentists. We cherry-picked a very small dataset, which included an outlier.
+A frequentist might have chosen an estimator which was more \emph{robust} to outliers, being less affected by them. 
+Typically, the best estimator which is chosen is the Maximum Likelihood one. 
+
+We discuss the example in \url{https://stats.stackexchange.com/a/2287/164421} \cite[]{winsteinWhatDifferenceConfidence}.
+The frequentist uses the Neyman confidence belt. The construction of the CI is \emph{not unique}. 
+
+\subsection{Nonlinear parameter estimation}
+
+The problem, as usual, is to find the point \(\vec{x}_0 \) in parameter space where the log posterior \(L = \log P\) is maximum: 
+%
+\begin{align}
+\partial_{i} L (\vec{x}_0 ) &= 0  \\
+\partial_{i} \partial_{j} L (x_0 ) & \text{ is negative definite.}
+\,.
+\end{align}
+
+Around such a point we can expand as 
+%
+\begin{align}
+L(\vec{x}) \approx L (\vec{x}_0)
++ \frac{1}{2} (x- x_0)^{i} (x-x_0 )^{j} \partial_{i} \partial_{j} L (x_0 )
+\,.
+\end{align}
+
+If we start from a point \(\vec{x}\) which is reasonably close to \(\vec{x}_0\) then we can expand up to second order there as well: 
+%
+\begin{align}
+L(\vec{x}) 
+\approx L(\vec{x}_1) +
+(x - x_1)^{i} \partial_{i} L(x_1) 
+% + \frac{1}{2} (x-x_1 )^{i} (x-x_1 )^{j} \partial_{i} \partial_{j} L (x_1 )  
+\,.
+\end{align}
+
+We shall assume that here as well the function is reasonably close to the true posterior. 
+Let us take the gradient of the previous equation: we have 
+%
+\begin{align}
+\partial_{k} L(\vec{x}) 
+&\approx 
+\delta^{i}_{k} \partial_{i} L(x_1) 
++ (x- x_1 )^{i} \partial_{i} \partial_{k} L (x_1 ) \\
+\partial_{k} L (\vec{x}) &\approx
+\partial_{k} L (x_1 )
++ (x-x_1 )^{i} \partial_{i} \partial_{k} L (x_1 )  
+\\
+0 &\approx
+\partial_{k} L (x_1 )
++ (x_0-x_1 )^{i} \partial_{i} \partial_{k} L (x_1 )  
+\,,
+\end{align}
+%
+where in the last step we calculated the expression at \(x = x_0 \). 
+We can solve this expression for \(x_0 \): 
+%
+\begin{align}
+x_0^{i} \underbrace{\partial_{i} \partial_{k} L(x_1 )}_{H_{ik}} &\approx 
+x_1^{i} \partial_{i} \partial_{k} L(x_1 ) - \partial_{k} L (x_1 )  \\
+x_0 &= \vec{x}_1 - \eval{(H^{-1})}_{x_1 } \nabla L (x_1 ) 
+\,,
+\end{align}
+%
+which tells us that in order to move towards the solution we need to update our guess, \(x_1 \), by a factor \(H^{-1} \nabla L\). 
+This process is then the basis for an iterative procedure. It is called the \textbf{Newton-Rhapson} method. 
+
+The quality of our initial guess matters, but often in practice we have a good idea of where the parameter will approximately lie. 
+
+This has complications if the posterior is multimodal: we can find a local maximum instead of the global one.
+Also, if we start in the flat tail of the distribution we might not be able to tell that the flatness is not due to being in the maximum. 
+
+Even if everything works right, we still have \(\order{N^3}\) matrix inversion to do. 
+
+\section{Markov Chain Monte Carlo}
+
+We introduce the notation \(\pi (\vec{\theta})\): this is the \(\pi \)rior, in terms of the parameter vector \(\vec{\theta}\).
+We have the likelihood \(\mathcal{L}(\vec{d} | \vec{\theta})\), in terms of the data vector \(\vec{d}\).
+
+The posterior reads 
+%
+\begin{align}
+P(\vec{\theta} | \vec{d}) =\frac{\mathscr{L} (\vec{d} | \vec{\theta}) \pi (\vec{\theta})}{\int \mathscr{L} (\vec{d} | \vec{\theta}) \pi (\vec{\theta}) \dd{\vec{\theta}}}
+\,.
+\end{align}
+
+If we want to simulate the distribution we need the normalization, which is the reason why we wrote out the evidence. 
+
+The things we need to do are of the form of finding a marginal posterior for a single parameter \(\theta _i\), 
+%
+\begin{align}
+P(\theta _i) = \int \dd{\theta_1} \dots \widehat{ \dd{\theta _i}} \dots \dd{\theta _n} P(\vec{\theta} | \vec{d})
+\,,
+\end{align}
+%
+where by \(\widehat{ \dd{\theta _i}}\) we mean that we do \emph{not} integrate over \(\theta_i\).
+This might very well be intractable. 
+
+The Monte Carlo approach is to try and solve the integral by sampling certain points, with a likelihood given by the posterior. 
+We generate different realizations of the parameters, \(\vec{\theta}_i\), as independent identically distributed random variables, with the same distribution as the posterior.
+
+Then, we can estimate the expectation value of an arbitrary function \(g(\vec{\theta})\) as 
+%
+\begin{align}
+\expval{g(\vec{\theta})} = \int g (\vec{\theta}) P(\vec{\theta} | \vec{d}) \dd{\vec{\theta}} \approx \frac{1}{N} \sum_{i=1}^{N} g(\vec{\theta}_i) 
+\,.
+\end{align}
+
+
+
 \end{document}

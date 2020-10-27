@@ -293,7 +293,7 @@ so if we compute the average value \(\expval{\mathscr{F}[q]}\) we find
 
 The expression with the functional \(\mathscr{F}\) being calculated ``at'' the functional derivative is purely formal: it allows us to compactly write the previous Taylor expansion, and should be interpreted as a shorthand for it.  
 
-\subsection{Gaussian fields' correlation functions}
+\subsection{Gaussian fields' correlation functions} \label{sec:gaussian-field-correlation-functions}
 
 Consider a Gaussian field, whose partition function \(Z[J]\) is given, as we have shown in \eqref{eq:gaussian-integral}, by 
 %
@@ -934,34 +934,41 @@ W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, 
 
 \subsection{Path integrals in Quantum Mechanics}
 
+We draw a parallel to the quantum-mechanical version of the path integral
+
 \subsubsection{Nonrelativistic quantum mechanics}
 
-The path integral formalism was first introduced by Feynman in his PhD thesis, in the context of nonrelativistic quantum mechanics. 
-\todo[inline]{check this statement}
+The path integral formalism in quantum mechanics was first introduced in the first half of the twentieth century by the works of Dirac and Feynman.
 
-In order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute an integral in the form 
+In extreme synthesis, in order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute a functional integral in the form 
 %
 \begin{align}
 \braket{x_2 , t_2 }{x_1 , t_1  } 
 = \int \mathcal{D}q \exp( i \int_q L (x, \dot{x}
-, t) \dd{t})
+, t) \dd{t}) = \int \mathcal{D}q \exp(i S[q])
 \,,
 \end{align}
 %
 where \(L\) is the Lagrangian of the particle, \(q (t)\) is a possible path it can take from \(x_1 \) to \(x_2 \), and the integral extends over all of them: the integration measure can be understood as the limit
 %
 \begin{align}
-\mathcal{D}q \sim \lim_{N \to \infty } \prod_{i=1}^{N-1} \dd{x_i}
+\mathcal{D}q = \lim_{N \to \infty } \prod_{i=1}^{N-1} \dd{x_i}
 \,,
 \end{align}
 %
 where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration elements for the \(i\)-th slice. 
 
-A common technique is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
+The integrand is oscillatory: if we are far from the classical path, defined by \(\delta S[ q _{\text{cl}}] = 0\), the contributions to the integral destructively interfere, while constructive interference happens near the classical path. 
+The fully classical approach is to just consider the equations of motion \(\delta S = 0\); we can take a \emph{semiclassical} approach with a saddle-point approximation, by expanding the action up to second order. The paths which will contribute will be, roughly speaking, those for which \(S[q] - S[q _{\text{cl}}] \sim 1 = \hbar\). 
+
+Qualitatively speaking, this oscillatory version of the integral of \(\exp(i S[q])\) converges just like the Euclidean integral of \(\exp(- S[q])\) we have seen up to now; however it does so much more slowly.
+In both cases we expect the greatest contribution to come from the maxima of \(S[q]\). 
+
+Because of this, a common technique is the \textbf{Wick rotation}, in which we map the time to a new ``euclidean time'': \(t \to -i t_E\), which allows us to move to a Euclidean path integral in 4D space with a Cartesian signature.
 
 \subsubsection{Quantum Field Theory}
 
-Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
+Let us look at a relatively simple example application of the path integral in QFT, describing the motion of a massive scalar boson with Lagrangian 
 %
 \begin{align}
 \mathscr{L} = \underbrace{\frac{1}{2} \partial_{\mu } \phi \partial^{\mu } \phi - \frac{1}{2} \mu^2 \phi^2}_{\mathscr{L}_{0}}+ \mathscr{L}_I (\phi )
@@ -1029,5 +1036,19 @@ G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 
 \subsubsection{Diagrammatic approach}
 
 % \todo[inline]{Review from the PI notes why this makes sense.}
+The calculation of the path integral in the interacting case is generally intractable; we proceed perturbatively, and a very useful calculation tool is given by Feynman diagrams. 
+We will only discuss their application as a way to better understand the correlation functions we defined earlier.
+% They are whole new topic, of which we only sketch the workings.  
+
+Green's functions, which correspond to \(N\)-point correlation functions in the cosmological case, can be graphically represented by drawing lines between \(N\) points.
+
+Each term in the interaction Lagrangian corresponds to a way to join these points: for example, if we had a \(\phi^3\) term in the interaction Lagrangian (or in the potential, if we are considering self-interaction) it would correspond to a vertex with three lines coming from it. 
+On the other hand, the regular \(\phi^2\) Gaussian term allows us to connect two points. 
+This allows us to understand the result from \ref{sec:gaussian-field-correlation-functions}: if we want to connect \(2N\) points we can do so with lines in several ways, while if we wish to connect \(2N+1\) points at least one will be left out. 
+
+Further, what is meant by ``connected'' correlation functions has a direct graphical interpretation: if we connect \(N > 2\) points in pairs the graph is composed of disjoint parts. 
+The only possible connected graph in the Gaussian case is the \(N=2\) one.
+
+% In the general non-Gaussian case, on the other hand, we can have higher order terms in the potential. 
 
 \end{document}

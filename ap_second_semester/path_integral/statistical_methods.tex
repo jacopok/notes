@@ -141,6 +141,57 @@ A seminal paper by \textcite[]{bardeenStatisticsPeaksGaussian1986} systematicall
 % Path integral techniques have found many applications in the study of these peaks.
 % \textcite[]{bertschingerPathIntegralMethods1987} was the first to use them for the generation of \emph{constrained realizations}: one can generate samples of a random field which all satisfy a certain constraint, such as the presence of a galaxy in a specific location.
 
+% \subsection{Constrained realizations}
+
+\textcite[]{bertschingerPathIntegralMethods1987} pioneered the use of path integrals in order to generate \emph{constrained realizations} of perturbation fields: these are realizations of the field --- points in the statistical ensemble --- which satisfy some specific characteristic, such as the presence of a galaxy in a specific location. 
+
+This allows for the statistical study of the structure \emph{around} the peak of the density perturbation, as opposed to only considering the statistics of the peak distribution. 
+
+% Perturbative methods (i.\ e. linearization) work well in the initial stages, then the nonlinearity kicks in and the higher order terms become very relevant: Monte Carlo methods are then more suitable to calculate the functional integrals. 
+
+
+% They are able to put constrains on the realizations of the Gaussian random field! 
+% BBKS gives us peaks; the path integral approach allows us to more precisely estimate the surrounding  distribution, by the use of constraints. 
+
+% In \cite[]{hoffmanConstrainedRealizationsGaussian1991} an improved algorithm for constrained realizations of Gaussian fields is presented.
+
+% \todo[inline]{To understand: what constrained realizations are practically useful? Do we impose the presence of a (proto-galaxy?) and generate the density distribution around it?} 
+
+% \textcite[]{bertschingerPathIntegralMethods1987} found a method with complexity \(\order{(N_c^2 + 1) N}\) working in Fourier space (so, in a plane wave basis), 
+% Binney and Quinn (1990) improved upon it by working in spherical harmonics --- 
+% for certain symmetric types of constrains this decreases \(N_c\) significantly. 
+
+% \textcite[]{hoffmanConstrainedRealizationsGaussian1991} work by constraining the Fourier \emph{phases} of the components of the random field. 
+
+\subsection{Press-Schechter theory}
+
+Press-Schechter theory is a way to calculate the distribution of virialized objects (i.\ e.\ galaxies) in a perturbative fashion.
+Virialization is a deeply nonlinear process; however it can be shown that when the linearized density perturbation reaches a critical value of \(\delta _c \approx 1.686\) the corresponding true nonlinear halo has virialized. 
+
+\textcite[]{matarreseAbundanceHighRedshift2000} applied this approach to a mildly non-Gaussian density perturbation field (with only a quadratic term) in order to study the abundance of high-redshift galaxies, finding analytic results with the aid of the path integral formalism.
+
+% If we perturb the density we need \(\abs{\epsilon} \lesssim \num{e-2}\), if we perturb the gravitational field we need \(\abs{\epsilon } \gtrsim \num{e2}\), in either case these are needed in order to see a significant departure from the Gaussian case. 
+% The latter statements tells us that non-Gaussianity predicted by inflationary models would be undetectable from structure formation. 
+
+% \todo[inline]{Does equation 51 solve the problem of halos-inside-halos which was mentioned as an issue in early Press-Schechter theory?}
+
+% Section 5: using high-\(z\) galaxies is advantageous because ``they directly sample the galaxy scale, and are always in virialized halos''. I get the fist point, but not the second: are more recent galaxies not in virialized halos? 
+
+In order to account for the scale of the growing mode of the linear perturbations they give a redshift-dependence to the critical density: fixing \(\Delta _c = \num{1.686}\) they write \(\delta _c = \Delta _c / D(z_c  | \Omega_{0, m}, \Omega_{0, \Lambda })\), where \(D\) is the linear growth factor: \(D^{-1}\) increases with redshift. 
+
+This means that at higher \(z\) it is harder to form virialized objects, but simultaneously the density PDF is more sensitive to non-Gaussianity.
+This can be seen graphically in figures 4 and 5 of the same paper.\footnote{They refer to two different models, denoted as \(A\) and \(B\): in the first the density field is perturbed, in the second the gravitational field is perturbed. Nowadays, model \(B\) has been found to be the most useful one.}
+% So, \(\delta _c\) increases with redshift, therefore we see from equation 66 that the skewness term becomes less and less relevant. 
+% This can be seen in figs.\ 4 and 5 as well. 
+
+% Connection with observation! 
+% We have a sample of 6 \(z \sim 5 \divisionsymbol 6  \) galaxies, whose masses, SFR and \(\sigma _v\) are estimated from spectroscopic data.
+% Approximately speaking, from the amount of galaxies found per area surveyes, at this redshift we find \(\sim 1\) galaxy per \SI{3e-4}{\deg^2}. 
+
+% Estimating the number of galaxies formed with masses within \(\num{2e10} M_{\odot} < M < \num{4e11}M_{\odot}\) and formation redshifts within \(6 < z_c < 8\) yields a number density of galaxies about 16 times lower than the observed value; non-Gaussianity can raise the tail of the density distribution to give the required order-10 increase of galaxy formation. 
+
+% Precise mass determination is crucial to figure out whether we actually need non-Gaussianity to explain the data. 
+
 \subsection{The bispectrum}
 
 As we will explore in more detail later, the two-point function and its associated power spectrum completely characterize a Gaussian field: all the higher-order \(n\)-point correlation functions can be derived from the two-point one.

@@ -4,26 +4,6 @@
 
 \section{Path integral} \label{sec:path-integral}
 
-% \subsection{In nonrelativistic quantum mechanics}
-
-% In order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute an integral in the form 
-% %
-% \begin{align}
-% \braket{x_2 , t_2 }{x_1 , t_1  } 
-% = \int \mathcal{D}q \exp( i \int_q L (x, \dot{x}
-% , t) \dd{t})
-% \,,
-% \end{align}
-% %
-% where \(L\) is the Lagrangian of the particle, \(q (t)\) is a possible path it can take from \(x_1 \) to \(x_2 \), and the integral extends over all of them: the integration measure can be understood as the limit
-% %
-% \begin{align}
-% \mathcal{D}q \sim \lim_{N \to \infty } \prod_{i=1}^{N-1} \dd{x_i}
-% \,,
-% \end{align}
-% %
-% where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration elements for the \(i\)-th slice. 
-
 The formalism of the path integral is about assigning a probability density to the space of possible field configurations. 
 This space is infinite-dimensional: in order to treat it as a vector space we need to find some kind of basis, such as the values of the field on a grid of points. 
 
@@ -952,7 +932,34 @@ W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, 
 \,.
 \end{align}
 
-\subsection{Path integrals in Quantum Field Theory}
+\subsection{Path integrals in Quantum Mechanics}
+
+\subsubsection{Nonrelativistic quantum mechanics}
+
+The path integral formalism was first introduced by Feynman in his PhD thesis, in the context of nonrelativistic quantum mechanics. 
+\todo[inline]{check this statement}
+
+In order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute an integral in the form 
+%
+\begin{align}
+\braket{x_2 , t_2 }{x_1 , t_1  } 
+= \int \mathcal{D}q \exp( i \int_q L (x, \dot{x}
+, t) \dd{t})
+\,,
+\end{align}
+%
+where \(L\) is the Lagrangian of the particle, \(q (t)\) is a possible path it can take from \(x_1 \) to \(x_2 \), and the integral extends over all of them: the integration measure can be understood as the limit
+%
+\begin{align}
+\mathcal{D}q \sim \lim_{N \to \infty } \prod_{i=1}^{N-1} \dd{x_i}
+\,,
+\end{align}
+%
+where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration elements for the \(i\)-th slice. 
+
+A common technique is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
+
+\subsubsection{Quantum Field Theory}
 
 Let us consider another example, whose physical application is to describe the motion of a massive scalar boson with Lagrangian 
 %
@@ -1019,7 +1026,8 @@ G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 
 \,.
 \end{align}
 
+\subsubsection{Diagrammatic approach}
+
 % \todo[inline]{Review from the PI notes why this makes sense.}
-A common technique in QFT is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
 
 \end{document}

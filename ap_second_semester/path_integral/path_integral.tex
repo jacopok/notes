@@ -214,7 +214,7 @@ Z[b] = \exp(- \frac{1}{2} (A^{-1})_{ij}b_i b_j)
 
 The infinite-dimensional generalization of this result amounts to replacing all the sums (expressed implicitly with Einstein notation here) with integrals; also conventionally we change the names of the variables to \(x \to q\), \(A \to K\), \(b \to J\): 
 %
-\begin{align}
+\begin{align} \label{eq:gaussian-integral}
 Z[J] &= N \int \mathcal{D}q \exp(- \frac{1}{2} \int \dd{x} \dd{y} K(x, y) q(x) q(y) + i \int \dd{x} q(x) J(x))  \\
 &= \exp(- \frac{1}{2} \int \dd{x} \dd{y} J(x) J(y) K^{-1}(x, y))
 \,.
@@ -238,7 +238,7 @@ We can interpret the quantity
 \,
 \end{align}
 %
-as a Gaussian \emph{probability density functional} \(\dd{P}[q]\), since 
+as a Gaussian \emph{probability density functional} \(\dd{\mathcal{P}}[q]\), since 
 \begin{enumerate}
     \item it is positive definite;
     \item it is normalized, as long as we set its integral, \(Z[0]\), to 1;
@@ -269,7 +269,7 @@ C^{(N)}(x_1, \dots , x_n)
 \,.
 \end{align}
 
-Here we can make use of a trick: going back to the Gaussian probability case, consider the functional derivative
+Here we can make use of a trick: consider the functional derivative
 %
 \begin{align}
 \eval{\frac{1}{i}\fdv{Z[J]}{J(x_1 )}}_{J = 0} &= \frac{1}{i} \eval{\fdv{}{J(x)}}_{J=0} \int \mathcal{D}q
@@ -280,7 +280,7 @@ Here we can make use of a trick: going back to the Gaussian probability case, co
 \end{align}
 %
 which actually holds for any probability density functional, we did not make use of the gaussianity.
-So, in general we will be able to write 
+In general, each functional derivative ``brings down a factor \(q(x)\)'', so we will be able to write the \(N\)-point correlation function as
 %
 \begin{align}
 C^{(N)} (x_1 \dots x_n) = \frac{1}{i^{N}} \eval{\frac{ \delta^{n} Z[J]}{ \delta J(x_1 )\dots \delta J(x_n)}}_{J =0 }
@@ -313,7 +313,9 @@ so if we compute the average value \(\expval{\mathscr{F}[q]}\) we find
 
 The expression with the functional \(\mathscr{F}\) being calculated ``at'' the functional derivative is purely formal: it allows us to compactly write the previous Taylor expansion, and should be interpreted as a shorthand for it.  
 
-An example: consider a Gaussian field whose partition function \(Z[J]\) is given by 
+\subsection{Gaussian fields' correlation functions}
+
+Consider a Gaussian field, whose partition function \(Z[J]\) is given, as we have shown in \eqref{eq:gaussian-integral}, by 
 %
 \begin{align}
 Z[J] = \exp( - \frac{1}{2} (J, K^{-1}, J))
@@ -332,7 +334,18 @@ Then, as before we can calculate the correlation functions through functional de
 \end{align}
 
 So, we have our result: \emph{for a Gaussian variable, the two-point correlation function is the inverse of the kernel}. 
-A similar, albeit quite long, calculation allows us to compute the \(N\)-point correlation function for the same Gaussian variable: we expand the exponential in \(Z[J]\) in a power series, and when we differentiate it an even number of times we find  
+This is perfectly analogous to the result we find for a zero-mean \(n\)-dimensional multivariate Gaussian with covariance matrix \(K^{-1}\): its probability density function is given by 
+%
+\begin{align}
+\mathcal{N}(\vec{x} | \vec{0}, K^{-1}) = 
+\frac{1}{(2 \pi )^{n/2} \sqrt{\det K^{-1}}}
+\exp(- \frac{1}{2} \vec{x}^{\top} K \vec{x})
+\,,
+\end{align}
+%
+and its one and two point functions read \(\expval{x_i} = 0\), \(\expval{x_i x_j} = K^{-1}_{ij}\) respectively. 
+
+Coming back to the infinite-dimensional scenario: a similar (albeit longer) calculation to the one before allows us to compute the \(N\)-point correlation function for the same Gaussian variable: we expand the exponential in \(Z[J]\) in a power series, and when we differentiate it an even number of times we find for the even-numbered correlation functions
 %
 \begin{align}
 C^{2N}(x_1 \dots x_{2N}) &= \qty[K^{-1}(x_1, x_2 ) K^{-1} (x_3, x_4) \dots K^{-1} (x_{2N-1}, x_{2N})]_{\text{symmetrized}}
@@ -341,12 +354,18 @@ C^{2N}(x_1 \dots x_{2N}) &= \qty[K^{-1}(x_1, x_2 ) K^{-1} (x_3, x_4) \dots K^{-1
 %
 where ``symmetrized'' means that we must sum over all the permutations of the variables \(x_i\) in the argument of the inverse kernels; on the other hand, the odd correlation functions \(C^{2N+1}\) all vanish since they correspond to the integrals of odd functions over all space.
 
-We can also apply this process in reverse: starting from the two-point correlation function we can reconstruct the kernel, and with it the probability density functional \(\dd{P}[q]\). 
+As we mentioned in section \ref{sec:statistical-methods}, in the Gaussian case the two-point function (or, equivalently, the kernel) contains all the information. 
+Starting from it, we can reconstruct the Gaussian probability density functional \(\dd{\mathcal{P}}[q]\). 
 
-In the Gaussian case, as long as we know the two-point function, which corresponds to the inverse kernel, we can reconstruct the \(N\)-point function. 
-This can also be stated by saying that the ``irreducible'' \(N\)-point functions are all zero except for \(N=2\), since all the higher ones can be reduced to that one. 
+% In the Gaussian case, as long as we know the two-point function, which corresponds to the inverse kernel, we can reconstruct the \(N\)-point function. 
 
-We shall see that all the reduced \(N\)-point functions can be recovered starting from the \emph{generating functional} of connected correlation functions:
+\subsubsection{Connected correlation functions}
+
+In the Gaussian case the \(N\)-point correlation functions are redundant for \(N > 2\). We wish to introduce a notion of ``irreducible'' correlation functions which minimize the amount of redundancy: formally, we require that in the Gaussian case the ones with \(N > 2\) vanish. 
+
+% This can also be stated by saying that the ``irreducible'' \(N\)-point functions are all zero except for \(N=2\), since all the higher ones can be reduced to that one.
+
+These irreducible functions are called the connected \(N\)-point correlation functions, and as we will check in a moment they can be calculated through the \emph{generating functional of connected correlation functions}:
 %
 \begin{align}
 \mathscr{W}[J] = \log Z[J]
@@ -362,11 +381,34 @@ C^{n}_C (x_1 \dots x_n) &= \frac{1}{i^{n}}
 \,.
 \end{align}
 
-These connected correlation functions \(C^{N}_{C}\) are not the same as the \(C^{N}\) from before, although they are related.
+% These connected correlation functions \(C^{N}_{C}\) are not the same as the \(C^{N}\) from before, although they are related.
 
 We could also have defined \(\mathscr{W}[J] = i \log Z[J]\), this is a matter of convention. 
 
-Now, we define the \emph{classical field}
+In the Gaussian case we have 
+%
+\begin{align}
+\mathscr{W}[J] = \log Z[J] = - \frac{1}{2} (J, K^{-1}, J)  
+\,,
+\end{align}
+%
+which, by direct comparison with the Taylor expansion, means that 
+%
+\begin{align}
+C^{2}_{C} (x_1 , x_2 ) = K^{-1} (x_1 , x_2 )
+\,,
+\end{align}
+%
+while \(C^{N} \equiv 0\) for any \(N \neq 2\). 
+This is a validation of our ansatz: in the Gaussian case it is the construction we hoped to make. 
+
+\subsection{Computing probabilities}
+
+We now wish to apply the construction of probability density functionals: what we will typically ask about, besides correlation functions, is the probability density that the field will attain certain values at certain points.
+In order to describe this we will need to introduce some mathematical tools, making use of both Legendre and Fourier transforms. 
+What we will achieve is a general framework, although its application to non-Gaussian cases is complicated, therefore we will only treat Gaussian examples. 
+
+We define the \emph{classical field}
 %
 \begin{align}
 q _{\text{cl}}(x) = \fdv{\mathscr{W}[J]}{J(x)}
@@ -387,21 +429,6 @@ J(x) = - \fdv{\Gamma [q _{\text{cl}}]}{q _{\text{cl}}(x)}
 \,.
 \end{align}
 
-In the Gaussian case we have 
-%
-\begin{align}
-\mathscr{W}[J] = \log Z[J] = - \frac{1}{2} (J, K^{-1}, J)  
-\,,
-\end{align}
-%
-which, by direct comparison with the Taylor expansion, means that 
-%
-\begin{align}
-C^{2}_{C} (x_1 , x_2 ) = K^{-1} (x_1 , x_2 )
-\,,
-\end{align}
-%
-while \(C^{N} \equiv 0\) for any \(N \neq 2\). 
 Also, our expression for \(q _{\text{cl}}\) yields 
 %
 \begin{align}
@@ -456,7 +483,9 @@ The right-hand side is an average over the possible values taken on by the field
 \,.
 \end{align}
 
-This will be much harder to compute: it is a proper functional integral, to be computed according to \eqref{eq:average-of-a-functional}; however it must give the same result.
+Although the expression is similar we have made a large conceptual leap: \(\expval{}_\beta \) denotes a one-dimensional integral, the Fourier transform, while \(\expval{}_q\) denotes an \emph{infinite}-dimensional functional integral, for which we must employ calculation tools such as \eqref{eq:average-of-a-functional}. 
+% This will be much harder to compute: it is a proper functional integral, to be computed according to \eqref{eq:average-of-a-functional}; however it must give the same result.
+The need for this step is motivated by the fact that the values of the field at different points are not independent: what we want to study are precisely the correlations between them, so in order to treat a single point we must consider the whole field.
 
 % \todo[inline]{In the notes this is denoted as ``averaging over \(q\)'', but I do not see how that makes sense. Is \(\overline{x}\) a typical, generic position?}
 
@@ -564,19 +593,21 @@ This is the standard expression for an \(N\)-variate Gaussian distribution whose
 
 % \textbf{Application to Brownian motion}. 
 
-\textbf{Avoiding divergences: high- and low-pass filters}. 
-If \(W_R (x)\) is our filter function, then the general correlation function reads 
+\subsection{Avoiding divergences: high- and low-pass filters}
+
+We will now discuss the application of the filter functions introduced in section \ref{sec:statistical-methods} to the path integral formulation. 
+If \(W_R (x)\) is our filter function, then the general correlation function can be calculated by substituting the value of the field at a point with its convolution with \(W_R\):
 %
 \begin{align}
-C^{(N)}_R (x_1 \dots x_N) &= \int \mathcal{D}q P[q] \prod_{r = 1}^{N}
+C^{(N)}_R (x_1 \dots x_N) &= \int \mathcal{D}q \mathcal{P}[q] \prod_{r = 1}^{N}
 \int \dd{y_r} q(y_r) W_R (\abs{y_r - x_r})  \\
 &= \int \prod_{r=1}^{N} \dd{y_r} W_R(\abs{y_r - x_r}) C^{(N)} (y_1 \dots y_N)
 \,.
 \end{align}
 
-The same holds for the \emph{connected} correlation functions, so we can calculate the \(C^{(N)}_{R, C}\): \emph{smooth, connected} \(N\)-point correlation functions. 
+The same procedure can be applied to the \emph{connected} correlation functions, so we can calculate the \(C^{(N)}_{R, C}\): \emph{smooth, connected} \(N\)-point correlation functions. 
 
-We can calculate these ``smoothed'' correlation functions through \(Z[J]\) by choosing \(J(x)\) in the form 
+We can calculate these ``smoothed'' correlation functions through the generating functional \(Z[J]\) by choosing \(J(x)\) in the form 
 %
 \begin{align}
 J(x) =\int \dd{y} \varphi (x+y) W_R (y)
@@ -585,7 +616,7 @@ J(x) =\int \dd{y} \varphi (x+y) W_R (y)
 %
 where \(\varphi \) is a generic function.
 
-Since these regularized correlation functions do not explode at vanishing distances, we can define the \(N\)-th order \textbf{moment}:
+Since these regularized correlation functions do not diverge at vanishing distances, we can define the \(N\)-th order \textbf{moment}:
 %
 \begin{align}
 \expval{q_R^{N}} = C^{(N)}_R (x \dots x) 
@@ -638,7 +669,7 @@ so we can insert the explicit expression for the probability inside the inverse 
 \begin{align}
 P_R(\alpha ; \overline{x}) &= \frac{1}{2 \pi } \int \dd{\varphi } e^{-i \alpha \varphi } Z(\varphi ) \\
 &= \frac{1}{2 \pi } \int \dd{\varphi } e^{-i \alpha \varphi }
-\int \mathcal{D}q P[q] \exp(i \varphi \int \dd{y} W_R (\abs{y - \overline{x}}) q(y) )
+\int \mathcal{D}q \mathcal{P}[q] \exp(i \varphi \int \dd{y} W_R (\abs{y - \overline{x}}) q(y) )
 \,.
 \end{align}
 
@@ -650,7 +681,6 @@ W(\varphi ) &=  \sum _{N=1}^{\infty } \frac{i^{N}}{N!} \varphi^{N} \expval{q_R^{
 \,,
 \end{align}
 %
-\todo[inline]{why?}
 therefore 
 %
 \begin{align}
@@ -659,9 +689,8 @@ therefore
 \end{align}
 %
 which clarifies what was meant by saying that these are \emph{moments}. 
-% \todo[inline]{Do we have a similar relation for the connected moments?}
-
 \(P_{q_R}\) can be reconstructed starting from these moments. 
+
 
 We can take a different path, by transforming the probability measure: we start from the probability density functional evaluated at \(q\), and calculate the expectation value of a generic functional \(F[q]\) as 
 %
@@ -675,17 +704,17 @@ The proportionality is because we need to include a Jacobian determinant, howeve
 
 Applying this to a Gaussian field amounts to mapping the kernel \(K\) to a ``smoothed'' kernel \(K_R\), which corresponds to the inverse of the smoothed two-point correlation function: \(\expval{q_R(x) q_R(y)}\). 
 
-Now, we move to a more physical example. We consider a Gaussian field \(q\) in three dimensions, whose mean is zero and whose two-point function in Fourier space is 
-%
-\begin{align}
-\expval{q(k) q(k')} = (2 \pi )^3 P(\abs{k}) \delta^{(3)} (k - k')
-\,,
-\end{align}
-%
-where \(P(\abs{k})\) is called the \textbf{power spectral density} of the field \(q\): it quantifies how much of the power of the field is transmitted at each frequency. 
+% Now, we move to a more physical example. We consider a Gaussian field \(q\) in three dimensions, whose mean is zero and whose two-point function in Fourier space is 
+% %
+% \begin{align}
+% \expval{q(k) q(k')} = (2 \pi )^3 P(\abs{k}) \delta^{(3)} (k - k')
+% \,,
+% \end{align}
+% %
+% where \(P(\abs{k})\) is called the \textbf{power spectral density} of the field \(q\): it quantifies how much of the power of the field is transmitted at each frequency. 
 
-The \textbf{Wiener–Khinchin theorem} tells us that the smoothed two-point function is given by 
-%
+As we mentioned in section \ref{sec:statistical-methods}, the smoothed two-point function is given by 
+% 
 \begin{align}
 \expval{q_R (x) q_R(y)} &= G_R ( \abs{x-y}) = \frac{1}{(2 \pi )^3}
 \int \dd[3]{k} P(k) \widetilde{W}^2_R(k) e^{i k \cdot (x-y)}  \\
@@ -694,26 +723,26 @@ The \textbf{Wiener–Khinchin theorem} tells us that the smoothed two-point func
 \end{align}
 %
 where \(j_0 \) is a Bessel function of the first kind. 
-From the first expression we can read off the Fourier transform of \(K^{-1}_R\), whose inverse will then be 
+Recall that the two point function is the inverse of the kernel: therefore, from the first expression we can read off the Fourier transform of \(K^{-1}_R\), or, inverting, 
 %
 \begin{align}
 \widetilde{K}_R (k) = \frac{1}{P(k) \widetilde{W}_R^2(k)} 
 \,.
 \end{align}
 
-Now, let us consider a typical power-spectrum: \(P(k) \propto k^{n}\). 
-The smoothed two-point function will be asymptotically (in the \(r \ll R\) or \(r \gg R\) limits) be proportional to
+Now, let us consider a typical power-spectrum: \(P(k) = A k^{n}\). 
+It can be shown that the smoothed two-point function will be asymptotically (in the \(r \ll R\) or \(r \gg R\) limits) proportional to
 %
 \begin{align}
 G_R (r) \propto \qty[\max(R, r)]^{- (n+3)}
 \,.
 \end{align}
 
-The \(n = 0\) case is \textbf{white noise}, for which \(G_R(0) \sim R^{-3}\). 
+% The \(n = 0\) case is \textbf{white noise}, for which \(G_R(0) \sim R^{-3}\). 
 
 % \todo[inline]{Connection with a Poisson process\dots not clear}
 
-The \(n = -3\) case is \textbf{flicker noise} corresponds to \(1/f\) noise in 1D.
+% The \(n = -3\) case is \textbf{flicker noise} corresponds to \(1/f\) noise in 1D.
 
 In the \(n > 0\) case the smoothed two-point function \(G_R(r)\) must be equal to zero somewhere, since we have the constraint\footnote{This comes from the following line of reasoning: since the field has zero mean, 
 %
@@ -727,37 +756,40 @@ In the \(n > 0\) case the smoothed two-point function \(G_R(r)\) must be equal t
 \,.
 \end{align}
 
-\todo[inline]{What does this have to do with \(n>0\)? Isn't this constraint always present?}
+% \todo[inline]{What does this have to do with \(n>0\)? Isn't this constraint always present?}
 
 The first zero-crossing of the correlation function, \(r_0 \) such that \(G_R(r_0 ) = 0\), is called the \textbf{coherence length}. 
 
-If \(n < 0\), we have fractal behaviour: as long as \(G_R(r) \gg 1\), the fractal dimension is \(D_F = -n\). 
-\todo[inline]{Clarify this\dots how would we show it?}
+% If \(n < 0\), we have fractal behaviour: as long as \(G_R(r) \gg 1\), the fractal dimension is \(D_F = -n\). 
+% \todo[inline]{Clarify this\dots how would we show it?}
 
-A common technique in QFT is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
+\subsection{Saddle-point expansion}
 
-In general, our probability measure can be written as 
+We want to show that in general, our probability measure can be written as 
 %
 \begin{align}
-P[q] = \exp(- \frac{1}{2} (q, K, q) - V[q])
+\mathcal{P}[q] = \exp(- \frac{1}{2} (q, K, q) - V[q])
 \,,
 \end{align}
 %
-where the potential term encompasses all the non-quadratic parts of the probability. Linear terms can be removed with a change of variable, so we can expand it starting from third order: 
+where the potential term encompasses all the non-quadratic parts of the probability.
+Linear terms can be removed with a change of variable, so we can expand it starting from third order: 
 %
 \begin{align}
 V[q] = \sum _{n=3}^{\infty } \dd{x_1 } \dots \dd{x_n} K^{(n)} (x_1 \dots x_n) q(x_1 )\dots q(x_n)
 \,.
 \end{align}
 
-Now, if we define 
-%
-\begin{align}
-Z[J] = \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q) - V[q] + i (q, J) )
-\,,
-\end{align}
-%
-then we can expand the potential term perturbatively: 
+% Suppose that we did not know this, and we wanted to write a generic functional in the form
+% %
+% \begin{align}
+% Z[J] = \int \mathcal{D}q \exp(- \frac{1}{2} (q, K, q) - V[q] + i (q, J) )
+% \,,
+% \end{align}
+% %
+% with arbitrary \(V[q]\). 
+
+We start by ntroducing the ``integrating by parts relation'':
 %
 \begin{align}
 Z[J] &= \exp(- V \qty(-i \fdv{}{J})) 
@@ -768,7 +800,7 @@ Z[J] &= \exp(- V \qty(-i \fdv{}{J}))
 \,.
 \end{align}
 
-With this approach, we can \textbf{recover the probability} of the field attaining a certain value as a function of the cumulants.
+With this approach, we can recover the probability of the field attaining a certain value as a function of the cumulants \(\expval{q_R^{N}}_C\), since as we have shown earlier the function \(W(\varphi )\) can be expressed in terms of them.\footnote{The calculation needed to do so is quite involved, more details can be found in the second section of \textcite[]{matarresePathintegralApproachLargescale1986}. Here we merely meant to show that such a procedure is possible, by introducing all the tools needed to perform it.} 
 
 The \textbf{saddle point expansion} is the following: we want to compute an integral in the form 
 %
@@ -789,7 +821,7 @@ J &\approx \int \dd{\tau } \exp(
 \,.
 \end{align}
 
-We are effectively approximating the integrand as a Gaussian. 
+We are effectively approximating the integrand as a Gaussian, whose mean and variance are computed perturbatively at its stationary point. 
 
 We can apply this to the calculation of path integrals: if the probability \(P(q)\) can be written in terms of \(Z(\varphi ) = \exp(W(\varphi ))\), then we have 
 %
@@ -860,14 +892,16 @@ P(q) = \frac{1}{\sqrt{2 \pi \sigma _R^2}} \exp(- \frac{q^2}{2 \sigma _R^2})
 \,,
 \end{align}
 %
-so we can recognize \(\Gamma (\overline{q}) = \overline{q}^2 / (2 \sigma _R^2)\), while \(W (\varphi ) = \varphi^2 / (2 \sigma _R^2)\). 
+so we can recognize \(\Gamma (\overline{q}) = \overline{q}^2 / (2 \sigma _R^2)\), while \(W (\varphi ) = -\varphi^2 / (2 \sigma _R^2)\). 
 
-We can apply this approximation to the evaluation of the general case: 
+We can apply this approximation in order to prove the claim from the start of this section: suppose we had a generating functional in the form
 %
 \begin{align}
 Z[J] = \int \mathcal{D}q \underbrace{\exp(- \frac{1}{2} (q, K, q) - V[q] + i (q, J))}_{\exp(\mathscr{F}[q, J])}
-\,.
+\,
 \end{align}
+%
+with arbitrary \(V\).
 
 % The functional \(\mathscr{F}[q, J]\) is the solution of the 
 The functional integral will be dominated by the stationary points of \(\mathscr{F}[q, J]\): we define \(q_0 \) as the field configuration satisfying
@@ -897,7 +931,7 @@ This is usually the ``bottleneck'' in the calculation, practically speaking. It 
 Also, we define
 %
 \begin{align}
-\eval{\frac{ \delta^2 \mathscr{F}}{q(x_1 ) q(x_2 )}}_{q_0 }
+\eval{\frac{ \delta^2 \mathscr{F}}{ \delta q(x_1 ) \delta  q(x_2 )}}_{q_0 }
 = K(x_1 , x_2 ) + \eval{\frac{ \delta^2 V[q]}{ \delta q(x_1 ) \delta q(x_2 )}}_{q_0 } = \mathscr{Q}(x_1 , x_2 )
 \,.
 \end{align}
@@ -907,11 +941,11 @@ Also, we define
 We then perform the integration with respect to the field \(q - q_0 \) (this amounts to adding a constant, so the measure does not change) and find 
 %
 \begin{align}
-Z[q_0 , J] \approx \mathscr{N}\frac{\exp(- \mathscr{F}[q_0, J ])}{\sqrt{\mathscr{Q} [q_0, J]}}
+Z[q_0 , J] \approx \mathscr{N}\frac{\exp(- \mathscr{F}[q_0, J ])}{\sqrt{\det \mathscr{Q} [q_0, J]}}
 \,.
 \end{align}
 
-Using the identity \(\log \det M = \Tr \log M\) we can compute 
+Using the identity \(\log \det M = \Tr \log M\) we can compute the generating functional for cumulants:
 %
 \begin{align}
 W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, J] + \const
@@ -986,6 +1020,6 @@ G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 
 \end{align}
 
 % \todo[inline]{Review from the PI notes why this makes sense.}
-
+A common technique in QFT is the \textbf{Wick rotation} \(t \to -i t_E\), needed in order to move from a generally ill-defined oscillatory path integral of an exponential \(\exp(i S[q])\) in 4D space with an indefinite signature, to a Euclidean path integral of an exponential \(\exp(- S_E[q])\) in 4D space with a Cartesian signature, so that the D'Alambert operator is mapped to the Laplace-Beltrami operator.
 
 \end{document}

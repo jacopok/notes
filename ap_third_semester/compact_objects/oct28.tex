@@ -1,4 +1,199 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-28, \\ compiled \\ \today}
+
+We have seen why \(\dot{M}\) is fixed as long as \(a_\infty \) and \(\rho _\infty \) are.
+Let us then write the Bernoulli equation at the sonic radius: 
+%
+\begin{align}
+\frac{1}{2} a_s^2 + \frac{a_s^2}{\Gamma -1} - \frac{GM}{r_s} &= \frac{a_\infty^2}{\Gamma -1}  \\
+\frac{1}{2} a_s^2 + \frac{a_s^2}{\Gamma -1} -2 a_s^2 &= \frac{a_\infty^2}{\Gamma -1}
+\,,
+\end{align}
+%
+so we can calculate the sonic speed if we know \(a_\infty\): 
+%
+\begin{align}
+a_s^2 \qty( \frac{1}{2} - 2 + \frac{1}{\Gamma -1}) &= \frac{a_\infty^2 }{\Gamma -1}  \\
+a_s &= a_\infty \qty( \frac{2}{5 - 3 \Gamma })^{1/2}
+\,,
+\end{align}
+%
+so, since the proportionality constant is of order unity, we can say that the speed of sound at infinity and at the sonic point are of the same order of magnitude. 
+We can also calculate the sonic radius: 
+%
+\begin{align}
+r_s = \frac{GM}{2 a_s^2} = \frac{GM}{2 a_\infty^2} \qty(\frac{5 - 3 \Gamma }{2}) \sim \frac{GM}{a_\infty^2}
+\,.
+\end{align}
+
+This relates the chemical potential at infinity and the gravitational potential energy: when these contributions are of the same order of magnitude we find the sonic transition. 
+
+We are close to being able to write an explicit expression for the accretion rate \(\dot{M}\); we only need to use the continuity equation: 
+%
+\begin{align}
+\dot{M} &= \eval{4 \pi r^2 \rho_\infty \qty( \frac{a}{a_\infty })^{2 / (\Gamma -1)} u  }_{r = r_s}  \\
+&= 4 \pi r_s^2 \rho _\infty \qty(\frac{a_s}{a_\infty })^{2 / (\Gamma -1)} a_s  \\
+&\propto \frac{M^2 \rho _\infty }{a_\infty^3}
+\,.
+\end{align}
+
+What happens when \(\Gamma = 5/3\)? it would seem that then the sonic speed diverges; this is not the case, as was clarified relatively recently. 
+
+What happens if the massive object is moving through the cloud, in which \(u_\infty \neq 0\)? We lose spherical symmetry, but we can still get a solution, in the form 
+%
+\begin{align}
+\dot{M} \propto \frac{M^2 \rho _\infty }{(u_\infty^2 + a_\infty^2)^{3/2}}
+\,.
+\end{align}
+
+Numerically, we have 
+%
+\begin{align}
+\dot{M} = \num{e11} \frac{\qty(\frac{M}{M_{\odot}})^2 n_\infty }{(u_{\infty, 10} ^2 + a_{\infty, 10}^2 )^{3/2}} \SI{}{g/s}
+\,,
+\end{align}
+%
+where the speeds are measured in units of \SI{10}{km/s}, while the number density is in particles per cubic centimeter.
+
+The equation  we found earlier is 
+%
+\begin{align}
+\frac{a^2- u^2}{\rho } \dv{\rho }{r} = \frac{2u^2}{r} - \frac{GM}{r^2}
+\,.
+\end{align}
+
+How do \(u\) and \(\rho \) depend on \(r\), roughly speaking? 
+Let us give a qualitative argument. First, we assume that \(u \ll a\) (which also means \(r \gg r_s\)).
+
+Then, everything on the right-hand side is approximately zero, while \(a^2-  u^2 \approx a^2\): this means 
+%
+\begin{align}
+\frac{a^2}{\rho } \dv{\rho }{r} \approx 0
+\,,
+\end{align}
+%
+or, \(\rho \equiv \rho _\infty \). This happens if we are far from the star, in the \emph{hydrostatic region}. 
+If \(\rho \approx \const\), then by continuity \(u \propto r^{-2}\).
+
+\todo[inline]{Insert plot}
+
+In the opposite limit, we have \(u \gg a\), \(r \ll r_s\).
+Then, substituting in from the continuity we get
+%
+\todo[inline]{But \(u^2/r\) is \emph{not} negligible compared to \(GM / r^2\)! This does not change the substance, the proportionality still works, however we must be careful. }
+\begin{align}
+- \frac{1}{\rho } u^2 \dv{\rho }{r} &\approx - \frac{GM}{r^2}  \\
+\frac{1}{\rho } \qty( \frac{1}{r^2 \rho })^2 \dv{\rho }{r} &\propto \frac{1}{r^2}  \\
+\frac{1}{\rho^3 }\dv{\rho }{r} &\propto r^2  \\
+\frac{1}{\rho^2} &\propto r^3
+\,,
+\end{align}
+%
+therefore \(\rho \propto r^{-3/2}\). This is the crucial aspect: in the supersonic region the density increases with decreasing \(r\). 
+We know that \(u \propto 1/ r^2 \rho \propto r^{-1/2}\).  
+This is the same thing we would have found by considering free fall: 
+%
+\begin{align}
+\frac{1}{2} m v^2 = \frac{GMm}{r}
+\,.
+\end{align}
+
+The full GR treatment of spherical accretion onto a Schwarzschild BH is quite close to what we have found here \cite[fig.\ 2, top left]{nobiliSphericalAccretionBlack1991}. 
+What is the emitted \textbf{luminosity}? We can express in terms of the \emph{efficiency} \(\eta \): \(L = \eta \dot{M} c^2\). 
+
+Let us give a qualitative, Newtonian argument about the maximum accretion efficiency of a Neutron Star. 
+The surface of the NS is rigid, when matter falls upon it it basically \emph{stops}, so \(u(r_*) = 0\), and let us assume that all the impact energy is radiated away.
+Then, the efficiency is the 
+%
+\begin{align}
+\eta_{NS} = \frac{mc^2 - \qty( mc^2 -GMm / r_*)}{mc^2}=  \frac{GM}{c^2 r_*} = \frac{r _{\text{Schw}}}{2 r_*}
+\,.
+\end{align}
+
+In GR this is slightly different, but not by much. 
+Typical values are generally 
+%
+\begin{align}
+\eta = \frac{3 (M / M _{\odot}) \SI{}{km}}{2 \times 10 (R / R _{\odot})} \approx \num{.15}
+\,.
+\end{align}
+
+With typical values, we get 
+%
+\begin{align}
+L = \num{.15} \times \num{e11} \times 9 \times \num{e20} \SI{}{erg/s} \sim \SI{e31}{erg/s}
+\,,
+\end{align}
+%
+100 times lower than the solar luminosity.
+The average number density in interstellar space is of the order of \SI{1}{cm^{-3}}, the region in which we live has a lower number density, one or two orders of magnitude less.
+It was swept away by multiple supernova events. 
+
+People have looked for the luminosity of NS accretion, without result. 
+
+NSs are strongly magnetized: radio pulsars have magnetic fields of the order of \SI{e7}{T}, magnetars reach \SI{e10}{T}. 
+These magnetic fields can inhibit any accretion, through the \emph{propeller effect}.
+
+If we consider a rotating dipolar field,\footnote{It's kind of like making homemade mayonnaise\dots} it propels the particles away. 
+
+What about black holes? There is now no solid surface, and what we can do is to compare the typical timescales for production of radiation, \(\tau _{\text{rad}}\), and the typical dynamical (free-fall) timescale \(\tau _{\text{dyn}}\). If \(\tau _{\text{rad}} \gg \tau _{\text{dyn}}\), then hardly any radiation will be produced before the plasma can fall in. 
+This is what happens if we do the proper modelling of the flow. 
+Typically, \(\num{e-8} \lesssim \eta \lesssim \num{e-2}\). This is at least 10 times larger. 
+
+The luminosity produced by a solar-mass BH would be even lower.
+Isolated BHs are typically larger, but not by \emph{that much}. The very massive BHs can only come from very massive stars in the universe, where the low metallicity allowed for low stellar winds and high remnant masses. 
+
+\section{Roche Lobe Overflow}
+
+What happens in a \textbf{binary system} with a Compact Object and another \emph{donor} star? 
+
+They will revolve around their common center of mass. 
+If the star is massive, then there will be a strong stellar wind.
+A fraction of the matter expelled will fall onto the CO, however this will not be a large fraction. 
+
+The other possibility is \emph{Roche lobe overflow}. 
+
+The idea is: consider a test particle (or, really, a test fluid element, since we will consider gasses) moving under the action of two centrally condensed (``point-like'') masses. This is basically a problem in celestial mechanics.
+Let us denote the two masses by \(M_{1, 2}\). They will orbit around a common center of mass, and by Kepler's third law we can link their orbital separation and the period of the motion: 
+%
+\begin{align}
+4 \pi^2 a^3 = G (M_1 + M_2 ) P^2
+\,.
+\end{align}
+
+Solving the Roche problem means that we have to write down Newton's second law; it is convenient to do so in a system which is \emph{co-rotating} with the two stars, and centered in the center of mass.
+Then, we will need to account for the fictitious forces for this noninertial reference system. 
+
+The Euler equation (we start with this directly, for a single test particle the effects are the same) will read 
+%
+\begin{align}
+\pdv{\vec{v}}{t} + \underbrace{\qty(\vec{v} \cdot \vec{\nabla}) \vec{v} }_{\text{convective derivative}}
+= - \frac{\vec{\nabla} P}{\rho } - 
+\underbrace{2 \vec{\omega} \wedge \vec{v}}_{\text{Coriolis}} 
+ - \underbrace{\omega \wedge \qty(\vec{\omega} \wedge \vec{r})}_{\text{centrifugal}} - \vec{\nabla} \phi_G 
+\,.
+\end{align}
+
+We can write down a potential for the centrifugal term: 
+%
+\begin{align}
+\phi _C = - \frac{1}{2} \qty(\vec{\omega} \wedge \vec{r})^2
+\,,
+\end{align}
+%
+and we can then introduce an effective potential: the \emph{Roche} potential, \(\phi _R = \phi _C + \phi _G\). 
+
+This potential reads 
+%
+\begin{align}
+\phi _R = \frac{GM_1}{\abs{\vec{r} - \vec{r}_1} } + \frac{GM_2}{\abs{\vec{r} - \vec{r}_2} } + \frac{1}{2} \qty(\vec{\omega} \wedge \vec{r})^2
+\,.
+\end{align}
+
+\todo[inline]{Add plot!}
+
+If we plot the contour lines of this potential, they are determined by the mass ratio \(q = M_2 / M_1 \), while the linear scale of the system is only determined by \(a\).
+
 \end{document}

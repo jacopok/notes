@@ -17,7 +17,7 @@ We cannot, of course, analyze more than one of these realizations, but we can co
 All statistical properties can be derived as averages of appropriate functions; ergodicity is precisely the statement that spatial averages correspond to ensemble averages. 
 
 With this established, let us discuss how we can characterize the fluctuations of, say, the density field \(\rho \) (although this approach can be applied to other fields). 
-We start by defining \(\delta = (\rho - \rho_b) / \rho_b\):  this is the dimensionless fluctuation, which can range from \(-1\) to \(+ \infty \).
+We start by defining \(\delta = (\rho - \rho_b) / \rho_b\):  this is the dimensionless density contrast, which can range from \(-1\) to \(+ \infty \).
 By definition, its average will be 0: \(\expval{ \delta } = 0\), so we need to average at least a product of two \(\delta \)'s in order to have a nonzero result. 
 We evaluate them at two arbitrary point, \(x\) and \(x + r\): this would correspond to six degrees of freedom, but we lose three from homogeneity and two more from isotropy, therefore we only need to account for the modulus of \(r\). This motivates the definition 
 %
@@ -28,7 +28,7 @@ We evaluate them at two arbitrary point, \(x\) and \(x + r\): this would corresp
 %
 which is called the \emph{two-point correlation function}.
 By isotropy, we expect its Fourier transform to be a function of the modulus of the wavevector.
-With this in mind, we write the following ansatz for the correlation function in Fourier space, in terms of the \textbf{power spectral density} \(P\): 
+With this in mind, we write the following ansatz for the correlation function in Fourier space, in terms of the \textbf{power spectral density} \(P\):\footnote{Here we make a choice of convention: we could also compute \(\expval{ \delta^{*} \delta }\), in which case we would have a delta-function evaluated at \(k_1 - k_2 \). }
 %
 \begin{align}
 \expval{ \delta (k_1 ) \delta (k_2)} = (2 \pi )^3 \delta^{(3)}(k_1 + k_2 ) P(\abs{k_1 })
@@ -84,7 +84,7 @@ j_0 (x) =  \frac{1}{2} \int_0^{\pi } e^{i x \cos \theta } \sin \theta \dd{\theta
 \end{align}
 
 
-If we evaluate the two-point correlation function \(\xi \) at 0 we find the variance of the density fluctuation field at a generic point: \(\xi (0) = \expval{ \delta (x) \delta (x)} = \sigma^2\), which can be expressed as 
+If we evaluate the two-point correlation function \(\xi \) at 0 we find the variance of the density fluctuation field at a generic point \(x\): \(\xi (0) = \expval{ \delta (x) \delta (x)} \equiv \sigma^2\), which can be expressed as 
 %
 \begin{align}
 \sigma^2 = \xi (0) = \int \frac{ \dd[3]{k}}{(2 \pi )^3} P(\abs{k})
@@ -97,7 +97,7 @@ The physical meaning of the power spectrum \(P(\abs{k})\) is to describe the dis
 The shape of this power spectrum in the early universe has been measured through the correlations in the CMB by the Planck satellite: the spectrum is well described by a powerlaw, \(P(k) = A k^{n_s}\), with \(n_s = \num{0.9665 +- 0.0038}\) \cite[eq.\ 38]{planckcollaborationPlanck2018Results2019}.
 
 A value of \(n_s = 0\) would correspond to frequency-independent \emph{white noise}; \(n_s = 1\) would instead indicate exact \emph{scale invariance}, and this is called a Harrison-Zel'dovich spectrum.
-The measurement of \(n_s\) being slightly smaller than 1 indicates the presence of more energy at longer wavelengths, which is called a \emph{red tilt}. 
+The measurement of \(n_s\) being slightly smaller than 1 indicates the presence of more energy at longer wavelengths than we would expect from the HZ spectrum: this is called a \emph{red tilt}. 
 
 With this value, we can see that the integral giving \(\sigma^2\) diverges in the ultraviolet (\(k \to \infty\)). 
 This divergence is not physical, since cosmic structure does not extend to arbitrarily small scales. Therefore, we fix the problem by introducing a \emph{spatial filter} \(W(r, R)\), where \(r\) is the spatial radius of interest while \(R\) is a fixed characteristic radius below which we do not consider structures. This filter is better characterized through its Fourier transform, \(\widetilde{W}(k, R)\): we use a filtered field like 
@@ -166,7 +166,7 @@ This allows for the statistical study of the structure \emph{around} the peak of
 \subsection{Press-Schechter theory}
 
 Press-Schechter theory is a way to calculate the distribution of virialized objects (i.\ e.\ galaxies) in a perturbative fashion.
-Virialization is a deeply nonlinear process; however it can be shown that when the linearized density perturbation reaches a critical value of \(\delta _c \approx 1.686\) the corresponding true nonlinear halo has virialized. 
+Virialization is a deeply nonlinear process; however it can be shown that when the linearized density perturbation reaches a critical value of \(\delta _c \approx 1.686\) the corresponding true nonlinear halo has virialized.  This number is calculated under the assumption of a spherically symmetric collapse.
 
 \textcite[]{matarreseAbundanceHighRedshift2000} applied this approach to a mildly non-Gaussian density perturbation field (with only a quadratic term) in order to study the abundance of high-redshift galaxies, finding analytic results with the aid of the path integral formalism.
 
@@ -177,10 +177,15 @@ Virialization is a deeply nonlinear process; however it can be shown that when t
 
 % Section 5: using high-\(z\) galaxies is advantageous because ``they directly sample the galaxy scale, and are always in virialized halos''. I get the fist point, but not the second: are more recent galaxies not in virialized halos? 
 
-In order to account for the scale of the growing mode of the linear perturbations they give a redshift-dependence to the critical density: fixing \(\Delta _c = \num{1.686}\) they write \(\delta _c = \Delta _c / D(z_c  | \Omega_{0, m}, \Omega_{0, \Lambda })\), where \(D\) is the linear growth factor: \(D^{-1}\) increases with redshift. 
+In order to account for the scale of the growing mode of the linear perturbations they give a redshift-dependence to the critical density: fixing \(\Delta _c = \num{1.686}\) they write \(\delta _c = \Delta _c / D(z_c  | \Omega_{0, m}, \Omega_{0, \Lambda })\), where \(D\) is the linear growth factor: \(D^{-1}\) increases with redshift.  
 
 This means that at higher \(z\) it is harder to form virialized objects, but simultaneously the density PDF is more sensitive to non-Gaussianity.
 This can be seen graphically in figures 4 and 5 of the same paper.\footnote{They refer to two different models, denoted as \(A\) and \(B\): in the first the density field is perturbed, in the second the gravitational field is perturbed. Nowadays, model \(B\) has been found to be the most useful one.}
+
+What the path integral formulation allows us to properly describe is that a small amount of non-Gaussianity may easily enhance the amount of high-redshift galaxies per unit volume by an order of magnitude.
+Despite it being a rather macroscopic prediction, the task of observationally confirming it is arduous, since we need to estimate the masses of these objects from spectroscopic data, which is very hard. 
+The most stringent bounds on non-Gaussianity, as mentioned in the introduction, currently come from the CMB. In the next section we shall discuss how this is measured. 
+
 % So, \(\delta _c\) increases with redshift, therefore we see from equation 66 that the skewness term becomes less and less relevant. 
 % This can be seen in figs.\ 4 and 5 as well. 
 
@@ -214,7 +219,8 @@ B_{\Phi } (k_1, k_2, k_3 ) = 2 f_{NL}
 \end{align}
 %
 where \(B_\Phi (k)\) is the power spectrum. 
-This allows us to observationally compute \(f_{NL}\),  \cite[]{planckcollaborationPlanck2018Results2020}. 
+This allows us to observationally compute \(f_{NL}\),  \cite[]{planckcollaborationPlanck2018Results2020}, since both the power spectrum and bispectrum can be calculated from the CMB data.
+A similar line of reasoning allows us to bound \(g_{NL}\).
 
 % Two point correlation function: 
 % %

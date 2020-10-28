@@ -42,17 +42,17 @@ This will be a linear functional of \(\eta \) to first order, so we define the f
 The analogy to finite-dimensional spaces is as follows: the functional derivative \(\fdv*{F}{q(y)}\) corresponds to the \emph{gradient} \(\nabla^{i} F\), while the integral in the previous expression corresponds to the \emph{directional derivative} \((\nabla^{i} F) \eta^{j} g_{ij}\).
 The metric is present since the gradient is conventionally defined with a vector-like upper index; in our infinite-dimensional space the scalar product is given by the integral.
 
-Practically speaking, the most convenient way to calculate a functional derivative is by taking \(\eta (x)\) to be such that it only differs from zero in a small region near \(y\), and let us define 
+Practically speaking, the most convenient way to calculate a functional derivative is by taking \(\eta_y (x)\) to be such that it only differs from zero in a small region near \(y\), and let us define 
 %
 \begin{align}
-\delta \omega = \int \eta (x) \dd{x}
+\delta \omega = \int \eta _y (x) \dd{x}
 \,.
 \end{align}
 
 Then, we define 
 %
 \begin{align}
-\fdv{F}{q(y)} = \lim_{ \delta \omega \to 0} \frac{F[q + \eta ] - F[q]}{ \delta \omega }
+\fdv{F}{q(y)} = \lim_{ \delta \omega \to 0} \frac{F[q + \eta _y] - F[q]}{ \delta \omega }
 \,.
 \end{align}
 
@@ -61,7 +61,7 @@ so that we are only changing the normalization as we shrink \(\delta \omega \).
 A common choice is then 
 %
 \begin{align}
-\eta (x) = \delta \omega  \delta (x-y)
+\eta _y (x) = \delta \omega  \delta (x-y)
 \,.
 \end{align}
 
@@ -134,7 +134,7 @@ We can also define functional integration, by
 
 On the right-hand side we are using the expression of the functional as a function of infinitely many variables which we discussed above;
 we are then integrating over each of the coordinates in this infinite dimensional function space.
-The infinite-dimensional measure is also often denoted as \(\mathcal{D}q\). 
+The infinite-dimensional measure, here written as \([ \dd{q}]\) is also often denoted as \(\mathcal{D}q\). 
 
 This integral will not always exist, however in the cases in which it does we can change variables. 
 Let us consider a linear change of variable, whose kernel is \(K(x, y)\), such that (compactly written) \(q = K q'\). 
@@ -174,8 +174,8 @@ Usually functional integrals cannot be computed analytically; the exception is g
 \,.
 \end{align}
 
-Here \(A_{ij}\) is an \(n\)-dimensional real matrix (which WLOG can be taken to be symmetric) while \(b_i\) is an \(n\)-dimensional vector.
-The result comes from a transformation of the coordinates according to the finite-dimensional 
+Here \(A_{ij}\) is an \(n\)-dimensional real matrix (which without loss of generality can be taken to be symmetric) while \(b_i\) is an \(n\)-dimensional vector.
+% The result comes from a transformation of the coordinates according to the finite-dimensional.
 
 This can be interpreted as a ``functional'' (still finite-dimensional, so just a function, but we will generalize soon) of \(b_i\); we write it with an additional normalization \(N\) for convenience:
 %
@@ -934,18 +934,17 @@ W[q_0 , J] \approx \mathscr{F}[q_0 , J] - \frac{1}{2} \Tr \log \mathscr{Q}[q_0, 
 
 \subsection{Path integrals in Quantum Mechanics}
 
-We draw a parallel to the quantum-mechanical version of the path integral
-
 \subsubsection{Nonrelativistic quantum mechanics}
 
 The path integral formalism in quantum mechanics was first introduced in the first half of the twentieth century by the works of Dirac and Feynman.
+Although it is often more unwieldy than, say, solving the Schrödinger equation, it is much more powerful, and it has found wide-ranging applications in Quantum Field Theory.
 
 In extreme synthesis, in order to compute the probability amplitude that a particle is first found in a (one dimensional) position \(x_1 \) at a time \(t_1 \) and then at a position \(x_2 \) at a time \(t_2 \) we compute a functional integral in the form 
 %
 \begin{align}
 \braket{x_2 , t_2 }{x_1 , t_1  } 
 = \int \mathcal{D}q \exp( i \int_q L (x, \dot{x}
-, t) \dd{t}) = \int \mathcal{D}q \exp(i S[q])
+, t) \dd{t}) = \int \mathcal{D}q \exp( i S[q])
 \,,
 \end{align}
 %
@@ -956,10 +955,10 @@ where \(L\) is the Lagrangian of the particle, \(q (t)\) is a possible path it c
 \,,
 \end{align}
 %
-where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration elements for the \(i\)-th slice. 
+where we ``slice'' the time interval \(t_2 - t_1 \) into \(N \to \infty \) equal parts, \(\dd{x_i}\) being the integration element for the \(i\)-th slice. 
 
 The integrand is oscillatory: if we are far from the classical path, defined by \(\delta S[ q _{\text{cl}}] = 0\), the contributions to the integral destructively interfere, while constructive interference happens near the classical path. 
-The fully classical approach is to just consider the equations of motion \(\delta S = 0\); we can take a \emph{semiclassical} approach with a saddle-point approximation, by expanding the action up to second order. The paths which will contribute will be, roughly speaking, those for which \(S[q] - S[q _{\text{cl}}] \sim 1 = \hbar\). 
+The fully classical approach is to just consider the equations of motion \(\delta S = 0\); we can take a \emph{semiclassical} approach with a saddle-point approximation, by expanding the action up to second order. The paths which will contribute will be, roughly speaking, those for which \(S[q] - S[q _{\text{cl}}] \sim 1 = \hbar\) (we are working in natural units). 
 
 Qualitatively speaking, this oscillatory version of the integral of \(\exp(i S[q])\) converges just like the Euclidean integral of \(\exp(- S[q])\) we have seen up to now; however it does so much more slowly.
 In both cases we expect the greatest contribution to come from the maxima of \(S[q]\). 
@@ -976,6 +975,7 @@ Let us look at a relatively simple example application of the path integral in Q
 \end{align}
 %
 where the self-interaction term is some non-quadratic function of \(\phi \), often taken to be proportional to  \(\phi^3\)  or \(\phi^{4}\). 
+In this case we are considering self-interaction only, but the interaction between different fields can also be treated in a similar, perturbative way.
 
 The Feynman path integral corresponding to this Lagrangian is given by the functional 
 %
@@ -1032,6 +1032,9 @@ We can use this to compute the Green's functions:
 G(x_1 , \dots , x_n) = \eval{\frac{1}{i^{n}} \frac{ \delta Z[J]}{ \delta J (x_1 ) \dots \delta J(x_n)}}_{J = 0}
 \,.
 \end{align}
+
+We can now also draw some physical intuition about the term \(J \phi \): it is called a ``source term'', and by the way it appears in the Lagrangian we could interpret it as a part of the potential, by mapping \(V \to V_J = V - J \phi \).
+This is then precisely equivalent to the addition of an external force \(J\) to the system. 
 
 \subsubsection{Diagrammatic approach}
 

@@ -1,4 +1,360 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-10-28, \\ compiled \\ \today}
+
+Today we will see how to explicitly solve the equation 
+%
+\begin{align}
+u''_k (\tau )
++ 
+\qty[k^2 - \frac{a''}{a} + a^2 m^2] u_k (\tau ) = 0
+\,,
+\end{align}
+%
+where \(\tau \) is the conformal time, while \(m^2 = \pdv*[2]{V}{\varphi }\). 
+The stage in which \(m^2 = 0\) is the quasi de-Sitter stage. 
+Then, \(\epsilon = - \dot{H} / H^2 \ll 1\). 
+We have 
+%
+\begin{align}
+\frac{\ddot{a}}{a} = H^2 ( 1- \epsilon )
+\,.
+\end{align}
+
+Integrating the conformal time definition (we need to also integrate by parts) we can find 
+%
+\begin{align}
+\tau = - \frac{1}{a H (1 - \epsilon )}
+\,.
+\end{align}
+
+Then, the equation becomes 
+%
+\begin{align}
+u''_k(\tau ) + \qty[k^2 - \frac{\nu^2 - 1/4}{\tau^2}] u_k (\tau )= 0 
+\,,
+\end{align}
+%
+where \(\nu^2 = 9/4 + 3 \epsilon \). 
+This is a Bessel equation: these equations are generally in the form 
+%
+\begin{align}
+z^2 y'' (z) + z y' (z) + (z^2 - \nu^2) y(z) = 0
+\,.
+\end{align}
+
+The solutions are called Hankel functions, and the general solution will read 
+%
+\begin{align}
+u_k (\tau ) = \sqrt{- \tau } \qty[ c_1 (k) H_\nu^{(1)} (-k\tau ) + c_2 (k) H_\nu^{(2)} (-k\tau )]
+\,,
+\end{align}
+%
+where \(H^{(2)}_\nu = H^{(1), *}_\nu\). 
+We want to impose the asymptotic behaviour of the solution: we want \(k / aH \gg 1\). 
+This means that 
+%
+\begin{align}
+u_k (\tau ) = \frac{1}{\sqrt{2k}} e^{-ik \tau }
+\,,
+\end{align}
+%
+and the asymptotics of the Hankel functions are
+%
+\begin{align}
+H^{(1)}_n (x) \sim \sqrt{ \frac{2}{\pi x}} \exp(i (x - \frac{\pi}{2} \nu - \frac{\pi}{4}))
+\,
+\end{align}
+%
+for \(x \gg 1\). This works well for us: we can set \(c_2 (k) = 0\) and only use \(c_1 (k)\). 
+
+We must choose 
+%
+\begin{align}
+c_1 (k) = \frac{\sqrt{\pi }}{2} \exp(i \qty(\nu + \frac{1}{2}) \frac{\pi}{2})
+\,
+\end{align}
+%
+in order to have the correct normalization. 
+Then, our solution will read 
+%
+\begin{align}
+u_k (\tau ) = \frac{\sqrt{\pi }}{2} \exp(i ( \nu + \frac{1}{2}) \frac{\pi}{2}) \sqrt{-\tau } H^{(1)}_\nu (- k \tau )
+\,,
+\end{align}
+%
+so in the superhorizon \(k /aH \ll 1\) (or \(-k \tau \ll 1\)) regime we have the asymptotic \(x \ll 1\) expansion of the Hankel function:
+%
+\begin{align}
+H^{(1)}_\nu (x) \sim \sqrt{ \frac{2}{\pi }} e^{- i \pi /2}
+2^{\nu - 3/2} \frac{\Gamma (\nu )}{\Gamma (3/2)} x^{-\nu }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+u_k (\tau ) \approx \exp(i (\nu - \frac{1}{2}) \frac{\pi}{2})
+2^{\nu - 3/2}
+\frac{\Gamma (\nu )}{\Gamma (3/2)}
+(- k \tau )^{1/2 - \nu } \frac{1}{2 k} 
+\,,
+\end{align}
+%
+so if we want the modulus \(\abs{ \delta \varphi _k} = \abs{u_k } / a\) we can make use of the fact that \(\tau \sim - 1/aH \propto 1/a\), therefore \(\abs{ \delta \varphi _k} \approx - H \tau \abs{u_k}\). 
+Inserting the expression we have for \(u_k\) yields 
+%
+\begin{align}
+\abs{ \delta \varphi _k} 
+&\approx 2^{\nu - 3/2} \frac{\Gamma (\nu )}{\Gamma (3/2)} \frac{H}{\sqrt{2 k^2}} \qty(\frac{k}{aH})^{3/2 - \nu }  \\
+&\approx \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{3/2 - \nu }
+\marginnote{Expanded to first order in \(\epsilon \), so that \(3/2 - \nu \approx - \epsilon \).}
+\,,
+\end{align}
+%
+which holds at super-horizon scales. 
+In the De Sitter case, the exact result reads
+%
+\begin{align}
+u_k (\tau ) \propto \sqrt{- \tau } H^{(1)}_{3/2} (- k \tau )
+= \frac{e^{-ik \tau }}{\sqrt{2k}} \qty(1 - \frac{i}{k \tau })
+\,.
+\end{align}
+
+The next step is to generalize to a scalar field which is not massless anymore: we shall consider a mass \(m^2 = \pdv*[2]{V}{\varphi } \ll H^2\), so a ``light'' scalar field. 
+We require this because the slow-roll parameter is \(\eta _V = m^2 / (3 H^2) \ll 1\): a massive field (compared to \(H^2\)) would not be able to drive slow-roll inflation. 
+
+Then, the \(m^2 a^2\) term in the equation is nothing but 
+%
+\begin{align}
+m^2 a^2 = 3 \eta _V a^2 H^2 = \frac{3 \eta _V}{\tau^2}
+\,,
+\end{align}
+%
+but we also know that 
+%
+\begin{align}
+\frac{a''}{a} = \frac{2}{\tau^2 } \qty[ 1 + \frac{3}{2} \epsilon ]
+\,,
+\end{align}
+%
+so we can still recast the equation into a Bessel form: only the coefficient of the \(\tau^{-2}\) term changes. 
+
+The equation will read 
+%
+\begin{align}
+u''_k (\tau ) + \qty[ k^2 - \frac{\nu^2 - 1/4}{\tau^2}] u_k (\tau ) = 0
+\,,
+\end{align}
+%
+with \(\nu^2 = 9/4 + 3 \epsilon - 3 \eta _V\). 
+Then, the solution has exactly the same form as before: on super-horizon scales, with \(k \ll aH\), we have
+%
+\begin{align}
+\abs{ \delta \varphi _k} = \frac{H}{\sqrt{2 k}} \qty( \frac{k}{aH})^{3/2 - \nu }
+&&
+\nu \approx \frac{3}{2} + \epsilon - \eta _V
+\,.
+\end{align}
+
+Note that we did not require the field to be anything but light: the computation we have done can apply to an inflaton field but also to any other scalar field evolving in this phase of the expansion of the universe. 
+If it is another scalar field, why should we require it to be light? It can be shown that if \(m^2\) is large compared to \(H^2\) the superhorizon-scale fluctuations of that field have a very hard time being excited: the field basically remains in its vacuum state. 
+
+The Klein-Gordon equation reads 
+%
+\begin{align}
+\ddot{\varphi} (\vec{x}, t)
++ 3 H \dot{\varphi} (\vec{x}, t)
+- \frac{\nabla^2 \varphi (\vec{x},t)}{a^2}
+= - \pdv{V}{\varphi }
+\,,
+\end{align}
+%
+and we have obtained is starting from the expression 
+%
+\begin{align}
+\square \varphi = \frac{1}{\sqrt{-g}} \partial_{\nu } \qty(\sqrt{-g} g^{\mu \nu } \partial_{\mu } \varphi )
+\,,
+\end{align}
+%
+where the metric is taken to be a FLRW one. We have neglected a crucial component: we should also perturb the spacetime, beyond the FLRW metric, if we want to have a consistent discussion. 
+
+This is important to do for the inflaton especially since \(\varphi \) dominates the energy density of the universe. 
+The Einstein equations, 
+%
+\begin{align}
+G_{\mu \nu } = 8 \pi G T_{\mu \nu }^{(\varphi )}
+\,,
+\end{align}
+%
+are perturbed with a variation in the field, \(\delta \varphi \), which perturbs the energy-momentum tensor \(\delta T_{\mu \nu }^{(\varphi )}\), which means that we must also perturb the Einstein tensor \(\delta G_{\mu \nu} \) and then finally the metric \(\delta g_{\mu \nu }\). 
+
+So, we find an equation 
+%
+\begin{align}
+u''_k (\tau ) + \qty[ k^2 - \frac{a''}{a} + M^2a^2] u_k (\tau ) = 0
+\,.
+\end{align}
+
+If we account for metric perturbations, we get 
+%
+\begin{align}
+\frac{M^2}{H^2} \approx 3 \eta _V - 6 \epsilon 
+\,.
+\end{align}
+
+Then, we get 
+%
+\begin{align}
+\nu^2 = \frac{9}{4} + 9 \epsilon - 3 \eta _V 
+\,.
+\end{align}
+
+Just like before we can calculate 
+%
+\begin{align}
+\abs{ \delta \varphi _k} = \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{3/2 - \nu }
+\,.
+\end{align}
+
+Then we find that in order to calculate \(\Delta u_k\) we can use
+%
+\begin{align}
+Q_\varphi = \delta \varphi + \frac{\varphi }{H} \hat{\Phi}
+\,,
+\end{align}
+%
+where \(\hat{\Phi} = \Phi + (1/6) \nabla^2 \chi^{\parallel}\), where \(\Phi \) and \(\chi^{\parallel}\) are scalar perturbations of \(g_{ij}\).
+\todo[inline]{What is \(Q\)?}
+
+We want to show how primordial GW are generated from the inflaton perturbations.
+We consider a tensor-perturbed FLRW metric 
+%
+\begin{align}
+\dd{s^2} = a^2 (\tau )
+\qty[- \dd{\tau}^2 + \qty(\delta_{ij} + h_{ij} (\vec{x}, \tau )) \dd{x^{i}} \dd{x^{j}}]
+\,.
+\end{align}
+
+We are neglecting all scalar and vector perturbations for simplicity. 
+The symmetric tensor \(h_{ij}\) can be chosen to be traceless: \(h^{i}_{i} = \partial_{i}^{\text{BG}} h^{ij} = 0 \), where the derivative is that constructed from the background unperturbed spacetime. 
+This is basically the TT-gauge, but in a cosmological context the conditions come about naturally. 
+
+The equations of motion read 
+%
+\begin{align}
+h_{ij}'' + 2 \frac{a'}{a} - \nabla^2 h_{ij} = 0
+\,,
+\end{align}
+%
+where a prime denotes a derivative with respect to the conformal time \(\tau \).
+If we wanted to use cosmic time instead, the equation would read 
+%
+\begin{align}
+\ddot{h}_{ij} + 3 H \dot{h}_{ij} - \frac{\nabla^2 h_{ij}}{a^2} = 0
+\,.
+\end{align}
+
+We can see that this is the same as \(\square^{\text{BG}} h_{ij} = 0\). The equation is the same as a massless, minimally coupled scalar field. 
+We already know the solution for these equations: the mechanism of quantum vacuum amplification still works. 
+We have a 0 on the right-hand side since we are working up to linear order, in full generality there will be other source terms, commonly denoted as \(\pi^{T}_{ij}\) (\(T\) for ``source of tensor modes''). 
+This term describes the tensor component of the anisotropic stresses, from the quadrupole up.
+
+Measuring these primordial GWs would be the first probe of the quantum nature of gravity.
+
+GWs start out with 6 degrees of freedom, but 4 are gauged away, so we are left with only 2. 
+We can then expand \(h_{ij}\) in a plane wave basis: 
+%
+\begin{align}
+h_{ij} (\vec{x}, \tau )
+= \int  \sum_{\lambda = +, \times }
+\frac{ \dd[3]{k}}{(2 \pi )^3}
+e^{i k \cdot x}
+h_\lambda (\vec{k}, \tau ) \epsilon^\lambda_{ij} (\vec{k})
+\,,
+\end{align}
+%
+so that in Fourier space the equations of motion for the coefficients read
+%
+\begin{align}
+h_\lambda'' + 2 \frac{a'}{a} h_\lambda' + k^2 h_\lambda = 0
+\,.
+\end{align}
+
+This is exactly the same as the equations of motion for the scalar massless minimally coupled field. 
+We can then see that if \(k \gg aH\) we get 
+%
+\begin{align}
+h_\lambda \sim \frac{e^{-ik \tau }}{a}
+\,,
+\end{align}
+%
+while for \(k \ll aH\) the gravitational perturbation has a constant mode and a decaying mode. 
+We can treat the two coefficients like \(h_{+, \times } = \phi_{+, \times } \sqrt{32 \pi G}\), so that \(\phi \) has the dimension of a mass while \(h\) is dimensionless. 
+Then, like we saw before in the superhorizon regime \(k\ll aH\) we get
+%
+\begin{align}
+\abs{h_{+, \times }} = \frac{H}{\sqrt{2 k^3}}
+\qty( \frac{k}{aH})^{-\epsilon } \sqrt{32 \pi G}
+\,.
+\end{align}
+
+We can distinguish GWs from inflation from those produced by single astrophysical events: inflation yields a \emph{stochastic background} of GWs. 
+These GWs are a crucial target of future experiments, both in interferometry and in CMB maps. 
+
+We need to introduce the power spectrum of perturbations: 
+the two-point correlation function, in real space, is given in terms of a generic stochastic perturbation field \(\delta (\vec{x})\): we can calculate 
+%
+\begin{align}
+\expval{ \delta (\vec{x} + \vec{r}) \delta (\vec{x})} = \xi (r)
+\,.
+\end{align}
+
+In Fourier space, we define the power spectrum as the Fourier transform of the two-point correlation function: the field is written as 
+%
+\begin{align}
+\delta (\vec{x}) = \frac{1}{(2\pi )^3} \int \dd[3]{k} e^{i \vec{k} \cdot \vec{x}} \delta (\vec{k})
+\,,
+\end{align}
+%
+and the power spectrum \(P(k)\) is defined by
+%
+\begin{align}
+\expval{ \delta (\vec{k}) \delta (\vec{k}')} = (2\pi )^3 \delta^{(3)} (\vec{k} + \vec{k}') P(k)
+\,.
+\end{align}
+
+The plus is there since we wrote \(\delta (k) \delta (k')\) instead of \(\delta(k) \delta^{*}(k')\): if we included the conjugate than the argument of the \(\delta \) would be \(k - k'\), due to the fact that since \(\delta (x)\) is real we have \(\delta^{*}(k) = \delta (-k)\). 
+
+We have 
+%
+\begin{align}
+\sigma^2 &= \expval{ \delta^2(x)} \frac{1}{2 \pi^2} \int \dd{k} k^2 P(k)  \\
+&= \frac{1}{2 \pi^2} \int \frac{ \dd{k}}{k} k^3 P(k)  \\
+&= \int \dd{\log k } \Delta^2_\delta  (k)
+\,,
+\end{align}
+%
+where we define the dimensionless power spectrum: 
+%
+\begin{align}
+\Delta^2_\delta (k) = \frac{k^3}{2 \pi^2} P(k)
+\,.
+\end{align}
+
+We can show that \(P(k)\) is indeed the Fourier transform of \(\xi (r)\): 
+%
+\begin{align}
+\expval{ \delta (x+r) \delta (x)} &= \frac{1}{(2 \pi )^6}
+\int \dd[3]{k_1 } e^{i k_1 (x+r)} \int \dd[3]{k_2 } e^{i k_2 x} 
+\expval{\delta (k_1 ) \delta (k_2 )}  \\
+&= \frac{1}{(2 \pi )^3} \int \dd[3]{k_1 } \dd[3]{k_2 } \delta^{(3)} (k_1 + k_2 ) P(k_1 ) e^{i k_1 (x+r) + i k_2 x}  \\
+&= \frac{1}{(2 \pi )^3} \int \dd[3]{k_1 } e^{i k_1 r} P(k_1 )
+\,,
+\end{align}
+%
+as we wanted to show. 
+In the \(r = 0\) case we recover the expression from above for the variance. 
+
 \end{document}

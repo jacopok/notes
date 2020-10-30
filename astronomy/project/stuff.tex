@@ -3,14 +3,24 @@
 
 \section{Astronomical measurements through the ages}
 
-Astronomy has historically been among the first of the \emph{exact sciences}, 
+Astronomy has historically been among the first of the \emph{exact sciences}, necessarily dealing with precise measurements, numbers and geometry.
+Its objects of interest were often tied with religion, as one might expect given the strong connection between ritualism, repetition and regularity.
+Stars' and planets' positions were often interpreted as omens, whose interpretation and prediction was crucial, and the starting point for predictions is naturally observation.
+
+In this section we will briefly explore some aspects of the advancement of the techniques used for the measurement of angles from the pre-magnification era to the current day.
+In the next section, we will discuss two examples of applications of astronomical knowledge to the study of history and literature. 
 
 \subsection{Pre-magnification angle measurement}
+
+The unaided eye can generally resolve objects displaced by an angle of the order of \SI{2}{^\prime} \cite[pag.\ 56]{karttunenObservationsInstruments2017}.\footnote{This holds for people with good eyesight, the unfortunate bespectacled ones such as myself can hardly distinguish Mizar from Alcor in the constellation of Ursa Major, and their separation is roughly \SI{12}{^\prime}. }
+\cite[]{sattarovMainInstrumentUlugh2009}
+
+
 
 \subsection{Modern era improvements}
 
 The accuracy of angular measurements skyrocketed in the modern era: between the 1500s and the 1800s there was roughly an order of magnitude improvement in accuracy per century \cite[]{chapmanAccuracyAngularMeasuring1983}.
-
+Three main breakthroughs are 
 
 \subsection{Current state of the art}
 
@@ -24,12 +34,16 @@ The limit nowadays, for space-based instruments like the Hubble Space Telescope 
 where \(\theta \) is the minimum angular distance of two points we can distinguish,\footnote{This is to be interpreted in the precise sense that two points are \emph{distinguished} if the first diffraction minimum of one coincides with the peak of the diffraction pattern of the other.} \(D\) is the diameter of our telescope, while \(\lambda \) is the wavelength of the light we are considering.
 For example, the HST has a diameter of \SI{4.2}{m}, so for visible green light at \SI{500}{nm} its diffraction limit is of around \SI{30}{mas} (milli-arcseconds).
 Beyond this limit objects cannot be resolved. 
+Telescopes on Earth are commonly limited not by this problem but, instead, by the distorting effect of the atmosphere. 
+
+Higher resolutions can be obtained by using shorter wavelength light, or larger telescopes. 
+For example, the Event Horizon Telescope \cite[]{theeventhorizontelescopecollaborationFirstM87Event2019} used the technique of Very Long Baseline Interferometry in order to achieve an effective telescope diameter of the scale of the Earth, which combined with its observation wavelength of \SI{1.3}{mm} (in the radio band) meant that its diffraction limit fell to the order of \SI{25}{\micro arcsecond}.
 
 \section{Equinox precession as a dating tool}
 
 The Earth's axis of rotation is tilted by an angle of around \SI{24}{\degree} with respect to the \emph{ecliptic}, which is the plane in which the Earth's orbit around the Sun lies. 
 
-In the time it takes for the Earth to complete a revolution around the Sun the orientation of this axis with respect to the distant stars is roughly constant --- this can be seen easily in the night sky from the fact that the sky appears to revolve around a fixed axis, which in the Northern Hemisphere is close to the star Polaris.\footnote{Currently the separation of the star from the northern celestial pole --- which corresponds to \(\SI{90}{\degree} - \delta \), where \(\delta \) is the declination of Polaris in an equatorial coordinate system at a chosen equinox --- is around \SI{39}{^\prime}, and it is decreasing, it will reach a minimum of \SI{27}{^\prime} in the year 2102DC \cite[pag.\ 58]{barbieriLezioniDiAstronomia2003}.}
+In the time it takes for the Earth to complete a revolution around the Sun the orientation of this axis with respect to the distant stars is roughly constant --- this can be seen easily in the night sky from the fact that the sky appears to revolve around a fixed axis, which in the Northern Hemisphere is right now close to the star Polaris.\footnote{Currently the separation of the star from the northern celestial pole --- which corresponds to \(\SI{90}{\degree} - \delta \), where \(\delta \) is the declination of Polaris in an equatorial coordinate system at a chosen equinox --- is around \SI{39}{^\prime}, and it is decreasing, it will reach a minimum of \SI{27}{^\prime} in the year 2102DC \cite[pag.\ 58]{barbieriLezioniDiAstronomia2003}.}
 
 However, it was noticed as early as 129BC by Hypparcos that the axis of rotation does not remain stationary over the years. 
 
@@ -69,7 +83,7 @@ On the Atlas, the constellation of Aries (the Ram) ends precisely on the colure,
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/aries_on_colure_184_BC.png}
-\caption{The constellation of Aries is shown, as well as the vernal equinox, on an equatorial grid; this is how the sky would have looked in 184BC. The colure is the vertical line passing by the equinox (marked as \(\aries\)), and one can see that it passes by the right side of Aries; this is what appears in the Farnese Atlas.}
+\caption{The constellation of Aries is shown, as well as the vernal equinox, on an equatorial grid; this is how the sky would have looked in 184BC. The colure is the vertical line passing by the equinox (marked as \(\aries\)), and one can see that it passes by the right side of Aries; this is what appears in the Farnese Atlas \cite[]{stellariumcontributorsStellariumAstronomySoftware2020}.}
 \label{fig:aries}
 \end{figure}
 
@@ -115,12 +129,22 @@ In figure \ref{fig:ursa-now} one can see how the Great Bear will appear in the n
 \label{fig:ursa-names}
 \end{figure}
 
+The Iliad verse, however, is completely reasonable when compared with observation, once again due to the precession of the equinoxes. 
+The time when the Iliad was written is not precisely known, however it surely must be prior to the seventh century BC, since there are source referencing it starting from that time.
+For our purposes, it is enough to say that it was composed in the period between 1000BC and 500BC.
+In figure \ref{fig:ursa-names} a picture of the Ursa constellation is shown with labels for the stars.
+
+Eight stars of the ``lower part'' of the constellation --- four from the Big Dipper asterism, and four from the ``legs'' of the bear --- are chosen, and for each of them we compute the declination at different times from the year 2000BC to the year 2000AD.\footnote{The computations were done with the aid of the Astropy Python package \cite[]{astropycollaborationAstropyProjectBuilding2018}; the specific code which was used can be found at \url{https://github.com/jacopok/notes/blob/master/astronomy/project/ursa/ursa.ipynb}.}
+From the declination we compute the quantity \(\varphi _\delta  = \SI{90}{\degree} - \delta \), which corresponds to the minimum latitude from which that star is seen never to set below the horizon. 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/Ursa.pdf}
-\caption{The minimum latitude at which certain selected stars from the constellation of Ursa Maior would have appeared not to touch the horizon at varying times, from 2000BC to 2000AD. Stars from the Wain are shown in blue, stars from the ``legs'' of the bear are shown in green. Shown as dotted black lines are the latitudes of Troy, Athens and Crete (in order, from top to bottom).}
+\caption{The minimum latitude at which certain selected stars from the constellation of Ursa Major would have appeared not to touch the horizon at varying times, from 2000BC to 2000AD. Stars from the Wain are shown in blue, stars from the ``legs'' of the bear are shown in green. Shown as dotted black lines are the latitudes of Troy, Athens and Crete (in order, from top to bottom).}
 \label{fig:ursa}
 \end{figure}
+
+The results are shown in figure \ref{fig:ursa}. For reference, we also show the latitudes of relevant geographic locations: Troy, which is the main setting of the Iliad; Athens, and Crete. 
+We can see that in the relevant time period, in the North Aegean Sea (at latitudes between that of Athens and that of Crete), the Great Bear would indeed have seemed never able to bathe in the waters of the Ocean.
 
 \end{document}

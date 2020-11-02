@@ -3,6 +3,8 @@
 
 \marginpar{Monday\\ 2020-11-2, \\ compiled \\ \today}
 
+\textbf{Homework} for the month of November: exercise 4, exercise 5, NOT exercise 6 nor 7, exercise 8, exercise 9.
+
 We can compute the average value of some function \(g\) of our parameters \(\vec{\theta}\), defined as 
 %
 \begin{align}
@@ -27,12 +29,57 @@ A possible solution is rejection sampling. See the numerical methods course for 
 
 In short, in order to sample from a distribution \(f(x)\) we choose a distribution \(g(x)\) which \emph{embeds} the generic one we have: this means that \(g(x) \geq M f(x)\) for some real number \(M\). 
 We generate numbers \(x\) according to \(g(x)\), and then we reject the number we generated a fraction \(M f(x) / g(x)\) of the time (this can be done through a uniform distribution).
-This yields samples distributed according to \(f(x)\).
+This procedure yields samples distributed according to \(f(x)\).
 
 This can be wasteful, especially in high dimensions, due to the \textbf{curse of dimensionality}. 
 Consider the volume of a \(D\)-dimensional sphere and a \(D\)-dimensional cube with a side equal to the diameter of the sphere. 
 The ratio is \(\pi /4\) in two dimensions, \(\pi /6\) in three dimensions, and it approaches zero for \(D \to \infty \).
 
 So, rejection sampling fails in practice. 
+The alternative approach is Markov Chain Monte Carlo. 
+The idea here is to generate sequences of correlated variables: a random walk, with some specific rule giving us the next step. 
+Starting from \(\vec{\theta}_{(1)}\) we move to a point \(\vec{\theta}_{(2)}\); each point is calculated with a rule which depends only on the previous one.
+The chain has very short-term memory. 
+
+It is possible to choose a rule so that after a long run of this chain the distribution of the points reached will be the same as that of the distribution. 
+
+How do we walk in parameter space?
+We start by discussing MCMC in general, as a mathematical tool.
+
+A Markov Chain is a sequence of random variables; 
+we start with a state space \(\Omega \), which we will assume to be discrete (since in any practical application we will not have infinite precision).
+
+A sequence of random variables \(X\) parametrized by \(t\), such that \(X_t \in \Omega \) is a MC iff\footnote{If and only if.} the probability that the variable takes on a certain value at a certain moment is independent of all but the previous step:
+%
+\begin{align}
+\mathbb{P}(X_t = s_t | X_{t-1} = s_{t-1})
+= \mathbb{P}(X_t = s_t |X_{t-1} = s_{t-1}, \qty{ X_{t_i} = s_{t_i}}_i)
+\,,
+\end{align}
+%
+for any set of times satisfying \(t_i \leq t-2\). 
+
+To characterize a MC we need to provide all the probabilities which can be written like 
+%
+\begin{align}
+\mathbb{P}(X_{t+1} = s_{t+1} | X_t = s_t)
+\,.
+\end{align}
+
+These will need to be \(\abs{\Omega }^2\) numbers, and are called \emph{transition probabilities} in a \textbf{transition matrix}. 
+
+The transition matrix can be written as 
+%
+\begin{align}
+T_{ij} = \mathbb{P}(X_{t+1} = s_i | X_{t} = s_j)
+\,.
+\end{align}
+
+In order for the probabilities to be normalized we need to impose \(\sum_j T_{ij} = 1\) for any \(i\).
+So, the degrees of freedom are actually \(\abs{ \Omega } \qty(\abs{\Omega }-1)\).
+
+In a general MC these probabilities can change at each step; a \emph{stationary} (or homogeneous) MC is one in which \(T_{ij}\) is constant. 
+
+An \textbf{ergodic} MC is one if any state can be reached from any other state (not necessarily in a single step). 
 
 \end{document}

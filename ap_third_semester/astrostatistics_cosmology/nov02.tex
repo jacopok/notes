@@ -1,4 +1,38 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-11-2, \\ compiled \\ \today}
+
+We can compute the average value of some function \(g\) of our parameters \(\vec{\theta}\), defined as 
+%
+\begin{align}
+\mathbb{E} (g(\vec{\theta})) = \int g(\vec{\theta}) p(\vec{\theta}) \dd{\vec{\theta}}
+\,,
+\end{align}
+%
+as 
+%
+\begin{align}
+\hat{E} (g(\vec{\theta})) = \frac{1}{N} \sum _{i=1}^{N} g(\vec{\theta}_i)
+\,,
+\end{align}
+%
+which converges as \(N \to \infty \) to the true value, as long as the \(\vec{\theta}_i\) are iid sampled according to their distribution \(p(\vec{\theta})\).
+This converges to the true value with a variance \(\var{\hat{E}} = \sigma^2 / N\). 
+
+However, it is difficult to sample points from a generic multidimensional distribution. 
+This is the problem we will treat now. 
+
+A possible solution is rejection sampling. See the numerical methods course for a detailed explanation of the method. 
+
+In short, in order to sample from a distribution \(f(x)\) we choose a distribution \(g(x)\) which \emph{embeds} the generic one we have: this means that \(g(x) \geq M f(x)\) for some real number \(M\). 
+We generate numbers \(x\) according to \(g(x)\), and then we reject the number we generated a fraction \(M f(x) / g(x)\) of the time (this can be done through a uniform distribution).
+This yields samples distributed according to \(f(x)\).
+
+This can be wasteful, especially in high dimensions, due to the \textbf{curse of dimensionality}. 
+Consider the volume of a \(D\)-dimensional sphere and a \(D\)-dimensional cube with a side equal to the diameter of the sphere. 
+The ratio is \(\pi /4\) in two dimensions, \(\pi /6\) in three dimensions, and it approaches zero for \(D \to \infty \).
+
+So, rejection sampling fails in practice. 
+
 \end{document}

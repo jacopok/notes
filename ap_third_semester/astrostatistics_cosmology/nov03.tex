@@ -1,4 +1,92 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-11-3, \\ compiled \\ \today}
+
+A \textbf{stationary distribution} for a Markov Chain is a probability distribution \(p(\vec{x})\) for \(\vec{x}\) in \(\Omega \) such that the following property holds: 
+%
+\begin{align}
+p(\vec{y}) = \sum _{\vec{x} \in \Omega} \mathbb{P}(\vec{y} | \vec{x}) p(\vec{x})
+\,,
+\end{align}
+%
+where \(\mathbb{P}(\vec{y} | \vec{x})\) is the transition probability from \(\vec{x}\) to \(\vec{y}\): the probability that we are in \(\vec{y}\), given that we were in \(\vec{x}\) at the previous step. 
+What this means is that after a step in the chain leaves \(p(\vec{x})\) unchanged. 
+
+In terms of the transition matrix, the problem reads \(p_i = T_{ij} p_j\), so \(p_i\) is an eigenvector of \(T_{ij}\) with eigenvalue \(1\). 
+
+In our case, we want to build a MC which converges to a stationary probability distribution which is our posterior. 
+So, first we need to ask whether this can be done, and then how long it takes for us to converge to that distribution. 
+
+\begin{theorem}
+    A finite, ergodic Markov chain has a unique stationary distribution. 
+\end{theorem}
+
+A state has \textbf{period} \(k\) if any return to it requires a multiple of \(k\) steps. Formally, 
+%
+\begin{align}
+k(\vec{x}) =  \gcd \qty{ n \in \mathbb{N}: \text{the probability of returning from \(\vec{x}\) to \(\vec{x}\) in \(n\) steps is } >0}
+\,.
+\end{align}
+%
+
+If \(k=1\) the state is aperiodic. 
+If a MC is ergodic and one state is aperiodic then all states are.  
+
+A state is \textbf{recurrent} if with probability 1 we will return to it at some point if we leave it.
+It is called \textbf{transient} otherwise.
+
+A recurrent state is \textbf{positive recurrent} if the expected return time is finite; \textbf{null recurrent} if it diverges. 
+
+\begin{theorem}
+    A finite, ergodic, positive recurrent, aperiodic Markov Chain converges to its stationary distribution as \(n \to \infty \). 
+\end{theorem}
+
+So, eventually convergence is ensured, but we must also design a MC which converges \emph{quickly}. 
+
+Let us now give a practical example, with \(\Omega = \qty{A, B, C}\).
+The transition matrix is 
+%
+\begin{align}
+T_{ij} = 
+\left[\begin{array}{ccc}
+\num{.25} & \num{.5} & \num{0.25} \\ 
+0 & \num{.5} & \num{.5} \\ 
+\num{.33} & \num{.33} & \num{.34}
+\end{array}\right]
+\,,
+\end{align}
+%
+as required all the rows are normalized to one. 
+The initial condition is given by \(q_0 = [0, \num{.5}, \num{.5}]\).
+
+The following steps can be calculated as \(q_n = q_0 (T^{n}) \).
+
+Let us define \(m(s_i, s_j)\) as the mean time to go from \(s_i\) to \(s_j\). How do we compute it? We need to make sure that it is finite.
+Let us fix a state, say \(C\). What is \(m(C, C)\)?
+
+Suppose that the first step is from \(C\) to \(B\). Then, we will have \(m(C,C) = 1 + m(B, C)\). Similarly, if we go from \(C\) to \(A\) we have \(m(C, C) = 1 + m(A, C)\); while if we jump directly to \(C\) we have \(m(C, C) =1\). 
+
+The overall recurrence time is obtained by integrating over all the possibilities: 
+%
+\begin{align}
+m(C, C) &= 
+\mathbb{P}(C | A) \qty[1 + m(A, C)] + 
+\mathbb{P}(C | B) \qty[1 + m(B, C)] 
++  \mathbb{P}(C | C)  \\
+&= 
+\underbrace{\mathbb{P}(C |A ) +
+\mathbb{P}(C |B) +
+\mathbb{P}(C |C )}_{1} +
+\mathbb{P}(C |A ) m(A, C) +
+\mathbb{P}(C |B ) m(B, C) +
+\,.
+\end{align}
+
+We can do a similar thing for the other recurrence times, this yields a linear system we can solve, in terms of the three unknowns \(m(*, C)\). 
+In this case we get \(m(C, C) = \num{2.54}\), \(m(B, C) = \num{2.0}\), \(m(A,C) = \num{2.67}\). 
+
+Therefore, this MC will admit a stationary distribution and converge to it.
+We can calculate it through the left eigenvalue problem \(\pi = \pi T\). 
+
 \end{document}

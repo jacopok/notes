@@ -86,7 +86,74 @@ m(C, C) &=
 We can do a similar thing for the other recurrence times, this yields a linear system we can solve, in terms of the three unknowns \(m(*, C)\). 
 In this case we get \(m(C, C) = \num{2.54}\), \(m(B, C) = \num{2.0}\), \(m(A,C) = \num{2.67}\). 
 
-Therefore, this MC will admit a stationary distribution and converge to it.
+Therefore, this MC will admit a stationary distribution and converge to it.\footnote{Check out the convergence by downloading the notebook at \url{https://github.com/jacopok/notes/blob/master/ap_third_semester/astrostatistics_cosmology/figures/markov.ipynb}!}
 We can calculate it through the left eigenvalue problem \(\pi = \pi T\). 
+
+A Markov Chain is \textbf{reversible} if there exists a probability distribution \(\pi \) such that \(\mathbb{P}(x | y) \pi (y) = \mathbb{P}(y | x) \pi (x)\). 
+This is called the \textbf{detailed balance} equation, and if it holds it tells us that \(\pi \) is the stationary distribution of the Markov chain: if we sum over \(y\) we get 
+%
+\begin{align}
+\sum _{y} \mathbb{P}(x | y) \pi (y) = \sum _{y} \mathbb{P}(y | x) \pi (x) 
+= \pi (x) \sum _{y} \mathbb{P}(y | x ) = \pi (x)
+\,,
+\end{align}
+%
+which is precisely the stationarity condition.
+
+\subsection{Metropolis-Hastings} 
+
+Suppose we have a posterior \(p(\vec{\theta})\), in terms of a parameter vector \(\vec{\theta}\). 
+
+The current state is denoted as
+%
+\begin{align}
+X_\theta = \qty(\theta_{1, t },  \dots, \theta_{n, t})
+\,.
+\end{align}
+
+We choose a transition distribution \(Q\);
+this can be some easy-to-sample distribution of our choosing. 
+
+Then, the new state is \textbf{proposed} by updating the old position
+%
+\begin{align}
+Y \sim Q ( \cdot | X_t)
+\,,
+\end{align}
+%
+and choose to accept it or reject it depending on the following: we draw a uniform variable, and accept with probability 
+%
+\begin{align}
+\alpha (X_{t+1} = y | X_t = x) = 
+\min \qty{ \frac{\mathscr{L}(\vec{y})}{\mathscr{L}(\vec{x})} \frac{Q(\vec{x} | \vec{y})}{Q(\vec{y} | \vec{x})}, 1}
+\,.
+\end{align}
+
+Simply put, we favor steps which move us in a region of higher likelihood. 
+The ratio of the \(Q\)s might well go away if we choose a symmetric transition matrix. 
+
+This satisfies the detailed balance equation: let us show it. 
+One side of the equation reads
+%
+\begin{align}
+\underbrace{\alpha (\vec{y} | \vec{x}) Q (\vec{y} | \vec{x})}_{\text{transition probability}} p(\vec{x})
+&= \min \qty{\frac{\mathscr{L}(\vec{y})}{\mathscr{L}(\vec{x})} 
+\frac{Q(\vec{x} | \vec{y})}{Q(\vec{y} | \vec{x})}, 1} Q(\vec{y} | \vec{x}) p(\vec{x})  \\
+&= \min \qty{Q(\vec{x} | \vec{y}) \mathscr{L}(\vec{y}), Q(\vec{y} | \vec{x}) \mathscr{L}(\vec{x})} \mathscr{L} (\vec{x} ) 
+\,,
+\end{align}
+%
+\todo[inline]{check calculation}
+
+We apply Bayes' theorem\dots
+Finally, we show that 
+%
+\begin{align}
+\alpha (\vec{y} | \vec{x}) Q (\vec{y} | \vec{x}) p(\vec{x}) 
+= \alpha (\vec{x} | \vec{y}) Q(\vec{x} | \vec{y}) p(\vec{y})
+\,.
+\end{align}
+
+
 
 \end{document}

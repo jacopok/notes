@@ -1,4 +1,268 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-11-4, \\ compiled \\ \today}
+
+Last lecture we found 
+%
+\begin{align}
+\Delta_{ \delta \rho / r } (k) 
+= \qty(\frac{H^2}{2 \pi \dot{\varphi}})^2 \qty(\frac{k}{aH})^{3-2\nu }
+\,,
+\end{align}
+%
+where \(3 - 2 \nu = 2 \eta _V - 6 \epsilon = n_s -1\). 
+
+A power spectrum with \(n_s = 1\) is called a Harrison-Zel'dovich spectrum, and it is scale-invariant.
+If \(n_s > 1\) the spectrum is ``blue'', while if \(n_s < 1\) the spectrum is ``red'' (or, respectively, red or blue ``tilted''). 
+In the two cases, we have either more energy at longer or shorter wavelengths.
+
+This deviation from \(n_s = 1\) is a specific prediction of single-field models.
+If we had \(n_s = 1\) exactly, we would expect there to be some symmetry which prevents \(n_s \neq 1\). 
+The detection of a spectral index \(n_s \neq 1\) is a good indication of an inflation-like process. 
+
+From CMB data \cite[eq.\ 21]{planckcollaborationPlanck2018Results2019} we have \(n_s = \num{.9649(42)}\) at a \SI{68}{\percent} CL.
+
+Recall the definition of \(\zeta \): for \(k \ll aH\) it is constant, and it is given by 
+%
+\begin{align}
+\zeta = \frac{1}{4} \frac{ \delta \rho _\gamma }{\rho _\gamma }
+\,,
+\end{align}
+%
+but we also know that \(\rho _\gamma \propto T^{4}\), so \(\zeta \sim \delta T / T\). 
+
+\subsection{Power spectrum of primordial gravitational waves}
+
+The two polarization states evolve like two scalar fields:
+%
+\begin{align}
+h_{+, \times } = \sqrt{32 \pi G} \phi_{+, \times}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\Delta_{h_{+, \times }} (k) = 32 \pi G \Delta_{\phi_{+, \times }}
+\,,
+\end{align}
+%
+and we know that for a massless scalar field \(\phi  \)
+%
+\begin{align}
+\Delta_{\phi} = \qty(\frac{H}{2 \pi })^{2} \qty(\frac{k}{aH})^{-2\epsilon }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\Delta_{h_{+, \times }} (k)
+&= \frac{32 \pi }{M_P^2} \qty(\frac{H}{2 \pi })^2 \qty(\frac{k}{aH})^{-2 \epsilon }  \\
+&= \frac{8}{\pi M_P^2} H^2 \qty(\frac{k}{aH})^{-2 \epsilon }
+\,.
+\end{align}
+
+Once again, we find a powerlaw as a function of \(k\). 
+The amplitude is of the order \(H^2 / M_P^2\), but \(H\) is determined by the vacuum energy density of the inflaton, so 
+%
+\begin{align}
+\frac{H^2}{M_P^2} = \frac{8 \pi }{3} \frac{V(\varphi )}{M_P^4}
+\,.
+\end{align}
+
+If we define the characteristic energy of inflation as \(E_{\text{inf}} = V^{1/4}\) (recall that \(V\) is an energy density, with dimensions of a mass to the fourth power) we find that the amplitude of the GW spectrum is of the order \(E _{\text{inf}} / M_P\). 
+Measuring the primordial SGWB amplitude gives us directly the energy scale of inflation. 
+
+The ``tensor spectral index'' is defined as 
+%
+\begin{align}
+n_T = \dv{\log \Delta _T}{\log k} = - 2 \epsilon 
+\,,
+\end{align}
+%
+where \(\Delta _T\) is the total tensor amplitude: we just by 2 to account for the two polarizations,
+%
+\begin{align}
+\Delta_T = \frac{16}{\pi M_P^2} H^2 \qty(\frac{k}{aH})^{-2\epsilon }
+\,.
+\end{align}
+
+In single-field models \(\epsilon > 0\) always, therefore \(n_T \) will always be red-tilted. 
+
+We can also write 
+%
+\begin{align}
+\Delta_{h_{+, \times }} = \frac{8}{M_P^2 \pi } H^2_*
+\,,
+\end{align}
+%
+where the star means we calculate the Hubble rate at the time of horizon crossing during inflation. 
+
+This is because the fluctuation remains constant when it is on superhorizon scales: so, its value is set by whatever it is at horizon crossing, \(k = aH\).
+The term \(k / aH\) then simplifies, and we find the aforementioned expression.
+
+We need to define a few observationally relevant quantities. 
+The \textbf{tensor-to-scalar ratio} \(r\) is defined as 
+%
+\begin{align}
+r = \frac{\Delta _T}{\Delta _\zeta }
+= \frac{ \frac{16}{M_P^2 \pi } H^2_*}{\Delta _\zeta }
+\,.
+\end{align}
+
+This measures the level of primordial GWs compared to the amount of primordial scalar perturbations. 
+From CMB temperature anisotropies we can measure \(\zeta \), since at large scales \(\zeta \sim \delta T / T \sim \num{e-5}\). Therefore, \(\Delta_\zeta \sim \zeta^2 \sim \num{e-10}\) (this is known to a better precision, we just give an order of magnitude here).
+
+The energy scale of inflation then can be written as 
+%
+\begin{align}
+E _{\text{inf}} \approx \SI{e16}{GeV} \qty(\frac{r}{\num{.01}})^{1/4}
+\,.
+\end{align}
+
+Measuring \(r\) can allow us to probe extremely high energy scales.
+The energy scale is reminiscent of Grand Unification Theories. 
+In modern models the connection to GUT theories is less strong.
+
+The latest measurements, using \(B\)-mode polarization of CMB photons, which is characteristic of tensor perturbations, give a bound \(r < \num{.044}\) at a \SI{95}{\percent} CL. This number also includes \(B\)-mode data.
+In the future we hope to be able to measure \(r \sim \num{e-2} \divisionsymbol \num{e-3}\). 
+
+The overall amplitude of tensor perturbations is 
+%
+\begin{align}
+\Delta _T = \frac{16}{\pi M_P^2} H^2_*
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\Delta_{\zeta } = \frac{H^2}{4 \pi^2} \frac{H^2}{\dot{\varphi}^2} 
+\,,
+\end{align}
+%
+and \(\dot{H} = - 4 \pi G \dot{\varphi}^2\). 
+\todo[inline]{Check: this is an exact expression, we just differentiate \(H^2= \frac{8 \pi G}{3} \qty( \dot{\varphi}/2 + V(\varphi ))\) and the use the equation of motion.}
+This means that 
+%
+\begin{align}
+\epsilon  = - \frac{\dot{H}}{H^2} = + 4 \pi G \frac{\dot{\varphi}^2}{H^2}
+\,.
+\end{align}
+
+So, 
+%
+\begin{align}
+\frac{H^2}{\dot{\varphi}^2} = \frac{4 \pi }{M_P^2} \frac{1}{\epsilon } \implies 
+\Delta_\zeta = \frac{H^2}{4 \pi } \frac{4 \pi }{M_P^2} \frac{1}{\epsilon } = \frac{H^2}{\pi M_P^2 } \frac{1}{\epsilon }
+\,.
+\end{align}
+
+This allows us to express the tensor-to-scalar ratio as 
+%
+\begin{align}
+r =\frac{\Delta _T}{\Delta _\zeta } = 16 \epsilon 
+\,. 
+\end{align}
+
+This gives us the \emph{consistency relation} for single-field models: \(n_T = - 2 \epsilon\), therefore \(r = - 8 n_T\). 
+It relates two observable variables: it can be used as a check. 
+This is why it is called the ``Holy Grail of cosmology''. If we saw it holds, we would be rather sure that inflation actually occurred. 
+
+This is extremely difficult to measure, it would be very hard to see even \(r\), \(n_T\) typically will have much larger errorbars. 
+
+
+\subsection{Base observational predictions}
+
+We predict a scalar power spectrum 
+%
+\begin{align}
+\Delta_{\zeta } (k) = \Delta_\zeta (k_0 ) \qty( \frac{k}{k_0 })^{n_s-1}
+\,,
+\end{align}
+%
+where \(k_0 \) is the \emph{pivot scale}. 
+In the Planck data release \cite[]{planckcollaborationPlanck2018Results2019} the value of \(r\) is reported as \(r_{\num{.002}}\), where the index corresponds to the pivot scale \(k_0  = \SI{.002}{Mpc^{-1}}\).
+The spectral index as usual is \(n_s - 1 = 2 \eta _V - \epsilon \). 
+
+Also, 
+%
+\begin{align}
+\Delta _T (k) = \Delta _T (k_0 ) \qty(\frac{k}{k_0 })^{n_T}
+\,,
+\end{align}
+%
+where \(n_T = - 2 \epsilon \). 
+At the pivot scale we have 
+%
+\begin{align}
+\Delta _\zeta (k_0 ) &= \eval{\frac{H^2}{\pi M_P^2 \epsilon }}_{k_0 }  \\
+\Delta _T (k_0 ) &= \eval{\frac{16 H^2}{\pi M_P^2} }_{k_0 }
+\,.
+\end{align}
+
+The value of \(H\) is determined by the potential \(V(\varphi )\), while the value of \(\epsilon \) depends on the derivative \(V' (\varphi )\), and the value of \(\eta _V\) depends on the second derivative \(V''(\varphi )\): recall 
+%
+\begin{align}
+H^2 &= \frac{8 \pi G}{3} V(\varphi )  \\
+\epsilon &= \frac{1}{16 \pi G} \qty(\frac{V'}{V})^2  \\
+\eta _V &= \frac{1}{8 \pi G} \qty(\frac{V''}{V})
+\,.
+\end{align}
+%
+
+If we are able to constrain the two (scalar and tensor) amplitudes and spectral indices we can reconstruct the inflationary potential.  
+We can reduce this four-parameter space: on the largest angular scales, \(\Delta T / T \sim \Delta _\zeta + \Delta _T\). This is very imprecise, there are transfer functions involved, however the basic idea is that there are contributions from both terms. 
+
+But \(\Delta T / T\) is well-known, so instead of the two amplitudes we can just measure \(r = \Delta _T / \Delta _\zeta \). 
+If we assume that the consistency relation holds, we have \(r = - 8 n_T\)
+which reduces the parameter space to two parameters only: \((r, n_s)\). 
+This is commonly used in order to visualize inflationary models, since we can plot contours in a plane. 
+There, we can show observational constraints as in the lower row of figure 26 in the Planck 2018 release \cite[]{planckcollaborationPlanck2018Results2019}.
+
+Large-field models have \(0 < \eta _V < 2 \epsilon \), while small field models have \(\eta _V < 0\). 
+% Recall that \(\eta _V = V'' / (3 H^2)\), so 
+Generally, small-field models predict low levels of GWs: we can express 
+%
+\begin{align}
+n_s -1 = 2 \eta _V - 6 \epsilon = 2 \eta _V - \frac{3}{8} r
+\,,
+\end{align}
+%
+so we can express \(r = r (n_s, \eta _V )\). 
+For more details see \textcite[]{kinneyNewConstraintsInflation2000}.
+Small field models have \(V'' < 0\), large field models have \(V'' > 0\). 
+
+\subsubsection{Some examples of inflationary models}
+
+Large field models could be \(V \propto \phi^{p}\) (a chaotic inflation scenario) or \(V \propto \exp(\phi / \mu )\) (powerlaw inflation).\footnote{Note that inflation cannot be exactly De Sitter! It would never end.} These have \(0 < \eta _V < 2 \epsilon \). 
+
+Small field models could be \(V \propto
+1 - (\phi / \mu )^{p}\) (from SSB of, say, axion models) or \(V \propto 1 + (\phi / \mu )^{p}\) (from SUSY, often involving a second field). 
+These have \(\eta _V < 0 \). 
+
+There are also hybrid models, mixing small-field and large-field characteristics.
+These are among the earlier examples of two-field models: \(\phi \) starts off similarly to large-field models, and moves towards a minimum with a nonzero VEV, provided by a second field \(\psi \), which is stuck to the minimum of its potential.
+
+This second field is necessary for the model but it is not dynamical in this first phase, however it becomes unstable at the end of inflation, triggering it. 
+These models have \(\eta _V > 2 \epsilon \). 
+
+We can have these kinds of models arising from adding an \(R^2\) term to the Einstein-Hilbert action. 
+This corresponds to a new degree of freedom, with a transformation \(g_{\mu \nu } \to e^{-2 \omega } g_{\mu \nu }\) and a field \(\phi  \propto \omega \). 
+The potential is in the form 
+%
+\begin{align}
+V \propto \qty(1 - e^{-2 \omega })^2
+\,.
+\end{align}
+
+We also have \emph{natural inflation}, with \(V \propto 1 - \cos(\phi / \mu )\): this is related to a shift symmetry \(\phi \to \phi + c\). 
+If this symmetry were exact we would have \(V = \const\), but if instead it is broken we have the aforementioned potential. 
+These are axion-like models: the shift symmetry arises naturally if \(\phi \) is a phase, corresponding to a \(U(1)\) symmetry like the Peccei-Quinn one.
+The inflaton would not be the axion itself, but they would have similar properties. 
+
+
+
 \end{document}

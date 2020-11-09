@@ -1,0 +1,105 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2020-11-9, \\ compiled \\ \today}
+
+\todo[inline]{Recover first hour --- I was sleeping.}
+
+For these models of inflation we find \(\delta \rho / \rho \sim \order{\lambda^{1/2}}\), where \(\lambda \) is the coupling constant between the inflaton field and the thermal bath.
+
+Typically people considered values for \(\lambda \) between \num{.1} and \num{1}, which means we would get anisotropies of the order of 100:
+way too large, since from CMB anisotropies we know that \(\delta \rho / \rho \sim \num{e-5}\).
+In order to match this observational value we would need \(\lambda \sim \num{e-10}\), however this is not compatible with us being sure to have thermal equilibrium between the inflaton reheating and its thermal bath. 
+
+Thermal equilibrium and sufficiently small density perturbations seem to be in conflict with each other. 
+
+This is the reason why \textbf{chaotic inflationary models} (Linde 1983): disconnecting inflation from phase transitions. 
+Suppose we have a flat potential \(V(\varphi ) \equiv V_0 \). 
+This would lead to unending De Sitter inflation with \(- \infty < \varphi < \infty \); so instead of it we consider a roughly flat potential \(V(\varphi ) = (\lambda /4) \varphi^{4}\), with \(\lambda \ll 1\). 
+
+The constraint we need to require is that \(V(\varphi ) \lesssim M_P^{4}\), which ensures that quantum gravity corrections are not needed.
+Then, we must constrain \(\varphi \) to lie between plus and minus \(M_P / \lambda^{1/4}\). 
+But if \(\lambda \ll 1\), \(\varphi \) will be able to attain initial values larger than the Planck mass: this allows for slow-roll inflation. 
+
+These models are called chaotic because the values of \(\varphi \) are taken to be randomly distributed, and in some regions inflation will not take place. 
+At the Planck time \(t = t_P\) this is required: there, \(\Delta E \Delta T \gtrsim 1\), so the potential \(V(\varphi )\) must have an uncertainty larger or equal than \(M_P\). 
+
+Now having \(\lambda \sim \num{e-10}\) is not an issue: the inflaton is not coupled, and we are fine with this. 
+
+The high temperature corrections to this potential are negligible.
+
+As an example we consider the \textbf{Coleman-Weinberg potential}: 
+%
+\begin{align}
+V(\varphi ) = \frac{B \sigma^{4}}{2}
++ B \varphi^{4} \qty[\log \qty(\frac{\varphi^2}{\sigma^2}) - \frac{1}{2}]
+\,,
+\end{align}
+%
+a typical potential which can characterize symmetry breaking. 
+The peculiarity of this potential is the logarithm: it comes from the one-loop corrections for the interactions between the field and other particles. 
+
+This has a minimum at \(\varphi = \sigma \), while near the origin it is quite flat: we can approximate it as 
+%
+\begin{align}
+V(\varphi ) \approx \frac{B \sigma^{4}}{2} - \lambda \frac{\varphi^{4}}{4} 
+\,,
+\end{align}
+%
+where \(\lambda = \abs{4 B \log (\varphi^2 / \sigma^2)} \approx \qty(\num{10} \divisionsymbol \num{100}) B\). 
+
+Very close to the origin, we will have \(V(\varphi ) \approx B \sigma^{4} / 2 = \const\), so 
+%
+\begin{align}
+H^2 \approx \frac{8 \pi G}{3} V(\varphi ) \approx \frac{4 \pi G}{3} B \sigma^{4}
+\,.
+\end{align}
+
+In the original model of new inflation, this was considered with \(B \approx \num{e-3}\), and \(B = \frac{25}{16} \alpha^2 _{\text{GUT}}\), and \(\alpha _{\text{GUT}} = g _{\text{GUT}}^2 / 4 \pi \). 
+
+Since it pertained to a GUT, we also had \(\sigma \sim T_C \sim \SI{e15}{GeV}\), therefore \(H^2 \approx \qty(\SI{e10}{GeV})^2\). 
+\todo[inline]{why?}
+
+Do these kinds of models actually work? The first question is: can they solve the horizon problem? The number of \(e\)-folds is given by 
+%
+\begin{align}
+N = \int _{t_i}^{t_F} H \dd{t} = \int_{\varphi _i}^{\varphi _f} \frac{H}{\dot{\varphi}} \dd{\varphi }
+\,,
+\end{align}
+%
+and recalling \(3 H \dot{\varphi} \approx V' (\varphi )\), plus \(H^2= 8 \pi G V(\varphi ) /3\), we find 
+%
+\begin{align}
+N = - 8 \pi G \int_{\varphi _i}^{\varphi _f} \frac{V(\varphi )}{V'(\varphi )} \dd{\varphi }
+\,.
+\end{align}
+
+Using the near-origin approximation, we get \(V'(\varphi ) \approx - \lambda \varphi^3\), so 
+%
+\begin{align}
+N &\approx  - 3 H^2 \int_{\varphi _i}^{\varphi _f} \frac{ \dd{\varphi }}{- \lambda \varphi^3}   \\
+&\approx 3 \lambda^{-1} H^2 \int_{\varphi _i}^{\varphi _f} \frac{ \dd{\varphi }}{\varphi^3} = \frac{3}{2} \frac{H^2}{\lambda } \qty( \frac{1}{\varphi _i^2} - \frac{1}{\varphi_f^2})
+\,.
+\end{align}
+
+When does inflation end?
+We know that slow-roll holds as long as \(\abs{V''} < H^2\), so we can say that \(\varphi _f\) is determined by \(\abs{V''(\varphi _f)} \sim 10 H^2\), and we know that \(V''(\varphi ) = - 3 \lambda \varphi^2\): 
+therefore, \(\varphi _f = - 3^{1/2} H / \lambda^{1/2}\). 
+
+If \(B \approx \num{e-3}\), this means 
+%
+\begin{align}
+\varphi _f \approx \frac{3 H^2}{\lambda } \approx \qty(30 \divisionsymbol 300) H^2
+\,,
+\end{align}
+%
+and we know that \(H^2 \approx \qty(\SI{e10}{GeV})^2\).
+
+Then, an initial condition which works is \(\varphi _i \approx \num{e8} \divisionsymbol \SI{e9}{GeV}\). 
+This means that \(\varphi _i \sim H / 10\), which means that \(N \gtrsim 1000\) easily.
+So, we can solve the horizon and flatness problems without issue. 
+
+However, we will see that there are indeed problems with this model. 
+The amplitude of the primordial fluctuations is too large, the quantum fluctuations of the inflaton are too large, invalidating the semiclassical approach. 
+
+\end{document}

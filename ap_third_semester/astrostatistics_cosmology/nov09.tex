@@ -1,4 +1,145 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-11-9, \\ compiled \\ \today}
+
+We have a parameter vector \(\vec{x}\), and in a step in our MCMC we want to move to a new parameter \(\vec{y}\). 
+We start off with a transition proposal distributed according to the distribution \(Q\), which can depend on \(\vec{x}\).
+This \(Q\) may, for example, be a simple Gaussian. 
+
+Then, we have an acceptance/rejection step: we accept the step with a probability 
+%
+\begin{align}
+\alpha (y | x) = \min \qty(\frac{p(\vec{y}) Q(\vec{x} | \vec{y})}{p(\vec{x}) Q(\vec{y} | \vec{x})}, 1)
+\,,
+\end{align}
+%
+where \(p\) is the posterior.
+If we are using a Gaussian \(Q\), it is symmetric, therefore we only have \(\alpha = \min (p(\vec{y}) / p (\vec{x}), 1)\). 
+If the posterior is higher in \(\vec{y}\) than in \(\vec{x}\) we always accept the step, else we accept it sometimes. 
+
+We need to check whether the MC is ergodic: the transition probability reads 
+%
+\begin{align}
+T(y | x) &= \alpha Q = 
+\min \qty(\frac{p(\vec{y}) Q(\vec{x} | \vec{y})}{p(\vec{x}) Q(\vec{y} | \vec{x})}, 1)
+Q(\vec{y} | \vec{x})  \\
+&= \frac{1}{p(\vec{x}) Q(\vec{y} |\vec{x})} \min \qty[p(\vec{y} ) Q(\vec{x} | \vec{y}), p(\vec{x}) Q(\vec{y} | \vec{x})]
+Q(\vec{y} | \vec{x})  \\
+&= \frac{1}{p(\vec{x})} \min \qty[p(\vec{y} ) Q(\vec{x} | \vec{y}), p(\vec{x}) Q(\vec{y} | \vec{x})]
+\,,
+\end{align}
+%
+therefore we have 
+%
+\begin{align}
+T(\vec{y} | \vec{x}) p(\vec{x}) = \min \qty[p(\vec{y} ) Q(\vec{x} | \vec{y}), p(\vec{x}) Q(\vec{y} | \vec{x})]
+= T(\vec{x} | \vec{y}) p(\vec{y})
+\,,
+\end{align}
+%
+which is precisely the \textbf{detailed balance} condition, with the stationary distribution being precisely \(p\), the posterior. 
+
+Since we only need to compute ratios of the posterior, we never need to compute the evidence. 
+
+\subsection{Gibbs sampling}
+
+We start from a parameter vector \(\vec{x}\), and we only update the \(i\)-th parameter, keeping the others fixed, according to the conditional probability for that parameter given all the others: \(\mathbb{P}(\theta _i | \theta_1 , \hat{\theta}_i, \theta _n)\). 
+Here we always accept the step. 
+
+We update each parameter separately (using the old values), and then move the full parameter vector together. 
+It is a special case of Metropolis-Hastings with \(Q\) being the conditional probability and acceptance probability equal to 1. 
+We might want to use it if we have easy access to the conditional distribution. 
+
+The issue is always convergence: we have convergence theorems for \(N \to \infty \), but we need \emph{fast} convergence practically. 
+
+We can compute averages and standard deviations as 
+%
+\begin{align}
+\expval{\theta _i} &\approx \frac{1}{N} \sum _{k=1}^{N} \theta^{(k)}_i  \\
+\sigma^2_{\theta _i} &\approx \frac{1}{N} \sum _{k=1}^{N} \abs{\theta^{(k)}_i}^2 - \expval{\theta _i}^2
+\,.
+\end{align}
+
+This is not done over \emph{all} the points, but only over the ones calculated after convergence. 
+
+Marginalization is done as such: 
+%
+\begin{align}
+p(\theta_2) = \int \dd{\theta _1} p(\theta_1 , \theta _2 ) 
+= \int \dd{\theta _1} p(\theta_1 | \theta _2) p(\theta_1 )
+\,.
+\end{align}
+
+We can simply build a marginal histogram by neglecting a coordinate and then binning. 
+
+\subsection{Convergence}
+
+How do we verify convergence? This is the complicated part.
+We can do a trace plot: 
+%
+\begin{align}
+\Tr[ - \log \mathcal{P}] = - \sum _{k=1}^{M} \frac{1}{k} \log \mathcal{P}(\theta^{(k)}_i | \vec{d})
+\,,
+\end{align}
+%
+which should converge to a fixed maximum value after some time. 
+However, we might not have covered a representative region of the full posterior. 
+
+A standard technique is to start \(M\) different chains, and for each compute the average separately. 
+
+We can compute the average of each chain, \(\overline{\theta}^{J}\) (where \(J = 1 \dots M\)); and the total average \(\overline{\theta}\) over all the chains. 
+We can also estimate the variance of each chain, \(w^{J}\): 
+%
+\begin{align}
+w^{J} = \frac{1}{n-1} \sum_{i=1}^{n} \qty(\theta^{J}_{i} - \overline{\theta}^{J})^2
+\,,
+\end{align}
+%
+where the \(n-1\) is the Bessel correction, needed because we use the estimated average instead of the true average. 
+
+Through manipulation, we can show that 
+%
+\begin{align}
+w^{J} &= \frac{n}{n-1} s_J - \frac{n}{n-1} \var(\overline{\theta}^{J})
+\,,
+\end{align}
+%
+where \(\var{\overline{\theta}^J} = (\overline{\theta}^{J} - \mu )^2\) is an estimator for the variance of the \emph{mean} of the parameter vector, while \(s_J\) is the estimator of the true variance of the chain. 
+Flipping the expression we can find 
+%
+\begin{align}
+s_J = \frac{n-1}{n} w^{J} + \var{\overline{\theta}^{J}}
+\,.
+\end{align}
+
+We can estimate the variance of the chain mean as 
+%
+\begin{align}
+\widehat{\var{\overline{\theta}}} = \frac{1}{M-1} \sum _{J=1}^{M} (\overline{\theta}^{J}- \overline{\theta}) = \frac{B}{n}
+\,,
+\end{align}
+%
+and then we can average the single chain variance estimators: 
+%
+\begin{align}
+W = \frac{1}{M} \sum _{J=1}^{M} w^{J}
+\,,
+\end{align}
+%
+so then we get the estimator 
+%
+\begin{align}
+\hat{V} = \frac{n-1}{n} W + \frac{B}{n}
+\,,
+\end{align}
+%
+and then we can define \(\hat{R} = \hat{V} / W\): we expect \(B/n\) to become irrelevant asymptotically. 
+If \(\hat{R}\) is of order 1 then we can say that we have converged. 
+Typically, we say that when \(\hat{R} \lesssim \num{1.02}\) we have converged. 
+
+\todo[inline]{Add more calculations}
+
+These tests are not fool-proof: we try to falsify the hypothesis of convergence, and at a certain point we stop trying to do so. 
+
 \end{document}

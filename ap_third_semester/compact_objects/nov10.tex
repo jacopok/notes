@@ -1,4 +1,192 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-11-10, \\ compiled \\ \today}
+
+We have introduced the function 
+%
+\begin{align}
+D(R) = \frac{1}{2} R^2 \Sigma (\lambda \overline{v})
+\qty(\pdv{\Omega }{R})^2 \geq 0
+\,,
+\end{align}
+%
+which can be zero only if either \(\lambda \overline{v} = 0\) (no viscosity) or \(\pdv{\Omega }{R} = 0\) (rigid rotation). 
+
+The viscosity is given by the presence of meso-scale structures called \textbf{eddies}, and we define \(\lambda \overline{v} = \nu\), the kinematic viscosity. 
+Newton's law of viscosity gives the viscous stress \(\tau \) in terms of the velocity gradient times the \emph{dynamic} viscosity \(\mu \): 
+%
+\begin{align}
+\tau = \mu \dv{v}{y}
+\,,
+\end{align}
+%
+and the two viscosities are related by \(\nu = \mu / \rho \). 
+This is exemplified in Couette flow. 
+This is an empirical law, there are many non-Newtonian fluids.  
+
+In dimensional terms, we can gather from Newton's law that the units of the dynamic viscosity \(\mu \) are \SI{}{kg / m s}. 
+Therefore, the kinematic viscosity has units of \SI{}{m^2/s}.
+At least on dimensional grounds, then, identifying \(\lambda \overline{v}\) with \(\nu \) makes sense. 
+
+If the carriers of motion are ions, then \(\lambda \sim \lambda _d\), the Debye scale, and the average velocity of this Brownian motion is roughly \(\overline{v} \sim c_s\). 
+We can compute the Reynolds number as 
+%
+\begin{align}
+\Re = \frac{\text{inertial  forces}}{\text{viscous forces}}
+\approx \frac{\dv*{v}{t}}{ \frac{\mu S}{m} \dv{v}{y}} \approx \frac{\dv{v}{R} v}{\frac{\mu }{m} S \dv{v}{R}} \approx \frac{v}{\mu S / m} \approx \frac{vR}{\mu / \rho } = \frac{vR}{\nu }
+\,.
+\end{align}
+
+Then, we get \(\Re = v R / \lambda \overline{v}\): but if the viscosity is indeed due to ions' motion we find \(\Re \gtrsim \num{e14}\). 
+Even changing our assumptions a bit we will find flow which is definitely turbulent. 
+
+If the carriers were ions, then the flow would be turbulent. 
+For water in a pipe, the transition between laminar and turbulent is at around \(\Re \gtrsim \num{e3}\). 
+
+\todo[inline]{Why can't the flow be turbulent?}
+
+Then, we will have \(\nu = \nu _{\text{turb}} = \lambda _{\text{turb}} \overline{v} _{\text{turb}}\). What are these two parameters' values?
+
+If \(H\) is the height of the disk, then we must have \(\lambda _{\text{turb}} \lesssim H\); also we must have \(\overline{v} _{\text{turb}} \lesssim c_s\) --- it can be shown that supersonic turbulence is unstable.
+Then, the kinematic viscosity is bounded as \(\nu _{\text{turb}} \lesssim H c_s\).
+
+This is somewhat uninteresting, it is just an inequality.
+What we then do is called an \(\alpha \)-prescription: we write 
+%
+\begin{align}
+\nu _{\text{turb}} = \alpha H c_s
+\,,
+\end{align}
+%
+encompassing all our ignorance in the dimensionless parameter \(0 < \alpha \lesssim 1\). 
+
+The accretion disk described by this is called a Shakura-Sunyaev Disk (SSD). 
+
+In general \(\alpha \) will be a function of pressure, temperature and such, but we will simplify the problem by assuming \(\alpha \) is a constant. 
+What we hope to find is that the physical observables are not very sensitive to the value of \(\alpha \). 
+
+We will make certain assumptions: 
+\begin{enumerate}
+    \item the disk must be geometrically \emph{thin}, at any radius \(R\) the height \(H\) of the disk must be \(H(R) \ll R\);
+    \item we will decompose the velocity as \(\vec{v} = v_\phi \hat{u}_\phi + v_R \hat{u}_R\), and assume that \(v_\phi \gg v_R\);
+    \item the system has azimuthal symmetry.
+\end{enumerate}
+
+We will work in cylindrical coordinates, and have dependence only on \(R\) and \(z\). 
+
+Mass flux will be inward; the differential mass element is \(\Delta m = 2 \pi R \Delta R \Sigma \) so 
+%
+\begin{align}
+\pdv{\Delta m}{t} = v_R (R, t) 2 \pi R \Sigma (R, t) - v(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R) \approx - 2 \pi R \pdv{(\Sigma R v_R)}{R}t
+\,,
+\end{align}
+%
+with \(v_R <0\). 
+
+Then,  
+%
+\begin{align}
+R \pdv{\Sigma }{t} = - \pdv{}{R} \qty(R V_R \Sigma )
+\,.
+\end{align}
+
+The angular momentum in the ring is given by 
+%
+\begin{align}
+\Delta L = 2 \pi R \Delta R \Sigma R^2 \Omega 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\pdv{\Delta L}{t}
+&= \pdv{G}{R} \Delta R 
++ v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t) 
+- v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)  \\
+&= \pdv{G}{R} \Delta R - 2 \pi \Delta R \pdv{}{T} \qty(v_R R R^2 \Omega \Sigma )
+\,.
+\end{align}
+
+Then, like before 
+%
+\begin{align}
+\pdv{}{t} \qty(2 \pi R \Delta R \Sigma R^2 \Omega ) &= 2 \pi R R^2 \Delta R \pdv{\Omega }{t}   \\
+&= \pdv{G}{R} \frac{\Delta R}{2 \pi }  - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
+\,,
+\end{align}
+%
+so, assuming that \(\Omega = \Omega (R)\) is the Keplerian angular velocity we get 
+%
+\begin{align}
+R \pdv{}{t} \qty(R^2\Omega \Sigma ) &= \pdv{G}{R} \frac{1}{2 \pi } - \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )  \\
+&= \pdv{G}{R} \frac{1}{2 \pi } - \Omega R^2 \pdv{}{R} \qty(v_R R \Sigma ) - v_R R \Sigma \pdv{}{R} \qty(\Omega R^2)  \\
+R^3 \Omega \pdv{\Sigma }{t} - R^2 \Omega \pdv{}{R} \qty(v_R R \Sigma ) 
+= \underbrace{R^2 \Omega \qty(R \pdv{\Sigma }{t} + \pdv{}{R} \qty(v_R R \Sigma ))}_{= 0 \text{ by mass conservation}}
+&= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} (\Omega R^2)
+\,,
+\end{align}
+%
+so the momentum equation reads 
+%
+\begin{align}
+\frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} (\Omega R^2) = 0
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+v_R R \Sigma &= \frac{1}{2 \pi } \pdv{G}{R} \qty(\pdv{(\Omega R^2)}{R})^{-1}  \\
+R \pdv{\Sigma }{R} &= - \pdv{}{R} \qty[ \frac{1}{2 \pi } \pdv{G}{R} \pdv{(\Omega R^2)}{R}]
+\,.
+\end{align}
+
+Since \(\Omega = \sqrt{GM / R^3} \) is the Keplerian angular velocity, we have 
+%
+\begin{align}
+G = 2 \pi R \Sigma \nu R^2 \dv{\Omega }{R}
+\,,
+\end{align}
+%
+we get 
+%
+\begin{align}
+\pdv{\Sigma }{t} = \frac{3}{R} \pdv{}{R} \qty[R^{\prime \prime 2} \pdv{}{R} (\nu \Sigma R^{\prime \prime 2})] 
+\,.
+\end{align}
+
+This is a diffusion-like equation, an initially peaky function will drift towards a broader function. 
+
+We can solve for \(v_R\): we find 
+%
+\begin{align}
+v_R &= \frac{1}{2 \pi R \Sigma } \pdv{G}{R} \pdv{(R^2 \Omega )}{R}  \\
+&= - \frac{3}{\Sigma R^{\prime \prime 2} } \pdv{}{R} \qty(\nu \Sigma R^{\prime \prime 2}) 
+\,.
+\end{align}
+
+The ratio of \(\Sigma / T\), where \(T\) is the characteristic time of the evolution of the system, is roughly 
+%
+\begin{align}
+\frac{\Sigma}{T} \approx \frac{\nu \Sigma }{R^2}
+\,,
+\end{align}
+%
+therefore \( 1/ T \approx \nu / R^2\).
+
+Also, the velocity is roughly 
+%
+\begin{align}
+v_R \approx \frac{1}{\Sigma R} \nu \Sigma = \frac{\nu}{R} = \frac{R}{T}
+\,.
+\end{align}
+
+How does the mixing timescale \(T\) compare to the timescales mentioned earlier? 
+We will have \(v_\phi \approx R / t _{\text{dyn}}\), \(v_R \approx R / t _{\text{visc}}\), where \(T = t _{\text{visc}}\). 
+This makes sense together with our assumption that \(v_\phi \gg v_R\). 
+
+Why is there turbulence? A strong candidate is \textbf{magneto-rotational instability}. 
+
 \end{document}

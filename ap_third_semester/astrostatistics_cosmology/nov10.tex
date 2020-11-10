@@ -1,4 +1,107 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Autocorrelation}
+
+\marginpar{Tuesday\\ 2020-11-10, \\ compiled \\ \today}
+
+Successive points in a chain are correlated, and the Monte Carlo error scales like \(1/\sqrt{N}\), where \(N\) is the number of \emph{uncorrelated} points. 
+How do we calculate the effective number of uncorrelated points? 
+
+The autocorrelation for points \(\tau \) steps apart is 
+%
+\begin{align}
+\rho_\theta (\tau ) = \frac{1}{n - \tau } \frac{\sum _{i=1}^{n-\tau } (\theta _i - \overline{\theta}) (\theta _{i+\tau } - \overline{\theta})}{\sum _{i=1}^{n-\tau } (\theta _i - \overline{\theta})^2}
+\,.
+\end{align}
+
+Then, the variance of the parameter \(q\) is 
+%
+\begin{align}
+\var{\theta } = \frac{\tau _f}{N} \sigma_\theta^2
+\,,
+\end{align}
+%
+where \(\tau _f\) is the integrated autocorrelation time: 
+%
+\begin{align}
+\tau _f = \sum _{\tau =- \infty }^{+ \infty } \rho _\theta (\tau )
+\approx 1 + 2 \sum _{\tau = 1}^{N} \rho _\theta (\tau )
+\,.
+\end{align}
+
+So, \(N / \tau _f\) is the effective number of points. 
+A note on numerical stability: in computing the previous expression one must be careful to not extend the sum to a region in which the estimation of \(\rho _\theta (\tau )\) is imprecise: for very large \(\tau \) we have very few samples of these large delays.  
+
+It is best if the proposal distribution \(Q\) is as close as possible to the true distribution. 
+Preprocessing should include estimating the covariance matrix of the data, or even running a short chain.
+
+Gibbs sampling does not work well if the parameters are heavily correlated, since it moves along the conditional distributions. 
+
+Examples of libraries.
+
+\chapter{Real datasets}
+
+\section{The CMB}
+
+At roughly \SI{3e5}{yr} after the Big Bang the universe had a temperature of roughly \SI{3e3}{K}, and electrons and protons combined into hydrogen atoms.
+Since the cross-section of Compton scattering is proportional to the inverse square mass of the particle, the optical depth of the gas decreased drastically: it became transparent. 
+
+We observe that light as a near-blackbody spectrum at \(T _{\text{CMB}} \approx \SI{2.7255}{K}\). 
+We see slight anisotropies, of the order of \(\Delta T / T \sim \num{e-5}\). 
+
+These fluctuations are very sensitive to inflationary cosmological parameters. 
+
+The quantum process which generates the anisotropies is inherently random. We must treat it as a random field. 
+Given a random field \(X(\vec{t})\) (where \(\vec{t}\) is a position vector) with a pdf \(P(X)\) we can compute its average value as 
+%
+\begin{align}
+\mathbb{E}_X(\vec{t}) = \int X(\vec{t}) P(X) \dd{X}
+\,,
+\end{align}
+%
+and its auto-covariance and auto-correlation functions: 
+%
+\begin{align}
+C(\vec{t}, \vec{s}) &= \text{cov} \qty( X(\vec{t}), X(\vec{s}))  \\
+\rho (\vec{t}, \vec{s}) &= \frac{C(\vec{t}, \vec{s})}{\sqrt{C(\vec{t}, \vec{t}) C(\vec{s}, \vec{s})}}
+\,.
+\end{align}
+
+The hypothesis of stationarity can be stated by saying that \(C(\vec{t}, \vec{s})\) is only a function of \(\vec{t}-\vec{s}\).  
+Isotropy means that it is only a function of \(\abs{\vec{t} - \vec{s}}\). 
+
+A Gaussian random field is such that the joint probability of the field attaining certain values at certain points is a multivariate Gaussian. 
+
+By homogeneity and isotropy many fields in cosmology can be treated as Gaussian, stationary and isotropic: they can then be described through their power spectrum alone. 
+
+We Fourier transform the field \(F(\vec{x})\) into \(F(\vec{k})\), and define the power spectrum \(P_F\) as 
+%
+\begin{align}
+\expval{F(\vec{k}_1) F(\vec{k}_2)} = (2 \pi )^3 P_F(k) \delta^{(D)} (\vec{k}_1 + \vec{k}_2)
+\,,
+\end{align}
+%
+where \(k = \abs{k_1 } = \abs{ k_2 }\).
+
+By the \textbf{Wiener-Kintchine} theorem the power spectrum is the 3D Fourier transform of the two-point correlation function. 
+
+We must work in spherical harmonics: 
+%
+\begin{align}
+\frac{\Delta T}{T} (\theta , \varphi ) = \sum _{\ell>2} \sum _{\abs{m} \leq \ell} a_{\ell m} Y_{\ell m} (\theta ,\varphi )
+\,.
+\end{align}
+
+The angular frequency \(\ell\) gives  us the angular scale of the oscillations: roughly speaking, \(\theta \sim \pi / \ell\). 
+Then we define the power spectrum as 
+%
+\begin{align}
+\expval{a^{*}_{\ell_1 m_1 } a_{\ell_2 m_2 }} = C_{\ell_1} \delta_{\ell_1 \ell_2 } \delta_{m_1 m_2 }
+\,.
+\end{align}
+
+We skip the monopole and the dipole: the monopole is just an offset, and the Doppler is given by the motion of the Solar System through the galaxy, and of the Galaxy through the CMB reference. 
+
 \end{document}
+

@@ -1,4 +1,306 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-11-11, \\ compiled \\ \today}
+
+Last time we discussed the Coleman-Weinberg potential: 
+%
+\begin{align}
+V(\varphi ) = \frac{B \sigma^{4}}{2} - B \varphi^{4}
+\qty[\log \qty(\frac{\varphi^2}{\sigma^2}) - \frac{1}{2}]
+\,,
+\end{align}
+%
+where typically \(B \sim \num{e-3}\). 
+It can be approximated for \(\varphi \ll \sigma \) as 
+%
+\begin{align}
+V(\varphi ) \approx \frac{B \sigma^{4}}{2} - \frac{\lambda}{4} \varphi^{4}
+\,,
+\end{align}
+%
+where \(\lambda \sim (10 \divisionsymbol 100 )B \sim \num{.1}\), and we have seen that if the initial value of \(\varphi \) is of the order of \num{e8} to \SI{e9}{GeV}, corresponding to roughly \(H/10\) then we can get a total number of \(e\)-folds of more than 1000. 
+
+Let us now move to \textbf{problems} with this model. 
+We must guarantee that the variance of the fluctuations of the scalar field must be smaller than the classical trajectory: 
+%
+\begin{align}
+\expval{ \delta \varphi^2} \ll \varphi_0^2 (t)
+\,,
+\end{align}
+%
+otherwise we cannot meaningfully treat the problem in a perturbative way. 
+This is violated, since \(\delta \varphi \sim H / 2\pi \) is comparable to \(\varphi _i \sim H / 10\). 
+This might destroy inflation. 
+
+We have 
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } \approx \frac{H^2}{\dot{\varphi}} \approx \frac{3 H^3}{V'(\varphi )} \approx \frac{3}{\lambda } \qty(\frac{H}{\varphi })^3
+\,,
+\end{align}
+%
+since \(\dot{\varphi} = - V'(\varphi ) / 3H\). When \(\varphi \ll \sigma \), \(V' (\varphi ) \approx - \lambda \varphi^3\).
+
+This will be of order unity at least! 
+
+Let try to make it so the number of \(e\)-folds \(N_\lambda (\varphi \to \varphi _f)\) is at least 50 or 60: this is given by 
+%
+\begin{align}
+N_\lambda (\varphi \to \varphi _f) &= \frac{3}{2} \frac{H^2}{\lambda } \qty( \frac{1}{\varphi^2} - \underbrace{\frac{1}{\varphi _f^2}}_{\text{negligible}})  \\
+\frac{H}{\varphi } &\approx  \lambda^{1/2} \qty( \frac{2}{3})^{1/2} N_\lambda^{1/2}
+\,,
+\end{align}
+%
+so the density perturbation will be 
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } \approx \lambda^{1/2} N_\lambda^{3/2} (8/3)^{1/2}
+\,,
+\end{align}
+%
+so if \(\lambda \approx \num{.1}\) and indeed \(N_\lambda \sim 50 \divisionsymbol 60 = N _{\text{CMB}}\) we get 
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } \sim 100
+\,.
+\end{align}
+
+This is in stark contrast to the CMB observation: \(\delta \rho /\rho \sim \num{e-5}\). 
+
+So, we get a contradiction: if \(\lambda \) is relatively large the density perturbations are huge, and in order to have the observed density perturbations we would need to have it tiny (\(\lambda \sim \num{e-10}\)), which would prohibit thermal equilibrium, which we assumed. 
+
+\textbf{Chaotic} models of inflation attempted to solve these problems: they used 
+%
+\begin{align}
+V(\varphi ) = \frac{\lambda}{4} \varphi^{4}
+\,,
+\end{align}
+%
+and they are \emph{large-field} models. 
+These models do not require coupling between the inflaton and other fields; however here we also find a relation 
+%
+\begin{align}
+\frac{ \delta \rho }{\rho } \sim \lambda^{1/2} N_\lambda^{3/2}
+\,.
+\end{align}
+
+Something about the Helmholtz free energy in the finite-temperature corrections to the potential \(V(\varphi ; T)\). 
+
+Hybrid models of inflation: we take a potential in the shape 
+%
+\begin{align}
+V(\varphi ) = V_0 \qty[1 + \qty(\frac{\varphi }{\mu })^{p}]
+\,,
+\end{align}
+%
+so that the potential is rolling down a potential towards a nonzero vacuum energy. 
+
+These were the first models for which the potential depends on two fields, so that the aforementioned potential for \(\varphi \) is an effective one: the full potential is 
+%
+\begin{align}
+V(\varphi , \psi ) = \frac{1}{2} m^2\varphi^2+ \frac{\lambda}{4} \qty(\psi^2-M^2)^2 + \frac{\lambda'}{2} \varphi^2 \psi^2
+\,.
+\end{align}
+
+If we evaluate it at \(\psi = 0\) we find 
+%
+\begin{align}
+V(\varphi , \psi = 0) = \frac{1}{2} m^2\varphi^2 + \frac{\lambda}{4} M^{4}
+\,,
+\end{align}
+%
+in the same form as the aforementioned potential, with \(V_0 = \lambda M^{4} /4\). 
+
+The effective mass of \(\psi \) is
+%
+\begin{align}
+\pdv[2]{V}{\psi } = m^2_\psi = \lambda ' \varphi^2 = m^2_\psi (\varphi )
+\,,
+\end{align}
+%
+so the square mass of \(\psi \) reads 
+%
+\begin{align}
+\eval{m^2_\psi}_{\psi = 0} = - M^2 + \lambda ' \varphi^2
+\,,
+\end{align}
+%
+and it can be positive or negative! The critical value of \(\varphi \) for which it has zero mass is given by 
+%
+\begin{align}
+\varphi _c = \qty( \frac{\lambda }{\lambda'})^{1/2} M
+\,,
+\end{align}
+%
+for \(\varphi > \varphi _c\) we have \(\eval{m^2_\psi }_{\psi = 0} > 0\).
+
+When \(\varphi \) becomes such that \(\varphi < \varphi _c\) then the point \(\psi = 0\) becomes unstable, so \(\psi \) moves from zero to either \(+\) or \(-M\).  
+
+We get a \emph{second-order} phase transition for \(\psi \). 
+
+\subsection{Some remarks on inflation model building}
+
+What are the loop contributions to the tree-level potential?
+The tree-level potential can look like 
+%
+\begin{align}
+V(\varphi ) = V_0 \pm \frac{1}{2} m^2 \varphi^2 + \frac{\lambda}{4} \varphi^{4} + \frac{\lambda '}{\Lambda^2} \varphi^{6} + \dots
+\,,
+\end{align}
+%
+but the UV completion (the sixth-power term and beyond) must be suppressed with a large cutoff scale \(\Lambda \). 
+
+Loop corrections can change the parameters, but it can also add whole new terms (like the log in the Coleman-Weinberg potential). 
+These can be useful but also dangerous, for example spoiling the flatness needed for slow-roll inflation. 
+
+Typically, we will have something like 
+%
+\begin{align}
+\Delta V^{\text{one-loop}}(\varphi )
+= \sum _{i} \frac{\pm N_i}{64 \pi^2}
+M_i^{4} (\varphi ) \log \qty(\frac{M_i^2 (\varphi )}{\mu^2})
+\,,
+\end{align}
+%
+where \(M_i^2(\varphi )\) is the effective mass of the \(i\)-th particle species which interacts with \(\varphi \). 
+
+The vacuum energy is given by 
+%
+\begin{align}
+E^{\psi } _{\text{vacuum}} = \frac{1}{2} \frac{ \dd[3]{p}}{(2 \pi )^3}
+\sqrt{p^2 + M^2_\psi (\varphi )}
+\,.
+\end{align}
+
+We might also get terms in the form 
+%
+\begin{align}
+\Delta V(\varphi ) \sim m_1^2 m_2^2 \log \qty( \frac{\varphi}{\mu })
+\,,
+\end{align}
+%
+so starting from a tree-level flat potential \(V(\varphi ) = V_0 \) we might get 
+%
+\begin{align}
+V(\varphi ) = V_0 \qty(1 + 2 \log (\frac{\varphi }{\mu }))
+\,.
+\end{align}
+%
+In the Coleman-Weinberg case we get 
+%
+\begin{align}
+\Delta V(\varphi ) \sim \frac{c}{2} \qty(m_1^2+ m_2^2) \varphi^2 \log \frac{\varphi }{\mu }
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+V(\varphi ) &= V_0 + \varphi^2 \qty[m^2 + c \widetilde{m}^2 \log \frac{\varphi }{\mu }]
+\,,
+\end{align}
+%
+which can arise from a tree-level potential like \(V_0 + m^2 \varphi^2 / 2\), where we defined \(\widetilde{m}^2 = m_1^2 + m_2^2\). 
+
+This might be observationally detected through a \textbf{running of the spectral index}: \(n_s = n_s (k)\). 
+
+\paragraph{The \(\eta \) problem}
+
+Suppose we have a potential \(V\) depending on \(n\) complex scalar fields: 
+%
+\begin{align}
+V = V(\varphi _n, \overline{\varphi} _n) = e^{k / \mu _n} \overline{V} (\varphi _n, \overline{\varphi}_n)
+\,,
+\end{align}
+%
+which is commonly called the Kähler potential --- it arises in the context of supergravity theories. 
+It arises from a Lagrangian in the form 
+%
+\begin{align}
+\mathscr{L} = \partial_{\mu } \overline{\varphi}_{n} K_{\overline{m} n} \partial^{\mu } \varphi_n
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+K_{\overline{m}} = \pdv{K}{\overline{\varphi}_m} &&
+K_{n} = \pdv{K}{\varphi_n} 
+\,.
+\end{align}
+
+If \(K = \sum _{m} \abs{\varphi _m}^2\) we find simply \(K_{\overline{m} n} = \delta_{nm}\); then 
+%
+\begin{align}
+\eta _V = \frac{1}{3} \frac{m^2}{H^2} = \frac{1}{3} \frac{V(\varphi )}{H^2}
+\,.
+\end{align}
+
+Let us identify \(\varphi \), the inflaton, with the real part of one of the fields: \(\varphi = \Re \varphi _n\).  
+
+Then, 
+%
+\begin{align}
+V = e^{K / M_P^2} \widetilde{V}
+\,,
+\end{align}
+%
+so that 
+%
+\begin{align}
+\pdv{V}{\varphi } = e^{K / M_p^2} \frac{2 \varphi }{M_P^2} \widetilde{V} + e^{k / M_P^2} \widetilde{V}'
+\,,
+\end{align}
+%
+therefore the square mass of the field reads 
+%
+\begin{align}
+m_\varphi^2= \eval{\pdv[2]{V}{\varphi }}_{\varphi = 0} = \frac{V}{M_P^2} + e^{K / M_P^2} \widetilde{V}''
+\,.
+\end{align}
+
+Then, using \(H^2 \approx \frac{8 \pi G}{3} V(\varphi )\) we get 
+%
+\begin{align}
+\eta _V = \frac{1}{3} \frac{m^2}{H^2} \sim \frac{m^2 M_P^2}{V}
+\,.
+\end{align}
+
+This yields 
+%
+\begin{align}
+\eta _V = 1 + M_P^2 \frac{\widetilde{V}''}{\widetilde{V}}
+\,,
+\end{align}
+%
+which is a problem if we want slow-roll inflation. 
+
+If we have a potential \(V _{\text{sr}}\) for the slow-roll, we might add a term 
+%
+\begin{align}
+V = V _{\text{sr}} + \frac{\varphi^2}{\Lambda^2} V _{\text{sr}}
+\,,
+\end{align}
+%
+so if \(\Lambda \leq M_P\), we might get \(\eta _V = V'' M_P^2 / V \approx 1\). 
+The main point is that inflation is very sensitive to high-energy physics. 
+
+The inflationary potential can in general be an effective one, which works for energies \(E \leq \Lambda \) for some cutoff \(\Lambda \). 
+We can use some additional symmetries imposed on the UV completion. 
+
+%
+\begin{align}
+\mathscr{L} _{\text{eff}} = \frac{1}{2} \partial_{\mu } \varphi \partial^{\mu } \varphi + \frac{1}{2} m^2 \varphi^2 - \frac{\lambda}{4} \varphi^{4}
++ \sum _{p=1}^{\infty } \qty[\lambda _p \varphi^{4} + \nu _p \partial_{\mu } \varphi \partial^{\mu }\varphi ] \qty( \frac{g}{\Lambda } \varphi )^{2p}
+\,,
+\end{align}
+%
+which contains nonrenormalizable terms, but this is fine since it is an effective theory. 
+We have employed the reflection symmetry \(\varphi \to - \varphi \). 
+
+We can impose that \(\varphi \ll \Lambda \), so that the tower of terms does not spoil the flatness. This means that we have a small-field model of inflation. 
+Alternatively, we may employ some symmetry like a shift symmetry \(\varphi \to \varphi + c\). 
+In that case, the tower of terms cannot spoil the flatness, therefore we may see large-field models of inflation, which predict a relatively high tensor-to-scalar ratio. 
+
 \end{document}

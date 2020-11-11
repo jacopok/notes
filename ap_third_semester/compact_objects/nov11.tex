@@ -1,4 +1,242 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-11-11, \\ compiled \\ \today}
+
+The viscous timescale is of the order \(t _{\text{visc}} \approx R^2 / \nu \). 
+It is the longest of the timescales in the accretion disk. 
+
+Let us suppose that \(t _{\text{visc}} \ll t _{\text{esc}}\), where \(t _{\text{esc}}\) is the timescale for changes in the mass transfer rate. 
+As long as this is the case, we can assume that the equations mentioned before are stationary: \(\partial_{t} = 0\). 
+The mass and angular momentum equations read 
+%
+\begin{align}
+R \pdv{\Sigma }{t} &= - \pdv{}{R} \qty(v_R \Sigma R )  \\
+R^2 \pdv{}{t} (\Omega \Sigma ) &= - \pdv{}{R} \qty(v_R R \Sigma R^2 \Omega ) + \frac{1}{2 \pi } \pdv{G}{R}
+\,,
+\end{align}
+%
+so they are simplified to 
+%
+\begin{align}
+\pdv{}{R} \qty( v_R \Sigma R) &=0  \\
+-\pdv{}{R} \qty(v_R R \Sigma R^2 \Omega ) + \frac{1}{2 \pi } \pdv{G}{R}&= 0
+\,.
+\end{align}
+
+So, the mass equation can be expressed as \(v_R \Sigma R = \const\), and we can express the constant as \(2 \pi R v_R \Sigma = - \dot{M}\). 
+The mass accretion rate is \(\dot{M}> 0\), and the minus sign is needed in order to cancel the fact that \(v_R < 0\). 
+
+The angular momentum equation can be integrated as well:
+%
+\begin{align}
+2 \pi 
+\pdv{}{R} \qty(v_R R \Sigma R^2 \Omega )
+&= \pdv{G}{R} \\
+\underbrace{2 \pi v_R R \Sigma}_{-\dot{M}} R^2 \Omega &= G + \const  \\
+- \dot{M} R^2 \Omega  &= G + \const
+\,,
+\end{align}
+%
+and now what we need to do is to find out what the constant is. In order to do so, we evaluate the equation at the inner edge of the disk, at \(R = R _{\text{in}}\). 
+The constant \(\const = C\) reads 
+%
+\begin{align}
+C = - \dot{M} R _{\text{in}}^2 \Omega _{\text{in}} - G(R _{\text{in}})
+\,,
+\end{align}
+%
+and now we introduce a further hypothesis, called the \textbf{no-torque} condition: \(G (R _{\text{in}}) = 0\). 
+
+In the Black Hole case, the inner edge of the disk corresponds to the ISCO, so the edge does not touch any other surface, which means there can be no torque. 
+In the Neutron Star case this will not be true in general; \(R _{\text{in}}\) will be \(R_{*}\), and the fact that the ring touches the star means that there can be torque as long as \(\Omega (R _{\text{in}}) \neq \Omega _*\). 
+
+So, the no-torque condition is fulfilled only in the Black Hole case. 
+The constant then reads \(C = -\dot{M} R^2 _{\text{in}} \Omega _{\text{in}}\), and the angular momentum equation becomes 
+%
+\begin{align}
+-\dot{M} \qty(R^2 \Omega - R^2 _{\text{in}} \Omega _{\text{in}}) = G
+\,.
+\end{align}
+
+We can then substitute the expression we have found earlier for \(G(R)\), under the further assumption that \(\Omega (R) = \Omega _K (R )= \sqrt{GM / R^3}\). 
+
+The derivative of the Keplerian angular velocity reads 
+%
+\begin{align}
+\dv{\Omega _K}{R} = - \frac{3}{2} \sqrt{ \frac{GM}{R^5}}
+\,.
+\end{align}
+
+Therefore, 
+%
+\begin{align}
+2 \pi R \Sigma \nu R^2 \qty(- \frac{1}{2} \sqrt{ \frac{GM}{R}} \frac{1}{R^2}) = - \dot{M} \qty(R^2 \frac{1}{R} \sqrt{ \frac{GM}{R}}- R^2 _{\text{in}} \sqrt{ \frac{GM}{R _{\text{in}}}} \frac{1}{R _{\text{in}}})
+\,.
+\end{align}
+
+With some manipulations, we get 
+%
+\begin{align}
+\Sigma \nu = \frac{\dot{M}}{3 \pi } \qty(1 - \sqrt{\frac{R _{\text{in}}}{R}})
+\,.
+\end{align}
+
+We can then calculate 
+%
+\begin{align}
+D(R) &= \frac{1}{2} \Sigma \nu \qty(R \dv{\Omega }{R})^2  \\
+&= \frac{1}{2} \frac{\dot{M}}{3 \pi } \qty(1 - \sqrt{\frac{R _{\text{in}}}{R}}) \frac{9}{4} \frac{GM}{R^3}  \\
+&= \frac{3}{8 \pi } \frac{G M \dot{M}}{R^3} \qty(1 - \sqrt{ \frac{R _{\text{in}}}{R}})
+\,.
+\end{align}
+
+This turns out to be completely independent of \(\nu \)! 
+
+If the disk extends from \(R _{\text{in}}\) to \(R _{\text{out}}\) then we can calculate the total luminosity (from both sides of the disk)
+%
+\begin{align}
+L &= 2\int_{R _{\text{in}}}^{R _{\text{out}}} 2 \pi R D(R) \dd{R}  \\
+&= 2\int_{R _{\text{in}}}^{R _{\text{out}}} 2 \pi R \frac{3}{8 \pi } \frac{G M \dot{M}}{R^3} \qty(1 - \sqrt{ \frac{R _{\text{in}}}{R}})
+\dd{R}  \\
+&=
+\frac{3}{4} \frac{GM \dot{M}}{R _{\text{in}}} 
+\int_{x_1 }^{x_2 } 
+x^{-2} \qty(1 - x^{-1/2}) \dd{x}
+\marginnote{Introduced \(x = R / R _{\text{in}}\).}  \\
+&= \frac{3}{2} \frac{GM \dot{M}}{ R _{\text{in}}} 
+\qty[ \frac{1}{x_1 } - \frac{1}{x_2 } - \frac{2}{3} \qty( \frac{1}{x_1^{3/2}} - \frac{1}{x_2^{3/2}})]
+\,.
+\end{align}
+
+Here \(x_1 = R _{\text{in}} / R _{\text{in}} = 1\), while \(x_2\) is very large; we can send it to infinity. This yields \(1 - 2/3\) inside the square bracket, so 
+%
+\begin{align}
+L = \frac{3}{2} \frac{GM \dot{M}}{ R _{\text{in}}} 
+\frac{1}{3} = \frac{1}{2} \frac{GM \dot{M}}{R _{\text{in}}}
+\,.
+\end{align}
+
+To first order, the gravitational force in the planar direction is 
+%
+\begin{align}
+F_g = \frac{GM}{r^2} = \frac{GM}{R^2 + z^2}
+\,,
+\end{align}
+%
+while the force in the vertical direction is 
+%
+\begin{align}
+F_{g, z} = \frac{GM}{R^2 + z^2} \sin \theta = \frac{GMz}{(R^2 + z^2)^{3/2}} \approx \frac{GMz}{R^3}
+\,.
+\end{align}
+
+We can assume that the plasma does not move in the \(z\) direction, the pressure gradient along the \(z\) direction must balance the gravitational force: 
+%
+\begin{align}
+\frac{1}{\rho } \pdv{P}{z} = - \frac{GMz}{R^3} 
+\,,
+\end{align}
+%
+and we can make a rough approximation \(\pdv*{P}{z} \approx P / H\). This then means that 
+%
+\begin{align}
+\frac{1}{\rho } \frac{P}{H} \approx \frac{GMH}{R^3}
+\,.
+\end{align}
+
+Further, since \(c_s^2 \approx P / \rho \) we will have 
+%
+\begin{align}
+c_s^2 \approx \frac{GM H^2}{R^3}
+\,.
+\end{align}
+
+However, since \(H \ll R\) we have 
+%
+\begin{align}
+\frac{H}{R} \approx c_s \sqrt{ \frac{R}{GM}} \ll 1
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+c_s \ll \sqrt{ \frac{GM}{R}} = v_\phi 
+\,.
+\end{align}
+
+With this simple and rough line of reasoning we have shown that the azimuthal Keplerian velocity of the gas must be supersonic. 
+
+The azimuthal velocity can be written as 
+%
+\begin{align}
+v_\phi = \sqrt{ \frac{GM}{R}} = \frac{c}{\sqrt{2}} \sqrt{ \frac{R_S}{R}}
+\,,
+\end{align}
+%
+so even if we are at \(R = 2500 R_s\), quite far from the ISCO, we are already moving at \(c/ 50 \sqrt{2} \approx \SI{4000}{km/s}\), very fast. 
+
+Let us start with the Euler equation in the radial direction, written in a frame which is corotating with \(\Omega = \Omega (R)\), so we will need to account for fictitious forces: the centrifugal force \(\vec{\Omega} \wedge \qty(\vec{\Omega} \wedge \vec{r})\) yields a term \(v_\phi^2 / R\).
+We find 
+%
+\begin{align}
+v_R \pdv{V_R}{R} - \frac{v_\phi^2}{R} + \frac{1}{\rho } \pdv{P}{r} + \frac{GM}{R^2} = 0
+\,,
+\end{align}
+%
+and now we will make some approximations: 
+%
+\begin{align}
+\frac{1}{\rho } \pdv{P}{R} \approx \frac{1}{\rho } \frac{P}{R} \approx \frac{c_s^2}{R}
+\,,
+\end{align}
+%
+and \(c_s^2 \ll GM/R \): thus, we can completely neglect the pressure gradient term compared to the gravitational term. 
+This yields 
+%
+\begin{align}
+v_R \pdv{V_R}{R} - \frac{v_\phi^2}{R} + \frac{GM}{R^2} \approx 0
+\,.
+\end{align}
+
+We approximate \(\pdv*{v_R}{R} \approx v_R / R\), and write \(v_R\) using the mass continuity equation \(-2 \pi R \Sigma v_R = \dot{M}\), with 
+%
+\begin{align}
+\Sigma = \frac{\dot{M}}{3 \pi \nu } \qty(1 - \sqrt{\frac{R _{\text{in}}}{R}})
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+v_R &= \frac{\dot{M}}{2 \pi R \Sigma } = - \frac{3 \nu }{\Omega R} \frac{1}{1 - \sqrt{R _{\text{in}} / R}}
+\,.
+\end{align}
+
+This means that the typical \(v_R\) will be \(v_R \approx \nu /R\). 
+Using the \(\alpha \)-prescription, this reads 
+%
+\begin{align}
+v_R \approx \frac{\nu}{R} = \frac{\alpha c_s H}{R} \ll c_s 
+\,,
+\end{align}
+%
+since both \(\alpha < 1\) and \(H < R\).
+Then, 
+%
+\begin{align}
+\frac{v_R^2}{R} \ll \frac{c_s^2}{R} \ll \frac{GM}{R^2}
+\,,
+\end{align}
+%
+so  the inertial term is negligible compared to the gravitational one: this means that 
+%
+\begin{align}
+- \frac{v_\phi^2}{R} + \frac{GM}{R^2} \approx 0
+\,,
+\end{align}
+%
+the gravitational force is balanced by the centrifugal force: this means that the azimuthal velocity is indeed Keplerian, our model is self-consistent. 
+
 \end{document}

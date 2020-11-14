@@ -80,12 +80,15 @@ P(\Theta | x)
 \,.
 \end{align}
 
+The amplitude being negative makes no sense, however the Gaussian integral can be done analytically only over the whole of \(\mathbb{R}\).
+So, here we will marginalize by integrating over negative amplitudes as well; the last figure  will show how only integrating over positive amplitudes would have looked (by numerical calculation).
+
 Applying the formula for the single-variable Gaussian integral \eqref{eq:single-variable-gaussian-integral} (the bilinear forms are all evaluated to yield scalars, we are only integrating over the scalar \(A\)!) we then get 
 %
 \begin{align}
-P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{4 (\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{\pi }{\overline{x}^{\top} V \overline{x}}}  \\
+P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{(\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{\pi }{\overline{x}^{\top} V \overline{x}}}  \\
 &= B_2 \sqrt{ \frac{\pi}{\overline{x}^{\top}V \overline{x}}}
-\exp(\frac{\overline{x}^{\top} \Omega \overline{x}}{4 \overline{x}^{\top}V \overline{x}})
+\exp(\frac{\overline{x}^{\top} \Omega \overline{x}}{\overline{x}^{\top}V \overline{x}})
 \,,
 \end{align}
 %
@@ -158,7 +161,7 @@ where \(F (\Theta , \varphi )\) is some function whose specific form does not re
 F(\Theta , \varphi ) &=
 - \frac{1}{2} \qty( \frac{\cos^2\varphi}{\sigma^2_x} + \frac{\sin^2\varphi}{\sigma^2_y})+  \\
 &\phantom{=}\ 
-+ \frac{1}{4} \qty( \frac{\cos^2 \Theta}{\sigma _x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1}
++\qty( \frac{\cos^2 \Theta}{\sigma _x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1}
 \qty[ 
     \frac{\cos^2 \Theta \cos^2 \varphi }{\sigma _x^{4}}
     +2\frac{\cos \Theta \sin \Theta \cos \varphi \sin \varphi  }{\sigma _x^{2} \sigma _y^{2}}
@@ -168,7 +171,17 @@ F(\Theta , \varphi ) &=
 \end{split}
 \end{align}
 %
-} the point is that the amplitude of the observed data vector, \(A_x\), appears only as a multiplicative prefactor: its exact value will be taken care of by the evidence, and it cannot affect the shape of the distribution. 
+}
+the point is that the amplitude of the observed data vector, \(A_x\), appears only as a multiplicative prefactor: its exact value will be taken care of by the evidence, and it cannot affect the shape of the distribution. 
 Therefore, we see that by marginalizing over \(A\) we have ``forgotten'' any scaling information about \(x\). 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{marginalization.pdf}
+\caption{Marginalization: the left plot shows the full likelihood, the middle plot shows the result of marginalization as shown in the previous calculation, the right plot shows the result of the more physically meaningful marginalization over \(A \in (0, + \infty )\) only.
+Here the likelihood is a diagonal Gaussian with \(\sigma _x = \num{1.2}\) and \(\sigma _y = \num{1.8}\), centered in \(A_x = \num{2.5}\) and \(\varphi = \SI{1}{rad}\).
+}
+\label{fig:marginalization}
+\end{figure}
 
 \end{document}

@@ -1,18 +1,35 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Exercise 8}
+\subsection*{Exercise 8}
 
-For clarity, we denote with Greek indices those ranging from 1 to \(N\), the size of the vector of data; and with Latin indices those ranging from 1 to \(M\), the number of templates. 
-Then, the \(\chi^2\) reads 
+For clarity, we denote with Greek indices those ranging from 1 to \(N\), the size of the vector of data; and with Latin indices those ranging from 1 to \(M\), the number of templates.
+
+We are assuming that the data have a Gaussian distribution with a covariance matrix \(C\), and we are modelling their mean \(\mu_\alpha  \) as a sum of templates \(t_{i \alpha}\) with coefficients \(A_i\):
 %
 \begin{align}
-\chi^2 = \qty(d_\alpha - A_{i} t_{i \alpha }) C^{-1}_{\alpha \beta } 
-\qty(d_\beta - A_j t_{j \beta })
+\mu _\alpha = t_{i \alpha } A_i
 \,,
 \end{align}
 %
 where the Einstein summation convention has been used. 
+Therefore, the likelihood is proportional to 
+%
+\begin{align}
+\mathscr{L}(d_\alpha | A_i) \propto \exp(- \frac{1}{2} \qty(d_\alpha - A_{i} t_{i \alpha }) C^{-1}_{\alpha \beta } 
+\qty(d_\beta - A_j t_{j \beta }))
+\,.
+\end{align}
+
+The normalization only depends on the covariance matrix \(C_{\alpha \beta }\), which we assume is fixed.
+Therefore, maximizing the likelihood\footnote{Which is equivalent to maximizing the posterior if we are using a flat prior.} is equivalent to minimizing the \(\chi^2\), which reads 
+%
+\begin{align}
+\chi^2 = \qty(d_\alpha - A_{i} t_{i \alpha }) C^{-1}_{\alpha \beta } 
+\qty(d_\beta - A_j t_{j \beta })
+\,.
+\end{align}
+
 We want to maximize this as the amplitudes vary: therefore, we set the derivative with respect to \(A_k\) to zero,
 %
 \begin{align}
@@ -20,8 +37,121 @@ We want to maximize this as the amplitudes vary: therefore, we set the derivativ
 \,,
 \end{align}
 %
-which means that \(d_ \beta = A_j t_{j \beta }\), as long as the linear map \(t_{k \alpha } C^{-1}_{\alpha \beta }\) is nondegenerate. This is a linear system: \(N\) equations in \(M\) unknowns.
+which means that 
+%
+\begin{align}
+t_{k \alpha } C^{-1}_{\alpha \beta } d_\beta = (t_{k \alpha } C^{-1}_{\alpha \beta }  t_{j \beta }) A_j
+\,,
+\end{align}
+%
+a linear system of \(M\) equations (indexed by \(k\)) in the \(M\) variables \(A_j\). 
+If we denote the evaluations of bilinear forms in the data (\(N\)-dimensional) space with brackets, as \(a_\alpha C_{\alpha \beta } b_\beta \overset{\text{def}}{=} (a | C |b)\), this reads 
+%
+\begin{align}
+(t | C^{-1} | d)_k &= (t | C^{-1} | t)_{kj} A_j  \\
+\qty[(t | C^{-1} | t)^{-1}]_{mk} (t | C^{-1} | d)_k  &=
+\underbrace{ \qty[(t | C^{-1} | t)^{-1}]_{mk}
+(t | C^{-1} | t)_{kj}}_{= \delta_{mj}} A_j = A_m  \\
+A_m &= \qty[(t | C^{-1} | t)^{-1}]_{mk} (t | C^{-1} | d)_k
+\,,
+\end{align}
+%
+where the inverse of \((t | C^{-1} | t)\) is to be computed in the \(M\)-dimensional vector space. 
 
-\todo[inline]{A bit unsure about where to go from here, need to ponder it a little more. }
+\subsection*{Exercise 9}
+
+Our model for the mean value is in the form \(\mu (\Theta , A) = A \overline{x}(\Theta )\), where \(\overline{x}\) is a generic function of \(\Theta \), while \(A\) is our scale parameter.\footnote{This is not specified in the problem, but it seems natural to think that \(\abs{\overline{x}(\Theta )}\) is a constant for varying \(\Theta \). } 
+Our likelihood then reads 
+%
+\begin{align}
+\mathscr{L}(x | \Theta , A) = \underbrace{\frac{1}{(2\pi )^{N/2} \sqrt{\det C}}}_{B_1 }
+\exp(- \frac{1}{2} (x - A \overline{x}(\Theta ))^{\top} C^{-1} (x- A \overline{x}(\Theta )))
+\,.
+\end{align}
+
+If the priors for both \(A\) and \(\Theta \) are flat, this corresponds to the joint posterior \(P (\Theta , A | x)\). 
+We want to marginalize over \(A\), which amounts to integrating over it: dropping the dependence on \(\Theta \) of \(\overline{x}\) and defining \(V = C^{-1}\) we find
+%
+\begin{align}
+P(\Theta | x) 
+&= B_1  \int \exp(- \frac{1}{2} (x - A \overline{x})^{\top} V (x- A \overline{x})) \dd{A}  \\
+&= B_1  \int \exp(- \frac{1}{2} \qty(x^{\top} V x -2 A \overline{x}^{\top} V x + A^2 \overline{x}^{\top} V \overline{x})) \dd{A} 
+\marginnote{Used the symmetry of \(V\).}
+\,.
+\end{align}
+
+Applying the formula for the single-variable Gaussian integral \eqref{eq:single-variable-gaussian-integral} (the bilinear forms are all evaluated to yield scalars, we are only integrating over the scalar \(A\)!) we then get 
+%
+\begin{align}
+P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{4 (\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{\pi }{\overline{x}^{\top} V \overline{x}}}  \\
+&= B_2 \sqrt{ \frac{\pi}{\overline{x}^{\top}V \overline{x}}}
+\exp(\frac{\overline{x}^{\top} \Omega \overline{x}}{4 \overline{x}^{\top}V \overline{x}})
+\,,
+\end{align}
+%
+where we defined the bilinear form \(\Omega = V x x^{\top} V^{\top}\).\footnote{With explicit indices, \(\Omega_{im} = V_{ij} x_j x_k V_{km}\).}
+
+% We can observe that all information about the scale of \(\overline{x}\) has been lost: if we map \(\overline{x} \to A \overline{x}\) the argument of the exponential does not change, therefore the only change comes from the factor in front, and the posterior \(P\) is mapped to \(P / A\). 
+
+Let us consider a simple example of this as a sanity check: suppose that \(x\) is two-dimensional, and \(\overline{x}(\Theta ) = (\cos \Theta , \sin \Theta )^{\top}\); further, suppose that \(V\) is diagonal, so that 
+%
+\begin{align}
+V = \left[\begin{array}{cc}
+\sigma_x^{-2} & 0 \\ 
+0 & \sigma _y^{-2}
+\end{array}\right]
+\,.
+\end{align}
+
+Also, suppose that the observed data parameter is 
+%
+\begin{align}
+x = A_x \left[\begin{array}{c}
+\cos \varphi  \\ 
+\sin \varphi 
+\end{array}\right]
+\,.
+\end{align}
+
+Then, the multiplicative constant in front of the marginalized posterior reads 
+%
+\begin{align}
+B_2 = B_1 \exp(- \frac{1}{2} A_x^2 \qty( \frac{\cos^2\varphi}{\sigma^2_x} + \frac{\sin^2\varphi}{\sigma^2_y}))
+\,;
+\end{align}
+%
+while the bilinear form \(\Omega \) is 
+%
+\begin{align}
+\Omega &= A_x^2
+\left[\begin{array}{cc}
+\sigma_x^{-2} & 0 \\ 
+0 & \sigma _y^{-2}
+\end{array}\right]
+\left[\begin{array}{cc}
+\cos^2 \varphi  & \cos \varphi \sin \varphi  \\ 
+\cos \varphi \sin \varphi  & \sin^2 \varphi 
+\end{array}\right]
+\left[\begin{array}{cc}
+\sigma_x^{-2} & 0 \\ 
+0 & \sigma _y^{-2}
+\end{array}\right]  \\
+&= A_x^2\left[\begin{array}{cc}
+\cos^2 \varphi / \sigma_x^{4} & \cos \varphi \sin \varphi / \sigma_x^2 \sigma _y^2 \\ 
+\cos \varphi \sin \varphi / \sigma_x^2 \sigma _y^2 & \sin^2 \varphi / \sigma_y^{4}
+\end{array}\right]
+\,.
+\end{align}
+
+Then, when we  evaluate the marginalized posterior we will find something in the form
+%
+\begin{align}
+P(\Theta | x) &= B_1 \sqrt{\pi } \qty( \frac{\cos^2\Theta }{\sigma_x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1/2}
+\exp( A_x^2 F(\Theta , \varphi ))
+\,,
+\end{align}
+%
+where \(F (\Theta , \varphi )\) is some function whose specific form does not really matter; the point is that the amplitude of the observed data vector, \(A_x\), appears only as a multiplicative prefactor: its exact value will be taken care of by the evidence, and it cannot affect the shape of the distribution. 
+Therefore, we see that by marginalizing over \(A\) we have ``forgotten'' any scaling information about \(x\). 
 
 \end{document}

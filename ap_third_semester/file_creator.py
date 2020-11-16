@@ -19,7 +19,7 @@ folder_names = {
     "ac": "astrostatistics_cosmology",
     "co": "compact_objects",
     "eu": "early_universe",
-    "hea": "high_energy_astrophysics",
+    # "hea": "high_energy_astrophysics",
 }
 
 schedule = {

@@ -81,18 +81,33 @@ if __name__ == "__main__":
 
     from scipy.stats import multivariate_normal
 
+    # def my_MVN(x):
+    #     a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)
+    #     b = multivariate_normal(mean=mean_2, cov=covariance).pdf(x)
+    #     return (a + 2 * b)
+
+    # def gaussian_proposal(theta=None):
+    #     return (np.random.normal(scale=1, size=2))
+            
+    # initial_positions = np.stack((np.arange(-10, 10), np.arange(-10, 10))).T
+    
+    # trim_amount = 1000
+    # chain_length = 10000
+    
+    # mc = MultipleChain(MetropolisHastings, my_MVN, initial_positions, chain_length + trim_amount, gaussian_proposal)
+    # mc.trim_chains(trim_amount)
+    
+    dim = 2
+    
+    c = np.random.random(size=(dim, dim))
+    cov = c.T @ c
+    
     def my_MVN(x):
-        a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)
-        b = multivariate_normal(mean=mean_2, cov=covariance).pdf(x)
-        return (a + 2 * b)
-        
+        return (multivariate_normal(mean= np.zeros(dim),cov=cov).pdf(x))
     def gaussian_proposal(theta=None):
-        return (np.random.normal(scale=1, size=2))
+        return (np.random.normal(scale=1, size=dim))
     
-    initial_positions = np.stack((np.arange(-10, 10), np.arange(-10, 10))).T
-    
-    trim_amount = 1000
-    chain_length = 10000
+    initial_positions = np.random.normal(size=(7, dim))
     
     mc = MultipleChain(MetropolisHastings, my_MVN, initial_positions, chain_length + trim_amount, gaussian_proposal)
     mc.trim_chains(trim_amount)

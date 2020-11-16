@@ -1,4 +1,153 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-11-16, \\ compiled \\ \today}
+
+We start from the power spectrum estimation, neglecting the first parts of the pipeline. 
+
+The data is given by the signal plus the noise; we assume the latter to be given by a zero-mean multivariate normal with a covariance \(C_N\). 
+However, the signal is a zero-mean MVN as well, with covariance \(C_S\). 
+Then, the likelihood is given in terms of the array of temperature differences \(\Delta \) as
+%
+\begin{align}
+\mathscr{L} (\Delta |C) 
+= \frac{1}{\sqrt{(2 \pi )^{N} \det C}}
+\exp[- \frac{1}{2} \Delta^{\top} C^{-1} \Delta ]
+\,,
+\end{align}
+%
+where \(C = C_S + C_N\), since we know that the sum of two Gaussian variables is another Gaussian distributed according to the sum of the covariances. 
+
+Let us describe the signal covariance: it is given by 
+%
+\begin{align}
+C^{ij}_{S} = \expval{\frac{\Delta T}{T} (\hat{\gamma}_i)\frac{\Delta T}{T} (\hat{\gamma}_j)} = \sum _{\ell} (2 \ell + 1) C_\ell P_\ell (\cos \theta _{ij})
+\,.
+\end{align}
+
+This is not diagonal, since different pixels are correlated. 
+However, in harmonic space the \emph{full sky} covariance is diagonal: 
+%
+\begin{align}
+\mathscr{L} (a_{\ell m} | C_\ell) = \prod_{\ell m} \frac{1}{\sqrt{2 \pi C_\ell}} \exp[- \frac{1}{2} \frac{\abs{a_{\ell m}}^2}{C_\ell}]
+\,.
+\end{align}
+
+We will make some simplifying but not too unrealistic assumptions: in order of unrealism we have
+\begin{enumerate}
+    \item the noise is Gaussian (quite right);
+    \item the noise is uncorrelated in pixel space: \(\expval{n(\hat{\gamma}_i) n (\hat{\gamma}_j)}= C_n \delta_{ij}\) (not completely true, the thermal fluctuations might change over time and there might be \(1/f\) noise, however it is quite close to being true);
+    \item the noise variance is the same for each pixel (this is the most unrealistic: each pixel will be observed for different amounts of time for any realistic observing strategy).
+\end{enumerate}
+
+What we are assuming, in short, can be stated as thinking of the noise as white and uniform.
+
+The noise multipoles are given by 
+%
+\begin{align}
+n_{\ell m} = \int \dd{\hat{\gamma}} n(\hat{\gamma}) Y^{*}_{\ell m} (\hat{\gamma})
+\,,
+\end{align}
+%
+and if we discretize with angular pixel area \(\Delta \Omega \) we can compute the noise power spectrum as 
+%
+\begin{align}
+\expval{n_{\ell_i m_i}n_{\ell_j m_j}}
+&= (\Delta \Omega )^2 \sum _{ij} \expval{n(\hat{\gamma}_i) n(\hat{\gamma}_j)} Y^{*}_{\ell_i m_i} (\hat{\gamma}_i)Y_{\ell_j m_j} (\hat{\gamma}_j) \\
+&= (\Delta \Omega )^2 \sum _{ij} C_n \delta_{ij} Y^{*}_{\ell_i m_i} (\hat{\gamma}_i)Y_{\ell_j m_j} (\hat{\gamma}_j)   \\
+&= C_n \Delta \Omega \sum _i \Delta \Omega Y^{*}_{\ell_i m_i} (\hat{\gamma}_i)Y_{\ell_j m_j} (\hat{\gamma}_j)  \\
+&= C_n \Delta \Omega \delta_{\ell_i \ell_j} \delta_{m_i m_j}
+\,,
+\end{align}
+%
+because of the orthonormality of the spherical harmonics. 
+
+In these experiments we have a finite resolution: small scales are spread out. 
+This would be described by a Bessel function probably, but we can approximate it as convolution with a Gaussian: 
+%
+\begin{align}
+b_\ell \propto \exp(- \ell (\ell + 1) / \ell^2_{\text{beam}})
+\,.
+\end{align}
+
+This means that at very small scales the signal is completely spread out. However, this only affects the signal, the noise fluctuations have no suppression at any scale: the total signal is 
+%
+\begin{align}
+\Gamma _\ell = b_\ell^2 C_\ell + N_\ell
+\,.
+\end{align}
+
+Typically we plot \(\ell (\ell+1) \Gamma_\ell\).
+
+The problem becomes much harder without the assumptions we mentioned.
+Specifically, isotropy is broken: we need a sky mask because of the galaxy. 
+To do it analytically we would need to invert an \(N _{\text{pix}} \times N _{\text{pix}}\) matrix, with \(N _{\text{pix}}\sim \num{e7}\). 
+
+A sky mask is nice in pixel space, but it is a convolution in Fourier space, and in order to deconvolve we need the \emph{masking kernel}. 
+This creates correlations in the sky. 
+
+Using the full \(a_{\ell m}\) is not needed in the likelihood: all the information is in the \(C_\ell\)s. 
+
+So, we do an intermediate parameter estimation: calculating the \(C_\ell\) from the \(a_{\ell m}\). 
+
+We maximize the likelihood with respect to the \(C_\ell\). 
+This is still a nonlinear problem, and the Newton-Rhapson method which was used in the nineties is no longer feasible. 
+We can use the estimator 
+%
+\begin{align}
+\hat{C}_\ell = \frac{1}{2 \ell + 1} \sum _{m=- \ell}^{\ell} \abs{a_{\ell m}}^2
+\,.
+\end{align}
+
+This is an unbiased estimator, since by definition \(\expval{\abs{a_{\ell m}}^2} = C_\ell\). 
+
+If we define 
+%
+\begin{align}
+\hat{Y}_\ell = \sum _{\abs{m} < \ell} \frac{\abs{a_{\ell m}}^2}{C_\ell}
+\,,
+\end{align}
+%
+this will have a \(\chi^2\) distribution if each \(\abs{a_{\ell m}}\) is Gaussian and independent. 
+The estimator \(\hat{C}_\ell\) can be written in terms of the \(\hat{Y}_\ell\) as 
+%
+\begin{align}
+\hat{C}_\ell = C_\ell \hat{Y}_\ell / (2 \ell + 1)
+\,.
+\end{align}
+
+This will not have a Gaussian distribution, but a \(\Gamma \) one: the likelihood will read
+%
+\begin{align}
+p(\hat{C}_\ell | C_\ell)
+\propto C_\ell^{-1} \qty(\frac{\hat{C}_\ell}{C_\ell})^{\nu / 2 -1}
+\exp(- \frac{\nu}{2} \frac{\hat{C}_\ell}{C_\ell})
+\,.
+\end{align}
+
+This is clearly maximized by \(\hat{C}_\ell = C_\ell\). 
+For large (\(\gtrsim 30 \divisionsymbol 40\)) we can approximate the Gamma distribution as a Gaussian; while for small \(C_\ell\) we can smooth the map and have a reasonable amount of pixels. 
+
+In the cut sky case things get more complicated, since the \(a_{\ell m}\) are correlated. 
+
+The multipoles \(\widetilde{a}_{\ell m}\) on the cut sky are given as 
+%
+\begin{align}
+\widetilde{a}_{\ell m} = \sum _{\ell' m'} a_{\ell ' m'} K_{\ell m \ell' m'} (W)
+\,,
+\end{align}
+%
+where the kernel \(K\) is a complicated function of Wigner \(3j\) symbols. 
+We find that the pseudo-\(C_\ell\) on the cut sky is biased, as 
+%
+\begin{align}
+\expval{\widetilde{C}_{\ell_1}} = \sum _{\ell_2 } M_{\ell_1 \ell_2 } \expval{C_{\ell_2}}
+\,.
+\end{align}
+
+The function \(M\) is known, so we can recover the \(C_\ell\). 
+This will converge to a Gaussian, which however will not be diagonal. 
+
+The log-likelihood will then be a \(\chi^2\) variable. 
+
 \end{document}

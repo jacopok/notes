@@ -1,4 +1,283 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Reheating}
+
+\marginpar{Monday\\ 2020-11-16, \\ compiled \\ \today}
+
+This is what happens in the transition between the inflationary phase and the usual radiation-dominated epoch. 
+
+We will give a simplified treatment, which however captures the main characteristics of the model.
+
+Consider the typical inflationary potential: flat at \(\varphi \sim 0\), sloping down towards a minimum. At \(\varphi \sim \varphi _f\) the field starts ``falling down'' towards the minimum quickly.
+The condition is \(V''(\varphi ) \gtrsim H^2\), meaning that \(\eta _V \gtrsim 1\), which also implies that quickly we will find \(\epsilon \gtrsim 1\). 
+
+When the field falls down it will oscillate, however its oscillations will be damped.
+This is due to two factors: the expansion of the universe and the coupling of the field to other particles. 
+
+The damped oscillations are described by a coupled Klein-Gordon equation: 
+%
+\begin{align}
+\ddot{\varphi} + 3 H \dot{\varphi} + \Gamma _\varphi \dot{\varphi} = - V' (\varphi )
+\,,
+\end{align}
+%
+where \(\Gamma _\varphi \) is the \textbf{decay rate} of the inflaton field into other kinds of particles. 
+This has the same form as the expansion term: it is a damping term as well.
+
+The energy density of the scalar field can be differentiated:
+%
+\begin{align}
+\rho _\varphi &= \frac{1}{2} \dot{\varphi} + V(\varphi )  \label{eq:scalar-field-energy-density}\\
+\dot{\rho}_\varphi &= \dot{\varphi} \ddot{\varphi} + V' (\varphi ) \dot{\varphi}
+\,,
+\end{align}
+%
+into which we can substitute into the KG equation to get
+%
+\begin{align}
+\dot{\rho}_\varphi + (3 H + \Gamma _\varphi ) \dot{\varphi}^2 = 0
+\,.
+\end{align}
+
+The timescale of the oscillations of \(\varphi \) will be much smaller than \(H^{-1}\), the timescale of the expansion of the universe. 
+
+Oscillations at \(\varphi = \sigma \) will have a frequency \(\omega^2 = V''(\sigma )\), which is also the effective mass of the inflaton there, \(m^2_\varphi (\sigma )\). 
+
+Since \(\omega^2 \gg H^2\) (this is true since \(\eta _V \gg 1\)) we can take averages over a period of the relevant quantities: 
+%
+\begin{align}
+\expval{\dot{\varphi}} _{\text{period}} = \rho _\varphi 
+\,,
+\end{align}
+%
+since in general \(\dot{\varphi}^2 / 2 = \expval{V}\): therefore, substituting into \eqref{eq:scalar-field-energy-density} we get \(\expval{\dot{\varphi}^2} = \rho _\varphi \). 
+Then our equation becomes 
+%
+\begin{align}
+\dot{\rho}_\varphi + 3 H \rho _\varphi =  - \Gamma _\varphi \rho _\varphi 
+\,,
+\end{align}
+%
+which, neglecting \(\Gamma _\varphi \), looks like the continuity equation for nonrelativistic matter, which yields \(\rho _\varphi \propto a^{-3}\). 
+This is expected: we have used the fact that \(m^2_\varphi (\sigma ) \gg H^2\), which is saying that the scalar field is very massive. 
+
+In the spirit of keeping things simple, we will use a toy model and assume that all the decay products of \(\varphi \) are relativistic, whose continuity equation is 
+%
+\begin{align}
+\dot{\rho} _R + 4 H \rho _R = + \Gamma _R \rho _\varphi 
+\,,
+\end{align}
+%
+by conservation of energy. This equation comes from \(\nabla_\nu T^{\mu \nu } = 0\). 
+Gravity will then be described by the first Friedmann equation: 
+%
+\begin{align}
+H^2 = \frac{8 \pi G}{3} \qty(\rho _\varphi + \rho _R)
+\,.
+\end{align}
+
+We have a simple solution: 
+%
+\begin{align}
+\rho _\varphi = M^{4} \qty(\frac{a}{a _{\text{osc}}})^{-3} \exp(- \Gamma _\varphi \qty(t - t _{\text{osc}}))
+\,,
+\end{align}
+%
+where \(t _{\text{osc}}\) and \(a _{\text{osc}}\) correspond to the time at which oscillations start, and \(M^{4} = \rho _\varphi ( t _{\text{osc}})\).
+As a first approximation, this is the height of the potential the field is ``falling from'': \(M^{4} \sim V(\varphi = 0)\). 
+
+Let us consider the evolution up to the time \(t \approx \Gamma _\varphi^{-1}\). Then, the decay will not have been very efficient yet, and the universe will still be nonrelativistic matter (\(\varphi \)) dominated, so we will have \(a \propto t^{2/3}\).
+
+The time of the start of oscillation will be 
+%
+\begin{align}
+t _{\text{osc}} \approx H^{-1} = \frac{M_P}{M^2}
+\,,
+\end{align}
+%
+since at the start of oscillations
+%
+\begin{align}
+H^2 \approx \frac{8 \pi G}{3} M^{4} \approx \frac{M^2}{M_P}
+\,.
+\end{align}
+
+So, 
+%
+\begin{align}
+\dot{\rho}_R + 4 H \rho _R &= \Gamma _\varphi M^4  \qty( \frac{a}{a _{\text{osc}}})^{-3} \\
+\dot{\rho}_R + \frac{8}{3} \frac{\rho _R}{t} &=
+\Gamma _\varphi M^{4} \qty( \frac{t}{t _{\text{osc}}})^{-2} 
+\,,
+\end{align}
+%
+since \(a \propto t^{2/3}\), therefore \(H = (2/3) t^{-1}\).
+With a powerlaw ansatz \(\rho _R = B t^{\alpha }\) we get 
+%
+\begin{align}
+\alpha t^{\alpha -1} + \frac{8}{3} \frac{t^{\alpha }}{t} = \frac{\Gamma _\varphi }{B} M^{4} \qty(\frac{t}{ t _{\text{osc}}})^{-2}
+\,,
+\end{align}
+%
+the homogeneous solution is given by \(\alpha = - 8 /3\), while the particular has \(\alpha = -1\). 
+
+The initial condition we set is \(\rho _R (t _{\text{osc}}) = 0\), since before reheating inflation was taking place, diluting the energy density of radiation. 
+This yields 
+%
+\begin{align}
+\rho _R = \Gamma _\varphi M_P^2 \frac{9}{40 \pi } \frac{1}{t} \qty[ 1 - \qty( \frac{t}{t _{\text{osc}}})^{-5/3}]
+\,.
+\end{align}
+
+\todo[inline]{Where does the \(\pi \) come from?}
+
+\todo[inline]{So, we are basically approximating the decaying exponential with a constant function for a small region of time, and then 0?}
+
+Starting from this solution, and using \(a \propto t^{2/3}\), we find 
+%
+\begin{align}
+\rho _R = \frac{\num{.4}}{\pi^{1/2}} \Gamma _\varphi M_P M^2 \qty(\frac{a}{a _{\text{osc}}})^{-3/2} \qty[1 - \qty(\frac{a}{a _{\text{osc}}})^{- 5/2}]
+\,.
+\end{align}
+
+The maximum energy density of radiation will be roughly given by \(\rho _R^{\text{max}} \approx \Gamma _\varphi M_P M^2\). 
+
+The radiation energy density will be given by \(\rho _R = \frac{\pi^2}{30} g_* T^{4}\), so the maximum temperature will be 
+%
+\begin{align}
+T^{\text{max}} = g_*^{-1/4} \rho _R^{\text{max}, 1/4} \sim g_*^{1/4} \qty(\Gamma _\varphi M_P M^2)^{1/4}
+\,.
+\end{align}
+
+In the reheating phase the energy density scales like \(\rho _R \propto a^{- 3/2}\): it is \emph{decreasing}, but much \emph{slower} than the usual \(\rho _R \propto a^{-4}\). 
+
+Let us also discuss the entropy: 
+%
+\begin{align}
+^*S = s a^3 &&
+s = \frac{2 \pi^2}{45} g_{*s} T^3
+\,,
+\end{align}
+%
+so, since \(\rho _R \propto a^{-3/2}\) and \(\rho _R \propto T^{4}\) we have \(s \propto \rho _R^{3/4} \propto a^{- 9/8}\), therefore
+%
+\begin{align}
+S \propto a^3 a^{-9/8} = a^{15/8}
+\,.
+\end{align}
+
+It makes sense that this is increasing. 
+
+What is the \emph{reheating temperature}? We want to match the inflationary solution and the radiation-dominated solution. 
+
+Since we are in the radiation-dominated phase, we have \(a \propto t^{1/2}\): so
+%
+\begin{align}
+H^2 = \frac{8 \pi G}{3} \rho _R = \frac{8 \pi }{3} \frac{1}{M_P^2} \frac{\pi^2}{30} g_* T^{4} = \frac{1}{4t^2}
+\,.
+\end{align}
+
+The reheating temperature can be computed as the temperature at \(T_{RH} = T (t \approx \Gamma _\varphi^{-1})\). 
+Plugging this in, we get 
+%
+\begin{align}
+T_{RH} \approx \num{.55} g_*^{-1/4} \sqrt{\Gamma _\varphi M_P}
+\,.
+\end{align}
+
+What is interesting to note here is that there is no memory of the energy scale \(M\), the vacuum energy scale of inflation. 
+
+Only if \(\Gamma _\varphi \gg H _{\text{osc}}\) we would have had \(T_{RH} \sim M\); in that case the reheating would have been \SI{100}{\percent} efficient, the harmonic oscillator would have been overdamped. 
+
+Note that the maximum temperature reached in the reheating phase is different from the reheating temperature. 
+
+See \cite[fig.\ 8.3]{kolbEarlyUniverse1994}. 
+
+\section{Boltzmann equation applications}
+
+A usual rule of thumb is given in terms of the interaction rate \(\Gamma = n \sigma \abs{v}\): if \(\Gamma \gtrsim H\) thermal equilibrium can be established, while if \(\Gamma < H\) interactions become inefficient. 
+
+If, roughly speaking, \(T \propto a^{-1}\), then \(\dot{T} / T = - H\). 
+
+When \(\Gamma \sim H\), we need the Boltzmann equation in order to find out what exactly is going on. 
+Let us give two examples. 
+
+\(2 \leftrightarrow 2\) scattering between relativistic particles may be mediated by a massless boson, such as the photon, or by a massive boson, such as the \(W^{\pm}\) or \(Z^{0}\) boson. 
+
+In the first (massless boson) case, we have 
+%
+\begin{align}
+\sigma \sim \frac{\alpha^2}{T^2} && \alpha = \frac{g^2}{4 \pi }
+\,,
+\end{align}
+%
+while in the second (massive boson) case we have 
+%
+\begin{align}
+\sigma \sim G_X^2 T^2 && G_X = \frac{\alpha }{m_X^2}
+\,.
+\end{align}
+
+Roughly speaking, 
+%
+\begin{align}
+\sigma \sim \alpha^2\abs{\text{propagator}}^2 \frac{q^{4}}{E^2}
+\,,
+\end{align}
+%
+where \(q\) is the spatial momentum of the interacting particles, while \(E\) is the center of mass energy, so for relativistic particles \(q^{4}/ E^2 \sim E^2 \sim T^2\).
+
+In the massless boson case, the propagator looks like 
+%
+\begin{align}
+\text{propagator} \sim \frac{-i g_{\mu \nu }}{p^2}
+\,,
+\end{align}
+%
+where \(p^2 =(q_1 + q_2 )^2\). 
+Then, the cross-section looks like \(\sigma \sim \alpha^2 / T^2\) typically. 
+
+In the massive boson case, we have 
+%
+\begin{align}
+\text{propagator} \sim \frac{- i g_{\mu \nu } + p_{\mu } p_{\nu } / m_X^2}{p^2-  m_X^2}
+\,,
+\end{align}
+%
+so \(\sigma \sim \alpha^2 T^2 / m_X^{4}\). 
+
+In the massless boson case, then, 
+%
+\begin{align}
+\Gamma = n \sigma \abs{v} \approx n \sigma 
+\,,
+\end{align}
+%
+so if \(n \sim T^3\) we get \(\Gamma = \alpha^2 T\). We want to know when this will be larger than \(H\), using the fact that 
+%
+\begin{align}
+H \sim \frac{T^2}{M_P} && H^2 = \frac{8 \pi G}{3} \underbrace{\rho _R}_{\propto T^{4}}
+\,,
+\end{align}
+%
+so \(\Gamma \gtrsim H\) when \(T < \alpha^2 M_P \sim \SI{e15}{GeV}\). 
+
+For the massive gauge boson, at temperatures \(T \ll m_X\) we get \(G \gtrsim H\) when 
+%
+\begin{align}
+\Gamma = G_X^2 T^{5} &\gtrsim \frac{T^2}{M_P}  \\
+T &\gtrsim G_X^{-2/3} M_P^{-1/3}
+\,.
+\end{align}
+
+With normalization reflecting the case of weak interactions, and using \(G_X \sim \alpha / m_X^2\), we find 
+%
+\begin{align}
+T \gtrsim \qty(\frac{m_X}{\SI{100}{GeV}})^{4/3} \SI{1}{MeV}
+\,,
+\end{align}
+%
+which can be used to figure out when neutrinos decouple. 
+
 \end{document}

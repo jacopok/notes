@@ -18,7 +18,10 @@ class MultipleChain(object):
         self.sampler_class = sampler_class
         self.number_steps = number_steps
         self.number_chains = len(initial_positions)
-        
+        self.calculate_chains()
+
+    def calculate_chains(self):
+
         global _func # need this for parallelization
         
         def _func(pos):
@@ -81,34 +84,34 @@ if __name__ == "__main__":
 
     from scipy.stats import multivariate_normal
 
-    # def my_MVN(x):
-    #     a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)
-    #     b = multivariate_normal(mean=mean_2, cov=covariance).pdf(x)
-    #     return (a + 2 * b)
-
-    # def gaussian_proposal(theta=None):
-    #     return (np.random.normal(scale=1, size=2))
-            
-    # initial_positions = np.stack((np.arange(-10, 10), np.arange(-10, 10))).T
-    
-    # trim_amount = 1000
-    # chain_length = 10000
-    
-    # mc = MultipleChain(MetropolisHastings, my_MVN, initial_positions, chain_length + trim_amount, gaussian_proposal)
-    # mc.trim_chains(trim_amount)
-    
-    dim = 2
-    
-    c = np.random.random(size=(dim, dim))
-    cov = c.T @ c
-    
     def my_MVN(x):
-        return (multivariate_normal(mean= np.zeros(dim),cov=cov).pdf(x))
+        a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)
+        b = multivariate_normal(mean=mean_2, cov=covariance).pdf(x)
+        return (a + 2 * b)
+
     def gaussian_proposal(theta=None):
-        return (np.random.normal(scale=1, size=dim))
+        return (np.random.normal(scale=1, size=2))
+            
+    initial_positions = np.stack((np.arange(-10, 10), np.arange(-10, 10))).T
     
-    initial_positions = np.random.normal(size=(7, dim))
+    trim_amount = 1000
+    chain_length = 10000
     
     mc = MultipleChain(MetropolisHastings, my_MVN, initial_positions, chain_length + trim_amount, gaussian_proposal)
     mc.trim_chains(trim_amount)
+    
+    # dim = 5
+    
+    # c = np.random.random(size=(dim, dim))
+    # cov = c.T @ c
+    
+    # def new_MVN(x):
+    #     return (multivariate_normal(mean= np.zeros(dim),cov=cov).pdf(x))
+    # def big_gaussian_proposal(theta=None):
+    #     return (np.random.normal(scale=1, size=dim))
+    
+    # big_initial_positions = np.random.normal(size=(7, dim))
+    
+    # mc = MultipleChain(MetropolisHastings, new_MVN, big_initial_positions, chain_length + trim_amount, big_gaussian_proposal)
+    # mc.trim_chains(trim_amount)
     

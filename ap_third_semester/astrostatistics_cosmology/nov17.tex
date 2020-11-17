@@ -1,4 +1,53 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-11-17, \\ compiled \\ \today}
+
+The papers \textcite[]{verdeFirstYearWilkinson2003} and \textcite[]{spergelFirstYearWilkinson2003} are discussed. 
+
+\section{Bayesian Hierarchical Modeling}
+
+An example from the lectures by A.\ Heavens, in the ICIC data analysis workshop. 
+
+Suppose we want to solve a linear regression problem for a line passing through the origin, and we have one data pair \((\hat{x}, \hat{y})\), with error on both. 
+
+We want the angular coefficient \(m\):
+%
+\begin{align}
+\mathcal{P} (m | \hat{x}, \hat{y}) \propto \mathcal{L} (\hat{x}, \hat{y} | m) \mathbb{P}(m)
+\,.
+\end{align}
+
+We know that the true \(x\) and \(y\) are related by \(y = mx\).
+We can introduce these two as extra variables in the problem: applying \(\mathbb{P}(a, b) = \mathbb{P}(a | b) \mathbb{P}(b)\) repeatedly we find
+%
+\begin{align}
+\mathbb{P}(\hat{x}, \hat{y}, x, y | m) \propto \mathbb{P}(\hat{x}, \hat{y} | x, y, m) \mathbb{P}(x, y | m) \propto \mathbb{P}(\hat{x}, \hat{y} | x, y) \underbrace{\mathbb{P}(y | x, m)}_{ = \delta (y - mx)} \mathbb{P}(x | m)
+\,.
+\end{align}
+
+Then, we can get the final posterior by 
+%
+\begin{align}
+\mathcal{P} (m | \hat{x}, \hat{y}) &\propto \int \dd{x} \dd{y} \mathbb{P}(\hat{x}, \hat{y}, x, y | m) \mathbb{P}(m)  \\
+&\propto \int \dd{x} \dd{y} \underbrace{\mathbb{P}(\hat{x}, \hat{y} | x, y)}_{\text{error}} \underbrace{\mathbb{P}(y | x, m)}_{\text{theory}} \underbrace{\mathbb{P}(x | m) \mathbb{P}(m)}_{\text{prior}} \\
+&\propto \int \dd{x} \mathbb{P}(\hat{x}, \hat{y} | x, mx)  \mathbb{P}(x | m) \mathbb{P}(m)
+\,,
+\end{align}
+%
+and assuming \(\sigma = 1\) independent Gaussians for the error distribution, we get 
+%
+\begin{align}
+\mathbb{P}(m | \hat{x}, \hat{y}) \propto 
+\int \dd{x} \exp(- \frac{1}{2} (\hat{y} - mx)^2) \exp( - \frac{1}{2} (\hat{x} - x)^2)  \\
+&\propto \frac{1}{\sqrt{1 + m^2}} \exp( - \frac{1}{2 (1+m^2)} (- m \hat{x} + \hat{y})^2 )
+\,.
+\end{align}
+
+Alternatively, we can marginalize with Monte Carlo integration.
+
+This method works well for Gibbs sampling: it is easy to find the conditional distributions.
+
+This can be applied to SN Ia data. 
+
 \end{document}

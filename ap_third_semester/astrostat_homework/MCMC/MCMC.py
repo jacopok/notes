@@ -13,6 +13,8 @@ class Sampler(object):
     To be subclassed exclusively.
     """
 
+    __slots__ = 'chain'
+
     def __init__(self, posterior, initial_position, number_steps=None, **kwargs):
         self.posterior = posterior
         self.initial_position = initial_position

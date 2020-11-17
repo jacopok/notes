@@ -1,4 +1,134 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Stationary SSD}
+
+\marginpar{Tuesday\\ 2020-11-17, \\ compiled \\ \today}
+
+We know that \begin{enumerate}
+    \item \(\rho = \Sigma / H\);
+    \item \(H = c_s (R^3 / GM)^{1/2} = R c_s / v_\phi \);
+    \item \(c_s^2 = P / \rho \);
+    \item \(P = P _{\text{gas}} + P _{\text{rad}} = k_B \rho T / (\mu m_p) + a T^{4} / 3\).
+\end{enumerate}
+
+From the center of the disk radiation can travel outward, however it will be optically thick: \(\tau = \int_{0}^{r} \alpha \dd{s} >1\).
+We can approximate it as \(\tau \approx \kappa _R \rho H = \kappa _R \Sigma > 1\).
+
+Radiative transport in a slab can be treated analytically in the diffusion approximation to yield the radiative flux 
+%
+\begin{align}
+F(z) = \frac{16 \sigma T^3}{3 \kappa _R \rho } \pdv{T}{z} = - \frac{4}{3} \frac{\sigma}{\kappa _R \rho } \pdv{(T^{4})}{z}
+\,.
+\end{align}
+
+We can define the surface as the height at which \(\tau =1\).
+
+The flux crossing the \(z = 0\) surface is 
+%
+\begin{align}
+F(0) \approx \frac{4}{3} \frac{\sigma }{\kappa _R \rho _c} \frac{T_c^{4}}{H} \approx \frac{4}{3} \frac{\sigma T_c^{4}}{\tau _R}
+\,.
+\end{align}
+
+\todo[inline]{not zero?}
+
+The flux at the surface, on the other hand, is
+%
+\begin{align}
+F(s) \approx \frac{4}{3} \frac{\sigma}{\tau _s} T_s^{4} \approx \frac{4}{3} \sigma T_s^{4}
+\,.
+\end{align}
+
+So, their ratio is 
+%
+\begin{align}
+\frac{F(s)}{F(0)} = \qty(\frac{T_s}{T_c})^{4} \tau _c 
+\,.
+\end{align}
+
+We expect \(T_s < T_c\), as is natural if flux is going from inside to outside. Then, \((T_s / T_c)^{4} \ll 1\), so unless \(\tau _c\) is extremely large (and, as we will see, it is not) we get \(F(s) < F(0)\). 
+The difference \(F(0) - F(s) \approx F(0)\) corresponds to the produced energy \(D(R)\), so 
+%
+\begin{align}
+\frac{4}{3} \sigma \frac{T_c^{4}}{\tau _c} \approx D(R) = \frac{3 GM \dot{M}}{8 \pi R^3} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]
+\,.
+\end{align}
+
+This will be another assumption for us. 
+Also, we will use the relations 
+%
+\begin{align}
+\tau &= \kappa _R \Sigma  \\
+v \Sigma &= \frac{\dot{M}}{3 \pi } \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]  \\
+v_R &= - \frac{3 v}{2R} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]^{-1}  \\
+\kappa _R &= \kappa _R (\rho , T, \dots)  \\
+v &= v (\rho , T, \dots) = \alpha H c_s
+\,.
+\end{align}
+
+Then, we can write 
+%
+\begin{align}
+\sigma T_s^{4} &= D(R) = \frac{3 GM \dot{M}}{8 \pi R^3} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]  \\
+T_s &= \qty(\frac{3 GM \dot{M}}{8 \pi \sigma })^{1/4} R^{-3/4} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]^{1/4}  \\
+&\approx \qty(\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 })^{1/4} \qty( \frac{R _{\text{in}}}{R})^{3/4}
+\marginnote{If  \(R \gg R _{\text{in}}\).}
+\,.
+\end{align}
+
+Then, we can see that the temperature decreases as a function of \(R\).
+
+Let us define a typical surface temperature \(T _s^{\text{typical}}\) as 
+%
+\begin{align}
+T _s^{\text{typical}}
+= 
+\qty(\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 })^{1/4}
+\approx \SI{e7}{K} \qty(\frac{\dot{M}}{\SI{e17}{g /s}})^{1/4}
+\qty(\frac{M}{M_{\odot}})^{1/4} \qty(\frac{R _{\text{in}}}{\SI{e6}{cm}})^{-3/4}
+\,,
+\end{align}
+%
+which yields soft \(X\)-rays, at around \SI{1}{keV}. 
+Using the complete formula, we find that the temperature is in the form 
+%
+\begin{align}
+T^{4} \propto \frac{1}{x^{3/4}} \qty(1 - \frac{1}{x^{1/2}})
+\,,
+\end{align}
+%
+where \(x = R / R _{\text{in}}\). 
+We can maximize this, and we find that the maximum temperature of the disk is found to be \(T _{\text{max}} \approx \num{.5} T^{\text{typical}}_s\). 
+
+There are several radiative processes taking place in an accretion disk: 
+\begin{enumerate}
+    \item electron scattering;
+    \item thermal free-free emission.
+\end{enumerate}
+
+The latter is dominant, and the characteristic Rosseland mean opacity is 
+%
+\begin{align}
+\kappa _R^{\text{bremss}} \approx \num{6.6e22} \rho T^{-7/2} \SI{}{cm^2 g^{-1}}
+\,.
+\end{align}
+
+We find an algebraic system with all the equations, and finally we get 
+%
+\begin{align}
+H = \SI{1.7e8}{cm} \times \alpha^{-1/10} M^{3/20} M^{-3/8} R_{10}^{9/8} f^{3/5}
+\,,
+\end{align}
+%
+from which we can confirm that \(R \gg H\). 
+We can also calculate the central optical depth: 
+%
+\begin{align}
+\tau _c = 33 \alpha^{-4/5} M_{16}^{1/5} f^{4/5}
+\,.
+\end{align}
+
+
+
 \end{document}

@@ -101,10 +101,12 @@ The angular momentum in the ring is given by
 so 
 %
 \begin{align}
+\begin{split}
 \pdv{\Delta L}{t}
 &= \pdv{G}{R} \Delta R 
-+ v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t) 
-- v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)  \\
++ v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t) \\
+&\phantom{=}\ - v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)
+\end{split}  \\
 &= \pdv{G}{R} \Delta R - 2 \pi \Delta R \pdv{}{T} \qty(v_R R R^2 \Omega \Sigma )
 \,.
 \end{align}
@@ -121,7 +123,9 @@ so, assuming that \(\Omega = \Omega (R)\) is the Keplerian angular velocity we g
 %
 \begin{align}
 R \pdv{}{t} \qty(R^2\Omega \Sigma ) &= \pdv{G}{R} \frac{1}{2 \pi } - \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )  \\
-&= \pdv{G}{R} \frac{1}{2 \pi } - \Omega R^2 \pdv{}{R} \qty(v_R R \Sigma ) - v_R R \Sigma \pdv{}{R} \qty(\Omega R^2)  \\
+&= \pdv{G}{R} \frac{1}{2 \pi } - \Omega R^2 \pdv{}{R} \qty(v_R R \Sigma ) - v_R R \Sigma \pdv{}{R} \qty(\Omega R^2) 
+\end{align}
+\begin{align}
 R^3 \Omega \pdv{\Sigma }{t} - R^2 \Omega \pdv{}{R} \qty(v_R R \Sigma ) 
 = \underbrace{R^2 \Omega \qty(R \pdv{\Sigma }{t} + \pdv{}{R} \qty(v_R R \Sigma ))}_{= 0 \text{ by mass conservation}}
 &= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} (\Omega R^2)

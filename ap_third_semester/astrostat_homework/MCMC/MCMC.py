@@ -40,7 +40,7 @@ class Sampler(object):
         t2 = time()
         print(f'Calculated {number_steps} steps in {t2-t1:.2f} seconds.')
         print(f'This means {number_steps / (t2-t1):.0f} steps per second.')
-    
+
     def trim_chain(self, trim_number):
         self.chain = self.chain[trim_number:, ...]
         self.trim += trim_number
@@ -72,11 +72,10 @@ class Sampler(object):
 
     @property
     def covariance(self):
-        deviation = self.chain - self.mean[np.newaxis,...]
+        deviation = self.chain - self.mean[np.newaxis, ...]
         cov = np.sum(deviation[:, :, np.newaxis] *
                      deviation[:, np.newaxis, :], axis=0)
         return (cov / (self.number_steps - 1))
-
 
     def autocorrelation_plot(self, *args):
         taus, autocorrelations = self.autocorrelation_array(*args)
@@ -94,10 +93,12 @@ class Sampler(object):
     def trace_plot(self):
         posterior_arr = self.posterior(self.chain)
         log_posterior = -np.log(posterior_arr)
-        trace = np.cumsum(log_posterior) / np.arange(1, 1 + self.number_steps - self.trim)
+        trace = np.cumsum(log_posterior) / np.arange(1,
+                                                     1 + self.number_steps - self.trim)
         plt.plot(trace)
         plt.xlabel('Step number')
         plt.ylabel('Trace')
+
 
 class MetropolisHastings(Sampler):
     """
@@ -112,10 +113,10 @@ class MetropolisHastings(Sampler):
             self.calculate_acceptance_rate = False
         if self.calculate_acceptance_rate:
             self.rejections = []
-        super(MetropolisHastings, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def next_chain_step(self, theta):
-        
+
         if not self.calculate_acceptance_rate:
             while True:
                 new_theta = theta + self.proposal(theta)
@@ -132,14 +133,15 @@ class MetropolisHastings(Sampler):
                 if(np.random.uniform(low=0., high=1.) < acceptance_prob):
                     self.rejections.append(n)
                     return (new_theta)
-                n+=1
-    
+                n += 1
+
     @property
     def rejection_rate(self):
         mean_rejections = np.average(self.rejections)
         twice_mr = 2 * mean_rejections
-        
+
         return(1 + 1/twice_mr - np.sqrt(1 + 2 * twice_mr) / twice_mr)
+
 
 class Gibbs(Sampler):
     """
@@ -148,12 +150,12 @@ class Gibbs(Sampler):
 
     def __init__(self, conditional, *args, **kwargs):
         self.conditional = conditional
-        super(Gibbs, self).__init__(*args, **kwargs)
-    
+        super().__init__(*args, **kwargs)
+
     def next_chain_step(self, theta):
-        
+
         new_theta = np.zeros_like(theta)
-        
+
         for i, t in enumerate(theta):
             new_theta[i] = conditional(i, theta)
         return(new_theta)
@@ -172,7 +174,6 @@ if __name__ == "__main__":
 
     def gaussian_proposal(theta=None):
         return (np.random.normal(scale=0.001, size=2))
-
 
     def my_MVN(x):
         a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)

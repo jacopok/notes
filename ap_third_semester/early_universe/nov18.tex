@@ -1,4 +1,231 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The Boltzmann equation}
+
+\marginpar{Wednesday\\ 2020-11-18, \\ compiled \\ \today}
+
+The phase space distribution function is denoted as \(f(x^{\mu }, p^{\mu })\); the Boltzmann equation reads 
+%
+\begin{align}
+\hat{L}[f] = \hat{C}[f] 
+\,.
+\end{align}
+
+If \(\hat{C} = 0\), then Liouville's theorem tells us that \(\dv*{f}{t} = 0\). 
+The nonrelativistic expression for \(\hat{L}[p]\) is 
+%
+\begin{align}
+\hat{L}[f] = \qty[ \pdv{\vec{x}}{t} \cdot \nabla_{\vec{x}} + \pdv{\vec{v}}{t} \cdot \nabla_{\vec{v}} + \pdv{}{t}]f
+\,,
+\end{align}
+%
+while the general relativistic expression is 
+%
+\begin{align}
+\hat{L}[f] = \qty[p^{\mu } \pdv{}{x^{\mu }} - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }}]f
+\,,
+\end{align}
+%
+since by the geodesic equation 
+%
+\begin{align}
+\dv[2]{x^{\mu }}{\lambda} 
+= - \Gamma^{\mu}_{\alpha \beta } \dv{x^{\alpha }}{\lambda } \dv{x^{\beta }}{\lambda }  
+= - \Gamma^{\mu }_{\alpha \beta } p^{\alpha } p^{\beta }
+\,.
+\end{align}
+
+In the homogeneous and isotropic case we will have \(f = f (\abs{p}, t)\), since the dependences on \(\abs{p}\) and \(E\) are related. 
+The only nonzero Christoffel symbols are 
+%
+\begin{align}
+\Gamma^{0}_{ij} = \delta_{ij} a \dot{a} && \Gamma^{i}_{0j} = \Gamma^{j}_{i0} \delta^{i}_{j} \frac{\dot{a}}{a}
+\,.
+\end{align}
+
+Therefore, the Liouville operator in our case can be written in terms of \(p^2 = g_{ij} p^{i}p^{j} = a^2 \delta_{ij} p^{i} p^{j}\), the square of the \emph{three}-momentum, which scales like \(1/a\):
+%
+\begin{align}
+\hat{L}[f(E, t)] &= E \pdv{f}{t} - \frac{\dot{a}}{a} p^2 \pdv{f}{E}   
+\,.
+\end{align}
+
+The number density reads 
+%
+\begin{align}
+n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} f
+\,,
+\end{align}
+%
+so the Liouville operator can be written as 
+%
+\begin{align}
+\underbrace{\pdv{}{t} \qty( \frac{g}{(2 \pi )^3} \int \dd[3]{p} f)}_{\dot{n}(t)} - \frac{\dot{a}}{a} \frac{g}{(2 \pi )^3}\int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} &= 
+\frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{C[f]}{E}
+\,.
+\end{align}
+%
+
+So, we find 
+%
+\begin{align}
+\frac{g}{(2 \pi )^3} \int \dd[3]{p} p^2 \pdv{f}{E} 
+= \frac{4 \pi g}{(2 \pi )^3} \int \dd{p} \frac{p^{4}}{E} \pdv{f}{E}
+\,,
+\end{align}
+%
+and since \(E^2 = p^2 + m^2 \implies E \dd{E} =p \dd{p}\) we get 
+%
+\begin{align}
+\frac{4 \pi g}{(2 \pi )^3} \int \dd{E} p^3 \pdv{f}{p} = -3 n(t)
+\,.
+\end{align}
+
+Then our equation reads 
+%
+\begin{align}
+\dot{n}(t) + 3 H n(t) = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{\hat{C}[f]}{E}
+\,.
+\end{align}
+
+This, as expected, gives \(n \propto a^{-3}\) if there are no collisions.
+
+Let us apply this to a process \(1 + 2 \leftrightarrow 3 + 4\), of which we are interested in the density \(n_1 (t)\): the collision terms reads 
+%
+\begin{align}
+\begin{split}
+\frac{g_1 }{(2 \pi )^3} \int \frac{\hat{C}[f_1 ]}{E_1 } \dd[3]{p_1 } &=
+\int \dd{\Pi_1 }\dd{\Pi_2 }\dd{\Pi_3 }\dd{\Pi_4 }
+(2 \pi )^{4} (p_1 + p_2 - p_3 - p_4 ) \times \\
+&\phantom{=}\ 
+\qty[
+    \abs{\mathcal{M}}^2_{3 + 4 \to 1 + 2} f_3 f_4 (1 \pm f_1 ) (1 \pm f_2 ) 
+    -
+    \abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} f_1 f_2 (1 \pm f_3 ) (1 \pm f_4 ) 
+    ]
+\end{split}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\dd{\Pi _i} = \frac{g_i \dd[3]{p_i}}{(2 \pi )^3 2 E_i} 
+\,,
+\end{align}
+%
+while \(\mathcal{M}\) is the Feynman amplitude.
+The terms \(1 \pm f_i\) are given by the Fermi enhancement (\(-\)) or Bose blocking (\(+\)) coming from the statistics of the chosen particle.
+
+This equation must be written for all the particle species, in general yielding a complicated integrodifferential equation system. 
+Because of time reversal symmetry we will have \(\abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} = \abs{\mathcal{M}}^2_{3 + 4 \to 1 +2} \equiv \abs{\mathcal{M}}^2\). 
+
+We can further postulate that all the particle species are in kinetic equilibrium: then, we say that they are distributed according to the Bose-Einstein or Fermi-Dirac distribution, 
+%
+\begin{align}
+f^{i}_{BE - FD} = \qty[\exp(\frac{E - \mu}{T} \mp 1)]^{-1}
+\,.
+\end{align}
+
+This works well as long as the scatterings are fast enough. 
+This parametrization is quite useful, since it makes our integrodifferential equations into simple(r) ODEs. 
+
+Kinetic equilibrium is not just local thermodynamic equilibrium: it also requires local \emph{chemical} equilibrium, which implies the following for the chemical potentials:
+%
+\begin{align}
+\mu _1 + \mu _2 = \mu _3 + \mu _4
+\,.
+\end{align}
+
+Since we can find such linear relations for any possible reaction, the true number of independent chemical potentials will dramatically shrink. 
+We expect these to be related to conserved quantities. 
+Since these are mostly small, we can approximate \(\mu _i = 0 \forall i\). 
+For the CMB photons, this is confirmed with \(\mu _\gamma / T \lesssim \num{e-5}\).
+
+Further, we make the semiclassical approximation \(1 \pm f_i \approx 1\). 
+With all these considerations, we find 
+%
+\begin{align}
+\dot{n}_1 (t) + 3 H n_1 (t)
+&= \int \dd{\Pi_1 }\dd{\Pi_2 }\dd{\Pi_3 }\dd{\Pi_4 } (2 \pi )^{4}\delta^{(4)} (p_1 +p_2 - p_3 - p_4 )
+\abs{\mathcal{M}}^2 \qty(f_3 f_4 - f_1 f_2 )\\
+\begin{split}
+&= \int \dd{\Pi_1 }\dd{\Pi_2 }\dd{\Pi_3 }\dd{\Pi_4 }
+(2 \pi )^{4}\delta^{(4)} (p_1 +p_2 - p_3 - p_4 ) \\
+&\phantom{=}\ 
+\abs{\mathcal{M}}^2 \exp(- \frac{E_1 + E_1 }{T})
+\qty(\exp(\frac{\mu_3 + m_4 }{T}) - \exp( \frac{m_1 + m_2 }{T}))
+\end{split}
+\,.
+\end{align}
+
+This yields 
+%
+\begin{align}
+n_i (t) &= \frac{g_i}{(2 \pi )^3} \int \dd[3]{p_i} f_i  \\
+&= g_i \exp( \frac{\mu_i}{T}) \int \frac{ \dd[3]{p_i}}{(2 \pi )^3} 
+\exp(- \frac{E_i}{T})
+\,.
+\end{align}
+
+At equilibrium, this yields 
+%
+\begin{align}
+n^{\text{eq}}_i = 
+g_i \int \frac{ \dd[3]{p_i}}{(2 \pi )^3} 
+\exp(- \frac{E_i}{T}) \approx \begin{cases}
+    g_i \qty(\frac{m_i T}{2 \pi })^{2} \exp(- \frac{m_i}{T}) & \text{nonrelativistic}  \\
+    \frac{g_i}{\pi^2} T^3 & \text{relativistic}
+\end{cases}
+\,.
+\end{align}
+
+Also, 
+%
+\begin{align}
+f_3 f_4 - f_1 f_2 = \exp(- \frac{E_1 + E_2 }{T}) 
+\qty[ e^{ \frac{\mu_3}{T}} e^{ \frac{\mu_4}{T}} - e^{ \frac{\mu_1}{T}} e^{ \frac{\mu_2}{T}} ] 
+= \exp(- \frac{E_1 + E_2 }{T}) \qty[
+    \frac{n_3 n_4 }{n_3^{\text{eq}} n_4^{\text{eq}}} -
+    \frac{n_1 n_2 }{n_1^{\text{eq}} n_2^{\text{eq}}}
+]
+\,.
+\end{align}
+
+The thermally averaged cross-section is 
+%
+\begin{align}
+\expval{\sigma \abs{v}} = 
+\frac{1}{n_1^{\text{eq}} n_2^{\text{eq}}}
+\int \dd{\Pi_1 }\dd{\Pi_2}\dd{\Pi_3 }\dd{\Pi_4 }
+(2 \pi )^{4} \delta^{(4)} (p_1 + p_2 - p_3 - p_4 )
+\abs{\mathcal{M}}^2 \exp(- \frac{E_1 + E_2 }{T})
+\,.
+\end{align}
+
+Then, 
+%
+\begin{align}
+\dot{n}_1(t) + 3 H n_1 (t) = n_1^{\text{eq}} n_2^{\text{eq}}
+\expval{\sigma \abs{v}}
+\qty[
+    \frac{n_3 n_4 }{n_3^{\text{eq}} n_4^{\text{eq}}} -
+    \frac{n_1 n_2 }{n_1^{\text{eq}} n_2^{\text{eq}}}
+]
+\,.
+\end{align}
+
+For a standard DM particle, we get 
+%
+\begin{align}
+\dot{n}_1 (t) + 3 H n_1 (t) = \expval{\sigma \abs{v}} \qty[ (n_1^{\text{eq}})^2 - n_1^2]
+\,.
+\end{align}
+
+The left-hand side is roughly \(n_1 / \tau \sim n_1 H\); while the right-hand side is roughly \(n_1^2 \expval{\sigma v}\): then, we are comparing \(H\) and \(\Gamma = n_1 \expval{\sigma v}\). 
+If \(\Gamma \gg H\), then \(n_1 \) must tend towards its equilibrium value in the limit. 
+
+
+
 \end{document}

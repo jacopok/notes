@@ -30,7 +30,7 @@ Therefore, maximizing the likelihood\footnote{Which is equivalent to maximizing 
 \,.
 \end{align}
 
-We want to maximize this as the amplitudes vary: therefore, we set the derivative with respect to \(A_k\) to zero,
+We want to minimize this as the amplitudes vary: therefore, we set the derivative with respect to \(A_k\) to zero,
 %
 \begin{align}
 \pdv{\chi^2}{A_k} = -2 t_{k \alpha } C^{-1}_{\alpha \beta } \qty(d_\beta - A_j t_{j \beta }) = 0
@@ -82,14 +82,14 @@ P(\Theta | x)
 
 The amplitude being negative makes little sense in a typical physical context, however the Gaussian integral can be done analytically only over the whole of \(\mathbb{R}\).
 
-In order to get analytical results, here we will marginalize by integrating over negative amplitudes as well (\(A \in \mathbb{R}\)); the last figure \ref{fig:marginalization} will show how only integrating over positive amplitudes only would have looked (by numerical calculation) in a simple case.
+In order to get analytical results, here we will marginalize by integrating over negative amplitudes as well (\(A \in \mathbb{R}\)); the last figure (\ref{fig:marginalization}) will show how only integrating over positive amplitudes only would have looked (by numerical calculation) in a simple case.
 In general if one wishes to perform the integral over \(A \in (0, + \infty )\) the tabulated values of the error function may be used.
 
 Applying the formula for the single-variable Gaussian integral \eqref{eq:single-variable-gaussian-integral} (the bilinear forms are all evaluated to yield scalars, we are only integrating over the scalar \(A\)!) we then get 
 %
 \begin{align}
-P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{(\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{\pi }{\overline{x}^{\top} V \overline{x}}}  \\
-&= B_2 \sqrt{ \frac{\pi}{\overline{x}^{\top}V \overline{x}}}
+P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{(\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}  \\
+&= B_2 \sqrt{\frac{2 \pi}{\overline{x}^{\top}V \overline{x}}}
 \exp(\frac{\overline{x}^{\top} \Omega \overline{x}}{\overline{x}^{\top}V \overline{x}})
 \,,
 \end{align}
@@ -151,7 +151,7 @@ while the bilinear form \(\Omega \) is
 Then, when we  evaluate the marginalized posterior we will find something in the form
 %
 \begin{align}
-P(\Theta | x) &= B_1 \sqrt{\pi } \qty( \frac{\cos^2\Theta }{\sigma_x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1/2}
+P(\Theta | x) &= B_1 \sqrt{2 \pi } \qty( \frac{\cos^2\Theta }{\sigma_x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1/2}
 \exp( A_x^2 F(\Theta , \varphi ))
 \,,
 \end{align}

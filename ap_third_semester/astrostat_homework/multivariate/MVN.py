@@ -9,6 +9,9 @@ class MultivariateNormal():
     A Multivariate Normal Distribution.
     """
     
+    number_points = 200
+    number_sigmas = 3
+    
     def __init__(self, mean, cov):
         
         self.mean = np.array(mean)
@@ -20,26 +23,26 @@ class MultivariateNormal():
         
         
     def pdf(self, x):
-        
-        argument = np.sum((x - self.mean) @ self.precision_matrix * (x - self.mean), axis=-1)
+        shifted_arg = x - self.mean
+        argument = np.sum((shifted_arg) @ self.precision_matrix * (shifted_arg), axis=-1)
         
         return self.normalization * np.exp(- 1 / 2 * argument)
     
     def marginalize(self, index):
-        marginal_mean = self.mean[..., index, np.newaxis]
-        marginal_cov = self.cov[..., index, index, np.newaxis, np.newaxis]
+        marginal_mean = self.mean[index, np.newaxis]
+        marginal_cov = self.cov[index, index, np.newaxis, np.newaxis]
         return self.__class__(marginal_mean, marginal_cov)
     
     def condition(self, index, condition_other_params):
         precision_matrix = np.linalg.inv(self.cov)
-        conditioned_cov = np.linalg.inv(precision_matrix[..., index, index, np.newaxis, np.newaxis])
+        conditioned_cov = np.linalg.inv(precision_matrix[index, index, np.newaxis, np.newaxis])
 
-        cross_precision = np.delete(precision_matrix, index, axis=-1)[..., index,np.newaxis, :]
+        cross_precision = np.delete(precision_matrix, index, axis=-1)[index,np.newaxis, :]
 
         mean_other_params = np.delete(self.mean, index, -1)
         mean_correction = conditioned_cov @ cross_precision @ (condition_other_params - mean_other_params)
         
-        conditioned_mean = self.mean[..., index, np.newaxis] - mean_correction
+        conditioned_mean = self.mean[index, np.newaxis] - mean_correction
         
         return self.__class__(conditioned_mean, conditioned_cov)
     
@@ -50,12 +53,12 @@ class MultivariateNormal():
         return (mean - delta, mean + delta)
 
     @property
-    def coordinate_arrays(self, number_points):
-        # to write!
-        # pass
-        x_array = np.linspace(1, 7, number_points)
-        y_array = np.linspace(0, 4, number_points)
-        return(x_array, y_array)
+    def coordinate_arrays(self, number_points=number_points, number_sigmas=number_sigmas):
+
+        sigmas = np.sqrt(np.diagonal(self.cov))
+        starts = self.mean - number_sigmas * sigmas
+        ends = self.mean + number_sigmas * sigmas
+        return(np.linspace(starts, ends, num=number_points).T)
 
     def plot_2d(self, chosen_x, chosen_y):
         
@@ -72,7 +75,7 @@ class MultivariateNormal():
         x_array, y_array = self.coordinate_arrays
         x, y = np.meshgrid(x_array, y_array)
         positions = np.stack((x, y), axis=-1)
-        z = my_MVN(positions)
+        z = self.pdf(positions)
 
         fig = plt.figure(figsize=(10, 10))
         gs = gridspec.GridSpec(
@@ -80,13 +83,13 @@ class MultivariateNormal():
 
 
         ax1 = plt.subplot(gs[0])
-        ax1.plot(x_array, marginal_x(x_array[:, np.newaxis]), label='Marginal')
-        ax1.plot(x_array, conditioned_x(x_array[:, np.newaxis]), label='Conditioned')
+        ax1.plot(x_array, marginal_x.pdf(x_array[:, np.newaxis]), label='Marginal')
+        ax1.plot(x_array, conditioned_x.pdf(x_array[:, np.newaxis]), label='Conditioned')
         ax1.legend()
 
         ax4 = plt.subplot(gs[3])
-        ax4.plot(marginal_y(y_array[:, np.newaxis]), y_array, label='Marginal')
-        ax4.plot(conditioned_y(y_array[:, np.newaxis]), y_array, label='Conditioned')
+        ax4.plot(marginal_y.pdf(y_array[:, np.newaxis]), y_array, label='Marginal')
+        ax4.plot(conditioned_y.pdf(y_array[:, np.newaxis]), y_array, label='Conditioned')
         ax4.legend()       
 
         ax3 = plt.subplot(gs[2], sharex=ax1, sharey=ax4)

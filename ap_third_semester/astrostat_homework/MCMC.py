@@ -116,7 +116,7 @@ class Sampler(object):
         return(steps, trace)
 
     def trace_plot(self, **kwargs):
-        steps, trace = self.trace(**kwargs)
+        steps, trace = self.steps_trace(**kwargs)
         # log_posterior = -np.log(posterior_arr)
         # trace = np.cumsum(log_posterior) / np.arange(1,
                                                     #  1 + self.number_steps - self.trim)

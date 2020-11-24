@@ -117,7 +117,7 @@ class MultipleChains(object):
             number_sigmas = norm.isf(1 / sampler.effective_steps)
             thr = mean_trace + number_sigmas * std_trace
             over_thr = N - next((i for i, tr in enumerate(reversed(trace)) if tr > thr), N)
-            
+            # TO FINISH!
 
     def traces_plot(self, **kwargs):
         for s in self.samplers:

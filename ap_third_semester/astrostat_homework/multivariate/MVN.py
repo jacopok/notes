@@ -38,6 +38,10 @@ class MultivariateNormal():
         return self.normalization * np.exp(- 1 / 2 * argument)
 
     def marginalize(self, index):
+        # not very general! we are only able to marginalize down
+        # to one parameter right now
+        # may generalize later
+        
         marginal_mean = self.mean[index, np.newaxis]
         marginal_cov = self.cov[index, index, np.newaxis, np.newaxis]
         return self.__class__(marginal_mean, marginal_cov)
@@ -89,8 +93,8 @@ class MultivariateNormal():
         
     def cholesky_sample(self, number_samples):
         independent_deviates = norm.rvs(size=(self.dim, number_samples))
-        correlated_deviates = self.cholesky_L @ independent_deviates
-        return correlated_deviates + self.mean[:, np.newaxis]
+        correlated_deviates = (self.cholesky_L @ independent_deviates).T
+        return correlated_deviates + self.mean[np.newaxis, :]
 
     def plot_2d_analytical(self, chosen_x, chosen_y, percentage):
 
@@ -123,8 +127,8 @@ class MultivariateNormal():
             x_array[:, np.newaxis]), label='Marginal')
         line_cx, = ax1.plot(x_array, conditioned_x.pdf(
             x_array[:, np.newaxis]), label='Conditioned')
-        [plt.axvline(x=mx_value, c=line_mx._color) for mx_value in mx_interval]
-        [plt.axvline(x=cx_value, c=line_cx._color) for cx_value in cx_interval]
+        [ax1.axvline(x=mx_value, c=line_mx._color) for mx_value in mx_interval]
+        [ax1.axvline(x=cx_value, c=line_cx._color) for cx_value in cx_interval]
         ax1.legend()
 
         ax4 = plt.subplot(gs[3])
@@ -132,8 +136,8 @@ class MultivariateNormal():
             y_array[:, np.newaxis]), y_array, label='Marginal')
         line_cy, = ax4.plot(conditioned_y.pdf(
             y_array[:, np.newaxis]), y_array, label='Conditioned')
-        [plt.axhline(y=my_value, c=line_my._color) for my_value in my_interval]
-        [plt.axhline(y=cy_value, c=line_cy._color) for cy_value in cy_interval]
+        [ax4.axhline(y=my_value, c=line_my._color) for my_value in my_interval]
+        [ax4.axhline(y=cy_value, c=line_cy._color) for cy_value in cy_interval]
         ax4.legend()
 
         ax3 = plt.subplot(gs[2], sharex=ax1, sharey=ax4)

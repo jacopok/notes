@@ -4,7 +4,7 @@ from MCMC import Sampler, MetropolisHastings
 from multiprocessing import Pool, cpu_count
 
 
-class MultipleChain(object):
+class MultipleChains(object):
     """
     Contains several Monte Carlo Markov Chains, 
     sampling using 'sampler' (MetropolisHastings only for now)
@@ -36,6 +36,10 @@ class MultipleChain(object):
 
         # non-parallel version, for bugfixing:
         # self.samplers = list(map(_func, initial_positions))
+
+    @property
+    def all_chains(self):
+        return np.concatenate([s.chain for s in self.samplers], axis=0)
 
     def trim_chains(self, trim_number):
         for s in self.samplers:
@@ -97,7 +101,7 @@ if __name__ == "__main__":
     trim_amount = 1000
     chain_length = 10000
 
-    mc = MultipleChain(MetropolisHastings, my_MVN, initial_positions,
+    mc = MultipleChains(MetropolisHastings, my_MVN, initial_positions,
                        chain_length + trim_amount, gaussian_proposal)
     mc.trim_chains(trim_amount)
 
@@ -113,5 +117,5 @@ if __name__ == "__main__":
 
     # big_initial_positions = np.random.normal(size=(7, dim))
 
-    # mc = MultipleChain(MetropolisHastings, new_MVN, big_initial_positions, chain_length + trim_amount, big_gaussian_proposal)
+    # mc = MultipleChains(MetropolisHastings, new_MVN, big_initial_positions, chain_length + trim_amount, big_gaussian_proposal)
     # mc.trim_chains(trim_amount)

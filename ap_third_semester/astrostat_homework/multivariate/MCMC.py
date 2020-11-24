@@ -112,7 +112,7 @@ class Sampler(object):
                 chosen_i = i
                 dist = new_dist
         
-        return(samples[i], samples[i + n_points])
+        return(samples[chosen_i], samples[chosen_i + n_points])
 
 class MetropolisHastings(Sampler):
     """
@@ -187,7 +187,7 @@ if __name__ == "__main__":
     from scipy.stats import multivariate_normal
 
     def gaussian_proposal(theta=None):
-        return (np.random.normal(scale=0.001, size=2))
+        return (np.random.normal(scale=1, size=2))
 
     def my_MVN(x):
         a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)

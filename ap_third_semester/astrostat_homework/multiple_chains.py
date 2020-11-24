@@ -25,28 +25,49 @@ class MultipleChains(object):
 
     def calculate_chains(self, **kwargs):
         
-        if 'parallel' in kwargs.keys():
-            parallel = kwargs['parallel']
-        else:
-            parallel = True
+        parallel = kwargs.pop('parallel', True)
 
-        global _func  # need this for parallelization
+        global _initialize_samplers  # need this for parallelization
 
-        def _func(pos):
-            return(self.sampler_class(*self.args, self.posterior, pos, self.number_steps))
+        def _initialize_samplers(pos):
+            return(self.sampler_class(*self.args, self.posterior, pos, self.number_steps, **kwargs))
 
         if parallel:
 
             pool = Pool(cpu_count()-1)
 
-            self.samplers = list(pool.map(_func, self.initial_positions))
+            self.samplers = list(pool.map(_initialize_samplers, self.initial_positions))
 
             pool.close()  # no more tasks
             pool.join()  # wrap up current tasks
 
         else:
             # non-parallel version, for bugfixing:
-            self.samplers = list(map(_func, self.initial_positions))
+            self.samplers = list(map(_initialize_samplers, self.initial_positions))
+
+    def extend_chains(self, number_steps, **kwargs):
+        parallel = kwargs.pop('parallel', True)
+        self.number_steps += number_steps
+
+        global _extend_sampler  # need this for parallelization
+
+        def _extend_sampler(sampler):
+            sampler.calculate_chain(number_steps, **kwargs)
+            return(sampler)
+
+        if parallel:
+
+            pool = Pool(cpu_count()-1)
+
+            self.samplers = list(pool.map(_extend_sampler, self.samplers))
+
+            pool.close()  # no more tasks
+            pool.join()  # wrap up current tasks
+
+        else:
+            # non-parallel version, for bugfixing:
+            self.samplers = list(map(_extend_sampler, self.samplers))
+    
 
     @property
     def all_chains(self):

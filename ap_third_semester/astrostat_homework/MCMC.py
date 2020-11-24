@@ -19,15 +19,16 @@ class Sampler(object):
         self.posterior = posterior
         self.initial_position = initial_position
         self.trim = 0
-        if not number_steps:
-            number_steps = 100
-        self.calculate_chain(number_steps)
+        self.number_steps = 0
+        self.chain = None
+        self.calculate_chain(number_steps, **kwargs)
 
-    def calculate_chain(self, number_steps):
-        self.number_steps = number_steps
+    def calculate_chain(self, number_steps, **kwargs):
+        
+        self.number_steps += number_steps
 
         t1 = time()
-        theta = self.initial_position
+        theta = self.chain[-1] if self.chain is not None else self.initial_position
         theta_arr = [theta]
         if number_steps > 10000:
             cycler = tqdm(range(number_steps - 1))
@@ -36,10 +37,17 @@ class Sampler(object):
         for _ in cycler:
             theta = self.next_chain_step(theta)
             theta_arr.append(theta)
-        self.chain = np.array(theta_arr)
+
+        if self.chain is not None:
+            self.chain = np.append(self.chain, theta_arr, axis=0)
+        else:
+            self.chain = np.array(theta_arr)
+
         t2 = time()
-        print(f'Calculated {number_steps} steps in {t2-t1:.2f} seconds.')
-        print(f'This means {number_steps / (t2-t1):.0f} steps per second.')
+        verbose = kwargs.pop('verbose', False)
+        if verbose:
+            print(f'Calculated {number_steps} steps in {t2-t1:.2f} seconds.')
+            print(f'This means {number_steps / (t2-t1):.0f} steps per second.')
 
     def trim_chain(self, trim_number):
         self.chain = self.chain[trim_number:, ...]

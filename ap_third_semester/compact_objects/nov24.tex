@@ -1,4 +1,159 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{Neutron Stars}
+
+\marginpar{Tuesday\\ 2020-11-24, \\ compiled \\ \today}
+
+Their radius is of the order of \SI{10}{km}, their masses are of the order of \(M_{\odot} \sim \SI{2e33}{g}\). 
+
+They rotate very fast, and they are highly magnetized. 
+These two facts are quite natural, as can be shown by a back-of-the envelope calculation: angular momentum is conserved, so \(I_* \omega _* = I_{NS } \omega _{NS}\), so considering a Sun-like star we have initially \(R_* \sim \SI{e11}{cm}\); \(P_* \sim \SI{10}{d}\). 
+
+The moment of inertia is \((2/5) M R^2\), so 
+%
+\begin{align}
+M_* R_*^2 \omega _* = M_{NS} R_{NS}^2 \omega _{NS}
+\,,
+\end{align}
+%
+so assuming that the mass is conserved in the collapse we find 
+%
+\begin{align}
+\frac{R_{NS}^2}{P_NS} =
+\frac{R_{*}^2}{P_*}
+\,,
+\end{align}
+%
+which means 
+%
+\begin{align}
+P_{NS} \sim \qty(\frac{\SI{e6}{cm}}{\SI{e11}{cm}})^2 \SI{e6}{s} = \SI{e-4}{s}
+\,.
+\end{align}
+
+This is indeed very rough, but it shows the point quite well. 
+However, they cannot rotate too much: the mass shedding limit is given by 
+%
+\begin{align}
+\frac{GM}{R^2} = R \omega^2 \implies \nu = \SI{1836}{Hz}  \qty(\frac{M}{M_{\odot}})^{1/2}  \qty( \frac{R}{\SI{e6}{cm}})^{-3/2}  
+\,,
+\end{align}
+%
+and millisecond pulsars have been observed.
+
+Regarding magnetism, because of flux conservation \(B_* R_*^2 = B_{NS} R_{NS}^2\). How large is \(B_*\) for a typical star?
+This has a large variability, but typically it is of the order of \SI{100}{G}. 
+This yields 
+%
+\begin{align}
+B_{NS} = B_* \qty(\frac{R_*}{R_{NS}})^2 \sim \SI{e12}{G}
+\,.
+\end{align}
+
+There is a QED limiting magnetic field: \(B_{QED} = \SI{4.4e13}{G}\).
+
+What we will study will be the magneto-rotational evolution of the NS. 
+What is the topology of the \(\vec{B}\) field? We \textbf{do not know}. 
+
+The magnetic field is ``frozen'' as the star rotates; we will start out by the first-order contribution: the dipole. 
+This is given by 
+%
+\begin{align}
+\vec{B} _{\text{dip}} = \frac{B_p}{2} \qty( \frac{R_{NS}}{R})^2
+\times \qty(2 \cos \theta \hat{u}_r + \sin \theta \hat{u}_\theta )
+\,,
+\end{align}
+%
+where \(B_p\) is the polar magnetic field. 
+The magnetic moment has magnitude \(m = B_p R_{NS}^3\). 
+
+We can decompose it in cartesian coordinates: \(\vec{m} = (m_x, m_y, m_z)\); and similarly in polar coordinates \(\alpha \) and \(\psi = \Omega t\). 
+
+The rotation is much faster than the evolution of the interior structure, so we will have 
+%
+\begin{align}
+\dot{\vec{m}} &= m \qty(- \Omega \sin \alpha \sin \Omega t, \Omega \sin \alpha \cos \Omega t , 0)  \\
+\ddot{\vec{m}} &= m \Omega^2 \sin \alpha \qty(\cos \Omega t, - \sin \Omega t, 0) 
+\,,
+\end{align}
+%
+therefore the modulus is \(\ddot{m} = m \Omega \sin \alpha \). 
+The Larmor formula for the power lost per unit time gives us 
+%
+\begin{align}
+P = \frac{2 \ddot{m}^2}{3 c^3} = \frac{2}{3 c^3} m^2 \Omega^{4} \sin^2 \alpha 
+\,.
+\end{align}
+
+Where does this energy come from? The star could even be at zero temperature and still emit, the rotational energy \(E_K = I \Omega^2 /2\) is instead the reservoir. 
+Recall that \(I = 2 M R^2 /5 \sim \SI{e45}{g cm^2}\). 
+
+The variation of rotational energy will be 
+%
+\begin{align}
+\dot{E}_K = I \Omega \dot{\Omega} = - P 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+I \Omega \dot{\Omega} &= - \frac{2}{3c^3} B_p^2R_{NS}^{6} \Omega^{4} \sin^2\alpha   \\
+\dot{\Omega} &= - \underbrace{\frac{2}{3 I c^3} B_p^2R_{NS}^{6} \sin^2\alpha}_{A} \Omega^{3} 
+\,,
+\end{align}
+%
+which tells us that there will be a secular decrease in the rotation rate of the neutron star. This is immediately integrated: 
+%
+\begin{align}
+\frac{\dot{\Omega}}{\Omega^3} = - A \implies
+\frac{1}{2 \Omega_0^2} = \frac{1}{2 \Omega^2} - A(t - t_0 ) 
+\,.
+\end{align}
+
+If \(\Omega_0 \gg \Omega \), so the NS is quite old, which is the case for NSs with periods of the order of \SI{1}{s}. 
+This means that we can neglect \(\Omega_0^{-2}\), therefore 
+%
+\begin{align}
+\Omega^{-2} \approx 2 A t
+\,,
+\end{align}
+%
+which means \(\Omega \propto t^{-1/2}\). 
+This is known as the spin-down. 
+The period is 
+%
+\begin{align}
+P^2= \frac{16 \pi^2}{3 c^3 I} B_P^2 R_{NS}^{6} \sin^2 \alpha t
+\,.
+\end{align}
+
+We can also write 
+%
+\begin{align}
+\frac{ \dd{P}}{P}= - \frac{\dd{\Omega}}{\Omega }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+P \dot{P} = \frac{8 \pi^2 B_P^2 R_{NS}^{6} \sin^2\alpha }{3 I c^3} 
+\,.
+\end{align}
+
+In other words, 
+%
+\begin{align}
+B_P = \sqrt{P \dot{P}} \sqrt{\frac{3 I c^2}{8 \pi^2 R_{NS}^{6} \sin^2 \alpha }}^{1/2}
+= \frac{\SI{6e19}{G}}{\sin \alpha } \sqrt{ \frac{P\dot{P}}{\SI{1}{s}} }
+\,.
+\end{align}
+
+This allows us to directly measure \(B_P\). Typically, \(P \sim \SI{1}{s}\) and \(\dot{P} \sim \SI{e-14}{s/s}\). 
+This yields \(B_P \sim \SI{e12}{G}\). 
+
+The age of the NS can be estimated as \(t \approx P / 2 \dot{P}\); which is typically found to be of the order of \SI{e5}{yr}.
+
 \end{document}

@@ -95,7 +95,8 @@ class Sampler(object):
         log_posterior = -np.log(posterior_arr)
         trace = np.cumsum(log_posterior) / np.arange(1,
                                                      1 + self.number_steps - self.trim)
-        plt.plot(trace)
+        initial_str = ', '.join([f'{i:.1f}' for i in self.initial_position])
+        plt.plot(trace, label=initial_str)
         plt.xlabel('Step number')
         plt.ylabel('Trace')
 

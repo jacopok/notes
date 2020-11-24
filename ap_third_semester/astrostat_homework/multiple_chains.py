@@ -2,7 +2,7 @@ import numpy as np
 from tqdm import tqdm
 from MCMC import Sampler, MetropolisHastings
 from multiprocessing import Pool, cpu_count
-
+import matplotlib.pyplot as plt
 
 class MultipleChains(object):
     """
@@ -87,6 +87,7 @@ class MultipleChains(object):
     def traces_plot(self):
         for s in self.samplers:
             s.trace_plot()
+        plt.legend()
 
 
 if __name__ == "__main__":

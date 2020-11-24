@@ -99,6 +99,20 @@ class Sampler(object):
         plt.xlabel('Step number')
         plt.ylabel('Trace')
 
+    @staticmethod
+    def interval_from_samples(samples, percentage):
+        
+        samples = sorted(samples)
+        n_points = int(len(samples) * percentage)
+        
+        dist = np.inf
+        for i in range(len(samples) - n_points):
+            new_dist = samples[i + n_points] - samples[i]
+            if new_dist < dist:
+                chosen_i = i
+                dist = new_dist
+        
+        return(samples[i], samples[i + n_points])
 
 class MetropolisHastings(Sampler):
     """
@@ -159,7 +173,7 @@ class Gibbs(Sampler):
         for i, t in enumerate(theta):
             new_theta[i] = conditional(i, theta)
         return(new_theta)
-
+    
 
 if __name__ == "__main__":
 

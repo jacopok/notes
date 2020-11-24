@@ -17,11 +17,18 @@ class MultivariateNormal():
 
         self.mean = np.array(mean)
         self.cov = np.array(cov)
-        self.dim = self.mean.shape[-1]
+        self.dim = self.mean.shape[0]
 
         self.normalization = (2 * np.pi)**(-self.dim / 2) / \
             np.sqrt(np.linalg.det(self.cov))
         self.precision_matrix = np.linalg.inv(self.cov)
+
+    def __str__(self):
+        return (f'{self.dim}-dimensional MVN with mean {self.mean} and covariance {self.cov}')
+
+    def __repr__(self):
+        return (f'MultivariateNormal({self.mean}, {self.cov})')
+
 
     def pdf(self, x):
         shifted_arg = x - self.mean
@@ -52,25 +59,40 @@ class MultivariateNormal():
         return self.__class__(conditioned_mean, conditioned_cov)
 
     @staticmethod
-    def analytical_CI(mean, std, percentage):
+    def _analytical_CI(mean, std, percentage):
         number_sigmas = norm.ppf((percentage + 1)/2)
         delta = number_sigmas * std
         return (mean - delta, mean + delta)
-
+    
+    def analytical_CI(self, percentage):
+        
+        if self.dim != 1:
+            print('This only applies to univariate normals!')
+        
+        mean = self.mean.flatten()[0]
+        std = np.sqrt(self.cov.flatten()[0])
+        return self._analytical_CI(mean, std, percentage)
+    
     @property
-    def coordinate_arrays(self, number_points=None, number_sigmas=None):
-        if number_points is None:
-             number_points = type(self).number_points
-        if number_sigmas is None:
-            number_sigmas = type(self).number_sigmas
-
+    def coordinate_arrays(self):
+        number_points = type(self).number_points
+        number_sigmas = type(self).number_sigmas
         
         sigmas = np.sqrt(np.diagonal(self.cov))
         starts = self.mean - number_sigmas * sigmas
         ends = self.mean + number_sigmas * sigmas
         return(np.linspace(starts, ends, num=number_points).T)
+    
+    @property
+    def cholesky_L(self):
+        return (np.linalg.cholesky(self.cov))
+        
+    def cholesky_sample(self, number_samples):
+        independent_deviates = norm.rvs(size=(self.dim, number_samples))
+        correlated_deviates = self.cholesky_L @ independent_deviates
+        return correlated_deviates + self.mean[:, np.newaxis]
 
-    def plot_2d(self, chosen_x, chosen_y):
+    def plot_2d_analytical(self, chosen_x, chosen_y, percentage):
 
         if self.dim != 2:
             print('This only applies to bivariate normals!')
@@ -86,23 +108,32 @@ class MultivariateNormal():
         x, y = np.meshgrid(x_array, y_array)
         positions = np.stack((x, y), axis=-1)
         z = self.pdf(positions)
-
+        
+        mx_interval = marginal_x.analytical_CI(percentage)
+        my_interval = marginal_y.analytical_CI(percentage)
+        cx_interval = conditioned_x.analytical_CI(percentage)
+        cy_interval = conditioned_y.analytical_CI(percentage)
+        
         fig = plt.figure(figsize=(10, 10))
         gs = gridspec.GridSpec(
             2, 2, width_ratios=[2, 1], height_ratios=[1, 2])
 
         ax1 = plt.subplot(gs[0])
-        ax1.plot(x_array, marginal_x.pdf(
+        line_mx, = ax1.plot(x_array, marginal_x.pdf(
             x_array[:, np.newaxis]), label='Marginal')
-        ax1.plot(x_array, conditioned_x.pdf(
+        line_cx, = ax1.plot(x_array, conditioned_x.pdf(
             x_array[:, np.newaxis]), label='Conditioned')
+        [plt.axvline(x=mx_value, c=line_mx._color) for mx_value in mx_interval]
+        [plt.axvline(x=cx_value, c=line_cx._color) for cx_value in cx_interval]
         ax1.legend()
 
         ax4 = plt.subplot(gs[3])
-        ax4.plot(marginal_y.pdf(
+        line_my, = ax4.plot(marginal_y.pdf(
             y_array[:, np.newaxis]), y_array, label='Marginal')
-        ax4.plot(conditioned_y.pdf(
+        line_cy, = ax4.plot(conditioned_y.pdf(
             y_array[:, np.newaxis]), y_array, label='Conditioned')
+        [plt.axhline(y=my_value, c=line_my._color) for my_value in my_interval]
+        [plt.axhline(y=cy_value, c=line_cy._color) for cy_value in cy_interval]
         ax4.legend()
 
         ax3 = plt.subplot(gs[2], sharex=ax1, sharey=ax4)

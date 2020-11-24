@@ -5,6 +5,112 @@
 
 \marginpar{Tuesday\\ 2020-11-24, \\ compiled \\ \today}
 
+Suppose we have a data vector \(\vec{x}\), such that each element is distributed according to a Gaussian with mean \(\mu \) and standard deviation \(\sigma \). 
+We could construct an estimator for the mean like \(\hat{\theta} = f(\vec{x}) = x_3\). 
+This is unbiased: \(\expval{x_3} = \mu = \expval{x_i}\) for any \(i\).
+
+However, this is not the best estimator we could choose, as its variance is \(\sigma^2\); we could instead use the arithmetic mean, which is also unbiased but has a variance of \(\sigma^2 / N\).
+
+An \emph{unbiased} estimator \(\theta \) for \(\hat{\theta}\) is one such that \(\expval{\hat{\theta}} = \theta \).
+
+Given a likelihood \(\mathscr{L}(\vec{x} | \vec{\theta})\), the question is: what is the \textbf{best unbiased estimator} for \(\theta \)?
+In order to answer this, we need to define the \textbf{Fisher information matrix}:
+%
+\begin{align}
+F_{\alpha \beta } = \expval{- \pdv[2]{\log \mathscr{L}}{\theta_\alpha}{\theta _\beta }}
+\,.
+\end{align}
+
+The average is an ensemble one, over all the possible realizations of the data.
+This is precisely the Hessian of the log-posterior, computed at the maximum of the posterior, which estimates the precision matrix of the parameters. 
+We have nice theorems for these. 
+
+\begin{theorem}
+    For any unbounded estimator \(\hat{\theta}_\alpha \) of \(\theta _\alpha \), its error is bounded by 
+    %
+    \begin{align}
+    \sqrt{\expval{\hat{\theta}_\alpha^2} - \expval{\hat{\theta}_\alpha }^2} \geq \sqrt{F_{\alpha \alpha }^{-1}}
+    \,.
+    \end{align}
+\end{theorem}
+
+This is known as the \textbf{Cramer-Rao} bound. So, if we can saturate the inequality, then we know we have the best possible estimator. 
+
+\begin{theorem}
+    If there exists a Best Unbiased Estimator, then this is also the Maximum Likelihood estimator. 
+\end{theorem}
+
+\begin{theorem}
+    The ML estimate is asymptotically the BUE.
+\end{theorem}
+
+Consider a likelihood \(P(\vec{d} | \theta)\); then the variance is given by 
+%
+\begin{align}
+\expval{(\hat{\theta} - \expval{\hat{\theta}})^2} = \int \dd{\vec{d}} P(\vec{d} | \theta ) (\theta - \expval{\hat{\theta}})^2 
+\,.
+\end{align}
+
+Let us define the product of two functions as 
+%
+\begin{align}
+\qty(u (\vec{d}), v (\vec{d})) = \int \dd{\vec{x}} u (\vec{x}) v (\vec{x}) P(\vec{x} | \theta )
+\,.
+\end{align}
+
+Then, the variance of the estimator \(\hat{\theta} \) can be expressed by defining \(v(\vec{d}) = \hat{\theta} - \expval{\hat{\theta}}\), and then \(\var{\hat{\theta}} = \qty(v(\vec{d}), v(\vec{d}))\). 
+
+Now we will use the Schwarz inequality, which says that in an inner product space: 
+%
+\begin{align}
+(v, v) \geq \frac{(u, v)^2}{(u, u)}
+\,.
+\end{align}
+
+We will apply this, with the aforementioned \(v\), and with the so-called \emph{score function}: 
+%
+\begin{align}
+u(\vec{d}) = \pdv{}{\theta } \log P(\vec{d} | \theta )
+\,.
+\end{align}
+%
+
+Then, 
+%
+\begin{align}
+(u, w) &= \int \dd{\vec{x}} u(\vec{x}) w(\vec{x}) P(\vec{x} | \theta )  \\
+&= \int \dd{\vec{x}} \pdv{}{\theta } \log P(\vec{x} | \theta ) w(\vec{x}) P(\vec{x} | \theta )  \\
+&= \int \dd{\vec{x}} \frac{1}{P(\vec{x} | \theta )} \pdv{P}{\theta } w(\vec{x} ) P(\vec{x} | \theta )  \\
+&= \pdv{}{\theta } \expval{w}
+\,.
+\end{align}
+
+Then, 
+%
+\begin{align}
+(u, v) &= \int (\hat{\theta} - \expval{\hat{\theta}}) \pdv{\log P}{\theta } P(\vec{x} | \theta ) \dd{\vec{x}} \\
+&= \int \hat{\theta} \pdv{\log P}{\theta } P(\vec{x} | \theta ) \dd{\vec{x}} - 
+\expval{\hat{\theta}} \underbrace{\int \pdv{\log P}{\theta } P(\vec{x} | \theta ) \dd{\vec{x}}}_{= \pdv{}{\theta } \int P \dd{\vec{x}} = 0}  \\
+&= \int \hat{\theta} \pdv{\log P}{\theta } P(\vec{x} | \theta ) \dd{\vec{x}}  \\
+&= \pdv{}{\theta } \expval{\hat{\theta}} = 1
+\,,
+\end{align}
+%
+therefore, we can apply Schwarz's inequality so that 
+%
+\begin{align}
+\var{\hat{\theta}} = (v, v) \geq \frac{(u, v)^2}{(u, u)} = \frac{1}{(u, u)}
+= \qty(\int \dd{x} \qty(\pdv{}{\theta } \log P)^2 P(\vec{x} | \theta ))^{-1} = \expval{\qty(\pdv{\log P}{\theta })^2}^{-1}
+\,,
+\end{align}
+%
+so what we are left to prove is that 
+%
+\begin{align}
+\expval{\qty(\pdv{\log P}{\theta })^2} = \expval{\pdv[2]{\log P}{\theta }}
+\,.
+\end{align}
+
 
 
 \end{document}

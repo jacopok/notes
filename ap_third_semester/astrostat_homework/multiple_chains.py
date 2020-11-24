@@ -13,7 +13,7 @@ class MultipleChains(object):
     and going on for 'number_steps' for each.
     """
 
-    def __init__(self, sampler_class, posterior, initial_positions, number_steps, *args):
+    def __init__(self, sampler_class, posterior, initial_positions, number_steps, *args, **kwargs):
 
         self.sampler_class = sampler_class
         self.number_steps = number_steps
@@ -21,9 +21,14 @@ class MultipleChains(object):
         self.initial_positions = initial_positions
         self.args = args
         self.posterior = posterior
-        self.calculate_chains()
+        self.calculate_chains(**kwargs)
 
-    def calculate_chains(self, parallel=True):
+    def calculate_chains(self, **kwargs):
+        
+        if 'parallel' in kwargs.keys():
+            parallel = kwargs['parallel']
+        else:
+            parallel = True
 
         global _func  # need this for parallelization
 

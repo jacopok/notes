@@ -3,6 +3,7 @@ from scipy.stats import norm
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+from numpy.random import default_rng
 
 
 class MultivariateNormal():
@@ -92,7 +93,8 @@ class MultivariateNormal():
         return (np.linalg.cholesky(self.cov))
         
     def cholesky_sample(self, number_samples):
-        independent_deviates = norm.rvs(size=(self.dim, number_samples))
+        rng = default_rng()
+        independent_deviates = rng.standard_normal(size=(self.dim, number_samples))
         correlated_deviates = (self.cholesky_L @ independent_deviates).T
         return correlated_deviates + self.mean[np.newaxis, :]
 

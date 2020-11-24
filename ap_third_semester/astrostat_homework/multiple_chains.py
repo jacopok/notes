@@ -3,6 +3,7 @@ from tqdm import tqdm
 from MCMC import Sampler, MetropolisHastings
 from multiprocessing import Pool, cpu_count
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 class MultipleChains(object):
     """
@@ -104,11 +105,27 @@ class MultipleChains(object):
         second_term = self.means_covariance / self.average_covariance
 
         return (first_term + second_term)
+        
+    @property
+    def optimal_trimming(self):
+        for sampler in self.samplers:
+            steps, trace = sampler.steps_trace(every=1)
+            N = sampler.effective_steps
+            late_trace = trace[N // 2:]
+            std_trace = np.std(late_trace)
+            mean_trace = np.average(late_trace)
+            number_sigmas = norm.isf(1 / sampler.effective_steps)
+            thr = mean_trace + number_sigmas * std_trace
+            over_thr = N - next((i for i, tr in enumerate(reversed(trace)) if tr > thr), N)
+            
 
-    def traces_plot(self):
+    def traces_plot(self, **kwargs):
         for s in self.samplers:
-            s.trace_plot()
+            s.trace_plot(**kwargs)
         plt.legend()
+        plt.xlabel('Step number')
+        plt.ylabel('Trace')
+
 
 
 if __name__ == "__main__":

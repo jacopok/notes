@@ -52,6 +52,10 @@ class Sampler(object):
     def trim_chain(self, trim_number):
         self.chain = self.chain[trim_number:, ...]
         self.trim += trim_number
+    
+    @property
+    def effective_steps(self):
+        return self.number_steps - self.trim 
 
     @property
     def mean(self):
@@ -98,15 +102,26 @@ class Sampler(object):
         plt.xlabel('Step number')
         plt.ylabel('Posterior evaluated at the chain step')
 
-    def trace_plot(self):
+    def steps_trace(self, **kwargs):
         posterior_arr = self.posterior(self.chain)
         log_posterior = -np.log(posterior_arr)
-        trace = np.cumsum(log_posterior) / np.arange(1,
-                                                     1 + self.number_steps - self.trim)
+        
+        every = kwargs.pop('every', 100)
+        
+        plotted_points = self.effective_steps // every
+        trace = np.zeros(plotted_points)
+        for i in range(plotted_points):
+            trace[i] = np.average(log_posterior[i * every:(i + 1) * every], axis=0)
+        steps = np.arange(len(trace)) * every
+        return(steps, trace)
+
+    def trace_plot(self, **kwargs):
+        steps, trace = self.trace(**kwargs)
+        # log_posterior = -np.log(posterior_arr)
+        # trace = np.cumsum(log_posterior) / np.arange(1,
+                                                    #  1 + self.number_steps - self.trim)
         initial_str = ', '.join([f'{i:.1f}' for i in self.initial_position])
-        plt.plot(trace, label=initial_str)
-        plt.xlabel('Step number')
-        plt.ylabel('Trace')
+        plt.plot(steps, trace, label=initial_str)
 
     @staticmethod
     def interval_from_samples(samples, percentage):
@@ -130,10 +145,7 @@ class MetropolisHastings(Sampler):
 
     def __init__(self, proposal, *args, **kwargs):
         self.proposal = proposal
-        try:
-            self.calculate_acceptance_rate = kwargs['calculate_acceptance_rate']
-        except(KeyError):
-            self.calculate_acceptance_rate = False
+        self.calculate_acceptance_rate = kwargs.pop('calculate_acceptance_rate', False)
         if self.calculate_acceptance_rate:
             self.rejections = []
         super().__init__(*args, **kwargs)

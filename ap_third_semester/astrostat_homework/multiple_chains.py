@@ -18,24 +18,30 @@ class MultipleChains(object):
         self.sampler_class = sampler_class
         self.number_steps = number_steps
         self.number_chains = len(initial_positions)
+        self.initial_positions = initial_positions
+        self.args = args
+        self.posterior = posterior
         self.calculate_chains()
 
-    def calculate_chains(self):
+    def calculate_chains(self, parallel=True):
 
         global _func  # need this for parallelization
 
         def _func(pos):
-            return(sampler_class(*args, posterior, pos, number_steps))
+            return(self.sampler_class(*self.args, self.posterior, pos, self.number_steps))
 
-        pool = Pool(cpu_count()-1)
+        if parallel:
 
-        self.samplers = list(pool.map(_func, initial_positions))
+            pool = Pool(cpu_count()-1)
 
-        pool.close()  # no more tasks
-        pool.join()  # wrap up current tasks
+            self.samplers = list(pool.map(_func, self.initial_positions))
 
-        # non-parallel version, for bugfixing:
-        # self.samplers = list(map(_func, initial_positions))
+            pool.close()  # no more tasks
+            pool.join()  # wrap up current tasks
+
+        else:
+            # non-parallel version, for bugfixing:
+            self.samplers = list(map(_func, self.initial_positions))
 
     @property
     def all_chains(self):

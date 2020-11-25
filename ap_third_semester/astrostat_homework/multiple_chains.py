@@ -82,6 +82,10 @@ class MultipleChains(object):
     def means(self):
         return np.array([sampler.mean for sampler in self.samplers])
 
+    @property    
+    def average_mean(self):
+        return(np.average(self.means, axis=0))
+        
     @property
     def means_covariance(self):
         means = self.means
@@ -98,7 +102,7 @@ class MultipleChains(object):
 
     @property
     def average_covariance(self):
-        return(np.sum(self.covariances, axis=0) / self.number_chains)
+        return(np.average(self.covariances, axis=0))
 
     def R_estimator(self):
         first_term = (self.number_steps - 1) / self.number_steps
@@ -106,18 +110,39 @@ class MultipleChains(object):
 
         return (first_term + second_term)
         
+    def autocorrelation_times(self):
+        return([sampler.autocorrelation_time() for sampler in self.samplers])
+
     @property
     def optimal_trimming(self):
+        over_thrs = []
         for sampler in self.samplers:
             steps, trace = sampler.steps_trace(every=1)
             N = sampler.effective_steps
             late_trace = trace[N // 2:]
             std_trace = np.std(late_trace)
             mean_trace = np.average(late_trace)
-            number_sigmas = norm.isf(1 / sampler.effective_steps)
+            
+            # adaptive threshold, the number is arbitrary
+            # but ~3 seems to be a good choice
+            number_sigmas = norm.isf(1 / sampler.effective_steps) * 3
+
+            # so that it does not depend on the normalization of the posterior
             thr = mean_trace + number_sigmas * std_trace
-            over_thr = N - next((i for i, tr in enumerate(reversed(trace)) if tr > thr), N)
-            # TO FINISH!
+            
+            # get index of last occurrence of "tr > thr"
+            over_thr = N - next((i for i, tr in enumerate(reversed(trace)) if tr > thr), N) - 1
+            
+            if(over_thr > N // 4):
+                print('threshold is too high!')
+                over_thr = N // 4
+
+            over_thrs.append(over_thr)
+            
+        # another rather arbitrary number here
+        # ~2 seems good
+        
+        return(2 * max(over_thrs))
 
     def traces_plot(self, **kwargs):
         for s in self.samplers:

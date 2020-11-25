@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import time
 from tqdm import tqdm
+import seaborn as sns
+
 
 SEED = 42
 np.random.seed(SEED)
@@ -50,8 +52,9 @@ class Sampler(object):
             print(f'This means {number_steps / (t2-t1):.0f} steps per second.')
 
     def trim_chain(self, trim_number):
-        self.chain = self.chain[trim_number:, ...]
-        self.trim += trim_number
+        if trim_number > self.trim:
+            self.chain = self.chain[trim_number-self.trim:, ...]
+            self.trim += trim_number
     
     @property
     def effective_steps(self):
@@ -135,7 +138,7 @@ class Sampler(object):
             if new_dist < dist:
                 chosen_i = i
                 dist = new_dist
-        
+                
         return(samples[chosen_i], samples[chosen_i + n_points])
 
 class MetropolisHastings(Sampler):
@@ -177,7 +180,6 @@ class MetropolisHastings(Sampler):
 
         return(1 + 1/twice_mr - np.sqrt(1 + 2 * twice_mr) / twice_mr)
 
-
 class Gibbs(Sampler):
     """
     Gibbs sampling: through the conditioned probability density.
@@ -189,13 +191,33 @@ class Gibbs(Sampler):
 
     def next_chain_step(self, theta):
 
-        new_theta = np.zeros_like(theta)
+        new_theta = np.copy(theta)
 
         for i, t in enumerate(theta):
-            new_theta[i] = conditional(i, theta)
+            new_theta[i] = self.conditional(i, new_theta)
+            
         return(new_theta)
 
+class SampleSet2D():
+    
+    def __init__(self, samples, *args, **kwargs):
+        self.samples = np.array(samples)
+        if self.samples.shape[-1] != 2:
+            raise(NotImplementedError('We only support bidimensional plots for now'))
+    
+    def samples_plot(self, CL, **kwargs):
+        grid = sns.jointplot(x=self.samples[:, 0], y=self.samples[:, 1], **kwargs)
 
+        interval_x, interval_y = self.intervals(CL)
+
+        [grid.ax_marg_x.axvline(x) for x in interval_x]
+        [grid.ax_marg_y.axhline(y) for y in interval_y]
+
+    def intervals(self, CL):
+        interval_x = Sampler.interval_from_samples(self.samples[:, 0], CL)
+        interval_y = Sampler.interval_from_samples(self.samples[:, 1], CL)
+        return(interval_x, interval_y)
+            
 if __name__ == "__main__":
 
     mean_1 = np.array([4, 2])

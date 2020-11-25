@@ -124,8 +124,8 @@ class MultipleChains(object):
             mean_trace = np.average(late_trace)
             
             # adaptive threshold, the number is arbitrary
-            # but ~3 seems to be a good choice
-            number_sigmas = norm.isf(1 / sampler.effective_steps) * 3
+            # but ~5 seems to be a good choice
+            number_sigmas = norm.isf(1 / sampler.effective_steps) * 5
 
             # so that it does not depend on the normalization of the posterior
             thr = mean_trace + number_sigmas * std_trace

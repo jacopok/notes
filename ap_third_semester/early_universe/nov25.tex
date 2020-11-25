@@ -1,4 +1,308 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+
+\marginpar{Wednesday\\ 2020-11-25, \\ compiled \\ \today}
+
+Again we consider the problem of \(X\) and \(\overline{X}\) decaying into the relativistic particles \(b\) and \(\overline{b}\), which carrying baryon number \(\pm 1/2 \) respectively. This is a simplification, but not a large one.
+
+The Feynman amplitudes can be parametrized as 
+%
+\begin{align}
+\Circled{1} = \abs{\mathcal{M}(X \to b b )}^2 &=
+\abs{\mathcal{M}(b b \to X )}^2 =
++ \frac{1}{2} (1 + \epsilon ) \abs{\mathcal{M}_0}^2 \\
+\Circled{2} = \abs{\mathcal{M}(X \to \overline{b} \overline{b} )}^2 &=
+\abs{\mathcal{M}(\overline{b} \overline{b} \to X )}^2 =
++ \frac{1}{2} (1 + \epsilon ) \abs{\mathcal{M}_0}^2 
+\,,
+\end{align}
+%
+which means that  
+%
+\begin{align}
+\frac{\Circled{1} - \Circled{2}}{\Circled{1} + \Circled{2}} = \epsilon 
+\,.
+\end{align}
+
+We suppose we are in kinetic equilibrium, and neglect quantum effects: 
+%
+\begin{align}
+f_b (E) &= \exp(- \frac{(E-\mu )}{T})  \\
+f_{\overline{b}} (E) &= \exp(- \frac{(E + \mu )}{T}) \\
+f_{X} (E) &= \exp(- \frac{(E - \mu_X )}{T}) 
+\,.
+\end{align}
+
+Chemical equilibrium, together with the process \(b + \overline{b} \leftrightarrow 2 \gamma \) and \(\mu _\gamma = 0\), would tell us \(\mu _b = - \mu _{\overline{b}}\).
+
+This yields, confusing \(g_{*s}\) for \(g_*\):
+%
+\begin{align}
+B = \frac{n_B}{s} =  \frac{1}{2 }\frac{n_b - n_{\overline{b}}}{\num{1/3} g_{*s} n_\gamma } =
+\frac{g}{2 \times \num{1.8} g_*} \times \sinh( \frac{\mu}{T} )
+\,,
+\end{align}
+%
+where the hyperbolic sine comes from the fact that we must consider the distribution functions, which translates to 
+%
+\begin{align}
+f_b - f_{\overline{b}} \sim 
+\exp(+ \frac{\mu}{T}) - \exp(- \frac{\mu }{T}) \sim \sinh(\frac{\mu}{T})
+\,.
+\end{align}
+
+We can expand the hyperbolic sine as \(\mu / T\) since \(\mu / T\) is small. 
+
+Using the aforementioned reactions, we get \(\mu _X = 2 \mu _b = 2 \mu \), and also \(\mu _X = - 2 \mu \), so both are zero, which means that \(B = 0\). 
+This illustrates how\dots
+
+The expression for \(B\) can also be written as 
+%
+\begin{align}
+B = \frac{n_B}{\num{1.8} g_* n_\gamma } 
+\,,
+\end{align}
+%
+where we used the approximated expression 
+%
+\begin{align}
+n_\gamma \approx \frac{2 T^3}{\pi^2}
+\,;
+\end{align}
+%
+this tells us 
+%
+\begin{align}
+\frac{\mu}{T} \approx \frac{n_B}{n_\gamma }
+\,.
+\end{align}
+
+Now, let us consider the processes \(X \to bb\) and \(X \to \overline{b} \overline{b}\) using the Boltzmann equation: 
+%
+\begin{align}
+\begin{split}
+\dot{n}_X + 3 H n_X &= 
+\int \dd{\Pi_X } \dd{\Pi_1 } \dd{\Pi _2} (2 \pi )^{4} \delta^{(4)}(p_X - p_1 - p_2)\\
+&\phantom{=}\ 
+\qty[f_X \abs{\mathcal{M_0 }}^2 
++ f_{\overline{b}}^{(1)} f_{\overline{b}}^{(2)} \frac{1}{2} (1 + \epsilon ) \expval{\mathcal{M}_0}^2
++ f_{b}^{(1)} f_{b}^{(2)} \frac{1}{2} (1 - \epsilon ) \expval{\mathcal{M}_0}^2
+]
+\end{split}
+\,,
+\end{align}
+%
+where by \(f^{(i)}\) we mean \(f(p_i)\), and
+%
+\begin{align}
+\dd{\Pi _i} = \frac{g_i \dd[3]{p_i}}{(2 \pi )^3 2 E_i}
+\,.
+\end{align}
+
+The products 
+of distribution functions read 
+%
+\begin{align}
+f_{b/ \overline{b}}^{(1)} f_{b/ \overline{b}}^{(2)}  &= \exp(\frac{-(E_1 + E_2 )}{T}) \exp(\pm \frac{2 \mu }{T})  \\
+&\approx f_X (E_X) \exp(\pm \frac{2 \mu }{T})  \\
+&\approx f_X^{\text{eq}} (E_X) \qty(1 \pm \frac{2\mu}{T})  \\
+&\approx f_X^{\text{eq}} (E_X) \qty(1 \pm 2 \frac{n_B}{n_\gamma })
+\,.
+\end{align}
+
+We are working to first order in both \(\epsilon \) and \(n_B / n_\gamma \), products of these would be higher order. 
+The BE then reads 
+%
+\begin{align}
+\begin{split}
+\dot{n}_X + 3 H n_X &= 
+\int \dd{\Pi_X } \dd{\Pi_1 } \dd{\Pi _2} (2 \pi )^{4} \delta^{(4)}(p_X - p_1 - p_2)\\
+&\phantom{=}\ 
+\qty[- f_X + f_X^{\text{eq}}] \abs{\mathcal{M}_0}^2
+\end{split}
+\,,
+\end{align}
+%
+but 
+%
+\begin{align}
+f_X = \exp( \frac{\mu_X}{T}) f_X^{\text{eq}} = \frac{n_X}{n_X^{\text{eq}}} f_X^{\text{eq}}
+\,.
+\end{align}
+
+The square bracket in the BE then reads 
+%
+\begin{align}
+-\frac{f_X^{\text{eq}}}{n_X^{\text{eq}}} \qty[- n_X + n_X^{\text{eq}}]
+= -\frac{f_X^{\text{eq}}}{n_X^{\text{eq}}}
+\expval{M_0}^2
+\,.
+\end{align}
+
+Recall that \(n_B = (n_b - n_{\overline{b}}) / 2\) (since the baryon number they carry is \(\pm 1/2\)): then, we need to write another Boltzmann equation here, 
+%
+\begin{align}
+\begin{split}
+\dot{n}_b + 3 H n_b &=
+\int \dd{\Pi_X } \dd{\Pi_1 } \dd{\Pi _2} (2 \pi )^{4} \delta^{(4)}(p_X - p_1 - p_2)\\
+&\phantom{=}\ 
+\qty[- (1 + \epsilon ) f_b^{(1)} f_b^{(2)} +
+(1 + \epsilon ) f_X
+] \abs{\mathcal{M}_0}^2
+\end{split}
+\,.
+\end{align}
+
+However, we must also account for \(X\)-mediated scatterings \(bb \to \overline{b} \overline{b}\) and vice versa: this means we need to add a new term to the right-hand side of the BE, 
+%
+\begin{align}
+2 \int \dd{\Pi_1 } \dd{\Pi_2 } \dd{\Pi_3 } \dd{\Pi_4 } \delta^{(4)}(p_1 + p_2 - p_3 - p_4)
+\qty[-f_b^{(1)} f_b^{(2)} \abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2 
++
+f_{\overline{b}}^{(1)} f_{\overline{b}}^{(2)} \abs{\mathcal{M}' (\overline{b} \overline{b} \to bb) }^2
+]
+\,.
+\end{align}
+
+The quantity \(\mathcal{M}'\) is the Feynman amplitude of the scattering process where the physical intermediate \(X\) has been removed; we have already counted processes in which a \(X\) was formed and then decayed.
+Instead, the processes we were missing and which we are now accounting for are the ones in which \(X\) is virtual (i.\ e.\ not on shell).
+Then, 
+%
+\begin{align}
+\abs{\mathcal{M} (bb \to \overline{b} \overline{b})}^2= 
+\abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2
++ \abs{\mathcal{M} _{\text{ris}} ( bb  \to \overline{b} \overline{b})}^2
+\,.
+\end{align}
+
+In the end the equation for \(X\) is written as 
+%
+\begin{align}
+\dot{n}_X + 3 H n_X = - \Gamma _D (n_X - n_X^{\text{eq}}) 
+\,.
+\end{align}
+
+We then find that the bracket to be integrated in the BE is
+%
+\begin{align} \label{eq:BE-term}
+\frac{1}{2} \qty[- (1-\epsilon ) f_b^{(1)} f_b^{(2)} + (1 + \epsilon ) f_X 
++ (1 + \epsilon ) f_{\overline{b}}^{(1)} f_{\overline{b}}^{(2)} ]\abs{\mathcal{M}_0}^2
+\,,
+\end{align}
+%
+and we can make the estimate 
+%
+\begin{align}
+f_{b/\overline{b}}^{(1)}
+f_{b/\overline{b}}^{(2)} \approx 
+f_X^{\text{eq}} \qty(1 \pm 2 \frac{n_B}{n_\gamma })
+\,.
+\end{align}
+
+This allows us to write the expression in \eqref{eq:BE-term} as 
+%
+\begin{align}
+\qty[\epsilon f_X^{\text{eq}} + \epsilon f_X ] \abs{\mathcal{M}_0}^2
+- 2 f_X^{\text{eq}} \frac{n_B}{n_\gamma } \abs{\mathcal{M}_0}^2
+\,.
+\end{align}
+
+Every time \(n_X^{\text{eq}}\) appears, it is coming from inverse decay processes. 
+What we have found is a Boltzmann equation for \(n_B = (n_b / n_{\overline{b}}) / 2\). 
+There seems to be a problem: in what we have found we have something like \(n_X + n_X^{\text{eq}}\), which is weird! 
+This is actually fixed if we account for scatterings. 
+
+The scattering term yields 
+%
+\begin{align}
+4 \times \qty[
+     - f_b^{(1)} f_b^{(2)} \abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2 + 
+     f_b^{(3)} f_b^{(4)} \abs{\mathcal{M}' (\overline{b} \overline{b} \to bb)}^2  
+     ]
+\,.
+\end{align}
+
+There can be a certain part of scattering processes which do not violate \(CP\); for these, the backward and forward amplitudes are equal: 
+%
+\begin{align}
+\abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2
+=
+\abs{\mathcal{M}' (\overline{b} \overline{b} -> bb)}^2
+\,,
+\end{align}
+%
+therefore we get 
+%
+\begin{align}
+- 4 \frac{n_B}{n_\gamma } f_X^{\text{eq}} \abs{\mathcal{M}' (\overline{b} \overline{b} -> bb)}^2
+\,.
+\end{align}
+
+Now, instead, let us consider the \(CP\) violating part of the processes: neglecting higher order terms, we find 
+%
+\begin{align}
+- 2 f_X^{\text{eq}} \qty(- \abs{\mathcal{M}'(\overline{b} \overline{b} \to bb)}^2 + \abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2)
+\,.
+\end{align}
+
+Finally then, 
+%
+\begin{align}
+\abs{\mathcal{M}'}^2 = \abs{\mathcal{M}}^2 - \abs{\mathcal{M}_{\text{ris}}}^2
+\,,
+\end{align}
+%
+and using \(CPT\) plus unitarity we can say that for the \emph{total amplitude} we have \(\abs{\mathcal{M}(bb \to \overline{b}\overline{b})}^2 = \abs{\mathcal{M}(\overline{b}\overline{b} \to bb)}^2\).
+
+Then we get 
+%
+\begin{align}
+-2 f_X^{\text{eq}} \qty[\qty(- \abs{\mathcal{M}_{\text{ris}}(\overline{b} \overline{b} \to bb)}^2 + \abs{\mathcal{M}_{\text{ris}} (bb \to \overline{b} \overline{b})}^2)]
+\,.
+\end{align}
+
+Here there would be another two pages of computations to do; what we find is 
+%
+\begin{align}
+\abs{\mathcal{M}_{\text{ris}}(bb \to \overline{b}\overline{b})}^2
+\sim 
+\abs{\mathcal{M}(bb \to X)}^2
+\abs{\mathcal{M}(X \to \overline{b}\overline{b})}^2
+\propto \frac{1}{4} (1 - \epsilon )^2 \abs{\mathcal{M}_0}^4
+\,,
+\end{align}
+%
+so finally we will get 
+%
+\begin{align}
+-2 f_X^{\text{eq}} \epsilon \abs{\mathcal{M}_0}^2
+\,.
+\end{align}
+
+The thermally averaged decay rate reads 
+%
+\begin{align}
+\Gamma _D = \frac{1}{n_X^{\text{eq}}} \int \dd{\Pi _X} \dd{\Pi_1 } \dd{\Pi _2} \delta^{(4)} (p_X - p_1 - p_2 ) f_X^{\text{eq}} \abs{\mathcal{M}0 }^2
+\,.
+\end{align}
+
+So, the Boltzmann equation for \(n_B\) reads
+%
+\begin{align}
+\dot{n}_B + 3 H n_B = + \underbrace{\epsilon \Gamma _D \qty(n_X - n_X^{\text{eq}})}_{X \text{ decay}}
+- \underbrace{2 \Gamma _D \qty( \frac{n_X^{\text{eq}}}{n_\gamma }) n_B }_{X \text{ inverse decay}}
+- \underbrace{4 n_B n_\gamma \expval{\sigma \abs{v}}}_{\text{scattering}}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\expval{\sigma \abs{v}} = \frac{1}{n_\gamma^2}
+\int \dd{\Pi_1 } \dd{\Pi_2 } \dd{\Pi_3 } \dd{\Pi_4 }
+f_X^{\text{eq}} \abs{\mathcal{M}' (bb \to \overline{b}\overline{b})}^2
+\,.
+\end{align}
+
 \end{document}

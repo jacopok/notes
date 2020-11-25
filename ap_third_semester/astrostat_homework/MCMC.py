@@ -194,7 +194,7 @@ class Gibbs(Sampler):
         for i, t in enumerate(theta):
             new_theta[i] = conditional(i, theta)
         return(new_theta)
-    
+
 
 if __name__ == "__main__":
 

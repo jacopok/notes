@@ -32,7 +32,7 @@ class Sampler(object):
         t1 = time()
         theta = self.chain[-1] if self.chain is not None else self.initial_position
         theta_arr = [theta]
-        if number_steps > 10000:
+        if number_steps > int(1e6):
             cycler = tqdm(range(number_steps - 1))
         else:
             cycler = range(number_steps - 1)

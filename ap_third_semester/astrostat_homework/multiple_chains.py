@@ -116,6 +116,7 @@ class MultipleChains(object):
     @property
     def optimal_trimming(self):
         over_thrs = []
+        too_low = 0
         for sampler in self.samplers:
             steps, trace = sampler.steps_trace(every=1)
             N = sampler.effective_steps
@@ -137,14 +138,17 @@ class MultipleChains(object):
                 print('threshold is too high!')
                 over_thr = N // 4
             if(over_thr <= 0):
-                print('threshold is too low!')
+                too_low += 1
                 over_thr = 0
 
             over_thrs.append(over_thr)
-            
+        
+        if too_low == self.number_chains:
+            print('All thresholds too low!')
+        
         # another rather arbitrary number here
         # ~2 seems good
-        
+        print(f'Trimming at {2 * max(over_thrs)}')
         return(2 * max(over_thrs))
 
     def traces_plot(self, **kwargs):

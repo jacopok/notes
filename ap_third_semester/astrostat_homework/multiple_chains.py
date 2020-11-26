@@ -136,6 +136,9 @@ class MultipleChains(object):
             if(over_thr > N // 4):
                 print('threshold is too high!')
                 over_thr = N // 4
+            if(over_thr <= 0):
+                print('threshold is too low!')
+                over_thr = 0
 
             over_thrs.append(over_thr)
             

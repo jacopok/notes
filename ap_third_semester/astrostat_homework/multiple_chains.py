@@ -23,6 +23,9 @@ class MultipleChains(object):
         self.args = args
         self.posterior = posterior
         self.calculate_chains(**kwargs)
+    
+    def __str__(self):
+        return(f'{self.number_chains} {self.sampler_class.name} chains.')
 
     def calculate_chains(self, **kwargs):
         
@@ -75,9 +78,13 @@ class MultipleChains(object):
         return np.concatenate([s.chain for s in self.samplers], axis=0)
 
     def trim_chains(self, trim_number):
-        for s in self.samplers:
-            s.trim_chain(trim_number)
-
+        if trim_number > 0:
+            print(f'Trimming at {trim_number}')
+            for s in self.samplers:
+                s.trim_chain(trim_number)
+        elif trim_number == 0:
+            print('No trimming')
+            
     @property
     def means(self):
         return np.array([sampler.mean for sampler in self.samplers])
@@ -134,9 +141,9 @@ class MultipleChains(object):
             # get index of last occurrence of "tr > thr"
             over_thr = N - next((i for i, tr in enumerate(reversed(trace)) if tr > thr), N) - 1
             
-            if(over_thr > N // 4):
+            if(over_thr > N // 2):
                 print('threshold is too high!')
-                over_thr = N // 4
+                over_thr = N // 2 - 1
             if(over_thr <= 0):
                 too_low += 1
                 over_thr = 0
@@ -148,7 +155,7 @@ class MultipleChains(object):
         
         # another rather arbitrary number here
         # ~2 seems good
-        print(f'Trimming at {2 * max(over_thrs)}')
+
         return(2 * max(over_thrs))
 
     def traces_plot(self, **kwargs):
@@ -158,6 +165,50 @@ class MultipleChains(object):
         plt.xlabel('Step number')
         plt.ylabel('Trace')
 
+def errors_sampler(sampler, mvn, trimming_index=40, num=200, max_num=int(1e6)):
+    errors_cov = []
+    errors_mean = []
+
+    N = np.geomspace(sampler.number_steps, max_num, dtype=int, num=num)
+    diffs = np.ediff1d(N, to_end=0) # discrete gradient of N
+
+    for i, diff in tqdm(enumerate(diffs)):
+        errors_cov.append(np.abs(sampler.average_covariance - mvn.cov))
+        errors_mean.append(np.abs(sampler.average_mean - mvn.mean))
+
+        if i == trimming_index:
+            sampler.trim_chains(sampler.optimal_trimming)
+
+        sampler.extend_chains(diff)
+
+    return N, np.array(errors_mean), np.array(errors_cov)
+
+def plot_errors(N, errors_mean, errors_cov, multiple_chains, trimming_index=None):
+    
+    plt.figure(dpi=100, figsize=(8, 6))
+    for i in range(2):
+        for j in range(2):
+            if i <= j:
+                plt.loglog(N, errors_cov[:, i, j], label = f'{i}{j} component, cov')
+
+    for i in range(2):
+        plt.loglog(N, errors_mean[:, i], label=f'{i} component, mean')
+
+    min_error = min(errors_cov.min(), errors_mean.min())
+    max_error = max(errors_cov.max(), errors_mean.max())
+
+    leg = 'Reference $N^{-1/2}$ lines'
+    for C in np.geomspace(max_error * np.sqrt(N[0]), min_error * np.sqrt(N[-1]), num=10):
+        plt.plot(N, N**(-1/2) * C, ls=':', c='black', alpha=.6, label=leg)
+        leg=None
+
+    if trimming_index:
+        plt.axvline(N[trimming_index], ls='--', alpha = .4, label='Trimmed beginning of chains')
+
+    plt.legend()
+    plt.title('Errors for ' + str(multiple_chains))
+    plt.xlabel('Number of MCMC steps')
+    plt.ylabel('Absolute error')
 
 
 if __name__ == "__main__":

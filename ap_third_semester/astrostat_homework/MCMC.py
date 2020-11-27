@@ -7,8 +7,6 @@ import seaborn as sns
 
 SEED = 42
 np.random.seed(SEED)
-
-
 class Sampler(object):
     """
     General Markov Chain Monte Carlo sampler. 
@@ -24,6 +22,7 @@ class Sampler(object):
         self.number_steps = 0
         self.chain = None
         self.calculate_chain(number_steps, **kwargs)
+    
 
     def calculate_chain(self, number_steps, **kwargs):
         
@@ -32,10 +31,13 @@ class Sampler(object):
         t1 = time()
         theta = self.chain[-1] if self.chain is not None else self.initial_position
         theta_arr = [theta]
-        if number_steps > int(1e6):
-            cycler = tqdm(range(number_steps - 1))
-        else:
-            cycler = range(number_steps - 1)
+        
+        cycler = range(number_steps - 1)
+        
+        progress_bar = kwargs.pop('progress_bar', None)
+        if progress_bar:
+            cycler = tqdm(cycler)
+        
         for _ in cycler:
             theta = self.next_chain_step(theta)
             theta_arr.append(theta)
@@ -145,6 +147,7 @@ class MetropolisHastings(Sampler):
     """
     Metropolis - Hastings algorithm: proposal and rejection
     """
+    name = 'Metropolis-Hastings'
 
     def __init__(self, proposal, *args, **kwargs):
         self.proposal = proposal
@@ -152,6 +155,9 @@ class MetropolisHastings(Sampler):
         if self.calculate_acceptance_rate:
             self.rejections = []
         super().__init__(*args, **kwargs)
+    
+    def __str__(self):
+        return('Metropolis-Hastings')
 
     def next_chain_step(self, theta):
 
@@ -184,10 +190,14 @@ class Gibbs(Sampler):
     """
     Gibbs sampling: through the conditioned probability density.
     """
+    name = 'Gibbs'
 
     def __init__(self, conditional, *args, **kwargs):
         self.conditional = conditional
         super().__init__(*args, **kwargs)
+    
+    def __str__(self):
+        return('Gibbs')
 
     def next_chain_step(self, theta):
 
@@ -196,7 +206,24 @@ class Gibbs(Sampler):
         for i, t in enumerate(theta):
             new_theta[i] = self.conditional(i, new_theta)
             
-        return(new_theta)
+        return (new_theta)
+        
+class Cholesky(Sampler):
+    """
+    Cholesky sampling: not a MCMC, but included in this framework for convenience.
+    """
+    name = 'Cholesky'
+
+    def __init__(self, cholesky_sample, *args, **kwargs):
+        self.cholesky_sample = cholesky_sample
+        super().__init__(*args, **kwargs)
+    
+    def __str__(self):
+        return('Cholesky')
+
+    def next_chain_step(self, theta):
+
+        return(self.cholesky_sample(1).reshape(theta.shape))
 
 class SampleSet2D():
     

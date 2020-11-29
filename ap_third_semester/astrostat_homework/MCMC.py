@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import time
 from tqdm import tqdm
+from KDEpy.FFTKDE import FFTKDE
 import seaborn as sns
 
 
@@ -243,8 +244,37 @@ class SampleSet2D():
     def intervals(self, CL):
         interval_x = Sampler.interval_from_samples(self.samples[:, 0], CL)
         interval_y = Sampler.interval_from_samples(self.samples[:, 1], CL)
-        return(interval_x, interval_y)
-            
+        return (interval_x, interval_y)
+    
+    def marginal(self, index):
+        return (self.samples[:, index])
+    
+    def kde(self, num = 2**10):
+        nn = (num, num)
+        x, y = FFTKDE().fit(self.samples).evaluate((num, num))
+        return(x[:,0].reshape(nn), x[:,1].reshape(nn), y.reshape(nn))
+    
+    def conditional_kde(self, index, other_parameter):
+        x, y, z = self.kde()
+        dx = x[1, 0] - x[0, 0]
+        dy = y[0, 1] - y[0, 0]
+        
+        if index == 0:
+            cond_index = np.isclose(other_parameter, y, atol=.75 * dy)
+            return(x[cond_index], z[cond_index])
+        elif index == 1:
+            cond_index = np.isclose(other_parameter, x, atol=.75 * dx)
+            return(y[cond_index], z[cond_index])
+
+    def conditional_cut(self, index, other_parameter, thr=.1):
+        s = self.samples
+        if index == 0:
+            cond_index = np.isclose(other_parameter, s[:,1], atol=thr)
+        elif index == 1:
+            cond_index = np.isclose(other_parameter, s[:,0], atol=thr)
+
+        return(s[cond_index])
+
 if __name__ == "__main__":
 
     mean_1 = np.array([4, 2])

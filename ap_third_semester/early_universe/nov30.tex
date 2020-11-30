@@ -1,4 +1,280 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-11-30, \\ compiled \\ \today}
+
+We start by writing down the two Boltzmann equations we derived, using the notation of a dot for \(\pdv*{}{t}\):
+%
+\begin{align}
+\dot{n}_X + 3 H n_X &= - \Gamma _D \qty(n_X - n_X^{\text{eq}})\\
+\dot{n}_B + 3 H n_B &= + \epsilon \Gamma _D \qty(n_X - n_X^{\text{eq}}) -2 \Gamma _D \qty(\frac{n_X^{\text{eq}}}{n_\gamma }) n_B - 4 n_B n_\gamma \expval{\sigma \abs{v}}
+\,.
+\end{align}
+
+The source term shows the need for all three of the Sacharov conditions: \(\epsilon \neq 0 \) quantifies \(C\) and \(CP\) violation (as well as baryon number violation), \(n_X - n_X^{\text{eq}} \neq 0\) quantifies out-of-equilibrium processes. 
+
+We define the variable \(z = n_X / T\) (not redshift!) and \(X = n_X / s\), where \(s\) is the entropy density: \(X\) measures the number of \(X\) particles in a comoving volume. Also, we define \(B = n_B / s\). 
+The Boltzmann equations then become: 
+%
+\begin{align}
+\dot{n}_X + 3 H n_X &= - \Gamma _D \qty(n_X - n_X^{\text{eq}})\\
+\underbrace{a^{-3} \pdv{}{t} \qty(n_X a^3)}_{\propto s \dot{X}} &= - \Gamma _D \qty(n_X - n_X^{\text{eq}}) \\
+\dot{X} &= - \Gamma _D \qty(X - X^{\text{eq}})
+\,,
+\end{align}
+%
+while the other can be written using a derivative with respect to \(z\), denoted with a prime: since \(\dv{z}{t} = z H\), we have
+%
+\begin{align}
+X' &= - \frac{\Gamma_D}{z H } \qty(X - X^{\text{eq}})  \\
+&= - \frac{z \Gamma _D}{z^2 H} \qty(X - X^{\text{eq}})
+\,,
+\end{align}
+%
+but 
+%
+\begin{align}
+z^2 H = \frac{m_X^2}{T^2} g_*^{1/2} \frac{T^2}{m_P} = H (z=1)
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+X' &= - \frac{z\Gamma_D}{H(z=1)} (X - X^{\text{eq}})  \\
+&= - z  \underbrace{\frac{\Gamma _D (z)}{\Gamma _D(z=1)}}_{\gamma _D (z)} \underbrace{\frac{\Gamma _D (z=1)}{H(z=1)}}_{K} (X - X^{\text{eq}})  \\
+&= -z \gamma _D(z) K \underbrace{(X - X^{\text{eq}})}_{\Delta (z)}  \\
+\Delta '&= - X'_{\text{eq}} - z\gamma _D K \Delta  
+\,.
+\end{align}
+
+The fact that we are in an expanding universe is crucial: without expansion \(X' _{\text{eq}} \equiv 0\), therefore we obtain an exponential decay of the deviation from equilibrium of \(X\). 
+
+For the baryon number, on the other hand, with similar steps as before we get 
+%
+\begin{align}
+B' = + \epsilon z \gamma _D (z) K \Delta (z) - 2 K \gamma _B (z) B 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\gamma _B (z) \approx - 4 \gamma _D (z) X^{\text{eq}} g_* + 4 \frac{n_\gamma \expval{\sigma \abs{v}}}{\Gamma _D (z=1)}
+\,.
+\end{align}
+
+To summarize, the equations are 
+%
+\begin{align}
+\Delta' &= - X _{\text{eq}}' - z \gamma _D (z) K \Delta  \\
+B' &= + \epsilon z K \gamma _D (z) \Delta - z K \gamma _B (z) B
+\,.
+\end{align}
+
+The variable \(X _{\text{eq}}\) can be expressed as 
+%
+\begin{align}
+X _{\text{eq}} (z) = \frac{n_X^{\text{eq}}}{s} = \begin{cases}
+    g_*^{-1} & z\ll 1  \\
+    g_*^{-1}z^{3/2} e^{-z} & z \gg 1 
+\end{cases}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\gamma _D (z) = \frac{\Gamma _D(z)}{\Gamma _D(z=1)} = \begin{cases}
+    z & z\ll 1  \\
+    1 & z\gg 1
+\end{cases}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\expval{ \sigma \abs{v}} \sim \frac{\alpha^2 T^2 A}{(T^2 +m_x)^2}
+\,,
+\end{align}
+%
+and finally
+%
+\begin{align}
+\gamma _B (z) \approx -4 \gamma _D (z) X^{\text{eq}} g_* + \frac{4 n_\gamma \expval{ \sigma \abs{v}}}{\Gamma _D (z=1)}  \\
+&= \begin{cases}
+    z + \frac{A \alpha }{z} & z \ll 1  \\
+    z^{3/2} e^{-z} + A \alpha z^{-5} & z \gg 1
+\end{cases}
+\,.
+\end{align}
+
+The two terms in the relativistic \(z \gg 1\) regime account for inverse decay and \(2 \leftrightarrow 2\) CP conserving scattering respectively.
+
+The solutions read 
+%
+\begin{align}
+\Delta (z) &= \Delta _i \exp[ - \int_0^{z} z' \gamma _D (z') K \dd{z'}]
+- \int_0^{z} X'_{\text{eq}} (z') \exp[- \int_{z'}^{z} z'' \gamma _D(z'') \dd{z''}] \dd{z'}  \\
+B(z) &= B_i \exp[- \int_0^{z} z' \gamma _B (z') K \dd{z'}]
++ \epsilon K \int_0^{z} z' \gamma _D (z') \Delta (z') \exp[- \int_{z'}^{z} z'' K \gamma _B (z'') \dd{z''}] \dd{z'}
+\,.
+\end{align}
+
+We start with a thermal distribution for both baryons and \(X\): \(\Delta _i = B_i = 0\). 
+As long as \(K \ll 1\), we are able to obtain a baryon number of the order of \(B \approx \epsilon / g_*\). 
+
+We will consider the \(K \ll 1\), \(z \gg 1\) case: then, \(\gamma _D (z) \approx 1\), so 
+%
+\begin{align}
+\Delta (z) &\approx \int_0^{z} X'_{\text{eq}} (z') \dd{z'} e^{- k z^2 / 2}  \\
+&= \qty[X _{\text{eq}} (0) - X _{\text{eq}} (z)] e^{- k z^2 / 2}
+\,.
+\end{align}
+
+Then we also get
+%
+\begin{align}
+B(z) &= \epsilon K \int_0^{z} z' \qty[X _{\text{eq}} (0) - \underbrace{X _{\text{eq}} (z')}_{\approx 0}] e^{- K z^{\prime 2} / 2} \dd{z'}  \\
+&\approx \epsilon K X _{\text{eq}} (0) \int_0^{z} z' e^{- k z^{\prime 2} / 2} \dd{z'}  \\
+&= \epsilon X _{\text{eq}}(0) \int_0^{z} \dv{}{z'} \qty(- e^{- k z^{\prime 2} / 2}) \dd{z'}  \\
+&= \epsilon X _{\text{eq}} (0) \qty[1 - e^{-k z^2 /2}]  \\
+&\to \epsilon X _{\text{eq}} (0) = \frac{\epsilon}{g_*}
+\,,
+\end{align}
+%
+in the limit of \(z \gg 1\). 
+What do we expect in the opposite regime, \(K \gg 1\)? 
+
+Recall that the differential equation reads 
+%
+\begin{align}
+\Delta ' = - X' _{\text{eq}} - z K \gamma _D (\Delta )
+\,,
+\end{align}
+%
+therefore we expect \(\Delta '\) to be small, since \(K \gg 1\) means that the decays of \(X\) particles are very efficient (and it can be shown that \(\Delta ' < \Delta \)): this means that we can take \(\Delta ' \approx 0\), so that 
+%
+\begin{align}
+\Delta \approx - \frac{X' _{\text{eq}}}{z K \gamma _D(z)}
+\,,
+\end{align}
+%
+but we know 
+%
+\begin{align}
+X _{\text{eq}} (z ) &\sim z^{3/2} e^{-z}  \\
+X' _{\text{eq}} &\sim z^{1/2} e^{-z} - \underbrace{z^{5/2} e^{-z}}_{- X _{\text{eq}}}
+\,,
+\end{align}
+%
+and the last term is the leading one.
+
+Then, 
+%
+\begin{align}
+\Delta \approx \frac{X _{\text{eq}}(z)}{z K} \propto \frac{1}{K}
+\,.
+\end{align}
+
+For \(K \gtrsim 1\) we will have 
+%
+\begin{align}
+B_f = B(z \to \infty) = \epsilon K \int_0^{\infty } z \Delta (z) \gamma _D (z) \exp(- \int_{z}^{\infty } z' K \gamma _B (z') \dd{z'})
+\,.
+\end{align}
+
+What is the physical significance of \(\gamma _B\)? it tends to damp the baryon asymmetry. 
+We can define an epoch of freeze-out as the \(z_f\) at which \(z_f K \gamma _B (z_f) \approx 1\), since after this epoch we get \(z K \gamma _B (z) < 1\).
+
+We can use the Laplace, or saddle-point approximation: if the function \(g\) has a global maximum at \(x_0 \), we have
+%
+\begin{align}
+\int_{a}^{b} h(x) e^{c g(x)} \dd{x} \approx h(x_0 ) e^{c g(x_0 )} \times \sqrt{\frac{2 \pi }{\abs{g'' (x_0 )}}}
+\,.
+\end{align}
+
+In our case, 
+%
+\begin{align}
+c g(x) = - \int_{z}^{\infty } z K \gamma _B (z') \dd{z'}
+\,,
+\end{align}
+%
+so we will have our maximum at \(z = z_f\), the freezeout epoch. 
+
+The approximation then yields 
+%
+\begin{align}
+B_f \approx \epsilon K z_f \frac{X _{\text{eq}} (z_f)}{z_f K \gamma _D (z_f)} \underbrace{\exp(- \int_{z_f}^{\infty} z K \gamma _B (z) \dd{z})}_{\approx 1}
+\sqrt{ \frac{2 \pi }{\eval{\abs{zK \gamma _b}'}_{z_f}}}
+\,.
+\end{align}
+%
+so finally, using \(X _{\text{eq}} (z_f) = g_*^{-1} z^{3/2} e^{-z}\), we get
+%
+\begin{align}
+B_f \approx \frac{\epsilon}{g_*}z_f^{3/2} e^{-z_f} \frac{1}{\sqrt{(z K \gamma _B)'}}
+\,.
+\end{align}
+
+For \(K \geq 1\) inverse decays dominate vs scattering processes. In this case then the term under the square root looks like \(z_f K \gamma _B (z_f) \approx 1\), which means \(z_f K z_f^{3/2} e^{-z_f} \approx 1\), which can be solved to yield \(z_f \approx 4 (\log K)^{\num{.6}} \).
+\todo[inline]{skipped some steps}
+This finally yields
+%
+\begin{align}
+B_f &\approx \frac{\epsilon}{g_*} z_f^{3/2} e^{-z_f} \underbrace{\frac{1}{\sqrt{z_f^{5/2} K e^{-z_f}}}}_{\approx 1}  \\
+&\approx \frac{\epsilon}{g_*} \frac{1}{4 K \qty(\log K)^{\num{.6}}}
+\,.
+\end{align}
+
+In the \(K \gg 1\) case, on the other hand, we have \(K A \alpha z_f^{-4} \approx 1\), so \(z_f \approx (K A \alpha )^{1/4}\). This gives us 
+%
+\begin{align}
+B_f = \frac{\epsilon}{g_*} \frac{z_f^{3/2} e^{-z_f}}{\sqrt{\abs{(zK \gamma _B)'}}}
+\,.
+\end{align}
+
+This time the denominator looks like 
+%
+\begin{align}
+(zK \gamma _B)' = -4 A \alpha z^{-5} \approx - \frac{4}{z}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+B_f &= \frac{\epsilon}{g_*} \frac{z_f^{3/2} e^{-z_f}}{z_f^{-1/2}}
+&= \frac{\epsilon}{g_*} z_f^2 e^{-z_f}  \\
+&= \frac{\epsilon}{g_*} (K A \alpha )^{1/2} \exp(- (K A \alpha )^{1/4})
+\,.
+\end{align}
+
+We can find the \(z_f\) at which inverse decays and scatterings are balances: 
+%
+\begin{align}
+z_f = 4 \qty(\log K)^{\num{.6}} = (A K \alpha )^{1/4}
+\,,
+\end{align}
+%
+which yields 
+%
+\begin{align}
+K_c \approx \frac{300}{A \alpha }
+\,.
+\end{align}
+
+If \(1 < K < K_c\), then inverse decays dominate over scatterings; if \(K > K_c\) on the other hand scattering dominate, and \(B_f\) is exponentially suppressed. 
+
+The value of \(K\) is determined as 
+%
+\begin{align}
+K = \frac{\alpha m_P}{g_*^{1/2} m_X}
+\,,
+\end{align}
+%
+and it will depend on the specifics of the \(X\) particle we are interested in. 
+
 \end{document}

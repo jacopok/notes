@@ -1,4 +1,106 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2020-11-30, \\ compiled \\ \today}
+
+The Fisher Information Matrix is defined as 
+%
+\begin{align}
+F_{\alpha \beta } = \expval{- \pdv[2]{\log \mathscr{L}}{\theta _\alpha }{\theta _\beta }}_{\vec{\theta} = \vec{\theta} _{\text{max}}}
+\,.
+\end{align}
+
+We almost proved the Cramer-Rao bound, however we still need to show that 
+%
+\begin{align}
+\expval{\qty[\pdv{}{\theta } \log \mathscr{L}(\vec{x} | \theta )]^2}
+= \expval{- \pdv[2]{}{\theta } \log \mathscr{L}(\vec{x} | \theta )}
+\,.
+\end{align}
+
+In order to do so, we can use the fact that the likelihood is normalized, therefore we can do what amounts to integrating by parts:
+%
+\begin{align}
+0 &= \pdv[2]{}{\theta } \int \dd[n]{x} \mathscr{L} = \pdv{}{\theta } \int \dd[n]{x} \pdv{}{\theta } \mathscr{L}  \\
+&= \pdv{}{\theta } \int \dd[n]{x} \mathscr{L} \pdv{}{\theta } \log \mathscr{L} = \int \dd[n]{x} \qty[\mathscr{L}\pdv[2]{}{\theta } \log \mathscr{L} + \pdv{}{\theta } \log \mathscr{L} \pdv{}{\theta } \mathscr{L}]  \\
+&= \expval{\pdv[2]{}{\theta } \log \mathscr{L}} + \expval{\qty[\pdv{}{\theta } \log \mathscr{L}]^2}
+\,.
+\end{align}
+
+In the multivariate case, this becomes \(F_{\alpha \beta } = \expval{(\partial_{\alpha } \log \mathscr{L}) (\partial_{\beta } \log \mathscr{L})}\); and the bound is \(\operatorname{cov}{\hat{\theta}_\alpha , \hat{\theta}_\beta } \geq (F^{-1})_{\alpha \beta }\). 
+
+We would like to saturate this bound for our experiment, so we want to impose the condition 
+%
+\begin{align}
+\pdv[]{}{\theta } \log \mathscr{L} (\vec{x} | \theta ) = q(\theta ) \qty[\hat{\theta} - \expval{\hat{\theta}}]
+\,.
+\end{align}
+
+This tells us that the likelihood must look like 
+%
+\begin{align}
+\mathscr{L}(\vec{x} | \theta ) = \frac{m(\vec{x})}{Z(\theta )} \exp[- \ell(\theta ) \hat{\theta}(\vec{x})]
+\,.
+\end{align}
+
+If the noise is Gaussian, then the likelihood will be a MVN: 
+%
+\begin{align}
+\mathscr{L}(\vec{x} | \theta ) = \frac{1}{(2 \pi )^{N/2} \sqrt{\det C}}
+\exp(- \frac{1}{2} (\vec{x} - \vec{\mu})^{\top} C^{-1} (\vec{x} - \vec{\mu}))
+\,.
+\end{align}
+
+In general, both \(\mu \) and \(C\) may depend on the parameter(s) \(\theta \). We may compute the Fisher Matrix in this case: the log-likelihood looks like 
+%
+\begin{align}
+-2 \log \mathscr{L} = N \log (2 \pi ) + \log \det C
++ (\vec{x} - \vec{\mu})^{\top} C^{-1} (\vec{x} - \vec{\mu})
+\,,
+\end{align}
+%
+and now we will use a few linear algebra tricks: we start with \(\log \det C = \Tr \log C\), then we define the data array 
+%
+\begin{align}
+D_{ij} = (x_i - \mu _i)(x_j - \mu _j)
+\,,
+\end{align}
+%
+then we rewrite the term as 
+%
+\begin{align}
+(\vec{x} - \vec{\mu})^{\top} C^{-1} (\vec{x} - \vec{\mu})
+= \Tr [C^{-1} D]
+\,,
+\end{align}
+%
+so that \(-2 \log \mathscr{L} = \const + \Tr[\log C + C^{-1} D]\). 
+
+From here we can start taking derivatives, and we will find an expression in terms of \(D\) and \(C\), of which we must take the average; the averages we will need are 
+%
+\begin{align}
+\expval{D_{ij}} &= C_{ij}  \\
+\expval{D_{ij, \alpha }} &= 0 \\
+\expval{D_{ij, \alpha \beta }} &= \mu_{i, \alpha } \mu_{j, \beta } + \mu_{i, \beta } \mu_{j, \alpha } 
+\,.
+\end{align}
+
+Finally, we get 
+%
+\begin{align}
+F_{\alpha \beta } = \frac{1}{2} \Tr[C^{-1} C_{,\alpha} C^{-1} C_{, \beta } + 2 C^{-1} \vec{\mu}^{\top}_{, (\alpha } \vec{\mu}_{,\beta) }]
+\,.
+\end{align}
+
+We find that the log-posterior can be expressed as 
+%
+\begin{align}
+\log \mathcal{P}(\vec{\theta} | \vec{d}) = - \sum _{i=1}^{n} \frac{1}{2 \sigma _i^2} \qty(n^i - \frac{1}{\mathcal{R}} s^{i}_{\alpha } \Delta \overline{\theta}_\alpha  - \frac{1}{2 \mathcal{R}^2} s^{i}_{\alpha \beta } \Delta \overline{\theta}_\alpha \Delta \overline{\theta}_\beta + \dots)^2
+\,,
+\end{align}
+%
+where \(\mathcal{R}\) is the signal-to-noise ratio: if it is large, then we can linearize, and we are fine. 
+
+\todo[inline]{Missing the last bit of the discussion}
+
 \end{document}

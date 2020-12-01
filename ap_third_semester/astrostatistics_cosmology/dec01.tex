@@ -1,4 +1,247 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Galaxy surveys}
+
+\marginpar{Tuesday\\ 2020-12-1, \\ compiled \\ \today}
+
+Nowadays we can have 3D surveys, which make use of photometric and spectroscopic data to give distance information. 
+The galaxy density field we observe is non-Gaussian, and we would expect it to be so even starting from Gaussian initial conditions since gravitational evolution is nonlinear. 
+
+Therefore, not all the information lies in the power spectrum. 
+This means that it is hard to do the analysis on arbitrary scales; on the other hand if we average over \(\gtrsim \SI{10}{Mpc}\) the field is indeed close to Gaussian, so we can analyze it in a simpler way.
+This is due to the hierarchical nature of the gravitational collapse, which is ``bottom up''. 
+
+So, on these large scales we can linearize. 
+We work in Fourier space, defining: 
+%
+\begin{align}
+\delta _g (k \ll 1) = \int \dd[3]{x} \delta _g (\vec{x}) W_\lambda e^{-i \vec{k} \cdot \vec{x}}
+\,,
+\end{align}
+%
+where \(W_\lambda \) is our filter function, which has a wavelength of \(\gtrsim \SI{10}{Mpc}\).
+
+The power spectrum is defined as 
+%
+\begin{align}
+\expval{ \delta _g (\vec{k}_1) \delta _g^{*} (\vec{k}_2)} = (2 \pi )^3
+\delta^{(3)} (\vec{k}_1 - \vec{k}_2) P_g (k)
+\,,
+\end{align}
+%
+where \(k = \abs{\vec{k}_1} = \abs{\vec{k}_2}\).
+
+The density will really be defined as 
+%
+\begin{align}
+\Delta _i = \int \dd[3]{x} \psi _i (\vec{x}) \qty(\frac{n(\vec{x}) - \overline{n}}{\overline{n}})
+\,.
+\end{align}
+
+The function \(\psi \) can be chosen in real space to be the count-in-cells one: 
+%
+\begin{align}
+\psi^{\text{CIC}}_{i} (\vec{x}) = \overline{n}  [\vec{x} \in i \text{-th cell}]
+\,,
+\end{align}
+%
+or the Fourier one: 
+%
+\begin{align}
+\psi_{\vec{k}} (\vec{x}) = \frac{1}{V} e^{i \vec{k} \cdot \vec{x}} [\vec{x} \in V]
+\,.
+\end{align}
+
+In the latter case, we get 
+%
+\begin{align}
+\Delta (\vec{k}) = \frac{1}{V \overline{n}} \int \dd[3]{x} e^{i \vec{k} \cdot \vec{x}} n(\vec{x}) - \frac{1}{V} \underbrace{\int \dd[3]{x} e^{i \vec{k} \cdot \vec{x}}}_{ =\delta_{\vec{k}, 0} } 
+\,,
+\end{align}
+%
+where \(\delta_{\vec{k}, 0}\) is a Kronecker delta between \(\vec{k}\) and \(0\). 
+From \(\Delta \) we want to compute the power spectrum. 
+
+The galaxy density field can be written as 
+%
+\begin{align}
+n(\vec{x}) = \sum _i \delta^{(3)} (\vec{x} - \vec{x}_i)
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\Delta (\vec{k}) = \frac{1}{\overline{n} V} \sum _{i} e^{i \vec{k} \cdot \vec{x}_i} - \delta_{\vec{k}, 0}
+\,.
+\end{align}
+
+We make a grid that is so fine that each cell contains at most 1 galaxy: then, we can write 
+%
+\begin{align}
+\Delta (\vec{k}) = \frac{1}{\overline{n} V} \sum _{\alpha }^{N _{\text{cells}}} N_\alpha  e^{i \vec{k} \cdot \vec{x}_\alpha } - \delta_{\vec{k}, 0}
+\,,
+\end{align}
+%
+where \(N_\alpha = 0, 1\) for each \(\alpha \). 
+
+Then, we can compute the power spectrum as 
+%
+\begin{align}
+\begin{split}
+\expval{\Delta (\vec{k}_1) \Delta^{*} (\vec{k}_2)} &= \frac{1}{(\overline{n} V)} \sum _{\alpha , \beta } \expval{N_\alpha N_\beta } e^{i \vec{k}_1 \cdot \vec{x}_\alpha  - i \vec{k}_2 \cdot \vec{x}_\beta } + \delta_{\vec{k}_1, 0} \delta_{\vec{k}_2, 0 } \\
+&\phantom{=}\ 
+- \frac{1}{\overline{n} V} \delta_{\vec{k}_2, 0} \sum _{\alpha } \expval{N_\alpha } e^{i \vec{k}_1 \cdot \vec{x}_\alpha }
+- \frac{1}{\overline{n} V} \delta_{\vec{k}_1, 0} \sum _{\beta } \expval{N_\beta } e^{i \vec{k}_2 \cdot \vec{x}_\beta  }
+\,.
+\end{split}
+\end{align}
+
+Now, the last two terms can be computed making use of the fact that in a small cell of volume \(\delta V\) the expected number of galaxies is \(\overline{n} \delta V\); therefore we can write 
+%
+\begin{align}
+\frac{1}{\overline{n} V} \delta_{\vec{k}_2, 0} \sum _{\alpha } \expval{N_\alpha } e^{i \vec{k}_1 \cdot \vec{x}_\alpha }
+&= \frac{1}{\overline{n} V} \delta_{\vec{k}_2, 0} \sum _{\alpha } \overline{n} \delta V e^{i \vec{k}_2 \cdot \vec{x}_\alpha }  \\
+&\approx \delta_{\vec{k}_2, 0} \qty( \frac{1}{V} \int \dd[3]{x} e^{i \vec{k}_1 \cdot \vec{x}_\alpha }) = \delta_{\vec{k}_2, 0} \delta_{\vec{k}_1, 0} 
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+\expval{ \Delta (\vec{k}_1) \Delta^{*} (\vec{k}_2)} = \frac{1}{(\overline{n} V)^2} \sum _{\alpha , \beta } \expval{N_\alpha N_\beta } e^{i \vec{k}_1 \cdot \vec{x}_\alpha - i \vec{k}_2 \cdot \vec{x}_\beta } - \delta_{\vec{k}_1, 0} \delta_{\vec{k}_2, 0}
+\,.
+\end{align}
+
+If the positions of galaxies were purely random and unclustered we would have 
+%
+\begin{align}
+\expval{N_\alpha N_\beta } = \expval{N_\alpha } \expval{N_\beta } =(\overline{n}V)^2
+\,,
+\end{align}
+%
+so we define 
+%
+\begin{align}
+\expval{N_\alpha N_\beta } = (\overline{n} \delta V)^2 \qty(1 + \expval{ \delta _g (\vec{x}_1) \delta _g (\vec{x}_2)} )
+= (\overline{n} \delta V)^2 \qty(1 + \xi _{12} (\abs{\vec{x}_1 - \vec{x}_2}))
+\,.
+\end{align}
+
+Also, we know that the autocorrelation can be written through the fact \(N_\alpha = N_\alpha^2\), since \(N_\alpha = 0, 1\). 
+Therefore, 
+%
+\begin{align}
+\expval{ \Delta(\vec{k}_1 ) \Delta^{*} (\vec{k}_2)} = \frac{1}{(\overline{n} V)} \qty(\sum _{\alpha } \expval{N_\alpha } e^{i (\vec{k}_1 - \vec{k}_2) \cdot \vec{x}_\alpha } + \sum _{\alpha \neq \beta } \expval{N_\alpha N_\beta } e^{i \vec{k}_1 \cdot \vec{x}_\alpha - i \vec{k}_2 \cdot \vec{x}_\beta })
+\,,
+\end{align}
+%
+where the cross-term is given by 
+%
+\begin{align}
+\frac{1}{(\overline{n} V)^2} 
+\sum _{\alpha \neq \beta } \expval{N_\alpha N_\beta } e^{i \vec{k}_1 \cdot \vec{x}_\alpha - i \vec{k}_2 \cdot \vec{x}_\beta }
+= \expval{ \delta _g (\vec{k}_1) \delta _g^{*} (\vec{k}_2)} = \frac{1}{V } P_g(k_1) \delta_{\vec{k}_1, \vec{k}_2}
+\,,
+\end{align}
+
+The final term represents shot noise, so this finally yields 
+%
+\begin{align}
+\expval{ \Delta(\vec{k}_1 ) \Delta^{*} (\vec{k}_2)}
+= \frac{1}{V} \qty(P_g (k) + \frac{1}{\overline{n}}) \delta_{\vec{k}_1, \vec{k}_2}
+\,.
+\end{align}
+
+The shot noise term would be there even for a pure random process, while the \(P_g (k)\) is our signal. 
+
+[Argument through characteristic functions as to why the total number of galaxies in each volume is Poisson distributed.]
+
+For a small volume 
+%
+\begin{align}
+Z_s(k) = 1 + \rho \delta V (e^{ik} - 1)
+\,,
+\end{align}
+%
+so for a large volume 
+%
+\begin{align}
+Z_l(k) = \qty[Z_s(k)]^{V / \delta V} \approx \exp[\rho V \qty(e^{ik}- 1)]
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+Z_l(k)  = \sum _{n=0}^{\infty } \frac{\lambda^{n} e^{-\lambda }}{n!} e^{ikn}
+\,,
+\end{align}
+%
+where \(\lambda = \rho V\); therefore the probability can be recovered as an inverse Fourier transform:
+%
+\begin{align}
+P_n = \frac{e^{-\lambda } \lambda^{n}}{n!}
+\,.
+\end{align}
+
+Then, we can compute the Fisher matrix from our general expression: 
+the process is zero mean, so the mean-dependent terms cancel, so the expression is 
+%
+\begin{align}
+F_{\alpha \beta } = \frac{1}{2} C_{ij, \alpha } C^{-1}_{jm} C_{mn, \beta } C^{-1}_{ni}
+\,,
+\end{align}
+%
+where the covariance matrix and its inverse are diagonal:
+%
+\begin{align}
+C_{ij} &= C(\vec{k}_i, \vec{k}_j) = \delta_{ij} \qty[P_g (k_i) + \frac{1}{\overline{n}}]  \\
+C^{-1}_{ij} &= \frac{ \delta_{ij}}{P_g(k) + 1/ \overline{n}}
+\,.
+\end{align}
+
+The derivative of the covariance matrix is 
+%
+\begin{align}
+C_{ij, \alpha } = \pdv{C_{ij}}{P_\alpha } = \delta_{ij} \pdv{P_g(k_i)}{P_\alpha } = \delta_{ij} d_{i \alpha }
+\,,
+\end{align}
+%
+where \(d_{i \alpha } = [\abs{\vec{k}_i} \in [k_\alpha, k_\alpha + \Delta k]]\) (using the Iverson bracket).
+
+This then yields 
+%
+\begin{align}
+F_{\alpha \beta } &= \frac{1}{2} \delta_{ij} d_{i \alpha } \frac{ \delta_{im}}{P_g (k_j) + 1/ \overline{n}} ( \delta_{mn} d_{n \beta }) \frac{ \delta_{ni}}{P_g (k_i) + 1/\overline{n}} 
+&=
+\frac{1}{2} \frac{\sum _{i} d_{i \alpha }}{(P_\alpha + 1/\overline{n})^2}
+\,.
+\end{align}
+%
+
+Now, we are working with a finite survey of volume \(V\), therefore 
+%
+\begin{align}
+\sum _{i} d_{i \alpha } = \frac{4 \pi k_\alpha^2 \Delta k}{1/V} = 4 \pi k_\alpha^2 \Delta k V
+\,.
+\end{align}
+%
+This yields 
+%
+\begin{align}
+F_{\alpha \beta } = \frac{1}{2} \delta_{\alpha \beta } \frac{4 \pi k_\alpha^2 \Delta k V}{(P_g (k_\alpha ) + 1/ \overline{n})^2}
+\,,
+\end{align}
+%
+so the Cramer-Rao bound is 
+%
+\begin{align}
+\sigma _\alpha = \sqrt{F_{\alpha \alpha }^{-1}} = \qty(P_g (k_\alpha ) + \frac{1}{\overline{n}}) \frac{1}{\sqrt{2 \pi k_\alpha^2 \Delta k V}}
+\,.
+\end{align}
+
+So, in order to decrease the error bar we want to increase \(\overline{n}\) as much as possible (i.e.\ measure very dim galaxies), and increase the number of \(k\) modes: this is achieved by taking a survey with a volume which is as large as possible.
+
 \end{document}

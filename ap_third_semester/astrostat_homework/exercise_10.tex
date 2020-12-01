@@ -5,4 +5,26 @@
 
 \subsection{Exercise 10}
 
+We have a time series of \(N\) data points, \(D = \qty{d_i}\), corresponding to the times \(t_i\), which are separated by the constant spacing \(\Delta \).
+
+We model them as 
+%
+\begin{align}
+d_i = \underbrace{B_1  \cos(\omega t_i) + B_2 \sin(\omega t_i)}_{f(t_i)} + n_i
+\,,
+\end{align}
+%
+where \(f(t)\) the signal we want to characterize, which depends on the unknown amplitudes \(B_1 \) and \(B_2 \) and the unknown frequency \(\omega \); while \(n_i \) is the noise: each \(n_i\) is i.i.d.\ as a zero-mean Gaussian with known variance \(\sigma^2\). 
+
+\subsubsection{The full likelihood}
+
+The likelihood of a single datum of index \(i\) attaining the value \(d_i\) is given\footnote{Omitting the dependence on previous information for simplicity.} by 
+%
+\begin{align}
+\mathscr{L} (d_i | \omega , B_1 , B_2 ) = \frac{1}{\sqrt{2 \pi } \sigma }\exp(- \frac{1}{2 \sigma^2}\qty(d_i - f(t_i)))
+\,.
+\end{align}
+
+
+
 \end{document}

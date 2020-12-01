@@ -61,7 +61,7 @@ If we denote the evaluations of bilinear forms in the data (\(N\)-dimensional) s
 \underbrace{ \qty[(t | C^{-1} | t)^{-1}]_{mk}
 (t | C^{-1} | t)_{kj}}_{= \delta_{mj}} A_j = A_m  \\
 A_m &= \qty[(t | C^{-1} | t)^{-1}]_{mk} (t | C^{-1} | d)_k
-\,,
+\,, \label{eq:template-fitting}
 \end{align}
 %
 where the inverse of \((t | C^{-1} | t)\) is to be computed in the \(M\)-dimensional vector space. 
@@ -105,6 +105,8 @@ P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp
 where we defined the bilinear form \(\Omega = V x x^{\top} V^{\top}\).\footnote{With explicit indices, \(\Omega_{im} = V_{ij} x_j x_k V_{km}\).}
 
 % We can observe that all information about the scale of \(\overline{x}\) has been lost: if we map \(\overline{x} \to A \overline{x}\) the argument of the exponential does not change, therefore the only change comes from the factor in front, and the posterior \(P\) is mapped to \(P / A\). 
+
+\subsubsection{An application of posterior marginalization in this fashion}
 
 Let us consider a simple example of this as a sanity check: suppose that \(x\) is two-dimensional, and \(\overline{x}(\Theta ) = (\cos \Theta , \sin \Theta )^{\top}\); further, suppose that \(V\) is diagonal, so that 
 %
@@ -195,5 +197,72 @@ Specifically, we can see that scaling \(A_x\) is equivalent to scaling \(\sigma 
 Here the likelihood is a diagonal Gaussian with \(\sigma _x = \num{1.2}\) and \(\sigma _y = \num{1.8}\), centered in \(A_x = \num{2.5}\) and \(\varphi = \SI{1}{rad}\).}
 \label{fig:marginalization}
 \end{figure}
+
+\subsubsection{Likelihood marginalization}
+
+So far we have considered the posterior \(P(\Theta | x)\), the marginalized posterior, a function of the parameter(s) \(\Theta \); however we may also be interested in the marginalized likelihood \(\mathscr{L}(x | \Theta )\), whose expression is the same as the one we found for \(P(\Theta | x)\); further, we do not even need to assume a form for the prior on \(\Theta \) in order to arrive at that expression. Let us write it in a way which makes the dependence on \(x\) more explicit: 
+%
+\begin{align} \label{eq:marginalized-likelihood}
+\mathscr{L}(x | \Theta ) = \underbrace{B_1 \sqrt{\frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}}_{B_3 } \exp(- \frac{1}{2} x^{\top} V x + \frac{(\overline{x}^{\top} V x)^2}{\overline{x}^{\top} V \overline{x}})
+\,,
+\end{align}
+%
+which can be simplified by making use of the fact that the best-fit template amplitude we found in the last exercise (equation \eqref{eq:template-fitting}) can be applied here, with the single template \(t = \overline{x}\), the single amplitude \(A\), the data \(d = x\), and the inverse covariance matrix \(C^{-1}= V\): the fitting value for \(A \) is 
+%
+\begin{align}
+\hat{A} = \frac{\overline{x}^{\top} V x}{\overline{x}^{\top} V \overline{x}}
+\,;
+\end{align}
+%
+therefore the likelihood is 
+%
+\begin{align}
+\mathscr{L}(x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} V x + \hat{A} \overline{x}^{\top} V x)
+\,.
+\end{align}
+
+This can be rewritten in the canonical MVN form by making use of the matrix square completion formula \eqref{eq:square-completion}, with \(A = -V\) and \(\vec{b}^{\top} = \hat{A} \overline{x}^{\top} V\): 
+%
+\begin{align}
+\begin{split}
+- \frac{1}{2} x^{\top} V x + \hat{A} \overline{x}^{\top} V x
+&= - \frac{1}{2} 
+\qty(x - V^{-1} \hat{A} (\overline{x}^{\top} V)^{\top})^{\top} V
+\qty(x - V^{-1} \hat{A} (\overline{x}^{\top} V)^{\top}) \\
+&\phantom{=}\ 
++ \frac{1}{2} \hat{A}^2 (\overline{x}^{\top} V) V^{-1} (\overline{x}^{\top} V)^{\top}  
+\end{split}\\
+&= - \frac{1}{2} 
+\qty(x - \hat{A} \overline{x})^{\top}
+V 
+\qty(x - \hat{A} \overline{x})
++ 
+\frac{1}{2} \hat{A}^2 \overline{x}^{\top} V \overline{x}
+\,.
+\end{align}
+
+Therefore, the marginalized likelihood reads 
+%
+\begin{align}
+\mathscr{L}(x | \Theta ) = B_3 \exp( \frac{1}{2} \hat{A}^2 \overline{x}^{\top} V \overline{x}) \exp(- \frac{1}{2} \qty(x - \hat{A} \overline{x})^{\top} V \qty(x - \hat{A} \overline{x}))
+\,.
+\end{align}
+
+We must be careful with this expression: it looks like a multivariate normal in \(x\), however \(\hat{A}\) is definitely \emph{not} independent of \(x\), as it is in fact a linear function of it. 
+
+A clearer way to see that this is indeed still a MVN is to come back to the original expression \eqref{eq:marginalized-likelihood}, and to write it as 
+%
+\begin{align}
+\mathscr{L} (x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} \qty(V - 2 \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}) x )
+\,,
+\end{align}
+%
+thus showing that the likelihood is a \emph{zero-mean} MVN with covariance given by 
+%
+\begin{align}
+\qty[V - 2 \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}]^{-1}
+\,.
+\end{align}
+
 
 \end{document}

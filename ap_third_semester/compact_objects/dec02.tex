@@ -1,4 +1,106 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-12-2, \\ compiled \\ \today}
+
+We have discussed the temperature dependence for URCA and MURCA neutrino-driven cooling of NSs, as well as radiative photon cooling.
+
+Let us see when (slow) neutrino cooling and photon cooling have equal magnitude: 
+%
+\begin{align}
+L_\nu^{s} = L_\gamma  \implies N^{s} T^{8} = s T^{2 + 4 \alpha }
+\,,
+\end{align}
+%
+which yields (neglecting \(\alpha \)) a transition temperature of 
+%
+\begin{align}
+T_{\text{trans}}^{s} = \qty(\frac{s}{N^{s}})^{1/6} \sim \SI{e8}{K}
+\,;
+\end{align}
+%
+and we can do a similar thing for fast neutrino cooling: here 
+%
+\begin{align}
+T _{\text{trans}}^{f} = \qty(\frac{s}{N^{f}})^{1/4} \sim \SI{e6}{K}
+\,,
+\end{align}
+%
+which means that the transition time is of the order of \(\num{e4} \divisionsymbol \SI{e6}{yr}\). 
+
+This means that we can make a rough plot of \(\log T\) against \(\log t\) for the slow-cooling case; in the first phase slow cooling dominates and the temperature decreases quickly; then photon cooling takes over and the cooling accelerates. 
+
+In the fast-cooling case the cooling is faster initially, and the photon-cooling phase is reached earlier. 
+
+Real cooling curves can be computed in a much more sophisticated way.
+
+Fast cooling is not supported by observations, since we observe old NSs. 
+
+The most common observational manifestation of NSs are radio pulsars. 
+We know about around 2500 of those. 
+The thermal emission from the surface is not the only one. 
+
+At the beginning of the 90s the first satellite observing the soft X-rays (ROSAT) between \SI{.1}{keV} and \SI{10}{keV} discovered NS sources which emit X-rays but \emph{not} radio waves. 
+We know of 7 of those, the ``magnificent seven''. 
+Their temperature is of the order of the hundreds of eV, and their spectrum looks to be purely thermal. 
+
+New satellites like CHANDRA and XMM-Newton can give us spectra like \(\log F\) as a function of \(\log E\).
+
+The first thing one may try too fit is a blackbody: 
+%
+\begin{align}
+F_{BB} = A \frac{E^3}{e^{E / k_B T} - 1}
+\,.
+\end{align}
+
+The parameter \(A\) is proportional to \(R^2 / D^2\), where \(R\) is the radius of the NS while \(D\) is the distance from it, since
+the total flux is proportional to \(L / 4 \pi D^2\), and \(L = \propto R^2 T^{4}\).
+
+There are reasons to suspect that the surface of a cooling NS is not homogeneous. 
+Energy is transferred to the envelope from the interior mostly through electron conduction. 
+We can make a good model for it in the plane-parallel approximation, since its depth is \(L \sim \SI{100}{m}\), while the radius of the NS is \(R \sim \SI{10}{km}\).
+So, we approximate it as a slab.
+
+The \(\hat{z}\) axis is vertical from the surface, and the magnetic field \(\vec{B}\) will generally not be aligned with it: we denote as \(\phi \) the angle between it and the \(\hat{x}\) axis --- taking \(\hat{x}\), \(\hat{z}\) and \(\vec{B}\) as coplanar. 
+
+Heat flux is usually described by Fourier's law: 
+%
+\begin{align}
+\vec{q} = - k \vec{\nabla} T
+\,,
+\end{align}
+%
+where the scalar \(k\) is called the thermal conductivity. 
+It being a scalar means that conduction is in principle isotropic --- the medium can conduct in any direction equally.
+This is \emph{not} the case if there is a magnetic field: electrons move along field lines in a much easier way than across them. 
+
+Therefore, we expect \(k_\parallel \gg k_\perp\). 
+The conductivity we need is a tensorial one: the law is written as usual, however \(k\) is now a tensor.
+
+We define a ``primed'' system of reference in which the \(\hat{x}\) axis is parallel to \(\vec{B}\): here, (in two dimensions since there is rotational symmetry around the \(\vec{B}\) axis as far as conduction is concerned)
+%
+\begin{align}
+k = \left[\begin{array}{cc}
+k_\parallel & 0 \\ 
+0 & k_\perp
+\end{array}\right]
+\,,
+\end{align}
+%
+and the law reads 
+%
+\begin{align}
+q_i = - k_{ij} \pdv{T}{x_j}
+\,.
+\end{align}
+
+The conductivity tensor will transform with the Jacobian of the rotation: 
+%
+\begin{align}
+k_{ij} = \pdv{x_i}{x'_k} \pdv{x_j}{x'_\ell} k'_{k \ell}
+\,.
+\end{align}
+
+[Calculations]
+
 \end{document}

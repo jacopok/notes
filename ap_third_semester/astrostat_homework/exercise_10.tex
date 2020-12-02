@@ -21,10 +21,118 @@ where \(f(t)\) the signal we want to characterize, which depends on the unknown 
 The likelihood of a single datum of index \(i\) attaining the value \(d_i\) is given\footnote{Omitting the dependence on previous information for simplicity.} by 
 %
 \begin{align}
-\mathscr{L} (d_i | \omega , B_1 , B_2 ) = \frac{1}{\sqrt{2 \pi } \sigma }\exp(- \frac{1}{2 \sigma^2}\qty(d_i - f(t_i)))
+\mathscr{L} (d_i | \omega , B_1 , B_2 ) = \frac{1}{\sqrt{2 \pi } \sigma }\exp(- \frac{1}{2 \sigma^2}\qty(d_i - f(t_i))^2)
 \,.
 \end{align}
 
+Now, since the noise at each point is independent, the full likelihood is the product of the likelihoods of each datum: 
+%
+\begin{align}
+\mathscr{L}(D | \omega , B_1 , B_2 ) &= \frac{1}{(\sqrt{2 \pi } \sigma )^{N}} \prod_{i=1}^{N} \exp(- \frac{1}{2 \sigma^2} \qty(d_i - f(t_i))^2)  \\
+&= \frac{1}{(\sqrt{2 \pi } \sigma )^{N}}
+\exp(- \frac{1}{2 \sigma^2} \sum_{i=1}^{N} \qty(d_i - f(t_i))^2) \\
+&= \frac{1}{(\sqrt{2 \pi } \sigma )^{N}}
+\exp(- \frac{1}{2 \sigma^2} \underbrace{\sum_{i=1}^{N} \qty(d_i - B_1  \cos(\omega t_i) - B_2 \sin(\omega t_i))^2}_{Q}) 
+\,.
+\end{align}
 
+Let us manipulate the sum in the exponent, which we denote as \(Q\): 
+%
+\begin{align}
+Q &= \sum _{i} d_i^2 -2 \sum _i d_i \qty(B_1  \cos(\omega t_i) + B_2 \sin(\omega t_i))
++ \sum _{i} \qty(B_1  \cos(\omega t_i) + B_2 \sin(\omega t_i))^2  \\
+\begin{split}
+&= N \overline{d}^2 
+-2 B_1 \underbrace{\sum _{i} d_i \cos(\omega t_i)}_{R_1(\omega )}
+-2 B_2 \underbrace{\sum _{i} d_i \sin(\omega t_i)}_{R_2(\omega )} + \\
+&\phantom{=}\ 
++ B_1^2 \underbrace{\sum _{i} \cos^2( \omega t_i)}_{c}
++ B_2^2 \underbrace{\sum _{i} \sin^2( \omega t_i)}_{s}
++ 2 B_1 B_2 \sum _{i} \cos(\omega t_i) \sin(\omega t_i) 
+\end{split}  \\
+&= N \overline{d}^2 - 2 B_1 R_1(\omega ) -2 B_2 R_2(\omega ) + B_1^2 c + B_2 s + B_1 B_2 \underbrace{\sum _{i} \sin(2 \omega t_i)}_{h}
+\,.
+\end{align}
+
+\subsubsection{Large pulsation limit}
+
+Typically, in the limit \(\omega \gg \Delta^{-1} \) we expect to have \(c \approx s \approx N/2\) and \(h \approx 0\), since if this the case then after each \(\Delta \) of time many periods will have passed, therefore each term in the sum \(c\) will be equivalent to \(\cos^2(x)\) for \(x\) uniformly distributed between \(0\) and \(2 \pi \), therefore the sum will converge to the \(N\) times the mean value of the argument, which is \(1/2\) for both \(\cos^2\) and \(\sin^2\), and \(0\) for \(\sin\).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/large_pulsation}
+\caption{Values of \(c\), \(s\) and \(h\) for different orders of magnitude of \(\omega \).}
+\label{fig:large_pulsation}
+\end{figure}
+
+However, as we can see in figure \ref{fig:large_pulsation}, the three functions do not really \emph{converge} to those values, and stating something like ``\(\lim_{\omega \to \infty } c = N /2\)'' would be incorrect mathematically.
+This is due to the presence of \emph{resonance}: if the ratio \(\omega \Delta \) is a rational multiple of \(\pi \), especially with a small denominator, there will be a bias in the points sampled, resulting in values which may range all the way from 0 to \(N\) for \(c\) and \(s\), and from \(-N\) to \(N\) for \(h\). 
+This should not really be an issue in realistic cases, as the set of points for which happens has measure zero. 
+
+Really, working in the \(\omega \gg \Delta^{-1}\) regime is not wise, since we will necessarily have aliasing in the measured signal, as we are trying to measure a signal well above the Nyquist frequency of our sampler.
+
+Fortunately, there is a regime in the region \(\omega \sim \Delta^{-1}\) where the approximation we are discussing works well, and there are no aliasing issues. 
+Let us then assume that we are working in that region, and set \(c = s = N/2\) and \(h = 0\).
+
+\subsubsection{Marginalization}
+
+With these simplifications, the likelihood looks like 
+%
+\begin{align}
+\mathscr{L}(D | \omega , B_1 , B_2 ) &= \frac{1}{(\sqrt{2 \pi } \sigma )^{N}}
+\exp(- \frac{Q}{2 \sigma^2})  \\
+Q &= 
+N \overline{d}^2 - 2 B_1 R_1(\omega ) -2 B_2 R_2(\omega ) + B_1^2 \frac{N}{2} + B_2 \frac{N}{2}  \\
+&= N \qty(\overline{d}^2 + \frac{B_1^2 + B_2^2}{2}) - 2 B_1 R_1(\omega ) - 2 B_2 R_2(\omega )
+\,.
+\end{align}
+
+The posterior is proportional to the likelihood, since we are assuming the priors on \(\omega \) and \(B_i\) are uniform. 
+We wish to marginalize it over the parameters \(B_i \in \mathbb{R}\), for \(i = 1, 2\).
+This amounts to solving the integral 
+%
+\begin{align}
+P (\omega | D) &\propto \int_{\mathbb{R}^2} \dd{B_1 } \dd{B_2 } P (\omega , B_1 , B_2  | D)   \\
+&\propto \int_{\mathbb{R}^2} \dd{B_1 } \dd{B_2 }
+\exp(- \frac{N}{2 \sigma^2} \qty(\underbrace{\overline{d}^2}_{\text{constant}} + \frac{B_1^2 + B_2^2}{2} - 2 B_1 R_1(\omega ) -2  B_2 R_2(\omega )))  \\
+&\propto \int_{\mathbb{R}^2} \dd{B_1} \dd{B_2 } \exp(- \frac{1}{2 \sigma^2} \qty( \sum _{i} \frac{N B_i^2}{2} - 2 B_i R_i)) \\
+&\propto \prod_i \int_{\mathbb{R}} \dd{B_i}
+\exp(- \frac{N B_i^2}{4 \sigma^2} + \frac{B_i R_i}{\sigma^2})  \\
+&\propto \prod_i \sqrt{ \frac{\pi}{N / (4 \sigma^2)}}
+\exp( \frac{R_i^2}{\sigma^{4}} \frac{1}{4} \frac{4 \sigma^2 }{N})  \\
+&\propto N^{-1} \prod_i \exp( \frac{R_i^2}{\sigma^2 N})  \\
+&\propto N^{-1} \exp(\frac{R_1^2(\omega ) + R_2^2(\omega )}{\sigma^2 N})
+\,.
+\end{align}
+
+In the last step we have used the usual expression for a univariate Gaussian integral \eqref{eq:single-variable-gaussian-integral}. 
+
+Since the exponential is monotonic and we are keeping \(\sigma \) and \(N \) constant, the Maximum A-Posteriori (MAP) estimate is given by the maximum of \(R_1^2 (\omega ) + R_2^2 (\omega )\).
+
+\subsubsection{The periodogram}
+
+The periodogram \(C\) is defined as 
+%
+\begin{align}
+C(\omega ) = \frac{2}{N} \abs{\sum _{k=1}^{N} d_k \exp(- i \omega t_k)}^2
+\,,
+\end{align}
+%
+and while this definition could be applied for an arbitrary set of times \(t_k\), we will only consider it for times \(t_k = k \Delta  + t_0 \) for some \(t_0 \): a discrete-time Fourier transform. 
+
+We can rewrite the periodogram as 
+%
+\begin{align}
+C(\omega ) &= \frac{2}{N} \abs{\sum _{k=1}^{N} d_k \qty(\cos(\omega t_k) - i \sin(\omega t_k))}^2  \\
+&= \frac{2}{N} \qty[ \qty(\sum _{k=1}^{N} d_k \cos(\omega t_k))^2 + \qty(\sum _{k=1}^{N} d_k \sin(\omega t_k))^2]  \\
+&= \frac{2}{N} \qty[R_1^2(\omega ) + R_2^2 (\omega )]
+\,.
+\end{align}
+
+Therefore, the value of \(\omega \) which maximizes \(C(\omega )\) is the same which maximizes \(R_1^2 (\omega ) + R_2^2 (\omega )\), which is the MAP estimate. 
+
+\subsubsection{Least-squares fitting}
+
+Least-squares fitting the sinusoid with the same model means we minimize \(Q\). 
 
 \end{document}

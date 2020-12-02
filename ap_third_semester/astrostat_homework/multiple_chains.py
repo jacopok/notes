@@ -211,6 +211,7 @@ def plot_errors(N, errors_mean, errors_cov, multiple_chains, trimming_index=None
     plt.ylabel('Absolute error')
 
 
+
 if __name__ == "__main__":
     mean_1 = np.array([4, 2])
     mean_2 = np.array([-1, 0])

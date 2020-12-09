@@ -1,4 +1,254 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-12-9, \\ compiled \\ \today}
+
+CDM particles, definitionally, decouple when they are \emph{not} relativistic, so \(z_f = m_\psi / T > 1\) at freezeout; recall that freezeout is defined as the moment when the inequality \(\Gamma _A / A \lesssim 1\) starts to be satisfied, where \(\Gamma _A\) refers to the annihilation process \(\psi \overline{\psi} \leftrightarrow X \overline{X}\). 
+
+If we define \(y = n_\psi / s\), we can draw the usual decay curve \(y = y(z)\), which is constant and then has a decay (something like an inverted sigmoid); at decoupling the amount stops changing. 
+The Boltzmann equation reads 
+%
+\begin{align}
+\dv{y}{z} = \frac{- zs \expval{\sigma _A \abs{v}}}{H (z=1)} \qty(y^2 - y^2 _{\text{eq}})
+\,.
+\end{align}
+
+Typically we can model the term \(\expval{\sigma_A \abs{v}}\) as a powerlaw: 
+%
+\begin{align}
+\expval{\sigma_A \abs{v}} &\sim T^{n} \\
+\expval{\sigma_A \abs{v}} &= \sigma_0 \qty( \frac{T}{m})^{n} = \sigma_0 \overline{z}^{n}
+\,,
+\end{align}
+%
+therefore the differential equation for the abundance \(y\) reads 
+%
+\begin{align}
+\dv{y}{z} &= - \frac{\lambda}{z^{2 + n}} \qty(y^2 - y^2 _{\text{eq}}) \\
+\lambda = \frac{z^3 s \sigma_0 }{H(z=1)}
+\,,
+\end{align}
+%
+but recall that 
+%
+\begin{align}
+z^3 &= \qty( \frac{m}{T})^3  \\
+s &= \frac{2 \pi^2}{45} g_* T^3  \\
+H(z=1) &=  \qty(\frac{8 \pi G}{3})^{1/2} \qty(\frac{\pi^2}{30})^{1/2}
+g_*^{1/2} \underbrace{T^2}_{= m_\psi^2}
+\,,
+\end{align}
+%
+and with all these substitutions we can write 
+%
+\begin{align}
+\lambda \approx \num{.264} m_P m_\psi \sigma_0 \frac{g_{*s}}{g_*^{1/2}}
+\,.
+\end{align}
+
+Further, we can model the equilibrium abundance as 
+%
+\begin{align}
+y _{\text{eq}} = \num{.145} \qty(\frac{g_*}{g_{*s}}) z^{3/2} e^{z}
+\,,
+\end{align}
+%
+with \(z > 1\). 
+
+Now, let us define \(\Delta = y - y _{\text{eq}} \); then, denoting derivatives with respect to \(z\) with primes we get
+%
+\begin{align}
+\Delta' = - y' _{\text{eq}} - \frac{\lambda}{z^{2+n}} \qty(\Delta + 2 y _{\text{eq}}) \Delta 
+\,,
+\end{align}
+%
+which can be solved by distinguishing two regimes: the first is for early times, defined by \(1 < z < z_f\), meaning that the particle is relativistic but still coupled.
+This tells us that both \(\Delta \) and \(\Delta '\) are small; with this we can write 
+%
+\begin{align}
+\Delta &\approx \frac{z^{2+n}}{\lambda } \frac{- y' _{\text{eq}}}{\Delta + 2 y _{\text{eq}}}  \\
+&\approx \frac{z^{2+n}}{\lambda } \frac{- y' _{\text{eq}}}{2 y _{\text{eq}}}  \\
+&\approx \frac{z^{2+n}}{\lambda }
+ \frac{y _{\text{eq}}}{2 y _{\text{eq}}} = \frac{z^{2+n}}{2 \lambda }
+\,,
+\end{align}
+%
+since when we differentiate \(y _{\text{eq}}\) one term is negligible.
+\todo[inline]{I think, to check.}
+
+On the other hand, at late times \(z \gg z_f\) we get \(y(z) \gg y _{\text{eq}} (z)\),\footnote{This is true since \(y\) is the \emph{actual} amount of particles in a comoving volume, while \(y _{\text{eq}}\) is the amount which \emph{would} be reached if there were equilibrium, which cannot happen due to decoupling.} therefore \(\Delta \approx y\). 
+With this approximation, we get 
+%
+\begin{align}
+\Delta ' = - \frac{\lambda}{z^{2+n}} \Delta^2
+\,,
+\end{align}
+%
+and solving this we find 
+%
+\begin{align}
+- \frac{\Delta '}{\Delta^2} &\approx \frac{\lambda }{z^{2 + n}}  \\
+\frac{1}{\Delta _\infty } - \frac{1}{\Delta _f} &\approx \eval{- \frac{\lambda}{n+1} z^{-n-1}}_{z = z_f}^{z = \infty } \\
+\frac{1}{\Delta_{\infty }} - \frac{1}{\Delta _f} &\approx  + \frac{\lambda }{z_f^{n+1} (n+1) }
+\,,
+\end{align}
+%
+but \(y_\infty < y_f\), meaning that we can neglect the \(y_f\) term and so 
+%
+\begin{align}
+y_\infty \approx \frac{z_f^{n+1}(n+1)}{\lambda } \approx
+\frac{\num{3.79} (n+1) z_f^{n+1}}{(g_{*s} / g_*^{1/2}) m_P m_\psi \sigma_0 }
+\,.
+\end{align}
+
+From this, using \(n_\psi = s_0 y_\infty \) and the expression \(s_0 \approx \SI{2e3}{cm^{-3}}\) (if one neutrino species is relativistic today), then we can calculate 
+%
+\begin{align}
+\Omega_{\psi_0 } h^2 = \frac{\num{.75e9}(n+1)z_f^{n+1}}{(g_{*s} / g_*^{1/2}) m_P  \sigma_0} \SI{}{GeV^{-1}} 
+\,.
+\end{align}
+
+Here we used \(\Omega _{\psi_0 } = m_\psi n_{\psi_0 }  / \rho _{\text{crit}}\), with \(\rho _{\text{crit}} \approx \SI{e4}{eV cm^{-3} h^2}\).
+We appear to have eliminated the dependence on \(m_\psi \), but this is not completely the case: (something) still depends at least weakly on it. 
+
+The crucial result from this manipulation is 
+%
+\begin{align}
+\Omega_{\psi_0 } h^2 \propto \frac{1}{\sigma_0 }
+\,.
+\end{align}
+
+This is somewhat intuitive: if the particle interacts more then its abundance has more time to decrease with the Boltzmann suppression. 
+
+Manipulating the expression with some typical values, we get 
+%
+\begin{align}
+\Omega_{\psi_0} h^2 \approx \order{1} (n+1) \qty(\frac{z_f}{10})^{n+1}
+\qty(\frac{g_*}{100})^{1/2} \qty(\frac{100}{g_{*s}}) \frac{\SI{e-38}{cm^2}}{\sigma_0 }
+\,.
+\end{align}
+
+The natural normalization arising for \(\sigma_0\) is \SI{e-2}{pbn} (picobarns), a very small cross-section, which is the typical order of magnitude of weak-interaction cross-sections. 
+This is what is called the \textbf{WIMP miracle}, where WIMP means Weakly-Interacting Massive Particle.
+
+The freezout epoch is the one at which the abundance \(y\) departs from its equilibrium value: then, we ask that \(\Delta (z_f) = y(z_f) - y _{\text{eq}} (z_f) = c y _{\text{eq}}\), with \(c\) being a coefficient of order unity.
+
+Plugging in the expression we derived earlier, we get 
+%
+\begin{align}
+\Delta(z_f) = \lambda^{-1} \frac{z_f^{n+2} y_{\text{eq}}(z_f)}{2 y _{\text{eq}}(z_f) + \Delta (z_f)} = \frac{z_f^{n+2}}{\lambda } \frac{1}{2 + c}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\frac{z_f^{n+2}}{\lambda } \frac{1}{2 + c}
+&= c a z_f^{3/2} e^{-z_f}  \\
+a &= \num{.45} \frac{g_\psi }{g_{*s}}
+\,,
+\end{align}
+%
+a transcendental equation which can be solved iteratively, yielding 
+%
+\begin{align}
+z_f^{(0)} = \log \qty[c (c+2) a \lambda ]
+\,,
+\end{align}
+%
+and a good approximation is found to be \(c ( c+ 2) = n+1\). 
+The second iteration then yields 
+%
+\begin{align}
+z_f^{(1)} = \log \qty[c (c+2) a \lambda ] - \qty( \frac{1}{2} + n) \log \qty[c (c+2) a \lambda ]
+\,,
+\end{align}
+%
+which means that \(z_f\) does indeed depend on the mass of the particle, although it is a weak dependence since it is in the logarithm. 
+
+As an example, if \(m_\psi \) were of the order of \SI{100}{GeV} and if we had \(\sigma_0 \sim \SI{e-38}{cm^{-2}}\), then we would get 
+%
+\begin{align}
+z_f \approx \begin{cases}
+    17 & \text{for } n=0 \\
+    14 & \text{for } n=1 \\
+    12 & \text{for } n=2 
+\end{cases}
+\,.
+\end{align}
+
+This means that \(T_f \approx m_\psi / 10\), therefore \(T_f \approx 10 \divisionsymbol \SI{100}{Gev}\) is the typical order of magnitude of the decoupling temperature. 
+The relics we discussed are \emph{thermal}, but non-thermal relics are also possible; their abundance is much more model-dependent. 
+For example, axions might be produced through a ``misalignment mechanism'', and other relics might be produced through a ``freeze-in mechanism''.
+
+\chapter{Cosmological perturbation within GR}
+
+We will treat the ``gauge issue'' for perturbations. Einstein's equations are invariant under diffeomorphisms, so we must be careful and use invariant quantities. 
+We already used 
+%
+\begin{align}
+\mathcal{J} = - H \frac{ \delta \rho}{\rho } - \hat{\Phi}
+\,,
+\end{align}
+%
+where \(\hat{\Phi}\) is a scalar perturbation of the metric. 
+
+Then, we will try to get a proper treatment of cosmological perturbations within GR.
+We have already seen how to treat them in a Newtonian way (i.e.\ Jeans instability). 
+This is not ok when the wavelength of the perturbation is larger than the Hubble radius.
+
+The Poisson equation reads 
+%
+\begin{align}
+\nabla^2 \varphi = 4 \pi G \delta \rho  = 4 \pi G \overline{\rho} \delta 
+\,,
+\end{align}
+%
+so in terms of characteristic lengths we get 
+%
+\begin{align}
+\frac{\varphi}{\lambda^2 _{\text{phys}}} \sim \frac{3}{2} H^2 \delta 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\varphi \sim \qty(\frac{\lambda _{\text{phys}}}{\lambda _H})^2 \delta 
+\,,
+\end{align}
+%
+and reintroducing the speed of light 
+%
+\begin{align}
+\frac{\varphi}{c^2} \sim \qty(\frac{\lambda _{\text{phys}}}{\lambda _H})^2 \delta 
+\,.
+\end{align}
+
+We know that typically \(\delta \sim \num{e-5}\) for primordial perturbations, so when \(\lambda _{\text{phys}} \ll \lambda _H\) the Newtonian treatment is fine; while when the perturbations are outside the horizon the perturbations are frozen. 
+
+We will adopt a perturbative approach, which in GR is a perturbation of the geometry itself. 
+Consider a generic tensor field \(T\): a perturbation of this quantity is defined as 
+%
+\begin{align}
+\Delta T = T - T_0 
+\,,
+\end{align}
+%
+where \(T\) is evaluated in the perturbed universe, while \(T_0 \) is evaluated in the unperturbed FLRW spacetime. 
+We are then comparing two tensors, however we can do so only if they are defined at two different spacetime locations. 
+This is not allowed in differential geometry: in order to make the comparison meaningful we need a one-to-one correspondence between the perturbed and unperturbed spacetimes (denoted respectively as \(\mathcal{M}\) and \(\mathcal{M}_0\)); this amounts to making a specific gauge choice. 
+
+A gauge transformation is a change of the map \(\mathcal{M}_0 \to \mathcal{M}\) which \emph{keeps the coordinates on \(\mathcal{M}_0\) fixed}; this is different from a coordinate transformation.
+
+The gauge issue comes from the freedom of always making a gauge transformation. 
+
+A coordinate system is defined by a threading of spacetime into lines (corresponding to fixed spatial coordinates) and by a slicing of spacetime into hypersurfaces (corresponding to fixed time).
+
+A gauge transformation can be defined in a completely coordinate-free way.
+
+We can change our point of view: instead of changing the point in \(\mathcal{M}\) to which our point in \(\mathcal{M}_0\) maps, we can see the transformation as a change in the point in \(\mathcal{M}_0\) from which we start to reach the fixed point in \(\mathcal{M}\).
+
+If we have a quantity \(T\) which is a scalar under coordinate transformation, then it still \emph{can} change if we make a gauge transformation. 
+
 \end{document}

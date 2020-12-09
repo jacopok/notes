@@ -1,4 +1,163 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-12-9, \\ compiled \\ \today}
+
+We were discussing how the envelope of the neutron star can be treated in the plane-parallel approximation. 
+
+The conductivity tensor is 
+%
+\begin{align}
+k'_{ij} = \left[\begin{array}{cc}
+k_\parallel & 0 \\ 
+0 & k_\perp
+\end{array}\right]
+\,,
+\end{align}
+%
+and so the components of the tensor in the unprimed frame are 
+%
+\begin{align}
+k_{ij} = \left[\begin{array}{cc}
+k_\parallel \cos^2 \phi + k_\perp \sin^2\phi  & (k_\parallel - k_\perp) \sin \phi \cos \phi  \\ 
+(k_\parallel - k_\perp) \sin \phi \cos \phi  & 
+k_\parallel \sin^2 \phi + k_\perp \cos^2\phi
+\end{array}\right]
+\,,
+\end{align}
+%
+which will be used in the law 
+%
+\begin{align}
+q_i = - \sum _{j} k_{ij } \pdv{T}{x _j}
+\,.
+\end{align}
+
+Let us denote \(q_z = q_2\), which will be given by 
+%
+\begin{align}
+q_z = - k_{21} \pdv{T}{x} - k_{22} \pdv{T}{z}
+\,,
+\end{align}
+%
+and we know that this will correspond to blackbody emission: \(q_z = \sigma T^{4}\).
+
+Now, \(\pdv*{T}{z} \approx (T - T_0 ) / L\), while \(\pdv*{T}{x} \approx - T/R\).
+We know that \(T \ll T_0 \), and \(L \ll R\): then, 
+%
+\begin{align}
+\abs{ \pdv{T}{z}} \approx \abs{- \frac{T_0}{L} } \gg \pdv{T}{x}
+\,.
+\end{align}
+
+So, taking only the most significant term we get 
+%
+\begin{align}
+\sigma T^{4} &= - k_{22} \pdv{T}{z} = - \qty(
+k_\parallel \sin^2 \phi + k_\perp \cos^2\phi) \pdv{T}{z}   \\
+&= \underbrace{- k_\parallel \pdv{T}{z}}_{\sigma T_P^{4}} \qty( \sin^2 \phi + \frac{k_\perp}{k_\parallel} \cos^2 \phi )
+\,,
+\end{align}
+%
+where we defined the new temperature \(T_P\), since on dimensional grounds that term was a thermal emissivity. If we take \(\phi = \pi /2\) we get the temperature at the pole: therefore, \(T_P\) is the polar temperature.
+
+As long as \(k_\perp \ll k_\parallel\), we get \(\sigma T^{4} \approx \sigma T^{4} \sin^2 \phi \). Note that the angle \(\phi = \pi /2 - \Theta \).
+\todo[inline]{Is this true?}
+
+This then tells us that \(T = T_P \sqrt{\abs{\cos \Theta }}\).
+
+The dipolar magnetic field is given by 
+%
+\begin{align}
+\vec{B} = \frac{B_p}{2} \qty(\frac{R}{r})^3 \qty(2 \cos \theta \hat{e}_r + \sin \theta \hat{e}_\theta )
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\vec{B}(r = R) = \frac{B_p}{2} \qty(2 \cos \theta \hat{e}_r + \sin \theta \hat{e}_\theta )
+\,.
+\end{align}
+
+The cosine of \(\Theta \), the angle between the \(\vec{B}\) field and the radial direction, is 
+%
+\begin{align}
+\cos \Theta = \frac{\vec{B} \cdot \hat{e}_r}{\abs{\vec{B}}} = \frac{B_r}{B} = \frac{B_p}{2} \frac{2 \cos \theta }{B} 
+\,,
+\end{align}
+%
+so, taking geometric considerations into account, we get 
+%
+\begin{align}
+\cos \Theta = \frac{2 \cos \theta }{\sqrt{1 + 3 \cos^2 \theta }}
+\,.
+\end{align}
+
+Therefore, the temperature monotonically decreases going from the pole to the equator. 
+At the equator it is not really zero, but it is an order of magnitude lower than the polar temperature.
+
+\todo[inline]{Plot temperature as a function of angle.}
+
+This has an important observational implication: the emission from the NS is not a single blackbody, but instead a superposition of a blackbody for each latitude.
+
+We need to account for relativistic effects.
+
+\section{Accretion onto Neutron Stars}
+
+We start by introducing the light-cylinder radius.
+We define \(v_\phi = R_{LC} \Omega = c\), so \(R_{LC} = c/  \Omega \).
+
+This is on the order of 
+%
+\begin{align}
+R_{LC} = \frac{cP}{2 \pi } \approx \SI{5e9}{cm} \frac{P}{\SI{1}{s}}
+\,.
+\end{align}
+
+After this length, the magnetic field lines must disconnect. 
+
+The Alfven radius is the one at which the magnetic pressure equals the round pressure: 
+%
+\begin{align}
+\frac{B^2}{8 \pi } = \frac{1}{2} \rho v^2
+\,,
+\end{align}
+%
+and we can approximate the radius at which this occurs by using Bondi flow, therefore assuming spherical symmetry. 
+This gives us 
+%
+\begin{align}
+4 \pi r^2\rho v = \dot{M}
+\,,
+\end{align}
+%
+therefore \(v = \sqrt{GM /r}\), and \(\rho = \dot{M} / 4 \pi r^2 v \), so 
+%
+\begin{align}
+\frac{B^2}{8 \pi } = \frac{1}{2} \frac{\dot{M}}{4 \pi r^2v}
+= \frac{1}{2} \frac{\dot{M}}{4 \pi r^2} \sqrt{ \frac{GM}{r}}
+\,,
+\end{align}
+%
+and let us consider \(B \approx (B_P /2) (R / r)^3\). 
+This yields 
+%
+\begin{align}
+\frac{B_p^2 R^{6}}{\sqrt{GM} \dot{M}} = r^{6} r^{-2} r^{-1/2} = r^{7/2}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+r_A &= \qty(\frac{B_p^2 R^{6}}{\sqrt{GM} \dot{M}})^{2/7}  \\
+&\approx \SI{3e8}{cm} \times \qty(\frac{B_p}{\SI{e8}{G}})^{4/7}
+\qty(\frac{R}{\SI{10}{cm}})^{18/7} \qty(\frac{M}{M_{\odot}})^{1/7} 
+\qty(\frac{\dot{M}}{\SI{e7}{g/s}})^{-2/7}
+\,.
+\end{align}
+
+Typically, \(r_A < R_{LC}\), which justifies our use of a dipolar magnetic field. 
+
 \end{document}

@@ -1,0 +1,192 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2020-12-14, \\ compiled \\ \today}
+
+A general infinitesimal coordinate transformation looks like 
+%
+\begin{align}
+x^{\mu } \to x^{\prime \mu } = x^{\mu } - \xi^{\mu }(x)
+\,,
+\end{align}
+%
+where both the vector field \(\xi \) and its derivative are infinitesimally small. 
+
+A scalar field \(\phi \) will transform trivially, meaning that 
+%
+\begin{align}
+\phi' (x') = \phi (x)
+\,,
+\end{align}
+%
+while a covariant and a contravariant vector will transform like 
+%
+\begin{align}
+V^{\prime }_\mu (x') &= \pdv{x^{\nu }}{x^{\prime \mu }} V_\nu (x)  \\
+V^{\prime \mu } (x') &= \pdv{x^{\prime \mu }}{x^{\nu }} V^{\nu }(x)
+\,,
+\end{align}
+%
+and tensors with more indices will transform analogously, with a Jacobian for each contravariant index and an inverse Jacobian for each covariant index. 
+
+We denote the unperturbed FLRW manifold as \(\mathcal{M}_0\), and the perturbed one as \(\mathcal{M}_\lambda \). 
+The parameter \(\lambda \) is a bookkeeping tool we can use to keep track of the perturbative order, at the end we will set \(\lambda = 1\). 
+
+We denote the map \(\psi _\lambda \) as the one from \(\mathcal{M}_0\) to \(\mathcal{M}_\lambda \), and \(\varphi _\lambda \) as the one going backwards.  
+
+Let us fix a coordinate system \(x^{\mu }\) on \(\mathcal{M}_0\), and consider a vector field \(\xi^{\mu }\): then we can define a \textbf{congruence of curves} by 
+%
+\begin{align}
+\dv{x^{\mu }}{\lambda } = x^{\mu } (\lambda )
+\,.
+\end{align}
+
+Then, we can define a point \(Q\) which is at a parametric distance \(\lambda \) from \(P\) along these integral curves: 
+%
+\begin{align}
+x^{\mu } (Q) = x^{\mu } (P) + \lambda \xi ^{\mu } (x(P))
+\,.
+\end{align}
+
+This is called an infinitesimal point transformation. 
+
+We can also introduce a ``passive approach'' to gauge transformations: the same relation we used can be seen as the one we would get by introducing a new coordinate system \(y^{\mu } (Q)\), such that 
+%
+\begin{align}
+y^{\mu } (Q) &= x^{\mu } (P)   \\
+&= x^{\mu } (Q) - \lambda \xi^{\mu } (x(P))
+\,.
+\end{align}
+
+If \(x(P) = x(Q) - \lambda \xi\), this can be expanded as 
+%
+\begin{align}
+y^{\mu } (Q) = x^{\mu } (Q) - \lambda \xi^{\mu } (x^{\mu } (Q)) + \order{\lambda^2, \xi^2}
+\,.
+\end{align}
+
+This is a ``passive coordinate transformation'', since we are simply changing the names we give to the points, in the form 
+%
+\begin{align}
+y^{\mu } (\lambda ) = x^{\mu } - \lambda \xi^{\mu } + \order{\lambda^2}
+\,,
+\end{align}
+%
+which will become \(y^{\mu } = x^{\mu } - \xi^{\mu }\), a regular coordinate transformation. 
+
+Consider a vector field \(Z\) which has components \(Z^{\mu }\) in the \(x\) coordinate system; then we can define a new vector field \(\widetilde{Z}\) which has components \(\widetilde{Z}^{\mu }\) in the \(x\) coordinate system, such that the components \(\widetilde{Z}^{\mu }\) evaluated at the point \(x^{\mu } (P)\) are equal to the components \(Z^{\prime \mu }\) that the ``old'' vector field \(Z\) has in the \(y\) coordinates. 
+
+The relation is 
+%
+\begin{align}
+\widetilde{Z}^{\mu } (x (P)) = Z^{\prime \mu } (y (Q))
+= \eval{\pdv{y^{\mu }}{x^{\nu }}}_{x(Q)} Z^{\nu } x(Q)
+\,.
+\end{align}
+
+This provides a transportation law from the point \(Q\) to the point \(P\), in the \emph{same} \(x\) coordinate system. 
+Looking at the first and last term in the equation is the ``active approach'', looking at the last two terms is the ``passive approach''. 
+
+The Jacobian at hand is 
+%
+\begin{align}
+\pdv{y^{\mu }}{x^{\nu }} = \delta^{\mu }_{\nu } - \lambda \pdv{\xi^{\mu }}{x^{\nu }} (x (Q))
+\,,
+\end{align}
+%
+therefore, Taylor expanding, we get
+%
+\begin{align}
+\widetilde{Z}^{\mu } (x(P)) &= Z^{\mu } (x(Q)) - \lambda \pdv{\xi^{\mu }}{x^{\nu }} Z^{\nu } (x(Q))  \\
+&= Z^{\mu } (x(P)) + \pdv{Z^{\mu }}{x^{\nu }} \lambda \xi^{\nu }(x(P))
+- \lambda \pdv{\xi^{\mu }}{x^{\nu }} Z^{\nu } x(P)  \\
+&= Z^{\mu } (x(P)) + \lambda \mathscr{L}_\xi Z^{\mu } + \order{\lambda^2}
+\,.
+\end{align}
+
+This has given us the transformation law for the vector field, in terms of the Lie derivative: 
+%
+\begin{align}
+\mathscr{L}_\xi (Z^{\mu }) = \pdv{Z^{\mu }}{x^{\nu }} \xi^{\nu } - \pdv{\xi^{\mu }}{x^{\nu }} Z^{\nu }  \\
+&= (\xi^{\nu } \partial_{\nu }) Z^{\mu } - (Z^{\nu }\partial_\nu ) \xi^{\mu }
+\,.
+\end{align}
+
+The new \(Z\) is in the \emph{same} coordinates as before. Setting \(\lambda = 1\), we get 
+%
+\begin{align}
+\widetilde{Z}^{\mu } = Z^{\mu } + \mathscr{L}_\xi Z^{\mu }
+\,.
+\end{align}
+
+The effect of a gauge transformation is that the new tensor is equal to the old one plus the Lie derivative (at the \emph{same} coordinate point) of the vector field corresponding to the transformation. 
+For scalars, we have \(\mathscr{L}_\xi S = S_{, \mu } \xi^{\mu }\); for vectors and tensors we have 
+%
+\begin{align}
+\mathscr{L}_\xi V_{\mu } &= V_{\mu , \lambda } \xi^{\lambda } + \xi^{\lambda }_{, \mu } V_{\lambda }  \\
+\mathscr{L}_\xi T_{\mu \nu } &= T_{\mu \nu , \lambda } \xi^{\lambda } + \xi^{\lambda }_{, \mu } T_{\lambda \nu } + \xi^{\lambda }_{, \nu } T_{\mu \lambda }
+\,.
+\end{align}
+
+We get the same result if we replace the partial derivatives with covariant derivatives. 
+
+If we consider the tensor \(T_{\mu \nu } = g_{\mu \nu }\), we get 
+%
+\begin{align}
+\mathscr{L}_\xi g_{\mu \nu } = g_{\lambda \nu } \xi^{\lambda }_{; \mu } + \xi^{\lambda }_{; \nu } g_{\mu \lambda } = \xi_{\mu ; \nu } + \xi_{\nu ; \mu }
+\,.
+\end{align}
+
+In two different gauges we can find 
+%
+\begin{align}
+\Delta T = T - T_0  \\
+\widetilde{\Delta T} &= \widetilde{T} - T_0 
+\,,
+\end{align}
+%
+but we know that 
+%
+\begin{align}
+\widetilde{T} = T_0 + \widetilde{\Delta T}  &= T + \mathscr{L}_\xi T = T_0 + \Delta T + \mathscr{L}_\xi T  \\
+\widetilde{\Delta T} &= \Delta T + \mathscr{L}_\xi T
+\,,
+\end{align}
+%
+at least at linear order. At this order, however, we can also write 
+
+%
+\boxalign{
+\begin{align}
+\widetilde{\Delta T} = \Delta T + \mathscr{L}_\xi T_0 
+\,,
+\end{align}}
+%
+
+which might be easier to compute. 
+
+\subsection{Cosmological perturbations}
+
+We start from the background FLRW metric: 
+%
+\begin{align}
+\dd{s^2} &= g_{\mu \nu }^{(0)} \dd{x^{\mu }} \dd{x^{\nu }}  \\
+&= a^2(\eta ) \qty[- \dd{\eta^2} + \dd{x^2} + \dd{y^2} + \dd{z^2}]
+\,,
+\end{align}
+%
+where, as usual, \(\eta \) is the conformal time, defined by \(\dd{\eta } = \dd{t} / a(t)\). 
+
+The perturbed metric reads 
+%
+\begin{align}
+\dd{s^2} = g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}  \\
+g_{00} &= - a^2(\eta ) \qty[1 + 2 \sum _{r=1}^{\infty } \frac{1}{r!} \psi^{(r)} (x, \eta )]  \\
+g_{0i } = g_{i0} &= a^2(\eta ) \sum _{r=1}^{\infty } \frac{1}{r!} \omega_{i}^{(r)} (x, \eta )  \\
+g_{ij } &= a^2(\eta )  \qty[1 - 2 \sum _{r=1}^{\infty } \frac{1}{r!} \phi^{(r)}] \delta_{ij} + \sum _{r=1}^{\infty } \frac{1}{r! } \chi_{ij}^{(r)}
+\,,
+\end{align}
+%
+where \(\psi\) is called the \emph{lapse function}, \(\omega_{i} \) is called the \emph{shift function}, while we take \(\chi_{ij}\) to be a \emph{traceless} perturbation.
+
+\end{document}

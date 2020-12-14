@@ -1,4 +1,92 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{Model selection}
+
+\marginpar{Monday\\ 2020-12-14, \\ compiled \\ \today}
+
+The Bayes factor between two models \(M'\) and \(M\), depending on parameters \(\theta'\) and \(\theta \) respectively, having observed the data \(x\), is 
+%
+\begin{align}
+B = \frac{\int \dd{\theta '} \mathbb{P}(x | \theta ' M') \mathbb{P}(\theta ' | M')}{\int \dd{\theta } \mathbb{P}(x | \theta  M) \mathbb{P}(\theta  | M)}
+\,,
+\end{align}
+%
+which, if the parameters are uniformly distributed in some range \(\Delta \theta _i\), we will have 
+%
+\begin{align}
+B = \frac{\int \dd{\theta '} \mathbb{P}(x | \theta ' | M')}{\int \dd{\theta } \mathbb{P}(x | \theta , M)} \frac{\Delta \theta _1 \dots \Delta \theta _n}{\Delta \theta '_1 \dots \Delta \theta '_{n'}}
+\,.
+\end{align}
+
+This can account for having nested models, in which \(n < n'\) and the prime parameters are a superset of the non-prime ones.
+The ratio of the likelihoods will favor the more general model (with \(\theta '\)), while the ratio of the \(\Delta \theta \) will reduce to \(\Delta \theta'_{n+1} \dots \Delta \theta '_{n'}\), which will favor the simpler model. 
+
+In general computing the integrals must be done numerically, typically through MCMC.
+We will instead take the analytic approach. 
+We consider the likelihoods as being MVNs around their maxima: 
+%
+\begin{align}
+\mathcal{L}^{(i)} = \mathcal{L}_0^{(i)} \exp[
+    \qty(\vec{\theta}_i - \vec{\theta}_i^{ML})^{\top}
+    \qty(\nabla \nabla \chi^2_i)
+    \qty(\vec{\theta}_i - \vec{\theta}_i^{ML})
+]
+\,.
+\end{align}
+
+Now, we can calculate the integrals analytically: 
+%
+\begin{align}
+\int \dd{\theta } \mathcal{L} = (2 \pi )^{N/2} \qty(\det (\nabla \nabla \chi^2))^{-1/2} \mathcal{L}_0
+\,,
+\end{align}
+%
+so the likelihood ratio is just 
+%
+\begin{align}
+\frac{\int \dd{\theta _1} \mathcal{L}_1}{\int \dd{\theta _2} \mathcal{L}_2} = (2 \pi )^{(N_2 - N_1) / 2 } \frac{\mathcal{L_0^{(1)}}}{\mathcal{L_0}^{(2)}} \qty[\frac{\det (\nabla \nabla \chi^2_{(2)})}{\det (\nabla \nabla \chi^2_{(2)})}]^{1/2}
+\,.
+\end{align}
+
+Therefore, for nested models 
+%
+\begin{align}
+B_{12} = (2 \pi )^{(N_2 - N_1) / 2 } \frac{\mathcal{L_0^{(1)}}}{\mathcal{L_0}^{(2)}} \qty[\frac{\det (\nabla \nabla \chi^2_{(2)})}{\det (\nabla \nabla \chi^2_{(2)})}]^{1/2}
+\Delta \theta _2^{N_1 +1 } \dots \Delta \theta _2^{N_2 }
+\,.
+\end{align}
+
+\subsection{Savage-Dickey density ratio}
+
+This is an analytical tool which can be applied as long as we have nested models, with separable priors, and the more complex model only has one extra parameter. 
+
+Let us say that the likelihood for the complex model is \(p_2 (\vec{x} | \phi , \psi )\), while the likelihood of the simpler model is \(p_1 (\vec{x} | \phi ) = p_2 (\vec{x} | \phi , \psi_{*})\).
+The Bayes factor is then 
+%
+\begin{align}
+B_{12}  =\frac{\int \dd{\phi } p(\vec{x} | \phi , \psi_*) \pi_1 (\phi )}{\int \dd{\phi } \dd{\psi } p(\vec{x} | \phi , \psi ) \pi_2 (\phi , \psi )}
+\,.
+\end{align}
+
+We call the bottom integral \(q\). 
+Let us consider \(p(\psi_* | \vec{x})\): by Bayes' theorem, it is 
+%
+\begin{align}
+p(\psi _* | \vec{x}) = \frac{\int \dd{\phi } p(\vec{x} | \phi , \psi_* ) \pi _2 (\phi, \psi_*)}{q} 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+B_{12} &= p(\psi _*, \vec{x}) \frac{\int \dd{\phi } p(\vec{x} | \phi , \psi_*) \pi_1 (\phi )}{p(\psi _*, \vec{x}) }  \\
+&= \frac{\int \dd{\phi } p(\phi, \psi _* | \vec{x})}{\pi_2 (\psi _*)}
+\,.
+\end{align}
+
+\todo[inline]{Missing some calculation steps}
+
+
+
 \end{document}

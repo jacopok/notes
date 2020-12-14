@@ -92,8 +92,8 @@ class MultivariateNormal():
     def cholesky_L(self):
         return (np.linalg.cholesky(self.cov))
         
-    def cholesky_sample(self, number_samples=1):
-        rng = default_rng()
+    def cholesky_sample(self, number_samples=1, seed=None):
+        rng = default_rng(seed)
         independent_deviates = rng.standard_normal(size=(self.dim, number_samples))
         correlated_deviates = (self.cholesky_L @ independent_deviates).T
         return correlated_deviates + self.mean[np.newaxis, :]

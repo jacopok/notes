@@ -162,23 +162,30 @@ class MetropolisHastings(Sampler):
 
     def next_chain_step(self, theta):
 
-        if not self.calculate_acceptance_rate:
-            while True:
-                new_theta = theta + self.proposal(theta)
-                post_ratio = self.posterior(new_theta) / self.posterior(theta)
-                acceptance_prob = min(post_ratio, 1)
-                if(np.random.uniform(low=0., high=1.) < acceptance_prob):
-                    return (new_theta)
-        else:
-            n = 0
-            while True:
-                new_theta = theta + self.proposal(theta)
-                post_ratio = self.posterior(new_theta) / self.posterior(theta)
-                acceptance_prob = min(post_ratio, 1)
-                if(np.random.uniform(low=0., high=1.) < acceptance_prob):
-                    self.rejections.append(n)
-                    return (new_theta)
-                n += 1
+        # if not self.calculate_acceptance_rate:
+        #     while True:
+        #         new_theta = theta + self.proposal(theta)
+        #         post_ratio = self.posterior(new_theta) / self.posterior(theta)
+        #         acceptance_prob = min(post_ratio, 1)
+        #         if(np.random.uniform(low=0., high=1.) < acceptance_prob):
+        #             return (new_theta)
+        # else:
+        #     n = 0
+        #     while True:
+        #         new_theta = theta + self.proposal(theta)
+        #         post_ratio = self.posterior(new_theta) / self.posterior(theta)
+        #         acceptance_prob = min(post_ratio, 1)
+        #         if(np.random.uniform(low=0., high=1.) < acceptance_prob):
+        #             self.rejections.append(n)
+        #             return (new_theta)
+        #         n += 1
+
+        new_theta = theta + self.proposal(theta)
+        post_ratio = self.posterior(new_theta) / self.posterior(theta)
+        if(np.random.uniform(low=0., high=1.) < post_ratio):
+            return (new_theta)
+        return (theta)
+
 
     @property
     def rejection_rate(self):

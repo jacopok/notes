@@ -1,4 +1,89 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\chapter{Choice of priors}
+
+\marginpar{Tuesday\\ 2020-12-15, \\ compiled \\ \today}
+
+If we have a location parameter \(\theta \), such that 
+%
+\begin{align}
+\mathcal{L}_\theta (x) = \mathcal{L} (x-\theta )
+\,,
+\end{align}
+%
+then it makes sense to use a uniform prior \(\pi (\theta ) = \const\), which is invariant under shifts in the form \(\theta \to \theta + X\). 
+On the other hand, if we have a scaling parameter 
+%
+\begin{align}
+\mathcal{L}_\theta = \frac{1}{\theta } \mathcal{L}_\theta (x / \theta )
+\,,
+\end{align}
+%
+the requirements are different: we want \(\theta \) to be invariant under rescalings in the form \(\theta \to \theta/C = \phi \); so we ask 
+%
+\begin{align}
+\pi (\theta ) \dd{\theta } = \pi (\phi ) \dd{\phi }  \\
+\pi (\theta ) &= \frac{1}{C} \pi \qty(\theta / C)
+\,,
+\end{align}
+%
+which is satisfied by \(\pi (\theta ) \propto 1/\theta \). 
+This prior is called a \emph{log-uniform}: it is flat when plotted on a log scale, since if we set \(\rho = \log \theta \) we have 
+%
+\begin{align}
+\pi (\rho ) = \pi (\theta ) \abs{\dv{\theta }{\rho }} = \frac{e^{\rho }}{\theta }  = 1 
+\,.
+\end{align}
+
+\subsection{Jeffreys prior}
+
+In general, if we want to perform a change of variables from \(\theta  \) to \(\phi \) then the Fisher matrix becomes 
+%
+\begin{align}
+F(\phi ) &= - \expval{\dv[2]{\log \mathcal{L}(\vec{x} | \phi )}{\phi}}  \\
+&= - \expval{ \dv[2]{\log \mathcal{L}(\vec{x} | \theta )}{\theta} \qty(\dv{\theta }{\phi })^2 + \dv{\log \mathcal{L}(\vec{x} | \theta )}{\theta } \dv[2]{\theta }{\phi }}  \\
+&= - \expval{\dv[2]{\log \mathcal{L}(\vec{x} | \theta )}{\theta }} 
+\qty(\dv{\theta }{\phi })^2 - \expval{\dv{\log \mathcal{L}(\vec{x} | \theta )}{\theta }} \dv[2]{\theta }{\phi }  \\
+&= \underbrace{\expval{\dv[2]{\log \mathcal{L}(\vec{x} | \theta )}{\theta }}}_{F(\theta )} 
+\qty(\dv{\theta }{\phi })^2 
+\,.
+\end{align}
+
+The prior is defined as the square root of the Fisher information matrix: 
+%
+\begin{align}
+\sqrt{F(\phi )} &= \sqrt{I(\theta )} \abs{\dv{\theta }{\phi }}  \\
+\pi (\phi ) &= \pi (\theta ) \abs{\dv{\theta }{\phi }}
+\,.
+\end{align}
+
+If we use this definition, we get the correct law for the change of variable.
+
+We can apply this to a univariate Gaussian with fixed \(\sigma \): we get 
+%
+\begin{align}
+\dv[2]{\log \mathcal{L}}{\mu } = - \frac{1}{\sigma^2}
+\,,
+\end{align}
+%
+therefore \(F(\mu )\) is a constant, meaning that the Jeffreys prior \(\pi_J (\mu )\) is also a constant.
+
+Suppose instead that we also let \(\sigma \) vary: then 
+%
+\begin{align}
+\dv{\log \mathcal{L}}{\sigma } &= \dv{}{\sigma } \qty( \log \sigma - \frac{1}{2} \frac{(x - \mu )^2}{\sigma^2})
+\dv[2]{\log \mathcal{L}}{\sigma } &= \frac{1}{\sigma^2} - \frac{3 (x - \mu )^2}{\sigma^{4}}  \\
+F(\sigma ) = -\expval{\dv[2]{\log \mathcal{L}}{\sigma }} &= - \frac{1}{\sigma^2} + \frac{3 \sigma^2}{\sigma^{4}} = \frac{2}{\sigma^2}
+\,.
+\end{align}
+
+Therefore, \(F(\sigma ) \propto 1 / \sigma^2\), meaning that \(\pi_J (\sigma ) \propto 1/ \sigma \).
+
+Uniform priors may pose an issue in high-dimensional space: especially if the mean \(\vec{\mu} \) is high-dimensional, a uniform prior on its entries gives a lot of weight to high-length vector.
+Often people resort to information-theory based criteria. 
+
+We discuss \textcite[]{lahavBayesianHyperparametersApproach2000}.
+
 \end{document}
+

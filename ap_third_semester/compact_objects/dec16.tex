@@ -1,4 +1,107 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2020-12-16, \\ compiled \\ \today}
+
+Yesterday we discussed column accretion onto a magnetized NS. 
+
+If there is no shock, the velocity of the infalling gas will be very high
+%
+\begin{align}
+v \sim v _{\text{free-fall}} = \sqrt{ \frac{2GM}{R}} \sim \num{.5} c
+\,,
+\end{align}
+%
+while if there is a collisionless shock the velocity will be much lower: \(v \ll c_s\).
+
+The matter, with particles of mass \(m_1 \) accretes with a velocity \(u\) onto a plasma, which we assume to be composed of constituents with masses \(m_2 \). We assume that the typical kinetic energy of an accreting particle is much larger than the thermal energy of the plasma on the surface:
+%
+\begin{align}
+\frac{1}{2 } m_1 u^2 \gg \frac{3}{2} k_B T = \frac{1}{2} m_2 v_2^2
+\,.
+\end{align}
+
+\todo[inline]{Not \((\gamma -1 ) mc^2\)?}
+
+The typical deflection timescale for the infalling particles will look like 
+%
+\begin{align}
+t_d = \frac{v^2}{\dv{(\Delta v)^2}{t}}
+\,,
+\end{align}
+%
+which can be calculated to be 
+%
+\begin{align}
+t_d = \frac{m_1 u^3}{8 \pi n e_1^2 e_2^2 \log \Lambda }
+\,,
+\end{align}
+%
+where \(\log \Lambda \) is known as the Coulomb logarithm. It is typically of the order \(\log \Lambda \sim 15 \divisionsymbol 20\). 
+\todo[inline]{What are the \(e_i\)?}
+
+This is the typical time required in order to isotropize an initially anisotropic velocity distribution --- it need not become compatible with the thermal velocity distribution. 
+For that, we have a new \textbf{energy exchange timescale}: 
+%
+\begin{align}
+t_E = \frac{E^2}{\dv{(\Delta E)^2}{t}}
+\,.
+\end{align}
+%
+This can be estimated to be 
+%
+\begin{align}
+t_E = \frac{m_1^2u^3}{8 \pi n e_1^2 e_2^2 \log \Lambda } \frac{m_2 u^2}{2 k_B T}
+\,.
+\end{align}
+
+The last timescale we will introduce is the \textbf{slowing-down} timescale: 
+%
+\begin{align}
+t_S = \frac{u}{\dv{u}{t}} = \frac{m_1^2u^3}{8 \pi n e_1^2 e_2^2 \log \Lambda } \frac{m_2}{m_1 + m_2 }
+\,.
+\end{align}
+
+Typically \(m_1 \sim m_p\) while \(m_2 \sim m_e\). 
+
+Then, 
+%
+\begin{align}
+t_S \propto \frac{m_e}{m_p + m_e} \sim \frac{m_e}{m_D} 
+\,,
+\end{align}
+%
+so \(t_S \sim t_D (m_e / m_p) \ll t_D\). 
+
+Electrons are decelerated in the same way by both electrons and protons, protons are mostly decelerated by electrons: 
+%
+\begin{align}
+t_S^{(p)} &\propto \frac{m_p}{m_e + m_p} \\
+t_S^{(e)} &\propto 1
+\,.
+\end{align}
+
+The stopping length will typically be \(\lambda _S \sim u t_S\), and the path will look like a random walk. Substituting, we find 
+%
+\begin{align}
+\lambda _S = \frac{E_{kp}^2}{2 \pi n e^2 \log \Lambda } \frac{m_e}{m_p} = \frac{E^2_{kp}}{2 \pi \rho e^{4} \log \Lambda } m_e
+\,.
+\end{align}
+
+The Thompson cross-section is given by 
+%
+\begin{align}
+\sigma _T = \frac{8 \pi }{3} \frac{e^{4}}{m_e^2 c^{4}}
+\,.
+\end{align}
+
+The mean free path for photons looks like \(\lambda _{ph} = 1/ (n \sigma _T)\): since the particles do not immediately radiate away all their energy, 
+%
+\begin{align}
+\frac{\lambda_S}{\lambda_{ph}} = \frac{m_p}{m_e} \frac{1}{3 \log \Lambda } \qty( \frac{u}{c})^2 > 1
+\,,
+\end{align}
+%
+and asking this is equivalent to \(u/c \gtrsim \num{.4}\)
+
 \end{document}

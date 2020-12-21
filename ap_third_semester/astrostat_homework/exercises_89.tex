@@ -96,9 +96,11 @@ In general if one wishes to perform the integral over \(A \in (0, + \infty )\) t
 Applying the formula for the single-variable Gaussian integral \eqref{eq:single-variable-gaussian-integral} (the bilinear forms are all evaluated to yield scalars, we are only integrating over the scalar \(A\)!) we then get 
 %
 \begin{align}
-P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } \exp( \frac{(\overline{x}^{\top} V x)^2}{(\overline{x}^{\top} V \overline{x})}) \sqrt{ \frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}  \\
+P(\Theta | x) &= \underbrace{B_1  \exp(- \frac{1}{2} x^{\top} V x )}_{B_2 } 
+\exp( \frac{1}{2} \frac{(\overline{x}^{\top} V x)^2}{(\overline{x}^{\top} V \overline{x})}) 
+\sqrt{ \frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}  \\
 &= B_2 \sqrt{\frac{2 \pi}{\overline{x}^{\top}V \overline{x}}}
-\exp(\frac{\overline{x}^{\top} \Omega \overline{x}}{\overline{x}^{\top}V \overline{x}})
+\exp( \frac{1}{2} \frac{\overline{x}^{\top} \Omega \overline{x}}{\overline{x}^{\top}V \overline{x}})
 \,,
 \end{align}
 %
@@ -173,7 +175,8 @@ where \(F (\Theta , \varphi )\) is some function whose specific form does not re
 F(\Theta , \varphi ) &=
 - \frac{1}{2} \qty( \frac{\cos^2\varphi}{\sigma^2_x} + \frac{\sin^2\varphi}{\sigma^2_y})+  \\
 &\phantom{=}\ 
-+\qty( \frac{\cos^2 \Theta}{\sigma _x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1}
++ 
+\qty( \frac{\cos^2 \Theta}{\sigma _x^2} + \frac{\sin^2 \Theta }{\sigma _y^2})^{-1}
 \qty[ 
     \frac{\cos^2 \Theta \cos^2 \varphi }{\sigma _x^{4}}
     +2\frac{\cos \Theta \sin \Theta \cos \varphi \sin \varphi  }{\sigma _x^{2} \sigma _y^{2}}
@@ -203,7 +206,9 @@ Here the likelihood is a diagonal Gaussian with \(\sigma _x = \num{1.2}\) and \(
 So far we have considered the posterior \(P(\Theta | x)\), the marginalized posterior, a function of the parameter(s) \(\Theta \); however we may also be interested in the marginalized likelihood \(\mathscr{L}(x | \Theta )\), whose expression is the same as the one we found for \(P(\Theta | x)\); further, we do not even need to assume a form for the prior on \(\Theta \) in order to arrive at that expression. Let us write it in a way which makes the dependence on \(x\) more explicit: 
 %
 \begin{align} \label{eq:marginalized-likelihood}
-\mathscr{L}(x | \Theta ) = \underbrace{B_1 \sqrt{\frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}}_{B_3 } \exp(- \frac{1}{2} x^{\top} V x + \frac{(\overline{x}^{\top} V x)^2}{\overline{x}^{\top} V \overline{x}})
+\mathscr{L}(x | \Theta ) = \underbrace{B_1 \sqrt{\frac{2 \pi }{\overline{x}^{\top} V \overline{x}}}}_{B_3 } \exp(- \frac{1}{2} x^{\top} V x + 
+\frac{1}{2}
+\frac{(\overline{x}^{\top} V x)^2}{\overline{x}^{\top} V \overline{x}})
 \,,
 \end{align}
 %
@@ -217,7 +222,9 @@ which can be simplified by making use of the fact that the best-fit template amp
 therefore the likelihood is 
 %
 \begin{align}
-\mathscr{L}(x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} V x + \hat{A} \overline{x}^{\top} V x)
+\mathscr{L}(x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} V x +
+\frac{1}{2}
+ \hat{A} \overline{x}^{\top} V x)
 \,.
 \end{align}
 
@@ -225,7 +232,7 @@ This can be rewritten in the canonical MVN form by making use of the matrix squa
 %
 \begin{align}
 \begin{split}
-- \frac{1}{2} x^{\top} V x + \hat{A} \overline{x}^{\top} V x
+- \frac{1}{2} x^{\top} V x + \frac{1}{2} \hat{A} \overline{x}^{\top} V x
 &= - \frac{1}{2} 
 \qty(x - V^{-1} \hat{A} (\overline{x}^{\top} V)^{\top})^{\top} V
 \qty(x - V^{-1} \hat{A} (\overline{x}^{\top} V)^{\top}) \\

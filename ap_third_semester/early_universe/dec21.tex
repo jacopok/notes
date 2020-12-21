@@ -1,0 +1,357 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2020-12-21, \\ compiled \\ \today}
+
+Let us continue with gauge-invariant cosmological perturbations.
+Let us now give a gauge-invariant definition for the matter velocity: 
+%
+\begin{align}
+2 v_s = 2 v^{\parallel} + \chi^{\parallel, \prime}
+\,,
+\end{align}
+%
+where, as usual, by ``matter'' we mean anything which goes on the right-hand side of the Einstein equations. 
+
+This velocity is related to the amplitude of the shear tensor for the matter velocity: specifically, from the shear tensor \(\sigma_{\mu \nu }\) we can define the quantity \(\qty(\sigma^{ij} \sigma_{ij} /2 )^{1/2}\). 
+
+For the scalar part, we have (following the notation by Bardeen)
+%
+\begin{align}
+\epsilon_m &= \delta \rho + \rho_0' \qty(v^{\parallel} + \omega^{\parallel} )  \\
+\rho_0 &= \rho_0 (\eta )
+\,.
+\end{align}
+
+Note that energy density perturbations themselves are not gauge invariant. 
+The quantity \(\epsilon _m\) corresponds to \(\delta \rho \) in the gauge where \(v^{\parallel} + \omega^{\parallel}\), which means that we are selecting constant-\(\eta \) hypersurfaces which are orthogonal to the worldlines of the fluid: the fluid's rest frame. 
+
+The quantity \(v^{\parallel} + \omega^{\parallel}\) enters into the expression for \(T^{0}_{i}\), which describes the momentum flux of the fluid. 
+We also define 
+%
+\begin{align}
+2 E_g = 2 \delta \rho + \rho_0' \qty(2 \omega^{\parallel} - \chi^{\parallel, \prime})
+\,,
+\end{align}
+%
+which is also equal to \(\delta \rho \) in the gauge in which \(2 \omega^{\parallel} + \chi^{\parallel, \prime} = 0\), which is the zero-shear or Poisson gauge. 
+
+We can also construct vector perturbations: 
+%
+\begin{align}
+\Psi_i = \omega^{\perp}_i - \chi_i^{\perp, \prime}
+\,.
+\end{align}
+
+This is related to the amplitude of the vector geometric component of the geometric shear \(\sigma_{\mu \nu }\). 
+This term describes frame-dragging effects. 
+
+The matter velocity can be described as 
+%
+\begin{align}
+V^{i}_{s} = v^{i}_{\perp} + \chi^{i, \prime}_{\perp}
+\,.
+\end{align}
+
+Also, we can define 
+%
+\begin{align}
+V^{i}_{c} = v^{i}_{\perp} + \omega^{i}_{\perp}
+\,.
+\end{align}
+
+This is related to the amplitude of the vorticity tensor \(\omega_{\mu \nu }\) (and, specifically, the quantity \(\qty(\omega^{ij} \omega_{ij} / 2)^{1/2}\)). 
+
+As for tensor perturbation modes, linear tensor perturbations are automatically gauge-invariant (at linear order, at least): 
+%
+\begin{align}
+\chi^{T, \prime}_{ij} =
+\chi^{T}_{ij} 
+\,.
+\end{align}
+
+Let us write the equations of motion for these linear cosmological perturbations. 
+We start from the Einstein equations \(G_{\mu \nu } = 8 \pi G T_{\mu \nu }\), and the Bianchi identities \(T^{\mu \nu }_{; \nu } = 0\). 
+The Einstein tensor is defined as 
+%
+\begin{align}
+G_{\mu \nu } &= R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R  \\
+R_{\mu \nu } &= R^{\alpha }_{\mu \alpha \nu }  \\
+R^{\alpha }_{\mu \nu \beta }&\sim \pdv{\Gamma }{x} + \Gamma^2  \\
+\Gamma^{\mu }_{\nu \rho } &\sim g^{-1} \pdv{g}{x}
+\,.
+\end{align}
+
+We can compute the nonvanishing Christoffel symbols in the unperturbed case (see, for example, the notes for Theoretical Cosmology), and then the perturbations of these: 
+%
+\begin{align}
+\delta \Gamma^{0}_{00} &= \psi '  \\
+\delta \Gamma^{0}_{0i} &= \partial_{i} \psi + \frac{a'}{a} \partial_{i} \omega^{\parallel}  \\
+\delta \Gamma^{i}_{00} &= \frac{a'}{a} \partial^{i} \omega^{\parallel} + \partial^{i} \omega^{\parallel, \prime} + \partial^{i} \psi  \\
+\delta \Gamma^{0}_{ij} &= -2 \frac{a'}{a} \psi \delta_{ij} - \partial_{i} \partial_{j} \omega^{\parallel} - 2 \frac{a'}{a} \phi \delta_{ij} 
+- \phi ' \delta_{ij} + \frac{a'}{a} D_{ij} \chi^{\parallel} + \frac{1}{2} D_{ij} \chi^{\parallel, \prime}  \\
+\delta \Gamma^{i}_{0j} &= - \phi \delta^{i}_{j} + \frac{1}{2} D^{i}_{j} \chi^{\parallel, \prime}  \\
+\delta \Gamma^{i}_{jk} &= \dots
+\,.
+\end{align}
+
+The spatial components of the metric can be written as 
+%
+\begin{align}
+g_{ij} = \underbrace{a^2(\eta ) \qty[1 - 2 \phi ] \delta_{ij}}_{a^2(\eta , \vec{x})} + \dots
+\,,
+\end{align}
+%
+where we can express 
+%
+\begin{align}
+a(\eta , \vec{x}) = a(\eta ) \qty(1 - \phi (\eta , \vec{x}))
+\,,
+\end{align}
+%
+therefore \(\delta a = - a \phi \), which means that 
+%
+\begin{align}
+\delta \qty( \frac{a^{\prime}}{a}) = - \phi '
+\,.
+\end{align}
+
+The unperturbed Ricci tensor reads 
+%
+\begin{align}
+R_{00} &= - 3 \frac{a''}{a} + 3 \qty( \frac{a'}{a})^2  \\
+R_{ij} &=  \qty[\frac{a''}{a} + \qty(\frac{a'}{a})^2] \delta_{ij} 
+\,.
+\end{align}
+
+Its perturbation is 
+%
+\begin{align}
+\delta R_{00} &= \frac{a'}{a} \nabla^2 \omega^{\parallel} + \nabla^2 \omega^{\parallel, \prime} + 3 \phi^{\parallel} + 3 \frac{a'}{a} \phi' + 3 \frac{a'}{a} \psi '  \\
+\delta R_{0i} &= \frac{a'}{a} \partial_{i} \omega^{\parallel} + \qty(\frac{a'}{a})^2 \partial_{i} \omega^{\parallel} +2 \partial_{i} \phi' + 2 \frac{a'}{a} \partial_{i} \psi + \frac{1}{2} \partial_{k} D^{k} \qty(\chi^{, i}_{\parallel})'  \\
+\delta R_{ij} &= \dots
+\,.
+\end{align}
+
+\todo[inline]{Copy full expressions from the notes.}
+
+The Ricci scalar \(R\) is given by \(R = (6/a^2) (a' / a)\) in flat FRLW, while its perturbation is 
+%
+\begin{align}
+\delta R &= \frac{1}{a^2} \qty(- 6 \frac{a'}{a} \nabla^2\omega^{\parallel} - 2 \nabla^2 \omega^{\parallel, \prime} - 2 \nabla^2 \psi - 6 \phi^{\parallel} - 6 \frac{a'}{a} \psi' - 18 \frac{a'}{a} \phi ' - 12 \frac{a''}{a} \psi + 4 \nabla^2 \phi + \partial_{k} \partial^{i} D^{k}_{i} \chi^{\parallel})
+\,.
+\end{align}
+
+This expression is fully general, in a specific gauge it can be significantly simplified.  
+The stress-energy tensor we will use is given by 
+%
+\begin{align}
+T_{\mu \nu } = \rho u_\mu u_\nu + p h_{\mu \nu } + \Pi_{\mu \nu }
+\,,
+\end{align}
+%
+where \(\Pi^{\mu }_{\mu } = \Pi_{\mu \nu } u^{\nu } = 0\). This allows us to account for imperfections in the fluid. The only nonvanishing components of \(\Pi \) are the spatial ones \(\Pi_{ij}\). 
+This is true in any frame. 
+
+We can write it as 
+%
+\begin{align}
+\Pi_{ij} = D_{ij} \Pi^{\parallel} + 2\Pi^{\perp}_{(i, j)} + \Pi^{T}_{ij}
+\,,
+\end{align}
+%
+where, as usual, \(D_{ij} = \partial_{i} \partial_{j} - (1/3) \delta_{ij} \nabla^2\). 
+The component 
+%
+\begin{align}
+- T^{0}_{0} &= \rho_{0} (\eta ) + \delta \rho (\eta , \vec{x})  \\
+&= \rho_0 (\eta ) \qty(1 + \delta ) 
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+p = p_0 (\eta ) \qty(1 + \Pi _L) 
+\,,
+\end{align}
+%
+where \(\Pi _L = \delta p / p_0 (\eta )\). 
+
+The unperturbed spatial components of the stress-energy tensor read:
+%
+\begin{align}
+T^{i}_{j} &= p_0 (\eta ) \qty[ \qty(1 + \Pi _L) \delta^{i}_{j} + \Pi_{T, j}^{i}]  \\
+\Pi_{T, j}^{i} &= \frac{\Pi^{i}_{j}}{p_0 (\eta )}
+\,.
+\end{align}
+
+The perturbation reads 
+%
+\begin{align}
+\delta T^{0}_{i} = \qty(\rho_0 + p_0 ) \qty(v_i + \omega _i )
+\,.
+\end{align}
+
+This is quite general: it is the density of the \(i\)-component of the fluid's momentum, or the flux of energy in the \(i\)-th direction.
+
+The linearly perturbed \(00\) EFE reads 
+%
+\begin{align}
+\frac{3 a'}{a} \qty(\hat{\phi} + \frac{a'}{a} \psi ) - \nabla^2 \qty(\hat{\phi} + \frac{a'}{a} \sigma ) = - 4 \pi G a^2 \delta \rho 
+\,,
+\end{align}
+%
+where \(\hat{\phi} = \phi + (1/6) \nabla^2 \chi^{\parallel}\) and \(\sigma = - \omega^{\parallel} + (1/2) \chi^{\parallel, \prime}\). 
+
+The \(0i\) equation is 
+%
+\begin{align}
+\hat{\phi}' + \frac{a'}{a} \psi = - 4 \pi G a^2 \qty(\rho_0 + p_0 )V
+\,,
+\end{align}
+%
+where \(V = v^{\parallel} + \omega^{\parallel}\). 
+These two are not really ``evolution'' equations, they should be interpreted as constraints for the evolution of the other components. 
+On the other hand, from the trace of the \(ij\) equations we find 
+%
+\begin{align}
+\hat{\phi}'' + 2 \frac{a'}{a} \hat{\phi}' + \frac{a'}{a} \psi +
+\qty[2 \qty(\frac{a'}{a})' + \qty(\frac{a'}{a})^2] \psi 
+= 4 \pi G a^2 \qty(\Pi _L + \frac{2}{3} \nabla^2 \Pi _T)p_0 
+\,,
+\end{align}
+%
+where the \(T\) in \(\Pi _T = \Pi^{\parallel} / p_0 (\eta )\) means ``traceless''. 
+From the traceless part of these equations we find 
+%
+\begin{align}
+\sigma ' + 2 \frac{a'}{a} \sigma + \hat{\phi} - \psi = 8 \pi G a^2 \Pi _T p_0 
+\,.
+\end{align}
+
+So far we have not chosen a gauge; let us now put ourselves in the Poisson gauge. Here, 
+%
+\begin{align}
+\omega^{\parallel} = 0 = \chi^{\parallel}
+\,.
+\end{align}
+
+Then, \(\hat{\phi} = \phi = - \Phi _H\), and \(\psi = \Psi _A\). 
+Now \(\sigma = - \omega^{\parallel} + (1/2) \chi^{\parallel, \prime} = 0\). 
+Then, the equations reads 
+%
+\begin{align}
+\phi - \psi &= 8 \pi G a^2 \Pi_T p_0  \\
+\Phi _H + \Psi _A  &= - 8 \pi G a^2 \Pi _T  p_0 
+\,.
+\end{align}
+
+If the anisotropic stress can be neglected, then \(\phi = \psi \). 
+If this is the case, then we can write the evolution equation in a simpler way: \(\Pi _T\) vanishes, by definition \(\Pi _L p_0 = \delta p\), which we can split into 
+%
+\begin{align}
+\delta p = c_s^2 \delta \rho + \delta p _{\text{non-adiab}}
+\,,
+\end{align}
+%
+and considering only the adiabatic part we find 
+%
+\begin{align}
+\Phi _H'' + 3 \qty(1 + c_s^2) \frac{a'}{a} \Phi _H' + 
+\qty[2 \qty(\frac{a'}{a})' + \qty(1 + 3 c_s^2) \qty(\frac{a'}{a})^2
+- c_s^2 \nabla^2] \Phi _H = 0
+\,,
+\end{align}
+%
+which is an isolated evolution equation for \(\Phi _H\), a wave-like propagation equation. 
+
+The Poisson gauge is the most Newton-like one: the evolution equation becomes 
+%
+\begin{align}
+- \nabla^2 \Phi _H &= 4 \pi G a^2 \underbrace{\qty(\delta \rho - \frac{3 a'}{a} (\rho_0 + p_0 )V )}_{\epsilon_{m}}  \\
+&= 4 \pi G a^2\epsilon_m
+\,,
+\end{align}
+%
+a Poisson equation. 
+
+For the vector perturbation \(\Psi_i\), we find 
+%
+\begin{align}
+\nabla^2\Psi _i = 16 \pi G a^2 \qty(\rho_0 + p_0 ) V_{i, c}
+\,,
+\end{align}
+%
+while for the tensor perturbations, starting from the traceless part of the \(ij\) EFE, we get 
+%
+\begin{align}
+\chi_{ij}^{\prime \prime, T} + 2 \frac{a'}{a} \chi^{T, \prime}_{ij} - \nabla^2 \chi^{T}_{ij} = 16 \pi G a^2p_0 (\eta ) \Pi^{T}_{ij}
+\,.
+\end{align}
+
+We should also perturb for the matter source of the equations: \(T^{\mu \nu }_{; \nu } =0 \). 
+The energy density continuity equation (\(\mu = 0\)) reads 
+%
+\begin{align}
+\delta \rho ' + \frac{3 a'}{a} \qty(\delta p + \delta \rho ) - 3 \qty(\rho_0 + p_0 )  \hat{\phi}' + \qty(\rho_0 + p_0 ) \nabla^2 \qty(V + \sigma ) &= 0
+\,,
+\end{align}
+%
+while for \(\mu = i\) we get 
+%
+\begin{align}
+V' + \qty(1 + 3 c_s^2) \frac{a'}{a} V + \psi + \frac{1}{(\rho_0 + p_0 )} \qty(\delta p + \frac{2}{3} p_0 \nabla^2 \Pi _T) &= 0
+\,.
+\end{align}
+
+The curvature perturbation on uniform energy density hypersurfaces is 
+%
+\begin{align}
+\zeta = - \hat{\phi} - H \frac{ \delta \rho }{\rho_0 } = - \hat{\phi} - \frac{a'}{a} \frac{ \delta \rho }{\rho_0 '}
+\,,
+\end{align}
+%
+where, as usual, \(\hat{\phi} = \phi + (1/6) \nabla^2 \chi^{\parallel}\). 
+
+In a uniform energy density gauge \(\zeta = - \hat{\phi}\). 
+On super-horizon scales, the Laplacian in the energy density continuity equation can be taken to vanish, and we can express it as 
+%
+\begin{align}
+\zeta ' = - \frac{a'}{a} \frac{ \delta p}{\rho_0 + p_0 }
+\,,
+\end{align}
+%
+but we must evaluate this in the uniform energy density gauge the adiabatic contribution to the pressure perturbation vanishes, therefore we are left with 
+%
+\begin{align}
+\zeta ' = - \frac{a'}{a} \frac{ \delta p _{\text{non-adiabatic}}}{\rho_0 + p_0 }
+\,.
+\end{align}
+
+For single-field models of slow-roll inflation, we find 
+%
+\begin{align}
+\delta p _{\text{non-adiabatic}} \propto \frac{k^2 \Phi _H}{a^2} \approx 0 \implies \zeta \approx \const 
+\,.
+\end{align}
+
+The continuity equation for vector perturbations reads 
+%
+\begin{align}
+\qty[(\rho_0 +p_0 ) V_{ic}]' + \frac{4 a'}{a} (\rho_0 + p_0 ) V_{ic} 
+= - \nabla_k \qty(\Pi^{\perp, k}_{, i} + \Pi^{\perp, k}_{i})
+\,.
+\end{align}
+
+By Kelvin's circulation theorem, vorticity is conserved along trajectories unless there are dissipative effects.
+Then, the divergence on the right-hand side of this equation vanishes, therefore we can write the left-hand side as 
+%
+\begin{align}
+a^3 \qty(\rho_0 + p_0 ) V_{ic} a = \const
+\,.
+\end{align}
+
+This amounts to a momentum times \(a\), so the equation represents the conservation of the intrinsic angular momentum. 
+
+\end{document}

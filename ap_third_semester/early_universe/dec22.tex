@@ -1,4 +1,106 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2020-12-22, \\ compiled \\ \today}
+
+Today we will give a summary of certain topics we discussed in the course, mentioning some more advanced topics.
+We have mentioned the evolution of a curvature perturbation on uniform energy density hypersurfaces \(\zeta \).
+We defined it as the local fluctuation of the number of \(e\)-folds: \(\zeta = \delta N = - H \delta \varphi / \dot{\varphi}\). 
+This is the \(\delta N\) formalism. 
+
+It is an alternative method to study cosmological perturbations which works on super-horizon scales --- alternative to standard perturbation theory. 
+
+Consider two disconnected regions with a typical length scale \(\lambda _s \gtrsim H^{-1}(t)\), and take their separation to be \(\lambda \gg \lambda _s\). 
+In this viewpoint, \(\zeta \) takes into account how much one of these regions has expanded relative to the other.
+
+We want to recover the result \(\zeta = \delta N\) and generalize it. 
+The regions are separated by a distance much larger than the Hubble scale, so we expect them to be completely disconnected. 
+
+The number of \(e\)-folds at a spatial position \(\vec{x}\) is given by 
+%
+\begin{align}
+N = N(t, \vec{x}) = N(t, \varphi_*(\vec{x}))
+\,,
+\end{align}
+%
+where \(\varphi_* (\vec{x}) = \varphi^{0}_{*} + \delta \varphi (\vec{x})\) is the inflaton field, evaluated at the same initial time \(t_*\) corresponding to the time of horizon crossing for a generic fluctuation mode \(\lambda \sim 2 \pi / k\). 
+
+\todo[inline]{Does this not depend on the specific \(\lambda \)?}
+
+We can Taylor expand: 
+%
+\begin{align}
+\delta N = \eval{\pdv{N}{\varphi _*}}_{\varphi_*^{0}} \delta \varphi _*
++ \frac{1}{2} \pdv[2]{N}{\varphi _*} (\delta \varphi _*)^2
+\,.
+\end{align}
+
+We can write the number of \(e\)-folds as 
+%
+\begin{align}
+N = \int_{t_0 }^{t} H \dd{t} 
+= \int_{\varphi _*}^{\varphi (t)}  \frac{H}{\dot{\varphi}} \dd{\varphi }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\pdv{N}{\varphi _*} = - \eval{\frac{H}{\dot{\varphi}}}_{\varphi _*} 
+\implies
+\delta N = - \eval{\frac{H}{\dot{\varphi}}}_{\varphi _*} \delta \varphi _*
+\,.
+\end{align}
+
+This way we see that the term we wrote is the first order one, but we can also go beyond: the second-order term can be useful to study primordial non-Gaussianity. 
+
+The lowest order statistic which can be used to characterize it is the three-point function, in the form \(\expval{\zeta \zeta \zeta }\). 
+
+This can be computed in this formalism as 
+%
+\begin{align}
+\qty(\pdv{N}{\varphi _*})^3 \expval{ \delta \varphi _{k_1 }^{*}\delta \varphi _{k_2 }^{*}\delta \varphi _{k_3 }^{*}} 
++ 
+\qty(\pdv{N}{\varphi _*})^2 \pdv[2]{N}{\varphi _*}
+\expval{
+    \delta \varphi ^*_{k_1 }
+    \delta \varphi ^*_{k_2 }
+    (\delta \varphi _* \delta \varphi _*)_{k_3 }
+} + \dots
+\,.
+\end{align}
+
+A period of accelerated expansion will necessarily yield gravitational waves: \(\chi_{ij}^{T} = h_{ij}\), with two polarizations 
+%
+\begin{align}
+h_{+, \times} = \sqrt{16 \pi G } \phi_{+, \times }
+\,,
+\end{align}
+%
+evolving according to 
+%
+\begin{align}
+u_k'' + \qty(k^2 - \frac{a''}{a}) u_k = 0
+\,.
+\end{align}
+
+The \(a'' / a\) term sources GWs from the quantum vacuum. 
+Inflationary GWs would show up as a \(B\)-mode on the CMB polarization. 
+However, we must be careful since there could be other sources of early GWs, such as cosmic strings or phase transitions. 
+
+The excursion of \(\phi \) is related to the tensor-to-scalar ratio: 
+%
+\begin{align}
+\frac{\Delta \phi }{M_P} \approx \qty( \frac{r}{\num{.01}})^{1/2}
+\,.
+\end{align}
+
+What about the exam? In January and February they will still be online oral examination.
+We have two options: we can do a standard orderly examination in which we are asked about the standard parts of the course, or (for those who have attended the course) choosing a macro-topic to prepare in detail --- ideally even in more detail than was done in the course --- and then talk mostly about it. Even if we choose this second option, a few broad questions will be asked about the rest of the course. 
+The presentation should be a blackboard one.
+
+Exams can be done outside the usual session. 
+
+There will be a couple of extra lectures in January, possibly not by professor Bartolo. 
+
 \end{document}

@@ -71,7 +71,10 @@ This should not really be an issue in realistic cases, as the set of points for 
 
 Really, working in the \(\omega \gg \Delta^{-1}\) regime is not wise, since we will necessarily have aliasing in the measured signal, as we are trying to measure a signal well above the Nyquist frequency of our sampler.
 
-Fortunately, there is a regime in the region \(\omega \sim \Delta^{-1}\) where the approximation we are discussing works well, and there are no aliasing issues. 
+Fortunately, there is a regime in the region \(\omega \lesssim \Delta^{-1}\) where the approximation we are discussing works well, and there are no aliasing issues. 
+
+The condition we want, ideally, is to have many data points for each period (\(\Delta \ll \omega^{-1}\)) and many periods (\(N \Delta  \gg \omega^{-1}\)), which is equivalent to \((N \Delta )^{-1 } \ll \omega \ll \Delta^{-1} \).
+
 Let us then assume that we are working in that region, and set \(c = s = N/2\) and \(h = 0\).
 
 \subsubsection{Marginalization}
@@ -133,6 +136,15 @@ Therefore, the value of \(\omega \) which maximizes \(C(\omega )\) is the same w
 
 \subsubsection{Least-squares fitting}
 
-Least-squares fitting the sinusoid with the same model means we minimize \(Q\). 
+Least-squares fitting the sinusoid with the same model means we minimize \(\chi^2 =  Q / \sigma^2\).
+This is precisely equivalent to the MAP estimate for the full likelihood, which under the aforementioned conditions can be estimated through the maximum of \(R_1^2(\omega ) + R_2^2(\omega )\). 
+
+This procedure would yield a Gaussian likelihood for \(\omega \) under the following (sufficient) conditions: 
+\begin{enumerate}
+    \item i.i.d.\ Gaussian noise on each data point;
+    \item linear dependence of the model \(f(t)\) on its parameter \(\omega \).
+\end{enumerate}
+
+The first condition is satisfied under our hypotheses, the second is not unless the entire data range lies near the origin: \(t_0 = 0\) and \(N \Delta  \ll \omega^{-1}\), in which case the model can be approximated to linear order as \(B_1 + B_2 \omega t\). 
 
 \end{document}

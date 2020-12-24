@@ -10,7 +10,7 @@ rc('text.latex', preamble=r'''\usepackage{amsmath}
 
 N = 500
 ts = np.arange(N)
-omegas = np.logspace(-5, 5, num=10000)
+omegas = np.logspace(-4, 2, num=10000)
 h = np.average(np.sin(2 * omegas[:, np.newaxis] * ts[np.newaxis,:]), axis=1)
 c = np.average(np.cos(omegas[:, np.newaxis] * ts[np.newaxis,:])**2, axis=1)
 s = np.average(np.sin(omegas[:, np.newaxis] * ts[np.newaxis,:])**2, axis=1)

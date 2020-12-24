@@ -16,6 +16,13 @@ d_i = \underbrace{B_1  \cos(\omega t_i) + B_2 \sin(\omega t_i)}_{f(t_i)} + n_i
 %
 where \(f(t)\) the signal we want to characterize, which depends on the unknown amplitudes \(B_1 \) and \(B_2 \) and the unknown frequency \(\omega \); while \(n_i \) is the noise: each \(n_i\) is i.i.d.\ as a zero-mean Gaussian with known variance \(\sigma^2\). 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/signal.pdf}
+\caption{Example of a portion of the signal the model assumes; the true signal should be longer than a few periods, and it is taken to be 20 times as long as this in the numerical examples which follow. The parameters are \(B_1 = 1/2\), \(B_2 = \sqrt{3} /2\), \(\sigma = 0.2\), \(\Delta = 1\), \(\omega = 0.015\).}
+\label{fig:signal}
+\end{figure}
+
 \subsubsection{The full likelihood}
 
 The likelihood of a single datum of index \(i\) attaining the value \(d_i\) is given\footnote{Omitting the dependence on previous information for simplicity.} by 
@@ -56,26 +63,36 @@ Q &= \sum _{i} d_i^2 -2 \sum _i d_i \qty(B_1  \cos(\omega t_i) + B_2 \sin(\omega
 
 \subsubsection{Large pulsation limit}
 
-Typically, in the limit \(\omega \gg \Delta^{-1} \) we expect to have \(c \approx s \approx N/2\) and \(h \approx 0\), since if this the case then after each \(\Delta \) of time many periods will have passed, so each term in the sum \(c\) will be a sample of \(\cos^2(x)\) for \(x\) uniformly distributed between \(0\) and \(2 \pi \), therefore the sum will converge to the \(N\) times the mean value of the argument, which is \(1/2\) for both \(\cos^2\) and \(\sin^2\), and \(0\) for \(\sin\).
+The condition we ask of our signal is to have many data points for each period (\(\Delta \ll \omega^{-1}\)) and many sampled periods (\(N \Delta  \gg \omega^{-1}\)), which is equivalent to \((N \Delta )^{-1 } \ll \omega \ll \Delta^{-1} \).
+
+The values of \(c\), \(s\) and \(h\) for various values of \(\omega \) are shown in figure \ref{fig:large_pulsation}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/large_pulsation}
-\caption{Values of \(c\), \(s\) and \(h\) for different orders of magnitude of \(\omega \).}
+\caption{Values of \(c\), \(s\) and \(h\) for different orders of magnitude of \(\omega \). The sampling frequency is fixed at \(\Delta^{-1} = 1\), and \(N=500\) points are always sampled. We put ourselves roughly in the middle of the two marked vertical lines, in the region \(\omega \sim \num{e-1}\).} 
 \label{fig:large_pulsation}
 \end{figure}
 
-However, as we can see in figure \ref{fig:large_pulsation}, the three functions do not really \emph{converge} to those values, and stating something like ``\(\lim_{\omega \to \infty } c = N /2\)'' would be incorrect mathematically.
-This is due to the presence of \emph{resonance}: if the ratio \(\omega \Delta \) is a rational multiple of \(\pi \), especially with a small denominator, there will be a bias in the points sampled, resulting in values which may range all the way from 0 to \(N\) for \(c\) and \(s\), and from \(-N\) to \(N\) for \(h\). 
-This should not really be an issue in realistic cases, as the set of points for which happens has measure zero. 
+% However, as we can see in figure \ref{fig:large_pulsation}, the three functions do not really \emph{converge} to those values, and stating something like ``\(\lim_{\omega \to \infty } c = N /2\)'' would be incorrect mathematically.
+% This is due to the presence of \emph{resonance}: if the ratio \(\omega \Delta \) is a rational multiple of \(\pi \), especially with a small denominator, there will be a bias in the points sampled, resulting in values which may range all the way from 0 to \(N\) for \(c\) and \(s\), and from \(-N\) to \(N\) for \(h\). 
+% This should not really be an issue in realistic cases, as the set of points for which happens has measure zero. 
 
-Really, working in the \(\omega \gg \Delta^{-1}\) regime is not wise, since we will necessarily have aliasing in the measured signal, as we are trying to measure a signal well above the Nyquist frequency of our sampler.
+% Really, working in the \(\omega \gg \Delta^{-1}\) regime is not wise, since we will necessarily have aliasing in the measured signal, as we are trying to measure a signal well above the Nyquist frequency of our sampler.
 
-Fortunately, there is a regime in the region \(\omega \lesssim \Delta^{-1}\) where the approximation we are discussing works well, and there are no aliasing issues. 
+% Fortunately, there is a regime in the region \(\omega \lesssim \Delta^{-1}\) where the approximation we are discussing works well, and there are no aliasing issues. 
 
-The condition we want, ideally, is to have many data points for each period (\(\Delta \ll \omega^{-1}\)) and many periods (\(N \Delta  \gg \omega^{-1}\)), which is equivalent to \((N \Delta )^{-1 } \ll \omega \ll \Delta^{-1} \).
-
-Let us then assume that we are working in that region, and set \(c = s = N/2\) and \(h = 0\).
+Let us then assume that we are working in that region. Then, denoting the argument of the functions as \(x_i = \omega t_i \mod 2 \pi \), we will have: 
+%
+\begin{align}
+c = \sum _{i=1}^{N} \cos^2 x_i &\approx N \expval{\cos^2 x}_{\text{period}} = \frac{N}{2} \\
+s = \sum _{i=1}^{N} \sin^2 x_i &\approx N \expval{\sin^2 x}_{\text{period}} = \frac{N}{2} \\
+h = \sum _{i=1}^{N} \sin (2 x_i) &\approx N \expval{\sin (2x)}_{\text{period}} = 0 
+\,,
+\end{align}
+%
+since \(x\) will be approximately uniformly distributed in the \([0, 2\pi )\) interval.
+The figure also shows this; the small deviations from these values are due to non-integer amounts of periods being included in the sample, but this is an edge effect, which becomes negligible as \(N\) becomes very large.
 
 \subsubsection{Marginalization}
 
@@ -139,12 +156,23 @@ Therefore, the value of \(\omega \) which maximizes \(C(\omega )\) is the same w
 Least-squares fitting the sinusoid with the same model means we minimize \(\chi^2 =  Q / \sigma^2\).
 This is precisely equivalent to the MAP estimate for the full likelihood, which under the aforementioned conditions can be estimated through the maximum of \(R_1^2(\omega ) + R_2^2(\omega )\). 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/chisquare_omega.pdf}
+\caption{\(N\) data points \(d_i\) are generated with the same distribution as the theoretical model. The value of \(Q\) is computed by fixing \(B_1 \) and \(B_2 \) to their true values, which is why its extremal point is sharper: it assumes more knowledge than the alternative, in which we marginalize over all possible amplitudes \(B_{1, 2}\).}
+\label{fig:chisquare_omega}
+\end{figure}
+
+As is shown in figure \ref{fig:chisquare_omega}, the maximum of \(R_1^2 + R_2^2\) and the minimum of \(Q\) do indeed coincide. In fact, \(Q\) can also be computed for different values of \(B_1 \) and \(B_2 \), and it attains its global minimum near the true values of the whole triple \((\omega , B_1 , B_2 )\).
+
 This procedure would yield a Gaussian likelihood for \(\omega \) under the following (sufficient) conditions: 
 \begin{enumerate}
     \item i.i.d.\ Gaussian noise on each data point;
     \item linear dependence of the model \(f(t)\) on its parameter \(\omega \).
 \end{enumerate}
 
-The first condition is satisfied under our hypotheses, the second is not unless the entire data range lies near the origin: \(t_0 = 0\) and \(N \Delta  \ll \omega^{-1}\), in which case the model can be approximated to linear order as \(B_1 + B_2 \omega t\). 
+The first condition is satisfied under our hypotheses, the second is not unless the entire data range lies in a very small region: \(N \Delta  \ll \omega^{-1}\), in which case the model can be approximated to linear order; for example, if the region is near the origin we can approximate it as \(f(t) \sim B_1 + B_2 \omega t\).
+
+In the general (and typical) case, instead, the likelihood \(\mathscr{L} \propto \exp(- Q / \sigma^2)\) is not Gaussian, and the model is not linear; however the minimum of \(Q\) is still rather peaked, and as long as we start near it we can numerically find the MAP, or equivalently least-squares, estimate of \(\omega \). 
 
 \end{document}

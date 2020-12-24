@@ -257,21 +257,21 @@ Therefore, the marginalized likelihood reads
 \end{align}
 
 We must be careful with this expression: it looks like a multivariate normal in \(\overline{x}\), however \(\hat{A}\) is not in general independent of it.
-If neither the estimate for \(\hat{A}\) nor the expression \(\overline{x}^{\top} V \overline{x}\) vary significantly in the range of \(\overline{x}\) we are interested in, then we can consider this 
+If neither the estimate for \(\hat{A}\) nor the expression \(\overline{x}^{\top} V \overline{x}\) vary significantly in the range of \(\overline{x}\) we are interested in, then we can consider this expression for the likelihood as Gaussian in \(x\), or as a marginalized posterior which is Gaussian in \(\overline{x}\).
 
-A clearer way to see that this is indeed still a MVN is to come back to the original expression \eqref{eq:marginalized-likelihood}, and to write it as 
-%
-\begin{align}
-\mathscr{L} (x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} \qty(V - \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}) x )
-\,,
-\end{align}
-%
-thus showing that the likelihood is a \emph{zero-mean} MVN with covariance given by 
-%
-\begin{align}
-\qty[V - \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}]^{-1}
-\,.
-\end{align}
+% A clearer way to see that this is indeed still a MVN is to come back to the original expression \eqref{eq:marginalized-likelihood}, and to write it as 
+% %
+% \begin{align}
+% \mathscr{L} (x | \Theta ) = B_3 \exp(- \frac{1}{2} x^{\top} \qty(V - \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}) x )
+% \,,
+% \end{align}
+% %
+% thus showing that the likelihood is a \emph{zero-mean} MVN with covariance given by 
+% %
+% \begin{align}
+% \qty[V - \frac{V \overline{x} \overline{x}^{\top} V}{\overline{x}^{\top} V \overline{x}}]^{-1}
+% \,.
+% \end{align}
 
 
 \end{document}

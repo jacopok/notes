@@ -117,8 +117,8 @@ class MultipleChains(object):
 
         return (first_term + second_term)
         
-    def autocorrelation_times(self):
-        return([sampler.autocorrelation_time() for sampler in self.samplers])
+    def autocorrelation_times(self, *args):
+        return([sampler.autocorrelation_time(*args) for sampler in self.samplers])
 
     @property
     def optimal_trimming(self):

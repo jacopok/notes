@@ -68,26 +68,49 @@ class Sampler(object):
         return (np.average(self.chain, axis=0))
 
     def autocorrelation(self, tau):
-        deviation = self.chain - self.mean
+        deviation = self.chain - self.mean[np.newaxis,:]
+        
+        numerator = np.sum(deviation[: - tau, ...] * deviation[tau:, ...], axis=0)
+        denominator = np.sum(deviation[: - tau, ...]** 2, axis=0)
+        
+        # This expression was wrong in the slides! 
+        normalization = self.number_steps / (self.number_steps - tau)
 
-        numerator = np.sum(deviation[: - tau, ...] * deviation[tau:, ...])
-        denominator = np.sum(deviation[: - tau, ...] ** 2)
-        normalization = 1 / (self.number_steps - tau)
-
+        # We return an array, which is commonly denoted as rho in formulas
+        # This is the autocorrelation corresponding to the two coordinate axes,
+        # if one is computing a certain function of the parameters then a 
+        # custom correlation should be used
         return(normalization * numerator / denominator)
 
     def autocorrelation_array(self, max_tau=None):
         if not max_tau:
             max_tau = self.number_steps // 10
         taus = range(1, max_tau + 1)
-        autocorrelations = [self.autocorrelation(tau) for tau in taus]
-
+        autocorrelations = np.array([self.autocorrelation(tau) for tau in taus])
         return (taus, autocorrelations)
 
-    def autocorrelation_time(self, *args):
+    def autocorrelation_time(self, *args, C=4):
         taus, autocorrelations = self.autocorrelation_array(*args)
-        return 1 + 2 * np.sum(autocorrelations)
+        times = 1 + 2 * np.cumsum(autocorrelations, axis=0)
 
+        # Implementing an idea from
+        # https://dfm.io/posts/autocorr/
+        # Basically, since the autocorrelations become noise-dominated fast,
+        # we compare a linear function to the estimated correlation, 
+        # which should taper off, to find out where to stop integrating.
+        
+        finished = False
+        best_max_tau = taus[-1] - 1
+        for tau, time in zip(taus, times):
+            if finished:
+                break
+            for t in time:
+                if tau > C * t:
+                    best_max_tau = tau
+                    finished = True
+        
+        return (np.average(times[best_max_tau, :]))
+        
     @property
     def covariance(self):
         deviation = self.chain - self.mean[np.newaxis, ...]
@@ -98,9 +121,8 @@ class Sampler(object):
     def autocorrelation_plot(self, *args):
         taus, autocorrelations = self.autocorrelation_array(*args)
 
-        plt.plot(taus, autocorrelations)
+        plt.plot(taus, autocorrelations, label='Autocorrelation', c='purple')
         plt.xlabel('$\\tau$')
-        plt.ylabel('Autocorrelation')
 
     def posterior_plot(self):
         posterior_arr = self.posterior(self.chain)
@@ -152,47 +174,29 @@ class MetropolisHastings(Sampler):
 
     def __init__(self, proposal, *args, **kwargs):
         self.proposal = proposal
-        self.calculate_acceptance_rate = kwargs.pop('calculate_acceptance_rate', False)
-        if self.calculate_acceptance_rate:
-            self.rejections = []
+        self.rejections = 0
         super().__init__(*args, **kwargs)
     
     def __str__(self):
         return('Metropolis-Hastings')
 
     def next_chain_step(self, theta):
-
-        # if not self.calculate_acceptance_rate:
-        #     while True:
-        #         new_theta = theta + self.proposal(theta)
-        #         post_ratio = self.posterior(new_theta) / self.posterior(theta)
-        #         acceptance_prob = min(post_ratio, 1)
-        #         if(np.random.uniform(low=0., high=1.) < acceptance_prob):
-        #             return (new_theta)
-        # else:
-        #     n = 0
-        #     while True:
-        #         new_theta = theta + self.proposal(theta)
-        #         post_ratio = self.posterior(new_theta) / self.posterior(theta)
-        #         acceptance_prob = min(post_ratio, 1)
-        #         if(np.random.uniform(low=0., high=1.) < acceptance_prob):
-        #             self.rejections.append(n)
-        #             return (new_theta)
-        #         n += 1
-
         new_theta = theta + self.proposal(theta)
         post_ratio = self.posterior(new_theta) / self.posterior(theta)
         if(np.random.uniform(low=0., high=1.) < post_ratio):
             return (new_theta)
+        self.rejections+=1
         return (theta)
 
 
     @property
     def rejection_rate(self):
-        mean_rejections = np.average(self.rejections)
-        twice_mr = 2 * mean_rejections
-
-        return(1 + 1/twice_mr - np.sqrt(1 + 2 * twice_mr) / twice_mr)
+        return self.rejections / self.number_steps
+    
+    @property
+    def acceptance_rate(self):
+        return (1 - self.rejection_rate)
+    
 
 class Gibbs(Sampler):
     """

@@ -108,12 +108,10 @@ class Sampler(object):
         plt.xlabel('Step number')
         plt.ylabel('Posterior evaluated at the chain step')
 
-    def steps_trace(self, **kwargs):
+    def steps_trace(self, every):
         posterior_arr = self.posterior(self.chain)
         log_posterior = -np.log(posterior_arr)
-        
-        every = kwargs.pop('every', 100)
-        
+                
         plotted_points = self.effective_steps // every
         trace = np.zeros(plotted_points)
         for i in range(plotted_points):
@@ -122,12 +120,14 @@ class Sampler(object):
         return(steps, trace)
 
     def trace_plot(self, **kwargs):
-        steps, trace = self.steps_trace(**kwargs)
+        every = kwargs.pop('every', 100)
+
+        steps, trace = self.steps_trace(every)
         # log_posterior = -np.log(posterior_arr)
         # trace = np.cumsum(log_posterior) / np.arange(1,
                                                     #  1 + self.number_steps - self.trim)
         initial_str = ', '.join([f'{i:.1f}' for i in self.initial_position])
-        plt.plot(steps, trace, label=initial_str)
+        plt.plot(steps, trace, label=initial_str, **kwargs)
 
     @staticmethod
     def interval_from_samples(samples, percentage):
@@ -235,18 +235,43 @@ class Cholesky(Sampler):
 
 class SampleSet2D():
     
+    
     def __init__(self, samples, *args, **kwargs):
         self.samples = np.array(samples)
         if self.samples.shape[-1] != 2:
-            raise(NotImplementedError('We only support bidimensional plots for now'))
+            raise (NotImplementedError('We only support bidimensional plots for now'))
+
+    @property            
+    def mean(self):
+        return (np.average(self.samples, axis=0))
     
-    def samples_plot(self, CL, **kwargs):
+    @property
+    def covariance(self):
+        deviation = self.samples - self.mean[np.newaxis, :]
+        sum_cov = np.sum(deviation[:, :, np.newaxis] *
+                     deviation[:, np.newaxis, :], axis=0)
+        return (sum_cov / (self.samples.shape[0] - 1))
+        
+    def samples_plot(self, CL=None, **kwargs):
         grid = sns.jointplot(x=self.samples[:, 0], y=self.samples[:, 1], **kwargs)
 
-        interval_x, interval_y = self.intervals(CL)
+        if CL:
+            interval_x, interval_y = self.intervals(CL)
 
-        [grid.ax_marg_x.axvline(x) for x in interval_x]
-        [grid.ax_marg_y.axhline(y) for y in interval_y]
+            [grid.ax_marg_x.axvline(x) for x in interval_x]
+            [grid.ax_marg_y.axhline(y) for y in interval_y]
+    
+    def samples_plot_kde(self, number_sigmas=3, **kwargs):
+        x, y, z = self.kde()
+        
+        mean = self.mean
+        sigmas = np.sqrt(np.diag(self.covariance))
+        limits_lower = mean - number_sigmas * sigmas
+        limits_upper = mean + number_sigmas * sigmas
+        
+        plt.contourf(x, y, z, **kwargs)
+        plt.xlim(limits_lower[0], limits_upper[0])
+        plt.ylim(limits_lower[1], limits_upper[1])
 
     def intervals(self, CL):
         interval_x = Sampler.interval_from_samples(self.samples[:, 0], CL)
@@ -281,25 +306,3 @@ class SampleSet2D():
             cond_index = np.isclose(other_parameter, s[:,0], atol=thr)
 
         return(s[cond_index])
-
-if __name__ == "__main__":
-
-    mean_1 = np.array([4, 2])
-    mean_2 = np.array([-1, 0])
-    covariance = np.array([
-        [1.44, -.702],
-        [-.702, .81]
-    ])
-
-    from scipy.stats import multivariate_normal
-
-    def gaussian_proposal(theta=None):
-        return (np.random.normal(scale=1, size=2))
-
-    def my_MVN(x):
-        a = multivariate_normal(mean=mean_1, cov=covariance).pdf(x)
-        b = multivariate_normal(mean=mean_2, cov=covariance).pdf(x)
-        return(a+2*b)
-
-    metropolis_hastings = MetropolisHastings(
-        gaussian_proposal, my_MVN,  [0, 0], 10000, calculate_acceptance_rate=True)

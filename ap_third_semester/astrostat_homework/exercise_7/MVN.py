@@ -16,8 +16,8 @@ class MultivariateNormal():
 
     def __init__(self, mean, cov):
 
-        self.mean = np.array(mean)
-        self.cov = np.array(cov)
+        self.mean = np.atleast_1d(mean)
+        self.cov = np.atleast_2d(cov)
         self.dim = self.mean.shape[0]
 
         self.normalization = (2 * np.pi)**(-self.dim / 2) / \
@@ -36,12 +36,14 @@ class MultivariateNormal():
         argument = np.sum(
             (shifted_arg) @ self.precision_matrix * (shifted_arg), axis=-1)
 
-        return self.normalization * np.exp(- 1 / 2 * argument)
+        return self.normalization * np.exp(- argument / 2.)
 
     def marginalize(self, index):
         # not very general! we are only able to marginalize down
         # to one parameter right now
-        # may generalize later
+
+        # the generalization is simple conceptually (take the submatrix of self.cov)
+        # but may make the code quite complicated
         
         marginal_mean = self.mean[index, np.newaxis]
         marginal_cov = self.cov[index, index, np.newaxis, np.newaxis]
@@ -98,7 +100,7 @@ class MultivariateNormal():
         correlated_deviates = (self.cholesky_L @ independent_deviates).T
         return correlated_deviates + self.mean[np.newaxis, :]
 
-    def plot_2d_analytical(self, chosen_x, chosen_y, percentage):
+    def plot_2d_analytical(self, chosen_x, chosen_y, CL):
 
         if self.dim != 2:
             print('This only applies to bivariate normals!')
@@ -115,10 +117,10 @@ class MultivariateNormal():
         positions = np.stack((x, y), axis=-1)
         z = self.pdf(positions)
         
-        mx_interval = marginal_x.analytical_CI(percentage)
-        my_interval = marginal_y.analytical_CI(percentage)
-        cx_interval = conditioned_x.analytical_CI(percentage)
-        cy_interval = conditioned_y.analytical_CI(percentage)
+        mx_interval = marginal_x.analytical_CI(CL)
+        my_interval = marginal_y.analytical_CI(CL)
+        cx_interval = conditioned_x.analytical_CI(CL)
+        cy_interval = conditioned_y.analytical_CI(CL)
         
         fig = plt.figure(figsize=(10, 10))
         gs = gridspec.GridSpec(

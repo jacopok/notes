@@ -118,11 +118,13 @@ class Sampler(object):
                      deviation[:, np.newaxis, :], axis=0)
         return (cov / (self.number_steps - 1))
 
-    def autocorrelation_plot(self, *args):
+    def autocorrelation_plot(self, *args, **kwargs):
         taus, autocorrelations = self.autocorrelation_array(*args)
-
-        plt.plot(taus, autocorrelations, label='Autocorrelation', c='purple')
-        plt.xlabel('$\\tau$')
+        ax = kwargs.pop('ax', None)
+        if not ax:
+            ax = plt.gca()        
+        ax.plot(taus, autocorrelations, label='Autocorrelation', **kwargs)
+        ax.set_xlabel('$\\tau$')
 
     def posterior_plot(self):
         posterior_arr = self.posterior(self.chain)

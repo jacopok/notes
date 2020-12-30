@@ -185,11 +185,15 @@ class MetropolisHastings(Sampler):
     def next_chain_step(self, theta):
         new_theta = theta + self.proposal(theta)
         post_ratio = self.posterior(new_theta) / self.posterior(theta)
+        
         if(np.random.uniform(low=0., high=1.) < post_ratio):
+            # if post_ratio > 1  this is automatically satisfied
+            # in this case, we are accepting the proposal
             return (new_theta)
+            
+        # otherwise, we are rejecting it, therefore we must count it again
         self.rejections+=1
         return (theta)
-
 
     @property
     def rejection_rate(self):

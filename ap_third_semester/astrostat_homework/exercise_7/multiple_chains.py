@@ -211,3 +211,33 @@ def plot_errors(N, errors_mean, errors_cov, multiple_chains, trimming_index=None
     plt.title('Errors for ' + str(multiple_chains))
     plt.xlabel('Number of MCMC steps')
     plt.ylabel('Absolute error')
+
+def plot_autocorrelations(multiple_chains, max_tau=100):
+    
+    # get the autocorrelations at variable delays, from 1 to 100:
+    t, a = multiple_chains.samplers[0].autocorrelation_array(max_tau)
+
+    fig, ax = plt.subplots(figsize=(8,6))
+
+    multiple_chains.samplers[0].autocorrelation_plot(max_tau, ax=ax, c='purple')
+    times = 1 + 2 * np.cumsum(a, axis=0)
+    ax.tick_params(axis='y', colors='purple')
+    ax.grid('on')
+
+    # duplicate y axis, in order to show both the autocorrelation and 
+    # its cumulative sum on the same axis
+    ax2 = ax.twinx()
+
+    linear = np.array(t) / 4
+    end_integration = min(np.argmax(linear[:, np.newaxis] > times, axis=0))
+
+    ax2.plot(t, times, c='green', label='Running autocorrelation time')
+    ax2.plot(list(t), linear, ls=':', label='Linear function', c='black')
+    ax2.tick_params(axis='y', colors='green')
+    ax2.axvline(end_integration, ls='-.', c='orange', label='End of integration')
+
+    handles, labels = ax.get_legend_handles_labels()
+    handles2, labels2 = ax2.get_legend_handles_labels()
+    by_label = dict(zip(labels+labels2, handles+handles2))
+    ax.legend(by_label.values(), by_label.keys())
+    ax.set_title(f'{multiple_chains.samplers[0].name} sampling autocorrelation')

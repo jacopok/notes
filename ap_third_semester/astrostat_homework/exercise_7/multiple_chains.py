@@ -7,11 +7,13 @@ from scipy.stats import norm
 
 class MultipleChains(object):
     """
-    Contains several Monte Carlo Markov Chains, 
+    Contains several Monte Carlo Markov Chains*,
     sampling using 'sampler' (MetropolisHastings only for now)
     the posterior 'posterior'
     starting from all the 'initial_positions'
     and going on for 'number_steps' for each.
+    
+    * or Cholesky sampler, included in the same framework for simplicity
     """
 
     def __init__(self, sampler_class, posterior, initial_positions, number_steps, *args, **kwargs):
@@ -163,7 +165,7 @@ class MultipleChains(object):
             s.trace_plot(**kwargs)
         plt.legend()
         plt.xlabel('Step number')
-        plt.ylabel('Trace')
+        plt.ylabel('$-\\log $ posterior')
 
 def errors_sampler(sampler, mvn, trimming_index=40, num=200, max_num=int(1e6)):
     errors_cov = []

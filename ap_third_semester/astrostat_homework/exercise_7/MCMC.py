@@ -144,7 +144,7 @@ class Sampler(object):
         return(steps, trace)
 
     def trace_plot(self, **kwargs):
-        every = kwargs.pop('every', 100)
+        every = kwargs.pop('every', 1)
 
         steps, trace = self.steps_trace(every)
         # log_posterior = -np.log(posterior_arr)

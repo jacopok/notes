@@ -178,9 +178,6 @@ class MetropolisHastings(Sampler):
         self.proposal = proposal
         self.rejections = 0
         super().__init__(*args, **kwargs)
-    
-    def __str__(self):
-        return('Metropolis-Hastings')
 
     def next_chain_step(self, theta):
         new_theta = theta + self.proposal(theta)
@@ -213,10 +210,7 @@ class Gibbs(Sampler):
     def __init__(self, conditional, *args, **kwargs):
         self.conditional = conditional
         super().__init__(*args, **kwargs)
-    
-    def __str__(self):
-        return('Gibbs')
-
+        
     def next_chain_step(self, theta):
 
         new_theta = np.copy(theta)
@@ -235,16 +229,18 @@ class Cholesky(Sampler):
     def __init__(self, cholesky_sample, *args, **kwargs):
         self.cholesky_sample = cholesky_sample
         super().__init__(*args, **kwargs)
-    
-    def __str__(self):
-        return('Cholesky')
 
     def next_chain_step(self, theta):
 
         return(self.cholesky_sample(1).reshape(theta.shape))
 
 class SampleSet2D():
+    """
+    Contains a set of samples from a bidimensional probability distribution.
+    Includes methods for the calculation of various parameters from the distribution,
+    as well as plotting.
     
+    """
     
     def __init__(self, samples, *args, **kwargs):
         self.samples = np.array(samples)
@@ -310,9 +306,5 @@ class SampleSet2D():
 
     def conditional_cut(self, index, other_parameter, thr=.1):
         s = self.samples
-        if index == 0:
-            cond_index = np.isclose(other_parameter, s[:,1], atol=thr)
-        elif index == 1:
-            cond_index = np.isclose(other_parameter, s[:,0], atol=thr)
-
+        cond_index = np.isclose(other_parameter, s[:,1-index], atol=thr)
         return(s[cond_index])

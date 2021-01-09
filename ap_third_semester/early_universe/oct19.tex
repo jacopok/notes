@@ -36,7 +36,7 @@ Also, note that we did not consider any explicit coupling of \(\varphi \) with g
 These kinds of nonminimal theories represent one of the simplest extensions of GR: they are \emph{scalar-tensor} theories, and in them the field \(\varphi \) as well as \(g_{\mu \nu }\) can mediate gravity. 
 One of the theories which currently fits the cosmological data best is of this kind. 
 
-What could we put in the potential? The mass is given by \(m_\varphi^2 = \pdv[2]*{V}{\varphi }\), so a simple mass term would look like \(m^2 \varphi^2 / 2\), but we could also have quartic terms like \(\lambda \varphi^{4} / 4\): these are self-interaction terms. 
+What could we put in the potential? The mass is given by \(m_\varphi^2 = \pdv*[2]{V}{\varphi }\), so a simple mass term would look like \(m^2 \varphi^2 / 2\), but we could also have quartic terms like \(\lambda \varphi^{4} / 4\): these are self-interaction terms. 
 
 The other fields will typically be negligible during inflation since their energy density is quickly ``redshifted away''. 
 Sometimes some of them are non-negligible: this happens if they are coupled to the scalar field, and we must consider them; we typically do so in an ``effective'' way, by inserting them into the potential \(V(\varphi )\). 
@@ -49,7 +49,7 @@ T_{\mu \nu }^{(\varphi )} = - \frac{2}{\sqrt{-g}} \fdv{S_{\varphi }}{g^{\mu \nu 
 \end{align}
 
 This comes from the way we write the Einstein equations from a variational principle. 
-For our scalar field we find 
+For our scalar field, integrating by parts inside the action, we find 
 %
 \begin{align}
 T_{\mu \nu } = \frac{2}{\sqrt{-g}} \qty[
@@ -69,7 +69,7 @@ We then get
 %
 \begin{align}
 T^{(\varphi )}_{\mu \nu } = 
-- 2 \frac{\mathscr{L}_\varphi }{g^{\mu \nu }} + \frac{2}{\sqrt{-g}} \mathscr{L}_\varphi \pdv{\sqrt{-g}}{g^{\mu \nu }}
+- 2 \frac{\partial\mathscr{L}_\varphi }{\partial g^{\mu \nu }} + \frac{2}{\sqrt{-g}} \mathscr{L}_\varphi \pdv{\sqrt{-g}}{g^{\mu \nu }}
 \,,
 \end{align}
 %
@@ -131,8 +131,7 @@ If \(V(\varphi )\) is approximately a constant, then it mimics a cosmological co
 Inflation is driven by the vacuum energy density associated with the scalar field. 
 
 Let us look at the slow-roll dynamics in more detail. 
-What is the equation of motion for this (quantum!) scalar field? 
-The equation reads 
+What is the equation of motion for this (quantum!) scalar field? It is just the Klein-Gordon equation, which can be derived by functional differentiation of the action with respect to \(\varphi \): 
 %
 \begin{align}
 \square \varphi = \pdv{V}{\varphi }
@@ -146,9 +145,9 @@ just like in the flat case, however since we are in curved spacetime we must be 
 \,,
 \end{align}
 %
-since we need to use the formula for the quadri-divergence of a vector field. 
+since we need to use the formula for the Dalambertian in curved spacetime, which can be calculating by substituting the partial derivatives with covariant ones. 
 
-Let us see what this reduces to in a flat FLRW metric: then \(\sqrt{-g} = a^3\), so 
+Let us see what this reduces to in a \textbf{flat FLRW} metric: then \(\sqrt{-g} = a^3\), so 
 %
 \begin{align}
 \square \varphi = \frac{1}{a^3} \qty(g^{00} a^3\varphi_{, 0})_{, 0}
@@ -163,7 +162,7 @@ Let us see what this reduces to in a flat FLRW metric: then \(\sqrt{-g} = a^3\),
 The term \(3 H \dot{\varphi}\) is a kind of \emph{friction} term: the propagation of the field is ``held back'' by the expansion. 
 If we consider the background field, it will be constant in space, so it will evolve as 
 %
-\begin{align}
+\begin{align} \label{eq:klein-gordon-scalar-field-flat-FLRW}
 \ddot{\varphi}_0 + 3 H \dot{\varphi}_0 = - \pdv{V}{\varphi_0 }
 \,.
 \end{align}
@@ -177,20 +176,20 @@ H^2 = \frac{8 \pi G}{3} \qty(\rho _\varphi + \rho _m + \rho _r) - \frac{k}{a^2}
 
 The matter and radiation densities scale like \(a^{-3}\) for \(\rho _m\), \(a^{-4}\) for \(\rho _r\); in this early phase the scalar field will dominate the dynamics, so the equation will simplify to 
 %
-\begin{align}
+\begin{align} \label{eq:hubble-rate-scalar-field-flat-FLRW}
 H^2 \approx \frac{8 \pi G}{3} V(\varphi_0 )
 \,.
 \end{align}
 
-Under these slow-roll conditions, we also have \(\ddot{\varphi}_0 \ll 3 H \dot{\varphi}_0\): therefore 
+Under these slow-roll conditions, we also have \(\ddot{\varphi}_0 \ll 3 H \dot{\varphi}_0\): therefore equation \eqref{eq:klein-gordon-scalar-field-flat-FLRW} simplifies to
 %
-\begin{align}
+\begin{align} \label{eq:approx-EOM-scalar-field-flat-FLRW}
 3 H \dot{\varphi}_{0} \approx - \pdv{V}{\varphi_0 }
 \,.
 \end{align}
 
 We also expect that \(V\) and all of its derivatives change very slowly with \(\varphi \). 
-This means that in this equation we have \(\pdv{V}{\varphi_0 } \approx \const\), as well as \(H \approx \const\): this is the same equation which is obeyed by a particle under a constant force and friction: it will then reach the asymptotic ``terminal velocity'' and move with a constant \(\dot{\varphi}_0 \). This solution is an attractor. 
+This means that in this equation we have \(\pdv{V}{\varphi_0 } \approx \const\), as well as \(H \approx \const\): this is the same equation which is obeyed by a particle under a constant force and friction: it will then reach the asymptotic ``\textbf{terminal velocity}'' and move with a constant \(\dot{\varphi}_0 \). This solution is an attractor. 
 
 We typically write this as \(\dot{\varphi} = - V' (\varphi_0 ) / 3H\), and \(H^2 = \frac{8 \pi G}{3} V(\varphi )\). 
 
@@ -207,7 +206,10 @@ The first parameter we define is
 \,,
 \end{align}
 %
-so requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
+where the manipulations follow from equations \eqref{eq:approx-EOM-scalar-field-flat-FLRW} and \eqref{eq:hubble-rate-scalar-field-flat-FLRW}.
+\todo[inline]{Check calculation!}
+
+Requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
 %
 \begin{align}
 \frac{1}{V} \qty(\pdv{V}{\varphi })^2 \ll H^2

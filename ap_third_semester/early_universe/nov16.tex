@@ -12,7 +12,7 @@ We will give a simplified treatment, which however captures the main characteris
 Consider the typical inflationary potential: flat at \(\varphi \sim 0\), sloping down towards a minimum. At \(\varphi \sim \varphi _f\) the field starts ``falling down'' towards the minimum quickly.
 The condition is \(V''(\varphi ) \gtrsim H^2\), meaning that \(\eta _V \gtrsim 1\), which also implies that quickly we will find \(\epsilon \gtrsim 1\). 
 
-When the field falls down it will oscillate, however its oscillations will be damped.
+When the field falls down it will \textbf{oscillate}, however its oscillations will be damped.
 This is due to two factors: the expansion of the universe and the coupling of the field to other particles. 
 
 The damped oscillations are described by a coupled Klein-Gordon equation: 
@@ -28,7 +28,7 @@ This has the same form as the expansion term: it is a damping term as well.
 The energy density of the scalar field can be differentiated:
 %
 \begin{align}
-\rho _\varphi &= \frac{1}{2} \dot{\varphi} + V(\varphi )  \label{eq:scalar-field-energy-density}\\
+\rho _\varphi &= \frac{1}{2} \dot{\varphi}^2 + V(\varphi )  \label{eq:scalar-field-energy-density}\\
 \dot{\rho}_\varphi &= \dot{\varphi} \ddot{\varphi} + V' (\varphi ) \dot{\varphi}
 \,,
 \end{align}
@@ -47,11 +47,11 @@ Oscillations at \(\varphi = \sigma \) will have a frequency \(\omega^2 = V''(\si
 Since \(\omega^2 \gg H^2\) (this is true since \(\eta _V \gg 1\)) we can take averages over a period of the relevant quantities: 
 %
 \begin{align}
-\expval{\dot{\varphi}} _{\text{period}} = \rho _\varphi 
+\expval{\dot{\varphi}^2} _{\text{period}} = \rho _\varphi 
 \,,
 \end{align}
 %
-since in general \(\dot{\varphi}^2 / 2 = \expval{V}\): therefore, substituting into \eqref{eq:scalar-field-energy-density} we get \(\expval{\dot{\varphi}^2} = \rho _\varphi \). 
+since in general \(\expval{\dot{\varphi}^2 / 2} = \expval{V}\) by the virial theorem: therefore, substituting into \eqref{eq:scalar-field-energy-density} we get \(\expval{\dot{\varphi}^2} = \rho _\varphi \). 
 Then our equation becomes 
 %
 \begin{align}
@@ -77,10 +77,11 @@ H^2 = \frac{8 \pi G}{3} \qty(\rho _\varphi + \rho _R)
 \,.
 \end{align}
 
-We have a simple solution: 
+We have a simple and exact solution: 
 %
 \begin{align}
 \rho _\varphi = M^{4} \qty(\frac{a}{a _{\text{osc}}})^{-3} \exp(- \Gamma _\varphi \qty(t - t _{\text{osc}}))
+\marginnote{See \cite[eq. 8.30]{kolbEarlyUniverse1994}.}
 \,,
 \end{align}
 %
@@ -112,7 +113,7 @@ So,
 \,,
 \end{align}
 %
-since \(a \propto t^{2/3}\), therefore \(H = (2/3) t^{-1}\).
+since \(a \propto t^{2/3}\) (we are in a radiation dominated phase), therefore \(H = (2/3) t^{-1}\).
 With a powerlaw ansatz \(\rho _R = B t^{\alpha }\) we get 
 %
 \begin{align}
@@ -123,16 +124,16 @@ With a powerlaw ansatz \(\rho _R = B t^{\alpha }\) we get
 the homogeneous solution is given by \(\alpha = - 8 /3\), while the particular has \(\alpha = -1\). 
 
 The initial condition we set is \(\rho _R (t _{\text{osc}}) = 0\), since before reheating inflation was taking place, diluting the energy density of radiation. 
-This yields 
+This yields, in the pre-radiation-domination epoch:
 %
 \begin{align}
-\rho _R = \Gamma _\varphi M_P^2 \frac{9}{40 \pi } \frac{1}{t} \qty[ 1 - \qty( \frac{t}{t _{\text{osc}}})^{-5/3}]
+\rho _R \approx \Gamma _\varphi M_P^2 \frac{9}{40 \pi } \frac{1}{t} \qty[ 1 - \qty( \frac{t}{t _{\text{osc}}})^{-5/3}]
 \,.
 \end{align}
 
 \todo[inline]{Where does the \(\pi \) come from?}
 
-\todo[inline]{So, we are basically approximating the decaying exponential with a constant function for a small region of time, and then 0?}
+% \todo[inline]{So, we are basically approximating the decaying exponential with a constant function for a small region of time, and then 0?}
 
 Starting from this solution, and using \(a \propto t^{2/3}\), we find 
 %
@@ -142,11 +143,12 @@ Starting from this solution, and using \(a \propto t^{2/3}\), we find
 \end{align}
 
 The maximum energy density of radiation will be roughly given by \(\rho _R^{\text{max}} \approx \Gamma _\varphi M_P M^2\). 
+\marginnote{The \(a\)-dependent part has a maximum value of roughly \num{.35}.}
 
 The radiation energy density will be given by \(\rho _R = \frac{\pi^2}{30} g_* T^{4}\), so the maximum temperature will be 
 %
 \begin{align}
-T^{\text{max}} = g_*^{-1/4} \rho _R^{\text{max}, 1/4} \sim g_*^{1/4} \qty(\Gamma _\varphi M_P M^2)^{1/4}
+T^{\text{max}} = g_*^{-1/4} \rho _R^{\text{max}, 1/4} \sim g_*^{-1/4} \qty(\Gamma _\varphi M_P M^2)^{1/4}
 \,.
 \end{align}
 
@@ -187,6 +189,7 @@ T_{RH} \approx \num{.55} g_*^{-1/4} \sqrt{\Gamma _\varphi M_P}
 \end{align}
 
 What is interesting to note here is that there is no memory of the energy scale \(M\), the vacuum energy scale of inflation. 
+\todo[inline]{Add comment about the redshift of the inflaton's energy}
 
 Only if \(\Gamma _\varphi \gg H _{\text{osc}}\) we would have had \(T_{RH} \sim M\); in that case the reheating would have been \SI{100}{\percent} efficient, the harmonic oscillator would have been overdamped. 
 
@@ -254,7 +257,7 @@ In the massless boson case, then,
 \,,
 \end{align}
 %
-so if \(n \sim T^3\) we get \(\Gamma = \alpha^2 T\). We want to know when this will be larger than \(H\), using the fact that 
+so if \(n \sim T^3\) (which is the case if we have radiation domination and equilibrium) we get \(\Gamma = \alpha^2 T\). We want to know when this will be larger than \(H\), using the fact that 
 %
 \begin{align}
 H \sim \frac{T^2}{M_P} && H^2 = \frac{8 \pi G}{3} \underbrace{\rho _R}_{\propto T^{4}}
@@ -263,7 +266,7 @@ H \sim \frac{T^2}{M_P} && H^2 = \frac{8 \pi G}{3} \underbrace{\rho _R}_{\propto 
 %
 so \(\Gamma \gtrsim H\) when \(T < \alpha^2 M_P \sim \SI{e15}{GeV}\). 
 
-For the massive gauge boson, at temperatures \(T \ll m_X\) we get \(G \gtrsim H\) when 
+For the massive gauge boson, at temperatures \(T \ll m_X\) we get \(\Gamma \gtrsim H\) when 
 %
 \begin{align}
 \Gamma = G_X^2 T^{5} &\gtrsim \frac{T^2}{M_P}  \\

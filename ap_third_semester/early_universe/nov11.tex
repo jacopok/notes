@@ -113,7 +113,7 @@ V(\varphi , \psi = 0) = \frac{1}{2} m^2\varphi^2 + \frac{\lambda}{4} M^{4}
 %
 in the same form as the aforementioned potential, with \(V_0 = \lambda M^{4} /4\). 
 
-The effective mass of \(\psi \) is
+The effective mass of \(\psi \), only considering the quadratic coupling, is
 %
 \begin{align}
 \pdv[2]{V}{\psi } = m^2_\psi = \lambda ' \varphi^2 = m^2_\psi (\varphi )
@@ -139,6 +139,7 @@ for \(\varphi > \varphi _c\) we have \(\eval{m^2_\psi }_{\psi = 0} > 0\).
 When \(\varphi \) becomes such that \(\varphi < \varphi _c\) then the point \(\psi = 0\) becomes unstable, so \(\psi \) moves from zero to either \(+\) or \(-M\).  
 
 We get a \emph{second-order} phase transition for \(\psi \). 
+\todo[inline]{Add graph for \(V (\psi , \phi )\).}
 
 \subsection{Some remarks on inflation model building}
 
@@ -165,16 +166,17 @@ M_i^{4} (\varphi ) \log \qty(\frac{M_i^2 (\varphi )}{\mu^2})
 \end{align}
 %
 where \(M_i^2(\varphi )\) is the effective mass of the \(i\)-th particle species which interacts with \(\varphi \). 
+This logarithm generates the one in the Coleman-Weinberg potential.
 
 The vacuum energy is given by 
 %
 \begin{align}
-E^{\psi } _{\text{vacuum}} = \frac{1}{2} \frac{ \dd[3]{p}}{(2 \pi )^3}
+E^{\psi } _{\text{vacuum}} = \frac{1}{2} \int  \frac{ \dd[3]{p}}{(2 \pi )^3}
 \sqrt{p^2 + M^2_\psi (\varphi )}
 \,.
 \end{align}
 
-We might also get terms in the form 
+Let us make some examples: if we have two scalar fields 1 and 2 with which \(\varphi \) interacts we might get terms in the form 
 %
 \begin{align}
 \Delta V(\varphi ) \sim m_1^2 m_2^2 \log \qty( \frac{\varphi}{\mu })
@@ -184,11 +186,19 @@ We might also get terms in the form
 so starting from a tree-level flat potential \(V(\varphi ) = V_0 \) we might get 
 %
 \begin{align}
-V(\varphi ) = V_0 \qty(1 + 2 \log (\frac{\varphi }{\mu }))
+V(\varphi ) = V_0 \qty(1 + \alpha  \log (\frac{\varphi }{\mu }))
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\alpha = \frac{m_1^2 m_2^2}{V_0 }
 \,.
 \end{align}
 %
-In the Coleman-Weinberg case we get 
+
+Another example which is similar to Coleman-Weinberg is  
 %
 \begin{align}
 \Delta V(\varphi ) \sim \frac{c}{2} \qty(m_1^2+ m_2^2) \varphi^2 \log \frac{\varphi }{\mu }
@@ -198,7 +208,7 @@ In the Coleman-Weinberg case we get
 so 
 %
 \begin{align}
-V(\varphi ) &= V_0 + \varphi^2 \qty[m^2 + c \widetilde{m}^2 \log \frac{\varphi }{\mu }]
+V(\varphi ) &= V_0 + \frac{\varphi^2}{2} \qty[m^2 + c \widetilde{m}^2 \log \frac{\varphi }{\mu }]
 \,,
 \end{align}
 %
@@ -211,7 +221,7 @@ This might be observationally detected through a \textbf{running of the spectral
 Suppose we have a potential \(V\) depending on \(n\) complex scalar fields: 
 %
 \begin{align}
-V = V(\varphi _n, \overline{\varphi} _n) = e^{k / \mu _n} \overline{V} (\varphi _n, \overline{\varphi}_n)
+V = V(\varphi _n, \overline{\varphi} _n) = e^{k(\varphi _n, \overline{\varphi}_n) / M _{\text{pl}}^2} \widetilde{V} (\varphi _n, \overline{\varphi}_n)
 \,,
 \end{align}
 %
@@ -219,7 +229,7 @@ which is commonly called the Kähler potential --- it arises in the context of s
 It arises from a Lagrangian in the form 
 %
 \begin{align}
-\mathscr{L} = \partial_{\mu } \overline{\varphi}_{n} K_{\overline{m} n} \partial^{\mu } \varphi_n
+\mathscr{L} = \partial_{\mu } \overline{\varphi}_{m} K_{\overline{m} n} \partial^{\mu } \varphi_n
 \,,
 \end{align}
 %
@@ -234,7 +244,7 @@ K_{n} = \pdv{K}{\varphi_n}
 If \(K = \sum _{m} \abs{\varphi _m}^2\) we find simply \(K_{\overline{m} n} = \delta_{nm}\); then 
 %
 \begin{align}
-\eta _V = \frac{1}{3} \frac{m^2}{H^2} = \frac{1}{3} \frac{V(\varphi )}{H^2}
+\eta _V = \frac{1}{3} \frac{m^2}{H^2} = \frac{1}{3} \frac{V''(\varphi )}{H^2}
 \,.
 \end{align}
 
@@ -257,7 +267,9 @@ so that
 therefore the square mass of the field reads 
 %
 \begin{align}
-m_\varphi^2= \eval{\pdv[2]{V}{\varphi }}_{\varphi = 0} = \frac{V}{M_P^2} + e^{K / M_P^2} \widetilde{V}''
+m_\varphi^2
+= \eval{\pdv[2]{V}{\varphi }}_{\varphi = 0} 
+= \frac{2V}{M_P^2} + e^{K / M_P^2} \widetilde{V}''
 \,.
 \end{align}
 
@@ -276,6 +288,7 @@ This yields
 \end{align}
 %
 which is a problem if we want slow-roll inflation. 
+\todo[inline]{Possibly not a 1 here.}
 
 If we have a potential \(V _{\text{sr}}\) for the slow-roll, we might add a term 
 %

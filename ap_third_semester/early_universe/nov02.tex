@@ -64,8 +64,8 @@ where \(\nu^2 = 9/4 + 9 \epsilon - 3 \eta _V\), so \(\nu \approx 3/2 + 3\epsilon
 
 Then, the power spectrum reads 
 %
-\begin{align}
-\Delta_{ \delta \varphi }(k) = \frac{k^3}{2 \pi } \abs{ \delta \varphi _k}^2 = \qty( \frac{H}{2 \pi })^2 \qty( \frac{k}{aH})^{3-2\nu }
+\begin{align} \label{eq:scalar-field-power-spectrum}
+\Delta_{ \delta \varphi }(k) = \frac{k^3}{2 \pi^2} \abs{ \delta \varphi _k}^2 = \qty( \frac{H}{2 \pi })^2 \qty( \frac{k}{aH})^{3-2\nu }
 \,.
 \end{align}
 %
@@ -84,6 +84,7 @@ so the density fluctuation can be written as
 %
 \begin{align}
 \delta \rho _\varphi \approx V' (\varphi ) \delta \varphi \approx - 3 H \dot{\varphi} \delta \varphi 
+\marginnote{See equation \eqref{eq:approx-EOM-scalar-field-flat-FLRW}}
 \,.
 \end{align}
 
@@ -110,6 +111,7 @@ The last equality in \eqref{eq:delta-N-definition} comes from the fact that
 %
 \begin{align}
 \dot{\rho}_\varphi = - 3H \qty(\rho _\varphi + P_\varphi ) = - 3 H \dot{\varphi}^2
+\marginnote{From equation \eqref{eq:energy-momentum-scalar-field}.}
 \,,
 \end{align}
 %
@@ -123,18 +125,18 @@ H \frac{ \delta \rho _\varphi }{\dot{\rho}_\varphi } = \frac{- 3 H^2 \varphi  \d
 The quantity \(\delta N = \zeta\) is \textbf{gauge invariant}. It is written as 
 %
 \begin{align}
-\zeta = - \hat{\Phi} - H \frac{ \delta \rho }{\rho }
+\zeta = - \hat{\Phi} - H \frac{ \delta \rho }{\dot{\rho} }
 \,,
 \end{align}
 %
 where \(\hat{\Phi}\) is related to scalar perturbations  of the spatial part of the metric, \(g_{ij}\). We shall explore this later. 
 
 This \(\zeta\) is called the \textbf{curvature perturbation on uniform energy density hypersurfaces}.
-Why did we write this with \(\rho \) instead of \(\rho _\varphi \)? This definition is completely general; it can be applied at any time. 
+Why did we write this with \(\rho \) instead of \(\rho _\varphi \)? This definition is completely general; it can be applied at any time and for a generic evolution of the universe. 
 We can then specify it to 
 %
 \begin{align}
-\zeta_\varphi \approx - H \frac{ \delta \rho _\varphi }{\dot{\rho}_\varphi }
+\zeta_\varphi \approx - H \frac{ \delta \rho _\varphi }{\rho_\varphi }
 \,.
 \end{align}
 
@@ -143,6 +145,7 @@ Therefore, this keeps a sort of ``record'' of what happened after horizon crossi
 
 Let us denote as \(t^{(1)}_H(k)\) the time of horizon crossing during inflation for perturbations with wavenumber \(k\), and \(t^{(2)}_H(k)\) the time \emph{after inflation} of the second horizon crossing, when the perturbation comes back inside the horizon.  
 The value of \(\zeta \) at these two times will be the same.
+\todo[inline]{This can be seen since\dots}
 
 We know that \(\delta \varphi \sim H / 2 \pi \) (statistically), and \(H^2 \approx 8 \pi G V(\varphi ) /3\): then, specifying the potential gives a prediction for the power spectrum. 
 
@@ -153,7 +156,15 @@ H \frac{ \delta \rho }{\dot{\rho} } \approx \frac{H \delta \rho _\gamma }{-4 H \
 \,,
 \end{align}
 %
-so the dimensionless power spectrum is 
+since 
+%
+\begin{align}
+\dot{\rho} = \dv{\rho }{a} \dot{a} = \frac{\rho}{a} \dv{\log \rho }{\log a} \dot{a} = \frac{\rho}{a} (-4) \dot{a} = - 4 \rho H
+\,.
+\end{align}
+%
+
+So, the dimensionless power spectrum is 
 %
 \begin{align}
 \Delta_{ \delta \rho / \rho } (k)= 

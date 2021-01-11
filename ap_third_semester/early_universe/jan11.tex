@@ -1,0 +1,127 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\subsection{IN-IN formalism}
+
+\marginpar{Monday\\ 2021-1-11, \\ compiled \\ \today}
+
+
+In cosmology we directly observe correlation functions, as opposed to particle accelerators. 
+In particle physics speak, they are VEVs of products of fields: here we will be interested in 
+%
+\begin{align}
+Q(t) = \delta 
+\phi _{\vec{k}_1}(t)
+\phi _{\vec{k}_2}(t)
+\phi _{\vec{k}_3}(t)
+\,,
+\end{align}
+%
+where \(\delta \phi \) is the inflaton perturbation. This is the \textbf{bispectrum}.
+
+The IN-IN formalism gives us a formula like 
+%
+\begin{align}
+\ev{Q(t)}{\Omega }
+= \bra{0}
+\qty[\overline{T} \exp(i \int_{t_0 }^{t} \dd{t'} H' _{\text{int}} (t'))]
+Q'(t)
+\qty[\overline{T} \exp(-i \int_{t_0 }^{t} \dd{t'} H' _{\text{int}} (t'))]
+\ket{0}
+\,.
+\end{align}
+
+Short description of the interaction picture for a field described by  Hamiltonian \(H = H_0 + H _{\text{int}}\).
+Fields evolve according to the free time-evolution operator only. 
+Then, we get 
+%
+\begin{align}
+\expval{Q(t)}
+&= \ev{Q(t)}{\Omega } = \ev{U^{-1}(t, t_0 ) Q (t_0 ) U(t, t_0 )}{\Omega } \\
+&= \ev{U^{-1} (t, t_0 ) U _{\text{free}} (t, t_0 ) Q' (t) U^{-1} _{\text{free}} (t, t_0 ) U(t, t_0 )}{\Omega }  \\
+&= \ev{F^{-1}(t, t_0 ) Q'(t) F (t, t_0 )}{\Omega }
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\dv{F(t, t_0 )}{t} = -i H _{\text{int}} F(t, t_0 )
+\,.
+\end{align}
+
+We can get a formal solution as the exponential of a time-ordered integral;
+using Wick's theorem we can expand the exponential. 
+
+How do we have \(\ket{0}\), the vacuum of the free theory, instead of \(\ket{\Omega }\)?
+
+In QFT we usually have the \(S\)-matrix formalism, which is an ``in-out'' formalism; here instead we use an ``in-in'' one. 
+We turn off the interaction theory in the far past; we can then replace \(\ket{\Omega }\) with \(\ket{0}\). 
+We use the Bunch-Davies vacuum as \(\ket{0}\): we say that the quantum fluctuation on small scales are approximately plane waves.
+
+As an example, we will compute the bispectrum for a model 
+%
+\begin{align}
+S = \int \dd[4]{x} \sqrt{-g}
+\qty[ \frac{M _{\text{Pl}}^2}{2} R 
+- \frac{1}{2} g^{\mu \nu } \partial_{\mu } \phi (t, \vec{x}) \partial_{\nu } (t, \vec{x}) 
+- V[\phi (t, \vec{x})]]
+\,,
+\end{align}
+%
+where \(M _{\text{Pl}}\) is the reduced Planck mass. 
+For simplicity, let us take \(g_{\mu \nu } = a^2(\tau) \eta _{\mu \nu }\).
+
+We expand 
+%
+\begin{align}
+\phi (t, \vec{x}) &= \phi_0 (t) + \delta \phi (t, \vec{x})  \\
+V(\phi ) &= V(\phi_0 ) 
++ \eval{\dv{V}{\phi }}_{\phi_0 } \delta \phi 
++ \frac{1}{2} \eval{\dv[2]{V}{\phi }}_{\phi_0 } \delta \phi^2  
++ \frac{1}{3!} \eval{\dv[3]{V}{\phi }}_{\phi_0 } \delta \phi^3  
+\,.
+\end{align}
+
+We substitute these into the action (see slides) and the first term yields the unperturbed EOM: 
+%
+\begin{align}
+\ddot{\phi}_0 + 3 H \dot{\phi}_0 + \dv{V}{\phi_0 } = 0
+\,.
+\end{align}
+
+The second term vanishes.
+We define the parameters 
+%
+\begin{align}
+\eval{\dv[2]{V}{\phi}}_{\phi_0 } &= m_{ \delta \phi}^2 &
+\eval{\dv[3]{V}{\phi}}_{\phi_0 } &= - \lambda  
+\,.
+\end{align}
+
+We impose \(m_{ \delta \phi } = 0\) to simplify our discussion.
+The Lagrangian density then becomes 
+%
+\begin{align}
+\mathcal{L} = \underbrace{\frac{a}{2} \dot{\delta}_\chi^2
+- \dot{a} \dot{\delta}_\chi \delta_\chi 
++ \frac{1}{2} \frac{\dot{a}^2}{a} \delta_{ \chi  }^2
+- \frac{\delta^{ij}}{2a} \partial_{i} \delta _\chi \partial_{j} \delta _\chi }_{\mathcal{L} _{\text{free}}}
++ \underbrace{\frac{\lambda}{3!} \delta_\chi^3}_{\mathcal{L} _{\text{int}}}
+\,,
+\end{align}
+%
+in terms of \(\delta _\chi = a \delta \phi \). 
+
+The EOM read
+%
+\begin{align}
+\dots
+\,.
+\end{align}
+
+The bispectrum is connected to the three-point function since we lose one independent momentum because of the requirement of momentum conservation. 
+
+What follows is a long discussion on how to perform the integrals involved in the computation of the bispectrum.
+
+\end{document}

@@ -21,7 +21,7 @@ The full field obeys the KG equation:
 \,,
 \end{align}
 %
-which we can Taylor expand up to linear order around the background value if we assume that the perturbation is indeed small: 
+which we can Taylor expand up to linear order around the background value both the field \(\varphi \approx \varphi_0 + \delta \varphi \) and the potential \(V(\varphi ) \approx V_0 + \delta \varphi \eval{(\pdv{V}{\varphi })}_{\varphi_0 }\) if we assume that the perturbation is indeed small: 
 %
 \begin{align}
 \ddot{ \delta \varphi} + 3 H \dot{\delta \varphi}
@@ -41,7 +41,7 @@ The first order equation for \(\delta \varphi \) is coupled to the background on
 Let us differentiate it with respect to time, assuming that we are in a phase of De Sitter expansion with \(\dot{H} \approx 0 \): 
 %
 \begin{align}
-\dot{\ddot{\varphi_0}} + 3 H \ddot{\varphi} 
+\dot{\ddot{\varphi_0}} + 3 H \ddot{\varphi} _0
 = - \eval{\pdv[2]{V}{\varphi }}_{\varphi_0 } \dot{\varphi_0 }
 \,,
 \end{align}
@@ -50,7 +50,7 @@ which looks similar to the equation for \(\delta \varphi \), except for the Lapl
 
 We can neglect the Laplacian on superhorizon scales: for one, on large scales the variations are negligible. More formally, in Fourier space that term is \(k^2 \delta \varphi / a^2\), to be compared with things like \(3 H \dot{ \delta  \varphi} \sim 3 H^2 \delta \varphi \), since the characteristic time of the variations of the field is \(1/H\).  
 
-Now, on superhorizon scales \(k \gg r_H\), which means that \(k \ll aH = r_H^{-1}\), therefore \(k^2 / a^2 \ll H^2\). 
+Now, on superhorizon scales \(k^{-1} \gg r_H\), which means that \(k \ll aH = r_H^{-1}\), therefore \(k^2 / a^2 \ll H^2\). 
 We can then neglect the Laplacian term. 
 
 What we should do now is to consider the Wronskian of the two-equation system:
@@ -78,7 +78,7 @@ Therefore, the full field is given by reverse-Taylor expanding as
 \,.
 \end{align}
 
-This expression has a very clear physical interpretation: point by point, the field goes through the same evolution, taking on the same values, only at different times at each point. 
+This expression has a very clear physical interpretation: point by point, the field goes through the \textbf{same evolution}, taking on the same values, only at \textbf{different times} at each point. 
 
 This holds as long as we have a single scalar field, in multi-field models of inflation this will not be the case anymore. 
 
@@ -103,7 +103,7 @@ Since the field is real, \(\delta \varphi _{\vec{k}} = \delta \varphi _{- \vec{k
 These Fourier modes evolve independently of each other up to linear order. 
 
 Why do we make a 3D Fourier transform and not a 4D one? We have time-dependent coefficients in the equation, such as \(H\). 
-We Fourier transform to take account of the spatial symmetry: it is not useful to transform in time since there is no time translation symmetry. 
+We Fourier transform to take account of the spatial symmetry: it is not useful to transform in time since there is \textbf{no time translation symmetry}. 
 
 By transforming we are implicitly using a stationary wave basis, which is natural in a spatially flat universe: in a non-flat universe instead of \(e^{i \vec{k} \cdot \vec{x}}\) we should use generalized solution of the Helmholtz equation 
 %
@@ -125,10 +125,11 @@ In Fourier space the equation reads
 We will need to use the standard tools of second quantization: we start by introducing \(\hat{ \delta \varphi} = a \delta \varphi \), and we use conformal time, \(a \dd{ \tau } = \dd{t}\). Then, we will have 
 %
 \begin{align}
-\delta \varphi (\vec{x}, \tau ) = \int \frac{ \dd[3]{k}}{(2 \pi)^3}
+\hat{\delta \varphi} (\vec{x}, \tau ) = \int \frac{ \dd[3]{k}}{(2 \pi)^3}
 \qty[u_k (\tau ) a_{\vec{k}} e^{i \vec{k} \cdot \vec{x}} + u_k^{*} (\tau ) a_{\vec{k}}^\dag e^{-i \vec{k} \cdot \vec{x}}] 
 \,.
 \end{align}
+\todo[inline]{Is it the expression for the hatted field?}
 
 The functions \(u\) are classical functions of time, while \(a\) and \(a ^\dag \) are the annihilation operators.
 They are defined so that \(a_{\vec{k}} \ket{0} = 0\) for any \(\vec{k}\), and similarly \(\bra{0} a ^\dag_{\vec{k}} = 0\). 
@@ -153,7 +154,7 @@ while \(\qty[a_k, a_{k'}] = \qty[a_k ^\dag, a_{k'}^\dag] = 0\).
 
 In flat spacetime, once the commutation relations are fixed we are done: the solutions are known to be plane waves, with \(u_{\vec{k}} \sim \exp(- i \omega _k t) / \sqrt{2 \omega _k}\), and \(\omega _k = \sqrt{k^2 + m^2}\). 
 
-Now, instead, we need to make some assumptions. Because of the equivalence principle, for small distances and time intervals the solutions should reproduce the flat-spacetime ones. 
+Now, instead, we need to make some assumptions. Because of the \textbf{equivalence principle}, for small distances and time intervals the solutions should reproduce the flat-spacetime ones. 
 From this guiding principle, we require 
 %
 \begin{align}
@@ -162,8 +163,9 @@ u_k (\tau ) = \frac{e^{-i k \tau }}{\sqrt{2 k}}
 \,,
 \end{align}
 %
-which is called the \emph{bunch-Davies vacuum choice}.
-In the denominator we only have \(k\) since \(k^2\gg m^2\) for the large scales we are considering. 
+which is called the \emph{Bunch-Davies vacuum choice}.
+\todo[inline]{Note that \(aH \propto dH\)}
+In the denominator we only have \(k\) since \(k^2\gg m^2\) for the small scales we are considering. 
 
 What is the equation for \(u\)? In conformal time (\(' = \dv{}{\tau }\)) it is 
 %
@@ -184,7 +186,9 @@ Then, we know that \(\dd{\tau } = \dd{t} / a = \dd{t} e^{-Ht}\), so
 \,.
 \end{align}
 
-Conventionally we choose the integration bounds so that \(\tau \) runs from negative infinity to zero. This is just a matter of convention, a constant time shift has no effect on the dynamics. We also have 
+Conventionally we choose the integration bounds so that \(\tau \) runs from negative infinity to zero. This is just a matter of convention, a constant time shift has no effect on the dynamics.
+We also have, since \(H = a' / a^2 \approx \const\), that \(a'' = 2 a^{\prime 2} / a\), which tells us that
+\todo[inline]{check}
 %
 \begin{align}
 \frac{a''}{a} = \frac{2}{\tau^2}
@@ -198,7 +202,7 @@ so if \(\lambda _{\text{phys}} = a \lambda \ll H^{-1}\), therefore \(\lambda \gg
 \,,
 \end{align}
 %
-therefore on subhorizon (microscopic) scales the equation reads 
+therefore on \textbf{subhorizon} (microscopic) scales the equation reads 
 %
 \begin{align}
 u''_k + k^2 u_k = 0
@@ -213,7 +217,7 @@ u_k = \frac{e^{-ik \tau }}{\sqrt{2 k }}
 \end{align}
 
 As expected, we recover the regular flat-spacetime solution.
-However, what is really interesting to us are the cosmological, superhorizon solutions: this means \(k \ll a H\), so 
+However, what is really interesting to us are the cosmological, \textbf{superhorizon} solutions: this means \(k \ll a H\), so 
 %
 \begin{align}
 u''_k (\tau ) - \frac{a''}{a} u_k (\tau ) = 0
@@ -237,6 +241,7 @@ We need to match the subhorizon and superhorizon solutions, at the point \(k = a
 \begin{align}
 \abs{B(k)} a &= \abs{\frac{e^{-ik \tau }}{\sqrt{2 k}}}   \\
 \abs{ \delta \varphi _k} &= \abs{B(k)} = \frac{1}{a \sqrt{2k}} 
+= \frac{H}{\sqrt{2 k^3}}
 \,,
 \end{align}
 %

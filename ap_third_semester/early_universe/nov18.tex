@@ -37,7 +37,7 @@ since by the geodesic equation
 \end{align}
 
 In the homogeneous and isotropic case we will have \(f = f (\abs{p}, t)\), since the dependences on \(\abs{p}\) and \(E\) are related. 
-The only nonzero Christoffel symbols are 
+The only nonzero Christoffel symbols for a flat FLRW metric are 
 %
 \begin{align}
 \Gamma^{0}_{ij} = \delta_{ij} a \dot{a} && \Gamma^{i}_{0j} = \Gamma^{j}_{i0} \delta^{i}_{j} \frac{\dot{a}}{a}
@@ -58,7 +58,7 @@ n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} f
 \,,
 \end{align}
 %
-so the Liouville operator can be written as 
+so the Boltzmann equation can be manipulated by rewriting the Liouville operator as 
 %
 \begin{align}
 \underbrace{\pdv{}{t} \qty( \frac{g}{(2 \pi )^3} \int \dd[3]{p} f)}_{\dot{n}(t)} - \frac{\dot{a}}{a} \frac{g}{(2 \pi )^3}\int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} &= 
@@ -67,7 +67,7 @@ so the Liouville operator can be written as
 \end{align}
 %
 
-So, we find 
+Manipulating the second term in the equation we find
 %
 \begin{align}
 \frac{g}{(2 \pi )^3} \int \dd[3]{p} p^2 \pdv{f}{E} 
@@ -78,7 +78,10 @@ So, we find
 and since \(E^2 = p^2 + m^2 \implies E \dd{E} =p \dd{p}\) we get 
 %
 \begin{align}
-\frac{4 \pi g}{(2 \pi )^3} \int \dd{E} p^3 \pdv{f}{p} = -3 n(t)
+\frac{4 \pi g}{(2 \pi )^3} \int \dd{p} p^3 \pdv{f}{p} 
+= -\frac{4 \pi g}{(2 \pi)^3} \int \dd{p} (3 p^2) f(p)
+= -3 n(t)
+\marginnote{Integrated by parts}
 \,.
 \end{align}
 
@@ -105,6 +108,7 @@ Let us apply this to a process \(1 + 2 \leftrightarrow 3 + 4\), of which we are 
     \abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} f_1 f_2 (1 \pm f_3 ) (1 \pm f_4 ) 
     ]
 \end{split}
+\marginnote{The minus in the second term is because in that case we are annihilating particle 1.}
 \,,
 \end{align}
 %
@@ -116,17 +120,19 @@ where
 \end{align}
 %
 while \(\mathcal{M}\) is the Feynman amplitude.
-The terms \(1 \pm f_i\) are given by the Fermi enhancement (\(-\)) or Bose blocking (\(+\)) coming from the statistics of the chosen particle.
+The terms \(1 \pm f_i\) are given by the Pauli blocking (\(-\)) or Bose enhancement (\(+\)) coming from the statistics of the chosen particle.
 
 This equation must be written for all the particle species, in general yielding a complicated integrodifferential equation system. 
-Because of time reversal symmetry we will have \(\abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} = \abs{\mathcal{M}}^2_{3 + 4 \to 1 +2} \equiv \abs{\mathcal{M}}^2\). 
+Because of time reversal symmetry (our first assumption) we will have \(\abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} = \abs{\mathcal{M}}^2_{3 + 4 \to 1 +2} \equiv \abs{\mathcal{M}}^2\). 
 
-We can further postulate that all the particle species are in kinetic equilibrium: then, we say that they are distributed according to the Bose-Einstein or Fermi-Dirac distribution, 
+We can further postulate that all the particle species are in kinetic equilibrium (our second assumption): then, we say that they are distributed according to the Bose-Einstein or Fermi-Dirac distribution, 
 %
 \begin{align}
 f^{i}_{BE - FD} = \qty[\exp(\frac{E - \mu}{T} \mp 1)]^{-1}
 \,.
 \end{align}
+
+In this case we write \(\mp\) since the \(-\) corresponds to Bosons, while the \(+\) is for Fermions. 
 
 This works well as long as the scatterings are fast enough. 
 This parametrization is quite useful, since it makes our integrodifferential equations into simple(r) ODEs. 
@@ -141,9 +147,9 @@ Kinetic equilibrium is not just local thermodynamic equilibrium: it also require
 Since we can find such linear relations for any possible reaction, the true number of independent chemical potentials will dramatically shrink. 
 We expect these to be related to conserved quantities. 
 Since these are mostly small, we can approximate \(\mu _i = 0 \forall i\). 
-For the CMB photons, this is confirmed with \(\mu _\gamma / T \lesssim \num{e-5}\).
+For the CMB photons, this is confirmed with \(\mu _\gamma / T \lesssim \num{e-4}\).
 
-Further, we make the semiclassical approximation \(1 \pm f_i \approx 1\). 
+Further, we make the semiclassical approximation (our third assumption): \(1 \pm f_i \approx 1\), so that the distribution just becomes \(f = \exp((\mu - E) /T)\). 
 With all these considerations, we find 
 %
 \begin{align}
@@ -155,8 +161,9 @@ With all these considerations, we find
 (2 \pi )^{4}\delta^{(4)} (p_1 +p_2 - p_3 - p_4 ) \\
 &\phantom{=}\ 
 \abs{\mathcal{M}}^2 \exp(- \frac{E_1 + E_1 }{T})
-\qty(\exp(\frac{\mu_3 + m_4 }{T}) - \exp( \frac{m_1 + m_2 }{T}))
+\qty(\exp(\frac{\mu_3 + \mu _4 }{T}) - \exp( \frac{\mu _1 + \mu _2 }{T}))
 \end{split}
+\marginnote{Used \(E_1 + E_2 = E_3 + E_4 \).}
 \,.
 \end{align}
 

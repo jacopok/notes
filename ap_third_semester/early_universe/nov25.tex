@@ -14,7 +14,7 @@ The Feynman amplitudes can be parametrized as
 + \frac{1}{2} (1 + \epsilon ) \abs{\mathcal{M}_0}^2 \\
 \Circled{2} = \abs{\mathcal{M}(X \to \overline{b} \overline{b} )}^2 &=
 \abs{\mathcal{M}(\overline{b} \overline{b} \to X )}^2 =
-+ \frac{1}{2} (1 + \epsilon ) \abs{\mathcal{M}_0}^2 
++ \frac{1}{2} (1 - \epsilon ) \abs{\mathcal{M}_0}^2 
 \,,
 \end{align}
 %
@@ -36,10 +36,10 @@ f_{X} (E) &= \exp(- \frac{(E - \mu_X )}{T})
 
 Chemical equilibrium, together with the process \(b + \overline{b} \leftrightarrow 2 \gamma \) and \(\mu _\gamma = 0\), would tell us \(\mu _b = - \mu _{\overline{b}}\).
 
-This yields, confusing \(g_{*s}\) for \(g_*\):
+This yields, confusing \(g_{*s}\) for \(g_*\) (which works well in the high-energy regime):
 %
 \begin{align}
-B = \frac{n_B}{s} =  \frac{1}{2 }\frac{n_b - n_{\overline{b}}}{\num{1/3} g_{*s} n_\gamma } =
+B = \frac{n_B}{s} =  \frac{1}{2 }\frac{n_b - n_{\overline{b}}}{\num{1.8} g_{*s} n_\gamma } =
 \frac{g}{2 \times \num{1.8} g_*} \times \sinh( \frac{\mu}{T} )
 \,,
 \end{align}
@@ -78,16 +78,16 @@ this tells us
 \,.
 \end{align}
 
-Now, let us consider the processes \(X \to bb\) and \(X \to \overline{b} \overline{b}\) using the Boltzmann equation: 
+Now, let us consider the processes \(X \to bb\) and \(X \to \overline{b} \overline{b}\) using the Boltzmann equation in the semiclassical approximation: 
 %
 \begin{align}
 \begin{split}
 \dot{n}_X + 3 H n_X &= 
 \int \dd{\Pi_X } \dd{\Pi_1 } \dd{\Pi _2} (2 \pi )^{4} \delta^{(4)}(p_X - p_1 - p_2)\\
 &\phantom{=}\ 
-\qty[f_X \abs{\mathcal{M_0 }}^2 
-+ f_{\overline{b}}^{(1)} f_{\overline{b}}^{(2)} \frac{1}{2} (1 + \epsilon ) \expval{\mathcal{M}_0}^2
-+ f_{b}^{(1)} f_{b}^{(2)} \frac{1}{2} (1 - \epsilon ) \expval{\mathcal{M}_0}^2
+\qty[-f_X \abs{\mathcal{M}_0}^2 
++ f_{\overline{b}}^{(1)} f_{\overline{b}}^{(2)} \frac{1}{2} (1 + \epsilon ) \abs{\mathcal{M}_0}^2
++ f_{b}^{(1)} f_{b}^{(2)} \frac{1}{2} (1 - \epsilon ) \abs{\mathcal{M}_0}^2
 ]
 \end{split}
 \,,
@@ -105,7 +105,7 @@ of distribution functions read
 %
 \begin{align}
 f_{b/ \overline{b}}^{(1)} f_{b/ \overline{b}}^{(2)}  &= \exp(\frac{-(E_1 + E_2 )}{T}) \exp(\pm \frac{2 \mu }{T})  \\
-&\approx f_X (E_X) \exp(\pm \frac{2 \mu }{T})  \\
+&\approx f_X^{\text{eq}} (E_X) \exp(\pm \frac{2 \mu }{T})  \\
 &\approx f_X^{\text{eq}} (E_X) \qty(1 \pm \frac{2\mu}{T})  \\
 &\approx f_X^{\text{eq}} (E_X) \qty(1 \pm 2 \frac{n_B}{n_\gamma })
 \,.
@@ -140,14 +140,14 @@ The square bracket in the BE then reads
 \,.
 \end{align}
 
-Recall that \(n_B = (n_b - n_{\overline{b}}) / 2\) (since the baryon number they carry is \(\pm 1/2\)): then, we need to write another Boltzmann equation here, 
+Recall that \(n_B = (n_b - n_{\overline{b}}) / 2\) (since the baryon number they carry is \(\pm 1/2\)): then, we need to write another Boltzmann equation here, without a \(1/2\) factor since there are two baryons
 %
 \begin{align}
 \begin{split}
 \dot{n}_b + 3 H n_b &=
 \int \dd{\Pi_X } \dd{\Pi_1 } \dd{\Pi _2} (2 \pi )^{4} \delta^{(4)}(p_X - p_1 - p_2)\\
 &\phantom{=}\ 
-\qty[- (1 + \epsilon ) f_b^{(1)} f_b^{(2)} +
+\qty[- (1 - \epsilon ) f_b^{(1)} f_b^{(2)} +
 (1 + \epsilon ) f_X
 ] \abs{\mathcal{M}_0}^2
 \end{split}
@@ -183,7 +183,7 @@ In the end the equation for \(X\) is written as
 \,.
 \end{align}
 
-We then find that the bracket to be integrated in the BE is
+We then find that the bracket to be integrated in the BE for \(n_B = (n_b - n_{\overline{b}}) / 2\) is
 %
 \begin{align} \label{eq:BE-term}
 \frac{1}{2} \qty[- (1-\epsilon ) f_b^{(1)} f_b^{(2)} + (1 + \epsilon ) f_X 
@@ -193,7 +193,7 @@ We then find that the bracket to be integrated in the BE is
 %
 and we can make the estimate 
 %
-\begin{align}
+\begin{align} \label{eq:estimate-density-functions-boltzmann}
 f_{b/\overline{b}}^{(1)}
 f_{b/\overline{b}}^{(2)} \approx 
 f_X^{\text{eq}} \qty(1 \pm 2 \frac{n_B}{n_\gamma })
@@ -218,7 +218,7 @@ The scattering term yields
 \begin{align}
 4 \times \qty[
      - f_b^{(1)} f_b^{(2)} \abs{\mathcal{M}' (bb \to \overline{b} \overline{b})}^2 + 
-     f_b^{(3)} f_b^{(4)} \abs{\mathcal{M}' (\overline{b} \overline{b} \to bb)}^2  
+     f_{\overline{b}}^{(3)} f_{\overline{b}}^{(4)} \abs{\mathcal{M}' (\overline{b} \overline{b} \to bb)}^2  
      ]
 \,.
 \end{align}
@@ -232,7 +232,7 @@ There can be a certain part of scattering processes which do not violate \(CP\);
 \,,
 \end{align}
 %
-therefore we get 
+therefore, using equation \eqref{eq:estimate-density-functions-boltzmann}, we get 
 %
 \begin{align}
 - 4 \frac{n_B}{n_\gamma } f_X^{\text{eq}} \abs{\mathcal{M}' (\overline{b} \overline{b} -> bb)}^2

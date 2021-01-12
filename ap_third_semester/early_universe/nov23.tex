@@ -23,7 +23,7 @@ n_B = n_N \approx \SI{1.38e-5}{cm^{-3}} \Omega_{0b} h^2
 since
 %
 \begin{align}
-n_N = (m_p m_N) \frac{1}{m_p} = \frac{\rho_{0b}}{m_p} 
+n_N = (m_p n_N) \frac{1}{m_p} = \frac{\rho_{0b}}{m_p} 
 = \underbrace{\frac{\rho_{0b}}{\rho _{\text{0, crit}}}}_{\Omega_{0b}} \frac{\rho _{\text{0, crit}}}{m_p}
 \,,
 \end{align}
@@ -56,6 +56,7 @@ B \approx \num{7e-9} \Omega_{0b} h^2
 where \(\Omega_{0b} h^2 \approx \num{.0224(1)}\) with the current measurements, therefore \(B \approx \num{e-10}\).
     
 Then, we can solve for \(s_0 \) in the expression: recall that in general
+the entropy is given in terms of the total relativistic degrees of freedom \(g_{*s}\):
 %
 \begin{align}
 s = \frac{2 \pi^2}{45} g_{*s} T^3
@@ -69,19 +70,19 @@ n_\gamma = \frac{\zeta (3) g_\gamma T^3}{\pi^2}
 \,,
 \end{align}
 %
-therefore 
+where \(g_\gamma = 2\) is the number of polarizations of a photon, therefore 
 %
-\begin{align}
+\begin{align} \label{eq:entropy-approximate}
 s &\approx \num{1.8} g_{*s} n_\gamma  \\
 s_0 &\approx \num{1.8} g_{*s}(t_0 ) n_\gamma (t_0 )
 \,.
 \end{align}
 
 The \textcite{kolbEarlyUniverse1994} does the following calculation with three massless neutrinos, however we now know that at least two neutrino species are nonrelativistic today. 
-So, with one relativistic neutrino we haev \(n_\gamma \approx \SI{422}{cm^{-3}}\) and 
+So, with one relativistic neutrino we have \(n_\gamma \approx \SI{422}{cm^{-3}}\), and we can give the conservative estimate:
 %
 \begin{align}
-g_{*s} \approx \num{2.63}
+g_{*s}(t_0 ) \approx \num{2.63}
 \,,
 \end{align}
 %
@@ -149,27 +150,33 @@ B_{\overline{X}} = -  \frac{2}{3} \overline{r} + \frac{1}{3} (1 - \overline{r}) 
 The total, for an \(X\)-\(\overline{X}\) pair, is
 %
 \begin{align}
-B_X + B_{\overline{X}} = r - \overline{r}
+B_X + B_{\overline{X}} = r - \overline{r} = \epsilon 
 \,.
 \end{align}
 
-So, we need departures from thermal equilibrium. 
+This tells us that we need \textbf{CP violation}.
+
+We also need departures from thermal equilibrium. 
 Suppose we want to consider the decay of a particle \(X\), and we start at \(T \gg m_X\). 
 At this stage, we expect \(n_X \approx n_{\overline{X}} \approx n_\gamma\). 
+
+On the other hand, if \(T \ll m_X\) we have  \(n_X = (m_X T)^{3/2} \exp(- m_X / T)\), which decays quickly. 
+
+\todo[inline]{Add plot of \(n_X / n_\gamma \) versus \(z = m_X / T\).}
 
 If \(H \gg \Gamma \) the particle can go out of equilibrium. 
 We an have decay of \(X\), or \(B\)-violating scattering, or processes mediated by \(X\). 
 
 The annihilation rate in any case is \(\Gamma _{\text{ann}} \propto n_X\). 
 
-Then, considering a process like \(W^{+} \to \ell^{+} + \nu _e\), \(H \to \ell \overline{\ell}\)
+Then, considering a process in the form \(qq \to \overline{q} + \ell\) mediated by \(X\) (like \(W^{+} \to \ell^{+} + \nu _e\), \(H \to \ell \overline{\ell}\))
 we have 
 %
 \begin{align}
 \Gamma _D = 
 \begin{cases}
-    2 m_X & T \lesssim m_x, \alpha = g^2 / 4 \pi \\
-    2 m_X ( \frac{m_X}{T}) & T \geq m_X
+    \alpha  m_X & T \lesssim m_x, \alpha = g^2 / 4 \pi \\
+    \alpha  m_X ( \frac{m_X}{T}) & T \geq m_X
 \end{cases}
 \,,
 \end{align}
@@ -187,7 +194,8 @@ or, for the \(\Gamma \) of Inverse Decay:
 If we have \(2 \leftrightarrow 2\) scattering, mediated by \(X\), we will see 
 %
 \begin{align}
-\Gamma _s \approx n \sigma \abs{v} \approx T^3 \frac{T^2}{(T^2 + m_X^2)^2}
+\Gamma _s \approx n \sigma \abs{v} \approx T^3 \frac{\alpha^2 T^2}{(T^2 + m_X^2)^2}
+\marginnote{\(\abs{v} \approx 1\).}
 \,.
 \end{align}
 
@@ -198,8 +206,11 @@ Now, in this early universe stage the Hubble rate will look like \(H \sim \sqrt{
 So, the quantity \(\Gamma / H\) at the time in which \(m_X / T = 1\) will tell us whether the decays are efficient. 
 Let us calculate it explicitly: 
 %
-\begin{align}
-K = \eval{\qty(\frac{\Gamma _D}{H})}_{T = m_X} = \frac{2 m_X}{m_x^2 \sqrt{g_*} / m_P} = \frac{2 m_P}{m_X \sqrt{g_*}}
+\begin{align} \label{eq:K-boltzmann-equation}
+K 
+= \eval{\qty(\frac{\Gamma _D}{H})}_{T = m_X} 
+= \frac{\alpha  m_X}{m_x^2 \sqrt{g_*} / m_P} 
+= \frac{\alpha  m_P}{m_X \sqrt{g_*}}
 \,.
 \end{align}
 
@@ -228,9 +239,9 @@ n_B = \epsilon \eval{n_X}_{t_D} \approx \epsilon n_\gamma
 \,.
 \end{align}
 
-So, 
+So, using the expression for the entropy given in \eqref{eq:entropy-approximate} we get
 %
-\begin{align}
+\begin{align} \label{eq:baryon-number}
 B = \frac{n_B}{s} = \frac{\epsilon n_\gamma }{g_{*s} n_\gamma } \sim \frac{\epsilon}{g_{*s}}
 \,.
 \end{align}
@@ -248,7 +259,7 @@ If, instead, we had \(K \lesssim 1\) (close to 1), we need to use the full Boltz
 Recall that for \(T \geq m_X\), we had 
 %
 \begin{align}
-\Gamma _D = 2 m_X \qty( \frac{m_X}{T})
+\Gamma _D = \alpha  m_X \qty( \frac{m_X}{T})
 \,.
 \end{align}
 
@@ -263,7 +274,7 @@ E_X \sim \abs{q} = m_X \abs{\vec{v}} \gamma \approx m_X \gamma
 so \(\gamma \sim E_X / m_X \sim T / m_X\). This yields 
 %
 \begin{align}
-\Gamma _D \gamma^{-1} = (2 m_X) \frac{m_X}{T}
+\Gamma _D \gamma^{-1} = (\alpha  m_X) \frac{m_X}{T}
 \,.
 \end{align}
 

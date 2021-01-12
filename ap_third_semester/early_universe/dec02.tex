@@ -31,7 +31,7 @@ which is equivalent to
 \,,
 \end{align}
 %
-with the identification \(\rho _\varphi = m_X n_X\), where \(m_X\) is the effective mass of the inflaton field. 
+with the identification \(\rho _\varphi = m_X n_X\), where \(m_X\) is the effective of the inflaton field before the start of oscillations. 
 
 The right-hand side should read \(- \Gamma _X (n_X - n_X^{\text{eq}})\), but we approximated it; the BE for baryon asymmetry on the other hand is 
 %
@@ -66,7 +66,7 @@ As usual, we solve the BE for baryon asymmetry by writing the LHS as
 therefore 
 %
 \begin{align}
-n_B a^3 = \epsilon \Gamma _X \int_{t_i}^{t} n_{X, i} \qty(\frac{a_i}{a})^3 a^3e^{- \Gamma _\varphi (t - t_i)}
+n_B a^3 = \epsilon \Gamma _X \int_{t_i}^{t} n_{X, i} \qty(\frac{a_i}{a})^3 a^3e^{- \Gamma _\varphi (t - t_i)} \dd{t}
 \,.
 \end{align}
 
@@ -94,6 +94,7 @@ B_f = \eval{\frac{n_B}{s}}_{t_f} = \frac{n_B a_f^3}{s a_f^3} = \frac{\epsilon n_
 \end{align}
 %
 but what is \(S_f\), the total entropy at a late time?
+There are two ways to compute it: one is to solve the thermodynamic differential equations, and the alternative which we will adopt.
 
 We write it as 
 %
@@ -131,14 +132,15 @@ B_f = \frac{\epsilon n_{X, i} a_i^3}{g_{*f}^{1/4} \rho _{R, f}^{3/4} a_f^3}
 \end{align}
 
 We can build a hierarchy of timescales, and consider a time \(t\) such that: \(t_i = t _{\text{oscill}} < t \leq t_\varphi = \Gamma _\varphi^{-1}\). 
-In this phase, \(\varphi \) dominates. Then, we can write 
+In this phase, \(\varphi \) dominates.
+Then, with the assumption that there is complete conversion of the energy between \(\varphi \) and radiation, we can write 
 %
 \begin{align}
 \rho_{R, f}^{3/4} = \rho _{X, i}^{3/4} \qty(\frac{a_i}{a_f})^{9/4}
 \,,
 \end{align}
 %
-so, since \(a \propto t^{2/3}\):
+so, since \(a \propto t^{2/3}\) (matter domination):
 %
 \begin{align}
 B_f &= \frac{\epsilon n_{X, i} a_i^{3/4}}{g_{*f}^{1/4} \rho _{X, i}^{3/4} a_f^{3/4}}  \\
@@ -154,7 +156,7 @@ H_i^2 = \frac{8 \pi }{3} \frac{\rho_{X,i}}{m_P^2 } \approx \frac{1}{t_i^2}
 \end{align}
 %
 therefore \(t_i \approx m_P \rho _{X, i}^{-1/2}\).
-Plugging this in, we get 
+Plugging this in and using \(\rho _{X, i} = m_X n_{X, i}\), we get 
 %
 \begin{align}
 B_f &\approx \frac{\epsilon g_*^{-1/4} m_P^{1/2} \Gamma _\varphi^{1/2}}{m_X}  \\
@@ -166,11 +168,11 @@ where we recognize the approximate expression for the reheating temperature \eqr
 
 This expression should be compared with \(B_f = \epsilon / g_*\), the alternative. Which is larger?
 For \(k \ll 1\), the mass of the bosons violating baryon number must be quite large: \(m_X \gtrsim \SI{e10}{GeV}\). 
-In order for these to be relativistic, the temperature must then also be very large: \(T \gtrsim m_X \sim \SI{e10}{GeV}\). 
+In order for these to be relativistic, the temperature must then also be very large: \(T \gtrsim m_X \sim \SI{e10}{GeV}\), which constrains the reheating temperature. 
 
 In this alternative scenario, with the inflaton violating baryon number conservation, we are allowed to violate this constraint. 
 
-Are \(B\), \(C\) and \(CP\) violated in the SM? kind of, in some processes. 
+Are \(B\), \(C\) and \(CP\) violated in the SM? Yes, in some nonperturbative electroweak processes, but not enough. 
 
 \section{Dark matter production}
 
@@ -184,6 +186,7 @@ h &= \num{.674(5)}
 \end{align}
 %
 therefore \(\Omega_{DM} \approx \SI{26.4}{\percent}\).
+Dark Matter as measured here must be a non-relativistic pressureless fluid.
 
 Consider a massive particle \(\psi \), with mass \(m_\psi \). 
 Let us define 
@@ -195,7 +198,7 @@ y = n_\psi / s
 
 As long as \(\Gamma _\psi < H\), the abundance of \(\psi \) ``freezes out'' when \(z = m_\psi / T \) reaches 1. 
 
-The Boltzmann equation reads 
+The Boltzmann equation for a process \(\psi \overline{\psi} \leftrightarrow X \overline{X}\) where \(X\) is in equilibrium with the plasma reads 
 %
 \begin{align}
 \dot{n}_\psi + 3 H n_\psi = - \expval{\sigma \abs{v}} \qty[n_\psi^2 - (n_\psi^{\text{eq}})^2]
@@ -228,13 +231,15 @@ since \(z^2 H = H(z=1)\), which corresponds to the moment at which \(m_\psi = T\
 
 
 %
-\begin{align}
+\begin{align} \label{eq:y-eq-freezeout}
 y _{\text{eq}} = \frac{n_\psi^{\text{eq}}}{s} = \begin{cases}
     \num{.278} \frac{g _{\text{eff}}}{g_{*s}} & z \ll 1  \\
-    \num{.145} \frac{g_\psi }{g_{*s}} & z \gg 1
-\end{cases}
+    \num{.145} \frac{g_\psi }{g_{*s}} z^{3/2} e^{-z} & z \gg 1
 \,.
+\end{cases}
 \end{align}
+
+In the \(z \gg 1\) limit inverse processes are suppressed.
 
 The effective number of degrees of freedom is given by 
 %
@@ -254,7 +259,7 @@ y' &= - y^2 _{\text{eq}} \frac{\expval{\sigma \abs{v}} s}{zH} \qty[ \qty(\frac{y
 \,.
 \end{align}
 
-If \(\Gamma _A / H <1\), then the right-hand side becomes small, so the left-hand side (which is basically \(\Delta y / y\) in a comoving volume) must also be small, meaning that \(y\) is roughly constant: we have produced a relic abundance of \(\psi \) particles.
+If \(\Gamma _A / H <1\), then the right-hand side becomes small, so the left-hand side (which is basically \(\Delta y / y\) in a comoving volume) must also be small, meaning that \(y\) is roughly constant (frozen out): we have produced a relic abundance of \(\psi \) particles.
 
 \subsection{Hot Dark Matter relics}
 
@@ -267,6 +272,7 @@ Here we will have
 \begin{align}
 y_\infty &= y(z \to \infty ) \approx y _{\text{eq}} (z_f)  \\
 &\approx \frac{\zeta (3) g _{\text{eff}}T_f^3 / \pi^2}{(\pi^2 / 45) g_{*s } (z_f) T_f^3} \approx \num{.278} \frac{g _{\text{eff}}}{g_{*s} (z_f)}
+\marginnote{Used \eqref{eq:y-eq-freezeout}.}
 \,.
 \end{align}
 
@@ -277,9 +283,9 @@ Now,
 \,,
 \end{align}
 %
-where \(s_0 \approx 18 g_{*s} (t_0 ) n_{\gamma 0 }\), where \(n_{\gamma 0} \approx \SI{422}{cm^{-3}}\). 
+where \(s_0 \approx 1.8 g_{*s} (t_0 ) n_{\gamma 0 }\), where \(n_{\gamma 0} \approx \SI{422}{cm^{-3}}\). 
 
-Assuming that there is one relativistic neutrino species, we can write 
+Assuming that there is one relativistic neutrino species (this is conservative, we know there to be at least 2), we can write 
 %
 \begin{align}
 g_{*s} (t_0) \approx \num{2.63}

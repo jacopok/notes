@@ -6,14 +6,14 @@
 Let us continue with gauge-invariant cosmological perturbations.
 Let us now give a gauge-invariant definition for the matter velocity: 
 %
-\begin{align}
-2 v_s = 2 v^{\parallel} + \chi^{\parallel, \prime}
+\begin{align} \label{eq:matter-velocity-gauge-invariant}
+2 v _{s} = 2 v^{\parallel} + \chi^{\parallel, \prime}
 \,,
 \end{align}
 %
-where, as usual, by ``matter'' we mean anything which goes on the right-hand side of the Einstein equations. 
+where, as usual, by ``matter'' we mean anything which goes on the right-hand side of the Einstein equations, and \(s\) means ``scalar''. 
 
-This velocity is related to the amplitude of the shear tensor for the matter velocity: specifically, from the shear tensor \(\sigma_{\mu \nu }\) we can define the quantity \(\qty(\sigma^{ij} \sigma_{ij} /2 )^{1/2}\). 
+This velocity is related to the amplitude of the \textbf{shear tensor} for the matter velocity: specifically, from the shear tensor \(\sigma_{\mu \nu }\) we can define the quantity \(\qty(\sigma^{ij} \sigma_{ij} /2 )^{1/2}\). 
 
 For the scalar part, we have (following the notation by Bardeen)
 %
@@ -24,7 +24,7 @@ For the scalar part, we have (following the notation by Bardeen)
 \end{align}
 
 Note that energy density perturbations themselves are not gauge invariant. 
-The quantity \(\epsilon _m\) corresponds to \(\delta \rho \) in the gauge where \(v^{\parallel} + \omega^{\parallel}\), which means that we are selecting constant-\(\eta \) hypersurfaces which are orthogonal to the worldlines of the fluid: the fluid's rest frame. 
+The quantity \(\epsilon _m\) corresponds to \(\delta \rho \) in the gauge where \(v^{\parallel} + \omega^{\parallel} = 0\), which means that we are selecting constant-\(\eta \) hypersurfaces which are orthogonal to the worldlines of the fluid: the fluid's rest frame. 
 
 The quantity \(v^{\parallel} + \omega^{\parallel}\) enters into the expression for \(T^{0}_{i}\), which describes the momentum flux of the fluid. 
 We also define 
@@ -34,9 +34,9 @@ We also define
 \,,
 \end{align}
 %
-which is also equal to \(\delta \rho \) in the gauge in which \(2 \omega^{\parallel} + \chi^{\parallel, \prime} = 0\), which is the zero-shear or Poisson gauge. 
+which is also equal to \(\delta \rho \) in the gauge in which \(2 \omega^{\parallel} - \chi^{\parallel, \prime} = 0\), which is the zero-shear or Poisson gauge. 
 
-We can also construct vector perturbations: 
+We can also construct one vector perturbation, since we start with two and remove one with the gauge degree of freedom described as \(d^{i}\): 
 %
 \begin{align}
 \Psi_i = \omega^{\perp}_i - \chi_i^{\perp, \prime}
@@ -50,6 +50,7 @@ The matter velocity can be described as
 %
 \begin{align}
 V^{i}_{s} = v^{i}_{\perp} + \chi^{i, \prime}_{\perp}
+\marginnote{Compare to \eqref{eq:matter-velocity-gauge-invariant}.}
 \,.
 \end{align}
 
@@ -60,7 +61,7 @@ V^{i}_{c} = v^{i}_{\perp} + \omega^{i}_{\perp}
 \,.
 \end{align}
 
-This is related to the amplitude of the vorticity tensor \(\omega_{\mu \nu }\) (and, specifically, the quantity \(\qty(\omega^{ij} \omega_{ij} / 2)^{1/2}\)). 
+This is related to the amplitude of the vorticity\footnote{Local angular velocity of fluid elements} tensor \(\omega_{\mu \nu }\) (and, specifically, the quantity \(\qty(\omega^{ij} \omega_{ij} / 2)^{1/2}\)). 
 
 As for tensor perturbation modes, linear tensor perturbations are automatically gauge-invariant (at linear order, at least): 
 %
@@ -128,7 +129,7 @@ Its perturbation is
 %
 \begin{align}
 \delta R_{00} &= \frac{a'}{a} \nabla^2 \omega^{\parallel} + \nabla^2 \omega^{\parallel, \prime} + 3 \phi^{\parallel} + 3 \frac{a'}{a} \phi' + 3 \frac{a'}{a} \psi '  \\
-\delta R_{0i} &= \frac{a'}{a} \partial_{i} \omega^{\parallel} + \qty(\frac{a'}{a})^2 \partial_{i} \omega^{\parallel} +2 \partial_{i} \phi' + 2 \frac{a'}{a} \partial_{i} \psi + \frac{1}{2} \partial_{k} D^{k} \qty(\chi^{, i}_{\parallel})'  \\
+\delta R_{0i} &= \frac{a'}{a} \partial_{i} \omega^{\parallel} + \qty(\frac{a'}{a})^2 \partial_{i} \omega^{\parallel} +2 \partial_{i} \phi' + 2 \frac{a'}{a} \partial_{i} \psi + \frac{1}{2} \partial_{k} D^{k}_i \qty(\chi_{\parallel})'  \\
 \delta R_{ij} &= \dots
 \,.
 \end{align}
@@ -176,13 +177,13 @@ p = p_0 (\eta ) \qty(1 + \Pi _L)
 \,,
 \end{align}
 %
-where \(\Pi _L = \delta p / p_0 (\eta )\). 
+where \(\Pi _L = \delta p / p_0 (\eta )\). The \(L\) stands for ``longitudinal''. 
 
 The unperturbed spatial components of the stress-energy tensor read:
 %
 \begin{align}
 T^{i}_{j} &= p_0 (\eta ) \qty[ \qty(1 + \Pi _L) \delta^{i}_{j} + \Pi_{T, j}^{i}]  \\
-\Pi_{T, j}^{i} &= \frac{\Pi^{i}_{j}}{p_0 (\eta )}
+\Pi_{T, j}^{i} &= \eval{\frac{\Pi^{i}_{j}}{p_0 (\eta )}}_{\text{traceless}}
 \,.
 \end{align}
 
@@ -190,15 +191,19 @@ The perturbation reads
 %
 \begin{align}
 \delta T^{0}_{i} = \qty(\rho_0 + p_0 ) \qty(v_i + \omega _i )
+&
+\text{or}
+&
+\delta T^{i}_{0} = - (\rho_0 + p_0 ) v^{i}
 \,.
 \end{align}
 
 This is quite general: it is the density of the \(i\)-component of the fluid's momentum, or the flux of energy in the \(i\)-th direction.
 
-The linearly perturbed \(00\) EFE reads 
+The linearly perturbed \(00\) EFE for scalar perturbation (as they are decoupled from the vector and tensor ones) reads 
 %
 \begin{align}
-\frac{3 a'}{a} \qty(\hat{\phi} + \frac{a'}{a} \psi ) - \nabla^2 \qty(\hat{\phi} + \frac{a'}{a} \sigma ) = - 4 \pi G a^2 \delta \rho 
+\frac{3 a'}{a} \qty(\hat{\phi}' + \frac{a'}{a} \psi ) - \nabla^2 \qty(\hat{\phi} + \frac{a'}{a} \sigma ) = - 4 \pi G a^2 \delta \rho 
 \,,
 \end{align}
 %
@@ -212,7 +217,7 @@ The \(0i\) equation is
 \end{align}
 %
 where \(V = v^{\parallel} + \omega^{\parallel}\). 
-These two are not really ``evolution'' equations, they should be interpreted as constraints for the evolution of the other components. 
+These two are not really ``evolution'' equations, they should be interpreted as constraints (to relate with \(\delta T_{00} \) and \(\delta T_{0i}\)) for the evolution of the other components. 
 On the other hand, from the trace of the \(ij\) equations we find 
 %
 \begin{align}
@@ -247,7 +252,7 @@ Then, the equations reads
 \,.
 \end{align}
 
-If the anisotropic stress can be neglected, then \(\phi = \psi \). 
+If the anisotropic stress can be neglected, then \(\phi = \psi \); this is the case for CDM, not so for nonisotropic relativistic particles or modified gravity. 
 If this is the case, then we can write the evolution equation in a simpler way: \(\Pi _T\) vanishes, by definition \(\Pi _L p_0 = \delta p\), which we can split into 
 %
 \begin{align}
@@ -269,14 +274,16 @@ which is an isolated evolution equation for \(\Phi _H\), a wave-like propagation
 The Poisson gauge is the most Newton-like one: the evolution equation becomes 
 %
 \begin{align}
-- \nabla^2 \Phi _H &= 4 \pi G a^2 \underbrace{\qty(\delta \rho - \frac{3 a'}{a} (\rho_0 + p_0 )V )}_{\epsilon_{m}}  \\
+- \nabla^2 \Phi _H &= 4 \pi G a^2 \underbrace{\qty(\delta \rho - \frac{3 a'}{a} (\rho_0 + p_0 )V )}_{\epsilon_{m}}  
+\marginnote{Inserting the \(0i\) equation into the \(00\) one.}
+\\
 &= 4 \pi G a^2\epsilon_m
 \,,
 \end{align}
 %
 a Poisson equation. 
 
-For the vector perturbation \(\Psi_i\), we find 
+For the vector perturbation \(\Psi_i\), we find (from the \(0i\) equation)
 %
 \begin{align}
 \nabla^2\Psi _i = 16 \pi G a^2 \qty(\rho_0 + p_0 ) V_{i, c}
@@ -293,7 +300,7 @@ while for the tensor perturbations, starting from the traceless part of the \(ij
 We should also perturb for the matter source of the equations: \(T^{\mu \nu }_{; \nu } =0 \). 
 The energy density continuity equation (\(\mu = 0\)) reads 
 %
-\begin{align}
+\begin{align} \label{eq:energy-density-continuity-equation}
 \delta \rho ' + \frac{3 a'}{a} \qty(\delta p + \delta \rho ) - 3 \qty(\rho_0 + p_0 )  \hat{\phi}' + \qty(\rho_0 + p_0 ) \nabla^2 \qty(V + \sigma ) &= 0
 \,,
 \end{align}
@@ -308,14 +315,14 @@ V' + \qty(1 + 3 c_s^2) \frac{a'}{a} V + \psi + \frac{1}{(\rho_0 + p_0 )} \qty(\d
 The curvature perturbation on uniform energy density hypersurfaces is 
 %
 \begin{align}
-\zeta = - \hat{\phi} - H \frac{ \delta \rho }{\rho_0 } = - \hat{\phi} - \frac{a'}{a} \frac{ \delta \rho }{\rho_0 '}
+\zeta = - \hat{\phi} - H \frac{ \delta \rho }{\dot{\rho}_0 } = - \hat{\phi} - \frac{a'}{a} \frac{ \delta \rho }{\rho_0 '}
 \,,
 \end{align}
 %
 where, as usual, \(\hat{\phi} = \phi + (1/6) \nabla^2 \chi^{\parallel}\). 
 
-In a uniform energy density gauge \(\zeta = - \hat{\phi}\). 
-On super-horizon scales, the Laplacian in the energy density continuity equation can be taken to vanish, and we can express it as 
+In a uniform energy density gauge \(\zeta = - \hat{\phi}\); also in the flat gauge we have \(\hat{\phi} = 0\), which tells us that \(\zeta \) is an energy density perturbation. 
+On super-horizon scales and taking equation \eqref{eq:energy-density-continuity-equation} in the gauge where \(\delta \rho = 0\), the Laplacian in the energy density continuity equation can be taken to vanish (\(k \ll 1\)), and we can express it as 
 %
 \begin{align}
 \zeta ' = - \frac{a'}{a} \frac{ \delta p}{\rho_0 + p_0 }
@@ -329,7 +336,7 @@ but we must evaluate this in the uniform energy density gauge the adiabatic cont
 \,.
 \end{align}
 
-For single-field models of slow-roll inflation, we find 
+For single-field models of slow-roll inflation, we find that on super-horizon scales
 %
 \begin{align}
 \delta p _{\text{non-adiabatic}} \propto \frac{k^2 \Phi _H}{a^2} \approx 0 \implies \zeta \approx \const 
@@ -340,7 +347,7 @@ The continuity equation for vector perturbations reads
 %
 \begin{align}
 \qty[(\rho_0 +p_0 ) V_{ic}]' + \frac{4 a'}{a} (\rho_0 + p_0 ) V_{ic} 
-= - \nabla_k \qty(\Pi^{\perp, k}_{, i} + \Pi^{\perp, k}_{i})
+= - \nabla_k \qty(\Pi^{\perp k}_{, i} + \Pi^{\perp, k}_{i})
 \,.
 \end{align}
 

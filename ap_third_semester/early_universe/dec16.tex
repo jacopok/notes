@@ -8,11 +8,12 @@ We can decompose our perturbation into its scalar, vector and tensor contributio
 The scalar contributions are \(\psi (\vec{x}, \eta )\) and \(\phi (\vec{x}, \eta )\); they represent a GR extension of Newtonian gravitational potentials. 
 The vector contributions are related to transverse (aka divergence-free, or vertical, or solenoidal) vector fields.
 We can make the decomposition \(\omega _i (\vec{x}, \eta ) = \partial_i \omega^{\parallel} + \omega _i^{\perp}\), where \(\partial^{i} \omega _i^{\perp} = 0\). This is known as the Helmholtz decomposition, and it amounts to considering modes \(\omega (\vec{k})\) which are parallel and orthogonal to \(\vec{k}\) in Fourier space.
+By counting the number of constraints or by reasoning geometrically in Fourier space one can see that the term \(\omega^{\parallel}\) includes 1 degree of freedom, while the term \(\omega^{\perp}_i\) includes two.
 
 On the other hand, the tensor component can be decomposed into 
 %
 \begin{align}
-\chi_{ij} = D_{ij} \chi^{\parallel} + 2 \chi^{\perp}_{(i, j)} + \chi_{ij}^{T}
+\chi_{ij} = \underbrace{D_{ij} \chi^{\parallel}}_{\text{scalar}} + \underbrace{2 \chi^{\perp}_{(i, j)}}_{\text{vector}} + \underbrace{\chi_{ij}^{T}}_{\text{tensor}}
 \,,
 \end{align}
 %
@@ -47,7 +48,7 @@ The perturbation of the pressure can be written as
 \,.
 \end{align}
 
-On the other hand, the four-velocity is 
+On the other hand, the four-velocity of a comoving observer is 
 %
 \begin{align}
 u^{\mu } = \frac{1}{a} \qty(\delta^{\mu }_{0} + \sum _{r=1}^{\infty } \frac{1}{r!} v^{\mu }_{(r)})
@@ -55,7 +56,7 @@ u^{\mu } = \frac{1}{a} \qty(\delta^{\mu }_{0} + \sum _{r=1}^{\infty } \frac{1}{r
 \end{align}
 %
 since the unperturbed four-velocity is just \(u^{\mu }_{(0)} = \delta^{\mu }_0  / \sqrt{- g_{00} } = \delta^{\mu }_{0} / a\).
-As for the perturbations, it can be shown that at linear order \(v^{0} = - \psi \). 
+As for the perturbations, it can be shown (from the normalization condition \(u^2= -1\)) that at linear order \(v^{0} = - \psi \). 
 Then, we can just consider the peculiar spatial velocity, and Helmholtz-decompose it: 
 %
 \begin{align}
@@ -64,6 +65,7 @@ v^{i} = \partial^{i} v^{\parallel} + v^{i}_\perp
 \end{align}
 %
 where, as usual, \(\partial_{i} v^{i}_\perp = 0\). 
+This latter term describes vorticity. 
 
 As we discussed earlier, any tensor \(T\) can be gauge-transformed at linear order as 
 %
@@ -77,44 +79,45 @@ We write this vector field as
 %
 \begin{align}
 \xi^{0} &= \alpha (\vec{x}, \eta )  \\
-\xi^{i} &= \partial^{i} \beta + \alpha^{i}
+\xi^{i} &= \partial^{i} \beta + d^{i}
 \,,
 \end{align}
 %
-where \(\partial^{i} \alpha _i = 0\). 
+where \(\partial^{i} d_i = 0\). 
 
 Denoting derivatives with respect to conformal time with a prime, the perturbations transform like 
 %
 \begin{align}
 \widetilde{\psi} &= \psi + \alpha ' + \frac{a'}{a} \alpha   \\
-\widetilde{\omega}_i &= \omega _i - \alpha_{, i} + \beta'_{, i} + \alpha _i'   \\ 
-\widetilde{\phi} &= \phi - \frac{1}{3} \nabla^2 \beta - \frac{a'}{a} \alpha  \\
-\widetilde{\chi}_{ij} &= \chi_{ij} + 2 D_{ij} \beta + 2\alpha_{(i, j)} 
+\widetilde{\omega}_i &= \omega _i - \alpha_{, i} + \beta'_{, i} + d _i'   \\ 
+\widetilde{\phi} &= \phi - \frac{1}{3} \nabla^2 \beta - \frac{a'}{a} \alpha d
+\widetilde{\chi}_{ij} &= \chi_{ij} + 2 D_{ij} \beta + 2d_{(i, j)} 
 \,,
 \end{align}
 %
+which follows from the equation we derived earlier, \(\widetilde{\Delta T}  = \Delta T + \mathscr{L}_\xi T_0  \)
 and we can decompose these as 
 %
 \begin{align}
 \widetilde{\omega}^{\parallel} &= \omega^{\parallel} - \alpha + \beta '  \\
-\widetilde{\omega}^{\perp}_i &= \omega^{\perp}_i + \alpha'_i  \\
-\widetilde{\chi}^{\parallel } = \chi^{\parallel} + 2 \beta   \\
-\widetilde{\chi}^{\perp}_i &= \chi^{\perp}_i + \alpha _i  \\
+\widetilde{\omega}^{\perp}_i &= \omega^{\perp}_i + d'_i  \\
+\widetilde{\chi}^{\parallel } &= \chi^{\parallel} + 2 \beta   \\
+\widetilde{\chi}^{\perp}_i &= \chi^{\perp}_i + d _i  \\
 \widetilde{\chi}^{T}_{ij} &= \chi^{T}_{ij}
 \,.
 \end{align}
 
-The traceless tensor part of the perturbation is invariant. 
+The traceless tensor part of the perturbation is gauge invariant. 
 
 The energy density perturbation can be shown to transform like 
 %
 \begin{align}
 \widetilde{\delta \rho } &= \delta \rho + \mathscr{L}_\xi \rho^{(0)} (\eta ) \\ 
-&= \delta \rho + \rho^{(0)} \alpha 
+&= \delta \rho + \rho^{(0), \prime} \alpha 
 \,,
 \end{align}
 %
-showing that \(\rho \) is \emph{not} a scalar.
+showing that \(\delta \rho \) is \emph{not} a scalar.
  
 The velocity transforms like 
 %
@@ -134,7 +137,7 @@ meaning that
 %
 \begin{align}
 \widetilde{v}^{0} &= v^{0} - \frac{a'}{a} \alpha - \alpha '  \\
-\widetilde{v}^{i} &= v^{i} - \beta^{, i} - \beta '
+\widetilde{v}^{i} &= v^{i} - \beta^{, i\prime} - d '
 \,,
 \end{align}
 %
@@ -142,15 +145,15 @@ so
 %
 \begin{align}
 \widetilde{v}_\parallel &= v_\parallel - \beta '  \\
-\widetilde{v}^{i}_{\perp} &= v^{i}_\perp - d_i
+\widetilde{v}^{i}_{\perp} &= v^{i}_\perp - d^i
 \,.
 \end{align}
 
-The split of the cosmological perturbation is useful since, at linear order at least, the evolutions of the scalar, vector and tensor modes is decoupled.
+The split of the cosmological perturbation is useful since (at linear order) the evolutions of the scalar, vector and tensor modes is decoupled.
 
-The gauge is determined by \(\xi^{\mu }\), which amounts to choosing the scalars \(\alpha \) and \(\beta \), plus the vector \(\alpha^{i} \): a total of four degrees of freedom, since \(\alpha^{i} \) has one constraint. 
+The gauge is determined by \(\xi^{\mu }\), which amounts to choosing the scalars \(\alpha \) and \(\beta \), plus the vector \(d^{i} \): a total of four degrees of freedom, since \(d^{i} \) has one constraint. 
 
-A possible gauge choice is the \textbf{Poisson gauge}: 
+A possible gauge choice is the \textbf{Poisson gauge}:\footnote{Also known as the longitudinal or Newtonian gauge, since it reproduces the Newtonian treatment of the gravitational potential perturbations.}
 %
 \begin{align}
 \widetilde{\omega}^{\parallel} = \widetilde{\chi}^{\parallel} = 0 = \widetilde{\chi}^{T}_i 
@@ -162,11 +165,11 @@ In this case, the lapse function quite closely matches the behaviour of Newtonia
 In order to impose these condition we need to set
 %
 \begin{align}
-\widetilde{\chi}^{\parallel} =0 \implies \overline{\chi}^{\parallel} = \chi^{\parallel} + 2 \beta = 0 \implies \beta = - \frac{1}{2} \chi^{\parallel}
+0 = \widetilde{\chi}^{\parallel} = \chi^{\parallel} + 2 \beta = 0 \implies \beta = - \frac{1}{2} \chi^{\parallel}
 \,.
 \end{align}
 %
-\todo[inline]{What does the bar indicate?}
+% \todo[inline]{What does the bar indicate?}
 
 This gauge is also known as the \textbf{orthogonal zero-shear gauge}.
 
@@ -198,13 +201,21 @@ The tensor \(\sigma_{\mu \nu }\) instead represents shear:
 and finally \(a^{\mu } = u^{\nu } u_{\mu ; \nu }\).
 If \(u_{\mu} = N_\mu\), \(\sigma_{\mu \nu } \) is the geometric shear, so \(\sigma_{\mu 0} = 0\), meaning that we can only work with 
 %
-\begin{align}
+\begin{align} \label{eq:zero-shear-gauge}
 \sigma_{ij} &= D_{ij} \sigma + \sigma^{\perp}_{(i, j)} + \sigma^{T}_{ij}  \\
-\sigma &= - \omega^{\parallel} + \frac{1}{2} \chi^{ij}
+\sigma &= - \omega^{\parallel} + \frac{1}{2} \chi^{\parallel}
 \,.
 \end{align}
 
-\todo[inline]{Unclear equation \(N^{\mu } =(1/a) \qty(1 - \psi _j - \omega^{i})\)??}
+This term vanishes in the Poisson gauge.
+
+The vector \(N\) reads:
+%
+\begin{align}
+ N^{\mu } =(1/a) \qty[1 - \psi,  - \omega^{i}]
+\,.
+\end{align}
+%
 
 Another possible choice is the \textbf{synchronous}, or \textbf{time-orthogonal gauge}: 
 %
@@ -215,7 +226,7 @@ Another possible choice is the \textbf{synchronous}, or \textbf{time-orthogonal 
 %
 meaning that \(\delta g_{0\mu } = 0 \). 
 This amounts to only perturbing the spatial part of the metric.
-If we take observers at fixed spatial coordinates, their subjective time will be 
+If we take observers at fixed spatial coordinates, their subjective time in this gauge will be 
 %
 \begin{align}
 \dd{\tau } = \dd{t} \qty(1 + \psi ) = \dd{t}
@@ -251,9 +262,9 @@ v^{i} = 0
 %
 meaning that \(v^{\parallel} = v^{i}_\perp = 0\). This basically amounts to setting the coordinate system as comoving with the fluid.
 
-We have an additional condition, which we can use to impose that constant \(\eta \) spatial hypersurfaces must be orthogonal to \(u^{\mu }\): this leads to the condition \(v^{\parallel} + \omega^{\parallel} = 0\). 
+We have an additional condition, which we can use to impose that constant \(\eta \) spatial hypersurfaces must be orthogonal to \(u^{\mu }\): this leads to the condition \(v^{\parallel} + \omega^{\parallel} = 0\), which tells us that \(\omega^{\parallel} = 0\) because of the previous condition. 
 
-This is because at leading order 
+This is because at leading order we can lower the index of \(N^{\mu }\) and \(u^{\mu }\), and use \(v^{0}= \psi \), to get 
 %
 \begin{align}
 N_{\mu } &= \qty[- a (1 + \psi ), 0]  \\
@@ -261,11 +272,11 @@ u_{\mu } &= a\qty[ - (1 + \psi ), v_i + \omega _i]
 \,,
 \end{align}
 %
-therefore \(v_i + \omega _i = 0\). 
+therefore the equation \(N_\mu = u_\mu \) reads \(v_i + \omega _i = 0\). 
 This condition also leads to \(T^{0}_{i} = 0\): the momentum flux vanishes. 
 This is also called the comoving orthogonal gauge. 
 
-\todo[inline]{is the condition not just \(\omega^{\parallel} = 0\)?}
+% \todo[inline]{is the condition not just \(\omega^{\parallel} = 0\)?}
 
 Other options are the \textbf{spatially flat gauge}, also known as the uniform curvature gauge: this is found by selecting constant-\(\eta \) spatial hypersurfaces where the spatial metric is left unperturbed, at least for scalar and vector perturbations. 
 
@@ -276,7 +287,7 @@ This means
 \,,
 \end{align}
 %
-and the reason for the name is that the intrinsic spatial curvature of the constant-\(\eta \) hypersurfaces is 
+and the reason for the name is that the intrinsic spatial curvature (Ricci scalar) of the constant-\(\eta \) hypersurfaces is 
 %
 \begin{align}
 ^{(3)}R = \frac{6k}{a^2} + \frac{rk}{a^2} \hat{\phi} + \frac{4}{a^2} \nabla^2 \hat{\phi}
@@ -284,7 +295,7 @@ and the reason for the name is that the intrinsic spatial curvature of the const
 \end{align}
 %
 where \(\hat{\phi} = \phi + (1/6) \nabla^2 \chi^{\parallel}\). 
-This is why \(\hat{\phi}\) is sometimes called the \emph{curvature perturbation} itself.
+This is why \(\hat{\phi}\) is sometimes called the \emph{curvature perturbation} itself, as \(R \propto \hat{\phi}\) in Fourier space.
 
 The \textbf{uniform energy density gauge} is defined by \(\delta \widetilde{\rho} = 0\). 
 
@@ -293,6 +304,7 @@ This is fine, but residual gauge freedom can create issues.
 
 The alternative is to only use gauge-invariant perturbations. 
 A paper by Bardeen \cite[]{bardeenGaugeinvariantCosmologicalPerturbations1980a} showed how to do so.
+Starting with scalars, we would have 4 of them: \(\psi, \phi , \omega^{\parallel}, \chi^{\parallel}\), however only 2 degrees of freedom can remain.
 We define 
 %
 \begin{align}
@@ -302,7 +314,7 @@ We define
 \end{align}
 %
 and it can be shown (exercise) that these are indeed gauge invariant. 
-These quantities have a physical meaning: if we go to the zero-shear gauge, then \(\Phi _H = \hat{\phi} \), while \(\Psi _A = \psi \).
-These are known as the Bardeen gauge-invariant potentials. 
+These quantities have a physical meaning: if we go to the zero-shear gauge \eqref{eq:zero-shear-gauge}, then \(\Phi _H =- \hat{\phi} \), while \(\Psi _A = \psi \).
+These are known as the Bardeen gauge-invariant potentials, since they mimic Newtonian potentials. 
 
 \end{document}

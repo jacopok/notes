@@ -141,21 +141,50 @@ The last-scattering surface is also a straight line at constant \(\eta \).
 We can then draw a past light-cone from a point in the last-scattering surface. Inflation pushes the BB surface back in conformal time, so that light has more time to propagate and light cones will intersect. 
 
 \begin{claim}
-The conformal time at the end of inflation looks like \(\eta \propto 2 / (1 + 3 w_i) a^{2 / (1 + 3w)} H_*^{-1}\), where \(H_*\) is the Hubble parameter at some reference time. 
+The conformal time at the end of inflation looks like \(\eta \propto 2 / (1 + 3 w) a^{2 / (1 + 3w)} H_*^{-1}\), where \(H_*\) is the Hubble parameter at some reference time. 
 \end{claim}
 
 \begin{proof}
-The scale factor as a function of time looks like 
+Let us again make use of the fact that 
 %
 \begin{align}
-a(t) \propto t^{ \frac{2}{3 (1 + w)}} = t^{\alpha }
-\,,
+\dd{\eta } = - \frac{ \dd{z}}{a_0 H(z)}
+\,.
+\end{align}
+
+Here \(a_0 \) is usually taken to mean ``now'', however the analysis which follows does not really depend on that fact. Then, the conformal time reads
+%
+\begin{align}
+\eta &= \int_0^{\eta} \dd{\widetilde{\eta}} 
+= \int_{z}^{\infty } \frac{ \dd{\widetilde{z}}}{a_0 H(\widetilde{z})} 
+\marginnote{Switched the integration margins: \([0, \eta ]\) corresponds to \((\infty, z]\).}
+ \\
+&= \frac{1}{a_0 H_0 } \int_{z}^{\infty } \frac{ \dd{\widetilde{z}}}{E(\widetilde{z})}
+\,.
+\end{align}
+
+If we need to account for different fluids the integral cannot be done analytically, so we only account for one: the expression for the \(E\) function simplifies as 
+%
+\begin{align}
+E(z) = \sqrt{\sum _{i} \Omega_{0, i} (1 + z)^{3 + 3 w_i}} = \sqrt{(1 + z)^{3 + 3w}}
+\,
 \end{align}
 %
+for a single component, with \(\Omega_0 = 1\) and equation of state \(w\). Then, the integral reads 
+%
+\begin{align}
+\eta &= \frac{1}{a_0 H_0 } \int_{z}^{\infty } (1 + \widetilde{z})^{-(3 + 3w) / 2} \dd{\widetilde{z}}  \\
+&= \frac{1}{a_0 H_0 } \qty(- \frac{1 + 3w}{2})^{-1} \qty[(1 + \widetilde{z})^{-(1+3w) /2}]_{\widetilde{z} = z}^{\widetilde{z} = \infty }  \\
+&= \frac{1}{a_0 H_0 } \frac{2}{(1 + 3w)} (1 + z)^{-(1+ 3w) / 2}  \\
+&= \frac{2}{(1 + 3w)H_0 } a^{- (1+3w) / 2} a_0^{-1 - (1+ 3w) /2}  \\
+&\propto \frac{2}{(1 + 3w)H_0 } a^{- (1+3w) / 2}
+\,.
+\end{align}
+
+This manipulation only works as long as \(w > - 1/3\): otherwise, the integral diverges. 
 \end{proof}
 % So, if \(w < - 1/3\), we are good. 
 
-\todo[inline]{To finish --- is the formula right?}
 % \todo[inline]{We can only detect correlations in the CMB up to the quadrupole, since the dipole is correlated with the Earth's motion\dots Roughly, this means that we can only see correlations on the scale of \(\sim r_H\), corresponding to \SI{90}{\degree} separation, instead of being able to see them on the scale of \SI{180}{\degree}. }
 
 \subsection{Flatness problem}
@@ -222,7 +251,7 @@ For times before the matter-radiation equivalence \(\rho \propto a^{-4}\), so (n
 therefore 
 %
 \begin{align}
-(\Omega^{-1} -1) \qty(\frac{a _{\text{eq}}}{a})^{4} a^2 \rho_0 \qty(\frac{a_0 }{a _{\text{eq}}})^{3} \frac{1}{\rho_0 a_0^2} &= (\Omega_0^{-1} - 1)
+(\Omega^{-1} -1) \qty(\frac{a _{\text{eq}}}{a})^{4} a^2 \rho _{\text{eq}} \qty(\frac{a_0 }{a _{\text{eq}}})^{3} \frac{1}{\rho _{\text{eq}} a_0^2} &= (\Omega_0^{-1} - 1)
 \\
 \Omega^{-1} - 1 &= (\Omega_0^{-1} -1) \frac{a^2}{a _{\text{eq}} a_0 } \\
 \Omega^{-1} - 1 &= (\Omega_0^{-1} -1) (1 + z _{\text{eq}}) \frac{a^2}{a_0^2}

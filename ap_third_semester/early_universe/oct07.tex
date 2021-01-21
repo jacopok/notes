@@ -33,7 +33,7 @@ The condition is \(r_H (t _{\text{in}}) \gtrsim r_H (t_0 )\).
 We can express this as 
 %
 \begin{align}
-\frac{1}{a _{\text{in}} H _{\text{in}}} &=\gtrsim \frac{1}{a_0 H_0 }  \\
+\frac{1}{a _{\text{in}} H _{\text{in}}} &\gtrsim \frac{1}{a_0 H_0 }  \\
 \frac{a_f}{ a _{\text{in}}} = e^{N} &\gtrsim \frac{H _{\text{in}}}{H_0 } \frac{a_f}{a_0}
 \,.
 \end{align}
@@ -78,7 +78,7 @@ H_f^2 \approx \frac{8 \pi G}{3} \rho _{\text{rad}}
 \,,
 \end{align}
 %
-where \(\rho _{\text{rad}} \frac{\pi^2}{30} g_* T^{4}\). This then yields 
+where \(\rho _{\text{rad}} = \frac{\pi^2}{30} g_* T^{4}\). This then yields 
 %
 \begin{align}
 H^2_f = \frac{8 \pi G}{3} \frac{\pi^2}{30} g_* T^{4} \sim \frac{T_f^4}{M_P^2}
@@ -140,11 +140,23 @@ Then, we can draw a diagram for the horizon problem in these coordinates: the Bi
 The last-scattering surface is also a straight line at constant \(\eta \).
 We can then draw a past light-cone from a point in the last-scattering surface. Inflation pushes the BB surface back in conformal time, so that light has more time to propagate and light cones will intersect. 
 
-We can show (exercise) that the conformal time at the end of inflation looks like \(\eta \propto 2 / (1 + 3 w_i) a^{2 / (1 + 3w)} H_*^{-1}\). 
+\begin{claim}
+The conformal time at the end of inflation looks like \(\eta \propto 2 / (1 + 3 w_i) a^{2 / (1 + 3w)} H_*^{-1}\), where \(H_*\) is the Hubble parameter at some reference time. 
+\end{claim}
 
-So, if \(w < - 1/3\), we are good. 
+\begin{proof}
+The scale factor as a function of time looks like 
+%
+\begin{align}
+a(t) \propto t^{ \frac{2}{3 (1 + w)}} = t^{\alpha }
+\,,
+\end{align}
+%
+\end{proof}
+% So, if \(w < - 1/3\), we are good. 
 
-\todo[inline]{We can only detect correlations in the CMB up to the quadrupole, since the dipole is correlated with the Earth's motion\dots Roughly, this means that we can only see correlations on the scale of \(\sim r_H\), corresponding to \SI{90}{\degree} separation, instead of being able to see them on the scale of \SI{180}{\degree}. }
+\todo[inline]{To finish --- is the formula right?}
+% \todo[inline]{We can only detect correlations in the CMB up to the quadrupole, since the dipole is correlated with the Earth's motion\dots Roughly, this means that we can only see correlations on the scale of \(\sim r_H\), corresponding to \SI{90}{\degree} separation, instead of being able to see them on the scale of \SI{180}{\degree}. }
 
 \subsection{Flatness problem}
 
@@ -180,14 +192,27 @@ Specifically, in the Planck epoch we will have
 %
 so \(\abs{\Omega (t _{\text{Pl}}) - 1} < \num{e-62}\).
 
-What can be shown is also that 
+\begin{claim}
+It can be shown that 
 %
 \begin{align}
-\qty(\Omega^{-1} - 1) \rho a^2 = \const = \frac{3}{8 \pi G}
+\qty(\Omega^{-1} - 1) \rho a^2 = \const = -\frac{3k}{8 \pi G}
+\,.
+\end{align}
+\end{claim}
+\begin{proof}
+The calculation is as follows: 
+%
+\begin{align}
+H^2 &= \frac{8 \pi G}{3} \rho - \frac{k}{a^2}  \\
+\rho _c &= \rho - \underbrace{\frac{3 k}{8 \pi G}}_{\const} \frac{1}{a^2}  \\
+\rho \bigg( \underbrace{\frac{\rho _c}{\rho }}_{\Omega^{-1}} - 1\bigg) a^2 &= \const
 \,.
 \end{align}
 
-For times before the matter-radiation equivalence \(\rho \propto a^{-4}\), so  \(\rho (t) = \rho _{\text{eq}} (a _{\text{eq}} / a)^{4}\). Also, during matter domination up to now (neglecting the cosmological constant)
+\end{proof}
+
+For times before the matter-radiation equivalence \(\rho \propto a^{-4}\), so (neglecting the matter component) \(\rho (t) = \rho _{\text{eq}} (a _{\text{eq}} / a)^{4}\). Also, during matter domination up to now (neglecting the cosmological constant)
 %
 \begin{align}
 \rho_0 = \rho _{\text{eq}} \qty(\frac{a _{\text{eq}}}{a_0 })^3

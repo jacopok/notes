@@ -98,19 +98,29 @@ Solving this yields
 %
 where \(\Delta \) is the \emph{thickness} of the wall, which we can estimate through energetic configurations: the surface energy will have contributions through the gradient of the field: \( \Delta (\partial_{z} \varphi)^2 \sim \Delta \sigma^2 / \Delta^2 = \sigma^2 / \Delta  \); and a potential term \(V(\varphi ) \sim \Delta V(\varphi =0) \sim \Delta \lambda \sigma^{4} / 4\). 
 
-\todo[inline]{Add clarification of the estimates. Gradient of the field is the kinetic term?}
+This is because the total Hamiltonian for a unit-area region of this stationary configuration will also look like 
+%
+\begin{align}
+H &= \int \qty[\frac{1}{2} g^{\mu \nu } \partial_{\mu } \varphi \partial_{\nu } \varphi + V(\varphi ) ] \dd{z}  \\
+&= \int \frac{1}{2} \qty(\partial_{z} \varphi )^2 + V(\varphi ) \dd{z}  \\
+&= \frac{\Delta}{2} \int \qty(\partial_{z} \varphi)^2 \dd{z} + \frac{\lambda}{4} \sigma^4 \Delta  \underbrace{\int \qty(\tanh^2 z - 1)^2 \dd{z}}_{\order{1}}   \\
+&\approx \Delta \frac{\sigma^2}{\Delta^2} + \frac{\lambda}{4} \sigma^2 \Delta 
+\,.
+\end{align}
 
-These scale oppositely with \(\Delta \): the kinetic energy decreases for a wide wall, the potential energy decreases for a narrow wall. 
-Then, we can find an optimum at \(\Delta \sim \sqrt{2} / (\sigma \sqrt{\lambda })\). 
+% \todo[inline]{Add clarification of the estimates. Gradient of the field is the kinetic term?}
+
+The two contributions scale oppositely with \(\Delta \): the kinetic energy decreases for a wide wall, the potential energy decreases for a narrow wall. 
+Then, we can find an optimum at \(\Delta \sim 1 / (\sigma \sqrt{\lambda })\). 
 
 This domain wall is not removable, the configuration is topologically stable. 
 
 Now we discuss the \textbf{Kibble mechanism}, which demonstrates how phase transitions always generate domain walls. 
-Let us denote as \(\xi \) the typical size of the domains: it is called the \emph{correlation length} of \(\varphi \). 
+Let us denote as \(\xi \) the typical linear size of the domains: it is called the \emph{correlation length} of \(\varphi \). 
 
-We know that in the radiation-dominated epoch there is a finite particle horizon \(d_H(t) = 2 ct\), so we must have \(\xi \lesssim d_H (t)\). 
+We know that in the radiation-dominated epoch there is a finite particle horizon \(d_H(t) \approx 2 t\), so we must have \(\xi \lesssim d_H (t)\), since regions which were further apart could not have communicated yet at that time. 
 
-Then, we find a lower bound on the number density of the domain walls, \(n_X \sim \xi^{-3} \gtrsim d_H^{-3}(t)\). 
+Then, we find a lower bound on the number density of the domain walls, \(n_X \sim \xi^{-3} \gtrsim d_H^{-3}(t) = (2t)^{-3}\). 
 
 Recall from regular HBB cosmology that 
 %
@@ -161,8 +171,7 @@ This means that
 \,,
 \end{align}
 %
-which means that, since \(m_x \sim T _{\text{GUT}} \sim \SI{e15}{GeV}\). 
-Then, we must have \(\Omega_{0x} \gtrsim \num{e14}\)! This definitely \textbf{over-closes} the universe.
+which means that, since \(m_x \sim T _{\text{GUT}} \sim \SI{e15}{GeV}\), we must have \(\Omega_{0x} \gtrsim \num{e14}\)! This definitely \textbf{over-closes} the universe.
 
 How does inflation solve this problem? These objects are produced in these early stages, but their number density is very \textbf{diluted}. 
 Each \(\pm \sigma \) region is inflated to the size of the observable universe. 

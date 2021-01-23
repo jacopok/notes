@@ -42,6 +42,38 @@ and we will always expand in these parameters; in this course we will usually st
 
 We will then be able to consider both \(\epsilon \) and \(\eta\) as approximately constant: their time derivatives are of higher order in them, specifically \(\dot{\epsilon}, \dot{\eta} = \order{\epsilon^2, \eta^2}\).
 
+\begin{claim}
+An example: the following relation holds: 
+%
+\begin{align}
+\frac{\dot{\epsilon}}{H} = 2 \epsilon (\epsilon - \eta )
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+Let us take the derivative explicitly: 
+%
+\begin{align}
+\frac{\dot{\epsilon}}{H} &= \frac{1}{H} \dv{}{t} \qty(- \frac{\dot{H}}{H^2}) = - \frac{\ddot{H}}{H^3} + 2 \underbrace{\frac{\dot{H}^2}{H^{3} H}}_{= \epsilon^2}
+\,.
+\end{align}
+
+Now, we need to use the fact that, as we have shown earlier \eqref{eq:hdot-phidot-relation}, \(\dot{H} \propto \dot{\varphi}^2\). In terms of logarithmic derivatives this can be written as 
+%
+\begin{align}
+\frac{\ddot{H}}{\dot{H}} = 2\frac{\ddot{\varphi}}{\dot{\varphi}}
+\,,
+\end{align}
+%
+which we can substitute in the aforementioned expression to get 
+%
+\begin{align}
+- \frac{\ddot{H}}{H^3} = - \frac{1}{H^3} 2 \frac{\ddot{\varphi}}{\dot{\varphi}} \dot{H} = -2 \qty(- \frac{\dot{H}}{H^2}) \qty(-\frac{\ddot{\varphi}}{H \dot{\varphi}}) = -2 \epsilon \eta 
+\,.
+\end{align}
+\end{proof}
+
 Forgetting about the precise coefficients, let us consider a model such that \(V(\varphi ) \propto \varphi^{\alpha }\): then, the parameter \(\epsilon \) reads
 %
 \begin{align}

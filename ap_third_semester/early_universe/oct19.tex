@@ -287,7 +287,7 @@ Let us show that the manipulations work. We start by differentiating equation \e
 %
 \begin{align}
 2 H \dot{H} &= \frac{8 \pi G}{3} \pdv{V}{\varphi } \dot{\varphi}  \\
-\dot{H} &= 4 \pi G \underbrace{\frac{V'}{3 H}}_{- \dot{\varphi}} \dot{\varphi} = - 4 \pi G \dot{\varphi}^2
+\dot{H} &= 4 \pi G \underbrace{\frac{V'}{3 H}}_{- \dot{\varphi}} \dot{\varphi} = - 4 \pi G \dot{\varphi}^2 \label{eq:hdot-phidot-relation}
 \,,
 \end{align}
 %
@@ -311,10 +311,37 @@ which allows us to manipulate
 \end{align}
 \end{proof}
 
+\begin{claim}
+The relation \(\dot{H} = - 4 \pi G \dot{\varphi}^2\) holds exactly in the case of a single scalar field with the action we have been using so far. 
+\end{claim}
+
+\begin{proof}
+
+We start from the Friedmann equation for flat spacetime: 
+%
+\begin{align}
+H^2 &= \frac{8 \pi G}{3} \rho = \frac{8 \pi G}{3} \qty(V(\varphi ) + \frac{1}{2} \dot{\varphi}^2 - \frac{1}{2} \frac{\abs{\nabla\varphi}^2}{a^2} ) 
+\,.
+\end{align}
+
+Now, we proceed as we did previously, by differentiating everything with respect to time: 
+%
+\begin{align}
+2 H \dot{H} &= \frac{8 \pi G}{3} \qty( V' \dot{\varphi} + \ddot{\varphi} \dot{\varphi} + \frac{1}{a^2} \underbrace{\partial_{i} \varphi \partial_{i} \dot{\varphi}}_{= -\dot{\varphi} \nabla^2 \varphi })  \\
+&= \frac{8 \pi G}{3} \dot{\varphi} \qty(- 3 H \dot{\varphi}) \marginnote{Equation of motion.}  \\
+\dot{H} &= - 4 \pi G \dot{\varphi}^2
+\,,
+\end{align}
+\end{proof}
+
+\todo[inline]{To fix, something's not right.}
+
 Requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
 %
 \begin{align}
-\frac{1}{V} \qty(\pdv{V}{\varphi })^2 \ll H^2
+\frac{(V')^2}{16 \pi G V^2} &\ll 1  \\
+\frac{(V')^2}{V} &\ll 16 \pi G V = \frac{2}{3} H^2 \\ 
+\frac{1}{V} \qty(\pdv{V}{\varphi })^2 &\ll H^2
 \,.
 \end{align}
 
@@ -335,7 +362,24 @@ and we can also define
 
 Asking that \(\eta _V \ll 1 \) is equivalent to \(V'' \ll H^2\). 
 
+\begin{claim}
 These three parameters are related by \(\eta = \eta _V - \epsilon \).
+\end{claim}
 % We also can ask that \(\abs{\eta _V} < 1\).
+
+\begin{proof}
+We start from the relation \(\dot{\varphi} \approx - V' / (3H)\). Differentiating it with respect to time will yield the desired relation: 
+%
+\begin{align}
+\ddot{\varphi} &\approx - \dv{}{t} \qty( \frac{V'}{3H})  \\
+&= - \frac{1}{3H} V'' \dot{\varphi} - \frac{V'}{3} \underbrace{\qty(- \frac{\dot{H}}{H^2})}_{\epsilon }  \\
+&= - \dot{\varphi} H \frac{V''}{3H^2} - \frac{V'}{3} \epsilon  \\
+&= - \dot{\varphi} H \eta _V - \frac{V'}{3} \epsilon  \\
+\underbrace{-\frac{\ddot{\varphi}}{H \ddot{\varphi}}}_{\eta } &= \eta _V - \epsilon  
+\,.
+\end{align}
+\end{proof}
+
+\todo[inline]{Is it ok to differentiate this, even though we \emph{know }that \(\ddot{\varphi} = - V' - 3 H \dot{\varphi}\) from the EOM?}
 
 \end{document}

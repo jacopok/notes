@@ -73,21 +73,79 @@ T^{(\varphi )}_{\mu \nu } =
 \,,
 \end{align}
 %
-since there is no dependence on the derivative of the metric in our case. We need the explicit expression 
+since there is no dependence on the derivative(s) of the metric in our case.
+\begin{claim}
+The following expression holds:
+% We need the explicit expression 
 %
 \begin{align}
 \pdv{\sqrt{-g}}{g^{\mu \nu }} = - \frac{1}{2} \sqrt{-g} g_{\mu \nu }
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+The expression can be derived from the general matrix relation  \(\Tr \log M = \log \det M\), applied taking \(M = g^{\mu \nu }\): abusing the notation a bit with the indices
+%
+\begin{align}
+\Tr \log g^{\mu \nu } = \log \det g^{\mu \nu } 
 \,,
 \end{align}
 %
-which comes from the fact that \(\Tr \log M = \log \det M\), applied taking \(M = g^{\mu \nu }\), and taken considering a functional variation of the whole expression. 
+which we then differentiate, using \(g = \det g_{\mu \nu }\), the fact that the trace is linear, and the matrix logarithmic derivative expression \(\delta \log M = M^{-1} \delta M\):\footnote{Which holds as long as \(M^{-1}\) and \(\delta M\) commute. }
+%
+\begin{align}
+\Tr \qty(M^{-1} \delta M) &= \frac{ \delta \det g^{\mu \nu }}{\det g^{\mu \nu }} = \frac{ \delta (1/g)}{ 1/g}  \\
+\Tr \qty(g_{\mu \nu } \delta g^{\nu \rho }) &= - \frac{ \delta g}{g}  \\
+g_{\mu \nu } \delta g^{\mu \nu } &= - \frac{ \delta g}{g}
+\marginnote{Symmetry of the metric's indices.}
+\,.
+\end{align}
+
+Let us now consider a variation of \(\sqrt{-g}\): 
+%
+\begin{align}
+\delta \sqrt{-g} &= - \frac{1}{2} \frac{1}{\sqrt{-g}} \delta g = + \frac{1}{2} \underbrace{\frac{1}{\sqrt{-g}} g}_{-\sqrt{-g}} g_{\mu \nu } \delta g^{\mu \nu }   \\
+\fdv{\sqrt{-g}}{g^{\mu \nu }} &= - \frac{\sqrt{-g}}{2} g_{\mu \nu }
+\,.
+\end{align}
+
+This is the final result. We used the fact that \(g / \sqrt{-g} = - \sqrt{-g}\), which is the correct solution of \((g / \sqrt{-g})^2 = -g\) because we know  \(g\) to be negative.
+\end{proof}
+
 This yields 
 %
 \begin{align}
-T^{(\varphi )}_{\mu \nu } = \partial_{\mu } \varphi \partial_{\nu } \varphi 
+T^{(\varphi )}_{\mu \nu }  &= 
+- 2 \pdv{\mathscr{L}_\varphi }{g^{\mu \nu }} + \mathscr{L}_\varphi g_{\mu \nu }
+\\
+&= \partial_{\mu } \varphi \partial_{\nu } \varphi 
 + g_{\mu \nu } \qty[- \frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } - V(\varphi )] 
 \,.
 \end{align}
+
+\begin{claim}
+In general, this is a perfect fluid stress energy tensor, with 
+%
+\begin{align}
+P &= -\frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } - V(\varphi )  \\
+\rho &= - \frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta }  + V(\varphi ) \\
+u_\mu &= \frac{\partial_{\mu}\varphi}{\abs{\partial \varphi }}  \\
+\abs{\partial \varphi} &= \sqrt{- g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta }}
+\,.
+\end{align}
+\end{claim}
+
+\begin{proof}
+As the parameters are given, we only need to verify that the expressions are equivalent: 
+%
+\begin{align}
+T_{\mu \nu } &= (\rho + P ) u_\mu u_\nu + P g_{\mu \nu }   \\
+&= \underbrace{(- g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } )}_{\abs{\partial \varphi}^2} u_\mu u_\nu + \qty( -\frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } - V(\varphi ) ) g_{\mu \nu }  \\
+&= \varphi_{, \mu } \varphi_{, \nu } - \qty(\frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } + V(\varphi )) g_{\mu \nu }
+\,.
+\end{align}
+\end{proof}
 
 We start by considering a homogeneous and isotropic case, and then perturb it. This is done by splitting the field into the average classical background motion of \(\varphi \), called \(\varphi_0 \) 
 %
@@ -105,10 +163,10 @@ We consider the variance since it is the first nonzero moment, as \(\expval{ \de
 This will not always be the case, sometimes the fluctuation will be dominating; however usually for an inflationary model to work we expect that the condition is satisfied.
 The fluctuations are what generates the density fluctuations which create the anisotropies in the CMB photons: we know that the size of these anisotropies is of the order of one part in \num{e5}, so we can give a qualitative argument for the perturbations of the scalar field to be relatively small compared to the mean value. 
 
-If we do the explicit computation for the energy-momentum tensor, we get 
+If we do the explicit computation for the energy-momentum tensor of the classical background \(\varphi_0\) only we find:
 %
 \begin{align} \label{eq:energy-momentum-scalar-field}
-T^{0}_{0} &= - \qty( \frac{1}{2} \dot{\varphi}_0(t) + V(\varphi_0 )) = - \rho_\varphi (t)   \\
+T^{0}_{0} &= - \qty( \frac{1}{2} \dot{\varphi}_0(t)^2 + V(\varphi_0 )) = - \rho_\varphi (t)   \\
 T^{i}_{j} &= \qty( \frac{1}{2} \dot{\varphi}_0^2 (t) - V(\varphi_0 )) \delta^{i}_{j} = P_\varphi \delta^{i}_{j}
 \,.
 \end{align}
@@ -131,21 +189,37 @@ If \(V(\varphi )\) is approximately a constant, then it mimics a cosmological co
 Inflation is driven by the vacuum energy density associated with the scalar field. 
 
 Let us look at the slow-roll dynamics in more detail. 
-What is the equation of motion for this (quantum!) scalar field? It is just the Klein-Gordon equation, which can be derived by functional differentiation of the action with respect to \(\varphi \): 
+What is the equation of motion for this (quantum!) scalar field?
+
+\begin{claim}
+
+It is just the Klein-Gordon equation, which can be derived by functional differentiation of the action with respect to \(\varphi \): 
 %
 \begin{align}
 \square \varphi = \pdv{V}{\varphi }
-\,,
+\,.
 \end{align}
-%
-just like in the flat case, however since we are in curved spacetime we must be careful about the Dalambertian operator, which now reads 
+\end{claim}
+
+The Dalambertian operator here reads 
 %
 \begin{align}
 \square \varphi = \frac{1}{\sqrt{-g}} \qty(g^{\mu \nu } \sqrt{-g} \varphi_{, \mu })_{, \nu }
-\,,
+\,.
 \end{align}
+
+\begin{proof}
+Functionally differentiating the action yields
 %
-since we need to use the formula for the Dalambertian in curved spacetime, which can be calculating by substituting the partial derivatives with covariant ones. 
+\begin{align}
+\fdv{S}{\varphi } &= \fdv{}{\varphi } \int \dd[4]{x} \sqrt{-g} \qty(- \frac{1}{2} g^{\alpha \beta } \varphi_{, \alpha } \varphi_{, \beta } - V(\varphi ))  \\
+&= \fdv{}{\varphi } \int \dd[4]{x} \qty(\qty( \frac{\sqrt{-g}}{2} g^{\alpha \beta } \varphi_{, \alpha })_{,\beta } \varphi  - V(\varphi ) \sqrt{-g})  \\
+&= \sqrt{-g} \qty( \frac{1}{\sqrt{-g}} \partial_{\beta } \qty( \sqrt{-g} g^{\alpha \beta } \partial_{\alpha } \varphi ) - \pdv{V}{\varphi }) = 0
+\,.
+\end{align}
+
+
+\end{proof}
 
 Let us see what this reduces to in a \textbf{flat FLRW} metric: then \(\sqrt{-g} = a^3\), so 
 %
@@ -207,7 +281,35 @@ The first parameter we define is
 \end{align}
 %
 where the manipulations follow from equations \eqref{eq:approx-EOM-scalar-field-flat-FLRW} and \eqref{eq:hubble-rate-scalar-field-flat-FLRW}.
-\todo[inline]{Check calculation!}
+
+\begin{proof}
+Let us show that the manipulations work. We start by differentiating equation \eqref{eq:hubble-rate-scalar-field-flat-FLRW} with respect to time: 
+%
+\begin{align}
+2 H \dot{H} &= \frac{8 \pi G}{3} \pdv{V}{\varphi } \dot{\varphi}  \\
+\dot{H} &= 4 \pi G \underbrace{\frac{V'}{3 H}}_{- \dot{\varphi}} \dot{\varphi} = - 4 \pi G \dot{\varphi}^2
+\,,
+\end{align}
+%
+which, divided by \(H^2\), yields the first equality. 
+
+The second equality comes from the substitution of the expression for \(H^2\) from equation \eqref{eq:hubble-rate-scalar-field-flat-FLRW}. 
+Then, we can square the relation \(\dot{\varphi} = - V' / 3 H\) to get 
+%
+\begin{align}
+\dot{\varphi}^2 = \qty(\frac{V'}{3H})^2
+\,,
+\end{align}
+%
+which allows us to manipulate 
+%
+\begin{align}
+\frac{3}{2} \frac{\dot{\varphi}^2}{V} &= \frac{3}{2V} \qty(\frac{V'}{3H})^2  \\
+&= \frac{3 (V')^2}{2V \frac{8 \pi G}{3} V}  \\
+&= \frac{1}{16 \pi G} \qty( \frac{V'}{V})^2
+\,.
+\end{align}
+\end{proof}
 
 Requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
 %

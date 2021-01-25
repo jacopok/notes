@@ -273,7 +273,7 @@ These are parameters we need to quantify how much the potential indeed looks lik
 
 The first parameter we define is
 %
-\begin{align}
+\begin{align} \label{eq:slow-roll-epsilon-alternative}
 \epsilon 
 = - \frac{\dot{H}}{H^2} = 
 + 4 \pi G \frac{\dot{\varphi}^2}{H^2} \approx \frac{3}{2} \frac{\dot{\varphi}^2}{V} = \frac{1}{16 \pi G} \qty(\frac{V'}{V})^2
@@ -320,21 +320,25 @@ The relation \(\dot{H} = - 4 \pi G \dot{\varphi}^2\) holds exactly in the case o
 We start from the Friedmann equation for flat spacetime: 
 %
 \begin{align}
-H^2 &= \frac{8 \pi G}{3} \rho = \frac{8 \pi G}{3} \qty(V(\varphi ) + \frac{1}{2} \dot{\varphi}^2 - \frac{1}{2} \frac{\abs{\nabla\varphi}^2}{a^2} ) 
+H^2 &= \frac{8 \pi G}{3} \rho = \frac{8 \pi G}{3} \qty(V(\varphi ) + \frac{1}{2} \dot{\varphi}^2 
+% - \frac{1}{2} \frac{\abs{\nabla\varphi}^2}{a^2} 
+) 
 \,.
 \end{align}
 
 Now, we proceed as we did previously, by differentiating everything with respect to time: 
 %
 \begin{align}
-2 H \dot{H} &= \frac{8 \pi G}{3} \qty( V' \dot{\varphi} + \ddot{\varphi} \dot{\varphi} + \frac{1}{a^2} \underbrace{\partial_{i} \varphi \partial_{i} \dot{\varphi}}_{= -\dot{\varphi} \nabla^2 \varphi })  \\
+2 H \dot{H} &= \frac{8 \pi G}{3} \qty( V' \dot{\varphi} + \ddot{\varphi} \dot{\varphi})  \\
+% - \frac{1}{a^2} \underbrace{\partial_{i} \varphi \partial_{i} \dot{\varphi}}_{= -\dot{\varphi} \nabla^2 \varphi }
 &= \frac{8 \pi G}{3} \dot{\varphi} \qty(- 3 H \dot{\varphi}) \marginnote{Equation of motion.}  \\
 \dot{H} &= - 4 \pi G \dot{\varphi}^2
 \,,
 \end{align}
+%
+where we assumed homogeneity. The derivation seems not to work if we do not assume it. 
 \end{proof}
 
-\todo[inline]{To fix, something's not right.}
 
 Requiring \(\epsilon \ll 1\) can also be stated as asking that\footnote{A note on the dimensionality: the potential \(V\) has the dimensions of the Lagrangian: in natural units, \SI{}{m^{-4}}. The field \(\varphi \) has the dimensions of an inverse length (a mass), just like the Hubble rate.}
 %

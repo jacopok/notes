@@ -93,27 +93,36 @@ V(\varphi ) = V_0 \qty[1 - \qty(\frac{\varphi }{\mu })^{p } + \dots]
 \end{align}
 %
 where \(\varphi < \mu < M _{\text{Pl}}\), while \(p > 2\). 
-\todo[inline]{Possibly 1?}
+% \todo[inline]{Possibly 1?}
 
 The dots (higher order terms) are important for the end of inflation, not for most of it. 
-This potential has a plateau near \(\varphi = 0\).
-
-In this case, 
+This potential has a plateau near \(\varphi = 0\), and \(V(\varphi = 0) = V_0 \).
+In this region, 
 %
 \begin{align}
 \epsilon \sim \frac{1}{\pi G} \qty(\frac{V'}{V})^2
-\sim \frac{p^2}{\pi G} \frac{\varphi^{2 p }}{\varphi^2}  \qty[\dots]^{-2} 
-\sim \frac{p^2 \varphi^{2p} M _{\text{Pl}}^2}{\varphi^2} 
+\sim \frac{p^2}{\pi G} \frac{\varphi^{2p-2}}{\mu^{2p}} 
+\sim \frac{p^2 \varphi^{2p} M _{\text{Pl}}^2}{\varphi^2 \mu^{2p}} 
 \,,
 \end{align}
 %
-so \(\epsilon \to 0\) as \(\varphi \to 0\): these are called \emph{small-field models} of inflation, since we can have small \(\epsilon \) even with small \(\varphi \).
+so \(\epsilon \to 0\) as \(\varphi \to 0\) (the exponent of \(\varphi \) is \(2p -2 > 0\)): these are called \emph{small-field models} of inflation, since we can have small \(\epsilon \) even with small \(\varphi \).
 
 Why do we need the condition \(\varphi < \mu < M _{\text{Pl}}\)? 
 
 \begin{claim}
 In the case \(p = 2\) and in the case \(\mu > M _{\text{Pl}}\) this model becomes a \emph{large-field} one. 
 \end{claim}
+\begin{proof}
+In that case, the condition we must ask for \(\epsilon < 1\) is 
+%
+\begin{align}
+4 \frac{M _{\text{Pl}}^2 \varphi^2}{\mu^{4}} \ll 1
+\,,
+\end{align}
+%
+which can be satisfied by \(\varphi \gtrsim M _{\text{Pl}}\). 
+\end{proof}
 
 There is also a third category (high gravitation models), but it is mostly excluded by data. 
 
@@ -123,16 +132,17 @@ This interval corresponds to the \(\sim 60\) \(e\)-folds of inflation; inflation
 We can compute \(\Delta \varphi \) as 
 %
 \begin{align}
-\Delta  \phi = \int_{\varphi _{\text{CMB}}}^{\varphi _{\text{end}}} \dd{\varphi } = \int_{t _{\text{CMB}}}^{t _{\text{end}}} \dot{\varphi} \dd{t} \approx \frac{\dot{\varphi}}{H} \int_{H t _{\text{CMB}}}^{H t _{\text{end}}} \dd{(Ht)} = \frac{\dot{\varphi}}{H} 
+\Delta \varphi  = \int_{\varphi _{\text{CMB}}}^{\varphi _{\text{end}}} \dd{\varphi } = \int_{t _{\text{CMB}}}^{t _{\text{end}}} \dot{\varphi} \dd{t} \approx \frac{\dot{\varphi}}{H} \int_{H t _{\text{CMB}}}^{H t _{\text{end}}} \dd{(Ht)} = \frac{\dot{\varphi}}{H} 
 N _{\text{CMB}} \sim N _{\text{CMB}} \sqrt{\epsilon } M _{\text{Pl}}
 \,,
 \end{align}
 %
 where \(N _{\text{CMB}} \sim 60 \divisionsymbol 70\) is the number of \(e\)-folds in the sub-horizon part of inflation. 
+We used the fact that \(\ddot{\varphi}\) is negligible compared to \(\dot{\varphi} / H^{-1}\), so \(\dot{\varphi}\) can be taken to be constant; also, we used the first alternative expression for \(\epsilon \) in equation \eqref{eq:slow-roll-epsilon-alternative}. 
 
-If \(\epsilon \) is of the order of \(1 / N _{\text{CMB}}\), as happens in large-field models, we find \(\Delta \varphi \sim \sqrt{N _{\text{CMB}}} M _{\text{Pl}} \gtrsim M _{\text{Pl}}\).
+If \(\epsilon \) is of the order of \(1 / N _{\text{CMB}}\), as happens in large-field models, the excursion of the field becomes \(\Delta \varphi \sim \sqrt{N _{\text{CMB}}} M _{\text{Pl}} \gtrsim M _{\text{Pl}}\).
 
-\todo[inline]{Where does this \(\epsilon \sim 1/N\) come from? Seems like it might be equation 1.2.22}
+\todo[inline]{Where does this \(\epsilon \sim 1/N\) come from?}
 
 % GOT HERE
 
@@ -144,12 +154,12 @@ However, a large (transPlanckian) excursion of the scalar field can constitute a
 We have often taken a De Sitter or quasi-De Sitter phase of expansion, but this is not necessarily the case: recall that 
 %
 \begin{align}
-\ddot{a} = a H^2 \qty(1 + \frac{\dot{H}}{H^2})
+\ddot{a} = a H^2 \qty(1 + \frac{\dot{H}}{H^2}) = a H^2 \qty(1 - \epsilon )
 \,,
 \end{align}
 %
 so if \(\dot{H} = 0\) (which defines De Sitter expansion) we do indeed have accelerated expansion, but \(\dot{H} \neq 0 \) does not prevent it, as long as \(\abs{\dot{H}} < H^2\) for negative \(\dot{H}\), or even more easily with \(\dot{H} > 0\) (which corresponds to \(\ddot{a} > \dot{a}^2 / a  > 0\)). 
-\todo[inline]{Check}
+% \todo[inline]{Check}
 
 In our models we usually had 
 %
@@ -176,11 +186,12 @@ The De Sitter case is one we know.
 The case in which \(\dot{H} >0\) is realized with \(w < -1\); this goes like 
 %
 \begin{align}
-a(t ) \propto (t-t _{\text{asymptote}})^{\alpha } 
-\,,
+a(t ) \propto (t-t _{\text{asymptote}})^{-\alpha } 
+\,.
 \end{align}
 %
-with \(\alpha < 0\). This is called \emph{pole inflation}: it is \emph{superexponential}. 
+
+This is called \emph{pole inflation}: it is \emph{superexponential}. 
 
 In the simple models we are considering we always have \(\dot{H} < 0 \), so this is not relevant. 
 

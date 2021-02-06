@@ -1,0 +1,189 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Physics of compact objects in GR and beyond}
+
+\marginpar{Monday\\ 2021-2-1, \\ compiled \\ \today}
+
+Lecture by Gualtieri from Milan Bicocca.
+We will use geometrized units \(G = c = 1\) (note that this is not the same as the particle-physics \(c = \hbar = 1\)).
+
+References: Misner-Thorne-Wheeler, Weinberg, Poisson-Will (``Gravity''), Wald (``GR''), Chandrasekhar (``The mathematical theory of BH''), Ferrari-Gualtieri.
+
+The compactness in general is defined to be \(C = M / R\), and we ask that it is \(\lesssim 1\) in order to be discussing a compact object.
+The known compact objects are neutron stars (possibly quark stars) and black holes. 
+Exotic compact objects are also a possibility.
+
+Observables for black holes include: 
+\begin{enumerate}
+    \item Accretion disks: EM emission, mostly in the X-ray range;
+    \item BH shadow: EM emission;
+    \item motion of stars around supermassive BH;
+    \item BBH coalescence: GW emission, ground-based detection for small (\(5 \divisionsymbol 100 M_{\odot}\)) BHs, space-based detection for massive (\(\num{e6} \divisionsymbol \num{e7} M_{\odot}\)) BHs;
+    \item stochastic background.
+\end{enumerate}
+
+For NSs we have 
+\begin{enumerate}
+    \item accretion disks;
+    \item binary pulsars: EM emisssion (radio);
+    \item BNS coalescence with ground-based GW detectors;
+    \item pulsars as sources of continuous GWs.
+\end{enumerate}
+
+We consider a \textbf{stationary, isolated} body in GR. 
+``Isolated'' means that the spatial support of its stress-energy tensor \(T_{\mu \nu }\) is limited: it is inside a world-tube. 
+The spacetime will be \emph{asymptotically flat}: a rather informal definition is the existence of a coordinate \(r\) such that 
+%
+\begin{align}
+\lim_{r \to \infty } g_{\mu \nu } = \eta_{\mu \nu }
+\,.
+\end{align}
+
+If \(R\) is the scale of the support of the stress-energy tensor, then we know that \(r \gg R\) is the far-field region, in which the field is \emph{weak}: \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }\), with \(\abs{h_{\mu \nu }} \ll 1 \) and \(\abs{h_{\mu \nu , \rho } \ll 1/R}\).
+In general, we will expand in orders of \(1/R\). 
+
+It can be shown that it is always possible to write the far-field metric in the form 
+%
+\begin{align}
+\dd{s^2} = - \qty(1 - \frac{2M}{r}) \dd{t^2}
++ \qty(1 + \frac{2M}{r}) \dd{r^2} + r^2 \qty( \dd{\theta^2} + \sin^2 \theta \dd{\varphi^2}) - \frac{4 J }{r} \sin^2 \theta \dd{\theta } \dd{\varphi } + \order{ \qty( \frac{1}{r})^2}
+\,.
+\end{align}
+
+In the weak field limit we have, in terms of the trace-reversed \(\overline{h}_{\mu \nu } = h_{\mu \nu } - (1/2) \eta_{\mu \nu }\):
+%
+\begin{align}
+\square_b \overline{h}_{\mu \nu } = - 16 \pi G_{\mu \nu }
+\,,
+\end{align}
+%
+and we can calculate this trace-reversed metric perturbation by integrating:
+%
+\begin{align}
+\overline{h}_{\mu \nu } (x) = 4 \int_{V} \frac{T_{\mu \nu } (x') \dd[4]{x'}}{\abs{\vec{x} - \vec{x}'}}
+\,.
+\end{align}
+
+This integral can be approximated through the multipole expansion: 
+%
+\begin{align}
+\frac{1}{\abs{\vec{x} - \vec{x}'}} = \frac{1}{r} + \frac{\vec{x} \cdot \vec{x}^{\prime}}{r^2} + \order{r^{-3}}
+\,,
+\end{align}
+%
+so the metric perturbation will read 
+%
+\begin{align}
+\overline{h}_{\mu \nu } = \frac{4}{r} \int_{V} T_{\mu \nu } \dd[3]{x} 
++ \frac{4}{r^2} \vec{x} \cdot
+\int_{V} T_{\mu \nu } \vec{x}' \dd[3]{x} 
++ \dots
+\,,
+\end{align}
+%
+but this last term is just the angular momentum of the object.
+
+In the end one finds 
+%
+\begin{align}
+h_{00} &= \frac{2M}{r} + \order{r^{-3}}  \\
+h_{0i} &= \frac{2}{r^2} \epsilon_{ijk} x^{j} J^{k} + \order{r^{-3}}  \\
+h_{ij} &= \frac{2M}{r} \delta_{ij} + \order{r^{-3}}
+\,.
+\end{align}
+
+The metric is then the one we wrote as long as \(\vec{J} = (0, 0, J)\). 
+
+In the strong-field limit we cannot use Newtonian integrals, however we can write the equation \(\tensor{\overline{h}}{^{\mu }_{\nu , \mu} } = 0\). It turns out that the solution is the same, but \(M\) and \(J\) do not necessarily correspond to the mass and angular momentum. 
+
+We can define a stress-energy \emph{pseudotensor} such that 
+%
+\begin{align}
+(-g) \qty(T^{\mu \nu } + t^{\mu \nu }) = \frac{1}{16} \fdv{}{x^{\mu } } \fdv{}{x^{\nu }} \qty(g^{\mu \nu } g^{\nu \rho } - g^{\mu })
+\,,
+\end{align}
+%
+\todo[inline]{Fix equation, unreadable}
+
+The pseudo-momentum 
+%
+\begin{align}
+P^{\mu } = \int \dd[3]{x} (-g) \qty(T^{\mu \nu } + t^{\mu \nu })
+\,.
+\end{align}
+
+The expression for the pseudo-stress-energy tensor is a total divergence, so we can perform the integration on the boundary. We then find \(P^{0}= M\) and \(J = \epsilon_{ijk} \int \dd[3]{x} (-g) x^{i} \qty(T + t)\). 
+\todo[inline]{Still unintelligible.}
+
+We can measure the mass from Kepler's laws, seeing the stars orbiting around the object. 
+The angular momentum can be measured by looking at the precession of a gyroscope orbiting around the central body.
+
+The angular momentum is described by the intrinsic spin \(S^{\mu }\), which satisfies \(u^{\alpha } S_{\alpha } = 0\) and evolves according to the equation \(u^{\alpha } S^{\mu }_{; \alpha } = 0\): this means 
+%
+\begin{align}
+\dv{S^{i}}{\tau } = \epsilon_{ijk} \omega ^{j} S^{k}
+\,,
+\end{align}
+%
+where \(\omega^{k} = (1/2) \epsilon^{kij} h_{0i,j}\). 
+The expression depends on the metric perturbation: we have precession with angular velocity 
+%
+\begin{align}
+\vec{\omega} = \frac{1}{r} \qty(- \vec{J} + 3\frac{\vec{J} \cdot \vec{x}}{r^2} \vec{x})
+\,.
+\end{align}
+
+So far we have not measured the spin of a compact object in this manner, but we have managed to do it with the Earth.  
+
+The multipoles can be approximated as constant for a compact objects. 
+In Newtoninan gravity we have 
+%
+\begin{align}
+\nabla^2 \phi = 4 \pi \rho  
+\,,
+\end{align}
+%
+and we can write the field solution of this equation as 
+%
+\begin{align}
+\phi (\vec{x}) &= \sum_{\ell, m} \frac{1}{r^{\ell + 1}} \frac{4 \pi }{2 \ell + 1} I_{\ell m} Y_{\ell m} (\theta , \varphi )   \\
+&= \sum _{\ell = 0}^{\infty } \frac{1}{r^{\ell+1}} \frac{(2 \ell-1)!!}{\ell!} I^{<i_1 \dots i_\ell>} n^{<i_1} \dots n^{i_\ell>}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+I_{\ell m} (t) = \int \rho (t, \vec{x}) r^{\ell} Y_{\ell m} (\theta , \varphi ) \dd[3]{x}
+\,.
+\end{align}
+
+The angular parentheses mean symmetrization without trace: for example,
+%
+\begin{align}
+n^{<i} n^{j>} = n^{i} n^{j} - \frac{1}{3} \delta^{ij}
+\,.
+\end{align}
+
+These are the Symmetric Trace-Free moments.
+The quadrupole moment is just the \(\ell=2\) term in this expansion: 
+%
+\begin{align}
+Q^{ij} = I^{ij} = \int \rho (t, \vec{x}) \qty(x^{i} x^{j} - \frac{1}{3} \delta^{ij}) \dd[3]{x}
+\,.
+\end{align}
+
+These Newtonian results can be extended to GR: Thorne has shown that in Asymptotically Cartesian Mass-Centered coordinates the metric can be written in a form like 
+%
+\begin{align}
+g_{00} =-1 + \frac{2M}{r} + \sum _{\ell\geq2} \frac{1}{r^{\ell+1}}
+\qty(
+    2 \frac{(2 \ell-1)!!}{\ell!} M^{<i_1 \dots i_\ell} n^{<i_1} \dots n^{i_\ell} + \dots
+)
+\,.
+\end{align}
+
+We can define the mass multipole moments and the current multipole moments.
+
+\end{document}

@@ -22,12 +22,49 @@ We have
 \,.
 \end{align}
 
+\begin{claim}
+
 Integrating the conformal time definition (we need to also integrate by parts) we can find 
 %
 \begin{align}
 \tau = - \frac{1}{a H (1 - \epsilon )}
 \,.
 \end{align}
+\end{claim}
+\begin{proof}
+In this quasi-De-Sitter scenario the scale factor will be given, to first order, by 
+%
+\begin{align}
+a &= \exp(\int H \dd{t}) \approx \exp(\int H(t_i) + \dot{H}_i t \dd{t})  \\
+&\approx \exp(\int H(t_i) - \epsilon H^2(t_i) t \dd{t} ) = \exp(H_i t - \epsilon H_i^2 t^2 /2)
+\,,
+\end{align}
+%
+so the conformal time will read 
+%
+\begin{align}
+\tau &= \int \frac{ \dd{t}}{a} = \int \exp(- H_i t + \epsilon \frac{H_i^2t^2}{2}) \approx \eval{\tau }_{\epsilon =0} + \epsilon \eval{\dv{\tau }{\epsilon }}_{\epsilon = 0}
+\,.
+\end{align}
+
+The zeroth order term is just \(\tau^{(0)} = - 1/ aH\), while the derivative in the second term is 
+%
+\begin{align}
+\eval{\dv{\tau }{\epsilon }}_{\epsilon = 0} &= \eval{\dv{}{\epsilon } \int \exp(- H_i t + \epsilon \frac{H_i^2t^2}{2}) \dd{t}}_{\epsilon =0}   \\
+&= \frac{1}{H_i} \eval{\dv{}{\epsilon }}_{\epsilon = 0} \int \exp(-x + \epsilon \frac{x^2}{2}) \dd{x}  \\
+&= \frac{1}{H_i} \int \eval{\exp(- x + \epsilon \frac{x^2}{2})}_{\epsilon = 0 } \frac{x^2}{2} \dd{x}  \\
+&= \frac{1}{H_i} \int e^{-x} \frac{x^2}{2} \dd{x} 
+= - \frac{1}{H_i} \int e^{-x} x \dd{x} = \frac{1}{H_i} \int e^{-x} \dd{x} = - \frac{1}{a H_i}
+\,,
+\end{align}
+%
+therefore the approximation reads 
+%
+\begin{align}
+\tau \approx - \frac{1}{a H_i} \qty(1 + \epsilon ) \approx - \frac{1}{a H_i (1 - \epsilon )} 
+\,.
+\end{align}
+\end{proof}
 
 Using the facts that \(a'' / a = a^2 H^2 (2- \epsilon ) = (2 /\tau^2) (1 + (3/2) \epsilon )\) and \(\epsilon = 2 - a'' a / a^{\prime 2}\), which can be proven from the definition of \(H\) and \(\epsilon \), the equation becomes 
 %

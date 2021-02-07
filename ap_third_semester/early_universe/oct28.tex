@@ -1,6 +1,8 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Quasi De Sitter solutions}
+
 \marginpar{Wednesday\\ 2020-10-28, \\ compiled \\ \today}
 
 Today we will see how to explicitly solve the equation 
@@ -14,13 +16,16 @@ u''_k (\tau )
 %
 where \(\tau \) is the conformal time, while \(m^2 = \pdv*[2]{V}{\varphi }\). 
 The stage in which \(m^2 = 0\) is the quasi de-Sitter stage. 
-Then, \(\epsilon = - \dot{H} / H^2 \ll 1\). 
-We have 
+
+Now, we will not assume that \(H\) is constant, and instead we will consider the effect of a nonzero slow-roll parameter \(\epsilon = - \dot{H} / H^2 \ll 1\). 
+We will need the relation
 %
 \begin{align}
 \frac{\ddot{a}}{a} = H^2 ( 1- \epsilon )
-\,.
+\,,
 \end{align}
+%
+which can be proven by a straightforward manipulation.
 
 \begin{claim}
 
@@ -31,6 +36,7 @@ Integrating the conformal time definition (we need to also integrate by parts) w
 \,.
 \end{align}
 \end{claim}
+
 \begin{proof}
 In this quasi-De-Sitter scenario the scale factor will be given, to first order, by 
 %
@@ -66,7 +72,18 @@ therefore the approximation reads
 \end{align}
 \end{proof}
 
-Using the facts that \(a'' / a = a^2 H^2 (2- \epsilon ) = (2 /\tau^2) (1 + (3/2) \epsilon )\) and \(\epsilon = 2 - a'' a / a^{\prime 2}\), which can be proven from the definition of \(H\) and \(\epsilon \), the equation becomes 
+Using this, we find that to first order \((aH)^2 \approx (1 + 2 \epsilon ) / \tau^2\), therefore
+%
+\begin{align}
+\frac{a''}{a} = a^2 H^2 (2- \epsilon ) 
+=2 \frac{(1 + 2 \epsilon)}{\tau^2} \qty(1 - \frac{\epsilon}{2})
+\approx \frac{2}{\tau^2} \qty(1 + \frac{3}{2} \epsilon )
+\,.
+\end{align}
+
+Also, we have the expression \(\epsilon = 2 - a'' a / a^{\prime 2}\) --- all of these can be proven from the definition of \(H\) and \(\epsilon \).
+
+Substituting this for \(a'' /a\) the equation becomes 
 %
 \begin{align}
 u''_k(\tau ) + \qty[k^2 - \frac{\nu^2 - 1/4}{\tau^2}] u_k (\tau )= 0 
@@ -89,7 +106,7 @@ u_k (\tau ) = \sqrt{- \tau } \qty[ c_1 (k) H_\nu^{(1)} (-k\tau ) + c_2 (k) H_\nu
 \end{align}
 %
 where \(H^{(2)}_\nu = H^{(1), *}_\nu\). 
-We want to impose the asymptotic behaviour of the solution: let us start with the sub-horizon case \(k / aH \gg 1\). 
+We want to impose the asymptotic behavior of the solution: let us start with the sub-horizon case \(k / aH \gg 1\). 
 This means that 
 %
 \begin{align}
@@ -100,7 +117,7 @@ u_k (\tau ) = \frac{1}{\sqrt{2k}} e^{-ik \tau }
 and the asymptotics of the Hankel functions are
 %
 \begin{align}
-H^{(1)}_\nu  (x) \sim \sqrt{ \frac{2}{\pi x}} \exp(i (x - \frac{\pi}{2} \nu - \frac{\pi}{4}))
+H^{(1)}_\nu  (x) \sim \sqrt{ \frac{2}{\pi x}} \exp(i \qty(x - \frac{\pi}{2} \nu - \frac{\pi}{4})) \sim \frac{e^{ix}}{\sqrt{x}}
 \,
 \end{align}
 %
@@ -125,7 +142,7 @@ so in the \textbf{superhorizon} \(k /aH \ll 1\) (or \(-k \tau \ll 1\)) regime we
 %
 \begin{align}
 H^{(1)}_\nu (x) \sim \sqrt{ \frac{2}{\pi }} e^{- i \pi /2}
-2^{\nu - 3/2} \frac{\Gamma (\nu )}{\Gamma (3/2)} x^{-\nu }
+2^{\nu - 3/2} \frac{\Gamma (\nu )}{\Gamma (3/2)} x^{-\nu } \sim x^{-\nu }
 \,,
 \end{align}
 %
@@ -146,6 +163,7 @@ Inserting the expression we have for \(u_k\) yields
 \abs{ \delta \varphi _k} 
 &\approx 2^{\nu - 3/2} \frac{\Gamma (\nu )}{\Gamma (3/2)} \frac{H}{\sqrt{2 k^3}} \qty(\frac{k}{aH})^{3/2 - \nu }  \\
 &\approx \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{3/2 - \nu }
+\approx \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{-\epsilon }
 \marginnote{Expanded to first order in \(\epsilon \), so that \(3/2 - \nu \approx - \epsilon \).}
 \,,
 \end{align}

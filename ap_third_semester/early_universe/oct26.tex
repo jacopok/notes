@@ -183,7 +183,9 @@ which is called the \emph{Bunch-Davies vacuum choice}.
 % \todo[inline]{Note that \(aH \propto dH\)}
 In the denominator we only have \(k\) since \(k^2\gg m^2\) for the small scales we are considering, which allows us to approximate \(\sqrt{k^2 + m^2 } \approx k\). 
 
-What is the equation for \(u\)? Denoting derivatives with respect to conformal time \(\tau \) with a prime, it is 
+What is the equation for \(u\)? 
+\begin{claim}
+Denoting derivatives with respect to conformal time \(\tau \) with a prime, it is 
 %
 \begin{align}
 u''_k (\tau ) + \qty[k^2  - \frac{a''}{a} + a^2 \pdv[2]{V}{\varphi }] u_k (\tau ) = 0
@@ -191,6 +193,54 @@ u''_k (\tau ) + \qty[k^2  - \frac{a''}{a} + a^2 \pdv[2]{V}{\varphi }] u_k (\tau 
 \end{align}
 %
 which is associated to the rescaled variable \( \hat{ \delta \varphi} = a \delta \varphi \). 
+\end{claim}
+
+\begin{proof}
+We start by replacing derivatives with respect to \(t\) with conformal time derivatives. A single time derivative of the field becomes \(\dot{\varphi} = \varphi' / a\), while a second derivative becomes
+%
+\begin{align}
+\ddot{\varphi} = \dv{}{t} \qty(\frac{\varphi '}{a}) = \frac{1}{a} \qty(\frac{\varphi''}{a} - \frac{\varphi ' a'}{a^2}) = \frac{\varphi''}{a^2} - \underbrace{\frac{\varphi' a'}{a^3}}_{= \varphi ' H / a}
+\,.
+\end{align}
+
+With this expression we find that the equation for the full field becomes 
+%
+\begin{align}
+\varphi'' + 2 \frac{a'}{a} \varphi ' - \nabla^2 \varphi = - a^2 \pdv{V}{\varphi }
+\,.
+\end{align}
+
+Now, we substitute the perturbation \(\delta \varphi \) and expand the derivative of the potential around the vacuum: this yields 
+%
+\begin{align}
+\delta \varphi '' + 2 \frac{a'}{a} \varphi ' - \nabla^2 \varphi = - a^2 \pdv[2]{V}{\varphi } \delta \varphi 
+\,.
+\end{align}
+
+Now we can substitute in the rescaled field: \(\delta \varphi = \hat{\delta \varphi } / a\), whose conformal-time derivatives are 
+%
+\begin{align}
+\qty(\frac{ \hat{ \delta \varphi} }{a})' &= \frac{ \hat{\delta \varphi }'}{a} - \frac{\hat{\delta \varphi } a'}{a^2}  \\
+\qty(\frac{\hat{\delta \varphi }}{a})'' &= \frac{\hat{\delta \varphi }''}{a} - 2 \frac{\hat{\delta \varphi }' a'}{a^2} + 2 \frac{\hat{\delta \varphi }' (a')^2}{a^3} - \hat{\delta \varphi } \frac{a''}{a^2}
+\,.
+\end{align}
+
+If we substitute these in a few terms cancel, and we get 
+%
+\begin{align}
+\frac{\hat{\delta \varphi }''}{a} - \hat{\delta \varphi } \frac{a''}{a^2}
+- \nabla^2 \frac{\hat{\delta\varphi}}{a} = - a^2 \pdv[2]{V}{\varphi } \hat{\delta \varphi }
+\,,
+\end{align}
+%
+so that finally we can move to Fourier space, substitute \(\nabla^2= - k^2 \), multiply by \(a\) everything and get 
+%
+\begin{align}
+u_k'' + \qty(k^2 - \frac{a''}{a} + a^2 \pdv[2]{V}{\varphi }) u_k = 0 
+\,.
+\end{align}
+\end{proof}
+
 We can also see the reason why we have chosen to use the rescaled \(\delta \varphi \) instead of the regular one: what we have found with this ansatz is basically a harmonic oscillator with a time-dependent frequency, changing according to the accelerated expansion of the universe. 
 The ansatz yields a canonically-normalized kinetic term in the harmonic oscillator. 
 
@@ -265,7 +315,7 @@ u_k(\tau ) = \underbrace{B(k) a(\tau )}_{\text{growing mode}} + \underbrace{C(k)
 \end{align}
 
 We neglect the decaying mode, since even if it is excited it will quickly decay.
-The physical fluctuation \(\delta \varphi \) is proportional to \(u_k /a \sim B(k)\), therefore we can see that the ``growing mode'' is actually asymptotically constant on superhorizon scales. 
+The physical fluctuation \(\delta \varphi \) is proportional to \(u_k /a \sim B(k)\), therefore we can see that the ``growing mode'' is actually asymptotically constant on superhorizon scales --- \(B\) is \emph{not} a function of \(\tau \). 
 
 We then want to determine the scale of \(B(k)\). 
 
@@ -275,10 +325,10 @@ We need to match the subhorizon and superhorizon solutions, at the point \(k = a
 \abs{B(k)} a &= \abs{\frac{e^{-ik \tau }}{\sqrt{2 k}}}   \\
 \abs{ \delta \varphi _k} &= \abs{B(k)} = \frac{1}{a \sqrt{2k}} 
 = \frac{H}{\sqrt{2 k^3}}
-\,,
+\,.
 \end{align}
 %
-\todo[inline]{recover last bit}
+% \todo[inline]{recover last bit}
 
 The fluctuation gets ``frozen in'' at horizon crossing: 
 %
@@ -289,5 +339,15 @@ The fluctuation gets ``frozen in'' at horizon crossing:
 %
 This is called a \emph{gravitational amplification mechanism}.
 This is analogous to pair production from vacuum under a strong electrostatic field. The electric field separates the newly-formed electron-positron pair. 
+Similarly, the expansion separates the pairs of inflaton particles.
+ 
+Without proof, we will state the following result: the exact solution for the perturbation growth in De Sitter spacetime is 
+%
+\begin{align}
+u_k (\tau ) &= \frac{e^{ik \tau }}{\sqrt{2 k}} \qty(1 - \frac{i}{k \tau })
+\,.
+\end{align}
+%
+ 
 
 \end{document}

@@ -178,7 +178,7 @@ u_k (\tau ) \propto \sqrt{- \tau } H^{(1)}_{3/2} (- k \tau )
 \end{align}
 
 The next step is to generalize to a scalar field which is not massless anymore: we shall consider a mass \(m^2 = \pdv*[2]{V}{\varphi } \ll H^2\), so a ``light'' scalar field. 
-We require this because the slow-roll parameter is \(\eta _V = m^2 / (3 H^2) \ll 1\): a massive field (compared to \(H^2\)) would not be able to drive slow-roll inflation. 
+We require this because one of the slow-roll parameters is \(\eta _V = m^2 / (3 H^2) \ll 1\): a massive field (compared to \(H^2\)) would not be able to drive slow-roll inflation. 
 
 Then, the \(m^2 a^2\) term in the equation is nothing but 
 %
@@ -194,7 +194,7 @@ but we also know that
 \,,
 \end{align}
 %
-so we can still recast the equation into a Bessel form: only the coefficient of the \(\tau^{-2}\) term changes. 
+so we can still recast the equation into the same Bessel form: only the coefficient of the \(\tau^{-2}\) term changes.
 
 The equation will read 
 %
@@ -246,43 +246,51 @@ G_{\mu \nu } = 8 \pi G T_{\mu \nu }^{(\varphi )}
 %
 are perturbed with a variation in the field, \(\delta \varphi \), which perturbs the energy-momentum tensor \(\delta T_{\mu \nu }^{(\varphi )}\), which means that we must also perturb the Einstein tensor \(\delta G_{\mu \nu} \) and then finally the metric \(\delta g_{\mu \nu }\). 
 
-So, we find an equation 
-%
-\begin{align}
-u''_k (\tau ) + \qty[ k^2 - \frac{a''}{a} + M^2a^2] u_k (\tau ) = 0
-\,.
-\end{align}
-
-If we account for metric perturbations, we get 
-%
-\begin{align}
-\frac{M^2}{H^2} \approx 3 \eta _V - 6 \epsilon 
-\,.
-\end{align}
-
-Then, we get 
-%
-\begin{align}
-\nu^2 = \frac{9}{4} + 9 \epsilon - 3 \eta _V 
-\,.
-\end{align}
-
-Just like before we can calculate 
-%
-\begin{align}
-\abs{ \delta \varphi _k} = \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{3/2 - \nu }
-\,.
-\end{align}
-
-Then we find that in order to calculate \(\Delta u_k\) we can use the Sasaki-Mukanov equation:
+We can define the so-called Sasaki-Mukhanov variable \(Q_\varphi \) associated to \(\varphi \):
 %
 \begin{align}
 Q_\varphi = \delta \varphi + \frac{\varphi }{H} \hat{\Phi}
 \,,
 \end{align}
 %
-where \(\hat{\Phi} = \Phi + (1/6) \nabla^2 \chi^{\parallel}\), where \(\Phi \) and \(\chi^{\parallel}\) are scalar perturbations of \(g_{ij}\).
-\todo[inline]{What is \(Q\)?}
+where \(\hat{\Phi} = \Phi + (1/6) \nabla^2 \chi^{\parallel}\), where \(\Phi \) and \(\chi^{\parallel}\) are scalar perturbations of \(g_{ij}\): 
+%
+\begin{align}
+g_{ij} = a^2(\tau ) \qty[(1 - 2 \Phi ) \delta_{ij} + \chi_{ij}]
+\,.
+\end{align}
+
+The perturbation \(\chi^{\parallel}\) is given in terms of \(\chi_{ij}\) as we shall see in equation \eqref{eq:traceless-perturbation-decomposition}.
+The quantity \(\hat{\Phi}\) is gauge invariant.
+
+The variable \(\hat{Q}_\varphi  = Q_\varphi / a\) obeys an equation in the form 
+%
+\begin{align}
+\hat{Q}_\varphi '' + \qty[ k^2 - \frac{a''}{a} + M^2a^2] \hat{Q}_\varphi  = 0
+\,.
+\end{align}
+
+In this case we have 
+%
+\begin{align}
+\frac{M^2}{H^2} \approx 3 \eta _V - 6 \epsilon 
+\,,
+\end{align}
+%
+therefore the parameter of the Bessel equation reads
+%
+\begin{align}
+\nu^2 &= \frac{9}{4} + 9 \epsilon - 3 \eta _V  \\
+\frac{3}{2} - \nu  &\approx \eta _V - 3 \epsilon 
+\,.
+\end{align}
+
+We then have the most general expression for the field perturbation, accounting for the gravitational perturbation to first order as well:
+%
+\begin{align}
+\abs{ Q_\varphi} \approx \frac{H}{\sqrt{2 k^3}} \qty( \frac{k}{aH})^{3/2 - \nu }
+\,.
+\end{align}
 
 We want to show how primordial GW are generated from the inflaton perturbations.
 We consider a tensor-perturbed FLRW metric 

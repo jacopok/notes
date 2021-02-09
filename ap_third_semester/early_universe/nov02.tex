@@ -18,7 +18,7 @@ This would be a \emph{scale-invariant} power spectrum.
 In a quantum-mechanical formalism, we will calculate the power spectrum as 
 %
 \begin{align}
-\bra{0} \delta \varphi _{\vec{k}_1} \delta \varphi _{\vec{k}_2} \ket{0}
+\bra{0} \delta \varphi _{\vec{k}_1} \delta \varphi _{\vec{k}_2}^{*} \ket{0}
 \,,
 \end{align}
 %
@@ -41,11 +41,11 @@ while
 so 
 %
 \begin{align}
-\expval{ \delta \varphi _{\vec{k}_1} \delta \varphi _{\vec{k}_2}} = (2 \pi )^3 \abs{ \delta \varphi _{\vec{k}_1}}^2 \delta^3(\vec{k}_1 - \vec{k}_2)
+\expval{ \delta \varphi _{\vec{k}_1} \delta \varphi _{\vec{k}_2}^{*}} = (2 \pi )^3 \abs{ \delta \varphi _{\vec{k}_1}}^2 \delta^3(\vec{k}_1 - \vec{k}_2)
 \,,
 \end{align}
 %
-where \(\delta \varphi _{kl} = u_{kl} / a\). 
+where \(\delta \varphi _{k_1} = u_{k_1} / a\). 
 Therefore, the power spectrum is given by 
 %
 \begin{align}
@@ -118,7 +118,9 @@ The last equality in \eqref{eq:delta-N-definition} comes from the fact that
 so indeed 
 %
 \begin{align}
-H \frac{ \delta \rho _\varphi }{\dot{\rho}_\varphi } = \frac{- 3 H^2 \varphi  \delta \varphi }{-3 H \dot{\varphi}^2} = H \frac{ \delta \varphi }{\dot{\varphi}}
+H \frac{ \delta \rho _\varphi }{\dot{\rho}_\varphi } 
+= \frac{- 3 H^2 \dot{\varphi}  \delta \varphi }{-3 H \dot{\varphi}^2} 
+= H \frac{ \delta \varphi }{\dot{\varphi}}
 \,.
 \end{align}
 
@@ -144,8 +146,8 @@ What we will show is that on superhorizon scales \(\zeta\) remains constant (for
 Therefore, this keeps a sort of ``record'' of what happened after horizon crossing.
 
 Let us denote as \(t^{(1)}_H(k)\) the time of horizon crossing during inflation for perturbations with wavenumber \(k\), and \(t^{(2)}_H(k)\) the time \emph{after inflation} of the second horizon crossing, when the perturbation comes back inside the horizon.  
-The value of \(\zeta \) at these two times will be the same.
-\todo[inline]{This can be seen since\dots}
+The value of \(\zeta \) at these two times will be the same (again, as long as we are considering a single-field model of inflation).
+% \todo[inline]{This can be seen since\dots}
 
 We know that \(\delta \varphi \sim H / 2 \pi \) (statistically), and \(H^2 \approx 8 \pi G V(\varphi ) /3\): then, specifying the potential gives a prediction for the power spectrum. 
 
@@ -162,9 +164,8 @@ since
 \dot{\rho} = \dv{\rho }{a} \dot{a} = \frac{\rho}{a} \dv{\log \rho }{\log a} \dot{a} = \frac{\rho}{a} (-4) \dot{a} = - 4 \rho H
 \,.
 \end{align}
-%
 
-So, the dimensionless power spectrum is 
+On the other hand, at the first horizon crossing \(\zeta = \delta N = - (H / \dot{\varphi}) \delta \varphi \), therefore the dimensionless power spectrum at the second horizon crossing can be referred back to the first as 
 %
 \begin{align}
 \Delta_{ \delta \rho / \rho } (k)= 
@@ -176,11 +177,8 @@ and
 %
 \begin{align}
 \Delta_{ \delta \varphi } (k) = \qty( \frac{H}{ 2 \pi })^2 \qty(\frac{k}{aH})^{3-2 \nu }
-\,,
+\,.
 \end{align}
-%
-so 
 
-\todo[inline]{Recover a few minutes}
 
 \end{document}

@@ -1,4 +1,212 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2021-2-11, \\ compiled \\ \today}
+
+We have seen that there are two possibilities: either the accretion flow reaches the surface, or a shock forms.
+If we consider accretion onto a NS we must account for the fact that the \(B\) field shapes the trajectories of the particles, making it so they are not straight lines anymore. 
+
+The typical stopping length is \(y_0 \approx \rho \lambda _s \sim \SI{50}{g cm^{-2}}\) typically. 
+The magnetic field of a NS is typically strong enough to even curve the trajectories of protons, which become helixes. This means that \(\lambda _s\) decreases: the distance travelled between interactions is shorter, therefore \(y_0\) also decreases, becoming reaching \(30 \divisionsymbol \SI{40}{g cm^{-2}}\) typically. 
+
+The thing we want to calculate is the flux escaping the column: how much energy per unit area and unit time is escaping? This will dictate the luminosity. 
+
+The column depth is defined as 
+%
+\begin{align}
+y(z) = \int_{z}^{\infty } \rho (z' ) \dd{z'} \leq y_0 
+\,,
+\end{align}
+%
+where \(z\) is the vertical axis along the accretion column (which is parallel to the local normal to the surface). 
+
+Let us also define \(\Gamma _{\text{coul}}\), the heat released per unit time and volume by Coulomb collisions. We assume that this is uniform in the stopping region --- it does not depend on \(z\) --- and that it is zero elsewhere: if we are in a steady state, in which the heat introduced by \(\Gamma _{\text{coul}}\) is balanced by radiative losses (mostly due free-free emission and Compton scattering of electrons), then the following holds:
+%
+\begin{align}
+\Gamma _{\text{coul}} = \begin{cases}
+    \frac{L _{\text{acc}} \rho }{A y_0 } & y \leq y_0   \\
+    0 & y > y_0 
+\,.
+\end{cases}
+\end{align}
+
+We should also consider magnetic effects on the cross-section: the main one is a resonance at the cyclotron energy 
+%
+\begin{align}
+E_c = \hbar \frac{e B}{m} \approx \frac{B}{\SI{e12}{G}} \times \SI{11.6}{keV}
+\,.
+\end{align}
+
+It is a fact that the stopping layer the optical depth is quite large --- this is mostly due to electron scattering. 
+Therefore, we can use the diffusion approximation to relate the radiative flux to the radiative energy density \(U_{\text{rad}} = a T _{\text{rad}}^{4}\):\footnote{We are not actually assuming that the radiation is distributed as a blackbody: we are using the relation \(U _{\text{rad}} = aT _{\text{rad}}^{4}\) as a \emph{definition} for the parameter \(T _{\text{rad}}\), which is the equivalent temperature that a blackbody spectrum with the same energy density would be described by. }
+%
+\begin{align}
+F _{\text{rad}} = - \frac{c}{3} \dv{U _{\text{rad}}}{\tau }
+\,.
+\end{align}
+
+Since scattering dominates, the differential optical depth element is 
+%
+\begin{align}
+\dd{\tau } = \frac{\sigma _T}{m_p} \dd{y}
+\,.
+\end{align}
+
+In the diffusion equation we can write a simple expression for the radiative flux at a height \(y\) if we assume that it is equal to all the heat released by collisions up to that height:
+%
+\begin{align}
+F _{\text{rad}} (y) = \int_{y_0 }^{y} \Gamma _{\text{coul}} \dd{z} 
+= \frac{L _{\text{acc}} \rho }{A y_0 } \qty(y - y_0 )
+\,,
+\end{align}
+%
+from which we can integrate in order to calculate the energy density: expressing everything as a function of \(y\) we have
+%
+\begin{align}
+- \frac{c}{3} \dv{U _{\text{rad}}}{y } = \frac{\sigma _T}{m_p} \frac{L _{\text{acc}} \rho }{A y_0 } \qty(y - y_0 )
+\,.
+\end{align}
+
+The flux changes linearly, so the energy density will change quadratically. 
+Once we compute \(U _{\text{rad}}\) we can solve the energy equation --- Compton cooling depends on \(U _{\text{rad}}\) --- and calculate the electron temperature \(T_e\), which in general will be different from \(T _{\text{rad}}\). 
+
+In order to compute the pressure we make the assumption that the electrons form an ideal gas: then
+%
+\begin{align}
+P(y) = \frac{k_B \rho T_e}{\mu m_p} = 
+\begin{cases}
+    \frac{GM}{R^2} y + \frac{\rho_0 v^2}{y_0 } y & 0 < y \leq y_0  \\
+    \frac{GM}{R^2} y + \rho_0 v^2 & y > y_0 
+\,.
+\end{cases}
+\end{align}
+
+\subsection{Shocks}
+
+If the accretion rate is high enough (typically we need to require \(\dot{M} \gtrsim \SI{2e16}{g /s}\)) then protons are stopped above the photosphere and a shock forms. 
+The flow is cool and supersonic above the shock; hot and subsonic below the shock. 
+
+Let us start with a toy model for a 1D shock: we consider a fluid with a pressure \(P\), velocity \(v\) and density \(\rho \) moving in one dimension, along the \(x\) axis. We assume that at \(x = 0\) there is a shock; we label quantities pertaining to \(x < 0\) with a ``1'', and ones for \(x > 0\) with a ``2''. 
+The continuity equation tells us 
+%
+\begin{align}
+\dv{}{x} \qty(\rho v)
+= 0 \implies \rho_1 v_1 = \rho_2 v_2 
+\overset{\text{def}}{=} J
+\,.
+\end{align}
+
+The Euler equation tells us that 
+%
+\begin{align}
+\rho v \dv{v}{x} + \dv{P}{x} = f_x \implies \dv{}{x} \qty(P + \rho v^2) = f_x
+\marginnote{Using the continuity equation, \(\rho v \partial v = \partial (\rho v^2) -v \partial (\rho v) = \partial (\rho v^2)\).}
+\,,
+\end{align}
+%
+where \(f_x\) is the force per unit volume. 
+This equation can be integrated in a small region around the shock: \([- \dd{x}, \dd{x}]\). 
+In reality the shock is not infinitesimal, but it can be typically approximated as such since it is very small compared to other characteristic length scales. 
+The integral of \(f_x\) is of the order of \(2 f_x \dd{x}\), which is vanishingly small: therefore, we find 
+%
+\begin{align}
+P_1 + \rho_1 v_1^2 = P_2 + \rho_2 v_2^2 \overset{\text{def}}{=} I
+\,.
+\end{align}
+
+The energy equation, under the assumption that the shock be adiabatic (no heat is conduced across it)  reads 
+%
+\begin{align}
+\dv{}{x} \qty(v \qty(\frac{\rho v^2}{2} + \rho \epsilon + P)) = f_x v
+\,,
+\end{align}
+%
+which can be simplified if we consider an ideal monoatomic gas: with these assumptions we can use the equations \(\rho \epsilon = \frac{3}{2} n k_B T\) and \(P = n k_B T = \frac{2}{3} \rho \epsilon \), therefore the energy equation becomes 
+%
+\begin{align}
+\dv{}{x} \qty[ \rho v \qty( \frac{v^2}{2} + \frac{5}{2} \frac{P}{\rho } )] &= f_x v  \\
+\rho v \dv{}{x} \qty[ \frac{v^2}{2} + \frac{5}{2} \frac{P}{\rho }]&= f_x v 
+\marginnote{Continuity equation.}
+\,.
+\end{align}
+
+We integrate this across the shock as well: this yields 
+%
+\begin{align}
+\frac{1}{2} v_1^2 + \frac{5}{2} P_1 =
+\frac{1}{2} v_2^2 + \frac{5}{2} P_2
+\overset{\text{def}}{=} E 
+\,.
+\end{align}
+
+These three conservation equations for \(J\), \(I\) and \(E\) are known as the \textbf{Rankine-Hugoniot} equations. 
+
+Since the flow is adiabatic we have the relation \(P = K \rho^{\gamma }\): then, the adiabatic sound speed is given by 
+%
+\begin{align}
+c_s^2 = \eval{\dv{P}{\rho }}_{\text{adiabatic}} = \gamma K \rho^{\gamma -1} = \frac{5}{3} \frac{P}{\rho }
+\,.
+\end{align}
+
+We can get some interesting quantities in terms of the Rankine-Hugoniot invariants: the first is 
+%
+\begin{align}
+\frac{I}{Jv} = \frac{P}{\rho v^2} + 1 = \frac{3}{5 M^2} + 1 
+\,,
+\end{align}
+%
+where \(M = v / c_s\) is the Mach number of the flow. 
+
+Also, the energy invariant can be written as 
+%
+\begin{align}
+E &= \frac{v^2}{2} + \frac{5}{2} \qty(\frac{Iv}{J} - v^2)  \\
+v^2 - \frac{5I}{4J} v + \frac{E}{2} &= 0 
+\,.
+\end{align}
+
+The two roots of this equation, \(v_{1, 2}\), correspond to the flow speed up- and downstream of the shock.
+\todo[inline]{I believe this can be justified by saying that this might well not be the case and the up and downstream are both regulated by the same velocity, only then we would not have a shock but just a regular point in the flow.}
+
+The sum of the two roots of a quadratic equation \(\alpha v^2 + \beta v + \gamma = 0 \) is given by \(v_1 + v_2 = - \beta / 2 \alpha \), therefore 
+%
+\begin{align}
+v_1 + v_2 = \frac{5I}{4J}
+\,.
+\end{align}
+
+Dividing through by \(v_1 \) and using the relation for the Mach number we found before, we get 
+%
+\begin{align}
+1 + \frac{v_2}{v_1 } = \frac{5}{4} \frac{I}{J v_1 }
+= \frac{5}{4} \qty( \frac{3}{5 M_1^2}  + 1)
+\,.
+\end{align}
+
+If we suppose that \(x<0\) is a hypersonic region, so that \(M_1 \gg 1\), we can neglect the \(M_1^{-2}\) term and see that 
+%
+\begin{align}
+1 + \frac{v_2}{v_1 } \approx \frac{5}{4} \implies 4 v_2 = v_1 
+\,.
+\end{align}
+
+With the continuity equation and the energy equation we can see that this also means \(\rho_2 = 4 \rho_1 \) and \(P_2 = \frac{3}{4} \rho_1 v_1^2\). 
+The temperature in the shock region can be calculated from the ideal gas law: 
+%
+\begin{align}
+T_2 = \frac{\mu m_p P_2 }{k_B \rho_2 } = \frac{3}{16} \frac{\mu m_p}{k_B} v_1^2
+\,.
+\end{align}
+
+In the case of column accretion, typically the velocity will be of the order of the free-fall velocity: \(v_1 \sim \sqrt{ 2GM / R}\), and the temperature below the shock will then be of the order 
+%
+\begin{align}
+T_2 \sim \SI{4e11}{K} \times \qty( \frac{M}{M_{\odot}} ) \qty( \frac{R}{\SI{e6}{cm}})^{-1}
+\,.
+\end{align}
+
+An important fact to note is that the shock is collisionless, so the electron and proton temperatures are not equalized: because of this, in the previous expression we must replace \(m_p\) with \(m_e\) if we are looking for the electron temperature, and we find a value \(\sim 2000\) times smaller.
+
+We expect to see very hard radiation coming from the protons in the accretion region as long as this region is optically thin; if it is thick and radiation pressure dominates over gas pressure the picture changes: in the latter case the electron temperature is even lower than what this model provides, and the radiation becomes near-thermal. 
+
 \end{document}

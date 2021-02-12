@@ -15,6 +15,8 @@ For a white dwarf, the ratio is of the order of \num{e3}.
 We then need GR in order to deal with them. 
 Let us quickly go over exact solutions of the Einstein Field Equations.
 
+\section{The Schwarzschild external solution}
+
 This lecture, we consider the vacuum Schwarzschild solution.
 The most general line element which is spherically symmetric (invariant under spatial rotations) 
 must be made up of elements which are themselves invariant under spatial rotations. 
@@ -108,7 +110,7 @@ B' + \frac{B}{r} - \frac{1}{r} &= 0  \\
 \,,
 \end{align}
 %
-so \(r B(r) = r + C\), or equivalently 
+so \(r B(r) = r + C\) for some constant \(C\), or equivalently 
 %
 \begin{align}
 B (r) = \frac{C}{r} + 1
@@ -142,18 +144,19 @@ g_{00} = - \qty(1 - \frac{2 GM}{rc^2})
 
 The constant \(M\) in the classical case is the mass of the source, however we are computing a vacuum solution. This is the mass we would compute if we were to measure the orbits of objects around the compact object.
 
-\todo[inline]{This is then surely a \emph{gravitational} mass, is it also an \emph{inertial} mass? Can we show this in GR?}
+% \todo[inline]{This is then surely a \emph{gravitational} mass, is it also an \emph{inertial} mass? Can we show this in GR?}
 
 Then, we can write the Schwarzschild metric: 
 %
 \begin{align}
 \dd{s^2} = - \qty(1 - \frac{2GM}{c^2r}) \dd{t^2}
-+ \qty(1 - \frac{2GM}{rc^2}) \dd{r^2} + r^2 \dd{\Omega^2}
++ \qty(1 - \frac{2GM}{rc^2})^{-1} \dd{r^2} + r^2 \dd{\Omega^2}
 \,.
 \end{align}
 
 This is derived by assuming time-independence, however the result is the same even in the time-dependent case by the Jebsen-Birkhoff theorem (which we will prove in a moment). 
-The element \(g_{rr} \) diverges as \(r \to R_g = 2GM/c^2\), however this does not represent any physical divergence: the scalar \(R^{\mu \nu \rho \sigma } R_{\mu \nu \rho \sigma } \propto r^{-6}\) does not diverge there. 
+The element \(g_{rr} \) diverges as \(r \to R_g = 2GM/c^2\), however this does not represent any physical divergence: no component of the Riemann tensor \(R_{\mu \nu \rho \sigma }\) diverges there, while the Ricci tensor \(R_{\mu \nu }\) is identically zero by hypothesis.
+On the other hand, the origin is a true singularity, since the scalar \(R^{\mu \nu \rho \sigma } R_{\mu \nu \rho \sigma } \propto r^{-6}\) diverges there. 
 
 There are coordinates which do not diverge near the horizon: one classical choice employs the ``tortoise'' coordinates, which are the same for \(r\), \(\theta \), \(\varphi \) as the Schwarzschild ones, while the time becomes (setting \(G = c =  1\))
 %

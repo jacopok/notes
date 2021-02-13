@@ -161,10 +161,11 @@ On the other hand, the origin is a true singularity, since the scalar \(R^{\mu \
 There are coordinates which do not diverge near the horizon: one classical choice employs the ``tortoise'' coordinates, which are the same for \(r\), \(\theta \), \(\varphi \) as the Schwarzschild ones, while the time becomes (setting \(G = c =  1\))
 %
 \begin{align}
-t = t' - 2M \log \qty(1 - \frac{r'}{2M})
+t = t' - 2M \log \qty(1 - \frac{r}{2M})
 \,.
 \end{align}
 
+\begin{claim}
 Substituting this into the metric yields (dropping the primes for clarity):
 %
 \begin{align}
@@ -173,13 +174,47 @@ Substituting this into the metric yields (dropping the primes for clarity):
 + r^2 \dd{\Omega^2}
 \,.
 \end{align}
+\end{claim}
+
+\begin{proof}
+The new time differential after the change of coordinates reads 
+%
+\begin{align}
+\dd{t} &= \pdv{t}{t'} \dd{t'} + \pdv{t}{r} \dd{r}  \\
+&= \dd{t'} - 2M \frac{(-1/2M)}{1 - r/2M} \dd{r} = \dd{t}' + \frac{ \dd{r}}{1 - r / 2M}  \\
+\dd{t}^2 &= \dd{t}^{\prime 2} 
++2 \frac{ \dd{r} \dd{t'}}{1 - r/2M} 
++ \frac{ \dd{r^2}}{(1 - r / 2M)^2}
+\,,
+\end{align}
+%
+therefore the new metric reads (omitting the angular part for brevity):
+%
+\begin{align}
+\dd{s}^2 
+&= - \qty(1- \frac{2M}{r}) \dd{t}^2 + \frac{ \dd{r}^2}{1 - 2M / r}  \\
+&= - \qty(1- \frac{2M}{r}) \qty(\dd{t}^{\prime 2} 
++2 \frac{ \dd{r} \dd{t'}}{1 - r/2M} 
++ \frac{ \dd{r^2}}{(1 - r / 2M)^2}) + \frac{ \dd{r}^2}{1 - 2M / r}  \\
+&= - \qty(1 - \frac{2M}{r}) \dd{t^{\prime 2}} + \frac{4M}{r} \dd{r} \dd{t'} + \qty(1 + \frac{2M}{r}) \dd{r^2}
+\,,
+\end{align}
+%
+where we have used the following manipulations: setting \(x = 2M / r\), the coefficients of the \(\dd{r} \dd{t}'\) and \(\dd{r^2}\) terms are respectively
+%
+\begin{align}
+2\frac{1 - x}{1 - x^{-1}} &= -2x  \\
+-\frac{1 -x}{(1- x^{-1})^2} + \frac{1}{1-x} &= \frac{1}{1-x} \qty(-\qty(\frac{1-x}{1- x^{-1}})^2 + 1) =  \frac{1-x^2}{1-x} = 1+x
+\,.
+\end{align}
+\end{proof}
 
 There is no pathology at \(r = 2M\) anymore, so it was not a physical divergence. 
 The temporal coefficient \(g_{00} \) is the same: it can be shown that it is an invariant under coordinate transformations. 
 
 If we take two points which are very close along a particle trajectory, they must be separated by an interval \(\dd{s}^2 < 0\). 
 
-If we consider a (nongeodesic!) radial path described by \(r(t)\), we can compute the corresponding line element by neglecting the angular part: 
+If we consider a radial path (not necessarily geodesic) described by \(r(t)\), we can compute the corresponding line element by neglecting the angular part: 
 %
 \begin{align}
 \dd{s^2} &= - \qty(1 - \frac{2M}{r}) \dd{t}^2

@@ -1,0 +1,420 @@
+% This is the bit of LaTeX style information that DataCell.cc needs in
+% order to write notebooks out in standalone LaTeX form. It is very
+% similar to ../frontend/common/preamble.tex; keep them in sync.
+
+\documentclass[10pt]{article}
+\usepackage[scale=.8]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[fleqn]{amsmath}
+\usepackage{color}
+\usepackage{changepage}
+\usepackage[colorlinks=true, urlcolor=black, plainpages=false, pdfpagelabels]{hyperref}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+%\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\algorithm}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\property}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\algo}[1]{{\tt \detokenize{#1}}}
+\newcommand{\prop}[1]{{\tt \detokenize{#1}}}
+\renewcommand{\author}[1]{{\bfseries #1}}
+\newcommand{\email}[1]{, {\tt #1}}
+%\makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+%\ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Math expressions wrapped in \brwrap will get typeset with
+% round brackets around them, which have the appropriate size.
+% The expression itself can still be broken over multiple lines.
+
+\newcommand\brwrap[3]{%
+  \setbox0=\hbox{$#2$}
+  \left#1\vbox to \the\ht0{\hbox to 0pt{}}\right.\kern-.2em
+  \begingroup #2\endgroup\kern-.15em
+  \left.\vbox to \the\ht0{\hbox to 0pt{}}\right#3
+}
+
+\renewcommand{\arraystretch}{1.2}
+\tolerance=10000
+\relpenalty=10
+\binoppenalty=10
+\hyphenpenalty=10
+\raggedright
+
+\lstnewenvironment{python}[1][]{\lstset{language=python,
+   columns=fullflexible,
+   xleftmargin=1em,
+   belowskip=0pt,
+   tabsize=3,
+   commentstyle={}, % otherwise {#} cadabra arguments look ugly
+   breaklines=true,   
+   basicstyle=\small\ttfamily\color{blue},
+   keywordstyle={}
+}}{}
+  
+
+\everymath{\displaystyle}
+
+% Page numbers
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[LE,RO]{{\small\thepage}}
+\fancyfoot[LO,RE]{{\tiny\href{http://cadabra.science}{{\tt http://cadabra.science}}}}
+
+% \makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+% \ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Ensure that maths broken over multiple lines has a bit of spacing
+% between lines.
+\lineskiplimit=0mm
+\lineskip=1.5ex
+
+% Typesetting Young tableaux, originally in a separate style
+% file, now included to avoid path searching problems. 
+% Some internals for the typesetting macros below; nothing
+% user-servicable here; please read on.
+
+\def\@tabforc#1#2#3{\expandafter\tabf@rc\expandafter#1{#2 \^}{#3}}
+\def\tabf@@rc#1#2#3\tabf@@rc#4{\def#1{#2}#4\tabf@rc#1{#3}{#4}}
+\long\def\ReturnAfterFi#1\fi{\fi#1}
+    \def\tabf@rc#1#2#3{%
+      \def\temp@ty{#2}%
+      \ifx\@empty\temp@ty
+      \else
+        \ReturnAfterFi{%
+          \tabf@@rc#1#2\tabf@@rc{#3}%
+        }%
+      \fi
+    }%
+
+% Sorry, some global registers for sizes and keeping track of
+% measurements.
+    
+\newdimen\ytsize\ytsize=2mm
+\newdimen\ytfsize\ytfsize=4mm
+\newcount\repcnt
+\newdimen\acchspace
+\newdimen\accvspace
+\newdimen\raiseh
+\newdimen\maxw
+
+\newcommand\phrule[1]{\hbox{\vbox to0pt{\hrule height .2pt width#1\vss}}}
+
+% Typeset a Young tableau with filled boxes. Takes a single 
+% argument which is a string of symbols for each row,
+% separated by commas. Examples:
+%
+%   \ftableau{abc,de}
+%   \ftableau{ab{d_2},f{g_3}}
+
+\newcommand\ftableau[1]{%
+\def\ctest{,}
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\vbox{\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to
+		 0pt{\vrule height \ytfsize\hss}}}\kern\acchspace\kern-\maxw}
+ \else\ifx\thisel\ctest
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to 0pt{\vrule height \ytfsize\hss}}}%
+     \kern\acchspace\acchspace=0ex
+	  \advance\accvspace by -\ytfsize
+ \else
+     \setbox3=\hbox{$\thisel$}%
+	  \raiseh=\ytfsize%
+	  \advance\raiseh by -1ex%
+	  \divide\raiseh by 2%
+     \advance\acchspace by-\ytfsize%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hrule\hbox to%
+        \ytfsize{\vrule height \ytfsize\hskip.5ex%
+         \raisebox{\raiseh}{\tiny$\thisel$}\hss}\vss\phrule{\ytfsize}}}%
+ \fi\fi}}}}
+
+% Typeset a Young tableau with unlabelled boxes. Takes a single 
+% argument which is a string of numbers, one for the length of
+% each row of the tableau. Example:
+%
+%   \tableau{{10}{8}{3}}
+%
+% typesets a tableau with 10 boxes in the 1st row, 8 in the 2nd
+% and 3 in the 3rd. Curly brackets can be omitted if numbers
+% are less than 10.
+
+\newcommand\tableau[1]{%
+\def\stest{ }
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{}
+ \else
+     \repcnt=\thisel%
+     \loop{}%
+     \advance\acchspace by-\ytsize%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hrule \hbox to%
+			\ytsize{\vrule height \ytsize\hss}\vss\phrule{\ytsize}}}%
+     \advance\repcnt by -1\ifnum\repcnt>1{}\repeat%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hbox to 0pt{\vrule height \ytsize\hss}}}%
+     \kern\acchspace\acchspace=0ex%
+	  \advance\accvspace by -\ytsize%
+ \fi}\kern-\maxw}}
+ 
+\begin{document}
+\section*{The Tolman-Volkoff-Oppenheimer solution}
+
+
+\begin{python}
+{r,t,\phi,\theta}::Coordinate;
+{\mu,\nu,\sigma,\lambda,\kappa,\chi,\gamma,\xi}::Indices(values={t,r,\phi,\theta}, position=fixed);
+\partial{#}::PartialDerivative;
+g_{\mu\nu}::Metric.
+g^{\mu\nu}::InverseMetric.
+T_{\mu\nu}::Symmetric.
+{A, B, \rho, P}::Depends(r)
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Coordinate to~}\brwrap{[}{r,~ t,~ \phi,~ \theta}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Indices(position=fixed) to~}\brwrap{[}{\mu,~ \nu,~ \sigma,~ \lambda,~ \kappa,~ \chi,~ \gamma,~ \xi}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property PartialDerivative to~}\partial{\#}.$\end{adjustwidth}
+Below is the Schwarzschild metric in standard coordinates. Note how the components are
+given in terms of substitution rules, and how the inverse metric is computed. 
+The \algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric.
+\begin{python}
+ss:= { g_{t t} = -B,   
+       g_{r r} = A, 
+       g_{\theta\theta} = r**2, 
+       g_{\phi\phi}=r**2 \sin(\theta)**2
+     }.
+
+complete(ss, $g^{\mu\nu}$);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{g_{t t} = -B,~ g_{r r} = A,~ g_{\theta \theta} = {r}^{2},~ g_{\phi \phi} = {r}^{2} {\brwrap{(}{\sin{\theta}}{)}}^{2},~ g^{t t} = -{B}^{-1},~ g^{r r} = {A}^{-1},~ g^{\phi \phi} = {\brwrap{(}{{r}^{2} {\brwrap{(}{\sin{\theta}}{)}}^{2}}{)}}^{-1},~ g^{\theta \theta} = {r}^{-2}}{]}$\end{adjustwidth}
+We can now compute the Christoffel symbols. We give Cadabra the expression for the 
+Christoffel symbols in terms of the metric, and then evaluate the components of the
+metric using the \algo{evaluate} algorithm.
+\begin{python}
+ch:= \Gamma^{\mu}_{\nu\xi} = 1/2 g^{\mu\sigma} ( 
+                                   \partial_{\xi}{g_{\nu\sigma}} 
+                                  +\partial_{\nu}{g_{\xi\sigma}}
+                                  -\partial_{\sigma}{g_{\nu\xi}} ):
+                          
+evaluate(ch, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\Gamma^{\mu}\,_{\nu \xi} = \frac{1}{2}g^{\mu \sigma} \brwrap{(}{\partial_{\xi}{g_{\nu \sigma}}+\partial_{\nu}{g_{\xi \sigma}}-\partial_{\sigma}{g_{\nu \xi}}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\Gamma^{\mu}\,_{\nu \xi} = \square{}_{\nu}{}_{\xi}{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}_{\phi}{}_{r}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\theta}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{r}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{r}& = \frac{1}{2}\partial_{r}{A} {A}^{-1}\\[-.5ex]
+\square{}_{t}{}_{r}{}^{t}& = \frac{1}{2}\partial_{r}{B} {B}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\phi}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\phi}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\theta}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{t}{}^{t}& = \frac{1}{2}\partial_{r}{B} {B}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{r}& = -r {\brwrap{(}{\sin{\theta}}{)}}^{2} {A}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{\theta}& =  - \frac{1}{2}\sin\brwrap{(}{2\theta}{)}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{r}& = -r {A}^{-1}\\[-.5ex]
+\square{}_{t}{}_{t}{}^{r}& = \frac{1}{2}\partial_{r}{B} {A}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+1
+\begin{python}
+rm:= R^{\xi}_{\sigma\mu\nu} = \partial_{\mu}{\Gamma^{\xi}_{\nu\sigma}}
+                                  -\partial_{\nu}{\Gamma^{\xi}_{\mu\sigma}}
+                                  +\Gamma^{\xi}_{\mu\lambda} \Gamma^{\lambda}_{\nu\sigma}
+                                  -\Gamma^{\xi}_{\nu\lambda} \Gamma^{\lambda}_{\mu\sigma};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}R^{\xi}\,_{\sigma \mu \nu} = \partial_{\mu}{\Gamma^{\xi}\,_{\nu \sigma}}-\partial_{\nu}{\Gamma^{\xi}\,_{\mu \sigma}}+\Gamma^{\xi}\,_{\mu \lambda} \Gamma^{\lambda}\,_{\nu \sigma}-\Gamma^{\xi}\,_{\nu \lambda} \Gamma^{\lambda}\,_{\mu \sigma}$\end{adjustwidth}
+\begin{python}
+substitute(rm, ch)
+evaluate(rm, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}R^{\xi}\,_{\sigma \mu \nu} = \square{}_{\nu}{}_{\sigma}{}^{\xi}{}_{\mu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}_{t}{}^{r}{}_{r}& = \frac{1}{2}\partial_{r r}{B} {A}^{-1} - \frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {\brwrap{(}{A B}{)}}^{-1} - \frac{1}{4}\partial_{r}{A} \partial_{r}{B} {A}^{-2}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{r}{}_{r}& = \frac{1}{2}r \partial_{r}{A} {A}^{-2}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{\theta}{}_{\theta}& = \brwrap{(}{A-1}{)} {\brwrap{(}{\sin{\theta}}{)}}^{2} {A}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{r}{}_{r}& = \frac{1}{2}r {\brwrap{(}{\sin{\theta}}{)}}^{2} \partial_{r}{A} {A}^{-2}\\[-.5ex]
+\square{}_{t}{}_{r}{}^{t}{}_{r}& = \frac{1}{2}\partial_{r r}{B} {B}^{-1} - \frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {B}^{-2} - \frac{1}{4}\partial_{r}{A} \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\theta}{}^{\phi}{}_{\theta}& = -1+{A}^{-1}\\[-.5ex]
+\square{}_{r}{}_{t}{}^{r}{}_{t}& =  - \frac{1}{2}\partial_{r r}{B} {A}^{-1}+\frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {\brwrap{(}{A B}{)}}^{-1}+\frac{1}{4}\partial_{r}{A} \partial_{r}{B} {A}^{-2}\\[-.5ex]
+\square{}_{r}{}_{\theta}{}^{r}{}_{\theta}& =  - \frac{1}{2}r \partial_{r}{A} {A}^{-2}\\[-.5ex]
+\square{}_{\theta}{}_{\phi}{}^{\theta}{}_{\phi}& = \brwrap{(}{1-A}{)} {\brwrap{(}{\sin{\theta}}{)}}^{2} {A}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\phi}{}^{r}{}_{\phi}& =  - \frac{1}{2}r {\brwrap{(}{\sin{\theta}}{)}}^{2} \partial_{r}{A} {A}^{-2}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{t}{}_{t}& =  - \frac{1}{2}\partial_{r r}{B} {B}^{-1}+\frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {B}^{-2}+\frac{1}{4}\partial_{r}{A} \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{\theta}{}_{\theta}& = \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{\phi}{}_{\phi}& = 1-{A}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{\phi}{}_{\phi}& = \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{t}{}^{\phi}{}_{\phi}& = \frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{t}{}^{\theta}{}_{\theta}& = \frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{t}{}_{t}& =  - \frac{1}{2}r {\brwrap{(}{\sin{\theta}}{)}}^{2} \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{t}{}_{t}& =  - \frac{1}{2}r \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{r}{}^{\phi}{}_{r}& =  - \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{t}{}^{\phi}{}_{t}& =  - \frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{r}{}^{\theta}{}_{r}& =  - \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{t}{}^{\theta}{}_{t}& =  - \frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{\phi}{}^{t}{}_{\phi}& = \frac{1}{2}r {\brwrap{(}{\sin{\theta}}{)}}^{2} \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{\theta}{}^{t}{}_{\theta}& = \frac{1}{2}r \partial_{r}{B} {\brwrap{(}{A B}{)}}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+Let us compute the Einstein tensor.
+\begin{python}
+rc:= R_{\sigma\nu} = R^{\xi}_{\sigma\xi\nu};
+rs:= R = g^{\mu\nu} R_{\mu\nu};
+ein:= G_{\mu\nu} = R_{\mu\nu} -R g_{\mu\nu} / 2;
+einmix:=G_{\mu}^{\nu} -> G_{\mu \sigma} g^{\sigma \nu};
+
+substitute(rc, rm)
+substitute(rs, rc)
+substitute(ein, rc)
+substitute(ein, rs)
+substitute(einmix, ein+ss)
+evaluate(einmix, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}R_{\sigma \nu} = R^{\xi}\,_{\sigma \xi \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}R = g^{\mu \nu} R_{\mu \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}G_{\mu \nu} = R_{\mu \nu} - \frac{1}{2}R g_{\mu \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}G_{\mu}\,^{\nu} \rightarrow G_{\mu \sigma} g^{\sigma \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}G_{\mu}\,^{\nu} \rightarrow \square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = \brwrap{(}{-r \partial_{r}{A}-{A}^{2}+A}{)} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = \frac{1}{4}\brwrap{(}{-r A {\brwrap{(}{\partial_{r}{B}}{)}}^{2}-r B \partial_{r}{A} \partial_{r}{B}+2\brwrap{(}{r \partial_{r r}{B}+\partial_{r}{B}}{)} A B-2{B}^{2} \partial_{r}{A}}{)} {\brwrap{(}{r {A}^{2} {B}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = \frac{1}{2}\partial_{r r}{B} {\brwrap{(}{A B}{)}}^{-1} - \frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {\brwrap{(}{A {B}^{2}}{)}}^{-1} - \frac{1}{4}\partial_{r}{A} \partial_{r}{B} {\brwrap{(}{{A}^{2} B}{)}}^{-1}+\frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A B}{)}}^{-1} - \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}^{r}& = \brwrap{(}{r \partial_{r}{B}-\brwrap{(}{A-1}{)} B}{)} {\brwrap{(}{{r}^{2} A B}{)}}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+Let us write out the stress-energy tensor.
+\begin{python}
+u:= [
+    u^t = B**(-1/2),
+    u^r = 0,
+    u^\theta = 0,
+    u^\phi = 0
+];
+
+T := T^{\mu\nu} = (\rho + P)u^{\mu}u^{\nu} + P g^{\mu\nu};
+Tmix := T_{\mu}^{\nu} = g_{\mu \xi} T^{\xi \nu} ;
+
+substitute(Tmix, T+ss+u);
+evaluate(Tmix, T+ss+u, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{u^{t} = {B}^{ - \frac{1}{2}},~ u^{r} = 0,~ u^{\theta} = 0,~ u^{\phi} = 0}{]}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T^{\mu \nu} = \brwrap{(}{\rho+P}{)} u^{\mu} u^{\nu}+P g^{\mu \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T_{\mu}\,^{\nu} = g_{\mu \xi} T^{\xi \nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T_{\mu}\,^{\nu} = g_{\mu \xi} \brwrap{(}{\brwrap{(}{\rho+P}{)} u^{\xi} u^{\nu}+P g^{\xi \nu}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T_{\mu}\,^{\nu} = \square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = -\rho\\[-.5ex]
+\square{}_{r}{}^{r}& = P\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = P\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = P\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+\begin{python}
+eineq := G_{\mu}^{\nu} = 8 * \pi * T_{\mu}^{\nu};
+substitute(eineq, einmix+ss+T+Tmix);
+evaluate(eineq);
+
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}G_{\mu}\,^{\nu} = 8\pi T_{\mu}\,^{\nu}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = \brwrap{(}{-r \partial_{r}{A}-{A}^{2}+A}{)} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = \frac{1}{4}\brwrap{(}{-r A {\brwrap{(}{\partial_{r}{B}}{)}}^{2}-r B \partial_{r}{A} \partial_{r}{B}+2\brwrap{(}{r \partial_{r r}{B}+\partial_{r}{B}}{)} A B-2{B}^{2} \partial_{r}{A}}{)} {\brwrap{(}{r {A}^{2} {B}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = \frac{1}{2}\partial_{r r}{B} {\brwrap{(}{A B}{)}}^{-1} - \frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {\brwrap{(}{A {B}^{2}}{)}}^{-1} - \frac{1}{4}\partial_{r}{A} \partial_{r}{B} {\brwrap{(}{{A}^{2} B}{)}}^{-1}+\frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A B}{)}}^{-1} - \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}^{r}& = \brwrap{(}{r \partial_{r}{B}-\brwrap{(}{A-1}{)} B}{)} {\brwrap{(}{{r}^{2} A B}{)}}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+ = 8\pi \square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = -\rho\\[-.5ex]
+\square{}_{r}{}^{r}& = P\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = P\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = P\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = \brwrap{(}{-r \partial_{r}{A}-{A}^{2}+A}{)} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = \frac{1}{4}\brwrap{(}{-r A {\brwrap{(}{\partial_{r}{B}}{)}}^{2}-r B \partial_{r}{A} \partial_{r}{B}+2\brwrap{(}{r \partial_{r r}{B}+\partial_{r}{B}}{)} A B-2{B}^{2} \partial_{r}{A}}{)} {\brwrap{(}{r {A}^{2} {B}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = \frac{1}{2}\partial_{r r}{B} {\brwrap{(}{A B}{)}}^{-1} - \frac{1}{4}{\brwrap{(}{\partial_{r}{B}}{)}}^{2} {\brwrap{(}{A {B}^{2}}{)}}^{-1} - \frac{1}{4}\partial_{r}{A} \partial_{r}{B} {\brwrap{(}{{A}^{2} B}{)}}^{-1}+\frac{1}{2}\partial_{r}{B} {\brwrap{(}{r A B}{)}}^{-1} - \frac{1}{2}\partial_{r}{A} {\brwrap{(}{r {A}^{2}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}^{r}& = \brwrap{(}{r \partial_{r}{B}-\brwrap{(}{A-1}{)} B}{)} {\brwrap{(}{{r}^{2} A B}{)}}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+ = \square{}_{\mu}{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}^{t}& = -8\pi \rho\\[-.5ex]
+\square{}_{r}{}^{r}& = 8\pi P\\[-.5ex]
+\square{}_{\theta}{}^{\theta}& = 8\pi P\\[-.5ex]
+\square{}_{\phi}{}^{\phi}& = 8\pi P\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+1
+You could have computed the Riemann tensor in a different way, first expanding it fully in terms of the metric tensor, 
+and then substituting the components. This is a bit more wasteful on resources, but of course gives the same result:
+\begin{python}
+import cdb.core.manip as manip
+import cdb.core.component as comp
+
+ex0 = comp.get_component(eineq, $t, t$);
+ex1 = comp.get_component(eineq, $r, r$);
+ex2 = comp.get_component(eineq, $\theta, \theta$);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{-r \partial_{r}{A}-{A}^{2}+A}{)} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1} = -8\pi \rho$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{r \partial_{r}{B}-\brwrap{(}{A-1}{)} B}{)} {\brwrap{(}{{r}^{2} A B}{)}}^{-1} = 8\pi P$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{4}\brwrap{(}{-r A {\brwrap{(}{\partial_{r}{B}}{)}}^{2}-r B \partial_{r}{A} \partial_{r}{B}+2\brwrap{(}{r \partial_{r r}{B}+\partial_{r}{B}}{)} A B-2{B}^{2} \partial_{r}{A}}{)} {\brwrap{(}{r {A}^{2} {B}^{2}}{)}}^{-1} = 8\pi P$\end{adjustwidth}
+\begin{python}
+#print(repr(ex0))
+#manip.isolate(ex0, $\partial_{r} A?$);
+distribute(ex0);
+map_sympy(_, "cancel"); 
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}-r \partial_{r}{A} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1}-{A}^{2} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1}+A {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1} = -8\pi \rho$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}-\brwrap{(}{r \partial_{r}{A}+{A}^{2}-A}{)} {\brwrap{(}{{r}^{2} {A}^{2}}{)}}^{-1} = -8\pi \rho$\end{adjustwidth}
+\begin{python}
+manip.multiply_through(ex1, $r^2 A B$);
+sort_product(_);
+canonicalise(_);
+map_sympy(_, "cancel"); 
+map_sympy(_, "cancel"); 
+simplify(_);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}r^{2} A B \brwrap{(}{r \partial_{r}{B}-\brwrap{(}{A-1}{)} B}{)} {\brwrap{(}{{r}^{2} A B}{)}}^{-1} = 8r^{2} A B \pi P$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}A B {\brwrap{(}{A B {r}^{2}}{)}}^{-1} \brwrap{(}{\partial_{r}{B} r-B \brwrap{(}{A-1}{)}}{)} r^{2} = 8A B P \pi r^{2}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}A B {\brwrap{(}{A B {r}^{2}}{)}}^{-1} \brwrap{(}{\partial_{r}{B} r-B \brwrap{(}{A-1}{)}}{)} r^{2} = 8A B P \pi r^{2}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{r \partial_{r}{B}-A B+B}{)} {r}^{-2} r^{2} = 8\pi A B P r^{2}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{r \partial_{r}{B}-A B+B}{)} {r}^{-2} r^{2} = 8\pi A B P r^{2}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{r \partial_{r}{B}-A B+B}{)} {r}^{-2} r^{2} = 8\pi A B P r^{2}$\end{adjustwidth}
+\begin{python}
+ex := r^1 (r)^{-1};
+simplify(ex);
+expand(ex);
+substitute(ex, $(r)^{-1} -> 1/r$);
+factor_in(ex, $r$);
+map_sympy(_, "cancel"); 
+map_sympy(_, "factor"); 
+map_sympy(_, "powsimp");
+map_sympy(_, "expand");
+simplify(_);
+substitute(ex,  $r*r ^{-1} -> 1$);
+sort_product(_);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} \brwrap{(}{r}{)}\,^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} \brwrap{(}{r}{)}\,^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} \brwrap{(}{r}{)}\,^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}r^{1} {r}^{-1}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}{r}^{-1} r^{1}$\end{adjustwidth}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\end{document}

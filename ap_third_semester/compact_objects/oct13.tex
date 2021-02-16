@@ -33,7 +33,7 @@ In the no-extrema case there are no orbits. The limiting case \(\Gamma = - 1/9\)
 This happens at \(x = 3\). 
 This is the ISCO: the Innermost Stable Circular Orbit.
 
-The corresponding energy is given by \(\epsilon^2 - 1 = - 1/9\): \(\epsilon = 2 \sqrt{2}  /3\), so 
+The corresponding energy is given by \(\epsilon^2 - 1 = - 1/9\): \(\epsilon = \sqrt{8/9} =  2 \sqrt{2}  /3\), so 
 %
 \begin{align}
 E _{\text{ISCO}} = \frac{2 \sqrt{2}}{3} mc^2
@@ -95,19 +95,20 @@ Let us also skip the computations: the Einstein tensor reads
 %
 \begin{align}
 G^{0}_{0} &= \frac{1}{A} \qty( \frac{1}{r^2} - \frac{A'}{rA}) - \frac{1}{r^2} = - 8 \pi \rho   \\
-G^{1}_{1} &= \frac{1}{A} \qty( \frac{1}{r^2} + \frac{B'}{rB}) - \frac{1}{r^2} = 8 \pi  P  \\
+G^{1}_{1} &= \frac{1}{A} \qty( \frac{1}{r^2} - \frac{B'}{rB}) - \frac{1}{r^2} = 8 \pi  P  \\
 G^{2}_{2} = G^{3}_{3}  &= - \frac{1}{2A} \qty[\frac{A'B'}{2AB} + \qty(\frac{B'}{B})^2 - \frac{B'}{Br^2} + \frac{A'}{r^2A} - \frac{B''}{2B}] = 8 \pi P
 \,.
 \end{align}
 
-We need to solve for \(\rho \), \(P\), \(A\) and \(B\): the equations of motion of the particles, \(\nabla_{i} T^{ij} = 0\), are a consequence of the Einstein equations. 
+We need to solve for \(\rho \), \(P\), \(A\) and \(B\): the equations of motion of the particles, \(\nabla_{i} T^{ij} = 0\), will be automatically satisfied as a consequence of the Einstein equations. 
 
 We have three equations for four variables: we need an additional one, typically we combine them with an \emph{equation of state} for \(P\): a simple case, a \emph{barotropic EOS}, is in the form \(P = P(\rho )\).
 
 The first equation can be written as 
 %
 \begin{align}
-\frac{1}{A} - \frac{r A'}{A^2} = 1 - 8 \pi r^2 \rho 
+\frac{1}{A} - \frac{r A'}{A^2} &= 1 - 8 \pi r^2 \rho  \\
+\dv{}{r} \qty( \frac{r}{A}) &= 1 - 8 \pi r^2 \rho 
 \,,
 \end{align}
 %
@@ -121,7 +122,7 @@ which we can integrate to find
 We introduce the quantity 
 %
 \begin{align}
-m(r) = \int_{0}^{r} 4 \pi r^2 \rho \dd{r}
+m(r) = \int_{0}^{r} 4 \pi \widetilde{r}^2 \rho \dd{\widetilde{r}}
 \,,
 \end{align}
 %
@@ -132,7 +133,7 @@ A(r) = \qty(1 - \frac{2 m(r)}{r})^{-1}
 \,.
 \end{align}
 
-The problem is that \(m(r)\) is \emph{not} the total mass-energy enclosed in the region below \(r\): we are not integrating with respect to a covariant volume form.
+It is important to state that \(m(r)\) is \emph{not} the total mass-energy enclosed in the region below \(r\): we are not integrating with respect to a covariant volume form.
 
 With the second two equations, we end up with 
 %
@@ -198,6 +199,7 @@ M - M_* &\approx \int_{0}^{R} 4 \pi r^2 \rho \qty(1 - 1 - \frac{2m}{r}) \dd{r}  
 So, in the weak field limit, the mass defect is given by the gravitational potential energy! 
 This is a physical consequence of the \emph{nonlinearity} of the EFE. 
 
-The electromagnetic field behaves linearly at low energies, while in QED we can see nonlinearities.
+% The electromagnetic field behaves linearly at low energies, while in QED we can see nonlinearities.
+The mass \(M\) is the one which would be measured by an outside observer through gravitational effects (since it appears in the expression for \(A = B^{-1}\) in the exterior region \(r > R\)); it is written as \(M = M_* + E_b < M_*\), with \(M_*\) being the ``true'' matter content of the interior. 
 
 \end{document}

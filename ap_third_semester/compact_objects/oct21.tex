@@ -3,19 +3,6 @@
 
 \marginpar{Wednesday\\ 2020-10-21, \\ compiled \\ \today}
 
-About the differences between the Kerr spacetime and the spacetime outside a rotating star: the spacetime outside a rotating body is indeed \emph{not} Kerr. 
-
-Kerr is Petrov type D, which means nonradiative: we would need to compute the Weyl invariants of the metric. 
-If we do the calculation, we find that the quadrupole moment of Kerr is \(Q = J / M\). 
-If we compute the invariant telling us whether a spacetime is radiative or not, we find that it is nonradiative iff \(Q = J / M\). 
-The Hartle-Thorne approximation allows us to work up to a certain value of \(\Omega / \Omega _k\), close to the mass shedding limit.
-
-The thing we find is that in general for a star the quadrupole is \(Q \neq Q _{\text{Kerr}}\), however for small values of the rotation the spacetimes converge. 
-
-A reference for this: \textcite{bertiRotatingNeutronStars2005}. 
-
-To leading order, deviations from type-D are driven by deviations of \(Q \) from \(Q _{\text{Kerr}}\). 
-
 Back to what we were saying: we have an explicit expression for the pressure of a degenerate electron gas. 
 
 Let us consider the ultrarelativistic limit first, \(x_F \gg 1\): 
@@ -116,7 +103,7 @@ What are the boundary conditions we need to set? If we assume that \(\rho (r=0) 
 
 We also need to set \(\dv*{P}{r} = 0\) at \(r = 0\), which also means that \(\dv*{\phi }{\xi } =0 \) there as well. 
 
-\todo[inline]{Is that not achieved through an argument of differentiability?}
+% \todo[inline]{Is that not achieved through an argument of differentiability?}
 
 After prescribing these conditions, we can solve the equation: the solution will depend on \(n\). 
 We have analytical solutions for \(n = 0, 1, 5\) (note that however \(n\) is not necessarily an integer). 
@@ -169,13 +156,15 @@ R = a \xi_1 \propto \lambda^{- \frac{1}{2} + \frac{2}{n}}
 
 The polytropic index for a nonrelativistic gas is given by \(1 + 1/n = 5/3\), meaning \(n = 3/2\); for an ultrarelativistic gas we have \(1 + 1/n = 4/3\), meaning \(n = 3\). 
 
-Then, we want to find solutions with varying \(\rho _c\): let us start with relatively-small central densities, \(\rho _c < \SI{e6}{g / cm^3}\), and with the star being supported by electron degeneracy pressure, in the nonrelativistic case.
+In general, for a polytropic index \(\gamma \) the number \(n\) is given by \(n = (\gamma - 1)^{-1}\).
+
+Then, we want to find solutions with varying \(\rho _c\): let us start with relatively-small central densities, \(\rho _c < \SI{e6}{g / cm^3}\), and with the star being supported by electron degeneracy pressure, in the \textbf{nonrelativistic} case.
 Then, we increase the central density. 
 
 In this case we have \(M \propto \rho _c^{1/2}\). Increasing the central density increases the mass, in a polynomial fashion. 
 On the other hand, \(R \propto \rho _c^{- 1/6}\). The radius decreases as we increase the central density. 
 
-Increasing \(\rho _c\), sooner or later we move towards the relativistic region of the equation of state: then, we need to change \(n\) from \(3/2\) to \(3\): this means \(M \propto \rho _c^{0} = \const\) and \(R \propto \rho _c^{- 1/3}\). \(M \propto \rho _c^{0}\) means, qualitatively,  that ``\(\rho _c \propto M^{\infty }\)'': the central density is extremely dependent on the mass, and it will diverge with an asymptote. 
+Increasing \(\rho _c\), sooner or later we move towards the \textbf{relativistic} region of the equation of state: then, we need to change \(n\) from \(3/2\) to \(3\): this means \(M \propto \rho _c^{0} = \const\) and \(R \propto \rho _c^{- 1/3}\). \(M \propto \rho _c^{0}\) means, qualitatively,  that ``\(\rho _c \propto M^{\infty }\)'': the central density is extremely dependent on the mass, and it will diverge with an asymptote, while the radius decreases. 
 Then, we cannot go beyond this threshold, which we can compute using the first zero of the Lane-Emden equation: 
 %
 \begin{align}
@@ -183,8 +172,8 @@ M _{\text{Ch}} &= - 4 \pi \qty[\frac{K (n+1) \rho _c^{-1 + 1/n}}{4 \pi G}]^{3/2}
 \,,
 \end{align}
 %
-which we can evaluate with the correct numbers for the constants \(M _{\text{Ch}} = \num{5.81} / \mu _e^2 M_{\odot} \approx \num{1.44} M_{\odot}\) in the case of a pure Helium composition. 
+which we can evaluate with the correct numbers for the constants \(M _{\text{Ch}} = \num{5.81} / \mu _e^2 M_{\odot} \approx \num{1.44} M_{\odot}\) in the case of \(\mu _e \approx 2\), which is a good approximation for the cores of massive stars, which have endured several nuclear burning phases: for example, \ce{^{56}Fe} has 26 protons and 30 neutrons, so we can approximate \(n_n \approx n_p = n_e\), therefore \(n_e \approx n_b /2\).
 
-\todo[inline]{So we need to be careful when applying this to the iron cores of supernovae!}
+% \todo[inline]{So we need to be careful when applying this to the iron cores of supernovae!}
 
 \end{document}

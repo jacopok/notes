@@ -1,0 +1,332 @@
+{
+	"cell_id" : 5776572582295246657,
+	"cells" : 
+	[
+		{
+			"cell_id" : 16842646403501798165,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : "def post_process(ex):\n\tsort_product(ex)\n\tcanonicalise(ex)\n\tcollect_terms(ex)"
+		},
+		{
+			"cell_id" : 6419057556376442380,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 14146222375054138025,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Coordinate to~}x.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 17909568003840936416,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Indices(position=independent) to~}\\left[a,~ b,~ c,~ d,~ i,~ j,~ k,~ l\\right].\\end{dmath*}"
+				},
+				{
+					"cell_id" : 16805412316521772214,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Derivative to~}\\partial{\\#}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 8192167759044809887,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Depends to~}\\phi.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 743789967447944475,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Depends to~}\\omega.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15047708181311299497,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Depends to~}r.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11097958522880700867,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property KroneckerDelta to~}\\delta_{i j}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 5285257084499091472,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property EpsilonTensor to~}\\epsilon_{i j k}.\\end{dmath*}"
+				}
+			],
+			"source" : "{x}::Coordinate;\n{a, b, c, d, i, j, k, l}::Indices(position=independent);\n\\partial{#}::Derivative;\n\\phi::Depends(x);\n\\omega::Depends(x);\nr::Depends(x);\n\\delta_{i j}::KroneckerDelta;\n\\epsilon_{i j k}::EpsilonTensor;"
+		},
+		{
+			"cell_id" : 6027321033557394473,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 3937306713352144515,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 13174388579335900061,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\partial_{i}(r_{j}) = \\delta_{i j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\partial_{i}{r_{j}} = \\delta_{i j}\\end{dmath*}"
+				}
+			],
+			"source" : "pos_vec:= \\partial_{i}{r_{j}} = \\delta_{i j};"
+		},
+		{
+			"cell_id" : 17606992170104194143,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 2671342959197529782,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 8650779599290042191,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\phi =  -  1/2 \\epsilon_{a b i} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{i} r_{k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\phi =  - \\frac{1}{2}\\epsilon_{a b i} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{i} r_{k}\\end{dmath*}"
+				}
+			],
+			"source" : "pot := \\phi =-1/2 (\\omega_i r_j \\epsilon_{i j k} \\omega_a r_b \\epsilon_{a  b k} );"
+		},
+		{
+			"cell_id" : 5211112194519043749,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 17957631165841593662,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 630231854914447700,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "F_{i} = \\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}F_{i} = \\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}\\end{dmath*}"
+				}
+			],
+			"source" : "force := F_i = - \\epsilon_{i j k} \\omega_j ( \\epsilon_{a b k} \\omega_a r_b);"
+		},
+		{
+			"cell_id" : 18333847107965412013,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 2752190660209673,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 7684312304070215982,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "F_{i} + \\partial_{i}(\\phi) = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}F_{i}+\\partial_{i}{\\phi} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 1108551037867100490,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 17078053893006305597,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} + \\partial_{i}(\\phi) = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}+\\partial_{i}{\\phi} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15698691007542047430,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 8376406914567055578,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} -  1/2 \\partial_{i}(\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{c} r_{k}) = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} - \\frac{1}{2}\\partial_{i}\\left(\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{c} r_{k}\\right) = 0\\end{dmath*}"
+				}
+			],
+			"source" : "eq := F_i + \\partial_{i}{\\phi} = 0;\nsubstitute(eq, force);\nsubstitute(eq, pot);"
+		},
+		{
+			"cell_id" : 12615575629009942045,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 7324571009557282852,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 1263795930089535218,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} + \\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}(\\epsilon_{b j k}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}(\\omega_{j}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}(\\omega_{b}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} \\partial_{i}(r_{k}) r_{c} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} \\partial_{i}(r_{c}) r_{k} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}+\\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}{\\epsilon_{b j k}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}{\\omega_{j}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}{\\omega_{b}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} \\partial_{i}{r_{k}} r_{c} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\omega_{j} \\partial_{i}{r_{c}} r_{k} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 5396000893757286463,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 5953581640532112817,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} + \\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}(\\epsilon_{b j k}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}(\\omega_{b}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}(\\omega_{j}) r_{c} r_{k}-\\delta_{i a} \\epsilon_{a b c} \\epsilon_{b j k} \\omega_{c} \\omega_{j} r_{k} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}+\\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}{\\epsilon_{b j k}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}{\\omega_{b}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}{\\omega_{j}} r_{c} r_{k}-\\delta_{i a} \\epsilon_{a b c} \\epsilon_{b j k} \\omega_{c} \\omega_{j} r_{k} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 8916000409054739745,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 13871096879134387401,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k} + \\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}(\\epsilon_{b j k}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}(\\omega_{j}) r_{c} r_{k} -  1/2 \\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}(\\omega_{b}) r_{c} r_{k}-\\epsilon_{i b c} \\epsilon_{b j k} \\omega_{c} \\omega_{j} r_{k} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{i a b} \\epsilon_{a j k} \\omega_{b} \\omega_{j} r_{k}+\\epsilon_{a b c} \\omega_{a} \\omega_{j} \\partial_{i}{\\epsilon_{b j k}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{b} \\partial_{i}{\\omega_{j}} r_{c} r_{k} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a j k} \\omega_{j} \\partial_{i}{\\omega_{b}} r_{c} r_{k}-\\epsilon_{i b c} \\epsilon_{b j k} \\omega_{c} \\omega_{j} r_{k} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 9274935051112085354,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 900948761824832990,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{a b c} \\omega_{a} \\omega_{d} \\partial_{i}(\\epsilon_{b d j}) r_{c} r_{j} -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}(\\omega_{b}) r_{c} r_{j} -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}(\\omega_{d}) r_{c} r_{j} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{a b c} \\omega_{a} \\omega_{d} \\partial_{i}{\\epsilon_{b d j}} r_{c} r_{j} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}{\\omega_{b}} r_{c} r_{j} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}{\\omega_{d}} r_{c} r_{j} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11062745284359938302,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 13296311607388445048,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\epsilon_{a b c} \\omega_{a} \\omega_{d} \\partial_{i}(\\epsilon_{b d j}) r_{c} r_{j} -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}(\\omega_{d}) r_{c} r_{j} -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}(\\omega_{b}) r_{c} r_{j} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\epsilon_{a b c} \\omega_{a} \\omega_{d} \\partial_{i}{\\epsilon_{b d j}} r_{c} r_{j} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}{\\omega_{d}} r_{c} r_{j} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}{\\omega_{b}} r_{c} r_{j} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 4863811449572157882,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 17097987329230495883,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : " -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}(\\omega_{b}) r_{c} r_{j} -  1/2 \\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}(\\omega_{d}) r_{c} r_{j} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}{\\omega_{b}} r_{c} r_{j} - \\frac{1}{2}\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{b} \\partial_{i}{\\omega_{d}} r_{c} r_{j} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 5805232135235544234,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 2420734068910252482,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "-\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}(\\omega_{b}) r_{c} r_{j} = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}-\\epsilon_{a b c} \\epsilon_{a d j} \\omega_{d} \\partial_{i}{\\omega_{b}} r_{c} r_{j} = 0\\end{dmath*}"
+				},
+				{
+					"cell_id" : 14075499004130664655,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 10743809200726377242,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "0 = 0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}0 = 0\\end{dmath*}"
+				}
+			],
+			"source" : "product_rule(_);\nsubstitute(_, pos_vec);\neliminate_kronecker(_);\nrename_dummies(_);\ncollect_terms(_);\nsubstitute(_, $ \\partial_{i}{\\epsilon_{j k l}} -> 0 $ );\nmeld(_);\nsubstitute(_, $ \\partial_{i}{\\omega_j}  -> 0$); "
+		},
+		{
+			"cell_id" : 17479676128514006850,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : ""
+		}
+	],
+	"description" : "Cadabra JSON notebook format",
+	"version" : 1.0
+}

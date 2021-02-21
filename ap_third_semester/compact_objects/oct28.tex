@@ -158,9 +158,12 @@ The idea is: consider a test particle (or, really, a test fluid element, since w
 Let us denote the two masses by \(M_{1, 2}\). They will orbit around a common center of mass, and by Kepler's third law we can link their orbital separation and the period of the motion: 
 %
 \begin{align}
-4 \pi^2 a^3 = G (M_1 + M_2 ) P^2
+4 \pi^2 a^3 &= G (M_1 + M_2 ) P^2 \\
+a^3 &= \frac{G (M_1 + M_2 )}{\omega^2}
 \,.
 \end{align}
+
+\subsection{The Roche potential}
 
 Solving the Roche problem means that we have to write down Newton's second law; it is convenient to do so in a system which is \emph{co-rotating} with the two stars, and centered in the center of mass.
 Then, we will need to account for the fictitious forces for this noninertial reference system. 
@@ -187,11 +190,11 @@ and we can then introduce an effective potential: the \emph{Roche} potential, \(
 This potential reads 
 %
 \begin{align}
-\phi _R = \frac{GM_1}{\abs{\vec{r} - \vec{r}_1} } + \frac{GM_2}{\abs{\vec{r} - \vec{r}_2} } + \frac{1}{2} \qty(\vec{\omega} \wedge \vec{r})^2
+\phi _R = \underbrace{-\frac{GM_1}{\abs{\vec{r} - \vec{r}_1} } - \frac{GM_2}{\abs{\vec{r} - \vec{r}_2} }}_{\phi _G} \underbrace{ - \frac{1}{2} \qty(\vec{\omega} \wedge \vec{r})^2}_{\phi _C}
 \,.
 \end{align}
 
-\todo[inline]{Add plot!}
+% \todo[inline]{Add plot!}
 
 If we plot the contour lines of this potential, they are determined by the mass ratio \(q = M_2 / M_1 \), while the linear scale of the system is only determined by \(a\).
 

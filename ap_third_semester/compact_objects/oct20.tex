@@ -102,15 +102,16 @@ The gas is behaving like an ideal gas.
 
 Another option is \(\abs{\alpha } \gg 1\), \(\alpha > 0\). This is the case in which we have low \(T\), high \(n\). Even in the \(T \to 0\) limit, the product \(\alpha k_B T \) stays finite: this is a function of \(n\), and is called \(E _F\).
 
-The distribution then looks like \(f \sim \qty[\exp( (E - E_F) / k_B T) + 1]^{-1} \to [E \leq E_F]\) in the limit \(T \to 0\).
+The distribution then looks like \(f \sim \qty[\exp( (E - E_F) / k_B T) + 1]^{-1} \to [E \leq E_F] = [p \leq p_F]\) in the limit \(T \to 0\).
 (I use the Iverson bracket: \([\text{proposition}]\) is 1 if the proposition is true, 0 if it is false).  
 
 The higher \(n\) is, the higher the \(T\) for which the behavior is close to the \(T \to 0\) limit. 
 
-In the \(T \to 0\) limit, we can do the integration analytically: this yields an explicit expression for \(n\) in terms of the Fermi momentum \(p_F\) corresponding to the Fermi energy \(E_F\): inverting it we get
+In the \(T \to 0\) limit, we can do the integration analytically: this yields an explicit expression for \(n\) in terms of the Fermi momentum \(p_F\) corresponding to the Fermi energy \(E_F\): 
 %
 \begin{align}
-p_F = \sqrt[3]{\frac{3n }{8 \pi }} h
+n &= \frac{2}{h^3} \int [p \leq p_F] 4 \pi p^2 \dd{p} = \frac{8 \pi p_F^3}{3 h^3} \\
+p_F &= \sqrt[3]{\frac{3n }{8 \pi }} h
 \,.
 \end{align}
 
@@ -150,11 +151,11 @@ n_e = \frac{n_e m_b n}{n m_b}
 \,,
 \end{align}
 %
-which gives us, taking \(\mu _e \sim 1\): 
+which gives us: 
 %
 \begin{align}
 x_F &\sim \qty( \frac{n_e}{\SI{6e35}{m^{-3}}})^{1/3} \\
-x_F &\sim \qty( \frac{\rho}{\SI{e9}{kg / m^3}})^{1/3}
+x_F &\sim \qty( \frac{\rho / \mu _e}{\SI{e9}{kg / m^3}})^{1/3}
 % x_F &=\sim \num{e-2} \qty(\frac{\rho }{m_e})^{1/3}
 \,.
 \end{align}
@@ -169,7 +170,7 @@ u &= \frac{2}{h^3}\int E(p) \frac{ \dd{N}}{ \dd[3]{x} \dd[3]{p}} \dd[3]{p}
 \,,
 \end{align}
 %
-which in our case is 
+which in our case (complete degeneracy) is 
 %
 \begin{align}
 u &= \frac{2}{h^3} \int_{0}^{p_F} \sqrt{m^2c^{4} + p^2c^2} 4 \pi p^2 \dd{p}  \\
@@ -201,14 +202,15 @@ as long as the transformation does not exchange heat with its surroundings.
 Note that \(\dd{u} = \dd{(U/ V)} = V^{-1} \dd{U} - U V^{-2} \dd{V}\), which means that 
 %
 \begin{align}
-\frac{ \dd{U}}{V} = \dd{u} + \frac{U}{V} \dd{V}
+\frac{ \dd{U}}{V} = \dd{u} + \frac{u}{V} \dd{V}
 \,.
 \end{align}
 
 Substituting into the first law of thermodynamics, 
 %
 \begin{align}
-\dd{u} + \frac{U}{V} \dd{V} + P \dd{V} = 0
+\dd{u} + \frac{U}{V} \dd{V} + P \frac{\dd{V}}{V} &= 0  \\
+\dd{u} + \qty( \frac{U}{V} + P) \frac{ \dd{V}}{V} &= 0
 \,,
 \end{align}
 %

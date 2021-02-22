@@ -14,7 +14,7 @@ D(R) = \frac{1}{2} R^2 \Sigma (\lambda \overline{v})
 which can be zero only if either \(\lambda \overline{v} = 0\) (no viscosity) or \(\pdv{\Omega }{R} = 0\) (rigid rotation). 
 
 The viscosity is given by the presence of meso-scale structures called \textbf{eddies}, and we define \(\lambda \overline{v} = \nu\), the kinematic viscosity. 
-Newton's law of viscosity gives the viscous stress \(\tau \) in terms of the velocity gradient times the \emph{dynamic} viscosity \(\mu \): 
+Newton's law of viscosity gives the viscous stress \(\tau \) (with units of pressure) in terms of the velocity gradient times the \emph{dynamic} viscosity \(\mu \): 
 %
 \begin{align}
 \tau = \mu \dv{v}{y}
@@ -23,18 +23,18 @@ Newton's law of viscosity gives the viscous stress \(\tau \) in terms of the vel
 %
 and the two viscosities are related by \(\nu = \mu / \rho \). 
 This is exemplified in Couette flow. 
-This is an empirical law, there are many non-Newtonian fluids.  
+This is an empirical law, and there are many so-called non-Newtonian fluids which do not abide by it.  
 
 In dimensional terms, we can gather from Newton's law that the units of the dynamic viscosity \(\mu \) are \SI{}{kg / m s}. 
 Therefore, the kinematic viscosity has units of \SI{}{m^2/s}.
 At least on dimensional grounds, then, identifying \(\lambda \overline{v}\) with \(\nu \) makes sense. 
 
 If the carriers of motion are ions, then \(\lambda \sim \lambda _d\), the Debye scale, and the average velocity of this Brownian motion is roughly \(\overline{v} \sim c_s\). 
-We can compute the Reynolds number as 
+We can compute the Reynolds number for a disk region with radius \(R\),  surface \(S\) and mass \(m\) as 
 %
 \begin{align}
 \Re = \frac{\text{inertial  forces}}{\text{viscous forces}}
-\approx \frac{\dv*{v}{t}}{ \frac{\mu S}{m} \dv{v}{y}} \approx \frac{\dv{v}{R} v}{\frac{\mu }{m} S \dv{v}{R}} \approx \frac{v}{\mu S / m} \approx \frac{vR}{\mu / \rho } = \frac{vR}{\nu }
+\approx \frac{m\dv*{v}{t}}{ \mu S \dv{v}{y}} \approx \frac{\dv{v}{R} v}{\frac{\mu }{m} S \dv{v}{R}} \approx \frac{v}{\mu S / m} \approx \frac{vR}{\mu / \rho } = \frac{vR}{\nu }
 \,.
 \end{align}
 
@@ -44,9 +44,10 @@ Even changing our assumptions a bit we will find flow which is definitely turbul
 If the carriers were ions, then the flow would be turbulent. 
 For water in a pipe, the transition between laminar and turbulent is at around \(\Re \gtrsim \num{e3}\). 
 
-\todo[inline]{Why can't the flow be turbulent?}
+% \todo[inline]{Why can't the flow be turbulent?}
 
-Then, we will have \(\nu = \nu _{\text{turb}} = \lambda _{\text{turb}} \overline{v} _{\text{turb}}\). What are these two parameters' values?
+Then, we will need to account for the \textbf{turbulent viscosity}: the effective friction caused by the turbulent motion, described by \(\nu = \nu _{\text{turb}} = \lambda _{\text{turb}} \overline{v} _{\text{turb}}\).
+What are these two parameters' values?
 
 If \(H\) is the height of the disk, then we must have \(\lambda _{\text{turb}} \lesssim H\); also we must have \(\overline{v} _{\text{turb}} \lesssim c_s\) --- it can be shown that supersonic turbulence is unstable.
 Then, the kinematic viscosity is bounded as \(\nu _{\text{turb}} \lesssim H c_s\).
@@ -63,6 +64,8 @@ encompassing all our ignorance in the dimensionless parameter \(0 < \alpha \less
 
 The accretion disk described by this is called a Shakura-Sunyaev Disk (SSD). 
 
+\subsection{The Shakura-Sunyaev accretion disk}
+
 In general \(\alpha \) will be a function of pressure, temperature and such, but we will simplify the problem by assuming \(\alpha \) is a constant. 
 What we hope to find is that the physical observables are not very sensitive to the value of \(\alpha \). 
 
@@ -75,26 +78,36 @@ We will make certain assumptions:
 
 We will work in cylindrical coordinates, and have dependence only on \(R\) and \(z\). 
 
-Mass flux will be inward; the differential mass element is \(\Delta m = 2 \pi R \Delta R \Sigma \) so 
+Mass flux will be inward; in terms of the surface density \(\Sigma = \rho H\) the differential mass element will be \(\Delta m = 2 \pi R \Delta R \Sigma \), so
 %
 \begin{align}
-\pdv{\Delta m}{t} = v_R (R, t) 2 \pi R \Sigma (R, t) - v(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R) \approx - 2 \pi R \pdv{(\Sigma R v_R)}{R}t
+\underbrace{\pdv{\Delta m}{t}}_{\text{intrinsic variation}} &= \underbrace{v_R (R, t) 2 \pi R \Sigma (R, t)}_{\text{efflux}} - \underbrace{v_R (R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R)}_{\text{influx}}  \\
+&\approx - 2 \pi R \Delta R \pdv{(v_R R \Sigma )}{R}
 \,,
 \end{align}
 %
 with \(v_R <0\). 
 
-Then,  
+With these we have derived our formulation of the \textbf{mass conservation equation}:
 %
 \begin{align}
-R \pdv{\Sigma }{t} = - \pdv{}{R} \qty(R V_R \Sigma )
+\pdv{}{t} \qty(2 \pi R \Delta R \Sigma ) &= - 2 \pi R \Delta R 
+\pdv{}{R} \qty(v_R R \Sigma ) \\
+R \pdv{\Sigma }{t} &= - \pdv{}{R} \qty(R v_R \Sigma )
+\,.
+\end{align}
+
+The other equation we need to consider is the \textbf{angular momentum} one: in general terms, it is written as 
+%
+\begin{align}
+\dv{\Delta L}{t} = \Delta \tau = \pdv{ G}{R} \Delta R
 \,.
 \end{align}
 
 The angular momentum in the ring is given by 
 %
 \begin{align}
-\Delta L = 2 \pi R \Delta R \Sigma R^2 \Omega 
+\Delta L = \Delta m \Sigma v_\phi =  2 \pi R \Delta R \Sigma R^2 \Omega 
 \,,
 \end{align}
 %
@@ -107,7 +120,7 @@ so
 + v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t) \\
 &\phantom{=}\ - v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)
 \end{split}  \\
-&= \pdv{G}{R} \Delta R - 2 \pi \Delta R \pdv{}{T} \qty(v_R R R^2 \Omega \Sigma )
+&= \pdv{G}{R} \Delta R - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
 \,.
 \end{align}
 
@@ -115,7 +128,7 @@ Then, like before
 %
 \begin{align}
 \pdv{}{t} \qty(2 \pi R \Delta R \Sigma R^2 \Omega ) &= 2 \pi R R^2 \Delta R \pdv{\Omega }{t}   \\
-&= \pdv{G}{R} \frac{\Delta R}{2 \pi }  - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
+&= \pdv{G}{R} \Delta R  - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
 \,,
 \end{align}
 %
@@ -128,14 +141,14 @@ R \pdv{}{t} \qty(R^2\Omega \Sigma ) &= \pdv{G}{R} \frac{1}{2 \pi } - \pdv{}{R} \
 \begin{align}
 R^3 \Omega \pdv{\Sigma }{t} - R^2 \Omega \pdv{}{R} \qty(v_R R \Sigma ) 
 = \underbrace{R^2 \Omega \qty(R \pdv{\Sigma }{t} + \pdv{}{R} \qty(v_R R \Sigma ))}_{= 0 \text{ by mass conservation}}
-&= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} (\Omega R^2)
+&= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} \qty( \Omega R^2)
 \,,
 \end{align}
 %
 so the momentum equation reads 
 %
 \begin{align}
-\frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} (\Omega R^2) = 0
+\frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} \qty(\Omega R^2) = 0
 \,,
 \end{align}
 %

@@ -1,3 +1,5 @@
+#%%
+
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.visualization import astropy_mpl_style
@@ -48,9 +50,18 @@ def f(q):
 
 f = np.vectorize(f, signature='()->()')
 
+#%% 
+
 qs = np.linspace(0, 8, num=1000)
 
 f_q = f(qs)
+
+# plt.plot(qs, f(qs))
+# plt.xlabel('$q = M_2 / M_1$')
+# plt.ylabel('$R_{\\text{{lobe}}} / a$')
+# plt.savefig('roche-lobe-radius.pdf', format = 'pdf')
+
+#%%
 
 def a(q):
     return((1+q)**4 / q**2)
@@ -62,10 +73,6 @@ plt.plot(qs, np.abs(np.gradient(a_q, qs) / a_q), label='$\\abs{\\Delta \\log a}$
 plt.plot(qs, np.gradient(a_q, qs) / a_q + np.gradient(f_q, qs) / f_q, label='$\\Delta \\log a + \\Delta \\log f$', ls='--')
 plt.axvline(1, label='$q = 1$', ls=':', c='black')
 
-# plt.plot(qs, f(qs))
-# plt.xlabel('$q = M_2 / M_1$')
-# plt.ylabel('$R_{\\text{{lobe}}} / a$')
-# plt.savefig('roche-lobe-radius.pdf', format = 'pdf')
 
 plt.xlabel('$q = M_2 / M_1$')
 plt.ylabel('relative variation')
@@ -73,3 +80,18 @@ plt.legend()
 plt.yscale('log')
 plt.savefig('roche-lobe-relative-corrections.pdf')
 plt.show()
+
+#%%
+
+qs = np.linspace(0, 5/4, num=200)
+
+def circ(q):
+    return((.5 - .227 * np.log10(q))**4 * (1+q))
+
+plt.plot(qs, f(1 / qs), label='Roche Lobe radius')
+plt.plot(qs, circ(qs), label='Circularization radius')
+plt.xlabel('$q$')
+plt.ylim(0,1)
+plt.legend()
+plt.savefig('roche-vs-circularization.pdf')
+# %%

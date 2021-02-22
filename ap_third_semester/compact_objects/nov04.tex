@@ -119,9 +119,21 @@ and we can also calculate the radius of the Roche lobe by inverting a result fro
 
 We can then see that \(R _{\text{circ}}\) is at least 10 times smaller than the radius of the lobe.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/roche-vs-circularization}
+\caption{Roche lobe versus circularization radius; both are plotted as \(R / a\).}
+\label{fig:roche-vs-circularization}
+\end{figure}
+
 For a star we would need to ensure that \(R _{\text{circ}} > R_{*}\), but for a compact object there are no issues.
 
-There are three characteristic times: 
+\subsection{The accretion disk}
+
+Particles at their Keplerian velocities and radii around the compact object would keep orbiting, were it not for dissipative effects, which allow for energy and momentum to be transmitted throughout the disk.
+% If we had two concentric disks, both of which 
+
+There are three characteristic times we need to account for: 
 %
 \begin{align}
 t _{\text{dyn}} < t _{\text{rad}} < t _{\text{visc}}
@@ -149,7 +161,7 @@ The specific energy is
 \,.
 \end{align}
 
-The variation of the energy can be calculated starting from infinity since \(R_1 \gg R _{\text{in}}\):
+The variation of the energy can be calculated starting from infinity since \(R_1 \gg R _{\text{in}}\):\footnote{This is a classical estimate, but it works well enough: for example, for a Schwarzschild BH we have calculated explicitly \(\epsilon _\infty - \epsilon (R _{\text{in}}) = 1 - \sqrt{8/9} \approx \SI{6}{\percent}\), while this expression would give \(1/12 \approx \SI{8}{\percent}\). Not strictly correct, but in the right ballpark.}
 %
 \begin{align}
 \epsilon_{\infty } - \epsilon (R _{\text{in}}) = \frac{1}{2} \frac{GM_1}{R _{\text{in}}}
@@ -174,13 +186,20 @@ Now we want to make more detailed predictions.
 A key point is viscosity: friction between the various gas elements.
 
 Let us consider two layers of the disk.
-They will have a macroscopic bulk motion, with \(v_\phi = \Omega R\),
+They will have a macroscopic bulk motion, with \(v_\phi = R \Omega(R) \),
 superimposed with a microscopic motion which can be at very small, up to mesoscopic scales. 
 We can have micro-scale motion of ions, but also
-medium-scale structures can form: turbulent eddies.
+medium-scale structures can form: turbulent eddies, since the Reynolds number can be shown to be very large.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/turbulent-eddies-accretion}
+\caption{Turbulent eddies moving.}
+\label{fig:turbulent-eddies-accretion}
+\end{figure}
 
 Suppose we have an eddy which starts in \(A\), moves radially, and then dissipates in \(A'\).
-Further, let us say that the length scale of its motion is \(\lambda \), and its typical velocity is \(\overline{v}\). 
+Further, let us say that the length scale of its motion is \(\lambda \), and the typical velocity of its motion across the disk is \(\overline{v}\). 
 
 Its radius and velocity at \(A\) will be \(R, \Omega(R) \times  R\); at \(A'\) they will be \(R + \lambda \) and still \(\Omega (R) \times R\). 
 
@@ -189,9 +208,9 @@ In terms of specific angular momentum, when the eddy dies it will dissipate angu
 For an eddy moving from \(B\) to \(B'\) in the opposite direction we will have \(R (R + \lambda ) \Omega (R + \lambda )\). 
 Since the motion is thermal, on average there will be as many particles going in both direction.
 
-\todo[inline]{But there is more volume at higher \(R\), so more matter!}
+% \todo[inline]{But there is more volume at higher \(R\), so more matter!}
 
-Suppose that the height of the disk is \(H\), then the mass carried by the eddies will be \(H 2 \pi R \overline{v} \rho \). 
+Suppose that the height of the disk is \(H\): then the mass per unit time carried by the eddies will be \(H 2 \pi R \overline{v} \rho \). 
 
 Then, the variation of angular momentum will be 
 %
@@ -217,15 +236,16 @@ we can write this torque as
 \,.
 \end{align}
 
-For a Keplerian accretion disk \(\dv*{\Omega }{R} < 0\), since \(\Omega _K = \sqrt{GM / R}\). 
+For a Keplerian accretion disk we always have \(\dv*{\Omega }{R} < 0\), since \(\Omega _K = \sqrt{GM / R}\): this means that the torque is positive.
+Note, however, that we are still only considering the effect on a certain layer of the one above it --- this is not the full picture yet.
 
 This is the torque which the inner part of the disk exerts on the outer part, decelerating it. 
 We can then introduce a function \(G(R) = - \tau \), the torque exerted by the outer part of the disk on the inner part, accelerating it. 
 
-For a given layer rotating at \(R \Omega (R)\), the layers above it will try to accelerate it, while the ones below it will try to decelerate it. What will be the net effect? It will be 
+For a given layer rotating at \(R \Omega (R)\), the layers above it will try to accelerate it, while the ones below it will try to decelerate it. What will be the net effect? It will be\footnote{We use the same letter \(\tau \) as before, but we should specify that this time it accounts for all the contributions to a certain layer of the disk, while before it was only one-way.}
 %
 \begin{align}
-G(R + \dd{R}) - G(R) = \dv{G}{R} \dd{R}
+\tau =  G(R + \dd{R}) - G(R) = \dv{G}{R} \dd{R}
 \,.
 \end{align}
 
@@ -237,7 +257,7 @@ The differential work dissipated will be given by
 \,,
 \end{align}
 %
-so the power will be 
+so, since to a first approximation \(G\) can be taken to be a constant, the power will be 
 %
 \begin{align}
 \dv{W}{t} = \dv{G}{R} \dd{R} \Omega 
@@ -264,7 +284,8 @@ so we can identify a global, \emph{convective term}: the variation of \(G \Omega
 Let us introduce the radiated power per unit area of the disk (which is positive, we leave the minus sign out):
 %
 \begin{align}
-D(R) = G \dv{\Omega }{R} \frac{1}{2 \times 2 \pi R \dd{R}} = \frac{G}{4 \pi R} \dv{\Omega }{R} \marginnote{Divided by 2 since the disk has two faces.} 
+D(R) = \frac{ \eval{\dd{(\dot{E})}}_{\text{local}}}{2 \times 2 \pi R \dd{R}}
+&= G \dv{\Omega }{R} \frac{ \dd{R}}{2 \times 2 \pi R \dd{R}} = \frac{G}{4 \pi R} \dv{\Omega }{R} \marginnote{Divided by 2 since the disk has two faces.} 
 \,.
 \end{align}
 
@@ -277,6 +298,6 @@ D(R) = \frac{G}{4 \pi R} \dv{\Omega }{R}
 \end{align}
 
 In order to dissipate energy the differential rotation \(\dv*{\Omega }{R}\) is crucial. 
-We see next time that  \(\overline{v} \lambda = \nu \), the kinematic viscosity coefficient.
+% We see next time that  \(\overline{v} \lambda = \nu \), the kinematic viscosity coefficient.
 
 \end{document}

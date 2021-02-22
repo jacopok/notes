@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc
@@ -24,5 +25,10 @@ R_np = x_n ** 3 * (4 * (1 + x_n ** 2) / (x_n ** 4 + 4 * Q / m_n + 4 * (Q ** 2 - 
 plt.loglog(x_n, R_np)
 plt.grid()
 plt.xlabel('$x_n$')
-plt.ylabel('$R_{np}$')
-plt.savefig('neutron-proton-ratio.pdf')
+plt.ylabel('$R_{\\text{np}}$')
+# plt.savefig('neutron-proton-ratio.pdf')
+plt.show()
+# %%
+
+plt.loglog(x_n, x_n**3 * (1/R_np  + 1))
+# %%

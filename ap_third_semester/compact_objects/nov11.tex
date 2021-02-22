@@ -12,7 +12,7 @@ The mass and angular momentum equations read
 %
 \begin{align}
 R \pdv{\Sigma }{t} &= - \pdv{}{R} \qty(v_R \Sigma R )  \\
-R^2 \pdv{}{t} (\Omega \Sigma ) &= - \pdv{}{R} \qty(v_R R \Sigma R^2 \Omega ) + \frac{1}{2 \pi } \pdv{G}{R}
+R^2 \pdv{t}(\Omega \Sigma ) &= - \pdv{}{R} \qty(v_R R \Sigma R^2 \Omega ) + \frac{1}{2 \pi } \pdv{G}{R}
 \,,
 \end{align}
 %
@@ -68,10 +68,10 @@ The derivative of the Keplerian angular velocity reads
 \,.
 \end{align}
 
-Therefore, 
+Therefore, substituting in the expression for \(G\) \eqref{eq:local-torque-explicit} and making \(\pdv*{\Omega }{R}\) explicit we find 
 %
 \begin{align}
-2 \pi R \Sigma \nu R^2 \qty(- \frac{1}{2} \sqrt{ \frac{GM}{R}} \frac{1}{R^2}) = - \dot{M} \qty(R^2 \frac{1}{R} \sqrt{ \frac{GM}{R}}- R^2 _{\text{in}} \sqrt{ \frac{GM}{R _{\text{in}}}} \frac{1}{R _{\text{in}}})
+2 \pi R \Sigma \nu R^2 \qty(- \frac{3}{2} \sqrt{ \frac{GM}{R}} \frac{1}{R^2}) = - \dot{M} \qty(R^2 \frac{1}{R} \sqrt{ \frac{GM}{R}}- R^2 _{\text{in}} \sqrt{ \frac{GM}{R _{\text{in}}}} \frac{1}{R _{\text{in}}})
 \,.
 \end{align}
 
@@ -82,7 +82,7 @@ With some manipulations, we get
 \,.
 \end{align}
 
-We can then calculate 
+We can then calculate the radiated power per unit area of the disk, \(D(R)\): 
 %
 \begin{align}
 D(R) &= \frac{1}{2} \Sigma \nu \qty(R \dv{\Omega }{R})^2  \\
@@ -116,6 +116,12 @@ L = \frac{3}{2} \frac{GM \dot{M}}{ R _{\text{in}}}
 \frac{1}{3} = \frac{1}{2} \frac{GM \dot{M}}{R _{\text{in}}}
 \,.
 \end{align}
+
+% This is half of \(L _{\text{acc}}= G M \dot{M} / R _{\text{in}}\), since 
+
+\subsection{Self-consistency checks}
+
+\subsubsection{The azimuthal velocity is supersonic}
 
 To first order, the gravitational force in the planar direction is 
 %
@@ -166,7 +172,7 @@ c_s \ll \sqrt{ \frac{GM}{R}} = v_\phi
 \,.
 \end{align}
 
-With this simple and rough line of reasoning we have shown that the azimuthal Keplerian velocity of the gas must be supersonic. 
+With this simple and rough line of reasoning we have shown that \textbf{the azimuthal Keplerian velocity of the gas must be supersonic} if we want the disk to be geometrically thin.
 
 The azimuthal velocity can be written as 
 %
@@ -177,11 +183,13 @@ v_\phi = \sqrt{ \frac{GM}{R}} = \frac{c}{\sqrt{2}} \sqrt{ \frac{R_S}{R}}
 %
 so even if we are at \(R = 2500 R_s\), quite far from the ISCO, we are already moving at \(c/ 50 \sqrt{2} \approx \SI{4000}{km/s}\), very fast. 
 
+\subsubsection{The azimuthal velocity is Keplerian}
+
 Let us start with the Euler equation in the radial direction, written in a frame which is corotating with \(\Omega = \Omega (R)\), so we will need to account for fictitious forces: the centrifugal force \(\vec{\Omega} \wedge \qty(\vec{\Omega} \wedge \vec{r})\) yields a term \(v_\phi^2 / R\).
 We find 
 %
 \begin{align}
-v_R \pdv{V_R}{R} - \frac{v_\phi^2}{R} + \frac{1}{\rho } \pdv{P}{r} + \frac{GM}{R^2} = 0
+v_R \pdv{v_R}{R} - \frac{v_\phi^2}{R} + \frac{1}{\rho } \pdv{P}{r} + \frac{GM}{R^2} = 0
 \,,
 \end{align}
 %
@@ -196,7 +204,7 @@ and \(c_s^2 \ll GM/R \): thus, we can completely neglect the pressure gradient t
 This yields 
 %
 \begin{align}
-v_R \pdv{V_R}{R} - \frac{v_\phi^2}{R} + \frac{GM}{R^2} \approx 0
+v_R \pdv{v_R}{R} - \frac{v_\phi^2}{R} + \frac{GM}{R^2} \approx 0
 \,.
 \end{align}
 
@@ -210,7 +218,7 @@ We approximate \(\pdv*{v_R}{R} \approx v_R / R\), and write \(v_R\) using the ma
 therefore 
 %
 \begin{align}
-v_R &= \frac{\dot{M}}{2 \pi R \Sigma } = - \frac{3 \nu }{\Omega R} \frac{1}{1 - \sqrt{R _{\text{in}} / R}}
+v_R &= \frac{\dot{M}}{2 \pi R \Sigma } = - \frac{3 \nu }{2 R} \frac{1}{1 - \sqrt{R _{\text{in}} / R}}
 \,.
 \end{align}
 

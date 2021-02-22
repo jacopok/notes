@@ -92,10 +92,14 @@ With these we have derived our formulation of the \textbf{mass conservation equa
 %
 \begin{align}
 \pdv{}{t} \qty(2 \pi R \Delta R \Sigma ) &= - 2 \pi R \Delta R 
-\pdv{}{R} \qty(v_R R \Sigma ) \\
+\pdv{R}(v_R R \Sigma ) 
+\end{align} 
+
+\boxalign{
+\begin{align}
 R \pdv{\Sigma }{t} &= - \pdv{}{R} \qty(R v_R \Sigma )
 \,.
-\end{align}
+\end{align}}
 
 The other equation we need to consider is the \textbf{angular momentum} one: in general terms, it is written as 
 %
@@ -111,14 +115,14 @@ The angular momentum in the ring is given by
 \,,
 \end{align}
 %
-so 
+so, since the \emph{total} derivative of the angular momentum \(\dv*{\Delta L}{t}\) with respect to time is given by the partial derivative \(\pdv*{\Delta L}{t}\) plus the influx, minus the efflux like before we find that the full equation reads
 %
 \begin{align}
 \begin{split}
 \pdv{\Delta L}{t}
 &= \pdv{G}{R} \Delta R 
-+ v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t) \\
-&\phantom{=}\ - v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)
++ \underbrace{v_R( R, t) 2 \pi R \Sigma (R, t) R^2\Omega (R, t)}_{\text{efflux}} \\
+&\phantom{=}\ - \underbrace{v_R(R + \Delta R, t) 2 \pi (R + \Delta R) \Sigma (R + \Delta R, t)( R + \Delta R)^2 \Omega (R + \Delta R, t)}_{\text{influx}}
 \end{split}  \\
 &= \pdv{G}{R} \Delta R - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
 \,.
@@ -127,12 +131,12 @@ so
 Then, like before 
 %
 \begin{align}
-\pdv{}{t} \qty(2 \pi R \Delta R \Sigma R^2 \Omega ) &= 2 \pi R R^2 \Delta R \pdv{\Omega }{t}   \\
+\pdv{}{t} \qty(2 \pi R \Delta R \Sigma R^2 \Omega ) &= 2 \pi R R^2 \Delta R \pdv{\Omega \Sigma }{t}   \\
 &= \pdv{G}{R} \Delta R  - 2 \pi \Delta R \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )
 \,,
 \end{align}
 %
-so, assuming that \(\Omega = \Omega (R)\) is the Keplerian angular velocity we get 
+so, assuming that \(\Omega = \Omega (R)\) is the Keplerian angular velocity and dividing through by \(2 \pi \Delta R\) we get 
 %
 \begin{align}
 R \pdv{}{t} \qty(R^2\Omega \Sigma ) &= \pdv{G}{R} \frac{1}{2 \pi } - \pdv{}{R} \qty(v_R R R^2 \Omega \Sigma )  \\
@@ -141,69 +145,73 @@ R \pdv{}{t} \qty(R^2\Omega \Sigma ) &= \pdv{G}{R} \frac{1}{2 \pi } - \pdv{}{R} \
 \begin{align}
 R^3 \Omega \pdv{\Sigma }{t} - R^2 \Omega \pdv{}{R} \qty(v_R R \Sigma ) 
 = \underbrace{R^2 \Omega \qty(R \pdv{\Sigma }{t} + \pdv{}{R} \qty(v_R R \Sigma ))}_{= 0 \text{ by mass conservation}}
-&= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} \qty( \Omega R^2)
+&= \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{R}( \Omega R^2)
 \,,
 \end{align}
 %
 so the momentum equation reads 
 %
+\boxalign{
 \begin{align}
 \frac{1}{2 \pi } \pdv{G}{R} - v_R R \Sigma \pdv{}{R} \qty(\Omega R^2) = 0
 \,,
-\end{align}
+\end{align}}
 %
 or 
 %
 \begin{align}
 v_R R \Sigma &= \frac{1}{2 \pi } \pdv{G}{R} \qty(\pdv{(\Omega R^2)}{R})^{-1}  \\
-R \pdv{\Sigma }{R} &= - \pdv{}{R} \qty[ \frac{1}{2 \pi } \pdv{G}{R} \pdv{(\Omega R^2)}{R}]
+-\pdv{R}(v_R R \Sigma ) =
+R \pdv{\Sigma }{t} &= - \pdv{}{R} \qty[ \frac{1}{2 \pi } \pdv{G}{R} \qty(\pdv{(\Omega R^2)}{R})^{-1}]
 \,.
 \end{align}
 
 Since \(\Omega = \sqrt{GM / R^3} \) is the Keplerian angular velocity, we have 
 %
-\begin{align}
+\begin{align} \label{eq:local-torque-explicit}
 G = 2 \pi R \Sigma \nu R^2 \dv{\Omega }{R}
 \,,
 \end{align}
 %
 we get 
 %
-\begin{align}
-\pdv{\Sigma }{t} = \frac{3}{R} \pdv{}{R} \qty[R^{\prime \prime 2} \pdv{}{R} (\nu \Sigma R^{\prime \prime 2})] 
+\begin{align} \label{eq:keplerian-differentiated-momentum-conservation}
+\pdv{\Sigma }{t} = \frac{3}{R} \pdv{}{R} \qty[R^{1/2} \pdv{R} (\nu \Sigma R^{1/2})] 
 \,.
 \end{align}
 
-This is a diffusion-like equation, an initially peaky function will drift towards a broader function. 
+This is a diffusion-like equation, an initially peaky function for \(\Sigma (R, t)\) will drift towards a broader function. 
 
-We can solve for \(v_R\): we find 
+We can solve for \(v_R\): again from the momentum conservation equation we find 
 %
 \begin{align}
-v_R &= \frac{1}{2 \pi R \Sigma } \pdv{G}{R} \pdv{(R^2 \Omega )}{R}  \\
-&= - \frac{3}{\Sigma R^{\prime \prime 2} } \pdv{}{R} \qty(\nu \Sigma R^{\prime \prime 2}) 
+v_R &= \frac{1}{2 \pi R \Sigma } \pdv{G}{R} \qty[\pdv{(R^2 \Omega )}{R}]^{-1}  \\
+&= - \frac{3}{\Sigma R^{1/ 2} } \pdv{}{R} \qty(\nu \Sigma R^{ 1/ 2}) 
 \,.
 \end{align}
 
-The ratio of \(\Sigma / T\), where \(T\) is the characteristic time of the evolution of the system, is roughly 
+The ratio of \(\Sigma / t _{\text{visc}}\), where \(t _{\text{visc}}\) is the characteristic time of the evolution of the system through viscous dissipation, can be roughly approximated by considering the orders of magnitude in equation \eqref{eq:keplerian-differentiated-momentum-conservation}:
 %
 \begin{align}
-\frac{\Sigma}{T} \approx \frac{\nu \Sigma }{R^2}
+\frac{\Sigma}{ t _{\text{visc}}} \approx \frac{\nu \Sigma }{R^2}
 \,,
 \end{align}
 %
-therefore \( 1/ T \approx \nu / R^2\).
+therefore \( 1/ t _{\text{visc}} \approx \nu / R^2\).
 
 Also, the velocity is roughly 
 %
 \begin{align}
-v_R \approx \frac{1}{\Sigma R} \nu \Sigma = \frac{\nu}{R} = \frac{R}{T}
+v_R \approx \frac{1}{\Sigma R} \nu \Sigma = \frac{\nu}{R} = \frac{R}{ t _{\text{visc}}}
 \,.
 \end{align}
 
 How does the mixing timescale \(T\) compare to the timescales mentioned earlier? 
-We will have \(v_\phi \approx R / t _{\text{dyn}}\), \(v_R \approx R / t _{\text{visc}}\), where \(T = t _{\text{visc}}\). 
+We will have \(v_\phi \approx R / t _{\text{dyn}}\) and \(v_R \approx R / t _{\text{visc}}\). 
 This makes sense together with our assumption that \(v_\phi \gg v_R\). 
 
 Why is there turbulence? A strong candidate is \textbf{magneto-rotational instability}. 
+
+\subsection{Stationary disk structure}
 
 \end{document}

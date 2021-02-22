@@ -1,11 +1,13 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\subsection{Stationary SSD}
+\subsection{Stationary SSD emission}
 
 \marginpar{Tuesday\\ 2020-11-17, \\ compiled \\ \today}
 
-We know that \begin{enumerate}
+Let us start by stating some assumption and definitions:
+%
+\begin{enumerate}
     \item \(\rho = \Sigma / H\);
     \item \(H = c_s (R^3 / GM)^{1/2} = R c_s / v_\phi \);
     \item \(c_s^2 = P / \rho \);
@@ -13,7 +15,7 @@ We know that \begin{enumerate}
 \end{enumerate}
 
 From the center of the disk radiation can travel outward, however it will be optically thick: \(\tau = \int_{0}^{r} \alpha \dd{s} >1\).
-We can approximate it as \(\tau \approx \kappa _R \rho H = \kappa _R \Sigma > 1\).
+We can approximate it as \(\tau \approx \kappa _R \rho H = \kappa _R \Sigma > 1\), where \(\kappa _R\) is the Rosseland mean opacity.
 
 Radiative transport in a slab can be treated analytically in the diffusion approximation to yield the radiative flux 
 %
@@ -27,7 +29,7 @@ We can define the surface as the height at which \(\tau =1\).
 The flux crossing the \(z = 0\) surface is 
 %
 \begin{align}
-F(0) \approx \frac{4}{3} \frac{\sigma }{\kappa _R \rho _c} \frac{T_c^{4}}{H} \approx \frac{4}{3} \frac{\sigma T_c^{4}}{\tau _R}
+F(0) \approx \frac{4}{3} \frac{\sigma }{\kappa _R \rho _c} \frac{T_c^{4}}{H} \approx \frac{4}{3} \frac{\sigma T_c^{4}}{\tau _c}
 \,.
 \end{align}
 
@@ -60,20 +62,21 @@ Also, we will use the relations
 %
 \begin{align}
 \tau &= \kappa _R \Sigma  \\
-v \Sigma &= \frac{\dot{M}}{3 \pi } \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]  \\
-v_R &= - \frac{3 v}{2R} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]^{-1}  \\
+\nu \Sigma &= \frac{\dot{M}}{3 \pi } \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]  \\
+v_R &= - \frac{3 \nu }{2R} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]^{-1}  \\
 \kappa _R &= \kappa _R (\rho , T, \dots)  \\
-v &= v (\rho , T, \dots) = \alpha H c_s
+\nu &= \nu  (\rho , T, \dots) = \alpha H c_s
 \,.
 \end{align}
 
-Then, we can write 
+Since we want to see what the emission will look like, we seek an explicit expression for the surface temperature:
 %
 \begin{align}
 \sigma T_s^{4} &= D(R) = \frac{3 GM \dot{M}}{8 \pi R^3} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]  \\
 T_s &= \qty(\frac{3 GM \dot{M}}{8 \pi \sigma })^{1/4} R^{-3/4} \qty[1 - \qty(\frac{R _{\text{in}}}{R})^{1/2}]^{1/4}  \\
-&\approx \qty(\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 })^{1/4} \qty( \frac{R _{\text{in}}}{R})^{3/4}
+T_s &\approx \qty(\frac{3 GM \dot{M}}{8 \pi \sigma R _{\text{in}}^3 })^{1/4} \qty( \frac{R _{\text{in}}}{R})^{3/4}
 \marginnote{If  \(R \gg R _{\text{in}}\).}
+\label{eq:temperature-accretion-disk}
 \,.
 \end{align}
 
@@ -104,7 +107,7 @@ We can maximize this, and we find that the maximum temperature of the disk is fo
 There are several radiative processes taking place in an accretion disk: 
 \begin{enumerate}
     \item electron scattering;
-    \item thermal free-free emission.
+    \item thermal free-free emission (bremsstrahlung).
 \end{enumerate}
 
 The latter is dominant, and the characteristic Rosseland mean opacity is 
@@ -114,21 +117,30 @@ The latter is dominant, and the characteristic Rosseland mean opacity is
 \,.
 \end{align}
 
-We find an algebraic system with all the equations, and finally we get 
+For convenience, let us define 
 %
 \begin{align}
-H = \SI{1.7e8}{cm} \times \alpha^{-1/10} M^{3/20} M^{-3/8} R_{10}^{9/8} f^{3/5}
-\,,
-\end{align}
-%
-from which we can confirm that \(R \gg H\). 
-We can also calculate the central optical depth: 
-%
-\begin{align}
-\tau _c = 33 \alpha^{-4/5} M_{16}^{1/5} f^{4/5}
+f = 1 - \sqrt{ \frac{R _{\text{in}}}{R}}
 \,.
 \end{align}
 
+We find an algebraic system with all the equations, and finally we get 
+%
+\begin{align}
+H = \SI{1.7e8}{cm} \times \alpha^{-1/10} (\dot{M}_{16})^{3/20} M^{-3/8} R_{10}^{9/8} f^{3/5}
+\,,
+\end{align}
+%
+from which we can confirm that \(R \gg H\).
+Here, if a quantity has a subscript such as \(\dot{M}_{16}\), it means that we are normalizing the number to \SI{e16}{g/s}, or the appropriate cgs unit in general.
+We can also calculate the central optical depth: 
+%
+\begin{align}
+\tau _c = 33 \alpha^{-4/5} \dot{M}_{16}^{1/5} f^{4/5}
+\,.
+\end{align}
+
+Also, we find that \(T_s = T_c / 2\). 
 
 
 \end{document}

@@ -3,13 +3,13 @@
 
 \marginpar{Thursday\\ 2021-2-11, \\ compiled \\ \today}
 
-We have seen that there are two possibilities: either the accretion flow reaches the surface, or a shock forms.
-If we consider accretion onto a NS we must account for the fact that the \(B\) field shapes the trajectories of the particles, making it so they are not straight lines anymore. 
+% We have seen that there are two possibilities: either the accretion flow reaches the surface, or a shock forms.
+If we consider accretion onto a NS we must account for the fact that the \(B\) field shapes the trajectories of the particles, making them not straight lines anymore. 
 
 The typical stopping length is \(y_0 \approx \rho \lambda _s \sim \SI{50}{g cm^{-2}}\) typically. 
-The magnetic field of a NS is typically strong enough to even curve the trajectories of protons, which become helixes. This means that \(\lambda _s\) decreases: the distance travelled between interactions is shorter, therefore \(y_0\) also decreases, becoming reaching \(30 \divisionsymbol \SI{40}{g cm^{-2}}\) typically. 
+The magnetic field of a NS is typically strong enough to even curve the trajectories of protons, which become helixes. This means that \(\lambda _s\) decreases: the distance travelled between interactions is shorter, therefore \(y_0\) also decreases, reaching \(30 \divisionsymbol \SI{40}{g cm^{-2}}\) typically. 
 
-The thing we want to calculate is the flux escaping the column: how much energy per unit area and unit time is escaping? This will dictate the luminosity. 
+The thing we want to calculate is the \textbf{flux escaping the column}: how much energy per unit area and unit time is escaping? This will dictate the luminosity. 
 
 The column depth is defined as 
 %
@@ -26,18 +26,20 @@ Let us also define \(\Gamma _{\text{coul}}\), the heat released per unit time an
 \Gamma _{\text{coul}} = \begin{cases}
     \frac{L _{\text{acc}} \rho }{A y_0 } & y \leq y_0   \\
     0 & y > y_0 
-\,.
+\,,
 \end{cases}
 \end{align}
+%
+where, as usual, \(L _{\text{acc}} \approx \eta \dot{M} c^2\), while \(A\) is the cross-sectional area of the accretion region. Since \(y_0 / \rho = \lambda _S\), the expression just amounts to a normalized luminosity per unit volume.  
 
 We should also consider magnetic effects on the cross-section: the main one is a resonance at the cyclotron energy 
 %
 \begin{align}
-E_c = \hbar \frac{e B}{m} \approx \frac{B}{\SI{e12}{G}} \times \SI{11.6}{keV}
+E_c = \hbar \frac{e B}{m_e} \approx \frac{B}{\SI{e12}{G}} \times \SI{11.6}{keV}
 \,.
 \end{align}
 
-It is a fact that the stopping layer the optical depth is quite large --- this is mostly due to electron scattering. 
+It is a fact that the stopping layer the optical depth is quite large,  --- this is mostly due to electron scattering, which dominates among the radiative processes. 
 Therefore, we can use the diffusion approximation to relate the radiative flux to the radiative energy density \(U_{\text{rad}} = a T _{\text{rad}}^{4}\):\footnote{We are not actually assuming that the radiation is distributed as a blackbody: we are using the relation \(U _{\text{rad}} = aT _{\text{rad}}^{4}\) as a \emph{definition} for the parameter \(T _{\text{rad}}\), which is the equivalent temperature that a blackbody spectrum with the same energy density would be described by. }
 %
 \begin{align}
@@ -63,14 +65,14 @@ F _{\text{rad}} (y) = \int_{y_0 }^{y} \Gamma _{\text{coul}} \dd{z}
 from which we can integrate in order to calculate the energy density: expressing everything as a function of \(y\) we have
 %
 \begin{align}
-- \frac{c}{3} \dv{U _{\text{rad}}}{y } = \frac{\sigma _T}{m_p} \frac{L _{\text{acc}} \rho }{A y_0 } \qty(y - y_0 )
+- \frac{c}{3} \dv{U _{\text{rad}}}{y } = F _{\text{rad}} = \frac{\sigma _T}{m_p} \frac{L _{\text{acc}} \rho }{A y_0 } \qty(y - y_0 )
 \,.
 \end{align}
 
 The flux changes linearly, so the energy density will change quadratically. 
-Once we compute \(U _{\text{rad}}\) we can solve the energy equation --- Compton cooling depends on \(U _{\text{rad}}\) --- and calculate the electron temperature \(T_e\), which in general will be different from \(T _{\text{rad}}\). 
+Once we compute \(U _{\text{rad}}\) we can solve the energy equation --- Compton cooling depends on \(U _{\text{rad}}\) --- and calculate the electron temperature \(T_e\), which in general will be different from the ``fictional'' \(T _{\text{rad}}\). 
 
-In order to compute the pressure we make the assumption that the electrons form an ideal gas: then
+In order to compute the pressure we make the assumption that the electrons form an ideal gas in \emph{hydrostatic equilibrium}: then
 %
 \begin{align}
 P(y) = \frac{k_B \rho T_e}{\mu m_p} = 
@@ -80,6 +82,8 @@ P(y) = \frac{k_B \rho T_e}{\mu m_p} =
 \,.
 \end{cases}
 \end{align}
+
+The term \(\rho_0 v^2 (y/y_0 )\) describes the \emph{ram pressure} of the gas.
 
 \subsection{Shocks}
 
@@ -107,14 +111,14 @@ The Euler equation tells us that
 where \(f_x\) is the force per unit volume. 
 This equation can be integrated in a small region around the shock: \([- \dd{x}, \dd{x}]\). 
 In reality the shock is not infinitesimal, but it can be typically approximated as such since it is very small compared to other characteristic length scales. 
-The integral of \(f_x\) is of the order of \(2 f_x \dd{x}\), which is vanishingly small: therefore, we find 
+The integral of \(f_x\) is of the order of \(2 f_x \dd{x}\), which is vanishingly small:\footnote{We make the assumption that \(f_x\) does not diverge, that is, we assume that there are no impulsive forces. } therefore, we find 
 %
 \begin{align}
 P_1 + \rho_1 v_1^2 = P_2 + \rho_2 v_2^2 \overset{\text{def}}{=} I
 \,.
 \end{align}
 
-The energy equation, under the assumption that the shock be adiabatic (no heat is conduced across it)  reads 
+The energy equation, under the assumption that the shock be \textbf{adiabatic} (no heat is conduced across it) reads, in terms of the internal energy \(\epsilon \): 
 %
 \begin{align}
 \dv{}{x} \qty(v \qty(\frac{\rho v^2}{2} + \rho \epsilon + P)) = f_x v
@@ -183,7 +187,7 @@ Dividing through by \(v_1 \) and using the relation for the Mach number we found
 \,.
 \end{align}
 
-If we suppose that \(x<0\) is a hypersonic region, so that \(M_1 \gg 1\), we can neglect the \(M_1^{-2}\) term and see that 
+If we suppose that \(x<0\) is a hypersonic region, so that \(M_1 \gg 1\) (we have a \textbf{strong shock}), we can neglect the \(M_1^{-2}\) term and see that 
 %
 \begin{align}
 1 + \frac{v_2}{v_1 } \approx \frac{5}{4} \implies 4 v_2 = v_1 
@@ -206,6 +210,7 @@ T_2 \sim \SI{4e11}{K} \times \qty( \frac{M}{M_{\odot}} ) \qty( \frac{R}{\SI{e6}{
 \end{align}
 
 An important fact to note is that the shock is collisionless, so the electron and proton temperatures are not equalized: because of this, in the previous expression we must replace \(m_p\) with \(m_e\) if we are looking for the electron temperature, and we find a value \(\sim 2000\) times smaller.
+In a collisionless shock, the mediators of the interaction are photons, as opposed to particle-particle collisions.
 
 We expect to see very hard radiation coming from the protons in the accretion region as long as this region is optically thin; if it is thick and radiation pressure dominates over gas pressure the picture changes: in the latter case the electron temperature is even lower than what this model provides, and the radiation becomes near-thermal. 
 

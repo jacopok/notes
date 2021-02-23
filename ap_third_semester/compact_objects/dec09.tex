@@ -101,9 +101,9 @@ so, taking geometric considerations into account, we get
 Therefore, the temperature monotonically decreases going from the pole to the equator. 
 At the equator it is not really zero, but it is an order of magnitude lower than the polar temperature. A plot of the approximated formula \(T/ T_P \sim \sqrt{\abs{\cos \Theta }}\) is shown in figure \ref{NS-temperature}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=.8\textwidth]{figures/NS-temperature}
+\includegraphics[width=.7\textwidth]{figures/NS-temperature}
 \caption{Temperature as a function of \(\theta \). On the left we have the pole, on the right the equator; in reality the temperature will not drop to zero at \(\theta = \pi /2\), instead the conduction along \(x\) will become relevant.}
 \label{fig:NS-temperature}
 \end{figure}
@@ -144,8 +144,11 @@ We also need to account for relativistic effects:
 
 \section{Accretion onto Neutron Stars}
 
-We start by introducing the \textbf{light-cylinder radius}.
-We define \(v_\phi = R_{LC} \Omega = c\), so \(R_{LC} = c/  \Omega \).
+We will need some characteristic lengths of the accreting system.
+
+We start by introducing the \textbf{light-cylinder radius} \(R_{LC}\).
+The star is rotating at angular velocity \(\Omega \), and in its vicinity (up to the distance we define to be \(R_{LC}\)) the magnetic field lines are corotating rigidly. 
+We can calculate this radius by imposing that the motion of the field lines (or rather, of the particles which are forced to move along them) be subluminal: the threshold is found by \(v_\phi = R_{LC} \Omega = c\), so \(R_{LC} = c/  \Omega \).
 
 This is on the order of 
 %
@@ -156,15 +159,15 @@ R_{LC} = \frac{cP}{2 \pi } \approx \SI{5e9}{cm} \frac{P}{\SI{1}{s}}
 
 After this length, the magnetic field lines must disconnect. 
 
-The \textbf{Alfvén radius} is the one at which the magnetic pressure equals the ram pressure: 
+The \textbf{Alfvén radius} is the one at which the magnetic pressure equals the ram pressure; we will give a rough estimate by comparing energy densities:\footnote{This is conservative, we are considering ramp pressure as stronger than it really is: the pressure for the magnetic field will be of the same order of magnitude of its density (in natural units), while the same can be said for the matter only if it is relativistic.}
 %
 \begin{align}
 \frac{B^2}{8 \pi } = \frac{1}{2} \rho v^2
 \,,
 \end{align}
 %
-and we can approximate the radius at which this occurs by using Bondi flow, therefore assuming spherical symmetry. 
-This gives us 
+and we can approximate the radius at which this occurs by using Bondi flow, therefore assuming spherical symmetry. This is not realistic, but it turns out to give a reasonable answer.
+It gives us 
 %
 \begin{align}
 4 \pi r^2\rho v = \dot{M}
@@ -197,6 +200,12 @@ r_A &= \qty(\frac{B_p^2 R^{6}}{\sqrt{GM} \dot{M}})^{2/7}  \\
 \,.
 \end{align}
 
-Typically, \(r_A < R_{LC}\), which justifies our use of a dipolar magnetic field. 
+Now, since \(B^2 \propto r^{-6}\) while \(\rho v^2 \propto r^{-5/2}\), for radii smaller than \(r_A\) we have dominance of the magnetic pressure. 
+An interesting fact to note is that for this calculation using the dipolar field only is fully justified, since higher order multipoles decay even faster as the radius increases.
+
+Typically, \(r_A < R_{LC}\), which justifies the use of the dipolar field in our treatment of \(B\)-dominated accretion.
+
+Also, note that our reference value of \SI{e8}{G} for \(B_p\) is quite low --- as one can see in figure \ref{fig:p-pdot-diagram}, typical values range from this to much higher fields. 
+So, for highly magnetized NSs the Alfvén radii will be larger, potentially more than \(r_{LC}\), and we might need to consider higher order multipoles as well.
 
 \end{document}

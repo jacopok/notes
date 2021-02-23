@@ -17,3 +17,4 @@ for C in Cs:
     ax.plot(theta, C * np.sin(theta)**2)
 
 # %%
+

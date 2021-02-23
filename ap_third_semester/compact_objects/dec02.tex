@@ -34,7 +34,9 @@ In the fast-cooling case the cooling is faster initially, and the photon-cooling
 
 Real cooling curves can be computed in a much more sophisticated way.
 
-Fast cooling is not supported by observations, since we observe old NSs. 
+\textbf{Fast cooling is not supported by observations, since we observe old NSs}. 
+
+\subsection{Neutron star spectra}
 
 The most common observational manifestation of NSs are radio pulsars. 
 We know about around 2500 of those. 
@@ -46,7 +48,7 @@ Their temperature is of the order of the hundreds of eV, and their spectrum look
 
 New satellites like CHANDRA and XMM-Newton can give us spectra like \(\log F\) as a function of \(\log E\).
 
-The first thing one may try too fit is a blackbody: 
+The first thing one may try to fit is a blackbody: 
 %
 \begin{align}
 F_{BB} = A \frac{E^3}{e^{E / k_B T} - 1}
@@ -54,11 +56,11 @@ F_{BB} = A \frac{E^3}{e^{E / k_B T} - 1}
 \end{align}
 
 The parameter \(A\) is proportional to \(R^2 / D^2\), where \(R\) is the radius of the NS while \(D\) is the distance from it, since
-the total flux is proportional to \(L / 4 \pi D^2\), and \(L = \propto R^2 T^{4}\).
+the total flux is proportional to \(L / 4 \pi D^2\), and \(L \propto R^2 T^{4}\).
 
 There are reasons to suspect that the surface of a cooling NS is not homogeneous. 
 Energy is transferred to the envelope from the interior mostly through electron conduction. 
-We can make a good model for it in the plane-parallel approximation, since its depth is \(L \sim \SI{100}{m}\), while the radius of the NS is \(R \sim \SI{10}{km}\).
+We can make a good model for the crust in the plane-parallel approximation, since its depth is \(L \sim \SI{100}{m}\), while the radius of the NS is \(R \sim \SI{10}{km}\).
 So, we approximate it as a slab.
 
 The \(\hat{z}\) axis is vertical from the surface, and the magnetic field \(\vec{B}\) will generally not be aligned with it: we denote as \(\phi \) the angle between it and the \(\hat{x}\) axis --- taking \(\hat{x}\), \(\hat{z}\) and \(\vec{B}\) as coplanar. 
@@ -74,13 +76,13 @@ where the scalar \(k\) is called the thermal conductivity.
 It being a scalar means that conduction is in principle isotropic --- the medium can conduct in any direction equally.
 This is \emph{not} the case if there is a magnetic field: electrons move along field lines in a much easier way than across them. 
 
-Therefore, we expect \(k_\parallel \gg k_\perp\). 
+Therefore, we expect \(k_\parallel \gg k_\perp\), where parallel and perpendicular are referred to the direction of \(\vec{B}\). 
 The conductivity we need is a tensorial one: the law is written as usual, however \(k\) is now a tensor.
 
 We define a ``primed'' system of reference in which the \(\hat{x}\) axis is parallel to \(\vec{B}\): here, (in two dimensions since there is rotational symmetry around the \(\vec{B}\) axis as far as conduction is concerned)
 %
 \begin{align}
-k = \left[\begin{array}{cc}
+k' = \left[\begin{array}{cc}
 k_\parallel & 0 \\ 
 0 & k_\perp
 \end{array}\right]
@@ -98,9 +100,19 @@ The conductivity tensor will transform with the Jacobian of the rotation:
 %
 \begin{align}
 k_{ij} = \pdv{x_i}{x'_k} \pdv{x_j}{x'_\ell} k'_{k \ell}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\pdv{x_i}{x'_k} = \left[\begin{array}{cc}
+\cos \phi  & \sin \phi  \\ 
+- \sin \phi & \cos \phi 
+\end{array}\right]
 \,.
 \end{align}
 
-[Calculations]
+% [Calculations]
 
 \end{document}

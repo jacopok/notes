@@ -3,19 +3,20 @@
 
 \marginpar{Wednesday\\ 2020-12-9, \\ compiled \\ \today}
 
-We were discussing how the envelope of the neutron star can be treated in the plane-parallel approximation. 
+% We were discussing how the envelope of the neutron star can be treated in the plane-parallel approximation. 
 
-The conductivity tensor is 
-%
-\begin{align}
-k'_{ij} = \left[\begin{array}{cc}
-k_\parallel & 0 \\ 
-0 & k_\perp
-\end{array}\right]
-\,,
-\end{align}
-%
-and so the components of the tensor in the unprimed frame are 
+% The conductivity tensor is 
+% %
+% \begin{align}
+% k'_{ij} = \left[\begin{array}{cc}
+% k_\parallel & 0 \\ 
+% 0 & k_\perp
+% \end{array}\right]
+% \,,
+% \end{align}
+% %
+% and so 
+Therefore, the components of the tensor in the unprimed frame are 
 %
 \begin{align}
 k_{ij} = \left[\begin{array}{cc}
@@ -33,7 +34,8 @@ q_i = - \sum _{j} k_{ij } \pdv{T}{x _j}
 \,.
 \end{align}
 
-Let us denote \(q_z = q_2\), which will be given by 
+Since we are interested in the observable emission, 
+let us consider \(q_z = q_2\), which will be given by 
 %
 \begin{align}
 q_z = - k_{21} \pdv{T}{x} - k_{22} \pdv{T}{z}
@@ -42,8 +44,9 @@ q_z = - k_{21} \pdv{T}{x} - k_{22} \pdv{T}{z}
 %
 and we know that this will correspond to blackbody emission: \(q_z = \sigma T^{4}\).
 
-Now, \(\pdv*{T}{z} \approx (T - T_0 ) / L\), while \(\pdv*{T}{x} \approx - T/R\).
-We know that \(T \ll T_0 \), and \(L \ll R\): then, 
+Now, as rough estimates, if \(L\) is the depth of the crust and \(R\) is the radius of the NS, we can take \(\pdv*{T}{z} \approx (T_s - T_c ) / L\), while \(\pdv*{T}{x} \approx - T_s/R\).
+
+We know that \(T_s \ll T_c \), and \(L \ll R\): then, 
 %
 \begin{align}
 \abs{ \pdv{T}{z}} \approx \abs{- \frac{T_0}{L} } \gg \pdv{T}{x}
@@ -61,11 +64,12 @@ k_\parallel \sin^2 \phi + k_\perp \cos^2\phi) \pdv{T}{z}   \\
 %
 where we defined the new temperature \(T_P\), since on dimensional grounds that term was a thermal emissivity. If we take \(\phi = \pi /2\) we get the temperature at the pole: therefore, \(T_P\) is the polar temperature.
 
-As long as \(k_\perp \ll k_\parallel\), we get \(\sigma T^{4} \approx \sigma T^{4} \sin^2 \phi \). Note that the angle \(\phi = \pi /2 - \Theta \).
-\todo[inline]{Is this true?}
+As long as \(k_\perp \ll k_\parallel\), we get \(\sigma T^{4} \approx \sigma T_P^{4} \sin^2 \phi \).
+We can also define the angle \(\Theta \), between \(\vec{B}\) and the radial direction, through \(\phi = \pi /2 - \Theta \).
+% \footnote{This is not a bad approximation --- the correct geometrical considerations yield \(\phi = \arctan(2 / \tan \theta )\), which is only slightly different from \(\phi = \pi / 2 - \Theta \).}
+% \todo[inline]{Is this true?}
 
 This then tells us that \(T = T_P \sqrt{\abs{\cos \Theta }}\).
-
 The dipolar magnetic field is given by 
 %
 \begin{align}
@@ -73,7 +77,7 @@ The dipolar magnetic field is given by
 \,,
 \end{align}
 %
-so 
+so on the surface it will read
 %
 \begin{align}
 \vec{B}(r = R) = \frac{B_p}{2} \qty(2 \cos \theta \hat{e}_r + \sin \theta \hat{e}_\theta )
@@ -95,17 +99,52 @@ so, taking geometric considerations into account, we get
 \end{align}
 
 Therefore, the temperature monotonically decreases going from the pole to the equator. 
-At the equator it is not really zero, but it is an order of magnitude lower than the polar temperature.
+At the equator it is not really zero, but it is an order of magnitude lower than the polar temperature. A plot of the approximated formula \(T/ T_P \sim \sqrt{\abs{\cos \Theta }}\) is shown in figure \ref{NS-temperature}.
 
-\todo[inline]{Plot temperature as a function of angle.}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{figures/NS-temperature}
+\caption{Temperature as a function of \(\theta \). On the left we have the pole, on the right the equator; in reality the temperature will not drop to zero at \(\theta = \pi /2\), instead the conduction along \(x\) will become relevant.}
+\label{fig:NS-temperature}
+\end{figure}
 
 This has an important observational implication: the emission from the NS is not a single blackbody, but instead a superposition of a blackbody for each latitude.
 
-We need to account for relativistic effects.
+What we have done so far applies to the dipolar approximation, but nothing prevents higher order moments from being relevant. 
+
+We also need to account for relativistic effects: 
+\begin{enumerate}
+    \item the emitted radiation is redshifted by a factor 
+    %
+    \begin{align}
+    \frac{\nu _\infty}{\nu } = \sqrt{1 - \frac{2GM}{c^2R}} 
+    \,,
+    \end{align}
+    %
+    which typically comes out to \(\Delta \nu / \nu \sim \num{.2}\). This is reflected in a lower effective blackbody temperature.
+    \item The luminosity at infinity is multiplied by a factor \((1 - 2GM/c^2R)\) compared to the one at the surface, because of the relativistic correction to the radius (\(R = R_\infty \sqrt{1 - 2GM/c^2R}\)), which factors into the surface area. 
+    \item The light rays' paths will be curved by the gravitational effect of the NS. Consider the point of emission of a photon on the surface, and denote as \(\alpha \) the angle between the radial direction at that point and the direction of emission; further, denote as \(\theta \) the angle between the radial direction and our line of sight. Then, it is a good approximation to say that the photon reaches us when \cite[]{beloborodovGravitationalBendingLight2002}
+    %
+    \begin{align}
+    1 - \cos \alpha = (1 - \cos \theta ) \qty(1 - \frac{2GM}{c^2R})
+    \,.
+    \end{align}
+    
+    This means that we see more than half of the surface of the NS. The terminator lies at 
+    %
+    \begin{align}
+    \cos \theta  _{\text{terminator}} = \qty( \frac{Rc^2}{2GM} -1 )^{-1}
+    \,,
+    \end{align}
+    %
+    which, for example, yields \SI{112}{\degree} for \(M = \num{1.4} M_{\odot}\) and \(R = \SI{15}{km}\). 
+    The effect this has is to allow us to continuously see the two magnetic hot spots (at the magnetic poles) even if the magnetic and rotation axes are misaligned.
+\end{enumerate}
+
 
 \section{Accretion onto Neutron Stars}
 
-We start by introducing the light-cylinder radius.
+We start by introducing the \textbf{light-cylinder radius}.
 We define \(v_\phi = R_{LC} \Omega = c\), so \(R_{LC} = c/  \Omega \).
 
 This is on the order of 
@@ -117,7 +156,7 @@ R_{LC} = \frac{cP}{2 \pi } \approx \SI{5e9}{cm} \frac{P}{\SI{1}{s}}
 
 After this length, the magnetic field lines must disconnect. 
 
-The Alfven radius is the one at which the magnetic pressure equals the round pressure: 
+The \textbf{Alfvén radius} is the one at which the magnetic pressure equals the ram pressure: 
 %
 \begin{align}
 \frac{B^2}{8 \pi } = \frac{1}{2} \rho v^2
@@ -135,7 +174,7 @@ This gives us
 therefore \(v = \sqrt{GM /r}\), and \(\rho = \dot{M} / 4 \pi r^2 v \), so 
 %
 \begin{align}
-\frac{B^2}{8 \pi } = \frac{1}{2} \frac{\dot{M}}{4 \pi r^2v}
+\frac{B^2}{8 \pi } = \frac{1}{2} \frac{\dot{M} v^2}{4 \pi r^2v}
 = \frac{1}{2} \frac{\dot{M}}{4 \pi r^2} \sqrt{ \frac{GM}{r}}
 \,,
 \end{align}

@@ -3,9 +3,9 @@ Here are the notes I am taking during the lectures of the degree in [Astrophysic
 Also, one can find some notes for other courses (quantum optics, astronomy) and projects I did in this period, these are generally of lower quality than the ones for the main degree.
 
 They are divided by semester and class: the current semester folder is `ap_third_semester`, containing notes for:
-* [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0): currently taking the course, a folder can be found for the exercises as well;
-* [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0): currently taking the course;
-* [Cosmology of the Early Universe](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081761/N0): currently taking the course.
+* [Astrostatistics and Cosmology](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP8082722/N0): notes are mostly reviewed, a folder can be found for the exercises as well;
+* [Compact Object Astrophysics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/001PD/SCP9086349/N0): reviewed notes;
+* [Cosmology of the Early Universe](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081761/N0): reviewed notes.
 
 In the folder `ap_second_semester` one can find notes for the following courses:
 * [Gravitational physics](https://en.didattica.unipd.it/off/2019/LM/SC/SC2490/000ZZ/SCP7081719/N0): finished reviewing notes, the last parts are quite short but the big conceptual bits are all there;

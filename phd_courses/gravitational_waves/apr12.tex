@@ -1,8 +1,91 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Introduction}
+
 \marginpar{Monday\\ 2021-4-12, \\ compiled \\ \today}
 
+The syllabus can be found \href{http://sbernuzzi.gitpages.tpi.uni-jena.de/gw/}{here}.
 
+Interesting things on the \href{https://indico.tpi.uni-jena.de/}{Indico server} of Jena university.
+
+In this first lecture, a basic introduction to the theory of gravitational waves: Einstein's first papers, the sticky bead argument by Bondi \& Feynman, the quadrupole formula: 
+%
+\begin{align}
+\overline{h}_{ij} (t, r) = \frac{2G}{c^{4} r} \ddot{I}_{ij} (t - r)
+\,.
+\end{align}
+
+The idea behind the multipole expansion is that we are solving the Poisson equation \(\nabla^2 \phi = \rho \), so 
+%
+\begin{align}
+\phi (\vec{r}) = \int \frac{ \rho (\vec{x}) \dd[3]{x}}{\abs{\vec{r} - \vec{x}}}
+\,,
+\end{align}
+%
+so as long as we are far away from the source we will see 
+%
+\begin{align}
+\phi (\vec{r}) = - \frac{q}{r} - \frac{p_i n^i}{r^2} - \frac{Q_{ij}n^i n^j}{r^3} + \dots
+\,.
+\end{align}
+
+Quiz: which of these are GW sources? 
+\begin{enumerate}
+    \item spherical star: no, its quadrupole is vanishing;
+    \item rotating star: no, its quadrupole is constant;
+    \item star with a mountain: yes, its quadrupole evolves (potential source of continuous GW);
+    \item supernova explosion: yes, if there is asymmetry (potential source of burst GW);
+    \item binary system: yes, already detected!
+\end{enumerate}
+
+\begin{claim}
+
+Order of magnitude expression: 
+%
+\begin{align}
+h \lesssim \frac{GM}{c^2 D} \frac{v^2}{c^2} = \frac{R}{D} \frac{GM}{c^2 R} \qty( \frac{v}{c})^2
+\,,
+\end{align}
+%
+where \(D\) is the distance to the object, \(R\) is the characteristic scale of the object (so that \(GM / c^2 R\) is the compactness), while \(v\) is the characteristic velocity. The quantity we calculate is \(h \sim \delta L / L\), the strain.
+\end{claim}
+
+\begin{proof}
+To do.
+\end{proof}
+
+The Hulse-Taylor pulsar. 
+The two-body problem in GR is difficult. 
+
+The typical waveform in the PN region looks like: 
+%
+\begin{align}
+h_{+} (t) \approx \frac{4}{r} \qty( \frac{GM_c}{c^2})^{5/3} \qty( \frac{\pi f_{\text{gw}}(t)}{c})^{2/3} \cos( 2 \pi f _{\text{gw}} (t) t)
+\,,
+\end{align}
+%
+then we need numerical relativity to simulate the plunge and merger, and finally the ringdown is simulated using BH perturbation methods.
+The mass scale is 
+%
+\begin{align}
+h(t) \sim \nu \frac{1}{r / M} (M f _{\text{gw}})^{2/3}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\phi _{\text{gw}}(t) \sim 2 \phi _{\text{orb}}(t) = 2 M_c^{-5/8} t^{5/8} = 2 \nu^{-3/8} \qty( \frac{t}{M})^{5/8}
+\,,
+\end{align}
+%
+ where \(\nu = \mu / M\), and \(\mu = 1/(1/M_1 + 1/M_2 )\).
+ 
+Multiple detectors are crucial for sky localization, as well as for the measurement of polarization. 
+
+At leading order, the two-body problem in GR is scale-invariant: the length of the signal can be estimated simply from the mass of the stars involved. 
+
+R-process nucleosynthesis might have something to do with BNS mergers, if the stars are torn apart by the collision. 
 
 \end{document}

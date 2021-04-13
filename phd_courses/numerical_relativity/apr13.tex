@@ -1,4 +1,128 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Introduction}
+
+\marginpar{Tuesday\\ 2021-4-13, \\ compiled \\ \today}
+
+The syllabus can be found \href{http://sbernuzzi.gitpages.tpi.uni-jena.de/nr/}{here}.
+There will also be exercise sessions; the exercises will be posted on the same webpage. 
+
+The hydrodynamic part of the program is more pertinent to the computational hydrodynamics course. 
+
+There will also be a final project. 
+The most recommended books are those by Alcubierre and Baumgarte-Shapiro.
+A good standard GR reference is Wald. 
+The notes by Ghourghoulon are good and complete. 
+The numerical methods reference by Choptuik is quite good. 
+
+There are \textbf{four pillars}: 
+\begin{enumerate}
+    \item we need to \textbf{formulate GR as a set of PDEs} (a Cauchy problem, really), including relativistic hydrodynamics (also, at this point we should classify these equations --- are they hyperbolic, elliptic?);
+    \item some issues we encounter are the problems with \textbf{coordinates and singularities}: after all, we are interested in black holes and other extreme objects, so we must be able to work around horizons --- the gauge is arbitrary, but some choices are better than others, we can gauge away coordinate singularities, but we must also work around the physical singularities;
+    \item we should use \textbf{numerical methods for the solution of PDEs on adaptive grids}; 
+    \item the calculations are quite expensive, so we need \textbf{high performance computing} and easily parallelizable code.
+\end{enumerate}
+
+We will mostly discuss the first two pillars in this course. 
+
+A landmark paper is one by Pretorius in 2006; his code already had several very useful characteristics.
+
+We need \textbf{excision} to ignore the interior of the BHs, but we need to track them since they move. 
+
+In the 1970s there were already precursors to NR, such as throwing test masses at black holes. 
+
+\todo[inline]{Do the horizons merge in a continuous fashion?}
+
+Yes, but it's hard to write shock-free gauge equations. 
+
+The definition of an event horizon depends on global properties of the spacetime, so it cannot be done ``at runtime'': we must store the data for all the simulation and then do raytracing. 
+
+On the other hand, an apparent horizon is local and gauge dependent, and we can compute these at runtime. It is useful to find it since, if it exists, it is always inside or coincident with the event horizon. 
+
+The result of a BNS merger is not necessarily a BH immediately. 
+
+We also have gravitational collapse of a scalar field with a variable energy. Letting it evolve according to GR leads to BH formation. 
+There is a phase transition, the parameter is \(p\) and we get \(M_{BH}\sim \abs{p - p_*}^{\beta }\). 
+
+\todo[inline]{Do we have self-similarity for all \(p\) or only for \(p = p_*\)?}
+
+NR can also be used to study stringy higher-dimensional BHs. 
+
+\section{Setting up the geometry}
+
+The idea is to introduce a notion of time by foliating the manifold. 
+We must restrict ourselves to globally hyperbolic spacetimes. 
+There must be no ugly things like CTCs. 
+
+The lapse function controls the foliation: it defines the proper time of Eulerian observers. 
+
+How is the foliation \(\Sigma \) ``bent'' into the 4D manifold? How does \(\hat{n}\) change as we transport it along \(\Sigma \)? 
+
+The ``velocity'' is defined by a curvature \(K_{\mu \nu }\), which is defined as 
+%
+\begin{align}
+K_{\mu \nu } = - \gamma^{\alpha }{}_{\mu } \nabla_{\alpha } n_\nu 
+\,,
+\end{align}
+%
+where \(\gamma \) is the metric restricted to the \(\Sigma _t\) foliation. 
+
+The fundamental variables are then: the three-metric \(\gamma_{ij}\), the ``velocity'' \(K_{ij}\), the lapse \(\alpha \) and \(\beta^{i}\), as well as \(j_i\) and \(S_{ij}\). 
+
+The equations we will write for these by manipulating the Einstein equations can be decomposed into \emph{spacetime dynamical equations}: 
+%
+\begin{align}
+\qty(\partial_t - \mathcal{L}_{\vec{\beta}}) \gamma_{ik} &= - 2 \alpha K_{ik}  \\
+\qty(\partial_t - \mathcal{L}_{\vec{\beta}}) K_{ik} &= - D_i D_k \alpha + \alpha \qty(^{(3)}R_{ik} - 2 K_{ik} K^{j}{}_k + K_{ik}) - 8 \pi \alpha \qty(S_{ik} - \frac{1}{2} \gamma_{ik} (S-E))
+\,,
+\end{align}
+%
+as well as two \emph{constraints}: 
+%
+\begin{align}
+^{(3)} R + K^2 - K_{ik} K^{ik} &= 16 \pi E  \\
+D_k (K \gamma^{k}{}_i ) &= 8 \pi j_i
+\,,
+\end{align}
+%
+and the latter do not involve any Lie derivatives: they are specific to a single \(\Sigma _t\). 
+Also, we will need matter dynamical equations: from the stress-energy tensor we define 
+%
+\begin{align}
+S_{ik} &= \gamma^{\mu }{}_{i} \gamma^{\nu }{}_k T_{\mu \nu }  \\
+S &= S^{i}{}_i  \\
+j_{i} &= - \gamma^{\mu }{}_i n^\nu T_{\mu \nu }  \\
+E &= T^{\mu \nu } n_\mu n_\nu 
+\,,
+\end{align}
+%
+and from \(\nabla_\mu T^{\mu \nu } = 0\) we can write 
+%
+\begin{align}
+\partial_t q_\mu + \partial_{i} F^{i}_{\mu }( q ) = s_\mu 
+\,.
+\end{align}
+
+We will need to make sure that the problem is well-posed, so that solutions exist and depend continuously on the parameters. 
+
+\subsection{Slicing and coordinate choices}
+
+The gauge is defined by \(\alpha \) and \(\beta^{i} \): we can freely choose them. We want to have smoothness, to avoid singularities, to minimize grid distortion and for the problem to be well-posed. 
+
+The time is defined by the lapse: if we take \(\alpha \equiv 1\) everywhere we have \(\vec{a} = \nabla_n \vec{n} = D \log \alpha = 0\); this is called \textbf{geodesic slicing}, and we know that Eulerian observers follow geodesics. 
+However, geodesics are ``looking for'' singularities, in that they easily fall inside them. 
+
+We could ask our hypersurfaces to bend as little as possible: we could minimize the trace of the extrinsic curvature, or even set \(K = \nabla_a n^a = 0\). This allows our gauge not to create black holes. 
+This translates to an elliptic equation for the lapse, to be solved together with the others. 
+
+This condition can be found to be equivalent to the maximization of the contained volume. 
+
+If we use geodesic slicing the simulation fails at time \(\tau  = \pi \) as the first gridpoint reaches the singularity. 
+If we do excision by removing gridpoints as they fall in things are better but the simulation still fails. 
+
+If, instead, we impose \(\partial_t \alpha = - \alpha K\), the foliation ``freezes'' as it passes the horizon, since the lapse function will prevent it. 
+However, this means we will have large gradients in space as well as in time: as the grid points inside freeze the ones outside keep evolving. 
+However, we can use a clever technique to minimize the distortion. 
+
 \end{document}

@@ -13,7 +13,7 @@ for the GW emitted by a Newtonian system is in the form:
 
 \subsection{Two point particles}
 
-The density in this case will be a sum of two delta-functions,
+In order to model the point-like nature of the particles we can write an expression for the density as a sum of two delta-functions,
 whose locations rotate around an axis --- let us fix it to be
 the \(z\) axis for simplicity, 
 and also let us suppose that we are on the \(z = 0 \) plane: 
@@ -26,7 +26,7 @@ and also let us suppose that we are on the \(z = 0 \) plane:
 where 
 %
 \begin{align}
-\vec{x}_1 (t) = \left[\begin{array}{c}
+\vec{x}_1 (t) = r \left[\begin{array}{c}
 \cos(\omega t + \phi ) \\ 
 - \sin(\omega t + \phi ) \\ 
 0
@@ -35,7 +35,52 @@ where
 \vec{x}_2 (t) = - \vec{x}_1 (t)
 \,.
 \end{align}
+
+For simplicity we will also assume that the radius \(r\) is constant --- this cannot be precisely the case, since there will be some amount of power lost because of the GW emission, but it is a reasonable approximation.
+
+So, the trace-free inertia tensor will be given by 
 %
+\begin{align}
+Q^{ij} (t) &= \int \rho (\vec{x}, t) \qty( x^{i} x^{j} - \frac{1}{3} \delta^{ij} r^2) \dd[3]{x}  \\
+&= m \sum _{k=1, 2} \qty(x_k^{i} x_k^{j} - \frac{1}{3} \delta^{ij} r^2)  \\
+&= 2 m r^2 \left[\begin{array}{cc}
+\cos^2 - 1/3 & - \cos \sin \\ 
+- \cos \sin & \sin^2 - 1/3  
+\end{array}\right] 
+\,,
+\end{align}
+%
+where we write only the upper-left 2x2 submatrix in \(Q^{ij}\), since the other entries are zero, and we omit the argument of the sines and cosines (which is always \(\omega t + \phi \)). 
+
+The second derivative of this tensor will be given by 
+%
+\begin{align}
+\ddot{Q}^{ij}(t) = 4 m r^2 \omega^2 \left[\begin{array}{cc}
+\sin^2 - \cos^2 & 2 \sin \cos \\ 
+2 \sin \cos & \cos^2 - \sin^2
+\end{array}\right]
+\,,
+\end{align}
+%
+ 
+
+Now, in order to compute the gravitational wave strain we need the projection tensor \(\Lambda_{ij, kl}\).
+If the propagation direction we are interested in is \(\vec{k}\), then the tensor 
+%
+\begin{align}
+P_{ij} = \delta_{ij} - \frac{k_i k_j}{\abs{k}^2}
+\,
+\end{align}
+%
+will project a vector onto the subspace orthogonal to \(\vec{k}\); and the tensor 
+%
+\begin{align}
+\Lambda_{ij, kl} = P_{ik} P_{jl} - \frac{1}{2} P_{ij} P_{kl} 
+\,,
+\end{align}
+%
+will project a rank-2 tensor onto the corresponding subspace. 
+
 
 
 \end{document}

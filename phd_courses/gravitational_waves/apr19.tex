@@ -1,4 +1,255 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Weak-field GR}
+
+\marginpar{Monday\\ 2021-4-19, \\ compiled \\ \today}
+
+This is the limit of GR for weak gravitational fields: the metric is assumed to be in the form of the Minkowski one plus a perturbation.
+We are seeking the equations of motion under this assumption. 
+
+How do we quantify the term ``small''? 
+We assume that there is a \textbf{global inertial coordinate system} such that 
+%
+\begin{align}
+g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }
+\,,
+\end{align}
+%
+where, like in the rest of the course, we will use the letters \(\alpha \), \(\beta \), \(\gamma \) or \(\mu \), \(\nu \) for the coordinates \(x^{\mu }\); while letters like \(a\), \(b\) represent the abstract notation. 
+
+The term ``small'', then, means that each component of \(h_{\mu \nu }\) has an absolute value which is much smaller than 1.
+We are using the metric signature \(\eta_{\mu \nu }= \diag{-1, +1, +1, +1}\). 
+
+What does this approximation describe?
+\begin{enumerate}
+    \item Newtonian gravity;
+    \item gravito-electric / magnetic effects (this will be discussed in more detail later, an example is the Lense-Thirring effect);
+    \item propagation of gravitational waves.
+\end{enumerate}
+
+In the case of the gravitational field around the Sun, in terms of orders of magnitude we have\footnote{We make the \(c\) explicit here for clarity, but we will use geometric units \(c = G = 1\) for the rest of the course.}
+%
+\begin{align}
+\abs{h_{\mu \nu }} \sim \frac{\phi }{c^2} \sim \frac{G M_{\odot}}{c^2 R_{\odot}} \sim \num{e-6}
+\,.
+\end{align}
+
+From a field-theoretic point of view: 
+\begin{enumerate}
+    \item \(\eta \) is a background metric;
+    \item \(h\) is the ``main'' field; 
+    \item the metric does \emph{not} backreact on the matter (\(T_{\mu \nu }\)).
+\end{enumerate}
+
+The metric perturbation \(h\) transform like a tensor on flat spacetime under Lorentz transformations: if \(\Lambda^{\top} \eta \Lambda = \eta \), then the coordinates change like \(x = \Lambda x'\), then the full metric transforms like
+%
+\begin{align}
+g_{\mu ' \nu '} &= \pdv{x^{\mu }}{x^{\mu '}} \pdv{x^{\nu }}{x^{\nu '}} g_{\mu \nu }  \\
+&= \Lambda^{\mu}{}_{\mu '} \Lambda^{\nu }{}_{\nu '} \qty(\eta_{\mu \nu } + h_{\mu \nu } )  \\
+&= \eta_{\mu '\nu '} +  \Lambda^{\mu}{}_{\mu '} \Lambda^{\nu }{}_{\nu '}  h_{\mu \nu }
+\,,
+\end{align}
+%
+therefore the transformation for \(h\) is 
+%
+\begin{align}
+h_{\mu \nu } \to h_{\mu ' \nu '} = \Lambda^{\mu }{}_{\mu ' } \Lambda^{\nu }{}_{\nu '} h_{\mu \nu }
+\,.
+\end{align}
+
+Mind the notation: the meaning of \(h_{\mu ' \nu '}\) is \(h_{\mu \nu } (x')\).
+
+\subsection{Symmetry of linearized GR}
+
+Full GR is diffeomorphism invariant, while linearized GR is \emph{infinitesimal} diffeomorphism invariant. 
+The relevant transformations are 
+%
+\begin{align}
+x^{\mu } \to x^{\mu '} = x^{\mu } + \xi^{\mu } (x^{\alpha })
+\,,
+\end{align}
+%
+where the vector field \(\xi \) is selected so that \(\abs{\partial_{\mu } \xi^{\alpha }} \sim \abs{h_{\mu \nu }} \ll 1\). 
+
+The Jacobian of this transformation is 
+%
+\begin{align}
+\pdv{x^{\mu '}}{x^{\mu }} = \delta^{\mu '}{}_{\mu} + \partial_{\mu } \xi^{\mu '}
+\,,
+\end{align}
+%
+while the inverse Jacobian is 
+%
+\begin{align}
+\pdv{x^{\mu }}{x^{\mu '}} + \delta^{\mu }{}_{\mu '} - \partial_{\mu '} \xi^{\mu } + \order{\abs{\partial \xi }^2}
+\,,
+\end{align}
+%
+since \((\mathbb{1} + \delta ) (\mathbb{1} - \delta ) = \mathbb{1} + \order{ \delta^2}\). 
+
+Under this change of coordinates, we have 
+%
+\begin{align}
+g_{\mu ' \nu '} &=
+\pdv{x^{\mu }}{x^{\mu '}}
+\pdv{x^{\nu }}{x^{\nu '}}
+g_{\mu \nu }  \\
+&\sim (\delta \delta - \partial \delta - \partial \delta + \partial \partial ) (\eta + h) = \delta \delta \eta + h - \partial \delta - \partial \delta  + \order{\delta^2 } \\ 
+&= \delta^{\mu }_{\mu '} \delta^{\nu }_{\nu '} \eta_{\mu \nu } - \partial_{\mu '} \xi^{\mu } \delta^{\nu }_{\nu '} \eta_{\mu \nu } - \partial_{\nu '} \xi^{\nu } \delta^{\mu }_{\mu '} 
++ \delta^{\mu }_{\mu '} \delta^{\nu }_{\nu '} h_{\mu \nu }  \\
+&= \eta_{\mu' \nu' } + h_{\mu ' \nu '} - 2 \partial_{(\mu '} \xi_{\nu ')}
+\,,
+\end{align}
+%
+therefore we have our transformation law: 
+%
+\begin{align}
+h_{\mu' \nu' } = h_{\mu \nu } + 2 \partial_{(\mu } \xi_{\nu )}
+\,.
+\end{align}
+
+This can also be written in terms of the Lie derivative as 
+%
+\begin{align}
+h_{\mu \nu } \to h_{\mu \nu } + \mathscr{L}_{\xi } \eta_{\mu \nu }
+\,.
+\end{align}
+
+This is the analogous of a gauge transformation in electromagnetism: \(A_{\alpha } \to A_{\alpha } + \partial_{\alpha } \chi \), where \(A\) is the vector potential. 
+
+\subsection{Equations of motion}
+
+The equations of motion will come through plugging \(g = \eta + h\) into the EFE \(G_{a b} = 8 \pi T_{ab}\) and keeping only the linear order in \(h\). 
+
+We will need the following quantities: 
+%
+\begin{align}
+g^{\mu \nu } &= \eta^{\mu \nu } + h^{\mu \nu } + \order{h^2}  \\
+\Gamma^{\mu }_{\alpha \beta } &= \frac{1}{2} \eta^{\mu \lambda } \qty(\partial_{\alpha } h_{\lambda \beta } + \partial_{\beta } h_{\lambda \alpha } - \partial_{\lambda } h_{\alpha \beta } ) + \order{h^2}  \\
+R_{\mu \nu } &= \partial \Gamma - \partial \Gamma + \order{h^2}
+\,,
+\end{align}
+%
+where we already simplified the expressions by removing the higher-order terms. The result is 
+%
+\begin{align}
+R_{\mu \nu } = \partial^{\alpha } \partial_{(\mu } h_{\nu ) \alpha } 
+- \frac{1}{2} \partial_{\lambda } \partial^{\lambda } h_{\mu  \nu } - \frac{1}{2} \partial_{\mu } \partial_{\nu } h + \order{h^2} 
+\,,
+\end{align}
+%
+where \(h = h^{\alpha }_{\alpha } = \eta^{\alpha \beta } h_{\alpha \beta }\). Note that we are allowed to use \(\eta \) instead of \(g\) to lower indices. The Einstein tensor reads  
+%
+\begin{align}
+G_{\mu \nu } &= R_{\mu \nu } - \frac{1}{2}  \eta_{\mu \nu } R  \\
+&= \partial^{\alpha } \partial_{(\mu } h_{\nu )} - \frac{1}{2} \partial_{\lambda } \partial^{\lambda } h_{\mu \nu } \partial_{\mu } \partial_{\nu } h - \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial^{\beta } h_{\alpha \beta } + \frac{1}{2} \eta_{\mu \nu } \partial_{\lambda } \partial^{\lambda } h 
+\,,
+\end{align}
+%
+which can be simplified if we consider the trace-reversed metric 
+%
+\begin{align}
+\overline{h}_{\mu \nu } = h_{\mu \nu} - \frac{1}{2} \eta_{\mu \nu } h
+\,,
+\end{align}
+%
+so that \(\overline{h} = \eta^{\mu \nu }h_{\mu \nu } - \eta^{\mu \nu } \eta_{\mu \nu } h / 2 = - h\). 
+See equation 2.13 in the notes for a full explanation, but the idea is to insert \(\overline{h}_{\mu \nu } \) and \(\overline{h}\) into \(G_{\alpha \beta }\) and to make some simplifications. We get 
+%
+\begin{align}
+G_{\mu \nu } = - \frac{1}{2} \eta_{\alpha \beta } \partial^{\alpha } \partial^{\beta } \overline{h}_{\mu \nu } + \partial^{\alpha } \partial_{(\mu } \overline{h}_{\nu ) \alpha } - \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial^{\beta } \overline{h}_{\alpha \beta }
+\,,
+\end{align}
+%
+which is in the form \(\square_{\eta } \overline{h}_{\mu \nu } + \dots \partial^{\alpha } \overline{h}_{\alpha \beta }\). We still have gauge freedom, so we can simplify the equation a great deal by setting \(\partial^{\alpha } \overline{h}_{\alpha \beta } = 0\) --- the Hilbert, or Lorentz gauge.
+
+With this choice, we have 
+%
+\boxalign{
+\begin{align}
+\square_{\eta } \overline{h}_{\mu \nu } = - \frac{16G}{c^{4}} T_{\mu \nu }
+\,,
+\end{align}}
+%
+a relatively simple tensor wave equation. 
+
+Is is always possible to impose the Hilbert gauge? Yes: we can make an infinitesimal coordinate transformation to send a generic \(h_{\mu \nu }\) to \(h_{\mu \nu } + 2 \partial_{(\mu  } \xi_{\nu )}\), so that \(h \to h + 2 \eta^{\alpha \beta } \partial_{(\alpha } \xi_{\beta) }\). 
+Therefore, 
+%
+\begin{align}
+\overline{h}_{\mu \nu } \to \overline{h}_{\mu \nu } + 2 \partial_{(\mu } h_{\nu )} - \eta_{\mu \nu } \partial_{\alpha } \xi^{\alpha }
+\,,
+\end{align}
+%
+and we can send 
+\todo[inline]{check indices here}
+%
+\begin{align}
+\partial^{\alpha } \overline{h}_{\mu \alpha } \to \partial^{\alpha } \overline{h}_{\mu \alpha } + \square \xi_{\mu } + \partial^{\mu } \partial_{\nu } \xi_{\mu } + \partial_{\nu } \partial^{\lambda } \xi_{\lambda } 
+\,,
+\end{align}
+%
+so if we set \(\square \xi_{\mu } = - \partial^{\alpha } \overline{h}_{\mu \alpha } = v_\mu \) we can reduce ourselves to the Hilbert gauge from any starting point. 
+All we need to do is solve the wave equation \(\square \xi_{\mu } = v_\mu \).
+
+Now, to linear order \(T_{\mu \nu }\) does not depend on \(h\). 
+So, we can find formal solutions using Green's functions, like in electromagnetism. 
+
+The Bianchi identities are now given by \(\partial_{\nu } G^{\mu \nu } = 0\), so \(\partial_{\nu } T^{\mu \nu } = 0\), which gives us the EOM for matter --- note that this is a partial, not a covariant derivative! This means that there is no backreaction on the metric.
+
+The linear EFE correspond to the equations of motion of a massless spin-2 field. 
+
+\subsection{Weak-field solutions} 
+
+Let us consider a \emph{static source}: suppose that \(T_{\mu \nu } = \rho t_\mu t_\nu \), where \(t^{\mu } = (\partial_{t})^{\mu }\) is the time vector along the time direction of the global inertial coordinate system while \(\rho \) is an energy density.
+
+If \(t^{\mu } = (1, 0, 0, 0)\) then \(T_{00} = \rho \) while \(T_{0i} = 0 = T_{ij}\). 
+
+In this case, then, the stress-energy tensor is time-independent: therefore also on the other side we will have \(\partial_{t} \overline{h}_{\mu \nu } = 0\).
+
+Therefore, the left-hand side of the equation will read \(\nabla^2 \overline{h}_{\mu \nu } = - 16 \pi \rho  \) for \(\mu = \nu = 0\) and \(\nabla^2 h_{\mu \nu } = 0\) for all the other components. 
+
+These Poisson equations can be solved as boundary-value problems if we assume that \(h_{\mu \nu } \to 0 \) for \(r \gg R\). 
+
+This looks very similar to the Newton equation \(\nabla^2 \phi = 4 \pi \rho\); therefore \(\overline{h}_{00} = - 4 \phi \), while \(\overline{h}_{\mu \nu } = 0\) for all other components. 
+
+We can reconstruct the metric using the fact that \(\overline{h} = 4 \phi   \), so 
+%
+\begin{align}
+h_{\mu \nu } = \overline{h}_{\mu \nu } - \frac{1}{2} \eta_{\mu \nu } \overline{h} = - 4 \phi t_\mu t_\nu - \frac{1}{2} \eta_{\mu \nu } 4 \phi 
+\,,
+\end{align}
+%
+so the metric reads 
+%
+\begin{align}
+g_{\mu \nu } = \eta_{\mu \nu } (1 - 2 \phi ) - 4 \phi t_\mu t_\nu 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+g =  - (1 + 2 \phi ) \dd{t^2} + ( 1 - 2 \phi ) \delta_{ij} \dd{x^{i}} \dd{x^{j}}
+\,.
+\end{align}
+
+We know that far away from the source, the Newtonian field decays like \(\phi \approx - M / r + \order{r^{-2}}\). 
+
+Therefore, this metric approximation already includes special relativity as well: we have \(g \to \eta \) for large \(r\), but also \(g = \eta \) for \(M = 0\). 
+
+The geodesic equation for this weak field metric reads 
+%
+\begin{align}
+\dv[2]{x^{i}}{t} = - \partial^{i}\phi 
+\,.
+\end{align}
+
+However, these Newtonian equations of motion are \emph{not} consistent with \(\partial_{\mu } T^{\mu \nu } = 0\). 
+These describe the motion of the source which generates gravity, whereas the Newtonian EOM describe the motion of test particles in the weak-field metric. 
+
+The dual meaning of the full EFE --- matter deforms the spacetime, the spacetime shapes the trajectories of matter --- \emph{cannot} be realized at linear order. 
+
 \end{document}
+

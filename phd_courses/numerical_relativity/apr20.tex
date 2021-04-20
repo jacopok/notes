@@ -1,4 +1,219 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Introduction}
+
+What is the problem in NR?
+We have the Einstein equation \(G_{ab} = 8 \pi T_{ab}\), in geometric units \(c = G = 1\), and we want to discuss its solutions which cannot be expressed analytically:
+\begin{enumerate}
+    \item gravitational collapse;
+    \item BH or NS collisions;
+    \item dynamical stability of some stationary solutions --- for example, Kerr black holes. 
+\end{enumerate}
+
+The commonalities among these are: strong gravity, the absence of symmetries (no Killing vectors), and the fact that these are dynamical. 
+
+We need to: 
+\begin{enumerate}
+    \item  formulate the EFE as a PDE system;
+    \item check that it is well-posed;
+    \item simulate this using certain numerical algorithms;
+    \item extract information: we should use gauge-invariant quantities, such as gravitational waves or to-be-specified ``energies''. 
+\end{enumerate}
+
+Regarding the third point, we need to be able to solve nonlinear PDES: these can be elliptic or hyperbolic, deal with space-time decomposition, deal with singularities, and use high-performance computing effectively. 
+
+\subsection{The PDE system}
+
+Let us start by treating the equations in vacuo: they reduce to \(R_{\mu \nu } = 0 \).  The Ricci tensor can be expressed explicitly as 
+%
+\begin{align}
+0 = R_{\mu \nu } &= \underbrace{- \frac{1}{2} g^{\alpha \beta } \partial_{\alpha } \partial_{\beta } g_{\mu \nu } - g_{\alpha (\mu } \partial_{\nu )} H^{\alpha }}_{\text{principal part}} + Q_{\mu \nu } [g, \partial g]  \\
+H^{\alpha } &= \partial_{\mu } g^{\alpha \mu } + \frac{1}{2} g^{\alpha \beta } g^{\rho \sigma } \partial_{\beta } g_{\rho \sigma }
+\,,
+\end{align}
+%
+where the part denoted as the principal contains the highest derivatives of the metric, while the part denoted as \(Q\) is less important. 
+
+It seems like we have 10 equations for \(g_{\mu \nu }\), so we are done! We actually do not, because of the Bianchi identities: \(\nabla_{a} G^{ab} = 0\). These are four more equations, which we need to consider. 
+
+Our questions are: 
+\begin{enumerate}
+    \item what type of PDEs are these?
+    \item how do we formulate an initial/boundary value problem?
+    \item are these PDE problems well-posed?
+\end{enumerate}
+
+\begin{definition}[Well-posed PDE problem]
+It is a problem in which a unique solution exists, it is continuous, and it depends continuously on the boundary data. 
+\end{definition}
+
+\subsection{Maxwell equations in flat spacetime}
+
+Let us start with these as a reference. They are written in terms of the antisymmetric Maxwell-Faraday tensor \(F_{\alpha \beta }\), and they read 
+%
+\begin{align}
+0 = \partial^{\alpha } F_{\alpha \beta } = \partial^{\alpha } \qty( \partial_{\alpha} A_\beta - \partial_{\beta } A_\alpha ) 
+\,,
+\end{align}
+%
+where \(A^{\alpha }\) is the vector potential.
+We could naively interpret these as four wave-like equations for the vector potential because of the \(\square A\) operator 
+--- however, this is not true. 
+Let us show it by looking at the \(\beta = 0\) equation: 
+%
+\begin{align}
+0 &= \partial^{\alpha } \partial_{\alpha } A_0 - \partial^{\alpha } \partial_0 A_\alpha = \square A_0 - \partial_0 \partial^{\alpha } A_\alpha   \\
+&= - \partial_0^2 A_0 + \partial_{i} \partial^{i} A_0 + \partial_0^2 A_0 - \partial_0 \partial^{i} A_i  \\
+&= \partial^{i} \qty(\partial_{i} A_0 - \partial_{i} A_0 ) = \partial^{i} F_{0i} = \partial^{i} E_i = C
+\,,
+\end{align}
+%
+where \(E_\alpha = F_{\alpha 0} = F_{\alpha \beta } n^\beta \), where \(n^{\beta }\) is a unit four-vector in the time direction.
+
+Importantly, this equation (\(C=0\)) does not contain second time derivatives (they cancelled out).
+Can we get a wave equation from \(\partial^0 C = 0\), maybe? No: the computation goes like 
+%
+\begin{align}
+\partial^{0} C &= \partial^{0} \qty(\partial^{\alpha } \partial_{\alpha } A_0 - \partial_{0} A_\alpha )  \\
+&= \partial^{i} \qty[\partial^{\alpha } (\partial_{\alpha } A_i - \partial_{i} A_\alpha )]
+\,,
+\end{align}
+%
+where we used the fact that \(\partial^{\alpha } \partial^{\beta } F_{\alpha \beta } = 0\).
+The thing we are taking a derivative of is the left-hand side of the Maxwell equations for \(\beta = i\)! 
+If \(A\) is a solution, the equation \(\partial^{0} C= 0\) is an \emph{identity}, it does not constrain the solution in any way. 
+
+In summary, the Maxwell equations for \(A^{\alpha }\) are 
+3 evolution equations (which contain second time derivatives) 
+and the one \(C = 0\) equation, which is a \emph{constraint.}
+
+What this means is that the Maxwell equations are \textbf{undetermined}! 
+Three evolution equations, four unknowns. 
+They are not well posed according to our mathematical definition. 
+
+However, from a physical point of view this is not a problem: 
+we know that there is gauge freedom in electromagnetism,
+so the couple \(E_\alpha \), \(B_\alpha \) are calculated from \(A_\alpha \) up to a gauge transformation. 
+\(A_\alpha \) and \(A_\alpha + \partial_{\alpha } \phi \) for any scalar field \(\phi \) represent the same electric and magnetic fields.
+
+What we can then do is to fix the gauge: 
+we can choose, for example the Lorentz gauge \(\partial_{\alpha } A^{\alpha } = 0\). 
+
+After doing so, the Maxwell equations reduce to \(0 = \partial_{\alpha } \partial^{\alpha } A_\beta =0 \). 
+These are 4 dynamical equations (containing \(\partial_0 \partial_0 \)) for 4 unknowns \(A_\alpha \). 
+This, then is a well-posed Cauchy problem. 
+
+Does the Lorentz Gauge hold for all time?
+Yes, because 
+%
+\begin{align}
+0 = \partial^{\beta } \qty(\square A_\beta ) = \square (\partial^{\beta } A_\beta )
+\,,
+\end{align}
+%
+so the quantity in parentheses is zero initially and its derivative is always zero: then, it remains zero. 
+
+What happened to the \(C =0 \) constraint? 
+If \(C =0\) initially then the condition \(C = 0\) remains: 
+%
+\begin{align}
+C = \square A_\alpha - \partial^{\alpha } \partial_{0} A_\alpha = \square A_\alpha - \partial_0 \partial^{\alpha } A_\alpha = 0
+\,,
+\end{align}
+%
+which is usually stated as:
+``\textbf{the constraints are transported along the dynamics}''.
+
+Finally then we can say that the Maxwell equations, in an appropriate gauge, are well-posed.
+
+\subsection{The EFE}
+
+In the EFE case, the Bianchi identities have the same role as our \(C = 0\) constraint. 
+
+If \(n^b  \) is a timelike vector field, then the projection of the Einstein equations 
+%
+\begin{align}
+0 = G_{ab} n^a = C_b [\partial_{i}^2 g, \partial g, g]
+\,,
+\end{align}
+%
+are \emph{constraint} equations.
+On the other hand, the Bianchi identities guarantee that these are transported along the dynamics. 
+
+If we pick a gauge such that \(0 = C^{\mu } = G^{0 \mu }\), then the Bianchi identities read 
+%
+\begin{align}
+\nabla_{\alpha } G^{\alpha \mu } &= 0  \\
+\partial_0 G^{0 \mu } &= - \partial_{k} G^{k \mu } - \Gamma^{\mu }_{\alpha \beta } G^{\alpha \beta } - \Gamma^{\alpha }_{\alpha \rho  } G^{\mu \rho }
+\,,
+\end{align}
+%
+and they contain at most \(\partial_0^2 g\). 
+
+Can we write the Einstein equations in a way that makes them explicitly well-posed? 
+Let us ignore the term \(Q_{\mu \nu }\) --- the important part is the principal one. 
+The first term is already \(g^{\alpha \beta } \partial_{\alpha } \partial_{\beta }\), the Dalambertian. 
+The part we do not like is the derivative of \(H^{\alpha }\). 
+
+Can we say that \(H^{\alpha } = 0\)? Yes! This is the Hilbert / Lorentz / Harmonic gauge. 
+Then the EFE read 
+%
+\begin{align}
+\square_g g_{\mu \nu } \simeq 0
+\,,
+\end{align}
+%
+where the \(\simeq\) sign denotes the fact that this is only considering the principal part. 
+
+\subsection{Causality and globally hyperbolic spacetime}
+
+What we have seen so far is still not enough to show that the PDE system is, as a whole, hyperbolic. For that, we need to consider the eingenvalues of the problem. 
+
+We have initially assumed a ``global motion of time''. 
+
+Note that we do not mean a specific global time: in SR we had such a notion, because of the light-cone structure. 
+An equation like \(\square_f \phi = 0\) is always ``clear'', its character is always determined by the lightcone structure --- the condition at a point is affected by the past light cone, and it affects the future lightcone.
+
+In GR this is not the case in general! 
+An example are closed timelike curves. 
+
+In order to not have this problem, we need to restrict ourselves to a smaller class of spacetimes. 
+
+\begin{definition}
+An achronal set \(S \subset M\) if made of events which are not connected by timelike curves. 
+\end{definition}
+
+\begin{definition}
+The future domain of dependence \(D_+ (S)\) is the set of events such that every causal curve starting from a point in \(D_+ (S)\) intersects \(S\) in the past.
+\end{definition}
+
+\begin{definition}
+The future Cauchy horizon \(H_+ (S)\) is the boundary of \(D_+ (S)\). 
+\end{definition}
+
+We can make an analogous definition by substituting the past for the future, and the plus for a minus. 
+
+\begin{definition}
+The domain of dependence of \(S\) is \(D(S) = D_+ (S) \cup D_- (S)\). 
+\end{definition}
+
+\begin{definition}
+A \textbf{Cauchy surface} is a hypersurface \(\Sigma \subset M\) of spatial character such that \(D(\Sigma ) = M\), or \(H(\Sigma ) = 0\).  
+\end{definition}
+
+A property of Cauchy surface is that every causal curve intersects \(\Sigma \) exactly once. 
+
+Then we can say that 
+\begin{definition}
+A manifold \((M, g)\) is \textbf{globally hyperbolic} iff there exists a Cauchy surface \(\Sigma \subset M\). 
+\end{definition}
+
+This is a key hypothesis in numerical relativity. 
+We restrict our class of solutions to globally hyperbolic spacetimes. 
+
+There is a theorem ensuring that the initial value problem \(\square_G \phi  = 0 \) is well-posed in globally hyperbolic spacetimes. 
+
+
+
 \end{document}

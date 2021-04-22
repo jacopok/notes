@@ -5,7 +5,7 @@
 
 \section{NS surface tidal forces}
 
-We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{2}{km}.}
+We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}.}
 
 We shall do so by comparing three different methods: Newtonian mechanics, weak-field GR and then full GR (still with the spherical, stationary NR assumption).
 The weak-field GR formulation will make the various approximations of the Newtonian approach more explicit. 
@@ -42,13 +42,13 @@ a^{\mu } = R^{\mu }{}_{\nu \rho \sigma  } u^{\nu } u^{\rho } \xi^{\sigma }
 Our stationary observer on the surface is not moving along a geodesic, but the acceleration due to being stationary in Schwarzschild coordinates is shared by head and feet --- it is the zeroth-order contribution, so to speak. 
 The geodesic deviation \(a^{\mu }\) goes directly to the first order. 
 
-In the weak-field approximation, we directly consider the component \(a^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.\footnote{The equation is actually \(\abs{\Delta a} = -a^{r}\) since the acceleration is inward.}
-The space-like displacement vector describing the person is \(\xi^{\mu } = \SI{1.6}{m} \hat{e}^{r}\), while their four-velocity in this weak-field context is \(u^{\mu } = \hat{e}^{t}\). 
+In the weak-field approximation, we directly consider the component \(a^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.
+The space-like displacement vector describing the person is \(\xi^{\mu } = h \hat{e}^{r}\), while their four-velocity in this weak-field context is \(u^{\mu } = \hat{e}^{t}\). 
 
 Therefore, the formula simplifies to 
 %
 \begin{align}
-\abs{\Delta a} \approx -a^{r} = -\SI{1.6}{m} \times R^{r}{}_{ttr} 
+\abs{\Delta a} \approx \abs{a^{r}} = \abs{h R^{r}{}_{ttr} }
 \,,
 \end{align}
 %
@@ -65,6 +65,39 @@ and we can approximate this component of the Riemann tensor as such:
 \,,
 \end{align}
 %
-so our result is exactly the same as the Newtonian one: 
+so our result is exactly the same as the Newtonian one: \(\Delta a = 2GM h / r^3 = \SI{3.4}{m / s^2}\). 
+
+\subsection{Full GR}
+
+Now that we have established the weak-field calculation, let us approach it accounting for the strong-field regime. 
+
+The geodesic deviation equation is still valid, but we must adapt the expressions for \(\xi^{\mu }\) and \(u^{\mu }\): 
+we want their moduli to be \(h\) and \(-1\) respectively, and their directions to be \(\hat{e}^{r} \) and \(\hat{e}^{t}\).
+In order for this to be true we need to rescale their components as \(\xi^{r} = h / \sqrt{g_{rr}}\) and \(u^{t} = 1/\sqrt{g_{tt}}\). 
+
+Also, we cannot only compute \(a^{r}\): we must consider the full vector \(a^{\mu }\) and compute its modulus \(\sqrt{a^{\mu } a_\mu }\). 
+Notice the lowered index: the component \(a^{r}\) appears in the modulus of the acceleration as \(a^{r} \sqrt{g_{rr}}\), and \(\sqrt{g_{rr}} \approx \num{1.23}\) is noticeably different from 1 in this situation. 
+
+This way, we have all the components to plug into a computer algebra system like Cadabra: 
+the acceleration comes out to have \(a^{r}\) as its only nonvanishing component, 
+%
+\begin{align}
+a^{r} = \frac{1}{r} \frac{h}{r} \frac{2GM}{r} \qty(1 - \frac{2GM}{rc^2})^{-1/2}
+\,,
+\end{align}
+%
+whose modulus is then 
+%
+\begin{align}
+\abs{a} = a^{r} \sqrt{g_{rr}} = \frac{2GMh}{r^3} 
+\,,
+\end{align}
+%
+which, incidentally, is proportional to the square root of the Kretschmann scalar \(K = R^{\mu \nu \rho \sigma } R_{\mu \nu \rho \sigma } \propto G^2M^2c^{-4} r^{-6}\). 
+
+This is the same result we found in the weak field regime! 
+The components from the metric cancelled out.   
+
+
 
 \end{document}

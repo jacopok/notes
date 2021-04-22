@@ -1,0 +1,70 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{GW gauge}
+
+\section{NS surface tidal forces}
+
+We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{2}{km}.}
+
+We shall do so by comparing three different methods: Newtonian mechanics, weak-field GR and then full GR (still with the spherical, stationary NR assumption).
+The weak-field GR formulation will make the various approximations of the Newtonian approach more explicit. 
+
+\subsection{Newtonian mechanics}
+
+Here, the gravitational acceleration \(a (r)\) looks like 
+%
+\begin{align}
+a (r) = - \frac{GM}{r^2}
+\,,
+\end{align}
+%
+so the differential acceleration between the head and feet of our test person will be 
+%
+\begin{align}
+\Delta a = - \frac{GM}{(r + h)^2} + \frac{GM}{r^2} \approx 2GM \frac{h}{r^3} + \order{ (h / r)^2}
+\,,
+\end{align}
+%
+where the scale of the term we are neglecting is \((h / r)^2 \sim (\num{e-4})^2 = \num{e-8}\) --- definitely acceptable for this rough calculation.
+
+With this expression we get \(\Delta a \approx \SI{3.4}{m/s^2}\). 
+
+\subsection{Weak-field GR}
+
+In general, the expression for the geodesic deviation \(a^{\mu }\) corresponding to an observer moving with four-velocity \(u^{\mu }\) described by a space-like vector \(\xi^{\mu }\) is \cite[eq.\ 3.208]{carrollSpacetimeGeometryIntroduction2019}
+%
+\begin{align}
+a^{\mu } = R^{\mu }{}_{\nu \rho \sigma  } u^{\nu } u^{\rho } \xi^{\sigma }
+\,.
+\end{align}
+
+Our stationary observer on the surface is not moving along a geodesic, but the acceleration due to being stationary in Schwarzschild coordinates is shared by head and feet --- it is the zeroth-order contribution, so to speak. 
+The geodesic deviation \(a^{\mu }\) goes directly to the first order. 
+
+In the weak-field approximation, we directly consider the component \(a^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.\footnote{The equation is actually \(\abs{\Delta a} = -a^{r}\) since the acceleration is inward.}
+The space-like displacement vector describing the person is \(\xi^{\mu } = \SI{1.6}{m} \hat{e}^{r}\), while their four-velocity in this weak-field context is \(u^{\mu } = \hat{e}^{t}\). 
+
+Therefore, the formula simplifies to 
+%
+\begin{align}
+\abs{\Delta a} \approx -a^{r} = -\SI{1.6}{m} \times R^{r}{}_{ttr} 
+\,,
+\end{align}
+%
+and we can approximate this component of the Riemann tensor as such: 
+%
+\begin{align}
+-R^{r}_{ttr} =
++R^{r}_{trt} &= \partial_{r} \Gamma^{r}_{tt} - \underbrace{\partial_t \Gamma^{r}_{rt}}_{\text{zero by stationarity}}
+\underbrace{\Gamma^{r}_{r \mu } \Gamma^{\mu }_{tt} - \Gamma^{r}_{t \mu } \Gamma^{\mu}_{r t}}_{\text{second order}}  \\
+&\approx \partial_{r} \Gamma^{r}_{tt} = \frac{1}{2} \partial_{r} g^{r \mu } (\underbrace{2\partial_{t} g_{(\mu t)}}_{\text{zero in weak-field}}  - \partial_{\mu } g_{00})  \\
+&\approx - \frac{1}{2} \partial_{r} \partial_{r} g_{00} 
+\approx \partial_{r} \partial_{r} \Phi  \\
+&\approx \partial_{r} \partial_{r} \qty(- \frac{GM}{r}) = \partial_{r} \frac{GM}{r^2} = - \frac{2GM}{r^3}
+\,,
+\end{align}
+%
+so our result is exactly the same as the Newtonian one: 
+
+\end{document}

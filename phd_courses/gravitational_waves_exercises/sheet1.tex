@@ -195,6 +195,58 @@ The second derivative of this tensor will be given by
 \,.
 \end{align}
 
+\section{Estimate of GW magnitude}
 
+We want a way to estimate the GW strain, \(h \sim \delta L / L\), by simple considerations about the parameters of the system which is generating the waves. 
+In the quadrupole approximation we have \(h \sim (G / c^{4} r) \ddot{I}\), where \(\ddot{I}\) is the typical magnitude of the second derivative of the inertia tensor, while \(r\) is the distance from the system to Earth. 
+
+We know that \(I \sim M R^2\), where \(M\) is the mass of the system while \(R\) is its characteristic radius (for example, a solid sphere has \(I = (2/5)  M R^2 \) --- the \(2/5\) factor is relevant but we will neglect it in this order-of-magnitude estimate).
+If \(T\) is the characteristic timescale in which the components of the inertia tensor vary, we can estimate \(\ddot{I}\) as \(\ddot{I} \sim M R^2 / T^2 = M v^2\), where \(v\) is the typical velocity of the various parts of the system. 
+
+With this estimate, we have: 
+%
+\begin{align}
+h \sim \frac{G}{c^{4}r} M v^2 = \frac{GM}{c^2 r} \frac{v^2}{c^2} \sim \frac{R_s}{r} \frac{v^2}{c^2}
+\,.
+\end{align}
+
+Let us compute this for a few simple examples: 
+\begin{enumerate}
+    \item a car crash, with \(M \sim \SI{e3}{kg}\), \(v \sim \SI{100}{km/h}\), \(r \sim \SI{10}{m}\);
+    \item a supernova explosion, with \(M \sim M_{\odot}\), \(v \sim \num{.2}c\), \(r \sim \SI{2}{kpc}\);
+    \item a binary black hole system, with \(M \sim 50M_{\odot}\), \(v \sim \num{.1}c\), \(r \sim \SI{400}{Mpc}\).
+\end{enumerate}
+
+We shall use the \texttt{units} system\footnote{\url{https://docs.astropy.org/en/stable/units/index.html}} provided by the python library \texttt{astropy} in order to aid us in this computation: 
+we start out with the imports 
+\begin{lstlisting}[language=Python]
+import astropy.units as u
+from astropy.constants import codata2018 as ac
+\end{lstlisting}
+
+Now we may define a function yielding the desired estimate: 
+\begin{lstlisting}[language=Python]
+@u.quantity_input(M='mass', D='length', v='speed')
+def estimate_h(M, D, v) -> u.dimensionless_unscaled:
+    h = ac.G * M / D / ac.c**2 * (v / ac.c)**2
+    # the units system takes care of all the unit conversion for us
+    # since we specified that we want the result to be a pure number
+    return(h)
+
+print(f'Car crash: {estimate_h(1e3*u.kg, 10*u.m, 100* u.km/u.hr):.0e}')
+print(f'Supernova: {estimate_h(1*u.Msun, 2*u.kpc, .2 * ac.c):.0e}')
+print(f'Binary BH: {estimate_h(50*u.Msun, 400*u.Mpc, .1 * ac.c):.0e}')
+\end{lstlisting}
+%
+which yields as output
+\begin{lstlisting}[language=Python]
+Car crash: 6e-40
+Supernova: 1e-18
+Binary BH: 6e-23
+\end{lstlisting}
+
+The \texttt{u.quantity\_input} decorator is not strictly necessary, but this way the function will raise a very clear \texttt{UnitsError} if we try to give it something with the wrong dimensionality as an input.
+
+% The supernova order of magnitude might be severely overestimated with this method: 
 
 \end{document}

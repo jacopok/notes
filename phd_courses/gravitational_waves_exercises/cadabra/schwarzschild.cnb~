@@ -1,5 +1,5 @@
 {
-	"cell_id" : 1252920920580493693,
+	"cell_id" : 4815934430339262670,
 	"cells" : 
 	[
 		{
@@ -15,8 +15,7 @@
 					"source" : "\\section*{The Schwarzschild spacetime}\n\nThis first section is inspired from the example notebook at \\url{https://cadabra.science/notebooks/schwarzschild.html}, \nsince we need many of the same quantities."
 				}
 			],
-			"hidden" : true,
-			"source" : "\\section*{The Schwarzschild spacetime}\n\nThis first section is inspired from the example notebook at \\url{https://cadabra.science/notebooks/schwarzschild.html}, \nsince we need many of the same quantities."
+			"source" : "\\section*{Geodesic deviation and acceleration in Schwarzschild}\n\nThis first section is inspired from the example notebook at \\url{https://cadabra.science/notebooks/schwarzschild.html}, \nsince we need many of the same quantities."
 		},
 		{
 			"cell_id" : 13875889326264028817,
@@ -70,6 +69,7 @@
 					"source" : "Below is the Schwarzschild metric in standard coordinates. Note how the components are\ngiven in terms of substitution rules, and how the inverse metric is computed. \nThe \\algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric."
 				}
 			],
+			"hidden" : true,
 			"source" : "Below is the Schwarzschild metric in standard coordinates. Note how the components are\ngiven in terms of substitution rules, and how the inverse metric is computed. \nThe \\algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric."
 		},
 		{
@@ -222,13 +222,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 12664640693068864024,
+					"cell_id" : 9435118668061746807,
 					"cell_origin" : "client",
 					"cell_type" : "latex_view",
-					"source" : "Let us compute the geodesic deviation."
+					"source" : "Let us compute the geodesic deviation $d^\\mu$ for an observer described by $\\xi^\\sigma$ \nwhich moves along a geodesic with four-velocity $u^\\nu$."
 				}
 			],
-			"source" : "Let us compute the geodesic deviation $d^\\mu$ which corresponds to ."
+			"source" : "Let us compute the geodesic deviation $d^\\mu$ for an observer described by $\\xi^\\sigma$ \nwhich moves along a geodesic with four-velocity $u^\\nu$."
 		},
 		{
 			"cell_id" : 2036815216833973373,
@@ -315,13 +315,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 14112608588064168540,
+					"cell_id" : 3742455532148075079,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 10549669056509250462,
+							"cell_id" : 14342152592688960813,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (a^{\\mu} a^{\\nu} g_{\\mu \\nu})**( 1/2 )"
@@ -330,13 +330,13 @@
 					"source" : "\\begin{dmath*}{}a = \\sqrt{a^{\\mu} a^{\\nu} g_{\\mu \\nu}}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 18337845930050657235,
+					"cell_id" : 13245870028907062876,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 11190686024344642486,
+							"cell_id" : 9881330954385298351,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (((r)**3 (2G M-r) ((a^{\\phi})**2 (\\sin(\\theta))**2 + (a^{\\theta})**2)-(r)**2 (a^{r})**2 + (2G M-r)**2 (a^{t})**2) (r (2G M-r))**(-1))**( 1/2 )"
@@ -348,19 +348,34 @@
 			"source" : "acc_modulus := a = \\sqrt{ a^{\\mu} a^{\\nu} g_{\\mu \\nu}};\n\nsubstitute (acc_modulus, dev),\nsubstitute (acc_modulus, rm),\n\nevaluate(acc_modulus, ss+velocity+displacement, rhsonly=True);"
 		},
 		{
+			"cell_id" : 3999619633922006204,
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_id" : 14896294828783492982,
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Let us then take an alternate approach: if we define the covariant derivative, \nwe can calculate the four-acceleration of observers which are stationary in Schwarzschild coordinates.\n\nThe four-velocity $u^\\nu$ is the same one we used before."
+				}
+			],
+			"source" : "Let us then take an alternate approach: if we define the covariant derivative, \nwe can calculate the four-acceleration of observers which are stationary in Schwarzschild coordinates.\n\nThe four-velocity $u^\\nu$ is the same one we used before."
+		},
+		{
 			"cell_id" : 11447606696872464301,
 			"cell_origin" : "client",
 			"cell_type" : "input",
 			"cells" : 
 			[
 				{
-					"cell_id" : 9131823230292446467,
+					"cell_id" : 4846553091444189994,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 7250506627363801044,
+							"cell_id" : 5947635275627501089,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "\\nabla_{\\mu}(u^{\\nu}) = \\partial_{\\mu}(u^{\\nu}) + \\Gamma^{\\nu}_{\\rho \\mu} u^{\\rho}"
@@ -369,13 +384,13 @@
 					"source" : "\\begin{dmath*}{}\\nabla_{\\mu}{u^{\\nu}} = \\partial_{\\mu}{u^{\\nu}}+\\Gamma^{\\nu}\\,_{\\rho \\mu} u^{\\rho}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 2054126012589280157,
+					"cell_id" : 14159412965822852752,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 17262104471949625447,
+							"cell_id" : 1994203126333833886,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "m^{\\mu} = u^{\\nu} \\nabla_{\\nu}(u^{\\mu})"
@@ -384,13 +399,13 @@
 					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\nabla_{\\nu}{u^{\\mu}}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 12737222710410058954,
+					"cell_id" : 9646350560382688179,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 10090608888134310499,
+							"cell_id" : 15103058177123885680,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "m^{\\mu} = u^{\\nu} (\\partial_{\\nu}(u^{\\mu}) + \\Gamma^{\\mu}_{\\rho \\nu} u^{\\rho})"
@@ -399,13 +414,13 @@
 					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\left(\\partial_{\\nu}{u^{\\mu}}+\\Gamma^{\\mu}\\,_{\\rho \\nu} u^{\\rho}\\right)\\end{dmath*}"
 				},
 				{
-					"cell_id" : 16937774924882010351,
+					"cell_id" : 14372018859726129237,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 1993870622780465605,
+							"cell_id" : 10092117005212818718,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "m^{\\mu} = u^{\\nu} (\\partial_{\\nu}(u^{\\mu}) + \\components_{\\rho \\nu}^{\\mu}({{\\phi, r, \\phi} = (r)**(-1), {\\phi, \\theta, \\phi} = (\\tan(\\theta))**(-1), {\\theta, r, \\theta} = (r)**(-1), {r, r, r} = G M (r (2G M-r))**(-1), {t, r, t} = G M (r (-2G M + r))**(-1), {r, \\phi, \\phi} = (r)**(-1), {\\theta, \\phi, \\phi} = (\\tan(\\theta))**(-1), {r, \\theta, \\theta} = (r)**(-1), {r, t, t} = G M (r (-2G M + r))**(-1), {\\phi, \\phi, r} = (2G M-r) (\\sin(\\theta))**2, {\\phi, \\phi, \\theta} =  -  1/2 \\sin(2\\theta), {\\theta, \\theta, r} = 2G M-r, {t, t, r} = G M (-2G M + r) (r)**(-3)}) u^{\\rho})"
@@ -414,13 +429,13 @@
 					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\left(\\partial_{\\nu}{u^{\\mu}}+\\square{}_{\\rho}{}_{\\nu}{}^{\\mu}\\left\\{\\begin{aligned}\\square{}_{\\phi}{}_{r}{}^{\\phi}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\theta}{}^{\\phi}& = {\\left(\\tan{\\theta}\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{\\theta}{}_{r}{}^{\\theta}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{r}{}^{r}& = G M {\\left(r \\left(2G M-r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{t}{}_{r}{}^{t}& = G M {\\left(r \\left(-2G M+r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{\\phi}{}^{\\phi}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{\\theta}{}_{\\phi}{}^{\\phi}& = {\\left(\\tan{\\theta}\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{\\theta}{}^{\\theta}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{t}{}^{t}& = G M {\\left(r \\left(-2G M+r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\phi}{}^{r}& = \\left(2G M-r\\right) {\\left(\\sin{\\theta}\\right)}^{2}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\phi}{}^{\\theta}& =  - \\frac{1}{2}\\sin\\left(2\\theta\\right)\\\\[-.5ex]\n\\square{}_{\\theta}{}_{\\theta}{}^{r}& = 2G M-r\\\\[-.5ex]\n\\square{}_{t}{}_{t}{}^{r}& = G M \\left(-2G M+r\\right) {r}^{-3}\\\\[-.5ex]\n\\end{aligned}\\right.\n u^{\\rho}\\right)\\end{dmath*}"
 				},
 				{
-					"cell_id" : 15694398320917914031,
+					"cell_id" : 12231963289858513146,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 15861881580840722086,
+							"cell_id" : 15653965472548154167,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "m^{\\mu} = \\components^{\\mu}({{r} = G M (r)**(-2)})"

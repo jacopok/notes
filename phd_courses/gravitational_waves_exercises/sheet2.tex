@@ -5,7 +5,7 @@
 
 \section{NS surface tidal forces}
 
-We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}.}
+We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}, so the compactness ratio \(R c^2 / G M\) is almost 6, well above the causal constraint of \(\sim 2.83\) \cite[eq.\ 5, fig.\ 2]{lattimerNeutronStarObservations2007a}.}
 
 We shall do so by comparing three different methods: Newtonian mechanics, weak-field GR and then full GR (still with the spherical, stationary NR assumption).
 The weak-field GR formulation will make the various approximations of the Newtonian approach more explicit. 
@@ -79,7 +79,7 @@ In order for this to be true we need to rescale their components as \(\xi^{r} = 
 Also, we cannot only compute \(d^{r}\): we must consider the full vector \(d^{\mu }\) and compute its modulus \(\sqrt{d^{\mu } d_\mu }\). 
 Notice the lowered index: the component \(d^{r}\) appears in the modulus of the acceleration as \(d^{r} \sqrt{g_{rr}}\), and \(\sqrt{g_{rr}} \approx \num{1.23}\) is noticeably different from 1 in this situation. 
 
-This way, we have all the components to plug into a computer algebra system like Cadabra: 
+This way, we have all the components to plug into a computer algebra system like Cadabra:\footnote{See the code \href{https://jacopok.github.io/schwarzschild.html}{here}!}
 the acceleration comes out to have \(d^{r}\) as its only nonvanishing component, 
 %
 \begin{align}

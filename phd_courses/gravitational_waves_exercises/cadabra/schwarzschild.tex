@@ -1,0 +1,372 @@
+% This is the bit of LaTeX style information that DataCell.cc needs in
+% order to write notebooks out in standalone LaTeX form. It is very
+% similar to ../frontend/common/preamble.tex; keep them in sync.
+
+\documentclass[10pt]{article}
+\usepackage[scale=.8]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[fleqn]{amsmath}
+\usepackage{color}
+\usepackage{changepage}
+\usepackage[colorlinks=true, urlcolor=black, plainpages=false, pdfpagelabels]{hyperref}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+%\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\algorithm}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\property}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\algo}[1]{{\tt \detokenize{#1}}}
+\newcommand{\prop}[1]{{\tt \detokenize{#1}}}
+\renewcommand{\author}[1]{{\bfseries #1}}
+\newcommand{\email}[1]{, {\tt #1}}
+%\makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+%\ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Math expressions wrapped in \brwrap will get typeset with
+% round brackets around them, which have the appropriate size.
+% The expression itself can still be broken over multiple lines.
+
+\newcommand\brwrap[3]{%
+  \setbox0=\hbox{$#2$}
+  \left#1\vbox to \the\ht0{\hbox to 0pt{}}\right.\kern-.2em
+  \begingroup #2\endgroup\kern-.15em
+  \left.\vbox to \the\ht0{\hbox to 0pt{}}\right#3
+}
+
+\renewcommand{\arraystretch}{1.2}
+\tolerance=10000
+\relpenalty=10
+\binoppenalty=10
+\hyphenpenalty=10
+\raggedright
+
+\lstnewenvironment{python}[1][]{\lstset{language=python,
+   columns=fullflexible,
+   xleftmargin=1em,
+   belowskip=0pt,
+   tabsize=3,
+   commentstyle={}, % otherwise {#} cadabra arguments look ugly
+   breaklines=true,   
+   basicstyle=\small\ttfamily\color{blue},
+   keywordstyle={}
+}}{}
+  
+
+\everymath{\displaystyle}
+
+% Page numbers
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[LE,RO]{{\small\thepage}}
+\fancyfoot[LO,RE]{{\tiny\href{http://cadabra.science}{{\tt http://cadabra.science}}}}
+
+% \makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+% \ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Ensure that maths broken over multiple lines has a bit of spacing
+% between lines.
+\lineskiplimit=0mm
+\lineskip=1.5ex
+
+% Typesetting Young tableaux, originally in a separate style
+% file, now included to avoid path searching problems. 
+% Some internals for the typesetting macros below; nothing
+% user-servicable here; please read on.
+
+\def\@tabforc#1#2#3{\expandafter\tabf@rc\expandafter#1{#2 \^}{#3}}
+\def\tabf@@rc#1#2#3\tabf@@rc#4{\def#1{#2}#4\tabf@rc#1{#3}{#4}}
+\long\def\ReturnAfterFi#1\fi{\fi#1}
+    \def\tabf@rc#1#2#3{%
+      \def\temp@ty{#2}%
+      \ifx\@empty\temp@ty
+      \else
+        \ReturnAfterFi{%
+          \tabf@@rc#1#2\tabf@@rc{#3}%
+        }%
+      \fi
+    }%
+
+% Sorry, some global registers for sizes and keeping track of
+% measurements.
+    
+\newdimen\ytsize\ytsize=2mm
+\newdimen\ytfsize\ytfsize=4mm
+\newcount\repcnt
+\newdimen\acchspace
+\newdimen\accvspace
+\newdimen\raiseh
+\newdimen\maxw
+
+\newcommand\phrule[1]{\hbox{\vbox to0pt{\hrule height .2pt width#1\vss}}}
+
+% Typeset a Young tableau with filled boxes. Takes a single 
+% argument which is a string of symbols for each row,
+% separated by commas. Examples:
+%
+%   \ftableau{abc,de}
+%   \ftableau{ab{d_2},f{g_3}}
+
+\newcommand\ftableau[1]{%
+\def\ctest{,}
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\vbox{\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to
+		 0pt{\vrule height \ytfsize\hss}}}\kern\acchspace\kern-\maxw}
+ \else\ifx\thisel\ctest
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to 0pt{\vrule height \ytfsize\hss}}}%
+     \kern\acchspace\acchspace=0ex
+	  \advance\accvspace by -\ytfsize
+ \else
+     \setbox3=\hbox{$\thisel$}%
+	  \raiseh=\ytfsize%
+	  \advance\raiseh by -1ex%
+	  \divide\raiseh by 2%
+     \advance\acchspace by-\ytfsize%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hrule\hbox to%
+        \ytfsize{\vrule height \ytfsize\hskip.5ex%
+         \raisebox{\raiseh}{\tiny$\thisel$}\hss}\vss\phrule{\ytfsize}}}%
+ \fi\fi}}}}
+
+% Typeset a Young tableau with unlabelled boxes. Takes a single 
+% argument which is a string of numbers, one for the length of
+% each row of the tableau. Example:
+%
+%   \tableau{{10}{8}{3}}
+%
+% typesets a tableau with 10 boxes in the 1st row, 8 in the 2nd
+% and 3 in the 3rd. Curly brackets can be omitted if numbers
+% are less than 10.
+
+\newcommand\tableau[1]{%
+\def\stest{ }
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{}
+ \else
+     \repcnt=\thisel%
+     \loop{}%
+     \advance\acchspace by-\ytsize%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hrule \hbox to%
+			\ytsize{\vrule height \ytsize\hss}\vss\phrule{\ytsize}}}%
+     \advance\repcnt by -1\ifnum\repcnt>1{}\repeat%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hbox to 0pt{\vrule height \ytsize\hss}}}%
+     \kern\acchspace\acchspace=0ex%
+	  \advance\accvspace by -\ytsize%
+ \fi}\kern-\maxw}}
+ 
+\begin{document}
+\section*{Geodesic deviation and acceleration in Schwarzschild}
+
+This first section is inspired from the example notebook at \url{https://cadabra.science/notebooks/schwarzschild.html}, 
+since we need many of the same quantities.
+\begin{python}
+{r,t,\phi,\theta}::Coordinate;
+{\mu,\nu,\rho,\sigma,\lambda,\kappa,\chi,\gamma}::Indices(values={t,r,\phi,\theta}, position=fixed);
+\partial{#}::PartialDerivative;
+\nabla{#}::Derivative;
+g_{\mu\nu}::Metric.
+g^{\mu\nu}::InverseMetric.
+u^\mu::Depends(\mu);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Coordinate to~}\brwrap{[}{r,~ t,~ \phi,~ \theta}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Indices(position=fixed) to~}\brwrap{[}{\mu,~ \nu,~ \rho,~ \sigma,~ \lambda,~ \kappa,~ \chi,~ \gamma}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property PartialDerivative to~}\partial{\#}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Derivative to~}\nabla{\#}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Depends to~}u^{\mu}.$\end{adjustwidth}
+Below is the Schwarzschild metric in standard coordinates. Note how the components are
+given in terms of substitution rules, and how the inverse metric is computed. 
+The \algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric.
+\begin{python}
+ss:= { g_{t t} = -(1-2 G M/r),
+       g_{r r} = 1/(1-2 G M/r), 
+       g_{\theta\theta} = r**2, 
+       g_{\phi\phi}=r**2 \sin(\theta)**2
+     }.
+
+complete(ss, $g^{\mu\nu}$);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{g_{t t} = -1+2G M {r}^{-1},~ g_{r r} = {\brwrap{(}{1-2G M {r}^{-1}}{)}}^{-1},~ g_{\theta \theta} = {r}^{2},~ g_{\phi \phi} = {r}^{2} {\brwrap{(}{\sin{\theta}}{)}}^{2},~ g^{t t} = {\brwrap{(}{2G M {r}^{-1}-1}{)}}^{-1},~ g^{r r} = -2G M {r}^{-1}+1,~ g^{\phi \phi} = {\brwrap{(}{{r}^{2} {\brwrap{(}{\sin{\theta}}{)}}^{2}}{)}}^{-1},~ g^{\theta \theta} = {r}^{-2}}{]}$\end{adjustwidth}
+We can now compute the Christoffel symbols. We give Cadabra the expression for the 
+Christoffel symbols in terms of the metric, and then evaluate the components of the
+metric using the \algo{evaluate} algorithm.
+\begin{python}
+ch:= \Gamma^{\mu}_{\nu\rho} = 1/2 g^{\mu\sigma} ( 
+                                   \partial_{\rho}{g_{\nu\sigma}} 
+                                  +\partial_{\nu}{g_{\rho\sigma}}
+                                  -\partial_{\sigma}{g_{\nu\rho}} ):
+                          
+evaluate(ch, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\Gamma^{\mu}\,_{\nu \rho} = \frac{1}{2}g^{\mu \sigma} \brwrap{(}{\partial_{\rho}{g_{\nu \sigma}}+\partial_{\nu}{g_{\rho \sigma}}-\partial_{\sigma}{g_{\nu \rho}}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\Gamma^{\mu}\,_{\nu \rho} = \square{}_{\nu}{}_{\rho}{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}_{\phi}{}_{r}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\theta}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{r}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{r}& = G M {\brwrap{(}{r \brwrap{(}{2G M-r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{r}{}^{t}& = G M {\brwrap{(}{r \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\phi}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\phi}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\theta}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{t}{}^{t}& = G M {\brwrap{(}{r \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{r}& = \brwrap{(}{2G M-r}{)} {\brwrap{(}{\sin{\theta}}{)}}^{2}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{\theta}& =  - \frac{1}{2}\sin\brwrap{(}{2\theta}{)}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{r}& = 2G M-r\\[-.5ex]
+\square{}_{t}{}_{t}{}^{r}& = G M \brwrap{(}{-2G M+r}{)} {r}^{-3}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+Continuing from here we can compute the Riemann tensor components. Again, we start
+by giving this tensor in terms of the Christoffel symbols. We then subsitute the 
+Christoffel symbols just found, and work out any remaining component substitions using
+\algo{evaluate} (the computation takes a few seconds, essentially because of the round
+trips through Sympy).
+\begin{python}
+rm:= R^{\rho}_{\sigma\mu\nu} = \partial_{\mu}{\Gamma^{\rho}_{\nu\sigma}}
+                                  -\partial_{\nu}{\Gamma^{\rho}_{\mu\sigma}}
+                                  +\Gamma^{\rho}_{\mu\lambda} \Gamma^{\lambda}_{\nu\sigma}
+                                  -\Gamma^{\rho}_{\nu\lambda} \Gamma^{\lambda}_{\mu\sigma};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}R^{\rho}\,_{\sigma \mu \nu} = \partial_{\mu}{\Gamma^{\rho}\,_{\nu \sigma}}-\partial_{\nu}{\Gamma^{\rho}\,_{\mu \sigma}}+\Gamma^{\rho}\,_{\mu \lambda} \Gamma^{\lambda}\,_{\nu \sigma}-\Gamma^{\rho}\,_{\nu \lambda} \Gamma^{\lambda}\,_{\mu \sigma}$\end{adjustwidth}
+\begin{python}
+substitute(rm, ch)
+evaluate(rm, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}R^{\rho}\,_{\sigma \mu \nu} = \square{}_{\nu}{}_{\sigma}{}^{\rho}{}_{\mu}\brwrap{\{}{\begin{aligned}\square{}_{t}{}_{t}{}^{r}{}_{r}& = 2G M \brwrap{(}{2G M-r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{r}{}_{r}& = -G M {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{\theta}{}_{\theta}& = 2G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{r}{}_{r}& = -G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{t}{}_{r}{}^{t}{}_{r}& = 2G M {\brwrap{(}{{r}^{2} \brwrap{(}{2G M-r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\theta}{}^{\phi}{}_{\theta}& = -2G M {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{t}{}^{r}{}_{t}& = 2G M \brwrap{(}{-2G M+r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{r}{}_{\theta}{}^{r}{}_{\theta}& = G M {r}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\phi}{}^{\theta}{}_{\phi}& = -2G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\phi}{}^{r}{}_{\phi}& = G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{t}{}_{t}& = 2G M {\brwrap{(}{{r}^{2} \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{\theta}{}_{\theta}& = G M {\brwrap{(}{{r}^{2} \brwrap{(}{2G M-r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{\phi}{}_{\phi}& = 2G M {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{\phi}{}_{\phi}& = G M {\brwrap{(}{{r}^{2} \brwrap{(}{2G M-r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{t}{}^{\phi}{}_{\phi}& = G M \brwrap{(}{-2G M+r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{t}{}_{t}{}^{\theta}{}_{\theta}& = G M \brwrap{(}{-2G M+r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{t}{}_{t}& = -G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{t}{}_{t}& = -G M {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{r}{}^{\phi}{}_{r}& = G M {\brwrap{(}{{r}^{2} \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{t}{}^{\phi}{}_{t}& = G M \brwrap{(}{2G M-r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{\theta}{}_{r}{}^{\theta}{}_{r}& = G M {\brwrap{(}{{r}^{2} \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{t}{}^{\theta}{}_{t}& = G M \brwrap{(}{2G M-r}{)} {r}^{-4}\\[-.5ex]
+\square{}_{t}{}_{\phi}{}^{t}{}_{\phi}& = G M {\brwrap{(}{\sin{\theta}}{)}}^{2} {r}^{-1}\\[-.5ex]
+\square{}_{t}{}_{\theta}{}^{t}{}_{\theta}& = G M {r}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+Let us compute the geodesic deviation $d^\mu$ for an observer described by $\xi^\sigma$ 
+which moves along a geodesic with four-velocity $u^\nu$.
+\begin{python}
+dev := d^{\mu} = R^{\mu}_{\nu \rho \sigma} u^{\nu} u^{\rho} \xi^{\sigma};
+
+velocity := {
+	u^{t} = 1 / \sqrt{1 - 2 G M / r},
+	u^{r} = 0,
+	u^{\phi} = 0,
+	u^{\theta} = 0,
+};
+
+displacement := {
+	\xi^{t} = 0,
+	\xi^{r} = h \sqrt{1 - 2 G M / r},
+	\xi^{\phi} = 0,
+	\xi^{\theta} = 0,
+};	
+
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}d^{\mu} = R^{\mu}\,_{\nu \rho \sigma} u^{\nu} u^{\rho} \xi^{\sigma}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{u^{t} = {\brwrap{(}{1-2G M {r}^{-1}}{)}}^{ - \frac{1}{2}},~ u^{r} = 0,~ u^{\phi} = 0,~ u^{\theta} = 0}{]}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{\xi^{t} = 0,~ \xi^{r} = h \sqrt{1-2G M {r}^{-1}},~ \xi^{\phi} = 0,~ \xi^{\theta} = 0}{]}$\end{adjustwidth}
+\begin{python}
+evaluate (dev, ss+velocity+displacement, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}d^{\mu} = \square{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}^{t}& = h R^{t}\,_{t t r} {\brwrap{(}{\sqrt{\brwrap{(}{-2G M+r}{)} {r}^{-1}}}{)}}^{-1}\\[-.5ex]
+\square{}^{r}& = h R^{r}\,_{t t r} {\brwrap{(}{\sqrt{\brwrap{(}{-2G M+r}{)} {r}^{-1}}}{)}}^{-1}\\[-.5ex]
+\square{}^{\phi}& = h R^{\phi}\,_{t t r} {\brwrap{(}{\sqrt{\brwrap{(}{-2G M+r}{)} {r}^{-1}}}{)}}^{-1}\\[-.5ex]
+\square{}^{\theta}& = h R^{\theta}\,_{t t r} {\brwrap{(}{\sqrt{\brwrap{(}{-2G M+r}{)} {r}^{-1}}}{)}}^{-1}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+\begin{python}
+acc_modulus := a = \sqrt{ a^{\mu} a^{\nu} g_{\mu \nu}};
+
+substitute (acc_modulus, dev),
+substitute (acc_modulus, rm),
+
+evaluate(acc_modulus, ss+velocity+displacement, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}a = \sqrt{a^{\mu} a^{\nu} g_{\mu \nu}}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}a = \sqrt{\brwrap{(}{{r}^{3} \brwrap{(}{2G M-r}{)} \brwrap{(}{{a^{\phi}}^{2} {\brwrap{(}{\sin{\theta}}{)}}^{2}+{a^{\theta}}^{2}}{)}-{r}^{2} {a^{r}}^{2}+{\brwrap{(}{2G M-r}{)}}^{2} {a^{t}}^{2}}{)} {\brwrap{(}{r \brwrap{(}{2G M-r}{)}}{)}}^{-1}}$\end{adjustwidth}
+Let us then take an alternate approach: if we define the covariant derivative, 
+we can calculate the four-acceleration of observers which are stationary in Schwarzschild coordinates.
+
+The four-velocity $u^\nu$ is the same one we used before.
+\begin{python}
+deriv := \nabla_{\mu}{u^{\nu}} = \partial_{\mu}{u^{\nu}} + \Gamma^{\nu}_{\rho \mu} u^\rho;
+
+four_acc := m^{\mu} = u^{\nu} \nabla_{\nu}{u^\mu};
+
+substitute(four_acc, deriv);
+substitute(four_acc, ch);
+evaluate(four_acc, velocity+ss+ch, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\nabla_{\mu}{u^{\nu}} = \partial_{\mu}{u^{\nu}}+\Gamma^{\nu}\,_{\rho \mu} u^{\rho}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m^{\mu} = u^{\nu} \nabla_{\nu}{u^{\mu}}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m^{\mu} = u^{\nu} \brwrap{(}{\partial_{\nu}{u^{\mu}}+\Gamma^{\mu}\,_{\rho \nu} u^{\rho}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m^{\mu} = u^{\nu} \brwrap{(}{\partial_{\nu}{u^{\mu}}+\square{}_{\rho}{}_{\nu}{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}_{\phi}{}_{r}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\theta}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{r}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{r}{}^{r}& = G M {\brwrap{(}{r \brwrap{(}{2G M-r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{t}{}_{r}{}^{t}& = G M {\brwrap{(}{r \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\phi}{}^{\phi}& = {r}^{-1}\\[-.5ex]
+\square{}_{\theta}{}_{\phi}{}^{\phi}& = {\brwrap{(}{\tan{\theta}}{)}}^{-1}\\[-.5ex]
+\square{}_{r}{}_{\theta}{}^{\theta}& = {r}^{-1}\\[-.5ex]
+\square{}_{r}{}_{t}{}^{t}& = G M {\brwrap{(}{r \brwrap{(}{-2G M+r}{)}}{)}}^{-1}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{r}& = \brwrap{(}{2G M-r}{)} {\brwrap{(}{\sin{\theta}}{)}}^{2}\\[-.5ex]
+\square{}_{\phi}{}_{\phi}{}^{\theta}& =  - \frac{1}{2}\sin\brwrap{(}{2\theta}{)}\\[-.5ex]
+\square{}_{\theta}{}_{\theta}{}^{r}& = 2G M-r\\[-.5ex]
+\square{}_{t}{}_{t}{}^{r}& = G M \brwrap{(}{-2G M+r}{)} {r}^{-3}\\[-.5ex]
+\end{aligned}}{.}
+ u^{\rho}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m^{\mu} = \square{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}^{r}& = G M {r}^{-2}\\[-.5ex]
+\end{aligned}}{.}
+$\end{adjustwidth}
+\begin{python}
+four_acc_mod := m = \sqrt{m^\mu m^\nu g_{\mu \nu}};
+
+substitute(four_acc_mod, four_acc);
+evaluate(four_acc_mod, ss, rhsonly=True);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}m = \sqrt{m^{\mu} m^{\nu} g_{\mu \nu}}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m = \sqrt{\square{}^{\mu}\brwrap{\{}{\begin{aligned}\square{}^{r}& = G M {r}^{-2}\\[-.5ex]
+\end{aligned}}{.}
+ \square{}^{\nu}\brwrap{\{}{\begin{aligned}\square{}^{r}& = G M {r}^{-2}\\[-.5ex]
+\end{aligned}}{.}
+ g_{\mu \nu}}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}m = \sqrt{{G}^{2} {M}^{2} {\brwrap{(}{{r}^{3} \brwrap{(}{-2G M+r}{)}}{)}}^{-1}}$\end{adjustwidth}
+\begin{python}
+\end{python}
+\end{document}

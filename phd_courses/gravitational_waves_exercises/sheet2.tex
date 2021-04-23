@@ -28,27 +28,27 @@ so the differential acceleration between the head and feet of our test person wi
 %
 where the scale of the term we are neglecting is \((h / r)^2 \sim (\num{e-4})^2 = \num{e-8}\) --- definitely acceptable for this rough calculation.
 
-With this expression we get \(\Delta a \approx \SI{3.4}{m/s^2}\). 
+With this expression we get \(\Delta a \approx \SI{3.4e8}{m/s^2}\) (both in the exact case and with the approximation). 
 
 \subsection{Weak-field GR}
 
-In general, the expression for the geodesic deviation \(a^{\mu }\) corresponding to an observer moving with four-velocity \(u^{\mu }\) described by a space-like vector \(\xi^{\mu }\) is \cite[eq.\ 3.208]{carrollSpacetimeGeometryIntroduction2019}
+In general, the expression for the geodesic deviation \(d^{\mu }\) corresponding to an observer described by a space-like vector \(\xi^{\mu }\) moving along a geodesic with four-velocity \(u^{\mu }\)  is \cite[eq.\ 3.208]{carrollSpacetimeGeometryIntroduction2019}
 %
 \begin{align}
-a^{\mu } = R^{\mu }{}_{\nu \rho \sigma  } u^{\nu } u^{\rho } \xi^{\sigma }
+d^{\mu } = R^{\mu }{}_{\nu \rho \sigma  } u^{\nu } u^{\rho } \xi^{\sigma }
 \,.
 \end{align}
 
 Our stationary observer on the surface is not moving along a geodesic, but the acceleration due to being stationary in Schwarzschild coordinates is shared by head and feet --- it is the zeroth-order contribution, so to speak. 
-The geodesic deviation \(a^{\mu }\) goes directly to the first order. 
+The geodesic deviation \(d^{\mu }\) goes directly to the first order. 
 
-In the weak-field approximation, we directly consider the component \(a^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.
+In the weak-field approximation, we directly consider the component \(d^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.
 The space-like displacement vector describing the person is \(\xi^{\mu } = h \hat{e}^{r}\), while their four-velocity in this weak-field context is \(u^{\mu } = \hat{e}^{t}\). 
 
 Therefore, the formula simplifies to 
 %
 \begin{align}
-\abs{\Delta a} \approx \abs{a^{r}} = \abs{h R^{r}{}_{ttr} }
+\abs{\Delta a} \approx \abs{d^{r}} = \abs{h R^{r}{}_{ttr} }
 \,,
 \end{align}
 %
@@ -75,29 +75,74 @@ The geodesic deviation equation is still valid, but we must adapt the expression
 we want their moduli to be \(h\) and \(-1\) respectively, and their directions to be \(\hat{e}^{r} \) and \(\hat{e}^{t}\).
 In order for this to be true we need to rescale their components as \(\xi^{r} = h / \sqrt{g_{rr}}\) and \(u^{t} = 1/\sqrt{g_{tt}}\). 
 
-Also, we cannot only compute \(a^{r}\): we must consider the full vector \(a^{\mu }\) and compute its modulus \(\sqrt{a^{\mu } a_\mu }\). 
-Notice the lowered index: the component \(a^{r}\) appears in the modulus of the acceleration as \(a^{r} \sqrt{g_{rr}}\), and \(\sqrt{g_{rr}} \approx \num{1.23}\) is noticeably different from 1 in this situation. 
+Also, we cannot only compute \(d^{r}\): we must consider the full vector \(d^{\mu }\) and compute its modulus \(\sqrt{d^{\mu } d_\mu }\). 
+Notice the lowered index: the component \(d^{r}\) appears in the modulus of the acceleration as \(d^{r} \sqrt{g_{rr}}\), and \(\sqrt{g_{rr}} \approx \num{1.23}\) is noticeably different from 1 in this situation. 
 
 This way, we have all the components to plug into a computer algebra system like Cadabra: 
-the acceleration comes out to have \(a^{r}\) as its only nonvanishing component, 
+the acceleration comes out to have \(d^{r}\) as its only nonvanishing component, 
 %
 \begin{align}
-a^{r} = \frac{1}{r} \frac{h}{r} \frac{2GM}{r} \qty(1 - \frac{2GM}{rc^2})^{-1/2}
+d^{r} = \frac{1}{r} \frac{h}{r} \frac{2GM}{r} \qty(1 - \frac{2GM}{rc^2})^{-1/2}
 \,,
 \end{align}
 %
 whose modulus is then 
 %
 \begin{align}
-\abs{a} = a^{r} \sqrt{g_{rr}} = \frac{2GMh}{r^3} 
+\abs{d} = d^{r} \sqrt{g_{rr}} = \frac{2GMh}{r^3} 
 \,,
 \end{align}
 %
 which, incidentally, is proportional to the square root of the Kretschmann scalar \(K = R^{\mu \nu \rho \sigma } R_{\mu \nu \rho \sigma } \propto G^2M^2c^{-4} r^{-6}\). 
 
 This is the same result we found in the weak field regime! 
-The components from the metric cancelled out.   
+The factors from the metric cancelled out.
 
+\subsection{Full GR, revised}
 
+There is a problem in the computation we did before: we applied the formula for geodesic deviation despite the fact that our observer is not moving along a geodesic. 
+
+An alternative way to calculate the tidal deformation would be to simply compute the acceleration at the feet and head and subtract them. 
+Let us see how this approach goes. 
+
+Both the head and feet are stationary in Schwarzschild coordinates; their four-velocities are therefore time-directed, and normalized like before as \(u^{\mu } = \hat{e}^{t} / \sqrt{g_{tt}}\).
+
+The four-acceleration of an observer is the derivative of the four-velocity along itself (with respect to proper time): 
+%
+\begin{align}
+a^{\mu } = \dv{u^{\mu }}{\tau } = u^{\nu } \nabla_{\nu } u^{\mu } 
+\,,
+\end{align}
+%
+whose only nonvanishing component is 
+%
+\begin{align}
+a^{r} = \Gamma^{r}_{tt} \qty( u^{t})^2 = \frac{GM}{r^2}
+\,,
+\end{align}
+%
+but, like before, we need to account for the metric component if we want to compute its modulus: 
+%
+\begin{align}
+\abs{a} = a^{r} \sqrt{ g_{rr}} = \frac{GM}{r^2} \frac{1}{\sqrt{1 - 2GM / r}}
+\,.
+\end{align}
+
+Now, all that is left is to compute the difference between this quantity at \(r\) and \(r + h\): 
+%
+\begin{align}
+\Delta a = 
+\frac{GM}{(r + h)^2} \frac{1}{\sqrt{1- \frac{2GM}{c^2(r+h)}}}
+- 
+\frac{GM}{r^2} \frac{1}{\sqrt{1- \frac{2GM}{c^2r}}}
+\,,
+\end{align}
+%
+which could be approximated to linear order like before, 
+but we can directly compute the difference: 
+it comes out to be \(\Delta a \approx \SI{4.8e8}{m / s^2}\). 
+
+This shows that, accounting for relativistic effects, 
+an observer staying still on the surface of the star experiences \(\sim \SI{40}{\percent}\) more tidal acceleration.
 
 \end{document}

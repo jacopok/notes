@@ -9,14 +9,14 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 3181136029096510197,
+					"cell_id" : 9727840279279209557,
 					"cell_origin" : "client",
 					"cell_type" : "latex_view",
-					"source" : "\\section*{The Schwarzschild spacetime}\n\nThis notebook shows how you can do component computations in Cadabra. It illustrates this by computing\nproperties of the Schwarzschild spacetime.\n\nThe first thing we always need to do is to declare the coordinates used, and the names of the indices."
+					"source" : "\\section*{The Schwarzschild spacetime}\n\nThis first section is inspired from the example notebook at \\url{https://cadabra.science/notebooks/schwarzschild.html}, \nsince we need many of the same quantities."
 				}
 			],
 			"hidden" : true,
-			"source" : "\\section*{The Schwarzschild spacetime}\n\nThis notebook shows how you can do component computations in Cadabra. It illustrates this by computing\nproperties of the Schwarzschild spacetime.\n\nThe first thing we always need to do is to declare the coordinates used, and the names of the indices."
+			"source" : "\\section*{The Schwarzschild spacetime}\n\nThis first section is inspired from the example notebook at \\url{https://cadabra.science/notebooks/schwarzschild.html}, \nsince we need many of the same quantities."
 		},
 		{
 			"cell_id" : 13875889326264028817,
@@ -25,25 +25,37 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 16954916597002178808,
+					"cell_id" : 4826478025283054487,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"source" : "\\begin{dmath*}{}\\text{Attached property Coordinate to~}\\left[r,~ t,~ \\phi,~ \\theta\\right].\\end{dmath*}"
 				},
 				{
-					"cell_id" : 1289249162412028386,
+					"cell_id" : 4650964110259960631,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"source" : "\\begin{dmath*}{}\\text{Attached property Indices(position=fixed) to~}\\left[\\mu,~ \\nu,~ \\rho,~ \\sigma,~ \\lambda,~ \\kappa,~ \\chi,~ \\gamma\\right].\\end{dmath*}"
 				},
 				{
-					"cell_id" : 1708253628190667675,
+					"cell_id" : 4932765983851120566,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"source" : "\\begin{dmath*}{}\\text{Attached property PartialDerivative to~}\\partial{\\#}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 7136074328736766859,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Derivative to~}\\nabla{\\#}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 737600008848071607,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Depends to~}u^{\\mu}.\\end{dmath*}"
 				}
 			],
-			"source" : "{r,t,\\phi,\\theta}::Coordinate;\n{\\mu,\\nu,\\rho,\\sigma,\\lambda,\\kappa,\\chi,\\gamma}::Indices(values={t,r,\\phi,\\theta}, position=fixed);\n\\partial{#}::PartialDerivative;\ng_{\\mu\\nu}::Metric.\ng^{\\mu\\nu}::InverseMetric."
+			"source" : "{r,t,\\phi,\\theta}::Coordinate;\n{\\mu,\\nu,\\rho,\\sigma,\\lambda,\\kappa,\\chi,\\gamma}::Indices(values={t,r,\\phi,\\theta}, position=fixed);\n\\partial{#}::PartialDerivative;\n\\nabla{#}::Derivative;\ng_{\\mu\\nu}::Metric.\ng^{\\mu\\nu}::InverseMetric.\nu^\\mu::Depends(\\mu);"
 		},
 		{
 			"cell_id" : 8495020174273801297,
@@ -52,13 +64,12 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 5200281905731292096,
+					"cell_id" : 8794375140138570668,
 					"cell_origin" : "client",
 					"cell_type" : "latex_view",
 					"source" : "Below is the Schwarzschild metric in standard coordinates. Note how the components are\ngiven in terms of substitution rules, and how the inverse metric is computed. \nThe \\algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric."
 				}
 			],
-			"hidden" : true,
 			"source" : "Below is the Schwarzschild metric in standard coordinates. Note how the components are\ngiven in terms of substitution rules, and how the inverse metric is computed. \nThe \\algo{complete} algorithm adds the rules for the inverse metric to the rules for the metric."
 		},
 		{
@@ -68,13 +79,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 3806581981634811230,
+					"cell_id" : 13755812710444409285,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 1557542820864750773,
+							"cell_id" : 4039190444331939709,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "{g_{t t} = -1 + 2G M (r)**(-1), g_{r r} = (1-2G M (r)**(-1))**(-1), g_{\\theta \\theta} = (r)**2, g_{\\phi \\phi} = (r)**2 (\\sin(\\theta))**2, g^{t t} = (2G M (r)**(-1)-1)**(-1), g^{r r} = -2G M (r)**(-1) + 1, g^{\\phi \\phi} = ((r)**2 (\\sin(\\theta))**2)**(-1), g^{\\theta \\theta} = (r)**(-2)}"
@@ -108,13 +119,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 2443558170506834675,
+					"cell_id" : 10374763095817863734,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 1745974451963057813,
+							"cell_id" : 2967131207121727884,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "\\Gamma^{\\mu}_{\\nu \\rho} =  1/2 g^{\\mu \\sigma} (\\partial_{\\rho}(g_{\\nu \\sigma}) + \\partial_{\\nu}(g_{\\rho \\sigma})-\\partial_{\\sigma}(g_{\\nu \\rho}))"
@@ -123,13 +134,13 @@
 					"source" : "\\begin{dmath*}{}\\Gamma^{\\mu}\\,_{\\nu \\rho} = \\frac{1}{2}g^{\\mu \\sigma} \\left(\\partial_{\\rho}{g_{\\nu \\sigma}}+\\partial_{\\nu}{g_{\\rho \\sigma}}-\\partial_{\\sigma}{g_{\\nu \\rho}}\\right)\\end{dmath*}"
 				},
 				{
-					"cell_id" : 12936498965511209092,
+					"cell_id" : 9993558214606714846,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 14089785302853172048,
+							"cell_id" : 7386312151711387233,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "\\Gamma^{\\mu}_{\\nu \\rho} = \\components_{\\nu \\rho}^{\\mu}({{\\phi, r, \\phi} = (r)**(-1), {\\phi, \\theta, \\phi} = (\\tan(\\theta))**(-1), {\\theta, r, \\theta} = (r)**(-1), {r, r, r} = G M (r (2G M-r))**(-1), {t, r, t} = G M (r (-2G M + r))**(-1), {r, \\phi, \\phi} = (r)**(-1), {\\theta, \\phi, \\phi} = (\\tan(\\theta))**(-1), {r, \\theta, \\theta} = (r)**(-1), {r, t, t} = G M (r (-2G M + r))**(-1), {\\phi, \\phi, r} = (2G M-r) (\\sin(\\theta))**2, {\\phi, \\phi, \\theta} =  -  1/2 \\sin(2\\theta), {\\theta, \\theta, r} = 2G M-r, {t, t, r} = G M (-2G M + r) (r)**(-3)})"
@@ -153,6 +164,7 @@
 					"source" : "Continuing from here we can compute the Riemann tensor components. Again, we start\nby giving this tensor in terms of the Christoffel symbols. We then subsitute the \nChristoffel symbols just found, and work out any remaining component substitions using\n\\algo{evaluate} (the computation takes a few seconds, essentially because of the round\ntrips through Sympy)."
 				}
 			],
+			"hidden" : true,
 			"source" : "Continuing from here we can compute the Riemann tensor components. Again, we start\nby giving this tensor in terms of the Christoffel symbols. We then subsitute the \nChristoffel symbols just found, and work out any remaining component substitions using\n\\algo{evaluate} (the computation takes a few seconds, essentially because of the round\ntrips through Sympy)."
 		},
 		{
@@ -162,13 +174,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 8379237623963155663,
+					"cell_id" : 17968338826103507209,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 4295540134906349967,
+							"cell_id" : 1923829823484035134,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "R^{\\rho}_{\\sigma \\mu \\nu} = \\partial_{\\mu}(\\Gamma^{\\rho}_{\\nu \\sigma})-\\partial_{\\nu}(\\Gamma^{\\rho}_{\\mu \\sigma}) + \\Gamma^{\\rho}_{\\mu \\lambda} \\Gamma^{\\lambda}_{\\nu \\sigma}-\\Gamma^{\\rho}_{\\nu \\lambda} \\Gamma^{\\lambda}_{\\mu \\sigma}"
@@ -186,13 +198,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 17208477369072679624,
+					"cell_id" : 7726088928759317627,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 11722555498699834151,
+							"cell_id" : 2972926584085395126,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "R^{\\rho}_{\\sigma \\mu \\nu} = \\components_{\\nu \\sigma}^{\\rho}_{\\mu}({{t, t, r, r} = 2G M (2G M-r) (r)**(-4), {\\theta, \\theta, r, r} = -G M (r)**(-1), {\\phi, \\phi, \\theta, \\theta} = 2G M (\\sin(\\theta))**2 (r)**(-1), {\\phi, \\phi, r, r} = -G M (\\sin(\\theta))**2 (r)**(-1), {t, r, t, r} = 2G M ((r)**2 (2G M-r))**(-1), {\\phi, \\theta, \\phi, \\theta} = -2G M (r)**(-1), {r, t, r, t} = 2G M (-2G M + r) (r)**(-4), {r, \\theta, r, \\theta} = G M (r)**(-1), {\\theta, \\phi, \\theta, \\phi} = -2G M (\\sin(\\theta))**2 (r)**(-1), {r, \\phi, r, \\phi} = G M (\\sin(\\theta))**2 (r)**(-1), {r, r, t, t} = 2G M ((r)**2 (-2G M + r))**(-1), {r, r, \\theta, \\theta} = G M ((r)**2 (2G M-r))**(-1), {\\theta, \\theta, \\phi, \\phi} = 2G M (r)**(-1), {r, r, \\phi, \\phi} = G M ((r)**2 (2G M-r))**(-1), {t, t, \\phi, \\phi} = G M (-2G M + r) (r)**(-4), {t, t, \\theta, \\theta} = G M (-2G M + r) (r)**(-4), {\\phi, \\phi, t, t} = -G M (\\sin(\\theta))**2 (r)**(-1), {\\theta, \\theta, t, t} = -G M (r)**(-1), {\\phi, r, \\phi, r} = G M ((r)**2 (-2G M + r))**(-1), {\\phi, t, \\phi, t} = G M (2G M-r) (r)**(-4), {\\theta, r, \\theta, r} = G M ((r)**2 (-2G M + r))**(-1), {\\theta, t, \\theta, t} = G M (2G M-r) (r)**(-4), {t, \\phi, t, \\phi} = G M (\\sin(\\theta))**2 (r)**(-1), {t, \\theta, t, \\theta} = G M (r)**(-1)})"
@@ -210,7 +222,7 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 1772205489416436380,
+					"cell_id" : 13004068980856143206,
 					"cell_origin" : "client",
 					"cell_type" : "latex_view",
 					"source" : "Let us compute the acceleration."
@@ -225,13 +237,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 8010026422531278714,
+					"cell_id" : 15274270526168431864,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 13892467348934631575,
+							"cell_id" : 12184759842002985255,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a^{\\mu} = R^{\\mu}_{\\nu \\rho \\sigma} u^{\\nu} u^{\\rho} \\xi^{\\sigma}"
@@ -240,13 +252,13 @@
 					"source" : "\\begin{dmath*}{}a^{\\mu} = R^{\\mu}\\,_{\\nu \\rho \\sigma} u^{\\nu} u^{\\rho} \\xi^{\\sigma}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 5955258244770688926,
+					"cell_id" : 9987659032646276502,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 8595254682533717503,
+							"cell_id" : 4398432017012449700,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "{u^{t} = (1-2G M (r)**(-1))**( -  1/2 ), u^{r} = 0, u^{\\phi} = 0, u^{\\theta} = 0}"
@@ -255,13 +267,13 @@
 					"source" : "\\begin{dmath*}{}\\left[u^{t} = {\\left(1-2G M {r}^{-1}\\right)}^{ - \\frac{1}{2}},~ u^{r} = 0,~ u^{\\phi} = 0,~ u^{\\theta} = 0\\right]\\end{dmath*}"
 				},
 				{
-					"cell_id" : 16147930991296674712,
+					"cell_id" : 12271007461366085319,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 2233772587301581471,
+							"cell_id" : 15170126269311504280,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "{\\xi^{t} = 0, \\xi^{r} = h (1-2G M (r)**(-1))**( 1/2 ), \\xi^{\\phi} = 0, \\xi^{\\theta} = 0}"
@@ -279,13 +291,13 @@
 			"cells" : 
 			[
 				{
-					"cell_id" : 3171267372168218680,
+					"cell_id" : 344970168596662343,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 4449807829995689772,
+							"cell_id" : 7091538814599108080,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a^{\\mu} = \\components^{\\mu}({{t} = h R^{t}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {r} = h R^{r}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\phi} = h R^{\\phi}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\theta} = h R^{\\theta}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1)})"
@@ -297,35 +309,19 @@
 			"source" : "evaluate (acc, ss+velocity+displacement, rhsonly=True);"
 		},
 		{
-			"cell_id" : 13338363640550053354,
-			"cell_origin" : "client",
-			"cell_type" : "latex",
-			"cells" : 
-			[
-				{
-					"cell_id" : 1062786181174089499,
-					"cell_origin" : "client",
-					"cell_type" : "latex_view",
-					"source" : "More interesting is the Kretschmann scalar. "
-				}
-			],
-			"hidden" : true,
-			"source" : ""
-		},
-		{
 			"cell_id" : 7063690737202003477,
 			"cell_origin" : "client",
 			"cell_type" : "input",
 			"cells" : 
 			[
 				{
-					"cell_id" : 17454388495324066966,
+					"cell_id" : 7058734092538997702,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 15197774631554387564,
+							"cell_id" : 905870817726525355,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (a^{\\mu} a^{\\nu} g_{\\mu \\nu})**( 1/2 )"
@@ -334,13 +330,13 @@
 					"source" : "\\begin{dmath*}{}a = \\sqrt{a^{\\mu} a^{\\nu} g_{\\mu \\nu}}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 10824749944656200245,
+					"cell_id" : 15296657300873526545,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 9069987618475231649,
+							"cell_id" : 12040665897101597468,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (\\components^{\\mu}({{t} = h R^{t}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {r} = h R^{r}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\phi} = h R^{\\phi}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\theta} = h R^{\\theta}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1)}) \\components^{\\nu}({{t} = h R^{t}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {r} = h R^{r}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\phi} = h R^{\\phi}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\theta} = h R^{\\theta}_{t t r} (\\sqrt((-2G M + r) (r)**(-1)))**(-1)}) g_{\\mu \\nu})**( 1/2 )"
@@ -349,13 +345,13 @@
 					"source" : "\\begin{dmath*}{}a = \\sqrt{\\square{}^{\\mu}\\left\\{\\begin{aligned}\\square{}^{t}& = h R^{t}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{r}& = h R^{r}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\phi}& = h R^{\\phi}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\theta}& = h R^{\\theta}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\end{aligned}\\right.\n \\square{}^{\\nu}\\left\\{\\begin{aligned}\\square{}^{t}& = h R^{t}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{r}& = h R^{r}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\phi}& = h R^{\\phi}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\theta}& = h R^{\\theta}\\,_{t t r} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\end{aligned}\\right.\n g_{\\mu \\nu}}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 2857721464339887822,
+					"cell_id" : 10775480819031592787,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 8890933808406034931,
+							"cell_id" : 11413343025227712008,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (\\components^{\\mu}({{t} = 0, {r} = 2h G M (-2G M + r) (r)**(-4) (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\phi} = 0, {\\theta} = 0}) \\components^{\\nu}({{t} = 0, {r} = 2h G M (-2G M + r) (r)**(-4) (\\sqrt((-2G M + r) (r)**(-1)))**(-1), {\\phi} = 0, {\\theta} = 0}) g_{\\mu \\nu})**( 1/2 )"
@@ -364,13 +360,13 @@
 					"source" : "\\begin{dmath*}{}a = \\sqrt{\\square{}^{\\mu}\\left\\{\\begin{aligned}\\square{}^{t}& = 0\\\\[-.5ex]\n\\square{}^{r}& = 2h G M \\left(-2G M+r\\right) {r}^{-4} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\phi}& = 0\\\\[-.5ex]\n\\square{}^{\\theta}& = 0\\\\[-.5ex]\n\\end{aligned}\\right.\n \\square{}^{\\nu}\\left\\{\\begin{aligned}\\square{}^{t}& = 0\\\\[-.5ex]\n\\square{}^{r}& = 2h G M \\left(-2G M+r\\right) {r}^{-4} {\\left(\\sqrt{\\left(-2G M+r\\right) {r}^{-1}}\\right)}^{-1}\\\\[-.5ex]\n\\square{}^{\\phi}& = 0\\\\[-.5ex]\n\\square{}^{\\theta}& = 0\\\\[-.5ex]\n\\end{aligned}\\right.\n g_{\\mu \\nu}}\\end{dmath*}"
 				},
 				{
-					"cell_id" : 15284567647226221658,
+					"cell_id" : 14849127246720708261,
 					"cell_origin" : "server",
 					"cell_type" : "latex_view",
 					"cells" : 
 					[
 						{
-							"cell_id" : 10265216938973663292,
+							"cell_id" : 10535320412468760753,
 							"cell_origin" : "server",
 							"cell_type" : "input_form",
 							"source" : "a = (4(G)**2 (M)**2 (h)**2 (r)**(-6))**( 1/2 )"
@@ -379,10 +375,148 @@
 					"source" : "\\begin{dmath*}{}a = \\sqrt{4{G}^{2} {M}^{2} {h}^{2} {r}^{-6}}\\end{dmath*}"
 				}
 			],
-			"source" : "acc_modulus := a = \\sqrt{ a^{\\mu} a^{\\nu} g_{\\mu \\nu}};\n\nsubstitute (acc_modulus, acc);\nsubstitute (acc_modulus, rm);\n\nevaluate(acc_modulus, ss+velocity+displacement, rhsonly=True);\n"
+			"source" : "acc_modulus := a = \\sqrt{ a^{\\mu} a^{\\nu} g_{\\mu \\nu}};\n\nsubstitute (acc_modulus, acc);\nsubstitute (acc_modulus, rm);\n\nevaluate(acc_modulus, ss+velocity+displacement, rhsonly=True);"
 		},
 		{
 			"cell_id" : 11447606696872464301,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 6425430411717183083,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 7534540906334106781,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\nabla_{\\mu}(u^{\\nu}) = \\partial_{\\mu}(u^{\\nu}) + \\Gamma^{\\nu}_{\\rho \\mu} u^{\\rho}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\nabla_{\\mu}{u^{\\nu}} = \\partial_{\\mu}{u^{\\nu}}+\\Gamma^{\\nu}\\,_{\\rho \\mu} u^{\\rho}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 17660477064353238236,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 8392233364764123685,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m^{\\mu} = u^{\\nu} \\nabla_{\\nu}(u^{\\mu})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\nabla_{\\nu}{u^{\\mu}}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 4551533893954145886,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 2715525890725297025,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m^{\\mu} = u^{\\nu} (\\partial_{\\nu}(u^{\\mu}) + \\Gamma^{\\mu}_{\\rho \\nu} u^{\\rho})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\left(\\partial_{\\nu}{u^{\\mu}}+\\Gamma^{\\mu}\\,_{\\rho \\nu} u^{\\rho}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 122795075880275387,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 5647928645926673851,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m^{\\mu} = u^{\\nu} (\\partial_{\\nu}(u^{\\mu}) + \\components_{\\rho \\nu}^{\\mu}({{\\phi, r, \\phi} = (r)**(-1), {\\phi, \\theta, \\phi} = (\\tan(\\theta))**(-1), {\\theta, r, \\theta} = (r)**(-1), {r, r, r} = G M (r (2G M-r))**(-1), {t, r, t} = G M (r (-2G M + r))**(-1), {r, \\phi, \\phi} = (r)**(-1), {\\theta, \\phi, \\phi} = (\\tan(\\theta))**(-1), {r, \\theta, \\theta} = (r)**(-1), {r, t, t} = G M (r (-2G M + r))**(-1), {\\phi, \\phi, r} = (2G M-r) (\\sin(\\theta))**2, {\\phi, \\phi, \\theta} =  -  1/2 \\sin(2\\theta), {\\theta, \\theta, r} = 2G M-r, {t, t, r} = G M (-2G M + r) (r)**(-3)}) u^{\\rho})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m^{\\mu} = u^{\\nu} \\left(\\partial_{\\nu}{u^{\\mu}}+\\square{}_{\\rho}{}_{\\nu}{}^{\\mu}\\left\\{\\begin{aligned}\\square{}_{\\phi}{}_{r}{}^{\\phi}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\theta}{}^{\\phi}& = {\\left(\\tan{\\theta}\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{\\theta}{}_{r}{}^{\\theta}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{r}{}^{r}& = G M {\\left(r \\left(2G M-r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{t}{}_{r}{}^{t}& = G M {\\left(r \\left(-2G M+r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{\\phi}{}^{\\phi}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{\\theta}{}_{\\phi}{}^{\\phi}& = {\\left(\\tan{\\theta}\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{\\theta}{}^{\\theta}& = {r}^{-1}\\\\[-.5ex]\n\\square{}_{r}{}_{t}{}^{t}& = G M {\\left(r \\left(-2G M+r\\right)\\right)}^{-1}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\phi}{}^{r}& = \\left(2G M-r\\right) {\\left(\\sin{\\theta}\\right)}^{2}\\\\[-.5ex]\n\\square{}_{\\phi}{}_{\\phi}{}^{\\theta}& =  - \\frac{1}{2}\\sin\\left(2\\theta\\right)\\\\[-.5ex]\n\\square{}_{\\theta}{}_{\\theta}{}^{r}& = 2G M-r\\\\[-.5ex]\n\\square{}_{t}{}_{t}{}^{r}& = G M \\left(-2G M+r\\right) {r}^{-3}\\\\[-.5ex]\n\\end{aligned}\\right.\n u^{\\rho}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 464779989172577847,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 13359254041323357552,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m^{\\mu} = \\components^{\\mu}({{r} = G M (r)**(-2)})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m^{\\mu} = \\square{}^{\\mu}\\left\\{\\begin{aligned}\\square{}^{r}& = G M {r}^{-2}\\\\[-.5ex]\n\\end{aligned}\\right.\n\\end{dmath*}"
+				}
+			],
+			"source" : "deriv := \\nabla_{\\mu}{u^{\\nu}} = \\partial_{\\mu}{u^{\\nu}} + \\Gamma^{\\nu}_{\\rho \\mu} u^\\rho;\n\nfour_acc := m^{\\mu} = u^{\\nu} \\nabla_{\\nu}{u^\\mu};\n\nsubstitute(four_acc, deriv);\nsubstitute(four_acc, ch);\nevaluate(four_acc, velocity+ss+ch, rhsonly=True);"
+		},
+		{
+			"cell_id" : 12525246571004462256,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 16969406503941688077,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 2455030610212569715,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m = (m^{\\mu} m^{\\nu} g_{\\mu \\nu})**( 1/2 )"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m = \\sqrt{m^{\\mu} m^{\\nu} g_{\\mu \\nu}}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 12264736095480734206,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 18386509378610176767,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m = (\\components^{\\mu}({{r} = G M (r)**(-2)}) \\components^{\\nu}({{r} = G M (r)**(-2)}) g_{\\mu \\nu})**( 1/2 )"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m = \\sqrt{\\square{}^{\\mu}\\left\\{\\begin{aligned}\\square{}^{r}& = G M {r}^{-2}\\\\[-.5ex]\n\\end{aligned}\\right.\n \\square{}^{\\nu}\\left\\{\\begin{aligned}\\square{}^{r}& = G M {r}^{-2}\\\\[-.5ex]\n\\end{aligned}\\right.\n g_{\\mu \\nu}}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 4547088550776126945,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 5084020952041084164,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "m = ((G)**2 (M)**2 ((r)**3 (-2G M + r))**(-1))**( 1/2 )"
+						}
+					],
+					"source" : "\\begin{dmath*}{}m = \\sqrt{{G}^{2} {M}^{2} {\\left({r}^{3} \\left(-2G M+r\\right)\\right)}^{-1}}\\end{dmath*}"
+				}
+			],
+			"source" : "four_acc_mod := m = \\sqrt{m^\\mu m^\\nu g_{\\mu \\nu}};\n\nsubstitute(four_acc_mod, four_acc);\nevaluate(four_acc_mod, ss, rhsonly=True);"
+		},
+		{
+			"cell_id" : 16342065619161555754,
 			"cell_origin" : "client",
 			"cell_type" : "input",
 			"source" : ""

@@ -20,49 +20,66 @@ whose positions oscillate on the \(x\) axis with an amplitude \(R\):
 \rho (\vec{x}, t) = m\delta (\vec{x} - \vec{x}_1(t)) + m\delta (\vec{x} - \vec{x}_2 (t))                                                           \,,
 \end{align}
 %
-where 
+where the positions of the particles, \(\vec{x}_1 (t)\) and \(\vec{x}_2 (t)\), will be the solutions to the differential equation \(\vec{F}_{12} = - k (\vec{x}_1 - \vec{x}_2)\). 
+If they start out along the \(x\) axis they will remain along it, so the equation will read \(F_{12} = - k (x_1 - x_2 )\), so \(\ddot{x}_1 = - \omega_0 ^2 (x_1 - x_2 )\) and \(\ddot{x}_2 = + \omega_0 ^2 (x_1 - x_2 )\), where \(\omega^2 = k / m\). 
+This can be rewritten as \(\ddot{\Delta x} = - 2 \omega_0 ^2 \Delta x \), with \(\Delta x = x_1 - x_2 \). 
+Therefore, the pulsation of the system is \(\omega = \sqrt{2} \omega_0  \) --- this could also have been calculated as \(\sqrt{k / m_r}\), where \(m_r = m^2/ (m+m) = m/ 2\) is the reduced mass.
+
+So, the position vectors will look like
 %
 \begin{align}
 \vec{x}_1 (t) = R \left[\begin{array}{c}
-\cos(\omega t + \phi ) \\ 
+\cos(\omega t) \\ 
 0 \\ 
 0
 \end{array}\right]
 \qquad \text{and} \qquad
 \vec{x}_2 (t) = - \vec{x}_1 (t)
-\,.
+\,
 \end{align}
+%
+up to a phase. 
 
 % For simplicity, we will also assume that the radius \(r\) is constant --- this cannot be precisely the case, since there will be some amount of power lost because of the GW emission, but it is a reasonable approximation.
 
-So, the trace-free inertia tensor will be given by 
+So, the inertia tensor will be given by 
 %
 \begin{align}
-Q^{ij} (t) &= \int \rho (\vec{x}, t) \qty( x^{i} x^{j} - \frac{1}{3} \delta^{ij} r^2) \dd[3]{x}  \\
-&= m \sum _{k=1, 2} \qty(x_k^{i} x_k^{j} - \frac{1}{3} \delta^{ij}  \abs{x_k}^2)  \\
-&= \frac{m}{2} R^2 \left[\begin{array}{ccc}
-(2/3)\cos^2 (\omega t + \phi) & 0  & 0\\ 
-0 & - (1/3) \cos^2(\omega t + \phi ) & 0 \\
-0 & 0 & -(1/3) \cos^2(\omega t + \phi )
+I^{ij} (t) &= \int \rho (\vec{x}, t) x^{i} x^{j} \dd[3]{x}  \\
+&= m \sum _{k=1, 2} x_k^{i} x_k^{j}  \\
+&= - m R^2 \left[\begin{array}{ccc}
+\cos^2 (\omega t) & 0  & 0\\ 
+0 & 0 & 0 \\
+0 & 0 & 0
 \end{array}\right] 
 \,.
 \end{align}
 %
 % where we omit the argument of the sines and cosines (which is always \( \)). 
+Its trace is equal to its only nonzero component, \(I^{xx}\), therefore its traceless version will look like 
+%
+\begin{align}
+Q^{ij} (t) &= mR^2 \left[\begin{array}{ccc}
+- (2/3) \cos^2\omega t & 0 & 0 \\ 
+0 & (1/3) \cos^2 \omega t & 0 \\ 
+0 & 0 & (1/3) \cos^2 \omega t
+\end{array}\right]
+\,.
+\end{align}
+%
 
 The second derivative of this tensor will be given by 
 %
 \begin{align}
-\ddot{Q}^{ij}(t) = 4 m R^2 \omega^2 
+\ddot{Q}^{ij}(t) = \frac{2 mR^2}{3} \omega^2 
 \left[\begin{array}{ccc}
-\sin^2 - \cos^2 & 0  & 0\\ 
-0 & 0  & 0 \\
-0 & 0 & 0
+2\cos(2 \omega t) & 0  & 0\\ 
+0 & - \cos(2 \omega t)  & 0 \\
+0 & 0 & - \cos(2 \omega t)
 \end{array}\right]
 \,.
 \end{align}
 
- 
 
 Now, in order to compute the gravitational wave strain we need the projection tensor \(\Lambda_{ij, kl}\).
 If the propagation direction we are interested in is \(\vec{k}\), then the tensor 
@@ -86,18 +103,12 @@ Then, the gravitational wave emission will look like:
 %
 \begin{align}
 h_{ij} (t) &= \frac{2}{r} \frac{G}{c^{4}} \Lambda_{ij, kl} \ddot{Q}_{kl} (t - r/ c)  \\
-&= \frac{2}{r} \frac{G}{c^{4}} \Lambda_{ij, xx} 
-\qty(\sin^2 (\omega t -  \omega r/c + \phi ) - \cos^2 (t - \omega r/c + \phi ))  \\
-\begin{split}
-&= -\frac{2}{r} \frac{G}{c^{4}} 
-\qty(\delta_{ix} \delta_{jx} - n_i n_x \delta_{jx} - \delta_{ix} n_j n_x + \frac{1}{2} n_{i} n_x n_j n_x - \frac{1}{2} \delta_{ij} \delta_{xx} + \frac{1}{2} \delta_{ij} n_x n_x + \frac{1}{2} n_i n_j \delta_{xx} ) \\
-&\phantom{=}\ 
-\times \cos(2 \omega \qty(r - \frac{r}{c}) + \phi )
-\end{split}
+&= \frac{2}{r} \frac{G}{c^{4}} \frac{2 m R^2 \omega^2}{3} 
+\cos(2 \omega (t - r/c)) F_{i j} (\theta , \varphi )
 \,,
 \end{align}
 %
-which we can express explicitly by writing out 
+where \(F_{i j}(\theta , \varphi )\) is a tensor depending on the two angles which define the observation-direction unit vector:
 %
 \begin{align}
 \vec{n} = \left[\begin{array}{c}
@@ -107,6 +118,8 @@ which we can express explicitly by writing out
 \end{array}\right]
 \,.
 \end{align}
+
+The explicit shape of \(F_{i j}\) depends on the shape of \(\ddot{Q}_{i j}\), the one for this specific case can be calculated analytically with a computer algebra system --- see \href{https://jacopok.github.io/tt_gauge_gw.html}{here}.
 
 % The matrix \(h_{ij}\) is then 
 % %
@@ -135,17 +148,29 @@ which we can express explicitly by writing out
 
 \subsection{A free-falling particle}
 
-
-
-\subsection{Ellipsoid rotating along its axis}
-
-We get 
+In this case the motion will be determined by the equation 
 %
 \begin{align}
-I_{11} = \frac{m}{5} (b^2 + c^2)
+F = - \frac{GMm}{r^2} \implies \ddot{r} = - \frac{GM}{r^2}
 \,,
 \end{align}
 %
+for which we need to specify two initial conditions. 
+
+\subsection{Ellipsoid rotating along its axis}
+
+
+The nonzero components of the inertia tensor of an ellipsoid with mass \(m\) and axes \(a\), \(b\), \(c\) are:\footnote{
+    The computation goes as follows: the (assumed constant) density is \(\rho = m / V = 3m / 4 \pi abc\), so 
+}
+%
+\begin{align}
+I_{11} = \frac{m}{5} (b^2 + c^2) \\
+I_{22} = \frac{m}{5} (a^2 + c^2) \\
+I_{33} = \frac{m}{5} (a^2 + b^2) 
+\,.
+\end{align}
+
 
 
 \subsection{Two particles in circular Newtonian orbit}

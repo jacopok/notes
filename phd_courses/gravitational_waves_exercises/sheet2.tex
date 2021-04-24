@@ -3,6 +3,75 @@
 
 \section{GW gauge}
 
+\subsection{Detector frame Newtonian waves}
+
+Let us select one end of our interferometer, and impose the condition \(g_{\mu \nu } = \eta_{\mu \nu }\) at that point, as well as \(g_{\mu \nu , \rho } = 0\). 
+
+If we Taylor expand the metric (along the spatial directions only) from that point,
+the deviations from flatness will kick in with the second order term: 
+%
+\begin{align}
+g_{\mu \nu } (x) = \eta_{\mu \nu } + \eval{\partial_{i} \partial_{j} g_{\mu \nu }}_{x_0 } 
+(x-x_0 )^{i}
+(x-x_0 )^{j} + \order{(x-x_0 )^3}
+\,.
+\end{align}
+%
+
+
+\subsection{Fictional waves}
+
+We want to show that the perturbation 
+%
+\begin{align}
+h_{\mu \nu } &= - 2 \partial_{(\mu } \zeta_{\nu )}  \\
+\zeta_{\mu } &= c_\mu \exp( - i k_\alpha x^{\alpha })
+\,
+\end{align}
+%
+is ``fictional'', that is, it is indistinguishable flat spacetime.
+
+One way to do so is to explicitly show the transformation that maps this to flat spacetime: the perturbation transforms under diffeomorphisms as 
+%
+\begin{align}
+h_{\mu \nu } (x) \to h'_{\mu \nu } (x') = h_{\mu \nu } (x) + 2 \partial_{(\mu } \chi_{\nu )} (x)
+\,
+\end{align}
+%
+for a generic vector \(\chi_{\nu }\), therefore if we set \(\chi _\nu = \zeta _\nu \) we directly have \(h'_{\mu \nu } (x') = 0\) identically.
+
+Alternatively, we can compute the Riemann tensor: to linear order 
+%
+\begin{align}
+\Gamma_{\mu \alpha \beta } &= \frac{1}{2} \qty(h_{\mu  (\alpha , \beta )} - h_{\alpha \beta , \mu })  \\
+R_{\mu \nu \rho \sigma } &= - 2 \Gamma_{\mu \nu [\rho , \sigma ]}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+h_{\mu \nu } &= 2 i c_{(\mu } k_{\nu )} e^{-i k \cdot x}  \\
+h_{\mu \nu , \alpha } &= - 2 c_{(\mu } k_{\nu )} k_\alpha e^{-i k \cdot x} \\
+h_{\mu \nu , \alpha \beta } &= + 2 i c_{(\mu } k_{\nu )} k_\alpha k_\beta e^{- i k \cdot x} \\
+\Gamma_{\mu \alpha \beta } &= \frac{1}{2} \qty( h_{\mu \alpha , \beta } + h_{\mu \beta, \alpha } - h_{\alpha \beta , \mu })  \\
+&= \frac{1}{2} (-2) \qty(
+    c_{(\mu } k_{\alpha  )} k_\beta + 
+    c_{(\mu } k_{\beta   )} k_\alpha -
+    c_{(\alpha  } k_{\beta   )} k_\mu 
+)
+e^{-i k \cdot x}  \\
+R_{\mu \nu \rho \sigma } &=
+2 i \qty(
+    c_{(\mu } k_{\nu)}  k_{[\rho} k_{\sigma ]} +  
+    c_{(\mu } k_{\rho)} k_{[\nu } k_{\sigma ]} -
+    c_{(\nu } k_{\rho)} k_{[\mu } k_{\sigma ]}    
+) e^{- i k \cdot x}
+\,,
+\end{align}
+%
+so all the terms in the Riemann tensor contain a term in the form \(k_{[\mu } k_{\nu ]} = 0\), since it is the antisymmetrization of two equal vectors. 
+
 \section{NS surface tidal forces}
 
 We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}, so the compactness ratio \(R c^2 / G M\) is almost 6, well above the causal constraint of \(\sim 2.83\) \cite[eq.\ 5, fig.\ 2]{lattimerNeutronStarObservations2007a}.}
@@ -74,7 +143,7 @@ Now that we have established the weak-field calculation, let us approach it acco
 
 The geodesic deviation equation is still valid, but we must adapt the expressions for \(\xi^{\mu }\) and \(u^{\mu }\): 
 we want their moduli to be \(h\) and \(-1\) respectively, and their directions to be \(\hat{e}^{r} \) and \(\hat{e}^{t}\).
-In order for this to be true we need to rescale their components as \(\xi^{r} = h / \sqrt{g_{rr}}\) and \(u^{t} = 1/\sqrt{g_{tt}}\). 
+In order for this to be true we need to rescale the, so that their nonzero components will read \(\xi^{r} = h / \sqrt{g_{rr}}\) and \(u^{t} = 1/\sqrt{g_{tt}}\). 
 
 Also, we cannot only compute \(d^{r}\): we must consider the full vector \(d^{\mu }\) and compute its modulus \(\sqrt{d^{\mu } d_\mu }\). 
 Notice the lowered index: the component \(d^{r}\) appears in the modulus of the acceleration as \(d^{r} \sqrt{g_{rr}}\), and \(\sqrt{g_{rr}} \approx \num{1.23}\) is noticeably different from 1 in this situation. 

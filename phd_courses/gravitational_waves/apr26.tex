@@ -1,4 +1,242 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{No-stress source}
+
+\marginpar{Monday\\ 2021-4-26, \\ compiled \\ \today}
+
+We considered a source in the form \(T_{\mu \nu } = \rho t_\mu t_\nu \), where \(t^{\mu } = (1, \vec{0})\). 
+
+Now we will consider a source in the form 
+%
+\begin{align}
+T_{\mu \nu } = - 2 \rho t_\mu t_\nu + 2 J_{(\mu } t_{\nu )}
+\,,
+\end{align}
+%
+where \(J^{\mu } = \rho u^{\mu } = \rho (\gamma , \gamma v^{i} / c)\). 
+
+\todo[inline]{Probably the first 2 is not there.}
+
+The static source from before can be recovered from this expression in the low-velocity limit \(v^{i} / c \to 0\). 
+In that case, \(T_{ij} = 0\): we can see that \(T_{ij}\) is of order \(v^2 / c^2\), so to first order they vanish. 
+
+In this situation, we get the system 
+%
+\begin{align}
+\begin{cases}
+    \square \overline{h}_{0 \mu } &= - 16 \pi T_{0 \mu } \\
+    \square \overline{h}_{ij} &= 0
+\,.
+\end{cases}
+\end{align}
+
+In order to simplify, let us assume that \(\partial_{t} \overline{h}_{ij} = 0\): then, the solution to the second of these becomes \(\nabla^2 \overline{h}_{ij} = 0\), with flat boundary conditions at large distance. 
+By linearity, this leads to \(\overline{h}_{ij} = 0\).
+
+\begin{claim}
+If we define \(A_{\mu } = - (1/4) \overline{h}_{0 \mu } = - (1/4) \overline{h}_{\mu \nu } t^{\nu }\), then the metric becomes 
+%
+\begin{align}
+g_{00} &= - 1 + 2 A_0  \\
+g_{0i} &= 4 A_i  \\
+g_{ij} &= (1 + 2 A_0) \delta_{ij}
+\,.
+\end{align}
+\end{claim}
+
+In terms of this \(A_{\mu }\), the Dalambertian equation from before reads 
+%
+\begin{align}
+\square A_{\mu } = - \frac{16}{4} \pi J_\mu = - 4 \pi J_\mu 
+\,,
+\end{align}
+%
+which are formally identical to the Maxwell equations! 
+Therefore, we can employ known techniques from electromagnetism. 
+
+For example, if \(\partial_{t} A_{\mu } = 0\) then 
+%
+\begin{align}
+\begin{cases}
+    A_0 &= - \phi  \\
+    A_{i} &= \int \dd[3]{x^{i}} \frac{J_i}{\abs{x - x^{i}}}
+\,,
+\end{cases}
+\end{align}
+%
+which is the reason why the phenomena which can be described through this formalism are known as gravito-electric and gravito-magnetic effects. 
+
+\begin{claim}
+For example, geodesics in a weak-field stationary (no stress) spacetime are described by a Lagrangian 
+%
+\begin{align}
+\mathscr{L} &= - mc \qty(- g_{\mu \nu } \dot{x}^{\mu } \dot{x}^{\nu })^{1/2}  \\
+&= - mc^2 \qty(- g_{00} - 2 g_{0i} \frac{v^{i}}{c} - g_{ij} \frac{v^{i} v^{j}}{c^2})^{1/2}  \\
+&\approx -mc^2 + \frac{m}{2} v^2 + m \phi + 4 mc A_{i}v^{i}
+\,.
+\end{align}
+\end{claim}
+
+We have a mass term, a kinetic term, a gravitational term, and a contribution to the Lorentz force. 
+
+The corresponding equations of motion read 
+%
+\begin{align}
+\ddot{\vec{x}} = \vec{E} + 4 \vec{v} \times \vec{B}
+\,,
+\end{align}
+%
+where \(\vec{E}\) and \(\vec{B}\) are the gravitoelectric and gravitomagnetic fields derived from our \(A_{\mu }\). 
+The differences from EM are: the absence of charge, and the factor of 4 before the magnetic term.
+
+An example of a gravito-electromagnetic effect is the Lense-Thirring effect: a magnetic moment \(\vec{s}\) in a magnetic field precesses, according to 
+%
+\begin{align}
+\dv{\vec{s}}{t} &= \vec{s} \times \vec{\Omega}
+\qquad \text{where} \qquad
+\vec{\Omega} = - \frac{q}{m} \vec{B}_{EM}
+\,,
+\end{align}
+%
+so in order to generalize to the precession of a gyroscope in an EM field we need to map \(q \to m\) and \(\vec{B}_{EM} \to 4 \vec{B}\). 
+
+This way, we see for example that \(\Omega _g = - 4 B\). 
+A mission called Gravity Probe B measured this effect: they found precession with \(\Omega _g \sim \SI{.22}{arcsec / yr} (R_{\oplus} / r)^3\). 
+This is a \SI{20}{\percent} accurate test of GR in the weak field. 
+
+\todo[inline]{What does that mean?}
+
+Another example is \textbf{frame dragging}, which applies in full GR: if we put the gyroscope around a BH a similar effect emerges. 
+Around a Kerr BH we have 
+%
+\begin{align}
+g_{0i}^{\text{Kerr}} \sim \Omega_{BH} 
+\,,
+\end{align}
+%
+and if the particle is close to the BH a particle is ``locked'' to the BH rotation. 
+
+\section{Gravitational Waves in linear GR}
+
+GW are solutions of weak-field GR in a vacuum.
+There, the wave equation reads \(0 = \square _\eta \overline{h}_{\mu \nu }\). What are the properties of the solutions of these equations? 
+The simplest thing we can do is look for plane wave solutions. We take a wave vector \(k^{\mu } = (\omega , k^{i})\) and an amplitude \(A_{\mu \nu }\); then 
+%
+\begin{align}
+\overline{h}_{\mu \nu } = A_{\mu \nu } e^{i k_\mu x^{\mu }} = A_{\mu \nu } e^{i (- \omega t + \vec{k} \cdot \vec{x}) }
+\,,
+\end{align}
+%
+so \(\partial_{\mu } \overline{h}_{\alpha \beta } =  (i k_\mu ) \overline{h}_{\alpha \beta }\). 
+
+Substituting the plane wave ansatz yields 
+%
+\begin{align}
+0 = \square \overline{h}_{\alpha \beta } = - \eta^{\mu \nu } k_\mu k_\nu \overline{h}_{\alpha \beta }
+\,,
+\end{align}
+%
+therefore \(k_{\mu }k^{\mu } = 0\). The wavevector is null. 
+
+This implies that the GW propagates at the speed of light: \(\omega s^2 = \abs{\vec{k}}^2\). 
+
+How do we completely specify a gauge?
+Any infinitesimal transformation such that \(\square \xi^{\mu } = 0\) preserves the Hilbert gauge, so we can make a residual gauge transformation. 
+
+The harmonic gauge implies that 
+%
+\begin{align}
+0 = - \partial^{\alpha } \overline{h}_{\mu \alpha } = i k^{\alpha } \overline{h}_{\mu \alpha }
+\,,
+\end{align}
+%
+which yields \(k^{\alpha } A_{\alpha \mu } = 0\). This means that GWs are \textbf{transverse} to the propagation direction. 
+
+We know that \(\overline{h}_{\mu \nu }\) maps to \(\overline{h}_{\mu \nu } + 2 \partial_{(\mu } \xi_{\nu )} + \eta_{\mu \nu } \partial_{\alpha } \xi^{\alpha }\). 
+
+Let us use \(\xi^{\mu } = B^{\mu } e^{i k_{\alpha } x^{ \alpha }}\) as an ansatz for our residual gauge transformation, since it automatically harmonic: we get 
+%
+\begin{align}
+A_{\mu \nu } \to A_{\mu \nu } - 2 i k_{(\mu } B_{\nu )} + i \eta_{\mu \nu } k_{\alpha } B^{\alpha }
+\,,
+\end{align}
+%
+and since we can pick \(B^{\mu }\) arbitrarily we can impose \(\overline{h} = A^{\mu }_{\mu } = 0\), the \textbf{traceless condition}, as well as \(\overline{h}_{\mu 0} = 0\), the \textbf{transverse condition}.
+The second is suggested by the previously found result \(k_\alpha A^{\alpha \beta } = 0\). 
+
+In terms of \(B\), this is a linear algebraic system, and it is invertible.
+
+In summary, we start from 10 variables, we use 4 equations to impose the Hilbert gauge, and 4 more to impose the TT gauge. 
+The two degrees of freedom which are left are the true degrees of freedom of a GW. 
+
+More explicitly, if we have \(k^{\mu } = (\omega, 0, 0, k_z)\) this means 
+\begin{enumerate}
+    \item \(k^2 =0 \) implies \(- \omega = k_z\);
+    \item the phase reads \(k_\alpha x^{\alpha } = \omega (t - z)\);
+    \item the Hilbert gauge \(k^{\mu } A_{\mu \nu } = 0\) tells us that \(A_{0 \nu } = A_{3 \nu }\); 
+    \item the transverse condition tells us that \(A_{0 \mu } = 0\) (so also \(A_{3 \mu } = 0\));
+    \item the traceless condition tells us that \(A^{\mu }_{\mu } = 0\).
+\end{enumerate}
+
+This leads to the usual formulation 
+%
+\begin{align}
+A_{\mu \nu }^{TT} = \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & A_+ & A_\times & 0 \\ 
+0 & A_\times  & - A_+ & 0 \\ 
+0 & 0 & 0 & 0
+\end{array}\right]
+\,.
+\end{align}
+
+Therefore, 
+%
+\begin{align}
+h^{TT}_{\mu \nu } = A_{\mu \nu }^{TT} \exp(i \omega (t - z))
+\,.
+\end{align}
+
+In TT gauge we have \(\overline{h}_{\mu \nu } = h_{\mu \nu }\) since the trace is zero.
+Importantly, the TT gauge can only be defined in vacuo! This is because in that case \(\square \overline{h}_{\mu \nu } \neq 0\), so while we can still exploit gauge freedom we cannot set components to zero inside the source. 
+
+The metric in TT gauge reads 
+%
+\begin{align}
+g &= - \dd{t^2} + \dd{z^2} + (1 + h_+) \dd{x^2} (1 - h_\times ) \dd{y^2} + 2 h_\times \dd{x} \dd{y}
+g &= - \dd{t^2} + (\delta_{ij} + h^{TT}_{ij} ) \dd{x^{i}} \dd{x^{j}}
+\,.
+\end{align}
+
+How do we identify the GW degrees of freedom in general? 
+We can impose the TT gauge outside the source (far away from the \(T_{\mu \nu }\)). 
+
+In general, 
+%
+\begin{align}
+h^{TT}_{\mu \nu } = \Lambda_{\mu \nu }{}^{\alpha \beta } \overline{h}_{\alpha \beta }
+\,,
+\end{align}
+%
+where \(\Lambda \) is a projection operator, defined as 
+%
+\begin{align}
+\Lambda_{\mu \nu }{}^{\alpha \beta } &= P_{\mu }^{\alpha } P_\nu^{\beta } - \frac{1}{2} P_{\mu \nu } P^{\alpha \beta }  \\
+P_{\mu \nu } &= \delta_{\mu \nu } - n_\mu n_\nu 
+\,,
+\end{align}
+%
+where \(n^\mu \) is the propagation direction. 
+
+The projection tensor \(P_{\mu \nu }\) is symmetric, it is transverse (\(P_{\mu \nu } n^{\nu } = 0\)), it is idempotent (\(P_{\mu \alpha } P_{\alpha \nu } = P_{\mu \nu }\)), and its trace is equal to \(2\). 
+
+The tensor \(\Lambda_{\mu \nu \alpha \beta } \) is also idempotent, transverse in all indices, traceless in \(\mu \nu \) and \(\alpha \beta \) separately, and symmetric in the swap of \(\mu \nu \) and \(\alpha \beta \). 
+
+In summary, we have found GW solutions, they propagate with \(c\), they are transverse, they have two degrees of freedom. 
+
+Symmetric, Transverse, Trace-Free tensors play an important role in GW theory. They can be used to obtain the \textbf{Multipolar expansion}. 
+
+``Living review of relativity'' (see webpage) describes all the tests of GR. 
+
 \end{document}

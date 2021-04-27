@@ -1,4 +1,198 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{3 + 1 geometry}
+
+\marginpar{Tuesday\\ 2021-4-27, \\ compiled \\ \today}
+
+We take our 4D spacetime \((M, g, \nabla)\) and equip it with a scalar field \(t \colon M \to \mathbb{R}\) such that the vector
+%
+\begin{align}
+(\dd{t})^{a} = g^{ab} (\dd{t})_b
+\,
+\end{align}
+%
+is timelike.
+
+This defines 3D spatial hypersurfaces, whose normal vector is \(n^a = - \alpha (\dd{t}^{a})\).
+
+These surfaces are denoted as \(\Sigma _t\), and their tangent vectors \(v^{a} \in T_P(\Sigma _t)\) are all spacelike. 
+
+\textbf{Embedding} is a bijective map \(\phi \) from an \(n-1\) dimensional manifold \(\hat{\Sigma}\) to a subset \(\Sigma \) of an \(n\) dimensional manifold \(M\).
+
+We can move tensor fields from \(\hat{\Sigma}\) to \(M\) and back: these are known as the pullback and pushforward operations.
+Not all fields can be moved in this way. 
+
+The idea is to identify \(\Sigma \) with the manifold \(\hat{\Sigma}\) --- however, they are distinct conceptually. 
+
+A metric \(\gamma \) on \(\Sigma \) is given by the pullback of \(g\) on \(M\): this is the \textbf{induced} metric \(\gamma = \phi^{*} g\). 
+The components of this metric are calculated as 
+%
+\begin{align}
+\gamma_{ij} = \pdv{x^{\alpha }}{x^{i}} \pdv{x^{\beta }}{x^{j}} g_{\alpha \beta }
+\,.
+\end{align}
+
+Also, we can define a connection \(D\) and a Riemann tensor \(\mathcal{R}\) on the submanifold; its components are \(\mathcal{R}_{ijkl}\). 
+This is the ``internal'', or ``intrinsic curvature'' of the submanifold.
+
+There is another curvature we could define: how does \(\Sigma \) deform into \(M\)? This is the \textbf{extrinsic curvature}. 
+
+For example, a 1D curve has zero intrinsic curvature, but it can bend. 
+This is determined by the map 
+%
+\begin{align}
+K \colon T_P (\Sigma ) \times T_P (\Sigma ) \to \mathbb{R}
+\,,
+\end{align}
+%
+which acts on two vectors \(u, v \in T_P(\Sigma )\) as \(K (u, v) = K_{ab} u^a v^b = - u_a v^b \nabla_b n^a\).
+
+As an example, take \(M = \mathbb{R}^3\) and \(\Sigma = \mathbb{R}^2\); the metric on \(M\) is the identity and the Riemann tensor vanishes, so we get \(\mathcal{R} = K = 0\). 
+
+If, instead, we take \(\Sigma = C^2\), the surface of a cylinder, we will have \(\mathcal{R}_{ijkl} = 0\) since we can deform it into a plane, while 
+%
+\begin{claim}
+the extrinsic curvature of this objects has a nonvanishing component \(k_{\varphi \varphi } = - a\), where \(a\) is the radius, while the trace reads \(k = k^{i}_i = - 1/a\). 
+\end{claim}
+
+On the other hand, if we take a sphere we have both \(\mathcal{R}_{ijkl} \neq 0 \) and \(k_{ij} = 0\); also, the trace reads \(k = - 2 / a\). 
+
+We can use \textbf{projectors} to decompose tensors on \(M\) into tensors on \(\Sigma \) and ``pieces'' along \(n\). 
+This is because we can decompose the tangent space of the ambient manifold into 
+%
+\begin{align}
+T_P(M) = V_P (n) \oplus T_P (\Sigma )
+\,,
+\end{align}
+%
+so that a vector \(v^{\alpha }\) is written as \(v_\perp n^a + v_\parallel^{a}\), where \(v_\parallel \in T_P (\Sigma )\). 
+
+We can define a projector \(P\) that maps a vector \(v^{a}\) to \(v_\parallel^{a}\). Explicitly, this will look like 
+%
+\begin{align}
+P^{a}{}_b = \delta^{a}{}_b + n^a n_b
+\,.
+\end{align}
+
+The induced metric can alternatively be written as the projection of the four-metric into \(\Sigma \): 
+%
+\begin{align}
+\gamma_{ab} = P_a^{c} P_b^{d} g_{cd} = g_{ab} + n_a n_b
+\,.
+\end{align}
+
+This is coordinate independent! 
+Also, we can write the projectors as 
+%
+\begin{align}
+P^{a}_{b} = \gamma^{a}_{b} = g^{ac} \gamma_{cb}
+\,,
+\end{align}
+%
+therefore we will not write \(P\) anymore --- we can just use \(\gamma \). 
+
+We also need the covariant derivative: schematically, it is written as
+%
+\begin{align}
+D T = P \dots P \nabla T
+\,.
+\end{align}
+
+Also, the extrinsic curvature reads 
+%
+\begin{align}
+K_{ab} = - \gamma_{a}^{c} \gamma^{d}_{b} \nabla_{(c} n_{d)}
+\,.
+\end{align}
+%
+
+Using \(P\) on every tensor is what ``putting into 3+1 form'' means. 
+
+\subsection{Eulerian observers}
+
+These are observers whose worldlines are defined by \(n\): \(\Sigma _t\) is the set of all events which are simultaneous to the Eulerian observers. 
+
+\begin{definition}
+The acceleration of E. observers is defined as 
+%
+\begin{align}
+a_{a} = n^b \nabla_b n_a
+\,,
+\end{align}
+%
+therefore \(a_a n^a = 0\). 
+\end{definition}
+
+\begin{definition}
+The normal evolution vector \(m^a = \alpha n^a\) is defined so that 
+%
+\begin{align}
+\nabla_m t = m^a (\dd{t})_a = +1
+\,.
+\end{align}
+\end{definition}
+
+\begin{claim}
+3+1 geometry defines the kinematic of 3+1 GR.
+Specifically, the claims we make are:
+\begin{enumerate}
+    \item The vector \(m\) carries points from \(\Sigma _t\) to \(\Sigma _{t + \delta t}\). 
+    \item The lapse function \(\alpha \) relates \(t\) to the proper time of Eulerian observers. 
+    \item The Lie derivative along \(m\), \(\mathscr{L}_m\), transports tensors from \(\Sigma _t\) to \(\Sigma _{t + \delta t}\). 
+    \item \(\mathscr{L}_m \gamma = - 2 \alpha K\). 
+\end{enumerate}
+\end{claim}
+
+Let us give some hints: if \(P\) is on \(\Sigma _t\) and \(P'\) is on \(\Sigma _{t + \delta t}\), then 
+%
+\begin{align}
+t(P') = t (P + \delta t \cdot m) = t(p) + \delta t \underbrace{m^a (\dd{t})_a }_{=1} = t(P) + \delta t
+\,,
+\end{align}
+%
+while for the second point, the change in proper time reads 
+%
+\begin{align}
+\dd{\tau^2} = - g (\delta t m, \delta t m) = - m^a m_a \dd{t^2} = \alpha^2 \dd{t^2}
+\,,
+\end{align}
+%
+which is the reason for the term ``lapse function''. 
+
+The third point follows from the first and the definition of the Lie derivative. 
+
+As for the fourth, we have 
+%
+\begin{align}
+\mathscr{L}_n \gamma_{ab} &= \mathscr{L}_n \qty(g_{ab} + n_a n_b)  \\
+&= 2 \nabla_{(a} n_{b)} + n_a \mathscr{L}_n n_b + n_b \mathscr{L}_n n_a  \\
+&= 2 \qty[\nabla_{(a} n_{b)} + n_{(a} a_{b)}] = - 2 K_{ab}
+\,.
+\end{align}
+
+The last passage is left as an exercise: we start by carrying out the projections, then simplify terms in the form \(n n \nabla n\) by substituting the acceleration. 
+
+The Lie derivative along \(n\) can always be written as 
+%
+\begin{align}
+\mathscr{L}_n \gamma_{ab} = \phi^{-1} \mathscr{L}_{\phi n} \gamma_{ab}
+\,
+\end{align}
+%
+for any scalar field. 
+
+Now we have three expressions for \(K_{ab}\) --- each of them can be taken to be the definition, and the others can be derived from it. 
+
+What is the physical interpretation of these expressions?
+They tell us several things: 
+\begin{enumerate}
+    \item \(\Sigma _t\) and \(\Sigma _{t + \delta t}\) are identified by the diffeomorphism generated by \(m\);
+    \item the spacetime \((M, g)\) is the ``time'' development of \((\Sigma , \gamma )\), where the ``time evolution'' is governed by \(\mathscr{L}_m\);
+    \item we can identify \(\gamma \) as the ``main variable'' of (3+1) GR, and also we identify \(K\) as the ``velocity'' of \(\gamma \): the equation \(\mathscr{L}_m \gamma = - 2 \alpha K\) is in the form ``time derivative of variable = velocity'', a kinematic equation.
+\end{enumerate}
+
+This all hinges on the possibility to define these non-intersecting hypersurfaces. 
+
+
 \end{document}

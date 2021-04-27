@@ -24,7 +24,48 @@ As we will discuss later, the expression for the geodesic deviation is
 \,,
 \end{align}
 %
-therefore we need to 
+therefore we need to find out what the four-velocity is. To zeroth order it is \(u^{\mu } = (1, \vec{0})\), and the first order contributions would result in a second-order term since the Riemann tensor itself is only nonzero at first order. Also, to zeroth order \(\tau = t\).
+Therefore, we have 
+%
+\begin{align}
+\dv[2]{\xi^{i}}{\tau } &= R^{i}{}_{t t j} \xi^{j} = \qty( \partial_{t} \Gamma^{i}_{t j} - \partial_{j} \Gamma^{i}_{tt}) \xi^{j} 
+\,,
+\end{align}
+%
+since the Christoffel symbols themselves are first order, so the \(\Gamma \Gamma \) terms are of second order.
+
+The relevant Christoffel symbols for a perturbed metric \(g = \eta + h\), where the only nonzero components of \(h\) are the spatial ones (which holds as long as we are in the TT gauge),
+%
+\begin{align}
+\Gamma^{i}_{t j } &= \frac{1}{2} \eta^{i k } 
+\qty( 2 g_{k (j , t )} - g_{t j, k })  \\
+&= \frac{1}{2} \eta^{ik} h_{kj, t}   \\
+\Gamma^{i}_{tt} &= \frac{1}{2} \eta^{i k}
+\qty( 2 g_{k (t, t)} - g_{tt, k} ) = 0
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+R^{i}{}_{t t j} &= \partial_{t} \Gamma^{i}_{t j} - \underbrace{\partial_{j} \Gamma^{i}_{tt}}_{ = 0}  \\
+&= \frac{1}{2} \eta^{i k} h_{k j, tt}
+\,.
+\end{align}
+
+Therefore, the equation for geodesic deviation in the proper detector frame to first order reads 
+%
+\begin{align}
+\dv[2]{\xi^{i}}{t} &= \qty( \frac{1}{2} \pdv[2]{h^{i}_{j}}{t} ) \xi^{j}
+\,.
+\end{align}
+
+This can be interpreted as a Newtonian force, which acts on a particle with mass \(m\) as
+%
+\begin{align}
+F_h^{i} = m \qty( \frac{1}{2} \pdv[2]{h^{i}_{j}}{t} ) \xi^{j}
+\,.
+\end{align}
 
 \subsection{Fictional waves}
 

@@ -25,16 +25,16 @@ As we will discuss later, the expression for the geodesic deviation is
 \end{align}
 %
 therefore we need to find out what the four-velocity is. To zeroth order it is \(u^{\mu } = (1, \vec{0})\), and the first order contributions would result in a second-order term since the Riemann tensor itself is only nonzero at first order. Also, to zeroth order \(\tau = t\).
-Therefore, we have 
+Also, the Christoffel symbols themselves are first order, so the \(\Gamma \Gamma \) terms are of second order.
+With all of these considerations, the expression reduces to
 %
 \begin{align}
-\dv[2]{\xi^{i}}{\tau } &= R^{i}{}_{t t j} \xi^{j} = \qty( \partial_{t} \Gamma^{i}_{t j} - \partial_{j} \Gamma^{i}_{tt}) \xi^{j} 
-\,,
+\dv[2]{\xi^{i}}{t} &= R^{i}{}_{t t j} \xi^{j} = \qty( \partial_{t} \Gamma^{i}_{t j} - \partial_{j} \Gamma^{i}_{tt}) \xi^{j} 
+\,.
 \end{align}
 %
-since the Christoffel symbols themselves are first order, so the \(\Gamma \Gamma \) terms are of second order.
 
-The relevant Christoffel symbols for a perturbed metric \(g = \eta + h\), where the only nonzero components of \(h\) are the spatial ones (which holds as long as we are in the TT gauge),
+The relevant Christoffel symbols for a perturbed metric \(g = \eta + h\), where the only nonzero components of \(h\) are the spatial ones (which holds as long as we are in the TT gauge), are to first order
 %
 \begin{align}
 \Gamma^{i}_{t j } &= \frac{1}{2} \eta^{i k } 
@@ -63,7 +63,7 @@ Therefore, the equation for geodesic deviation in the proper detector frame to f
 This can be interpreted as a Newtonian force, which acts on a particle with mass \(m\) as
 %
 \begin{align}
-F_h^{i} = m \qty( \frac{1}{2} \pdv[2]{h^{i}_{j}}{t} ) \xi^{j}
+F_{(h)}^{i} = m \qty( \frac{1}{2} \pdv[2]{h^{i}_{j}}{t} ) \xi^{j}
 \,.
 \end{align}
 
@@ -122,7 +122,7 @@ so all the terms in the Riemann tensor contain a term in the form \(k_{[\mu } k_
 
 \section{NS surface tidal forces}
 
-We want to estimate the tidal forces on a \SI{1.6}{m} tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}, so the compactness ratio \(R c^2 / G M\) is almost 6, well above the causal constraint of \(\sim 2.83\) \cite[eq.\ 5, fig.\ 2]{lattimerNeutronStarObservations2007a}.}
+We want to estimate the tidal forces on a \(h =\SI{1.6}{m}\) tall person standing on the surface of a nonrotating neutron star with \(M = 1.4 M_{\odot}\) and \(R = \SI{12}{km}\).\footnote{A first sanity check: the corresponding Schwarzschild radius is around \SI{4}{km}, so the compactness ratio \(R c^2 / G M\) is almost 6, well above the causal constraint of \(\sim 2.83\) \cite[eq.\ 5, fig.\ 2]{lattimerNeutronStarObservations2007a}.}
 
 We shall do so by comparing three different methods: Newtonian mechanics, weak-field GR and then full GR (still with the spherical, stationary NR assumption).
 The weak-field GR formulation will make the various approximations of the Newtonian approach more explicit. 
@@ -160,7 +160,7 @@ Our stationary observer on the surface is not moving along a geodesic, but as a 
 the acceleration due to being stationary in Schwarzschild coordinates is shared by head and feet --- it is the zeroth-order contribution, so to speak. 
 The geodesic deviation \(d^{\mu }\) goes directly to the first order. 
 
-In the weak-field approximation, we directly consider the component \(d^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly!) that the metric is not far off from the Minkowski one.
+In the weak-field approximation, we directly consider the component \(d^{r}\) to estimate \(\abs{\Delta a}\), since we assume (wrongly, in this case!) that the metric is not far off from the Minkowski one.
 The space-like displacement vector describing the person is \(\xi^{\mu } = h \hat{e}^{r}\), while their four-velocity in this weak-field context is \(u^{\mu } = \hat{e}^{t}\). 
 
 Therefore, the formula simplifies to 
@@ -176,7 +176,7 @@ and we can approximate this component of the Riemann tensor as such:
 -R^{r}_{ttr} =
 +R^{r}_{trt} &= \partial_{r} \Gamma^{r}_{tt} - \underbrace{\partial_t \Gamma^{r}_{rt}}_{\text{zero by stationarity}}
 \underbrace{\Gamma^{r}_{r \mu } \Gamma^{\mu }_{tt} - \Gamma^{r}_{t \mu } \Gamma^{\mu}_{r t}}_{\text{second order}}  \\
-&\approx \partial_{r} \Gamma^{r}_{tt} = \frac{1}{2} \partial_{r} g^{r \mu } (\underbrace{2\partial_{t} g_{(\mu t)}}_{\text{zero in weak-field}}  - \partial_{\mu } g_{00})  \\
+&\approx \partial_{r} \Gamma^{r}_{tt} = \frac{1}{2} \partial_{r} \qty[ g^{r \mu } (\underbrace{2\partial_{t} g_{(\mu t)}}_{\mathclap{\text{zero by stationarity}}}  - \partial_{\mu } g_{00})]  \\
 &\approx - \frac{1}{2} \partial_{r} \partial_{r} g_{00} 
 \approx \partial_{r} \partial_{r} \Phi  \\
 &\approx \partial_{r} \partial_{r} \qty(- \frac{GM}{r}) = \partial_{r} \frac{GM}{r^2} = - \frac{2GM}{r^3}

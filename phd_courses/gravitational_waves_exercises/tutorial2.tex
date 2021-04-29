@@ -1,0 +1,97 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Thursday\\ 2021-4-29, \\ compiled \\ \today}
+
+We want \(R^{\mu }{}_{\nu \rho \sigma }\) and \(G_{\mu \nu }\)  for the metric 
+%
+\begin{align}
+g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu } + \order{h^2}
+\,.
+\end{align}
+
+The Christoffel symbols, to first order, read 
+%
+\begin{align}
+\Gamma^{\mu }_{\nu \rho } = \frac{1}{2} \eta^{\mu \alpha} 
+\qty( \partial_{\nu } h_{\alpha \rho } + \partial_{\rho } g_{\alpha \sigma } - \partial_{\alpha } g_{\rho \nu })
+\,.
+\end{align}
+
+In the Riemann tensor some contributions cancel out and we are left with 
+%
+\begin{align}
+R^{\mu }{}_{\nu \rho \sigma } = \frac{1}{2} 
+\qty(
+    \partial_{\rho } \partial_{\nu } h^{\mu }_{\sigma } - \partial^{\mu } \partial_{\rho } h_{\nu \sigma } 
+    - \partial_{\sigma } \partial_{\nu } h^{\mu }_{\rho } 
+    + \partial_{\sigma } \partial^{\mu } h_{\nu \rho }
+)
+\,.
+\end{align}
+
+The Ricci then reads 
+%
+\begin{align}
+R_{\mu \nu } = \partial^{\alpha } \partial_{\mu } h_{\nu \alpha }
++ \frac{1}{2} \partial^{\alpha } \partial_{\nu } h_{\mu \alpha } 
+- \frac{1}{2} \partial^{\alpha } \partial_{\alpha } h_{\mu \nu } 
+- \frac{1}{2} \partial_{\mu } \partial_{\nu } h
+\,,
+\end{align}
+%
+where \(h = \eta^{\mu \nu } h_{\mu \nu }\). 
+
+The Ricci scalar then reads 
+%
+\begin{align}
+R = \partial^{\alpha } \partial^{\mu } h_{\mu \alpha } - \partial_{\alpha } \partial^{\alpha } h
+\,.
+\end{align}
+
+The Einstein tensor reads 
+%
+\begin{align}
+G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2}  \eta_{\mu \nu } R 
+= \underbrace{\partial^{\alpha } \partial_{(\mu } h_{\nu ) \alpha }}_{\Circled{1}}
+\underbrace{- \frac{1}{2} \partial_{\alpha } \partial^{\alpha } h_{\mu \nu }}_{\Circled{2}}
+\underbrace{- \frac{1}{2} \partial_{\mu } \partial_{\nu } h }_{\Circled{3}}
+\underbrace{- \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial^{\beta } h_{\alpha  \beta }}_{\Circled{4}}
+\underbrace{+ \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial_{\alpha } h }_{\Circled{5}}
+\,,
+\end{align}
+%
+and in terms of the trace-reversed perturbation \(\overline{h}_{\mu \nu } = h_{\mu \nu } - \eta_{\mu \nu } h / 2\) we have 
+%
+\begin{align}
+\Circled{1} &= \partial^{\alpha } \partial_{(\mu } h_{\nu ) \alpha } 
+= \partial^{\alpha } \partial_{(\mu } \qty(\overline{h}_{\nu ) \alpha } + \frac{1}{2} \eta_{\nu ) \alpha } h)  \\
+&= \partial^{\alpha } \partial_{(\mu } \overline{h}_{\nu ) \alpha }
++ \frac{1}{2} \partial_{\mu } \partial_{\nu } h  \\
+\Circled{2} &= 
+- \frac{1}{2} \partial^{\alpha } \partial_{\alpha } \overline{h}_{\mu \nu } - \frac{1}{2} \eta_{\alpha \beta } \partial^{\alpha } \partial^{\beta } h  \\
+\Circled{4} &= - \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial^{\beta } \overline{h}_{\alpha \beta } 
+- \frac{1}{2} \eta_{\mu \nu } \partial^{\alpha } \partial^{\alpha }
+h
+\,,
+\end{align}
+%
+so we find  
+%
+\begin{align}
+G_{\mu \nu } = - \frac{1}{2} \partial_{\alpha } \partial^{\alpha }
+\overline{h}_{\mu \nu } + \partial^{\alpha } \partial_{(\mu } \overline{h}_{\nu ) \alpha } - \frac{1}{2 }\eta_{\mu \nu } \partial^{\alpha } \partial^{\beta } \overline{h}_{\alpha \beta }
+\,.
+\end{align}
+
+If we impose the Lorentz gauge the Einstein tensor becomes 
+%
+\begin{align}
+G_{\mu \nu } = - \frac{1}{2} \square \overline{h}_{\mu \nu }
+\,.
+\end{align}
+
+
+
+\end{document}
+

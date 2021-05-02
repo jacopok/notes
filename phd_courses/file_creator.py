@@ -11,7 +11,7 @@ subfile_heading = """\\documentclass[main.tex]{subfiles}
 end_doc = "\\end{document}\n"
 bibliography = "bibliography"
 
-BASE_FOLDER = Path(__file__).resolve.parent
+BASE_FOLDER = Path(__file__).resolve().parent
 
 def end_doc_condition(line):
     return end_doc in line or bibliography in line
@@ -55,7 +55,7 @@ def create_file(folder, filename):
 
     with open(file_path, "x") as f:
         f.write(subfile_heading)
-        print("Creating file at " + file_path)
+        print(f"Creating file at {file_path}")
 
     with open(main_path, "r") as f:
         buf = f.readlines()
@@ -65,7 +65,7 @@ def create_file(folder, filename):
         for line in buf:
             if end_doc_condition(line) and not done:
                 line = subfile_include(filename) + line
-                print("Adding subfile to main at " + main_path)
+                print(f"Adding subfile to main at {main_path}")
                 done=True
             f.write(line)
 
@@ -80,7 +80,7 @@ def add_line_main(folder):
         for line in buf:
             if end_doc_condition(line) and not done:
                 line = "\n" + line
-                print("Adding white line to main at " + main_path)
+                print(f"Adding white line to main at {main_path}")
                 done = True
             f.write(line)
 

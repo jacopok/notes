@@ -1,0 +1,597 @@
+{
+	"cell_id" : 2751862830512662440,
+	"cells" : 
+	[
+		{
+			"cell_id" : 14460032633773371327,
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_id" : 6945515026109599137,
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "\\section*{TT-gauge gravitational waves}\n\nWe start out by defining the values our indices will take on - here we work with spatial coordinates only, so our indices only have three values."
+				}
+			],
+			"source" : "\\section*{TT-gauge gravitational waves}\n\nWe start out by defining the values our indices will take on - here we work with spatial coordinates only, so our indices only have three values."
+		},
+		{
+			"cell_id" : 2047532696648678132,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 437380115666402794,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Indices(position=fixed) to~}\\left[i,~ j,~ k,~ l,~ m,~ n\\right].\\end{dmath*}"
+				},
+				{
+					"cell_id" : 6920421287000587405,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Coordinate to~}\\left[x,~ y,~ z\\right].\\end{dmath*}"
+				},
+				{
+					"cell_id" : 9012711325430958568,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property KroneckerDelta to~}\\delta_{i j}.\\end{dmath*}"
+				}
+			],
+			"source" : "{i, j, k, l, m, n}::Indices(values={x,y,z}, position=fixed);\n{x, y, z}::Coordinate;\n{\\delta_{i j}}::KroneckerDelta;"
+		},
+		{
+			"cell_id" : 7233440624557816844,
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_id" : 4949466695421290159,
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "Now we define the vector $\\vec{n}$, which corresponds to the observation direction;\nthe values of the Kronecker delta (it seems to be a quirk in Cadabra that we have to do so);\nthe projection tensor for 1-vectors $P_{i j}$;\nthe projection tensor for 2-tensors $\\Lambda_{i j k l}$."
+				}
+			],
+			"hidden" : true,
+			"source" : "Now we define the vector $\\vec{n}$, which corresponds to the observation direction;\nthe values of the Kronecker delta (it seems to be a quirk in Cadabra that we have to do so);\nthe projection tensor for 1-vectors $P_{i j}$;\nthe projection tensor for 2-tensors $\\Lambda_{i j k l}$."
+		},
+		{
+			"cell_id" : 11305690897488062001,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 13162170098687208631,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 5373808709644849819,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "{n_{x} = \\sin(\\theta) \\cos(\\varphi), n_{y} = \\sin(\\theta) \\sin(\\varphi), n_{z} = \\cos(\\theta)}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left[n_{x} = \\sin{\\theta} \\cos\\left(\\varphi\\right),~ n_{y} = \\sin{\\theta} \\sin\\left(\\varphi\\right),~ n_{z} = \\cos{\\theta}\\right]\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15196020232789287971,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 3476993968225213605,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "n_{i} n_{i} = 1"
+						}
+					],
+					"source" : "\\begin{dmath*}{}n_{i} n_{i} = 1\\end{dmath*}"
+				},
+				{
+					"cell_id" : 4416656901483912100,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 329452514644486549,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i j} = \\delta_{i j}-n_{i} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i j} = \\delta_{i j}-n_{i} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15807498100657386188,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 8290765375625141682,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\Lambda_{i j k l} = P_{i k} P_{j l} -  1/2 P_{i j} P_{k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\Lambda_{i j k l} = P_{i k} P_{j l} - \\frac{1}{2}P_{i j} P_{k l}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15973374319521466949,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 4998475699617942670,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\Lambda_{i j k l} = (\\delta_{i k}-n_{i} n_{k}) (\\delta_{j l}-n_{j} n_{l}) -  1/2 (\\delta_{i j}-n_{i} n_{j}) (\\delta_{k l}-n_{k} n_{l})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\Lambda_{i j k l} = \\left(\\delta_{i k}-n_{i} n_{k}\\right) \\left(\\delta_{j l}-n_{j} n_{l}\\right) - \\frac{1}{2}\\left(\\delta_{i j}-n_{i} n_{j}\\right) \\left(\\delta_{k l}-n_{k} n_{l}\\right)\\end{dmath*}"
+				}
+			],
+			"source" : "n_vals:= [ n_x = \\sin(\\theta) \\cos(\\varphi),\n      n_y = \\sin(\\theta) \\sin(\\varphi),\n      n_z = \\cos(\\theta)\n];\n\nn_unit := n_i n_i = 1;\n\np_def := P_{i j} = \\delta_{i j} - n_i n_j;\n\nlambda_def := \\Lambda_{i j k l} = P_{i k} P_{j l} - 1 / 2 P_{i j} P_{k l};\n\nsubstitute(lambda_def, p_def);\n\n#lambda_def := {\\Lambda_{i j k l} = \n#\\delta_{i k} \\delta_{j l} - n_i n_k \\delta_{j l} \n#- \\delta_{i k} n_j n_l + \\frac{1}{2} n_{i} n_k n_j n_l \n#- \\frac{1}{2} \\delta_{i j} \\delta_{k l} \n#+ \\frac{1}{2} \\delta_{i j} n_k n_l + \\frac{1}{2} n_i n_j \\delta_{k l}};"
+		},
+		{
+			"cell_id" : 7152727448209435426,
+			"cell_origin" : "client",
+			"cell_type" : "latex",
+			"cells" : 
+			[
+				{
+					"cell_id" : 10791211237068993466,
+					"cell_origin" : "client",
+					"cell_type" : "latex_view",
+					"source" : "\\subsection*{Properties}"
+				}
+			],
+			"source" : "\\subsection*{Properties}"
+		},
+		{
+			"cell_id" : 12640081653111497722,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 8370497843043067634,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 14787125024615754351,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i j}-P_{j i}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i j}-P_{j i}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 16349596721756123127,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 10630047914491228795,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\delta_{i j}-n_{i} n_{j}-\\delta_{j i} + n_{j} n_{i}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\delta_{i j}-n_{i} n_{j}-\\delta_{j i}+n_{j} n_{i}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 1150056880413848484,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 12091547979338190942,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}0\\end{dmath*}"
+				}
+			],
+			"source" : "p_symm := P_{i j} - P_{j i};\nsubstitute(p_symm, p_def);\ncanonicalise(p_symm);"
+		},
+		{
+			"cell_id" : 7559743336643415101,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 18251224172951252213,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 14235083385532677394,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "n_{i} P_{i j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}n_{i} P_{i j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 10406904464824158244,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 18394394353309905721,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "n_{i} (\\delta_{i j}-n_{i} n_{j})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}n_{i} \\left(\\delta_{i j}-n_{i} n_{j}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 16464639687199483188,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 7006475146867586313,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "n_{i} \\delta_{i j}-n_{i} n_{i} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}n_{i} \\delta_{i j}-n_{i} n_{i} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 12907568725357805972,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 15905957640350432322,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "n_{j}-n_{i} n_{i} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}n_{j}-n_{i} n_{i} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 9351042660489522782,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 1479567062595766258,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "0"
+						}
+					],
+					"source" : "\\begin{dmath*}{}0\\end{dmath*}"
+				}
+			],
+			"source" : "p_transverse := n_{i} P_{i j};\nsubstitute(_, p_def);\ndistribute(_);\neliminate_kronecker(_);\nsubstitute(_, n_unit);"
+		},
+		{
+			"cell_id" : 1300890694345455844,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 16449152654031901263,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 15613321765687501602,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i k} P_{k j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i k} P_{k j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 9651191078679990287,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 14493663308806202751,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "(\\delta_{i k}-n_{i} n_{k}) (\\delta_{k j}-n_{k} n_{j})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left(\\delta_{i k}-n_{i} n_{k}\\right) \\left(\\delta_{k j}-n_{k} n_{j}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 4836570564634590503,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 12702564439250703817,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\delta_{i k} \\delta_{k j}-\\delta_{i k} n_{k} n_{j}-n_{i} n_{k} \\delta_{k j} + n_{i} n_{k} n_{k} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\delta_{i k} \\delta_{k j}-\\delta_{i k} n_{k} n_{j}-n_{i} n_{k} \\delta_{k j}+n_{i} n_{k} n_{k} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 16520332538564736246,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 9547192857573729287,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\delta_{i j}-2n_{i} n_{j} + n_{i} n_{k} n_{k} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\delta_{i j}-2n_{i} n_{j}+n_{i} n_{k} n_{k} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 441323127014580509,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 11560840768584414138,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\delta_{i j}-n_{i} n_{j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\delta_{i j}-n_{i} n_{j}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 5295974161532970403,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 4791432795673875842,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i j}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i j}\\end{dmath*}"
+				}
+			],
+			"source" : "from cdb.core.manip import swap_sides\n\np_projector := P_{i k } P_{k j};\nsubstitute(_, p_def);\ndistribute(_);\neliminate_kronecker(_);\nsubstitute(_, n_unit);\nsubstitute(_, swap_sides(p_def));"
+		},
+		{
+			"cell_id" : 2560986926480641721,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 17953029073969824941,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 956406502500849982,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "T = P_{k k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}T = P_{k k}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 8846024275676151289,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 12531714682680903945,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "T = P_{k k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}T = P_{k k}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 10859224901060046184,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 8099787086628626093,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "T = P_{k k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}T = P_{k k}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11219457712873247270,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 7828371847755787788,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "T = P_{k k}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}T = P_{k k}\\end{dmath*}"
+				}
+			],
+			"source" : "p_trace := T = P_{k k};\nsubstitute(_, p_def);\n#evaluate(_, n_vals, rhsonly=True);\neliminate_kronecker(_);\nsubstitute(_, n_unit);\n\n# TODO! "
+		},
+		{
+			"cell_id" : 15202158599640173309,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 2755651847022477644,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 6789316983553849534,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\Lambda_{i j m n} \\Lambda_{m n k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\Lambda_{i j m n} \\Lambda_{m n k l}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 7575339833819476730,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 10734693285588298752,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "((\\delta_{i m}-n_{i} n_{m}) (\\delta_{j n}-n_{j} n_{n}) -  1/2 (\\delta_{i j}-n_{i} n_{j}) (\\delta_{m n}-n_{m} n_{n})) ((\\delta_{m k}-n_{m} n_{k}) (\\delta_{n l}-n_{n} n_{l}) -  1/2 (\\delta_{m n}-n_{m} n_{n}) (\\delta_{k l}-n_{k} n_{l}))"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left(\\left(\\delta_{i m}-n_{i} n_{m}\\right) \\left(\\delta_{j n}-n_{j} n_{n}\\right) - \\frac{1}{2}\\left(\\delta_{i j}-n_{i} n_{j}\\right) \\left(\\delta_{m n}-n_{m} n_{n}\\right)\\right) \\left(\\left(\\delta_{m k}-n_{m} n_{k}\\right) \\left(\\delta_{n l}-n_{n} n_{l}\\right) - \\frac{1}{2}\\left(\\delta_{m n}-n_{m} n_{n}\\right) \\left(\\delta_{k l}-n_{k} n_{l}\\right)\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 10701398464989141112,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 2422104148109256573,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "(P_{i m} P_{j n} -  1/2 P_{i j} P_{m n}) (P_{m k} P_{n l} -  1/2 P_{m n} P_{k l})"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left(P_{i m} P_{j n} - \\frac{1}{2}P_{i j} P_{m n}\\right) \\left(P_{m k} P_{n l} - \\frac{1}{2}P_{m n} P_{k l}\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11577359542167937180,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 5943587496839957130,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i m} P_{j n} P_{m k} P_{n l} -  1/2 P_{i m} P_{j n} P_{m n} P_{k l} -  1/2 P_{i j} P_{m n} P_{m k} P_{n l} +  1/4 P_{i j} P_{m n} P_{m n} P_{k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i m} P_{j n} P_{m k} P_{n l} - \\frac{1}{2}P_{i m} P_{j n} P_{m n} P_{k l} - \\frac{1}{2}P_{i j} P_{m n} P_{m k} P_{n l}+\\frac{1}{4}P_{i j} P_{m n} P_{m n} P_{k l}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 2325869735521804817,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 31618440263685827,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i m} P_{j n} P_{m k} P_{n l} -  1/2 P_{i m} P_{j n} P_{m n} P_{k l} -  1/2 P_{i j} P_{m n} P_{m k} P_{n l} +  1/4 P_{i j} P_{m n} P_{m n} P_{k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i m} P_{j n} P_{m k} P_{n l} - \\frac{1}{2}P_{i m} P_{j n} P_{m n} P_{k l} - \\frac{1}{2}P_{i j} P_{m n} P_{m k} P_{n l}+\\frac{1}{4}P_{i j} P_{m n} P_{m n} P_{k l}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 12197210701553180621,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 16660488542920606184,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i m} P_{j n} P_{m k} P_{n l} -  1/2 P_{i m} P_{j n} P_{m n} P_{k l} -  1/2 P_{i j} P_{m n} P_{m k} P_{n l} +  1/4 P_{i j} P_{m n} P_{m n} P_{k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i m} P_{j n} P_{m k} P_{n l} - \\frac{1}{2}P_{i m} P_{j n} P_{m n} P_{k l} - \\frac{1}{2}P_{i j} P_{m n} P_{m k} P_{n l}+\\frac{1}{4}P_{i j} P_{m n} P_{m n} P_{k l}\\end{dmath*}"
+				},
+				{
+					"cell_id" : 15714322556925957807,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 12867046576337013011,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "P_{i m} P_{j n} P_{m k} P_{n l} -  1/2 P_{i m} P_{j n} P_{m n} P_{k l} -  1/2 P_{i j} P_{m n} P_{m k} P_{n l} +  1/4 P_{i j} P_{m n} P_{m n} P_{k l}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}P_{i m} P_{j n} P_{m k} P_{n l} - \\frac{1}{2}P_{i m} P_{j n} P_{m n} P_{k l} - \\frac{1}{2}P_{i j} P_{m n} P_{m k} P_{n l}+\\frac{1}{4}P_{i j} P_{m n} P_{m n} P_{k l}\\end{dmath*}"
+				}
+			],
+			"source" : "from cdb.core.manip import swap_sides\n\nlambda_projector := \\Lambda_{i j m n} \\Lambda_{m n k l};\n\nsubstitute(_, lambda_def);\nsubstitute(_, p_def);\ndistribute(_);\neliminate_kronecker(_);\nsubstitute(_, n_unit);\nsubstitute(_, swap_sides(lambda_def));"
+		},
+		{
+			"cell_id" : 9863838202860138152,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : ""
+		},
+		{
+			"cell_id" : 8090259853317639714,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : ""
+		}
+	],
+	"description" : "Cadabra JSON notebook format",
+	"version" : 1.0
+}

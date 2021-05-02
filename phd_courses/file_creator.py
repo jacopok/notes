@@ -1,6 +1,7 @@
 import os
 import re
 import datetime
+from pathlib import Path
 
 subfile_heading = """\\documentclass[main.tex]{subfiles}
 \\begin{document}
@@ -9,6 +10,8 @@ subfile_heading = """\\documentclass[main.tex]{subfiles}
 
 end_doc = "\\end{document}\n"
 bibliography = "bibliography"
+
+BASE_FOLDER = Path(__file__).resolve.parent
 
 def end_doc_condition(line):
     return end_doc in line or bibliography in line
@@ -47,8 +50,8 @@ def date_filename(date):
     return (date.strftime("%b%d").lower())
     
 def create_file(folder, filename):
-    main_path = os.path.join(folder, "main.tex")
-    file_path = os.path.join(folder, filename + ".tex")
+    main_path = BASE_FOLDER / folder / "main.tex"
+    file_path = BASE_FOLDER / folder / f"{filename}.tex"
 
     with open(file_path, "x") as f:
         f.write(subfile_heading)
@@ -67,7 +70,7 @@ def create_file(folder, filename):
             f.write(line)
 
 def add_line_main(folder):
-    main_path = os.path.join(folder, "main.tex")
+    main_path = BASE_FOLDER / folder / "main.tex"
 
     with open(main_path, "r") as f:
         buf = f.readlines()
@@ -80,7 +83,7 @@ def add_line_main(folder):
                 print("Adding white line to main at " + main_path)
                 done = True
             f.write(line)
-            
+
 if __name__ == '__main__':
 
     for i in schedule:

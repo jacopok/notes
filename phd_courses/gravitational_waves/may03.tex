@@ -1,4 +1,124 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Effects of GW on test masses}
+
+\marginpar{Monday\\ 2021-5-3, \\ compiled \\ \today}
+
+Consider two masses, separated by a distance \(L\). 
+The distance between them can be measured as \(L = (c/2) \Delta t_{P P''}\), where \(P P''\) is the trajectory of a light beam moving from \(P\) to \(Q\) and back to \(P\).
+
+In flat spacetime, the separation vector between them can then be written as \(h^{i} = L_0 n^i\) for some unit vector \(n^i\). 
+
+In the presence of a GW, the length will read  
+%
+\begin{align}
+L^2 
+&= g_{\mu \nu } 
+\qty(x^{\mu }_{q'} - x^{\mu }_{p'})
+\qty(x^{\nu }_{q'} - x^{\nu }_{p'})   \\
+&\to g_{\mu \nu } 
+\qty(x^{i }_{q'} - x^{i }_{p'})
+\qty(x^{j }_{q'} - x^{j }_{p'})  \\
+&\to g_{\mu \nu } 
+x^{i }_{q'}
+x^{j }_{q'}    \\
+&\to \qty(\delta_{ij} + h_{ij}^{TT}) x^{i}_{q'} x^{j}_{q'} 
+= L_0^2 \qty(\delta_{ij} + h_{ij}^{TT}) n^i n^j
+\,,
+\end{align}
+%
+and so we can compute 
+%
+\begin{align}
+\frac{ \delta L}{L_0 } = \frac{L}{L_0 } - 1 = \sqrt{1 + h_{ij}^{TT} n^i n^j} - 1 \approx \frac{1}{2} h_{ij}^{TT} n^i n^j
+\,.
+\end{align}
+
+This justifies the heuristic formula \(\delta L / L_0 \sim h\). 
+
+A more formal treatment can be given through the \textbf{geodesic deviation} formula: we can show that if \(u^{\mu }\) is the tangent vector of a family of geodesics and \(s^{\mu }\) is the displacement between geodesics, then
+%
+\begin{align}
+u^{\mu } \nabla_{\mu } \qty( u^{\nu } \nabla_{\nu } s^{\alpha })
+= R^{\alpha }_{\lambda \rho \sigma } u^{\lambda } u^{\rho } s^{\sigma }
+\,,
+\end{align}
+%
+and in the weak field limit the Riemann tensor is in the form \(\partial^2 h\).
+
+If we plug in everything (as we did in the exercise) we get 
+%
+\begin{align}
+\dv[2]{s_\alpha }{t} = R_{\alpha 00 \mu } s^{\mu }
+\qquad \text{with} \qquad
+R_{\alpha 00 \mu } = \frac{1}{2} \ddot{h}_{\alpha \mu }^{TT}
+\,.
+\end{align}
+
+The temporal evolution of the spatial vector then reads 
+%
+\begin{align}
+\ddot{s}^{i}(t) = \frac{1}{2} \ddot{h}^{TT}_{ij} (t) s_0^{j} + \order{h^2}
+\,,
+\end{align}
+%
+so if initially \(\dot{s}^{i} (t=0)\) and \(s^{i}(t=0) = s^{i}_0\) we get 
+%
+\begin{align}
+s^{i}(t) = s^{i}_0 + \frac{1}{2} h^{TT}_{ij} (t) s^{j}_{0}
+= \qty(\delta_{ij} + \frac{1}{2} h^{TT}_{ij}(t)) s^{j}_{0} 
+\,.
+\end{align}
+
+A ring of particles in the \(xy\) plane is deformed by a wave travelling along the \(z\) axis: it becomes an ellipse with axes along the \(x\) and \(y\) direction for the \(h_+\) polarization, 
+%
+\begin{align}
+\frac{ \delta x^2}{r_0^2 (1 + h_+)^2} +
+\frac{ \delta y^2}{r_0^2 (1 - h_+)^2} = 1
+\,.
+\end{align}
+
+The effect of the cross polarization is similar but rotated by \SI{45}{\degree}. 
+
+\section{Sources of GW}
+
+We start from a formal solution of \(\square \overline{h}_{\mu \nu }= - 16 \pi T_{\mu \nu }\): like in electromagnetism, we use Green functions, 
+%
+\begin{align}
+\overline{h}_{\mu \nu } (t, \vec{x}) = - 16 \pi \int G_R (x^{\alpha } - x^{\alpha \prime}) T_{\mu \nu } (x^{\alpha \prime}) \dd[4]{x'} 
+\,,
+\end{align}
+%
+where \(\square G_R (x) = \delta^{(4)} (x)\); explicitly 
+%
+\begin{align}
+G_R(x) = - \frac{1}{4 \pi } \frac{ \delta (u - t)}{\abs{\vec{x}}}
+\,.
+\end{align}
+%
+where \(u\) is the retarded time. (to be defined\dots check)
+
+With this, we get 
+%
+\begin{align}
+\overline{h}_{\mu \nu } (t, \vec{x}) &= 4 \int \frac{T_{\mu \nu } (u, \vec{x})}{\abs{\vec{x} - \vec{x}'}} \dd[3]{x'}
+\,.
+\end{align}
+
+The assumptions we can make are the following: a mean-field approach, negligible self-gravity (this means that the quantity \(2GM / c^2R = R_S  / R \ll 1\)). 
+
+Also, in order to derive the quadrupole formula, we assume that the distance from us to the source is large compared to the scale of the source and that the velocity of the source is slow compared to \(c\). 
+
+The result we will find is that we can compute 
+%
+\begin{align}
+\overline{h}_{ij} (t, \vec{x}) = \frac{4}{r} \int \dd[3]{x'} T_{ij} \qty(t - \frac{r}{c} + \frac{\hat{n} \cdot \vec{x}}{r} , \vec{x}')
+\,,
+\end{align}
+%
+and we can further simplify the integrand by expanding in \(x' / r\). 
+
+
+
 \end{document}

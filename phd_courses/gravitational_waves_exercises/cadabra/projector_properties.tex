@@ -1,0 +1,346 @@
+% This is the bit of LaTeX style information that DataCell.cc needs in
+% order to write notebooks out in standalone LaTeX form. It is very
+% similar to ../frontend/common/preamble.tex; keep them in sync.
+
+\documentclass[10pt]{article}
+\usepackage[scale=.8]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[fleqn]{amsmath}
+\usepackage{color}
+\usepackage{changepage}
+\usepackage[colorlinks=true, urlcolor=black, plainpages=false, pdfpagelabels]{hyperref}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+%\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\algorithm}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\property}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\algo}[1]{{\tt \detokenize{#1}}}
+\newcommand{\prop}[1]{{\tt \detokenize{#1}}}
+\renewcommand{\author}[1]{{\bfseries #1}}
+\newcommand{\email}[1]{, {\tt #1}}
+%\makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+%\ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Math expressions wrapped in \brwrap will get typeset with
+% round brackets around them, which have the appropriate size.
+% The expression itself can still be broken over multiple lines.
+
+\newcommand\brwrap[3]{%
+  \setbox0=\hbox{$#2$}
+  \left#1\vbox to \the\ht0{\hbox to 0pt{}}\right.\kern-.2em
+  \begingroup #2\endgroup\kern-.15em
+  \left.\vbox to \the\ht0{\hbox to 0pt{}}\right#3
+}
+
+\renewcommand{\arraystretch}{1.2}
+\tolerance=10000
+\relpenalty=10
+\binoppenalty=10
+\hyphenpenalty=10
+\raggedright
+
+\lstnewenvironment{python}[1][]{\lstset{language=python,
+   columns=fullflexible,
+   xleftmargin=1em,
+   belowskip=0pt,
+   tabsize=3,
+   commentstyle={}, % otherwise {#} cadabra arguments look ugly
+   breaklines=true,   
+   basicstyle=\small\ttfamily\color{blue},
+   keywordstyle={}
+}}{}
+  
+
+\everymath{\displaystyle}
+
+% Page numbers
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[LE,RO]{{\small\thepage}}
+\fancyfoot[LO,RE]{{\tiny\href{http://cadabra.science}{{\tt http://cadabra.science}}}}
+
+% \makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+% \ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Ensure that maths broken over multiple lines has a bit of spacing
+% between lines.
+\lineskiplimit=0mm
+\lineskip=1.5ex
+
+% Typesetting Young tableaux, originally in a separate style
+% file, now included to avoid path searching problems. 
+% Some internals for the typesetting macros below; nothing
+% user-servicable here; please read on.
+
+\def\@tabforc#1#2#3{\expandafter\tabf@rc\expandafter#1{#2 \^}{#3}}
+\def\tabf@@rc#1#2#3\tabf@@rc#4{\def#1{#2}#4\tabf@rc#1{#3}{#4}}
+\long\def\ReturnAfterFi#1\fi{\fi#1}
+    \def\tabf@rc#1#2#3{%
+      \def\temp@ty{#2}%
+      \ifx\@empty\temp@ty
+      \else
+        \ReturnAfterFi{%
+          \tabf@@rc#1#2\tabf@@rc{#3}%
+        }%
+      \fi
+    }%
+
+% Sorry, some global registers for sizes and keeping track of
+% measurements.
+    
+\newdimen\ytsize\ytsize=2mm
+\newdimen\ytfsize\ytfsize=4mm
+\newcount\repcnt
+\newdimen\acchspace
+\newdimen\accvspace
+\newdimen\raiseh
+\newdimen\maxw
+
+\newcommand\phrule[1]{\hbox{\vbox to0pt{\hrule height .2pt width#1\vss}}}
+
+% Typeset a Young tableau with filled boxes. Takes a single 
+% argument which is a string of symbols for each row,
+% separated by commas. Examples:
+%
+%   \ftableau{abc,de}
+%   \ftableau{ab{d_2},f{g_3}}
+
+\newcommand\ftableau[1]{%
+\def\ctest{,}
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\vbox{\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to
+		 0pt{\vrule height \ytfsize\hss}}}\kern\acchspace\kern-\maxw}
+ \else\ifx\thisel\ctest
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to 0pt{\vrule height \ytfsize\hss}}}%
+     \kern\acchspace\acchspace=0ex
+	  \advance\accvspace by -\ytfsize
+ \else
+     \setbox3=\hbox{$\thisel$}%
+	  \raiseh=\ytfsize%
+	  \advance\raiseh by -1ex%
+	  \divide\raiseh by 2%
+     \advance\acchspace by-\ytfsize%
+     \raisebox{\accvspace}{\vbox to \ytfsize{\hrule\hbox to%
+        \ytfsize{\vrule height \ytfsize\hskip.5ex%
+         \raisebox{\raiseh}{\tiny$\thisel$}\hss}\vss\phrule{\ytfsize}}}%
+ \fi\fi}}}}
+
+% Typeset a Young tableau with unlabelled boxes. Takes a single 
+% argument which is a string of numbers, one for the length of
+% each row of the tableau. Example:
+%
+%   \tableau{{10}{8}{3}}
+%
+% typesets a tableau with 10 boxes in the 1st row, 8 in the 2nd
+% and 3 in the 3rd. Curly brackets can be omitted if numbers
+% are less than 10.
+
+\newcommand\tableau[1]{%
+\def\stest{ }
+\def\Ktest{\^}
+\acchspace=0ex
+\accvspace=0ex
+\maxw=0ex
+\hbox{%
+\@tabforc\thisel{#1}{%
+ \ifx\thisel\Ktest{}
+ \else
+     \repcnt=\thisel%
+     \loop{}%
+     \advance\acchspace by-\ytsize%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hrule \hbox to%
+			\ytsize{\vrule height \ytsize\hss}\vss\phrule{\ytsize}}}%
+     \advance\repcnt by -1\ifnum\repcnt>1{}\repeat%
+     \ifnum\maxw=0\maxw=\acchspace\fi%
+     \raisebox{\accvspace}{\vbox to \ytsize{\hbox to 0pt{\vrule height \ytsize\hss}}}%
+     \kern\acchspace\acchspace=0ex%
+	  \advance\accvspace by -\ytsize%
+ \fi}\kern-\maxw}}
+ 
+\begin{document}
+\section*{Projection tensor properties}
+
+We start out by defining the values our indices will take on - here we work with spatial coordinates only, so our indices only have three values.
+\begin{python}
+{i, j, k, l, m, n}::Indices(values={x,y,z}, position=fixed);
+{x, y, z}::Coordinate;
+{\delta_{i j}}::KroneckerDelta;
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Indices(position=fixed) to~}\brwrap{[}{i,~ j,~ k,~ l,~ m,~ n}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property Coordinate to~}\brwrap{[}{x,~ y,~ z}{]}.$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\text{Attached property KroneckerDelta to~}\delta_{i j}.$\end{adjustwidth}
+We can define the relevant quantities in a rather abstract way.
+\begin{python}
+delta_trace := \delta_{i i} = 3;
+
+n_unit := n_i n_i = 1;
+
+p_def := P_{i j} = \delta_{i j} - n_i n_j;
+
+lambda_def := \Lambda_{i j k l} = P_{i k} P_{j l} - 1 / 2 P_{i j} P_{k l};
+
+substitute(lambda_def, p_def);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\delta_{i i} = 3$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} n_{i} = 1$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}P_{i j} = \delta_{i j}-n_{i} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i j k l} = P_{i k} P_{j l} - \frac{1}{2}P_{i j} P_{k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i j k l} = \brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}$\end{adjustwidth}
+\subsection*{Properties}
+\begin{python}
+p_symm := P_{i j} - P_{j i};
+substitute(p_symm, p_def);
+canonicalise(p_symm);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}P_{i j}-P_{j i}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\delta_{i j}-n_{i} n_{j}-\delta_{j i}+n_{j} n_{i}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+p_transverse := n_{i} P_{i j};
+substitute(_, p_def);
+distribute(_);
+eliminate_kronecker(_);
+substitute(_, n_unit);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} P_{i j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} \brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} \delta_{i j}-n_{i} n_{i} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{j}-n_{i} n_{i} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+from cdb.core.manip import swap_sides
+
+p_projector := P_{i k } P_{k j};
+substitute(_, p_def);
+distribute(_);
+eliminate_kronecker(_);
+substitute(_, n_unit);
+substitute(_, swap_sides(p_def));
+
+swap_sides(p_def),
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}P_{i k} P_{k j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{k j}-n_{k} n_{j}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\delta_{i k} \delta_{k j}-\delta_{i k} n_{k} n_{j}-n_{i} n_{k} \delta_{k j}+n_{i} n_{k} n_{k} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\delta_{i j}-2n_{i} n_{j}+n_{i} n_{k} n_{k} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\delta_{i j}-n_{i} n_{j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}P_{i j}$\end{adjustwidth}
+\begin{python}
+p_trace := T = P_{k k};
+substitute(_, p_def);
+eliminate_kronecker(_);
+substitute(_, n_unit);
+substitute(p_trace, delta_trace);
+
+# TODO! 
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}T = P_{k k}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T = \delta_{k k}-n_{k} n_{k}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T = \delta_{k k}-n_{k} n_{k}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T = \delta_{k k}-1$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}T = 2$\end{adjustwidth}
+\begin{python}
+from cdb.core.manip import swap_sides
+
+lambda_projector := \Lambda_{i j m n} \Lambda_{m n k l} - \Lambda_{i j k l};
+
+substitute(_, lambda_def);
+distribute(_),
+eliminate_kronecker(_),
+substitute(_, n_unit),
+substitute(_, delta_trace),
+collect_terms(_),
+canonicalise(_),
+sort_sum(_),
+substitute(_, n_unit),
+substitute(_, delta_trace),
+simplify(_),
+sort_product(_),
+canonicalise(_);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i j m n} \Lambda_{m n k l}-\Lambda_{i j k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{\brwrap{(}{\delta_{i m}-n_{i} n_{m}}{)} \brwrap{(}{\delta_{j n}-n_{j} n_{n}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{m n}-n_{m} n_{n}}{)}}{)} \brwrap{(}{\brwrap{(}{\delta_{m k}-n_{m} n_{k}}{)} \brwrap{(}{\delta_{n l}-n_{n} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{m n}-n_{m} n_{n}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}}{)}-\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)}+\frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+def process(ex):
+	substitute(ex, lambda_def);
+	distribute(ex),
+	eliminate_kronecker(ex),
+	substitute(ex, n_unit),
+	canonicalise(ex),
+	sort_product(ex),
+	return(ex)
+
+lambda_transverse_1 := n_i \Lambda_{i j k l};
+process(_);
+
+lambda_transverse_2 := n_j \Lambda_{i j k l};
+process(_);
+
+lambda_transverse_3 := n_k \Lambda_{i j k l};
+process(_);
+
+lambda_transverse_4 := n_l \Lambda_{i j k l};
+process(_);
+
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} \Lambda_{i j k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{i} \brwrap{(}{\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{j} \Lambda_{i j k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{j} \brwrap{(}{\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{k} \Lambda_{i j k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{k} \brwrap{(}{\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{l} \Lambda_{i j k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}n_{l} \brwrap{(}{\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+lambda_traceless_1 := \Lambda_{i i k l};
+process(_),
+substitute(_, delta_trace);
+
+lambda_traceless_2 := \Lambda_{i j k k};
+process(_),
+substitute(_, delta_trace);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i i k l}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{i l}-n_{i} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i i}-n_{i} n_{i}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i j k k}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j k}-n_{j} n_{k}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k k}-n_{k} n_{k}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+lambda_swap_symmmetry := \Lambda_{i j k l} - \Lambda_{k l i j};
+substitute(_, lambda_def);
+distribute(_),
+canonicalise(_),
+sort_product(_);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\Lambda_{i j k l}-\Lambda_{k l i j}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{(}{\delta_{i k}-n_{i} n_{k}}{)} \brwrap{(}{\delta_{j l}-n_{j} n_{l}}{)} - \frac{1}{2}\brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)} \brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)}-\brwrap{(}{\delta_{k i}-n_{k} n_{i}}{)} \brwrap{(}{\delta_{l j}-n_{l} n_{j}}{)}+\frac{1}{2}\brwrap{(}{\delta_{k l}-n_{k} n_{l}}{)} \brwrap{(}{\delta_{i j}-n_{i} n_{j}}{)}$\end{adjustwidth}
+\begin{adjustwidth}{1em}{0cm}${}0$\end{adjustwidth}
+\begin{python}
+\end{python}
+\end{document}

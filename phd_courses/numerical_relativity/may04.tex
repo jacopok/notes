@@ -1,4 +1,323 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-5-4, \\ compiled \\ \today}
+
+The part which is missing from the discussion of the 3+1 formalism are the \textbf{Gauss-Codazzi-Ricci} equations: projections and contractions of the Riemann tensor. 
+They connect the four-dimensional Riemann tensor to the three-dimension Riemann and extrinsic curvature tensors. 
+They are: 
+%
+\begin{align}
+\gamma^{p}_{a}
+\gamma^{q}_{b}
+\gamma^{r}_{c}
+\gamma^{s}_{d} {}^{(4)}R_{pqrs} 
+&= R_{abcd} + K_{ac} K_{bd} - K_{ad} K_{bc}  \\
+\gamma^{p}_{a}
+\gamma^{q}_{b}
+\gamma^{r}_{c}
+n^s {}^{(4)}R_{pqrs} 
+&= D_a K_{bc} - D_b K_{ac}  \\
+\gamma_{ap} n^r &
+\,,
+\end{align}
+%
+\todo[inline]{And more, also in contracted versions --- see the notes.}
+
+We will then use these in order to write the EFE in terms of \(\gamma \), \(K\) with spatial covariant derivatives and Lie derivatives along ``time''. 
+
+The final answer will be that the EFE can be into constraints and evolution equations --- the latter contain the time derivative, and can be divided into kinematic and dynamic equations. 
+
+The final equation we will find is commonly called the ADM formulation of the EFE, and we will use an expression of these in a form which is due to York --- we will denote these as ADMY. 
+
+We start by looking at the Hamiltonian constraint: we contract the EFE with temporal vectors and find
+%
+\begin{align}
+^4 G_{ab} n^a n^b &= ^4 R_{ab} n^a n^b - \frac{1}{2} {}^4 R \underbrace{g_{ab} n^a n^b}_{= n^a n^b (\gamma_{ab} - n_a n_b)}  \\
+&= ^4 R_{ab} n^a n^b + \frac{1}{2} {}^4 R
+\,,
+\end{align}
+%
+which is convenient since what we find is just half of the Gauss equations: using those, we get 
+%
+\begin{align}
+^4 G_{ab} n^a n^b = \frac{1}{2} \qty(R + K^2 - K_{ab} K^{ab})
+\,,
+\end{align}
+%
+where \(R\) is the three-dimensional Ricci trace, while \(K\) is the trace of \(K_{ab}\). 
+The other side of the equation reads 
+%
+\begin{align}
+T_{ab} n^a n^b &= E 
+\,,
+\end{align}
+%
+where \(E\) is the energy density measured by Eulerian observers. 
+The constraint then reads 
+%
+\begin{align}
+C_0 = R + K^2 - K_{ab} K^{ab} - 16 \pi E = 0
+\,.
+\end{align}
+
+This is a scalar equation defined on \(\Sigma \) which only contains spatial quantities and derivatives. 
+
+As for the \textbf{momentum constraint}, we take one spatial and one temporal component: 
+%
+\begin{align}
+{}^4 G_{pq} n^q \gamma_{a}^{p} = {}^4 R_{pq} \gamma^{p}_{a} n^q - \frac{1}{2} {}^4 R g_{qp} \gamma^{p}_a n^q 
+\,,
+\end{align}
+%
+where the second term can be simplified with the help of
+%
+\begin{align}
+g_{qp} \gamma^{p}_a n^q = \qty(\gamma_{qp} - n_q n_p) \gamma^{p}_a n^q =0 
+\,,
+\end{align}
+%
+since contractions of \(\gamma \) and \(n\) always yield zero. 
+We are then left with the four-dimensional Ricci tensor, which is precisely the left-hand side of the contracted Codazzi equations: this means that we can write it as 
+%
+\begin{align}
+{}^4 R_{pq} \gamma^{p}_{a} n^q
+= D_a K - D_b K^{b}_a
+\,,
+\end{align}
+%
+while for the matter term we get 
+%
+\begin{align}
+T_{pq} \gamma^{p}_a n^q &= P_a 
+\,,
+\end{align}
+%
+where \(P_a\) is the momentum density measured by Eulerian observers. 
+
+This constraint can then be written as 
+%
+\boxalign{
+\begin{align}
+C_a = D_b K^b_a - D_a K - 8 \pi P_a = 0
+\,,
+\end{align}}
+%
+which is called the ADM momentum. 
+This is a rank-1 tensor equation in three-space, and it only contains spatial derivatives. 
+
+Let us then move to the dynamical evolution equation: we consider the trace-reversed EFE 
+%
+\begin{align}
+{}^{4} R_{ab} = 8 \pi \qty(T_{ab} - \frac{1}{2} T g_{ab})
+\,,
+\end{align}
+%
+which is helpful because it will allow us to use the identities we have. 
+Contracting twice in the spatial direction gives us 
+%
+\begin{align}
+{}^{4} R_{pq} \gamma^{p}_a \gamma^{q}_b 
+\,,
+\end{align}
+%
+which is the left-hand side of the contracted Ricci equations combined with the contracted Gauss equations.
+What is then left is only to deal with the right-hand side: 
+%
+\begin{align}
+T_{pq} \gamma^{p}_{a} \gamma^{q}_b = - S_{ab}
+\,,
+\end{align}
+%
+where \(S_{ab}\) is the stress tensor measured by Eulerian observers, a purely spatial term, while the other term is the trace
+%
+\begin{align}
+S = g^{ab} S_{ab}
+\,,
+\end{align}
+%
+and we can verify that 
+%
+\begin{align}
+T_{ab} = S_{ab} + 2 n_{(a} P_{b)} + n_a n_b E
+\,,
+\end{align}
+%
+whose trace reads \(T = g^{ab} T_{ab} = S - E\).
+
+\todo[inline]{Clarify the minus sign: wouldn't we have 
+%
+\begin{align}
+\gamma^{a}_{p} \gamma^{b}_{q}
+\qty( S_{ab} + 2 n_{(a} P_{b)} + n_a n_b E)
+= \gamma^{a}_{p} \gamma^{b}_{q} S_{ab} 
+\,,
+\end{align}
+%
+with no minus sign?
+}
+
+At this point we have all the parts for the kinematic equation: 
+%
+\begin{align}
+\mathscr{L}_m K_{ab} 
+&= - D_a D_b \alpha + \alpha \qty{ 
+    R_{ab} + K K_{ab} - 2 K_{ac} K^{c}_b + 4 \pi \qty[(S-E) \gamma_{ab} - 2 S_{ab}] }
+\,,
+\end{align}
+%
+which could be called \(ADM-K\). It contains \(\mathscr{L}_m\), it is a rank 2 symmetric tensor equation (6 components). 
+
+In this ADMY formalism we then have the equations \(C_0 = 0\) (ADM-H), \(C_a = 0\) (ADM-M), \(\mathscr{L}_m \gamma_{ab} = - 2 \alpha K_{ab}\) (ADM-\(\gamma \)) (kinematic equation), and the equation \(\mathscr{L}_m K_{ab} = \dots\) (a dynamical equation). 
+In total we have 6+6 dynamical equations, plus the constaints.
+
+These equations involve \(\gamma \) and \(K\) as fundamental variables, various derivatives (\(\mathscr{L}_m\), \(D\), \(DD\)). 
+
+Also, we have lapse \(\alpha \) and shift \(\beta^{a}\) (the latter is inside the expression for the Lie derivative) appearing in the equations, but there are no equations specifying them: this reflects the gauge freedom for the choice of foliation, and the three spatial coordinates on \(\Sigma \). 
+These must be \textbf{prescribed}. 
+
+One choice is to use \textbf{adapted coordinates}: if we take \(x^{\mu } = (t, x^{i})\) we find a natural basis for the tangent space, \(e_\mu = \partial_{\mu } = (\partial_{t}, \partial_{i})\). 
+
+The vector \(m\) is not necessarily aligned with \(\partial_{t}\): if we start from a point \(x^{i} (t) = c^{i}\) and move a point along \(\partial_{t}\) from \(\Sigma _t\) to \(\Sigma _{t + \delta t}\) it will land on \(x^{i} (t + \delta t) = c^{i}\) again. 
+\todo[inline]{insert figure}
+
+In general, though, 
+%
+\begin{align}
+\qty(\partial_{t})^{a} = m^a + \beta^{a}
+\,,
+\end{align}
+%
+where the vector \(\beta^{a}\) is spatial; if we move from \(x^{i}(t)= c^{i}\) along \(m^a\) we will land on \(x^{i}(t + \delta t) = c^{i} - \beta^{i} \delta t\). 
+
+The norm of this vector will read
+%
+\begin{align}
+(\partial_{t})^{2} = m^2 + \beta^2 = - \alpha^2 + \beta^2
+\,,
+\end{align}
+%
+since \(m^a = n^a \alpha \).
+Therefore, \(\partial_{t}\) is not necessarily timelike: depending on our choice of \(\alpha \) and \(\beta \) we can make it timelike, null or spacelike. 
+
+What does the possibility to have superluminal shift mean? 
+We can make a foliation choice which avoids singularities --- for example, in order to evolve the Schwarzschild metric.
+This is not a problem: we can change our \emph{labels} of points arbitrarily fast.
+
+We can specify everything in adapted coordinates: 
+%
+\begin{align}
+\qty(\partial_{t})^{a} &= (1, 0, 0, 0)  \\
+\beta^{a } &= (0, \beta^{i})  \\
+n^a &= \alpha^{-1} \qty( (\partial_{t})^{a} - \beta^{a}) = (1/\alpha , - \beta^{i} / \alpha )  \\
+n_a &= (- \alpha , \vec{0})
+\,.
+\end{align}
+
+The metric components, on the other hand, read 
+%
+\begin{align}
+g_{00} &= g( \partial_{t}, \partial_{t}) = - \alpha^2 - \beta^2  \\
+g_{0i} &= g(\partial_{t}, \partial_{i}) = \beta_{i}  \\
+g_{ij} &= g (\partial_{i}, \partial_{j}) = \gamma_{ij}
+\,.
+\end{align}
+
+Typically, the metric determinants are denoted as \(g = \det g_{\mu \nu }\) and \(\gamma = \det \gamma_{ij}\). 
+
+The inverse component \(g^{00} = - \alpha^{-2} = \det g_{ij} / \det g_{\mu \nu } = \gamma / g\): this is a convenient way to show that \(\sqrt{-g} = \alpha \sqrt{ \gamma }\).
+
+The full inverse metric reads 
+%
+\begin{align}
+g^{\mu \nu } = \left[\begin{array}{cc}
+- \alpha^{-2} & \alpha^{-2} \beta^{i} \\ 
+\alpha^{-2} \beta^{j} & \gamma^{ij} - \beta^{i} \beta^{j} / \alpha^2
+\end{array}\right]
+\,.
+\end{align}
+
+Note that matrices are not inverted by block: \(g^{ij} \neq \gamma^{ij}\), even though \(g_{ij} = \gamma_{ij}\). 
+
+The derivatives can also be expressed in coordinate form: 
+%
+\begin{align}
+\mathscr{L}_m &= \mathscr{L}_{\partial_{t}} - \mathscr{L}_{\beta } = \partial_{t} - \mathscr{L}_\beta   \\
+\mathscr{L}_\beta  \gamma_{ij} &= \beta^{k} D_k \gamma_{ij} + 2 D_{(i} \beta_{j)}
+= 2 \partial_{(i} \beta_{j)} - 2 \Gamma_{ij}^{k} \beta_{k} 
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\mathscr{L}_\beta K_{ij} = \beta^{k} \partial_{k} K_{ij} + K_{ik} \partial_{j} \beta^{k} + K_{jk}\partial_{i}\beta^{k}
+\,.
+\end{align}
+
+Now we can finally write the ADMY as PDEs: we make a choice, and write them in \textbf{geodesic gauge}, which means \(\alpha = 1\) and \(\beta^{i} = 0\). 
+This means that in this gauge \(\tau = t\), the proper time is the time measured by Eulerian observers, and \(\partial_{t} = m\). 
+
+Recall: the acceleration of Eulerian observers is 
+%
+\begin{align}
+a_{a} = n^b \nabla_{b} n_a = D_a \log \alpha 
+\,,
+\end{align}
+%
+which is zero in geodesic gauge, since we set \(\alpha \) to be constant. 
+This means that the worldlines of Eulerian observers are geodesics (in geodesic gauge). 
+
+The system is then 
+%
+\begin{align}
+\partial_{t} \gamma_{ij} &= - 2 K_{ij}  \\
+\partial_{t} K_{ij} &= R_{ij} + K K_{ij} - 2 K_{ik} K^{k}_{j} + \text{matter term}  \\
+C_0 = R + K^2 - K_{ij} K^{ij} - 16 \pi E &= 0  \\
+C_{i} = D_j K^{j}_{i} - D_i K - 8 \pi P_i &= 0
+\,.
+\end{align}
+
+What type of PDEs are these?
+The evolution equations are first-order in time and second-order in space, wave-like equations;
+if we try to linearize them with \(\gamma_{ij} \approx f_{ij} + h_{ij}\) we get 
+%
+\begin{align}
+\begin{cases}
+    \partial_{t} h_{ij} &= - 2 K_{ij}  \\
+    \partial_{t} K_{ij} &\sim R_{ij} \sim - \frac{1}{2} \partial_{k} \partial^{k} \gamma_{ij} + \dots
+\end{cases}
+\,,
+\end{align}
+%
+with some other terms, which we can safely ignore. 
+This is the symmetric 2-tensor version of the wave equation! 
+The Dalambertian is  \(\square \phi = \qty(- \partial_{t} \partial_{t}  + \partial_{k} \partial^{k}) \phi \), which can be put into the form 
+%
+\begin{align}
+\begin{cases}
+    \partial_{t} \phi &= - \pi   \\
+    \partial_{t} \pi &= \partial_{k} \partial^{k} \phi 
+\,.
+\end{cases}
+\end{align}
+
+Of course, because of the terms we ignored this is not formal,  but it captures the spirit of the equations. 
+
+We can rewrite the ADMY in geodesic gauge as a ``wave equation'' for \(\gamma_{ij}\), by substituting back \(K_{ij} = - \partial_{t} \gamma_{ij}\).
+In principal part (highest order derivatives), this yields 
+%
+\begin{align}
+- \ddot{\gamma}_{ij} + \gamma^{kl} \qty(\partial_{k} \partial_{l} \gamma_{ij} + \partial_{i} \partial_{j} \gamma_{kl} - \partial_{i} \partial_{k} \gamma_{jl} - \partial_{j} \partial_{k} \gamma_{il}) \approx 0 
+\,.
+\end{align}
+
+\todo[inline]{Is it relevant that this looks similar to the Riemann tensor in Riemann normal coordinates?}
+
+This is not just an exercise: it is important since it is useful in order to classify the PDEs. 
+The inverse spatial metric \(\gamma^{kl} = \gamma^{kl} (\gamma_{ij})\) is just some rational polynomial of \(\gamma_{ij}\); 
+we then have a second order in both time and space, \textbf{quasilinear} equation system (this means that it is linear in the highest derivative).
+
+If we had written the non-principal part as well, we'd see that it is quadratic in the first order spatial metric derivatives. 
+
 \end{document}

@@ -1,4 +1,45 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Quadrupole formula}
+
+\marginpar{Monday\\ 2021-5-10, \\ compiled \\ \today}
+
+The self-gravity is denoted as \(\sigma = 2 GM / c^2 R = R_S / R\). 
+In order for the quadrupole formula to work, we need \(\sigma \ll 1\) (negligible self-gravity) as well as the weak-field limit.  
+
+Hypothesis 1 is that we are far away from the source, compared to the source's linear scale.
+
+Hypothesis 2 is that the source is slow: 
+%
+\begin{align}
+v \sim \frac{\abs{T_{0i}}}{\abs{T_{00} }} \ll c = 1
+\,.
+\end{align}
+
+The process is as follows:
+\begin{enumerate}
+    \item we use the two hypotheses to simplify the Green equation;
+    \item we use the conservation law of \(T_{\mu \nu }\) in flat spacetime \(0 = \partial^{\mu } T_{\mu \nu }\) to further express \(T_{ij} \) in the Green equation in terms of \(T_{00} = \rho c^2\)
+    \item we project into the TT gauge.
+\end{enumerate}
+
+The retarded time is 
+%
+\begin{align}
+u = t - \abs{\vec{x} - \vec{x}'} \approx t- r + \hat{n}\cdot \vec{x}' 
+\,.
+\end{align}
+
+The far-field approximation is given by expanding \(T_{\mu \nu } (t_r + \hat{n} \cdot \vec{x}' / c)\) around \(t_r\).
+
+As for the slow-velocity expansion, we do a Fourier transform and expand the exponential 
+%
+\begin{align}
+e^{i \omega \qty(t_r + \hat{n} \cdot \vec{x}' /c)} \approx e^{-i \omega t_r} \qty(1 - \frac{i \omega }{c} n_i x^{i} + \dots)
+\,.
+\end{align}
+
+Then, in the time domain time derivatives correspond to \(i \omega \) terms. 
+
 \end{document}

@@ -1,4 +1,226 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-5-11, \\ compiled \\ \today}
+
+We continue our discussion of 3+1 GR. 
+
+The Euler equations read 
+%
+\begin{align}
+- \ddot{\gamma}_{ij} + \gamma^{kl} (\gamma_{ij}) \qty[
+    \partial_{k} \partial_{l} \gamma_{ij}
+    + \partial_{i} \partial_{j} \gamma_{kl}
+    - 2 \partial_{(i|} \partial_{k} \gamma_{|j) k}
+] \simeq 0
+\,
+\end{align}
+%
+in principal part, which is a quasilinear hyperbolic equation. 
+
+We start out by discussing what kind of equations the constraints are. 
+They read 
+%
+\begin{align}
+0 &= C_0 \approx \gamma^{ik} \gamma^{jl} \partial_{k} \partial_{l} \gamma_{ij} - \gamma^{ij} \gamma^{kl} \partial_{k }\partial_{l} \gamma_{ij}  \\
+0 &= C_i = \gamma^{jk} \partial_{j} \dot{\gamma}_{ki} - \gamma^{kl} \partial_{i} \dot{\gamma}_{kl}
+\,.
+\end{align}
+
+These only contain second spatial derivatives or \(\gamma_{ij}\) or \(\dot{\gamma}_{ij}\). 
+The first one kind of looks like a Laplacian, so we might be tempted to say it is elliptic-like, but actually they are of \overline{no sstandard type}, although they have been studied and classified this has not been done in this formulation. 
+
+Can we solve them by prescribing some boundary data? This leads to the so-called \emph{initial data problem} in GR. 
+
+We have \(6+6=12\) unknowns, and 4 equations: how can we make this initial data? We must \emph{prescribe} 8 quantities on \(\Sigma_0\), the first surface --- these are called \emph{free data} --- and then solve \(C_\mu = 0\) for the remaining 4 quantities. 
+
+In order to prescribe the free data we will need the \textbf{conformal decomposition}, which will be discussed later. 
+Assuming we have a solution, do we need to then solve \(C_\mu = 0\) for later times? \textbf{No}, since the constraints are \textbf{transported along the dynamics} as a consequence of the Bianchi identities \(\nabla^{b} G_{ab}= 0\). 
+
+We will prove this using a simple approach from the \(Z4\) system, which is a bit more elegant than differentiating the constraints and working everything out. 
+
+
+Consider the following extended theory, which we could introduce from an action but do not need to: 
+%
+\begin{align}
+^4G_{ab} + 2 \nabla_{(a} Z_{b)} - g_{ab} \nabla_{c} Z^{c} = 8 \pi T_{ab} 
+\,,
+\end{align}
+%
+which reduces to GR when \(Z^a = 0\) or if \(Z^{a}\) is a Killing vector. 
+\todo[inline]{Is \(\nabla_{c} Z^{c}= 0\) for a Killing vector?}
+
+So, we can do a 3+1 split of this \(Z4\) theory: this yields 
+%
+\begin{align}
+\mathscr{L}_m \gamma_{ij} &= - 2 \alpha K_{ij}  \\
+\mathscr{L}_m K_{ij} &= (\text{ADM eqs}) + \alpha D_{(i} Z_{j)}  \\
+\mathscr{L}_m \theta &= \frac{1}{2} C_0 -- \theta K + D_k Z^k - Z^k D_k \log \alpha   \\
+\mathscr{L}_m Z_i &= C_i + D_i \theta - \theta D_i \log \alpha - Z K^{k}_i Z_k 
+\,,
+\end{align}
+%
+where \(- \theta = n^a Z_a\). 
+
+Observe that the constraints became evolution equations! 
+So, this is just a system of hyperbolic equations with no constraints, and GR is obtained from this extended theory under the \emph{algebraic} constraint \(Z^a = 0\). 
+
+Now the Bianchi identities read 
+%
+\begin{align}
+\nabla^{a} {}^4 G_{ab} = 0 \implies \square 
+\,,
+\end{align}
+%
+a wave equation for \(Z^{a}\). 
+If \(Z^{a} = 0 = \dot{Z}^{a} = C^{a}\), then \(Z^{a} = 0\) for all times. 
+This approach is rather general, and it can be applied for other theories or sets of equations which have a mixed character, with some hyperbolic and some elliptic equations. 
+
+An example is MHD: hydrodynamics with a perfectly conducting fluid. 
+
+In this case we have \(0= \partial_{\mu } T^{\mu \alpha } = \partial_{\mu } \qty(T^{\mu \alpha }_{\text{PF}} + T^{\mu \alpha }_{\text{EM}})\). 
+
+These can be written in terms of the magnetic field \(B^{i}\) as 
+%
+\begin{align}
+\partial_{t} B^{i} + \partial_{k} \qty(B^{k} v^{i} - B^{i} v^{k}) &= 0  \\
+C &= \partial_{i} B^{i} = 0
+\,.
+\end{align}
+
+The question is the same: if we set \(C=0\) initially and then evolve the induction equation, is it guaranteed that the constraint will be preserved? 
+In this case we only need a scalar field \(\psi \): 
+%
+\begin{align}
+\partial_{i} B^{i} + \partial_{k} \qty(B^{k}v^{i} - B^{i} v^{k}) + \partial^{i} \psi &= 0  \\
+\partial_{t} \psi + \partial_{i} B^{i} = 0 
+\,,
+\end{align}
+%
+which like before reduces to MHD if \(\psi = 0\). 
+
+Note that if we take a derivative of the second equation we find \(\partial_{tt} \psi + \partial_{t} \partial_{i} B^{i} = 0\), into which we can substitute the first to get 
+%
+\begin{align}
+\partial_{tt} \psi - \partial_{i} \partial^{i} \psi + \partial_{i} \partial_{k} B^{[k} v^{i]} = - \square \psi = 0
+\,.
+\end{align}
+%
+
+It can be shown that the constraint \(C\) satisfies the same equation. 
+
+\todo[inline]{Show!}
+
+This is a method which can be used to control the divergence of \(B\). 
+
+If we are solving MHD, variations from \(C=0\) can appear due to numerical errors: if we are solving the extended system, we can see that the violation evolves according to the wave equation, so it will propagate away to the domain boundary because of \(\square C = 0\). 
+Can we add a \textbf{damping term} to this propagation, so that the evolution reads \(\square C + \delta \dot{C} = 0\) for some small \(\delta > 0\)?
+
+This corresponds to adding a term in the constraint equation with \(\psi \): 
+%
+\begin{align}
+\partial_{t} + \partial_{i} B^{i} + \delta \psi = 0   
+\,.
+\end{align}
+
+The name of this strategy is the \textbf{divergence cleaning method}, it was proposed in 2012. 
+
+A similar thing can be done in the \(Z4\) term.
+This was historically one of the things that allowed for the first successful BBH simulations. 
+
+The Powell method corresponds to the alternative approach of projecting the equation onto the constraint at each step. 
+There are general formulations for this. 
+
+We use this specific method because it gives very \emph{uniform} equations. 
+PDE theory deals a lot with full hyperbolic systems, and not to mixed systems.
+So, it is very convenient to have everything be hyperbolic. 
+
+This, however, is by no means the only way to do things. 
+We could also try to have as many elliptic equations as possible.
+
+% The fully constrained formalism is what this 
+Nowadays these \textbf{free evolution schemes} are most often used, as opposed to the \textbf{fully constrained schemes} in which elliptic equations are maximized. 
+
+There still must be 2 hyperbolic equations in the fully constrained scheme, since they represent the two physical degrees of freedom of the GW. 
+
+\todo[inline]{What about \(\delta \) choice? It seems like we would prefer to have it as large as possible, are there problems with that?}
+
+\section{ADM Hamiltonian formulation of GR}
+
+The GR action is 
+%
+\begin{align}
+S_{GR} = \int {}^4R \sqrt{-g} + \text{boundary terms}
+\,,
+\end{align}
+%
+the boundary terms are important, but they will not be discussed today. 
+This can be written in our 3+1 formalism as 
+%
+\begin{align}
+\int \dd{t} \int_{\Sigma _t} \underbrace{\qty(R + K_{ij} K^{ij} - K^2)}_{\text{Lagrangian density}} \alpha \sqrt{\gamma }
+\,,
+\end{align}
+%
+so we can introduce conjugate momenta: 
+%
+\begin{align}
+\pi^{ij} = \pdv{L}{\dot{\gamma}_{ij}} = \sqrt{\gamma } \qty(K \gamma^{ij} - K^{ij})
+\,,
+\end{align}
+%
+so the Hamiltonian density reads 
+%
+\begin{align}
+\mathcal{H} =\pi^{ij} \dot{\gamma}_{ij} - L =  \\
+&= \sqrt{\gamma } \qty[ \alpha C_0 + 2 \beta^{i} C_i + 2 D_j \qty(K \beta^{i} - K^{j}_{i} \beta^{i})]
+\,,
+\end{align}
+%
+understood as a function of \(\gamma_{ij}\) and \(\pi^{ij}\). The Hamiltonian is then 
+%
+\begin{align}
+H = \int_{\Sigma_t} \mathcal{H} = \int_{\Sigma _t} \sqrt{\gamma }
+\qty(\alpha C_0  + 2 \beta^{i} C_i) 
+\,.
+\end{align}
+
+The corresponding EoM read 
+%
+\begin{align}
+\dot{\gamma}_{ij} = \pdv{\mathcal{H}}{\pi^{ij}} = - 2 \frac{\alpha}{\sqrt{\gamma }} \underbrace{\qty(\pi^{ij} - \frac{1}{2} \pi \gamma_{ij})}_{\sim K_{ij}} + 2 D_{(i } \beta_{j)}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+- \dot{\pi}_{ij} = \pdv{\mathcal{H}}{\gamma_{ij}} = \dots 
+\sim \mathscr{L}_m K_{ij} \text{ from ADM } + C_0  
+\,,
+\end{align}
+%
+and we can see that lapse and shift appear in these equations: if we differentiate with respect to them we find 
+%
+\begin{align}
+0 = \pdv{\mathcal{H}}{\alpha } = C_0  
+\qquad \text{and} \qquad
+0 = \pdv{\mathcal{H}}{\beta^{i}} = C_i
+\,.
+\end{align}
+
+In the original ADM formulation they used \(\gamma_{ij}\) and \(\pi^{ij}\); the York formulation used \(\gamma_{ij}\) and 
+%
+\begin{align}
+K_{ij} = - \frac{1}{\sqrt{\gamma }} \qty(\pi_{ij} - \frac{1}{2} \pi \gamma_{ij})
+\,.
+\end{align}
+
+Lapse and shift can then simply be understood to be Lagrange multipliers which enforce the constraint. 
+
+Next time we will approach the conformal decomposition of 3+1 GR and the initial data problem: how do we solve it? 
+There are some free evolution schemes like BSSNOK or Z4C.
+
+Also, once we get the initial data we will need to solve the Cauchy IVP, discussing hyperbolicity and well-posedness. 
+
 \end{document}

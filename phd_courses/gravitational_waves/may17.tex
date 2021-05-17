@@ -1,4 +1,204 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{GW energy}
+
+\marginpar{Monday\\ 2021-5-17, \\ compiled \\ \today}
+
+Because of the equivalence principle, there can be no local definition of energy density or of a stress-energy tensor for \(g_{\mu \nu }\). 
+
+However, we can define the Landau-Lifshitz pseudotensor (which is actually a tensor density): from the gothic metric 
+%
+\begin{align}
+\mathfrak{g}^{\alpha \beta } = \sqrt{-g } g^{\alpha \beta }
+\,
+\end{align}
+%
+we define 
+%
+\begin{align}
+\Lambda^{\alpha \mu \beta \nu } = \mathfrak{g}^{\alpha \beta } \mathfrak{g}^{\mu \nu } - \mathfrak{g}^{\alpha \nu } \mathfrak{g}^{\beta \mu }
+\,,
+\end{align}
+%
+a four-tensor density which has the same symmetries as the Riemann tensor. 
+Also, we have the properties that 
+%
+\begin{align}
+\partial_{\mu } \partial_{\nu } \Lambda^{\alpha \mu \beta \nu } = 2 (-g) G^{\alpha \beta } + 16 \pi (-g) \tau^{\alpha \beta }_{LL}
+\,,
+\end{align}
+%
+where \(G^{\alpha \beta }\) is the Einstein tensor, while \(\tau_{LL}\) (defined to contain whatever remains) is called the Landau-Lifshitz tensor: this can also be expressed as 
+%
+\begin{align}
+\partial_{\mu } \partial_{\nu } \Lambda^{\alpha \mu \beta \nu } =
+16 \pi (-g) \qty(T^{\alpha \beta } + \tau_{LL}^{\alpha \beta })
+\,.
+\end{align}
+
+If we take a further derivative with respect to \(\alpha \), in a vacuum, we find 
+%
+\begin{align}
+\partial_{\alpha } \partial_{\mu } \partial_{\nu } \Lambda^{\alpha \mu \beta \nu } = \partial_{\alpha } \tau_{LL}^{\alpha \beta } = 0
+\,,
+\end{align}
+%
+where the last equality is due to the symmetries of \(\Lambda \). Therefore, the tensor \(\tau_{LL}\) is conserved, and we can try to interpret it as the ``energy of the gravitational field''.
+
+In normal coordinates at any given point \(\tau_{LL}\) is identically zero.
+
+A global concept of energy does not exist for certain spacetimes --- see ADM and the Hamiltonian formulation of GR. 
+
+However, asymptotically flat spacetimes have some nice properties.
+
+If we foliate a spacetime \((M, g)\) into 3D spacelike hypersurfaces \(\Sigma \), we say it is asymptotically flat if the reduced metric \(\gamma_{ij} \to f_{ij}\) tends towards the Minkowski metric at radial infinity. 
+
+In this case, we can associate an energy to \(\Sigma \).
+Using these concepts, there is hope to identify some quantity which represents GW energy.
+
+We explore directions at infinity which are \textbf{asymptotically null}, and suppose that at \(\Sigma_{t_{1, 2}}\) we have stationary states, with dynamics in between. 
+
+Then, if there is a difference of energy \(\Delta E = E_2 - E_1 \), we expect there to be a flux of ``some \(\tau_{\mu \nu }\)'' from the surface. 
+
+We can work in linearized theory: \(g = f + h\). 
+The characteristics we expect a definition of energy to have are, at the very least
+\begin{enumerate}
+    \item quadratic in \(h\),
+    \item generate curvature via a stress-energy tensor \(\tau_{\alpha \beta }\),
+    \item gauge invariant under infinitesimal coordinate transformations.  
+\end{enumerate}
+
+We start by specifying the \(LL\) tensor to the weak field case. 
+The metric reads \(g = \eta + h^{(1)} + h^{(2)} + \order{3}\), where by the indices in parentheses we mean orders in some expansion parameter.
+
+The Ricci reads 
+%
+\begin{align}
+R_{\mu \nu } = 
+R_{\mu \nu }^{(0)} + 
+R_{\mu \nu }^{(1)} + 
+R_{\mu \nu }^{(2)} + 
+\order{3}
+\,.
+\end{align}
+
+Now, \(R_{\mu \nu }^{(0)} = (\text{Ric}[\eta ])_{\mu \nu } \sim \eta \partial^2 \eta  = 0\), but if we had a non-flat background this would not hold. 
+On the other hand, 
+%
+\begin{align}
+R^{(1)}_{\mu \nu } = \qty(\text{Ric}^{(1)}[h^{1}])_{\mu \nu } \sim \eta \partial^2 h^{(1)}
+\,,
+\end{align}
+%
+where \(\text{Ric}^{(i)}\) is the Ricci operator expanded up to \(i\)-th order. This is relevant in the second-order term: 
+%
+\begin{align}
+R^{(2)}_{\mu \nu } = 
+\qty(\text{Ric}^{(1)} [ h^{(2)}])_{\mu \nu }
+\qty(\text{Ric}^{(2)} [ h^{(1)}])_{\mu \nu }
+\sim
+\eta \partial^2 h^{(2)} + h^{(1)} \partial^2 h^{(1)}
+\,.
+\end{align}
+
+Then, the EFE in vacuo read 
+%
+\begin{align}
+0 = 
+R^{(0)}_{\mu \nu } + 
+R^{(1)}_{\mu \nu } + 
+R^{(2)}_{\mu \nu } +  \order{3}
+\,,
+\end{align}
+%
+therefore to order 0 we have the \(\eta \) metric; to order \(1\) we can calculate \(h^{(1)}\), while to order \(2\) we can assume the \(h^{(1)}\) metric is already calculated and solve \(R^{(2)}_{\mu \nu } = 0\) for \(h^{2}\). 
+
+The second order equation reads 
+%
+\begin{align}
+G^{(1)}_{\mu \nu }[h^{(2)}] &= \qty(\text{Ric}^{(1)}[h^{2}] - \frac{1}{2} R^{(1)} [h^{2}]\eta )_{\mu \nu }  \\
+&=\qty(- \text{Ric}^{(2)} [h^{1}] + \frac{1}{2} R^{(2)}[h^{1}] \eta )_{\mu \nu }   \\
+&\overset{?}{=} 8 \pi \tau_{\mu \nu }
+\,,
+\end{align}
+%
+but can this actually be our GW stress-energy tensor? It is symmetric, it is quadratic in \(h\), and due to the Bianchi identities it is also conserved. 
+However, it is not gauge invariant, and it is not unique! 
+
+If \(h^{(1)}\) is \textbf{asymptotically flat}, then \(h \sim \order{1/r}\), \(\partial_{i} h \sim \order{1/r^2}\) and \(\partial_{i} \partial_{j} h \sim \order{1/r^3}\).
+
+In this case, \(E = \int_{\Sigma } \dd[3]{x} \tau_{00} \) is both \textbf{gauge invariant} and \textbf{unique}: \(E[h_{\mu \nu } + 2 \partial_{(\mu } \xi_{\nu )}] = E[h_{\mu \nu }]\). 
+
+We can then write an energy flux in the form 
+%
+\begin{align}
+\Delta E = -\int_{S} \dd[2]{y} \tau_{\mu 0} n^\mu   
+\,,
+\end{align}
+%
+across a surface \(S\) which determines the spatial boundary of \(\Sigma \) over time.  
+
+Weak-field GR can be interpreted as a field theory on \(\eta \) for the field \(h\). 
+
+Physically speaking, it is true that we can ``eliminate'' the gravitational field at a point, but here we are more interested in the following question:
+can the GW in a neighborhood of that point contribute to the curvature via a gauge invariant tensor?  
+
+The issue comes down to: what is the distinction between ``waves'' and background?
+
+One can prove that a suitable average of \(\text{Ric}^{(2)}[h^{(1)}]\) is actually gauge-invariant: this is the \textbf{Isaacson tensor}, 
+%
+\begin{align}
+\tau_{\alpha \beta } = \frac{c^{4}}{32 \pi G} \expval{\partial_{\mu } h_{\alpha \beta } \partial_{\nu } h^{\alpha \beta }}
+\,,
+\end{align}
+%
+due to the fact that \(\text{Ric}^{(2)}[h] \sim h \partial \partial h + \partial h \partial h + \partial (h \partial h)\). 
+
+Let us take the derivative \(\partial_{\mu} \tau^{\mu \nu }\): 
+%
+\begin{align}
+\int_{V} \dd[3]{x} \qty(\partial_0 \tau^{00} + \partial_{i} \tau^{0i}) 
+&= \dot{E} + \oint_{S} \dd[2]{y} \tau_{0i} n^i  \\
+&= \dot{E} + r^2 \oint \dd[2]{y} \expval{\partial^{0} h_{ij} \partial_{r} h^{ij}}
+\,,
+\end{align}
+%
+which yields the quadrupole formula: 
+%
+\begin{align}
+\dv{E_{GW}}{t} &= \frac{c^3}{32 \pi G} r^2 \int \dd{\Omega } \expval{\partial_{t} h_{ij}^{TT} \partial_{t} h_{ij}^{TT}}  \\
+&= \frac{G}{5 c^{5}}\expval{ \dot{\ddot{Q}}_{ij} \dot{\ddot{Q}}^{ij}}
+\,.
+\end{align}
+
+Let us look at some dimensional analysis: 
+%
+\begin{align}
+[Q] &= a ML^2  \\
+[\dot{\ddot{Q}}] &= a ML^2 T^{-3} \sim a \Omega^3 M L^2 = E^2 T^{-2}\\
+[ \frac{G}{c^{5}}] &= T E^{-1}
+\,.
+\end{align}
+%
+The factor \(G / c^{5}\) is the inverse of a power: \(c^{5} / G \approx \SI{e52}{W}\), a very large power, and we are dividing by it.  
+This suggests a potential rewriting of the formula, which was an idea of Weber's: 
+%
+\begin{align}
+\dot{E} \sim \frac{G}{c^{5}} a^2 \Omega^{6} M^2 R^{4} = \dots
+= a^2 \frac{c^{5}}{G} \qty( \frac{v}{c})^{6} \frac{GM}{c^2 R}
+\,.
+\end{align}
+
+The power is therefore huge if \(v \sim c\) and \(R \sim R_S\)! 
+
+The above formula for \(\dot{E}\) is \emph{correct} for a leading-order description of a binary system, if we take \(a^2 = 32/5\), \(\Omega \) to be the orbital frequency, \(M\) to be \(\mu \) (the reduced mass), and \(R\) the orbital radius. So, 
+%
+\begin{align}
+\dot{E} = \frac{32}{5} \frac{G \mu^2}{c^{5}} R^{4} \Omega^3
+\,.
+\end{align}
+
+Of course, \(\dot{E} _{\text{orbital energy}} = - \dot{E} _{\text{gw}}\). 
+
 \end{document}

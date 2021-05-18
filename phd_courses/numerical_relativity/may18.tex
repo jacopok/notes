@@ -1,4 +1,234 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Conformal decomposition of 3+1 GR}
+
+\marginpar{Tuesday\\ 2021-5-18, \\ compiled \\ \today}
+
+Lichnerowicz in 1944 already used this to deal with the initial data problem. 
+
+York in 1971 showed that the dynamical degrees of freedom of GR (GWs) are encoded in the conformal equivalence class of the three-metric: 
+%
+\begin{align}
+\gamma_{ij} = \psi^{4} \widetilde{\gamma}_{ij}
+\,,
+\end{align}
+%
+which can be shown using ADM + the Cotton-York tensor. 
+As an example, if \(\widetilde{\gamma}_{ij}\) is the flat 3-metric, we can directly say that there are no GW.
+
+A common choice for conformal metrics is to take the uni-determinant ones: \(\det \gamma_{ij} = \gamma = 1\). 
+Now, we know that \(\det (cA) = c^{m} \det A\), therefore 
+%
+\begin{align}
+\det \gamma_{ij} = \gamma = \psi^{12} \widetilde{\gamma}
+\,.
+\end{align}
+
+Since \(\widetilde{\gamma} = 1\), this means that \(\psi = \gamma^{1/12}\).
+
+With this choice, \(\psi \) is not a scalar! 
+Therefore, \(\widetilde{\gamma}_{ij}\) is also not a tensor but instead a tensor density, and it has no Levi-Civita connection associated to it. 
+
+The solution to this issue is to introduce an unphysical background three-metric on \(\Sigma_{t}\), so that 
+\begin{enumerate}
+    \item \(f_{ij}\) has signature \(+\), \(+\), \(+\) and \(\det f_{ij} = f\);
+    \item it is time independent: 
+    %
+    \begin{align}
+    \mathscr{L}_{\partial_{t}} f_{ij} = \pdv{f_{ij}}{t} = 0
+    \,,
+    \end{align}
+    %
+    \item it has an inverse: \(f^{ij}f_{jk} = \delta^{i}_{k}\);
+    \item it has a Levi-Civita connection \(\mathcal{D}_k f_{ij} = 0\), whose raised-index version is \(\mathcal{D}^{i} = f^{ij} \mathcal{D}_{j}\);
+    \item its Christoffel symbols are 
+    %
+    \begin{align}
+    F_{ij}{}^{k} = \frac{1}{2} f^{kl} \qty(\partial_{i} f_{lk} +\partial_{j} f_{il} - \partial_{l} f_{ij})
+    \,,
+    \end{align}
+    %
+\end{enumerate}
+
+Now \(\psi = (\gamma / f)^{1/12}\) is a scalar. The conformal metric will be 
+%
+\begin{align}
+\widetilde{\gamma}_{ij} = \psi^{-4} \gamma_{ij} 
+\qquad \text{and} \qquad
+\widetilde{\gamma}^{ij} = \psi^{4} \gamma^{ij} 
+\,,
+\end{align}
+%
+and its determinant will be \(\widetilde{\gamma} = f\). 
+
+This conformal metric is a ``good'' metric. 
+What do we use as this metric?
+We can take \(f_{ij} = \mathbb{1}_3\), which has vanishing Christoffel symbols; if we are in Cartesian coordinates this is the natural choice.
+
+If, instead, we are in spherical coordinates we might want to use \(f_{ij} = \diag{1, r^2, r^2 \sin^2\theta }\), which has \(f = r^{4} \sin^2 \theta \). 
+
+The idea is to take the simplest flat metric in the coordinates we are using. 
+
+In the weak-field limit, we have \(\psi^{4} = (1-2 \phi )\), so \(\psi \approx 1 - \phi /2\). 
+The conformal factor is heuristically analogous to the Newtonian potential. 
+
+As an example, the Schwarzschild metric in isotropic coordinates can be written as 
+%
+\begin{align}
+\dd{s^2} = - \frac{(1 - M / 2r)^2}{(1 + M / 2r)^2} \dd{t^2}
++ \underbrace{\qty(1 + \frac{M}{2r})^{4}}_{\psi^{4}} \underbrace{\qty(\dd{r^2} + r^2 \dd{\Omega^2})}_{f_{ij}}
+\,.
+\end{align}
+
+Now we have to define the \textbf{conformal connection and the Ricci tensor}, and specifically the relationship between \(\mathcal{D}_i\) and \(\widetilde{\mathcal{D}}_i\), which both live on \(\Sigma _t\). 
+
+The expression reads: 
+%
+\begin{align}
+\mathcal{D}_j T_{\dots}^{\dots} \sim \widetilde{\mathcal{D}}_j T_{\dots}^{\dots} + \Sigma C T_{\dots}^{\dots} - \Sigma C T_{\dots}^{\dots}
+\,,
+\end{align}
+%
+where \(C^{k}_{ij} = \Gamma^{k}_{ij} - \widetilde{\Gamma}^{k}_{ij}\). 
+Using this, the Riccis are related by 
+%
+\begin{align}
+R_{ij} &= \widetilde{R}_{ij} + \mathcal{\widetilde{D}}C - \widetilde{\mathcal{D}} C + CC - CC  \\
+&= \widetilde{R}_{ij} + R^{\psi }_{ij}
+\,,
+\end{align}
+%
+where \(R^{\psi }_{ij}\) is a function which contains second covariant derivatives of the conformal factor, something like \(\widetilde{D} \widetilde{D} \psi + \widetilde{D} \psi \widetilde{D} \psi \). 
+
+The Ricci scalar, on the other hand, reads 
+%
+\begin{align}
+R = \gamma^{ij} R_{ij} = \dots = \psi^{-4} \widetilde{R} - 8 \psi^{-5} \widetilde{D}_i \widetilde{D}^{i} \psi 
+\,.
+\end{align}
+
+\subsection{CD of extrinsic curvature}
+
+We start by performing a trace-traceless decomposition: 
+%
+\begin{align}
+K_{ij} = A_{ij} + \frac{1}{3} K \gamma_{ij}
+\,.
+\end{align}
+
+Then, we decompose the traceless part \(A^{ij}\): \(A^{ij} = \psi^{p} \overline{A}^{ij}\), and \(\overline{A}\) is called the conformal 
+traceless part of \(K^{ij}\). 
+
+There are two possible choices for \(p\): sometimes we take \(p = -4\), which is based on \(\mathscr{L}_m \gamma_{ij}\), which is useful for evolution schemes, and the hyperbolic part of the ADMY equations. 
+
+The alternative is \(p = -10\), based on the constraint equations \(C^{i}= 0\). 
+
+For the first choice, we take the kinematic equation for \(K_{ij}\), and compute 
+%
+\begin{align}
+\mathscr{L}_m \qty(\psi^{4} \widetilde{\gamma}_{ij}) &= - 2 \alpha A_{ij} - \frac{2}{3} \alpha K \psi^{4} \widetilde{\gamma}_{ij}  \\
+\psi^{4} \mathscr{L}_m \widetilde{\gamma}_{ij} &= - 4 \psi^{-5} \psi^3 \mathscr{L}_m \widetilde{\gamma}_{ij} - 2 \alpha \psi^{-4} A_{ij} - \frac{2}{3} \alpha K \psi^{-4} \psi^{4} \widetilde{\gamma}_{ij} 
+\,.
+\end{align}
+
+We trace this equation with \(\widetilde{\gamma}^{ij}\), and get 
+%
+\begin{align}
+\widetilde{\gamma}^{ij} \mathscr{L}_m \widetilde{\gamma}_{ij} &= - 4 \underbrace{\widetilde{\gamma}^{ij} \widetilde{\gamma}_{ij}}_{=3} \mathscr{L}_m \log \psi 
+- 2 \alpha \psi^{-4} \widetilde{\gamma}^{ij} A_{ij} - \frac{2}{3} \alpha K \widetilde{\gamma}^{ij} \widetilde{\gamma}_{ij}  \\
+&= - 12 \mathscr{L}_m \log \psi - 2 \alpha K
+\,.
+\end{align}
+
+Alternatively, we can write 
+%
+\begin{align}
+\widetilde{\gamma}^{ij} \mathscr{L}_m \widetilde{\gamma}_{ij} &\sim \Tr \qty(M^{-1} \delta M) = \delta (\log \det M)  \\
+&= \mathscr{L}_m \log \widetilde{\gamma} = \qty(\partial_{t} \mathscr{L}_\beta ) \log f  = - \mathscr{L}_\beta \log f   \\
+&= - \widetilde{\gamma}^{ij} \mathscr{L}_\beta \widetilde{\gamma}_{ij} 
+= - \widetilde{\gamma}^{ij} \qty(\beta^{k} \widetilde{D}_{k} \widetilde{\gamma}_{ij} + 2 \widetilde{\gamma}_{k (i} \widetilde{D}_{j)} \beta^{k})  \\
+&= -2 \widetilde{D}_{i} \beta^{i}
+\,.
+\end{align}
+
+Both ways, we see that 
+%
+\begin{align}
+6 \mathscr{L}_m \log \psi + \alpha K &= \widetilde{D}_i \beta^{i}
+\,,
+\end{align}
+%
+so we have conformally decomposed the kinematic equation \(\mathscr{L}_m \gamma = - 2 \alpha K\).
+We get 
+%
+\begin{align}
+\mathscr{L}_m \log \psi &= \frac{1}{6} \widetilde{D}_{i} \beta^{i}  - \frac{1}{6} \alpha K  \\
+\mathscr{L}_m \widetilde{\gamma}_{ij} &= - 2 \alpha \psi^{-4} A_{ij} - \frac{2}{3} \widetilde{D}_{k} \beta^{k} \widetilde{\gamma}_{ij} 
+\,.
+\end{align}
+
+A natural choice which simplifies this is \(p=-4\), since it simplifies \(\psi^{-4} A_{ij} \to \widetilde{A}_{ij}\). 
+This is commonly denoted as \(\overline{A}\).
+
+The second choice yields equations in the foorm 
+%
+\begin{align}
+D_j A^{ij} &= \widetilde{D}_{j} A^{ij} + C^{i}_{jk} A^{kj} + C^{i}_{jk} A^{ik} = \dots  \\
+&= \psi^{-10} \widetilde{D}_{j} \qty(\psi^{10} A^{ij})
+\,.
+\end{align}
+
+This is commonly denoted as \(\hat{A}\).
+
+With this choice we find 
+%
+\begin{align}
+0 = C^{i} = \widetilde{D}_{j} \hat{A}^{ij}
+- \frac{2}{3} \psi^{6} \widetilde{D}^{i} K 
+- 8 \pi \psi^{10} p^{i}
+\,.
+\end{align}
+
+The Hamiltonian constraint, on the other hand, reads 
+%
+\begin{align}
+0 = C^{0} = R + K^2 - K_{ij} K^{ij} - 16 \pi E
+\,.
+\end{align}
+
+This \(K\) is already a conformal variable! 
+As for the other term, we have 
+%
+\begin{align}
+K_{ij} K^{ij} &= \qty(A_{ij} + \frac{1}{2} K \gamma_{ij})
+\qty(A^{ij} + \frac{1}{2} K \gamma^{ij})  \\
+&= A_{ij} A^{ij} + \underbrace{\frac{2}{3} K \gamma_{ij} A^{ij}}_{= 0} + \frac{1}{3} K^2 
+\,.
+\end{align}
+
+Putting this together yields, for \(p = -4\), 
+%
+\begin{align}
+0 = C^{0} = \widetilde{D}_{i} \widetilde{D}^{i} \psi 
+- \frac{1}{6} \widetilde{R} \psi + 
+\qty( \frac{1}{8} \widetilde{A}_{ij} \widetilde{A}^{ij} - \frac{1}{12} K^2 + 2 \pi E) \psi^{5}
+\,,
+\end{align}
+%
+and for \(p = -10\): 
+%
+\begin{align}
+0 = C^{0} = \widetilde{D}_{i} \widetilde{D}^{i} \psi - \frac{1}{6}
+\widetilde{R} \psi + \frac{1}{8} \hat{A}_{ij} \hat{A}^{ij} \psi^{-7} 
++ \qty( 2 \pi E - \frac{1}{12} K^2 )\psi^{5} 
+\,.
+\end{align}
+
+The latter is called the \textbf{Lichnerovicz equation}: the Hamiltonian constraint in conformal variables. 
+This is a complicated nonlinear equation, but under certain prescriptions we can make the \(\widetilde{D}_{i} \widetilde{D}^{i}\) term look like a Laplacian. 
+
+The other CD ADMY equations are the dynamical ones, we have one for the evolution of \(K\), and one for the evolution of \(\widetilde{A}_{ij}\). 
+See the notes for more details on these equations. 
+
 \end{document}

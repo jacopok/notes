@@ -1,8 +1,90 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section*{Sheet 3}
+
+\subsection{Maximal slicing}
+
 \marginpar{Thursday\\ 2021-5-20, \\ compiled \\ \today}
 
+Why do we want to look at maximal slicing? 
+We want to supplement the evolution equation with gauge conditions. 
+How does the geometry respond to those choices? 
 
+If we take \(K = 0\) (maximal slicing), then we find an elliptic equation for the lapse function: 
+%
+\begin{align}
+D_i D^i \alpha = \alpha K_{ij} K^{ij}
+\,.
+\end{align}
+
+We start with Schwarzschild coordinates, and then map \(t \to \overline{t} = t + h(r)\), and choose \(h\) by enforcing \(K =0 \). 
+
+We can write Schwarzschild as 
+%
+\begin{align}
+\dd{s^2} = (1 - \frac{2m}{r}) \qty(- \dd{t^2} + \qty(1 - \frac{2m}{r})^{-2} \dd{r^2}) + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+We define a new coordinate \(r^{*}\) by 
+%
+\begin{align}
+\dd{r*} = ( 1- \frac{2m}{r})^{-1} \dd{r} = \frac{r}{r - 2m} \dd{r}
+= \qty(1 + \frac{2m}{r - 2m}) \dd{r}
+\,,
+\end{align}
+%
+therefore, up to a constant, 
+%
+\begin{align}
+r^{*} = r + 2m \log \qty( \frac{r}{2m} - 1) 
+\,,
+\end{align}
+%
+and in terms of this the metric reads 
+%
+\begin{align}
+\dd{s^2} = (1 - \frac{2m}{r}) \qty(- \dd{t^2} + \dd{r^{*2}}) + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+Now, null geodesics are well described by the coordinates \(u = t - r^{*}\) and \(v = t + r^{*}\). The set \((u, r, \theta , \varphi )\) or \((v, r, \theta , \varphi )\) are Eddington-Finkelstein coordinates. 
+
+The Schwarzschild metric reads 
+%
+\begin{align}
+\dd{s^2} &= - (1 - 2m/r) \dd{v^2} + 2 \dd{v} \dd{r} + r^2 \dd{\Omega^2} \\
+\dd{s^2} &= - (1 - 2m/r) \dd{u^2} - 2 \dd{u} \dd{r} + r^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+The horizon, in these coordinates, is infinitely far away, but we can use the map 
+%
+\begin{align}
+U = - \exp( - \frac{u}{4m}) 
+\qquad \text{or} \qquad
+V = - \exp( - \frac{v}{4m}) 
+\,.
+\end{align}
+
+We can calculate \(UV\) and \(U/V\), which relate to \(r\) and \(t\).
+
+The metric is 
+%
+\begin{align}
+\dd{s^2} &= - \frac{32m^3}{r} \exp(- \frac{r}{2m}) \dd{U} \dd{V} 
++ r(U, V)^2 \dd{\Omega^2}
+\,.
+\end{align}
+
+Now, if we move back to space-time coordinates (as opposed to null) we get 
+%
+\begin{align}
+\dd{s^2} = \frac{32m^3}{r}  \exp(- \frac{r}{2m}) (- \dd{T^2} + \dd{X^2}) + r^2 \dd{\Omega^2}
+\,,
+\end{align}
+%
+where \(U = T-X\) and \(V = T+X\). 
 
 \end{document}

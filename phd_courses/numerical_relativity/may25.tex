@@ -1,4 +1,303 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Asymptotic Flatness \& Global Quantities}
+
+\marginpar{Tuesday\\ 2021-5-25, \\ compiled \\ \today}
+
+We have discussed a sufficient set of formalism, and we are ready to move to more physical topics. 
+
+How do we characterize the spacetime? We'd like to define mass, momentum and such. 
+
+A notion we can give for these works for Asymptotically Flat spacetimes: ADM energy and momentum. 
+
+If the spacetime is not asymptotically flat but we have some symmetries described by Killing vectors, we can define Komar charges. 
+
+There are more details on these topics in the book by Wald. 
+
+\subsection{Asymptotic flatness}
+
+\begin{definition}
+A globally hyperbolic spacetime is \textbf{asymptotically flat} iff: 
+%
+\begin{align}
+\forall \Sigma_t \colon \exists f_{ij} \quad \text{``background metric''}
+\,,
+\end{align}
+%
+such that 
+\begin{enumerate}
+    \item \(f_{ij}\) is flat except at most for a compact domain (the strong-field region, typically); 
+    \item there exists a chart \(\qty{x^{i}}\) such that \(f_{ij}\) approaches \(\mathbb{1}_3\) for \(r = \sqrt{x^{i} x_i} \to \infty \);
+    \item for \(r \to \infty \) the following conditions hold:
+    \begin{enumerate}
+        \item \(\gamma_{ij} = f_{ij} + \order{r^{-1}}\);\label{item:first-condition-af}
+        \item \(\partial_{k} \gamma_{ij} = \order{r^{-2}}\);\label{item:second-condition-af}
+        \item \(K_{ij} = \order{r^{-2}}\);
+        \item \(\partial_{k} K_{ij} = \order{r^{-3}}\).
+    \end{enumerate}
+\end{enumerate}
+\end{definition}
+
+The region \(r \to \infty \) is called \textbf{spatial infinity}, \(i_0\).
+
+A first example of a spacetime which is asymptotically flat is Schwarzschild; a counterexample on the other hand is a flat spacetime which contains a gravitational wave. 
+
+Let us show this: in this case the spatial metric (in the TT gauge) is 
+%
+\begin{align}
+\gamma_{ij} = f_{ij} + \frac{1}{r} h_{ij}(t-r) + \order{r^{-2}}
+\,.
+\end{align}
+
+This is compatible with condition \ref{item:first-condition-af}, but the derivative is 
+%
+\begin{align}
+\partial_{k} \gamma_{ij} = - \frac{h'(u)}{r} \frac{x^{k}}{r} - \frac{h_{ij}(u)}{r^2} \frac{x^{k}}{r} + \order{r^{-3}}
+\,,
+\end{align}
+%
+so we have an \(\order{r^{-1}}\) term: condition \ref{item:second-condition-af} is broken.
+
+Also, cosmological spacetimes are typically not AF. 
+
+A note: asymptotic flatness depends on the foliation \(\Sigma _t\) (and on \(x^{i}\), which however we can change); the transformation group which preserves these properties is the spin group: rotations, translations and boosts, generically
+%
+\begin{align}
+\Lambda^{i}_{j} + \dots
+\,,
+\end{align}
+%
+\todo[inline]{to complete}
+
+If out spacetime is AF we can define ADM energy and mass: the full GR action reads
+%
+\begin{align}
+S_{GR} = \int_{\mathcal{V} \subset \mathcal{M}} {}^4R \sqrt{-g} \dd[4]{x} + \oint_{\partial \mathcal{V}} (Y - Y_0 ) \sqrt{h} \dd[3]{y} 
+\,,
+\end{align}
+%
+where the first term is the usual Hilbert action, while the second term is a boundary one, which is needed in order to obtain the correct EFE on the boundary of the region which is considered. 
+
+This would not be needed if we knew that the derivatives of the metric were zero at the boundaries, but this will not be true in general. 
+
+An alternative approach, by Levi-Civita, is to vary with respect to the connection which is not assumed to be metric-compatible.
+
+Here, \(\mathcal{V}\) is our 3D region, \(\partial \mathcal{V}\) is its (timelike) boundary and \(h\) is the induced metric on \(\partial \mathcal{V}\) if we see the boundary as embedded in the larger manifold \((\mathcal{M}, g)\). 
+
+The tensor \(Y_{ab}\) is the extrinsic curvature of \(\partial \mathcal{V}\) in \((\mathcal{M}, g)\); the tensor \(Y_{0, ab}\) is the extrinsic curvature of \(\partial \mathcal{V}\) as embedded in \((\mathcal{M}, \eta )\), and similarly \(h_{0, ab}\) (\(\eta \) is the flat 4D metric). 
+ 
+\(Y\) and \(Y_0 \) are the respective traces.
+
+We will not complete the calculation, but imposing 
+%
+\begin{align}
+\fdv{S}{g^{ab}} = 0 
+\,,
+\end{align}
+%
+with \(\eval{\partial g^{ab}}_{\text{boundary}} = 0\) leads to the EFE. 
+
+This way, we can construct the Hamiltonian: 
+%
+\begin{align}
+H = - \int_{\Sigma _t} \sqrt{\gamma } \qty(\alpha C_0 + 2 \beta^{i} C_i) - 2 \oint_{\partial \Sigma _t} \sqrt{q} \qty[\alpha (\kappa - \kappa_0) + \beta^{i} S^{j} (K_{ij} - K \gamma_{ij})]
+\,,
+\end{align}
+%
+where we have the lapse \(\alpha \), the Hamiltonian constraint \(C_0 \), the shift \(\beta^{i}\), the momentum constraint \(C_{i}\), while in the other term we find the 2D intersection \(\partial \Sigma _t = \partial \mathcal{V} \cap \Sigma _t\). 
+
+The vector \(S^{i}\) is the normal vector to \(\partial \Sigma _t\); the metric \(q_{ij}\) is the induced metric on \(\partial \Sigma _t\) as embedded in \((\Sigma, \gamma )\). 
+On the other hand, \(\kappa_{ij}\) is the extrinsic curvature. 
+
+The quantity \(\kappa_0 \), on the other hand, is the extrinsic curvature of \(\partial \Sigma _t\) as embedded in \((\Sigma, f)\). 
+
+Here we have a key observation: the first term in the Hamiltonian is identically zero on a solution (because the constraints are zero), therefore the boundary terms give us an ``energy''. 
+
+With this, the \textbf{ADM mass} is calculated on \(i_0 \) by taking \(\alpha = 0 = \beta^{i}\): 
+%
+\begin{align}
+M _{\text{ADM}} &= - \frac{1}{8 \pi } \lim_{r \to + \infty } \oint_{\partial \Sigma _t} \sqrt{q} \qty(\kappa - \kappa_0 )  \\
+&= + \frac{1}{16 \pi } \lim_{r \to + \infty } 
+\oint_{\partial \Sigma _t} \sqrt{q} S^{i} \qty[D^{i} \gamma_{ij} - D_i \qty(f^{kl} \gamma_{kl})]  \\
+&= + \frac{1}{16 \pi } \lim_{r \to + \infty } 
+\oint \sqrt{q} S^{i} \qty(\partial_{j} \gamma_{ij} - \partial_{i} \gamma^{k}_{k})  \\
+&= - \frac{1}{2 \pi  } \lim_{r \to \infty }
+\oint \sqrt{q} S^{i} \qty(D_i \psi - \frac{1}{8} D^{j} \widetilde{\gamma}_{ij})
+\,.
+\end{align}
+
+The second specifies to the background metric, the third specifies to Cartesian coordinates, the last is written in terms of conformal variables. 
+
+If we look at the third expression, asymptotic flatness guarantees that the integral exists! 
+
+Let us give an example, in Cartesian coordinates and for the weak-field metric. 
+Here, \(\widetilde{\gamma}_{ij} = f_{ij}\), \(D^{i} \widetilde{\gamma}_{ij} = 0\), and \(\psi = 1 - \phi / 2\), and \(D_i \psi = - D_i \phi /2\). 
+
+Let us calculate with the last definition: 
+%
+\begin{align}
+M _{\text{ADM}} &= \frac{1}{4 \pi } \lim_{r \to \infty }
+\oint_{S_r} \sqrt{f} S^{i} \qty(- D_i \phi - 0 )
+\,,
+\end{align}
+%
+where the last term vanishes because it is the divergence of the conformal metric, which is flat. 
+Now we can use Green's theorem: 
+%
+\begin{align}
+M _{\text{ADM}} &= + \frac{1}{4\pi } 
+\int_{\Sigma _t} \sqrt{f} \dd[3]{x} D^{i} D_i \phi  \\
+&= \frac{1}{4 \pi } \int_{\Sigma _t} \sqrt{f} \dd[3]{f} 4 \pi \rho = \int_{\Sigma _t} \sqrt{f} \dd[3]{x} \rho  
+\,.
+\end{align}
+
+Let us try the same for Schwarzschild (in isotropic coordinates): here, the conformal factor is \(\psi = 1 + M/2 r\), the conformal metric is \(\widetilde{\gamma}_{ij} = f_{ij} = \diag{1, r^2, r^2 \sin^2 \theta }\). 
+So, the combination we need is 
+%
+\begin{align}
+\sqrt{q} \dd[2]{y} = r^2 \sin \theta \dd{\theta } \dd{\varphi }
+\,,
+\end{align}
+%
+which we compute at \(i_0 \), with \(\partial \Sigma _r \sim S_r\). 
+We also have \(S^{i} D_i = \partial_{r}\) at \(i_0 \); so 
+%
+\begin{align}
+M _{\text{ADM}} = - \frac{1}{2 \pi } 
+\lim_{r \to \infty } \oint_{S_r} \underbrace{\pdv{\psi }{r} r^2}_{- (M / 2r^2) r^2} \sin \theta \dd{\theta } \dd{\varphi }  = M 
+\,.
+\end{align}
+
+A useful theorem by Schoen and Yau in \('79\) and \('81\), and also by Witten in \('81\) says that is \(T_{ab}\) obeys the dominant energy condition (stating that for Eulerian observers \(E^2 \geq p^2\)) then: 
+\begin{enumerate}
+    \item \(M _{\text{ADM}}\geq 0\);
+    \item \(M _{\text{ADM}} = 0\) iff \(\Sigma _t\) is Minkowski;
+    \item \(\dv*{M _{\text{ADM}}}{t} = 0\), which we could have already stated by seeing that the Hamiltonian is not time dependent. 
+\end{enumerate}
+
+So, this is a good definition for the energy of the spacetime. 
+
+If we do simulations, we are not extracting the ADM mass at infinity, and we must approximate for some finite radius. 
+
+There is a heuristic derivation: we start from Newton, 
+%
+\begin{align}
+M = \int_{V} \rho = \frac{1}{4 \pi } \int_{V} \Delta \phi  
+= \oint_{S} S^{i} \partial_{i} \phi 
+\,,
+\end{align}
+%
+and now we must make an assumption to move to GR: \(\phi \sim h_{00} \), and \(\partial \phi \sim \partial h_{ij}\). 
+
+The Hamiltonian constraint \(R + \text{curvature} = \text{energy}\) reads 
+%
+\begin{align}
+\partial \partial h_{ij} + 0 = E \approx r
+\,,
+\end{align}
+%
+therefore the integral of \(\phi \) becomes \(\int_{V} R \sim \oint S^{i} \qty(\partial_{j} h_{ij} + \partial_{i} h^{k}_{k})\). 
+\todo[inline]{Clarify this derivation}
+
+Can we also have ADM momentum and angular momentum? 
+Kind of --- linear momentum, yes, not angular momentum.
+
+Linear momentum is typically associated to spatial translations. 
+
+So, we define the ADM momentum from the boundary term at \(i_0 \) by taking \(\alpha = 0\) and \(\beta^{i} = (\partial_{k})^{i}\): 
+%
+\begin{align}
+P_k^{\text{ADM}} &= \frac{1}{8 \pi }
+\lim_{r \to + \infty } \oint_{ \partial \Sigma _t} \sqrt{q} \qty(\partial_{k})^{i} S^{j} \qty(K_{ij} - K \gamma_{ij}) 
+\,.
+\end{align}
+
+Like in the other case, AF guarantees the existence of these 3 quantities. 
+
+This \(P_k^{\text{ADM}}\) transforms like a 1-form --- it is a vector at \(i_0 \). 
+
+Now, \(P_\alpha^{\text{ADM}} \propto (- M _{\text{ADM}} P^{\text{ADM}}_{k})\) transforms properly as a four-vector under the spin group. 
+
+As for ``ADM angular momentum'', we must look at spatial rotations at \(i_0 \) about the 3 axes. 
+They will be in the form \(\phi _x = - z \partial_{y} + y \partial_{z}\) and so on. Note that these scale like \(\order{r}\). 
+
+We can take, at \(i_0 \), \(\alpha = 0\) and \(\beta^{i} = (\phi _k)^{i}\): 
+%
+\begin{align}
+J_k^{\text{ADM}} = \frac{1}{8 \pi } \lim_{r \to \infty } \oint_{\partial \Sigma _t} \sqrt{q} (\phi_k)^{i} S^{j} \qty(K_{ij} - K \gamma_{ij})
+\,.
+\end{align}
+
+In this case, AF does not guarantee anything: the integrand is \((K_{ij} - K \gamma_{ij}) (\phi_{k})^{j} = \order{r^{-1}}\), but sometimes the contraction with \(S^{i}\) can solve the problem. 
+
+This is what happens in Kerr.
+
+A big problem is the fact that \(J_k^{\text{ADM}}\) does \emph{not} transform like a 1-form at \(i_0 \). 
+A working definition of \(\vec{J}\) exists only within a restricted class of transformations --- specifically, we need the stronger decay conditions
+%
+\begin{align}
+\partial_{k} \widetilde{\gamma}_{ij} = \order{r^{-3}} \qquad \text{and} \qquad
+K = \order{r^{-3}}
+\,.
+\end{align}
+
+This amounts to imposing an isotropic gauge condition and an asymptotically maximal gauge.
+
+\subsection{Komar masses}
+
+In GR, \emph{conserved charges} appear when one has symmetries: if \(K^{a}\) is a Killing vector 
+%
+\begin{align}
+\mathscr{L}_K g_{ab} = 2 \nabla_{(a} K_{b)} = 0
+\,,
+\end{align}
+%
+then the vector defined as
+%
+\begin{align}
+J^{a} = T^{ab} K_b
+\,
+\end{align}
+%
+is a \emph{conserved current}: \(\nabla_a J^{a} = 0\). 
+Here \(T^{ab}\) is any symmetric, divergence-free rank-2 tensor, not necessarily the stress-energy one. 
+This can be proven in a rather trivial way: 
+%
+\begin{align}
+\nabla_a J^{a} &= \nabla_a \qty(T^{ab} K_b) =  K_b \nabla_a T^{ab} + T^{ab} \nabla_a K_b = 0
+\,.
+\end{align}
+
+An important current is constructed from the four-Ricci: 
+%
+\begin{align}
+J^{a}_0 = ^4 R^{ab} K_b = \nabla_b \nabla^{a} K^{b} = - \nabla_b \nabla^{b} K^{a} 
+\,,
+\end{align}
+%
+where the indices look wrong by they are in fact not --- this does not hold in general, but it does for a Killing vector. The vector \(\nabla^{b} K^{a} = A^{ba}\) is antisymmetric. 
+
+Now, using Stokes' theorem we can write 
+%
+\begin{align}
+\int_{\Sigma _t} \dd[3]{x} \sqrt{\gamma } n_a \nabla_a A^{ab} 
+= \oint _{\partial \Sigma _t} \dd[2]{y} \sqrt{q} \qty(S_a n_b - n_a S_b) A^{ab}  = Q_k
+\,.
+\end{align}
+
+This \(Q_k\) is the conserved Komar charge. 
+The vectors \(n_a\) and \(S_b\) are normal and parallel to the surface of \(\Sigma _t\) respectively. 
+
+As an example, in a stationary spacetime \(K^{a} = (\partial_{t})^{a}\) we find the so-called Komar mass:
+%
+\begin{align}
+Q_k = M_k 
+\,,
+\end{align}
+%
+and a useful theorem in this regard states that if \(K^{a} = n^a\) at \(i_0 \), then the Komar mass \(M_k\) and the ADM mass \(M _{\text{ADM}}\) are the same. 
+
+In a cosmological context everything there is more messy. We cannot even assume global hyperbolicity.
+
 \end{document}

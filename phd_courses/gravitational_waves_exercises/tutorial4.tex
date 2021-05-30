@@ -1,0 +1,79 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Wednesday\\ 2021-5-26, \\ compiled \\ \today}
+
+Circular orbits: there is instability, so the frequency evolves. 
+
+We have an expression for the radiated energy: 
+%
+\begin{align}
+E = \frac{c^{4}}{32 \pi G} \int \expval{ \partial_0 h_{ij} \partial_0 h_{ij}} \dd[3]{x}
+\,,
+\end{align}
+%
+and the plus-polarized waveform is 
+%
+\begin{align}
+h_{+} (t) &= \frac{4 G \mu \Omega^2R^2}{r c^{4}} \qty(\frac{1 + \cos^2 \theta }{2})  \cos( 2 \Omega t ) \\
+h_{\times } (t) &= \frac{4 G \mu \Omega^2 R^2}{r c^{4}} 
+\cos(2 \Omega t)
+\,.
+\end{align}
+%
+
+A good expression is the 00 component of the Isaacson tensor, but one we can also use is 
+%
+\begin{align}
+\frac{ \dd{E}}{ \dd{t} \dd{\Omega }} = \frac{r^2 c^3}{16 \pi G}
+\expval{\dot{h}_+^2 + \dot{h}_{\times}^2} = \dv{P}{\Omega } 
+\,.
+\end{align}
+
+We are in the Newtonian approximation, so at every moment \(\Omega^2 = GM / R^3\) holds. 
+
+The energy of a binary system, in the Newtonian approximation, is simply 
+%
+\begin{align}
+E = - \frac{G m_1 m_2 }{r}
+= - \sqrt[3]{G^2 \mathcal{M}^{5} \Omega^2 / 8}
+\,,
+\end{align}
+%
+because of the Virial Theorem, where 
+%
+\begin{align}
+\mathcal{M} = \frac{(m_1m_2 )^{3/5}}{(m_1 + m_2 )^{1/5}} = M \nu^{3/5}
+\,
+\end{align}
+%
+is the chirp mass, while \(\nu = m_1 m_2 / M^2 = \mu / M\) is the symmetric mass ratio. 
+
+This yields the expression 
+%
+\begin{align}
+\dot{E} = \frac{32}{5} \frac{G}{c^{5}} \mu^2 m^{3/4} \Omega^{10/3}
+\,.
+\end{align}
+
+The energy balance dictates that \(\dot{E} = - P \): the change in energy of the binary system corresponds to the emitted power. 
+
+Another approximation we need is \(\dot{\Omega} \ll \Omega^2\): each orbit is almost circular, and the evolution is slow. 
+This means that we can write 
+%
+\begin{align}
+\dot{E} = \frac{32}{5} \frac{c^{5}}{G} \qty( \frac{G \mathcal{M} \Omega }{c^3})^{10/3}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\dot{E} &= \dv{t} \qty[- \qty(\frac{G \mathcal{M}^{5} \Omega^2}{8})^{1/3}]  \\
+&= \frac{G^{2/3} \mathcal{M}^{5/3}}{2} \dv{t} \qty( \Omega^{2/3} )
+\,,
+\end{align}
+%
+therefore find 
+
+\end{document}

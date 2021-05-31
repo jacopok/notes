@@ -1,4 +1,265 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{GW energy}
+
+\marginpar{Monday\\ 2021-5-31, \\ compiled \\ \today}
+
+The thing that remains to clarify in this expression is what kind of energy we are talking about:
+%
+\begin{align}
+\dv{E}{t} = \frac{G}{5 c^{5}} \expval{ \dot{\ddot{Q}}_{ij} \dot{\ddot{Q}}^{ij}}
+\,.
+\end{align}
+
+If we try to do dimensional analysis, we find 
+%
+\begin{align}
+\dot{E} \sim \frac{G}{c^{5}} a^2 \Omega^{6} M^2 R^{4}
+\,.
+\end{align}
+
+The term \(G / c^{5}\) has units of \([T] / [E]\), and it is the inverse of \(c^{5} / G \approx \SI{e52}{W}\).
+Therefore, the expression has a very small number in front of it. 
+
+However, we can rewrite the expression in terms of \(c^{5} / G\): 
+%
+\begin{align}
+\dot{E} = a^2 \frac{c^{5}}{G} \qty( \frac{v}{c})^{6} \qty( \frac{GM}{c^2 R})
+\,.
+\end{align}
+
+The first person who did this, Weber, was also the first to claim a detection of GW, with bar detectors. 
+This triggered the field of experimental GW detection. 
+
+If \(v/c \to 1\), and \(\sigma = GM / c^2R \sim 1/2\), then \(\dot{E} \sim \SI{e50}{W}\).
+
+We expect such a source to be the most luminous in the Universe, in GWs at least! 
+
+Dyson predicted a ``flash'' of intense radiation as two NS merge. 
+
+The factor \(a\) is dimensionless --- what is its numerical value? It is \(32/ 5\). With this, the formula 
+%
+\begin{align}
+\dot{E}_{GW} = \frac{32}{5} \frac{G \mu^2}{c^{5}} R^{4} \Omega^3
+\,
+\end{align}
+%
+is actually correct. 
+
+Using Kepler's law, \(\Omega^2 = GM R^{-3}\), we can remove the radial dependence and calculate \(P = \dot{E}_{GW} = \Omega^{10/3}\). 
+
+The reservoir of energy is the orbital energy: 
+%
+\begin{align}
+E = \frac{1}{2} \mu (\Omega R)^2 - \frac{m \mu }{R} \sim - \Omega^{2/3}
+\,.
+\end{align}
+
+So, as the energy decreases, the frequency increases. 
+We can keep approximating the orbits as circular, with ever smaller radii. 
+This is known as the adiabatic approximation, \(T _{\text{orbit}} \gg 1/ \nu_{GW} \sim 1/ 2 \Omega \). 
+
+Really, the orbit is not circular but instead an inspiral. 
+
+In the final stages, this is a runaway process: the merger. 
+This was demonstrated before the detection of GW, with the Hulse-Taylor pulsar. 
+
+Let us discuss frequency evolution according to radiation reaction uses these equations.
+
+We have 
+%
+\begin{align}
+\dv{}{t} \log E = \dv{}{t} \log \Omega^{2/3}
+\implies
+\frac{2}{3} \frac{\dot{\Omega}}{\Omega } = \frac{\dot{E}}{E} = \frac{P _{\text{gw}}}{E}
+\,.
+\end{align}
+%
+Alternatively we could work with energy balance: 
+%
+\begin{align}
+- P _{\text{gw}} = \dot{E} = \dv{E}{\Omega } \dot{\Omega}
+\,.
+\end{align}
+
+Keeping all the factors leads to 
+%
+\begin{align}
+\frac{\dot{\omega}}{\omega } = \frac{36}{5} \qty( \frac{1}{2} \frac{GM_c}{c^3} \omega )^{5/3} = \frac{96}{5} \nu \qty( \frac{1}{2} \frac{Gm}{c^3} \omega )^{5/3}
+\,.
+\end{align}
+
+The frequency \(\omega = 2 \Omega \) is the GW frequency --- a general result from the quadrupole formula --- while \(M_c\) is the chirp mass. 
+Its expression is due to the combination of masses \(m_1 \), \(m_2 \) appearing in the quadrupole formula applied to a binary. 
+
+The quantity \(m = m_1 + m_2  \) is the total binary mass, while \(\nu = m_1 m_2 / m = \mu / m \) is the \emph{symmetric mass ratio}.
+
+The equation holds under the following: 
+%
+\begin{align}
+\hat{\omega} \to m \omega \qquad \text{and} \qquad
+t \to t / m
+\,,
+\end{align}
+%
+since \(\hat{\hat{\omega}} / \hat{\omega} \propto \hat{\omega}^{5/3}\). 
+This is a general feature of the two-body problem in GR (in vacuum, for point particles). 
+
+It is suggestive to have \(\dot{\omega} / \omega \) on the LHS of the equation: Kepler's law yields 
+%
+\begin{align}
+\dot{R} = - \frac{2}{3} \frac{\dot{\Omega}}{GM R^{-3}} R \Omega = - \frac{2}{3} \frac{\dot{\Omega}}{\Omega } \Omega R
+\,,
+\end{align}
+%
+so the quantity 
+%
+\begin{align}
+Q^{-1}_\omega = \frac{\dot{\omega}}{\omega^2} = - 3 \frac{\dot{R}}{R \Omega }
+\,
+\end{align}
+%
+is, up to a constant factor, the ratio between the radial velocity and the tangential velocity: it quantifies ``how much'' the motion is approximated by a circular orbit, ``how much'' the orbit is adiabatic. 
+
+If \(Q_\omega \gg 1\), we are in the adiabatic regime. This is called the \textbf{adiabaticity parameter}.
+
+In terms of the chirp mas, we have 
+%
+\begin{align}
+\mathcal{M}_c = \frac{c^3}{G} \qty( \qty( \frac{5}{96})^{3} \pi^{-8} f^{-11} \dot{f}^{3})^{1/5}
+\,.
+\end{align}
+
+If we have a detection of a very long signal, the frequency increases in a runaway process. 
+
+Therefore, if we measure the frequency evolution we can estimate the chirp mass. The signal \texttt{GW170817} was so long that the chirp mass was measured up to the fourth digit.  
+
+\section{Short wavelength approximation}
+
+How do we define a GW on an arbitrary background? We want to use \(g = \eta + h\), where now \(\eta \) is not necessarily flat.
+ 
+The questions are:
+\begin{enumerate}
+    \item How do we define the decomposition \(g = \eta + h\)?
+    \item How do we interpret \(h\) as a GW in general?
+\end{enumerate}
+
+Rigorously speaking, this is \textbf{not possible} in general. We have one metric, we need to make some arbitrary choice.
+
+There are situations in which one can attempt to identify different relevant scales. 
+There are situations in which one can attempt to identify different scales of variation, for example if the \(\eta \) metric varies with typical scale \(L\) and the \(h\) metric perturbation has a typical length \(\lambda\) in space. 
+
+We take GWs with \(\lambda = c/f\), and \(f \approx \SI{e3}{Hz}\), therefore \(\lambda \sim \SI{50}{km}\). Also, \(\abs{h} \sim \num{e-21}\).
+
+On the Earth, \( \phi _{\oplus} \sim G M _{\oplus} / c^2 R_{\oplus} \sim \num{e-6}\). 
+
+Now, \(\phi _{\oplus}\) is not smooth at the scale \(\lambda \): it is \textbf{not possible} to distinguish \(\eta _\oplus\) from \(h\)!
+
+How do we do it, then? 
+The Earth's gravitational field is quasi-static for frequencies \(f \ll f_{\text{gw}}\). 
+In this sense, it is possible to distinguish the background from the perturbation. 
+
+We assume that \(\abs{h} = \epsilon \) is very small, and that \(\lambda \ll L\) or \(f \gg F\), the maximum frequency of the evolution background. 
+
+We start from \(R_{\mu \nu } = 8 \pi \qty(T_{\mu \nu } - T g_{\mu \nu } /2) = 8 \pi \overline{T}_{\mu \nu }\). We then expand in \(\epsilon \):
+%
+\begin{align}
+R_{\mu \nu } = 
+R_{\mu \nu  }^{(0)}+
+R_{\mu \nu  }^{(1)}+
+\order{\epsilon^2}
+\,.
+\end{align}
+%
+
+In terms of \(\epsilon \) and \(k = 1 / \lambda \) we will have 
+%
+\begin{align}
+\eta &\sim \order{\epsilon^{0}}  \\
+\partial \eta &\sim \order{1/L}   \\
+\partial^2 \eta &\sim \order{1/L}  \\
+h^{n} &\sim \order{\epsilon^n} \\
+\partial h^{1} &\sim \order{\epsilon k} \\
+\partial^2 h^{1} &\sim \order{\epsilon k^2} 
+\,.
+\end{align}
+
+The term \(R^{(0)}_{\mu \nu } \sim \eta \partial^2 \eta \) is a long-wavelength one; the term \(R^{(1)}_{\mu \nu } \sim \eta \partial^2 \eta^{(1)} \order{\epsilon k^2}\) is a short wavelength one; the term 
+%
+\begin{align}
+R^{(2)}_{\mu \nu } \sim \eta \partial^2 h^{(2)} + h^{(1)} \partial^2 h^{(1)} \sim \order{\epsilon^2 k^2}
+\,
+\end{align}
+%
+has components that are both short and long wavelength. 
+
+We can then formally separate the EFE: the long-wavelength part reads 
+%
+\begin{align}
+R^{(0)}_{\mu \nu } = - \qty[ R^{(2)}_{\mu \nu }]^{\text{long}}
++ 8 \pi \qty[\overline{T}_{\mu \nu }]\text{long} \\ 
+\,,
+\end{align}
+%
+while the short wavelength part reads 
+%
+\begin{align}
+R^{(1)}_{\mu \nu } = - \qty[ R^{(2)}_{\mu \nu }]^{\text{short}}
++ 8 \pi \qty[\overline{T}_{\mu \nu }]\text{short} \\ 
+\,.
+\end{align}
+
+The term \(- \qty[ R^{(2)}_{\mu \nu }]^{\text{long}}\) can be interpreted as \(\tau_{\mu \nu }\), the feedback of the GWs on the background curvature. 
+
+On the other hand, the short-wavelength part will describe the propagation of GWs on a generic background.  
+
+How do we separate the scales? As discussed by Brill and Hartle, as well as Isaacson, we use the averaging procedure: 
+%
+\begin{align}
+\expval{S_{\mu \nu }}&= \int \dd[4]{x} \eta^{\mu '}_\alpha (x, x') \eta^{\nu '}_{\beta } (x, x') S_{\mu ' \nu '} (x') f(x, x') \sqrt{\eta (x')}
+\,,
+\end{align}
+%
+where \(f\) is a filter function which vanishes for \(\lambda \gg L\); the functions \(\eta \) transport the \(S_{\mu \nu }\) around a point. 
+
+This is described in some detail in \cite[]{misnerGravitation1973}.
+It generalizes the Isaacson tensor: 
+%
+\begin{align}
+\tau_{\alpha \beta } = - \qty[R_{\mu \nu }^{(2)}]^{\text{long}} 
+= - \expval{R_{\mu \nu }^{(2)}}
+\,.
+\end{align}
+
+We have two expansion parameters: \(\epsilon \) and \(\lambda \), where \(\lambda / L \ll 1\). 
+(Note that I write \(\lambda \) but it should be a barred lambda).
+
+The equation equates terms with different powers of \(\epsilon \): we need some \emph{consistency conditions}. 
+
+If \(\overline{T}_{\mu \nu } = 0\), the GWs contribute to the background metric: \(1 / L^2 \sim \epsilon^2 k^2 = \epsilon^2 / \lambda^2\). 
+Therefore, \(\epsilon = \lambda /L\). 
+
+With \(\qty[R^{(2)}_{\mu \nu }]^{\text{long}} \approx 0\), we have 
+%
+\begin{align}
+\frac{1}{L^2} \sim \epsilon^2 k^2 + \text{(matter)} \gg \epsilon^2k^2
+\,,
+\end{align}
+%
+so \(\epsilon \ll \lambda /L\). 
+In this sense we want \(\epsilon \) to be small. Note that for a flat background, \(1/L = 0 \) strictly! 
+
+So, no gravitational waves with finite amplitude exist as a perturbation of flat spacetime.
+
+About the short wavelengths: GW propagation in general is given by 
+%
+\begin{align}
+0 &= \qty[R_{\mu \nu }^{(1)}]^{\text{short}} + \text{`matter terms'}  \\
+&\approx \square_\eta \overline{h}_{\mu \nu } + \text{`matter terms'}
+\,
+\end{align}
+%
+in a ``generalized'' Hilbert gauge.
+
 \end{document}

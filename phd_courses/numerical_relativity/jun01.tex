@@ -1,4 +1,274 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Initial Data Problem}
+
+\marginpar{Tuesday\\ 2021-6-1, \\ compiled \\ \today}
+
+It is perhaps the most difficult problem currently. 
+
+The problem is stated as 
+%
+\begin{align}
+C_0 &= R + K^2 - K_{ij} K^{ij} - 16 \pi E = 0  \\
+C_i &= D_j K^{j}_{i} - D_i K - 8 \pi P_i = 0
+\,,
+\end{align}
+%
+and we want to calculate \(\gamma_{ij}\) and \(K_{ij} \) on \(\Sigma _0\) such that 
+\begin{enumerate}
+    \item the constraints are satisfied;
+    \item the solution is physically meaningful: it really describes a BH, BBH, \(n\)-BH, NS spacetime.
+\end{enumerate}
+
+We will assume for today that the matter fields are given or zero --- in general one would have to solve the hydrodynamic equations for them as well.
+
+We have 4 equations for 12 unknowns!
+We will need to prescribe 8 quantities.
+
+The problem is split in two: a problem of constrained data (4)
+and one of free data (8). 
+
+The choice of free data is guided by a few principles: 
+\begin{enumerate}
+    \item we need to define our (astro)physical expectations for \(\Sigma_0 \) and verify that they are matched;
+    \item we need some heuristic or intuition for the various fields;
+    \item mathematical (/ computational?) necessity: the equations \(C_\alpha = 0\) should be as nice as possible --- linearity, decoupling, well-posedness are all desirable. 
+\end{enumerate}
+
+The \textbf{Conformal Decomposition} allows us to implement these. 
+Within it, there are two main formalisms: one is the ``conformal/transverse traceless'' formalism (CTT), due to York in 1973; the other is the ``conformal/thin sandwich'' (CTS), also due to York in 1999.
+Both are based off of early work by Lichnerowicz. 
+
+The CTS formalism is often used to generate binary systems --- it makes it easier to implement the quasi-symmetries there. 
+
+We start from the Lichnerowicz equation (the Hamiltonian constraint): 
+%
+\begin{align}
+C_0 &= \widetilde{D}_i \widetilde{D}^{i} \psi 
+- \frac{1}{8} \hat{A}_{ij} \hat{A}^{ij} \psi^{-7} +
+\qty(- \frac{K^2}{12} + 2 \pi E) \psi^{5} &= 0
+\,,
+\end{align}
+%
+with \(p = -10\). 
+Let us solve it as a standalone equation: it is a Poisson-like one, since \(\widetilde{D}_i \widetilde{D}^{i}\) is similar to a Laplacian. 
+Then, this is some sort of elliptic operator applied to \(\psi \) equated to some powers of \(\psi \). 
+
+If \(K^2= 0\) the equation simplifies, and the BVP can be studied: there are several known results about the well-posedness of this equation under the hypothesis \(K = \const\).
+
+These are known as Constant Mean Curvature (CMC) spacetimes. 
+
+If we take an Asymptotically Flat, CMC spacetime with \(K = 0\), and with \(E = 0\), then the BVP with the Lichnerowicz equation is \emph{solvable} for a ``large'' class of metrics \(\widetilde{\gamma}_{ij}\) (a ``positive Yamabi class''). 
+
+There is a ``prototype equation'' for the Lichnerowicz one if we set \(K = 0\): 
+%
+\begin{align}
+\triangle u = f^2 u^{p}
+\,,
+\end{align}
+%
+in flat spacetime, for some function \(f\).
+
+These theorems are found in somewhat specialized PDE literature.
+In the linear case \(p = 1\), and we take \(\eval{u}_{\partial \Omega } = 0\), then the solution, identically zero, is unique. 
+
+In the nonlinear case, the solution is unique iff \(p > 0\) (or specifically, the same sign of the coefficient of the \(f^2 u^{p}\) term). 
+
+So, what about the Lichnerowicz equation? 
+The easiest thing to do is to linearize the equation: we write it as 
+%
+\begin{align}
+\widetilde{\triangle} \psi + H (\psi ) = 0
+\,.
+\end{align}
+
+We write \(\psi = \psi_0 + \epsilon \), and expand 
+%
+\begin{align}
+H(\psi ) = H(\psi_0 ) + \eval{\pdv{H}{\epsilon }}_{0} \epsilon + \order{\epsilon^2}
+\,,
+\end{align}
+%
+so we find an equation in the form \(\widetilde{\triangle} \epsilon = f \epsilon \) with: 
+%
+\begin{align}
+f = \frac{1}{8 } \widetilde{R} + \frac{7}{8} \hat{A}_{ij} \hat{A}^{ij} \psi_0^{-8} - 10 \pi E \psi_0^{4}
+\,.
+\end{align}
+
+This immediately shows us the problem: if \(K =0 \) then \(\widetilde{R} > 0\), but we can check that \(f\) is not positive, because of the ``matter term''! 
+
+However, we insist on solving this equation, and we can do so as long as we \emph{rescale} the matter term. 
+
+If we define \(\widetilde{E} = \psi^{s} E\), then, the term becomes 
+%
+\begin{align}
+- 5 \times 2 \pi E \psi_0^{4} \to - (s \times 5) 2 \pi \widetilde{E} \psi^{4-s}
+\,,
+\end{align}
+%
+so this is \(> 0\) for any \(s > 5\). 
+This is \emph{not} a trick: in practice, these elliptic equations are solved by iteration --- specifying a guess, and then iterating. 
+
+Specifying the ``correct'' RHS therefore is key if we want to find a solution. 
+So, what do we use? 
+The best answer turns out to be 8: if we do this, we can express the dominant energy condition in conformal variables: if
+%
+\begin{align}
+\widetilde{E} = \psi^{8} E
+\qquad \text{and} \qquad
+\widetilde{P}^{i} = \psi^{10} P^{i}
+\,,
+\end{align}
+%
+then \(\widetilde{E}^2 \geq \widetilde{P}^2\) implies \(E^2 \geq P^2\). In general this would read 
+%
+\begin{align}
+\psi^{2s} E^2 \geq \psi^{-4} \psi^{10} \psi^{10} P^2
+\,.
+\end{align}
+
+\subsection{Maximal Slicing}
+
+What does it mean to impose \(K = 0\)? 
+As we will see shortly, this is a gauge condition which extremizes the volume of \(\Sigma _t\). 
+
+We just need to remember the definition of the trace: it is an identity that
+%
+\begin{align}
+K = \gamma^{ab} K_{ab} = - \frac{1}{2 \alpha } \gamma^{ij} \mathscr{L}_m \gamma_{ij} = - \frac{1}{2 \alpha } \mathscr{L}_m \log \gamma 
+\,,
+\end{align}
+%
+which can be nicely written as 
+%
+\begin{align}
+K = - \frac{1}{\alpha } \mathscr{L}_m \log \sqrt{\gamma } 
+\,,
+\end{align}
+%
+so we recover the volume element on \(\Sigma _t\), \(\sqrt{\gamma }\)! 
+
+The volume in a certain region is \(V = \int \sqrt{\gamma } \dd[3]{x}\), so if we perform a variation \(v^{a} = \delta t \qty(\alpha n^a + \beta^{a})\), so that \(\eval{v^{a}}_{S} = 0\) (the deformation is zero at the boundary), the volume changes as such: 
+%
+\begin{align}
+\fdv{V}{t} &= \int \partial_{t} \sqrt{\gamma } \dd[3]{x}
+= \int \qty(- \alpha K + D_i \beta^{i}) \dd[3]{x}
+\marginnote{Using the kinematic equation.}  \\
+&= - \int_V \alpha K \sqrt{\gamma } \dd[3]{x} + \underbrace{\oint_S \beta^{i} S_i}_{= 0}
+= - \int \alpha K \sqrt{\gamma } \dd[3]{x}
+\,,
+\end{align}
+%
+therefore \(K = 0\) yields \(\delta V = 0\): this is a maximum.
+
+It is the exact same geometric problem as a film of soap. 
+If the soap is held at a ring, it stays flat. 
+
+The only difference from that case is that here we are in a Lorentzian geometry: in the Euclidean case we have a minimum, here we have a maximum. 
+
+This is an example of a singularity-avoiding gauge, used by many works. 
+
+\subsection{The Conformal Transverse Traceless formalism}
+
+We use the \(p = -10\) scaling of \(K_{ij}\), and on top of the Lichnerowicz equation we derive an equation from the momentum constraint \(C_i = 0\), for a vector \(x^{i}\) which is obtained with a further decomposition of \(\hat{A}^{ij}\): 
+%
+\begin{align}
+\hat{A}^{ij} = \hat{A}^{ij}_L + \hat{A}^{ij}_{TT}
+\,,
+\end{align}
+%
+where the TT part is transverse and traceless: \(\widetilde{\gamma}_{ij} \hat{A}^{ij}_{TT} = 0\) and \(\widetilde{D}_j \hat{A}^{ij}_{TT} = 0\).
+
+The longitudinal part on the other hand is expressed as follows: 
+%
+\begin{align}
+\qty(\widetilde{L} x)^{ij} = \widetilde{D}^{i} x^{j} + \widetilde{D}^{j} x^{i} - \frac{2}{3} \widetilde{D}_k x^{k} \widetilde{\gamma}^{ij}
+\,.
+\end{align}
+
+This seems like a rather strange expression: \(\widetilde{L}\) is called the \textbf{Conformal Killing operator} on \(x^{i}\). 
+It is determined as follows: 
+%
+\begin{align}
+\widetilde{D}_j  \hat{A}^{ij} = 
+\widetilde{D}_j  \qty(\widetilde{L} x)^{ij} 
+= \widetilde{D}_j  \widetilde{D}^{j} x^{i} 
++ \frac{1}{3} \widetilde{D}^{i} \widetilde{D}_j x^{i} + \widetilde{R}^{i}{}_j x^{i} = \widetilde{\triangle}_L x^{i} 
+\,,
+\end{align}
+%
+where \(\widetilde{\triangle}_L x^{i}\) is the \textbf{conformal vector Laplacian operator}. 
+
+There exists a unique L + TT decomposition of \(\hat{A}^{ij}\) iff there exists a unique solution of the conformal Laplacian equation: 
+%
+\begin{align}
+\widetilde{\triangle}_L x^{i} = \widetilde{D}_j \hat{A}^{ij}
+\,.
+\end{align}
+
+This is useful because there is a theorem by Cantor in 1979 which tells us that if \(\Sigma \) is asymptotically flat and we have \(\partial_{k} \partial_{l} \widetilde{\gamma}_{ij} = \order{r^{-3}}\), 
+then existence and uniqueness are guaranteed. 
+
+With this decomposition, we obtain 
+%
+\begin{align}
+\widetilde{\triangle}_L x^{i} - \frac{2}{3} \widetilde{D}^{i} K \psi^{6} - 8 \pi \widetilde{P}^{i} = 0
+\,,
+\end{align}
+%
+which can be solved together with the Lichnerowicz equation. 
+This allows us to constrain \(\psi\) and \(x^{i}\), as long as we determine the free data: \(\widetilde{\gamma}_{ij}\), \(\hat{A}^{ij}_{TT}\) and \(K\). 
+
+Under maximal slicing, \(K = 0\), the two equations decouple! 
+They also partially decouple if we take \(K = \const\), since we can solve one and then the other.
+
+Also, it is nice that the free data are the conformal metric: \(\widetilde{\gamma}_{ij}\) and \(\hat{A}_{TT}^{ij}\) are useful in heuristically determining the GW content of \(\Sigma \). 
+
+Let us give an example of CTT data under the four hypotheses of conformal flatness, asymptotic flatness, and maximal slicing. 
+
+Asymptotic flatness is chosen because we want the solution to exist.
+This is the simplest choice of free data: we take \(\hat{\gamma}_{ij} = f_{ij}\) (conformal flatness) and \(K = 0\) (maximal slicing).
+
+Further, we consider \(E = 0 = P^{i}\) (vacuum). 
+
+Without justification we also assume that \(\hat{A}^{ij}_{TT} = 0\). 
+
+Under all these assumptions we have 
+%
+\begin{align}
+\widetilde{D}_i = D_i 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\widetilde{D}_i \widetilde{D}^{i} = D_i D^{i} = \triangle
+\,
+\end{align}
+%
+is simply the flat elliptic operator, also \(\widetilde{R} = 0\) and \(\widetilde{L} = L\) is the one calculated in the flat case. 
+
+So, the CTT equations become: 
+%
+\begin{align}
+\triangle \psi + \frac{1}{8} \qty(Lx )_{ij} \qty(Lx)^{ij} \psi^{-7} &= 0  \\
+\triangle_L x^{i} = \triangle x^{i} + \frac{1}{3} D_j D^{i} x^{j} &= 0
+\,,
+\end{align}
+%
+which are decoupled, so they can be solved independently of one another. 
+They are ``easy'', since they use the flat Euclidean operators. 
+If we want a boundary value problem we also need to specify the boundaries: we specify asymptotic flatness: \(\psi = 1\) and \(x^{i} = 0\) at \(\iota_0\). 
+
+Optionally we can impose strong-field inner boundary conditions: for example we can fix the topology. 
+
+Our \textbf{case 1} is to take \(\Sigma_0 = \mathbb{R}^{3}\) (no inner boundary condition): then, the solution of the second CTT equation is \(x^{i}= 0\), and the first one reads \(\triangle \psi = 0\) together with \(\psi = 1\) at \(\iota_0 \): this implies \(\psi \equiv 1\).
+As expected, we recover flat spacetime. 
+
+Can we also get a nontrivial solution? 
+For that, we need an inner boundary. 
+
 \end{document}

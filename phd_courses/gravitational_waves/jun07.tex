@@ -1,0 +1,281 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Multipolar expansion and STF formalism}
+
+\marginpar{Monday\\ 2021-6-7, \\ compiled \\ \today}
+
+Suppose we have a static potential, which obeys \(\triangle \phi = 4 \pi \rho \) for some static source with energy density \(\rho \) which is localized within a radius \(R\).
+The procedure for solving this kind of problem, like in electromagnetism, is through Green's functions. 
+If we take a function \(G\) such that \(\triangle G (x-y) = 4\pi \delta (x-y)\), then \(G(x-y) = 1 / \abs{x - y}\); then 
+%
+\begin{align}
+\phi = \triangle^{-1} \rho = \int \dd[3]{y} G(x-y) \rho (y) = \int \dd[3]{y} \frac{\rho (y)}{\abs{x-y}}
+\,.
+\end{align}
+
+We can make this formal solution clearer by introducing spherical harmonics and expressing the solution as a series of multipoles of the source: 
+%
+\begin{align}
+L^2 Y_{\ell m} = - \ell (\ell + 1) Y_{\ell m}
+\,
+\end{align}
+%
+are eigenfunctions of \(L^2\), where 
+%
+\begin{align}
+\triangle = r^{-2} \partial_{r} \qty(r^2 \partial_{r}) + r^{-2} L^2 (\theta , \varphi )
+\,.
+\end{align}
+
+In terms of these, 
+%
+\begin{align}
+\frac{1}{\abs{x-y}} = \sum _{\ell = 0} \sum _{m=- \ell}^{\ell}
+\frac{1}{2 \ell + 1} \frac{r^{\prime \ell}}{r^{\ell + 1}} 
+Y^{*}_{\ell m} (\theta ', \varphi ') Y_{\ell m} (\theta , \varphi )
+\,,
+\end{align}
+%
+where \(r' = \abs{y}\) and \(r = \abs{x}\), and similarly for the angles.
+
+For the exterior solution, a function in the form \(Y_{\ell m} r^{- (\ell +1)}\) is a solution of the equation \(\triangle (Y_{\ell m} r^{- (\ell +1)}) = 0\). 
+Therefore, the exterior solution reads 
+%
+\begin{align}
+\phi^{\text{ext}} = \sum _{\ell= 0} \sum _{m=-\ell}^{\ell} \frac{Q_{\ell m}}{2 \ell + 1} \frac{Y_{\ell m}}{r^{\ell + 1}} 
+\,,
+\end{align}
+%
+a linear combination with coefficients \(Q_{\ell m}\). 
+
+The coefficients are determined by \textbf{matching} the interior solution: 
+%
+\begin{align}
+\triangle^{-1} \rho = \sum _{\ell} \sum _{m}
+\int \dd[3]{y} \frac{r^{\prime \ell}}{2 \ell + 1}
+\rho (y) Y^{*}_{\ell m} (\theta ', \varphi ') \frac{Y_{\ell m}}{r^{\ell + 1}}
+\,.
+\end{align}
+
+Therefore, the coefficients 
+%
+\begin{align}
+Q_{
+    \ell m
+}
+= \int \dd[3]{y}
+r^{\prime \ell} Y^{*}_{\ell m} \rho 
+\,
+\end{align}
+%
+are the \textbf{multipoles}. 
+For example, with \(\ell = m = 0\) we recover \(Q_{00} = \int \dd[3]{y} \rho \), the ``mass''.  
+
+This procedure can be applied in Cartesian coordinates, which leads us to introduce the STF tensors. 
+
+We start by Taylor expanding the Green function in \(y\): 
+%
+\begin{align}
+\frac{1}{\abs{x-y}} = f(y) = f(0) 
++ y^{i} \eval{\pdv{f}{y^{i}}}_{0}
++ y^{i}y^{j} \eval{\pdv{f}{y^{i}}{y^{j}}}_{0} + \order{y^3}
+\,.
+\end{align}
+
+Now, 
+%
+\begin{align}
+\eval{\pdv{f}{y^{i}}}_{y=0} = \pdv{y^{i}} \eval{\qty( \frac{1}{\abs{x-y}})}_{y=0} 
+= - \pdv{x^{i}} \eval{\qty( \frac{1}{\abs{x-y}})}_{y=0} 
+\,,
+\end{align}
+%
+which generalizes to 
+%
+\begin{align}
+\frac{\partial^{L} f}{y^{i_1} \dots y^{i_L}} = (-)^{L} \frac{\partial^{L}}{x^{i_1}\dots x^{i_L}} \frac{1}{\abs{x}}
+\,,
+\end{align}
+%
+so we can rewrite \(1/ \abs{x-y}\) in terms of derivatives of \(1/ \abs{x}\): 
+%
+\begin{align}
+\frac{1}{\abs{x-y}} = \sum _{\ell=0}
+\frac{(-)^{\ell}}{\ell!} y^{i_1} \dots y^{i_L} \underbrace{\pdv{x^{i_1}} \dots
+\pdv{x^{i_L}} \frac{1}{\abs{x}}}_{\text{STF}}
+\,,
+\end{align}
+%
+and the highlighted terms are STF in the sense that they are 
+\begin{enumerate}
+    \item symmetric in the indices \(i_1 \dots i_L\);
+    \item trace-free, in that the contraction of that object with \(\delta^{i_a i_b}\) is a bunch of derivatives acting on \(\triangle (1/\abs{x}) = 0\).  
+\end{enumerate}
+
+If we plug this into the initial equation, we get 
+%
+\begin{align}
+\triangle^{-1} \rho &= 
+\int \dd[3]{y} \rho 
+\sum _{\ell} \frac{(-)^{\ell}}{\ell!} 
+y^{i_1} \dots y^{i_L}\pdv{x^{i_1}} \dots
+\pdv{x^{i_L}} \frac{1}{\abs{x}}  \\
+&= 
+\sum _{\ell=0} \frac{(-)^{\ell}}{\ell!}
+\underbrace{\int \dd[3]{y} \qty( \rho y^{i_1} \dots y^{i_L})}_{\text{Cartesian multipoles of \(\rho \)}}
+\pdv{x^{i_1}} \dots \pdv{x^{i_L}} \frac{1}{\abs{x}}
+\,.
+\end{align}
+
+These multipoles read 
+%
+\begin{align}
+Q_{i_1 \dots i_L} = \int \dd[3]{y} \rho y^{<i_1} \dots y^{i_L>}
+\,,
+\end{align}
+%
+where the index brackets \(<>\) denote trace-free symmetrization --- this can be done since any traceful or antisymmetric part vanishes by contraction with the STF object. 
+
+There must be a parallel between the spherical harmonics \(Y_{\ell m}\) and this object \(y^{<i_1} \dots y^{i_L>}\)! 
+
+We can construct such an object like 
+%
+\begin{align}
+T^{<ij>} = T^{(ij)} - \frac{1}{3} T \delta^{ij}
+\,.
+\end{align}
+
+In order to get the relation we seek, we need the relation 
+%
+\begin{align}
+\partial_{i} r = \partial_{i} (x^{j} x_j)^{1/2} 
+= \frac{x_{i}}{r} = n_i
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\partial_i n_j = \frac{1}{r} (\delta_{ij} - n_i n_j)
+\,.
+\end{align}
+
+With these, we find that 
+%
+\begin{align}
+\partial_{i} \frac{1}{r} = - \frac{n_i}{r^2}
+\qquad \text{and} \qquad
+\partial_{i} \partial_{j} \frac{1}{r} = - \frac{3}{r^3} n^{<i} n^{j>}
+\,,
+\end{align}
+%
+and in general 
+%
+\begin{align}
+\partial_{i_1} \dots \partial_{i_L} \frac{1}{r} 
+= (-)^{\ell} \frac{(2 \ell -1)!!}{r^{\ell+1}} n^{<i_1} \dots n^{i_\ell>}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+y^{i} = r' n^{\prime i}
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\frac{1}{\abs{x-y}} = \sum _{\ell} \frac{(2 \ell - 1)!!}{\ell!} \frac{r^{\prime \ell}}{r^{\ell + 1}} n^{\prime i_1} \dots n^{\prime i_\ell}
+n^{<i_1} \dots n^{i_\ell>}
+\,.
+\end{align}
+
+This means that the Taylor expansion above can also be written as 
+%
+\begin{align}
+\triangle^{-1} \rho = 
+\sum _{\ell=0} \frac{(2 \ell - 1)!!}{\ell!} \frac{1}{r^{\ell + 1}}
+Q_{i_1 \dots i_\ell} n^{<i_1} \dots n^{i_\ell>}
+\,.
+\end{align}
+
+Why do we use unit vectors?
+We want a connection between the spherical coordinates and the Cartesian ones.
+
+It is a theorem that the functions 
+%
+\begin{align}
+F_{\ell} (\hat{n}) = Q_{i_1 \dots i_\ell} n^{<i_1} \dots n^{i_\ell>}
+\,
+\end{align}
+%
+are eigenfunctions of \(L^2\) (the angular part of \(\triangle\)) with eigenvalues \(\Lambda = - \ell (\ell + 1)\).
+The proof of this can be found in the notes --- it is a direct calculation. 
+
+This means that there exist some cartesian tensors 
+%
+\begin{align}
+\mathcal{Y}^{\ell m}_{i_1 \dots i_\ell}
+\,
+\end{align}
+%
+such that 
+%
+\begin{align}
+Y_{\ell m} (\theta , \varphi ) = \mathcal{Y}^{ \ell m}_{i_1 \dots i_\ell} n^{<i_1} \dots n^{i_\ell>}
+\,.
+\end{align}
+
+The \(\theta , \varphi \) dependence is contained inside of \(\hat{n} = \hat{n} ( \theta , \varphi )\).
+
+What we have found is an alternative way of representing spherical harmonics and rotations. 
+
+It is a theorem that the functions \(\mathcal{Y}^{\ell m}_{i_1 \dots i_\ell}\) form a basis for rank-\(\ell\) STF tensors:  
+%
+\begin{align}
+T_{i_1 \dots i_\ell} = \sum _{m= - \ell}^{\ell} T_{\ell m}
+\mathcal{Y}^{\ell m}_{i_1 \dots i_\ell}
+\,.
+\end{align}
+
+The components \(T_{\ell m}\) are called \textbf{spherical components} of \(T_{i_1 \dots i_2}\).
+
+Some useful properties are: 
+%
+\begin{align}
+T_{i_1 \dots i_\ell} n^{i_1} \dots n^{i_\ell} =
+\sum _{m=-\ell}^{\ell} T_{\ell m} Y_{\ell m}
+\,;
+\end{align}
+%
+the components are calculated like 
+%
+\begin{align}
+T_{\ell m} = \frac{4 \pi \ell!}{(2 \ell + 1)!!} T_{i_1 \dots i_\ell}
+\qty(\mathcal{Y}^{i_1 \dots i_\ell}_{\ell m})^{*}
+\,.
+\end{align}
+
+Under rotations, \(T_{\ell m}\) transform like \(Y_{\ell m}^{*}\). 
+This is because a change in \(Y_{\ell m}\) must be compensated. 
+
+In summary, rank \(\ell\) STF tensors have \(2 \ell + 1\) components and are an irreducible representation of \(SO(3)\). 
+
+In multi-index notation we have 
+%
+\begin{align}
+\partial_{L} \frac{1}{r} \propto \frac{1}{r^{\ell + 1}} n^L
+\,.
+\end{align}
+
+See the notes for the generalization to the full \(h_{ij}\) in linear theory. 
+Do the green exercise: 
+
+In order to move to GR from linear theory we need to substitute \(T_{\mu n }\) with the Isaacson tensor \(\tau_{\mu \nu }\). 
+
+% TODO: find and replace < with \langle
+
+\end{document}

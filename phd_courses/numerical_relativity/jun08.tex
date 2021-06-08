@@ -1,4 +1,183 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-6-8, \\ compiled \\ \today}
+
+We are discussing the initial data problem, and we can adopt two formalisms: CTT and CTS. 
+
+In the CTT formalism, we made a longitudinal-transverse split of  \(\hat{A}^{ij}\). 
+
+We constructed asymptotically flat, conformally flat, time-symmetric initial data for the vacuum. 
+
+The equations almost decouple: they can be solved one after the other. 
+We then get the simplified system 
+%
+\begin{align}
+\triangle_L x^{i} &= 0  \\
+\triangle \psi + \frac{1}{8} (L x)_{ij} (Lx)^{ij} \psi^{-7} &= 0
+\,,
+\end{align}
+%
+with outer boundary conditions \(\psi \to 1\), \(x^{i} \to 0\) as \(r \to \infty \). 
+This is a second-order elliptic problem, so we need a new set of boundary conditions: these inner boundary conditions determine the topology of the solution. If we suppose \(\Sigma_0 \sim \mathbb{R}^3\), we get flat spacetime, but its slices are not stationary. 
+
+If we suppose \(\Sigma_0 \sim \mathbb{R}^3 \setminus B\) for some ball \(B\), we must impose some condition on \(S = \partial B\): the simplest choice is to demand \(\eval{x^{i}}_{S} = 0\).
+Also, we can fix the conformal factor to 1. 
+This yields to a flat \(\Sigma_0 \). 
+
+An alternative is to ask that \(S\) be a closed \emph{minimal} surface:
+we ask that \(D_i S^{i} = 0\), where \(S^{i}\) is the normal vector to \(S\). 
+
+This is written as 
+%
+\begin{align}
+0 = \eval{D_i S^{i}}_{S} = \psi^{-6} \widetilde{D}_{i} \qty(\psi^{6} S^{i}) 
+= \psi^{-6} \widetilde{D}_{i} \qty(\psi^{4} \widetilde{S}^{i})
+\,,
+\end{align}
+%
+where \(\widetilde{s}^{i} = \psi^{-2} s^{i}\) is the unit  normal vector with respect to the conformal metric \(\widetilde{\gamma}\): 
+%
+\begin{align}
+\widetilde{\gamma}(\widetilde{S}, \widetilde{S}) = \psi^{4} \widetilde{\gamma}(S, S) = \gamma (S, S) = 1 = \psi^{-6} \frac{1}{\sqrt{f}} \partial_{i} \qty(\sqrt{f} \psi^{4} \widetilde{S}^{i})
+\,.
+\end{align}
+
+If we take \(B\) to be a sphere with radius \(r=a\), then \(\widetilde{S}^{i} = (1, 0, 0)\) everywhere, and \(f_{ij} = (1, r^2, r^2 \sin \theta )\). 
+Therefore, 
+%
+\begin{align}
+\frac{1}{r^2} \partial_{r} \eval{\qty(r^2 \psi^{4})}_{r=a} = 0
+\iff \eval{\qty(\partial_{r} \psi_+ \frac{\psi}{2r})}_{r=a} = 0
+\,,
+\end{align}
+%
+which is a boundary condition of mixed Dirichlet-Neumann type for \(\triangle \psi + \dots = 0\).
+
+A solution is \(\psi = 1+ a/r\), but what is the constant \(a\)?
+The standard way to determine it is to try to calculate global quantities.
+
+For example, let us try to calculate the ADM mass: 
+%
+\begin{align}
+M _{\text{ADM}} &= - \frac{1}{2 \pi } \lim_{r \to \infty}
+\int \pdv{\psi }{r} r^2 \sin \theta \dd[2]{\Omega}  \\
+&= 2 a
+\,.
+\end{align}
+
+Therefore, \(a = M _{\text{ADM}} / 2\). 
+
+Putting things together, 
+%
+\begin{align}
+\gamma_{ij} = \psi \hat{\gamma}_{ij} = \psi f_{ij} = \qty(1 + \frac{M _{\text{ADM}}}{2r}) f_{ij}
+\,,
+\end{align}
+%
+Schwarzschild in isotropic coordinates!
+
+This also proves that the Einstein-Rosen bridge is a minimal surface. 
+
+\todo[inline]{???}
+
+We can do a transformation \(r \to r' = M^{4} / 4r\), which sends \([M/2, \infty )\) to \((0, M/2)\). 
+
+The metric is invariant under this transformation: with a bit of abuse of notation, \(\gamma (r, \theta , \varphi ) = \gamma (r', \theta , \varphi )\). This means that the transformation is an isometry. 
+This means that we can attach a copy of the upper part of the embedding diagram to its lower part.  
+
+This means that we attach the I and III regions of the Kruskal diagram. 
+Here, \(r = 0\) does not correspond to a singularity but instead to the other asymptotically flat end. 
+
+What about the time symmetry condition? The solution we have here is a slice of Schwarzschild in isotropic coordinates. It is characterized by \(\hat{A}_{TT}^{ij} = 0\) and \(x^{i} =0 \). 
+If we reconstruct the full \(\hat{A}^{ij}\) we find that it is also zero, and we also know that \(K = 0\) because of maximal slicing; this implies that \(K_{ij} = 0\).
+
+This means that \(\mathscr{L}_m g_{ij} =0\) at \(t = 0\). 
+Therefore, we say that \(\Sigma_0 \) is \emph{momentarily static}. 
+
+If we map \(t \to -t\), however, the line element is invariant: this is what we mean by time symmetry. 
+
+We do not have the full Schwarzschild in isotropic coordinates, we only have a slice.  
+
+There could be a nontrivial evolution of \(\Sigma_0 \)!  
+An example is when we use geodesic gauge. 
+
+We could insert multiple Black Hole initial conditions by superposition: 
+%
+\begin{align}
+\psi = 1 + \sum _{p=1}^{N} \underbrace{\frac{M_P}{\abs{x^{i} - c_P^{i}}}}_{\psi_{BL}}
+\,,
+\end{align}
+%
+where the BL stands for Brill-Lindquist. 
+This is only for Schwarzschild BHs, Kerr is much more complicated and will be discussed later. 
+
+More complicated initial data is Misner data. This can be constructed by suitable inner boundary conditions. 
+
+\todo[inline]{He draws ER bridges --- why? do we need the other end of the bridge? }
+
+This construction does not allow for spin, nor does it include boosts. 
+
+Let us move to the work by Bowen and York in 1980. They proposed an ansatz for \(\triangle _L x^{i} + \dots = 0\): 
+%
+\begin{align}
+x^{i} = - \frac{1}{4r} \qty(7 f^{ij} P_j + \frac{1}{r^2} P_j x^{i} x^{j}) - 
+\frac{1}{r^3} \epsilon^{ij}_k S_h x^{k}
+\,,
+\end{align}
+%
+with six parameters \(P^{i}\) and \(S^{i}\). 
+
+This yields 
+%
+\begin{align}
+\hat{A}^{ij} = (Lx)^{ij} = \frac{3}{2} 
+\underbrace{ \frac{1}{r^3} \qty[ x^{i} P^{j} + x^{j} P^{i} + (f^{ij} - \frac{x^{i} x^{j}}{r^2}) P^{k} x_k]}_{\order{1/r^2}} +
+\underbrace{\frac{3}{r^{5}} 
+\qty( \epsilon^{ik}_\ell S_k x^{\ell} x^{j} + \epsilon^{jk}_\ell S_K x^{\ell} x^{i})}_{\order{1/r^3}}
+\,.
+\end{align}
+
+\(P^{i}\) and \(S^{i}\) are the ADM momentum and angular momentum components in the isotropic gauge. 
+
+\todo[inline]{Insert sketch of proof for ADM momentum.}
+
+With the BY ansatz one can find nonrotating BHs with \(S^{i} = 0 = P^{i}\); boosted BHs if \(P^{i} \neq 0 \) and \(S^{i} = 0\); spinning BHs wih \(S^{i} \neq 0\) and \(S^{i} = 0\).
+
+Did we find the Kerr solution? No. 
+In 2000 Gasat and Price proved that there is no Kerr foliation which
+\begin{enumerate}
+    \item has axial symmetry;
+    \item is conformally flat;
+    \item reduces to Schwarzschild in the nonrotating limit \(S^{z} = 0\). 
+\end{enumerate}
+
+This is often simply stated as ``there is no conformally flat slicing of Kerr''.
+
+If there is a moment of time symmetry, then the BY data with \(S^{z} \neq 0\) are \emph{nonstationary}! 
+The evolution must therefore be nontrivial --- something will happen. 
+Typically, during the evolution GWs are produced.  
+
+These are typically called \emph{puncture solutions}: with a BY ansatz and a solution of the Lichnerowicz equation (a numerical one, since the equation is nonlinear in \(\psi \)). 
+
+A recent approach, which is used in many simulations, is called Generalized Bill-Lindquist data (due to Brand and Brügmann in 1997). 
+
+We solve the Lichnerowicz equation on \(\mathbb{R}^3\) by analytically separating the singular behaviour: we take the ansatz \(\psi = \psi_{BL} + u\) where \(u\) is a correction. 
+
+We know that \(\triangle \psi_{BL} = 0\): so, if we plug in the ansats in the nonlinear Lichnerowicz equation we get an equation in the form \(\triangle u + \dots = 0\): specifically, 
+%
+\begin{align}
+\triangle u + \frac{\hat{A}^{ij} \hat{A}_{ij}}{8 \psi_{BL}^{7}} \qty(1 + \frac{u}{\psi_{BL}})^{-7}= 0
+\,,
+\end{align}
+%
+with outer boundary conditions \(u \sim 1 + \order{1/r}\). 
+Crucially, no inner Boundary Conditions are needed! 
+
+By evaluating the fields near the punctures, one sees that at \(x^{i} = c_P^{i}\) the correction \(u\) satisfies \(\triangle u = 0\): it is regular! 
+Thus, it can be solved on \(\mathbb{R}^3\). 
+
+Next, we will discuss CTS and XCTS, which are not well-posed but are useful when discussing stationary slices. 
+These 
+
 \end{document}

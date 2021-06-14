@@ -1,0 +1,182 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Monday\\ 2021-6-14, \\ compiled \\ \today}
+
+Last time we discussed the STF decomposition as a way to do spherical harmonics in Cartesian coordinates. 
+
+The very nice thing is that the general solutions we find in this way are not only valid for flat spacetime: if we substitute the stress-energy tensor appropriately (including the Isaacson tensor), we can apply them to any background. 
+
+\section{Multipolar expansion and tensor spherical harmonics}
+
+The TT expression is 
+%
+\begin{align}
+h_{ij}^{TT} = \frac{G}{c^{4}} \frac{1}{r} \Lambda_{ij}^{kl} \sum _{a=0} \frac{1}{a!} \partial_{t}^{a} S^{kl i_1 \dots i_a} (u) n_{i_1 } \dots n_{i_a}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+S^{kl i_1 \dots i_a} \sim \int \dd[3]{x} T^{kl} x^{i_1 } \dots x^{i_a}
+\,.
+\end{align}
+
+There is a STF formula which we discussed last time. 
+
+Finally, there is a tensor spherical harmonics expression: 
+%
+\begin{align}
+h_{ij}^{TT} = \frac{G}{c^{4}} \frac{1}{r} \sum _{\ell=2} sum_{m= - \ell}^{\ell} \qty[
+    u_{\ell m} (n) \qty(Y^{E2}_{\ell m})_j (\theta , \varphi )
+    + 
+    v_{\ell m} (n) \qty( Y^{B2}_{\ell m})_{ij} (\theta , \varphi )
+]
+\,,
+\end{align}
+%
+where the \(Y\) are called tensor spherical harmonics, of electric and magnetic type, while the \(u\) and \(v\) are coefficients. 
+
+The relation between these three expression is as follows: using the orthogonality property of the \(Y_{\ell m}\) we can extract the coefficients. 
+A sketch of the calculation is as follows, if \(1a\), \(1b\) and \(1c\) are the three alternative expressions: 
+%
+\begin{align}
+\int (1a) \qty(Y^{E2}_{\ell m})_{ij}^{*} \dd{\Omega } = 
+\int (1c) \qty(Y^{E2}_{\ell m})_{ij}^{*} \dd{\Omega } = u_{\ell m}
+\,,
+\end{align}
+%
+whose first component will read 
+%
+\begin{align}
+\sum _{a=0} \frac{1}{a!} \partial^{a}_{t} S^{k \ell i_1 \dots i_a} 
+\underbrace{\int \dd{\Omega } \qty(Y^{E2}_{\ell m})^{*}_{ij} \Lambda_{ij}^{k \ell} n_{i_1 } \dots n_{i_a}}_{= \mathcal{Y}_{i_1 \dots i_a}^{\ell m *} + \order{c^{-2}}}
+\,,
+\end{align}
+%
+where the brace identification is the result of a long calculation. 
+
+The result is then 
+%
+\begin{align}
+\sum _{a=0} \frac{1}{a!} \partial_{t}^{a} S^{k \ell i_1 \dots i_a} \mathcal{Y}^{\ell m *}_{i_1 \dots i_ a} = 
+\dv[\ell]{u} M^{i_1 \dots i_\ell} \mathcal{Y}^{\ell m *}_{i_1 \dots i_\ell} \sim
+\int \dd[3]{x} r^{\ell} T^{00} Y_{\ell m}^{*}
+\,.
+\end{align}
+
+Thinking ``quantum mechanically'', we have \(\vec{J} = \vec{L} + \vec{S}\). We define the Tensor Spherical Harmonics \(Y\) of a field of spin \(s\) as the simultaneous eigenfunctions of these operators: neglecting indices for the moment, we have
+%
+\begin{align}
+J^2 Y &= j (j+1) Y \\
+J_z Y &= j_z Y \\
+L^2 Y &= L (L+1) Y \\
+S^2 Y &= s (s+1) Y
+\,.
+\end{align}
+
+In the spin-\(1/2\) case this is a spinor.
+
+These objects read 
+%
+\begin{align}
+\ket{j j_z} = \sum _{L_z = -L}^{L} \sum _{s_z = -s}^{s} \braket{L L_z s s_z}{j s_z} \ket{L L_z s s_z}
+\,,
+\end{align}
+%
+and the total angular momentum obeys \(\abs{L -s} \leq j \leq L + s\). 
+
+How do we construct these eigenfunctions? We take the scalar eigenfunctions of the angular momentum 
+%
+\begin{align}
+L^2 Y_{L L_z} = L (L+1) Y_{L L_z}
+\,,
+\end{align}
+%
+and the spin eigenfunctions (ignoring indices)
+%
+\begin{align}
+S^2 X_{s s_z} = s (s+1) X_{s s_z}
+\,,
+\end{align}
+%
+we can make use of the Clebsh-Gordan coefficients: 
+%
+\begin{align}
+Y = \sum _{L_z} \sum _{s_z} \braket{L L_z s s_z}{j s_z} Y_{L L_z} X_{S S_z}
+\,.
+\end{align}
+
+Let us particularize to the spin-\(1/2\) case, in which \(X_{1/2} = \qty{ (0,1)^{\top}, (1, 0)^{\top}}\). 
+The vector spherical harmonics are 
+%
+\begin{align}
+X_{1 \pm 1} = \mp \frac{1}{\sqrt{2}} \qty(\hat{x} \pm i \hat{y})
+\,,
+\end{align}
+%
+while \(X_{10} = \hat{z}\). 
+
+The solutions of \(\square v^{i} = 0\) can be represented as an expansion in \(Y_{s=1}\). 
+These harmonics are usually combined in a new orthonormal basis: 
+%
+\begin{align}
+Y^{R}_{j j_z} &= \sqrt{2 j + 1} \qty[ j^{1/2} Y^{j-1}_{j j_z} - (j+1)^{1/2} Y^{j+1}_{j j_z}] = Y_{j j_z} \hat{n} \\
+Y^{E}_{j j_z} &= \sqrt{2j+1} \qty[ (j+1)^{1/2} Y^{j-1}_{j j_z} + j^{1/2} Y^{j+1}_{j j_z}] = \sqrt{j (j+1)} r \cdot \nabla Y_{j j_z} \\
+Y^{B}_{j j_z} &= i Y^{j}_{j j_z} = \hat{n} \times Y^{E}_{j j_z}
+\,.
+\end{align}
+
+The direction along the propagation direction \(\hat{n}\) is longitudinal, and orthogonal to it we have electric and magnetic types. 
+Under parity the electric type transforms as \((-)^{\ell}\), the magnetic type transforms as \((-)^{\ell +1}\).
+
+In terms of notation, we move from \((j, j_z)\) to \(\ell, m\). 
+
+The solution of the vector wave operator reads 
+%
+\begin{align}
+V^{i} (t, r, \theta , \varphi ) = \sum _{\ell = 0} \sum _{m=- \ell}^{\ell} R_{\ell m}(t, r) \qty(Y^{R}_{\ell m} (\theta , \varphi ))^{i}
++ \sum _{\ell} \sum _{m} E_{\ell m}(t, r) \qty(Y^{E}_{\ell m}(\theta , \varphi ))^{i} +  
+\sum _{\ell} \sum _{m} B_{\ell m} \qty(Y^{B}_{\ell m}(\theta , \varphi ))^{i} 
+\,.
+\end{align}
+
+How do we use this for electromagnetism?
+The vector potential \(A^{i}\) is described by such a vector SH decomposition, with \(R_{\ell m} = 0\), while  \(E_{\ell m}\) and \(B_{\ell m}\) are the components of the electromagnetic field. 
+
+For the spin-2 case we have harmonics going from \(Y^{j-2}\) to \(Y^{j + 2}\). 
+These can be used to make a new orthornormal basis: 
+%
+\begin{align}
+Y^{S0}_{\ell m}, 
+Y^{E1}_{\ell m}, 
+Y^{E2}_{\ell m}, 
+Y^{B1}_{\ell m}, 
+Y^{B2}_{\ell m}, 
+\,.
+\end{align}
+
+The generic 2-tensor is a combination of these, but since the graviton is massless only the two transverse ones matter --- E2 and B2. 
+
+GW have a \(h_+\) and \(h_\times \) polarization --- these are precisely related to these two fundamental transverse modes. 
+
+In alternative theories of gravity this might not be the case; there can be up to 6 multipole polarizations. 
+
+The geodesic deviation equation reads 
+%
+\begin{align}
+\ddot{x}_{i} = - R_{0i0j}x^{j} =  S_{ij} x^{i} =
+\left[\begin{array}{ccc}
+A_S + A_+ & A_\times  & A_1 \\ 
+0 & A_S - A_+ & A_2 \\ 
+0 & 0 & A_L
+\end{array}\right] x^{j}
+\,.
+\end{align}
+
+In the regular GR case we only have \(A_+\) and \(A_\times \); in an alternative metric theory of gravity the other 4 polarizations may be nonzero. 
+
+This is something which can be tested with a network of interferometers! 
+
+\end{document}

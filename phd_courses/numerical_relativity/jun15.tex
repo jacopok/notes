@@ -1,4 +1,222 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-6-15, \\ compiled \\ \today}
+
+We continue discussing the initial data problem. 
+
+\subsection{Conformal Thin Sandwich}
+
+We can give a different decomposition of \(\widetilde{A}_{ij}\): 
+%
+\begin{align}
+\mathscr{L}_m \widetilde{\gamma}_{ij} &= \partial_{t} \widetilde{\gamma}_{ij} - \mathscr{L}_\beta \widetilde{\gamma}_{ij} = \partial_{t} \widetilde{\gamma}_{ij} + \qty( \widetilde{L} \beta )^{ij} + \frac{2}{3} \widetilde{D}_{k} \beta^{k} \widetilde{\gamma}_{ij}  \\
+&= 2 \alpha \hat{A}_{ij} + \frac{2}{3} \widetilde{D}_{k} \beta^{k} \hat{\gamma}_{ij}
+\,.
+\end{align}
+
+The idea is to combine these two equations in order to express \(\hat{A}_{ij}\) as follows: 
+%
+\begin{align}
+\hat{A}_{ij} = (2\alpha )^{-1} \qty[ \widetilde{\dot{\gamma}}_{ij} + \qty(\widetilde{L} \beta )_{ij}]
+\,,
+\end{align}
+%
+and similarly for \(\overline{A}_{ij}\) if we wanted to use the conformal rescaling.
+
+This equation replaces the \(L + TT\) decomposition of \(\hat{A}_{ij}\) in CTS. 
+We can plug this into the momentum constraint \(C_i = 0\), and we find 
+%
+\begin{align}
+\widetilde{D}_{j} \qty[ \widetilde{a}^{-1} \qty(\widetilde{L} \beta )^{ij}] + \widetilde{D}_{j} \qty[\widetilde{\alpha}^{-1} \widetilde{\dot{\gamma}}^{ij}] 
+- \frac{4}{3} \psi^{6} \widetilde{D}^{i} K 
+- 16 \pi \widetilde{P}^{i} = 0
+\,.
+\end{align}
+
+This must be paired with the Lichnerowicz equation: 
+%
+\begin{align}
+\widetilde{D}^{i} \widetilde{D}_{i} \psi + \dots = 0
+\,.
+\end{align}
+
+The free data will be \(\widetilde{\gamma}_{ij}\), \(K\), \(\widetilde{\dot{\gamma}}_{ij}\), \(E\) and \(P^{i}\). 
+The constrained data can be \(\psi \) and \(\beta^{i}\). 
+
+The difference from before is that we have substituted this TT part with the time derivative of the conformal metric; in some sense specifying \(\widetilde{\dot{\gamma}}\) can help in specifying free data, for example stationary data.
+
+The term \(\widetilde{\alpha} = \psi^{-6} \alpha \) is a conformally rescaled lapse.
+The maximal slicing condition \(K=0\) means that the CTS equations decouple.
+The momentum constraint for \(P^{i}\) turns out to be \emph{linear} in this case. 
+
+York and Pfeiffer in 2003 proposed a formalism called XCTS, extended CTS, where the idea is to specify an equation for the conformal lapse \(\widetilde{\alpha}\) in order not to have to specify it.
+
+Let us consider 
+%
+\begin{align}
+\mathscr{L}_m K &= \dot{K} - \beta^{i} \widetilde{D}_{i} K   \\
+&= - \psi^{-4} \qty(\widetilde{D}_{i} \widetilde{D}^{i} K + 2 \widetilde{D}_{i} \log \psi \widetilde{D}^{i} \alpha ) 
++ \alpha \qty[ \dots]
+\,:
+\end{align}
+%
+the piece multiplied by \(\psi^{-4}\) can be written as 
+%
+\begin{align}
+\widetilde{D}_{i} \widetilde{D}^{i} K + 2 \widetilde{D}_{i} \log \psi \widetilde{D}^{i} \alpha =
+\psi^{-1} \qty[\widetilde{D}_{i} \widetilde{D}^{i} (\alpha \psi ) + \alpha \widetilde{D}^{i} \widetilde{D}_{i} \psi ]
+\,,
+\end{align}
+%
+but using the Hamiltonian constraint \(C_0 = 0\) we can write this as 
+%
+\begin{align}
+\widetilde{D}_{i} \widetilde{D}^{i} \qty(\hat{a} \psi^{7})
+- \qty(\hat{a} \psi^{7}) \qty[ \frac{\hat{K}}{8} 
++ \frac{5}{12} K^2 \psi^{4} + \frac{7}{8} \hat{A}_{ij} \hat{A}^{ij} 
+\psi^{-8} + 2 \pi \qty( E + 25 \psi^{8}) \psi^{-4}]
++ \qty(\dot{K} - \beta^{i} \widetilde{D}_{i} K ) \psi^{5} = 0
+\,.
+\end{align}
+
+The XCTS scheme uses this equation, the Lichnerowicz equation and the one previously dubbed equation 1. 
+
+Under \(K = 0\) these do not decouple; however there is a nice feature: free data includes \(\widetilde{\gamma}_{ij} \), \(\widetilde{\dot{\gamma}}\), \(K\) and \(\dot{K}\). Being able to specify these is very convenient. 
+
+There exist examples for which XCTS yields non-unique solutions. 
+Let us give a simple example: the solution of these for conformally, asymptotically flat \& zero-derivative vacuum initial data. 
+
+The equation reads 
+%
+\begin{align}
+\triangle \psi + \frac{1}{8} \hat{A}_{ij} \hat{A}^{ij} \psi^{-7} &= 0  \\
+D_j \qty[\widetilde{\alpha }^{-1} (L \beta )^{ij} ] &= 0 iln
+\triangle \qty(\widetilde{a} \psi^{7}) - \frac{7}{8} \hat{A}_{ij} \hat{A}^{ij} \widetilde{\alpha} \psi^{-7} &= 0
+\,.
+\end{align}
+
+Asymptotically flat means \(\psi = 1\), \(\beta^{i} = 0\), \(\alpha = 1\) as \(r \to \infty \). 
+Then, \(\beta^{i} = 0\) is a solution we can take, together with \(\widetilde{\dot{\gamma}} = 0\), which means \(\hat{A}^{ij} = 0\). 
+
+The equations then read 
+%
+\begin{align}
+\triangle \psi &= 0  \\
+\triangle (\hat{\alpha} \psi^{7}) &= 0
+\,. 
+\end{align}
+
+The inner boundary condition as before is a punctured space: \(\Sigma_0 = \mathbb{R}^3 \setminus 0\). 
+This yields \(\psi = 1 + M / 2r\). 
+
+The solution of the second equation is in the same form: \(\phi = \widetilde{\alpha} \psi^{7} = 1 + a / r\) for some constant \(a\). 
+Now, \(\alpha = \psi^{6} \widetilde{\alpha} = \phi \psi^{-1}\); therefore the lapse reads 
+%
+\begin{align}
+\alpha = \qty(1 + \frac{a}{r}) \qty(1 + \frac{M}{2r})^{-1} 
+= \frac{r + a}{r + M/2}
+\,.
+\end{align}
+
+What is the constant \(a\), though? Remember that we are solving this equation on the punctured \(\mathbb{R}^3\): \(a\) is fixed by the choice of the value of the lapse \(\alpha \) at a certain radius, say \(r \to 0\). 
+The simplest choice is \(\alpha_0 = +1\): this yields \(a = M/2\), which also means that the lapse is identically equal to 1. 
+
+Therefore, we have re-found Schwarzschild in isotropic coordinates and geodesic gauge, 
+%
+\begin{align}
+g = - \dd{t^2} + \psi^{4} \qty(\dd{r^2} + r^2 \dd{\Omega^2})
+\,.
+\end{align}
+
+What if we set \(\alpha_0 = -1\)? We know that \(\alpha > 0\), but let us explore this crazy condition anyways. 
+This yields 
+%
+\begin{align}
+a = - \frac{M}{2}
+\,,
+\end{align}
+%
+which implies 
+%
+\begin{align}
+\alpha = \qty(1 - \frac{M}{r}) \qty(1 + \frac{M}{2r})
+\,.
+\end{align}
+
+This is the lapse in isotropic coordinates. 
+
+We have a moment of time symmetry, but the time development of \(\Sigma_0 \) are different! 
+If we take \(\alpha_0 = +1\), \(\Sigma_0 \) evolves in a nontrivial way! 
+If, instead, \(\alpha_0 = -1\) then \(\Sigma_0 \) does not evolve, and \(\partial_{t}\) is a Killing vector. 
+
+What do we do with this negative lapse? In some points the \(\vec{n}\) vector will remain future-pointing, but we will be in a weird coordinate system such that the time starts to run backwards at small radii. 
+We have to learn to live with it.
+
+Where is XCTS useful? 
+Imagine a binary system: here there is no \(\partial_{t}\) timelike Killing vector, and despite the rotation there is no rotational Killing vector \(\partial_{\varphi }\). 
+
+Suppose we are considering a circular orbit with frequency \(\Omega \): 
+we can define 
+%
+\begin{align}
+n^a = \qty(\partial_{t})^{a} + \Omega \qty(\partial_{\varphi })^{a}
+\,,
+\end{align}
+%
+which is conserved! This is because the orbit looks like a helix in \(t, r, \varphi \) space: the direction of \(n\) is always along this helix. 
+
+This is an idealized, approximate situation, in which there is no radiation.
+
+In a comoving frame with \(\dot{\gamma}_{ij} = 0 = \dot{K}\) we can use a CTT + Bowman-Yosk puncture method.
+
+The other part of the discussion for today is about gauge conditions. 
+
+\subsection{Gauge condition}
+
+We need to make a choice of the foliation and a choice of the spatial coordinates. 
+We want our choice to 
+\begin{enumerate}
+    \item avoid singularities;
+    \item enhance symmetries;
+    \item minimize grid distortions.
+\end{enumerate}
+
+Something useful is to have our slicing be as close as possible to some Kerr coordinates. 
+If some Killing vector is present we want to stay close to it.
+
+Let us start with \textbf{slicing} (\(\alpha \)). 
+We have already discussed \emph{geodesic slicing} in which \(\alpha = 1\) and \(\beta^{i} = 0\): the coordinates follow freely-falling observers. 
+
+Here, \(n^a = (\partial_{t})^{a}\), and \(\alpha^{a} = D_a \log \alpha \). This also means that \(t = \tau \). 
+
+This is certainly not singularity-avoiding: free-falling observers fall into the singularity. Also, it does not seek symmetries, and it distorts the grid a lot. 
+
+In this gauge, the ADM equation reads 
+%
+\begin{align}
+\partial_{t} K &= K_{ij} K^{ij} + 4 \pi (E - S)  \\
+\partial_{t} \log \sqrt{ \gamma } &= - K
+\,.
+\end{align}
+
+The behaviour of this gauge can be seen from these equations if we think about gravitational collapse: 
+we can draw a \(r\) versus \(t\) diagram and see that matter eventually falls into the horizon. 
+
+\(E-S\) gets large, \(\partial_{t} K\) gets large, and \(\partial_{t} \log \sqrt{\gamma }\) gets small. The curvature increases, and the coordinate volume element decreases. These are all characteristics of the \emph{bad gauges}. 
+
+Another gauge we have seen is \textbf{maximal slicing}: \(0 = K\), and we already discussed its geometric meaning.
+
+If we look at \(0 = K = - \nabla_a n^a\), the picture we can draw suggests the motion of an incompressible fluid: the coordinate volume element cannot be squeezed. 
+
+The Maximal Slicing equation can be also written as 
+%
+\begin{align}
+D_i D^{i} \alpha = - \alpha \qty[ 4 \pi (E-S) + K_{ij} K^{ij} ] = 0
+\,,
+\end{align}
+%
+to be compared with the previous geodesic slicing ones.
+Here the acceleration of an Eulerian observer will be different from 0, and the lapse \(\alpha \) will evolve in a certain way which counteracts the effect of this volume element compression, as well as counteracting the ``singularity seeking'' property of geodesic slicing. 
+ 
 \end{document}

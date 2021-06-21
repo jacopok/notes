@@ -1,0 +1,319 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Post-Newtonian formalism}
+
+\marginpar{Monday\\ 2021-6-21, \\ compiled \\ \today}
+
+We know that the scaling of the perturbation is typically 
+%
+\begin{align}
+h \sim \frac{R}{D} \frac{GM}{c^2 R} \qty( \frac{v}{c})^2
+\,.
+\end{align}
+
+The assumptions for this linearized gravity quadrupole formula are: 
+\begin{enumerate}
+    \item fixed background;
+    \item \(v\) is small;
+    \item background and source are independent (this is true for non-selfgravitating sources).
+\end{enumerate}
+
+However: this formula tells us that the most significant sources of GW are indeed self-gravitating, and not described by it! 
+
+So, how do we move forward, and get a formalism for compactness \(GM / c^2R\) approaching \(1/2\), such as BHs or NSs?
+
+A strongly self-gravitating source will also typically have high velocity, because of the virial theorem: 
+%
+\begin{align}
+\qty( \frac{v}{c})^2 \sim \frac{2GM}{c^2 R} = \frac{R_s}{R}
+\,.
+\end{align}
+
+
+The ``background'' for a strongly self-gravitating source is dependent on the source! It is not really a background. 
+
+The idea behind the PN formalism is to iteratively solve the Einstein equations, as an expansion in powers of \(\epsilon = v/c\). 
+
+We will still refer to sources with \emph{compact support} \(r<R\), and assume that \(T^{00} \) is the dominant component: \(\abs{T^{00} / T^{0i}} = \order{\epsilon }\) and \(\abs{T^{00 } / T^{ij}} = \order{\epsilon^2}\). 
+
+The expansion to order \(\order{\epsilon^{2n}} = \order{ (v/c)^{2n}}\) is called the \(n\)-PN order expansion.
+
+So we can talk about 1PN, 1.5 PN, 2.5PN and so on.
+
+A \emph{historical remark}: the PN formalism started with Einstein; Landau and Lifshitz already included it in their book, also De Sitter and Chandrasekhar worked on it.
+
+Einsten-Infeld-Hoffmann developed the 1PN Lagrangian for the motion of \(N\) particles. 
+Peter and Hathews (1963). 
+
+The formalism was really nailed down systematically by Blanchet and Damour. 
+Also, Will and Wisemann worked on it in the 90s. 
+
+Naîvely, we'd work as such: calculate the motion to \(\epsilon^n\), and then use linear theory to calculate the GWs emitted.
+This is wrong: the background is nontrivial, there is a complicated dependence through the Einstein equations. 
+
+WE emission subtracts energy to the motion, and GWs at a certain PN order are sources of GW at higher orders through the Isaacson tensor. 
+
+The equation \(\dv*{E}{t} = P_{gw}\) is an ansatz: this is used but it not guaranteed to hold at each PN order. 
+
+Let us start with the metric at 1PN order: 
+%
+\begin{align}
+g_{00} &= - 1 - 2\phi = - 1 + \frac{2 U}{c^2}  \\
+g_{0i} &= 0  \\
+g_{ij} &= \delta_{ij}
+\,,
+\end{align}
+%
+where \(U\) is the solution to the Newtonian Poisson equation: 
+%
+\begin{align}
+U &= \frac{G}{c^2} \int \dd[3]{y} \frac{T^{00} (y)}{\abs{x-y}}
+\,.
+\end{align}
+
+Now, we have seen that different components of \(T_{\mu \nu }\) have different orders of \(c\), so different metric coefficients must be expanded up to different powers, determined by how they appear in the EFE. 
+
+If \(g_{00} \) is expanded to order \(\epsilon^n\), then \(g_{0i} \) must be expanded to order \(\epsilon^{n-1}\) because it has a power \(\epsilon \) intrinsically in it, and similarly \(g_{ij} \) must be expanded to the power \(\epsilon^{n-2}\).
+
+\todo[inline]{Understand this better. Look at Maggiore. }
+
+In terms of time reversal symmetry, \(g_{00}\) and \(g_{ij}\) are even while \(g_{0i}\) are odd. 
+
+\begin{figure}
+\begin{tabular}{c|ccc}
+Component & Newton (0PN) & 1PN & 2PN \\
+\hline
+\(g_{00} \) & \(-1 + g_{00}^{(2)}\) & \(g_{00}^{(4)}\) & \(g_{00}^{(6)}\) \\
+\(g_{0i}\) & 0 & \(g_{0i}^{(3)}\) & \(g_{0i}^{(5)}\) \\
+\(g_{ij}\) & \(\delta_{ij}\) & \(g_{ij}^{(2)}\) & \(g_{ij}^{(4)}\) 
+\end{tabular}
+\label{tab:PN-orders}
+\caption{}
+\end{figure}
+
+This is correct up to when we must include radiation reaction, but it turns out that that comes in at 2.5PN order. 
+
+So, in order to write the metric at 1PN order, we can match the EFE at each order taking into account the power counting. 
+
+Derivatives have orders \(\partial_{t} = \order{v} \partial_{i}\), while 
+%
+\begin{align}
+- \frac{1}{c^2} \partial_{tt} + \triangle = \qty[1 + \order{\epsilon }] \triangle  
+\,,
+\end{align}
+%
+therefore the retardation effects are ``higher order''. 
+
+Therefore, the lowest PN solutions are typically given in terms of \emph{instantaneous potentials} (solution of Poisson equations).
+
+This is expected: the PN expansion reads 
+%
+\begin{align}
+F(n) = F( t - \frac{r}{c}) = F(t) - \frac{r}{c} \dot{F} (t) + \frac{r^2}{2 c^2} \ddot{F}( t) + \dots 
+\,.
+\end{align}
+
+In Fourier terms: 
+%
+\begin{align}
+\widetilde{F} &\approx \widetilde{F} \qty(1 - \frac{r \omega }{c} + \frac{r^2\omega^2}{c^2} + \dots)  \\
+&= \widetilde{F} \qty(1 - \frac{r}{\lambda } - \frac{r^2}{2 \lambda^2})
+\,.
+\end{align}
+%
+\todo[inline]{the lambdas are barred --- characteristic length.}
+
+This means that this is also an expansion for nearby fields: the expansion is in small velocities \(\epsilon = v/c \ll 1\), as well as in the \emph{near-zone} \(r / \lambda  \ll 1\). 
+
+Therefore, the PN expansion is \textbf{not valid to compute GWs far away from the source}! 
+
+Let us define a \textbf{near zone} \(r \ll L\), but \(L \gg R\), such that \(r / \lambda \ll 1\), such that the aforementioned expansion makes sense. 
+
+We also have a \textbf{far zone} \(R < r < \infty \), and an \textbf{overlap zone} \(R < r < L\) in which the near and far zones overlap. 
+
+Back to the 1PN metric: we impose Harmonic gauge, so that \(\partial_{\mu } \qty(\sqrt{-g} g^{\mu \nu }) = 0\), and we start from the 0PN equation \(\triangle U = - (8 \pi G/c^{4}) T^{00}_{(0)}\). 
+Then, to 1PN order we get: 
+%
+\begin{align}
+\triangle g_{ij}^{(2)} &= - \frac{8\pi G}{c^{4}} \delta_{ij} T^{00}_{(0)}  \\
+\triangle g_{0i}^{(3)} &= \frac{16 \pi G}{c^{4}} T^{0i}_{(1)}  \\
+\triangle g_{00}^{(4)} &= \dots
+\,,
+\end{align}
+%
+so, assuming that \(T^{\mu \nu }\) is known, these can be solved in terms of Green's functions. 
+After all the calculations one finds 
+%
+\begin{align}
+\square_\eta V &= - \frac{4 \pi G}{c^{4}} \underbrace{\qty(T^{00} + T^{ii})}_{\mathclap{\text{active gravitational mass density}}}  \\
+\square_\eta V^{i} &= \dots
+\,,
+\end{align}
+%
+where we have  the 1PN potential \(V\) which defines the metric: 
+%
+\begin{align}
+g_{00} &= -1 + \frac{2U}{c^2} + \frac{2 V^2}{c^{4}}  \\
+g_{0i} &= - \frac{4 V_{i}}{c^3}  \\
+g_{ij} &= \delta_{ij} \qty(1 + \frac{2 V}{c^2})
+\,.
+\end{align}
+
+The Einstein-Infeld-Hoffmann Lagrangian is the \(N\)-particle one for this metric: the corresponding stress-energy tensor is
+%
+\begin{align}
+T^{\mu \nu } = \frac{1}{\sqrt{-g}} \sum _a \dv{\tau_a}{t} m_a \dv{x_a^{\mu }}{t} \dv{x^{\nu }_a}{t} \delta (x - x_a)
+\,.
+\end{align}
+
+The action reads 
+%
+\begin{align}
+S = - mc^2 \int \dd{t} \sqrt{- g_{00} -2 g_{0i} \frac{v^{i}}{c} - g_{ij} \frac{v^{i} v^{j}}{c^2}} 
+\,.
+\end{align}
+
+This can be written as \(L= L _{\text{Newt}} + L_{1PN}\). 
+
+If one takes \(N = 1\) they get the two-body problem, the EOM for a relativistic binary at 1PN order. 
+This solution can be mapped to a Newtonian problem and solved: this has been done by Damour and Deruelle in 86, which is important since it was applied to the Hulse-Taylor pulsar: the equation they found was 
+%
+\begin{align}
+\expval{\dot{\omega}} = \num{2.11353} \qty(\frac{m_1 + m_2 }{M_{\odot}})^{2/3} \SI{}{deg / yr}
+\,.
+\end{align}
+
+The orbital decay has been observed very accurately, which can be a way to determine the binary mass. 
+
+What are the difficulties? We get Poisson equations in the form 
+%
+\begin{align}
+\triangle g_{\mu \nu }^{(n)} = \text{matter source} + \text{metric source } g_{\mu \nu }^{(n-1)}
+\,.
+\end{align}
+
+The second term does not have compact support! The Poisson integrals used so far are not good solutions. 
+We need different boundary conditions. 
+
+For example, consider \(\triangle u = \rho = \const\). The Poisson integral is not a solution since \(u \neq 0\) at infinity: it diverges.
+
+However, a solution exists: \(u(r) = - (1/6) \rho r^2\). We need other formal solutions to the Poisson equation. 
+
+How is this solved? We do it by inverting the Poisson equation with boundary conditions by a suitable procedure which involves regularization of the divergences and analytic continuation. 
+We will not explore this in detail, but it is good to know that the problem exists. 
+
+Another difficulty is the following: 
+the PN expansion of the metric potential is valid in the near zone but it blows up for large \(r \to \infty \).
+It is in the form 
+%
+\begin{align}
+F (\epsilon , r) = \sum _{n} c_n (r) \epsilon^n
+\,.
+\end{align}
+
+This is an expansion with two scales, and the series is \emph{not} uniformly convergent. This is analogous to perturbation theory in quantum mechanics: asymptotic series. 
+
+The residuals eventually blow up, but there is an optimum \(n\) for the expansion. 
+The solution is to perform a post-Minkowskian expansion in the far zone: 
+%
+\begin{align}
+F = \sum _{n} G^{n} F_n
+\,,
+\end{align}
+%
+and match the PN expansion in the near zone. 
+
+Also, there is the problem of \textbf{backreaction}, GW influence on the motion. 
+This breaks the power-counting. 
+
+When does it enter the game? We know that 
+%
+\begin{align}
+E = K + V \approx - \frac{V}{2} + V = \frac{V}{2} = - K = - \frac{M}{2} v^2
+\,,
+\end{align}
+%
+therefore \(\dot{E} \sim - M v \dot{v}\). 
+
+Further, we know that 
+%
+\begin{align}
+P_{gw} = \dot{E}_{gw} \approx \frac{GM^2}{c^{5}} \frac{v^{6}}{r}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\dot{v} \approx \frac{GM}{r^2} \qty( \frac{v}{c} )^{5}
+\,,
+\end{align}
+%
+which gives the correct order of 5, meaning 2.5PN. 
+
+What are the \textbf{Relaxed EFE}? 
+We define 
+%
+\begin{align}
+\mathfrak{h}^{\mu \nu  } = \sqrt{-g } g^{\mu \nu } -\eta^{\mu \nu }
+\,,
+\end{align}
+%
+a  new field in the full theory. 
+We then rewrite the EFE in terms of it, using the gauge \(\partial_{\mu } \mathfrak{h}^{\mu \nu} = 0\) (equivalent to harmonic gauge). 
+
+The EFE then read 
+%
+\begin{align}
+\square \mathfrak{h}^{\mu \nu } &= \frac{16 \pi G}{c^{4}} \tau^{\mu \nu }  \\
+&= \frac{16 \pi G}{c^{4}} \qty[-g T^{\mu \nu } + \tau^{\mu \nu }_{u} + \tau^{\mu  \nu }[ \mathfrak{h}^{\alpha \beta }]]
+\,,
+\end{align}
+%
+where \(\tau_u \) is the Landau-Liftschitz pseudotensor. 
+These are formally similar to the linearized equations, and in the weak-field limit \(\mathfrak{h}^{\mu \nu } = - \overline{h}^{\mu \nu }\). 
+
+All the nonlinearity is still there though, this makes no approximations: they are just made to look that way. 
+
+This \(\tau \) satisfies \(\partial_{\mu } \tau^{\mu \nu } = 0\) (notice the flat derivative). 
+Also, these are called ``relaxed'' because a solution of the relaxed equations alone does not imply the conservation of \(\tau^{\mu \nu }\): one needs to add the gauge. 
+
+The formal solution of these REFE is 
+%
+\begin{align}
+\mathfrak{h}^{\mu \nu } = - \frac{4G}{c^2} \int \dd[3]{y} 
+\frac{\tau^{\mu \nu }(t - \abs{x-y} / c, y)}{\abs{x-y}}
+\,,
+\end{align}
+%
+but we do not truly know \(\tau \); however we can solve this iteratively. 
+
+We start by finding a solution for the REFE in the far region with the multipolar formula: 
+%
+\begin{align}
+\mathfrak{h}^{\mu \nu } = \sum _{n} \mathfrak{h}_{(n)}^{\mu \nu } G^{n}
+\,,
+\end{align}
+%
+there for \(r > R\) we have the unspecified source multipole moments \(\mathfrak{h}^{\mu \nu }_{(n)}\). 
+
+Then we find a solution for the REFE in the near zone: 
+%
+\begin{align}
+\mathfrak{h}^{\mu \nu } = \sum _{n } \frac{1}{c^{n}} \mathfrak{h}^{\mu \nu }_{(n)}
+\,.
+\end{align}
+
+Here, for \(r < L\), we have \(^{(n)} \mathfrak{h}^{\mu \nu }\), multipoles of \(\tau^{\mu \nu }\). 
+We match the two in the overlapping zone to determine \(\tau\). 
+
+Finally, we compute the TT solution far away, with a gauge transformation from harmonic to radiative coordinates: from \((I_L, J_L, W_L, \dots)\) to \((U_L,V_L)\), the radiative multipoles of \(h_{ij}^{TT}\).
+
+The good thing is that this can all be done with a finite amount of terms, however in general one does not know how far the expansion can be pushed.  
+
+\todo[inline]{What does the overlap region look like?}
+
+
+
+\end{document}

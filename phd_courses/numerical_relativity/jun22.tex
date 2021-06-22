@@ -1,4 +1,312 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Gauge conditions}
+
+\marginpar{Tuesday\\ 2021-6-22, \\ compiled \\ \today}
+
+So far we have only discussed maximal slicing, \(k = - \nabla_a n^a = 0\). 
+
+Now let us see Schwarzschild foliations: in \((t, R)\) Schwarzschild coordinates we can consider \(t= \const\) hypersurfaces. 
+
+For \(R > 2M\) time \(t\) is a temporal coordinate. Here, these constant-\(t\) hypersurfaces satisfy \(k_{ab} = 0\), so we also have \(k=0\). 
+
+If we draw a Kruskal \(U\), \(V\) diagram the horizon \(R = 2M\) is a diagonal line \(U=V\), while the singularity is a hyperbola. 
+
+This slicing is therefore \emph{maximal}, and \emph{not horizon penetrating}. 
+
+If we use the isotropic radius \(r\) as a coordinate, the lapse reads 
+%
+\begin{align}
+\alpha = \qty(1 - \frac{M}{2r}) \qty(1 + \frac{M}{2r})^{-1}
+\,.
+\end{align}
+
+\(\alpha \) is antisymetric, and negative in the III Kruskal region. 
+
+In the region \(R < 2M\), the foliation is given by \(R = \const\) because there \(R\) is a timelike coordinate. 
+
+Now, \(\alpha = (2M / R - 1)^{-1}\), while the metric determinant  is 
+%
+\begin{align}
+\gamma = R^{4} \sin^2 \theta \qty( \frac{2M}{R } - 1)
+\,,
+\end{align}
+%
+and we can use 
+%
+\begin{align}
+k = - \frac{1}{\alpha } \mathscr{L}_m \log \sqrt{ \gamma } 
+= \frac{3M - 2R}{R^2 \qty( 2M / R - 1)^{1/2}}
+\,,
+\end{align}
+%
+therefore the \(R = 3M/2\) slice is maximal. 
+
+It can be proven that this is a limit slice of a certain maximal foliation of stuff which looks like hyperbolas in a Kruskal diagram, which is maximal and symmetric with respect to \(R = 2M\). 
+
+These correspond to solutions of the maximal equation the lapse: 
+%
+\begin{align}
+D_i D^{i}  \alpha - \alpha \qty()\dots = 0
+\,
+\end{align}
+%
+with boundary conditions such that \(\alpha \to 1\) at \(\iota_0 \), and \(\alpha (2M) = 0\) (case 1, a Dirichlet boundary condition) or \(\partial_{R} \alpha (3M/2) = 0\) (case 2, a Neumann boundary condition). 
+
+Different inner BCs determine different foliations and different properties. 
+Both of the foliations we discussed are singularity-avoiding. 
+
+In Eddington-Finkelstein (Kerr-Schild) coordinates, we can set 
+%
+\begin{align}
+t_{KS} = t + 2M \log \qty( \frac{r}{2M} - 1)
+\,,
+\end{align}
+%
+which yields a non-singularity avoiding foliation. 
+How do we construct, in general, maximal foliations of Schwarzschild?
+
+We consider the transformation 
+%
+\begin{align}
+t \to \widetilde{t} = t + h( R)
+\,,
+\end{align}
+%
+where \(h(R)\) is a \emph{height function}, which (because of \(0 = k\)) satisfies the equation 
+%
+\begin{align}
+h'(R) = \frac{c^2}{A^2(R) \qty[ A(R) R^{4} + c^2s]}
+\,,
+\end{align}
+%
+where \(A(R) = (1- 2M /R)\) and \(c\) is a constant of integration. 
+
+The metric is given in terms of 
+%
+\begin{align}
+\alpha = f(R) &= 1 + \frac{2M}{R} + \frac{c^2}{R^{4}}
+\,,
+\end{align}
+%
+while the shift is 
+%
+\begin{align}
+\beta^{r} = \frac{c}{R^2} \sqrt{f(R)} 
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\gamma_{ij} \dd{x^{i}} \dd{x^{j}} = f^{-1} (R) \dd{R^2} + R^2 \dd{\Omega }
+\,,
+\end{align}
+%
+which yields a family of foliations for different choices of \(c\): \(c=0\) is standard Schwarszchild spacetime, but other choices are possible, and \(c = (3/4) \sqrt{3} M^2\).
+
+The main property of maximal slicing, which is quite general, is that the lapse \(\alpha \) goes to zero in the regions of highest curvature. 
+
+This is called ``lapse freezing'' or ``lapse collapse'', and it is a generic property indicating the fact that the gauge is singularity-avoiding. 
+
+This is defined by \(\square x^{\mu }=  0\) (Harmonic  gauge), so for \(\mu = 0\) we have \(\square t = 0\). 
+
+This means 
+%
+\begin{align}
+0 = \square t = \sqrt{-g} \partial_{\mu } \qty(\sqrt{-g} g^{\mu \nu } \partial_{\nu } t) = \sqrt{-g} \partial_{\mu } \qty(\sqrt{-g} g^{\mu 0})
+\,.
+\end{align}
+%
+
+This means that 
+%
+\begin{align}
+0 = \partial_{t} \qty(\alpha \sqrt{\gamma } g^{00}) + \partial_{i} \qty(\alpha \sqrt{\gamma } g^{0i})
+\,,
+\end{align}
+%
+but \(g^{00} = \alpha^{-2}\) and \(g^{0i}= \beta^{i} / \alpha^2 \). 
+
+The equation then reads 
+%
+\begin{align}
+0 = \partial_{t} \alpha - \beta^{i} \partial_{i} \alpha  - \alpha 
+\underbrace{\qty[ \frac{1}{\sqrt{\gamma }} \partial_{t} \sqrt{\gamma } - \frac{1}{\sqrt{\gamma }} \partial_{i} \qty(\sqrt{\gamma } \beta^{i})]}_{- \alpha k}
+\,,
+\end{align}
+%
+so the equation for \(\alpha \) reads \(\mathscr{L}_m \alpha = - \alpha^2 k\).
+
+If we set \(\beta^{i} = 0\), we get \(\alpha = C(x^{i}) \sqrt{\gamma }\).
+In the case of Schwarzschild, we have \(\partial_{t} \alpha = 0\), \(\beta^{i} = 0\) and \(k = 0\). 
+
+Constant-\(t\) slices of Schwarzschild are harmonic slices. 
+
+The Bona-Masso family, also known as \(1 + \log\) slicing, is determined by 
+%
+\begin{align}
+\mathscr{L}_m \alpha = - \alpha^2 f(\alpha ) k
+\,.
+\end{align}
+
+We can fall back to geodesic slicing with \(f(\alpha ) = 0\), or harmonic slicing with \(f(\alpha ) = 1\), or we can set \(f(\alpha )= 2/\alpha \): this is \(1+ \log\) slicing. 
+
+If we set \(\beta^{i} = 0\), we have \(\partial_{t} \alpha = \partial_{t}  \log \gamma \), a solution to which is  \(\alpha = 1 + \log \gamma \).
+
+For Schwarzschild, this is the Height function method: 
+%
+\begin{align}
+\alpha^2 = 1 - \frac{2M}{R} + \frac{c^2}{R^{4} } e^{\alpha }
+\,,
+\end{align}
+%
+which is very close to maximal slicing; however this is now an implicit equation with this new exponential term. 
+
+These are called ``trumpet slices'': in an embedding diagram they look like a wormhole, however they end at \(R = 3M/2\). 
+
+This \(1 + \log\) slicing is what is typically used today to evolve astrophysical black holes. 
+
+What about spatial gauge and the choice of shift \(\beta^{i}\)? 
+
+One item in our wishlist was ``minimal distortion'': we can quantify it through a distortion tensor, 
+%
+\begin{align}
+Q_{ij} = \partial_{t} \gamma_{ij} = - 2 \alpha k_{ij} + \mathscr{L}_\beta \gamma_{ij}
+\,.
+\end{align}
+
+From this tensor we can consider 
+%
+\begin{align}
+\Sigma_{ij} = Q_{ij} - \frac{1}{3} Q \gamma_{ij} = \dots = - 2 \alpha A_{ij} + (L \beta )_{ij} = \psi^{4} \partial_{t} \widetilde{\gamma}_{ij}
+\,.
+\end{align}
+
+We can use this to define a functional: 
+%
+\begin{align}
+I[\beta^{i}] &= \int_{\Sigma _t} \Sigma_{ij} \Sigma^{ij} \sqrt{\gamma } \dd[3]{x} =  \\
+&= \int_{\Sigma _t} \qty[ 4 \alpha^2 A_{ij}A^{ij} - 4 \alpha A_{ij} (L \beta )^{ij} + (L \beta )_{ij} (L \beta )^{ij} ] \sqrt{\gamma } \dd[3]{x}
+\,,
+\end{align}
+%
+which we can extremize: we set \(0 = \delta I [\beta^{i}]\), which yields 
+%
+\begin{align}
+\delta I [\beta^{i}] &= \int_{\Sigma _t} 2 \delta \qty[ \Sigma_{ij} (L \beta )^{ij}] \sqrt{\gamma } \dd[3]{x}  \\
+&= 2 \int_{\Sigma _t} \Sigma_{ij} \qty(D^{i} \delta \beta^{j} + D^{j} \delta \beta^{i} - \underbrace{\frac{2}{3} D_k \delta \beta^{k} \gamma^{ij}}_{\Sigma = 0}) \sqrt{\gamma } \dd[3]{x}  \\
+&= 4 \int_{\Sigma _t} \Sigma_{ij} D^{i} \delta \beta^{j} \sqrt{\gamma } \dd[3]{x}  \\
+&= 4 \int_{\Sigma _t} \qty[ D^{i} \qty(\Sigma_{ij} \delta \beta^{j}) - D^{i} \Sigma_{ij} \delta \beta^{j} ] \sqrt{\gamma } \dd[3]{x}  \\
+&= \underbrace{4 \int_{\partial \Sigma _t} \Sigma_{ij} \delta \beta^{j} \sqrt{\gamma } \dd[3]{x} }_{= 0, \eval{\delta \beta^{j}}_{ \partial} = 0} - 4 
+\int_{\Sigma _t} D^{i} \Sigma_{ij} \delta \beta^{j} \sqrt{\gamma } \dd[3]{x} = 0 
+\,,
+\end{align}
+%
+therefore our condition, by the usual lemma of funcitonal variational calculus, is \(D^{i} \Sigma_{ij} = 0\). 
+In terms of \(\beta^{i}\), this defines what is knowns as \emph{minimal distortion shift}: 
+%
+\begin{align}
+\triangle_L \beta^{i} = 2 D_j \qty(\alpha A^{ij}) - 16 \pi \alpha P^{i } + \frac{4}{3} \alpha D^{i } k + 2 A^{ij} D_j \alpha 
+\,.
+\end{align}
+
+This gauge, as written, is not really used, however it is the starting point for other ones which better achieve the distortion minimization. 
+
+An observation: both \(Q_{ij} \) and \(\Sigma_{ij}\) are 0 if \(\partial_{t}\) is a Killing vector, so in that case minimal distortion is satisfied automatically for stationary spacetimes in adapted coordinates.
+
+How do we use this then? 
+We can use approximate minimal distortion equations: 
+%
+\begin{align}
+0 = D^{i} \Sigma_{ij} = D^{i} \qty(\psi^{4} \partial_{t} \widetilde{\gamma}_{ij}) \approx \widetilde{D}^{i} \qty(\partial_{t} \widetilde{\gamma}_{ij})
+\,.
+\end{align}
+%
+this elliptic equation for \(\beta^{i}\) is easier to implement numerically. 
+
+This is called \(\Gamma \) freezing: we can write the equation as 
+%
+\begin{align}
+0 = D_j \dot{\widetilde{\gamma}} = \partial_{t} D_j  \widetilde{\gamma}_{ij} = \dots = - \partial_{t} \widetilde{\Gamma}^{i}
+\,,
+\end{align}
+%
+(see equation 9.32 in the notes), where 
+%
+\begin{align}
+\widetilde{\Gamma}^{i} = - D_j \widetilde{\Gamma}^{ij} = \qty(\widetilde{\Gamma}^{i}_{jk} - F^{i}_{jk}) \widetilde{\gamma}^{jk}
+\,.
+\end{align}
+
+We get an elliptic equation for \(\beta^{i}\), which is written as 
+%
+\begin{align}
+\widetilde{\gamma}^{jk} D_j D_k \beta^{i} + \dots = 0
+\,,
+\end{align}
+%
+which is nice because it is written in terms of partial derivatives.
+
+Alcubierre and colleagues have proposed a \textbf{parabolic \(\Gamma \) driver}: the idea is to write \emph{evolution} equations for \(\beta^{i}\), such that the solutions ``asymptote'' to the ``equilibrium'' solution of the \(\Gamma \)-freezing.
+
+This equation will look like  
+%
+\begin{align}
+\partial_{t} \beta^{i} = k \partial_{t} \widetilde{\Gamma}^{i} \approx k \qty( \widetilde{\gamma}^{jk} D_j D_k \beta^{i} + \dots)
+\,,
+\end{align}
+%
+a parabolic equation. 
+
+For \(t \to \infty \) this asymptotes to the \(\Gamma \)-freezing solution, however parabolic PDEs are known to be \emph{stiff}, which severely constrains the number of timesteps which can be taken. 
+
+Therefore, people have also considered \emph{hyperbolic drivers}: 
+%
+\begin{align}
+\partial_{tt} \beta^{i} &= k \partial_{t} \widetilde{\Gamma}^{i} - \qty(\eta \partial_{t} \log k) \partial_{t} \beta^{i}   \\
+&= k \qty(\widetilde{\gamma}^{jk} \partial_{j} \partial_{k} \beta^{i} + \dots ) - \qty(\eta - \partial_{t} \log k) \partial_{t} \beta^{i}
+\,,
+\end{align}
+%
+and we can discard some term to get a damped wave equation:
+%
+\begin{align}
+\partial_{tt} \beta^{i} = k \widetilde{\gamma}^{ij} \partial_{j} \partial_{k} \beta^{i} - \eta \partial_{t} \beta^{i} 
+\,.
+\end{align}
+
+This equation transports things and damps them. 
+
+A simpler first-order version is written as an advection-like equation:
+%
+\begin{align}
+\partial_{t} \beta^{i} = \mu _s \widetilde{\Gamma}^{i} - \eta \beta^{i} + \beta^{j} \partial_{j} \beta^{i}
+\,,
+\end{align}
+%
+which has speed \(\mu _s\) (which can be chosen freely) and a damping term \(\eta > 0\), which can be also chosen. 
+
+These equations should be compared to the hyperbolic \(\Gamma \)-driver with the harmonic shift equation. 
+
+In summary: 
+we have seen, for \(\alpha \):
+\begin{enumerate}
+    \item geodesic gauge \(\alpha = 1\), \(\beta^{i} = 0\);
+    \item maximal slicing \(k = 0\);
+    \item harmonic slicing \(\square t = 0\);
+    \item the Bona-Masso family, which includes harmonic slicing as well as \(1+ \log\) slicing;
+\end{enumerate}
+
+and for spatial slicing 
+\begin{enumerate}
+    \item minimal distortion;
+    \item \(\Gamma \)-drivers.
+\end{enumerate}
+
+In geodesic gauge, the simulation crashes at \(t = \pi \) for \(M = 1\): this is because that is the point at which the observer falls into the singularity. 
+
+With \(1 + \log\) slicing as well as a \(\Gamma \) driver we reach a sort of stationary configuration and the simulation does not crash. 
+
 \end{document}

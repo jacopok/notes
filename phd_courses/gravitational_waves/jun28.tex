@@ -1,0 +1,190 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Perturbations and stability}
+
+\marginpar{Monday\\ 2021-6-28, \\ compiled \\ \today}
+
+For the next two-three weeks the lessons will be held by Matteo.
+Then, there will be a final lesson on the EOB framework. 
+
+The perturbations we will discuss today could be BH perturbations (Schwarzschild), but they can apply just as well to any spherically symmetric spacetimes, such as perturbations of a spherically symmetric star.  
+
+This framework allows us to discuss the stability of relativistic astrophysical objects. 
+Regge and Wheeler discussed this in 1957.
+
+What we end up us the \textbf{Regge-Wheeler-Zerilli} equation:
+%
+\begin{align}
+- \Psi_{tt}^{\ell m} + \Psi^{\ell m}_{r_* r_*} - V_\ell (r_* (r)) \Psi^{\ell m} = S_{\ell m}
+\,,
+\end{align}
+%
+where \(r_* = r + R_S \log (r / R_s - 1)\) is the \emph{tortoise coordinate}, which maps \(r \in (2M, \infty )\) to \(r_* \in \mathbb{R}\).
+
+The function \(\Psi_{\ell m} (t, r_*)\) is called the RWZ master function. 
+The equation is a wave equation with a potential \(V_\ell\) which is determined by the background metric; also there are source terms \(S_{\ell m}\) which correspond to the perturbed stress-energy tensor \(\delta T_{\mu \nu }\).
+
+The gravitational waves can be recovered as 
+%
+\begin{align}
+h_{+} + i h_{\times} = \frac{G}{c^{4} r} 
+\sum _{\ell=2} \sum _{\abs{m} \leq \ell} \sqrt{\frac{(\ell+2)!}{(\ell-2)!}} {}^{(-2)} Y_{\ell m} (\theta , \varphi ) 
+\qty(\Psi^{(e)}_{\ell m} + i\Psi^{(o)}_{\ell m}) + \order{1/r^2}
+\,.
+\end{align}
+
+The harmonics \({}^{(-2)}Y_{\ell m}\) appearing here are spin-weighted spherical harmonics. 
+
+If there is no source, this is very similar to a Schroedinger equation. 
+Therefore, this problem can be considered like a quantum-mechanical scattering one. 
+    
+Starting from an incoming wave, some of it will be transmitted and some will be reflected. 
+
+The reflected wave has a characteristic ``damped oscillatory'' nature. 
+These are \emph{quasi}-normal modes since they are complex. 
+
+Davis, Ruffinin and Tiomno in 1971 calculated the gravitational radiation emission from a particle falling radially into a Schwarzschild black hole. 
+
+In this case as well looking at \(\Psi_{20}\) we have a precursor, then a burst, and a ringdown. 
+
+The signal from the collapse of a rotating Neutron Star is also similar! 
+
+The merger itself cannot be predicted by PostNewtonian theory, even qualitatively! 
+
+What is the origin of these quasinormal modes? 
+We start with a spherically symmetric manifold with a metric \(g^{(0)}_{\alpha \beta }\), such that \(\mathcal{M} = M^2 \times S^2\), where \(M\) is Lorentzian and 2D while \(S^{2}\) is the 2-sphere.
+An example for \(g_{\alpha \beta }^{(0)}\) is Schwarzschild. On top of this metric we consider a perturbation \(h_{\alpha \beta }\), such that 
+%
+\begin{align}
+g_{\alpha \beta }= g_{\alpha \beta }^{(0)} + h_{\mu \nu }
+\,.
+\end{align}
+
+We can then decompose the perturbation into scalar, vector and tensor spherical harmonics: \(Y_{\ell m}\), \(Z^{\ell m}_{a}\) and \(Z^{\ell m}_{a b}\), and further we can decompose it by even (electric-type) and odd (magnetic-type) parity, so that the two components in 
+%
+\begin{align}
+h_{ \alpha \beta } = h_{\alpha \beta }^{(e)} + h_{\alpha \beta }^{(o)}
+\,
+\end{align}
+%
+decouple. 
+
+The even part decomposition reads 
+%
+\begin{align}
+h_{\mu \nu }^{(e)} = \left[\begin{array}{ccc}
+H_0 Y_{\ell m} & H_1 Y_{\ell m} & h_{A}^{(e)} Z^{\ell m}_{a} \\ 
+ & H_2 Y_{\ell m} & 0 \\ 
+ &  & r^2 K Y_{\ell m} \Omega_{ab} + r^2 G Z^{\ell m}_{ab}
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\Omega_{ab}\) is the \(S^2\) metric, and the metric coefficients \(H_i\), \(K\), \(G\) should also carry multipolar indices and a sum over \(\ell\), \(m\) is implied. 
+The index \(A\) runs over \(0, 1\) while \(a\) runs over \(2, 3\). 
+
+From these metric components we can calculate gauge invariant quantities which do not change under infinitesimal coordinate transformations, among which lie the master functions. 
+
+For each multipole we then have a RW equation 
+%
+\begin{align}
+(\partial_{tt} - \partial_{xx}) \Psi + V_\ell = S_{\ell m}
+\,,
+\end{align}
+%
+where \(x\) is the tortoise coordinate corresponding to \(r\). 
+
+A small exercise we can do if we are surprised by the RW equation: consider the equation \(\square_{g^{(0)}} \phi = 0\) for some scalar field \(\phi \) on the Schwarzschild metric \(g^{(0)}\).
+This can be written as 
+%
+\begin{align}
+0 = \frac{1}{\sqrt{-g^{(0)}}} \partial_{\mu } 
+\qty( \sqrt{-g^{(0)}} g^{(0), \mu \nu } \partial_{\nu } \phi  )
+\,,
+\end{align}
+%
+which is a PDE for \(\phi \), since \(g^{(0)}\) is known. 
+From this we can then obtain a 3D wave equation for the scalar field. 
+Then, we can expand into spherical harmonics: 
+%
+\begin{align}
+\phi (t, r, \theta , \varphi ) = \sum _{\ell=0} \sum _{\abs{m} \leq m} \frac{1}{r} \phi_{\ell m} (t, r) Y_{\ell m} (\theta , \varphi )
+\,.
+\end{align}
+%
+
+If we substitute this expansion in the 3D wave equation we get a RWZ-like equation: 
+%
+\begin{align}
+\partial_{tt} \phi_{\ell m } - \partial_{r_* r_*} \phi_{\ell m} + V_\ell \phi_{\ell m} = 0 
+\,,
+\end{align}
+%
+in which the only difference is that \(V_\ell\) here is the effective potential for a scalar field. 
+This is a toy model for the linearized Einstein equations. 
+
+Regge and Wheeler only derived the odd-parity equations, the even-parity were done later as they are more complicated.
+
+We can transform the metric into Cartesian components: 
+%
+\begin{align}
+h_{\hat{\mu} \hat{\nu}} e^{\mu }_{\hat{\mu}} e^{\nu }_{\hat{\nu}} h_{\mu \nu }  
+\,,
+\end{align}
+%
+with \(e = \diag{e^{a}, e^{-b}, r^{-1}, (r \sin \theta )^{-1} }\).
+
+We can look at the large \(r\) behaviour of the metric coefficients, and see that they do not depend on \(r\) there. 
+
+We can also identify 
+%
+\begin{align}
+\underbrace{\Psi_{\ell m}^{(e)} + i \Psi_{\ell m}^{(o)}}_{r h_{\ell m}} \propto u_{\ell m} - \frac{i}{c} v_{\ell m}
+\,.
+\end{align}
+
+This admits an expansion in Post-Newtonian theory. 
+
+\subsection{The RWZ problem in vacuo}
+
+How do we set this up as an initial-boundary value problem? 
+The potential is zero at radial infinity, therefore there the asymptotic solutions must look like the solutions to \(\Psi_{tt} - \Psi_{xx} = 0\). 
+
+The equation can then be cast into the form 
+%
+\begin{align}
+\dv[2]{\widetilde{\Psi}}{x} + \qty[\omega^2 - V_\ell] \widetilde{\Psi} = 0
+\,,
+\end{align}
+%
+but there are no ``bound states'' and the spectrum is continuous: no signals can come out of the horizon, so if the boundary condition at \(x \to - \infty\) is an ingoing wave then the outgoing wave will look like \(\widetilde{\Psi} \sim e^{i \omega x}\) as \(x \to \infty \).
+
+What we find are \emph{damped modes}. 
+
+The solution can be calculated through a Laplace transform. 
+The equation can be restated as 
+%
+\begin{align}
+\phi_{xx} - \qty(s^2 + V(x)) \phi = F(s, x) = - s \psi (x) - \psi_t (x)
+\,.
+\end{align}
+
+In order to solve the corresponding Laplace integral we need to do complex contour integration, which justifies the fact that after the QNM decay there is a powerlaw section. 
+
+One can write down equation 17 (of the slides) for analytic functions and solve it for fixed BCs: this yields the regular normal modes (as opposed to quasi-normal ones).
+
+\textbf{Stability}: rigurous proofs of spacetime stability are hard, we start from linear mode stability, then move to linear stability, and the full result is \emph{nonlinear stability}. 
+
+Nonlinear stability is known for Minkowski and Schwarzschild, but not yet for Kerr. 
+
+As we scatter around the peak, this part of the solution is excited and exponentially decays, while as we scatter against the tail another part of the solution is excited. 
+The powerlaw is always there, but it is revealed as the higher amplitude QNMs die down. 
+
+If there was no \(r^{-2}\) decay the solution would go to zero exponentially, as opposed to the powerlaw tail.
+
+We can also do weird things by having frequencies not be able to explore the peak --- in that case we only get the tail. 
+
+
+
+\end{document}

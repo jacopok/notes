@@ -1,4 +1,234 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-6-29, \\ compiled \\ \today}
+
+Anile and others wrote complicated books on relativistic hydrodynamics. 
+With differential forms, in the Carter formalism the proofs become trivial differential geometry identities. 
+
+Today is the last formal full lecture. 
+Next, there will be about two weeks for which there will be more hands-on sessions. 
+
+There will be two exercise slots, on Tuesday and Thursday. 
+
+\section{Hyperbolic free-evolution schemes}
+
+We have discussed earlier the fact that the constraints are propagated along the dynamics. 
+
+We want a schema to provide the free evolution of \emph{constraint-satisfying} initial data \(\Sigma_0 \). 
+We solve the ``time-dependent'' 3+1 EFE, and monitor the constraints as a check for numerical errors, since theoretically they should always hold.
+
+Other approaches are possible, such as a fully constrained formulation, 
+which is not really used --- it maximizes the number of hyperbolic equations. 
+
+Another idea is to do constrained formulations exploiting symmetry. 
+
+The key issue for free-evolution schemas is the well-posedness of the Initial Value Boundary Problem. 
+
+We will discuss only the 3+1 Cauchy approach, for which \(\Sigma \) is always spacelike.
+It is not the only options: we could do \emph{characteristic evolution} with null foliations, or hyperboloidal evolution with spacelike foliations reaching null infinity. 
+
+In the strong-field region these lightcones yield singularities, which is why they are not often used; however there are waveform extracting techniques which are based on this kind of thing. 
+
+Let us define hyperbolicity and hyperbolic equations. 
+The prototype hyperbolic equations is 
+%
+\begin{align}
+\partial_{tt} \phi - c^2 \triangle \phi = 0
+\,,
+\end{align}
+%
+where \(\phi \) is some sort of scalar field. An IBVP for this is imposes constraints in the form \(\phi (t= 0, x) = I(x)\) for \(x \in \Omega \) and \(\phi (t, x) = b(t, x)\) for \(x \in \partial \Omega \).
+
+This can be made first-order in time by introducing an auxilliary field \(\Pi \): 
+%
+\begin{align}
+\begin{cases}
+    \partial_{t} \phi &= \Pi   \\
+    \partial_{t} \Pi &= c^2 \triangle \phi 
+\,.
+\end{cases}
+\end{align}
+
+There also is a fully first order (in time and space) reduction: 
+%
+\begin{align}
+\begin{cases}
+    \partial_{t} \phi &= \Pi  \\
+    \partial_{t} \chi_i &= c \partial_{i} \Pi 
+    \partial_{t} \Pi &= c \partial_{i} \chi^{i}
+    \chi_i &= c \partial_{t} \phi 
+\,.
+\end{cases}
+\end{align}
+
+This can be written in matrix form in terms  of the vector \(u = (\phi , \chi _i, \Pi )\): 
+%
+\begin{align}
+\partial_{t} u + A^{i} (u) \partial_{i} u = s(u)
+\,,
+\end{align}
+%
+which is the general form of a hyperbolic equation. 
+If \(A\) is a constant, then we can diagonalize the system: \(LAR = R^{-1} A R = \Lambda \), where \(\Lambda \) is diagonal and \(L\), \(R \) are the left and right eigenvalue matrices. 
+We can also change variables accordingly: \(w = R u\), which are called \emph{characteristic variables}. 
+After doing this, we are left with a system of equations of the form 
+%
+\begin{align}
+\partial_{t} w + \lambda \partial_{x} w = 0
+\,,
+\end{align}
+%
+which is simply a translation of the initial profile, according to the eigenvalues of the matrix \(\Lambda \). 
+
+Therefore, the spectrum of \(A^{i}\) plays an important role in determining the solution and well-posedness. 
+
+Another way to see it is as follows: if we consider a Fourier mode 
+%
+\begin{align}
+u = \widetilde{u}_k e^{ik (\vec{x} \cdot \hat{r} - vt)}
+\,.
+\end{align}
+
+Here \(v = \omega / k\). 
+We can plug this in: 
+%
+\begin{align}
+- i k v \widetilde{u}_k + ik A^{j} u_j \widetilde{u}_k &= s  \\
+ - v \widetilde{u}_k + A^{j} u_j \widetilde{u}_k &= \frac{s}{ik}
+\,,
+\end{align}
+%
+which in the high-frequency limit becomes 
+%
+\begin{align}
+\qty(A^{j} u_j) \widetilde{u}_k &= v \widetilde{u}_k
+\,,
+\end{align}
+%
+an eigenvalue system for the \emph{principal symbol } \(P(\hat{n}) = A^{j} u_j\) matrix.
+Iff there is a complete set of eigenvectors and eigenvalues, then we are lookiing at a \emph{strongly hyperbolic PDE}. 
+If so, the IVP is \emph{well-posed}! 
+
+What does well-posedness mean?
+A characterization is as follows: there exists a norm \(\norm{\cdot}\) such that \(\norm{u(t, x)} \leq k e^{\alpha t} \norm{u(0, x)}\), where \(K\) and \(\alpha \) are constants independent of initial deta. 
+
+What this means is: there are no Fourier modes that are growing in time. 
+
+An example of a (non-hyperbolic) non-well-posed system is the inverse heat equation: \(\partial_{t} u = - \partial_{xx} u\). 
+If we take \(u = \widetilde{u}_k e^{ikx + \sigma t}\), we get 
+%
+\begin{align}
+\sigma e^{ikx + \sigma t} \widetilde{u}_k - (ik)^2 e^{ikx - \sigma t} \widetilde{u}_k
+\,,
+\end{align}
+%
+so \(\sigma = k^2\), and therefore the solution is in the form \(e^{k^2 t + ik x}\). 
+The solution grows in a way which depends on the initial data: no universal constant can bound it. 
+
+Another example is the regular heat equation: \(\partial_{t} u = \partial_{xx} u \). Here the Fourier modes satisfy \(\sigma = - k^2\), therefore the system is well-posed. 
+
+Another example is the inverse wave equation: \(\partial_{tt} u = - \partial_{xx} u\). We can prove that this is also ill-posed. 
+
+The definition of hyperbolicity can be stated in several ways: in term of the principal symbol \(P(n^i) = A^{i} n_i\) a PDE system is called 
+\begin{enumerate}
+    \item weakly hyperbolic iff \(P\) has real eigenvalues but not a complete set of them;
+    \item strongly hyperbolic iff \(P\) has a complete set of real eigenvalues;
+    \item symmetry hyperbolic iff the symmetrizer \(H\) is independent of \(n^i\), which is equivalent to saying that all the \(A^{i}\) matrices are symmetric. 
+\end{enumerate}
+
+The symmetrizer is defined as 
+%
+\begin{align}
+H = \qty(R^{-1})^\dag R^{-1}
+\,.
+\end{align}
+
+The three conditions imply each other in order, with weak hyperbolicity \(\implies\) strong hyperbolicity \(\implies\) symmetry hyperbolicity. 
+Going back to the definition of well-posedness: strong hyperbolicity implies that the system admits a well-posed IVP. 
+
+A symmetry hyperbolic system is also well-posed, and it is typically easier to work with. 
+
+How about GR? Our goal is to get a free evolution scheme which is at least strongly hyperbolic.
+
+A way to do so is using \textbf{Generalized Hyperbolic Gauge} (GHG). 
+The EFE in vacuo are 
+%
+\begin{align}
+0 = R_{ab} = \underbrace{- \frac{1}{2} g^{cd} \partial_{c} \partial_{d} g_{ab}}_{\text{principal part}} + \nabla_{(a} \Gamma_{b)} + g^{cd} g^{ef} 
+\qty( \partial_{e} g_{ca} \partial_{f} g_{bd} - \Gamma \Gamma )
+\,,
+\end{align}
+%
+where the highest-order derivatives are found in the \emph{pprincipal part}, which is the one we must consider when assessing hyperbolicity. 
+Here we also defined \(\Gamma_{a} g^{bc} \Gamma_{abc}\). 
+
+The term \(\square_g g_{ab}\) is good (manifestly hyperbolic), the term \(\nabla_{(a} \Gamma_{b)}\) is bad. The idea behind harmonic gauge is to take \(\Gamma_a \equiv 0\). 
+The EFE in harmonic gauge are therefore manifestly symmetry hyperbolic. 
+If can be easily shown that these coordinates are allowed, since we just need to set \(0 = \square x^{\mu }\). 
+
+This can be generalized: \(\Gamma _a\) can be set to a prescribed function \(H_a\), which can be determined \emph{a priori} or as something satisfying certain hyperbolic equations. 
+If this is done carefully, it allows us to preserve the symmetric hyperbolicity. 
+The reason to do so is in order to be more flexible with the gauge driver. 
+
+If we define the function \(Z_a = \Gamma _a - H_a\), it is possible to prove that the GHG is equivalent to 
+%
+\begin{align}
+0 = \overline{R}_{ab} = R_{ab} - \nabla_{(a } Z_{b)}
+\,,
+\end{align}
+%
+under the algebraic constraint \(0 = Z_a\). 
+This is just the Z_4 system for a particular choice of \(Z_a\). 
+There is a 2005 paper discussing this. 
+GHG was used for 
+\begin{enumerate}
+    \item the BBH breakthrough by Pretorius (GHG + constraint damping terms);
+    \item NR codes based on spectral methods (since the ``patches'' with different Fourier bases must be matched to each other).
+\end{enumerate}
+
+What about ADMY? Is it hyperbolic? 
+This is way more complicated, but it can be proven under the conditions that 
+\begin{enumerate}
+    \item \(\beta^{i}\) is prescribed;
+    \item \(\alpha \) belongs to the Bona-Masso family or the densitized lapse \(\overline{\alpha} = \alpha / \sqrt{\gamma }\) is prescribed;
+    \item \(C_i \equiv 0\) is satisfied along the evolution.
+\end{enumerate}
+
+If we drop the third condition, then ADMY is weakly hyperbolic, and no well-posedness result can apply. 
+
+How can we then use ADMY? We can change those equations in order to get a strongly hyperbolic system. 
+Consider the ADMY second order equations: 
+%
+\begin{align}
+\partial_{tt} \gamma_{ij} \simeq - 2 \alpha  R_{ij} + \dots \approx \underbrace{\triangle \gamma_{ij}}_{\text{good term}} + \underbrace{\gamma_{ik} \partial_{j} \partial_{l} \gamma^{kl} + \gamma_{jk} \partial_{i} \partial_{l} \gamma^{kl}}_{\text{bad term}}  + \dots
+\,,
+\end{align}
+%
+so, without setting the bad term to zero directly we can define the auxilliary variable \(f^{k} = \partial_{l} \gamma^{kl}\), the ``coordinate divergence of \(\gamma \)'' and find an evolution equation for \(f^{k}\) which guarantees hyperbolicity. 
+What could be this equation? 
+Observe that its time derivative reads 
+%
+\begin{align}
+\partial_{t} f^{k} = \partial_{t} \partial_{l} \gamma^{kl} = \partial_{l} \partial_{t} \gamma^{kl} \sim \partial_{l} k^{kl}  \sim C^{k}
+\,,
+\end{align}
+%
+so this looks like the momentum constraint! 
+
+Modern evolution schemas are based on this, but using \emph{conformal ADMY}. 
+The conformal Ricci reads 
+%
+\begin{align}
+\widetilde{R}_{ij} \simeq - \frac{1}{2} \widetilde{\gamma}^{kl} \qty(
+D_k D_l \widetilde{\gamma}_{ij} + \widetilde{\gamma}_{ik} D_j D_k \widetilde{\gamma}^{kl} + \widetilde{\gamma}_{jk} D_i D_k \widetilde{\gamma}^{kl} 
+)  + \dots
+\,,
+\end{align}
+%
+so like before we define \(\widetilde{\Gamma}^{i} = - D_j \widetilde{\gamma}^{ij}\), \emph{auxiliary conformal variables}. 
+We use the momentum constraint in order to find \(\partial_{t} \widetilde{\Gamma}^{i} = \dots\), an additional equation to add to the ADMY in conformal variables to obtain the BSSN (BSSNOK).
+
+The Z4c formulation is the same as BSSN with an additional equation voor the variable \(\theta = Z^{a} n_a\): \(\partial_{t} \theta \sim C^{0}\), which is convenient because it adds a constraint damping term to BSSN.    
+
 \end{document}

@@ -1,0 +1,61 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Experiments and data analysis}
+
+\marginpar{Thursday\\ 2021-7-1, \\ compiled \\ \today}
+
+We start with a rather historical introduction. 
+
+The first indirect proof for GWs was through pulsars time of arrival, for example the Hulse-Taylor pulsar, through the decay of the pulsar period. 
+
+Resonant bars were also tried, but they are only sensitive to narrow frequency ranges. Each bar can only observe, roughly, a frequency \(\omega \sim c / L _{\text{bar}}\). 
+The noise curve only has a dip at a specific frequency. 
+
+Now we are using interferometers: the basic design is the Michelson interferometer, consisting of a laser source, a beam-splitter, two mirrors / test masses, and a photodetector. 
+
+We work at the dark fringe: at equilibrium the photo-diode receives vanishing power. 
+The observed signal is \(h \propto \Delta L / L = (L_y - L_x) / L\). 
+
+Construction of ground-based interferometers started in the 1980s, and first light was in 2014 for LIGO. 
+
+Why is it useful to be at the dark fringe? 
+On the \(x\) axis we have the photodiode axis, on \(y\) is the power. We see a sort of parabola, and being at the minimum is convenient. 
+
+In 2020 KAGRA joined the team. 
+The planned detectors are Cosmic Explorer (from the US), with \(L \sim \SI{30}{km}\), Einstein Telescope (from Europe) with \(L \sim \SI{10}{km}\) and a triangular shape, Laser Interferometric Space Antenna (US + mostly EU) with  \(L \gg \SI{e3}{km}\) (space-based). 
+
+\subsection{Noise in the IFO}
+
+InterFerometric Observatory. 
+
+We start by accounting for seismic motion and gravity gradients. 
+We must find a way to distinguish from Earth-made gravity gradients and astrophysical ones. 
+
+In Virgo there are inverse-pendulum suspensions: imagine a pendulum whose fulcrum oscillates with a frequency \(\omega_e \), and which has an intrinsic frequency \(\omega _{\text{proper}}\). 
+
+If the external frequency is much larger than the proper frequency of the pendulum, then the external vibration will be damped. 
+
+Typically, \(S_n^{\text{seism}} (f) \sim f^{-4}\). 
+
+As for thermal noise: the mirrors can be kept at cryogenic temperatures, but condensation can be a problem in this regard. KAGRA implements this. 
+
+Overall, the power spectrum looks like \(S_n^{\text{therm}}(f) \sim f^{-2}\). 
+
+Finally, we have quantum noise: the intrinsic quantum fluctuations of the mirror. 
+Radiation pressure looks like \(S_n^{\text{rp}} \sim f^{-4}\), while shot noise is roughly constant, with \(S_n^{\text{shot}} \sim 1\). 
+
+In reality, there are other known noise contributions which must be taken into account. 
+Examples are the AC grid, at \SI{50}{Hz}, the sea, and transients like thunderstorms. 
+
+There's lots of noise at low frequencies, say larger than \(\SI{20}{Hz}\). 
+At high frequencies we start to see \(\sim f\) noise. 
+
+There is a plateau of sensitivity between \SI{20}{Hz} and \SI{500}{Hz}. 
+
+We check for non-astrophysical transients by looking at coincidences between different detectors, and through matched-filtering. 
+In some regards this problem is still not fully solved. 
+
+These interferometers are built in peculiar places. 
+
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Data analysis}
+
+\marginpar{Monday\\ 2021-7-5, \\ compiled \\ \today}
+
+The output from the detector is the scalar time-series \(d(t)\), while the signal we would like to measure is the tensor time-series \(h_{ij}(t)\). 
+
+The response of the detector to the signal is 
+%
+\begin{align}
+h(t) = D_{ij} h_{ij} = F_+ h_+ + F_{\times } h_{\times } 
+\,.
+\end{align}
+%
+
+The \(F_\lambda  \) are the \textbf{antenna pattern}, and they are a function of \(\alpha\), \(\delta \) (sky position), \(\phi \) (rotation angle of the source, which can be reduced), \(\iota \) (inclination of the source with respect to the observer) and \(\psi \). 
+
+The output is \(d(t) = h(t) + n(t)\). 
+
+The first thing to do is to \textbf{characterize the noise}: we take a pure-noise strain, divide the segment into chunks with many data points in each, and for each chunk we compute 
+%
+\begin{align}
+\widetilde{n}(f) = \int n(t) e^{-2 \pi i f t } \dd{t} 
+\,,
+\end{align}
+%
+and get many realizations of \(\qty{\widetilde{n}(f)}_{i}\) taken from the same data. 
+This allows us to estimate \(S_n(f)\), the noise power spectral density: 
+%
+\begin{align}
+S_n(f) = \frac{1}{N} \sum _{i=0}^{N-1} \abs{\widetilde{n}(f)}^2
+\,.
+\end{align}
+
+In theory, it would just be \(S_n(f) = \expval{\abs{\widetilde{n}(f)}^2}\). 
+We'd need to do windowing, padding, dithering in  order to do a numerical Fourier transform. 
+
+The power spectrum is defined as 
+%
+\begin{align}
+\abs{\widetilde{n}^{*} \widetilde{n}(f')} = \frac{1}{2} \delta (f - f') S_n(f)
+\,,
+\end{align}
+%
+where the \(\delta (f - f')\) means that different frequencies do not mix.  
+
+How do we extract information from the data if \(\abs{h(t)} \ll \abs{n(t)}\)? 
+What we do is to integrate 
+%
+\begin{align}
+\frac{1}{T} \int_{0}^{T} d(t) h(t) \dd{t}
+\,,
+\end{align}
+%
+where \(T\) is the length of the data chunk. This gives us 
+%
+\begin{align}
+\frac{1}{T} \int h^2 (t) \dd{t} + \underbrace{\frac{1}{T} \int h(t) n(t) \dd{t}}_{ \sim 1/\sqrt{T} \text{ for large } T}
+\,,
+\end{align}
+%
+where \(h\) and \(n\) are both sinusoidal and \emph{uncorrelated}. 
+
+The idea is then to filter out the noise. 
+
+\end{document}

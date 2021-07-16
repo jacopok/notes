@@ -1,0 +1,44 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Wednesday\\ 2021-7-14, \\ compiled \\ \today}
+
+We can write the data as \(d(t) = s(t) + n(t)\); we use \(s\) to denote the \emph{true} signal, while \(h(t)\) is our \emph{model} for the signal. 
+
+The matched-filtering SNR is \((d|h) / \sqrt{(h|h)}\), while the optimal SNR is \(\sqrt{(h|h)}\). 
+The issue is that \(h\) is a function of many parameters, 
+%
+\begin{align}
+h = h (t, \vec{\theta} ) 
+\qquad \text{where} \qquad
+\vec{\theta} = (m_1, m_2, \vec{\chi}_1, \vec{\chi}_2, \Lambda_1 , \Lambda_2 , D_L, \alpha , \delta \dots)
+\,,
+\end{align}
+%
+so, how do we estimate \(\vec{\theta}\)?
+
+We need to introduce a probability density \(\mathbb{P}(\theta )\) which encodes the agreement between the observed signal \(d(t)\) and the prediction \(h(t, \vec{\theta})\). 
+
+How do we define \(\mathbb{P}(\theta )\)? 
+We start from the residuals, the least squares: we can define the residual as 
+%
+\begin{align}
+\chi^2 = (d-h | d-h)
+\,.
+\end{align}
+
+The probability density for this reads 
+%
+\begin{align}
+\mathbb{P}(\theta ) \propto e^{- \frac{1}{2} \chi^2}
+= \exp(- \frac{1}{2} (h-d | h-d))
+\,.
+\end{align}
+%
+which is the probability of having that specific realization of the noise. 
+
+In order to sample this likelihood we need to use some MCMC.
+
+
+
+\end{document}

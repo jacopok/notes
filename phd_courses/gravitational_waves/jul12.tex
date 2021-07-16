@@ -1,4 +1,102 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2021-7-12, \\ compiled \\ \today}
+
+Lecture with Matteo Breschi. 
+Last week of class; three classes are scheduled but the topics can fit into two lectures. 
+
+Do we do one extra class for discussion? Extra projects? 
+Do we skip it? No to the latter. 
+
+\section{Matched filtering}
+
+We come back to our measured strain \(d(t)= h(t) + n(t)\), signal plus noise.
+
+ 
+We want something quantifying the signal power. 
+So, we define 
+%
+\begin{align}
+S = \int_{- \infty }^{\infty } d(t) K(t) \dd{t}
+\,,
+\end{align}
+%
+where \(K(t)\) is an unknown \emph{optimal filter}. 
+
+The noise is defined as the standard deviation of the data assuming \(h(t) = 0\):
+%
+\begin{align}
+N^2 = \qty[ \expval{s^2} - \expval{s}^2]_{h = 0} = \expval{s^2}_{h=0}
+\,,
+\end{align}
+%
+since \(\expval{n} = 0\). 
+
+This is then calculated as 
+%
+\begin{align}
+N^2 &= \expval{\int n(t) n(t') K(t) K(t') \dd{t} \dd{t'}}  \\
+&= \int \expval{n(t) n(t')} K(t) K(t') \dd{t} \dd{t'}  \\
+&= \int \dd{t} \dd{t'} K(t) K(t') \int e^{2 \pi i (f - f')} \underbrace{\expval{\widetilde{n}^{*} (f) \widetilde{n}(f')}}_{(1/2) S_n(f) \delta (f- f')} \dd{f} \dd{f'}  \\
+&= \frac{1}{2} \int S_n(f) \abs{\widetilde{K}(f)}^2 \dd{t} 
+\,,
+\end{align}
+%
+since, by design, \(\expval{K(t)} = K(t)\), as well as the fact that 
+%
+\begin{align}
+S = \int d(t) K(t) \dd{t} = \int \widetilde{d}^{*} (f) \widetilde{K}(f) \dd{f}
+\,.
+\end{align}
+
+What we can now do is define the \emph{signal-to-noise ratio}, which quantifies the strength of the signal with respect to the background noise.
+Among the possible filters, the one we want maximizes the SNR: the SNR is defined, in the \(h \neq 0\) case, as
+%
+\begin{align}
+\rho^2 &= \frac{\expval{S}^2}{N^2} =
+ \frac{\qty(\int \widetilde{h}^{*} K \dd{f})^2}{ \frac{1}{2} \int S_n \abs{\widetilde{K}}^2 \dd{f}}
+  \\
+ &= \frac{ \qty( \int (\widetilde{h}^{*} / \sqrt{S_n}) (K \sqrt{S_n}) \dd{f})^2 }{\text{stuff}}  \\
+ &\leq \int \frac{\abs{\widetilde{h}}^2 / S_n \dd{f} \int \abs{K}^2 S_n\dd{f}}{ \frac{1}{2}\int \abs{K}^2 S_n \dd{f}}  \\
+ &= 2 \int_{- \infty }^{\infty } \frac{\abs{\widetilde{h}}^2}{S_n} \dd{f}
+\,,
+\end{align}
+%
+therefore the optimal filter is 
+%
+\begin{align}
+K(f) = \frac{\widetilde{h}(f)}{\sqrt{S_n(f)}}
+\,.
+\end{align}
+
+This corresponds to the signal weighted by the strain spectral density. This can be already be done by plotting the Fourier transform of \(d(f) /\sqrt{S_n(f)} \): if we do so we can see the signal much better.
+This is \textbf{whitening}. 
+
+We then have 
+%
+\begin{align}
+\rho^2 = \int \frac{\abs{\widetilde{h}}^2}{S_n} \dd{f}
+\,,
+\end{align}
+%
+and this only depends on the model we have for the signal, not on the actual data. 
+This is the optimal SNR we could reach, with a noise realization where the noise is precisely zero.
+Typically, one does not even really consider the optimal \(\rho \).
+
+
+
+We can define 
+%
+\begin{align}
+(a|b) &= \int_{- \infty }^{\infty } \frac{\widetilde{a}^{*}(f) \widetilde{b}(f) + \widetilde{b}^{*}(f) \widetilde{a}(f)}{S_n(f)} \dd{f}  \\
+&= 4 \Re \int_{0}^{\infty } \frac{\widetilde{a}^{*}(f) \widetilde{b}(f)}{S_n(f)} \dd{f}
+\,.
+\end{align}
+
+With this, \(\rho_{\text{opt}} = \sqrt{(h| h)}\), while \(\rho_{MF} = (d|h) / \sqrt{(h|h)}\). 
+
+For next time: could we interpret the "actual" SNR as corresponding to a "number of sigmas" in a hypothesis-testing scenario? Say, we want to compute something akin to a p-value against the null hypothesis of "there is no signal".
+I would have thought it was not a probability itself but something like how far we are from the mean of the Gaussian noise.
+
 \end{document}

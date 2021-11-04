@@ -19,15 +19,19 @@ def end_doc_condition(line):
 subfile_include = lambda x : "\\subfile{" + x + "}\n"
 
 folder_names = {
-    "gw": "gravitational_waves",
-    "nr": "numerical_relativity",
+    "GC-EXP": "experimental_gravitation_cosmology",
+    "GC-TH": "theoretical_gravitation_cosmology",
+    "HE-EXP": "experimental_high_energy_astroparticle",
+    "HE-TH": "theoretical_high_energy_astroparticle",
+    "LE-EXP": "experimental_low_energy_astroparticle",
+    "LE-TH": "theoretical_low_energy_astroparticle",
 }
 
 schedule = {
-    0: ["gw"],
-    1: ["nr"],
-    # 2: ["eu"]
-    # 3: ["hea"],
+    0: ["HE-EXP", "HE-TH"],
+    1: ["LE-EXP", "HE-EXP"],
+    2: ["HE-TH", "GC-TH"]
+    3: ["LE-EXP", "HE-EXP"],
     # 4: ["hea"]
 }
 

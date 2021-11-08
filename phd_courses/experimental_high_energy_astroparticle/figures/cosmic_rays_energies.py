@@ -1,23 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import rc
-rc('font',**{'family':'serif','serif':['Palatino']})
-rc('text', usetex=True)
-rc('text.latex', preamble=r'''\usepackage{amsmath}
-          \usepackage{physics}
-          \usepackage{siunitx}
-          ''')
-rc('figure', dpi=150)
           
 energies = np.logspace(8, 20)
+THR = 1e15
+SCALING = min(energies) ** (2.7)
 
 @np.vectorize
 def flux(E):
-    if E < 1e15:
-        return E**(-2.7)
+    if E < THR:
+        return E**(-2.7) * (THR)**(2.7-3) * SCALING
     else:
-        return E**(-3)
+        return E**(-3) * SCALING
 
-if __name__ == "__main__":
+def cosmic_rays_energies():
     plt.loglog(energies, flux(energies))
-    plt.savefig(str(__file__).split(sep='.')[0] + '.pdf')
+    plt.grid('on')
+    plt.xlabel('Energy [eV]')
+    plt.ylabel('Flux [arbitrary scaling]')

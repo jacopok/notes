@@ -1,3 +1,4 @@
+from tqdm import tqdm
 import matplotlib.pyplot as plt
 from matplotlib import rc
 rc('font',**{'family':'serif','serif':['Palatino']})
@@ -8,13 +9,18 @@ rc('text.latex', preamble=r'''\usepackage{amsmath}
           ''')
 rc('figure', dpi=150)
 
-from cosmic_rays_energies import cosmic_rays_energies
+
+def plot_and_save(plotting_func):
+    plotting_func()
+    plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf')
 
 if __name__ == "__main__":
+    
+    from cosmic_rays_energies import cosmic_rays_energies
+    
     plotter_list = [
         cosmic_rays_energies,
     ]
     
-    for plotting_func in plotter_list:
-        plotting_func()
-        plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf')
+    for plotting_func in tqdm(plotter_list):
+        plot_and_save(plotting_func)

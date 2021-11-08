@@ -1,9 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
           
-energies = np.logspace(8, 20)
-THR = 1e15
-SCALING = min(energies) ** (2.7)
+energies = np.logspace(-1, 11)
+THR = 1e6
+SCALING = 1.8e4
+
+# Formula from PDG 2020, page 219
 
 @np.vectorize
 def flux(E):
@@ -15,5 +17,10 @@ def flux(E):
 def cosmic_rays_energies():
     plt.loglog(energies, flux(energies))
     plt.grid('on')
-    plt.xlabel('Energy [eV]')
-    plt.ylabel('Flux [arbitrary scaling]')
+    plt.xlabel('Energy [GeV]')
+    plt.ylabel('Flux [$\SI{}{\meter^{-2}\ \second^{-1}\ \steradian^{-1}\ \GeV^{-1}}$]')
+
+if __name__ == "__main__":
+
+    from make_all_figures import plot_and_save
+    plot_and_save(cosmic_rays_energies)

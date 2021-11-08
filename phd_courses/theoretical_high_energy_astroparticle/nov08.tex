@@ -6,30 +6,27 @@
 Pasquale Blasi gives this part of the course. 
 He might ask us to do exercises at the blackboard. 
 
-It is a theory course, but he wants to push the physical interpretation
-a lot. 
+\subsection*{Introduction}
 
-In general, in order to produce high-energy particles we need 
-acceleration mechanisms and transport mechanisms. 
+This is a theory course, but the professor wants to have lots of connections to the physical interpretation.
 
-These are non-thermal particle sources. 
-The spectra from these phenomena seem to be powerlaws, non 
+In general, in order to produce high-energy particles we need \emph{acceleration} and \emph{transport} mechanisms. 
+
+The particles we observe are \emph{non-thermal}: 
+the spectra from these phenomena seem to be powerlaws, not 
 the exponentially suppressed tail of a Maxwellian.
 
-Things need to happen \emph{faster} than the collisions between the particles. 
-The system must be, to a fist, approximation, collisionless. 
+Therefore, the system must be, to a fist, approximation, collisionless: if things happen \emph{faster} than the collisions between the particles, they do not have enough time to thermalize.
 
 We typically see charged particles making up cosmic rays, 
 and the (interstellar, intergalactic) medium they move in is mostly ionized. 
-
-These will then move under the action of electromagnetic fields. 
-These charged particles also produce EM fields, so they 
-``feel what the others are doing''. 
+Thus, they will move under the action of electromagnetic fields. 
+Each of these charged particles also produces EM fields of its own: they all ``feel what the others are doing''.
 
 There is a deep connection between the micro and the macro physics. 
 David N.\ Schramm called this an ``inner world --- outer world'' connection. 
 
-We need both particle physics and plasma physics! 
+In order to understand the behaviour of cosmic rays, we need both particle physics and plasma physics! 
 
 Things to study are: 
 \begin{enumerate}
@@ -37,16 +34,27 @@ Things to study are:
     \item astrophysical \(\gamma \) rays and neutrinos;
     \item \dots
 \end{enumerate}
+\todo[inline]{What was this list about?}
 
-A brief history lesson. We start with electroscopes, which discharge: 
-at the end of the 1800s the explanation was thought to be radioactivity. 
+\subsection*{Electroscope discharge: a brief history of the discovery of cosmic rays}
 
-Pacini explored electroscope behaviour underwater: decreasing. 
-Wulf explored it on a balloon: it was increasing above \SI{2}{km} of elevation! 
+What follows is a brief history lesson, roughly based on the work of \textcite[]{deangelisAtmosphericIonizationCosmic2014}.
 
-Millikan proposed them as the ``birth cry'' of elements: \(\gamma \) rays with energies
+In the late 1700s Coulomb discovered that an electroscope, left on its own, will discharge. 
+This phenomenon seemed to decrease in speed as the pressure decreased: the air was being ionized, but by what?
+
+In the late 1800s, after the discovery of the emission of charged particles by radioisotopes (which definitely managed to discharge electroscopes), ambient radioactivity was blamed for the phenomenon as a whole. 
+
+Domenico Pacini explored the variation of the rate of ionization as one moved underwater: it was decreasing. 
+So, it seemed likely that the origin was extraterrestrial! 
+
+Later explorations, especially on balloons, showed a slight decrease followed by a sharp increase as altitude went above a couple kilometers.
+It took a while for the scientific community to accept this, but the origin of the discharge of electroscopes was not Earth-bound: it was cosmic.
+ 
+Millikan though they might be the ``birth cry'' of elements: \(\gamma \) rays with energies
 corresponding to the mass defects of certain nuclides. 
-He used Dirac's theory of Compton scattering. He was wrong.
+He used Dirac's theory of Compton scattering. 
+He was wrong, but he was also the first to use the term ``cosmic rays''.
 
 Bruno Rossi put lead blocks between Geiger counters: these are not \(\gamma \) rays, since
 they would be absorbed. 
@@ -58,34 +66,56 @@ In the 1930s there started a boom of discoveries.
 At the end of the 30s Auger measured \SI{100}{TeV} cosmic rays. 
 
 At the end of the 60s the CMB was discovered: 
-there should be a cutoff around \SI{e20}{eV}. 
+therefore, in the cosmic ray spectrum there should be a cutoff around \SI{e20}{eV}: the \textbf{GZK feature} \cite[sec.\ 5.1]{aloisioSelectedTopicsCosmic2018}. 
 This is because the cosmic ray ``sees'' CMB photons as \(\gamma \) rays, so  
-it can undergo production of pions, losing a lot of energy. 
+it can undergo production of pions, losing a lot of energy, in a process like: 
+%
+\begin{align}
+\ce{N} + \gamma \to \ce{N} + \pi^{0}
+\,.
+\end{align}
+
+Specifically, the average CMB photon has an energy of \(E \sim \SI{2.7}{K} \approx \SI{245}{\micro \eV}\); in order for it to be blueshifted up to the mass of a pion, \(m_{\pi^{+}} \approx \SI{140}{MeV}\) it needs a \(\gamma \) factor of about \(\gamma \sim \num{6e11}\); this is achieved when a proton has an energy of \(E_p \approx \SI{6e11}{GeV}\). 
+
+The threshold for pair production, \(\sim \SI{1}{MeV}\), is lower: ``only'' \(E_p \approx \SI{4e9}{GeV}\). 
+These are not hard thresholds: they are computed from the 
+average temperature of CMB photons, but these are distributed according to a thermal distribution, so there is a tail at high energies, albeit exponentially suppressed. 
 
 There are peaks in the spectral power of the discovery of fossils: 
 a \SI{62}{Myr} period corresponds to the period of the oscillation of the Solar system 
 with respect to the galactic disk. 
 
-Astroparticle physics takes up a lot of stuff, many fields. 
+% Astroparticle physics takes up a lot of stuff, many fields. 
 
 There's lots of hydrogen and helium in the ISM, 
-while almost no Beryllium, Boron and Lithium, 
-while up from Carbon are formed in stars. 
+almost no Beryllium, Boron and Lithium, 
+while elements heavier than Carbon, which are formed in stars, are found in decent amounts.
 
-On the other hand, in cosmic rays there is a much higher amount of 
-Be, B, Li.
+On the other hand, in cosmic rays there is a much higher amount of Be, B, Li.
+This is due to \emph{spallation}, or \(x\)-process nucleosynthesis: a process by which a cosmic ray hits a nucleus, thereby splitting it into lighter components. 
+The cross-section for spallation is \(\sigma \sim 45 A^{2/3} \SI{}{mb}\), where \(A\) is the mass number of the nuclide. 
 
-The cross-section for \emph{spallation} is \(\sigma \sim 45 A^{2/3} \SI{}{mb}\). 
+The motion needs to be ``diffusive''.
+If this is happening, the timescale is quadratic in the distance, and matches with our observations; if the motion
+was ``ballistic'' (straight on, basically) the timescale would be linear in the distance travelled.
 
-The motion needs to be ``diffusive''. If this is happening, 
-the timescale is quadratic in the distance, and matches with our observations. 
-
-But, it cannot be collisions! 
-So, what is it? 
+But, it cannot be collisions, otherwise the distribution would be thermal! So, what is it?
+Magnetic fields. 
 
 There is Ballmer emission in the shockwave from SNe. 
 
-The Larmor radius at knee-level \(E \sim \SI{3e15}{eV}\) is on the order of \SI{3}{pc}. 
+The Larmor radius is in general given by 
+%
+\begin{align}
+r _{\text{Larmor}} \approx \frac{\gamma m v_\perp}{\abs{q} \abs{B}}
+\,,
+\end{align}
+%
+where the magnitude of the galactic \(B\)-field is of the order of \SI{100}{pT}.
+
+\todo[inline]{Is this a typical value, an underestimate maybe?}
+
+This means that even at knee-level, \(E \sim \SI{3e15}{eV}\), the gyroradius is on the order of \SI{3}{pc}: extremely \emph{small}, in terms of the scale of the galaxy, \SI{10}{kpc} or more.
 
 The loss length for radiation decreases with energy: first we can do pair production when
 a proton interacts with a CMB photon, and then pion production can start. 
@@ -100,7 +130,9 @@ turbulent magnetic field.
 
 There are many experiments measuring this kind of stuff! 
 
-The plan is 
+\subsubsection{Course outline}
+
+The plan is to discuss:
 \begin{enumerate}
     \item basics of plasma physics;
     \item basics of MHD;

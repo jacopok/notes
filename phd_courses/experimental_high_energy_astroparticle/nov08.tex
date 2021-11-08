@@ -1,68 +1,97 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection*{Introduction}
+
 \marginpar{Monday\\ 2021-11-8, \\ compiled \\ \today}
 
-This first part of the course is given by Ivan De Mitri. 
+This first part of this course is given by Ivan De Mitri. 
 
-Not a course on particle detectors: the basics will be assumed, and there will be some short courses about the details. 
-
+This is not a course on particle detectors: the basics will be assumed, and there will be some short courses about the details. 
 It is more about ``experimental tools'': how do we design an experiment? 
 
+``High energy'', here, means roughly considering energies \(E \gtrsim \SI{1}{GeV}\), but there will be some things in the \SI{}{MeV} range as well. 
+A more apt description of this field is that it is about observing things that come from outside the Earth: particles or high-energy radiation. 
 
-``High energy'' means roughly considering energies \(E \gtrsim \SI{1}{GeV}\), but there will be some things in the \SI{}{MeV} range. 
-
-A more apt description is about observing things that come from outside the Earth: particles or high-energy radiation. 
-
-The other, ``low-energy'' part is about the search for rare events, where the issue is the presence of a large background, so we need to go underground. 
+The other, ``low-energy'' course is about the search for rare events, where the issue is the presence of a large background, so we need to go underground. 
 
 Then, there is neutrino physics which is at the intersection between these two areas. 
 
 The part on gravitation and cosmology, on the other hand, is wholly distinct. 
 
+\subsubsection*{Cosmic rays}
+
 We start with a review of some basic concepts. 
 
 As a first approximation, the spectrum of cosmic particles/radiation \(\phi (E)\) is decreasing with \(E\). 
-From \(E \sim \SI{e8}{eV}\) to \(E \sim \SI{e20}{eV}\) there is roughly a powerlaw, \(\phi \propto E^{-\gamma }\) with \(\gamma \sim 2.7\) at first, then \(\gamma \sim 3\). 
+From \(E \sim \SI{e8}{eV}\) to \(E \sim \SI{e20}{eV}\) there is roughly a powerlaw, \(\phi \propto E^{-\gamma }\) with \(\gamma \sim 2.7\) at first, then \(\gamma \sim 3\) (as shown in figure \ref{fig:cosmic_rays_energies}). 
 
-\todo[inline]{Find figure}
+With artificial particle accelerators we can probe up to roughly \SI{e13}{eV} (since in the center of mass we have \((7 + 7) \SI{}{TeV}\)). 
 
-With LHC, say, we can probe up to \SI{e13}{eV} (\((7 + 7) \SI{}{TeV}\)). 
+% The way to explore the \SI{}{eV} energy range is completely different from big particle colliders: this is a general fact, the way to explore the low energy region is different from the high energy region. 
 
-The way to explore the \SI{}{eV} energy range is completely different from big particle colliders: this is a general fact, the way to explore the low energy region is different from the high energy region. 
+Since the spectrum is roughly a power-law with index 3 spanning 12 orders of magnitude,
+the number of observed events changes by roughly \(12 \times 3\) orders of magnitude between its ends. 
 
-The number of events changes by roughly \(12 \times 3\) orders of magnitude between the ends of the spectrum. 
+There is a ``knee'' in the energy spectrum, where the spectral index \(\gamma\) goes from 2.7 to 3, is at about \SI{3e15}{eV}. 
 
-The ``knee'' of the energy spectrum, where \(\gamma\) goes from 2.7 to 3, is at about \SI{3e15}{eV}. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/cosmic_rays_energies}
+\caption{A rough sketch of the cosmic ray flux dependence on the energy.}
+\label{fig:cosmic_rays_energies}
+\end{figure}
 
-Typically, below the knee we can do direct, small experiments, while above it we need to do indirect experiments since they need to be very large. 
+Typically, below the knee we can do direct, small experiments, while above it we need to do indirect measurements: they need to be very large, since the presence of a single event becomes very rare.
 
-The particles at hands are protons \ce{p}, Helium nuclei \ce{He}, heavy nuclei such as \ce{Fe}, \(\gamma \) rays, electrons and positrons \(e^{\pm}\), antiprotons \(\ce{\overline{p}}\). 
-Anti-helium still has to be discovered. 
+The particles which have been found to make up \textbf{cosmic rays} are protons \ce{p}, Helium nuclei \ce{He}, heavy nuclei such as \ce{Fe}, \(\gamma \) rays, electrons and positrons \(e^{\pm}\), antiprotons \(\ce{\overline{p}}\). 
+Anti-helium still has to be discovered, but there has been some progress in this regard lately. 
 
 Also, there are neutrinos: solar ones are on the scale of the \SI{}{MeV}, up to \SI{10}{MeV}. 
-
-Protons come down the atmosphere and interact with it a few tens of \SI{}{km} above, producing other things such as neutrinos (these are ``atmospheric neutrinos''). 
-
-Alternatively, we can have a source producing neutrinos directly. 
+Protons come down the atmosphere and interact with it a few tens of \SI{}{km} above, producing other things, such as neutrinos (these are ``atmospheric neutrinos'').
+Alternatively, we can have a source producing neutrinos directly, ``astrophysical neutrinos''. 
 
 \emph{Why} are we doing these experiments?
 \begin{enumerate}
-    \item What are the astrophysical processes allowing for the production of such high-energy particles?
-    \item We can probe high-energy particle physics. 
+    \item We can explore the astrophysical processes allowing for the production of such high-energy particles, and
+    \item we can probe high-energy particle physics. 
 \end{enumerate}
 
-In order to match the center-of-mass energy of the LHC collisions we'd need to have \SI{e17}{eV} in a fixed-target experiment. 
+In order to match the center-of-mass energy of the LHC collisions we'd need to have \SI{e17}{eV} in a fixed-target experiment.
 
-Cosmic rays were discovered in the early 1900s, and up to the early 50s most particle physics was done using them.
+This is due to the fact that fixed-target experiments have much lower center-of-mass energetics in general. 
 
-In 1957 the antiproton was discovered.
-Chamberlain, Segré, \dots
-This was done with accelerators, proton collisions producing secondaries. 
-However, the cosmic ray discovery of the antiproton was performed only a few months later. 
+Here is a quick sketch of why, in natural units, using the formalism detailed in the second half of this lecture.
+If we have two particles colliding and with equal and opposite momenta the total four-momentum will be \(p _{\text{tot}} = (E, \vec{p}) + (E, - \vec{p}) = (2E, \vec{0})\), therefore the total center-of-mass energy will be \(\sqrt{s} = 2 E\).
 
-In the early days the approach was to be ``particle 
-hunters'', then people became ``particle breeders''. 
+On the other hand, in a fixed-target experiment we will have one of them being stationary, so the total four-momentum will be \(p _{\text{tot}} (E, \vec{p}) + (m, \vec{0}) = (E+m, \vec{p})\), where the momentum \(\vec{p}\) is determined by \(m^2 = E^2 - m^2\), so the magnitude will be \(\sqrt{s} = \sqrt{(E+m)^2 - (E^2 - m^2)} = \sqrt{2m (E+m)}\). 
+
+In terms of the Lorentz factor \(\gamma \) the beam-beam collision is \(\sqrt{s} = 2 m \gamma \), while the fixed-target one is \(\sqrt{s} = m\sqrt{2(1+\gamma )}\). For large values of \(\gamma \), the first one clearly wins out, by a factor roughly \(\sqrt{\gamma }\).
+
+Specifically, if one wants \(\sqrt{s} = \SI{14}{TeV}\), this can be achieved with \(E \approx \SI{7}{TeV}\) in a beam-beam collision, or with \(E \approx \SI{1000}{TeV}\) in a fixed-target collision. 
+The ratio, as expected, is roughly \(70 \divisionsymbol 80 \approx \sqrt{\gamma } = \sqrt{\SI{7}{TeV} / \SI{1}{GeV}}\) when accounting for the fact that we need to accelerate twice as many particles in the beam-beam scenario.
+
+\subsubsection*{History}
+
+Cosmic rays were discovered in the early 1900s, and up to the early 50s most particle physics was done through them.
+
+In 1957 the antiproton was discovered by Segrè and Chamberlain.
+This was done with accelerators, thanks to proton collisions producing secondaries, in a process like 
+%
+\begin{align}
+\ce{p} + \ce{A} \to \ce{p} + \ce{A} + \ce{p} + \ce{\overline{p}}
+\,.
+\end{align}
+%
+ 
+The cosmic ray discovery of the antiproton was performed only a few months later. 
+
+% In the early days the approach was to be ``particle 
+% hunters'', then people became ``particle breeders''. 
+
+\subsubsection*{References}
+
+A good one is \textcite{aloisioSelectedTopicsCosmic2018}.
 
 \section{Review}
 
@@ -215,7 +244,11 @@ p _{\text{tot}}^2 = \qty(\frac{\sum _{i} E_i}{c})^2 - \abs{\sum _i \vec{p}_i}^2 
 
 The variable \(M\) is called \emph{invariant mass}, and it is also written in terms of the Mandelstam variable \(s\) as \(\sqrt{s}\) in the case of a two-two process.
 
-Professor Sarmantin (?) got the Nobel Prize in 1974. 
+\subsection{The \(J/\psi \) discovery}
+
+Professor Samuel Ting got the Nobel Prize in 1976. 
+His experiments can be used as an illustration for the formalism outlined here.
+
 They were doing fixed-target experiments in Brookhaven: protons against Beryllium targets. 
 The process looked like 
 %
@@ -226,7 +259,7 @@ The process looked like
 %
 where the kinematic properties of the electron and positron were measured by spectrometers. 
 
-So, they knew \(E^{\pm}\) and \(\vec{p}^{\pm}\) (where \(+\) and \(-\) denote the charges of the electron and positron). 
+So, they knew \(E^{\pm}\) and \(\vec{p}^{\pm}\) (where \(+\) and \(-\) denote the positron and electron respectively). 
 
 This allows one to compute 
 %
@@ -254,14 +287,14 @@ At the same time, on the opposite coast of the US, a different group was looking
 This was happening in 1974, and this particle was dubbed the \(J/\psi \). 
 
 For one event they saw a ``\(\psi \)'' shape. 
-It was later discovered that the \(J/\psi \) particle was a meson, \(c \overline{c}\).
+It was later discovered that the \(J/\psi \) particle was a meson made of charm quarks, \(c \overline{c}\).
 
 The width of the peak is related to the decay time of the particle: \(\tau \Delta E \sim \hbar\). 
-Very narrow peaks mean that \(\tau \) is quite large. 
+Very narrow peaks mean that \(\tau \) is quite large --- there are kinematic reasons why this particle has a hard time decaying, which we will not go into here. 
 
-There are kinematic reasons why this particle has a hard time decaying. 
+A similar experiment was done in Frascati a few months later, with ADONE (which is a larger ADA, ``Anello di Accumulazione'').
 
-A similar experiment was done in Frascati a few months later, with ADONE (which is ``big Anello di Accumulazione'').
+\subsubsection{A \(1 \to 2\) decay example}
 
 Suppose we have a particle with mass \(M\) decaying into two particles with masses \(m_1 \) and \(m_2 \). 
 
@@ -303,9 +336,9 @@ We know that this will be \(E^{*}_{2} \geq m_2c^2\), which can be found to be eq
 
 The same reasoning applies for \(E^{*}_{1}\), swapping \(1 \leftrightarrow 2\). 
 
-This is independent of \(\theta^{*}\). 
+This is independent of the center-of-mass emission angle \(\theta^{*}\). 
 
-A two-body decay, like this, is a very ``constrained'' problem: in the CoM frame the energies of the particles are fully determined. 
+A two-output decay like this is a very ``constrained'' problem: in the CoM frame the energies of the particles are fully determined.
 
 We can recover the lab-frame quantities by a Lorentz transformation with velocity \(-\beta \) (opposite to the motion of \(M\)). 
 The decomposition of the momentum in the CoM frame is 
@@ -323,6 +356,15 @@ Consider a positively charged pion: it decays as
 \,.
 \end{align}
 
-We can compute the value \(E^{*}_{\mu }\) in this case, for example, setting the mass of the neutrino to 0. 
+We can compute the value \(E^{*}_{\mu }\) in this case, for example, approximating the mass of the neutrino as 0. 
+In natural units, the mass of the pion is \(m_{\pi^{+}} \approx \SI{139.57}{MeV}\), while the mass of the muon is \(m_{\mu^{+}} \approx \SI{105.66}{MeV}\) \cite{groupReviewParticlePhysics2020}; this means that in the center of mass we will have 
+%
+\begin{align}
+E_{\mu } &\approx \frac{m_\pi^2 + m_\mu^2}{2 m_\pi } \approx \SI{109.78}{MeV}  \\
+E_\nu &\approx \frac{m_\pi^2 - m_\mu^2}{2 m_\pi} \approx \SI{29.79}{MeV}
+\,.
+\end{align}
+
+As expected, \(m_\pi = E_\mu +E_\nu \). 
 
 \end{document}

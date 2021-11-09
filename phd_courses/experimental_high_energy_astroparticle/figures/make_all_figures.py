@@ -12,11 +12,12 @@ rc('figure', dpi=150)
 
 def plot_and_save(plotting_func):
     plotting_func()
-    plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf')
+    plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf', bbox_inches='tight', pad_inches = 0)
 
 if __name__ == "__main__":
     
     from cosmic_rays_energies import cosmic_rays_energies
+    from angular_distribution_shift import angular_distribution_shift
     
     plotter_list = [
         cosmic_rays_energies,

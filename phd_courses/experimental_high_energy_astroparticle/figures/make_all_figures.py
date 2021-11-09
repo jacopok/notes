@@ -20,6 +20,7 @@ if __name__ == "__main__":
     
     plotter_list = [
         cosmic_rays_energies,
+        angular_distribution_shift,
     ]
     
     for plotting_func in tqdm(plotter_list):

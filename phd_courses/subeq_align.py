@@ -7,15 +7,10 @@ subeq_start = "\\begin{subequations}"
 subeq_end = "\\end{subequations}"
 align_newline = "\\\\"
 
-folder_names = [
-"astroparticle_physics",
-"gravitational_physics",
-"gravitational_wave_astrophysics",
-"multimessenger_astrophysics",
-"radiative_processes",
-"theoretical_cosmology",
-"theoretical_physics"
-]
+from file_creator import folder_names
+
+folder_names = list(folder_names.values())
+
 filenames_regex = "(\\w{3}\\d{2}|\\w{5}\\d{1,2})\\.tex"
 
 def cpars(s):

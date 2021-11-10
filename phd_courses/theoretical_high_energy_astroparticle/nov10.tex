@@ -32,6 +32,7 @@ First, we will try to understand how the plasma works, then we will look at the 
 For simplicity, let us consider a plasma made of protons (with density \(n_i\)) and electrons (with density \(n_e\)). 
 Maxwell' equations will read 
 %
+\begin{subequations}\label{eq:maxwell}
 \begin{align}
 \vec{\nabla} \cdot \vec{E} &= 4 \pi \zeta  \\
 \vec{\nabla} \cdot \vec{B} &= 0  \\
@@ -39,6 +40,7 @@ Maxwell' equations will read
 \vec{\nabla} \times \vec{B} &= \frac{4 \pi }{c} \vec{J} + \frac{1}{c} \pdv{\vec{E}}{t}
 \,,
 \end{align}
+\end{subequations}
 %
 where \(\zeta = n_i e - n_e e\), while the current reads \(\vec{J} = n_i e \vec{v}_i - n_e e \vec{v}_e\). 
 
@@ -68,11 +70,13 @@ At zeroth order, we will have
 %
 but the external potential will perturb the energy \(\epsilon \) by \(e \varphi \) where \(\varphi \) is the electric potential, so 
 %
+\begin{subequations}
 \begin{align}
 \widetilde{n}_i &= n_0 \exp(\frac{- \epsilon + e \varphi }{k_B T})  \\
 \widetilde{n}_e &= n_0 \exp(\frac{- \epsilon - e \varphi }{k_B T})
 \,,
 \end{align}
+\end{subequations}
 %
 and we can use \(\vec{E} = - \vec{\nabla} \varphi \): then, for \(r \neq 0\) we will have
 %
@@ -86,6 +90,7 @@ and we can use \(\vec{E} = - \vec{\nabla} \varphi \): then, for \(r \neq 0\) we 
 %
 which we can expand up to linear order: 
 %
+\begin{subequations}
 \begin{align}
 \vec{\nabla}^2 \varphi &= 
 - 4 \pi e n_0 \exp(- \frac{\epsilon }{k_B T}) 
@@ -98,6 +103,7 @@ which we can expand up to linear order:
 \frac{e }{k_B T} \varphi
 \,.
 \end{align}
+\end{subequations}
 
 The prefactor had the dimensions of an inverse square length; further, we include the exponential \(e^{- \epsilon / k_BT}\) into the unperturbed density \(n_0 \).
 We define the \textbf{Debye length}
@@ -153,7 +159,7 @@ It can be estimated by
 \,,
 \end{align}
 %
-where \(e^2 / b = k_B T\) gives us a limit, therefore \(\sigma _C = b^2 \approx (e^2 / k_B T)^2\). 
+where \(e^2 / b = k_B T\) gives us a limit for the Coulomb interaction length, therefore \(\sigma _C \approx b^2 \approx (e^2 / k_B T)^2\). 
 
 \todo[inline]{
 It can be shown that \(\lambda _C \gg \lambda _D\) is equivalent to the condition that many particles should be contained in a single Debye length.}
@@ -162,5 +168,197 @@ Collective effects dominate the dynamics of a plasma.
 
 We will now do an exercise in perturbation theory: which perturbations are allowed, beyond electromagnetic waves? 
 Certain modes are ``allowed'' in that they do not die out. 
+
+A lot of interesting physics come from the fact that each particle interacts with the collection of all the others. 
+
+Perturbations which are unstable are interesting, but they break our perturbative approach. 
+
+The fields in the Maxwell equations \eqref{eq:maxwell} start out at zero in the unperturbed configuration. 
+
+The current \(J\) is given by the Generalized Ohm's law: 
+%
+\begin{align}
+J_r = \sigma_{rs} E_s 
+\,,
+\end{align}
+%
+where the proportionality constant \(\sigma _{rs}\) is the \emph{conductivity tensor} (whose components are, roughly, 1 over resistance). 
+
+It is also convenient to define the displacement current \(\vec{D}\) by:
+%
+\begin{align}
+\frac{4 \pi \vec{J}}{c} + \frac{1}{c} \pdv{\vec{E}}{t} = \frac{1}{c} \pdv{\vec{D}}{t}
+\,,
+\end{align}
+%
+which means that the current can be recovered by 
+%
+\begin{align}
+\vec{J} = \frac{1}{4 \pi } \qty(\pdv{\vec{D}}{t} + \pdv{\vec{E}}{t})
+\,.
+\end{align}
+
+The idea is to decompose the perturbation in Fourier modes:
+%
+\begin{align}
+ \vec{E} \to \widetilde{E}_k (\vec{k}, \omega ) \exp(- i \omega t + i \vec{k} \cdot \vec{r})
+\,.
+\end{align}
+
+The full expression for the electric field is a superposition of these modes, but we can look at them just one at a time. 
+This simplifies things: time derivatives become \(i \omega \), curls become \(\vec{k} \times \) and so on. 
+
+The current reads, with this as well as Ohm's law,
+%
+\begin{align}
+\widetilde{J} _r = \frac{- i \omega }{4 \pi } \qty(\widetilde{D}_r - \widetilde{E}_r) = \sigma_{rs} E_s
+\,.
+\end{align}
+
+The displacement field is therefore 
+%
+\begin{align}
+\widetilde{D}_r
+= \frac{4 \pi }{ i \omega } \qty(\frac{i \omega }{ 4 \pi } \widetilde{E}_r - \sigma_{rs} E_s) = \widetilde{E}_r
++ i \frac{4 \pi }{\omega } \sigma_{rs} \widetilde{E}_s 
+= \mathbb{K}_{rs} \widetilde{E}_s
+\,,
+\end{align}
+%
+where \(\mathbb{K}_{rs} = \delta_{rs} + (4 \pi i / \omega ) \sigma_{rs}\) is called the \textbf{Dielectric tensor}.
+
+What we are trying to do is to write a \emph{dispersion relation}, \(F(\vec{k}, \omega ) E = 0\). 
+
+Now we move to Lenz's law: we take another curl, to get 
+%
+\begin{subequations}
+\begin{align}
+\vec{\nabla} \times (\vec{\nabla} \times \vec{E}) &= - \frac{1}{c} \pdv{}{t} \qty(\vec{\nabla} \times \vec{B})   \\
+&= - \frac{1}{c} \pdv{}{t} \qty( \frac{1}{c}\pdv{\vec{D}}{t})  \\
+&= - \frac{1}{c^2} \pdv[2]{\vec{D}}{t}  \\
+[- \vec{k} \times (\vec{k} \times \widetilde{E})]_r &= + \frac{\omega^2}{c^2} \widetilde{D}_r = \frac{\omega^2}{c^2} \mathbb{K}_{rs} \widetilde{E}_s
+\,.
+\end{align}
+\end{subequations}
+
+We are almost done: the only issue here is that \(\mathbb{K}_{rs}\) contains the conductivity tensor \(\sigma_{rs}\). 
+
+Supposing for simplicity  that our plasma is non-relativistic, we have the EoM 
+%
+\begin{align}
+m_e \dv{v_e}{t} = - e E \implies 
+- i \omega m_e \widetilde{v}_e = - e \widetilde{E}
+\,,
+\end{align}
+%
+but the current \(\vec{J}\) is \(\vec{J} = - e n_e \vec{v}_e\), so \(\widetilde{J}_r = - (n e^2 / \omega m_e) \widetilde{E}_r\), therefore the conductivity reads 
+%
+\begin{align}
+\sigma_{rs} = \frac{i n e^2}{\omega m_e} \delta_{rs} 
+\,,
+\end{align}
+%
+so we can write out the dielectric tensor explicitly: 
+%
+\begin{align}
+\mathbb{K}_{rs} = \delta_{rs} \qty[ 1 - \qty(\frac{\omega_p}{\omega })^2]
+\qquad \text{where} \qquad
+\omega_p = \sqrt{\frac{ 4 \pi n_e e^2}{m_e}}
+\,
+\end{align}
+%
+is called the plasma frequency.
+This is a \textbf{high-pass filter}!
+
+We have found our dispersion relation: 
+%
+\begin{align}
+\vec{k} \times \qty(\vec{k} \times \vec{E})
++ \qty(\frac{\omega^2 - \omega _p^2}{c^2}) \widetilde{E} = 0
+\,.
+\end{align}
+
+Let us separate out \emph{longitudinal perturbations}, which have \(\vec{k} \propto \vec{E}\), from \emph{transverse} ones, since we are always able to write \(\vec{E} = \vec{E}_\parallel + \vec{E}_\perp\). 
+
+In the \textbf{longitudinal case},
+%
+\begin{align}
+(\omega^2 - \omega _p^2) E_{\parallel} = 0
+\,,
+\end{align}
+%
+which means that the propagation must happen exactly at the plasma frequency: these are called \textbf{Langmir waves}, or plasma waves. 
+In the transverse case, we get 
+%
+\begin{align}
+\qty[ - k^2 c^2 + (\omega^2 - \omega _p^2)] E_\perp = 0
+\,.
+\end{align}
+
+The pulsation must be 
+%
+\begin{align}
+\omega^2 = \omega _p^2 + c^2 k^2
+\qquad \text{or} \qquad
+k^2 = \frac{\omega^2 - \omega^2_p}{c^2}
+\,.
+\end{align}
+
+If \(\omega > \omega _p\), then \(k^2 > 0 \) and we are happy. These are allowed perturbations. 
+Actually, we can compute their group velocity 
+%
+\begin{align}
+v_g = \pdv{\omega }{k} = c \qty(1 - \frac{\omega_p^2}{\omega^2})^{1/2}
+\,,
+\end{align}
+%
+so if \(\omega \gg \omega _p\) the speed is close to \(c\). 
+
+If \(\omega < \omega _p\), \(k\) is imaginary.
+The solution corresponding to exponential growth is unphysical, so we only look at the exponentially damped solutions. 
+
+They are exponentially damped over a scale \(\abs{\vec{k}} = c / \omega _p\).
+This is the \textbf{skin depth} of the plasma, the largest distance a perturbation can penetrate in the plasma if it oscillates too slowly.
+
+\todo[inline]{How does this compare to the Debye length?}
+
+Fast radio bursts are like \(\gamma \)-ray bursts in the radio band.
+These are relatively high-frequency, around \SI{1.4}{GHz}. 
+We do not know what the sources are, but some were from microwave ovens. 
+
+We know of one which came from a galaxy \(\sim \SI{1}{Gpc}\) away, and which had a dispersion of about \(\Delta \omega \sim \SI{300}{MHz}\). 
+
+Photons of different frequencies arrived at different times, with a spread of about \SI{300}{ms}. 
+
+We are in the second case (\(\vec{k} \perp \vec{E}\)) since they are EM waves. 
+The group velocity is, again
+%
+\begin{align}
+v_g = c \qty[ 1 - \qty(\frac{\omega _p}{\omega})^2]^{1/2}
+\,,
+\end{align}
+%
+and we can assume (we will check \emph{a posteriori}) that \(\omega \gg \omega _p\). 
+
+The time difference will be 
+%
+\begin{subequations}
+\begin{align}
+\Delta t &= \frac{L}{v_g (\omega)} - \frac{L}{v_g (\omega + \Delta \omega )} 
+\approx \frac{L}{v_g(\omega )} \frac{1}{v_g(\omega )}\pdv{v_g}{\omega } \Delta \omega  \\
+&\approx \frac{L}{c^2} \underbrace{c \frac{\omega _p^2}{\omega^3}}_{\approx \pdv*{v_g}{\omega }} \Delta \omega 
+\,,
+\end{align}
+\end{subequations}
+%
+but we know that 
+%
+\begin{align}
+\omega _p^2 = \frac{ 4 \pi n_e^2 e^2}{m_e}
+\,.
+\end{align}
+
+This allows us to measure \(\omega _p \sim \SI{5.1}{Hz}\), and therefore also the density \(n_e\). 
+The result we get for is corresponds to \(\Omega _b\), which agrees with CMB observations. 
 
 \end{document}

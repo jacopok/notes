@@ -1,4 +1,242 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{General Relativity basics}
+
+\marginpar{Wednesday\\ 2021-11-10, \\ compiled \\ \today}
+
+Course given by Andrea Maselli.
+There's lots of stuff to say, and the course cannot possibly be comprehensive. 
+
+The exam can be two things: there will be a list of ``old'' papers, literature by now, to study in more detail. 
+We can prepare a presentation on this, to be shared among each other. 
+
+The alternative is to study more ``book-like'' topics: say, the TOV solution. 
+
+Three standard reference books are 
+\begin{enumerate}
+    \item Bernard Schultz, ``A first course in GR'';
+    \item Clifford and Will, ``Theory and experiments of gravitational physics'', which is more experimentally oriented;
+    \item Ferrari, Gualtieri and Pani, ``GR and its applications'', which is very complete. 
+\end{enumerate}
+
+\section{The equivalence principles}
+
+There is a plural in the title. 
+Principia impose constraints which modify the theory, not the other way around. 
+
+The thing to be careful with is whether we are testing \emph{principia} or a specific theory. 
+For example, the Pound-Rebka redshift experiment was testing the equivalence principle. 
+
+Alternative theories, such as scalar-tensor theories which were pioneered by Brams and Dicke, could also be written satisfying the same equivalence principle. 
+
+We can then classify alternative theories of gravity according to the principles they satisfy. 
+
+\paragraph{Newton Equivalence Principle} This is also dubbed ``NEP''. 
+
+``The quantity that I mean hereafter by the name of mass\dots''
+
+He distinguishes ``mass'' and ``weight'', and his formulation is not a principle yet. 
+
+\begin{quotation}
+In the Newtonian limit, the inertial and gravitational masses are all proportional. 
+\end{quotation}
+
+Newton's theory says that a density \(\rho (x(t), t)\) will source a gravitational potential 
+%
+\begin{align}
+\nabla^2 \phi (x(t), t) = 4 \pi G \rho 
+\,,
+\end{align}
+%
+and particles will move according to the law 
+%
+\begin{align}
+m \ddot{x} (t) = - m \nabla \phi (x(t), t)
+\,.
+\end{align}
+
+The density \(\rho \) and the mass \(m\) are conceptually different: \(\rho = \rho _{\text{act}}\) is the \emph{active} gravitational density, the mass \(m = m _{\text{in}}\) multiplying \(\ddot{x}\) is the inertial mass, while the \(m = m _{\text{pass}}\) multiplying \(\nabla \phi \) is the passive gravitational mass. 
+
+We can show that the active and passive gravitational masses are proportional by exploiting the third of Newton's laws: consider two objects 0 and 1, the attraction forces exerted by 0 on 1 and respectively by 1 on 0 will be 
+%
+\begin{subequations}
+\begin{align}
+f_1 &= m_1^{\text{in}} a_1 = \frac{G m_0^{\text{act}} m_1^{\text{pass}}}{r^2} \\
+f_0 &= m_0^{\text{in}} a_0 = \frac{G m_1^{\text{act}} m_0^{\text{pass}}}{r^2}
+\,,
+\end{align}
+\end{subequations}
+%
+but the third law imposes \(f_0 = f_1 \), which means 
+%
+\begin{align}
+\frac{m_0^{\text{pass}}}{m_0^{\text{act}}} =
+\frac{m_1^{\text{pass}}}{m_1^{\text{act}}}
+\,.
+\end{align}
+
+Therefore, these are proportional. 
+Setting the proportionality constant to 1 is just a matter of the units with which we measure them.
+Therefore, we can say \(m _{\text{act}} = m _{\text{pass}} = m _{\text{grav}}\). 
+
+If we have one more body, 2, the force exerted by 0 will be 
+%
+\begin{align}
+f_2 = \frac{G m_0^{\text{act}} m_2^{\text{pass}}}{r^2}
+\,,
+\end{align}
+%
+so the accelerations of bodies 1 and 2 will be \(a_1 = f_1 / m_1^{\text{in}}\) and \(a_2 = f_2 / m_2^{\text{in}}\).
+
+If these are equal, then we get \(m_1^{\text{pass}} / m_1^{\text{in}} = m_2^{\text{pass}} / m_2^{\text{in}}\).
+
+A way to quantify discrepancies from this principle is 
+%
+\begin{align}
+\eta = \frac{\frac{m_1^{\text{grav}}}{m_1^{\text{in}}} - \frac{m_2^{\text{grav}}}{m_2^{\text{in}}}}{\frac{m_1^{\text{grav}}}{m_1^{\text{in}}} + \frac{m_2^{\text{grav}}}{m_2^{\text{in}}}}
+\,.
+\end{align}
+
+We know from experiments that \(\abs{\eta } < \num{e-13}\). 
+In the Newtonian language, this is purely a coincidence. 
+
+Consider a nonrelativistic object moving in an external gravitational field, so that 
+%
+\begin{align}
+m _{\text{in}} \ddot{x} = m _{\text{grav}} g + \underbrace{\sum _{k}f_k}_{F}
+\,,
+\end{align}
+%
+where \(f_k\) are all other forces affecting this body. 
+We are assuming that \(g\) is a constant.
+
+We can make a transformation \(y(t) = x(t) - g t^2 / 2\), \(t' = t\). 
+The equation of motion will be 
+%
+\begin{align}
+m _{\text{in}} \ddot{y} = (m _{\text{grav}} - m _{\text{in}} ) g + F
+\,.
+\end{align}
+
+If the equivalence principle holds, the equation of motion becomes \(m _{\text{in}} \ddot{y} = F\). 
+In this reference system, gravity disappears completely. 
+
+We can see hints of the locality of this procedure: we are neglecting any derivatives of \(g\), which will never be truly constant. 
+This is the very meaning of a ``local inertial observer''. 
+
+How does this work in GR? 
+(we are actually doing this in the simplest possible, SR terms)
+
+\paragraph{Weak Equivalence Principle}
+
+\begin{quotation}
+``The trajectory of an uncharged test particle in a point of spacetime is independent of that particle's structure and composition.''
+\end{quotation}
+
+What ``test particle'' means is that it has negligible self-gravity, and that it is small enough that it does not couple to the inhomogeneities of the gravitational field. 
+
+The first statement can be quantified by the compactness parameter: \(GM / c^2 R\). 
+For the Sun, this is of the order of \num{e-6}. 
+
+The second statement can be quantified by saying that the size of the body should be small compared to the length scale of the curvature of spacetime. 
+
+These two constraints are logically independent.
+In GR, the term ``mass'' is quite difficult to deal with. 
+Therefore, instead of discussing them we only talk of trajectories. 
+
+``Test experiment'' means that its effects are ``weak''. 
+
+\paragraph{Einstein Equivalence Principle}
+
+There are two alternative formulations.
+
+\begin{quotation}
+    ``The outcome of any non-gravitational test experiment is not affected locally, at any point in spacetime, by the presence of the gravitational field.''
+\end{quotation}
+
+\begin{quotation}
+    ``The outcome of any non-gravitational test experiment is independent of the position of the lab in space and of the velocity of the free-falling apparatus.''
+\end{quotation}
+
+The second formulation more explicitly requires invariance under the Poincaré group. 
+
+In the WEP we are only talking about mechanical laws, while here we extend to all the laws of physics. 
+
+This means that we can always find a reference system which cancels gravity. 
+
+This is establishing the connection between local frames in a gravitational field, and frames in the absence of gravity.
+
+\todo[inline]{This sounds a bit circular without a careful definition of a ``gravitational experiment''\dots} 
+
+\paragraph{Strong equivalence principle}
+
+\begin{quotation}
+    ``The outcome of any experiment is not affected at any point in spacetime by the presence of the gravitational field.''
+\end{quotation}
+
+There is no proof that SEP implies GR, but GR surely satisfies it.
+
+The EEP is what tells us that the theory must be a metric one, since it includes SR, which has the Minkowski tensor. 
+
+There must be (at least one) metric tensor, so that it can be made equal to the Minkowski tensor at each point in spacetime, up to a conformal transformation: 
+%
+\begin{align}
+[g_1, g_2 \dots ] \to [\phi_1 (P) \eta, \phi_2 (p) \eta,  \dots]
+\,.
+\end{align}
+
+If this is the case, we will be able to rescale \(\phi _i = C_i \phi (P)\), but then we can rescale our units so that \(C_i = 1\), and the metric as \(\overline{g} = \phi^{-1} g\), which finally yields the transformation \(g \to \eta \). 
+
+In the end, then, there must be a reference frame such that  
+%
+\begin{align}
+ g_{\mu \nu } (P) = \eta_{\mu \nu } + \sum _{\alpha } \order{\abs{x^{\alpha } - x^{\alpha }}^2}
+\,.
+\end{align}
+
+In a Local Lorentz Frame there is a family of preferred curves for \(g_{\mu \nu }\), geodesics, which are straight lines: free-falling trajectories are straight lines for free-falling observers. 
+
+There are purely metric theories, with a single metric tensor, but also ones in which other fields mediate the interaction. 
+
+The presence of the LLF means that there is a frame such that, around a point, \(\dd{s^2} = \eta_{\mu \nu } \dd{y^{\mu }} \dd{y^{\nu }}\). 
+
+What are the EoM for a free-falling particle? 
+We know that they read \(\dv[2]{y}{\tau } = 0\) in the LLF. 
+
+Suppose we then move to a different frame, \(x^{\alpha } = x^{\alpha } (y)\): then the interval will transform as 
+%
+\begin{align}
+\dd{s^2} = \underbrace{\eta_{\mu \nu } 
+\pdv{y^{\mu }}{x^{\alpha }}
+\pdv{y^{\nu }}{x^{\beta   }}}_{g_{\alpha \beta }}
+\dd{x^{\alpha }} \dd{x^{\beta }}
+\,.
+\end{align}
+
+The EoM then reads 
+%
+\begin{subequations}
+\begin{align}
+0 = \dv{}{\tau } \qty(\pdv{y^{\alpha }}{x^{\beta }} \dv{x^{\beta }}{\tau }) 
+&=  \dv[2]{x^{\beta }}{\tau } \pdv{y^{\beta }}{x^{\beta }} 
++ \pdv[2]{y^{\alpha }}{x^{\beta }}{x^{\gamma }} \dv{x^{\beta }}{\tau } \dv{x^{\gamma }}{\tau }  \\
+&= \dv[2]{x^{\beta }}{\tau } \underbrace{\pdv{y^{\beta }}{x^{\beta }}
+\pdv{x^{\rho }}{x^{\beta }}}_{ \delta_{\beta }{}^{\rho }} 
++ \underbrace{\qty( \pdv{x^{\rho }}{y^{\alpha }} \pdv[2]{y^{\alpha }}{x^{\beta }}{x^{\gamma }} )}_{ \Gamma^{\rho }_{\beta \gamma }}
+\dv{x^{\beta }}{\tau }  \dv{x^{\gamma }}{\tau }  \\
+&= \dv[2]{x^{\rho }}{\tau } + \Gamma^{\rho }_{\beta \gamma } \dv{x^{\beta }}{\tau }  \dv{x^{\gamma }}{\tau }
+\,.
+\end{align}
+\end{subequations}
+
+This is the \textbf{Geodesic equation}.
+The crucial thing is that \(\Gamma \) vanishes when the spacetime is flat. 
+
+The WEP implies the NEP. 
+On the other hand, the NEP does not imply the WEP. 
+A theory in which the EoM contains weird stuff and not just \(m_I / m_G\) satisfies the NEP and not the WEP. 
+
+\todo[inline]{But, are we supposed to consider these as ``theory-independent''? for the NEP, maybe not\dots}
+
 \end{document}

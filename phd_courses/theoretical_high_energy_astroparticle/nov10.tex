@@ -5,10 +5,9 @@
 
 Regarding books, the course is a synthesis of several topics, so many books cover them but they also include lots of other material.
 
-For plasma physics, ``Plasma physics for astrophysics'' by Russel Co...,
-a bit Shukuchicken ``Kinetic theory...?''
+For plasma physics, ``Plasma physics for astrophysics'' by Russel M.\ Kulsrud.
 
-For transport, ``Astrophysics of cosmic rays..''
+For transport, ``Astrophysics of cosmic rays''.
 
 \section{Basics of plasma physics}
 
@@ -47,20 +46,23 @@ where \(\zeta = n_i e - n_e e\), while the current reads \(\vec{J} = n_i e \vec{
 The interactions between these will be Coulomb ones. 
 At thermal equilibrium, we will have charge neutrality, so \(n_i = n_e = n_0\). 
 
+\paragraph{Screening}
+
 Suppose we add a positive charge in a neutral medium, at \(\vec{r} = 0\). 
 Then, the divergence of \(\vec{E}\) will be 
 %
 \begin{align} \label{eq:electric-field-perturbation}
-\vec{\nabla} \cdot \vec{E} = 4 \pi \vec{n}_i e - 4 \pi \vec{n}_e e + 4 \pi e \delta (\vec{r})
+\vec{\nabla} \cdot \vec{E} = 4 \pi n_i e - 4 \pi n_e e + 4 \pi e \delta (\vec{r})
 \,,
 \end{align}
 %
 where the tilde means that the densities are perturbed. 
 
-We will assume that the perturbation induced by this is small. The change in the energy of a particle is \(e^2 / d\), so if we assume \(e^2 / d \ll k_B T\) the thermal background remains fixed. 
+We will assume that the perturbation induced by this is small. The potential energy drop of a particle at a distance \(d\) from another is \(e^2 / d\), so if we assume \(e^2 / d \ll k_B T\) the thermal background remains fixed, and is not ``broken'' by Coulomb interactions. 
 The typical distance between particles will be \(d \sim n_0^{-1/3}\), so the weak perturbation condition will read \(e^2 n_0^{1/3} \ll k_B T\). 
 
-What we want to do now is to solve \eqref{eq:electric-field-perturbation}. 
+What we want to do now is to solve this equation \eqref{eq:electric-field-perturbation} for the electric field.
+
 At zeroth order, we will have 
 %
 \begin{align}
@@ -144,7 +146,9 @@ In a way, this is also a mesoscopic statistical requirement.
 This can be written as 
 %
 \begin{align}
-n_0 \frac{(k_BT)^{3/2}}{( 8 \pi e^2)^{3/2} n_0^{3/2}} \propto n_0^{-1/2} \gg 1
+n_0 \frac{(k_BT)^{3/2}}{( 8 \pi e^2)^{3/2} n_0^{3/2}} 
+= \frac{(k_BT)^{3/2}}{( 8 \pi e^2)^{3/2} n_0^{1/2}} 
+\gg 1
 \,,
 \end{align}
 %
@@ -164,16 +168,18 @@ where \(e^2 / b = k_B T\) gives us a limit for the Coulomb interaction length, t
 \todo[inline]{
 It can be shown that \(\lambda _C \gg \lambda _D\) is equivalent to the condition that many particles should be contained in a single Debye length.}
 
-Collective effects dominate the dynamics of a plasma. 
+Collective effects dominate the dynamics of a plasma, while the effect of a single charge quickly becomes negligible.
+
+\paragraph{Propagation modes in a plasma}
 
 We will now do an exercise in perturbation theory: which perturbations are allowed, beyond electromagnetic waves? 
-Certain modes are ``allowed'' in that they do not die out. 
+Certain modes are ``allowed'', in that they do not die out. 
 
 A lot of interesting physics come from the fact that each particle interacts with the collection of all the others. 
 
 Perturbations which are unstable are interesting, but they break our perturbative approach. 
 
-The fields in the Maxwell equations \eqref{eq:maxwell} start out at zero in the unperturbed configuration. 
+The fields in Maxwell's equations \eqref{eq:maxwell} are assumed to start out at zero in the unperturbed configuration. 
 
 The current \(J\) is given by the Generalized Ohm's law: 
 %
@@ -268,7 +274,7 @@ so we can write out the dielectric tensor explicitly:
 \end{align}
 %
 is called the plasma frequency.
-This is a \textbf{high-pass filter}!
+% This is a \textbf{high-pass filter}!
 
 We have found our dispersion relation: 
 %
@@ -304,7 +310,8 @@ k^2 = \frac{\omega^2 - \omega^2_p}{c^2}
 \,.
 \end{align}
 
-If \(\omega > \omega _p\), then \(k^2 > 0 \) and we are happy. These are allowed perturbations. 
+If \(\omega > \omega _p\), then \(k^2 > 0 \): these are allowed perturbations, which indeed exhibit oscillatory behavior.
+
 Actually, we can compute their group velocity 
 %
 \begin{align}
@@ -312,21 +319,32 @@ v_g = \pdv{\omega }{k} = c \qty(1 - \frac{\omega_p^2}{\omega^2})^{1/2}
 \,,
 \end{align}
 %
-so if \(\omega \gg \omega _p\) the speed is close to \(c\). 
+which shows that if \(\omega \gg \omega _p\) the speed is close to \(c\). 
 
-If \(\omega < \omega _p\), \(k\) is imaginary.
-The solution corresponding to exponential growth is unphysical, so we only look at the exponentially damped solutions. 
+If \(\omega < \omega _p\), on the other hand, \(k\) is imaginary.
+The solution corresponding to exponential growth is unphysical (for one, there is no mechanism providing the energy for the magnitude of the oscillation to exponentially grow), so we only look at the exponentially damped solutions. 
 
-They are exponentially damped over a scale \(\abs{\vec{k}} = c / \omega _p\).
+They are exponentially damped over a scale \(\abs{\vec{k}}^{-1} = c / \omega _p\).
 This is the \textbf{skin depth} of the plasma, the largest distance a perturbation can penetrate in the plasma if it oscillates too slowly.
 
-\todo[inline]{How does this compare to the Debye length?}
+This characteristic wavelength's ratio to the Debye length reads 
+%
+\begin{align}
+\frac{\lambda _{\text{skin depth}}}{ \lambda _{\text{Debye}}} 
+= \sqrt{\frac{m_e c^2}{4 \pi n_e e^2} \frac{8 \pi n_e e^2}{k_B T}}
+= \sqrt{\frac{2 m_e c^2}{k_B T}} \gg 1
+\,,
+\end{align}
+%
+since the plasmas we are considering are typically non-relativistic. 
+
+\paragraph{An example: fast radio bursts}
 
 Fast radio bursts are like \(\gamma \)-ray bursts in the radio band.
 These are relatively high-frequency, around \SI{1.4}{GHz}. 
-We do not know what the sources are, but some were from microwave ovens. 
+We do not really know what their sources are; some were false positives due to microwave ovens making lunch, but others were certified to be true detections.
 
-We know of one which came from a galaxy \(\sim \SI{1}{Gpc}\) away, and which had a dispersion of about \(\Delta \omega \sim \SI{300}{MHz}\). 
+We know of one which came from a galaxy \(L \sim \SI{1}{Gpc}\) away, and which had a dispersion of about \(\Delta \omega \sim \SI{300}{MHz}\). 
 
 Photons of different frequencies arrived at different times, with a spread of about \SI{300}{ms}. 
 
@@ -346,7 +364,8 @@ The time difference will be
 \begin{align}
 \Delta t &= \frac{L}{v_g (\omega)} - \frac{L}{v_g (\omega + \Delta \omega )} 
 \approx \frac{L}{v_g(\omega )} \frac{1}{v_g(\omega )}\pdv{v_g}{\omega } \Delta \omega  \\
-&\approx \frac{L}{c^2} \underbrace{c \frac{\omega _p^2}{\omega^3}}_{\approx \pdv*{v_g}{\omega }} \Delta \omega 
+&\approx \frac{L}{c^2} \underbrace{c \frac{\omega _p^2}{\omega^3}}_{\approx \pdv*{v_g}{\omega }} \Delta \omega \\
+\omega _p &\approx \sqrt{\frac{ c \omega^3 \Delta t}{L \Delta \omega }}
 \,,
 \end{align}
 \end{subequations}
@@ -354,11 +373,31 @@ The time difference will be
 but we know that 
 %
 \begin{align}
-\omega _p^2 = \frac{ 4 \pi n_e^2 e^2}{m_e}
+\omega _p^2 = \frac{ 4 \pi n_e e^2}{m_e}
 \,.
 \end{align}
 
-This allows us to measure \(\omega _p \sim \SI{5.1}{Hz}\), and therefore also the density \(n_e\). 
-The result we get for is corresponds to \(\Omega _b\), which agrees with CMB observations. 
+This allows us to measure \(\omega _p \sim \SI{5.2}{Hz}\), and therefore also the density, which comes out to be \(n_e \sim \SI{8.2e-09}{cm^{-3}}\).
+% This corresponds with the \(\Omega _b\) from CMB observations (?)
+
+How well does this match the baryon density computed from the CMB? 
+The computation goes  
+%
+\begin{align}
+\underbrace{\underbrace{\frac{\omega _p^2 m_e}{4 \pi e^2}}_{n_e} m_p}_{\rho _{\text{plasma}}} \times \frac{1}{\Omega _{0b} \rho _c} \approx 0.03
+\,.
+\end{align}
+
+Therefore, from this observation we can estimate that about \SI{3}{\percent} of baryonic matter is in the ISM. 
+
+This can be generalized a bit: maybe, not all the path \(L\) from the source to here had this much plasma in it. 
+Suppose, for simplicity's sake, that a fraction \(\alpha \) of the path was constituted by uniform-density plasma. 
+
+Then, our estimate for \(\omega _p\) will be multiplied by a factor \(\alpha^{-1/2}\), while our estimate for \(n_e\) will be multiplied by \(\alpha^{-1}\). 
+On the other hand, in the estimate for \(\rho _{\text{plasm}}\), averaged over the whole universe, will need to be shifted by some factor. 
+
+If the path we were looking at is a fair sample for the population (not a given, but let's approximate as such), then about a fraction \(\alpha \) of the universe is filled with this plasma --- this precisely cancels the correction to our estimate, so it all works out. 
+
+
 
 \end{document}

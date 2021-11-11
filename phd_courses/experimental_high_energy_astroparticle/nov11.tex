@@ -1,4 +1,174 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\paragraph{A \(2 \to 3\) process}
+
+\marginpar{Thursday\\ 2021-11-11}
+
+Before looking at three-body decays, let us consider a \(2 \to 3 \) process. 
+
+Consider 
+%
+\begin{align}
+\ce{K}^{-} + p \to \pi^{+} + \pi^{-} + \Lambda 
+\,,
+\end{align}
+%
+where the masses are \(m_\pi \approx \SI{1}{GeV}\), \(m_ \pi \approx \SI{140}{GeV}\), \(m_K \approx \SI{500}{MeV}\), and \(m_\Lambda \approx \SI{1.1}{GeV}\). 
+
+The experimental setup is a kaon beam impacting upon a proton target. 
+
+The invariant mass of the starting particles will be 
+%
+\begin{align}
+m_{Kp} = \frac{1}{c} \sqrt{(\sum  p_i)^2}
+ = \frac{1}{c} \sqrt{(p_k + p_p)^2}
+\,.
+\end{align}
+
+We could also define a corresponding energy \(m_{Kp} c^2\). 
+
+If we extend this sum to all the particles in the initial state, \(m _{\text{initial}} c^2 =  m_{\text{final}}c^2 = \sqrt{s}\) is the total invariant mass. 
+The variable \(s\) is written as \(s = c^2 p^2 _{\text{tot}}\). 
+Its meaning is that it is the total energy in the center-of-mass frame. 
+
+We can then think of this as an equivalent decay of a particle with \(m_{Kp}\), therefore the kinematic threshold is \(m_{Kp} \geq m_{\pi^{+}} + m_{\pi^{-}} + m_\Lambda \). 
+This is a general statement: 
+%
+\begin{align}
+\sqrt{s} \geq \sum _{i \in \text{products}} m_i c^2
+\,.
+\end{align}
+
+Let us approximate the protons as stationary, and we have a kaon with \(E_K\).
+
+The total four-momentum reads 
+%
+\begin{align}
+p _{\text{tot}} = (E_K + m_p, \vec{p}_k)^{\top}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\sqrt{s} &= \sqrt{(E_k + m_p)^2 - \abs{\vec{p}_k}^2}  \\
+&=\sqrt{m_K^2 + m_p^2 + 2 E_k m_p}
+\,.
+\end{align}
+
+We can then straightforwardly compute the energy threshold for \(E_k\). 
+In this case we have \(E_k^{\text{threshold}} < m_k\), so we have no real lower limit. 
+
+This reasoning can be applied, for example, when looking at the reaction
+%
+\begin{align}
+\ce{p} + \ce{p} \to 3 \ce{p} + \overline{p}
+\,.
+\end{align}
+
+The threshold for the energy of the single proton impacting on the target comes out to be \(7 m_p \approx \SI{6.6}{GeV}\).
+
+This is counterintuitive! It is due to the fact that we lose a lot of energy when boosting back to the CoM frame. 
+
+Let us go back to the \(2 \to 3\) reaction. 
+We can always compute the invariant mass of a subsystem such as \(m_{\pi^{\pm}\Lambda }\): 
+%
+\begin{align}
+m_{\pi^{\pm \Lambda }} = \sqrt{(E_{\pi^{\pm}} + E_\Lambda )^2 - \abs{\vec{p}_{\pi^{\pm }} + \vec{p}_\Lambda }^2}
+\,,
+\end{align}
+%
+which we can compute once we have the measurement from our detector. 
+
+\todo[inline]{See ``dalitz-pi-lambda'' figure in the drive.}
+
+We can look at the histogram of \(m_{\pi^{+}\Lambda }^2\) versus \(m_{\pi^{-}\Lambda }^2\). 
+
+There are peaks! 
+This suggests the presence of something decaying into \(\pi^{\pm }\Lambda \).
+This particle is a \(\Sigma^{\pm}\), and what happened was 
+%
+\begin{align}
+\ce{K}^{-} + p &\to \Sigma^{\pm} + \pi^{\mp}  \\
+\Sigma^{\pm} &\to \pi^{\pm} + \Lambda 
+\,.
+\end{align}
+
+We have not detected the \(\Sigma \) particle, which was short-lived. 
+
+We know that there should be a range \(m_2 + m_2 \leq m_{23} \leq M - m_1 \). 
+
+This can be extended to a constraint on the two invariant masses. 
+
+This is called a \textbf{Dalitz plot}, a common trick to find peaks for new particles. 
+
+The (true?) width of the peak is about \SI{36}{MeV}, which corresponds to \SI{1.8e-23}{s}. 
+Is this a \(\Sigma (1385)\)? 
+
+\todo[inline]{But we should also consider experimental error in the determination of the energy\dots}
+
+An alternative way to measure lifetimes is to look at track length: the path length we expect is 
+%
+\begin{align}
+\lambda = \beta c \tau \gamma 
+\,,
+\end{align}
+%
+where we need the Lorentz factor since the particle decays in time \(\tau \) in its own rest frame. 
+
+In this case the track length would be about \SI{5.5}{fm}; however we also have the \(\gamma \) factor: if that is large enough we may get something measurable. 
+
+We'd want to see at least a few points. 
+If \(\sigma _x\) is our spatial resolution, we need a track length which is at least \(\gtrsim 5 \sigma _x\). 
+
+The best spatial trackers are silicon detectors or emulsion trackers, on the order of \SI{10}{\micro m}. 
+This means that we need to increase our path length by a factor \(\num{e10}\)\dots 
+The \(\gamma \) factor is surely not that large: it would mean having a beam with energy on the order of \SI{e19}{eV}.
+
+Let us consider another example: \(\ce{p} + \gamma \to \Delta^{+} \), which can decay into \(\pi^{+} + \ce{n}\) or \(\pi^{0} + \ce{p}\). 
+
+What is the kinematic threshold for this reaction? 
+This is a cosmic ray proton interacting with a CMB photon. 
+
+These photons have an average energy of \(\SI{2.7}{K} \approx \SI{230}{\micro eV}\). 
+
+This does not precisely match \(\Omega_{0 \gamma } \rho _c c^2\) when multiplied by \(n_{0 \gamma }\), since we'd need to integrate the Planckian. 
+
+The value of \(\sqrt{s}\) is 
+%
+\begin{align}
+\sqrt{s} &= \sqrt{m_p^2 + 2 \qty(E_p E_\gamma - \vec{p}_p \cdot \vec{p}_\gamma )}  \\
+&= \sqrt{m_p^2 + 2 E_p E_\gamma \qty(1 - \cos \theta_{p \gamma })} \geq m_{\Delta^{+}}
+\,.
+\end{align}
+
+This means that 
+%
+\begin{align}
+E_p \geq \frac{m^2_{\Delta^{+}} - m_p^2}{2 E_\gamma \qty(1 - \cos \theta_{p \gamma })}
+\,.
+\end{align}
+
+If the collision is head-on, we get \(1 - \cos = 2\), while in the other case the threshold diverges since the proton cannot reach the photon.
+
+We should average the formula over all values of \(\theta_{p \gamma }\). 
+
+The threshold is about \SI{e19}{eV}. 
+This is the GZK cutoff, or GZK effect. 
+In order to properly study this phenomenon we would need
+to also look at the probability: \cite[]{groupReviewParticlePhysics2020} says it is of the order of \(\SI{e-1}{mb}\) for the \(\gamma p\) process. 
+
+We can study this in the lab simply, we only need \SI{200}{MeV} photons colliding on stationary protons. 
+
+With this, we can find that a typical proton above the threshold will travel for only tens of \SI{}{Mpc} before losing energy to this process. 
+
+The products from protons being annihilated in this way will produce many secondary particles: photons, neutrinos, electrons, positrons, muons and more, all being very energetic. 
+
+Let us do another possibility: could photons from a high-energy source be absorbed by the CMB? 
+For example, you can have pair production. 
+
+We need \(\sqrt{s}\) for the process to be larger or equal than about \SI{1}{MeV}.
+This comes out to be about \SI{e14}{eV}. 
+
 \end{document}

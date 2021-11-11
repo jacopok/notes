@@ -11,13 +11,11 @@ For transport, ``Astrophysics of cosmic rays''.
 
 \section{Basics of plasma physics}
 
-From the microphysical point of view, cosmic rays are just electric charges moving in a medium. 
-They, however, interact with the medium. 
-More interesting, this medium is a plasma. 
+From the microphysical point of view, cosmic rays are just electric charges moving in a plasma, which they in turn  affect. 
 
 Loosely, a plasma is ionized gas; however the interstellar medium is also at temperatures of \SI{e4}{K} to \SI{e6}{K}, this is also true for the intergalactic medium, which has a much lower density and similar temperatures, 
 
-\todo[inline]{and this also applies to the medium in clusters, which has a higher temperature}
+This also applies to the medium in clusters, which has a higher temperature, of the order of \SI{e8}{K} but lower densities, \SI{e-3}{cm^{-3}}.
 
 Magnetic fields are sourced by currents, which cosmic rays affect. 
 Electric fields, on the other hand, are ``short-circuited'' since the conductivity is very large. 
@@ -62,6 +60,7 @@ The typical distance between particles will be \(d \sim n_0^{-1/3}\), so the wea
 
 What we want to do now is to solve this equation \eqref{eq:electric-field-perturbation} for the electric field.
 
+In order to do so, we need to discuss the dependence of the phase space distribution on the energy of each particle, which we call \(\epsilon \). 
 At zeroth order, we will have 
 %
 \begin{align}
@@ -69,7 +68,10 @@ At zeroth order, we will have
 \,,
 \end{align}
 %
-but the external potential will perturb the energy \(\epsilon \) by \(e \varphi \) where \(\varphi \) is the electric potential, so 
+which we assume, on mesoscopic scales, to average out to \(\expval{e^{- \epsilon / k_B T}} = 1\).
+In the following discussion we apply this mesoscopic approximation by setting \(\epsilon \equiv k_B T\), but we do leave in the external perturbation to the potential. 
+
+The external potential will perturb the energy \(\epsilon \) by \(e \varphi \) where \(\varphi \) is the electric potential, so 
 %
 \begin{subequations}
 \begin{align}
@@ -96,11 +98,11 @@ which we can expand up to linear order:
 \vec{\nabla}^2 \varphi &= 
 - 4 \pi e n_0 \exp(- \frac{\epsilon }{k_B T}) 
 \qty( \exp(- \frac{e \varphi }{k_B T}) - \exp(\frac{e \varphi }{k_B T}))  \\
-&= 
+&\approx 
 - 4 \pi e n_0 \exp(- \frac{\epsilon }{k_B T}) 
 \qty(1 - \frac{e \varphi }{k_BT} - 1 - \frac{e \varphi }{k_B T})  \\
 &=
-8 \pi e \underbrace{n_0 \exp(- \frac{\epsilon }{k_B T})}_{ \to n_0 } 
+8 \pi e \underbrace{n_0 \exp(- \frac{\epsilon }{k_B T})}_{ = n_0 } 
 \frac{e }{k_B T} \varphi
 \,.
 \end{align}
@@ -153,7 +155,7 @@ n_0 \frac{(k_BT)^{3/2}}{( 8 \pi e^2)^{3/2} n_0^{3/2}}
 %
 which shows that, counter-intuitively, this condition is easier to fulfill for under-dense plasmas. 
 
-The path length for Coulomb scattering, \(\lambda _C\), should be much larger than both \(\Delta r\) (the separation between particles) and \(\lambda _D\). 
+The path length for Coulomb scattering, \(\lambda _C\), should be much larger than both \(\Delta r \approx n^{-1/3}\) (the separation between particles) and \(\lambda _D\). 
 
 It can be estimated by 
 %
@@ -164,8 +166,15 @@ It can be estimated by
 %
 where \(e^2 / b = k_B T\) gives us a limit for the Coulomb interaction length, therefore \(\sigma _C \approx b^2 \approx (e^2 / k_B T)^2\). 
 
-\todo[inline]{
-It can be shown that \(\lambda _C \gg \lambda _D\) is equivalent to the condition that many particles should be contained in a single Debye length.}
+
+It can be shown that \(\lambda _C \gg \lambda _D\) is equivalent to the condition that many particles should be contained in a single Debye length: the condition reads 
+%
+\begin{align}
+\lambda _C = \frac{(k_B T)^2}{n_0 e^{4}} &\gg \sqrt{\frac{k_B T}{8 \pi n_0 e^2}} = \lambda _D   \\
+(8 \pi)^2 n_0 \qty(\frac{k_B T}{8 \pi n_0 e^2})^2 &\gg  \qty( \frac{k_BT}{ 8 \pi n_0 e^2})^{1/2}  \\
+\lambda _D^3 &\gg \frac{1}{(8 \pi )^2 n_0 }
+\,.
+\end{align}
 
 Collective effects dominate the dynamics of a plasma, while the effect of a single charge quickly becomes negligible.
 

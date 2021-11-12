@@ -73,6 +73,9 @@
 \linespread{1.05}         % Palladio needs more leading (space between lines)
 \usepackage[T1]{fontenc}
 
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
 % \newcommand{\diag}[1]{\text{diag}\qty(#1)}
 % \newcommand{\const}{\text{const}}
 % \newcommand{\sign}{\text{sign}}
@@ -88,8 +91,8 @@
 % \renewcommand{\var}[1]{\text{var} \qty(#1)}
 % \newcommand{\defeq}{\ensuremath{\stackrel{\text{def}}{=}}}
 
-\newcommand\mybox[1]{%
-  \fbox{\begin{minipage}{0.9\textwidth}#1\end{minipage}}}
+% \newcommand\boxtext[1]{%
+%   \noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}}
 
 %Spiegazioni/verifiche
 % \newenvironment{greenbox}{\begin{mdframed}[hidealllines=true,backgroundcolor=green!20,innerleftmargin=3pt,innerrightmargin=3pt]}{\end{mdframed}}
@@ -141,13 +144,13 @@
 
 % \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=10,shrink=10]{microtype}
 
-\newcommand{\boxalign}[2][0.986\textwidth]{
-  \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
-  \begin{center}\begin{tikzpicture}
-   \node [mybox] (box){%
-    \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
-   };
-\end{tikzpicture}\end{center}}
+% \newcommand{\boxalign}[2][0.986\textwidth]{
+%   \par\noindent\tikzstyle{mybox} = [draw=black,inner sep=6pt]
+%   \begin{center}\begin{tikzpicture}
+%    \node [mybox] (box){%
+%     \begin{minipage}{#1}{\vspace{-5mm}#2}\end{minipage}
+%    };
+% \end{tikzpicture}\end{center}}
 
 \newcommand{\bigd}[2]{\frac{\mathrm{D} #1}{\mathrm{D} #2}}
 \newcommand{\DD}{\mathrm{D}}

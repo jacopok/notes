@@ -109,17 +109,43 @@ which we can expand up to linear order:
 \end{subequations}
 
 The prefactor had the dimensions of an inverse square length; further, we include the exponential \(e^{- \epsilon / k_BT}\) into the unperturbed density \(n_0 \).
+
+\begin{tcolorbox}[/tcb/breakable=true]
+We are being a bit cavalier in the distinction between the phase space density \(f(\vec{x}, \vec{p})\) and the spatial number density \(n(\vec{x})\). 
+
+Roughly speaking, the first is defined so that its integral over all of \(\dd[3]{x} \dd[3]{p}\) yields the total number of particles, while for the second the integral need only be done over \(\dd[3]{x}\). 
+We can recover the number density by integrating the phase space density: specifically, the correct normalization in natural units reads 
+%
+\begin{align}
+n(\vec{x}) = \frac{g}{(2 \pi )^3} \int f(\vec{x}, \vec{p}) \dd[3]{p}
+\,,
+\end{align}
+%
+where \(g\) is the number of helicity states of the particle at hand. 
+
+The isotropic Maxwellian phase space distribution (which approximates both the Bose-Einstein and Fermi ones) reads \(f(\vec{x}, \vec{p}) = \exp(- \epsilon (\vec{p}) / k_B T)\), where \(\epsilon (\vec{p}) = \sqrt{m^2 + \vec{p}^2}\) is the energy corresponding to the momentum \(\vec{p}\). 
+
+The way the specific integral is computed for this density does not really matter (and is actually rather complicated in general), but we call the result \(n_0 \) --- it is independent of \(\vec{x}\), since the phase space density is as well.
+
+Now, we insert an external potential energy term to the \emph{phase space} density, mapping \(\epsilon \to \epsilon + U(\vec{x})\) (which for us will be \(U(\vec{x}) = - e \varphi (\vec{x})\)). The integral then reads 
+%
+\begin{align}
+n(\vec{x}) = \frac{g}{(2 \pi )^3} \int \exp(- \frac{\epsilon }{k_B T}) \exp(- \frac{U(\vec{x})}{k_B T}) \dd[3]{p} = n_0 \exp(- \frac{U(\vec{x})}{k_B T})
+\,.
+\end{align}
+\end{tcolorbox}
+
 We define the \textbf{Debye length}
 %
 \begin{align}
 \lambda _D = \qty(\frac{k_B T}{8 \pi n_0 e^2})^{1/2}
-\,.
+\,,
 \end{align}
-
-The equation reads 
+%
+in terms of which, and using the assumption of spherical symmetry for our problem, the equation reads 
 %
 \begin{align}
-\frac{1}{r^2} \pdv{r} \qty(r^2 \pdv{\varphi }{r}) 
+\nabla^2\varphi = \frac{1}{r^2} \pdv{r} \qty(r^2 \pdv{\varphi }{r}) 
 = \frac{1}{\lambda _D^2} \varphi 
 \,,
 \end{align}

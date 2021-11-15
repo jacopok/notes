@@ -1,4 +1,165 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2021-11-15}
+
+Using pure germanium spectrometers allows one to not have a radioactive detector. 
+
+The bigger the detector, the more radioactivity one has to worry about. 
+
+We see a PMT sample's spectrum from the XENON collaboration. 
+
+We can have radiogenic or cosmogenic activation of the detector. 
+Even if we go under the mountain, some cosmic ray flux remains, which can produce neutrons by spallation (this is cosmogenic). 
+We can also have radiogenic activation: if there is a radioisotope left in our detector it can produce some new neutrons and \(\alpha \) particles. 
+
+The typical lifetime of a detector is mostly spent trying to minimize its radioactivity. 
+
+We also have RPRs, radon progeny recoils: radon has a decay chain producing both \(\alpha \) and \(\beta \) particles.
+Radon is in the air, and the polonium it produces gets stuck to the detector. 
+
+If the \(\alpha \) decay happens at the edge of the detector, the polonium can escape it, leaving only the \(\alpha \) particle inside it, which mimicks a DM signal. 
+
+The way to avoid this problem is \emph{fiducialization}: using only signals coming from far away from the wall of the detector (in a ``fiducial region'').
+In order to do this, we need 3D localization of each event. 
+
+Another evil background is that given by neutrinos from the Sun. 
+These typically come from the \(pp\) chain: 
+%
+\begin{align}
+\ce{p} + \ce{p} &\to {}^{2}\ce{H} + e^{+} + \nu _e \\
+\ce{p} + e^{-} + \ce{p} &\to {}^{2}\ce{H} + \nu _e 
+\,,
+\end{align}
+%
+and more.
+
+Neutrino interactions will look just like the ones we are looking for, and there is no way to shield from them. 
+We also have a diffuse SN neutrino background, as well as atmospheric neutrinos. 
+
+Experiments are currently getting close to the sensitivity at which this becomes an irreducible background. 
+This is called the \textbf{neutrino floor}. 
+
+At \SI{}{GeV} to \SI{}{TeV} WIMP masses, the main contributions are neutrinos from Boron or Beryllium. 
+
+One can look at the differences between the spectrum of energy from these neutrinos, but we need a lot of statistics for this. 
+
+Another approach is to look at the directionality:
+fortunately, Cygnus (from which we expect DM to be coming) never overlaps with the direction of the Sun. 
+
+The event rate per unit energy reads 
+%
+\begin{align}
+\dv{R}{E_R} = N_N \frac{\rho_0  }{ m_W} \int [v _{\text{min}} < \abs{\vec{v}} < v _{\text{max}}] \dd{\vec{v}} f(\vec{v}) v \dv{\sigma }{E_R}
+\,,
+\end{align}
+%
+where \(\rho_0 \) is the local DM density, while \(m_W\) is its mass; \(\vec{v}\) is the velocity of the DM, and we can compute 
+%
+\begin{align}
+v _{\text{min}} = \sqrt{\frac{m_N E_R}{2 \mu^2_N}}
+\,,
+\end{align}
+%
+where \(\mu _N\) is the reduced mass of the interaction. 
+This is the minimum velocity needed to produce a recoil with energy \(\geq E_R\). 
+
+The local DM density and its velocity distribution come from astrophysics. 
+We expect the DM halo to extend much further than the galactic disk. 
+
+Exclusion limits are traditionally computed setting \(\rho_0 = \SI{.3}{GeV / cm^3}\), which is roughly the mean of our estimates, which are however rather uncertain, ranging from \num{.2} to \num{.56}.  
+
+On average the halo is stationary, not corotating with the galactic center. 
+Its velocity distribution is typically modelled as a Maxwellian, with \(\sigma \sim \sqrt{3/2} v_e\), where \(v_e\) is the escape velocity for the galaxy. 
+
+We must also account for the motion of the Sun around the  galaxy (which is written in terms of a ``local standard of rest''), and the Earth's motion around the Sun. 
+
+We have knowledge of large-scale DM distribution, but it could be non-smooth on the milliparsec scale! 
+The Gaia survey suggested the presence of \emph{streams}\dots
+
+The DM-nucleus cross-section \(\dv*{\sigma }{E_R}\) is not known. 
+The order of magnitude of the momentum transfer can be used to estimate it, through \(\lambda \sim \hbar / p \gtrsim r_0 A^{1/3}\).
+
+In an effective field theory approach, we can write a Lagrangian like 
+%
+\begin{align}
+\mathscr{L} _{\text{eff}} = \frac{1}{\Lambda^2} \qty( \widetilde{\chi} \Gamma _{\text{dark}} \chi ) \qty( \widetilde{\psi} \Gamma _{\text{vis}} \psi )
+\,.
+\end{align}
+
+We will have scalar-scalar, vector-vector interactions which are spin-independent, and enhanced by a factor \(A^2\)\dots
+
+With these assumptions, we can write an expression like 
+%
+\begin{align}
+\dv{\sigma }{E_r} &\sim \frac{2 m_N A^2 (f^{p})^2}{\pi v^2} F^2(E_R)  \\
+F^2 (E_R) &= \qty(\frac{3 j_R q R_S}{q R_1 })^2 \exp(- q^2 s^2)
+\,
+\end{align}
+%
+for the spin-independent contribution. 
+
+The spin-dependent contribution is proportional to \(J (J+1)\), which is nonzero only if there is an unpaired nucleon. 
+
+The important parameter is \(A^2\) for the spin-dependent interaction. 
+
+The final term is the kinematic one. 
+The scattering is very much nonrelativistic, since \(m_W \sim \SI{10}{GeV} \divisionsymbol \SI{1}{TeV}\); the typical velocity of such a nucleus is \(v \sim \SI{220}{km/s} \sim c / 1400\). 
+
+The recoil energy is therefore 
+%
+\begin{align}
+E_R = \frac{p^2}{2 m_N} = \dots
+\,.
+\end{align}
+
+The kinematics of the process means that heavier nuclei cross-sections are suppressed with respect to lighter ones as the energy rises, even though the curves are higher overall because of the \(A^2\) enhancement. 
+
+This law would be a strong confirmation that what we are looking at is indeed a DM signal. 
+
+The signal is a decaying exponential; but the background is also a decaying exponential. 
+This poses a large problem for identification. 
+
+A more robust signature would be the temporal dependence of the rate: our velocity with respect to the center of the galaxy is modulated as we go around the Sun. 
+This will yield a law like 
+%
+\begin{align}
+\dv{R}{E} (E, t) = S_0 (E) + S_m (E) \cos(\frac{2 \pi (t - t_0 )}{T})
+\,.
+\end{align}
+
+DAMA claimed to have seen this kind of signal, but there might be another explanation. 
+
+The rotation around the Earth's axis also changes the apparent direction of Cygnus. 
+
+We can write a distribution depending on the direction of nuclear recoil: 
+%
+\begin{align}
+\frac{ \dd{R}}{ \dd{E} \dd{\cos \gamma }}
+\,.
+\end{align}
+
+This directional asymmetry is a tool to have a true, positive identification of dark matter. 
+
+If we measure the event rate, we can give a plausible region of \(m_W\) and \(\dv*{\sigma }{E_R}\). 
+
+In order to go to low DM mass we need light nuclei and a low threshold, in order to go to high DN mass we need heavy nuclei and large exposure (integration time). 
+
+We can also use the material response to a signal to figure out what it is: we can detect \emph{charge} (ionization), \emph{light} (scintillation) and \emph{heat} (phonons). 
+
+DM will scatter only once, neutrinos as well. 
+Neutrons might scatter more than once, which allows one to throw them out. 
+
+The distribution of energy between the three channels is a possible path for event discrimination. 
+
+A nuclear recoil will mostly produce heat, while an electron will mostly yield ionization. 
+The ratio between the visible energies is known as the Quenching Factor: 
+%
+\begin{align}
+\text{QF} = \frac{E _{\text{visible}}(\SI{}{keV} ee)}{E _{\text{visible}} (\SI{}{keV} r)}
+\,.
+\end{align}
+
+Experiments can be then classified in terms of the three detection channels. 
+
 \end{document}

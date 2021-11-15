@@ -1,8 +1,191 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Differential geometry}
+
 \marginpar{Monday\\ 2021-11-15}
 
+A point in \(\mathbb{R}^{n}\) is described by the \(n\)-tuple \((x_1, \dots, x_n)\). 
+These are a dense set (and also a complete one).
+
+Open sets in \(\mathbb{R}^{n}\) are defined as follows: \(S \subseteq \mathbb{R}^{n}\) is open if for all \(x \in S\) we can make a ball \(B_r(x)\) with \(r > 0\) such that \(B_x \subseteq S\), where a ball is a set 
+%
+\begin{align}
+B_r (x) = \qty{y \in \mathbb{R}^{n} | \abs{x - y} < r}
+\,.
+\end{align}
+
+A topological space is a collection of open sets which is closed under arbitrary intersections and finite unions. 
+
+A map \(\rho \) between two sets \(M\) and \(N\) takes a point \(x \in M\) to a point \(y = f(x) \in N\). 
+
+If we consider a set \(S \subseteq M\) we can look at the set of the images of \(S\) under \(f\), denoted as \(T = \rho (S) \subseteq N\). 
+We can also define the inverse image, \(S = \rho^{-1} (T)\).
+
+\textbf{Composition} of maps between different sets can also be defined: suppose we have three spaces \(M\), \(N\), \(Z\), with some maps \(f \colon M \to N\) and \(g \colon N \to Z\); their composition will be \(g \circ f \colon M \to Z\). 
+
+A map of \(M\) is \textbf{into} \(N\) if all points of \(M\) are mapped to \(N\); a map of \(M\) is \textbf{onto} \(N\) if all points of \(N\) have inverse maps to \(M\). 
+
+A \textbf{continuous} map \(f\) between topological spaces \(M\) and \(N\) is one for which, given any point \(x \in M\) such that \(y = f(x) \in N\), there is an open set of \(N\) containing \(f(x)\), which is the image of an open set of \(M\). 
+
+\todo[inline]{This is less stringent than the \(\epsilon \)-\(\delta \) definition of continuity because there is no size requirement\dots ??}
+
+A differentiable map is defined as follows: a function \(f (x) \), where \(x \in S\) and \(S \subseteq \mathbb{R}^{n}\) is open, is of order \(\mathcal{C}^{k}\) if all partial derivatives of order up to \(k\) exist and are continuous. 
+
+A \textbf{manifold} \(M\) is a collection of points such that each of them has an open neighborhood which has a continuous one-to-one map with an open set of \(\mathbb{R}^{n}\). 
+The number \(n\) is called the \textbf{dimension} of the manifold.
+
+\todo[inline]{He talks about the locality of this definition as being about the fact that \(M\) is a subset of a larger space\dots}
+
+A coordinate system or \emph{chart} is a pair \((M, \rho )\), where \(M\) is an open set while \(\rho \) is a map. 
+
+Suppose we have two coordinate systems \((U, f)\) and \((V, g)\), where \(U\) and \(V\) overlap at least at a point (so, in a region as well). 
+
+Consider the region \(f(U \cap V)\): in order to move from it to \(g(U \cap V)\) we need to apply the map \(g \circ f^{-1}\). 
+This is, therefore, a \textbf{change of coordinates}, which we will be able to write as \(\vec{y} = \vec{y} (\vec{x})\). 
+
+A \(\mathcal{C}^{k}\) differentiable \textbf{manifold} is one for which 
+\begin{enumerate}
+    \item each point of \(M\) belongs at least to an open set (and a corresponding chart); 
+    \item each chart is \(\mathcal{C}^{k}\) related to other charts it overlaps with. 
+\end{enumerate}
+
+These changes of coordinates can be written as \(y^{i} = F^{i}(x^{j})\), for which we can define a Jacobian determinant: 
+%
+\begin{align}
+J = \abs{\pdv{F^{i}}{x^{j}}} 
+\,.
+\end{align}
+
+If \(J \neq 0\) at a point \(P\), there is an onto, one-to-one map in some neighborhood of \(P\). 
+
+A \textbf{curve} is a path in \(M\) such that we associate a number, called the parameter, to each point in it, and this provides a map between it and a path in \(\mathbb{R}^{n}\), called the image of the curve. 
+
+This is typically denoted as \(\gamma \colon s \in [a, b] \to [x^{1}(s), \dots, x^{\mu }(s)]\). 
+
+The quantities 
+%
+\begin{align}
+\dv{x^{i}}{s} = \left[\begin{array}{ccc}
+\displaystyle \dv{x^{1}}{s} 
+& \dots &
+\displaystyle \dv{x^{n}}{s}
+\end{array}\right]
+\,
+\end{align}
+%
+are the \emph{components of the tangent vector}. 
+
+Suppose we want to make a coordinate change, \(x'(x)\): how does our tangent vector change? 
+By the chain rule, it will read 
+%
+\begin{align}
+\dv{x^{\prime i}}{s} = \pdv{x^{\prime i}}{x^{j}} \dv{x^{j}}{s}
+\,.
+\end{align}
+
+This kind of vector is called a \textbf{contravariant vector}, since it transforms with the Jacobian matrix. 
+
+We want to show that directional derivatives form a vector space at a point \(P\). 
+Consider a curve with its parameter \(\lambda \) and a differentiable function \(\phi (x_1, \dots, x_m)\). 
+The derivative 
+%
+\begin{align}
+\dv{\phi }{\lambda } = \pdv{\phi }{x^i} \dv{x^{i}}{\lambda } 
+\,.
+\end{align}
+
+With this in mind, we can define the \textbf{directional derivative operator} 
+%
+\begin{align}
+\dv{}{\lambda } = \dv{x^{i}}{\lambda } \pdv{}{x^{i}}
+\,.
+\end{align}
+
+However, we already know that the \(\dv*{x^{i}}{\lambda }\) are the \emph{components of the tangent vector}.
+
+If we have two curves, \(x^{i}(\lambda )\) and \(x^{i} (s)\), we can define a directional derivative for each of them.
+We can then sum these, by defining the sum as 
+%
+\begin{align}
+\dv{}{\lambda } + \dv{}{s} = \qty(\dv{x^{i}}{\lambda } + \dv{x^{i}}{s}) \pdv{}{x^{i}}
+\,.
+\end{align}
+
+This vector will still be tangent to the curve, and we will be able to find a third parameter \(\mu \) such that 
+%
+\begin{align}
+\dv{}{\mu } = \dv{x^{i}}{\mu } \pdv{}{x^{i}}
+\,.
+\end{align}
+
+We can also scale the directional derivative operator: 
+%
+\begin{align}
+a \dv{}{\lambda } = \underbrace{\qty(a \dv{x^{i}}{\lambda })}_{\dv*{x^{i}}{\sigma }} \pdv{}{x^{i}}
+\,.
+\end{align}
+
+This proves (?) that the space of directional derivatives is a vector space. 
+This space is denoted as \(T_P\), where \(\dv*{}{\lambda }\) is a vector.
+
+The crucial idea here is that vectors at different points belong to different vector spaces, and cannot be directly compared. 
+
+Coordinate lines are the ones for which all but one of the coordinates we are using remain constant. 
+What this means is that directional derivatives along these read 
+%
+\begin{align}
+\dv{}{x^{i}} = \dv{x^{j}}{x^{i}} \pdv{}{x^{j}} = \delta^{j}_{i} \pdv{}{x^{j}} = \pdv{}{x^{i}}
+\,.
+\end{align}
+
+This also means that any directional derivatives can be expressed (uniquely) as linear combinations of these \(\partial_{i}\), which are therefore a basis for the tangent space at each point.
+
+We have a one-to-one connection between the tangents of curves at a point \(P\) and the derivatives along a curve at \(P\). 
+Because of this, we associate the directional derivative \(\dv*{}{\lambda }\) to a tangent vector to a curve \(x^{i}(\lambda )\).
+
+We denote the \(i\)-th basis vector as \(\vec{e}_{(i)} = \pdv{}{x^{i}}\).
+The number between round brackets enumerates the vectors in the basis, it is not a spatial index. 
+
+We can then express any vector in a more conventional notation as \(\vec{A} = A^{i}\vec{e}_{(i)}\).
+If we change coordinates, the basis will shift like 
+%
+\begin{align}
+\vec{e}_{k'} = \widetilde{\Lambda}^{j}_{k'} \vec{e}_j
+\,,
+\end{align}
+%
+where \(\widetilde{\Lambda}\) is the inverse of the Jacobian. 
+
+\paragraph{One-forms}
+
+A one-form \(\widetilde{q}\) is a real-valued, linear function of vectors: 
+%
+\begin{align}
+\widetilde{q}(a \vec{V} + \vec{W}) = a \widetilde{q}(\vec{V}) + \widetilde{q}(\vec{W})
+\,.
+\end{align}
+
+We can sum one-forms by summing their action, and multiply them by scalars by multiplying the result of their application by a scalar. 
+These are then a vector space, which is called the \emph{dual}: \(T_P^{*}\).
+
+The reason for the name is the dual symmetry: taking \(\widetilde{q}(\vec{V}) \simeq \vec{V} (\widetilde{q})\). 
+
+The basis for the dual is called the conjugate basis \(\widetilde{\omega}\), and it is convenient to select it so that \(\widetilde{\omega}^{(i)} (\vec{V}) = V^{i}\). 
+Alternatively, we can write this as \(\widetilde{\omega}^{(i)} (\vec{e}_{(j)}) = \delta^{i}_{j}\). 
+
+Any 1-form can also be written in terms of the basis covectors, \(\widetilde{q} = q_{i} \widetilde{\omega}^{(i)}\). 
+
+We can make the manipulation 
+%
+\begin{align}
+\widetilde{q} (\vec{V}) = 
+\widetilde{q} (V^{i} \vec{e}_{(i)}) =
+V^{i} \widetilde{q} (\vec{e}_{(i)}) =
+\widetilde{\omega}^{(i)}(\vec{V}) \widetilde{q} (\vec{e}_{(i)}) = q^{i} V_i
+\,.
+\end{align}
+%
 
 
 \end{document}

@@ -1,4 +1,207 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-11-16}
+
+Last time we compute the threshold for reactions with a CMB photon interacting with some high-energy particles. 
+
+We can plot the mean free path with varying energy. 
+It is roughly infinite below a certain threshold (we can have some interactions with the tails of the distribution near it), then it asymptotes to \(\Lambda \sim \SI{100}{Mpc}\). 
+
+Around \SI{5e19}{eV} the \(\ce{p} + \gamma _{\text{CMB}} \to \Delta^{\pm}\) reaction kicks in, while at around \SI{e14}{eV} we get  the \(\gamma + \gamma  _{\text{CMB}}\to e^{+} e^{-}\) reaction. 
+There, however, the energy affects the cross-section of the reaction, so we expect to see a minimum. 
+
+The all-particle energy spectrum has an ultra-high-energy cutoff around \SI{e20}{eV} because of these reactions. 
+
+At LHC we have center-of-mass energies of \SI{14}{TeV}, which is found by adding together the energies of the bins.
+This is true in this particular case since we have a symmetric configuration, meaning that the total momentum in the lab frame as well vanishes. 
+
+In a fixed target context (such as a cosmic ray coming in) instead we get 
+%
+\begin{align}
+\sqrt{s} = \sqrt{2 m (E + m)}
+\,,
+\end{align}
+%
+so the correct comparison reads 
+%
+\begin{align}
+\sqrt{2 m (E +m)} = 2 E^{*}
+\,,
+\end{align}
+%
+where \(E^{*} = \SI{7}{TeV}\). Therefore, 
+%
+\begin{align}
+E = \frac{(2 E^{*})^2}{2m} - m
+\,.
+\end{align}
+
+It depends on \(E^{*}\) quadratically! 
+In our case, with protons, we get \(E \sim \SI{e17}{eV}\).
+
+How are the angles changed? 
+The invariant mass of the total system is 
+%
+\begin{align}
+m _{\text{inv}} = \sqrt{\qty(\sum _{i}E_i)^2 - \abs{ \sum _i p_i}^2}
+\,.
+\end{align}
+
+We also know that \(\gamma = E / m\).
+The total \(\gamma \) can be computed by looking at this expression with the total energy \(E _{\text{tot}}\) and \(\sqrt{s} = m _{\text{inv}}\) as the total mass. 
+
+In the case of our cosmic rays, this reads 
+%
+\begin{align}
+\gamma _{\text{CMS}} \sim \sqrt{ \frac{\SI{e17}{eV}}{\SI{2e9}{eV}}} \approx \SI{7e3}{}
+\,,
+\end{align}
+%
+which corresponds to an angle of \(1 / \gamma _{\text{CMS}}\sim \SI{30}{\arcsec}\). 
+
+This is a good thing, in a way: instead of having to make a detector all around the event, we can make a smaller one in the forward direction only. 
+
+We can define a new kinematic variable in order to better understand these angles. 
+
+Consider a Lorentz transformation with a velocity \(v_0 = \beta_0 c\) along the \(x\) axis. 
+The transformation for a velocity \(v\) reads 
+%
+\begin{align}
+v = v' + v_0 
+\,
+\end{align}
+%
+in the NR case, while for the relativistic case it will be 
+%
+\begin{align}
+v = \frac{v' + v}{1 + v' v_0 / c^2}
+\,.
+\end{align}
+
+This only holds for the \(x\) component, along the boost.
+
+Therefore, the velocities are not additive.
+A trick is to introduce a new quantity, the \emph{rapidity}:
+%
+\begin{align}
+y' = \frac{1}{2} \log \frac{1 + \beta '}{1 - \beta '} = \operatorname{arctanh} (\beta ')
+\,,
+\end{align}
+%
+and rapidities are indeed additive. 
+These are typically considered only looking at the component parallel to the boost: 
+%
+\begin{align}
+y = \operatorname{arctanh} (\beta_{\parallel})
+\qquad \text{where} \qquad
+\beta_{\parallel} = \beta \cos \theta = \frac{p_{\parallel}}{E}
+\,.
+\end{align}
+
+This formulation holds in 3D as well. 
+The rapidity can also be written as 
+%
+\begin{align}
+y = \frac{1}{2} \log \qty(\frac{E + p_{\parallel}}{E - p _{\parallel}})
+\,.
+\end{align}
+
+The Lorentz parameters can be written in terms of hyperbolic functions: 
+%
+\begin{align}
+\beta &= \tanh(y)  \\
+\gamma &= \cosh(y)  \\
+\beta \gamma &= \sinh(y)
+\,,
+\end{align}
+%
+so that the Lorentz matrix reads 
+%
+\begin{align}
+\left[\begin{array}{cc}
+\gamma  & - \beta \gamma  \\ 
+- \beta \gamma   &  \gamma 
+\end{array}\right]
+= \left[\begin{array}{cc}
+\cosh(y) & -\sinh(y) \\ 
+-\sinh(y) & \cosh(y)
+\end{array}\right]
+\,.
+\end{align}
+
+In the ultrarelativistic limit, the rapidity reads 
+%
+\begin{align}
+y &\approx \log \sqrt{\frac{1 + \cos \theta }{1 - \cos \theta }} \\
+&\approx \log \frac{\sqrt{(1 + \cos \theta ) / 2}}{\sqrt{( 1 - \cos \theta ) / 2}}  \\
+&\approx - \log \tan(\theta / 2 ) = \eta 
+\,,
+\end{align}
+%
+where \(\eta \) is called the pseudo-rapidity. 
+
+\todo[inline]{make figure}
+
+At LHC we can only detect particles which are not emitted very forward or very backward. 
+
+What about the rapidities of the particles for the case of a \SI{e17}{eV} cosmic ray? 
+They are additive, so \(y _{\text{lab}} = y' + y_0 \), where 
+%
+\begin{align}
+y_0 &= \frac{1}{2} \log \qty(\frac{1 + \beta _{\text{CMS}}}{1 - \beta _{\text{CMS}}})  \\
+\beta _{\text{CMS}} &= \frac{\abs{p'}}{E+m} \approx \frac{E}{E+m} \\
+y_0 &\approx \frac{1}{2} \log \qty(\frac{2E + m}{m}) \approx \frac{1}{2} \log \frac{2E}{m} 
+\,.
+\end{align}
+
+Let us consider an energy \(E \approx \SI{e15}{eV}\). Then, \(y_0 \approx 7\). 
+
+We can divide the CMS depending on the sign of \(\eta^{*}\),the pseudo-rapidity in the CMS. Then the total rapidity will read \(\eta = \eta^{*} + y_0 \). 
+
+The boundary between these in the lab frame is found when \(\eta^{*} = 0\), so we get \(\eta = - \log \tan \theta /2\): \(\theta \) is about 6 arcminutes for \(\eta = 7\). 
+
+For a collision \SI{20}{km} in the air, we expect about half of the particles to be found within a \SI{40}{m} radius. 
+
+Collider experiments typically cover \(\abs{\eta } \lesssim 5\) (the figure refers to ATLAS);
+this only covers the central region, we do not get all of them. 
+
+The definition of the pseudo-rapidity is convenient because PDFs in the form \(\dv*{N}{\eta }\) are only shifted under Lorentz boosts. 
+
+The \textbf{transverse mass} can also be defined: 
+%
+\begin{align}
+E^2 = m^2 + p^2 = \underbrace{m^2 + p_T^2}_{m_T^2} + p^2_\parallel
+\,,
+\end{align}
+%
+and \(m_T^2 = m^2 + p_T^2\) defined as above is Lorentz invariant under boosts in the \(\parallel\) direction. 
+We can also write this relation like 
+%
+\begin{align}
+\qty( \frac{E}{m_T})^2 - \qty( \frac{p_\parallel}{m_T})^2 &= 1  \\
+\cosh^2 y - \sinh^2 y &= 1  
+\,.
+\end{align}
+
+The rapidity can also be expressed as 
+%
+\begin{align}
+y = \frac{1}{2} \log \qty(\frac{E + p_\parallel}{m_T})
+\,.
+\end{align}
+
+Exercise: suppose we have an incoming particle with mass \(M\) impacting upon a particle with mass \(m\); what is the maximum transfer of energy from particle \(M\) to particle \(m\), if the collision is elastic? 
+
+The result should be 
+%
+\begin{align}
+\Delta E = \frac{2 m \gamma^2 \beta^2}{1 + 2 \gamma m/M + (m/M)^2}
+\,.
+\end{align}
+
+The case we are interested in will be a proton interacting with a medium and interacting with an electron. There, and for a relativistic proton, this will read \(\Delta E \approx 2 m \gamma^2\). 
+
+Next time, we will discuss some matter-radiation interactions. 
+
 \end{document}

@@ -29,13 +29,21 @@ where \(\overline{\theta} = \theta + \arg \det \mathcal{M}\), \(\mathcal{M}\) be
 
 The CP-violating term is allowed in the QCD Lagrangian, but we do not experimentally observe it: \(\overline{\theta} < \num{5e-11}\) \cite{chadha-dayAxionDarkMatter2021} (see also \textcite[]{kolbEarlyUniverse1994}).
 
-\todo[inline]{Computing this value does lead to the correct result: it is off by an order of magnitude. 
-% m_u = 2.16 * u.MeV
-% m_d = 4.67 * u.MeV
-% (m_u * m_d / (m_u + m_d) / (ac.m_n * ac.c**2)**2 * ac.c * ac.hbar).cgs
+\begin{extracontent}
+The neutron dipole moment is bounded at a \SI{90}{\percent} CL by \(\abs{d_n} < \SI{1.8e-26}{cm}\ e\) \cite{groupReviewParticlePhysics2020} (as opposed to the older value \(\abs{d_n} < \SI{2.9e-26}{cm}\ e\) quoted in the lecture). 
 
+Using the PDG values for the quark masses \cite[]{groupReviewParticlePhysics2020}: \(m_u \approx \SI{2.16}{MeV}\), \(m_d \approx \SI{4.67}{MeV}\), and the neutron mass \(m_n \approx \SI{939.57}{MeV}\), we get 
+%
+\begin{align}
+\frac{m_u m_d}{(m_u + m_d) m_n^2} \approx \SI{1.67}{MeV^{-1}} \approx \SI{3.30e-17}{cm}
+\,.
+\end{align}
+\end{extracontent}
+
+\todo[inline]{Computing this value does lead to the correct result: it is off by an order of magnitude. 
 \textcite[]{chadha-dayAxionDarkMatter2021} report \(\abs{d_n} = \num{3.6e-16} \overline{\theta} e \SI{}{cm}\), while this computation yields \num{3.3e-17}!
-}
+
+Computing the ratio between the two, using the formula given in the slides, yields \(\overline{\theta} \leq \num{5e-10}\).}
 
 Why is this CP-violating phase so (``unnaturally'') small? 
 
@@ -63,55 +71,56 @@ What may DM couple to?
 We don't know, so we try them all. 
 We must do it in different contexts, both astrohysical and from particle physics. 
 
-Consider the Feynman diagram for a process \(\chi \chi \leftrightarrow q q \), where \(q\) means ``quark'' but it could be substituted for any SM particle really. 
-We can look at 
+Consider the Feynman diagram for a process \(\chi \chi \leftrightarrow q q \), where \(q\) means ``quark'' but it could be substituted for any SM particle. 
+
+We can look at it from different angles:
 \begin{enumerate}
-    \item efficient annihilation now: \(\chi \chi \to q q\), so indirect detection (in the sky);
-    \item efficient scattering now: \(\chi q \to \chi q\) (underground);
+    \item efficient annihilation: \(\chi \chi \to q q\), so indirect detection (in the sky);
+    \item efficient scattering: \(\chi q \to \chi q\) (underground);
     \item efficient production: \(q q \to \chi \chi \) (in particle colliders).
 \end{enumerate}
 
 In particle colliders a \(\chi \) may be produced, but it would be among a huge amount of other things. 
-There, the particle physics people also must do trigger selection, so they may lose DM. 
+There, the particle physics people also must do trigger selection, so they may easily miss DM even if they do produce it. 
 
-Particle detectors measure the energy of the final state particles with calorimeters, as well as their momentum and trajectory with a tracking detector equipped with a magnetic field. 
+Particle detectors measure the energy of the final state particles with calorimeters, as well as their momentum and trajectory with a tracking detector equipped with a magnetic field.
+In detectors such as ATLAS or CMS, neutrinos are indirectly measured by the missing energy. 
 
-An explanation of the characteristics of ATLAS and CMS.
-Neutrinos are indirectly measured by the missing energy. 
+\begin{extracontent}
+The relative uncertainty in the energy measurement of calorimeters is typically proportional to \(1 / \sqrt{E}\), therefore the accuracy is reported as \(\sigma (E) / E = x \SI{}{\percent} / \sqrt{ E / \SI{}{GeV}}\), often shortened to \(\sigma (E) / E = x\SI{}{\percent}/ \sqrt{E}\). 
+\end{extracontent}
 
-\todo[inline]{Why are the uncertainties reported as \(\sigma (E) / E \sim x \% / \sqrt{E}\)?}
-
-Conservation of energy does not really work, since the quarks are moving around inside the protons, while the conservation of transverse momentum can be used. 
+Conservation of energy does not really apply, since the quarks are moving around inside the protons before the collision, while the conservation of transverse momentum can be used. 
 
 Search paradigms include: 
 \begin{enumerate}
-    \item mono-X searches, a SM particle recoiling against nothing;
-    \item mediator searches, a DM particle acting as a mediator, so it yields a bump in the mass spectrum of SM particle pairs;
+    \item mono-X searches: a SM particle recoiling against ``nothing'';
+    \item mediator searches: a DM particle acting as a mediator, so it yields a bump in the mass spectrum of SM particle pairs;
     \item Higgs portal: if DM couples to it, a Higgs can decay into DM. 
 \end{enumerate}
 
-Several model-dependent bounds have been given, most of which are below \SI{1}{TeV}. 
+Several model-dependent bounds have been given, most of which are below \SI{1}{TeV}.\footnote{One can find many of these plots at \url{https://twiki.cern.ch/twiki/bin/view/CMSPublic/SummaryPlotsEXO13TeV}.}
 
-Indirect DM searches involve DM particles annihilating into SM particles somewhere in the universe, and these SM particles are then detected by us.  
+Indirect DM searches involve DM particles annihilating into SM particles somewhere in the universe, which we can then detect. 
+This is a good idea in principle, but many candidates have their own issues. 
+Photons point to the source, but they lose energy in the ISM if they scatter, and we have a large background of them from astrophysical sources.
+Protons and positrons are deviated by magnetic fields therefore we cannot assign them a direction, and we don't accurately know their background level.
+Neutrinos have a very small cross-section, and while they do point back to the source their directions are hard to determine; also, there is a large neutrino background. 
 
-Photons: large background from astrophysical sources; protons/positrons: deviated by magnetic fields, and we don't know the background; neutrinos: too small cross-section\dots
+\paragraph{The inverse problem problem}
 
-\todo[inline]{
-There is a section I did not understand about an ``invrse problem'': it seems to be about
-the parameter space for the backgrounds in DM searches being very large, 
-and thus able to accommodate any new observations.
-}
+It is easy for new data to be modelled as a detection of DM, since we know very little about DM, even if it is actually just background.
 
-\subsection{Direct DM searches}
+\subsection{Direct WIMP-like DM searches}
 
-Detect the DM bumping into something we can see. 
+The idea is to detect the dark matter particle ``bumping into'' something we can see, which is typically a nucleus. 
 
-The Solar System is moving towards the Cygnus constellation. 
-Therefore, we expect to see an apparent wind of DM in that direction.
-
-% \todo[inline]{Cygnus is \emph{in our galaxy}, though!}
+The Solar System is moving through the galaxy, towards the Cygnus constellation. 
+Therefore, we expect to see an apparent ``wind of DM'' in that direction.
 
 Our signal is WIMPs bumping into nuclei, with recoil velocity \(v/c \sim \num{7e-4}\), and recoil energy \(E_R \sim \SI{10}{keV}\).
+
+
 
 Our background is both electromagnetic (photons bumping into nuclei) and neutral (neutrons or neutrinos bumping into nuclei). 
 
@@ -135,7 +144,7 @@ A single banana, on the other hand, yields \(\sim \SI{100}{events/kg/s}\), or ab
 Environmental natural radioactivity is a mess. 
 At LNGS we have more \(\gamma \)s than at Boulby in the UK, because that is a salt mine. 
 
-\todo[inline]{Why is the neutron flux reported as single data points?}
+% \todo[inline]{Why is the neutron flux reported as single data points?}
 
 We need to shield the detector from all possible backgrounds. 
 

@@ -64,7 +64,7 @@ def angular_distribution_shift():
             ) / 2
         vals = vals / max(vals)
         
-        ax.plot(bins, vals, label=f'$\gamma=${gamma:.1f}', color=color(gamma))
+        ax.plot(bins, vals, label=f'$\gamma=$ {gamma:.1f}', color=color(gamma))
         # ax.plot(2 * np.pi - bins, vals, color=color(gamma))
         
         ax.axvline(1 / gamma, color=color(gamma), ls=':')

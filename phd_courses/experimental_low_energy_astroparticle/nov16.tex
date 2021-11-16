@@ -1,4 +1,167 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsubsection{Scintillation-based detectors}
+
+\marginpar{Tuesday\\ 2021-11-16}
+
+DM experiments are classified by which signals they are sensitive to. 
+We start with experiments able to detect light: scintillating crystals
+and liquid noble-gas detectors. 
+
+The idea is that the energy lost as \(\dv*{E}{x}\) is converted into 
+visible light, which is then detected with photo sensors (such as photomultipliers). 
+The human eye was also historically used. 
+
+\todo[inline]{Is the claim ``the human eye is sensitive to a single photon'' true?}
+
+We hope that our detector is efficient in the conversion of excitation energy to 
+fluorescent radiation, that it is transparent enough to the emitted light 
+(the Stokes shift is the one between the absorption peak and the emission peak,
+we'd like this to be large). 
+
+The decay time should also be short, so that we have a short response time. 
+
+\paragraph{Photo multipliers}
+
+The photomultiplier includes a photo cathode, where light releases an electron through 
+the photoelectric effect; this electron is then accelerated towards a dynode and moves
+forward to generate secondary emission on successive dynodes. 
+
+The quantum efficiency is not very large: typically on the order of \SI{10}{\percent} to \SI{30}{\percent}. 
+
+Silicon photomultipliers are arrays of avalanche photodiodes in Geiger-Muller regime: 
+they include a p-n junction, which has a depletion region. 
+In this depletion region charges are free and subjected to an electric field, 
+therefore it can be used as a radiation detector. 
+
+PMTs can be quite large, while SiPMs are typically small --- \SI{1}{cm} of diameter is 
+already on the large side. 
+
+A comparison of PMTs and SiPMs follows. 
+\todo[inline]{Include this from the slides.}
+
+SiPMs are quite noisy if they are not cooled. 
+
+We measure the quantity 
+%
+\begin{align}
+\text{PDE} = \text{FF} \times \text{QE} \times \text{AP}
+\,,
+\end{align}
+%
+the product of the Filling Factor, the Quantum Efficiency and the Avalanche Probability. 
+
+\paragraph{Scintillators}
+
+There is \emph{quenching}: highly ionizing particles create defects in the 
+atoms or molecules in the medium, thus resulting in quenching. 
+
+The emitted light per unit length reads 
+%
+\begin{align}
+\dv{L}{x} = \frac{S \dv*{E}{x}}{1 + k B \dv*{E}{x}}
+\,,
+\end{align}
+%
+where \(k\) is the quenched fraction, while \(B\) is called the Birks constant. 
+This is called Birks' law. 
+
+In certain scintillators we have a two-exponential decay: 
+%
+\begin{align}
+N(t) = A \exp( - \frac{t}{\tau _f}) + B \exp(- \frac{t}{\tau _s})
+\,.
+\end{align}
+
+In principle we can do particle identification through \emph{pulse shape analysis},
+figuring out \(A\) and \(B\) in the aforementioned formula. 
+
+For DM searches, we typically use either liquefied noble gases or inorganic crystals. 
+Liquefied noble gases have a high yield, a fast response. 
+We can do pulse shape discrimination with them. 
+
+However, the light they emit is typically UV. We need ways to shift their wavelengths
+to detectable ones. 
+
+They are very sensitive to impurities, even at the order of \num{e-6}. 
+The best ones (like Xenon) emit several tens of photons per \SI{}{keV}. 
+
+Electron recoils have sparse ionization, ion recoils have dense ones. 
+The response to highly ionizing particles, such as alphas, is different
+from the one to minimum ionizing particles such as electrons: 
+they can also be discriminated through PSD, since they excite triplet and singlet
+states in different proportions. 
+
+We compare \(\alpha \) particles to electrons --- these are the things we can reliably
+make in a lab setting, ideally we would like to measure the recoils of heavy nuclei,
+but it's very hard to make these with reproducible, low energies. 
+
+Still, the idea is that the response to these \(\alpha \)s is roughly similar to that from nuclei. 
+
+The difference between triplet and singlet decays is the difference between fluorescence
+and phosphorescence. 
+
+What one can do is then just integrate the starting part of the signal and the end part: 
+this ratio approximates the ratio of the exponential fit components, and 
+allows for the discrimination of nuclear to electron recoils. 
+
+These detectors are typically spherical, in order to have \(4 \pi \) coverage. 
+Examples are XMASS at Kamioka, and DEAP-3600 at SNOLAB. 
+
+This is the DEAP-CLEAN family. 
+As the mass scale of these detectors grows above the ton, experimental efforts 
+tend to merge. 
+
+We look at DEAP-3600. In order to have a fiducial region, we go from \SI{3.6e3}{kg} to 
+\SI{e3}{kg}. 
+
+The argon used is radioactive! Contaminated with \(^{39}\ce{Ar}\). 
+Thanks to pulse shape, they can suppress electron recoils by a factor \num{e10}. 
+
+\todo[inline]{What is the wavelength shifter made of?}
+
+The prompt fraction of the light is used as a discriminator. 
+Nuclear recoils have a larger \(F _{\text{prompt}}\), of the order of \SI{70}{\percent},
+while electron recoils have something like \SI{30}{\percent}. 
+
+Typical efficiency values selected for nuclear recoils is of the order of \SI{50}{\percent}. 
+
+Fiducialization is the process of reconstructing the direction the signal was coming from.
+It can be time-based (measuring the arrival delays), or charge-based (measuring the signal amount).
+
+Surface background, such as radon and polonium decays, also populate the signal region for \(F _{\text{prompt}}\), however there are other methods.
+
+The effect of the sphere's neck is also relevant, and modelled by current detectors.
+
+The number of photoelectrons detected can be directly mapped to the number of \SI{}{keV} in the recoil. 
+
+They didn't find dark matter, sadly.
+
+\subsubsection{Charge + light: double-phase detectors}
+
+The scheme for the ionization of the noble gas is the same, but now we also look at the
+electron which is ejected when the xenon is ionized. 
+The light signal in the slow and fast channels is called S1, while the electron is called S2. 
+
+The ratio of S1 to S2 allows for further discrimination. 
+
+The light and charge contributions to the total energy are anti-correlated: 
+if we add them together we reduce the fluctuation in energy by a lot.
+
+We get energy resolutions of the order of \(\sigma / E \sim \SI{2}{\percent}\). 
+
+These detectors are typically shaped like cylinders, as opposed to spheres. 
+It's very difficult to make a uniform, radial \(\vec{E}\)-field in a sphere. 
+
+Even in a cylinder geometry, a ``field cage'' is used, which prevents the field lines from exiting the cylinder. 
+Instead of a single big voltage, we get a ladder of small voltages. 
+
+The first signal, S1, is detected early and after a certain time the charge drifts and 
+allows us to measure the stronger S2 signal. 
+
+Electric charge does electroluminsescence and is detected by the same PMTs which detected S1. 
+
+
+
 \end{document}

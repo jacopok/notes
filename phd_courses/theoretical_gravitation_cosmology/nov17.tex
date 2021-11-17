@@ -1,4 +1,188 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2021-11-17}
+
+The conjugate basis is often denoted as \(\widetilde{\omega}^{(J)} = \dd{\widetilde{x}}^{(J)}\). 
+
+The application of a one-form on a vector, \(\widetilde{q}(\vec{V}) = q_J V^{J}\),
+can be computed as a \emph{contraction}. 
+
+A one-form transforms with \(\pdv*{x^{\mu }}{x^{\prime \alpha }}\), 
+a vector transforms with \(\pdv*{x^{\prime \mu }}{x^{\alpha }}\). 
+
+Since a basis vector transforms like 
+%
+\begin{align}
+\vec{e}_{(\alpha ')} = \Lambda^{\mu }{}_{\alpha '} \vec{e}_{(\mu) }
+\,
+\end{align}
+%
+we have 
+%
+\begin{align}
+q_{J} = \widetilde{q}(\vec{e}_{(J)}) = \widetilde{q}( \vec{e}_{(k')} \Lambda^{k'}{}_J )
+= \Lambda^{k'}{}_J \widetilde{q}( \vec{e}_{(k')}) = \Lambda^{k'}_J q_{k'}
+\,.
+\end{align}
+
+This shows that the one-form transforms with the inverse of the Jacobian. 
+
+An example of a one-form is the gradient of a scalar function \(\phi \): 
+%
+\begin{align}
+\pdv{\phi }{x^{(J')}} = \pdv{\phi }{x^{k}} \pdv{x^{k}}{x^{\prime J'}} = \pdv{\phi }{x^{k}} \Lambda^{k}{}_{J'}
+\,.
+\end{align}
+
+\paragraph{Tensors}
+
+A tensor of type \((N, R)\) is a function which takes \(N\) one-forms, \(R\) vectors, and yields a number.
+We require that it is multilinear (linear in all its arguments), 
+
+One-forms are \((0, 1)\) tensors, vectors are \((1, 0)\) tensors. 
+
+The components of the tensor are defined by its application to the basis vectors / covectors of the vector space. For a \((0, 2)\) tensor, we have 
+%
+\begin{align}
+F_{\alpha \beta } = F( \vec{e}_{(\alpha )}, \vec{e}_{(\beta )})
+\,,
+\end{align}
+%
+from which we can recover by linearity any application of the tensor: \(F(\vec{A}, \vec{B}) = A^{\alpha } B^{\beta } F_{\alpha \beta }\). 
+
+We can then try to construct a basis for the tensor space such that 
+%
+\begin{align}
+F = F_{\alpha \beta } \widetilde{\omega}^{(\alpha , \beta )}
+\,.
+\end{align}
+
+We do this by writing 
+%
+\begin{align}
+F (\vec{A}, \vec{B}) 
+= \qty(F_{\alpha \beta } \widetilde{\omega}^{(\alpha , \beta )}) (\vec{A}, \vec{B})
+= F_{\alpha \beta } \widetilde{\omega}^{\alpha }(\vec{A}) \widetilde{\omega}^{(\beta )}(\vec{B})
+\,,
+\end{align}
+%
+therefore we can write the \((0, 2)\) basis as an outer product: 
+%
+\begin{align}
+\widetilde{\omega}^{(\alpha , \beta )} = \widetilde{\omega}^{(\alpha)} \otimes \widetilde{\omega}^{(\beta )} 
+\,.
+\end{align}
+
+We can iterate this procedure to get a basis for any tensor space. How do tensors transform? 
+%
+\begin{align}
+F = F_{\alpha ' \beta '} \Lambda^{\alpha '}_{\gamma } \widetilde{\omega}^{(\gamma )} \otimes 
+\widetilde{\omega}^{(\rho )} \Lambda^{\beta '}_{\gamma }
+= F_{\gamma \rho } \widetilde{\omega}^{(\gamma )} \otimes \widetilde{\omega}^{(\rho )}
+\,.
+\end{align}
+%
+\todo[inline]{this looks wrong\dots}
+
+The transformation law is therefore 
+%
+\begin{align}
+F_{\alpha ' \beta '} \Lambda^{\alpha '}{}_\gamma \Lambda^{\beta '}{}_\delta = F_{\gamma \delta }
+\,,
+\end{align}
+%
+or equivalently 
+%
+\begin{align}
+F_{\alpha ' \beta ' } = \Lambda^{\rho }{}_{\alpha '} \Lambda^{\sigma }{}_{\beta '} F_{ \rho \sigma }
+\,.
+\end{align}
+
+Tensors of the same kind can be added, and tensors of any order can be multiplied and contracted. 
+
+Tensors can be symmetric: in an algebraic sense, \(F\) is symmetric if \(F(\vec{A}, \vec{B}) = F(\vec{B}, \vec{A})\). 
+In terms of its indices, this means \(F_{\alpha \beta } = F_{\beta \alpha }\). 
+
+We can symmetrize a tensor by \(F_{(\alpha \beta )} = (F_{\alpha \beta } + F_{\beta \alpha }) / 2\). 
+
+Symmetric \(n\)-dimensional  tensors have \(n(n+1) / 2\) independent components. 
+
+Tensors can be antisymmetric: in an algebraic sense, \(F\) is antisymmetric if \(F(\vec{A}, \vec{B}) = - F(\vec{B}, \vec{A})\). 
+In terms of its indices, this means \(F_{\alpha \beta } = - F_{\beta \alpha }\). 
+
+We can antisymmetrize a tensor by \(F_{[\alpha \beta ]} = (F_{\alpha \beta } - F_{\beta \alpha }) / 2\). 
+
+Antisymmetric \(n\)-dimensional tensors have \(n(n-1) / 2\) independent components. 
+
+The \textbf{metric tensor}!  We call its application to two vectors their scalar product, \(g(\vec{A}, \vec{B}) = \vec{A} \cdot \vec{B}\). 
+It is symmetric, therefore it has 10 free components.
+
+The distance between two points separated by an infinitesimal \(\dd{s}\) is 
+%
+\begin{align}
+\dd{s^2} = \dd{s} \cdot \dd{s} = g_{\mu \nu } \dd{x^{\mu }} \dd{x^{\nu }}
+\,.
+\end{align}
+
+A curve \(\gamma \colon [a, b] \to \mathcal{M}\) can be measured: its length will be 
+%
+\begin{align}
+s = \int_{a}^{b} \dd{s} = \int_{a}^{b} \dd{\lambda } \underbrace{\sqrt{g_{\mu \nu } \dv{x^{\mu }}{\lambda } \dv{x^{\nu }}{\lambda }}}_{\dv*{s}{\lambda }}
+\,.
+\end{align}
+
+This gives the length of the \textbf{path}, which is invariant with respect to the parametrization.
+
+Thanks to the metric tensor we can lower or raise indices: 
+the map \(\omega _V \colon U \to g(U, V)\) is a one-form by the properties we require of the metric, so we can say it is the ``dual'' form of \(V\), typically just denoted as \(V_\mu = g_{\mu \nu } V^{\nu }\). 
+
+In order to do the inverse, we need the inverse of the metric tensor, \(g^{\mu \nu }\), which satisfies \(g^{\mu \nu } g_{\nu \rho }= \delta^{\mu }_{\rho }\). 
+
+\begin{extracontent}
+Consider the metric tensor 
+%
+\begin{align}
+\eta_{\alpha \beta } = \left[\begin{array}{ccc}
+-1 & 0 & 0 \\ 
+0 & 1 & 0 \\ 
+0 & 0 & 1
+\end{array}\right] 
+\,.
+\end{align}
+
+Let us rotate the coordinate system: 
+%
+\begin{align}
+x^{0} &= x^{0 \prime}  \\
+x^{1} & = r \cos \theta  \\
+x^{2} & = r \sin \theta  
+\,,
+\end{align}
+%
+where \(r \) and \(\theta \) are polar coordinates for the unprimed system. 
+
+How does the metric transform? 
+%
+\begin{align}
+g_{0'0'} &= \Lambda^{\mu }_{0'} \Lambda^{\nu }_{0'} \eta_{\mu \nu } = \eta_{00} = -1   \\
+g_{0'i'} &= \Lambda^{\mu }_{0'} \Lambda^{\nu }_{i '} \eta_{\mu \nu } = 0 \\ 
+g_{1'1'} &= \Lambda^{\mu }_{1'} \Lambda^{\nu }_{1'} \eta_{\mu \nu } = \cos^2 \theta + \sin^2 \theta = 1\\ 
+g_{2'2'} &= \Lambda^{\mu }_{2'} \Lambda^{\nu }_{2'} \eta_{\mu \nu } = r^2 (\cos^2 \theta + \sin^2 \theta) = r^2 
+\,.
+\end{align}
+
+So, we find the line element in polar coordinates
+%
+\begin{align}
+g_{\alpha ' \beta '} = \left[\begin{array}{ccc}
+-1 & 0 & 0 \\ 
+0 & 1 & 0 \\ 
+0 & 0 & r^2
+\end{array}\right]
+\,.
+\end{align}
+\end{extracontent}
+
+
 \end{document}

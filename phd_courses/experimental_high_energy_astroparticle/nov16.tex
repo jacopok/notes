@@ -244,7 +244,7 @@ p_m^{* \prime} &= [E^{* \prime}_m, \vec{p}^{*}]
 \end{align}
 %
 the sum of which will equal \([\sqrt{s}, 0]^{\top} = p^{*\prime}_M + p^{*\prime}_m\).
-Isolating the \(M\) momentum and computing the modulus of this equation yields 
+Isolating the \(M\) momentum and computing the modulus of this equation yields the following expression for the energy of \(m\) after the collision:
 %
 \begin{align}
 E_m^{*\prime} &= \frac{s + m^2 - M^2}{2 \sqrt{s}}  \\
@@ -254,38 +254,68 @@ E_m^{*\prime} &= \frac{s + m^2 - M^2}{2 \sqrt{s}}  \\
 \end{align}
 
 As expected, this equals \(m\) when \(\gamma = 1\). 
+Also, this precisely equals \(m \gamma _{\text{CoM}}\): this is correct, since what we have done is boosted particle \(m\) from stationarity with \(\gamma _{\text{CoM}}\); the kinematics before and after the collision are exactly the same, so the energy of particle \(m\) in the center of mass frame will be the same before and after it. 
 
 In the CoM frame this is fixed, but the angle of emission is arbitrary, and can lead to differing values for the energy of \(m\) in the lab frame.
 
 Specifically, the expression for the energy and momentum along the boost direction of mass \(m\) in the lab frame reads 
+
+\begin{align}
+\left[\begin{array}{c}
+E_m \\ 
+p_{m \parallel}
+\end{array}\right] = \left[\begin{array}{cc}
+\gamma _{\text{CoM}} & - \beta _{\text{CoM}} \gamma _{\text{CoM}} \\ 
+- \beta _{\text{CoM}} \gamma _{\text{CoM}} & \gamma _{\text{CoM}}
+\end{array}\right]
+\left[\begin{array}{c}
+E^{*\prime}_m \\ 
+p^{*}_\parallel
+\end{array}\right]
+\,,
+\end{align}
+
+where \(p_\parallel^{*} = p^{*} \cos \theta \) is the momentum along the boost direction for mass \(m\). 
+The value of \(p^{*}\) is fixed: we know \(\gamma_m^* = E^{*}_m / m\), and the corresponding value for \(\beta _m^*\) is readily computed as \(\beta _m^* = \sqrt{ 1 - (1 / \gamma _m^*)^2}\). Then, we will have \(p^{*}_m = \beta_m^* \gamma _m^* m\). 
+
+Further, we can simplify the expression by making use of the fact that \(\gamma _{\text{CoM}} = \gamma_{m}^{*}\), and similarly for \(\beta _{\text{CoM}}\). 
+With all this, the energy \(E_m\) in the lab frame reads 
 %
-% \begin{align}
-% \left[\begin{array}{c}
-% E_m \\ 
-% p_{m \parallel}
-% \end{array}\right] = \left[\begin{array}{cc}
-% \gamma _{\text{CoM}} & - \beta _{\text{CoM}} \gamma _{\text{CoM}} \\ 
-% - \beta _{\text{CoM}} \gamma _{\text{CoM}} & \gamma _{\text{CoM}}
-% \end{array}\right]
-% \left[\begin{array}{c}
-% E^{*\prime}_m \\ 
-% p^{*}_\parallel
-% \end{array}\right]
-% \,,
-% \end{align}
+\begin{align}
+E_m 
+&= \gamma _{\text{CoM}} \gamma_m^* m - \gamma _{\text{CoM}} \beta _{\text{CoM}} \gamma_m^* \beta _m^* m \cos \theta  \\
+&= \qty(1 - \beta _{\text{CoM}}^2 \cos \theta ) \gamma _{\text{CoM}}^2  m  \\
+&= \qty(1 - \beta _{\text{CoM}}^2 \cos \theta )
+\gamma^2 _{\text{CoM}}
+m 
+\,.
+\end{align}
+
+This will be maximized when \(\cos \theta \) is as small as possible, so we require \(\cos \theta = -1\);\footnote{While setting \(\theta = 0\) yields the minimum, \(E_m = m\): the collision is perfectly elastic and time-symmetric,  \(m\) is bounced straight back in the CoM frame, so it returns stationary in the lab frame.} this means we get 
 %
-% where \(p_\parallel^{*} = p^{*} \cos \theta \) is the momentum along the boost direction for mass \(m\). 
-% The value of \(p^{*}\) is fixed: we know \(\gamma_m^* = E^{*}_m / m\), and the corresponding value for \(\beta _m^*\) is readily computed as \(\beta _m^* = \sqrt{ 1 - 1 / \gamma _m^*}\). Then, we will have \(p^{*}_m = \beta_m^* \gamma _m^* m\). 
+\begin{align}
+E_m &= \qty(1 + \beta^2 _{\text{CoM}}) 
+\gamma^2 _{\text{CoM}}
+% \frac{(\gamma M + m)^2}{M^2 + m^2 + 2 \gamma Mm}
+m  \\
+&= \qty(2 - \frac{1}{\gamma _{\text{CoM}}^2}) 
+\gamma^2 _{\text{CoM}}
+% \frac{(\gamma M + m)^2}{M^2 + m^2 + 2 \gamma Mm}
+m  \\
+&= \qty(2 \gamma^2 _{\text{CoM}} - 1) m  
+\,.
+\end{align}
 
-% With all this, the energy \(E_m\) in the lab frame reads 
-% %
-% \begin{align}
-% E_m = \gamma _{\text{CoM}} \gamma_m^* m - \gamma _{\text{CoM}} \beta _{\text{CoM}} \gamma_m^* \beta _m^* m
-% \,,
-% \end{align}
-% %
-
-% Therefore, 
-\end{extracontsent}
-
+Before proceeding, we should remember that the quantity we are after is not the final energy \(E_m\) but the \emph{change} in energy of particle \(m\), which starts out stationary, so \(\Delta E = E_m - m\):
+%
+\begin{align}
+\Delta E &=  2 \qty(\gamma^2 _{\text{CoM}} - 1) m\\
+&= 2\qty( \frac{(\gamma M + m)^2}{M^2 + m^2 + 2 \gamma Mm}
+- 1) m \\
+&= 2 \frac{\qty(\gamma^2 M^2 + m^2 + 2 \gamma Mm) - M^2 - m^2 - 2 \gamma M m}{M^2 + m^2 + 2 \gamma Mm} m  \\
+&= 2 \frac{M^2 \qty(\gamma^2 - 1)}{M^2 + m^2 + 2 \gamma Mm} m  \\
+&= 2 \frac{\gamma^2 \beta^2}{1 + 2 \gamma m/M + (m/M)^2} m
+\,.
+\end{align}
+\end{extracontent}
 \end{document}

@@ -1,0 +1,264 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\subsection{Statistical descriptions of plasmas}
+
+\marginpar{Thursday\\ 2021-11-18}
+
+If the length scales we consider are larger than the Debye length, we can safely neglect the effect of the Coulomb potential of each individual particle. 
+This does not mean that there are no electric fields, but the electric fields are mesoscopic or larger. 
+
+This is ``desirable'', in that we'd like to use statistical descriptions of the plasma.
+Such a statistical description will necessarily work in phase space. 
+
+Let us start out in the nonrelativistic approximation: if we only have one particle, we can write its phase space distribution function as 
+%
+\begin{align}
+N(\vec{x}, \vec{v}, t) = \delta (\vec{x} - \vec{X}(t)) \delta (\vec{v} - \vec{\dot{X}}(t))
+\,.
+\end{align}
+
+If we have several particles, this can be readily generalized: 
+%
+\begin{align}
+N(\vec{x}, \vec{v}, t) =
+\sum _{i} \delta (\vec{x} - \vec{X}_i(t)) \delta (\vec{v} - \vec{\dot{X}}_i(t))
+\,,
+\end{align}
+%
+but this only describes a single particle species: we know that at the very least we will have electrons and protons, in order to preserve charge neutrality. 
+So, let us call the quantity defined above \(N_s\), where \(s\) is an index spanning \(\qty{e, i}\) for electrons and ions respectively. 
+
+We want to describe the evolution of this quantity: its \textbf{total} time derivative can be computed through the chain rule, and if we set it to zero we find that \(\dv*{N_s}{t} = 0\) is equivalent to:
+%
+\begin{align}
+\pdv{N_s}{t} (\vec{x}, \vec{v}, t) = 
+- \sum _{i} \nabla_x \delta (\vec{x} - \vec{X}_i(t)) \vec{\dot{X}} \delta (\vec{v} - \vec{V}_i (t) ) 
+- \sum _{i} \delta (\vec{x} - \vec{X}_i(t)) \nabla_v \delta (\vec{v} - \vec{V}_i(t)) \vec{\dot{V}}_i(t)
+\,.
+\end{align}
+
+Now, these charges will evolve under the actions of the electric and magnetic fields: but we also need to describe what is the source of these fields. 
+
+The action of these fields will be described by the Lorentz force, 
+%
+\begin{align}
+m_s \vec{\dot{V}}_i (t) = q_s \vec{E}^{\text{microscopic}} (\vec{x}) + \frac{q_s}{c} \vec{v}_i \times \vec{B}^{\text{microscopic}} (\vec{x}, t)
+\,.
+\end{align}
+
+This acceleration term will then be put into the aforementioned evolution equation. 
+We can already understand why this problem will be hard: the fields acting on a particle will be sourced by all the others. 
+
+The microscopic EM fields will satisfy Maxwell's equations: 
+%
+\begin{align}
+\vec{\nabla} \cdot \vec{E}^{\text{micro}} (\vec{x}, t) 
+&= 4 \pi \zeta^{\text{micro}}  \\
+\vec{\nabla} \cdot \vec{B}^{\text{micro}} &= 0  \\
+\vec{\nabla} \times E^{\text{micro}} &= - \frac{1}{c} \pdv{\vec{B}^{\text{micro}}}{t}  \\
+\vec{\nabla} \times \vec{B}^{\text{micro}} &= \frac{4 \pi }{c} \vec{J}^{\text{micro}} + \frac{1}{c} \pdv{\vec{E}^{\text{micro}}}{t} 
+\,,
+\end{align}
+%
+where the density and current density read 
+%
+\begin{align}
+\zeta^{\text{micro}} (\vec{x}, t) &= \sum _{s=i, e} q_s 
+\int \dd[3]{\vec{v}} N_s (\vec{x}, \vec{v}, t)  \\
+\vec{J}^{\text{micro}} &= \sum _{s=i, e} q_s 
+\int \dd[3]{\vec{v}} \vec{v} N_s (\vec{x}, \vec{v}, t)
+\,.
+\end{align}
+
+The Boltzmann equation plus the Lorentz one can be more compactly written as 
+%
+\begin{align}
+\pdv{N_s}{t} 
+= - \vec{v} \cdot \vec{\nabla}_x N_s 
+- \sum _{i=1}^{N} \frac{q_s}{m_s} 
+\qty[ \vec{E}^{\text{micro}} + \frac{1}{c} \vec{v} \times \vec{B}^{\text{micro}}] \cdot \vec{\nabla}_v \qty[\delta (\vec{x} - \vec{X}_i(t)) \delta (\vec{v} - \vec{\dot{X}}_i(t))]
+\,,
+\end{align}
+%
+where we have done a nontrivial step: the gradient \dots
+
+\todo[inline]{That's wrong! Or maybe not? it's because the velocity dependence is mediated through the delta-function\dots }
+
+The equation then becomes 
+%
+\begin{align}
+\pdv{N_s}{t} + \vec{v} \cdot \vec{\nabla}_x N_s 
+&= - \frac{q_s}{m_s} \qty[\vec{E}^{\text{micro}} + \frac{\vec{v} \times \vec{B}^{\text{micro}}}{c}] \cdot \nabla_v N_s
+\,.
+\end{align}
+
+This equation is called the Klimontovich-Dupree equation.\footnote{As many things done during the Cold War, it was developed by military personnel independently in the two blocks. } 
+
+This equation, however, is basically useless, unless we do a mean-field approximation. 
+
+Let us introduce the quantity \(f_s (\vec{x}, \vec{v}, t)\), which we want to compute through average on mesoscopic scales: 
+%
+\begin{align}
+f_s (\vec{x}, \vec{v}, t) = \expval{N_s (\vec{x}, \vec{v}, t)}_{\Delta V}
+\,.
+\end{align}
+
+The true phase space density will then be 
+%
+\begin{align}
+N_s (\vec{x}, \vec{v}, t) = f_s (\vec{x}, \vec{v}, t) + \delta f_s
+\,,
+\end{align}
+%
+where the fluctuations are assumed to average to zero. 
+We can write a similar expression for the electric and magnetic fields: 
+%
+\begin{align}
+\vec{E}^{\text{micro}} &= \vec{E} + \delta \vec{E} \\
+\vec{B}^{\text{micro}} &= \vec{B} + \delta \vec{B}
+\,.
+\end{align}
+
+The averaged KD equation then becomes: 
+%
+\begin{align}
+\dv{f_s}{t} + \vec{v} \cdot \nabla_x f_s + \frac{q_s}{m_s} 
+\qty[\vec{E} + \frac{1}{c} \vec{v} \times \vec{B}] \vec{\nabla}_v f_s = - \frac{q_s}{m_s} \expval{
+    \qty( \delta \vec{E} + \frac{1}{c} \vec{v} \times \delta \vec{B} ) \cdot \vec{\nabla}_v \delta f_s
+}
+\,.
+\end{align}
+
+The interaction and collision terms are \emph{quadratic} in the fluctuations. 
+If we neglect this term (which is typically called a ``correlation'' term), we get the \textbf{Vlasov} equation: 
+%
+\begin{align}
+\pdv{f_s}{t} + \vec{v} \cdot \vec{\nabla}_x f_s + \frac{q_s}{m_s} \qty[ \vec{E} + \frac{\vec{v} \times \vec{B}}{c}] \vec{\nabla}_v f_s = 0
+\,.
+\end{align}
+
+We can do the same thing to the Maxwell equations, using an averaged version of the charge and current densities.
+
+We will need to generalize to the relativistic case: we move to \((\vec{x}, \vec{p})\) phase space. 
+For relativistic particles, the Lorentz force reads 
+%
+\begin{align}
+\vec{\dot{p}} = q_s \qty[\vec{E} + \frac{\vec{v} \times \vec{B}}{c}]
+\,.
+\end{align}
+
+The source terms in the Maxwell equations will be integrated in \(\dd[3]{p}\), but for the charge current we will have an integral \(\int \dd[3]{p} \vec{v} f_s\). 
+
+The relativistic Vlasov equation is then readily derived with minor modifications, and reads 
+%
+\begin{align}
+\pdv{f_s}{t} + \vec{v} \cdot \vec{\nabla}_x f_s + q_s \qty[ \vec{E} + \frac{\vec{v} \times \vec{B}}{c}] \vec{\nabla}_p f_s = 0 
+\,.
+\end{align}
+
+Let us now move to the nonrelativistic plasma again, and assume we are at zero temperature. 
+We will then make a small perturbation: the ions will be stationary in first approximation. 
+Will the Vlasov equation contain the plasma waves we derived earlier? 
+
+We only write it for electrons, so 
+%
+\begin{align}
+\pdv{f}{t} + \vec{v} \cdot \vec{\nabla}_x f_s 
+- \frac{e}{m_e} \qty[\vec{E} + \frac{\vec{v} \times \vec{B}}{c}]_\alpha \pdv{f}{v_\alpha } = 0
+\,,
+\end{align}
+%
+where in the second term we are adopting the Einstein convention, summing over \(\alpha \). 
+
+We will assume that there is no magnetic field perturbation: this is the same thing we did in the plasma waves, specifically in assuming that \(\mathbb{K}\) is diagonal.
+
+\todo[inline]{is this correct?}
+
+In the stationary configuration there is \(\vec{E} = 0\). 
+To linear order, the perturbed equation will read 
+%
+\begin{align}
+\pdv{ \delta f}{t} + \vec{v} \cdot \nabla \delta f + \frac{e}{m_e} \nabla \varphi _\alpha \pdv{f}{v_\alpha } = 0
+\,.
+\end{align}
+
+\todo[inline]{But isn't \(f = \text{const}\) at zeroth order?}
+We want to assume that the plasma is cold! 
+
+The electric potential \(\varphi \) will satisfy 
+%
+\begin{align}
+- \nabla^2 \varphi = - 4 \pi e \int \dd[3]{v} \delta f
+\,.
+\end{align}
+
+We then move to Fourier space: 
+%
+\begin{align}
+- i \omega \widetilde{\delta f} + 
+i \vec{k} \cdot \vec{v} \widetilde{\delta f} 
++ \frac{e}{m_e} i k_\alpha  \widetilde{\varphi} \pdv{f}{v_\alpha } = 0
+\,,
+\end{align}
+%
+but the electric potential will satisfy 
+%
+\begin{align}
+k^2 \widetilde{\varphi} = - 4 \pi e \int \dd[3]{v} \widetilde{\delta f} 
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\widetilde{\delta f} \qty[ i \vec{k} \cdot \vec{v} - i \omega ] &= 
+- \frac{e}{m_e} \widetilde{\varphi} k_\alpha \pdv{f}{v_\alpha }  \\
+\widetilde{\delta f} &= - \frac{e}{m_e} \widetilde{\varphi} \frac{k_\alpha \pdv*{f}{v_\alpha }}{\vec{k} \cdot \vec{v} - \omega }  
+\,,
+\end{align}
+%
+which we substitute into the integral for \(\widetilde{\varphi}\): 
+%
+\begin{align}
+\widetilde{\varphi} = \frac{4 \pi e^2}{k^2m_e} \widetilde{\varphi} k_\alpha \int \dd[3]{v}  \pdv{f}{v_\alpha } \frac{1}{\vec{k} \cdot \vec{v} - \omega }
+\,,
+\end{align}
+%
+so the allowed perturbations are those which make this equation true (for arbitrary \(\varphi \)). 
+For now we have not assumed that the electrons are cold: this will enter in how we write the unperturbed \(f\). 
+
+The assumptions of the electrons being cold can be modelled as \(f = n_0 \delta (\vec{v})\): therefore, we need to integrate by parts. 
+
+Suppose that the \(z\) axis is along \(k\): then, the integrand reads 
+%
+\begin{align}
+\int \dd{v_x} \dd{v_y} \dd{v_z} \pdv{f}{v_\alpha } \frac{1}{k v_z - \omega } &=
+\int \dd{v_x} \dd{v_y} \dd{v_z} f \frac{1}{(k v_z - \omega)^2 }  \\
+&= \int \dd{v_x} \dd{v_y} \delta (v_x) \delta (v_y) n_0 \frac{k}{\omega^2} = \frac{n_0 k }{ \omega^2}
+\,,
+\end{align}
+%
+so the equation just reads 
+%
+\begin{align}
+1 - \frac{4 \pi e^2 n_0 }{k^2 m_e} \frac{k^2}{\omega^2} \implies \omega^2 = \frac{4 \pi e^2 n_0 }{m_e} = \omega_p^2
+\,.
+\end{align}
+
+At the very least, this more complicated approach allows us to recover the results we expected. 
+
+% \subsection{}
+\section{Alfvén waves}
+
+Next time, we will add one complication: a global, ordered magnetic field. 
+
+We know that this happens, for example, in spiral galaxies like our own: we observe large-scale magnetic fields.  
+
+Much of the physics of the transport of non-thermal particles will be affected by these magnetic fields. 
+
+The perturbation of the two coupled Vlasov equations under the effect of this external \(\vec{B}\) field will yield what are called \textbf{Alfvén waves}.
+
+We will also find a simplification of the 
+
+\end{document}

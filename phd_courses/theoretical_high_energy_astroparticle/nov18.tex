@@ -33,17 +33,23 @@ We want to describe the evolution of this quantity: its \textbf{total} time deri
 %
 \begin{align}
 \pdv{N_s}{t} (\vec{x}, \vec{v}, t) = 
-- \sum _{i} \nabla_x \delta (\vec{x} - \vec{X}_i(t)) \vec{\dot{X}} \delta (\vec{v} - \vec{V}_i (t) ) 
-- \sum _{i} \delta (\vec{x} - \vec{X}_i(t)) \nabla_v \delta (\vec{v} - \vec{V}_i(t)) \vec{\dot{V}}_i(t)
+- \sum _{i} 
+\vec{\dot{X}} \cdot
+\nabla_x \delta (\vec{x} - \vec{X}_i(t)) 
+\delta (\vec{v} - \vec{V}_i (t) ) 
+- \sum _{i} 
+\delta (\vec{x} - \vec{X}_i(t)) 
+\vec{\dot{V}}_i(t) \cdot
+\nabla_v \delta (\vec{v} - \vec{V}_i(t)) 
 \,.
 \end{align}
 
 Now, these charges will evolve under the actions of the electric and magnetic fields: but we also need to describe what is the source of these fields. 
 
-The action of these fields will be described by the Lorentz force, 
+The action of these fields on a particle with velocity \(\vec{V}_i\) will be described by the Lorentz force, 
 %
 \begin{align}
-m_s \vec{\dot{V}}_i (t) = q_s \vec{E}^{\text{microscopic}} (\vec{x}) + \frac{q_s}{c} \vec{v}_i \times \vec{B}^{\text{microscopic}} (\vec{x}, t)
+m_s \vec{\dot{V}}_i (t) = q_s \vec{E}^{\text{microscopic}} (\vec{x}) + \frac{q_s}{c} \vec{V}_i \times \vec{B}^{\text{microscopic}} (\vec{x}, t)
 \,.
 \end{align}
 
@@ -77,13 +83,18 @@ The Boltzmann equation plus the Lorentz one can be more compactly written as
 \pdv{N_s}{t} 
 = - \vec{v} \cdot \vec{\nabla}_x N_s 
 - \sum _{i=1}^{N} \frac{q_s}{m_s} 
-\qty[ \vec{E}^{\text{micro}} + \frac{1}{c} \vec{v} \times \vec{B}^{\text{micro}}] \cdot \vec{\nabla}_v \qty[\delta (\vec{x} - \vec{X}_i(t)) \delta (\vec{v} - \vec{\dot{X}}_i(t))]
-\,,
+\qty[ \vec{E}^{\text{micro}} + \frac{1}{c} \vec{v} \times \vec{B}^{\text{micro}}] \cdot \vec{\nabla}_v \qty[
+    \delta (\vec{v} - \vec{\dot{X}}_i(t))
+    ]
+\delta (\vec{x} - \vec{X}_i(t)) 
+\,.
 \end{align}
-%
-where we have done a nontrivial step: the gradient \dots
 
-\todo[inline]{That's wrong! Or maybe not? it's because the velocity dependence is mediated through the delta-function\dots }
+The EM fields are \emph{a priori} computed at the position and velocity of the \(i\)-th particle, \((\vec{X}_i, \vec{V}_i)\), but because of the \(\delta \)-functions at each point we can substitute this position for the generic one \((\vec{x}, \vec{v})\). 
+
+% where we have done a nontrivial step: the gradient \dots
+
+% \todo[inline]{That's wrong! Or maybe not? it's because the velocity dependence is mediated through the delta-function\dots }
 
 The equation then becomes 
 %
@@ -134,7 +145,7 @@ The interaction and collision terms are \emph{quadratic} in the fluctuations.
 If we neglect this term (which is typically called a ``correlation'' term), we get the \textbf{Vlasov} equation: 
 %
 \begin{align}
-\pdv{f_s}{t} + \vec{v} \cdot \vec{\nabla}_x f_s + \frac{q_s}{m_s} \qty[ \vec{E} + \frac{\vec{v} \times \vec{B}}{c}] \vec{\nabla}_v f_s = 0
+\pdv{f_s}{t} + \vec{v} \cdot \vec{\nabla}_x f_s + \frac{q_s}{m_s} \cdot \qty[ \vec{E} + \frac{\vec{v} \times \vec{B}}{c}] \vec{\nabla}_v f_s = 0
 \,.
 \end{align}
 
@@ -259,6 +270,6 @@ Much of the physics of the transport of non-thermal particles will be affected b
 
 The perturbation of the two coupled Vlasov equations under the effect of this external \(\vec{B}\) field will yield what are called \textbf{Alfvén waves}.
 
-We will also find a simplification of the 
+% We will also find a simplification of the 
 
 \end{document}

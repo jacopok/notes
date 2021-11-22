@@ -20,7 +20,13 @@ def polarization():
     
     X, Y = np.meshgrid(xs, ys)
     
-    plt.streamplot(X, Y, *vector_field(X, Y), density=1.4, color=np.linalg.norm(vector_field(X, Y), axis=0), cmap = plt.get_cmap('inferno'))
+    vectors = vector_field(X, Y)
+    
+    plt.streamplot(X, Y, *vectors, density=1.4, color=np.linalg.norm(vectors, axis=0), cmap = plt.get_cmap('inferno'))
+    plt.xlabel('$x$ [arbitrary units]')
+    plt.ylabel('$y$ [arbitrary units]')
+    plt.xticks(ticks=None)
+    plt.yticks(ticks=None)
     
 
 if __name__ == "__main__":

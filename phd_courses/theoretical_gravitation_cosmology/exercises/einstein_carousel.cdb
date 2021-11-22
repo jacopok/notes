@@ -1,0 +1,122 @@
+{
+	"cell_id" : 10651866173918707785,
+	"cells" : 
+	[
+		{
+			"cell_id" : 12766545378053528940,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 11678393201267317388,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Coordinate to~}\\left[t,~ x,~ y,~ z\\right].\\end{dmath*}"
+				},
+				{
+					"cell_id" : 13290723754267313055,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Indices(position=fixed) to~}\\left[\\mu,~ \\nu,~ \\rho,~ \\sigma,~ \\lambda,~ \\kappa,~ \\chi,~ \\gamma\\right].\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11461448844780892817,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property PartialDerivative to~}\\partial{\\#}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 10141484745291244122,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Metric to~}g_{\\mu \\nu}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 13777539861888684838,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property TableauSymmetry to~}g^{\\mu \\nu}.\\end{dmath*}"
+				},
+				{
+					"cell_id" : 11299229759391111842,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"source" : "\\begin{dmath*}{}\\text{Attached property Derivative to~}\\nabla{\\#}.\\end{dmath*}"
+				}
+			],
+			"source" : "{t, x, y, z}::Coordinate;\n{\\mu,\\nu,\\rho,\\sigma,\\lambda,\\kappa,\\chi,\\gamma}::Indices(values={t, x, y, z}, position=fixed);\n\\partial{#}::PartialDerivative;\ng_{\\mu\\nu}::Metric;\ng^{\\mu\\nu}::InverseMetric;\n\\nabla{#}::Derivative;\nd_\\xi{#}::Derivative(\\xi);\n\nx := { x^{t} = t, x^{x} = x, x^{y} = y, x^{z} = z};"
+		},
+		{
+			"cell_id" : 17185577663507130704,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 5849109393462774003,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 14503265095487018310,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "{g_{t t} = -1, g_{x x} = 1, g_{y y} = 1, g_{z z} = 1, g^{t t} = -1, g^{x x} = 1, g^{y y} = 1, g^{z z} = 1}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left[g_{t t} = -1,~ g_{x x} = 1,~ g_{y y} = 1,~ g_{z z} = 1,~ g^{t t} = -1,~ g^{x x} = 1,~ g^{y y} = 1,~ g^{z z} = 1\\right]\\end{dmath*}"
+				}
+			],
+			"source" : "ss:= { g_{t t} = -1,\n       g_{x x} = 1, \n       g_{y y} = 1,\n       g_{z z} = 1\n}.\n\ncomplete(ss, $g^{\\mu\\nu}$);"
+		},
+		{
+			"cell_id" : 7191958384276328453,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"cells" : 
+			[
+				{
+					"cell_id" : 5648391438841632143,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 11790639384549247790,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "{L_{t t} = 1, L_{x x} = \\cos(\\omega t), L_{y y} = \\cos(\\omega t), L_{x y} = -\\sin(\\omega t), L_{y x} = \\sin(\\omega t), L_{z z} = 1}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\left[L_{t t} = 1,~ L_{x x} = \\cos\\left(\\omega t\\right),~ L_{y y} = \\cos\\left(\\omega t\\right),~ L_{x y} = -\\sin\\left(\\omega t\\right),~ L_{y x} = \\sin\\left(\\omega t\\right),~ L_{z z} = 1\\right]\\end{dmath*}"
+				},
+				{
+					"cell_id" : 1962533782858643008,
+					"cell_origin" : "server",
+					"cell_type" : "latex_view",
+					"cells" : 
+					[
+						{
+							"cell_id" : 13523027774163441373,
+							"cell_origin" : "server",
+							"cell_type" : "input_form",
+							"source" : "\\xi_{\\mu} = L_{\\mu \\nu} x^{\\nu}"
+						}
+					],
+					"source" : "\\begin{dmath*}{}\\xi_{\\mu} = L_{\\mu \\nu} x^{\\nu}\\end{dmath*}"
+				}
+			],
+			"source" : "tr := { L_{t t} = 1,\n        L_{x x} = \\cos(\\omega t),\n        L_{y y} = \\cos(\\omega t),\n        L_{x y} = -\\sin(\\omega t),\n        L_{y x} = \\sin(\\omega t),\n        L_{z z} = 1,\n};\n\ntrlaw := \\xi_{\\mu} = L_{\\mu \\nu} x^{\\nu};"
+		},
+		{
+			"cell_id" : 16389681412927375493,
+			"cell_origin" : "client",
+			"cell_type" : "input",
+			"source" : "ch := \\Gamma^{\\mu}_{\\nu \\rho} = (\\partial_{\\alpha} \\partial_{\\beta} \\xi^{\\rho} ) d_\\xi_{\\rho} "
+		}
+	],
+	"description" : "Cadabra JSON notebook format",
+	"version" : 1.0
+}

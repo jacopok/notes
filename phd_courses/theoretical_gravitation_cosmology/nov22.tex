@@ -216,4 +216,153 @@ R_{\alpha \beta [ \mu \nu ; \lambda ]} = 0
 \,.
 \end{align}
 
+\begin{extracontent}
+Exercise: Einstein's carousel. 
+
+The transformation law to and from flat spacetime is according to the matrix
+%
+\begin{align}
+L^{\mu }_{\nu }= \left[\begin{array}{cccc}
+1 & 0 & 0 & 0 \\ 
+0 & \cos ( \omega t)  & - \sin ( \omega t)  & 0 \\ 
+0 & \sin ( \omega t)  & \cos ( \omega t)  & 0 \\ 
+0 & 0 & 0 & 1
+\end{array}\right]
+\,,
+\end{align}
+%
+so that \(\xi^{\mu } = L^{\mu }_{\nu } x^{\nu }\), and \(x^{\mu } = \widetilde{L}^{\mu }_{\nu } \xi^{\nu }\), where \(\widetilde{L}\) is the inverse of \(L\), which can be obtained by mapping \(t \to -t\) in it. 
+
+Now, we need to compute the derivatives of this transformation in the expression for the Christoffel symbols: 
+%
+\begin{align}
+\Gamma^{\mu }_{\alpha \beta } = \pdv{\xi^{\rho }}{x^{\alpha }}{x^{\beta }} \pdv{x^{\mu }}{\xi^{\rho }}
+\,.
+\end{align}
+
+The transformation matrix \(\widetilde{L}^{\mu }_{\nu }\) depends on \(\xi \) only through its component \(\xi^{0} = t\):
+%
+\begin{align}
+\pdv{x^{\mu }}{\xi^{\rho }} &= \pdv{}{\xi^{\rho }} \qty(\widetilde{L}^{\mu }_{\nu } \xi^{\nu })  \\
+&= \widetilde{L}^{\mu }_{\nu } \delta^{\nu }_{\rho } + \pdv{\widetilde{L}^{\mu }_{\nu }}{\xi^{\rho }} \xi^{\nu }  \\
+&= \widetilde{L}^{\mu }_{\rho } + \widetilde{\dot{L}}^{\mu }_{\nu } \xi^{\nu } \delta^{t}_{\rho }
+\,,
+\end{align}
+%
+and the reciprocal transformation is quite similar: 
+%
+\begin{align}
+\pdv{\xi^{\rho }}{x^{\beta }} &= \pdv{}{x^{\beta }} \qty(L^{\rho }_{\sigma } x^{\sigma })  \\
+&= L^{\rho }_{\beta } + \dot{L}^{\rho }_{\sigma  } \xi^{\sigma } \delta^{t}_{\beta }
+\,.
+\end{align}
+
+Now, however, we need to take a second derivative of this term: 
+%
+\begin{align}
+\pdv{\xi^{\rho }}{x^{\alpha }}{x^{\beta }} &= \pdv{}{x^{\alpha }} \qty(L^{\rho }_{\beta } + \dot{L}^{\rho }_{\sigma  } \xi^{\sigma } \delta^{t}_{\beta })  \\
+&= 
+\dot{L}^{\rho }_{\beta } \delta^{t}_{\alpha } 
++ \dot{L}^{\rho }_{\sigma } \delta^{\sigma }_{\alpha } \delta^{t}_{\beta }  
++ \ddot{L}^{\rho }_{\sigma } \delta^{t}_{\alpha } \xi^{\sigma } \delta^{t}_{\beta }  \\
+&= 2 \dot{L}^{\rho }_{(\alpha } \delta^{t}_{\beta )} +\ddot{L}^{\rho }_{\sigma } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+\,,
+\end{align}
+%
+which we can combine into the full Christoffel symbol expression, which is (thankfully) manifestly symmetric in \(\alpha \beta \): 
+%
+\begin{align}
+\Gamma^{\mu }_{\alpha \beta } &= \qty(\dot{L}^{\rho }_{\beta } \delta^{t}_{\alpha } 
++ \dot{L}^{\rho }_{\alpha } \delta^{t}_{\beta } + \ddot{L}^{\rho }_{\sigma } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta }) 
+\qty(\widetilde{L}^{\mu }_{\rho } + \widetilde{\dot{L}}^{\mu }_{\nu } \xi^{\nu } \delta^{t}_{\rho })  \marginnote{Terms like \(\dot{L}^{\rho } \delta^{t}_{\rho }\) vanish!}\\
+&= 
+\dot{L}^{\rho }_{\beta } \delta^{t}_{\alpha } \widetilde{L}^{\mu }_{\rho } 
++ 
+\dot{L}^{\rho }_{\alpha } \delta^{t}_{\beta } \widetilde{L}^{\mu }_{\rho } 
++ \ddot{L}^{\rho }_{\sigma } \widetilde{L}^{\mu }_{\rho } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta } 
+\,,
+\end{align}
+%
+which is already starting to look like Coriolis + centrifugal terms.
+
+We can write 
+%
+\begin{align}
+\ddot{L}^{\rho }_{\sigma } = - \omega^2 \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & \cos(\omega t) & -\sin(\omega t) & 0 \\ 
+0 & \sin(\omega t) & \cos(\omega t) & 0 \\ 
+0 & 0 & 0 & 0
+\end{array}\right] 
+= - \omega^2 \qty( L^{\rho }_{\sigma }  
+- \delta^{\rho }_{t} \delta^{t}_{\sigma }
+- \delta^{\rho }_{z} \delta^{z}_{\sigma })
+\,,
+\end{align}
+%
+using which we can rewrite the centrifugal term like 
+%
+\begin{align}
+\ddot{L}^{\rho }_{\sigma } \widetilde{L}^{\mu }_{\rho } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+&= - \omega^2 \qty( \delta^{\mu }_{\sigma } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta } 
+- \delta^{\rho }_{t} \delta^{t}_{\sigma }
+\widetilde{L}^{\mu }_{\rho } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+- \delta^{\rho }_{z} \delta^{z}_{\sigma }
+\widetilde{L}^{\mu }_{\rho } \xi^{\sigma } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+)  \\
+&= \omega^2 
+\xi^{\mu  } \delta^{t}_{\alpha } \delta^{t}_{\beta } = \omega^2 
+L^{\mu }_\nu x^{\nu } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+\,.
+\end{align}
+
+Let us now move to the Coriolis term: we will get identical results if we swap \(\alpha \) and \(\beta \), and we know that one of them must be \(t\), so let us set \(\alpha = t\): we get 
+%
+\begin{align}
+\qty(\Gamma^{\mu }_{t \beta }) _{\text{Coriolis}} &= \dot{L}^{\rho }_{\beta } 
+L^{\mu }_{\rho } \\
+&= \omega \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & -\sin(\omega t) & -\cos(\omega t) & 0 \\ 
+0 & -\cos(\omega t) & \sin(\omega t) & 0 \\ 
+0 & 0 & 0 & 0
+\end{array}\right]_{\beta }^{\rho }
+\left[\begin{array}{cccc}
+1 & 0 & 0 & 0 \\ 
+0 & \cos(\omega t) & \sin(\omega t) & 0 \\ 
+0 & -\sin(\omega t) & \cos(\omega t) & 0 \\ 
+0 & 0 & 0 & 1
+\end{array}\right]^{\mu }_{\rho }  \\
+&= \omega \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & 0 & -1 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 0 & 0
+\end{array}\right]^{\mu }_{\beta }  \\
+&= \omega \epsilon^{\mu z}_{t \beta }
+\,,
+\end{align}
+%
+where the \(\epsilon \) is the four-dimensional Levi-Civita symbol. 
+This also shows that the symmetric \(\beta = t \) term equals \(\omega \epsilon^{\mu z}_{\alpha t}\). 
+
+We can thus compactly write 
+%
+\begin{align}
+\Gamma^{\mu }_{\alpha \beta } = \omega \qty(\epsilon^{\mu z}_{\alpha t} \delta^{t}_{\beta } + \epsilon^{\mu z }_{t \beta } \delta^{t}_{\alpha  }) + \omega^2 L^{\mu }_{\nu }x^{\nu } \delta^{t}_{\alpha } \delta^{t}_{\beta }
+\,.
+\end{align}
+
+Now, let us write the geodesic equation: 
+%
+\begin{align}
+\ddot{x}^{\mu } &= - \Gamma^{\mu}_{\alpha \beta } \dot{x}^{\alpha } \dot{x}^{\beta }  \\
+&= - \qty[\omega \qty(\epsilon^{\mu z}_{\alpha t} \delta^{t}_{\beta } + \epsilon^{\mu z }_{t \beta } \delta^{t}_{\alpha  }) + \omega^2 L^{\mu }_{\nu }x^{\nu } \delta^{t}_{\alpha } \delta^{t}_{\beta }] \dot{x}^{\alpha } \dot{x}^{\beta }
+\,.
+\end{align}
+
+\todo[inline]{To be continued}
+\end{extracontent}
+
+
 \end{document}

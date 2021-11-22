@@ -28,10 +28,10 @@ folder_names = {
 }
 
 schedule = {
-    0: ["HE-EXP", "HE-TH"],
-    1: ["LE-EXP", "HE-EXP"],
-    2: ["HE-TH", "GC-TH"],
-    3: ["LE-EXP", "HE-EXP"],
+    0: ["GC-EXP", "GC-TH"],
+    1: ["HE-EXP", "GC-EXP"],
+    2: ["GC-TH", "HE-TH"],
+    3: ["HE-TH", "LE-EXP"],
     # 4: ["hea"]
 }
 

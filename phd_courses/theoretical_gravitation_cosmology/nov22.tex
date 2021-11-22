@@ -1,4 +1,219 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Covariant differentiation}
+
+\marginpar{Monday\\ 2021-11-22}
+
+Consider a vector \(\vec{V} = V^{\alpha } \vec{e}_\alpha \). 
+
+How do we compute \(\pdv*{\vec{V}}{x^{\mu }}\)? It will read 
+%
+\begin{align}
+\pdv{\vec{V}}{x^{\beta }} = \pdv{V^{\alpha }}{x^{\beta }} \vec{e}_{(\alpha )} + V^{\alpha } \pdv{\vec{e}_{(\alpha )}}{x^{\beta }} 
+\,.
+\end{align}
+
+What we need to argue now is that the second term is a vector just like the first one: 
+we need to use the equivalence principle. 
+We can move to a reference in which \(g_{\mu \nu } = \eta_{\mu \nu }\),
+such that \(\vec{e}_{(\alpha )}\) also become constant. 
+
+The new and old will be related through transformation matrices: 
+%
+\begin{align}
+\vec{e}_{(\alpha ')} = \Lambda^{\mu }_{\alpha'} \vec{e}_{\mu }
+\,,
+\end{align}
+%
+so we will get 
+%
+\begin{align}
+\pdv{}{x^{\beta }} \vec{e}_{(\alpha )} = \pdv{}{x^{\beta }} \qty[ \Lambda^{\mu '}_\alpha ] \vec{e}_{(\mu ')} 
+\,.
+\end{align}
+
+This object can be expressed as a linear combination of the 
+basis vectors in the new basis, and is therefore a vector. 
+We call it 
+%
+\begin{align}
+\pdv{\vec{e}_{(\alpha )}}{x^{\beta} } = \Gamma^{\rho }_{\alpha \beta } \vec{e}_{(\rho )}
+\,.
+\end{align}
+
+This is an \emph{affine connection}.
+With this expression, we write 
+%
+\begin{align}
+\pdv{\vec{V}}{x^{\beta }} &= \pdv{V^{\alpha }}{x^{\beta }} + V^{\alpha } \Gamma^{\rho }_{\alpha \beta } \vec{e}_{(\rho )} 
+\,.
+\end{align}
+
+The formalism is as follows: 
+%
+\begin{align}
+V^{\alpha }{}_{, \mu } = \partial_{\mu } V^{\alpha } &= \pdv{V^{\alpha }}{x^{\mu }} \\
+V^{\alpha }{}_{; \mu } = \nabla_\mu V^{\alpha } &= \pdv{V^{\alpha }}{x^{\mu }} + V^{\beta } \Gamma^{\alpha }_{\mu \beta }
+\,.
+\end{align}
+
+The  covariant derivative can also be written as 
+%
+\begin{align}
+\nabla \vec{V} = \qty[V^{\alpha }{}_{; \mu } \vec{e}_{(\alpha )}] \otimes \widetilde{\omega}^{(\mu )}
+\,.
+\end{align}
+
+Therefore, \(\nabla \vec{V}\) is a \((1, 1)\) tensor. 
+
+In a Local Inertial Frame, covariant and component derivatives are equal, since \(\Gamma^{\mu }_{\nu \rho } = 0\). 
+Also, the covariant derivative of a scalar is equal to its 
+partial derivative. 
+
+We can also differentiate a one-form: this will be a \((0, 2)\) tensor. Its components will read 
+%
+\begin{align}
+q_{\alpha ; \beta } = \partial_\beta q_\alpha - \Gamma^{\rho }_{\alpha \beta } q_\rho
+\,.
+\end{align}
+
+When taking the covariant derivative of a tensor with any amount of indices we need to include a Christoffel term for all indices. 
+
+Let us write out a mixed tensor's derivative:
+%
+\begin{align}
+\nabla_\beta T^{\mu }_\nu = T^{\mu }_{\nu , \beta } 
++ \Gamma^{\mu }_{\rho \beta }T^{\rho }_\nu  
+- \Gamma^{\rho }_{\nu  \beta }T^{\mu }_\rho   
+\,.
+\end{align}
+
+In GR, we always have \(g_{\mu \nu ; \rho } = 0\). 
+Why is this? If we move to a LIF, it equals \(\eta_{\mu \nu , \rho } = 0\).
+
+The Christoffel symbols are also symmetric: \(\Gamma^{\rho }_{\alpha \beta } = \Gamma^{\rho }_{(\alpha \beta )}\). 
+There is an explicit expression for them in terms of the metric: 
+%
+\begin{align}
+\Gamma^{\rho }_{\alpha \beta } = \frac{1}{2} g^{\rho \sigma } \qty(g_{\sigma \alpha , \beta } + g_{\sigma \beta , \alpha } - g_{\alpha \beta , \sigma })
+\,.
+\end{align}
+
+Are the Christoffel symbols the components of a tensor? No. 
+They vanish in the LIF, so if they were a tensor they would always be zero. 
+If one tries to compute their transformation law, it comes out to depend on the mixed second derivatives of the coordinate change. 
+
+The fact that in the LIF \(g_{\mu \nu , \alpha } = 0 \) and \(\Gamma^{\rho }_{\alpha \mu } = 0\) is the mathematical representation of the equivalence principle. 
+
+\paragraph{Parallel transport}
+
+It helps us understand the intrinsic geometry of the manifold. 
+We will do it for a vector along a path. 
+We ask that, for each infinitesimal displacement, the displaced vector remains parallel to itself and does not change magnitude.
+
+This means that we cannot, in general, define a \emph{global} constant vector field, or ``comb a hairy ball''. 
+
+Suppose we have a curve parametrized by \(\lambda \), whose tangent vector is 
+%
+\begin{align}
+u^{\mu } = \dv{x^{\mu }}{\lambda }
+\,.
+\end{align}
+
+We want to transport a vector \(\vec{V}\) along it. 
+How do we do it? We can move to a LIF, with coordinates \(\xi^{\alpha }\). 
+If we move \(\vec{V}\) by \(\dd{\lambda }\) along the curve, we will change it by 
+%
+\begin{align}
+\dv{V^{\mu }}{\lambda } = \dv{V^{\mu }}{\xi^{\alpha }} \dv{\xi^{\alpha }}{\lambda } = u^{\alpha }\partial_{\alpha } V^{\mu }
+\,.
+\end{align}
+
+However, \(\partial = \nabla\) in a LIF, so this non-tensorial expression is equal in this reference frame to the tensorial expression \(u^{\alpha } \nabla_\alpha V^{\mu }\), which we set to zero in order to impose that the vector does not change.
+
+This is often also written like \(\nabla_{\vec{u}} \vec{V} = 0\), or 
+%
+\begin{align}
+\nabla_{\vec{u}} V^{\alpha } = \dv{V^{\alpha }}{\lambda } + V^{\mu } u^{\beta } \Gamma^{\alpha }_{\mu \beta } = 0
+\,.
+\end{align}
+
+In the presence of a curved spacetime, the components of the vector do change, depending on the curve! 
+
+\textbf{Geodesics} are curves which parallel-transport their own tangent vector: \(u^{\mu } \nabla_{\mu } u^{\nu } = 0\). 
+This means that 
+%
+\begin{align}
+u^{\beta } u^{\alpha }_{; \beta } = \dv{x^{\beta }}{\lambda } \qty[ \pdv{x^{\alpha }}{x^{\beta }} + \Gamma^{\alpha }_{\beta \rho } u^{\rho }] = \dv[2]{x^{\alpha }}{\lambda }
++ \Gamma^{\alpha }_{\beta \rho } \dv{x^{\beta }}{\lambda } \dv{x^{\rho }}{\lambda  }
+\,.
+\end{align}
+
+Any affine transformation \(\lambda \to a \lambda + b\) leaves this unchanged. 
+
+\todo[inline]{Can't we do any monotone differentiable transformation?}
+
+\subsubsection{The curvature tensor}
+
+It is the only four-index tensor which can be built only from derivatives of the metric. 
+
+A way to do it is to try and build an object which transforms like a tensor from the (derivatives of the) Christoffel symbols. 
+
+The Riemann tensor is written as 
+%
+\begin{align}
+R^{\lambda }_{\mu \nu \kappa } = - \qty( \partial_{\alpha } \Gamma^{\lambda }_{\mu \nu } - \partial_{\nu } \Gamma^{\lambda }_{\mu \kappa } + \Gamma^{\lambda }_{\kappa \eta } \Gamma^{\eta }_{\mu \nu } - \Gamma^{\lambda }_{\nu \eta } \Gamma^{\eta }_{\mu \kappa }) 
+\,.
+\end{align}
+
+It can be schematically represented as \(R \sim \partial \Gamma + \Gamma \Gamma \). 
+In the LIF, \(\Gamma \Gamma= 0\) but the first part does not vanish; this allows it to be tensorial. 
+
+In that case, it is also written as 
+%
+\begin{align}
+R^{\alpha }_{\beta \mu \nu } = \frac{1}{2} g^{\alpha \sigma } \qty(g_{\sigma \nu , \beta \mu } - g_{\sigma \mu , \beta \nu } + g_{\beta \mu , \sigma \nu } - g_{\beta \nu , \sigma \mu })
+\,.
+\end{align}
+
+Let us write out its symmetries in the \((0, 4)\) version: 
+%
+\begin{align}
+R_{\alpha \beta \mu \nu } = - R_{\beta \alpha \mu \nu } = - R_{\alpha \beta \nu \mu } = R_{\mu \nu \alpha \beta }
+\,,
+\end{align}
+%
+and also 
+%
+\begin{align}
+R_{\alpha \beta \mu \nu } + R_{ \alpha \nu \beta \mu } + R_{\alpha \mu \nu \beta } = 0
+\,.
+\end{align}
+
+These reduce the number of independent components: it would have \(4^{4} = 256\), but the symmetries reduce that number to 20. 
+
+If we parallel-transport a vector along a loop of coordinate directions 1 and 2 it changes by 
+%
+\begin{align}
+\delta V^{\alpha } = R^{\alpha }_{\beta 12} V^{\beta }
+\,.
+\end{align}
+
+So, we can see that the spacetime is globally flat iff \(R^{\alpha }_{\beta \mu \nu } = 0\). 
+
+It can also be defined as 
+%
+\begin{align}
+\qty[\nabla_\mu, \nabla_\nu ] V^{\alpha } = R^{\alpha }_{\beta \mu \nu } V^{\beta }
+\,.
+\end{align}
+
+We will also need the Bianchi identities: 
+%
+\begin{align}
+R_{\alpha \beta [ \mu \nu ; \lambda ]} = 0
+\,.
+\end{align}
+
 \end{document}

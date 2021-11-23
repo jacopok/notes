@@ -1,4 +1,211 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Matter-radiation interaction}
+
+\marginpar{Tuesday\\ 2021-11-23}
+
+The binding energy of electrons to atoms 
+is typically of the order of \(1 \divisionsymbol \SI{10}{eV}\); 
+the maximum change in energy of an electron struck by a high-energy particle is \(\Delta E \approx 2 m_e \beta^2 \gamma^2\). 
+
+This is a lot for the electron, but a small amount compared to the initial energy of the high-energy particle. 
+
+The trajectory of the large particle is also deflected but only by a small amount. 
+The quantity we are interested in computing is the average change in energy per unit length: \(\dv*{E}{x}\). 
+
+Suppose we have a beam of particles with a certain flux \(\Phi \), defined as 
+%
+\begin{align}
+\Phi = \frac{\text{\# incoming particles}}{\text{time} \times \text{surface}}
+\,.
+\end{align}
+
+After hitting a target, these particles will go along a trajectory defined by angles \(\theta \), \(\varphi \) from the interaction point. 
+
+The differential amount of particles emitted in a certain direction, \(\Delta N_s (\theta , \varphi )\), will satisfy 
+%
+\begin{align}
+\Delta \dot{N}_s (\theta , \varphi ) \propto \Phi 
+\,,
+\end{align}
+%
+so we define 
+%
+\begin{align}
+\frac{\Delta \dot{N}_s}{\Delta \Omega } = \Phi \frac{\Delta \sigma }{\Delta \Omega }
+\,,
+\end{align}
+%
+where \(\Delta \Omega \) is a small solid angle. 
+This allows us to compute the differential cross-section: 
+%
+\begin{align}
+\dv{\sigma }{\Omega } =  \frac{1}{\Phi } \dv{\dot{N}_s(\theta , \varphi )}{\Omega }
+\,.
+\end{align}
+
+We can further define the total, or integral cross-section: 
+%
+\begin{align}
+\sigma = \int \frac{1}{\Phi } \dv{\dot{N}_s}{\Omega } \dd{\Omega }
+\,.
+\end{align}
+
+This is all written with respect to a single target, but in practice we will have a certain slab of matter with thickness \(\delta x\), and a particle flux impacting on it within an area \(A\). 
+In this case, then, we also need to account for the number of targets \(N_T\): 
+%
+\begin{align}
+\dv{\dot{N}_s}{\Omega } = \Phi N_T \dv{\sigma }{ \Omega }
+\,.
+\end{align}
+
+If \(n\) is the number density of the targets, and \(\rho \) is the matter density there, the number of targets will read \(N_T = n A \delta x\). 
+With this, we find 
+%
+\begin{align}
+\dv{\dot{N}_s}{\Omega } = \underbrace{\Phi A}_{\dot{N}_b} n \delta x \dv{\sigma }{\Omega }
+\,,
+\end{align}
+%
+where we can identify the incoming beam particle rate \(\dot{N}_b\). 
+The definitions for the differential and total cross-sections will then read 
+%
+\begin{align}
+\dv{\sigma }{\Omega } &= \frac{1}{\dot{N}_b} \frac{1}{n \delta x} \dv{\dot{N}_s}{\Omega } (\theta , \varphi ) \\
+\sigma &= \frac{1}{\dot{N}_b} \frac{1}{n \delta x} \underbrace{\int  \dv{\dot{N}_s}{\Omega } (\theta , \varphi ) \dd{\Omega }}_{ = \dot{N}_s}
+\,.
+\end{align}
+
+There is an alternative way to compute this in terms of QFT quantities, but we will not concern ourselves with it. 
+
+If we know the cross-section for, say, electron-proton interactions, we can compute the number of scatterings as 
+%
+\begin{align}
+\dot{N}_s = \dot{N}_b (n \dd{x}) \sigma 
+\,.
+\end{align}
+
+These quantities all depend on \(n \delta x\), never on the number density or the thickness singularly. 
+
+How does the intensity of a particle beam decrease as it travels through a medium? We know \(I (x= 0)\), and we want to compute the dependence \(I(x)\). 
+In a certain thickness \(\Delta x\), we will have a certain number of  interactions \(\Delta N_s = N_b (n \Delta x) \sigma \), so we can define the probability of interaction 
+%
+\begin{align}
+\frac{\Delta N_s}{N_b} = \Delta P = n \sigma \Delta x
+\,.
+\end{align}
+
+The probability of \emph{not} having an interaction is \(1 - n \sigma \Delta x\). 
+The survival probability \(P(x)\) is the probability of a particle surviving at least until \(x\). 
+We can write a relation for \(P(x + \Delta x)\): 
+%
+\begin{align}
+P(x + \Delta ) = P(x) (1 - n \sigma \Delta x)
+\,,
+\end{align}
+%
+since this means that in this \(\Delta x\) the particle still has not interacted. 
+Then, 
+%
+\begin{align}
+P(x + \Delta x) - P(x) &= \Delta P = - P(x) n \sigma \Delta x  \\
+\dv{P}{x} &= - n \sigma P \\
+P(x) &\propto \exp(- n \sigma x)
+\,.
+\end{align}
+
+We can also compute the average \(x\) at which an interaction occurs: 
+%
+\begin{align}
+\expval{x} = \frac{\int_{0}^{\infty } x \exp(- n \sigma x) \dd{x}}{\int_0^{\infty} \exp(- n \sigma x) \dd{x}} = \frac{1}{n \sigma } = \Lambda 
+\,,
+\end{align}
+%
+which can therefore be interpreted as the \emph{mean free path}.\footnote{The mean free path before the \emph{first} interaction - after that the particle may change, so this simple expression may not hold anymore.}
+
+Protons coming into a medium with atoms may interact with the electrons through EM interactions, but also through with nucleons through hadronic interactions. 
+
+Since these hadrons are very heavy, the deflection by hadronic interactions is much heavier. 
+
+What is the order of magnitude for the cross-section of proton-proton, or neutron-proton interactions? 
+
+Roughly, the radius of a nucleus is \(R(A) \sim r_0 A^{1/3}\), where \(r_0 \sim \SI{1.2}{fm}\).
+
+A rough estimate of the geometric cross-section is \(\sigma \sim \SI{4}{fm^2}\). 
+This can be written as \SI{40}{mb}, where \(\SI{1}{barn} = \SI{e-24}{cm^2}\). 
+
+We can look at the proton-proton cross-section plot from the PDG \cite[]{groupReviewParticlePhysics2020}. 
+There is some structure at low energies, but between 1 and \SI{100}{GeV} the cross-section is roughly \SI{40}{mb} indeed. 
+
+At higher energies, roughly \(\sqrt{s} \sim \SI{10}{TeV}\), this increases up to \SI{100}{mb}.\footnote{See figure 52.6 in \url{http://pdg.ge.infn.it/2021/reviews/rpp2020-rev-cross-section-plots.pdf}.}
+These numbers have an order of magnitude which is a good approximation for all hadronic interactions. 
+
+A barn is a large cross-section! 
+
+Let us consider a beam of \SI{5}{GeV} protons going toward a \SI{10}{cm} thick block of graphite. 
+The total number of particles going to the target is called protons-on-target, and in this case it is \num{e16}. 
+
+How many interactions will we have? 
+First, we need the \(\sqrt{s}\) for the interaction, in order to compute \(\sigma \). 
+It comes out to \(s = (E + m)^2 - \abs{\vec{p}}^2 = 2m^2 + 2Em \approx \SI{3.5}{GeV}\)
+(the nucleons can be considered to be stationary: the order of magnitude of their kinetic energies is tens of \SI{}{MeV}, so their momenta are \(p^2 / 2m_p \sim \SI{250}{MeV}\)). 
+
+What is \(n\) for graphite? The molar mass is \SI{12}{g / mol}, while \(\rho \approx \SI{2.2}{g/cm^3}\), so we get 
+%
+\begin{align}
+n = N_A \frac{A}{\text{molar mass}} \rho \approx \SI{1.3e24}{cm^{-3}}
+\,.
+\end{align}
+
+This means that 
+%
+\begin{align}
+n \sigma \delta x = \frac{N _{\text{interactions}}}{N _{\text{protons on target}}}\approx \num{.53}
+\,.
+\end{align}
+
+The mean free path is therefore roughly \SI{20}{cm}. 
+The target size is typically chosen so that its length is roughly \(\Lambda \): this way, we often have one interaction but rarely two. 
+
+What happens if, instead, we have a neutrino beam? 
+The cross-section is directly proportional to the energy of the beam, with 
+%
+\begin{align}
+\sigma_{\nu N} \sim \num{.6e-38} \qty(\frac{E}{\SI{}{GeV}}) \SI{}{cm^2}
+\,.
+\end{align}
+
+At high energies the process is called \emph{deep inelastic scattering}. 
+
+The charged current process for the interaction of a neutrino with a nucleus looks like 
+%
+\begin{align}
+\nu_\mu + \ce{n} \to \ce{p} + \mu^{-}
+\,.
+\end{align}
+
+Unless the energy is extremely high, this cross-section is extremely low. 
+This means that the mean free path is much higher. 
+What is the probability of a neutrino being able to cross the Earth? 
+
+The density of the Earth is on average roughly \SI{5}{g / cm^3}. It changes a lot through its volume, from \(\sim \SI{2.6}{g / cm^3}\) to \(\lesssim \SI{15}{g/cm^3}\). 
+
+For \(E = \SI{1}{GeV}\), we get roughly one thousand times the Earth-Moon distance, \(\Lambda = 1/  n \sigma \approx \SI{3e8}{km}\).
+
+Thus, the Earth is almost transparent to neutrinos at these energies! 
+For an energy of \SI{25}{TeV}, though, the Earth's diameter is close to the mean free path of the neutrino.
+
+What about neutrions coming from pion decay, \(\pi^{+} \to \mu^{+} + \nu _\mu \) and then \(\mu^{+} \to e^{+} + \overline{\nu} _\mu  + \nu _e\), in the atmosphere? 
+
+Typically, the order of magnitude of the energy of these secondary neutrinos is about a factor of 10 less than the energy of the proton initiating the shower. 
+
+So, these can be very high-energy neutrinos, up to \SI{e19}{eV}, and their spectrum will roughly mirror the \(\sim E^{-3}\) powerlaw for cosmic rays. 
+
+The flux of neutrinos produced from astrophysical sources, on the other hand, scales like \(E^{-2}\). 
+At lower energies, therefore, we have atmospheric neutrino domination, while at high energies the astrophysical neutrinos dominate. 
+
+The crossing point happens at energies of roughly \SI{1}{TeV}. 
+
+
 \end{document}

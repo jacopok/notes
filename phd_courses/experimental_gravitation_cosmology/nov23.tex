@@ -1,4 +1,189 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-11-23}
+
+We have the following relation for the power spectral density: 
+%
+\begin{align}
+\expval{\widetilde{y}(f) \widetilde{y}^{*}(f')}  
+&= \int \dd{t} e^{2 \pi i ft}
+\int \dd{t'} e^{-2 \pi i f' t'} \underbrace{\expval{y(t) y(t')}}_{C(y, \tau)}  \marginnote{\(\tau = t' - t\).}\\
+&= \int \dd{t} e^{2 \pi i (f - f') t} \int \dd{\tau } e^{-2 \pi i f \tau } C(y, \tau )  \\
+&= \int \dd{t} e^{2 \pi i (f - f') t} S ( y, f  ) 
+\\
+&= \delta (f - f') S (f)
+\,.
+\end{align}
+
+The fact that if \(f \neq f'\) this vanishes is a crucial property of stationary noise. 
+
+Any linear transformation of such a stationary-noise timeseries will leave it stationary. 
+
+If we have a force timeseries \(F(t)\) applied to a pendulum, we will get a response like 
+%
+\begin{align}
+\widetilde{x}(f) = \frac{\widetilde{F}(f)  / m}{(2 \pi )^3 (f_0^2 - f^2)} 
+\qquad \text{where} \qquad
+f_0 = \frac{1}{2 \pi } \sqrt{ \frac{g}{L}}
+\,,
+\end{align}
+%
+but this \emph{linear} approximation will fail if the force is very strong. 
+Nonlinear dynamics can turn stationary noise into nonstationary noise. 
+There is a deep connection between linearity and stationarity. 
+
+In the time domain, the application of a linear filter looks like 
+%
+\begin{align}
+y'(t) = \int \dd{t'} K(t - t') y(t')
+\,,
+\end{align}
+%
+which modifies the Fourier transform as 
+%
+\begin{align}
+\widetilde{y}' (f) = \widetilde{K}(f) \widetilde{y}(f)
+\,.
+\end{align}
+
+Therefore, the spectral density of the transformed signal reads 
+%
+\begin{align}
+\widetilde{S}(y', f) = \abs{\widetilde{K}(f)}^2 S(y, f)
+\,.
+\end{align}
+
+\subsection{Matched filtering}
+
+How do we define the best linear statistic? 
+Specifically, we'd want to have something which has the largest amplitude variation between the presence of a signal and the absence of it. 
+
+If the system is linear, we can approximate the data as 
+%
+\begin{align}
+d(t) = s(t) + n(t)
+\,,
+\end{align}
+%
+and in the operation of the detector one tries very hard to make this as close to true as possible. 
+
+Suppose we define a filter and apply it to the noise and signal: 
+%
+\begin{align}
+s_F (t) &= \int \dd{t'} F(t-t') s(t') \\
+n_F (t) &= \int \dd{t'} F(t-t') n(t') 
+\,.
+\end{align}
+
+The variance of the filtered noise will then read 
+%
+\begin{align}
+\expval{n_F^2(t)} = \int \dd{f} \abs{\widetilde{F}(f)}^2 S(n, f) 
+\,.
+\end{align}
+
+The filtered signal timeseries can also be written as 
+%
+\begin{align}
+s_F(t) = \int \dd{f} e^{2 \pi i ft} \widetilde{s}(f) \widetilde{K}(f)
+\,.
+\end{align}
+
+We define the SNR timeseries through 
+%
+\begin{align}
+\text{SNR}^2 &= \frac{s_F^2(t_0 )}{\expval{n_F^2}}  \\
+&= \frac{\abs{\int \dd{f} e^{2 \pi i f t_0 } \widetilde{s}(f) \widetilde{K}(f)}^2}{\int \dd{f} \abs{\widetilde{K}}^2 S(n, f)} \\
+&\leq \int \dd{f} \frac{\abs{\widetilde{s}}^2}{S_n}
+\,.
+\end{align}
+
+We exploited the Schwarz inequality: 
+%
+\begin{align}
+\abs{\int \dd{f} e^{2 \pi i ft_0 }\widetilde{s}\widetilde{K}}^2 &= \abs{\int \dd{f} e^{2 \pi i f t_0 } \widetilde{K} \sqrt{S_n} \frac{\widetilde{s}}{\sqrt{S_n}}}  \\
+&\leq \int \dd{f} \abs{\widetilde{K}}^2 S_n \times  \int \dd{f} \frac{\abs{\widetilde{s}}^2}{S_n}
+\,.
+\end{align}
+
+What this means is that any linear filter can reach, at a maximum, this value. 
+If we can then write a filter which reaches this value we know it is the best! 
+
+The optimal filter reads 
+%
+\begin{align}
+\widetilde{K}(f) = e^{-2 \pi i f t_0 } \frac{\widetilde{s}(f)}{S_n(f)}
+\,.
+\end{align}
+
+Intuitively, one puts less weight on the region of higher noise. 
+
+The kernel looks a bit like the elephant in the Little Prince. 
+
+\section{Perspectives for GW}
+
+GW echoes: if the horizon is quantized, the GWs can be reflected if they are not at the right frequencies. 
+For any known quantum gravity theories, the frequencies at which these are reflected are precisely the ones we can probe. 
+
+NS equations of states can be probed by the high-frequency region of the waveform. 
+
+SN explosions can emit GWs if they have anisotropies. 
+
+Stochastic backgrounds can be emitted by cosmological processes. 
+
+How do we calibrate our detector? 
+Blind injections were done by moving the test masses. 
+The first GW signal was thought to be a blind injection at first, but then we found that nobody had done it. 
+
+The issue is that we cannot continuously characterize the detector in this way. 
+The alternative is modelling the detector. 
+
+There are controls which keep the masses stationary at low frequencies. 
+So, at low frequencies we look at the \emph{control signal}! 
+
+The problem is most difficult at low frequencies. 
+The control interferes with the GW response below \SI{50}{Hz}. 
+
+The equation for the strain, including this, is 
+%
+\begin{align}
+h(t) = \frac{1}{L} \qty[\mathcal{C}^{-1} d _{\text{err}}(t) + \mathcal{A} d _{\text{ctrl}}(t)]
+\,.
+\end{align}
+
+The inverse of the SNR gives roughly an order of magnitude for the required calibration error. 
+Currently, the LIGO-Virgo collaboration has reached roughly 2 to \SI{3}{\percent}.
+
+There are very few places which can give a laser to be used in pushing to calibrate\dots
+
+\subsubsection{Unmodelled signals}
+
+Modelling a SN GW signal is very hard, simulations do not agree with each other. 
+
+The signal roughly increases in frequency from a  hundred to a thousand Hz within about a second. 
+
+The first signal we detected was detected through a burst search: templates with masses as high as \(30 M_{\odot}\) were not used because those masses were not though to be likely. 
+
+Convolving a signal with wavelets allows for a time-frequency plot. 
+
+A type II supernova would have to happen in our galaxy for us to be able to see it with current instruments, and future detectors will not improve this by much. 
+
+See \url{gwburst.gitlab.io}.
+
+\subsubsection{Continuous signals}
+
+A pulsar which is not axisymmetric will emit GWs. 
+These are signals which are definitely modelled: we know basically everything. 
+
+Computational cost scales with \(T^{6}\). 
+
+Glitches are a problem in this case.
+
+\todo[inline]{Why is there such a large cluster of millisecond pulsars?}
+
+We know from these GW observations that 
+most of the braking in the NS spin-down is \emph{not} due to GW emission. 
+We have bounds on the order of \(h \sim \num{e-26}\). 
+
 \end{document}

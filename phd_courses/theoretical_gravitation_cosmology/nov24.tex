@@ -1,4 +1,316 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{The stress-energy tensor}
+
+\marginpar{Wednesday\\ 2021-11-24}
+
+A massive particle is characterized by a four-momentum \(pp^{\mu } = m u^{\mu }\), where \(u^{\mu } = \dv*{\xi^{\mu }}{\tau }\), and \(\xi^{\mu }\) are the flat spacetime coordinates in a LIF parametrizing the particle's trajectory. 
+
+This can be written as 
+%
+\begin{align}
+p^{\mu } = mc \dv{\xi^{0}}{\tau } \qty[1, \dv{\xi^{i}}{\xi^{0}}] = \qty[mc \gamma , m \gamma v^{i}]
+\,.
+\end{align}
+
+Here, we are using \(\gamma = (1 - v^2 / c^2)^{-1/2}\), so that \(E = \gamma m c^2\). 
+
+\paragraph{The stress-energy tensor}
+
+Suppose we have a collection of \(n\) particles, with their locations \(\xi^{i} _n (t)\). 
+
+We define the 00 component of the stress-energy tensor, or \emph{energy density}, as
+%
+\begin{align}
+T^{00}  = \sum _{n} c p^{0}_n
+\delta^3 (\vec{\xi} - \vec{\xi}_n (t))
+\,,
+\end{align}
+%
+the \emph{momentum density} \(T^{0i} / c\) through 
+%
+\begin{align}
+T^{0i} = \sum _{n } c p^{i}_n \delta^3 (\vec{\xi} - \vec{\xi}_n (t))
+\,,
+\end{align}
+%
+and the \emph{momentum flux} as
+%
+\begin{align}
+T^{ij} = \sum _{n} p^{i}_n \dv{\xi^{j}}{\tau } \delta^3 (\vec{\xi } - \vec{\xi}_n (t))
+\,.
+\end{align}
+
+In more generality, we can define 
+%
+\begin{align}
+T^{\alpha \beta } = \sum _{n} p^{\alpha }_{n} \dv{\xi^{\beta }_n}{\tau } \delta^3 (\vec{\xi} - \vec{\xi}_n(t))
+\,.
+\end{align}
+
+Since 
+%
+\begin{align}
+p_n^\alpha = \frac{E_n}{c^2} \dv{\xi^{\alpha }_n}{t}
+\,,
+\end{align}
+%
+we can write this as 
+%
+\begin{align}
+T^{\alpha \beta } = c^2 \sum _{n} \frac{p_n^\alpha p_n^\beta }{E_n} \delta^3(\vec{\xi} - \vec{\xi}_n(t))
+\,,
+\end{align}
+%
+which tells us that this is a manifestly symmetric object. 
+
+In integral form, it reads 
+%
+\begin{align}
+T^{\alpha \beta } = c \sum _{n} \int p_n^\alpha \dv{\xi^{\beta }}{\tau } \delta^{4} (\xi^{\mu } - \xi^\mu _n (\tau )) \dd{\tau _n}
+\,.
+\end{align}
+
+The 3D delta function is defined through 
+%
+\begin{align}
+\int \dd[3]{\xi } \rho (\vec{\xi }) \delta^3 (\vec{\xi} - \vec{\xi}_n) = \rho (\vec{\xi}_n)
+\,,
+\end{align}
+%
+which tells us that the dimensions of a \([\delta^3]\) are \([\text{length}^{-3}]\); therefore the dimensions of \(T^{00}\) are indeed those of an energy density. 
+
+In the non-relativistic limit, \(v^{i} \ll c\), the time component of each four-momentum is approximately \(p^{0}_n \approx m_n c\); so in this first approximation we find 
+%
+\begin{align}
+T^{00} \approx \sum _{n} m_n c^2 \delta^3(\vec{\xi} - \vec{\xi}_n (t)) = \underbrace{\sum _{n} m_n c^2 \delta^3(\vec{\xi} - \vec{\xi}_n (t))}_{\rho } c^2
+\,.
+\end{align}
+
+The spatial components of the three-momentum, \(p^{i}\), have dimensions of \([\text{energy} / \text{velocity}]\). 
+
+Therefore, the components \([cT^{0i}] = [E / t S]\) have dimensions of the energy per unit time per unit area. 
+This is therefore referred to as \emph{energy flow} across a surface orthogonal to \(x^{i}\). 
+
+Similarly, the \(T^{ij}\) have the dimensions of the flux of the \(i\)-th component of the momentum flowing across the unit surface orthogonal to axis \(\xi^{j}\). 
+
+One can show that this object does indeed transform like a tensor, and its most general expression, in a non-flat frame \(x^{\mu }\) reads 
+%
+\begin{align}
+T^{\alpha \beta } = c \sum _{n} \int \frac{ \dd{\tau _n}}{\sqrt{-g}} p^{\alpha }_n \dv{x^{\beta }_n}{\tau _n} \delta^{4} (x^{\mu } x^{\mu }_n (\tau ))
+\,.
+\end{align}
+
+In the flat case, \(\sqrt{-g} = 1\). 
+The invariant volume element is written as \(\sqrt{-g} \dd[4]{x}\). 
+
+The \(\delta \)-function has its own transformation rule: 
+%
+\begin{align}
+\frac{ \delta^{4} (x^{\mu } - x^{\mu }_n)}{\sqrt{-g}} =
+\frac{ \delta^{4} (x^{\mu \prime} - x^{\mu \prime}_n)}{\sqrt{-g'}} 
+\,.
+\end{align}
+
+If we have a scalar field with a Lagrangian \(\mathscr{L} = - \partial^{\mu } \phi \partial_{\mu } \phi / 2 + V(\phi )\), we can associate a stress-energy tensor to it by 
+%
+\begin{align}
+T_{\mu \nu } = \partial_{\mu } \phi \partial_{\nu } \phi 
+- g_{\mu \nu } \mathscr{L}
+\,.
+\end{align}
+
+If we have a perfect fluid with energy density \(\epsilon \) and pressure \(P\), it will have a diagonal stress-energy tensor in its own rest frame: 
+%
+\begin{align}
+T_{\mu \nu } = (\epsilon + P) u_\mu u_\nu + P g_{\mu \nu }
+\,.
+\end{align}
+
+For the electromagnetic field we get 
+%
+\begin{align}
+T_{\mu \nu } = C \qty(g^{\alpha \beta } F_{\alpha (\mu } F_{\nu ) \beta } - \frac{1}{2} F_{\alpha \beta } F^{\alpha \beta } g_{\mu \nu })
+\,,
+\end{align}
+%
+where the electromagnetic tensor is written in terms of the four-potential \(A^{\mu }\):
+%
+\begin{align}
+F_{\alpha \beta } = 2 \nabla_{[\alpha } A_{\beta ]}
+\,.
+\end{align}
+
+We now seek a conservation law of some sort. 
+Moving back to flat spacetime, we can compute its three-divergence:
+%
+\begin{align}
+\pdv{T^{\alpha i}}{\xi^{i}} &=
+\sum _{n} p^{\alpha }_{n} (t) \dv{\xi^{i}_n(t)}{t} \pdv{}{\xi^{i}} \delta^3 (\vec{\xi} - \vec{\xi}_n(t))  \\
+&= - \sum _{n} p^{\alpha }_{n} (t) \dv{\xi^{i}_n(t)}{t} \pdv{}{\xi_n^{i}} \delta^3 (\vec{\xi} - \vec{\xi}_n(t))   \\
+&= - \sum _{n} p^{\alpha }_{n} (t) \dv{}{t} \delta^3 (\vec{\xi} - \vec{\xi}_n(t))
+\,.
+\end{align}
+
+On the other hand, by taking the derivative of the zeroth component we find
+%
+\begin{align}
+\pdv{T^{\alpha 0}}{\xi^{0}} 
+&= \sum _{n} \qty[
+    \dv{p^{\alpha }_n}{t} (t) \delta^3(\vec{\xi} - \vec{\xi}_n(t)) 
+    + p^{\alpha }_n (t) \dv{}{t} \delta^3(\vec{\xi} - \vec{\xi}_n(t))  
+]
+\,,
+\end{align}
+%
+but the derivative of the four-momentum can be referred back to the quadri-force, which vanishes for an isolated system:
+%
+\begin{align}
+\dv{p^{\alpha }_n}{t } = \dv{p^{\alpha }_n}{\tau } \dv{\tau }{t} = F^{\alpha }_n \dv{\tau }{t}
+\,,
+\end{align}
+%
+therefore we get 
+%
+\begin{align}
+\pdv{T^{\alpha i}}{\xi^{i}} = - \pdv{T^{\alpha 0}}{\xi^{0}}
+\,,
+\end{align}
+%
+which means that \(T^{\alpha \mu }{}_{, \mu } = 0\): in flat spacetime, the divergence of the stress-energy tensor vanishes. 
+
+This is associated with a conservation law: for example, we can integrate \(0 = T^{0 \mu }{}_{, \mu }\) on a volume at fixed time (a \(\xi^{0} = \text{const}\) hypersurface), 
+%
+\begin{align}
+\pdv{}{\xi^{0}} \int_V T^{00} \dd[3]{x} = - \int_V \pdv{T^{0i}}{\xi^{i}} \dd[3]{x} = - \int _{\partial V} T^{0i} n_i \dd{S}
+\,.
+\end{align}
+
+If the system is isolated, the term on the boundary \(\partial V\) vanishes, which means that the total energy \(E = \int T^{00} \dd[3]{x}\) is conserved. 
+Similarly, we can find conservation laws for \(P^{i} = \int T^{0i} \dd[3]{x}\). 
+
+We have so far only found this result for flat spacetime, or in a LIF, but we can now introduce the \textbf{principle of general covariance}: 
+
+\begin{quotation}
+    ``A physical law is true if: 
+    \begin{enumerate}
+        \item with no gravity, it reduces to the laws of special relativity;
+        \item it is generally covariant, meaning that it can be expressed in a tensorial form.''
+    \end{enumerate}
+\end{quotation}
+
+What we can then do is generalize \(T^{\alpha \beta }{}_{, \beta } = 0\) to \(T^{\alpha \beta }{}_{; \beta } = 0\).
+
+Be careful about this: it is \emph{not a conservation law}! 
+If one does all the calculations, it comes out to 
+%
+\begin{align}
+\pdv{}{x^{\mu }} \qty(\sqrt{-g} T^{\mu \nu }) = - \sqrt{-g} \Gamma^{\nu }_{\lambda \mu } T^{\lambda \mu }
+\,.
+\end{align}
+
+The reasons this is not a conservation law are the gravitational field and gravitational waves. 
+
+If we include the Landau-Lifschitz pseudo-tensor \(\tau_{\mu \nu }\), then \emph{that} is conserved. 
+
+\subsection{The Einstein Equations}
+
+Newtonian gravity is described by Poisson's equation: \(\nabla^2 \phi = 4 \pi G \rho \). 
+We want to write an equation which reproduces this in the non-relativistic limit. 
+
+Let us try to take some of these limits: the weak, and stationary field limits. 
+The low-velocity limit means that \(\dv*{x^{i}}{\tau } \ll c\), which also means that 
+%
+\begin{align} \label{eq:low-velocity-limit}
+\dv{x^{i}}{\tau } \ll c \dv{t}{\tau }
+\,.
+\end{align}
+
+Further, we take the \emph{weak field limit}: we assume that \(g_{\mu \nu } = \eta_{\mu \nu } + h_{\mu \nu }\), where the components of the perturbation \(h_{\mu \nu }\) all have magnitudes much smaller than 1. 
+We will then work to first order in this as well.
+
+We can do this in the geodesic equation 
+%
+\begin{align}
+\dv[2]{x^{\mu }}{\tau } + \Gamma^{\mu }_{\alpha \beta } \dv{x^{\alpha }}{\tau } \dv{x^{\beta }}{\tau } = 0
+\,.
+\end{align}
+
+Since the largest component of the four-velocity is the zeroth one \eqref{eq:low-velocity-limit} the most relevant contribution will be given by the \(\Gamma^{\mu }_{00} u^{0} u^{0}\) term. 
+
+Those Christoffel symbols read 
+%
+\begin{align}
+\Gamma^{\mu }_{00} = \frac{1}{2} \eta^{\mu \nu } \qty(2 h_{\nu 0, 0} - h_{00, \nu })
+\,.
+\end{align}
+%
+By the stationary approximation, the time derivatives vanish; this yields \(\Gamma^{\mu }_{00} = - h_{00}{}^{, \mu }\).
+
+The geodesic equation is therefore 
+%
+\begin{align}
+\dv[2]{x^{\mu }}{\tau } = \frac{1}{2} h_{00}{}^{, \mu } \qty(\dv{x^{0}}{\tau })^2
+\,,
+\end{align}
+%
+but the \(\mu = 0\) equation just reads \(\dv*[2]{x^{0}}{\tau } = 0\), so we can write \(x^{0} = ct = \tau \) with an affine transformation. 
+
+The spatial equations then read: 
+%
+\begin{align}
+\frac{1}{c^2} \dv[2]{x^{i}}{t} = \frac{1}{2} \partial^{i} h_{00} 
+\,.
+\end{align}
+
+This looks very similar to Newton's law 
+%
+\begin{align}
+\dv[2]{x^{i}}{t} = - \partial^{i} \phi 
+\,,
+\end{align}
+%
+so long as we identify \(\phi = - c^2 h_{00} /2\), or \(h_{00} = -2 \phi / c^2\) (up to an additive constant). 
+
+In the Newtonian case, the field reads \(\phi = - GM / r\): this yields 
+%
+\begin{align}
+g_{00} = \eta_{00} + h_{00} = - 1 + \frac{2GM}{c^2 r}
+\,,
+\end{align}
+%
+again up to an additive constant, which we can however neglect if we ask that the field vanishes at infinity. 
+
+We might be therefore tempted to write something like 
+%
+\begin{align} \label{eq:poisson-like-equation}
+\nabla^2 g_{00} = \frac{8 \pi G}{c^{4}} T_{00} 
+\,,
+\end{align}
+%
+however this is not covariant (not even under Lorentz transformations). 
+
+The way to make this covariant is to write 
+%
+\begin{align}
+G_{\mu \nu } = \frac{8 \pi G}{c^{4}} T_{\mu \nu }
+\,,
+\end{align}
+%
+where the Einstein tensor \(G_{\mu \nu }\) is made up of differential operators acting on the metric. 
+
+The guidelines to arrive at this equation are: 
+\begin{enumerate}
+    \item the expression must be tensorial;
+    \item the dimensions of \(G_{\mu \nu }\) must be those of inverse length, so we can only have terms like \(\partial g \partial g\), or \(\partial \partial g\), unless we want to include a new characteristic length scale --- therefore, we want to write \(G_{\mu \nu }\) in terms of the Riemann tensor (this also tells us that the equation will vanish for flat spacetime);
+    \item \(G_{\mu \nu }\) must be symmetric;
+    \item \(G_{\mu \nu }\) must satisfy \(G^{\mu \nu }{}_{; \nu } = 0\), since the stress-energy tensor does; 
+    \item the expression reduces to equation \eqref{eq:poisson-like-equation}.
+\end{enumerate}
+
+Only two quantities can be constructed in this way from the Riemann tensor: the Ricci tensor \(R_{\mu \nu } = R^{\alpha }_{\mu \alpha \nu }\) and the term \(R g_{\mu \nu }\), where \(R = g^{\mu \nu } R_{\mu \nu }\). 
+
+With this, we can say that \(G_{\mu \nu } = c_1 R_{\mu \nu } + c_2 g_{\mu \nu } R\). 
+
 \end{document}

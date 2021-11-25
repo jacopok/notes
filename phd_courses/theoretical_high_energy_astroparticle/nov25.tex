@@ -1,4 +1,326 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Magneto-HydroDynamics}
+
+\marginpar{Thursday\\ 2021-11-25}
+
+We are going to briefly treat a topic which is often discussed in whole books. 
+
+The Vlasov equation has a large amount of information in it, way more than what we can actually measure for astrophysical plasmas. 
+
+So, we would like to treat our plasma like a magnetized fluid. 
+Further, we know that astrophysical plasmas are extremely conductive. 
+Therefore, the only significant electric field we can have is the one associated with induction. 
+
+Still, we must retain a kinetic description (with the full phase space distribution) for anything which is not the background plasma, like the nonthermal particles. 
+We only want to simplify the treatment of the background. 
+
+We always start with the Vlasov equation, which we can write in index notation: 
+%
+\begin{align}
+\pdv{f}{t} + \vec{v} \cdot \vec{\nabla} f 
++ \frac{q}{m} \qty[\vec{E} + \frac{\vec{v}}{c} \times \vec{B}] \cdot \vec{\nabla}_v f &= 0  \\
+\pdv{f}{t} + v_r \pdv{f}{x_r} 
++ \frac{q}{m} \qty[E_r + \frac{1}{c} \epsilon_{rst} v_s B_t] \pdv{f}{v_r} &= 0
+\,.
+\end{align}
+
+Now, we need to define local mean values with respect to the phase space distribution of any function: 
+%
+\begin{align}
+\expval{\varphi } = \frac{\int \dd[3]{v} \varphi f}{\int \dd[3]{v} f} = \frac{1}{n} \int \dd[3]{v} \varphi f
+\,.
+\end{align}
+
+Suppose the function we are averaging is only dependent on the velocity, which we denote as \(\psi (\vec{v})\), we can multiply it by the Vlasov equation and integrate over \(\dd[3]{v}\): the various terms become
+%
+\begin{align}
+\int \pdv{}{t} \psi (\vec{v}) f \dd[3]{v} &= \pdv{}{t} \int \dd[3]{v} \psi f = \pdv{}{t} \qty[n \expval{\psi }]  \\
+\int \dd[3]{v} \psi (\vec{v}) v_r \pdv{f}{x_r} &= \pdv{}{x_r} \dd[3]{v} \psi v_r f = \pdv{}{x_r} \qty[n \expval{\psi v_r}]  \\
+\frac{q}{m} \int \dd[3]{v} E_r \psi (\vec{v}) \pdv{f}{v_r} &= - \frac{q}{m} \int \dd[3]{v} f \dv{\psi }{v_r} E_r = - \frac{q}{m} E_r n \expval{ \dv{\psi }{v_r}} 
+\marginnote{We integrate by parts, and at the boundary \(\abs{v} \to \infty \) all quantities vanish.}  \\
+\frac{q}{mc} \int \dd[3]{v} \psi \epsilon_{rst} v_s B_t \pdv{f}{v_r} &= - \frac{q}{mc} \int \dd[3]{v} f \epsilon_{rst} B_t \pdv{}{v_r} \qty( v_s \psi )  \\
+&= - \frac{q}{mc} \epsilon_{rst} B_t n \expval{v_s \pdv{\psi }{v_r}}
+\,.
+\end{align}
+
+We brought \(v_s\) outside the derivative since the term it yields is symmetric but contracted with the Levi-Civita symbol. 
+
+If we take \(\psi \equiv 1\), we get 
+%
+\begin{align}
+\dv{n}{t} + \pdv{}{x_r} \qty(n \expval{v_r})  = 0
+\,,
+\end{align}
+%
+since all the derivatives of \(\psi \) vanish. 
+We found the continuity equation!
+Keep in mind that for now this only holds for one component of the fluid. 
+
+Let us take \(\psi = v_r\). We then get 
+%
+\begin{align}
+\pdv{}{t} \qty[n \expval{v_r}] + 
+\pdv{}{x_s} \qty[n \expval{v_r v_s}] 
+- \frac{q}{m} E_r n  
+- \frac{q}{mc} n \epsilon_{rst} B_t \expval{v_s} = 0
+\,.
+\end{align}
+
+If the fluid is \emph{at rest} in our frame its mean velocity is zero. 
+Let us be more general than this: suppose there is a bulk motion \(u_r = \expval{v_r}\). 
+Then, the equation reads 
+%
+\begin{align}
+\pdv{}{t} \qty[n u_r] + 
+\pdv{}{x_s} \qty[n \expval{v_r v_s}] 
+- \frac{q}{m} E_r n  
+- \frac{q}{mc} n \epsilon_{rst} B_t u_s = 0
+\,.
+\end{align}
+
+We have one of these equations for the electrons and one for the protons. 
+We have a few component masses in the denominator, but if we multiply through my \(m\) the densities in the first two terms just become mass densities. 
+
+Let us define the total density \(\rho = n_p m_p + n_e m_e\). 
+The density of charges will read \(\zeta = (n_p - n_e) e\), 
+
+For now, the bulk motions of electrons and protons may differ, so we will have \(u_{p, r}\) and \(u_{e, r}\).
+The current density will then read  
+%
+\begin{align}
+J_r = \qty(n_p u_{p, r} - n_e u_{e, r}) e
+\,.
+\end{align}
+
+We can define a global, mass-averaged bulk velocity: 
+%
+\begin{align}
+U_r = \frac{n_p m_p u_{p, r} + n_e m_e u_{e, r}}{\rho }
+\,.
+\end{align}
+
+We still need to describe internal energy through fluctuations over this mean: the peculiar velocity will read 
+%
+\begin{align}
+w_{p, r} &= v_{p, r} - U_r \\
+w_{e, r} &= v_{e, r} - U_r 
+\,.
+\end{align}
+
+Let us now multiply the continuity equation for protons by the proton mass, and similarly for the electrons: 
+%
+\begin{align}
+\pdv{}{t} (n_p m_p) + \pdv{}{x_r} \qty( n_p m_p u_{p, r}) &= 0  \\
+\pdv{}{t} (n_e m_e) + \pdv{}{x_r} \qty( n_e m_e u_{e, r}) &= 0 
+\,,
+\end{align}
+%
+which we can add together: we get a global mass conservation equation
+%
+\begin{align}
+\pdv{\rho }{t} + \pdv{}{x_r} \qty(\rho U_r) = 0
+\,.
+\end{align}
+
+Applying a similar procedure to the \(\psi = v_r\) equation we find 
+%
+\begin{align}
+\pdv{}{t} \qty(n_p m_p u_r) + \pdv{}{x_s} \qty(n_p m_p \expval{v_r v_s}) - e E_r n_p - \frac{e}{c} n_p \epsilon_{rst} B_t n_s &= 0
+\,,
+\end{align}
+%
+which we can add to the corresponding equation for the electrons. 
+First, though, let us look at the \(\expval{v_r v_s}\) term: 
+%
+\begin{align}
+\expval{v_r v_s} 
+&= \expval{(w_r + U_r) (w_s + U_s)}   \\
+&= \expval{w_r w_s} + \expval{w_r} U_s + \expval{w_s} U_r + U_r U_s  \\
+&=  \expval{w_r w_s} + (u_r - U_r) U_s + (u_s - U_s) U_r + U_r U_s   \\
+&= \expval{w_r w_s} + u_r U_s + u_s U_r - U_r U_s
+\,.
+\end{align}
+
+Let us now introduce a stress (pressure) tensor:
+%
+\begin{align}
+P_{rs, p} = m_p \int \dd[3]{v} f w_{p, r} w_{p, s} = n m_p \expval{w_{p, r} w_{p_s}}
+\,,
+\end{align}
+%
+which yields 
+%
+\begin{align}
+\expval{v_r v_s} = \frac{P_{rs}}{mn} + u_r U_s + u_s U_r - U_r U_s
+\,.
+\end{align}
+
+We can now sum the two components: 
+%
+\begin{align}
+\begin{split}
+&\phantom{=}\ 
+n_p m_p \qty[\frac{P_{rs, p}}{m_p n_p} + u_{r, p} U_s + u_{s, p} U_r - U_r U_s] + 
+n_e m_e \qty[\frac{P_{rs, e}}{m_e n_e} + u_{r, e} U_s + u_{s, e} U_r - U_r U_s] =\\
+&= P_{rs} + \rho U_r U_s + \rho U_r U_s - \rho U_r U_s 
+= P_{rs} + \rho U_r U_s  
+\,.
+\end{split}
+\end{align}
+
+The full equation now looks like: 
+%
+\begin{align}
+\dv{t}(\rho U_r) + \pdv{}{x_s} \qty[P_{rs} + \rho U_r U_s]
+- \zeta E_r 
+- \frac{1}{c} \epsilon_{rst} J_s B_t = 0
+\,.
+\end{align}
+
+We can expand the derivatives to get something which looks more like an equation of motion, and simplify through the continuity equation:  
+%
+\begin{align}
+\underbrace{\pdv{\rho }{t} U_r}_{U_r \times \text{continuity}} + \rho \dv{U_r}{t} + \pdv{P_{rs}}{x_s}
++ \underbrace{\pdv{}{x_s} \qty(\rho U_s) U_r}_{U_r \times \text{continuity}} 
++ \pdv{}{x_s} \qty(\rho U_r) U_s + \dots
+\,,
+\end{align}
+%
+so the equation reads 
+%
+\begin{align}
+\underbrace{\rho \pdv{U_r}{t} + \rho U_s \pdv{U_r}{x_s} }_{\rho D_t U}
+= - \pdv{P_{rs}}{x_s} + \zeta E_r
++ \frac{1}{c} \epsilon_{rst} J_s B_t
+\,.
+\end{align}
+
+Now this system does not know about protons and electrons anymore: it is just a fluid. 
+
+In vector terms, 
+%
+\begin{align}
+\rho \qty[ \pdv{\vec{U}}{t} + \vec{U} \cdot \vec{\nabla} U]
+= - \vec{\nabla} P + \zeta \vec{E} + \frac{1}{c} \vec{J} \times \vec{B}
+\,.
+\end{align}
+
+We haven't done the energy conservation equation since it will not be useful for our purposes, while being very lengthy. 
+Still, in principle we should use it. 
+
+We will now make the \textbf{ideal MHD approximation}, in which the conductivity is assumed to be very high. 
+Still, there are situations in which the resistivity becomes high locally. 
+This can happen through a phenomenon called \emph{reconnection}, for example. 
+
+Suppose we have an electric field in the lab frame: in the frame comoving with the plasma, it will look like \(\vec{E} \to \vec{E} + \vec{U} \times \vec{B} / c\). 
+
+This can be described by Ohm's law, 
+%
+\begin{align}
+\vec{E} + \frac{1}{c} \vec{U} \times \vec{B} = \eta \vec{J}
+\,.
+\end{align}
+
+Using the Ampére-Maxwell equation we get that the current reads 
+%
+\begin{align}
+\vec{J} = \frac{c}{4 \pi } \qty[\vec{\nabla} \times \vec{B} - \frac{1}{c} \pdv{\vec{E}}{t}]
+\,.
+\end{align}
+
+We assume that \(\eta \) is very small. 
+In the \(\eta = 0 \) case, in the lab reference frame we get 
+%[]
+\begin{align}
+\vec{E} = - \frac{1}{c} \vec{U} \times \vec{B}
+\,.
+\end{align}
+
+What is the order of magnitude of \(\vec{J} \times \vec{B}  / c\)? 
+%
+\begin{align}
+\frac{1}{4 \pi } \qty[\vec{\nabla} \times \vec{B} - \frac{1}{c} \pdv{\vec{E}}{t} ] \times \vec{B} \sim \frac{B^2}{UT} + \frac{U}{c^2} \frac{B^2}{T}
+\,,
+\end{align}
+%
+The first term has scale \(B^2 / L\), the second has scale \((U/c^2) (B^2 /T)\).
+
+We can then see that under this low-resistivity assumption the second term can be neglected. 
+
+Then, the equation just reads 
+%
+\begin{align}
+\rho \qty[ \pdv{\vec{U}}{t} + \vec{U} \cdot \vec{\nabla} U]
+= - \vec{\nabla} P + \frac{1}{4 \pi } (\vec{\nabla} \times \vec{B}) \times \vec{B}
+\,.
+\end{align}
+
+There is an interesting implication to this equation known as \textbf{flux freezing}. 
+
+The assumption of ideal MHD is that there is no dissipation: the field lines cannot cross; we can ``squeeze'' them, but the flux will be preserved.
+
+Let us take a surface \(S_0 \), and compute the magnetic field flux across it at \(t = t_0 \): 
+%
+\begin{align}
+\Phi_0 = \int \dd{\vec{S}_0} \vec{B} (\vec{x}, t_0 )
+\,,
+\end{align}
+%
+which we want to compare to the flux across the same surface, transported along the fluid motion: 
+%
+\begin{align}
+\Phi_1 &= \int \dd{S_1} \vec{B} (\vec{x} + \vec{v} \dd{t}, t_0 + \dd{t})   \\
+&= \int \dd{S_1} \qty[
+    \vec{B} (\vec{x} + \vec{v} \dd{t}, t_0 )
+    + \pdv{\vec{B}}{t} (\vec{x} + \vec{v} \dd{t}, t_0 ) \dd{t}
+]
+\,.
+\end{align}
+
+If we include \(S_0 \), \(S_1 \) as well as the boundary \(S_2 \) we will get a closed surface. 
+The integral over \(S = - S_0 + S_1  + S_2 \) will be 
+%
+\begin{align}
+\oint_S \vec{B} \cdot \dd{S} = 0 
+\,,
+\end{align}
+%
+where we write \(- S_0 \) since the normal to that surface must be oriented outward. 
+
+From this equation we get that 
+%
+\begin{align}
+\Phi_0 = \int \dd{S_1} B + \int \dd{S_2} B
+\,.
+\end{align}
+
+What is \(\dd{S_2}\)? It can be written as \(\dd{\ell} \wedge \vec{v} \dd{t}\), since we are asking that we move along the flux lines of the fluid. 
+
+We know that 
+%
+\begin{align}
+\Phi_1 
+&= \Phi_0 - \int \dd{\vec{S}_1} \cdot \vec{B} 
+ + \dd{t} \int \dd{\vec{S}_1} \pdv{\vec{B}}{t} (\vec{x} + \vec{v} \dd{t} , t_0 )  \\
+&= \Phi_0 - \dd{t} \int (\dd{\vec{\ell}} \times \vec{c}) \cdot \vec{B} 
+ + \dd{t} \int \dd{\vec{S}_1} \pdv{\vec{B}}{t} (\vec{x} + \vec{v} \dd{t} , t_0 )  \\
+&= \Phi_0 - \int \dd{t} (\vec{v} \times \vec{B}) \cdot \dd{\ell} + \dd{t} \int \pdv{\vec{B}}{t} \dd{S}  \\
+&= \Phi_0 - \dd{t} \int \dd{S} \qty[ \vec{\nabla} \times (\vec{\nabla} \times \vec{B}) + \pdv{\vec{B}}{t}]
+\,,
+\end{align}
+%
+but since 
+%
+\begin{align}
+\vec{E} = - \frac{1}{c} \vec{v} \times \vec{B}
+\qquad \text{and} \qquad
+\pdv{\vec{B}}{t} = - c \vec{\nabla} \times \vec{E}
+\,,
+\end{align}
+%
+we get that the integrand vanishes. 
+
+
 \end{document}

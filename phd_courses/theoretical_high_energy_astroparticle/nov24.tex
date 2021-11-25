@@ -10,7 +10,7 @@ Each of the particle species in our plasma satisfy a Vlasov equation,
 \,,
 \end{align}
 %
-where \(\alpha \) runs over electrons, ions, cosmic rays and so on: any collisionless particles. 
+where \(\alpha \) runs over electrons, ions, cosmic rays and so on: any collisionless particles; while the index \(\beta \) is a spatial index, to be interpreted in the Einstein summation convention.
 
 The \(\vec{E}\) and \(\vec{B}\) fields do \emph{not} have an index \(\alpha\): they are produced by all the components of the plasma. 
 
@@ -19,11 +19,14 @@ An astrophysically significant situation is one in which there is a ``baseline''
 We align our axes so that \(\vec{B}_0 = B_0  \hat{z}\). 
 The baseline electric field is \(\vec{E}_0 = 0\). 
 
-We ask that \(\vec{B}_0\) is ordered: its variations should be on much larger scales than the scales of the plasma. 
-
-The equilibrium phase space density, \(f_{0, \alpha }\), is assumed to be known: maybe a Maxwellian, maybe a delta-function on \(\vec{v} = 0\). 
+\begin{enumerate}
+    \item We ask that \(\vec{B}_0\) is ordered: its variations should be on much larger scales than the scales of the plasma. 
+    \item The equilibrium phase space density, \(f_{0, \alpha }\), is assumed to be known: it could, for example, be a Maxwellian, or a delta-function on \(\vec{v} = 0\). 
+\end{enumerate}
 
 Again, we will perturb this system in order to find a dispersion relation \(F(k, \omega ) \delta = 0\), where \(\delta \) is our perturbation.
+
+\paragraph{Perturbing the Vlasov equation}
 
 The perturbed components in our fields will read 
 %
@@ -47,19 +50,23 @@ and, as usual, we will move to Fourier space, without tildes for simplicity:
 \begin{align} \label{eq:perturbed-fourier-space-vlasov}
 - i \omega \delta f_\alpha 
 + i \vec{k} \cdot \vec{v} \delta f_\alpha 
-+ q_\alpha \delta \vec{E}_\beta \pdv{f_{0 \alpha }}{p_\beta } 
-+ q_\alpha \qty( \frac{\vec{v}}{c} \times \vec{B}_0)_\beta \pdv{ \delta f_\alpha }{p_\beta }
-+ q_\alpha \qty( \frac{\vec{v}}{c} \times \delta \vec{B}) 
-\pdv{f_{0 \alpha }}{p_\beta } = 0
++ \hlc{violet}{q_\alpha \delta \vec{E}_\beta \pdv{f_{0 \alpha }}{p_\beta }} 
++ \hlc{orange}{q_\alpha \qty( \frac{\vec{v}}{c} \times \vec{B}_0)_\beta \pdv{ \delta f_\alpha }{p_\beta }}
++ \hlc{yellow}{q_\alpha \qty( \frac{\vec{v}}{c} \times \delta \vec{B}) 
+\pdv{f_{0 \alpha }}{p_\beta }} = 0
 \,.
 \end{align}
+
+\paragraph{Perturbed Maxwell equations}
 
 The divergence of the electric field perturbation reads 
 %
 \begin{align}
 \vec{\nabla} \cdot \delta \vec{E} = 4 \pi \zeta = 4 \pi \sum _{\alpha } q_\alpha \int \dd[3]{p} \delta f_\alpha 
-\,.
+\,,
 \end{align}
+%
+where \(\zeta \) denotes the charge density (which is purely a perturbation, since its unperturbed value is zero due to charge neutrality).
 
 The divergence of \(\vec{B}\) vanishes, but so does the divergence of the constant \(\vec{B}_0\), so we have \(\vec{\nabla} \cdot \delta \vec{B} = 0\) as well. 
 
@@ -81,7 +88,11 @@ i \vec{k} \times \delta \vec{B} &= \frac{4 \pi }{c} \sum _{\alpha } q_\alpha \in
 \,.
 \end{align}
 
-We make one simplification: we restrict ourselves to perturbations moving parallel to the magnetic field, \(\vec{k} \parallel \vec{B}_0\). 
+We are now in a position to make a further simplifying assumption.
+
+\begin{enumerate}[resume]
+    \item We restrict ourselves to perturbations moving parallel to the magnetic field, \(\vec{k} \parallel \vec{B}_0\). 
+\end{enumerate}
 
 Boron, Beryllium and Lithium are absent in the ISM but present in cosmic rays: there must be spallation, but for them to have significant interaction chances they must move very slowly. Something must be deflecting them. 
 
@@ -94,7 +105,7 @@ From Faraday's law, we find \(\omega \delta \vec{B} = c \vec{k} \times \delta \v
 \delta B_y \\ 
 0
 \end{array}\right]
-= \left[\begin{array}{ccc}
+= \det \left[\begin{array}{ccc}
 \hat{x} & \hat{y} & \hat{z} \\ 
 0 & 0 & k \\ 
 \delta E_x & \delta E_y & \delta E_z
@@ -109,70 +120,89 @@ k \delta E_x \\
 
 Therefore, \(\delta B_x = - (kc / \omega ) \delta E_y\) and \(\delta B_y = (kc / \omega ) \delta E_x\). 
 
-Let us now look at the last three terms in the perturbed, Fourier space Vlasov equation \eqref{eq:perturbed-fourier-space-vlasov}: they read 
+\paragraph{Manipulating the Lorentz terms in Vlasov}
+
+Let us now try to simplify the last three terms in the perturbed, Fourier space Vlasov equation \eqref{eq:perturbed-fourier-space-vlasov}: they read 
 %
 \begin{align}
-+ q_\alpha \delta \vec{E}_\beta \pdv{f_{0 \alpha }}{p_\beta } 
-+ q_\alpha \qty( \frac{\vec{v}}{c} \times \vec{B}_0)_\beta \pdv{ \delta f_\alpha }{p_\beta }
-+ q_\alpha \qty( \frac{\vec{v}}{c} \times \delta \vec{B}) 
-\pdv{f_{0 \alpha }}{p_\beta }
+\hlc{violet}{q_\alpha \delta \vec{E}_\beta \pdv{f_{0 \alpha }}{p_\beta } }
++ \hlc{orange}{q_\alpha \qty( \frac{\vec{v}}{c} \times \vec{B}_0)_\beta \pdv{ \delta f_\alpha }{p_\beta }}
++ \hlc{yellow}{q_\alpha \qty( \frac{\vec{v}}{c} \times \delta \vec{B}) 
+\pdv{f_{0 \alpha }}{p_\beta }}
 \,,
 \end{align}
 %
 so, explicitly: 
 %
 \begin{align}
-& \frac{q_\alpha}{c} \left[\begin{array}{ccc}
+\begin{split}
+&\phantom{=}\  \hlc{yellow}{\frac{q_\alpha}{c} \det \left[\begin{array}{ccc}
 \hat{x} & \hat{y} & \hat{z} \\ 
 v_x & v_y & v_z \\ 
-\delta E_x & \delta E_y & 0
-\end{array}\right]
-\pdv{f_{0 \alpha }}{p_\beta }
-+ \frac{q_\alpha}{c} \left[\begin{array}{ccc}
+\delta B_x & \delta B_y & 0
+\end{array}\right]_\beta 
+\pdv{f_{0 \alpha }}{p_\beta }} \\
+&+ \hlc{orange}{\frac{q_\alpha}{c} \det \left[\begin{array}{ccc}
 \hat{x} & \hat{y} & \hat{z} \\ 
 v_x & v_y & v_z \\ 
 0 & 0 & B_0 
-\end{array}\right]
-\pdv{ \delta f_\alpha }{p_\beta }
-+ q_\alpha
-\qty(\delta E_x \pdv{f_{0 \alpha }}{p_x} + \delta E_y \pdv{f_{0 \alpha }}{p_y})  \\
+\end{array}\right]_\beta 
+\pdv{ \delta f_\alpha }{p_\beta }}
++ \hlc{violet}{q_\alpha
+\qty(\delta E_x \pdv{f_{0 \alpha }}{p_x} + \delta E_y \pdv{f_{0 \alpha }}{p_y})} =
+\end{split}  \\
 \begin{split}
-&= \frac{q_\alpha}{c} \qty( - v_z \delta B_y \pdv{f_{0 \alpha }}{p_x} + v_z \delta B_x \pdv{f_{0 \alpha }}{p_y} + \qty(v_x \delta B_y - v_y \delta B_x) \pdv{f_{0\alpha} }{p_z}) 
+&= \hlc{yellow}{\frac{q_\alpha}{c} \qty( - v_z \delta B_y \pdv{f_{0 \alpha }}{p_x} + v_z \delta B_x \pdv{f_{0 \alpha }}{p_y} + \qty(v_x \delta B_y - v_y \delta B_x) \pdv{f_{0\alpha} }{p_z})} 
 \\ 
-& + \frac{q_\alpha}{c} \qty(
+& + \hlc{orange}{\frac{q_\alpha}{c} \qty(
     v_y B_0 \pdv{ \delta f_\alpha }{p_x} - v_x B_0 \pdv{ \delta f_\alpha }{p_y}
-)
-+ q_\alpha \qty(
+)}
++ \hlc{violet}{q_\alpha \qty(
     \delta E_x \pdv{f_{0 \alpha }}{p_x} +
     \delta E_y \pdv{f_{0 \alpha }}{p_y}
-)
+)}
 \,.
 \end{split}
 \end{align}
 
+\paragraph{Moving to a circular polarization basis}
+
 We can always do the calculations for a perturbation in terms of circularly polarized waves, and then add them together. 
-We will write this as \(\delta E_y = \pm i \delta E_x = \pm i \delta E\). 
-We are rewriting everything in terms of \(\delta E\).  
+We will write this as \(\delta E_y = \pm i \delta E_x\). 
+The idea is then to rewrite everything in terms of \(\delta E_x\), which we can then just denote as \(\delta E\).  
+Thanks to this, we get: 
+%
+\begin{align}
+\delta E_x &= \delta E  &
+\delta E_y &= \pm i \delta E  \\
+\delta B_x &= \mp \frac{kc}{\omega } \delta E  &
+\delta B_y &= \frac{kc}{\omega } \delta E
+\,.
+\end{align}
+%
+%  \(\delta B_x = \mp (k c / \omega ) \delta E\) and  \(\delta B_y = (kc / \omega ) \delta E\). 
 
-Thanks to this, we get \(\delta B_x = \mp (k c / \omega ) \delta E\) and  \(\delta B_y = (kc / \omega ) \delta E\). 
-
-The three terms then read 
+With these substitutions, the three terms read
 %
 \begin{align}
 \begin{split}
-& - \frac{q_\alpha}{c} v_z \frac{kc}{ \omega } \delta E \pdv{f_{0 \alpha }}{p_x}
-- \frac{q_\alpha}{c} v_z i \frac{kc}{\omega }
+& \hlc{yellow}{\frac{q_\alpha}{c} \qty( -v_z \frac{kc}{ \omega } \delta E \pdv{f_{0 \alpha }}{p_x}
+-  v_z i \frac{kc}{\omega } \delta E
 \pdv{f_{0 \alpha }}{p_y} 
++ \qty[v_x \frac{ck}{\omega } \delta E \pm i v_y \frac{ck}{\omega } \delta E] \pdv{f_{0 \alpha }}{p_z})} +
 \\
-&\phantom{=}\ + \frac{q_\alpha}{c} \qty[v_x \frac{ck}{\omega } \delta E \pm i v_y \frac{ck}{\omega } \delta E] \pdv{f_{0 \alpha }}{p_z} 
-+ q_\alpha \delta E \pdv{ f_{0 \alpha} }{p_x} \pm q_\alpha i \delta E \pdv{f_{0 \alpha }}{p_y} + \frac{q_\alpha}{c} 
-B_0 \qty[v_y \pdv{f_{0 \alpha }}{p_x} - v_x \pdv{ \delta f_\alpha }{p_y}]
+&\phantom{=}\ 
++ \hlc{violet}{q_\alpha \delta E \pdv{ f_{0 \alpha} }{p_x} \pm q_\alpha i \delta E \pdv{f_{0 \alpha }}{p_y}} 
++ \hlc{orange}{\frac{q_\alpha}{c} 
+B_0 \qty[v_y \pdv{f_{0 \alpha }}{p_x} - v_x \pdv{ \delta f_\alpha }{p_y}]}
 \,.
 \end{split}
 \end{align}
 
-The distribution function cannot depend on the phase: it will be written like \(f_{0, \alpha } = f_{0, \alpha } (p_{\parallel}, p_\perp)\), because of the cylindrical symmetry; 
-therefore, it is useful to move to cylindrical coordinates. 
+\paragraph{Moving to cylindrical coordinates}
+
+The unperturbed distribution function \(f_{0 \alpha }\) cannot depend on the angle around the direction of the magnetic field \(\vec{B}_0 \)
+because of the cylindrical symmetry: it will be written like \(f_{0 \alpha } = f_{0 \alpha } (p_{\parallel}, p_\perp)\), therefore it is useful to move to cylindrical coordinates. 
 
 From \(p_x, p_y, p_z\) we move to \(p_\parallel\), \(p_\perp\), \(\varphi \), where 
 %
@@ -196,10 +226,12 @@ Therefore,
 %
 \begin{align}
 \pdv{ f_{0 \alpha }}{p_x} = \pdv{ f_{0 \alpha }}{p_\perp} \cos \varphi 
+\qquad \text{and} \qquad
+\pdv{ f_{0 \alpha }}{p_y} = \pdv{ f_{0 \alpha }}{p_\perp} \sin \varphi 
 \,,
 \end{align}
 %
-since the derivative with respect to \(\varphi \) vanishes. 
+since the term containing a derivative with respect to \(\varphi \) vanishes. 
 
 With this, the term reads 
 %
@@ -227,6 +259,8 @@ v_\perp e^{\pm i \varphi }
 \,.
 \end{align}
 
+\paragraph{Recombining the Vlasov equation}
+
 Now we just need to add in the two remaining terms of the Vlasov equation: 
 %
 \begin{align}
@@ -247,12 +281,14 @@ v_\perp e^{\pm i \varphi }
 \end{split}
 \end{align}
 
-The last term includes
+The last term includes a factor in which we can recognize the cyclotron frequency corresponding to particle species \(\alpha \) moving in the magnetic field \(\vec{B}_0\): 
 %
 \begin{align}
 \frac{q_\alpha}{c} B_0 \frac{v_\perp}{p_\perp} = \frac{q_\alpha B_0 }{c} \frac{v_\perp}{m_\alpha v_\perp \gamma } = \Omega _{\text{gyr, }\alpha }
 \,.
 \end{align}
+
+\paragraph{Making a rotating ansatz}
 
 If \(\delta f_\alpha \) was in the form \(\delta g_\alpha e^{\pm i \varphi }\), then the equation would automatically be satisfied, if \(g_\alpha \) does not depend on the phase, since in that case the last derivative would read \(\mp i \delta g_\alpha e^{\pm i \varphi }\). 
 
@@ -263,10 +299,10 @@ With this substitution all the phase factors would cancel, and we would find
 \,.
 \end{align}
 
-We have one step left in order to close the system: 
-we need a relation between \(\delta f_\alpha \) and \(\delta E\). 
+\paragraph{Closing the system with the Ampére-Maxwell law}
 
-We know that 
+We have one step left in order to close the system: 
+we need a relation between \(\delta f_\alpha \) and \(\delta E\); we know that 
 %
 \begin{align}
 i \vec{k} \times \delta \vec{B} = \frac{4 \pi }{c} \sum _{\alpha } q_\alpha \int \dd[3]{p } \vec{v} \delta f_\alpha 
@@ -297,12 +333,12 @@ so we get, substituting in what we know for \(\delta g_\alpha \):
 \begin{align}
 \frac{- i k^2 c}{\omega } \delta E = \frac{4 \pi }{c} 
 \sum _{\alpha } q_\alpha \int \dd{p_\perp} p_\perp v_\perp \int \dd{p_\parallel} 
-\frac{\frac{q_\alpha}{c} \delta E \qty[v_z \frac{ck}{\omega } \pdv{f_0 }{p_\perp} - v_\perp \frac{ck}{\omega } \pdv{f_0 }{p_\perp} - \pdv{f_0 }{p_\perp}]}{- i \omega + i k v_z \mp i \Omega _{\text{gyr}}}
+\frac{\frac{q_\alpha}{c} \delta E \qty[v_z \frac{ck}{\omega } \pdv{f_0 }{p_\perp} - v_\perp \frac{ck}{\omega } \pdv{f_0 }{p_\perp} - \pdv{f_0 }{p_\perp}]}{- i \omega + i k v_z \mp i \Omega _{\text{gyr, } \alpha }}
 - i \frac{\omega}{c} \delta E
 \,,
 \end{align}
 %
-which looks like a dispersion relation: we just need to collect \(\delta E\), to get 
+which looks like a dispersion relation: we just need to collect the generic \(\delta E\), to get 
 %
 \begin{align}
 \frac{k^2 c^2}{\omega^2} = 1 - \sum _{\alpha } \frac{4 \pi^2 q_\alpha^2}{\omega } \int \dd{p_\parallel} \int \dd{p_\perp} \qty( p_\perp v_\perp \qty(\frac{v_\parallel k}{\omega } - 1) \pdv{p_{0 \alpha }}{p_\perp} - \frac{k v_\perp}{\omega } \pdv{f_{0 \alpha }}{p_\parallel}) \qty[ \omega - k v_\parallel \pm \Omega _\alpha ]^{-1}
@@ -315,6 +351,8 @@ We can write an alternative version of this using \(v_\parallel = v \mu \) and \
 \qty[- \pdv{f_{0 \alpha }}{p} + \frac{1}{p} \pdv{f_{0 \alpha }}{\mu } \qty(\mu - \frac{kv}{\omega })]
 \,.
 \end{align}
+
+\paragraph{Application: a cold electron-proton plasma}
 
 This is very general, and we can specify it to the case in which we only have electrons and protons, at \(T = 0\). 
 
@@ -342,9 +380,11 @@ There is no dependence on \(\mu \), so we are left with
 Let us look at the integral with respect to momentum, using \(p = m_\alpha v\): 
 %
 \begin{align}
-\int \dd{p} \dd{\mu }
-\frac{ \delta (p)}{4 \pi p^2} \pdv{}{p}  \qty[\frac{p^2 v (1 - \mu^2)}{\omega - k v \mu \pm \Omega _\alpha }] 
-&= \int \dd{p} \frac{ \delta (p)}{4 \pi p^2} \qty( \frac{3 p^2}{m_\alpha } (\omega - k v \mu \pm \Omega _\alpha ) + \frac{k_\mu }{m_\alpha } \frac{p^3}{m_\alpha }) \qty(\omega - k v \mu \pm \Omega_\alpha^2)^{-1}   \\
+\begin{split}
+&\phantom{=}\ \int \dd{p} \dd{\mu }
+\frac{ \delta (p)}{4 \pi p^2} \pdv{}{p}  \qty[\frac{p^2 v (1 - \mu^2)}{\omega - k v \mu \pm \Omega _\alpha }]= \\
+&= \int \dd{p} \frac{ \delta (p)}{4 \pi p^2} \qty( \frac{3 p^2}{m_\alpha } (\omega - k v \mu \pm \Omega _\alpha ) + \frac{k_\mu }{m_\alpha } \frac{p^3}{m_\alpha }) \qty(\omega - k v \mu \pm \Omega_\alpha^2)^{-1} 
+\end{split}  \\
 &= \frac{3}{4 \pi m_\alpha } \frac{1}{\omega \pm \Omega _\alpha }
 \,.
 \end{align}
@@ -385,7 +425,7 @@ v_A = \frac{B_0 }{\sqrt{4 \pi \rho }}
 \,,
 \end{align}
 %
-so in the galaxy, where \(B_0 \sim \SI{}{\micro G}\) and \(\rho \sim m_p / \SI{}{cm^3}\), we have \(v_A \sim \SI{e6}{cm/s}\). 
+so in the galaxy, where \(B_0 \sim \SI{}{\micro G}\) and \(\rho \sim m_p / \SI{}{cm^3}\), we have \(v_A \sim \SI{2}{km/s}\). 
 
 This means that 
 %

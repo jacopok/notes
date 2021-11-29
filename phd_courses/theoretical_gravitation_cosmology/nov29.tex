@@ -1,4 +1,252 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2021-11-29}
+
+The Bianchi identities read \(R_{\mu \nu [\rho \sigma ; \alpha ]} = 0\); if we contract them with \(g^{\mu \lambda } g^{\nu \rho }\) we find 
+%
+\begin{align}
+\qty(R^{\mu \nu } - \frac{1}{2} g^{\mu \nu } R)_{; \nu } = 0
+\,.
+\end{align}
+
+This tells us that in order for the Einstein tensor to satisfy \(G^{\mu \nu }{}_{; \nu } = 0\) we should set \(c_2 / c_1 = - 1/2\). 
+
+How do we find the absolute scaling? 
+In the weak field limit, we know that \(\abs{T_{ij}} \ll \abs{T_{00} }\), since we can write 
+%
+\begin{align}
+T^{\mu \nu } &= c^2 \sum _{n} \frac{p^{\mu }_{n} p^{\nu }_{n}}{E_n} \delta^3(\vec{\xi} - \vec{\xi}_n(t))  \\
+&= c^2 \sum _{n} m_n \dv{x^{\mu }}{\tau } \dv{x^{\nu }}{\tau } \delta^3(\vec{\xi} - \vec{\xi}_n(t))  \\
+&= \rho c^2 \dv{x^{\mu }}{\tau } \dv{x^{\nu }}{\tau }
+\,,
+\end{align}
+%
+where \(\rho = \sum _{n} m_n \delta^3 (\vec{\xi} - \vec{\xi}_n (t))\) is the density. 
+Then we can use the fact that 
+%
+\begin{align}
+\dv{x^{i}}{\tau } =  \frac{v^{i}}{c} \dv{x^{0}}{\tau } \ll \dv{x^{0}}{\tau }
+\,.
+\end{align}
+
+This means that, because of the equation we want to write, we must also have \(\abs{G_{ij}} = \abs{c_1 (R_{ij} - (1/2) g_{ij} R)} \ll \abs{G_{00} }\). 
+
+If we approximate \(g_{ij} \sim \eta_{ij}\), we must also have \(R_{ij} \sim (1/2) \eta_{ij} R\), so \(R_{ij}\) must also be approximately diagonal, with \(R_{kk} \sim (1/2) R\). 
+
+This means that 
+%
+\begin{align}
+R = g^{\mu \nu }R_{\mu \nu } = - R_{00} + \sum _{k} R_{kk } = - R_{00} + \frac{3}{2} R
+\,,
+\end{align}
+%
+so in this limit \(R \approx 2 R_{00} \). 
+Then, the 00 component of the weak field Einstein equation will read 
+%
+\begin{align}
+G_{00} &= c_1 \qty(R_{00} - \frac{1}{2} g_{00} R)  \\
+&\approx 2 c_1 R_{00}  
+\,.
+\end{align}
+
+We can compute the \(R_{00} \) component explicitly: 
+%
+\begin{align}
+R_{00} = - \frac{1}{2} \nabla^2 g_{00} 
+\,,
+\end{align}
+%
+where \(\nabla^2 = \eta^{ij} \partial_{i} \partial_{j}\). 
+This means that \(G_{00} = - c_1 \nabla^2 g_{00} \). 
+
+Together with the Newtonian limit expression we found, \(G_{00} = - \nabla^2 g_{00} \), this means that \(c_1 = 1\).
+
+Finally, then, we can write the Einstein equation as 
+%
+\begin{align}
+G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = \frac{8 \pi G}{c^{4}} T_{\mu \nu }
+\,.
+\end{align}
+
+It can also be written as 
+%
+\begin{align}
+R_{\mu \nu } = \frac{8 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} g_{\mu \nu } T)
+\,,
+\end{align}
+%
+since if we contract the Einstein equation with a \(g^{\mu \nu }\) we get \(-R = (8 \pi G / c^{4}) T\). 
+
+In a vacuum, \(T_{\mu \nu } = 0\), therefore \(R_{\mu \nu } = 0\), but in general \(R_{\mu \nu \rho \sigma } \neq 0\). 
+
+One could also add a term like 
+%
+\begin{align}
+R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R - \Lambda g_{\mu \nu } = \frac{8 \pi G}{c^{4}} T_{\mu \nu }
+\,.
+\end{align}
+
+This cosmological constant term satisfies all the conditions, except for the Newtonian limit. 
+In order for this to be true, we need \(\Lambda \lesssim \SI{1.11e-52}{m^{-2}}\). 
+This is a new characteristic length scale! 
+
+\paragraph{Degrees of freedom}
+
+There are 10 independent Einstein equations for the 10 degrees of freedom in \(g_{\mu \nu }\). 
+
+However, we know that \(T^{\mu \nu }{}_{;\nu } = 0\) implies \(G^{\mu \nu }{}_{; \nu } = 0\): this means that only 6 of the components of the Einstein tensor are independent. 
+
+It looks like the system is underdetermined, but
+in fact the equations are uniquely determined 
+\emph{up to a gauge transformation}. 
+
+So, in fact, there are 6 equations. 
+If \(g_{\mu \nu }\) solves the Einstein Equations, and we transform it with a coordinate transformation to \(g_{\mu \nu }'\), we will still find something which satisfies these equations. 
+
+This is similar to the EM case: the potential \(A_{\mu }\) satisfies the equation 
+%
+\begin{align}
+\square A_{\mu } - \pdv{A_{\alpha }}{x^{\mu }}{x^{\alpha }} = - \frac{4 \pi }{c} J_\mu 
+\,,
+\end{align}
+%
+but this equation does not uniquely determine \(A\), since \(J\) satisfies \(J^{\mu }{}_{, \mu } = 0\). 
+This is solved by the gauge invariance of the electromagnetic field, which is unchanged if we map \(A_{\mu } \to A_{\mu } - \partial_{\mu } \phi \). 
+(similarly, Maxwell's equation is unchanged in that case).
+
+A common choice in EM theory is the Lorenz gauge, \(A^{\mu }_{; \mu }= 0\). 
+
+In gravitational theory, on the other hand, a gauge which  is often chosen is the \emph{harmonic gauge}: \(\Gamma^{\lambda } = g^{\alpha \beta } \Gamma^{\lambda }_{\alpha \beta } = 0\). More explicitly, this reads 
+%
+\begin{align}
+\pdv{}{x^{\mu }} \qty(\sqrt{-g} g^{\mu \lambda }) = 0 
+\,.
+\end{align}
+
+In curved coordinates, the Dalambertian reads 
+%
+\begin{align}
+\square \phi = g^{\alpha \beta } \nabla_\alpha \nabla_\beta \phi = g^{\alpha \beta } \partial_{\alpha } \partial_{\beta } \phi - \Gamma^{\alpha } \partial_{\alpha } \phi 
+\,.
+\end{align}
+
+In the harmonic gauge, this simplifies to \(g^{\alpha \beta } \nabla_\alpha \nabla_\beta \phi  = g^{\alpha \beta } \partial_{\alpha } \partial_{\beta } \phi \). 
+
+\section{Gravitational waves}
+
+They are a prediction made by any relativistic theory of gravity: something needs to propagate in order to mediate the interaction. 
+
+The connection of the ``gravitational potential'' to the metric means that these are \emph{metric waves}, the proper distance between points itself changes when a GW passes by. 
+
+We assume that the metric is written like \(g_{\mu \nu } = g_{\mu \nu }^{(0)} + h_{\mu \nu }\). 
+To first order, the inverse metric will read \(g^{\mu \nu }= g^{\mu \nu (0)} - h^{\mu \nu }\), where \(h^{\mu \nu }\) is computed raising the indices with \(g^{\mu \nu (0)}\). 
+
+The first order contribution to the Christoffel symbols reads 
+%
+\begin{align}
+\Gamma^{\lambda }_{\mu \nu } &= \frac{1}{2} \qty[g^{\lambda \rho (0)} - g^{\lambda \rho }] \qty(2 g^{0}_{\rho (\mu , \nu )} + 2 h_{\rho (\mu , \nu )}- g^{(0)}_{\mu \nu , \rho } - h_{\mu \nu , \rho })
+\\
+&= \underbrace{\frac{1}{2} g^{\lambda \rho (0)} \qty(2g^{(0)}_{\rho (\mu , \nu )} - g^{(0)}_{\mu \nu , \rho })}_{\order{h^{0}}} +
+\underbrace{\frac{1}{2} g^{\lambda \rho (0)} \qty(2h_{\rho (\mu , \nu )} - h_{\mu \nu , \rho }) + 
+\frac{1}{2} h^{\lambda \rho } \qty(2g^{(0)}_{\rho (\mu , \nu )} - g^{(0)}_{\mu \nu , \rho })}_{\order{h}} + \order{h^2}
+\,.
+\end{align}
+
+The general expression for the Ricci tensor reads 
+%
+\begin{align}
+R_{\mu \nu } = \Gamma^{\alpha }_{\mu \nu , \alpha } - \Gamma^{\alpha }_{\mu \alpha , \nu } + \Gamma^{\alpha }_{\sigma \alpha } \Gamma^{\sigma }_{\mu \nu } - \Gamma^{\alpha }_{\sigma \nu } \Gamma^{\sigma }_{\mu \alpha}
+\,.
+\end{align}
+
+In the \(\Gamma \Gamma \) terms we will have expressions like \((\Gamma^{(0)} + \Gamma^{(1)}) (\Gamma^{(0)} + \Gamma^{(1)})\), so we can also isolate 0th-order, 1st-order and 2nd-order terms; 
+similarly in the \(\partial \Gamma \) term we will have 0th and 1st-order terms. 
+
+The zeroth and first order EFE will read 
+%
+\begin{align}
+R^{(0)}_{\mu \nu } &= \kappa  \qty(T_{\mu \nu }^{(0)} - \frac{1}{2} g_{\mu \nu }^{(0)} T^{(0)}) \\
+R^{(1)}_{\mu \nu } &= \kappa  \qty(T_{\mu \nu }^{(1)} - \frac{1}{2} g_{\mu \nu }^{(0)} T^{(1)} - \frac{1}{2} h^{\mu \nu } T^{(0)})
+\,,
+\end{align}
+%
+where \(\kappa = 8 \pi G / c^{4}\). 
+
+We now take Minkowski: \(\eta_{\mu \nu } = g_{\mu \nu }^{(0)}\). 
+With this, and substituting in \(h\) to the Ricci tensor, we get 
+%
+\begin{align}
+R_{\mu \nu } = \frac{1}{2} \qty[ - \square h_{\mu \nu } + \pdv{h^{\lambda }_{\mu }}{x^{\lambda }}{x^{\mu }} + \pdv{h^{\lambda }_{\nu }}{x^{\lambda }}{x^{\nu }} - \pdv{x^{\lambda }_{\lambda }}{x^{\mu }}{x^{\nu }}]
+\,,
+\end{align}
+%
+where \(\square = \eta^{\alpha \beta } \partial_{\alpha }\partial_{\beta }\). 
+
+With these, the equations already look quite similar to a wave equation. 
+We'd like to make a gauge transformation in order to cancel the second derivatives, but we must be careful to preserve the perturbative character of the metric --- we can do so by mapping \(x^{\mu } \to x^{\mu } + \epsilon^\mu \), where \(\epsilon_{\mu , \nu } = \order{h_{\mu \nu }}\). 
+
+The transformed metric perturbation will read 
+%
+\begin{align}
+h'_{\alpha \beta } = h_{\alpha \beta } - 2 \epsilon_{(\alpha , \beta )}
+\,.
+\end{align}
+
+We then try to impose the harmonic gauge: \(0 = g^{\alpha \beta } \Gamma^{\lambda }_{\alpha \beta }\). This yields 
+%
+\begin{align}
+0 = h^{\mu }{}_{\kappa, \mu } - \frac{1}{2} h_{, \kappa } 
+\,.
+\end{align}
+
+This precisely means that the second derivatives in the Ricci tensor vanish. 
+
+So, we get \(R_{\mu \nu } = -(1/2) \square h_{\mu \nu }\), and the Einstein equations become 
+%
+\begin{align}
+\square h_{\mu \nu } = - \frac{16 \pi G}{c^{4}} \qty(T_{\mu \nu } - \frac{1}{2} \eta_{\mu \nu } T)
+\,.
+\end{align}
+
+If we introduce \(\overline{h}_{\mu \nu } = h_{\mu \nu } - \eta_{\mu \nu } h / 2\), the \emph{trace-reversed perturbation}, we find 
+%
+\begin{align}
+\square \overline{h}_{\mu \nu } = - \frac{16 \pi G}{c^{4}} T_{\mu \nu}
+\,,
+\end{align}
+%
+to be computed under \(\overline{h}^{\mu }{}_{\nu , \mu } = 0\). 
+
+In a vacuum, we just have \(\square h_{\mu \nu } = 0\). 
+The solution to this equation will be given in terms of 
+retarded quantities 
+%
+\begin{align}
+\overline{h}_{\mu \nu } (t, \vec{x}) = \frac{4 G}{c^{4}}
+\int_{V} \frac{T_{\mu \nu } (t - \abs{\vec{x} - \vec{x}'} / c, \vec{x}')}{\abs{\vec{x} - \vec{x}'}} \dd[3]{x'}
+\,.
+\end{align}
+
+We have yet to show that choosing the harmonic gauge is indeed always possible with an infinitesimal coordinate transformation. 
+If we make the coordinate transformation for the Christoffel system, we get 
+%
+\begin{align}
+\Gamma^{\lambda '} = \eta^{\lambda k } \qty[h^{\mu }{}_{\kappa, \mu } - \frac{1}{2} h_{, \kappa }] + \square \epsilon^{\lambda }
+\,.
+\end{align}
+
+Since solving the Dalambertian equation is always possible, 
+we can always set this to zero. 
+
+A monochromatic plane wave in a vacuum reads 
+%
+\begin{align}
+\overline{h}_{\mu \nu } = \Re A_{\mu \nu } e^{i k_{\sigma } x^{\sigma }}
+\,.
+\end{align}
+
+The Einstein equation means that \(k^2\) must vanish. 
+The gauge condition tells us that \(k^{\mu }A_{\mu \nu } = 0\). 
+
 \end{document}

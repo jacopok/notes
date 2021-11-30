@@ -13,7 +13,7 @@ rc('figure', dpi=150)
 def plot_and_save(plotting_func):
     plotting_func()
     plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf', bbox_inches='tight', pad_inches = 0)
-
+    plt.close()
 
 if __name__ == "__main__":
     plotter_list = []

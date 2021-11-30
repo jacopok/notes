@@ -1,4 +1,85 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-11-30}
+
+Radioactivity is unavoidable as a whole, but some element concentrations 
+can be reduced. 
+
+The strongest lines: \SI{2.6}{MeV} is Thallium, \SI{1.5}{MeV} is Potassium,
+\SI{511}{keV} is \(\beta^{+}\) decay. 
+
+The 208Thallium line is a strong separator. 
+Near a strong line we have a very taxing requirement in terms of energy resolution. 
+
+The number of background events is typically \(N_B = n_B t M \Delta E\). 
+It heavily depends on the isotopic makeup of our detector. 
+
+We need to choose a window around our expected energy with which to select ``signal'' events. 
+
+The relevant quantity is \(n_B\): the number of background events per unit time, per unit mass, per unit energy. It is typically expressed in \SI{}{kg^{-1} keV^{-1} yr^{-1}}. 
+
+In order to make proper estimates for this parameter we need to select a ``background-only'' region. 
+Ideally, we would want to also be able to compute it with some \emph{ab initio} calculation. 
+
+The sensitivity is 
+%
+\begin{align}
+\frac{S}{\sqrt{B}} = \frac{n_{\beta \beta }}{\sqrt{N_B}}
+\,,
+\end{align}
+%
+which comes out to be 
+%
+\begin{align}
+\text{SNR}_{0 \nu } \propto x \eta \epsilon \sqrt{ \frac{Mt}{n_B \Delta E}}
+\,,
+\end{align}
+%
+where \(x\) is the stoichiometric abundance, \(\epsilon\) is the detector efficiency, \(\Delta E\) is the detector energy resolution, \(\eta \) is the isotopic abundance. 
+
+Germanium is efficient for calorimetry because it is cheap energetically to excite one of its electrons. 
+
+One could try to use a calorimeter as a calorimeter, measuring the actual heat. 
+
+The thermal capacity tends to zero as \(T \to \SI{0}{K}\) (ideally, for dielectric elements). 
+Therefore, we may have a very sensitive calorimetric detector working in that regime. 
+Also, even very small temperature changes (of order \SI{}{nK}) can be measured by looking at the change in resistivity of a conductor.
+
+The scaling with time \(\sim\sqrt{t}\) is terrible, as well as the one with mass, \(\sqrt{M}\). 
+
+Also, we have 
+%
+\begin{align}
+\Gamma^{0 \nu } = \frac{1}{T^{0 \nu }_{1/2}} = G^{0 \nu } (Q, Z) \abs{M^{0 \nu }}^2 \frac{\abs{m_{\beta \beta }}^2}{m_e^2}
+\,,
+\end{align}
+%
+so the effective neutrino mass we are able to measure scales like \(m_{\beta \beta } \propto 1/ \sqrt{T_{1/2}^{0 \nu }}\). 
+
+So, there is a power \(1/4\) in the scaling of the measured effective \(m_{\beta \beta }\) with the time. 
+A factor 10 difference is required to distinguish between normal and inverted hierarchy --- it corresponds to a factor 10000 more \(M t\). 
+
+No experiment done so far has even touched the \(\sim \SI{50}{meV}\) mass at the upper limit of the inverted hierarchy. 
+
+There is a way to escape this problem if we are able to limit the number of background events to \(N_B \lesssim 1\). 
+
+Given the background index \(n_B\), we can choose the duration of the experiment such that \(\expval{N_B} \lesssim 1\). 
+
+\todo[inline]{But the distribution of the background events is still Poisson in that case, with the same variance. The Gaussian approximation breaks down, but I don't think the \(\sqrt{t}\) dependence goes away!}
+
+The goals are clear: 
+\begin{enumerate}
+    \item maximize the mass with the right isotopic composition;
+    \item minimize the background index;
+    \item get the best energy resolution possible;
+    \item get the efficiency as close to 1 as possible.
+\end{enumerate}
+
+The geochemistry of background reduction is tough. 
+
+Heidelberg-Moscow integrate about \SI{35}{kg yr} and claim a discovery. 
+
+
+
 \end{document}

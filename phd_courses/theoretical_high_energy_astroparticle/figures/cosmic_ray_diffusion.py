@@ -57,7 +57,6 @@ max_step = (larmor_period / 25).si.value
 t_span = (0, (n_periods * larmor_period).si.value)
 # t_eval = np.linspace(*t_span, num=50 * n_periods)
 
-
 def diffusion_over_time():
 
     cmap = plt.get_cmap('viridis')

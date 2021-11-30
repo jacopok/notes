@@ -48,12 +48,12 @@ def derivative_func(k):
     
 k_resonance = (sign * omega_larmor / v0 / np.cos(theta0)).to(1/ u.AU)
 
-N_plotted = 20
+N_plotted = 200
 k_range = np.linspace(.8, 1.2, num=N_plotted) * k_resonance
 
-n_periods = 50
+n_periods = 400
 larmor_period = 2 * np.pi / omega_larmor
-max_step = (larmor_period / 40).si.value
+max_step = (larmor_period / 25).si.value
 t_span = (0, (n_periods * larmor_period).si.value)
 # t_eval = np.linspace(*t_span, num=50 * n_periods)
 

@@ -337,11 +337,18 @@ This can be a mechanism to explain that.
 We focus on the \(z\) equation: 
 %
 \begin{align}
-m \gamma \dv{v_z}{ t} &= \frac{q}{c} \delta B v_0 (1 - \mu^2)^{1/2} \cos(\Omega t) \cos( k z  - \omega t + \varphi ) \pm \frac{q}{c} \delta  B v_0 (1 - \mu^2)^{1/2} \sin(\Omega  t) \sin(k z - \omega t + \varphi )  \\
+m \gamma \dv{v_z}{ t} &= 
+\frac{q}{c} \delta B v_0 (1 - \mu^2)^{1/2} 
+\qty(
+\cos(\Omega t) \cos( k z  - \omega t + \varphi ) 
+\pm 
+\sin(\Omega  t) \sin(k z - \omega t + \varphi )  )
+\\
 m \gamma v_0 \dv{\mu }{t} &= \frac{q \delta B}{mc \gamma } v_0 (1 - \mu^2)^{1/2}  
 \qty(\cos(\Omega t) \cos(k z - \omega t + \varphi ) \pm \sin(\Omega t) \sin(kz - \omega t + \varphi ))  \\
 \dv{\mu }{t}&= \frac{q \delta B}{mc \gamma } v_0 (1 - \mu^2)^{1/2}
 \cos(\Omega t \mp kz \pm \omega t \mp \varphi ) 
+\marginnote{Used some ugly prostapheresis formulae.}
 \,.
 \end{align}
 
@@ -446,15 +453,19 @@ How long does it take to have a diffusion by, say, 1 radian? it will be
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/diffusion_over_time}
-\caption{Diffusion over time.}
+\caption{Diffusion over time. The evolution is shown for a relativistic proton with \(\gamma = 10\), moving across a field 
+\(B_0 = \SI{2}{\micro\gauss}\) 
+with a perturbation \(\delta B = \num{e-4} B_0 \), with the \(+\) circular polarization (i.\ e.\ all the \(\pm\) become \(+\), all the \(\mp\) become \(-\)). A black mark on the wavenumber scale marks \(k = \Omega v_0 \cos \theta \), at which the ``resonance'' happens.}
 \label{fig:diffusion_over_time}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{figures/final_point_variance}
-\caption{\(\Delta \theta \).}
-\label{fig:final_point_variance}
+\includegraphics[width=\textwidth]{figures/final_point_variation}
+\caption{\(\Delta \theta \) corresponding to the end of the integrated curves in figure \ref{fig:diffusion_over_time}.}
+\label{fig:final_point_variation}
 \end{figure}
+
+\todo[inline]{There seems to be a high tail at high \(k\)!}
 
 \end{document}

@@ -80,7 +80,7 @@ def diffusion_over_time():
     plt.ylabel('Angle [radians]')
     plt.title('Diffusion varying $k$')
     
-def final_point_variance():
+def final_point_variation():
 
     theta_final = []
     
@@ -109,8 +109,8 @@ def omegas():
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
-    plot_and_save(final_point_variance)
+    plot_and_save(final_point_variation)
     plot_and_save(diffusion_over_time)
-    # plot_and_save(omegas)
+    plot_and_save(omegas)
 
     

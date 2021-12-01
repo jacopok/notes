@@ -48,31 +48,37 @@ def derivative_func(k):
     
 k_resonance = (sign * omega_larmor / v0 / np.cos(theta0)).to(1/ u.AU)
 
-N_plotted = 200
-k_range = np.linspace(.8, 1.2, num=N_plotted) * k_resonance
+N_plotted = 5000
+k_range = np.logspace(-1, 1, num=N_plotted) * k_resonance
+# k_range = np.linspace(.8, 1.2, num=N_plotted) * k_resonance
 
-n_periods = 400
+n_periods = 100
 larmor_period = 2 * np.pi / omega_larmor
-max_step = (larmor_period / 25).si.value
+
+global_pulsations = omega_larmor - k_range * v0 * np.cos(theta0)
+integration_oom = 2 * np.pi / (abs(global_pulsations) + omega_larmor)
+
+max_steps = (integration_oom / 6).si.value
+
 t_span = (0, (n_periods * larmor_period).si.value)
 # t_eval = np.linspace(*t_span, num=50 * n_periods)
 
 def diffusion_over_time():
 
     cmap = plt.get_cmap('viridis')
-    norm = Normalize(min(k_range).value, max(k_range.value))
+    norm = LogNorm(min(k_range).value, max(k_range.value))
     mappable = ScalarMappable(norm=norm, cmap=cmap)
 
-        
-    for k in tqdm(k_range):
+    for k, dt in tqdm(zip(k_range, max_steps), total=len(k_range)):
         func = derivative_func(k)
-        sol = solve_ivp(func, t_span, y0=[theta0], max_step=max_step)
+        sol = solve_ivp(func, t_span, y0=[theta0], max_step=dt)
         
         plt.plot(
             sol.t/larmor_period.si.value, 
             sol.y[0], 
             c=cmap(norm(k.value)), 
-            alpha=2**(-1.2*np.log10(N_plotted))
+            alpha=2**(-1.2*np.log10(N_plotted)),
+            lw=.3
         )
     
     plt.colorbar(mappable=mappable, label=f'k [{k_resonance.unit}]')
@@ -100,17 +106,17 @@ def final_point_variation():
     plt.legend()
     plt.title(f'$\\Delta \\theta$ over {n_periods} Larmor periods')
     
-def omegas():
+def integration_periods_plot():
     with quantity_support():
-        plt.semilogx(k_range, omega_larmor - k_range * v0 * np.cos(theta0))
+        plt.semilogx(k_range, integration_oom)
         plt.axvline(k_resonance)
         plt.grid('on')
 
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
-    plot_and_save(final_point_variation)
+    # plot_and_save(final_point_variation)
     plot_and_save(diffusion_over_time)
-    plot_and_save(omegas)
+    # plot_and_save(integration_periods_plot)
 
     

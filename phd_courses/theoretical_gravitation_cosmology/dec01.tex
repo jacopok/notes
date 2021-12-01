@@ -1,4 +1,210 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2021-12-1}
+
+Last time we reached the expression for the plane-wave solution to GR. 
+
+Consider a wave propagating along the \(x^{1}\) direction. 
+Our equation is \(\square _F \overline{h}_{\mu \nu } = 0 \), to be solved together with our gauge condition \(\partial_{\mu } \overline{h}^{\mu }{}_\nu = 0\). 
+
+The solution will only depend on \(t - x /c\), which we denote as \(w\). We will have 
+%
+\begin{align}
+\pdv{}{x} \overline{h}^{\mu }{}_{\nu } &= - \frac{1}{c} \pdv{}{w } \overline{h}^{\mu }{}_\nu \\
+\pdv{}{t} \overline{h}^{\mu }{}_{\nu } &=  \pdv{}{w } \overline{h}^{\mu }{}_\nu 
+\,,
+\end{align}
+%
+so, the full condition reads 
+%
+\begin{align}
+\partial_{\mu }  \overline{h}^{\mu }{}_{\nu } = \frac{1}{c} \pdv{}{t} \overline{h}^{0}{}_\nu + \pdv{}{x} \overline{h}^{x }{}_\nu 
+= \frac{1}{c} \pdv{}{w} \qty[h^{0}{}_{\nu } - h^{x}{}_{\nu }]
+= 0
+\,.
+\end{align}
+
+The constant the difference of these perturbations are equal to is inessential --- it can be recovered with a rescaling of, say, background time --- so we have 
+%
+\begin{align}
+h^{0}{}_{\nu } = h^{x}{}_{\nu }
+\,.
+\end{align}
+
+The gauge we chose did not fully determine our transformation: equation \eqref{eq:christoffel-gauge-transformation} will not change if we use an additional \(\xi \) such that \(\square \xi  =0 \). 
+
+It is possible to choose four more conditions thanks to this: 
+%
+\begin{align}
+0 
+= \overline{h}^{0}{}_{x}
+= \overline{h}^{0}{}_{y}
+= \overline{h}^{0}{}_{z}
+= \overline{h}^{y}{}_{y} + \overline{h}^{z}{}_{z}
+\,.
+\end{align}
+
+Together with the ones from before, we find 
+%
+\begin{align}
+0 
+= \overline{h}^{x}{}_{x}
+= \overline{h}^{x}{}_{y}
+= \overline{h}^{x}{}_{z}
+= \overline{h}^{0}{}_{0}
+\,,
+\end{align}
+%
+which also means \(h = 0 = \overline{h}\) (since \(h = - \overline{h}\)), therefore \(\overline{h}_{\mu \nu } = h_{\mu \nu } \). 
+
+The only two nonvanishing components left are \(h^{y}{}_{y} = - h^{z}{}_z\) and \(h^{x}{}_{y} = h^{y}{}_{x}\). 
+
+We finally have 
+%
+\begin{align}
+h_{\mu \nu } = \left[\begin{array}{cccc}
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & h_{+} & h_{\times } \\ 
+0 & 0 & h_{\times } & -h_{+}
+\end{array}\right]
+\,.
+\end{align}
+
+This is the \textbf{transverse-traceless gauge}.
+
+\subsection{The quadrupole approximation}
+
+We will assume that \(T_{\mu \nu } \neq 0\), but that the source of the GW is all contained within a source such that \(\abs{x'} < \epsilon\), and such that \(\epsilon \ll \lambda_{GW} = 2 \pi c / \omega \). 
+This means that \(\omega \epsilon / 2 \pi \sim v _{\text{source}} \ll c\). 
+
+This line of reasoning assumes that \(\omega _{\text{source}} \sim \omega _{\text{GW}} \), which we do not know yet --- we will later find that it is in fact true within a factor 2.
+
+The GW solution reads 
+%
+\begin{align}
+\overline{h}_{\mu \nu }(t, \vec{x}) &= \frac{4 G}{c^{4}}
+\int_{V} \frac{T_{\mu \nu } (t - \abs{x - x'} / c, c') \dd[3]{x'}}{\abs{x - x'}}
+\,,
+\end{align}
+%
+while in Fourier space we can expand 
+%
+\begin{align}
+T_{\mu \nu } (t, \vec{x}) = \int \widetilde{T}_{\mu \nu } (\omega , \vec{x}) e^{-i \omega t} \dd{\omega }
+\,.
+\end{align}
+
+We then get 
+%
+\begin{align}
+\int \overline{h}_{\mu \nu } (\omega , \vec{x}) e^{-i \omega t} \dd{\omega } = \frac{4 G}{c^{4}} 
+\int_{V} \frac{ \dd[3]{x'}}{\abs{x - x'}} \int T_{\mu \nu } (\omega , x') e^{-i \omega (t - \abs{x-x'} / c) } \dd{\omega }
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+h_{\mu \nu } (\omega , x) = \frac{4G}{c^{4}} \int 
+\frac{\dd[3]{x'}}{\abs{x - x'}}
+T_{\mu \nu }(\omega , x') e^{i \omega \abs{x-x'} / c}
+\,,
+\end{align}
+%
+where we factored out the \(e^{- i \omega t}\) and the integral in \(\dd{\omega }\). 
+
+With our assumption of slow speed we can expand: 
+%
+\begin{align}
+\frac{e^{i \omega \abs{x-x'} / c}}{\abs{x-x'}} \approx 
+\frac{e^{i \omega r}}{r} 
+\,,
+\end{align}
+%
+where \(r = \abs{x}\). 
+This then yields 
+%
+\begin{align}
+h_{\mu \nu }(\omega , r) = \frac{4 G}{c^{4}} \frac{e^{i\omega r}}{r}
+\int_{V} T_{\mu \nu } (\omega , x') \dd[3]{x'}
+\,,
+\end{align}
+%
+so we can come back to 
+%
+\begin{align}
+\overline{h}_{\mu \nu } (t, r) = \frac{4 G}{c^{4}r} \int T_{\mu \nu } (t- r/c, x') \dd[3]{x'}
+\,.
+\end{align}
+
+We can simplify this thanks to the expression \(T^{\mu \nu }{}_{, \nu } = 0\), which means we have conservation laws in the form \(\int T^{\mu 0} \dd[3]{x}\). 
+
+We can put these constants to zero (since we are not interested in any non-wavelike behavior, like the stationary Kerr-like metric due to the source). 
+
+We can do an integral of \(\partial_{\mu } T^{\mu \nu }= 0\): 
+%
+\begin{align}
+\frac{1}{c} \pdv{}{t} \int _V T^{n  0} x^{k} \dd[3]{x} &= - \int \pdv{T^{ni}}{x^i} x^{k} \dd[3]{x}  \\
+&= \underbrace{\int \dd{S^{i}} (T^{ni} x^{k})}_{ \to 0} + \int T^{nk} \dd[3]{x}  \\
+\frac{1}{c} \pdv{}{t} \int x^{k} T^{n0} \dd[3]{x} &= \int T^{nk} \dd[3]{x}
+\,.
+\end{align}
+
+We can write this as 
+%
+\begin{align}
+\frac{1}{2} \pdv{}{t} \int \qty[ T^{n0} x^{k} + T^{k0} x^{n}] = \int T^{nk} \dd[3]{x}
+\,.
+\end{align}
+
+The time component of the conservation law can be multiplied by \(x^{n} x^{k}\): 
+%
+\begin{align}
+\frac{1}{c} \pdv{}{t} \int T^{00} x^{n} x^{k} \dd[3]{x} 
+&= - \int \pdv{}{x^{i}} T^{0i} x^{n} x^{k} \dd[3]{x}  \\
+&= + \int T^{0i} \pdv{}{x^{i}} (x^{n} x^{k}) \dd[3]{x}  \\
+&= \int T^{0n} x^{k} + T^{0k} x^{n}  \dd[3]{x} 
+\,.
+\end{align}
+
+We then take a second derivative: 
+%
+\begin{align}
+\frac{1}{c^2} \pdv[2]{}{t} \int T^{00} x^{n} x^{k} \dd[3]{x} &= 
+\frac{1}{c} \pdv{}{t} \int T^{n0} x^{k} + T^{k0} x^{n} \dd[3]{x}  \\
+&= 2 \int T^{nk} \dd[3]{x}
+\,.
+\end{align}
+
+This is the \textbf{virial theorem} in GR. 
+
+We will assume we are working on a \(t = \text{const}\) hypersurface. 
+The metric is purely Euclidean there. 
+
+The object 
+%
+\begin{align}
+\frac{1}{c^2} \int T^{00} x^{n} x^{k} \dd[3]{x} = q^{n k} (t) 
+\,,
+\end{align}
+%
+the quadrupole tensor. 
+We then have 
+%
+\begin{align}
+\frac{1}{2} \ddot{q}^{n k} (t) = \int T^{nk} \dd[3]{x}
+\,.
+\end{align}
+
+The result is therefore \(h^{\mu 0} = 0\), and 
+%
+\begin{align}
+\overline{h}^{n k} = \frac{2G}{c^{4} r} \ddot{q}^{n k}(t)
+\,.
+\end{align}
+
+
+
 \end{document}

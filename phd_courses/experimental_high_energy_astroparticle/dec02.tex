@@ -1,0 +1,174 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Thursday\\ 2021-12-2}
+
+We can approximate the interaction of a high energy particle with matter as a continuous energy loss. 
+
+There can also be radiative processes: a decelerated particle will also produce EM radiation. 
+
+This will also often produce secondary particles. 
+
+A standard, main feature is just Coulomb force, but there are many other things to consider if one wants to get a precise prediction. 
+
+This main contribution will be described by the notorious Bethe-Bloch formula. 
+
+We will write \(\dv*{E}{x}\) to mean \(\expval{ \dv*{E}{x}}\): the mesoscopic average value of the energy loss per unit length. 
+
+The Bethe-Bloch formula tells us that this is proportional to certain quantities: 
+%
+\begin{align}
+\dv{E}{x} \propto \rho \qty( \frac{Z}{A}) \mathscr{Z}^2 \frac{1}{\beta^2} \qty[\log f(\beta , \gamma ) + \dots]
+\,,
+\end{align}
+%
+where \(\rho \) is the mass density of the medium, \(Z\) and \(A\) refer to the nuclei in the medium,  \(\mathscr{Z}\) and \(\beta \) are the charge and velocity of the particle.
+
+The dependence on \(\beta \) is relatively weak, since \(\beta \sim 1\) will hold in most cases we are interested in. 
+
+At high energies, as a first approximation, \(\dv*{E}{x} \sim f(\beta \gamma )\), so we often plot this as a function of \(\beta \gamma \). 
+A minimum can be seen around \(\beta \gamma \approx 3\), where the value of the energy loss per unit density is about \SI{1.6}{MeV / (g cm^{-2})}. 
+
+We know, however, that the number of interactions is given by \(N _{\text{int}} \propto (\rho \Delta x) \sigma \), so the relevant quantity is the \emph{grammage} \(\rho \Delta x\), measured in \SI{}{g cm^{-2}}. 
+Confusingly, this is often denoted as 
+%
+\begin{align}
+\frac{1}{\rho } \dv{E}{x} \overset{\text{def}}{=} \dv{E}{X}
+\,.
+\end{align}
+
+The plateau at high \(\beta \gamma \) is not much higher than the minimum: it is at around \SI{2}{MeV cm^2 g^{-1}}. 
+
+A \emph{minimum ionizing particle} is one which is coming in at the minimum value for \(\beta \gamma \). 
+
+Since \(\gamma = E  / m\) and \(\beta = \abs{\vec{p}} / E\), we have \(\beta \gamma = \abs{\vec{p}} / m\): this means that \(\beta \gamma = 3\) corresponds to \(\abs{\vec{p}} \approx 3 m\). 
+
+Integrating this we get a plot for \(E\) against \(x\): we expect a slow decrease and a sharp drop, but we must keep in mind the fact that this is just an average. 
+The low part will not be as sharply decreasing, since the approximation of the BB formula gets worse as \(\beta \) approaches 0. 
+
+We can also compute the \emph{range} of the particle, defined as the average depth the particle reaches in the material. 
+
+The range of a particle with energy \(E\) is given by 
+%
+\begin{align}
+R(E) 
+= \int_{E_0 }^{mc^2} \frac{ \dd{E}}{- \dv*{E}{x}}
+= \int^{E_0 }_{mc^2} \frac{ \dd{E}}{\dv*{E}{x}} 
+\,.
+\end{align}
+
+Consider a cosmic muon at \SI{10}{GeV}. 
+
+The atmospheric grammage is roughly \SI{e3}{g cm^{-2}}. 
+
+Protons produce \(\ce{p} \ce{p} \to \pi^{+} \pi^{0} \pi^{-}\), the pions produce \(\mu^{+} \overline{\nu}_\mu \), the muons produce \(e^{+} \overline{\nu}_\mu \nu _e\). 
+
+At sea level, we have roughly \SI{300}{muons / m^2 s}. 
+
+The muon flux increases rapidly in the upper atmosphere, and then stays roughly constant. Why is this?
+If we start with a \SI{}{TeV} proton, we expect roughly a \SI{100}{GeV} muon; they then lose about \SI{2}{MeV cm^2/ g }, so over \SI{e3}{g / cm^2} they lose about \SI{2}{GeV}.
+
+This does not take into account the fact that they might decay. A muon's decay time is \SI{2.2}{\micro\second}. 
+It travels about \SI{660}{m} in that time, but its Lorentz factor is about \(\gamma \approx 1000\), so its decay time in our reference frame is about \SI{2.2}{\milli\second}, in which it travels \SI{660}{km}.
+
+Less energetic muons will also be part of the distribution, and those might start to decay within \SI{20}{km}, but the effect as a whole is small at sea level.
+
+The ranges of the particles can differ by a lot in certain ranges. 
+
+Suppose we have a beam with \(\abs{\vec{p}} = \SI{200}{MeV} \) with both kaons and muons. 
+
+The range of kaons there is about \SI{6}{g /cm^2}, while the range of muons is about \SI{60}{g / cm^2}, while the density of lead is about \SI{11}{g / cm^3}. 
+
+So, the range in lead for kaons is about \SI{.5}{cm}, while the range for muons is about \SI{7}{cm}. 
+
+If we put a \SI{1}{cm} barrier, the muons will lose about \SI{12}{MeV}, so they will remain relativistic, while most muons will be stopped. 
+
+For electrons, radiative energy losses (bremsstrahlung) are very significant, since the energy emitted in that way has a strong inverse dependence on the mass. 
+
+In that case, we will have a dependence like 
+%
+\begin{align}
+\abs{ \dv{E}{x}} \propto E
+\,,
+\end{align}
+%
+therefore there will be some \(x_0 \), which we call the \emph{radiation length}, such that 
+%
+\begin{align}
+\dv{E}{x} = - \frac{E}{x_0 } \implies 
+E(x) = E_0 e^{- x / x_0 }
+\,.
+\end{align}
+
+The constant \(x_0 \) only depends on the medium, and it scales like 
+%
+\begin{align}
+x_0 = 180 \frac{A}{Z^2} \SI{}{g / m^2}
+\,.
+\end{align}
+
+In water, this is about \SI{36}{g / cm^2}.
+
+Adding this \(\propto E\) term to the Bethe-Bloch formula means we will have a \emph{critical energy} at which the two cross. 
+
+For electrons, this will be of the order of 
+%
+\begin{align}
+E_c \approx \frac{\SI{600}{MeV}}{Z + 1}
+\,.
+\end{align}
+
+For water, \(E_c \approx \SI{78}{MeV}\). 
+
+What happens to the photons?
+At low energies, we have the photoelectric effect. 
+At few \SI{}{eV} this is possible, it will then depend on the binding energies of the atoms there. 
+This means there will be a few peaks in the \(\sigma \) against \(E\) plot in the \SI{}{eV} to \SI{10}{eV} range.
+
+For Compton scattering, we can compute the Klein-Nishina cross-section, and we get a ``shoulder'' at mid-energies of \SI{100}{eV} to a few \SI{}{keV}. 
+
+After the \SI{1}{MeV} kinematic threshold for pair production, the cross-section for that is roughly constant. 
+
+The typical length for pair production is \(\Lambda_{pp} = 1/ (n \sigma_{pp})\), which is roughly constant with energy when the photon energy is above a few \SI{}{MeV}. 
+
+It comes out that this \(\Lambda_{pp}\) is similar to the radiation length \(x_0 \) for electrons, even though they are describing very different physics.
+So, typically, the photons emitted by bremsstrahlung emit a second generation of electrons and positrons on the same length scale as the bremsstrahlung itself. 
+
+This is the process underlying an electromagnetic shower. 
+In this toy model, we have \(e^{-} \to \gamma e^{-} \to (e^{+} e^{-}) (e^{-} \gamma ) \to \dots\), so typically the number of particles scales like 
+%
+\begin{align}
+N ( t = x / x_0 ) \sim 2^{t} 
+\qquad \text{and} \qquad
+E(t = x/ x_0 ) \sim \frac{E_0}{2^{t}} 
+\,.
+\end{align}
+
+This is the \textbf{Heitler model}. 
+After the energy drops too low the secondary particles will start all being absorbed, so the actual curve will have a maximum \(N _{\text{max}} = N (t _{\text{max}})\). 
+
+A good approximation for this is 
+%
+\begin{align}
+t _{\text{max}} = \log_2 \qty( \frac{E}{E_c})
+\,.
+\end{align}
+
+The logarithmic dependence is good if we want to build a detector:
+increasing the energy by an order of magnitude does not mean we need to increase the size of the detector by an order of magnitude!
+
+This all holds both for a high energy \(e^{\pm}\) and for a high energy \(\gamma \), but it is a good model also for other cosmic rays. 
+The qualitative behavior is the same for higher-mass particles, but the critical energy is much higher. 
+
+The radiation length scales like 
+%
+\begin{align}
+x^{\mu }_{0} = x^{e}_{0} \qty(\frac{m_\mu }{m_e})^2
+\,,
+\end{align}
+%
+and so does the critical energy. 
+
+The critical energy for muons is \(\num{4e4} \) times the one for electrons: roughly \SI{4}{TeV}, which means we only rarely have to deal with bremsstrahlung induced by muons. 
+
+\end{document}

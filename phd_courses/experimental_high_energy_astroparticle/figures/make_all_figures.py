@@ -19,11 +19,13 @@ if __name__ == "__main__":
     from cosmic_rays_energies import cosmic_rays_energies
     from angular_distribution_shift import angular_distribution_shift
     from rapidity import rapidity
+    from bethe_bloch import bethe_bloch
     
     plotter_list = [
         cosmic_rays_energies,
         angular_distribution_shift,
         rapidity,
+        bethe_bloch
     ]
     
     for plotting_func in tqdm(plotter_list):

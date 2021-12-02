@@ -52,7 +52,7 @@ def derivative_func(k):
 
 k_resonance = (sign * omega_larmor / v0 / np.cos(theta0)).to(1 / u.AU)
 
-N_plotted = 200
+N_plotted = 250
 N_plotted_margins = 100
 
 lim_k_dex = 1
@@ -179,7 +179,7 @@ def integration_periods_plot():
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
-    plot_and_save(final_point_variation)
-    # plot_and_save(diffusion_over_time)
+    # plot_and_save(final_point_variation)
+    plot_and_save(diffusion_over_time)
     # plot_and_save(integration_periods_plot)
     # final_point_integral()

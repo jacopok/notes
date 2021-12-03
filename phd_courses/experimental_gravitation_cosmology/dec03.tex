@@ -1,0 +1,167 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\subsection{Quantum noise}
+
+\marginpar{Friday\\ 2021-12-3}
+
+The measurement process can be thought of as ``counting photons'', 
+although we cannot really determine their exact number,
+but this is relevant since it means the measured intensity fluctuates with \(\sqrt{N}\). 
+
+If \(\Delta N / \Delta t\) is constant (we get a fixed number of photons per unit time),
+we have a \textbf{Fock state} \(\hat{n} \ket{n} = n \ket{n}\), an eigenvector of the 
+photon number operator \(\hat{n} = a ^\dag a\). 
+
+If this were the case, we would have no fluctuations in the readout. 
+But, besides the fact that photodetectors do not count photons, 
+we do not produce Fock states. 
+
+It is convenient to describe this process in the Heisenberg picture. 
+If we use it, the operators we use are all functions of \(t\) while the states are unchanged. 
+The state we will use will always just be the vacuum state \(\ket{0}\). 
+
+Classically, the output field will be given by a certain linear transformation of the 
+output field: 
+%
+\begin{align}
+\vec{E} _{\text{out}} (\vec{x}, t) = \mathscr{L} \qty[ \vec{E} _{\text{in}}(\vec{x}, t)]
+\,,
+\end{align}
+%
+but this will also be what we do in our quantum-mechanical, Heisenberg-picture treatment. 
+
+The difficulty comes from the fact that there are actually many input fields: 
+at various places, like the mirrors, we do not have ``nothing'' since there is 
+always at least the vacuum. 
+
+The transmissivity \(\tau \) of a mirror is the ratio between the incoming and transmitted
+field magnitudes. 
+All mirrors have a transmissivity \(\neq 0\), so we always have a coupling to the vacuum 
+state on the other side of the mirror. 
+
+If there are losses, we cannot have a unitary process: so, 
+there will never be ``one-way'' losses, and a loss will always be associated 
+with an extraneous input from the environment. 
+
+The transmissivity and reflectivity satisfy \(\tau^2 + \rho^2 = 1\);
+the transmissivity can be interpreted as a loss parameter, so if \(\tau = 0\) 
+all the field is reflected back into the system, but we will never have this condition. 
+
+So, if \(A\) is our input, some \(\tau A\) is leaving our system; 
+because of what we were saying above the field going back will not be just \(\rho A\) but
+instead \(\rho A + \tau V\), where \(V\) denotes the vacuum state on the other side of the port. 
+
+A very important field is the one coming from the photodiode, which 
+will often look like a thermal state. 
+However, its temperature will be very low compared to the laser light: 
+that is near-infrared, 100 to \SI{1000}{THz}, corresponding to \(\gtrsim \SI{700}{K}\)
+of thermal temperature. 
+So, we can take it to be the vacuum. 
+
+Only about \SI{.5}{\percent} of the laser light at the beamsplitter reaches the 
+photodiode. 
+Therefore, changing the field at the laser will have little effect on the diode; 
+on the other hand, \SI{99.5}{\percent} of the field from the photodiode will 
+come back to the laser. 
+
+Only in the eighties someone properly described an interferometer in QFT. 
+Before, people just used Poissonian statistics to calculate the quantum noise. 
+
+The first important insight is that we need to act on the field at the photodiode. 
+
+Let us neglect the vector character of the field for simplicity; 
+the fields are all linearly polarized, and the quantum mechanics for the 
+electric and magnetic fields are the same.  
+The field will be 
+%
+\begin{align}
+\hat{E}(x, t) = \sqrt{\frac{2 \pi \hbar}{\mathcal{A} c}} \int_{- \infty }^{\infty } \frac{ \dd{\omega }}{2 \pi } \sqrt{\omega }
+\qty( \hat{a} (\omega ) e^{- i \omega (t - \vec{x} \cdot \vec{\epsilon} /c) } + \hat{a} ^\dag e^{i \omega (t - \vec{x} \cdot \vec{\epsilon} /c)})
+\,,
+\end{align}
+%
+where we are fixing the propagation direction by fixing \(k = \omega / c\); 
+the creation and annihilation operators will satisfy 
+%
+\begin{align}
+\qty[ \hat{a}(\omega ),  \hat{a} ^\dag (\omega ')] = 2 \pi \delta (\omega - \omega ')
+\,.
+\end{align}
+
+If we apply the annihilation operator to the vacuum we get \(\hat{a} \ket{0} = 0 \ket{0}\); 
+since the photon number operator is \(\hat{n} = \hat{a} ^\dag \hat{a}\)  we also have 
+\(\hat{n}  \ket{0} = 0 \ket{0}\). 
+
+A \textbf{coherent state} is an eigenstate of the annihilation operator: \(\hat{a} \ket{\alpha } = \alpha \ket{\alpha }\), 
+where the eigenvalue \(\alpha \) is a generic complex number. 
+This is ``close to classical'', it describes the output of a laser quite well, 
+and it has Poissonian statistics. 
+
+What is the distribution of the number of photons in a coherent state? 
+%
+\begin{align}
+p(n) = \abs{\braket{n}{\alpha }}^2 = e^{- \abs{\alpha }^2} \frac{\abs{\alpha }^{2n}}{n!}
+\,.
+\end{align}
+
+This is a Poissonian with average photon number \(\expval{n} = \abs{\alpha }^2\). 
+
+The energy in the field is given by \(E = \hbar \omega_0 n\), so this value also corresponds
+to the mean energy in the field. 
+
+In the Heisenberg picture, one finds that the laser is mapping \(\hat{a} \to \hat{a} + \alpha\). 
+In a sense, all ``classical'' things are fixed complex numbers as opposed to operators. 
+
+The full operator is \(\hat{a} + h + \alpha \), where \(\hat{a}\) describes the quantum fluctuations,
+\(h\) describes the GW signal, while \(\alpha \)describes the laser. 
+
+We have not yet defined what is our canonical pair of observables. 
+We can write 
+%
+\begin{align}
+\hat{E} (x, t) = 
+E_1 (x, t) \cos (\omega_{0} t - kx)
++
+E_2 (x, t) \sin (\omega_{0} t - kx)
+\,.
+\end{align}
+
+Why are we picking a single frequency \(\omega_0 \), while our field has many? 
+It is convenient since the laser frequency (\(\omega_0 \)) is the main one, but there are also things fluctuating at all other frequencies. 
+We expect quantum fluctuations to have a white spectrum, so for those it is the same; however the sidebands from the GW signal will be close to \(\omega_0 \). 
+
+In the photocurrent we measure, \(I _{\text{ph}} (t) = \abs{E(x _{\text{photodiode}}, t)}^2\), we would have product terms between the laser frequency and the GW frequency. 
+
+The Fourier transform of the photocurrent allows us to compute a Power Spectral Density \(S (I _{\text{ph}}, \omega )\). 
+
+The Fourier transform looks like 
+%
+\begin{align}
+\widetilde{I} _{\text{ph}} (\omega ) \sim \underbrace{\abs{\alpha }^2}_{\omega_0 , \omega_0 } + \underbrace{\Re(\alpha \hat{a})}_{\omega_0 , \omega  } +  \underbrace{\Re (\alpha h)}_{\omega_0 \pm \Omega , \omega_0  } + \underbrace{\Re (h \hat{a})}_{\omega_0 \pm \Omega , \omega}
+\,.
+\end{align}
+
+The term which does not fluctuate, \(\abs{\alpha }^2\), is often called a DC component or DC offset: since we bandpass the photocurrent signal, any low-frequency component like that will vanish. 
+
+The noise term will oscillate at \(\omega_0 - \omega = \Omega \); in the end the photocurrent we will actually have left after the bandpassing we get 
+%
+\begin{align}
+\hat{I} _{\text{ph}}(\omega ) \sim h(\Omega ) + \hat{a} (\Omega )
+\,.
+\end{align}
+
+What we are basically doing is extracting out the fast-oscillating term, and we can focus on the slow, audio-band oscillations we care about. 
+
+The fluctuations in the photocurrent will contain the square moduli of the \emph{quadratures} \(E_1 \) and \(E_2 \), which form a Heisenberg pair. 
+
+How do we actually manipulate the vacuum field at the photodiode? 
+A squeezer is introduced, and it passes a polarizing beamsplitter, which is always either fully transmissive or fully reflective depending on the polarization of the light. 
+
+The unpolarized vacuum passes the polarizer in some fraction, but when it comes back it is fully reflected. 
+
+The squeezer emits little power, and some of it is in green light as opposed to infrared! 
+
+The power in the Fabry-Perot cavity is very high (\(\sim \SI{200}{kW}\)), but a small amount of squeezing power is enough to improve the sensitivity significantly. 
+
+\end{document}

@@ -17,8 +17,12 @@ def plot_and_save(plotting_func):
 
 if __name__ == "__main__":
     from polarization import polarization
+    from squeezing import husini
 
-    plotter_list = [polarization]
+    plotter_list = [
+        polarization,
+        husini,
+    ]
 
     for plotting_func in tqdm(plotter_list):
         plot_and_save(plotting_func)

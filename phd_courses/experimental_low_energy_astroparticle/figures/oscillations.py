@@ -81,42 +81,50 @@ def osc_plot(E_over_L, op, initial, final):
 def flux_plot(L_over_E, op, flux):
 
     with quantity_support():
-        plt.plot(L_over_E, (1 - op) * flux) 
+        plt.plot(L_over_E, op * flux) 
         plt.plot(L_over_E, flux, ls=':')
 
 def flux(E):
     """ Parametrization from https://arxiv.org/abs/0807.3203, 
     where the energy is in MeV (?)
     """
+    # E /= 1.2
     
     # energy and momentum of the emitted positron
-    Ep = E - 1.29333236
-    pp = np.sqrt(Ep**2 - 0.51099895**2)
+    Ep = E - 1.29333236  # Energy minus neutron-proton mass difference
+    pp = np.sqrt(Ep**2 - 0.51099895**2)  # proton energy minus positron mass
     
     return (
-        .58 * np.exp(.87 - .16*E - .091*E**2)+
+        .58 * np.exp(.87  - .16*E  - .091*E**2)+
         .30 * np.exp(.896 - .239*E - .0981*E**2)+
         .07 * np.exp(.976 - .162*E - .079*E**2)+
-        .05 * np.exp(.793 - .08*E - .1085*E**2)
+        .05 * np.exp(.793 - .08*E  - .1085*E**2)
         ) * Ep * pp
 
 def prepare_oscillation_parameters():
 
     # in terms of the given values for sin**2 (theta)
-    theta_12 = np.arcsin(np.sqrt(.31))
-    theta_13 = np.arcsin(np.sqrt(.558))
-    theta_23 = np.arcsin(np.sqrt(.02241))
+    # theta_12 = np.arcsin(np.sqrt(.31))
+    theta_12 = np.arcsin(np.sqrt(.32))
+    # theta_13 = np.arcsin(np.sqrt(.558))
+    theta_13 = np.arcsin(np.sqrt(.007))
+    # theta_23 = np.arcsin(np.sqrt(.02241))
+    theta_23 = np.arcsin(np.sqrt(.5))
     delta_CP = (222 * u.degree).to(u.rad).value
     
     U = matrix(theta_12, theta_13, theta_23, delta_CP)
     
     m1 =  (2 * u.meV).to(u.eV)
     
-    delta_m21_square = (73.9 * u.meV**2).to(u.eV**2)
-    delta_m32_square = (2449 * u.meV**2).to(u.eV**2)
+    # delta_m21_square = (73.9 * u.meV**2).to(u.eV**2)
+    # delta_m32_square = (2449 * u.meV**2).to(u.eV**2)
+
+    delta_m21_square = 7.6e-5 * u.eV**2
+    delta_m32_square = 2.4e-3 * u.eV**2
+
     
-    m2 = np.sqrt(delta_m21_square - m1**2)
-    m3 = np.sqrt(delta_m32_square - m2**2)
+    m2 = np.sqrt(delta_m21_square + m1**2)
+    m3 = np.sqrt(delta_m32_square + m2**2)
 
     masses = np.array([m1.value, m2.value, m3.value])
 
@@ -126,7 +134,7 @@ def oscillations():
 
     # parameters for Juno
     E_range = np.logspace(0, 4, num=2000) * u.MeV
-    L = 50 * u.km
+    L = 60 * u.km
     
     E_over_L_range = (E_range / L * ac.c * ac.hbar).to(u.eV**2).value
 
@@ -152,7 +160,7 @@ def juno_flux():
     
     f = flux((rescaled_E_over_L * 60 * u.km).to(u.MeV).value)
     
-    op = np.convolve(op, np.ones(25)/25, mode='same')
+    # op = np.convolve(op, np.ones(25)/25, mode='same')
 
     flux_plot(1/rescaled_E_over_L, op, f)
     plt.ylabel('Flux [arbitrary units]')

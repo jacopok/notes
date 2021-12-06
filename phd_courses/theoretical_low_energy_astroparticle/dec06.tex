@@ -1,4 +1,424 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Neutrino physics}
+
+\marginpar{Monday\\ 2021-12-6}
+
+Neutrinos are important because:
+\begin{enumerate}
+    \item being neutral, they can trace sources; \todo[inline]{What does that mean?}
+    \item they are connected with new physics;
+    \item there are open questions about their nature (Dirac or Majorana);
+    \item there could be a CP violation in the lepton sector;
+    \item they affect cosmology, with Baryon Acoustic Oscillations in the CMB, 
+    as well as the large scale structure.
+\end{enumerate}
+
+\url{nu.to.infn.it}, ``Neutrino Unbound''; Giunti et al, Giunti and Kim. 
+
+Outline of the course: 
+\begin{enumerate}
+    \item Dirac equation; 
+    \item gauge theories;
+    \item standard EW model; 
+    \item fermion masses and mixing;
+    \item neutrino oscillations in vacuo;
+    \item neutrino oscillations in matter;
+    \item current neutrino phenomenology;
+    \item extra on statistics and data analysis. 
+\end{enumerate}
+
+We know that neutrino masses are less than an \SI{}{eV}; 
+there are (at least) three flavours: \(\nu _e\), \(\nu _\mu \) and \(\nu _\tau \), 
+typically organized in doublets with the corresponding charged lepton. 
+
+These neutrinos can have charged interactions with a \(W^{\pm}\) boson, 
+as well as neutral interactions with a \(Z\) boson
+(which is connected with photon production). 
+
+Looking at these decays tells us about the number of (interacting) neutrino families: \(N_\nu = 3\). 
+
+There are also bounds from cosmology: both in the CMB spectrum and in primordial nucleosynthesis. 
+
+Neutrinos are chiral in nature: only left-handed neutrinos (with negative helicity) seem to interact. 
+
+We know that a left-handed particle has a right-handed component of order \(\beta \sim m/E\). 
+
+At order \(m^2 / E\) there are neutrino flavor oscillations. 
+
+\subsection{The Dirac equation}
+
+We start from Lorentz transformations: linear transformations which preserve the Minkowski metric. 
+They are rotations and boosts. 
+They can be written in terms of infinitesimal transformations: for example, 
+%
+\begin{align}
+\left[\begin{array}{c}
+y' \\ 
+z'
+\end{array}\right]
+= \left[\begin{array}{cc}
+\cos \theta  & \sin \theta  \\ 
+- \sin \theta  & \cos \theta 
+\end{array}\right]
+\left[\begin{array}{c}
+y \\ 
+z
+\end{array}\right]
+\approx \left(
+    \left[\begin{array}{cc}
+    1 & 0 \\ 
+    0 & 1
+    \end{array}\right]
+    + 
+    \left[\begin{array}{cc}
+    0 & \theta  \\ 
+    - \theta  & 0
+    \end{array}\right]
+\right) \left[\begin{array}{c}
+y \\ 
+z
+\end{array}\right]
+\,,
+\end{align}
+%
+therefore  
+%
+\begin{align}
+\Lambda = \mathbb{1} + i \dd{\theta } \left[\begin{array}{cc}
+0 & -i \\ 
+i & 0
+\end{array}\right] + \order{\theta^2} = e^{i \theta J_1 } + \order{\theta^2}
+\,.
+\end{align}
+
+The same holds for the boosts: 
+%
+\begin{align}
+\Lambda = \left[\begin{array}{cc}
+\gamma  & \beta \gamma  \\ 
+\beta \gamma  & \gamma 
+\end{array}\right] 
+= e^{i u k_1 }
+\qquad \text{where} \qquad
+K_1 = \left[\begin{array}{cc}
+0 & -i \\ 
+i & 0
+\end{array}\right]
+\,.
+\end{align}
+
+With these generators we can make any transformation we want: 
+a Lorentz transformation will be in general given by the composition
+of a rotation around \(\vec{\omega} = \theta \hat{n}\) and a boost in \(\vec{u} = u \hat{v}\). 
+This will then read 
+%
+\begin{align}
+\Lambda = \exp(i \left(\vec{\omega } \cdot \vec{J} + \vec{u} \cdot \vec{K}\right))
+\,.
+\end{align}
+
+In general these do not commute: 
+\([J_i, J_k] \neq 0\), \([K_i, K_j] \neq 0\), \([J_i, K_j] \neq 0\). 
+This, however, is a closed algebra: all these commutators are given in terms of other \(J\), \(K\) matrices.
+
+This construction is not only useful if we need to make complicated transformations; 
+it is also useful as a theoretical mean to parametrize a general transformation. 
+
+Pauli was trying to generalize the Schrödinger equation for a spin-\(1/2\) particle. 
+It can be found by mapping \(\vec{p} \to -i \vec{\nabla}\) and \(E \to i \partial_t\) in the 
+eigenvalue equation for a classical kinematic Hamiltonian \(H = p^2 / 2m + V\). 
+
+This is classical, so we forget boosts: let us try to at least have the 4D \(J_i\) rotation algebra 
+\([J_i, J_j] = i \epsilon_{ijk}J_k\)
+for two-component vectors: this is also obeyed by the 2D matrices \(\sigma_i / 2\), where 
+%
+\begin{align}
+\sigma_1 &= \left[\begin{array}{cc}
+0 & 1 \\ 
+1 & 0
+\end{array}\right]  \\
+\sigma_2 &= \left[\begin{array}{cc}
+0 & -i \\ 
+i & 0
+\end{array}\right]  \\
+\sigma _3 &= \left[\begin{array}{cc}
+1 & 0 \\ 
+0 & -1
+\end{array}\right]
+\,.
+\end{align}
+
+So, we could think to have a spinor transform under 
+%
+\begin{align}
+\xi ' = \lambda \xi  
+\qquad \text{where} \qquad
+\lambda = \exp(i \vec{\omega} \cdot \frac{\vec{\sigma}}{2})
+\,.
+\end{align}
+
+In order for the momentum \(\vec{p}\) to act on 2D objects we can use \(\vec{p} \cdot \vec{\sigma}\). 
+
+The idea is to use minimal coupling: \(\vec{p} \to \vec{p} - q \vec{A}\), and \(\vec{V} \to \vec{V} + q \Phi \). 
+
+How can we generalize this to boosts? 
+Not only is it possible to do, but there are two ways to do it. 
+
+The Lorentz group, to which the matrices \(\Lambda \) in \(x' = \Lambda x \) belong, satisfies 
+%
+\begin{align}
+\Lambda &= \exp(i \left(\vec{\omega} \cdot \vec{J} + \vec{u} \cdot \vec{K}\right)) \\
+[J_i, J_j] &= i \epsilon_{ijk} J_k \\
+[K_i, K_j] &= - i \epsilon_{ijk} J_k \\
+[J_i, K_j] &= i \epsilon_{ijk} K_k 
+\,.
+\end{align}
+
+Spinors will transform with 
+%
+\begin{align}
+\xi ' &= \Lambda_\xi \xi  \\
+\Lambda _\xi &= \exp(i \frac{\vec{\sigma}}{2} \cdot \vec{J} + ?)  \\
+\left[\frac{\sigma_i}{2}, \frac{\sigma _j}{2}\right] &= i \epsilon_{ijk} \frac{\sigma _k}{2}
+\,,
+\end{align}
+%
+so what do we need to add? We can do either \(\vec{k} = \pm i \vec{\sigma} /2\), so we get 
+%
+\begin{align}
+\Lambda _\xi = \exp(i \frac{\vec{\sigma}}{2} \cdot \vec{\omega} \pm \vec{u} \cdot \frac{\vec{\sigma}}{2})
+\,.
+\end{align}
+
+The plus sign is for right-handed spinors, the minus sign is for left-handed ones.
+If we have a spinor at rest, we cannot determine its helicity. 
+If we boost it, we still cannot determine it! 
+
+But, it cannot be in a superposition of things which transform in different ways. 
+
+The idea is then to have a direct sum, an object which contains both the left and right-handed components: 
+%
+\begin{align}
+\xi = \left[\begin{array}{c}
+\xi _L \\ 
+\xi _R
+\end{array}\right]
+\,.
+\end{align}
+
+These will be given by boosting the rest-frame spinor \(\xi \) in two different ways: 
+%
+\begin{align}
+\xi'_R &= \exp( \vec{u} \cdot \frac{\vec{\sigma}}{2}) \xi  \\
+\xi'_L &= \exp( - \vec{u} \cdot \frac{\vec{\sigma}}{2}) \xi 
+\,.
+\end{align}
+
+The Dirac equation is a relation between the left- and right-handed components of a free spinor. 
+In order to derive it, we need some relations: 
+%
+\begin{align}
+\exp(\vec{u} \cdot \frac{\vec{\sigma}}{2}) &= \cosh (u /2 ) + \hat{u} \cdot \vec{\sigma} \sinh (u/2)  \\
+(\vec{\sigma} \cdot \vec{a}) (\vec{\sigma} \cdot \vec{b}) &= \vec{a} \cdot \vec{b} + i \vec{\sigma} \cdot \left(\vec{a} \times \vec{b}\right)  \\
+\exp(i \vec{\omega } \cdot \frac{\vec{\sigma}}{2}) &= \cos(\theta /2) + i \hat{u} \cdot \vec{\sigma} \sin (\theta /2)
+\,.
+\end{align}
+
+With these, we get 
+%
+\begin{align}
+\exp(\pm \vec{u} \cdot \frac{\vec{\sigma}}{2}) &= \frac{E + m \pm \vec{p} \cdot \vec{\sigma}}{\sqrt{2 m (E+m)}}  \\
+\xi_{R, L} &= \frac{E + m \pm \vec{p} \cdot \vec{\sigma}}{\sqrt{2 m (E+m)}} \xi  \\
+\xi &= \frac{E + m \mp \vec{p} \cdot \vec{\sigma}}{\sqrt{2 m (E+m)}} \xi_{R, L}
+\,,
+\end{align}
+%
+therefore we can put these equations together into 
+%
+\begin{align}
+- m \xi_{R, L} + \left(E \pm \vec{p} \cdot \vec{\sigma} \right) \xi_{L, R} = 0
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+\left[\begin{array}{cc}
+-m & E + \vec{p} \cdot \vec{\sigma} \\ 
+E - \vec{p} \cdot \vec{\sigma} & -m
+\end{array}\right]
+\left[\begin{array}{c}
+\xi _R \\ 
+\xi _L
+\end{array}\right]
+= 0
+\,.
+\end{align}
+
+
+If \(m = 0\), these decouple into two equations: 
+%
+\begin{align}
+(p \pm \vec{p} \cdot \vec{\sigma}) \xi_{L, R} = 0
+\,.
+\end{align}
+
+Therefore, for a massless particle 
+%
+\begin{align}
+\left(\hat{p} \cdot \sigma \right) = \pm \xi _{R, L}
+\,.
+\end{align}
+
+This is not the case when the particle is massive. 
+
+Helicity is the expectation value of \(\hat{p} \cdot \vec{\sigma}\),
+chirality is ``being \(\xi_{L}\) or \(\xi_R\)''. 
+
+This is all in momentum space, but it can also be written in position space
+by switching the momentum to a derivative: we introduce the Dirac matrices 
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+0 & \mathbb{1}_2 \\ 
+\mathbb{1}_2 & 0
+\end{array}\right]
+\qquad \text{and} \qquad
+\vec{\gamma} = \left[\begin{array}{cc}
+0 & -\vec{\sigma} \\ 
+\vec{\sigma} & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+so that the Dirac equation becomes 
+%
+\begin{align}
+(\gamma^{\mu }p_\mu - m ) \psi = 0
+\,,
+\end{align}
+%
+where \(\psi = (\xi _L, \xi _R)^{\top}\). 
+
+This can then also be written in terms of derivatives as \((i \gamma^{\mu } \partial_{\mu } - m) \psi = 0\).
+
+Left- and right-handed spinors transform in the same way under rotations; they differ under boosts. 
+
+It is useful to introduce 
+%
+\begin{align}
+\gamma^{5} = i \gamma^{0} \gamma^{1} \gamma^{2} \gamma^{3}
+\,:
+\end{align}
+%
+if we introduce 
+%
+\begin{align}
+P_{L, R} = \frac{1 \mp \gamma^{5}}{2}
+\,
+\end{align}
+%
+this will select the left- or right-handed component of a spinor.
+
+We have derived this result using the Weyl basis; Dirac used a different one. 
+
+If the spinor transforms with \(\psi \to T \psi \) the Dirac matrices transform with \(\gamma^{\mu } = T \gamma^{\mu } T^{-1}\). 
+
+In the Dirac basis, which is useful when one studies non-relatvistic particles, 
+the matrices look like 
+%
+\begin{align}
+\gamma^{0} = \left[\begin{array}{cc}
+\mathbb{1}_2 & 0 \\ 
+0 & -\mathbb{1}_2
+\end{array}\right]
+\qquad \text{and} \qquad
+\vec{\gamma} = \left[\begin{array}{cc}
+0 & \vec{\sigma} \\ 
+- \vec{\sigma} & 0
+\end{array}\right]
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\gamma^{5} = \left[\begin{array}{cc}
+0 & \mathbb{1} \\ 
+\mathbb{1} & 0
+\end{array}\right]
+\,.
+\end{align}
+
+In the nonrelativistic limit \(\vec{p} \to 0\) the equation decouples into 
+%
+\begin{align}
+\left[\begin{array}{cc}
+E-m & 0 \\ 
+0 & E+m
+\end{array}\right]
+\left[\begin{array}{c}
+\xi  \\ 
+\eta 
+\end{array}\right] 
+= 0 
+\,,
+\end{align}
+%
+so we have \(E = \pm m\) solutions. 
+Note that \(\xi \) and \(\eta \) are not left- and right-handed, this is a different basis.
+In Dirac's time this was seen as a tragedy. 
+
+The fact that these are actually particles and antiparticle can be properly explained in QFT; 
+in the end, the four degrees of freedom correspond to the left- and right-handed components of
+particles and antiparticles. 
+
+We can write the particle and antiparticle solutions as 
+%
+\begin{align}
+\psi _p = \left[\begin{array}{c}
+\xi  \\ 
+\frac{\vec{\sigma} \cdot \vec{p}}{E+m} \xi 
+\end{array}\right]
+e^{-i p_\mu x^{\mu }}
+\qquad \text{and} \qquad
+\psi _A = \left[\begin{array}{c}
+\frac{\vec{\sigma} \cdot \vec{p}}{E+m} \eta  \\
+\eta   \\ 
+\end{array}\right]
+e^{+i p_\mu x^{\mu }}
+\,.
+\end{align}
+
+It is convenient to introduce a charge-conjugation operator: 
+%
+\begin{align}
+C(\psi ) = \psi^{c} = i \gamma^{2} \psi^{*}
+\,.
+\end{align}
+
+This can be seen by proving that \(C( \psi _P) = \psi _A\). 
+Also, if we look at the minimally-coupled Dirac equation for a particle 
+in an external EM field, and we apply the conjugation operator we find that 
+the particle will obey the same equation, but with an opposite charge. 
+
+The last thing to introduce here is the adjoint spinor: we know how a 4-spinor \(\psi \) behaves
+under a Lorentz transformation. 
+What is the object which transforms with the inverse transformation? If we denote it as \(\overline{\psi}\), 
+we will be able to write \emph{invariant} objects like \(\overline{\psi}\psi  \). 
+
+It takes some time to prove, but it comes out to be 
+%
+\begin{align}
+\overline{\psi} &= \psi^{\dag} \gamma^{0}
+\,.
+\end{align}
+
+We can make invariant objects like \(\overline{\psi} \psi\), 
+or objects like \(\overline{\psi} \gamma^{\mu } \psi \): it can be proven that the latter is 
+\emph{divergenceless}, \(\partial_{\mu } (\overline{\psi} \gamma^{\mu } \psi ) = 0\), so it can be used 
+to describe currents.
+
 \end{document}

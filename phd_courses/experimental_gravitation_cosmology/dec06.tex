@@ -1,4 +1,96 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-12-7 \\ (missed lesson) \\ notes by Silvia}
+
+As mentioned last time, the measured intensity is proportional to the \emph{low-pass} filtered square of the electric field: \(\hat{I} \propto \abs{E}^2_{LP}\). 
+
+The two quadrature fields \(E_1 \) and \(E_2 \) can be written in terms of the \(\hat{a}_{1, 2}\) creation and annihilation operators: 
+%
+\begin{align}
+\hat{E}_{1, 2} (\hat{r}, t) = \sqrt{\frac{4 \pi \hbar}{\mathcal{A}c}} 
+\int \frac{ \dd{\Omega }}{2 \pi } \left[
+    \hat{a}_{1, 2} (\Omega ) e^{-i \Omega + i \vec{k} \cdot \vec{r}}
+    +
+    \hat{a} ^\dag_{1, 2} (\Omega ) e^{+i \Omega - i \vec{k} \cdot \vec{r}}
+\right]
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\hat{a}_{1} (\Omega) &=
+\underbrace{\sqrt{\frac{\omega_0 + \Omega}{2 \omega_0 }}}_{\approx 1/2 \text{ when } \Omega \ll \omega_0 } \hat{a}(\omega_0 + \Omega  ) +
+\sqrt{\frac{\omega_0 - \Omega}{2 \omega_0 }} \hat{a}(\omega_0 + \Omega  ) \\
+\hat{a}_{2} (\Omega) &=
+-i \underbrace{\sqrt{\frac{\omega_0 + \Omega}{2 \omega_0 }}}_{\approx 1/2 \text{ when } \Omega \ll \omega_0 } \hat{a}(\omega_0 + \Omega  ) 
++ i\sqrt{\frac{\omega_0 - \Omega}{2 \omega_0 }} \hat{a}(\omega_0 + \Omega  )
+\,.
+\end{align}
+
+When we compute the modulus \(\abs{E}^2\) we get a \(\sim \abs{E_1 }^2 \cos^2(\omega_0 t)\) term, a \(\abs{E_2 }^2 \sin^2(\omega_0 t)\) term and a \(2 E_1 E_2 \sin(2 \omega_0 t)\) term.
+The last of these averages to zero over a few periods the laser pulsation \(2 \pi / \omega_0 \) (so, a very short time) while the square cosines and sines both average to \(1/2\). 
+This means we get 
+%
+\begin{align}
+\abs{E}^2 = \frac{1}{2} \left( \abs{E_1 }^2 + \abs{E_2 }^2 \right)
+\,.
+\end{align}
+
+A field quadrature can be written in terms of a baseline \(A\) plus some oscillations with period \(\Omega \): 
+%
+\begin{align}
+\hat{E}_1 = A + \sqrt{\frac{4 \pi \hbar}{\mathcal{A}c}} \int \frac{ \dd{\Omega }}{2 \pi }
+ \left[ 
+     \underbrace{\hat{a}_1 e^{-i \Omega t + i \vec{k} \cdot \vec{r}}}_{\hat{c}_1} + \text{h. c. }
+ \right]
+\,.
+\end{align}
+
+This quantum noise is constant in \(\Omega \): 
+%
+\begin{align}
+S(\hat{a}_1 , \Omega ) = \lim_{T \to \infty } \frac{\expval{\hat{a}_1 \hat{a}_1 ^\dag}}{T} = 1 (?)
+\,.
+\end{align}
+
+The Heisenberg principle for these is \(S(a_1 ) S(a_2 ) \geq  1\).
+
+When we do homodyne detection we are measuring a product in the form \(I(\Omega ) \propto E _{\text{LO}} \cdot E _{\text{signal}}\); we can determine amplitude and phase of the local oscillator field, then we can squeeze the vacuum in the direction parallel to it and allow it to expand in the other. 
+
+Typically, the wavelength corresponding to the pump laser, at \(2 \omega_0 \), is green light (\(\lambda = \SI{532}{nm}\)). 
+This is then passed to an Optical Parametric Amplification crystal which is basically an SPDC crystal plus amplification. 
+
+The squeezing procedure can be schematically represented as 
+%
+\begin{align}
+\left[\begin{array}{c}
+\hat{s}_1  \\ 
+\hat{s}_2 
+\end{array}\right]
+= \underbrace{\left[\begin{array}{cc}
+\cos \varphi  & - \sin \varphi  \\ 
+\sin \varphi  & \cos \varphi 
+\end{array}\right]\left[\begin{array}{cc}
+e^{- \sigma } & 0 \\ 
+0 & e^{\sigma }
+\end{array}\right]}_{\Sigma (\sigma , \varphi )}
+\left[\begin{array}{c}
+\hat{a}_1  \\ 
+\hat{a}_2 
+\end{array}\right]
+\,.
+\end{align}
+
+The transformation matrix \(\Sigma \) determines the power spectral density: 
+%
+\begin{align}
+S(s_1 , s_2 , \omega ) = \Re ( \Sigma , \Sigma ^\dag) \underbrace{S(a_1 , a_2, \Omega )}_{\equiv \mathbb{1}_2}
+\,,
+\end{align}
+%
+where these power spectral densities are to be interpreted as covariance matrices. 
+
+
 \end{document}

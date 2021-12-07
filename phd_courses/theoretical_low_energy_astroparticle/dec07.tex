@@ -1,4 +1,292 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The standard electroweak model}
+
+\subsection{Gauge theories}
+
+\marginpar{Tuesday\\ 2021-12-7}
+
+Yesterday we wrote the equation for a free fermion: 
+%
+\begin{align}
+\xi_{R, L} ' = \exp(- i \vec{\omega} \cdot \frac{\vec{\sigma}}{2} \pm \vec{u} \cdot \frac{\vec{\sigma}}{2}) \xi _{R, L}
+\,.
+\end{align}
+
+The Dirac equation tells us that these are coupled: 
+%
+\begin{align}
+\left[\begin{array}{cc}
+-m & E + \vec{p} \cdot \vec{\sigma} \\ 
+E - \vec{p} \cdot \vec{\sigma} & m
+\end{array}\right]
+\left[\begin{array}{c}
+\xi _R \\ 
+\xi _L
+\end{array}\right]
+= 0 
+\,.
+\end{align}
+
+For nonzero mass these components are coupled, while in the zero-mass case they are decoupled and helicity is equal to chirality. 
+
+Helicity is the eigenvalue under \(\hat{p} \cdot \vec{\sigma}\), chirality is the eigenvalue under \(\gamma^{5}\). 
+
+\todo[inline]{What is the meaning of \(\gamma^{5}\) in position space? Is it a parity transformation?}
+
+The coupling of a fermion to an external EM field can be represented with \(\partial_{\mu } \to \partial_{\mu } + iq A_\mu \). 
+
+The SM Lagrangian can be written on a mug as  
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F^{\mu \nu } F_{\mu \nu } 
++ i \overline{\psi} \slashed{D} \psi + \text{h.c.}
++ i \psi_i y_{ij} \psi_j \phi  + \text{h.c.}
++ \abs{\slashed{D} \phi }^2 - V(\phi )
+\,.
+\end{align}
+
+We have scalars \(\phi \), fermions \(\psi \) and spin-1 gauge fields \(A_\mu \). 
+
+From a Lagrangian \(L (q, \dot{q})\) we get Lagrange equations 
+%
+\begin{align}
+\dv{}{t} \pdv{L}{\dot{q}} - \pdv{L}{q} = 0
+\,.
+\end{align}
+
+If the Lagrangian is, say, \(L = m \dot{q}^2 / 2 - V(q)\) we get Newton's law \(m \ddot{q} = - \vec{\nabla} V = F\). 
+
+This is classical; in field theory we have Lagrangians in the form 
+%
+\begin{align}
+\partial_{\mu } \pdv{\mathscr{L}(\phi , \partial \phi )}{ \partial_{\mu } \phi _i} - \pdv{\mathscr{L}}{\phi _i} = 0
+\,.
+\end{align}
+
+We will write the Yukawa Lagrangian with terms like \(\psi \phi \), and the QED Lagrangian with terms like \(\psi A_\mu \). 
+
+The equation of motion for a scalar field is the Klein-Gordon equation: \((\partial_{\mu } \partial^{\mu } + m^2) \phi = 0\). 
+The Lagrangian giving rise to this is 
+%
+\begin{align}
+L = \frac{1}{2} \partial_{\mu } \phi \partial^{\mu } \phi - \frac{1}{2} m \phi^2
+\,.
+\end{align}
+
+We have written the EOM for a free fermion, the Dirac equation \(\left(i \gamma^{\mu } \partial_{\mu } - m\right) \psi = 0\); the Lagrangian giving it is the Dirac Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \overline{\psi} \left(i \gamma^{\mu } \partial_{\mu } - m\right) \psi 
+\,.
+\end{align}
+
+Again, we have a mass-like term and a kinetic-like term.
+
+The term \(m \overline{\psi} \psi\) can be expanded into left and right components: 
+%
+\begin{align}
+m \overline{\psi} \psi = m \left( \overline{\psi}_R \psi _L + \overline{\psi}_L \psi _R\right)
+\,.
+\end{align}
+
+What about the EM field? \(A_\mu \) is gauge-dependent, but 
+%
+\begin{align}
+F_{\mu \nu } = 2 \partial_{[\mu  } A_{\nu ]}
+\,
+\end{align}
+%
+is not. The Lagrangian giving Maxwell's equations in a vacuum (so, \(\square A^{\mu } = 0\) in the appropriate gauge) is 
+%
+\begin{align}
+\mathscr{L} = - \frac{1}{4} F_{\mu \nu } F^{\mu \nu }
+\,.
+\end{align}
+
+The absence of a mass term means that the photon is massless. 
+
+What about interactions? 
+We start from the Yukawa interaction between a fermion and a scalar. 
+The Lagrangian, for starters, must contain the free terms for both: 
+%
+\begin{align}
+\mathscr{L} = \underbrace{\overline{\psi} \left(i \gamma^{\mu } \partial_{\mu } - m_\psi \right) \psi + \frac{1}{2} \left( \partial_{\mu } \phi \partial^{\mu } \phi -  m_\phi  \phi^2 \right) }_{\text{free terms}} - \underbrace{g \overline{\psi} \psi \phi}_{\text{interaction}} 
+\,.
+\end{align}
+
+The pictorial way to represent this is to draw quadratic terms for fermions like straight lines with an arrow, scalar fields as dashed lines, and cubic interaction terms like vertices. 
+
+What do fermion-photon interactions look like?  
+%
+\begin{align}
+\mathscr{L} _{\text{QED}} = \overline{\psi} \left(i \gamma^{\mu } \partial_{\mu } - m_\psi \right) \psi - \frac{1}{4} F^{\mu \nu } F_{\mu \nu } - q \overline{\psi} \gamma^{\mu } \psi A_\mu 
+\,.
+\end{align}
+
+The EOM for the electromagnetic field are  Maxwell's equations with an external current \(j^{\mu } = q \overline{\psi} \gamma^{\mu } \psi \). 
+
+This is the same Lagrangian we get if we do a minimal coupling substitution \(\partial \to \partial + iqA\). 
+It is invariant under gauge transformations. 
+
+These diagrams can be used to compute scattering amplitudes perturbatively. 
+
+The way to get a cross-section is to multiply the square modulus of the amplitude by the phase space term. 
+The idea to get decay rates is similar. 
+
+The guiding principle to describe EW interactions is gauge invariance. 
+The Yukawa Lagrangian has global phase invariance; what happens if we try to make a transformation \(\psi \to e^{- i q \alpha (a)} \psi \)?
+The term \(q\) is only introduced here for later convenience.
+
+The timezone analogy for local gauge invariance! 
+If we have the freedom to choose a phase locally, we must have carriers of information moving at the maximum possible speed, otherwise processes would be disrupted.
+
+We start with \(U(1)\) gauge invariance, as written above, but we will also need \(SU(2)\) invariance, written as 
+%
+\begin{align}
+\exp(- ig \vec{\theta} \cdot \vec{T})
+\,,
+\end{align}
+%
+where \(\vec{T} = \vec{\sigma} / 2\), but we write them differently to not confuse them with spacetime rotations. 
+
+Introducing gauge invariance for a term \(\overline{\psi} \left(i \slashed{\partial} - m \right) \psi \) will take us to the QED Lagrangian.
+
+The mass term is already invariant, the problem is the kinetic one. 
+The trick is to introduce a covariant derivative 
+%
+\begin{align}
+\text{D}_\mu = \partial_{\mu } + iq A_\mu 
+\,.
+\end{align}
+
+If \(\psi \to e^{-iq \alpha (x)} \psi \), also \(\text{D}_\mu \psi \to e^{-iq \alpha (x)} \text{D}_\mu \psi \), as long as \(A_\mu \) also transforms like \(A_\mu \to A_\mu + \partial_{\mu } \alpha \).
+
+Then, the Lagrangian 
+%
+\begin{align}
+\mathscr{L} = \overline{\psi} \left( i \slashed{\text{D}} - m \right) \psi  - \frac{1}{4} F^{\mu \nu } F_{\mu \nu }
+\,.
+\end{align}
+
+A term like \(m^2 A_{\mu } A^{\mu }\) would violate gauge invariance, so this principle also gives an explanation as to why the photon is massless if we accept the gauge invariance principle. 
+
+Protons and neutrons were thought to be part of a doublet under isospin SU(2) transformations. 
+
+But, we have interactions like protons and neutrons interacting with electrons and neutrinos. 
+So, one might think that electrons + neutrinos have isospin-like SU(2) symmetry as well. 
+
+We want to make the doublet \(\psi_1 , \psi_2 \) invariant under SU(2) transformations as written above: how do we do it? 
+Again, we redefine the derivative: 
+%
+\begin{align}
+\partial_{\mu } \to \text{D}_\mu - ig \vec{T} \cdot \vec{A}_\mu 
+\,,
+\end{align}
+%
+so we need to introduce three fields \(\vec{A}_\mu \). These are the gauge bosons related to SU(2) gauge invariance. 
+
+These now transform like 
+%
+\begin{align}
+\vec{A}_\mu \to \vec{A}_\mu - \partial_{\mu } \vec{\theta}(x) + g \vec{\theta} \times \vec{A}_\mu 
+\,.
+\end{align}
+
+The presence of this coupling means that the field is charged. 
+
+The field tensor here is 
+%
+\begin{align}
+\vec{F}_{\mu \nu } = 2 \partial_{[\mu } A_{\nu ]} + g \vec{A}_\mu \times \vec{A}_\nu 
+\,.
+\end{align}
+
+We then get a Lagrangian like 
+%
+\begin{align}
+\mathscr{L} = \overline{\psi} \left( i \gamma^{\mu } \text{D}_\mu -m\right) \psi - \frac{1}{4} \vec{F}^{\mu \nu } \cdot \vec{F}_{\mu \nu }
+\,.
+\end{align}
+
+In the \(\psi \) term we have \(\psi \psi \) terms, as well as \(\psi \psi A\) interactions.  
+In this \(F^2\) term we have quadratic, trilinear and quadrilinear terms in \(A\)! 
+
+The actual group for the EW theory is \(SU(2)_L \otimes U(1)_Y\). 
+The simplest EW world contains 
+\begin{enumerate}
+    \item 1 massive electron, with both right- and left-handed components;
+    \item 1 massless \(\nu _e\), with only the left-handed component;
+    \item EM interactions (we want to have a diagram describing how the electron interacts with a massless photon); 
+    \item weak chiral interactions like \(\nu _L e_L W^{\pm}\), where \(W^{\pm}\) is massive.
+\end{enumerate}
+
+The Higgs mechanism accomplishes this, and it also gives mass to fermions. 
+If neutrinos have Majorana masses, the Higgs mechanism cannot give them mass. 
+
+Let us define a doublet \(L=(e_L, \nu _{e, L})\), and a singlet \(R = e_R\). 
+The theory must then be invariant if we redefine 
+%
+\begin{align}
+L &\to L' = \exp(-i g \vec{\theta}(x) \cdot \vec{T}) L  \\
+R &\to R' = R
+\,.
+\end{align}
+
+The doublet \(L\) corresponds to the \(T_3 = \pm 1/2\) quantum numbers, while \(T_3 = 0\) for the singlet. 
+
+Could the three bosons be some combinations  of the photon and the two \(W^{\pm}\) bosons? We know that the charge operator \(Q\) has eigenvalues \(0\), \(-1\)  for the doublet, but \(\Tr Q \neq 0\) while \(\Tr T_i = 0\) for all \(T_i\). 
+
+Why would \(Q\) need to be able to be written as a function of the \(T_i\)? 
+The proper answer lies in Nöther's theorem. 
+
+We therefore introduce a further hypercharge symmmetry: 
+%
+\begin{align}
+L' &= \exp(- i g' \beta (x) \frac{Y}{2}) L \\
+R' &= \exp(- i g' \beta (x) \frac{Y}{2}) R
+\,,
+\end{align}
+%
+so that this generator commutes with the \(T_i\), and indeed \([T_i, Y] = 0\). The only way to have this is \(Y \propto Q - T_3\), and indeed \(Y = 2 (Q - T_3)\). 
+
+In the end, the Lagrangian must be chargeless. 
+
+The full transformation is therefore 
+%
+\begin{align}
+L' = \exp(-i g \vec{\theta}(x) \cdot \vec{T} - ig' \beta (x) \frac{Y}{2}) L \\
+R' = \exp( - ig' \beta (x) \frac{Y}{2}) R
+\,.
+\end{align}
+
+The procedure is then like before: we need to redefine the derivative, as 
+%
+\begin{align}
+\text{D}_\mu L =\left(  \partial_{\mu } + i g \vec{T} \cdot \vec{A}_\mu - i g' \frac{Y}{2} B_\mu  \right) L
+\,,
+\end{align}
+%
+so we have four fields, the three \(\vec{A}_\mu \) with their \(\vec{F}_{\mu \nu }\) and \(B_\mu \) with its \(G_{\mu \nu }\). 
+
+The Lagrangian will then read 
+%
+\begin{align}
+\mathscr{L} = 
+\overline{L} i \gamma^{\mu } \text{D}_\mu L 
++ 
+\overline{R} i \gamma^{\mu } \text{D}_\mu R + \text{kinetic}
+\,,
+\end{align}
+%
+but we cannot write mass terms like \(m \overline{\psi} \psi \), which would be \(\overline{L} R\) or \(L \overline{R}\): the matrix dimensions don't match up! 
+
+So, everything's massless: the Higgs mechanism comes to the rescue. 
+It gives masses to all the bosons except the photon, as well as giving mass to the leptons. 
+
+Suppose we have a \(U(1) \otimes U(1)\) symmetry, spontaneously broken to \(U(1)\). The thing we think of is a pencil about to fall on a table. 
+
+
+
 \end{document}

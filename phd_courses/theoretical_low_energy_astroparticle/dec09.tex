@@ -1,4 +1,321 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2021-12-9}
+
+We have discussed the Dirac equation and SU(2) gauge invariance; 
+now we will look at the Higgs mechanism and SSB, with the goal in mind
+to understand the Lagrangian written on the CERN mug. 
+
+We study this model in the context of an \(L\) doublet \((\nu _{eL}, e_L)\) and an \(R\) singlet \((e_R)\). 
+
+The Higgs mechanism yields neutral currents as a ``bonus''. 
+
+So far, we have written the gauge field Lagrangian: 
+%
+\begin{align}
+\mathscr{L} _{\text{GF}} = - \frac{1}{4} \vec{F}_{\mu \nu } \cdot \vec{F}^{\mu \nu } - \frac{1}{4} G_{\mu \nu } G^{\mu \nu }
+\,,
+\end{align}
+%
+and the lepton kinetic Lagrangian: 
+%
+\begin{align}
+\mathscr{L} _{\text{F}} &= \overline{L} (i \gamma^{\mu } \text{D}_\mu ) L + \overline{R} (i \gamma^{\mu } \text{D}_\mu ) R  \\
+\text{D}_\mu L &= \left(\partial_{\mu } - ig \vec{T} \cdot \vec{A}_\mu  - ig' \frac{Y}{2} B_\mu \right)L \\
+\text{D}_\mu R &= \left(\partial_{\mu } - ig' \frac{Y}{2} B_\mu \right)R
+\,.
+\end{align}
+
+We want to have a breaking like \(\text{SU}(2)_L \otimes \text{U}(1)_Y \to \text{U}(1)_Q\), where we want the ground state \(Q\) to be chargeless (since it represents the photon).
+
+In order to have a Dirac-like mass term, \(m \overline{\psi}_L \psi _R\), we need to saturate a doublet with a singlet: it cannot be done! 
+So, we need a new field \(\phi \) which is at least a doublet, and then we can make a term \(\overline{L} \phi  R\). 
+
+A complex field \(\phi \in \mathbb{C}^2\) works, and it must be chargeless for things to work.  
+The Yukawa Lagrangian will then be 
+%
+\begin{align}
+\mathscr{L} _{\text{YUK}} = - y_e \left(\overline{L} \phi R + \overline{R} \phi ^\dag L\right)
+\,.
+\end{align}
+
+A mass term for the field \(\phi \) in the form \(m^2 \phi ^\dag \phi \) would be stable, but we want to make it \emph{un}stable at \(\phi = 0\), o we need a \(\phi ^\dag \phi \) term with a negative coefficient and a \((\phi ^\dag \phi )^2\) term with a positive coefficient: 
+%
+\begin{align}
+V(\phi ) = - \mu^2 (\phi \phi ^\dag) + \lambda (\phi \phi ^\dag)^2
+\,.
+\end{align}
+
+The minimum of this potential is reached when \(\phi \phi ^\dag = (1/2 ) \mu^2 / \lambda = (1/2) v^2\).
+
+\todo[inline]{Why \(\phi \phi ^\dag\)? That's 2x2\dots}
+
+So far, we have introduced the couplings \(g\) and \(g'\), the parameters \(\mu \) and \(v\) for the Higgs field potential, and the Yukawa coupling \(y_e\). 
+
+The connection to experiment will be to write in terms of these parameters \(e\), \(G_F\), \(M_Z\), \(M_H\), \(m_e\). 
+
+\todo[inline]{So a 5 parameter fit for 5 measurements?}
+
+The \(\phi \) field near the minimum can be parametrized as 
+%
+\begin{align}
+\phi = \left[\begin{array}{c}
+0 \\ 
+\frac{v + H}{\sqrt{2}}
+\end{array}\right]
+\,.
+\end{align}
+
+The upper, charged part is equal to zero. 
+In the Yukawa Lagrangian we find 
+%
+\begin{align}
+\mathscr{L} _{\text{YUK}} &= - y_e \left[ 
+    \left[\begin{array}{cc}
+    \overline{\nu}_{eL} & e_L
+    \end{array}\right]
+    \left[\begin{array}{c}
+    0 \\ 
+    \frac{v + H}{\sqrt{2}}
+    \end{array}\right]
+    e_R 
+    + 
+    \overline{e}_R 
+    \left[\begin{array}{cc}
+    0 & \frac{v + H}{\sqrt{2}}
+    \end{array}\right]
+    \left[\begin{array}{c}
+    \nu_{eL} \\ 
+    e_L
+    \end{array}\right]
+ \right]  \\
+&= - \frac{y_e}{\sqrt{2}} \left(v + H\right)
+\left( \overline{e}_L e_R + \overline{e}_R e_L\right)  \\
+&= - m_e \overline{e} e - \frac{y_e v}{\sqrt{2}} H \overline{e} e
+\,.
+\end{align}
+
+We have not obtained any mass for the neutrino, as we expected by not having a \(\nu _R\) term. 
+
+The proportionality of the Yukawa coupling to the masses has been seen experimentally. 
+
+In general the degrees of freedom of the \(\phi \) can be written as 
+%
+\begin{align}
+\phi = \exp(i \vec{T} \cdot \frac{\vec{\sigma}}{2}) \left[\begin{array}{c}
+0 \\ 
+\frac{v + H}{\sqrt{2}}
+\end{array}\right]
+\,,
+\end{align}
+%
+so we can use SU(2) gauge invariance to select a ground state; the three remaining degrees of freedom become Goldstone bosons and are ``eaten'' by the three \(W^{\pm}_{\mu }\), \(Z^{0}_{\mu }\) bosons to give them a third, longitudinal polarization. 
+
+The Higgs sector of the Lagrangian becomes 
+%
+\begin{align}
+\mathscr{L} _{\text{H}} = \left( \text{D}_\mu \phi ^\dag\right)
+\left( \text{D}_\mu \phi \right) - V(\phi )
+\,,
+\end{align}
+%
+which contains the bosons. 
+What we get if we diagonalize this Lagrangian is terms written in terms of the new fields
+%
+\begin{align}
+W^{\pm}_{\mu } = \frac{1}{\sqrt{2}} \left( A^{1}_{\mu } \pm A^{2}_{\mu } \right)
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\left[\begin{array}{c}
+Z_\mu  \\ 
+A_\mu 
+\end{array}\right]
+= \left[\begin{array}{cc}
+\cos \theta _W & - \sin \theta _W \\ 
+\sin \theta _W & \cos \theta _W
+\end{array}\right]
+\left[\begin{array}{c}
+A^{3}_{\mu } \\ 
+B_\mu 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\theta _W\) is the Weinberg angle, chosen such that \(\tan \theta _W = g' / g\). 
+
+The masses of these bosons come out to be 
+%
+\begin{align}
+M_W^2 = \frac{v^2}{4} g^2 \qquad \text{and} \qquad
+M_Z = \frac{v^2}{4} (g^2 + g^{\prime 2})
+\,,
+\end{align}
+%
+while \(m_\gamma = 0\). 
+
+We get cubic couplings like \(HZZ\) but also quartic ones like \(HHZZ\) or \(HHWW\). 
+
+The mass terms for the Higgs is \(m_H = \sqrt{2} \mu \). 
+
+The photon does not couple directly to the Higgs, but we can have a \(H \to \gamma \gamma \) process through loops.
+
+When we rewrite the gauge field Lagrangian in terms of the physical fields \(A_\mu \), \(W_\mu \) and \(Z_\mu \), we get quadratic, cubic and quartic terms in the gauge terms. 
+
+The terms we get are \(\gamma WW\), \(Z WW\), as well as the quartic \(\gamma \gamma WW\), \(WWWW\), \(ZZWW\), \(\gamma ZWW\). 
+
+What about the fermion field Lagrangian?
+We expect to get terms in the form \(X^{\mu } J_\mu \), where \(X^{\mu }\) is a gauge field while \(J_\mu \) is a fermion current. 
+
+The result is 
+%
+\begin{align}
+\mathscr{L} _{\text{F}} = \mathscr{L} _{\text{electromagnetic}} + \mathscr{L} _{\text{charged current}} + \mathscr{L} _{\text{neutral current}}
+\,.
+\end{align}
+
+The electromagnetic term is 
+%
+\begin{align}
+\mathscr{L} _{\text{electromagnetic}} = \underbrace{\frac{gg'}{\sqrt{g^2 + g^{\prime 2}}}}_{e} J^{\mu }_{EM} A_\mu 
+\,,
+\end{align}
+%
+where \(e\) is the electric charge; the other terms read 
+%
+\begin{align}
+\mathscr{L} _{\text{charged current}} &= \frac{g}{\sqrt{2}} J^{\mu}_{\pm} W^{\mp} \\
+\mathscr{L} _{\text{neutral current}} &= \frac{g}{\cos \theta _W} J^{\mu}_{NC} Z_\mu  
+\,.
+\end{align}
+
+The electromagnetic current will be \(J^{\mu }_{EM} = \overline{e} \gamma^{\mu } Q e\) (by construction: we made the theory to reproduce Maxwell's equations). 
+
+The charged current is \(J^{\mu }_{+} = \overline{e}_L \gamma^{\mu } \nu_{eL}\) and \(J^{\mu }_{-} = \overline{\nu}_{eL} \gamma^{\mu } e_L\). 
+
+These were the already-observed parts, while the new one is 
+%
+\begin{align}
+J^{\mu }_{NC} = \overline{\nu}_{eL} \gamma^{\mu } T_3 \nu_{eL} 
++ \overline{e}_L \gamma^{\mu } \left( T_3 - Q s^2_W  \right) e_L 
++ \overline{e}_R \gamma^{\mu } (-  Q s^2 _W ) e_R
+\,.
+\end{align}
+
+This term is carrying a current \(T_3 - Q s^2_W\), where \(s^2_W = \sin^2 \theta _W\).
+The generator \(T_3\) is just half of the \(\sigma _3\) Pauli matrix. 
+
+The phenomenology of this prediction is quite rich. 
+
+We have couplings in the form \(\gamma^{\mu } P_{L, R}\), there is specific jargon to describe these interactions. 
+\begin{enumerate}
+    \item Vector (\(V\)) currents are those in the form \(\overline{\psi} \gamma^{\mu } \psi \), which do not change sign under a parity transformation;
+    \item Axial (\(A\)) currents are those in the form \(\overline{\psi} \gamma^{\mu } \gamma^{5} \psi \), which \emph{do} change sign under a parity transformation.
+\end{enumerate}
+
+EM interactions are of type \(V\), charged currents are of type \(V - A\) (or, \(1 \pm \gamma^{5}\)), while neutral currents are of the form \(g_V V + g_A A\). 
+
+We can define left-handed couplings in the neutral current \(g_L = T_3 - Q s^2_W\), as well as right-handed ones like \(g_R = - Q s^2_W\) (since the action of \(T_3\) on an \(R\) singlet is zero). 
+
+The vector and axial couplings are then defined as 
+%
+\begin{align}
+g_V &= g_L + g_R = T_3 - 2 Q s_W^2  \\
+g_A &= g_L - g_R = T_3
+\,.
+\end{align}
+
+When a short-range gauge boson mediates an interaction, its contribution will be approximately \(1/M^2\) at low energies. 
+
+So, both processes which are mediated by \(W^{\pm}\) and \(Z\) must give the correct low-energy limit.
+
+Specifically, we find 
+%
+\begin{align}
+G_F \sim \frac{g^2}{M^2} \qquad \text{or} \qquad
+\frac{g^2}{8 M_Z^2 \cos^2 \theta _W} = \frac{g^2}{8 M_W^2} = \frac{G_F}{\sqrt{2}}
+\,.
+\end{align}
+
+In the notes there are qualitative considerations about the amplitudes in \(\beta \) decay, getting the energy spectrum of the electron. 
+
+A charged current process is \(\mu \to \nu _\mu \overline{\nu}_e e\). The Fermi constant is best estimated through this process, since it is very well-known both theoretically and experimentally. 
+
+The decay \(\pi \to \ell \overline{\nu}_e\) probes the \(V-A\) nature of the interaction. 
+
+Another interesting process is \(\nu _\mu e\) scattering, which allows us to estimate \(s_W^2\). 
+
+We can have the recoil of an entire nucleus with a low-energy neutrino, which is mediated by a \(Z\) boson, Coherent Elastic \(\nu \) Nucleus Scattering, CE\(\nu \)NS. 
+
+This process turns out to be proportional to the number of neutrons squared, which goes up quickly --- this is the only tabletop neutrino detector. 
+
+The idea is that the neutrino's wavelength is very long, so it cannot see the specific nucleons or quarks. 
+
+We separate out the parameters \(g\), \(g'\), \(\mu \) and \(\nu \) from the Yukawa coupling of the electron --- the first four remain the same, while we will need to introduce more Yukawa coupling for the different families. 
+
+The data are \(e\), \(G_F\), \(M_H\), \(M_Z\), as well as the mass of the electron. 
+
+The relations are 
+%
+\begin{align}
+e &= \frac{gg'}{\sqrt{g^2 + g^{\prime 2}}}  \\
+G_F &= \frac{1}{\sqrt{2} v^2} \\
+M_H &= \sqrt{2} \mu  \\
+M_Z &= \frac{v}{2} \sqrt{g^2  + g^{\prime 2}}
+\,,
+\end{align}
+%
+as well as 
+%
+\begin{align}
+m_e = \frac{y_e v}{\sqrt{2}}
+\,.
+\end{align}
+
+These are all computed at tree-level; at more loops there can be corrections of the order of a few parts in a hundred. 
+There are proposals to replace \(e\) with \(M_W\), so that all the terms refer to the same energy scale \(\sim \SI{100}{GeV}\). 
+
+In natural units, 
+%
+\begin{align}
+e &= \num{.3}  \\
+G_F &= \SI{1.17e-5}{GeV^{-2}}  \\
+M_H &= \SI{125}{GeV} \\
+M_Z &= \SI{91}{GeV} \\
+m_e &= \SI{.51e-3}{GeV}
+\,,
+\end{align}
+%
+\todo[inline]{\(e = .3\) corresponds to \(e^2 / 4 \pi = 1/137 = \alpha \); why does this not match with 
+% (ac.e.gauss.value * u.cm**(3/2) * u.g**(1/2) / u.s * ac.hbar**(-1/2) * ac.c**(-1/2)).si
+the astropy code? 
+}
+so 
+%
+\begin{align}
+g &= \num{.64}  \\
+g' &= \num{.34}  \\
+\mu &= \SI{88}{GeV}  \\
+v &= \SI{246}{GeV}  \\
+y_e &= \num{2.9e-6} 
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+\lambda &= \num{.13}  \\
+\sin^2 \theta_W &= \num{.22}  \\
+M_W &= \SI{80}{GeV}
+\,.
+\end{align}
+
+In terms of naturalness, it is weird that \(y_e \ll 1\), which tells us that \(m_e \ll \SI{100}{GeV}\). 
+
+
+
 \end{document}

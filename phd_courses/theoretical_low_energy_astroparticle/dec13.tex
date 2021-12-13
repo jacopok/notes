@@ -1,4 +1,338 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Mass terms for neutrinos}
+
+\marginpar{Monday\\ 2021-12-13}
+
+We will discuss the difference between Weyl, Dirac and Majorana neutrinos for 
+the single-generation case. 
+Remember that under a Lorentz transformation \(\Lambda (\vec{\omega}, \vec{n}) \) they change as 
+%
+\begin{align}
+\phi_R \to \exp( i \vec{\omega} \cdot \frac{\vec{\sigma}}{2} + \vec{n} \cdot \frac{\vec{\sigma}}{2}) \phi _R \\
+\phi_L \to \exp( i \vec{\omega} \cdot \frac{\vec{\sigma}}{2} - \vec{n} \cdot \frac{\vec{\sigma}}{2}) \phi _L
+\,.
+\end{align}
+
+It can be shown that if \(\phi _R\) is right-handed, \(i \sigma_2 \phi_R^{*}\) is left-handed 
+(and similarly with \(L \leftrightarrow R\)). 
+
+We can therefore parametrize our full spinor in terms of two right-handed spinors, as 
+%
+\begin{align}
+\Psi = \left[\begin{array}{c}
+\phi _R \\ 
+\phi _L
+\end{array}\right]
+=
+\left[\begin{array}{c}
+u \\ 
+i \sigma_2 v^{*}
+\end{array}\right]
+\,.
+\end{align}
+
+Recall also the projectors 
+%
+\begin{align}
+\psi_{L, R} = P_{L, R} \psi 
+\qquad \text{where} \qquad
+P_{L, R} = \frac{1 \mp \gamma^{5}}{2}
+\,.
+\end{align}
+
+We also have \(\overline{\psi} = \psi ^\dag \gamma^{0}\) and \(\psi^{c} = C(\psi ) = i \gamma^{2} \psi^{*}\). 
+
+The convention for the order of operations is as follows: 
+\begin{enumerate}
+    \item projectors \(P_{L, R}\) act before
+    \item charge conjugation \(C( \cdot)\) which acts before
+    \item conjugation \(\overline{\cdot}\).
+\end{enumerate}
+
+In terms of our parametrization \(\psi (u, v)\) the charge conjugate swaps \(u\) and \(v\):
+%
+\begin{align}
+\psi^{c} = \left[\begin{array}{c}
+v \\ 
+i \sigma_2 u^{*}
+\end{array}\right]
+\,.
+\end{align}
+
+The Dirac case is the one in which \(u \neq v\), the Majorana case is the one in which \(u \simeq v\). 
+The equality in the Majorana case can actually be relaxed including an arbitrary phase: 
+\(\psi = \psi^{c} e^{i \phi }\) for some fixed \(\phi \), called the \emph{Majorana phase}.
+
+The Weyl case is the one in which \(m = 0\), meaning that \(\psi = \psi _R\) or \(\psi = \psi _L\). 
+The spinor just has two degrees of freedom. 
+
+The Weyl-Majorana case would then be \(\psi = \psi _R + \psi _R^{c} = \psi^{c}\). 
+
+The Dirac case is the general, massive, 4 degrees of freedom one. 
+
+A Dirac mass term looks like \(m \overline{\psi} \psi\), 
+a Majorana one would look like \((1/2) m \overline{\psi} \psi \).
+
+In the Dirac case, this would read 
+%
+\begin{align}
+\overline{\psi} \psi = \overline{\psi}_L \psi_R + \overline{\psi}_R \psi _L
+\,,
+\end{align}
+%
+while in the Majorana, left-handed case we would have 
+%
+\begin{align}
+\overline{\psi} \psi = \overline{\psi}_L \psi _L^{c} + \overline{\psi}_L^{c} \psi _L
+\,,
+\end{align}
+%
+and the right-handed one is analogous. 
+
+The most general Lagrangian would then include a term 
+%
+\begin{align}
+\mathscr{L} &\ni m_D 
+\left( 
+    \overline{\psi}_L \psi _R + \overline{\psi}_R \psi _L
+\right)
++ 
+\frac{1}{2} m_L 
+\left(
+    \overline{\psi}_L^{c} \psi _L + \overline{\psi}_L \psi _L^{c}
+\right)
++ 
+\frac{1}{2} m_R
+\left(
+    \overline{\psi}_R^{c} \psi _R + \overline{\psi}_R \psi _R^{c}
+\right)  \\
+&= \frac{1}{2} \left[\begin{array}{cc}
+\overline{\psi}_L + \overline{\psi}_L^{c}, &
+\overline{\psi}_R + \overline{\psi}_R^{c}
+\end{array}\right]
+\left[\begin{array}{cc}
+m_L & m_D \\ 
+m_D & m_R
+\end{array}\right]
+\left[\begin{array}{c}
+\psi _L + \psi_L^{c} \\ 
+\psi _R + \psi _R^{c}
+\end{array}\right]
+\,,
+\end{align}
+%
+which we can diagonalize! 
+The eigenvectors will in general be linear combinations of Majorana fields. 
+
+What does the Standard Model tell us about these masses? 
+The \(m_D\) term is allowed, is comes from the SSB of the Yukawa terms as long as we have right-handed neutrinos. 
+
+Specifically, it will be \(m_D \sim y_\nu v / \sqrt{2}\) where \(v \approx \SI{200}{GeV}\). 
+In order for this to work we must have \(y_\nu \lesssim \num{e-11}\). 
+
+In the SM we cannot have Majorana mass terms \(m_L\), since they break the
+electroweak symmetry. 
+
+\todo[inline]{Clarify this point}
+
+The term \(m_R\), on the other hand (\(m_R \overline{\psi}_R \psi _R^{c} + \text{h. c.}\)), is allowed by the SM gauge group, but the \(m_R\) term is a new mass scale of the theory. 
+
+The mass matrix can be thought to look like 
+%
+\begin{align}
+\left[\begin{array}{cc}
+m_L & m_D \\ 
+m_D & m_R
+\end{array}\right]
+= 
+\left[\begin{array}{cc}
+0 & \sim v \\ 
+\sim v &  \sim \Lambda 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\Lambda \) is a scale from Beyond-the-Standard-Model physics. 
+
+These ideas came out when people were considering very large gauge groups. 
+
+The diagonalization of that matrix yields a light neutrino \(\nu \sim \nu _L + \nu _L^{c}\) with mass of the order \(\order{v^2 / \Lambda } \ll v\), as well as a massive neutrino \(\nu \sim \nu _R + \nu _R^{c}\) with mass of the order \(\order{\Lambda }\). 
+
+This is the see-saw mechanism. 
+
+A technical detail: one mass comes out negative, but if \(\psi \) has a negative mass \(\gamma^{5} \psi \) has a positive mass. 
+
+What happens if we have more than one neutrino generation? 
+
+In the SM, we have determined that the flavor eigenstates are linear combinations of the mass eigenstates with a unitary mixing matrix \(U\). 
+
+We can also have a number \(N_s\) of sterile neutrino states which do not couple to the \(W^{\pm}\) and \(Z\) bosons. 
+The number \(N_s\) is not limited to the right-handed components of the three neutrinos, there could be more. The full mixing matrix will then be 
+%
+\begin{align}
+\left[\begin{array}{cc}
+3 \times 3 & 3 \times N_s \\ 
+N_s \times 3 & N_s \times N_s
+\end{array}\right]
+\sim
+\left[\begin{array}{cc}
+\sim U _{\text{PMNS}} & \sim \order{v / \Lambda } \\ 
+\sim \order{v / \Lambda } & U_{N \times N}
+\end{array}\right]
+\,.
+\end{align}
+
+A phenomenologically motivated situation is already the \(N_s = 1\) one, 
+with a fourth sterile neutrino with mass \(\sim \SI{1}{eV}\). 
+At present, though, the evidence for a sterile neutrino is very controversial. 
+
+The process of leptogenesis, by some process which satisfies Sakharov's conditions, is relevant for this discussion. 
+
+We need both C and CP violation. 
+If we can find CP violation at low energy scales, it would be a good indication! 
+
+CP violation in the quark sector, \(V _{\text{CKM}} = V^{*} _{\text{CKM}}\), cannot explain matter-antimatter asymmetry.
+
+It is possible that a CP violating mechanism in the weak sector may give an imprint in the primordial GW background. 
+
+If the CP violating decay of heavy neutrinos is to blame, there might be a connection between the low- and high-energy manifestations of CP violation. 
+
+\subsubsection{The effect of neutrino masses and mixing in propagation}
+
+We have 
+%
+\begin{align}
+\left[\begin{array}{c}
+\nu _e \\ 
+\nu _\mu  \\ 
+\nu _\tau 
+\end{array}\right]
+= 
+U _{\text{PMNS}} 
+\left[\begin{array}{c}
+\nu_1   \\ 
+\nu_2  \\ 
+\nu_3 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(U _{\text{PMNS}} U _{\text{PMNS}} ^\dag = 1\), while in general \(U \neq U ^\dag\). 
+We will assume \(E \gg m \). 
+
+The convention used for this matrix is as follows, since it can be shown that it contains three angles and a CP-violating phase:
+%
+\begin{align}
+\left[\begin{array}{ccc}
+U_{e1} & U_{e2} & U_{e3} \\ 
+U_{\mu 1} & U_{\mu 2} & U_{\mu 3} \\ 
+U_{\tau 1} & U_{\tau 2} & U_{\tau 3} 
+\end{array}\right]
+= 
+\underbrace{\left[\begin{array}{ccc}
+1 & 0 & 0 \\ 
+0 & c_{23} & s_{23} \\ 
+0 & -s_{23} & c_{23}
+\end{array}\right]}_{R(\theta_{23})}
+\underbrace{\left[\begin{array}{ccc}
+c_{13}  & 0 & s_{13} e^{-i \delta } \\ 
+0 & 1 & 0 \\ 
+s_{13} e^{i \delta } & 0 & c_{13} 
+\end{array}\right]}_{R(\theta_{13})} 
+\underbrace{\left[\begin{array}{ccc}
+c_{12}  & s_{12}  & 0 \\ 
+-s_{12}  & c_{12}  & 0 \\ 
+0 & 0 & 1
+\end{array}\right]}_{R(\theta_{12})}
+\underbrace{\left[\begin{array}{ccc}
+1 & 0 & 0 \\ 
+0 & e^{i \psi ' } & 0 \\ 
+0 & 0 & e^{i \psi ''}
+\end{array}\right]}_{\text{Majorana}}
+\,.
+\end{align}
+
+If we have Majorana neutrinos the spinor is equal to its conjugate up to a phase, but only two of the phases are physically meaningful. 
+However, these play no role in oscillations.
+
+We have measured these angles: for \(\theta_{23}\) there is (almost) maximal mixing, \(\theta_{23} \approx \pi /4\) or \(s^2_{23} \approx \num{.5}\). 
+This is called \emph{octant ambiguity}, since we do not know the precise value. 
+
+The value of \(s^2_{12}\) is approximately \(\num{.3}\). 
+
+The value of \(s^2_{13}\) is approximately \(\num{.02}\). 
+
+What about the mass spectrum? 
+Well, the energy is approximately 
+%
+\begin{align}
+E = \sqrt{p^2 + m^2} 
+\approx p + \frac{m^2}{2 p}
+\approx p + \frac{m^2}{2E}
+\,.
+\end{align}
+
+The masses are numbered \(1\), \(2\) and \(3\); 
+by convention we always take \(m^2_2 > m^2_1\). 
+
+We have \(\delta m^2 = m_2^2 - m_1^2 \approx \SI{7.5e-5}{eV^2}\), while \(\abs{\Delta m^2} = \abs{m_3^2 - m_1^2} \approx \SI{2.5e-3}{eV^2}\). 
+We do not know the sign of \(\Delta m^2\)! 
+
+As long as we deal with three neutrino masses and mixing, we have 5 known quantities and 5 unknowns: we know 
+\begin{enumerate}
+    \item \(\delta m^2\);
+    \item \(\abs{\Delta m^2}\);
+    \item \(s^2_{23}\);
+    \item \(s^2_{12}\);
+    \item \(s^2_{13}\),
+\end{enumerate}
+%
+while we do not know some parameters which are hard or impossible to measure with oscillations:
+\begin{enumerate}
+    \item the value of the CP-violating \(\delta \) --- but we do have some weak \(\sim 2 \sigma \) indications that it might be nonzero;
+    \item the sign of \(\Delta m^2\);
+    \item whether \(\theta_{13} \lessgtr \pi /4 \); 
+    \item the absolute mass scale (we only have some bounds);
+    \item whether neutrinos are Dirac or Majorana.
+\end{enumerate}
+
+There is a search for right-handed neutrinos at many scales, even at LHC.
+
+Tomorrow we will start studying neutrino oscillations, dealing with wavefunctions as opposed to spinors, approximating time with position \(t \sim x\); and using the fact that \(E \approx p + m^2 / 2E\). 
+
+The Schrödinger equation will read 
+%
+\begin{align}
+i \dv{}{t} \left[\begin{array}{c}
+\nu_1  \\ 
+\nu_2  \\ 
+\nu_3 
+\end{array}\right]
+= H 
+\left[\begin{array}{c}
+\nu_1  \\ 
+\nu_2  \\ 
+\nu_3 
+\end{array}\right]
+\,,
+\end{align}
+%
+where, in a vacuum, \(H\) is diagonal, with the three energies of the neutrinos.
+There will be corrections in matter. 
+
+We will have 
+%
+\begin{align}
+H = p + \frac{1}{2E} \left[\begin{array}{ccc}
+m_1^2  & 0 & 0 \\ 
+0 & m_2^2 & 0 \\ 
+0 & 0 & m_3^2
+\end{array}\right]
+\,.
+\end{align}
+
+
+
 \end{document}

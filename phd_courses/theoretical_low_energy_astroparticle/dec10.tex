@@ -1,4 +1,249 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Fermion masses and mixing}
+
+\marginpar{Friday\\ 2021-12-10}
+
+The full symmetry group of the standard model is 
+\(\text{SU}(3)_c \otimes \text{SU}(2)_L \otimes \text{U}(1)_Y\). 
+
+The building blocks are doublets like \((\nu_{eL}, e_L)\) with charges respectively
+\(Q = 0\) and \(Q= -1\), as well as \(T_3 = +1/2\) and \(T_3 = -1/2\). 
+
+The right-handed singlets, on the other hand, also have \(Q = 0\) and \(Q=-1\) 
+but \(T = 0\). 
+
+Any right-handed neutrinos would be \emph{sterile}, since they do not interact. 
+
+This also holds for muonic and tauonic flavors, 
+as well as for quark doublets as long as we add \(2/3\) to all charges.
+
+The relation between the quantum numbers is \(Y = 2 (Q-T_3)\). 
+
+In general the doublets look like 
+%
+\begin{align}
+\left[\begin{array}{c}
+U^{\alpha } \\ 
+D^{\alpha }
+\end{array}\right]_L
+\,,
+\end{align}
+%
+where \(\alpha \) is a generation index.
+
+The most general mass term looks like \(m \overline{\psi}_L \psi _R\) --- we should also 
+consider its Hermitian conjugate, but it works analogously. 
+
+As usual, we insert the Higgs field to saturate the doublets and diagonalize.
+We will need to look at the effect of this change of basis on the mixing matrix.
+
+The most general currents look like 
+%
+\begin{align}
+J^{\mu }_{EM} &= \sum _{\alpha } \overline{U}^{\alpha } \gamma^{\mu } U^{\alpha } + (U \to D)  \\
+J^{\mu }_{NC} &= \sum _{\alpha } \overline{U}^{\alpha }_{L} \gamma^{\mu } (T_3 - Q s^2_W) U^{\alpha }_{L} 
++ \sum _{\alpha } \overline{U}^{\alpha }_{R} \gamma^{\mu } (- Q s^2_W) U^{\alpha }_{R}  + (U \to D)  \\
+J^{\mu }_{-} &= \sum _{\alpha} \overline{U}^{\alpha }_L \gamma^{\mu } D^{\alpha }_{L} (U \to D \text{ yields } J^{\mu }_{+})
+\,.
+\end{align}
+
+The coupling terms then look like \(J^{\mu }_{EM} A_\mu \), \(J^{\mu }_{NC} Z_\mu \) and \(J^{\mu }_{\mp} W^{\pm}\). 
+
+The various components will transform according to some unitary matrices: 
+%
+\begin{align}
+D^{\alpha }_{R} &= W^{\alpha \beta } D^{\beta }_{R} 
+\qquad \text{and} \qquad
+D^{\alpha }_{L} = S^{\alpha \beta } D^{\beta }_{L}  \\
+U^{\alpha }_{R} &= T^{\alpha \beta } D^{\beta }_{R} 
+\qquad \text{and} \qquad
+U^{\alpha }_{L} = R^{\alpha \beta } D^{\beta }_{L}  
+\,.
+\end{align}
+
+Most of the currents are left unchanged by these transformations;
+the charged current however is the one which changes: 
+%
+\begin{align}
+J^{\mu }_{-} = \overline{U}_L \gamma^{\mu } \underbrace{R ^\dag S}_{\neq 1 \text{ in general}} D_L
+\,.
+\end{align}
+
+The Yukawa Lagrangian will then include a term like 
+%
+\begin{align}
+\mathscr{L} \ni 
+\underbrace{\sum _{\alpha \beta } y^{\alpha \beta }_{D} \left[\begin{array}{cc}
+\overline{U}^{\alpha } & \overline{D}^{\alpha }
+\end{array}\right]_L
+\left[\begin{array}{c}
+0 \\ 
+v / \sqrt{2}
+\end{array}\right]
+D^{\beta }_{R}}_{\text{D-type couplings}}
++ \underbrace{\sum _{ \alpha \beta } y^{\alpha \beta }_{U} 
+\left[\begin{array}{cc}
+\overline{U}^{\alpha } & \overline{D}^{\alpha }
+\end{array}\right]_L
+\left[\begin{array}{c}
+v / \sqrt{2} \\ 
+0
+\end{array}\right]
+U^{\beta }_R}_{\text{U-type couplings}}
+\,.
+\end{align}
+
+We define a mass matrix 
+%
+\begin{align}
+M^{\alpha \beta }_{U, D} = y^{\alpha \beta }_{U, D} \frac{v}{\sqrt{2}}
+\,,
+\end{align}
+%
+so that 
+%
+\begin{align}
+\mathscr{L} \ni \overline{D}_L M_D D_R + \overline{U}_L M_U U_R + 
+\text{h. c. }
+\,.
+\end{align}
+
+How can we put the Higgs vacuum on the upper component? 
+We can define \(\widetilde{\phi} = i \sigma _2 \phi^{*}\). 
+For this field, the 1 component has zero charge while the 2 component has \(-1\) charge. 
+
+If we introduce this field, the charge of the Yukawa Lagrangian is zero. 
+
+Each of the \(M_{U, D}\) matrices will be diagonalized like \(S ^\dag M T = M _{\text{diag}}\), where \(S\) and \(T\) are both unitary. 
+
+We then have, for down-type fields: \(\overline{D}_L M_D D_R\) going into 
+%
+\begin{align}
+D_R \to W D_R \qquad D_L \to S D_L \qquad M_D \to M_D^{\text{diag}}
+\,,
+\end{align}
+%
+while \(\overline{U}_R M_U U_R\) becomes
+%
+\begin{align}
+U_R \to T U_R \qquad U_L \to R U_L \qquad M_U \to M_U^{\text{diag}}
+\,,
+\end{align}
+%
+
+
+In general, these will be different matrices for leptons and for quarks. 
+
+The charged current then reads \(J^{\mu }_{-} = \overline{U}_L \gamma^{\mu } V D_L\), where \(V = R ^\dag S\). 
+
+More explicitly, we get 
+%
+\begin{align}
+J^{\mu }_{-} \overline{U}^{\alpha }_{L} \gamma^{\mu } V^{\alpha \beta } D^{\beta }_{L}
+\,.
+\end{align}
+
+The interaction of a \(\overline{U}^{\alpha }_L\) and \(D^{\beta }_{L}\) is then modulated by a factor \((g/\sqrt{2}) V^{\alpha \beta }\). 
+
+If \(V\) were 2x2 it would be a real matrix, if it were 3x3 it would be a complex matrix.
+
+For quarks, the values on the diagonal are close to 1, while the largest values off-diagonal are of the order \num{.22} for the CKM matrix, the mass-mixing matrix for quarks. 
+
+For example, in \(\beta \) decay we get a modulation by a factor \(V_{ud}\), which is slightly less than 1. 
+
+For leptons, the matrix is called PMNS. 
+
+In the usual construction of the Standard Model, there were no mass terms for neutrinos or right-handed \(\nu_{\alpha R}\). 
+Therefore, in this case there could be no mixing among leptons, since the mixing matrix only ever appears ``sandwitched''. 
+
+The basic definition of neutrino flavor is ``which lepton does it have charged current interactions with''. 
+
+For example, \(\nu _e\) is the \(\nu \) produced in \(\beta^{+} \) decay, and \(\overline{\nu}_e\) is the \(\nu \) produced in \(\beta^{-}\) decay. 
+
+Let us then consider \(\nu _e \to \nu _\mu  \) oscillations. 
+We always need to consider the amplitudes for production, propagation, detection. 
+
+However, it is convenient to isolate the propagation into the matrix 
+%
+\begin{align}
+\left[\begin{array}{c}
+\nu _e \\ 
+\nu _\mu  \\ 
+\nu _\tau 
+\end{array}\right]
+= 
+\left[\begin{array}{ccc}
+U_{e1} & U_{e2} & U_{e3} \\ 
+U_{\mu 1} & U_{\mu 2} & U_{\mu 3} \\ 
+U_{\tau 1} & U_{\tau 2} & U_{\tau 3} 
+\end{array}\right]
+\,.
+\end{align}
+
+Forgetting the fact that this is a simplification can lead to paradoxes;
+for example, ether leptons do not oscillate.
+
+There is a basis for the Dirac equation for which \(i \gamma^{\mu }\) is real --- this leads to the fact that \(\psi = \psi^{*}\). 
+
+This cannot work for electrons and positrons, since they are charged.
+A neutral fermion, on the other hand, might be its own antiparticle.
+
+If we have a \(\beta^{+}\) decay, we will produce a \(\nu _e\) which is left-handed. 
+In a \(\beta^{-}\) decay, on the other hand, we will produce a right-handed \(\overline{\nu}_e\). 
+
+If the neutrino is massless, this cannot change.
+Formally, the Dirac equation decouples. 
+
+This ``Weyl'' case is not completely excluded by current phenomenology; the lightest of the neutrinos could be completely massless. 
+
+If we have massive neutrinos, though, there will be an \(\order{m_\nu / E}\) component with the opposite chirality. 
+
+However, the neutrino and antineutrino are still distinguishable.
+
+If they are Majorana, on the other hand, \(\nu_e = \overline{\nu}_e\); this must mean that they are neutral not just for electric charge but for all charges. 
+
+We have observed inverse beta decay:
+%
+\begin{align}
+\nu _e + \ce{n} \to \ce{p} + e^{-} 
+\qquad \text{and} \qquad
+\overline{\nu} _e + \ce{p} \to \ce{n} + e^{+}
+\,,
+\end{align}
+%
+but not the same reaction for \(\nu _e \leftrightarrow \overline{\nu}_e\). 
+Is this an indication that neutrinos are indeed Dirac? 
+
+Well, if neutrinos are indeed Majorana these reactions are possible, but suppressed at order \(m_\nu / E\)! 
+
+The experiment which saw the largest number of neutrinos collected about 2 million events\dots
+
+The way to have good statistics is to look at decays, specifically neutrinoless double-beta decay. 
+
+The decay looks like 
+%
+\begin{align}
+\{ 2 n \} \to
+\{ 2 p \} + 2 e^{-} 
+\,.
+\end{align}
+
+The decay of the first proton looks like the emission of a right-handed \(\overline{\nu}_e\) with an \(e^{-}\), through a charged-current interaction. 
+
+IF \(m_\nu \neq 0\), the neutrino has a left-handed component (not possible if the neutrino is Weyl); 
+if \(\nu = \overline{\nu}\), this left-handed component is a left-handed \(\nu _e\) (not possible if the neutrino is Dirac)! 
+
+At the second proton, the left-handed \(\nu _e\) is absorbed and an \(e^{-}\) is emitted. 
+
+This process is suppressed by \(m_\nu / E\): it probes absolute neutrino mass. 
+
+Current neutrinoless double beta decay are probing lifetimes of the order of \(\num{e26}\) to \(\SI{e27}{yr}\). 
+
+It can be shown that if this process takes place, then neutrinos must be Majorana. 
+
+Pictorially, one can join the legs of the \(0 \nu \beta \beta \) diagram to find a diagram which turns a \(\nu _e\) into a \(\overline{\nu}_e\). 
+
 \end{document}
+

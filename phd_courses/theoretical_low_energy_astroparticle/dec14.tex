@@ -1,4 +1,266 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Neutrino oscillations in vacuum}
+
+\marginpar{Tuesday\\ 2021-12-14}
+
+A ``vacuum'' in this context is a situation with very low fermion density, air is a good approximation for it for example. 
+We will later quantify the effects of interactions with matter. 
+
+The solution of Schrödinger's equation for that Hamiltonian is 
+%
+\begin{align}
+\left[\begin{array}{c}
+\nu_1  \\ 
+\nu_2  \\ 
+\nu_3 
+\end{array}\right]
+= e^{-i H_m x} \left[\begin{array}{c}
+\nu_1  \\ 
+\nu_2  \\ 
+\nu_3 
+\end{array}\right]_0
+\,,
+\end{align}
+%
+but the interesting thing is to rewrite this in the flavor basis: 
+%
+\begin{align}
+H_f = U H_m U ^\dag = p \mathbb{1} + \frac{1}{2E} U M^2 U ^\dag 
+\,,
+\end{align}
+%
+where \(M^2\) is the diagonal matrix with the square masses on the diagonal.
+
+This is not a diagonal Hamiltonian anymore! 
+
+Factoring out the evolution according to \(p \mathbb{1}\) we get 
+%
+\begin{align}
+i \dv{}{x} \left[\begin{array}{c}
+\nu _e \\ 
+\nu _\mu  \\ 
+\nu _\tau 
+\end{array}\right]
+= \frac{1}{2E} U M^2 U ^\dag 
+\left[\begin{array}{c}
+\nu _e \\ 
+\nu _\mu  \\ 
+\nu _\tau 
+\end{array}\right]
+\,.
+\end{align}
+
+Since this is not diagonal, we can have both flavor \emph{appearance} and flavor \emph{disappearance}. 
+
+The evolution is given by the exponential 
+%
+\begin{align}
+S = \exp(-i H_f x) = \exp(- \frac{i}{2E} U M^2 U ^\dag x) = U \exp(-i \frac{M^2}{2E} x ) U ^\dag
+\,,
+\end{align}
+%
+because of the properties of unitary matrices in exponentials. 
+
+It is convenient to write this in components, \(\nu _\beta = S_{\beta \alpha } \nu _\alpha \): 
+%
+\begin{align}
+S_{\beta \alpha } = \sum _{i} U_{\beta i} \exp(-i \frac{m^2_i}{2E} )  U_{\alpha i} ^\dag
+\,,
+\end{align}
+%
+and the probability for this will be \(P(\nu _\alpha \to \nu _\beta ) = P_{\beta \alpha } = \abs{ S_{\beta \alpha }}^2\). 
+
+This modulus can be explicitly rewritten as 
+%
+\begin{align} \label{eq:oscillation-probabilities}
+P_{ \alpha \beta  } = \underbrace{\delta_{\alpha \beta } - 4 \sum _{i < j} \Re J^{ij}_{\alpha \beta } \sin^2 \left(\frac{ \Delta m^2_{ij} x}{4E}\right)}_{\text{CP-conserving}} 
+- \underbrace{2 \sum _{i<j} \Im J^{ij}_{\alpha \beta } \sin(\frac{\Delta m^2_{ij} x}{2E})}_{\text{CP-violating}}
+\,,
+\end{align}
+%
+where \(\Delta m^2_{ij} = m^2_i - m^2_j\) while \(J^{ij}_{\alpha \beta } = U_{\alpha i} U_{\beta i} ^\dag U_{\alpha j} ^\dag U_{\beta j}\). 
+This is called the Jarlskog invariant (Cecilia Jarlskog studied this first in the context of the CKM matrix). 
+
+This all is in natural units; the SI units version is  
+%
+\begin{align}
+\frac{\Delta m^2_{ij} x}{4E} \approx \num{1.267} \left(\frac{\Delta m^2_{ij}}{\SI{}{eV}}\right) \left(\frac{x}{\SI{}{m}}\right) \left(\frac{\SI{}{MeV}}{E}\right)
+\,.
+\end{align}
+
+Interchanging \(\nu \) and \(\overline{\nu}\) is equivalent to 
+interchanging \(U \) and \(U *\); 
+interchanging \(\alpha \) and \(\beta \) is equivalent to 
+interchanging \(U\) and \(U ^\dag\). 
+
+What is the behavior of this under CP and T symmetries?
+
+Let us call \(S\) the source of neutrinos, and \(D\) their detector. 
+We have \(\nu _\alpha \) at \(S\), and detect \(\nu _\beta \) at \(D\). 
+
+A CP transformation means we swap \(S\) and \(D\), and have \(\overline{\nu}_\alpha \) travelling backward to be detected as \(\overline{\nu}_\beta\). 
+
+A \(T\) transformation swaps \(S\) and \(D\) again. 
+
+If CP is conserved, 
+%
+\begin{align}
+P(\nu _\alpha \to \nu _\beta ) = P(\overline{\nu}_\alpha \to \overline{\nu}_\beta )
+\,,
+\end{align}
+%
+meaning that we must have \(U = U^{*}\); while if \(T\) is conserved we must have 
+%
+\begin{align}
+P(\nu _\alpha \to \nu _\beta ) = P(\nu _\beta \to \nu _\alpha )
+\qquad \text{and} \qquad
+P(\overline{\nu} _\alpha \to \overline{\nu} _\beta ) = P(\overline{\nu} _\beta \to \overline{\nu} _\alpha )
+\,,
+\end{align}
+%
+meaning that we must have \(U = U ^*\). 
+
+\todo[inline]{Say we observed \(P(\nu _e \to \nu _\mu ) \neq P(\overline{\nu} _e \to \overline{\nu}_\mu )\). Would that not prove that \(\nu _e \neq \overline{\nu}_e\) and/or \(\nu _\mu \neq \overline{\nu}_\mu \), meaning that neutrinos are not Majorana?}
+
+A CPT transformation, therefore, must satisfy 
+%
+\begin{align}
+P(\nu _\alpha \to \nu _\beta ) = P(\overline{\nu}_\beta \to \overline{\nu}_\alpha )
+\,.
+\end{align}
+
+This surely holds! It can be seen by the requirement \(U = U^{**}\), but it also holds in general as a theorem about field theories.
+
+The CP-violating part can be isolated as shown in equation \eqref{eq:oscillation-probabilities}. 
+
+In the parametrization of the \(U _{\text{PMNS}}\) the CP-violation is parametrized as \(\delta \); it is currently compatible with 0. 
+
+In order to observe CP violation we must have \(\delta \neq 0, \pi \) (meaning that \(U \neq U^{*}\));
+the second condition is that we must be looking at \(\alpha \neq \beta \)! In disappearance experiments the CP-violating part cancels. 
+
+All the mixing angles must be nonzero: \(\theta_{ij} \neq 0\). 
+
+The fourth condition is that all square mass differences are nonzero: \(\Delta m^2_{ij} \neq 0\). 
+
+CP violation is a genuine 3-neutrino phenomenon, it cannot be observed with 2! 
+Current experimental results are compatible with all conditions being realized, but it's hard since \(\delta m^2\) is about 30 times smaller than \(\Delta m^2\).
+
+Most current experiments are only sensitive to a submatrix 
+%
+\begin{align}
+\left[\begin{array}{c}
+\nu _\alpha  \\ 
+\nu _\beta 
+\end{array}\right]
+= 
+\left[\begin{array}{cc}
+\cos \theta  & \sin \theta  \\ 
+-\sin \theta  & \cos \theta 
+\end{array}\right]
+\left[\begin{array}{c}
+\nu _i  \\ 
+\nu _j 
+\end{array}\right]
+\,,
+\end{align}
+%
+where \(\theta = \theta_{ij}\). 
+
+In this case, the probability simply reads 
+%
+\begin{align}
+P_{\alpha \beta } = \sin^2 2 \theta \sin^2 \left(\frac{\Delta m^2 L}{4E}\right)
+\,,
+\end{align}
+%
+while \(P_{\alpha \alpha } = 1 - P_{\alpha \beta }\). 
+
+We have no information on the sign of \(\Delta m^2\) since it is inside a \(\sin^2\); there is no information on the absolute masses, there is no information on \(\nu \leftrightarrow \overline{\nu}\). 
+
+There is an analogy with a double-slit experiment. 
+
+Practically, we do not observe probabilities but fluxes: 
+%
+\begin{align}
+R_\beta = \int \Phi _\alpha \otimes P_{\alpha \beta } \otimes \sigma _\beta \otimes \epsilon _\beta 
+\,,
+\end{align}
+%
+which will be a multidimensional integral in general, a marginalization over all the parameters we do not care about --- the flux at the source, the interaction cross-section, the detector efficiency. 
+
+Let's say we have a \(\nu _\alpha \to \nu _\beta \) appearance experiment, and we do not observe anything. 
+
+What is typically done is to draw an \emph{exclusion zone} in the \(\Delta m^2, \sin^2 2 \theta \) plane. 
+The range for \(\theta \) is therefore \(0\) to \(\theta = \pi /4\). 
+
+Suppose, instead, that we observe a certain rate of \(\beta \) with \(R_\beta = R \pm \sigma _\beta \). 
+
+In that case as well we can draw an allowed band. 
+If we also have some spectral information, we can also measure \(L / E\), therefore we can intersect several of these bands and measure \(\Delta m^2 \) and \(\theta \) simultaneously. 
+
+We typically have \emph{octant ambiguity}: the respective \(\pi /4 < \theta < \pi /2\) value is typically also allowed. 
+
+This ambiguity has been removed for \(\theta_{12} \) and \(\theta_{23}\), not for \(\theta_{13} \).
+
+Experiments which are sensitive to \(\Delta m^2 = m_3^2 - m^2_{1, 2}\): 
+\begin{enumerate}
+    \item short baseline reactors, which attempt to observe \(\overline{\nu}_e \to \overline{\nu}_e\) with \(L \sim \SI{1}{km}\) and \(E \sim \text{few}\ \SI{}{MeV}\);
+    \item long baseline accelerators, which attempt to observe \(\nu _\mu \to \nu _\mu \) or \(\nu _e\) or \(\nu _\tau \) (or antineutrinos), with \(L \sim \num{100} \divisionsymbol \SI{1000}{km}\) and \(E \sim 1 \divisionsymbol \SI{10}{GeV}\);\footnote{These are able to observe appearance as well as disappearance since the energy is so high! }
+    \item atmospheric neutrino experiments, which attempt to observe \(\nu _\mu \to \nu _\mu \) or \(\nu _e\) (or antineutrinos) with \(L \sim 10 \divisionsymbol \SI{e4}{km}\) and \(E \geq \SI{1}{GeV}\).
+\end{enumerate}
+
+For these experiments, we typically have \(\delta m^2 L / 4 E \ll 1\), therefore we can take \(\delta m^2 \approx 0\). 
+
+The probability can then be written as 
+%
+\begin{align}
+P_{\alpha \beta } &= 4 \abs{U_{\alpha 3}}^2 \abs{U_{\beta 3}}^2 \sin^2 \left(\frac{\Delta m^2 L }{4E}\right) \\ 
+P_{\alpha \alpha  } &= 1 - 4 \abs{U_{\alpha 3}}^2 (1 -\abs{U_{\alpha  3}})^2 \sin^2 \left(\frac{\Delta m^2 L }{4E}\right)
+\,,
+\end{align}
+%
+so these are able to probe a whole column of the mixing matrix; therefore, we can use these to measure \(\theta_{13} \) and \(\theta_{23} \), as well as \(\abs{ \Delta m^2}\). 
+
+Explicitly, 
+%
+\begin{align}
+P_{ee} &= 1 - \sin^2 2 \theta_{13} \sin^2 \left(\frac{\Delta m^2 L }{4E}\right)  \\
+P_{\mu e} &= s^2_{23} \sin 2 \theta_{13} \sin^2 \left(\frac{\Delta m^2 L}{4E}\right)  \\
+P_{\mu \mu } &= 1 - c^2_{13} s^2_{23} \left(1 - c^2_{13} s^2_{23}\right) \sin^2 \left(\frac{\Delta m^2 L }{4 E}\right)  \\
+P_{\mu \tau } &= c^{4}_{13} \sin^2 2 \theta_{13} \sin^2 \left(\frac{\Delta m^2 L}{4E}\right)
+\,,
+\end{align}
+%
+the first three have been probed by atmospheric neutrinos, the first has been probed by short baseline experiments, the second two have been probed by long baseline experiments, the last has only been probed by OPERA (CERN to LNGS). 
+
+Atmospheric neutrinos have been probed by SuperKamiokande and IceCube. 
+
+The octant ambiguity for \(\theta_{13}\) from \(P_{ee}\) is resolved by \(P_{\mu \mu }\): it is indeed small and \(< \pi /4\). 
+
+On the other hand, \(\theta_{23}\) is close to \(\pi / 4\), and it is not determined in which octant it lies. 
+
+In the opposite case, we have \(\delta m^2 L / 4E\) of order 1, while \(\Delta m^2 L / 4 E \gg 1\), meaning that those oscillations are averaged away. 
+
+One can do this with hundreds of kilometers \(L\) but low energies, \(E \sim \text{few}\ \SI{}{MeV}\). 
+
+One finds, for KamLAND as well as for solar neutrinos:
+%
+\begin{align}
+P_{ee}^{2 \nu } = c_{13}^{4} P_{2 \nu } + s_{13}^{4}
+\qquad \text{where} \qquad
+P_{2 \nu } = 1 - \sin^2 2 \theta_{12} \sin^2 \left(\frac{ \delta m^2 L}{4 E}\right)
+\,.
+\end{align}
+
+These experiments are sensitive to the first row of the mixing matrix. 
+
+They measure \(\delta m^2 \sim \SI{7.5e-5}{eV^2}\). 
+
+Luckily there is a different possibility: solar neutrinos. 
+These break the ambiguity, thanks to matter effects. 
+
+
+
 \end{document}

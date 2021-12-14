@@ -22,7 +22,7 @@ m = ac.m_p
 
 omega_larmor = (q * B0 / (m * gamma * ac.c)).si
 
-delta_B = B0 / 10000
+delta_B = B0 / 20_000
 
 # set to 1 or -1
 sign = 1
@@ -147,14 +147,16 @@ def final_point_variation():
     plt.title(f'$\\Delta \\theta$ over {n_periods} Larmor periods')
 
 
-# def final_point_integral():
-#     theta_final = [sol.y[0][-1] for sol in solver()]
-#     theta_diffs = (np.array(theta_final) - theta0)
-#     theta_vars = theta_diffs**2
-#     integral = trapezoid(y=theta_vars, x=k_range.value)
-#     th_value = (omega_larmor**2 * (delta_B / B)**2 * np.pi / v0 / np.cos(theta0) * t_span[1]).si
-#     print(th_value)
-#     print(integral)
+def final_point_integral():
+    theta_final = [sol.y[0][-1] for sol in solver()]
+    theta_diffs = (np.array(theta_final) - theta0)
+    theta_vars = theta_diffs**2
+    integral = trapezoid(y=theta_vars, x=k_range.value) * k_range.unit
+    th_value = (omega_larmor**2 * (delta_B / B0)**2 * np.pi / v0 / np.cos(theta0) 
+    * t_span[1] * u.s
+    )
+    print(f'theoretical = {th_value.si}')
+    print(f'computed = {integral.si}')
     
     # # with quantity_support():
     # plt.semilogx(k_range.value, theta_vars, lw=.8)
@@ -179,7 +181,7 @@ def integration_periods_plot():
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
-    # plot_and_save(final_point_variation)
+    plot_and_save(final_point_variation)
     plot_and_save(diffusion_over_time)
     # plot_and_save(integration_periods_plot)
-    # final_point_integral()
+    final_point_integral()

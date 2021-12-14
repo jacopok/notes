@@ -3,6 +3,339 @@
 
 \marginpar{Tuesday\\ 2021-12-14}
 
+The equations of motion we found read 
+%
+\begin{align}
+m \gamma \dv{v_x}{t} &= \frac{q}{c} \left( v_y B_0 - v_z \delta B_y\right) \\
+m \gamma \dv{v_y}{t} &= \frac{q}{c} \left( v_x B_0 - v_z \delta B_y\right) \\
+m \gamma \dv{v_z}{t} &= \frac{q}{c} \left( v_x \delta B_y - v_y \delta B_x \right) 
+\,,
+\end{align}
+%
+and we found 
+%
+\begin{align}
+\dv{\mu }{t} \sim \cos \left(\Omega t \mp kz \pm \omega t \mp \varphi \right)
+\,.
+\end{align}
 
+We then neglected \(\omega t \sim k v_A t\) compared to  \(kz = k v \mu t\). 
+
+We found \(\expval{ \Delta \mu \Delta \mu } = \Omega^2 (\delta B / B_0 )^2 \Delta t (\pi / v \mu ) \delta (k \mp \Omega / v \mu )\). 
+The \(\Delta \mu^2 \sim \Delta t\) dependence tells us that it is \emph{diffusive} motion, as opposed to \emph{ballistic} motion, which would have \(\Delta \mu \sim \Delta t\). 
+
+The diffusive motion is then described as 
+%
+\begin{align}
+D_{\mu \mu } = \frac{1}{2} \expval{\frac{\Delta \mu \Delta \mu }{t}} = \frac{\pi}{2} \Omega (1 - \mu^2) k _{\text{res}} F (k _{\text{res}}) 
+\,,
+\end{align}
+%
+where \(F (k _{\text{res}}) = \delta B^2( k _{\text{res}}) / B_0^2\). 
+
+Diffusion in pitch angle means diffusion in space! Once the angle changes enough, the particle changes direction completely.
+The timescale for diffusion by \(\pi /2\) is 
+%
+\begin{align}
+\tau \sim \frac{1}{\Omega k _{\text{res}} F( k _{\text{res}})}
+\,.
+\end{align}
+
+We will have a diffusion length scale of the order of \(\lambda _d \approx v \tau \), and the diffusion coefficient in space will be 
+%
+\begin{align}
+D_{zz} = \frac{1}{3} v \lambda _d = \frac{1}{3} v^2 \tau 
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+D &= \frac{1}{3} v^2 \frac{1}{\Omega k _{\text{res}} F(k _{\text{res}})}  \\
+&= \frac{1}{2} r_L (p) \frac{v}{k _{\text{res}} F(k _{\text{res}})}
+\,.
+\end{align}
+
+This is \emph{Bohm diffusion}! 
+This theoretical result allows us to compute a timescale for diffusion, which with some reasonable numbers is 
+%
+\begin{align}
+\tau = \frac{H^2}{D} \approx \num{25e20} \times \text{resonant power} \overset{!}{=} \text{million years}
+\,,
+\end{align}
+%
+so adding a very small \(k _{\text{res}} F( k _{\text{res}}) \sim \num{e-6}\) perturbation allows for strong diffusive motion. 
+
+\todo[inline]{Do calculation with units}
+
+It's easy to understand how a particle gets to \(\mu = 0\), but crossing that threshold is complicated. 
+Slightly nonlinear theories of this problem allow for the crossing of this threshold more easily.
+
+If we include the electric field, the energy can change a bit! 
+Proceeding in this way allows us to compute a corrected diffusion coefficient for the momentum: 
+%
+\begin{align}
+\expval{\frac{\Delta p \Delta p}{\Delta t}} &\approx (m v_A \gamma )^2 \expval{\frac{\Delta \mu \Delta \mu }{\Delta t}}  \\
+&\approx (mc \gamma )^2 \Omega k _{\text{res}} F( k _{\text{res}}  )  \\
+&\approx (mc \gamma )^2 \frac{v_A^2}{c^2} \frac{1}{\tau } = p^2 \left( \frac{v_A}{c}\right)^2 \frac{1}{\tau }
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+\tau _{\text{acceleration}} \approx \left(\frac{c}{v_A}\right)^2 \tau 
+\,,
+\end{align}
+%
+it takes \(\sim \num{e10}\) times longer to accelerate/decelerate a particle than to make it diffuse over time. 
+
+There can be situations in which \(v_A\) is not so small compared to \(c\)! 
+For example, in a GRB the plasma is relativistic, and even diffusive processes will be fast. 
+
+The effect of diffusion is to isotropize the distribution of the particles! 
+The net speed of these relativistic particles will roughly become \(v_A\)! 
+
+We will now try to understand this quantitatively. 
+Once we get the result of this equation, the rest of the course will be applications. 
+
+There are two ways to get this result: we will use the Fokker-Planck approach, which is less heavy in terms of mathematics.
+The alternative would be to look at the zeroth-order term in the Vlasov equation which would describe collisions, a big average on the right. 
+We do have a way to express it: we write the \(\delta f\) for cosmic rays, the \(\delta B\) for Alfvén waves, and compute away.
+
+Here is the alternative approach:
+we need to introduce a distribution function in phase space for the cosmic rays. 
+
+We will need to introduce the probability that a certain cosmic ray momentum \(\vec{p}\) changes to \(\vec{p} + \Delta \vec{p} \): \(\Psi (\vec{p}, \Delta \vec{p})\), which will satisfy 
+%
+\begin{align}
+\int \Psi (\vec{p}, \Delta \vec{p}) \dd{ \Delta \vec{p}} = 1
+\,.
+\end{align}
+
+We will then have the following:
+%
+\begin{align}
+f(\vec{x} + \vec{v} \Delta t, \vec{p}, t + \Delta \vec{t}) 
+= \int \dd{ \Delta \vec{p}} f(\vec{x}, \vec{p} - \Delta \vec{p} , t) \Psi (\vec{p} - \Delta \vec{p}, \Delta \vec{p})
+\,,
+\end{align}
+%
+which we can expand:
+%
+\begin{align}
+f(\vec{x} + \vec{v} \Delta t, \vec{p}, t + \Delta t) []&=
+f + \vec{v} \cdot \pdv{}{\vec{x}} f \Delta t + \pdv{}{t} f \Delta t  \\
+f(\vec{x}, \vec{p} - \Delta \vec{p}, t) &=  
+f - \pdv{f}{\vec{p}} \Delta \vec{p} + \frac{1}{2} \pdv{}{p} \pdv{}{p} f \Delta \vec{p} \Delta \vec{p}  \\
+\Psi (\vec{p} - \Delta \vec{p}, \Delta \vec{p}) &= \Psi  - \Delta \vec{p} \pdv{\Psi }{\vec{p}} + \frac{1}{2} \pdv{}{\vec{p}} \pdv{}{\vec{p}} \Psi \Delta \vec{p} \Delta \vec{p}
+\,.
+\end{align}
+
+Inserting these terms in the integral equation yields 
+%
+\begin{align}
+f + \pdv{f}{t} \Delta t + \vec{v} \cdot \pdv{f}{\vec{x}}  \Delta t
+&= \int \dd{ \Delta \vec{p}} 
+\left(
+    f - 
+    \pdv{f}{\vec{p}} \Delta \vec{p} 
+    + \frac{1}{2} \pdv[2]{f}{p}
+    \Delta p^2
+\right)
+\left(
+    \Psi - \pdv{\Psi }{p} \Delta p
+    + \frac{1}{2} \Delta p^2 \pdv[2]{\Psi }{p}
+\right)  \\
+&= \int \dd{ \Delta p}
+\left(
+    f \Psi - f \pdv{\Psi }{p} \Delta p
+    + \frac{1}{2} f \pdv[2]{\Psi }{p}
+    - \Psi \pdv{f}{p} \Delta p 
+    + \pdv{f}{p} \pdv{\Psi }{p} \Delta p^2
+    + \frac{1}{2} \pdv[2]{f}{p} \Delta p^2
+\right)  \\
+&= f - \int \dd{ \Delta \vec{p}} \Delta \vec{p}  \pdv{}{p} (f \Psi )
++ \frac{1}{2} \pdv{}{p} \pdv{}{p} \left(
+    \dd{ \Delta p} \Delta \vec{p} \Delta \vec{p} f \Psi 
+\right)
+\,,
+\end{align}
+%
+where we need the result 
+%
+\begin{align}
+\pdv[2]{(f \Psi )}{p} = \pdv[2]{f}{p } \Psi + \pdv[2]{\Psi }{p} f + 2 \pdv{f}{p} \pdv{\Psi }{p}
+\,.
+\end{align}
+
+We also need to define 
+%
+\begin{align}
+\expval{ \frac{\Delta \vec{p}}{\Delta t}} &= \frac{1}{\Delta t} \int \Psi (\Delta \vec{p}) \Delta \vec{p} \dd{ \Delta \vec{p}} \\
+\expval{ \frac{\Delta \vec{p} \Delta \vec{p}}{\Delta t}} &= \frac{1}{\Delta t} \int \Psi (\Delta \vec{p}) \Delta \vec{p} \Delta p \dd{ \Delta \vec{p}} 
+\,.
+\end{align}
+
+Then, we get 
+%
+\begin{align}
+\pdv{f}{t} + \vec{v} \cdot \pdv{f}{\vec{x}} 
+= - \pdv{}{\vec{p}} \left(
+    f \expval{\frac{\Delta p}{\Delta t}}
+\right)
++ \frac{1}{2} \pdv{}{p} \pdv{}{p} \left(
+    f \expval{\frac{\Delta p \Delta p}{\Delta t}}
+\right)
+\,.
+\end{align}
+
+We also need to introduce an assumption: a detailed balance principle,
+%
+\begin{align}
+\Psi (\vec{p}, - \Delta \vec{p}) &= \Psi (\vec{p} - \Delta \vec{p} , \Delta p)  \\
+\Psi (\vec{p}, - \Delta \vec{p}) &= 
+\Psi (\vec{p}, \Delta \vec{p}) - \Delta \vec{p} \pdv{\Psi }{\vec{p}} + \frac{1}{2} \pdv[2]{\Psi }{p} \Delta p \Delta p  \\
+\pdv{}{p} \expval{\frac{\Delta \vec{p}}{\Delta t}} &=
+\frac{1}{2} \pdv{}{p} \pdv{}{p} 
+\expval{\frac{\Delta \vec{p} \Delta \vec{p}}{\Delta t}}
+\,,
+\end{align}
+%
+meaning that the quantity 
+%
+\begin{align}
+\expval{\frac{\Delta \vec{p}}{\Delta t}} -
+\frac{1}{2} \pdv{}{p} 
+\expval{\frac{\Delta \vec{p} \Delta \vec{p}}{\Delta t}}
+\,
+\end{align}
+%
+is a constant, which we set to zero. 
+We will verify \emph{a posteriori} that this is correct, but it kind of makes sense. So, 
+%
+\begin{align}
+\underbrace{\expval{\frac{\Delta \vec{p}}{\Delta t}}}_{R} =
+\underbrace{\frac{1}{2} \pdv{}{p} 
+\expval{\frac{\Delta \vec{p} \Delta \vec{p}}{\Delta t}}}_{\pdv*{}{p} (D_{pp})}
+\,.
+\end{align}
+
+The equation then becomes 
+%
+\begin{align}
+\pdv{f}{t} + \vec{v} \cdot \pdv{f}{\vec{x}} =
+ - \pdv{f}{p} R 
+ - f \pdv{R}{p}
+ + \pdv{}{p} \pdv{}{p} (f
+ D_{pp} ) = \pdv{}{p} \left( D_{pp} \pdv{f}{p} \right)
+\,.
+\end{align}
+
+In one dimension, and neglecting interactions, this simply becomes 
+%
+\begin{align}
+\pdv{f}{t} + v \mu \pdv{f}{z} = \pdv{}{\mu } \left(D_{\mu \mu } \pdv{f}{\mu } \right) 
+\,,
+\end{align}
+%
+à la Fokker-Planck. 
+The beautiful thing is that this is valid without assuming slow velocities or isotropy! 
+
+This exactly describes the diffusion of the beam we were considering. 
+It's a mess to solve this. 
+
+Let us try to integrate this between \(-1\) and \(1\): we apply the operator \(I = (1/2) \int_{-1}^{1} \dd{\mu } \). 
+We define the distribution function \(M(z, t) = I(f)\). 
+
+The equation then becomes 
+%
+\begin{align}
+\pdv{M}{t} + \pdv{}{z} I( v \mu f) = 0
+\,,
+\end{align}
+%
+since \(D_{\mu \mu }\) vanishes at \(\pm 1\). 
+
+The term \(J = I(v \mu f)\) looks like a current: we then have the conservation equation
+%
+\begin{align}
+\pdv{M}{t} + \pdv{J}{z} = 0
+\,.
+\end{align}
+
+We can rewrite \(J\) using \(\mu = -(1/2) \partial_{\mu } (1 - \mu^2)\): 
+%
+\begin{align}
+J &= - \frac{1}{2} v \int \dd{\mu } \pdv{}{\mu } (1 - \mu^2) f  \\
+&= + \frac{v}{4} \int_{-1}^{1} \dd{\mu } (1 - \mu^2) \pdv{f}{\mu }
+\,.
+\end{align}
+
+If we integrate up to an arbitrary \(\mu \) instead, we get 
+%
+\begin{align}
+\pdv{}{t} \int_{-1}^{\mu } \dd{\mu '} f + v \int_{-1}^{\mu } \dd{\mu '} \mu ' \pdv{f}{z} &=  D_{\mu \mu} \pdv{f}{\mu }  \\
+(1 - \mu^2)  \pdv{f}{\mu } &= \frac{(1 - \mu^2)}{D_{\mu \mu }}
+\pdv{}{t} \int_{-1}^{\mu } \dd{\mu '} f 
++ \frac{v (1 - \mu^2)}{D_{\mu \mu }} \int_{-1}^{\mu } \dd{\mu '} \mu ' \pdv{f}{z}
+\,,
+\end{align}
+%
+but we are close to isotropy, so 
+%
+\begin{align}
+(1 - \mu^2) \pdv{f}{\mu } = \frac{(1 - \mu^2)}{D_{\mu \mu }} (\mu +1) \pdv{M}{t} + \frac{v (1- \mu^2)}{D_{\mu \mu }} \frac{1}{2} (M^2 - 1) \pdv{M}{z} 
+\,,
+\end{align}
+%
+so we can multiply everything by \(v/4\) and integrate in \(\mu \) between \(-1\) and \(1\): 
+%
+\begin{align}
+J = \int_{-1}^{1} \dd{\mu } \left(
+\frac{(1 - \mu^2)}{D_{ \mu \mu }} (1 + \mu )
+\pdv{M}{t} 
+- \frac{v^2 (1 - \mu^2)^2}{8 D_{\mu \mu }} \pdv{M}{z}
+\right)
+\,,
+\end{align}
+%
+so we can define 
+%
+\begin{align}
+k_{tt} &= \frac{v}{4} \int_{-1}^{1} \dd{\mu } \frac{(1 - \mu^2) ( 1 + \mu )}{D_{\mu \mu } }\\ 
+k_{zz} &= \frac{v^2}{8} \int_{-1}^{1} \dd{\mu } \frac{(1 - \mu^2)^2}{D_{\mu \mu }}
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+J = k_{tt } \pdv{M}{t} - k_{zz} \pdv{M}{z}
+\,.
+\end{align}
+
+Together with the continuity equation we find 
+%
+\begin{align}
+\pdv{M}{t} = - \pdv{}{z} \left( k_{tt} \pdv{M}{t} - k_{zz} \pdv{M}{z}\right)
+\,,
+\end{align}
+%
+but \(f\) will be close to isotropy --- the simplest thing is a dipole, \(f_0 (1 + \delta \mu )\), where \(\delta \) is a number \(\ll 1\): 
+%
+\begin{align}
+J = \frac{1}{2} \int_{-1}^{1} \dd{\mu } f_0 v \mu (\delta \mu ) = \frac{f_0 v \delta }{3}
+\,.
+\end{align}
+
+If \(\delta \) is small, then the \(k_{tt}\) part will be small: therefore, we find 
+%
+\begin{align}
+\pdv{M}{t} = \pdv{}{z} \left( k_{zz} \pdv{M}{z} \right)
+\,.
+\end{align}
+
+\todo[inline]{Clarify this. The first term is \(\sim v M\), the second is \(\sim v^2 M / z\). }
 
 \end{document}

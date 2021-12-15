@@ -1,4 +1,139 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\subsection{Matter effects in neutrino oscillations}
+
+\marginpar{Wednesday\\ 2021-12-15}
+
+This is also called the MSW effect. 
+Neutrinos interact weakly with matter, meaning that they are rarely absorbed;
+however, neutrinos may feel the presence of matter even without changing direction. 
+
+Through some interaction, a propagating neutrino may feel the presence of background fermions (matter).
+This idea is called ``coherent forward scattering''. 
+
+The full Hamiltonian will include a neutrino ``interaction energy potential''
+%
+\begin{align}
+H = \frac{1}{2E} U M^2 U ^\dag + \left[\begin{array}{ccc}
+V_{ee} & V_{e \mu } & V_{e \tau } \\ 
+V_{\mu e} & V_{\mu \mu } & V_{\mu \tau } \\ 
+V_{\tau e} & V_{\tau \mu } & V_{\tau \tau }
+\end{array}\right]
++ \text{terms proportional to } \mathbb{1}_3
+\,.
+\end{align}
+
+Pictorially, this matrix \(V\) has a diagonal term driven by neutral current interactions,
+with any neutrino interacting through a \(Z\) boson. 
+The coupling of the \(Z\) does not depend on the flavor, so that component is 
+proportional to \(\mathbb{1}\), meaning it does not affect oscillations. 
+
+A second term is the one corresponding to the \(W\) boson: for this, we only have
+an effect for electron neutrinos, in the \(V_{ee}\) component. 
+
+At tree level, this is proportional to the Fermi constant \(G_F\). 
+Also, it will linearly depend on the electron number density. 
+
+The calculation yields 
+%
+\begin{align}
+V_{ee} &= \sqrt{2} G_F N_e 
+\qquad \text{for neutrinos}  \\
+V_{ee} &= -\sqrt{2} G_F N_e 
+\qquad \text{for antineutrinos}  
+\,.
+\end{align}
+
+This effect is quite analogous to the propagation of light within a medium with a 
+non-1 index of refraction. 
+It alters the oscillation pattern both in amplitude and in frequency.
+
+The main oscillation channel for atmospheric neutrinos is \(\nu _\mu \to \nu _\tau \), 
+meaning that these matter effect did not need to be included to study it. 
+
+It is convenient to introduce a term \(A = 2 E V_{ee} = 2 \sqrt{2} G_F N_e E\); then the Hamiltonian reads 
+%
+\begin{align}
+H = \frac{1}{2E} \left( U M^2 U ^\dag + \left[\begin{array}{ccc}
+A & 0 & 0 \\ 
+0 & 0 & 0 \\ 
+0 & 0 & 0
+\end{array}\right] \right)
+\,.
+\end{align}
+%
+
+Qualitatively, we can understand that this term will be important when \(A\) 
+is \(\gtrsim \delta m^2\) or \(\Delta m^2\). 
+
+It turns out that 
+%
+\begin{align}
+\frac{A}{\Delta m^2_{ij}} \approx \num{1.526e-7} \left( \frac{N_e}{\SI{}{mol/cm^3}}\right) 
+\left( \frac{E}{\SI{}{MeV}}\right)
+\left( \frac{\SI{}{eV^2}}{\Delta m^2_{ij}} \right)
+\,.
+\end{align}
+
+For the Sun, in the core, \(N_e \sim \SI{e2}{mol/cm^3}\), so we get that as an order of magnitude \(A \sim \delta m^2\). 
+
+Since the number density of neutrinos depends on position, we need to integrate the Schrödinger equation numerically. 
+
+Integrating these oscillatory functions, however, can be tricky! 
+Errors accumulate. 
+
+For the crust of the Earth, say, the LHC to LNGS beam, approximating the density as constant can work quite well. 
+
+Let us consider a two-neutrino case: 
+%
+\begin{align}
+H = \frac{1}{2E} U \left[\begin{array}{cc}
+m_1^2 & 0 \\ 
+0 & m_2 ^2
+\end{array}\right]
+U ^\dag
++ \frac{1}{2E}
+\left[\begin{array}{cc}
+A & 0 \\ 
+0 & 0
+\end{array}\right]
+= \frac{1}{2E} \widetilde{U} \widetilde{M}^2 \widetilde{U} ^\dag
+\,,
+\end{align}
+%
+so we find a corrected diagonal matrix \(\widetilde{M}^2\) as well as corrected mixing angles! 
+They read:
+%
+\begin{align}
+\sin 2 \widetilde{\theta}_{12} &= \frac{\sin 2 \theta_{12} }{\sqrt{(\cos 2 \theta_{12} - A / \delta m^2)^2 + \sin^2 2 \theta_{12} }}  \\
+\widetilde{\delta m}^2 &= \delta m^2 \frac{\sin 2 \theta_{12} }{\sin 2 \widetilde{\theta}_{12}}
+\,,
+\end{align}
+%
+which looks like a Breit-Wigner resonance.
+
+The corrected \(\sin 2 \widetilde{\theta}_{12}\) has a maximum when \(\cos 2 \theta_{12} = A / \delta m^2 \), at which point we also have a minimum for \(\widetilde{\delta m}^2\). 
+
+This resonance does not happen for antineutrinos, which have a different sign for \(A\). 
+
+For the Sun, we make two approximations: the density is slowly changing, \(\dv*{N_e}{x} \) is nonzero but small, and there are many oscillations. 
+
+The transition is ``adiabatic'', so everything will only depend on the initial and final mixing angles, not on \(\delta m^2\). 
+
+The result is 
+%
+\begin{align}
+P_{ee}^{2 \nu } ( \text{solar}) \approx \cos^2 \widetilde{\theta}_i \cos^2 \theta + \sin^2 \widetilde{\theta}_i \sin^2 \theta 
+\,.
+\end{align}
+
+This probability has been tested! 
+It looks a bit like a decreasing ``sigmoid'', with a transition at few \SI{}{MeV}. 
+
+This oscillation probability is no longer octant symmetric! 
+It solves the degeneracy of the mixing angles in the KamLand experiment. 
+
+Uncertainties in the solar model do not really create problems in this regard; our models work well enough. 
+
 \end{document}

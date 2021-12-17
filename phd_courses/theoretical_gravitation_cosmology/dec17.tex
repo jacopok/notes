@@ -1,4 +1,262 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2021-12-17}
+
+Last time we reached the equations \(\overline{h}^{\mu 0}= 0\), as well as 
+the quadrupole formula 
+%
+\begin{align}
+\overline{h}^{n k} (t, \vec{r}) &= \frac{2G}{c^{4}r} \dv[2]{}{\tau } q^{n k} (t - r/c)  \\
+q^{n k}(t) &= \frac{1}{c^2} \int \dd[3]{x} x^{n} x^{k} T^{00} (t, \vec{x})
+\,.
+\end{align}
+
+The prefactor \(G/c^{4} \approx \SI{e-55}{s^2 / g cm}\) is very small! 
+
+Because of the conservation of momentum, the dipole contribution \(\propto\ddot{d}\) vanishes. 
+Also, objects with a constant quadrupole moment do not emit. 
+
+In order to move the waveform to the TT gauge we need to use projectors: 
+a projector for vectors is \(P_{ij} = \delta_{ij} - n_i n_j = 0\). 
+From it, we can define 
+%
+\begin{align}
+P_{jkmn} = P_{jm} P_{kn} - \frac{1}{2} P_{jk} P_{mn}
+\,.
+\end{align}
+
+This object projects rank-2 tensors into their traceless and transverse part. 
+It has the following properties: 
+%
+\begin{align}
+P_{jklm} &= P_{lmjk}  \\
+P_{jkmn} P_{mnrs} &= P_{jkrs}  \\
+n^i P_{jkmn} &= n^k P_{jkmn} = n^n P^{jkmn} = n^{m} P^{jkmn} = 0  \\
+\delta^{jk} P_{jkmn} &= \delta^{mn} P_{jkmn} = 0   
+\,.
+\end{align}
+
+With this, we can find 
+%
+\begin{align}
+h^{TT}_{ij} 
+= P_{ijlm} \overline{h}_{lm}
+= P_{ijlm} h_{lm}
+\,.
+\end{align}
+
+With this machinery, we can then write 
+%
+\begin{align}
+h^{TT}_{nk} (t, r) = \frac{2G}{c^{4} r} \dv[2]{}{t} Q^{TT}_{n k}(t -r /c)
+\,,
+\end{align}
+%
+where \(Q^{TT}_{n k} = P_{n k i j} q_{ij} \). 
+
+\subsection{Binary system GW emission}
+
+We take two masses \(m_1 \) and \(m_2 \), with initial separation \(\ell_0\). 
+We define the total mass \(M = m_1 + m_2 \) and the reduced mass \(\mu = (1/m_1 + 1/m_2 )^{-1}\). 
+
+The Keplerian frequency reads: 
+%
+\begin{align}
+\omega _k = \sqrt{ \frac{GM}{\ell_0^3}}
+\,.
+\end{align}
+
+If the orbit is assumed to be circular, we will have positions changing in the \(xy\) plane
+as 
+%
+\begin{align}
+x_1 &= \frac{m_2 \ell_0 }{M} \cos \omega _k t \\
+y_1 &= \frac{m_2 \ell_0 }{M} \sin \omega _k t \\
+x_2 &= -\frac{m_1 \ell_0 }{M} \cos \omega _k t \\
+y_2 &= -\frac{m_1 \ell_0 }{M} \sin \omega _k t \\
+\,.
+\end{align}
+
+The stress-energy tensor will read 
+%
+\begin{align}
+T^{00} = c^2 \sum _{i} m_i \delta(x - x_i) \delta (y- y_i) \delta (z)
+\,.
+\end{align}
+%
+We can then compute the components of the quadrupole tensor:
+%
+\begin{align}
+q_{xx} &= \frac{1}{c^2} \int \dd[3]{x} x_x x_x \left( c^2 \sum _{i} m_i \delta(x - x_i) \delta (y- y_i) \delta (z) \right)  \\
+&= m_1 x_1^2 + m_2 x_2^2  \\
+&= \mu \ell_0^2 \cos^2 (\omega _k t) = \frac{\mu}{2} \ell_0^2 \cos( 2 \omega _k t) + \text{const}
+\,.
+\end{align}
+
+The calculation for the other components is similar, and we get 
+%
+\begin{align}
+q_{yy} &= -\frac{\mu}{2} \ell_0^2 \cos(2 \omega _k t)  + \text{const}  \\
+q_{xy} &= \frac{\mu}{2} \ell_{0}^2 \sin(2 \omega _k t)
+\,.
+\end{align}
+
+The trace of the quadrupole is constant! 
+When we compute the second derivative for the strain we find 
+%
+\begin{align}
+h^{TT}_{ij} = - \frac{2G}{c^{4}r } \frac{\mu \ell_0^2}{2} (2 \omega _k)^2 P_{ijkl}A_{kl}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+A_{kl} = \left[\begin{array}{ccc}
+\cos(2 \omega _k t) & \sin(2 \omega _k t) & 0 \\ 
+\sin(2 \omega _k t) & - \cos(2 \omega _k t) & 0 \\ 
+0 & 0 & 0
+\end{array}\right]
+\,.
+\end{align}
+
+The wave emitted in the \(z\) direction is \emph{circularly} polarized, 
+while in the \(x\) direction it is \emph{linearly} polarized. 
+
+For PSR 1913+16, the total mass was roughly \(\num{2.8}M_{\odot}\), 
+the separation was \(\ell_0 \sim \SI{1.9e5}{km}\), 
+the frequency of gravitational waves was \(f _{\text{GW}} \sim \SI{e-5}{Hz}\). 
+
+The amplitude is about \(h_0 \sim (4 \mu M G^2 / \ell_0 c^{4} r) \approx \num{6e-22}\). 
+
+What is the emitted power? It is 
+%
+\begin{align}
+L _{\text{GW}} = \frac{G}{5c^{5}} \expval{\dot{\ddot{Q}}_{km} \dot{\ddot{Q}}_{km}}
+\,,
+\end{align}
+%
+where the average is over several wavelengths or many orbital periods.
+This is the \emph{adiabatic approximation}. 
+
+For the binary case, we have \(\dot{\ddot{Q}} \dot{\ddot{Q}} = 32 \mu^2 \ell_0^{4} \omega _k^{6}\). 
+
+The luminosity can then be written as 
+%
+\begin{align}
+L = \frac{32}{5} \frac{G^{4}}{c^{5}} \frac{\mu^2M^3}{\ell_0^{5}} 
+\,.
+\end{align}
+
+How does this translate to a chirping signal? 
+
+The orbital energy will read 
+%
+\begin{align}
+E _{\text{orb}} = \frac{1}{2} \mu \omega _k^2 \ell_0^2 - G \mu \frac{M}{\ell_0 }
+= - \frac{1}{2} \frac{G \mu M}{\ell_0 }
+\,.
+\end{align}
+
+The only way this will change is through a change in \(\ell_0\); 
+that means 
+%
+\begin{align}
+\dv{E _{\text{orb}}}{t} = - E _{\text{orb}} \dv{ \log \ell_0 }{t}
+\,.
+\end{align}
+
+As is often denoted improperly in physics, \(\dv*{\log x}{ t} = (1/x) \dv*{x}{t}\). 
+
+In terms of the orbital frequency, by Kepler
+%
+\begin{align}
+\dv{\log \omega _k}{t} = - \frac{3}{2} \dv{\log \ell_0 }{t}
+\,.
+\end{align}
+
+Putting everything together, 
+%
+\begin{align}
+\frac{2}{3} \dv{\log T}{t} = - \frac{3}{2} \dv{\log E _{\text{orb}}}{t} 
+= - \frac{3}{2} \frac{L _{\text{GW}}}{E _{\text{orb}}}
+\,.
+\end{align}
+
+This tells us what the variation of the period of the binary will be. 
+For PSR 1913+16 the prediction for \(\dot{T}\) matches the data very closely.
+
+The variation of the binary separation will read 
+%
+\begin{align}
+\dv{\log \ell_0}{t} = \frac{L_{\text{gw}}}{E _{\text{orb}}}
+ = - \frac{64}{5 \ell_0^{4}} \frac{G^3}{c^{5}} \mu M^2
+\,,
+\end{align}
+%
+which can be integrated from a certain length to another: we get 
+%
+\begin{align}
+\ell^{4}_0 (t) 
+&= \ell_0^{\text{initial}} - \frac{256}{5}  \frac{G^3}{c^{5}} \mu M^2 t  \\
+\ell_0 (t) &= \left(\ell_0^{\text{initial}} - \frac{t}{t _{\text{coal}}}\right)^{1/4}
+\,.
+\end{align}
+
+This will not work close to merger. 
+We can then look at the variation of \(\omega _k\) in time, 
+%
+\begin{align}
+\omega _k(t) = \sqrt{\frac{GM}{\ell_0^3(t)}} = \omega _k^{\text{in}} \left(1 - \frac{t}{ t _{\text{coal}}}\right)^{-3/8} = \pi f _{\text{GW}}
+\,.
+\end{align}
+
+This tells us how the amplitude \(h_0 (t)\) changes: 
+%
+\begin{align}
+h_0 (t) &= \frac{4 \mu M G^2}{rc^{4} \ell_0 (t)}  \\
+&= 4 \pi^{2/3} \frac{G^{5/3}}{c^{4} r} \mathcal{M}_c^{5/3} f _{\text{gw}}^{2/3} (t)
+\,,
+\end{align}
+%
+where \(\mathcal{M}_c = \mu^{3/5} M^{2/5}\) is called the \emph{chirp mass}. 
+
+In order to write a waveform, we need to introduce an integrated phase: 
+%
+\begin{align}
+\phi (t) = 2 \phi _{\text{orbital}} (t) = \int^{t} 2 \omega _k (t') \dd{t'} + \phi _{\text{initial}}
+\,.
+\end{align}
+%
+
+The GW frequency can be manipulated into 
+%
+\begin{align}
+f _{\text{GW}} (t) = \frac{1}{8 \pi } \left( \frac{c^3}{G \mathcal{M}_c}\right)^{5/8} \left( \frac{5}{t _{\text{coal}} - t}\right)^{5/8}
+\,.
+\end{align}
+
+The result can be then computed analytically: 
+%
+\begin{align}
+\phi (t ) - \phi _{\text{in}} = - 2 \left( \frac{c^3 (t _{\text{coal}} - t )}{5 G \mathcal{M}_c}\right)^{5/8}
+\,.
+\end{align}
+
+The phase of the signal has a strong dependence on the chirp mass, less so on higher-order parameters. 
+
+The total waveform reads 
+%
+\begin{align}
+h_{ij}^{TT} (t, r) = \frac{4 \pi^{2/3}}{r c^{4}} G^{5/3} \mathcal{M}^{5/3} f _{\text{gw}}^{2/3} P_{ijkl} \left[\begin{array}{ccc}
+\cos \phi (t) & \sin \phi (t) & 0 \\ 
+\sin \phi (t) & - \cos \phi (t) & 0 \\ 
+0 & 0 & 0
+\end{array}\right]_{kl}
+\,.
+\end{align}
+
+
+
 \end{document}

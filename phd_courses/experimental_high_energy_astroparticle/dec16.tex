@@ -1,4 +1,184 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2021-12-17}
+
+We were dealing with the interaction of radiation with matter, and 
+we saw the Bethe-Bloch formula. 
+
+We have found a way to determine the radiation length 
+%
+\begin{align}
+x_0 = 180 \frac{A}{Z^2} \SI{}{g/cm^2}
+\,,
+\end{align}
+%
+as well as seeing that the maximum penetration length is \(x \propto \log (E_0 / E_i)\). 
+
+The final angle of the particle after interaction with the medium will be 
+distributed according to a Gaussian with: 
+%
+\begin{align}
+\sigma _\theta \approx \frac{\SI{21}{MeV}}{p \beta } \sqrt{ \frac{x}{x_0 }} \left(1 + \num{2e-3} \log (\dots)\right)
+\,,
+\end{align}
+%
+where the logarithmic correction is small, of the scale of its prefactor. 
+
+The Molière radius is defined as 
+%
+\begin{align}
+R _{\text{Molière}} = \frac{\SI{21}{MeV}}{E_c} x_0 
+\,,
+\end{align}
+%
+and it characterizes the transverse scale of the beam. 
+
+What happens if a proton is incoming? 
+The length before it interacts will typically be 
+%
+\begin{align}
+\Lambda \approx \frac{1}{n \sigma }
+\,,
+\end{align}
+%
+and we have already seen what the plot for \(\sigma_{pp}\) looks like.
+The oscillations mostly happen at low energies, ad high energies there is an increase,
+while in a wide region we have \(\sigma_{pp} \approx \SI{40}{mb}\). 
+
+The hadronic cross-section is quite universal: the length scale for 
+the interaction of a pion is similar to that for a proton. 
+
+The longitudinal shower development is always peaked at few interaction lengths, like \(5 \Lambda \), 
+always proportional to \(\log E\). 
+
+The distribution of the angle of the products after an hadronic interaction
+will look like \(\theta \approx p_T / p_ \parallel\), with \(e^{- p_T / p_0}\). 
+
+Let us assume that \(p_0 \) is close to \SI{300}{MeV}; 
+the scale of the transverse momentum can be estimated with \(\Delta x \Delta p \sim \hbar\), 
+where \(\Delta x\) is the length scale of the interaction cross-section. 
+
+Typically, in a material \(\Lambda > x_0 \) as long as \(Z > 10\) in the medium. 
+Therefore, the hadronic shower typically is deeper than the electromagnetic one. 
+
+Suppose we are in LNGS and we have cosmic rays in the atmosphere. 
+What is the minimum energy the muons must have to reach the detector? 
+
+Gran Sasso rock has a density of roughly \SI{2.3}{g/cm^3} and a 
+depth of roughly \SI{1500}{m}. 
+This is equivalent to about \SI{3}{km} of water. 
+
+So, we want to require that \(R_\mu (E) \geq \SI{3200}{mwe}\). 
+This is defined as 
+%
+\begin{align}
+R_\mu (E) = \int_{m_\mu c^2}^{E} \frac{ \dd{E}}{\abs{ \dv*{E}{x}}}
+\,.
+\end{align}
+
+How does the energy loss scale as a function of energy? 
+We will have several contributions, so 
+%
+\begin{align}
+\dv{E}{x} = f_{\text{bethe-bloch}} (E) + f _{\text{bremsstrahlung}}(E)
+\,,
+\end{align}
+%
+but the bremsstrahlung for muons will be suppressed by \((m_\mu / m_e)^2\) compared to that of electrons: the threshold for electrons is roughly \SI{100}{MeV}, so that for muons is \SI{4}{TeV}. 
+
+So, unless we deal with very high-energy muons the contribution can be neglected; we will be able to write the radiative energy loss by bremsstrahlung as \(bE\) if needed (above a few hundred \SI{}{GeV}). 
+
+The Bethe-Bloch term is roughly constant for a very large energy range, so the integral is rather easy. 
+In general, if 
+%
+\begin{align}
+\abs{\dv{E}{x}} = a + bE
+\,
+\end{align}
+%
+then we will have 
+%
+\begin{align}
+R(E) = \int_{mc^2}^{E} \frac{ \dd{E}}{a + bE} \approx \int_{mc^2}^{E_c} \frac{\dd{E}}{a} + \int_{E_c}^{E} \frac{ \dd{E}}{a+ bE}
+\,,
+\end{align}
+%
+where the \(bE\) term is dominant in the high-energy range. 
+This means that when \(E < E_c\) we simply have \(R(E) = (E-mc^2) / a\), while for \(E > E_c\) we get 
+%
+\begin{align}
+R(E) \approx \frac{E_c - mc^2}{a} + \frac{1}{b} \log \frac{E}{E_c}
+\approx  \left( 2.5 + 1.2 \log \frac{1 + 4 E / \SI{}{TeV}  }{3} \right)
+\,.
+\end{align}
+
+The value of \(b\) when \(E\) is expressed in \SI{}{MeV} is approximately \(b \approx \SI{8e-6}{MeV g^{-1} cm^2}\). 
+This means that the minimum energy for muons is about \SI{1.4}{TeV}. 
+Not very many muons have such an energy. 
+Suppose we have a pion with energy \SI{10}{GeV}. 
+
+The  minimum energy loss rate is \(\SI{2}{MeV g^{-1} cm^2}\), this means that the range is 
+%
+\begin{align}
+R = \frac{E}{\Delta E / \Delta x} \approx \SI{5e3}{g / cm^2}
+\,,
+\end{align}
+%
+which translates to \SI{50}{m} in water, \SI{7}{m} in iron, \SI{50}{km} in air. 
+
+These are generally quite long; what about the hadronic interaction length \(\Lambda \)? 
+For the cross-section we can use \(\sigma \sim \SI{40}{mb}\), for the number density we have 
+%
+\begin{align}
+n = N_A \frac{\text{atoms}}{\text{mol}} \frac{A \text{nucleons / atom}}{A \text{grams}/ \text{mol}} \rho \approx N_A \frac{\rho}{\SI{}{g/cm^3}} \text{targets / } \SI{}{cm^3}
+\,.
+\end{align}
+
+This comes out to 
+%
+\begin{align}
+\Lambda \approx \frac{\SI{0.4}{m}}{\rho / (\SI{}{g/cm^3})}
+\,.
+\end{align}
+
+When looking up the proper numbers, we have that interaction dominates: in iron, it happens after only \SI{1.6}{cm}, in water after \SI{8.6}{cm}, in air after about \SI{700}{m}. 
+
+We also need to look at decay! The decay time is \SI{26}{ns} for a pion, meaning that the decay length is \(c \tau \gamma \beta \approx \gamma \SI{7.8}{m} \approx \SI{540}{m}\). 
+
+This scales linearly with the energy! 
+
+\section{Detectors}
+
+One of the simplest detectors one can make is a Geiger counter:
+a chamber with gas and a wire. 
+
+A particle comes through and generates ionization; 
+since there is an electric field the electrons and ions are separated from each other. 
+
+The velocity of the drift is typically plotted as a function of \(E / P\); it saturates to a certain plateau value, typically of the order of a few \SI{}{cm/\micro s} for electrons, while ions are a factor 1000 slower. 
+
+The variation in the voltage is related to a variation in the charge by \(\delta V = \delta q / C\). 
+The rise time of the voltage is roughly \(v _{\text{drift}} R\), where \(R\) is the length scale of the detector. 
+
+The HV of the detector is quite large compared to \(\delta V\); so we need a high-pass filter, such that \(RC \lesssim v _{\text{drift}} R\).
+
+Typically one uses \(RC = (\SI{50}{\ohm}) (\dots)\).
+Also, one puts a strong resistor before the detector, to reduce the current.
+
+The value of \(\delta q\) will be \(N _{\text{pairs}} e\); the number of pairs can be computed as 
+%
+\begin{align}
+N _{\text{pairs}} = \frac{\Delta E}{W}
+\,,
+\end{align}
+%
+where \(W\) is the energy needed to release one pair, while \(\Delta E\) is the total energy lost in the detector. 
+Typically, in gas detectors one has \(W \approx \SI{10}{eV}\). 
+
+What is \(\Delta E\)? Since \(\dv*{E}{x} \approx \SI{2}{MeV g^{-1} cm^2}\) we have \(\Delta E = \SI{2}{keV}\) in a \SI{}{cm} of material. 
+This means that we release about 200 pairs, or \SI{3e-17}{C}. 
+
+What is the capacitance of a cylinder with a given length and a radius of \SI{1}{cm}?  
+
 \end{document}

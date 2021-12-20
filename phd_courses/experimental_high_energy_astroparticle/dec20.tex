@@ -4,9 +4,150 @@
 \marginpar{Monday\\ 2021-12-20}
 
 \begin{extracontent}
-    What is the capacitance of a cylinder?
-    
-    
+    What is the capacitance of a cylinder with a wire?
+    %
+    \begin{align}
+    C = \frac{2 \pi \epsilon  L}{\log R _{\text{cylinder}} / R _{\text{wire}}}
+    \,.
+    \end{align}
 \end{extracontent}
+
+Last time we were looking at some particle detectors. 
+We are looking at a detector with a cylindrical shape --- a wire within a cylinder. 
+
+We saw that for a \(\sim \SI{2}{MeV}\) particle there will be roughly 200 emitted electrons. 
+
+The drift time for a \SI{1}{cm} detector will roughly be \SI{200}{\nano\second}, 
+since the drift time is roughly \SI{5}{cm/\micro\second}. 
+
+This means that the shape of the pulse, after an RC high-pass filter, is 
+%
+\begin{align}
+\overline{V}(t) = \overline{R} \overline{C} \dv{V(t)}{t} \approx \overline{R} \overline{C}
+\frac{ \delta V}{T_D} = \overline{R}\frac{\overline{C}}{C} \frac{ \delta q}{T_D}
+\,.
+\end{align}
+
+The current will roughly be \(\delta q / T_D \approx \SI{0.16}{nA}\).
+The change in tension is roughly \(\Delta V \sim I R \approx \SI{8}{nV}\). 
+
+So, we need an amplification mechanism. 
+
+The anodic wire needs to be very thin, so that we have a large electric field, 
+which means that we get amplification by the emission of secondary electrons. 
+This gain can be a factor \num{e5}! 
+This means we get a charge \(\delta q \approx N _{\text{pair}} e \times \text{gain}\). 
+
+We get \(\Delta V \sim \SI{0.8}{mV}\); with better systems we typically get millivolt currents. 
+
+We should also aim to reduce the capacitance of the detector! 
+
+At low values for the high voltage we are in the ionization regime; this means that we 
+see exactly the number of charges produced by the particle. This is the ionization regime. 
+\(\delta q (V) = \text{constant}\). 
+
+At higher voltages, we will be getting a certain gain: this is the proportional regime. 
+\(\delta q(V) = \alpha \delta q\).
+
+At even higher voltages, we will get a nonlinear profile, with saturation. 
+This is the limited proportional regime.
+
+At even higher voltages, we fully saturate: this is the Geiger-Muller regime. 
+Here we do not have any information about the particle, we just know that 
+something has passed through. 
+
+This all depends on the charge of the particle: for \(\alpha \) particle the \(\delta q\) is 
+always \(Z^2 = 4\) times higher. 
+
+We can use many of these gas detectors to figure out where a particle passed through. 
+
+If this is the case, we can also get trajectory information! 
+The delay between the arrival time of the particle ionization in different wires tells us about
+how close to the center of each of them it passed. 
+If we have a star, trigger that's even better! 
+
+This kind of thing is used in LHC. 
+
+An alternative is to have many HV wires in the same chamber. 
+This is called a \emph{wire chamber}. 
+
+The spatial resolution can be computed as \(\sigma _x \approx v _{\text{drift}} \sigma _t\), 
+so if we have millisecond timing we can get a few hundreds of microns. 
+
+Another component is a \emph{quencher}. 
+Some electrons and ions produced might recombine, producing UV photons. 
+Those can then ionize the gas again, in a place which is unrelated. 
+So, we need to quench these UV photons (absorb them) so that they do not mess up 
+our measurement.
+
+If we also have a magnetic field, the trajectory of the particle passing through 
+will be bent; this allows us to measure the momentum and charge of the particle, but
+it will also curve the trajectories of the electrons. 
+
+What to do when the interaction cross-section is very low?
+We can increase the density of the gas, or even make it a liquid.
+
+Those can be for example liquid Argon or liquid Xenon Time Projection Chambers.
+
+\subsection{Scintillators}
+
+A fraction of the energy from a particle is emitted as light. 
+Atoms are ionized and then recombine; the UV light they emit thus is 
+called \emph{scintillation light}. 
+
+If the total energy lost is \(\Delta E\), and \(W\) 
+is the energy required to produce a scintillation photon (\(W \approx \SI{100}{eV}\)). 
+
+For a \SI{2}{MeV} particle, we get about 20000 photons. 
+The wavelength of this light depends on the energy states of the material. 
+Typically the emission of these happens within a few nanoseconds. 
+
+We need the material to be transparent to the scintillation photons, 
+but we need to contain it within a reflective material so that the photons are not
+going everywhere. 
+
+The mechanism for the absorption of these visible or UV photons will be the photoelectric effect. 
+
+The quantum efficiency of the detector describes the fraction of the photons which are detected. 
+
+We need to give energy to the electron emitted by the photon!
+It will have low, order-\SI{}{eV} energy. 
+The way this is typically done is through a series of dynodes. 
+We connect the HV supply to a series of resistors, and have a uniformly decreasing 
+voltage between the dynodes. 
+The gain will depend on the number of secondary electrons produced by the dynode chain
+per incident electron, which is denoted as \(\alpha \). 
+
+The dependence is roughly a powerlaw as a function of the HV. 
+The system is roughly saturated when the current due to the secondary electrons
+roughly equals the HV/\(R\) current. 
+
+These are \emph{photomultipliers}. 
+
+We will have a certain efficiency for our collection \(\epsilon _{\text{coll}}\), as well as 
+a quantum efficiency \(\epsilon _q\).
+
+The signal will be 
+%
+\begin{align}
+N_\gamma \epsilon _q \epsilon _{\text{coll}} \times \text{gain}
+\,.
+\end{align}
+
+Typical numbers are about \(N_ \gamma \approx \num{2e4}\), and both efficiencies at \SI{20}{\percent}. 
+
+With this, we get about \(N = 800\) photoelectrons. 
+
+The time required for the detection is a few nanoseconds for the emission, 
+a few nanoseconds for the propagation, and a further few nanoseconds for 
+the collection by the photomultiplier.
+In the end, the current will be roughly \(I \approx eN / (\SI{100}{ns})\); 
+
+With a \SI{50}{\ohm} resistor, this means a voltage of \SI{70}{nV} times the gain. 
+
+In order to get to the millivolt regime, we need a gain on the order of a million. 
+So, if each dynode allows for a doubling of the electrons we need about 20. 
+
+With these kinds of detectors we can do nuclear spectroscopy. 
 
 \end{document}

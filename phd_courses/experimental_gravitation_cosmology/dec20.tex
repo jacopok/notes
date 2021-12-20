@@ -3,6 +3,149 @@
 
 \marginpar{Monday\\ 2021-12-20}
 
+At high frequency we also lose sensitivity because our 
+detector responds less well to GWs, as well as shot noise. 
+
+In the simplest version, squeezing reduces shot noise but increases
+radiation pressure noise. 
+
+RP noise is at low frequency mostly. 
+The resonant frequency of the suspensions for our detectors is typically 
+at a few \SI{}{Hz}; therefore for practical purposes we are above it and we can treat
+the mirror as a free mass. 
+
+The radiation pressure noise can be described by relating the fluctuation in 
+applied power to the fluctuation in position:
+%
+\begin{align}
+-m \omega^2 \delta x &= 2 \frac{ \delta P}{c}  \\
+\delta x &= - \frac{2 \delta P}{mc \omega^2} = -2 \frac{\sqrt{E \omega \delta P}}{mc \omega^2} \hat{a}_1 (\omega )
+\,.
+\end{align}
+
+We suppose that the amplitude quadrature contains the power, as \(E_1 = \sqrt{P} + \dots\),
+while the phase quadrature \(E_2 \) contains the GW signature. 
+
+The expression for the fluctuation is due to the fact that 
+the quadrature also contains an integral over \(\hat{a}_1\). 
+
+The phase of the reflected signal is modulated by the change in position of the mirror: 
+%
+\begin{align}
+\frac{ \delta \phi }{2 \pi } &= 2 \frac{ \delta x}{\lambda } = 2\frac{ \delta x \omega_0 }{c }  \\
+\delta \phi &= \frac{4 \pi \omega_0 }{c} \delta x
+\,,
+\end{align}
+%
+where the factor 2 is due to the fact that the new path is added both forward and back. 
+
+The quadrature reads 
+%
+\begin{align}
+\sqrt{P}\cos(\omega_0 t + \delta \phi) &= \sqrt{P} \left( \cos( \omega_0 t) \underbrace{\cos(\delta \phi )}_{\sim 1} - \sin( \omega_0 t) \delta \phi \right)
+\,.
+\end{align}
+
+Therefore, the modulation  is roughly \(E_1 \approx \sqrt{P} \delta \phi \). 
+
+The incoming field will be described by \(\vec{a} = (a_1, a_2 )^{\top}\), while the 
+outgoing one will be 
+%
+\begin{align}
+\vec{b} = \left[\begin{array}{c}
+b_1  \\ 
+b_2 
+\end{array}\right]
+= \underbrace{\left[\begin{array}{cc}
+1 & 0 \\ 
+-k & 0
+\end{array}\right] }_{T}
+\vec{a}
+\,,
+\end{align}
+%
+where \(k = 4 \omega_0 P / mc^2 \omega^2\). 
+The spectral density of \(b\) will read 
+%
+\begin{align}
+S(\vec{b}) = \Re (T T ^\dag) \underbrace{S(\vec{a})}_{\mathbb{1}}
+\,.
+\end{align}
+
+The real part of \(T T ^\dag\) reads 
+%
+\begin{align}
+\Re (T T ^\dag) = \left[\begin{array}{cc}
+1 & -k \\ 
+-k & 1+k^2
+\end{array}\right]
+\,.
+\end{align}
+
+The off-diagonal terms mean that the noise in the amplitude and phase quadratures
+is correlated. 
+
+We can plot \(1 + k^2\) against \(f\) with the expression we have for \(k\). 
+It is roughly \(1 / f^2\) and then flat.
+
+How can we show that this is still a minimum uncertainty state? We need to
+see that the determinant of the transfer matrix is 1, which holds. 
+
+There is a quadrature which has reduced quantum noise with respect to the vacuum, 
+at the expense of another which has larger noise. 
+
+People tried to do squeezing in this way; the main thing to do is to use 
+tiny mirrors so that \(k\) becomes very large. 
+
+This effect will rotate the ellipse, even if we already send in squeezed light!
+
+This is the reason why the RP noise worsens the noise curve when we send in squeezed light! 
+
+The solution to this problem is to pre-rotate the ellipse so that this effect is 
+compensated. 
+
+At the quantum level, this is analogous to thinking of regularizing photon arrival times; 
+the statistics of this squeezing operator should be the same as what we get with an SPDC. 
+Of course, that's not really the physics of the measurement we make. 
+
+Some really big names were working on quantum technologies GW detection. 
+Braginsky, Khalili, Kip Thorne, Alessandra Buonanno. 
+
+The things we did today appeared in a paper ``Ponderomotive effects in electromagnetic radiation''. 
+
+A detuned power recycling cavity allows for moving the resonance 
+frequency of the Fabry-Perot cavity into the observation band, which
+means we have very low noise there. 
+
+Squeezed noise is not stationary in the photocurrent! 
+
+When we squeeze there is also an addition of some extra noise,
+we do not stay minimum-uncertainty. 
+
+Squeezing and changing the power are equivalent in the respect of overcoming the Standard Quantum Limit! 
+
+Frequency-dependent squeezing is achieved through the ponderomotive 
+effect: an input cavity rotates the ellipse by \SI{90}{\degree} between high and low frequency.
+
+One can do an output filter, alternatively: doing the same thing 
+after the round-trip in the arms. 
+This turns out to be much better, but it is more sensitive to losses in the filtering cavity. 
+
+\todo[inline]{What does the configuration look like there?}
+
+So, the idea is that the mirror's fluctuation will rotate the noise among the quadratures, so we do that in the opposite direction to the squeezed light (?). 
+
+Mirror coatings can create issues! Even if a requirement on the amplitude is satisfied, if the pattern is regular there can be problems: it acts like a diffraction grid. 
+
+\todo[inline]{Where does the \(\Delta \sim \SI{}{MHz}\) frequency shift come from?}
+
+We can do measurements of entangled photons coming from down-conversion to reduce noise. 
+
+The OPA is where we get a pump with an offset. 
+This allows us to make an EPR filter with frequency-dependent filtering! 
+
+The \SI{}{MHz} photons experience no frequency offset: there is no radiation pressure there! 
+
 
 
 \end{document}

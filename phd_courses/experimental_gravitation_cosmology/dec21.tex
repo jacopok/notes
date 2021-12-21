@@ -1,4 +1,105 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-12-21}
+
+The radiation pressure term is written as 
+%
+\begin{align}
+\text{RP} = \frac{1}{c} \left(
+    P + 2 \sqrt{P} \sqrt{\hbar \omega_0 } \hat{a}_1 (\Omega )
+\right)
+\,,
+\end{align}
+%
+with quadratic, \(\order{\hat{a}^2}\) corrections. 
+
+This corresponds to a displacement \(\text{RP} / m \Omega^2 = \delta x (\Omega) \). 
+
+This displacement is connected to a phase fluctuation 
+%
+\begin{align}
+\delta \phi (\Omega ) = 2 \frac{ \delta x (\Omega ) \omega_0 }{c}
+\,.
+\end{align}
+
+The thing is then that the modulation can be written as 
+%
+\begin{align}
+E_1 &= \sqrt{P} \cos(\omega_0 t + \delta \phi (\Omega ))  \\
+&= \sqrt{P} \cos(\omega_0 t) - \delta \phi (\Omega ) \sqrt{O} \sin(\omega_0 t)
+\,,
+\end{align}
+%
+while the phase quadrature reads 
+%
+\begin{align}
+E_2 = \sqrt{P} \delta \phi (\Omega ) \propto - \frac{\sqrt{P}}{\Omega^2}
+\,.
+\end{align}
+
+This is the reason why the \SI{}{MHz} sidebands 
+are not affected by radiation pressure noise. 
+
+\subsection{Wiener filtering}
+
+If we have an estimated signal \(\hat{y}  = F(x)\) and an observed signal \(y\), 
+we want to minimize \(\expval{(y - \hat{y})^2} = e^2\).
+
+We choose this by determining a maximum, with \(\pdv*{e^2}{F} = 0\) and \(\pdv*{e^2}{F} < 0\). 
+The optimal choice is then \(F = \expval{xy} / \expval{x^2}\).
+
+In the frequency domain, a filter looks like \(\hat{y}(\Omega ) = F(\Omega ) x(\Omega )\).
+
+There are ways to implement this and keep track of continuous variations of the environment (Kanman filtering?).
+
+\subsection{Environmental noise}
+
+Part of the site selection process is looking at seismic noise. 
+We need to have noise globally below a certain RMS value, 
+even microseismic peaks at a few Hz create issues since they can throw 
+the interferometer out of alignment, 
+even though we do not detect signals at those frequencies. 
+
+A big issue is also Newtonian gravitational noise, 
+gravitational coupling of the environment to the test mass, which scales like \(f^{-2}\). 
+
+Temperature gradients of sufficiently small scales in the atmosphere can also create issues. 
+
+The acoustic noise in the cave also creates issues.
+One can subtract the measurement of noise actively, but this is 
+very expensive for ET since we would need many new boreholes! 
+
+Measuring acoustic fields in the atmosphere is hard: eddies can form around the 
+microphone if the wind is too high. 
+Lasers are quite good for this purpose.
+
+There are magnetic disturbances correlating all the way around the world. 
+These are Schumann resonances. 
+
+\subsection{Thermal noise}
+
+Material science is very poorly understood.
+We are not able to compute things like Young's modulus from first principles. 
+
+The fundamental theorem describing this is the fluctuation-dissipation theorem: 
+%
+\begin{align}
+S_x(\Omega ) = \frac{ 8 \pi k_B T}{\Omega^2} \frac{W _{\text{diss}}}{F_p^2}
+\,.
+\end{align}
+
+This describes the thermal noise spectrum due to mechanically dissipated power. 
+The thermal noise we measure is average over the beam, so low-wavelength 
+thermal noise are not really a problem. 
+
+Some high-order Laguerre-Gauss modes have been proposed as a way to moderate this issue.
+
+Heat links can be a shortcut for vibrations! 
+The way coating of the mirror is done is relevant. 
+Tunneling is a big source of dissipation in materials. 
+
+The study of internal friction of materials is often studied by 
+perturbing them and looking at the ringdown. 
+
 \end{document}

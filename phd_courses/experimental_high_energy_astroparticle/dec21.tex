@@ -1,4 +1,148 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2021-12-21}
+
+Another type of particle detectors are based on the properties of semiconductors.
+
+If a forward bias is passed through the diode, we have very high current, 
+while if we put a reverse diode there is very little current, up until a 
+point where we get a breakdown. 
+
+A diode can be a particle detector if it works in reverse bias. 
+If an ionizing particle passes through the depletion region, 
+we get a voltage we can measure.
+
+In practice one can typically make a single \(n\)-doped region, with several small 
+\(p\)-doped sections. 
+
+The energy needed to generate a signal is \(W \approx \SI{3}{eV}\), and we also have 
+a relatively small amount of fluctuations. 
+The relative fluctuations \(\sim 1/\sqrt{N}\) due to Poisson statistics cannot be eliminated, 
+but since \(W\) is low we have larger \(N\) and therefore smaller relative fluctuations. 
+
+Operating the diode at low temperatures is convenient so that we get less noise 
+in the measurement of the total energy, if the particle can be completely stopped
+inside the detector. 
+These detectors have good energy resolution when operated in this way. 
+
+We can make \(p\)-strips which are 50 or even \SI{20}{\micro\metre} wide, this means we
+get very good localization. 
+
+A grid of these detectors can do a lot. 
+Silicon PN junctions can do localization as well as energy measurement. 
+
+In summary: 
+
+\begin{enumerate}
+    \item Gas detectors have \(W \approx \SI{10}{eV}\), 
+    they can be used for tracking with \(\sigma _x \approx \SI{300}{\micro m}\), 
+    they can measure energy loss \(\dv*{E}{x}\);
+    \item scintillator detectors have \(W \approx \SI{100}{eV}\), 
+    they can measure the energy released very well, 
+    they have very good, order-nanosecond time resolution;
+    \item semiconductors have \(W \approx \SI{3}{eV}\), 
+    they have good statistics since the number of electrons is very large, 
+    they can be made in large numbers and used for tracking with \(\sigma _x \approx \SI{20}{\micro m}\),
+    they can measure the energy output. 
+\end{enumerate}
+
+Most detectors' basic operating principle are based on these technologies.
+
+We can make sub-detectors with these! 
+We will have an incoming particle with a momentum \(\vec{p}\); 
+it will have a track length \(L\), and it will be deflected by a bending
+angle \(\theta \) by our magnetic field. 
+We define the \emph{saggitta} \(s\) as the maximum distance between the trajectory of the particle and the straight line between its enter and exit points in our detector. 
+
+If the track is circular, and \(\rho \) is its radius of curvature, we get 
+%
+\begin{align}
+s = \rho \frac{1 - \cos(\theta /2)}{2} \approx \frac{\rho \theta^2}{8}
+\,.
+\end{align}
+
+The radius of curvature will be given by \(\rho = p / qB\); 
+since 
+%
+\begin{align}
+\frac{L/2}{\rho } \approx \frac{\theta }{2}
+\,
+\end{align}
+%
+we get \(\theta = L/ \rho \). 
+This means that 
+%
+\begin{align}
+s \approx \frac{1}{8} \rho \frac{L^2}{p^2} = \frac{1}{8} \frac{L^2}{\rho } \approx \frac{L^2}{8} \frac{qB}{p}
+\,,
+\end{align}
+%
+therefore the saggitta is inversely proportional to the momentum of the 
+particle. 
+
+What does the uncertainty calculation look like? \(B\) is typically well-known, so we get 
+%
+\begin{align}
+\frac{\sigma_p}{p} \approx \frac{\sigma _s}{s} \approx \frac{8 p}{qBL^2} \sigma _s \propto p
+\,,
+\end{align}
+%
+so the relative accuracy on the momentum \emph{decreases} as the momentum rises. 
+
+Typically, because of this, one looks at the quantity \(\sigma _p / p^2\). 
+
+We want to make a solenoid for our magnetic field. 
+The relation \(B = B(I)\) as a function of the current in the solenoid. 
+
+Hysteresis cycle for \(B\) as \(I\) changes. 
+There is a saturation around \SI{1}{T} to \SI{2}{T}; if we use superconductors we can reach a few Teslas. 
+
+We therefore only measure momenta up to 
+%
+\begin{align}
+p _{\text{max}} &= \frac{q B L^2}{8 \sigma _s}  
+ \\
+\frac{p _{\text{max}}}{\SI{2}{TeV} / c} &\approx \left( \frac{q}{e} \right)
+\left( \frac{B}{\SI{1}{T}}\right) 
+\left( \frac{L}{\SI{1}{m}}\right)^2
+\frac{1}{8} \left( \frac{\sigma_s}{\SI{20}{\micro m}}\right)^{-1} 
+\,.
+\end{align}
+
+This is an order of magnitude, and we get it with \SI{100}{\percent} uncertainty at \(1 \sigma \). 
+
+The rigidity \(R = p / q\) is actually the quantity we are able to measure.\footnote{The name is behind the ``rigidity'' of the track to being bent.}
+
+The Maximum Detectable Rigidity for this detector is \(\SI{2}{TeV/e} = \SI{2}{TV}\). 
+
+This is a good approximation for the AMS detector. 
+For larger ions we can reach much higher momenta. 
+
+When the high-energy particle passes through a medium it is deflected with a root-mean-square angle of 
+%
+\begin{align}
+\sigma _\theta = \frac{\SI{2.1}{MeV}}{p \beta } \sqrt{\frac{x}{x_0 }}
+\,,
+\end{align}
+%
+which will limit our resolution on the saggitta with a contribution 
+%
+\begin{align}
+\frac{\sigma _s}{s} &= 2 \frac{\sigma _\theta }{\theta } = 2 \frac{p}{L} \sigma _\theta  \\
+&= \frac{\SI{2.1}{MeV}}{qBL \beta } \sqrt{ \frac{L}{x_0 }}
+\,.
+\end{align}
+
+This needs to be added in quadrature: 
+%
+\begin{align}
+\frac{\sigma _p}{p} = \frac{8 \sigma _s}{qBL^2} p \oplus \frac{\SI{2.1}{MeV}}{qB \beta } \frac{1}{\sqrt{L x_0 }}
+\,.
+\end{align}
+
+The resolution as a function of the momentum is limited at low momenta as well. 
+
+
+
 \end{document}

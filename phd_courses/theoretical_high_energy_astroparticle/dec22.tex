@@ -1,4 +1,307 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2021-12-22}
+
+Last time we derived the transport equation in pitch angle: 
+%
+\begin{align}
+\pdv{f}{t} + v \mu \pdv{f}{z} = \pdv{}{\mu } \left(D_{\mu \mu } \pdv{f}{\mu }\right)
+\,,
+\end{align}
+%
+where \(D_{\mu \mu} = (1/2) \expval{\Delta \mu \Delta \mu / \Delta t}\). 
+
+This already contains a lot of information about what scattering does to cosmic rays. 
+
+If we have the classic system with a ``gun'' of particle emitting them 
+into a plasma with Alfvén waves, those will be isotropized. 
+
+Because of this, after some time we expect to see the bulk velocity of the Alfvén waves and the cosmic rays to be the same. 
+
+This is not realistic in every situation: if the plasma is relativistic, the assumption of the particle velocity being much higher than that of the waves breaks down. 
+This can be treated, but we will not discuss it in the course; the professor can provide the necessary references upon request. 
+
+After integrating the aforementioned equation between \(-1\) and \(1\), as well as between \(-1\) and \(\mu \), we found 
+%
+\begin{align}
+\pdv{M}{t} &= \pdv{}{z} \left( k_{zz} \pdv{M}{z} \right)  \\
+k_{zz} &= \frac{v^2}{8} \int \dd{\mu } \frac{(1 - \mu )^2}{D_{\mu \mu }} 
+\,,
+\end{align}
+%
+where the first equation tells us that \(M\) changes in time due to a process of \emph{spatial} diffusion, which is caused (as the second equation tells us) by diffusion in pitch angle.
+
+The second-order nature of this equation is a trademark of a diffusive process.
+With a heuristic line of reasoning we got a typical time for diffusion by \SI{90}{\degree}, called 
+%
+\begin{align}
+\tau_{90} = \frac{1}{D_{\mu \mu }} 
+\,,
+\end{align}
+%
+which allows us to define \(\lambda = v \tau_{90}\), 
+while the correct expression is the one for \(k_{zz }\) above. 
+
+One thing we are still missing is the effect of the plasma! 
+That is currently only described through the fact that the particles are diffusing in pitch angle due to Alfvén waves. 
+
+Can we not ignore the bulk velocity if we move to the correct frame?
+Yes! But, we cannot do the same if there are velocity \emph{gradients}. 
+
+Suppose we have a nonrelativistic plasma velocity \(u(z)\). 
+The change in the particle velocity term \(v \mu \) can be approximated as \(v \mu \to u + v \mu \).
+
+\todo[inline]{Risky! \(u + v \mu \) could be larger than \(c\)! Wouldn't a better approximation be \(v \mu \)? }
+ 
+What about the momentum? We transform it as 
+%
+\begin{align}
+\left[\begin{array}{c}
+E' \\ 
+p_z'c
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+\gamma  & -\beta \gamma  \\ 
+- \beta \gamma  & \gamma 
+\end{array}\right]
+\left[\begin{array}{c}
+E \\ 
+p_zc
+\end{array}\right]
+\,.
+\end{align}
+
+So, the \(z\)-axis momentum \(p_z\) changes to \(p_z'c = - \beta \gamma E + \gamma p_z c\), where \(\beta = u(z) / c\). 
+
+The derivative of the phase space distribution changes to 
+%
+\begin{align}
+\pdv{f}{z} \to \pdv{f'}{z'} &= \pdv{f'}{p'_z} \pdv{p'_z}{z'}  \\
+&= \pdv{f'}{p_z'} \left( - \dv{u(z)}{c} \right) \frac{E'}{c}   \\
+v \mu \pdv{f}{z} &\to - (u + v \mu ) \left( \pdv{f'}{p'} \frac{E'}{c} \dv{u(z)}{c} \right)  \\
+&= (u + v \mu ) \pdv{f'}{z'} - (u + v \mu ) \pdv{f'}{p'} \frac{E'}{c^2} \dv{u}{z'}  \\
+&\approx (u + v \mu ) \pdv{f'}{z'} - v \mu \pdv{f'}{p'} \frac{E'}{c^2} \dv{u}{z'}
+\marginnote{ \(u \ll v \mu \)}
+\,.
+\end{align}
+
+We neglect the derivative of \(\gamma \) since \(\gamma = 1 + \order{\beta^2}\), and we are working to first order around 0 in the \(\beta \) corresponding to the plasma. 
+
+The change of coordinates formulas read 
+%
+\begin{align}
+\dd{\mu } &= \frac{1 - \mu^2}{p} \dd{p_z} - \mu (1 - \mu^2)^{1/2} \dd{p_\perp }  \\
+\dd{p} &= \mu \dd{p_z} + (1 - \mu^2)^{1/2} \dd{p_\perp}
+\,,
+\end{align}
+%
+which means we get 
+%
+\begin{align}
+\pdv{f}{p_z} = \pdv{f}{p} \mu + \pdv{f}{\mu } \frac{1 - \mu^2}{p}
+\,,
+\end{align}
+%
+therefore
+%
+\begin{align}
+v \mu \pdv{f}{z} &\approx (u + v \mu ) \pdv{f}{z}- v \mu \frac{E'}{c^2} \dv{u}{z} \left( \pdv{f}{\mu } p + \pdv{f}{p} \frac{1 - \mu^2}{p} \right)
+\,.
+\end{align}
+
+Now we can apply the exact same approach as before!
+We just added the term \(u \pdv*{f}{z}\). 
+
+The term \(\pdv*{f}{\mu }\) can be neglected, because \(f\) is assumed to be close to isotropy. If we do not neglect it, we only get higher order corrections. 
+
+This yields 
+%
+\begin{align}
+\frac{v E'}{c^2} \pdv{\mu }{p } \frac{1}{2} \int_{-1}^{1} \dd{\mu } \mu^2 = \frac{1}{3} \frac{ v E'}{c^2} \pdv{\mu}{p} 
+\,.
+\end{align}
+
+The object in front can be written in terms of the Lorentz factor of the particle \(\Gamma \): 
+%
+\begin{align}
+\frac{v E'}{c^2} = \frac{v m_p c^2 \Gamma }{c^2} = p
+\,,
+\end{align}
+%
+so the final result is 
+%
+\begin{align}
+\pdv{M}{t} + u \pdv{M}{z} - \frac{1}{3} \dv{u}{z} p \pdv{M }{p }
+= \pdv{}{z} \left( k_{zz} \pdv{M}{z} \right)
+\,.
+\end{align}
+
+This is the transport equation for any non-thermal particles. 
+The assumption of those being non-thermal is implicit in the assumption that \(v \gg u\). 
+This is conceptually important, since we need to answer the mechanism by which these particles emerge out of the thermal distribution. 
+
+The \emph{injection problem} is about how we go from a thermal distribution to a thermal distribution with non-thermal particles. 
+
+The effect of the particles on the plasma is also something which we should consider. 
+This would be a dependence of \(u\) and \(k_{zz}\) on the distribution of non-thermal particles. 
+
+The term \(p \pdv*{M}{p}\) is sensitive to the \emph{spectrum} of the particles! 
+This can change the distribution of particles in \(p\). 
+
+\begin{extracontent}
+    Exercise:  suppose we have a system with particles injected and removed from surfaces orthogonal to \(k\). 
+    Further, suppose that \(k_{zz}\) is very small: this means that there is a lot of diffusion, since \(D_{\mu \mu }\) is very large.
+    
+    This basically means that the particles are ``glued'' to the plasma. 
+    Therefore, we also get \(\pdv*{M}{t} = 0\). 
+    
+    What happens to the distribution function in this case? 
+    Suppose there is a linear gradient in the plasma velocity, 
+    %
+    \begin{align}
+    u = u_0 + \frac{\Delta u}{L} z
+    \,.
+    \end{align}    
+    
+    Hint: using the method of characteristics. 
+    
+    The expected result is to get adiabatic compression. 
+    If the velocity decreases we get energy increasing, and vice versa. This is the same as cosmological redshift.   
+\end{extracontent}
+
+The way this works is that since there is a velocity gradient, in some reference frame we need to transform the magnetic field, therefore we also get an electric field which does the work. 
+
+\subsection{Particle transport}
+
+In nature there are basically two acceleration mechanisms:
+\begin{enumerate}
+    \item when \(\expval{\vec{E}} \neq 0\) --- \emph{regular processes};
+    \item when \(\expval{\vec{E}} = 0\) but \(\expval{E^2} = 0\) --- \emph{stochastic processes}. 
+\end{enumerate}
+
+Unipolar inductors are when we have a magnet spinning very fast generating an electric field. 
+This might happen, for example, near a pulsar! 
+In the ideal MHD approximation \(E\) is orthogonal to \(B\), but near a pulsar this can be broken! 
+Then, we get a parallel component.
+Another way this can happen is the accretion of a black hole. 
+
+Near a neutron star the magnetic field is roughly dipolar; 
+if \(E \parallel B\) we get an electric field which is about 8 orders of magnitude larger than the gravitational field. 
+So, particles feeling this field are stripped off. 
+
+When this happens, the particles still feel the very strong magnetic field. 
+So, electrons undergoing this process with a tilted dipolar magnetic field emit curvature radiation (bremsstrahlung). 
+
+We need to give a quantum description of such a magnetic field; 
+the virtual photons of this field can do pair production. 
+
+This process can repeat for \(\num{e4}\) to \num{e6} times: electrons stripped from the star are multiplied, and we get a lot of positrons as well. 
+These particles form a plasma of their own!
+
+This will not be really discussed in this course, but there will be a short course about it. 
+
+Ideal MHD is locally violated, giving rise to regular processes, in plasma reconnection as well. 
+
+Magnetic flux is not conserved anymore, and we get heating of particles. 
+
+The rest of this course will mainly be about \textbf{stochastic} processes. 
+We will discuss \emph{second order Fermi acceleration}, the first investigation of particle acceleration historically. 
+
+Fermi, after getting the Nobel in '38, moved to Chicago and then worked on the Manhattan Project. 
+
+After the war, he started to work on many new problems. 
+The professor has met the last student of Fermi, Simpson. 
+
+At uni Chicago there is a quadrangle, which in 1948 was used to hold important dinners. 
+Enrico Fermi was not there a few minutes from midnight on New Year's, 
+at which point he came running and sweaty, having understood how cosmic rays were accelerated. 
+The idea came to Fermi after Alfvén gave a talk about waves. 
+
+The model by Fermi does not really work, but it was important historically. 
+
+The momentum of the particles in an Alfvén wave will change by \(\Delta p / p \sim v_A / c\), but this will happen stochastically with 
+%
+\begin{align}
+D_{pp} = \expval{\frac{\Delta p \Delta p}{\Delta t}} = \frac{p^2}{T^2} \left( \frac{v_A}{c}\right)^2
+\,,
+\end{align}
+%
+so the acceleration timescale is \(\tau _{\text{acc}} =p^2 / D_{pp} = (c / v_A)^2 T\). 
+This is too long to actually be the origin of cosmic rays, but in 1948  this was not clear. 
+
+This is called second-order because of two reasons: the square in \((c / v_A)\), and the fact that the diffusive motion can both increase and decrease the momentum. 
+
+Suppose we have regions of plasma moving in different directions. 
+Also suppose we have an electric field \(E\) in the reference frame of the laboratory. 
+A particle will sometimes ``interact'' with one of these magnetized regions, in a purely elastic way. 
+
+We introduce \(\beta \) and \(\gamma \) for the plasma clouds, with \(\beta \ll 1\). 
+
+After the scattering with the cloud, the energy of the particle in the reference frame of the cloud will become 
+%
+\begin{align}
+E' = \gamma E + \beta \gamma p \mu 
+\,.
+\end{align}
+
+Suppose that the scattering is purely elastic: \(\mu \) is simply reversed. The cloud is acting like a mirror. 
+This is not really necessary, it is just a simplifying assumption. 
+
+The final energy in the lab frame will be 
+%
+\begin{align}
+E'' &= \gamma E' + \beta \gamma p'_z \mu  
+\marginnote{The momentum is reversed, hence the plus sign.}  \\
+&= \gamma^2 E \left( 1 + p^2 + 2 \beta \mu  \frac{p}{E} \right)
+\,,
+\end{align}
+%
+where \(p / E\) is the velocity of the particle. 
+
+The quantity we are interested in is 
+%
+\begin{align}
+\frac{E'' - E}{E} &= \gamma^2 \left(  1 + 2 p v \mu + \beta^2 \right) - 1  \\
+&\approx 2 \beta^2 + 2 \beta^2 + 2 \beta v \mu 
+\marginnote{In the relativistic approximation, \(\beta \ll 1\) but \(v \sim 1\).}
+\,.
+\end{align}
+
+What is the mean value of this? 
+It can attain positive and negative values, depending on the scattering angle \(\mu \). 
+This is the reason this process does not work! 
+
+If there is a situation for which \(\mu \) is bound to only allow acceleration, that can work. 
+
+We need to average this, weighed by the probability to have an interaction with a given \(\mu \). 
+The probability will be proportional to the relative velocity, 
+\todo[inline]{Why? If the particle is chasing the cloud it will catch it!}
+%
+\begin{align}
+\mathbb{P }(\mu ) = A v _{\text{rel}} = A \frac{\beta \mu + v}{1 + v \beta \mu } \approx A (1  + \beta \mu )
+\,,
+\end{align}
+%
+and \(A\) must be \(1/2\) for normalization. 
+We can then compute 
+%
+\begin{align}
+\expval{\frac{\Delta E}{E}} = \int_{-1}^{-1} \dd{\mu } \frac{1}{2} \left( 2 \beta^2 + 2 \beta^2 + 2 \beta v \mu  \right) \left(1 + \beta \mu \right) = \frac{8}{3} \beta^2
+\,,
+\end{align}
+%
+so we have a mechanism for acceleration, but it is \(\propto \beta^2\). 
+The typical velocity, as we know now, is of a few tens of \SI{}{km/s}, which means we have something of the order \num{e-9}.
+
+If the plasma is relativistic, even second order processes can be important, and actually for long gamma ray bursts they are believed to be the main mechanism. 
+
+The problem of injection, as mentioned by Fermi, is about the fact that we have nuclei as well as protons in cosmic rays. 
+How do we deal with ionization losses? 
+There is no solution to this problem, the mechanism does not really work. 
+
+This was understood about 30 years later.
+The thing we need to discuss are explosions and shock waves.
+
 \end{document}

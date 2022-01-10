@@ -1,4 +1,302 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2022-1-10}
+
+We have seen how Enrico Fermi thought that there could be 
+second-order acceleration in a plasma. 
+
+The problems yet to be resolved are 
+\begin{enumerate}
+    \item injection: how does one plasma particle become nonthermal? 
+    \item the timescale for energy gain in second-order processes seems close to the timescale for energy loss through ionization, which can hamper the process as a whole.
+\end{enumerate}
+
+Fermi recognized the ``problem of injection'' in the abstract of his first paper, meaning the second of these.
+
+These problems are only now being solved with particle-in-a-cell simulations.
+
+The people who studied these problems in the early days were the ones involved with the Manhattan Project: they were interested in the physics of bombs. 
+
+When such an explosion occurs, shock fronts form! 
+These are ``event horizons'', preventing the transmission of information in one direction. 
+
+At the beginning of the course, from the Vlasov equation we derived mass and momentum conservation, while neglecting energy conservation since we were thinking of adiabatic processes. 
+
+The continuity equation reads 
+%
+\begin{align}
+\pdv{\rho }{t} + \nabla \cdot \left( \rho \vec{u} \right) = 0
+\,,
+\end{align}
+%
+which in a stationary situation translates to \(\nabla \cdot \left( \rho \vec{u} \right) = 0\). 
+In one spatial dimension, this simply means \(\rho u = \text{const}\). 
+
+The momentum conservation equation reads 
+%
+\begin{align}
+\rho \pdv{\vec{u}}{t} + \rho \vec{u} \cdot \vec{\nabla} \vec{u} = - \vec{\nabla} P
+\,,
+\end{align}
+%
+which in 1D and without time-dependence reads 
+%
+\begin{align}
+\rho u \pdv{u}{x} = - \pdv{P}{x}
+\,,
+\end{align}
+%
+but because \(\rho u\) is constant we get 
+%
+\begin{align}
+\pdv{}{x} \left( \rho u^2 + P \right) = 0
+\,,
+\end{align}
+%
+the conservation of momentum, or Bernoulli's law. 
+
+The conservation of entropy for our isentropic system reads 
+%
+\begin{align}
+u \pdv{}{x} \left( P \rho^{-\gamma } \right) &= 0  \\
+\pdv{P}{x} &= \gamma \frac{P}{\rho } \pdv{\rho }{x} 
+\,,
+\end{align}
+%
+but the derivative of \(P\) can be expressed in terms of \(\rho u^2\): 
+%
+\begin{align}
+\pdv{}{x} \left( \rho u^2\right) = - \gamma \frac{P}{\rho } \pdv{\rho }{x} 
+\,,
+\end{align}
+%
+which we can manipulate and integrate by parts: 
+%
+\begin{align}
+u \pdv{}{x} \left( \rho u^2\right) = + \gamma \frac{P}{\rho } \rho  \pdv{u}{x} = \gamma P \pdv{u}{x}
+\,.
+\end{align}
+
+Manipulating this further, we find 
+%
+\begin{align}
+u \pdv{}{x} \left( \rho u^2\right) &= \gamma \pdv{}{x} (P u) - \gamma u \pdv{u^2}{x}  \\
+u \pdv{}{x} (\rho u^2) (1 - \gamma ) &= \gamma \pdv{}{x} (P u )  \\
+\pdv{}{x} \left(
+    \frac{1}{2} \rho u^3 + \frac{\gamma }{\gamma -1} P u
+\right)
+&= 0
+\,.
+\end{align}
+
+This is analogous to energy conservation (``the flux of energy is constant'').
+
+Through these equations we can connect two points in a solution; a trivial solution will be \(u_1 = u_2 \) and so on, but there may be another nontrivial solution. 
+
+We can define the sound speed as \(c_s^2 = \gamma P / \rho \), the Mach number is \(M = u / c_s\);
+it can be proven that if \(M < 1\) only the trivial solution exists, while if \(M > 1\) at least on one side of the boundary we are looking at there is a solution 
+%
+\begin{align}
+\frac{\rho_2}{\rho_1 } = \frac{u_1}{u_2 } &= \frac{(\gamma + 1) M_1^2}{(\gamma - 1) M_1^2 + 2}  \\
+\frac{P_2}{P_1 } &= \frac{2 \gamma M_1^2}{\gamma + 1} - \frac{\gamma - 1}{\gamma + 1}
+\,.
+\end{align}
+
+This is a \emph{shock front} solution of the plasma equations.
+If the shock is \emph{strong}, meaning that \(M_1 \gg 1\), the compression ratio \(\rho_2 / \rho_1 \) approaches \((\gamma + 1) / (\gamma -1 )\), which for the \(\gamma = 5/3\) of a monoatomic gas means we have a compression factor \(r = \rho_2 / \rho_1  = 4\). 
+
+What happens to the pressure? That tends to infinity! 
+The plasma is heated in such a shock front. 
+
+What is happening is we are converting bulk motion \(\rho u^2\) into compression and heat \(P\), in the Bernoulli equation!
+
+The plasma is slowed down and heated. Since the pressure is \(P \propto N k_B T\), the ratio of the pressures is also a ratio of temperatures! 
+
+The new temperature will be 
+%
+\begin{align}
+T_2 = \frac{2 \gamma (\gamma - 1)}{(\gamma + 1)^2} \frac{u_1^2}{\gamma} \frac{\rho_1}{P_1} T_1 
+\,,
+\end{align}
+%
+but \(P_1 \propto T_1 / m_p\), so we get 
+%
+\begin{align}
+T_2 \sim \underbrace{\frac{2 (\gamma - 1)}{(\gamma + 1)^2}}_{\text{order-1 normalization}} m_p u_1^2
+\,,
+\end{align}
+%
+so the kinetic energy is being converted to thermal energy! 
+The shock isotropizes the motion of the particles. 
+
+This is quite different in the atmosphere and in astrophysics. 
+In the atmosphere the collision path length is quite short, while in astrophysics the cross-sections are way too small; still, we can observe these shocks, and they are quite thin! 
+
+Mainly, these are \emph{collisionless} shocks. 
+Instead of particle-particle interaction, we have interactions mediated by local electromagnetic fields. 
+
+The averaged approach we are using allows us to neglect the microphysics, but the price is that we don't know what the microphysics is! 
+
+Let us look at a shock at \(x = 0\), in the reference frame in which this shock is stationary. 
+
+The \(x< 0\) region is called \emph{upstream}: a fast and cold plasma, whose Mach number is large (while the Mach number below the shock is forced to be \(< 1\)). 
+
+The \(x > 0\) region is called \emph{downstream}: slow and warm plasma, with velocity \(u_2\).
+
+The relative velocity between the two sides is \(u_1 - u_2 \). 
+
+If you are downstream, the shock is moving towards you; but so if you are upstream! 
+
+The idea is that photons coming from the other side will \emph{always} be blueshifted! 
+Maybe we got rid of the situations in which a particle could lose energy?
+
+We are neglecting the magnetic field in that \(B^2 / 8 \pi \) is small compared to \(P\) or to \(\rho u^2\), however magnetic fields can be there! 
+It is customary to define an Alfvén Mach number \(M_{A, 1} = u_1 / v_{A, 1}\). Typically, the sonic Mach number is of order 100, the Alfvén Mach number is of the order of 1000. 
+
+Notice that \(\rho v_A^2 = B^2 / 4 \pi \): the Alfvén velocity is determined by the energy density of the magnetic field, while \(\rho c_s^2 = \gamma P \). 
+The assumption that the magnetic field energy is small is not very good, really.
+
+Particles diffuse slowing to \(\sim v_A\) in the upstream reference, but that reference is approaching the shock with a speed larger than \(v_A\), so particles will always come back to the shock eventually. 
+
+This holds true even for particles initially moving away from it! 
+
+Suppose we have a particle coming towards the shock with a pitch angle \( 0 \leq \mu < 1\); its energy in the downstream frame will be \(E_d = \gamma (1 + \beta \mu )\), where \(\beta = (u_1 - u_2 ) / c\) and \(\gamma= 1 / \sqrt{1 -\beta^2}\). 
+
+The particle, in the downstream, has a chance of diffusing away to infinity, but also a chance to come back to the shock. 
+
+The energy the upstream sees is \(E_u = \gamma^2 E (1 + \beta \mu ) (1 - \beta \mu ')\), where \(-1 \leq \mu ' < 0\). 
+
+Therefore, \(E_u > E\) necessarily. 
+In each crossing, \emph{every single particle} which goes upstream-downstream-upstream gains energy! 
+
+But, what is the probability that a particle will have a certain pitch angle \(\mu \)? 
+The flux will read 
+%
+\begin{align}
+\Phi = \int_{\mu = 0}^{\mu = 1} \dd{\Omega } \frac{N}{4 \pi } v \mu = \frac{Nv}{4} 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+P(\mu ) = \frac{4 A N v \mu}{Nv} = 2 \mu 
+\,,
+\end{align}
+%
+and \(P(\mu ')\) will be exactly the same. 
+
+Therefore, we can compute 
+%
+\begin{align}
+\expval{\frac{E_u - E}{E}} = \int_0^{1} \dd{\mu } \int_{-1}^0 \dd{\mu '} 2 \mu 2 \mu ' 
+\left(
+    \gamma^2 \left(1 + \beta \mu \right)
+    \left(1 - \beta \mu '\right)
+    -1 
+\right)
+= \frac{4}{3} \beta = \frac{4}{3} \frac{u_1 - u_2 }{c}
+\,.
+\end{align}
+
+This is very nice! We have something to first order in the shock velocity, which is large, larger than the Alfvén speed by a couple orders of magnitude. 
+
+This mechanism is called DSA, Diffusive Shock Acceleration, or ``first order Fermi'' even though Fermi didn't develop this. 
+
+We assumed there is diffusion, but we don't care at all about the mechanism! 
+The problem with diffusion is that it must be fast, fast enough that a particle can do several passes through. 
+
+The probability of returning from upstream is 1 or close to it, the thing that can happen for it to leave is that its Larmor radius gets so large it grows out of the system. 
+
+The incoming flux to the downstream will be 
+%
+\begin{align}
+\varphi _{\text{in}} = \int_{- u_2 / c}^{1} \dd{\mu } f_0 (u_2 + c \mu )
+= f_0 \frac{1}{2} \left(1 + \frac{u_2}{c}\right)^2
+\,,
+\end{align}
+%
+where now we must be careful to only consider particles which are actually moving downstream. 
+
+The particles which are reapproching the shock to get out will be 
+%
+\begin{align}
+\varphi _{\text{out}} &= \int_{-1}^{-u_2/c} \dd{\mu } f_0 (u_2 + c \mu )= f_0 \frac{1}{2} \left(1 + \frac{u_2}{c}\right)^2
+= f_0 \frac{1}{2} \left(1 - \frac{u_2}{c}\right)^2
+\,.
+\end{align}
+
+Therefore, the probability is 
+%
+\begin{align}
+P _{\text{return}} = \frac{\varphi _{\text{out}}}{ \varphi _{\text{in}}} = \frac{(1 - u_2 / c)^2}{(1 + u_2 / c)^2} \approx 1 - 4 \frac{u_2}{c}
+\,.
+\end{align}
+
+This is quite sizeable, although it is not 1. 
+
+\todo[inline]{Counterintuitive scaling with \(u_2 \)! }
+
+Suppose we start with \(N_0 \) particles with energy \(E_0 \): after one cycle their energy will be \(E_1 = E_0 (1 + \Delta E / E)\), which comes out to 
+%
+\begin{align}
+E_1 = E_0 \left( 1 + \frac{4}{3} \beta \right)
+\,,
+\end{align}
+%
+and \(N_1 = N_0 P _{\text{ret}}\) particles will have at least this energy. 
+
+\(N_2 = N_0 P _{\text{ret}}^2 \) particles will have at least \(E_2 = E_0 (1 + 4 \beta /3)^2\) and so on. 
+
+We have 
+%
+\begin{align}
+\log \frac{E_k}{E_0 } = k \log \left(1 + \frac{4}{3} \beta \right)
+\,,
+\end{align}
+%
+so 
+%
+\begin{align}
+k = \frac{\log E_k /E_0}{\log (1 + 4\beta /3)} = \frac{\log N_k / N_0 }{(1 - 4 u_2 / c)}
+\,.
+\end{align}
+
+Taylor expanding, we find 
+%
+\begin{align}
+\log \frac{N_k}{N_0 } = - \alpha \log \frac{E_k}{E_0}
+\,,
+\end{align}
+%
+where \(\alpha = 3 / (r-1)\), with \(r = u_1 / u_2 \). 
+
+The powerlaw only depends on \(r\)! 
+For a strong shock, we get \(r = 4\), so \(\alpha = 1\).
+
+This is the \emph{integral spectrum}, while the differential spectrum \(n(E) \dd{E}\) will scale like \(n(E) \propto N_k / E \propto E^{- (r+2) / (r-1)}\), which means \(E^{-2}\) with \(r = 4\). 
+
+This only holds for relativistic particles! 
+For non-relativistic ones, this does not hold as we shall see.
+ 
+The fact that this produces a powerlaw is great! We observe many powerlaws for non-thermal particles.
+
+This seems to not really work: the energy \(\mathcal{E} \sim \int_{E_0 }^{E _{\text{max}}} \dd{E} A (E/E_0)^{-2} E \sim \log E _{\text{max}} / E_0 \).
+
+If \(E _{\text{max}}\) is large enough, this quantity can become comparable with \(\rho u^2\), therefore the non-thermal particles will contribute a significant amount to the overall physics of the shock, invalidating the theory we used. 
+This is the crux of the issue behind the \emph{nonlinear physics} of shock acceleration. 
+
+What we need to do now is to get a connection with microphysics, which will give us a hint about where to go to deal with nonlinear theory. 
+
+Properly speaking, \(u_1 \) and \(u_2 \) should be replaced with \(u_1 \pm v_{A, 1}\) and so on. 
+This is relevant because the compression factor inside the spectrum is really 
+%
+\begin{align}
+r = \frac{u_1 \pm v_{A, 1}}{u_2 \pm v_{A, 2}}
+\,,
+\end{align}
+%
+making the spectrum a bit harder or steeper. 
+
 \end{document}

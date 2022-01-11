@@ -1,4 +1,124 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2022-1-11}
+
+We were discussing where a single massive BH can form --- something with a mass larger than \(25M_{\odot}\). 
+
+In a globular cluster, for energetic reasons there starts to be a separation between BHs and stars --- BHs cluster towards the center. 
+
+We have observed BBH mergers, so heavier BHs coming from lighter ones are a possibility. 
+
+The ingredients which are not fully understood are: 
+\begin{enumerate}
+    \item SN kick;
+    \item mass transfer;
+    \item common envelope.
+\end{enumerate}
+
+What is the order of magnitude of the SN kick? we don't know! 
+
+When is the common envelope ejected? This depends on how efficient the transfer of orbital energy to it is. This has a large effect on the BBH merger timescale. 
+
+What are the population observables we can look at?
+\begin{enumerate}
+    \item Mass distribution;
+    \item spin distribution (aligned or antialigned / misaligned), for isolated binaries we expect the former and for dynamical binaries we expect the latter;
+    \item eccentricity distribution;
+    \item astrophysical rate with \(z\);
+    \item host galaxies.
+\end{enumerate}
+
+Knowing the host galaxy would be great, but it's very hard. 
+Orbits are circularized by GW emission, but it is feasible that we might detect a slight nonzero eccentricity as we go to lower frequencies, which 
+would be a smoking gun signature for dynamical formation.
+
+The BBH mass spectrum, as measured now (post-O3), is not well described
+by a power law. 
+There seems to be a feature at \(40M_{\odot}\), which might be caused by PPISNe. 
+
+There is a dearth of low-mass BHs, in the \(2.6M_{\odot}\) to \(6M_{\odot}\). 
+
+There is a slight indication of another peak at high mass. 
+
+The effective spin seems to be negative for a significant fraction of the population. 
+
+The high-mass sector seems to have more precessing spin, but we don't really have good statistics to split the population in two.
+
+We have decent estimates for the astrophysical rate for BBH, BNS and NSBH. 
+
+The merger rate seems to increase going to redshift \(\sim 2\), following the star formation rate. 
+If we can find a delay between the two peaks, we can directly estimate the BBH formation timescale! 
+
+BBHs from AGN disks are a good candidate for an electromagnetic counterpart, since there is a lot of baryonic mass around!
+
+\subsection{Observation strategies for an EM counterpart}
+
+LVC developed a very fast data analysis pipeline.
+Current pipelines can indentify a statistically significant signal
+and estimate its localization, within 1 minute. 
+
+The slow step is human validation --- it should take about 30 minutes. 
+So, in O3 this was removed: the telegram to the telescopes is sent automatically, and then possibly retracted if it is not actually from data.
+
+A single GW detector has a broad antenna pattern --- good for detecting many signals, terrible for localization! 
+
+The time delay between two interferometers yields an annulus; when we have three we get the intersection of three annuli. 
+Three will always have a degeneracy between two regions. 
+With four, we remove this degeneracy. 
+
+The localization area scales with \(1 / \text{SNR}^2\). 
+
+The sky localization algorithm BAYESTAR allows for an estimate within 1 minute. 
+
+With the addition of Virgo we decreased the localization area by a factor 20. 
+
+These are still of the order of hundreds of square degrees currently; 
+even ``wide-field telescopes'' do not have such an observing area. 
+
+Also, looking at such a wide area we may have several contaminants! 
+
+We need to narrow down to very few sources (on the order of ten) 
+which we can then take spectra of with large Earth-bound telescopes like VLT, or space-bound ones like JWST or Hubble. 
+
+Infrared emission is interesting for nucleosynthesis in kilonovae. 
+
+In 100 square degrees we typically have \num{e4} to \num{e5} variable objects within 100 square degrees! 
+
+A very important thing is to have surveys to compare to the after-merger object. 
+
+These contaminants are typically M-dwarf flares, supernovae. 
+There is a lot of ML done to remove these contaminants. 
+
+The X-ray sky is quite empty, but there is no wide-field telescope. 
+The \(\gamma \)-ray sky is also quite empty and we have all-sky monitors in that band; the problem here is the emission, since the \(\gamma \) emission is very beamed, unlikely to get to us on average. 
+
+Radio is good in that there are few contaminants, we have wide-field telescopes at \(\sim \SI{}{MHz}\), however GW sources are quite faint in radio, and also there is a long delay between GW and radio emission. 
+
+The False Alarm Rate is the rate of noise events louder than the candidate event. 
+The typical threshold to have a candidate is less than 1 event per month. 
+
+The sky localization is typically given as a HEALPix FITS file: for each pixel we have the probability that that pixel contains the source. 
+
+The luminosity distance is also estimated; this allows for the selection of candidate host galaxies according to their known distances, as well as choosing the band in which to observe.
+
+The prompt pipeline also gives an estimate of the potential type of object: BNS, BBH, NSBH, MassGap. 
+
+A parameter given to the astronomer is the quantity \(\mathbb{P} _{\text{astro}}\): based on some assumptions about the sources, we can give an estimate that the signal is not terrestrial noise. 
+
+Some probabilities also given are ``HasNS'', whether a NS is contained in the merger (only estimated through mass). 
+Also, there is an estimate of ``HasRemnant'': when there is a NS in the merger, part of its material is tidally ejected.
+This is the probability that there is still leftover material after the merger beyond the compact remnant.
+This is required for the presence of an electromagnetic counterpart. 
+
+All this is described in the LVC Public Alerts User Guide. 
+
+The FAR allows us to determine whether a signal has low significance (between 1 per month and 1 per year), it is significant (between 1 per year and 1 per hundred years) or very significant (less than 1 per hundred years). 
+
+Typically, we do a mosaic search starting from the highest probability region and moving outward. 
+
+After a burst signal picked up by an unmodelled search, people thought it was a failed SN, so they started to look for missing supergiants in the Large Magellanic Cloud. 
+
+A smart way to do the search is to weigh the galaxies based on the probability that they are the host galaxies based on their known spectra, their star formation rate and so on. 
+
 \end{document}

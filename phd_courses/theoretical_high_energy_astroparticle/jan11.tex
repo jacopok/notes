@@ -1,0 +1,277 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\marginpar{Tuesday\\ 2022-1-11}
+
+Anywhere we have a supersonic plasma, we will form a shock front. 
+The conditions at the shock are called Rankine-Hugoniot equations. 
+
+What the kinetic energy is dissipated into can vary: accelerated particles are a possibility, but we can also have heat, magnetic fields and so on. 
+
+The transport equation for the distribution function in one dimension reads 
+%
+\begin{align}
+\pdv{f}{t} + u \pdv{f}{x} = \pdv{}{x} \left(
+    D \pdv{f}{x}
+\right)
++ \frac{1}{3}
+\dv{u}{x}
+p 
+\pdv{f}{x} 
++ Q(x, p)
+\,,
+\end{align}
+%
+where \(u\) is the velocity of the plasma, \(D\) the diffusion coefficient, while \(Q(x, p)\) is the injection term: without it the equation is linear, so unless we put particles in there will not be any. 
+
+This distribution in phase space will be roughly isotropic, so that \(f(p) \dd{p} = 4 \pi p^2 f(p) \dd{p}\). 
+
+Conceptually, there is a neat separation between the plasma with its velocity \(u\) and the nonthermal particles with their distribution \(f\). 
+
+The price to pay by inserting \(Q\) is to split the thermal and non-thermal particles. 
+
+The form of \(u(x)\) near the shock looks like a step function. 
+What happens to the nonthermal particles? 
+
+We can define these as those for which the shock seems to be infinitesimally small. 
+
+The thickness of the shock will be roughly of the order of the Larmor radius of the thermal particles, since the shock forms through EM interactions (while collisions are negligible). 
+
+A practical example is a SN explosion: it leads to a plasma moving at about \SI{10000}{km/s}. 
+
+The magnetic field in the field is roughly \(B \sim \SI{1}{\micro G}\); 
+the Larmor radius is something like \(\num{e9}\) to \SI{e10}{cm}. 
+
+This is tiny compared to the scale of the remnant.
+The nonthermal particles are then chosen to be the ones such that their Larmor radius is much larger than the width of the shock. 
+
+This implies that \(f\), the phase space distribution of the \emph{nonthermal} particles, must be continuous across the shock: 
+they move so fast that their properties don't have time to change discontinuously across the shock.
+
+The distribution function of the thermal particles downstream will be thermal, where the mean particle will have a Larmor radius on the order of magnitude of the shock thickness. 
+
+The injected particles are those at the upper tail of the distribution, 
+whose Larmor radii are roughly larger than the shock width, and which are then amplified. 
+
+The fraction of the particles which are accelerated is tiny! 
+
+The velocity gradient is modelled as 
+%
+\begin{align}
+\dv{u}{x} = (u_2 - u_1 ) \delta (x)
+\,.
+\end{align}
+
+The injection term can also be modelled as 
+%
+\begin{align}
+Q (x, p) = Q_0 \delta (x) \delta (p - p _{\text{in}}) \frac{1}{4 \pi p _{\text{in}}^2}
+\,,
+\end{align}
+%
+since the part of the tail which is high enough to inject but still has particles in it is quite low. 
+
+We will assume stationarity, thereby neglecting the \(\partial_t f\) term (and also taking \(Q\) not to be function of time as well).  
+
+The approach is to solve the equation upstream and downstream, using the shock as a boundary condition. 
+
+Upstream, we have 
+%
+\begin{align}
+u_1 \pdv{f}{x} &= \pdv{}{x} \left( D \pdv{f}{x} \right)  \\
+\pdv{}{x} \left(
+    \underbrace{u_1 f}_{\text{advective}} - \underbrace{D \pdv{f}{x} }_{\text{current}}
+\right) &= 0
+\,,
+\end{align}
+%
+where \(D \partial f\) is the current term. 
+This equation is basically the conservation of the total flux of the particles! 
+
+The source is downstream: upstream infinity is fast and cold, so there, in the interstellar medium we have \(f = \pdv*{f}{x} = 0\): therefore, we can say that that term vanishes, so 
+%
+\begin{align}
+u_1 f = D \pdv{f}{x}
+\,.
+\end{align}
+
+We take 
+%
+\begin{align}
+f(x, p) &= A e^{\alpha x}  = f_0 (p) \exp(\alpha x)  \\
+\pdv{f}{x} &= \alpha f_0 (p) \exp(\alpha x)
+\,,
+\end{align}
+%
+therefore we have \(u_1 f_0 = D \alpha f_0 \), so \(\alpha = u_1 / D\). 
+
+Upstream for us is \(x < 0\); the distribution is therefore a decreasing exponential. 
+The diffusion length is \(1 / \alpha  = D(p) / u_1 \). 
+
+What this is telling us is that particles cannot leave!
+They could leave if their Larmor radius became larger than the system, but this would lead to a peaked spectrum! 
+
+Downstream the distribution is weird: if there were gradients, it could not be stationary since we also have convection. 
+So, we have \(\pdv*{f}{x} = 0\) downstream. 
+
+Let us integrate the function in \([- \epsilon , + \epsilon ]\) around 0: the term \(u \pdv*{f}{x}\) must vanish, since the distribution is continuous. 
+
+We get 
+%
+\begin{align}
+D \eval{\pdv{f}{x}}_{2} -
+D \eval{\pdv{f}{x}}_{1}
++ 
+\frac{1}{3} (u_2 - u_1 ) p \pdv{f_0 }{p} + k \delta (p - p _{\text{in}}) = 0
+\,.
+\end{align}
+
+We know that \(D \pdv*{f}{x}\) downstream is zero, so we get 
+%
+\begin{align}
+- D \eval{\pdv{f}{x}}_{1} = - D \frac{u_1}{D} f_0 
+\,,
+\end{align}
+%
+therefore 
+%
+\begin{align}
+-u_1 f_0 + \frac{1}{3} (u_2 - u_1 ) p \pdv{f_0 }{p} = 0
+\,
+\end{align}
+%
+everywhere but at \(p _{\text{in}}\) (that will only serve towards normalization): 
+%
+\begin{align}
+\frac{ \dd{f_0 }}{f_0 } = \frac{3 u_1 }{u_2 - u_1 } \frac{\dd{p}}{p}
+\,,
+\end{align}
+%
+or 
+%
+\begin{align}
+f_0 = k p^{-3 u_1 / (u_2 - u_1 )}
+\,.
+\end{align}
+
+We find the same powerlaw as yesterday! Also, the index is precisely \(3 r / (r -1 )\). 
+Here, however, the result is in momentum, and it also holds for non-relativistic particles. 
+For a strong shock we find \(f \sim p^{-4}\); the spectrum we found yesterday was 
+%
+\begin{align}
+n(E) \dd{E} = 4 \pi p^2 f(p) \dd{p} 
+\,,
+\end{align}
+%
+meaning that in the relativistic regime \(E \sim p\) we get 
+%
+\begin{align}
+n(E) \propto E^2 E^{-4} = E^{-2}
+\,.
+\end{align}
+
+In the non-relativistic case, we have \(E \sim p^2 / 2m\), so 
+%
+\begin{align}
+n(E) \propto p^2 p^{-4} \dv{p}{E}  \propto E E^{-2} \frac{1}{p} \propto E^{-3/2}
+\,.
+\end{align}
+
+In momentum, the spectrum is always \(p^{-4}\); in energy we must distinguish between the two cases.
+
+Here, we do not have any suppression at high \(p\): the powerlaw keeps going. 
+
+There are problems: the energy is infinite if we take a strong shock with \(r = 4\). 
+Even if we put a \(E _{\text{max}}\) by hand, we are completely neglecting the loss of energy by the plasma. 
+The available energy is at most \(\rho u^2\)! 
+
+The proper way to deal with this is a \emph{nonlinear extension}; we will just try to give a rough idea. 
+
+The mass conservation equation reads \(\rho_0 u_0 = \rho_1 u_1 \); now we need to add a new term for the nonthermal particles to the momentum conservation equation, which now reads 
+%
+\begin{align}
+\rho_0 u_0^2 + P_0 = \rho_1 u_1^2 + P_1 + P _{\text{CR}}
+\,.
+\end{align}
+
+We do not add this to the mass conservation since their mass is tiny. 
+Further, we assume that the shock is strong, therefore the gas pressure is negligible: 
+%
+\begin{align}
+\rho_0 u_0^2 &= \rho_1 u_1^2 + P _{\text{CR}}  \\
+1 &= \frac{u_1}{u_0 } + \frac{P_{\text{CR}}}{\rho_0 u_0^2}
+\,. 
+\end{align}
+%
+The term \(P _{\text{CR}} / \rho_0 u_0^2\) is the efficiency of CR production, \(\xi _{\text{CR}}\): the velocity at the shock is damped when we add cosmic rays. 
+The plasma slows down when it accelerates cosmic rays. 
+
+The velocity upstream near the shock will be smaller; the compression factor ``seen'' by the particles which remain close to the shock (since they have smaller Larmor radii) will be smaller, meaning that the spectrum is harder at smaller radii. 
+
+The backreaction makes the problem of energy divergence even harder! 
+With the stationarity assumption the system is doomed to break, if we don't use a nonlinear theory. 
+
+This thing works relatively well if we have an efficiency \(\lesssim \SI{10}{\percent}\).
+
+Is this process able to accelerate particles up to the very high energies we detect cosmic rays at? 
+
+The problems in raising the energy is in the lifetime of the source, or its scale. 
+The conditions are \(\tau _{\text{acc}} \lesssim \tau _{\text{age}}\) and \(D / u_1 \lesssim R _{\text{source}}\). 
+These two roughly give the same bound. 
+
+A rough estimate of \(D\) in the galaxy can be given through the abundance of spallation products; it comes out to be 
+%
+\begin{align}
+D \approx \SI{3e28}{cm^2 / s}  \left( \frac{E}{\SI{}{GeV}}\right)^{1/2}
+\,.
+\end{align}
+
+What is \(u_1 \)? It is the velocity of the shock (which is also the velocity of the ISM in the shock frame). 
+This is typically \(v \sim \SI{e9}{cm /s}\) (or smaller). 
+
+The scale of the source is typically the velocity of the shock times its timescale: \(\tau _{\text{source}} \approx \SI{3e10}{s}\) (1 thousand years). 
+
+From here we get 
+%
+\begin{align}
+\left( \frac{E}{\SI{1}{GeV}}\right) < \left( \frac{\tau}{\SI{1000}{yr}}\right)^{2}
+\,.
+\end{align}
+
+If this is the case, we need a thousand years to get to a \SI{}{GeV}! 
+We need to get to a million \SI{}{GeV}. This mechanism seems to be way too slow! 
+
+Once we expressed the diffusion coefficient as 
+%
+\begin{align}
+D = \frac{1}{3} r_L v \frac{1}{\mathscr{F}(k)}
+\,,
+\end{align}
+%
+so we can say that this quantity should be 
+%
+\begin{align}
+\frac{1}{3} r_L v \frac{1}{\mathscr{F}(k)} \leq u_1^2 \tau _{\text{age}}
+\,,
+\end{align}
+%
+meaning that the power at the resonant frequency should be 
+%
+\begin{align}
+\mathscr{F}(k) > \frac{1}{3} \frac{r_L}{R _{\text{source}}} \frac{v}{u_1 }
+\,,
+\end{align}
+%
+so for the Larmor radius of a \SI{1}{PeV} particle we get \(r_L = pc / eB \approx \SI{e19}{cm}\), while the source's scale is a few parsecs, so we get 
+%
+\begin{align}
+\mathscr{F} > \frac{1}{3} \frac{\SI{e19}{cm}}{\SI{3e19}{cm}} \frac{\SI{3e10}{cm/s}}{\SI{e9}{cm/s}} \gtrsim 1
+\,,
+\end{align}
+%
+meaning that there must be a \emph{lot} of resonant power! 
+
+Something very different must be happening directly upstream! 
+The accelerating particles are the only thing which can be doing something upstream of the shocks: are their own magnetic fields strengthening the diffusion?
+
+\end{document}

@@ -1,4 +1,171 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2022-1-13}
+
+Last time we discussed how to make an effective search for an EM counterpart. 
+
+The search for the most likely galaxies within the 
+uncertainty in volume was used already in GW170817.
+
+The ways to rank galaxies are various: one is the blue luminosity; 
+another is the K-band luminosity. 
+Blue luminosity is a proxy for young stars and star formation, 
+K-band luminosity is a proxy for stellar mass. 
+
+How do we rank galaxies? 
+One way is through theoretical simulations: 
+combining population synthesis models with cosmological simulations. 
+
+Simulations show that, roughly, the trend for BNS is of a strong correlation between total mass and number of binary systems; 
+there is a dependence on metallicity, but it is weak. 
+
+For BHNS, lower-mass galaxies seem to have a higher number of systems 
+per unit mass.
+
+One of the typical counterparts is a short GRB, 
+and there is also a dependence on the mass of the rate of short GRBs\dots
+this approach might be slightly flawed. 
+
+How do we proceed? 
+
+We take the 3D sky localization map, compute the localization probability for each pixel, and combine it with a luminosity-derived probability estimate in the form 
+%
+\begin{align}
+\mathbb{P} _{\text{lum}} = \frac{L_{K, b}}{\sum L_{K, b}}
+\,.
+\end{align}
+
+We can also optimize the observation strategy by 
+taking into account the estimated masses, spins, equations of state! 
+
+We can even try to estimate the best \emph{time} at which to observe, 
+since different lightcurves peak at different times. 
+
+We can evaluate a posterior detectability distribution: 
+what are the fraction of fluxes based on the posterior distribution 
+which exceed the limit flux for this telescope? 
+
+(See Salafia et al 2017)
+
+The observation strategy also includes the amount of 
+exposure time to use --- short exposures at first, longer exposures
+later. 
+
+\subsection{Detectable sources}
+
+We have already seen the three combinations of NSs and BHs; 
+the other interesting objects in this GW band
+are CCSNe and SN instabilities. 
+
+What is a short Gamma Ray Burst?
+It is a very energetic, beamed emission, due to an ultra-relativistic jet. 
+
+For a kilonova, we also expect to see sub-relativistic dynamical effects, connected to dynamical outflows, as well as disk-wind outflow and spin-down luminosity. 
+
+What is the EM emission of a supernova? 
+The short breakout is typically seen in X-ray and UV. 
+Then, there is emission in all bands. 
+
+What are the EM counterparts to isolated NS instabilities? 
+They could be ``soft gamma-ray repeaters''\dots
+
+Magnetar flares were also associated with the newly-discovered fast radio bursts. 
+
+After a BNS merger, an accretion disk is formed! 
+
+There are full GR simulation by the Jena group which treat well the microphysics. 
+There is a large fraction of unbound mass; the geometry of this mass heavily 
+determines the EM emission. 
+
+For a NSBH binary, the interesting quantity is the tidal disruption radius to the 
+ISCO of the BH; if this is less than 1 the NS is swallowed by the BH; 
+if it is larger than 1 the NS is tidally disrupted, and we have long spiral arms.
+
+Before the merger, the BH is fully defined by its mass and spin, which determine the ISCO, going from 9 with maximal antialigned spin to 1 with maximal aligned spin to the orbital angular momentum. 
+
+The spin of the NS is expected to be small; what matters is the BH spin. 
+
+Tidal disruption is defined as happening when the tidal force of the BH is 
+stronger than the self-gravity of the NS: this yields 
+%
+\begin{align}
+d _{\text{tidal}} \sim R _{\text{NS}} \left(\frac{3 M _{\text{BH}}}{M _{\text{NS}}}\right)^{1/3}
+\,.
+\end{align}
+
+We can make a bivariate plot with \(\chi _{\text{BH}}\) and \(q\), and color it according to 
+the fraction of ejected material. 
+
+The mass-radius relation is uniquely given by the underlying EoS. 
+
+Stiff EoS means the NS is \emph{less} compact. 
+These are harder to compress, and easier to disrupt. 
+
+Using spin, mass from the GW signal and amount of ejecta from the EM counterpart, 
+we can constrain the equation of state! 
+
+For the EM emission, it is also important to know: what is the remnant? 
+If the mass is relatively small, we can have unstable 
+supermassive (lifetime of an hour) or hypermassive (lifetime of a second) neutron stars. 
+
+\subsection{Electromagnetic emission}
+
+Some basic relations: 
+the total luminosity \(L\) is given in terms of the monochromatic luminosity \(L(\nu )\) as 
+%
+\begin{align}
+L = \int L (\nu ) \dd{\nu }
+\,.
+\end{align}
+
+The most relevant processes are blackbody, bremsstrahlung, synchrotron, and inverse Compton. 
+
+We can define a brightness temperature: the temperature of a blackbody which would 
+emit that amount of radiation at that frequency.
+
+\todo[inline]{this never exceeds the kinetic temperature of the source}
+
+Synchrotron emission yields a powerlaw.
+
+\todo[inline]{Particle energy is \(E = m c^2 \gamma^2\)? }
+
+The energy radiated scales with \(\gamma^2 B\). 
+The superposition of the synchrotron spectra from electrons at various energies 
+gives the slope of the overall spectrum. 
+
+Synchrotron self-absorption also happens at low frequencies: 
+at low frequency the electron medium is optically thick, since the brightness temperature 
+is close to the electron temperature. 
+
+\subsubsection{The history of gamma ray bursts}
+
+To know the intrinsic luminosity of the source of a GRB, we should 
+know what is the width of the cone. 
+
+The emission of GRBs really starts in the X-ray band, near \SI{10}{keV}. 
+
+They were discovered serendipitously in the 1960s, since the US people 
+were looking for nuclear tests of the Russians and found these flashes 
+happening every 2 or 3 days. 
+
+The satellite BATSE was the first to be sent to study them; 
+and it showed an isotropic distribution. 
+
+This was an indication that these objects were extragalactic, cosmological. 
+It could also correspond to nearby stars, which are also nearly isotropic. 
+
+A new satellite was BeppoSAX; it showed an afterglow emission in the X-rays, 
+so they were able to also identify the emission galaxy and associate it to a cosmological redshift. 
+
+The first observation of the GRB optical afterglow was done in Campo Imperatore! 
+But, the first paper which was published was by Dutch people. 
+
+SWIFT is a current telescope, and it is very important for X-ray observation. 
+We also have XRT with a sky localization of arcseconds. 
+
+An ultraviolet optical telescope can also observe the optical afterglow. 
+
+
+
 \end{document}

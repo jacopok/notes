@@ -1,4 +1,112 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Detectors}
+
+\marginpar{Thursday\\ 2022-1-13}
+
+We can show all-particle and by-particle spectra corresponding to the state of the art. 
+At Monte Aquila they mounted particle detectors. 
+
+The things we can measure about a particle are
+\begin{enumerate}
+    \item its momentum, with a  magnetic spectrometer;
+    \item its velocity, with time-of-flight, Cherenkov angle \(\cos \theta = 1 / \beta n\), transition radiation when \(\gamma \gtrsim 1000\);
+    \item its energy loss, through the Bethe-Bloch formula;
+    \item its total energy \(E = \gamma m_0 c^2\) through calorimetry.
+\end{enumerate}
+
+It's hard to measure momentum! 
+Coulomb scattering worsens the resolution because it's stochastic noise. 
+
+To measure time of flight, the best thing to do is to use scintillator detectors. 
+
+The differences between the times of flight of different-mass particles 
+will scale like 
+%
+\begin{align}
+\Delta t \approx \frac{Lc}{2 p^2} (m_1^2 - m_2^2)
+\,.
+\end{align}
+
+If our time resolution \(\sigma _t\) is fixed, we will only be able to measure
+a mass difference \(\Delta m^2\) up to a maximum momentum which scales like 
+%
+\begin{align}
+p _{\text{max}} \propto \sqrt{\frac{L \Delta m^2}{\sigma _t}}
+\,.
+\end{align}
+
+Ionization energy losses are different for different particles, 
+which allows us to distinguish them. 
+
+The problem is that the Bethe-Bloch formula is just an average: 
+there are fluctuations. 
+These are Landau fluctuations, and they are worse if the material is thin.
+
+Cherenkov emission was discovered serendipitously, 
+when they were looking at flashes of light in non-scintillating materials. 
+
+There is aberration in the emission! 
+Emission is characterized by \(\cos \theta _c = 1 / n \beta \); 
+the number of photons emitted looks like 
+%
+\begin{align}
+\frac{ \dd{N}}{ \dd{x} \dd{\lambda }} = \frac{2 \pi z^2\alpha }{\lambda^2} \sin^2 \theta _c
+\,,
+\end{align}
+%
+therefore emission is peaked towards the blue end of the spectrum. 
+
+There is a high-energy cutoff, but typical detectors cannot reach it. 
+
+Since there is a threshold for Cherenkov emission, we can have different 
+blocks and use the information about which of them we saw light in 
+to identify particles. 
+
+The technique of Ring Imaging Cherenkov (RICH) was used to 
+find antiprotons by Segré and collaborators: 
+the idea is to measure the Cherenkov light on a plane with photodetectors. 
+
+\paragraph{Transition radiation detectors}
+
+When a particle goes through the boundary between media with different 
+indices of refraction, it emits this kind of radiation, typically in the X-ray range. 
+
+The effective threshold for a measurable emission is \( \gamma \gtrsim 1000\). 
+
+Many particle identification methods are available, and a good 
+particle detector will use several. 
+
+\paragraph{Calorimetry}
+
+We measure the total energy dumped by a particle. 
+
+One can parametrize the length of the EM shower; it scales logarithmically with the energy.
+
+The error would ideally scale like \(\sigma \sim \sqrt{E}\), but in reality we have 
+%
+\begin{align}
+\sigma / E = \frac{a}{\sqrt{E}} \oplus b \oplus \frac{c}{E}
+\,,
+\end{align}
+%
+where \(a\) is the stochastic term, \(b\) is the constant term, while \(c\) is the noise term. 
+
+The interaction length of a hadronic shower is typically much larger than the radiation length. 
+So, it is much easier to measure the energy of an electromagnetic shower. 
+
+\subsection{Space exploration}
+
+The first satellite sent in space with a particle detector was Sputnik II, with Geiger-Muller counters. 
+
+The belts, however, are called Van Allen belts since Sputnik only beamed signals to Earth
+when it was above the USSR. 
+
+The Explorer missions from the US, instead, measured the belts. 
+They measured artificially injected electrons' permanence in certain bands in the high atmosphere. 
+
+The Proton missions in the early 60s also measured the first hints 
+of the logarithmic rise of the hadronic cross-section.
+
 \end{document}

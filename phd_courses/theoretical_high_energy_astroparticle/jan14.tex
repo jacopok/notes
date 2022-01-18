@@ -150,7 +150,7 @@ f_0 (p) \propto \exp(
 
 There  is a momentum \(p_*\) such that \(\abs{x_0} = D(p_*) / u_1  \). 
 
-If \(p \ll p_*\), we get 
+If \(p \ll p_*\), we get \(D/u_1 \ll \abs{x_0 }\), so the exponential is of a large negative quantity, meaning we can neglect it and find
 %
 \begin{align}
 f_0 (p) \propto \left( \frac{p}{p _{\text{min}}}\right)^{-3 \frac{u_1}{u_1 - u_2 }}
@@ -159,20 +159,23 @@ f_0 (p) \propto \left( \frac{p}{p _{\text{min}}}\right)^{-3 \frac{u_1}{u_1 - u_2
 
 This is the usual solution. 
 
-On the other hand, if \(p \gg p_*\) we get 
+On the other hand, if \(p \gg p_*\) we get the exponential of a quantity close to zero, which we can expand:
 %
 \begin{align}
 f_0 (p) \sim \left(\frac{p_*}{p _{\text{min}}}\right)^{-3r / (r-1)}
-\exp(- \int_{p_*}^{p} \frac{ \dd{p'}}{p} \frac{3 u_1 }{u_1 - u_2 } \frac{D}{u_1 \abs{x_0 }})
+\exp(- \int_{p_*}^{p} \frac{ \dd{p'}}{p'} \frac{3 u_1 }{u_1 - u_2 } \frac{D}{u_1 \abs{x_0 }})
 \,.
 \end{align}
 
 At a momentum close to \(p_*\), we get an exponential suppression with respect to the powerlaw! 
+The integrand in the big negative exponential is large (as the exponential \(\exp(u_1 x_0 / D)\) is close to 1). 
 
 When particles have enough momentum to reach the ``leaving surface'', they simply leave! 
 
+\begin{extracontent}
 Exercise: take the derivative of the distribution function at \(x = x_0 \). Then, at \(p\) very small compared to \(p_*\), the escaping flux goes to zero. 
 On the other hand, at very large \(p\) the flux also goes to zero! 
+\end{extracontent}
 
 This means that only particles with momentum very close to \(p_*\) leave! 
 We get a peaked flux!
@@ -185,7 +188,69 @@ In the end, even though at a given time the spectrum is peaked, if we integrate 
 
 We are approaching the problem that the accelerated particles are producing their own magnetic field, but far enough from the shock there will be few particles and the ones which reach this length will be able to leave. 
 
+\begin{extracontent}
 A second exercise: what if we impose the boundary condition that \(f(x_0, p)\) is not zero, but instead it equals the (small) background cosmic ray density in the galaxy? 
+
+The PDE system to solve is 
+%
+\begin{align}
+u_1 \pdv{f}{x} &= \pdv{}{x} \left( D \pdv{f}{x} \right)  \\
+D \eval{\pdv{f}{x}}_{x=0^{-}} &= \frac{1}{3} (u_2 - u_1 ) p \eval{\pdv{f}{p}}_{x=0^{-}}  \\
+f(x= x_0) &= g(p) = A \left( \frac{p}{p _{\text{min}}} \right)^{- \alpha }
+\,.
+\end{align}
+%
+
+Let us assume the solution looks like 
+%
+\begin{align}
+f(x, p) \propto \exp(\frac{x u_1 }{D}) \left(\frac{p}{p _{\text{min}}}\right)^{- \beta (x)}
+\,,
+\end{align}
+%
+and for convenience let us define the characteristic diffusion wavenumber \(k = u_1 / D\). 
+
+Then, the first equation upstream tells us that 
+%
+\begin{align}
+(\beta ')^2 = \beta '' + k \beta '
+\,,
+\end{align}
+%
+while the condition at the shock tells us that 
+%
+\begin{align}
+\left( k - \beta '\right) =  \frac{1}{3} \frac{r - 1 }{r} k \beta 
+\,.
+\end{align}
+
+Finally, the condition at the \(x_0 \) border tells us that 
+%
+\begin{align}
+\beta (x = x_0 ) = \alpha _{\text{CR}}
+\,,
+\end{align}
+%
+a fixed number.
+
+The solution is basically as follows: when \(D / u_1 \ll \abs{x_0 }\) the spectral index \(\beta (x = 0)\) is basically \(3r/(r-1)\), while when \(D / u_1 \gg \abs{x_0 }\) the spectral index at \(x=0\) is basically the same as the one at \(x_0 \). 
+
+So, on a rough level in momentum space we expect a broken powerlaw spectrum, with index \(3r/(r-1)\) at low momenta and index \(\alpha _{\text{CR}}\) at high momenta, where the two are separated at \(p_*\) such that \(D(p_*) = u_1 \abs{x_0 }\). 
+\end{extracontent}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/cosmic_ray_reacceleration_far}
+\caption{Reacceleration with \(D/u_1 \ll \abs{x_0 }\).}
+\label{fig:cosmic_ray_reacceleration_far}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/cosmic_ray_reacceleration_near}
+\caption{Reacceleration with \(D/u_1 \gg \abs{x_0 }\).}
+\label{fig:cosmic_ray_reacceleration_near}
+\end{figure}
 
 We will get an interesting phenomenon: \emph{reacceleration}. 
 Particles from the galaxy are pushed up in energy. 
@@ -213,7 +278,9 @@ This is very instructive: we find a decreasing exponential in time,
 in the form of \(\exp(-t / \tau )\), where \(\tau \) is the acceleration time. 
 This will also yield a formal answer as to why the derivative of the distribution downstream must vanish.
 
+\begin{extracontent}
 We are welcome to try to do this exercise.
+\end{extracontent}
 
 We will derive the acceleration time in a simpler way. 
 
@@ -376,7 +443,7 @@ Comparing these is equivalent to comparing
 \end{align}
 
 Let us suppose that the acceleration timescale is indeed much smaller than the energy loss scale: 
-then, we can approimate \(\lambda \)     as 
+then, we can approximate \(\lambda \)     as 
 %
 \begin{align}
 \lambda &\approx u \frac{\tau}{2} \left(-1 + \sqrt{1 + \frac{4 D \tau }{(u \tau )^2}}\right)

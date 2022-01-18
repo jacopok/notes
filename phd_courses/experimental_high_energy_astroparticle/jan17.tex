@@ -1,4 +1,144 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Gamma ray astronomy}
+
+\marginpar{Monday\\ 2022-1-17}
+
+We want to observed photons with energies \(\gtrsim \SI{1}{MeV}\). 
+The atmosphere is transparent in the optical and radio bands, but not really anywhere else. 
+
+High energy photons (more than UV) cannot penetrate the atmosphere without 
+interacting, typically. 
+
+There are many motivations to do gamma-ray astronomy: 
+both from astronomy and cosmology, and from astroparticle physics. 
+
+What are their sources? particle interactions at sites of cosmic ray acceleration, mostly. 
+The spectra are, therefore, powerlaws. 
+
+They can come from accelerated electrons or accelerated protons. 
+
+We can have pointlike and extended sources, as well as diffuse galactic emission, as well
+as an isotropic background. 
+We could also have light from dark matter! 
+For example, a gamma line from annihilation of DM particles. 
+
+We can plot a gamma ray horizon: if the kinematic threshold for the interaction 
+with CMB is met exactly, we can get a very short mean free path (on the scale of the Milky Way); 
+if, instead, the photons are much more energetic there is no issue. 
+
+We would like to have a space-based detector, but the fluxes are very small! 
+For Vela, we only get a few photons per day. 
+
+With a space-based detector, we have a very high charged particle background: 
+the detection mechanism is typically pair production. 
+
+Angular resolution and energy resolution are both very important. 
+
+Already in the sixties the OSO-3 mission found evidence for diffuse \(\gamma \)-ray emission 
+from the galaxy. 
+
+Definitions: take a point source with a differential flux \(\dv*{F}{E}\), measured in \SI{}{m^{-2} s^{-1} GeV^{-1}}. 
+
+The differential count spectrum will be given by 
+%
+\begin{align}
+\dv{N}{E} = A _{\text{eff}} \dv{F}{E}
+\,,
+\end{align}
+%
+where the effective area is close to the geometric area but it depends on the energy; 
+it is given by 
+%
+\begin{align}
+A _{\text{eff}} (E, \theta , \varphi ) = A _{\text{geo}} (E, \theta , \varphi ) \epsilon _{\text{det}} (E, \theta , \varphi) \epsilon _{\text{sel}} (E, \theta , \varphi ) 
+\,.
+\end{align}
+
+If we are dealing with an isotropic flux, instead, we measure the flux in \SI{}{m^{-2} s^{-1} sr^{-1} GeV^{-1}}. 
+
+The differential count spectrum will then be given by 
+%
+\begin{align}
+\dv{N}{E} = GF \dv{J}{E}
+\,,
+\end{align}
+%
+where the geometric factor \(GF\) is a number given by 
+%
+\begin{align}
+GF(E) = \int A _{\text{eff}} (E, \theta , \varphi ) \dd{\Omega }
+\,.
+\end{align}
+
+These might all also depend on time: in that case, we should look at the exposure
+factor 
+%
+\begin{align}
+EF(E) = \int GF(E) \dd{t}
+\,,
+\end{align}
+%
+which is measured in \SI{}{m^2 sr yr}. 
+This is analogous to an integrated luminosity in particle physics. 
+
+The Field of View is defined as 
+%
+\begin{align}
+\text{FoV} (E) = \frac{GF(E)}{A _{\text{eff}} (E, \theta = 0)}
+\,,
+\end{align}
+%
+so that, for example, in the case of a planar detector \(\text{FoV} = \pi \sin^2 \theta _{\text{max}}\). 
+This is because the effective area is just \(A _{\text{eff}} (\theta ) = S \cos \theta \). 
+
+The old instrument was EGRET, now we have FERMI-LAT. 
+Its angular resolution scales with energy: it is on the order of single degrees below a \SI{}{GeV},
+less than a degree above a \SI{}{GeV}.
+
+DAMPE was made for electrons, but it can also measure photons. 
+
+What about detection on the ground?
+In space we are limited at an energy of about a \SI{}{TeV}, to go above we need 
+ground-based detectors. 
+
+It is better to go to high-altitude sites.
+The thickness of the atmosphere is about \(30 X_0 \). 
+If we go high enough, we can get about half an atmosphere in terms of column density:
+this will mean \(15 X_0 \). 
+
+We can then try to detect particles with a Particle Detector Array.
+
+Even if none of the secondary particles reach the ground, though, we still have
+the Cherenkov light from the relativistic secondaries: 
+this is not absorbed in any significant part. 
+
+These Imaging Atmospheric Cherenkov Telescopes only work at night. 
+
+IACTs have good angular and energy resolution, as well as source selection, 
+but poor FoV. 
+
+We can plot shower size (which means number of particles) as a function of atmospheric depth. 
+This shows that having a detector on top of Mount Everest would be roughly ideal. 
+
+The minimum energy detectable is determined by altitude, sampling, trigger energy deposited;
+the maximum energy is determined by the total area, and the dynamic range of the detector. 
+
+A shower is called young or old depending on when we measure it.
+The age is parametrized by a parameter \(s\), defined so that \(s=1\) at the maximum of the shower.
+
+In the 1950s there was a key theoretical prediction: the Crab Nebula should 
+produce many \SI{}{TeV} photons. 
+
+The ARGO-YBJ detector in Tibet, an Italian-Chinese collaboration, measured these. 
+It was basically a grid of capacitor pixels, which were very dense. 
+
+Hadron showers are typically more spread than photon showers. 
+This is a way to identify them, the other is to look at 
+anisotropies in the angular distributions: protons are isotropic, photons 
+come from specific sources typically. 
+
+
+
 \end{document}

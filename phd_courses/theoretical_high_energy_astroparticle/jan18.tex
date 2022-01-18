@@ -1,4 +1,310 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Particle transport}
+
+\marginpar{Tuesday\\ 2022-1-18}
+
+In the last couple of lectures, we have looked at how the 
+presence of shocks affects cosmic rays. 
+
+Today we smoothly transition to the problem of particle transport. 
+
+Supernova remnants seem to be the most likely candidate for the production. 
+
+Cosmic rays in the galaxy: 
+we model them taking the galaxy as a thin disk
+(in reality it's \SI{30}{kpc} in diamater, a few hundred parsecs in height). 
+We say that its height is \(2h = \SI{300}{pc}\). 
+
+All around it, we think of a region extending at least \(H=\) a few of \SI{}{kpc} where the density is very low, the plasma is completely ionized and magnetized. 
+This region is called the \emph{halo} of the galaxy. 
+
+We use this simple galactic model which neglects spiral arms and such,
+since it still is able to give a rough idea of the mechanism. 
+
+Let us assume that a source goes off in the galaxy; as we know due to Alfvén waves' resonance the cosmic rays will diffuse. 
+
+Let us call the distribution function of boron nuclei \(f_B (E)\): this will satisfy 
+%
+\begin{align}
+f_B(E) = \text{rate of production} \times \text{confinement time}
+\,,
+\end{align}
+%
+but what is the rate of production? It will be given by nuclear fission of heavier elements --- let's assume it is only due to Carbon, so
+%
+\begin{align}
+\text{rate of production} = f _C (E) n _{\text{gas}} \sigma _{\text{sp}} c
+\,,
+\end{align}
+%
+where we take the speed to be \(c\) since the Carbon nuclei are assumed to be relativistic. Then, 
+%
+\begin{align}
+\frac{f_B (E)}{f_C(E)} = n _{\text{gas}} \sigma _{\text{sp}} c \tau _{\text{confinement}} = \frac{\tau _{\text{confinement}}}{\tau _{\text{spallation}}}
+\,.
+\end{align}
+
+Why do we say the energy is the same? 
+It's not! however, what we mean here is the 
+\emph{energy per nucleon}, which is conserved in the process \(\ce{C} + \ce{N} \to \ce{B} + x\). 
+
+We can actually measure this ratio! 
+It's about \(1/3\) around \SI{10}{GeV} per nucleon. 
+
+\todo[inline]{which means that one Carbon every four is spallated}
+
+The mean value of the density in the disk and outside is about 
+%
+\begin{align}
+\overline{n} = \frac{n_d \pi r_d^2 2 h + n_H r_d^2 \pi 2H}{2 \pi r_d H} \approx n_d \frac{h}{H}
+\,.
+\end{align}
+
+The halo's only effect is to have the particle diffusing, 
+while (almost) only when it passes through the galaxy it 
+can interact. 
+
+The energy density of the gas at the Sun, which we take to be representative of the disk, is about 
+%
+\begin{align}
+\omega _{\text{CR}} \approx \SI{1}{eV / cm^3}
+\,,
+\end{align}
+%
+therefore the total energy available is \(E _{\text{CR}} = \omega _{\text{CR}} \pi r_d^2 2 H \). 
+
+Let us say that this ratio is \(E _{\text{CR}} = \xi _{\text{CR}} E _{\text{source}} R _{\text{source}} \tau _{\text{confinement}}\), 
+where \(\xi _{\text{CR}}\) is the rate at which energy is transformed into cosmic rays. 
+
+This is then also 
+%
+\begin{align}
+E _{\text{CR}} = \frac{1}{3} \xi _{\text{CR}} R _{\text{source}} E _{\text{source}} \frac{H}{n_d h \sigma _{\text{sp}} c}
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\xi _{\text{CR}} = \frac{3 \omega _{\text{CR}} \pi r_d^2 n_d h \sigma _{\text{sp}} c}{E _{\text{source}} R _{\text{source}}}
+\,,
+\end{align}
+%
+of which we know everything except for \(\xi _{\text{CR}}\); 
+the idea is that for various source types we can estimate their energy and rate, and see what \(\xi \) is required. 
+
+For supernovae, we have \(E _{\text{source}} \approx \SI{e51}{erg}\), while \(R _{\text{source}} \approx \SI{1/30}{yr^{-1}}\). 
+This means we require \(\xi _{\text{CR}} \approx \SI{3}{\percent}\) if \(r_d \approx \SI{30}{kpc}\). 
+
+This does not suffice, of course, but it does indicate that if an acceleration mechanism can work then we are good! 
+
+We now define 
+%
+\begin{align}
+X(E) = n_d \frac{h}{H} m_p \tau _{\text{confinement}}(E) \approx \frac{1}{3} \frac{m_p}{\sigma _{\text{sp}}}
+\,:
+\end{align}
+%
+this is called the \emph{grammage}, the total amount of matter ``experienced'' by the CR before leaving the galaxy. 
+It is roughly \SI{10}{g / cm^2}. 
+
+The confinement time, on the other hand, is on the order of \SI{100}{Myr}. 
+
+The main problem with this paradigm is the maximum energy; 
+recent investigations showed that typical remnants can achieve energies on the order of \SI{100}{TeV}, but not more! 
+
+There is a large zoo of supernovae; 
+the type Ia and type II are the most common. 
+
+Type I are old stars: they exhibit no hydrogen lines. 
+
+The collapse of a white dwarf happens when it starts accreting material from its companion, through Roche lobe overflow. 
+
+Type II supernovae are completely different: they are core collapse supernovae. 
+
+For both of these, the typical energy is a foe. 
+What is the velocity of the ejecta? It turns out to be about 
+%
+\begin{align}
+v _{\text{ej}} = \SI{e9}{cm/s} \left(\frac{E}{\SI{e51}{erg}}\right)^{1/2}
+\left(\frac{M _{\text{ej}}}{M_{\odot}}\right) \ll c
+\,.
+\end{align}
+
+This must be compared with the sound speed of the ISM: 
+%
+\begin{align}
+c_s = \sqrt{\frac{\gamma P}{\rho }} = \sqrt{\gamma \frac{n k_B T}{n m_p}}
+\approx \SI{e6}{cm/s} \left(\frac{T}{\SI{e4}{K}}\right)^{1/2}
+\,,
+\end{align}
+%
+meaning that the Mach number of the shock is on the order of \(M \approx 1000\). 
+
+The Alfvén speed, on the other hand, is on the order of 
+%
+\begin{align}
+v_A = \frac{B}{\sqrt{4 \pi \rho }} \approx \SI{2e5}{cm/s} \left(\frac{n}{\SI{1}{cm^{-3}}}\right)^{-1/2} \left(\frac{B}{\SI{1}{\micro \gauss}}\right)
+\,,
+\end{align}
+%
+so the plasma is moving super-Alfvenically as well in the reference frame of the shock. 
+
+We can see the shock front with X-ray observations, 
+and we can measure its velocity by looking at it after years. 
+
+As mentioned before, both the sonic and Alfvenic Mach numbers are \(\gg 1\). 
+
+It is important to know \(D\) and \(u\), which give us a characteristic length \(D / u\) and a characteristic time \(\sim D / u^2\). 
+
+The shock will slow down as it passes through the ISM. 
+This process happens in two stages. 
+
+\paragraph{Ejecta dominated phase}
+Here, the shock velocity is roughly constant, so the shock radius is roughly \(R = v _{\text{sh}} t\). 
+
+The mass flux is \(\rho _{\text{ISM}} v _{\text{sh}}\), so the accumulated mass is 
+%
+\begin{align}
+M _{\text{accumulated}} &= \rho _{\text{ISM}} v _{\text{sh}} 4 \pi R^2 _{\text{sh}} t = 4 \pi \rho _{\text{ISM}} v _{\text{sh}}^3 t^3  \\
+&= \SI{6.2e26}{g} n_1 E^{3/2}_{51} M _{\text{ej}}^{-5/2} t^3
+\,.
+\end{align}
+
+When this becomes comparable to the mass of the ejecta, the adiabatic (Sedov-Taylor) phase starts: 
+%
+\begin{align}
+t _{\text{st}} \approx \SI{150}{yr} E_{51}^{-1/2} M _{\text{ej}}^{5/6} n_I^{-1/3}
+\,.
+\end{align}
+
+A radius can also be associated to this transition: \(R _{\text{st}} = v _{\text{eq}} t _{\text{st}} \sim \SI{1.5}{pc}\).
+
+Then, the scaling will look like 
+%
+\begin{align}
+\frac{1}{2} \left(M _{\text{ej}} + M _{\text{acc}}\right) v _{\text{sh}}^2 = E _{\text{SN}}
+\,,
+\end{align}
+%
+so, without looking at the transition, let us assume that the accelerated mass is dominant right away: 
+%
+\begin{align}
+\frac{1}{2} \rho _{\text{ISM}}  v _{\text{sh}} 4 \pi R _{\text{sh}}^2 t v _{\text{sh}}^2 =  E _{\text{SN}}
+\,,
+\end{align}
+%
+so we will have \(R _{\text{sh}} \sim t^{\alpha }\), \(v _{\text{sh}} \sim t^{\alpha - 1}\) for some \(\alpha \): then the equation looks like 
+%
+\begin{align}
+t^{5 \alpha - 2} \sim E = \text{constant}
+\,,
+\end{align}
+%
+so \(\alpha = 2 /5 \). 
+The radius increases like \(t^{2/5}\), the velocity decreases like \(t^{-3/5}\).
+
+We can do the same setup for SN II: sometimes they emit a lot of stellar wind with a certain \(\dot{M}\) which can be taken to be roughly constant, in which case then \(\rho _{\text{wind}} = \dot{M} / 4 \pi r^2 v _{\text{wind}}\) near the massive star. 
+
+\begin{extracontent}
+    Do the same exercise assuming the profile of the gas is this one. 
+\end{extracontent}
+
+At the beginning of the \(ST\) phase the reverse shock is hitting the center. 
+
+The best time for CR acceleration is the transition into the ST phase. 
+
+Between the shocks, there is a ``contact discontinuity'' where the shocked ejecta become subsonic. 
+This is typically a turbulent region. 
+1D hydrodyamic approximation can model this. 
+
+So, the galactic model.
+
+The equation is 
+%
+\begin{align}
+\pdv{f}{t} + u \pdv{f}{z} = \frac{1}{3} \dv{u}{z} p \pdv{f}{p} 
++ \pdv{}{z} \left(
+    D \pdv{f}{z}
+\right)
++ Q
+\,.
+\end{align}
+
+The velocity \(u\) is the one of the ISM, there are situations in which it's nonvanishing but we will take it to be uniformly zero. 
+
+Then, we kill those two terms. 
+The timescale for confinement is quite a bit smaller than galactic evolution timescales, so we assume stationarity; 
+then, the equation is simply 
+%
+\begin{align}
+\pdv{}{z} \left( D \pdv{f}{z}\right) = -Q
+\,,
+\end{align}
+%
+but what are the sources \(Q\)? 
+
+Suppose each source produces a spectrum \(N(p) \sim p^{-4}\): then we will have 
+%
+\begin{align}
+Q = N(p) R _{\text{sources}} \frac{\delta (z)}{\pi r_d^2}
+\,.
+\end{align}
+
+But, we also need to account for the fact that particles leave at a certain point? 
+We can do so by imposing a \emph{free escape boundary condition}: \(f (\abs{z} = H) = 0\) (we are neglecting the lateral boundaries). 
+
+This is even easier than the equation for the shock: 
+for \(z \neq 0\) we have \(\partial_z (D \partial_z f) = 0\), which is solved by a linear equation in the form \(f= kz/D + f_0 \). 
+
+However, the system is symmetric: what happens if we integrate around \(z=0\)? 
+%
+\begin{align}
+2 \eval{D \pdv{f}{z}}_{+} = - \frac{N(p) R _{\text{source}}}{\pi r_d^2}
+\,.
+\end{align}
+
+The distribution is therefore 
+%
+\begin{align}
+f(z) = - \frac{N(p) R _{\text{source}}}{2 \pi r_d^2 D} \abs{z} + f_0 
+\,.
+\end{align}
+%
+
+Further, we need 
+%
+\begin{align}
+\frac{k}{D} H + f_0 = 0
+\,,
+\end{align}
+%
+so the full solution reads 
+%
+\begin{align}
+f(z) = - \frac{N(p) R _{\text{source}}}{2 \pi r_d^2 D} \abs{z} + \frac{N(p) R _{\text{source}}}{2 \pi r_d^2 } \frac{H}{D}
+\,.
+\end{align}
+
+The density in the galaxy is then just 
+%
+\begin{align}
+f_0 = \underbrace{\frac{N(p) R _{\text{source}}}{2 \pi r_d^2 H}}_{\text{injection phase space density rate}} \underbrace{\frac{H^2}{D}}_{diffusion timescale}
+\,.
+\end{align}
+
+Since  \(D(p)\) is a function of \(p\), the injection spectrum is not the same one which is observed!
+
+If \(D(p) \sim p^{\delta }\) and \(N(p) \sim p^{-\gamma }\), 
+we will always measure \(p^{- \delta - \gamma }\). 
+
+We need a different channel to figure out what \(\delta \) is. 
+
+The flux of escaping particles is the source flux: \(D \partial_z f \sim N(p)\), so outside the galaxy the spectrum is the source one. 
+
+For protons, the loss timescale is about a \SI{}{Gyr}. 
+For nuclei, this line of reasoning does not hold, as we shall see next week.
+
 \end{document}

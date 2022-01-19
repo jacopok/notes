@@ -1,4 +1,230 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2022-1-19}
+
+Yesterday we started looking at the transport of cosmic rays in the galaxy through a simple cylindrical model. 
+
+Because we have CR protons leaving the galaxy, we get an electric current! 
+This generates a turbulent magnetic field. 
+
+Now we will look at spallation products in more detail. 
+The ISM basically only reflects Big Bang Nucleosynthesis (Hydrogen and \SI{25}{\percent} of Helium)
+and the products of stellar fusion. 
+
+In stars, Boron Lithium and Beryllium are destroyed more efficiently than they are formed. 
+
+Let us write the simplified transport equation we found yesterday, but accounting for the losses underwent by a primary nucleus (which is not formed much by spallation) denoted as \(p\): 
+%
+\begin{align}
+-\pdv{}{z} \left( D \pdv{f_p}{z} \right) = \frac{N_p R}{\pi r_d^2} \delta (z) 
+- f_p n_d \sigma _{\text{sp}} c 2 h \delta (z)
+\,,
+\end{align}
+%
+since this nucleus undergoes reactions in the form 
+%
+\begin{align}
+\ce{C} + \ce{p} _{\text{ISM}} \to \ce{B} + X
+\,.
+\end{align}
+%
+where we only write Boron but the cross-section \(\sigma _{\text{sp}}\) refers to all possible spallation reactions. 
+
+We assumed that everything is relativistic; if we do not assume this there are additional energy losses --- specifically, ionization. 
+
+Further, like yesterday we assumed that the plasma velocity \(u\) vanishes; for the high energies we are looking at (more than \SI{10}{GeV} per nucleon) this is a good assumption. 
+for smaller energies this it not a good assumption. 
+
+The Alfvén waves are moving and they are not isotropic (since the CR distribution is not isotropic), but their velocity is relatively small --- less than \SI{10}{km/s}.
+
+Advection is important when \(H/v_A < H^2/  D\), which comes out to be around \SI{10}{GeV}. 
+
+The galactic rotation velocity could be relevant at these energies. 
+
+Below \SI{10}{GeV} we have trouble measuring cosmic rays, because of solar modulation. 
+
+Let's solve the equation! 
+When \(z \neq 0\), we get again \(f(z, p) = A + Bz = f_0 + Bz = f_0 ( 1- \abs{z} / H)\). 
+
+But, what happens when we integrate around 0?
+
+
+%
+\begin{align}
+-2 D \eval{\pdv{f}{z}}_{0^{+}} &= \frac{N_p R}{\pi r_d^2}
+- f_0 n_d \sigma _{\text{sp}} 2 hc  \\
+2 D \frac{f_0 }{H} &= \frac{N_p R}{\pi r_d^2}
+- f_0 n_d \sigma _{\text{sp}} 2 hc  \\
+f_0 \left( \frac{2D}{H} + 2h c n_d \sigma  _{\text{sp}} \right) &= \frac{N_p R}{ \pi r_d^2}  \\
+f_0 \left( 1 + n_d \frac{h H}{D} c \sigma _{\text{sp}} \right) &= 
+\frac{N_d R H}{2 \pi r_d^2 D}
+\,,
+\end{align}
+%
+so we have 
+%
+\begin{align}
+f_0 (E) = \frac{N_p R H}{2 \pi r_d^2 D} \frac{1}{1 + n_d \frac{1}{H} \frac{H^2}{D} c \sigma _{\text{sp}}}
+\,,
+\end{align}
+%
+which we can write ass a function of the grammage \(X = n_d (h / H) m_p (H^2/ D)\): 
+%
+\begin{align}
+f_0 (E) = \frac{N_p R H}{2 \pi r_d^2 D} \frac{1}{1 + X(E) / X _{\text{crit}}}
+\,,
+\end{align}
+%
+where \(X _{\text{crit}} = m_p / \sigma _{\text{sp}}\). 
+
+So, if the grammage is small compared to this critical amount then the spectrum is basically unchanged since the interactions are weak. 
+The grammage scales inversely with energy (because of its inverse dependency on \(D\)), so this happens at high energies. 
+
+Very energetic nuclei behave basically as a proton. 
+On the other hand, less energetic nuclei with \(X \gg X _{\text{crit}}\) 
+have 
+%
+\begin{align}
+f_0 (E) = \frac{N_p R H}{2 \pi r_d^2 D} \frac{m_p / \sigma _{\text{sp}}}{n_d (h / H) m_p (H^2/ D) c} = \underbrace{\frac{N_p(E) R}{2 \pi r_d^2 H}}_{\text{injection rate per unit volume}} \underbrace{\frac{1}{n_d \sigma _{\text{sp}} (h/H) c}}_{\text{interaction timescale}}
+\,.
+\end{align}
+
+The spectrum is the same as the production one! 
+The ratio \(h / H\) came out naturally. 
+
+If the production spectrum is \(N_p \sim p^{- \gamma }\) while the diffusion looks like \(D \sim E^{ \delta }\), we get \(f_0 \sim E^{-\gamma - \delta }\) for little interaction, while \(f_0 \sim E^{-\gamma }\) for much interaction. 
+
+\begin{extracontent}
+    Exercise: take the diffusion coefficient to be different in the galaxy and the halo. 
+    However, we need to impose continuity. 
+    We should find that the diffusion coefficient in the disk is irrelevant. 
+\end{extracontent}
+
+The presence of neutral gas is very effective on the diffusion coefficient; the neutral gas kills Alfvén waves. 
+
+We still need to understand what is happening to the 
+spallation products. 
+This will apply to the stable ones, for the unstable ones we need to account for the decay, which we will do tomorrow. 
+
+Let us consider the distribution of a spallation product --- really, we would need to consider all the web of possible reactions. 
+
+We will neglect reacceleration of spallation products, and only include a source term accounting for the spallation. 
+The equation then reads 
+%
+\begin{align}
+- \pdv{}{z} \left( D \pdv{f_s }{z}\right) = f_p n_d \sigma _{\text{ps}} c 2 h \delta  (z) - f_s n_d \sigma _{\text{s}} c 2 h \delta (z)
+\,,
+\end{align}
+%
+where \(\sigma _{\text{ps}}\) is the cross-section for the primary to go into the secondary, while \(\sigma _{\text{s}}\) is the branching ratio for the secondary to spallate again.
+
+At high energies, it looks like the spallation cross-section is roughly 
+%
+\begin{align}
+\sigma _{\text{spall}} \approx \SI{45}{mb} A^{0.7}
+\,.
+\end{align}
+
+People were interested in this in the 60s and 70s and then they stopped; a lot of the limitations of CR physics come from the uncertainties in these old measurementes. 
+
+For \(z \neq 0\) again we get 
+%
+\begin{align}
+f_s (z) = f_0 \left( 1 - \frac{\abs{z}}{H} \right)
+\,.
+\end{align}
+
+Again, we get 
+%
+\begin{align}
+2 D \frac{f_0}{H} = f_{p, 0} n_d \sigma _{\text{ps}} c 2 h  - f_{s, 0} n_d \sigma _{\text{s}} c 2 h
+\,.
+\end{align}
+
+This means 
+%
+\begin{align}
+f_{0, s}  \left( 
+    \frac{2D}{H} + n_d \sigma _s 2 h c
+\right)
+&= f_{p, 0} 
+n_d \sigma _{\text{ps}} c  
+2h  \\
+f_{s, 0} \left(1 + \frac{n_d h H^2\sigma _s c}{H D}\right) &= f_{p, 0} n_d \frac{c}{m_p} \frac{h}{H} \frac{H^2}{D} m_p  \\
+f_{s, 0} &= f_{p, 0} \frac{ X(E) / X _{\text{crit, ps}}}{1 + X / X _{\text{crit, s}}}
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+\frac{\text{secondary}}{\text{primary}} = \frac{X(E) / X _{\text{crit, ps}}}{1 + X(E) / X _{\text{crit, s}}}
+\,.
+\end{align}
+
+Suppose that \(X(E) \ll X _{\text{crit, s}}\). 
+Then, the ratio is simply \(X(E) / X _{\text{crit, ps}} \propto H/D\):
+the energy dependence of the diffusion coefficient is known in this way. 
+
+This tells us a lot about the microphysics! 
+We don't know \(H\) very well, but we do have an estimate for it 
+within a few: therefore, we know
+%
+\begin{align}
+D(E) \approx \SI{3e28}{cm^2 / s} \left( \frac{E}{\SI{}{GeV}}\right)^{1/2}
+\,.
+\end{align}
+
+If we compare this to the expression we had found a long time ago, 
+%
+\begin{align}
+D \sim \frac{1}{3} \frac{r_L c}{\mathscr{F}(k)}
+\,,
+\end{align}
+%
+which tells us, if we put the numbers in, that we need extremely small fluctuations! 
+
+Secondary over primary is flat at low energies, and goes down with \(E^{-\gamma }\) as the energy increases. 
+
+At low energies, we expect the carbon (primary) spectrum to look like \(E^{-\gamma -\delta }\), while the boron spectrum would look like \(E^{-\gamma - 2 \delta }\); 
+on the other hand if Boron is produced at the source it looks as if it was a primary. 
+
+If the spectrum at \(x_0 \) in the shock is \(E^{- \gamma - 2 \delta}\), what happens? 
+
+What about antiprotons? 
+They can be produced in \(2\ce{p} \to 3\ce{p} + \overline{\ce{p}}\). 
+The kinematic threshold is quite high, while the production of pions is much easier. 
+
+Let us neglect the dependence of cross-section on the energy for simplicity. 
+
+The equation we computed for the secondaries is the same one we should use for antiprotons! 
+Their energy losses are negligible, so we get \(\overline{p} / p \sim h / D(E)\). 
+
+Really, we measure an almost-flat spectrum for it. 
+
+There are two things which are not well measured: the cross-section, and the spectrum. 
+However, within experimental uncertainties the measurements (antiprotons and boron) are incompatible. 
+
+Tomorrow we will break this degeneracy with unstable Beryllium-10: 
+this is nice since it introduces a new timescale. 
+
+The three isotopes are Beryllium 7, 9 and 10: in lab they are produced in the same amounts, while in CRs we see almost no Beryllium. 
+This gives us an estimate of the time the Beryllium remained there. 
+
+Since that flux is low, we need a very good experiment with a very good magnetometer. 
+AMS hoped to do that; unfortunately the magnet had a problem and was replaced with a weaker permanent magnet. 
+This could not distinguish the isotopes, however it could measure Beryllium over Boron: 
+%
+\begin{align}
+\frac{\ce{Be}}{\ce{B}} = \frac{^{7} \ce{Be} + ^{9} \ce{Be} + ^{10} \ce{Be} + }{^{10} \ce{B}}
+\,,
+\end{align}
+%
+which is still relatively good since \(^{10} \ce{Be}\) decays into \(^{10} \ce{B}\). 
+
+For leptons we have a \emph{huge} anomaly. 
+
+
+
 \end{document}

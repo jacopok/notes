@@ -1,4 +1,306 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Thursday\\ 2022-1-20}
+
+Yesterday we solved the transport equation for stable nuclei, 
+both primary and secondary; now we need to move to unstable ones.
+
+This is useful since the secondary over primary ratio in that case scales like 
+\(S/P \propto H/D(E)\), while unstable ones give us a new timescale. 
+
+For very high energies, the lifetime scales like \(\gamma \)! 
+long lifetimes can be multiplied. 
+
+Let us look at Beryllium. It will not have a source term in a shock; 
+we get an equation like 
+%
+\begin{align}
+\pdv{}{z} \left(D \pdv{f_s}{z}\right) 
+= - f_p n_d c \sigma _{\text{ps}} 2 h \delta (z) 
++ f_S n_d c \sigma _s 2 h \delta (z) + \underbrace{\frac{f_s}{\tau _d}}_{\text{new decay loss term}}
+\,,
+\end{align}
+%
+where \(\tau _{d} = \gamma \tau _{\text{1/2}}\) is the lifetime in the lab frame; 
+in the \(z \neq 0\) region the equation simplifies to 
+%
+\begin{align}
+D \pdv[2]{f_s}{z} = \frac{f_s}{\tau _d}
+\,,
+\end{align}
+%
+therefore the solution reads 
+%
+\begin{align}
+f_s &= A \exp(- \beta z) + B \exp(\beta z)  \\
+\pdv{f_s}{z} &= -\beta A \exp(-\beta z) + B \beta \exp(\beta z) \\
+\pdv[2]{f_s}{z} &= \beta^2 A \exp(-\beta z) + B \beta^2 \exp(\beta z)
+\,,
+\end{align}
+%
+which we can use to show that \(DA \beta^2 = A / \tau _d\), which implies \(\beta = 1/ \sqrt{D \tau  _d}\). 
+
+In the galaxy we have \(A+B = f_0\), while at the boundary \(z=H\) we have \(A \exp(- \beta H) + B \exp(\beta H) = 0\). 
+The exponential is just a number: \(\exp(\beta H) = \exp(H / \sqrt{D \tau _d}) = g\). 
+
+Therefore, we get 
+%
+\begin{align}
+f_0 (p) &= - f_0 \frac{g^2}{1 - g^2} \exp(- \beta z) + \frac{f_0}{1 - g^2} \exp( \beta z)
+\,,
+\end{align}
+%
+an implicit form which we can integrate over the galactic disk: 
+%
+\begin{align}
+2 D \eval{\pdv{f}{z}}_{0^+} = 
+- f_{p0} n_d \sigma _{\text{ps}} 2h 
++ f_{s0} n_d c \sigma _s 2h
+\,.
+\end{align}
+
+Plugging the solution into this, we get 
+%
+\begin{align}
+\eval{\pdv{f}{z}}_{0^+} = \frac{g^2 f_0 \beta }{1 - g^2}
++ \frac{f_0 \beta }{1 - g^2} = 
+\frac{f_0 \beta }{1-g^2} (1 + g^2)
+\,,
+\end{align}
+%
+and putting this into the integration around zero we get 
+%
+\begin{align}
+f_{s0 } \left(
+    \sqrt{ \frac{D}{\tau _d}} \frac{1 + g^2}{1-g^2}
+    - n_d \sigma _s c h 
+\right) 
+= - f_{p0} n_d \sigma _{\text{ps}} c h
+\,,
+\end{align}
+%
+which is the full solution! 
+
+Let us look at its limits: \(\tau _d \to \infty\) is a stable nucleus or an unstable one in the limit of very high energy; 
+in that case, the exponential looks like 
+%
+\begin{align}
+g = \exp( \frac{H}{\sqrt{D \tau _d}}) 
+\,,
+\end{align}
+%
+so the term is 
+%
+\begin{align}
+\frac{1 + g^2}{1- g^2} \approx \frac{2}{1 - 1- H / \sqrt{D \tau _d}}
+\,.
+\end{align}
+
+In the solution then \(\sqrt{\tau _d}\) cancels (as it should), so we have
+%
+\begin{align}
+f_{s0} \left( 1 + \frac{n_d \sigma _s c h H}{D}  \right)
+= f_{p0} n_d \sigma _s c \frac{h}{H} \frac{H^2}{D}  
+\,,
+\end{align}
+%
+therefore again the solution is 
+%
+\begin{align}
+f_{s0} = f_{p0} \frac{X / X _{\text{crit}}}{1 + X / X _{\text{sp}}}
+\,.
+\end{align}
+
+What happens, instead, when \(\tau _d\) is very small? 
+\(g\) approaches infinity, so we get \((1+g^2) / (1 - g^2) \to \infty\). 
+The equation is then 
+%
+\begin{align}
+f_{s0} \left( \sqrt{ \frac{D}{\tau _d}} + n_d \sigma_s c h  \right)
+= f_{p0} n_d \sigma _{\text{ps}} c h
+\,,
+\end{align}
+%
+so in the end we find 
+%
+\begin{align}
+f_{s0} = f_{p0} \frac{n_d \sigma _{\text{ps}} c h}{n_d \sigma _s h + \sqrt{D / \tau _d}} \propto \sqrt{ \frac{\tau _d}{D}}
+\,.
+\end{align}
+
+If we are able to measure this, we get an independent way to measure \(H\)! 
+This yields a relatively large halo, on the order of  \(H \gtrsim \SI{5}{kpc}\). 
+
+The experiments we currently have are not able to distinguish the specific isotopes of Beryllium, but we can measure overall Beryllium over Boron, which is already useful.
+
+What we said so far applies at high energies, where we can neglect the Alfvén speed. 
+
+In the equations of MHD there is a term like \(- \nabla P\); 
+in our case this will also include the pressure of cosmic rays! 
+
+Consider the bulk of the distribution: its distribution looks like \(f = f_0 (1 - \abs{z} / H)\), so there is a gradient in 
+%
+\begin{align}
+P_c = \frac{1}{3} \int \dd{p} 4 \pi p^2 p \delta (p) f(p, z)
+\,.
+\end{align}
+
+So, assume that there is dark matter, with a NFW profile (\(1/r\) up to \SI{10}{kpc}, \(1/r^3\) after). 
+
+At \(r = 0\), consider (on the axis of the galaxy) the comparison between the gravitational force by DM and the pressure term \(- \nabla P\). 
+
+If the pressure gradient is high enough, we can get CR-driven winds! 
+
+There is currently very weak evidence that our own galaxy has winds. 
+
+These winds are really ``fountains'', with the plasma later falling back to the galaxy. 
+
+The aspects discussed up to now are in great agreement with experiment; 
+the big anomaly is with leptons. 
+
+There, the transport equation reads 
+%
+\begin{align}
+\pdv{}{z} \left(D \pdv{f}{z}\right) = - Q + \frac{f}{\tau _L}
+\,,
+\end{align}
+%
+where \(f\) is the distribution of electrons, \(Q\) is a source term while \(\tau _L\) is the timescale for losses. 
+
+We need to solve this equation for electrons just like for protons, with the difference that electrons lose a lot of energy through synchrotron and inverse Compton. 
+These processes have \(\dv*{E}{t} \propto E^2\) (at least in the Thompson regime). 
+
+Therefore, \(\tau _L \sim E / \dot{E} \propto E^{-1}\). 
+
+The approach is otherwise the same as before, taking the source term to have the form \(Q = N(E) R \delta (z) / \pi r_d^2\). 
+
+We get the same solution as before: 
+%
+\begin{align}
+f(z, p)= A \exp(- \beta z) + B \exp(\beta z)
+\,,
+\end{align}
+%
+so again we get 
+%
+\begin{align}
+f = \frac{f_0 g^2}{g^2 - 1} \exp(- \beta z) + \frac{f_0 }{g^2-1} \exp(\beta z)
+\,. 
+\end{align}
+
+The distribution at \(z=0\) can be found by integrating around it as usual: 
+%
+\begin{align}
+f_0 (E) = \frac{N_e R}{2 \pi r_d^2} \sqrt{ \frac{\tau_L}{D}} \frac{g^2- 1}{g^2 + 1}
+\,.
+\end{align}
+
+If \(\tau _L\) is very large, we get 
+%
+\begin{align}
+f_0 (E) = \frac{N_e R}{ 2 \pi r_d^2} \sqrt{\frac{\tau _L}{D}} \frac{H}{\sqrt{D \tau _L}} = \frac{N_e R}{2 \pi r_d^2 H} \frac{H^2}{D}
+\,.
+\end{align}
+
+Again if \(\tau _L \) is very small, we find 
+%
+\begin{align}
+f_0 (E) = \underbrace{\frac{N_e(E) R }{2 \pi r_D^2} \frac{1}{\sqrt{D \tau _L}}}_{\text{source}} \tau _L
+\,,
+\end{align}
+%
+which makes sense since the electrons can only reach as far as \(\sqrt{D \tau _L}\) from the disk, and we know that \(\sqrt{D \tau _L} \ll H\). 
+The volume they can fill is therefore simply \(2 \pi r_d^2 \sqrt{D \tau _L}\). 
+
+If we put the numbers in, we see that for most energies electrons are loss dominated. 
+
+For a field of \SI{3}{\micro \gauss}, inverse Compton with CMB photons and synchrotron with the galactic magnetic field have the same magnitude. 
+
+Around \SI{10}{GeV}, \(\tau _L\) is shorter than \(H^2 / D\). 
+
+The overall spectrum should therefore be 
+%
+\begin{align}
+E^{-\gamma -1 - (\delta /2 - 1) } = E^{-\gamma - 1/2 - \delta /2}
+\,.
+\end{align}
+
+This spectrum is slightly steeper than that of protons. 
+
+The ``leaky box'' model applies only if there are no energy losses. 
+
+Protons in the ISM sometimes interact with CR protons, producing pions, muons, neutrinos, electrons and positrons. 
+
+These new electrons and positrons add to the leptonic spectrum! 
+
+Typically, a proton with energy \(E_p\) produces an electron with energy \(E_e \approx E_p / 20\). 
+
+In order to model this, we add a source term in the form 
+%
+\begin{align}
+\frac{f_p (E / \xi )}{\xi } \sigma _{\text{pp}} c n_d 2 h \delta (z)
+\,.
+\end{align}
+
+We take the source function to be in the form 
+%
+\begin{align}
+q(E_{\pm } ) \dd{E_{ \pm}} =  f_p( E_{\pm} / \xi ) \underbrace{\dd{E_p}}_{= \dd{E_{\pm}} / \xi } \sigma _{pp} c n_d
+\,,
+\end{align}
+%
+where \(E_{\pm}\) is the energy of the positron or electron, while here we need to account for the different energy of the protons, with \(\xi \approx 1/20\). 
+
+This new term is tiny for electrons, it is very relevant for positrons though! 
+The density of protons is known, so we can apply the same rule of thumb as before! 
+
+The density of positrons, as long as losses are \emph{not} important, will look like 
+%
+\begin{align}
+f_+ (E_+) \sim \underbrace{\left(\frac{E_+}{\xi  }\right)^{\gamma } \left(\frac{E_+}{\xi }\right)^{-\delta }}_{\text{source}} H^2 E_+^{-\delta }
+\,,
+\end{align}
+%
+where the source term is the proton term, just like the electron term. 
+Thus, if losses are unimportant the spectrum of positrons scales such that 
+%
+\begin{align}
+\frac{f_+}{f _{\text{primary} e^-}} \propto E^{-\delta }
+\,.
+\end{align}
+
+If losses are important, the spectrum of the primary electrons is 
+%
+\begin{align}
+f_- = \frac{N_e (E) R \tau _L}{2 \pi r_d^2 \sqrt{D \tau _L}} 
+\,,
+\end{align}
+%
+while (secondary) positrons will look like 
+%
+\begin{align}
+f_+ = \underbrace{\frac{N_p (E /\xi ) R /\xi }{2 \pi r_d^2 H} \frac{H^2}{D(E / \xi )}}_{\text{spectrum of primary protons}} \frac{\tau _L}{\sqrt{D \tau _L} 2 \pi r_d^2} 
+\,,
+\end{align}
+%
+so overall 
+%
+\begin{align}
+\frac{f _{\text{primary electrons}}}{f _{\text{secondary protons}}} 
+\propto E^{- \delta }
+\,.
+\end{align}
+
+This is the same result we got in the case in which losses were unimportant! 
+
+If we measure this \emph{positron fraction}, it \emph{increases} with energy! 
+(technically we are computing \(e^- / (e^- + e^+)\), but positrons are few). 
+
+Pulsars are a factory of electron-positron pairs. 
+
+Perhaps there is a new mechanism for the production of positrons, like neutron stars? 
+
+
+
 \end{document}

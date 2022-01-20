@@ -68,17 +68,17 @@ def cosmic_ray_reacceleration(k):
     for alpha_CR in np.linspace(3, 5, num=50):
         
         sol = solve_beta_bvp(r=r, alpha_CR=alpha_CR, x0=x0, k=k)
-        plt.plot(sol.x, sol.y[0], c=cmap((alpha_CR-3)/2))
+        plt.plot(sol.x * k, sol.y[0], c=cmap((alpha_CR-3)/2))
         plt.axhline(3 * r / (r-1), ls=':', c='black', lw=.8)
-    plt.xlabel('position $x$')    
+    plt.xlabel('Rescaled position $X = x u_1 / D$')
     plt.ylabel(r'spectral index $\beta$')
-    plt.title(f'$x_0$ = {x0}, $D/u_1$ = {1/k}')
+    plt.title(f'$X_0$ = {x0 * k}')
 
 def cosmic_ray_reacceleration_far():
     cosmic_ray_reacceleration(5.)
 
 def cosmic_ray_reacceleration_near():
-    cosmic_ray_reacceleration(.5)
+    cosmic_ray_reacceleration(.2)
 
 
 if __name__ == "__main__":

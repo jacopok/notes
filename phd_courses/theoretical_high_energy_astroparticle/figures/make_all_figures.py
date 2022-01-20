@@ -10,8 +10,8 @@ rc('text.latex', preamble=r'''\usepackage{amsmath}
 rc('figure', dpi=150)
 
 
-def plot_and_save(plotting_func):
-    plotting_func()
+def plot_and_save(plotting_func, *args, **kwargs):
+    plotting_func(*args, **kwargs)
     plt.savefig(str(plotting_func.__name__).split(sep='.')[0] + '.pdf', bbox_inches='tight', pad_inches = 0)
     plt.close()
 

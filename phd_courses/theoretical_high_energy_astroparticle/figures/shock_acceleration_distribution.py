@@ -15,7 +15,7 @@ def distribution(x, x0, f0, lam):
         return f0
 
 def shock_acceleration_distribution():
-    xs = np.linspace(-5, 5, num=1000)
+    xs = np.linspace(-5, 5, num=200)
     
     x0 = -3 
     
@@ -36,7 +36,7 @@ def shock_acceleration_distribution():
     plt.legend()
     
     
-def solve_beta_bvp(k=1., alpha_CR=1., r=4., x0=-1.):
+def solve_beta_bvp(k=1., alpha_CR=1., r=4., x0=-1., logp=1.):
     
     spectrum = 3 * r / (r-1)
 
@@ -45,13 +45,13 @@ def solve_beta_bvp(k=1., alpha_CR=1., r=4., x0=-1.):
         # y = [beta, beta']
         # beta'' = (beta')**2 - k * beta'
         
-        return np.vstack((y[1], y[1] * (y[1] - k)))
+        return np.vstack((y[1], y[1] * (y[1] - k) / logp))
     
     def bc(ya, yb):
         # boundary condition residuals
         return np.array([
             ya[0] - alpha_CR, 
-            1 - yb[1] / k - yb[0] / spectrum
+            1 - yb[1] * logp / k - yb[0] / spectrum
         ])
     
     xs = np.linspace(x0, 0, num=200)
@@ -59,31 +59,66 @@ def solve_beta_bvp(k=1., alpha_CR=1., r=4., x0=-1.):
     beta_guess_derivative = np.gradient(beta_guess, xs)
     ys_guess = np.vstack((beta_guess, beta_guess_derivative))
     
-    sol = solve_bvp(fun, bc, x = xs, y = ys_guess, verbose=2, tol=1e-4)
+    sol = solve_bvp(fun, bc, x = xs, y = ys_guess, verbose=0, tol=1e-4, max_nodes=100_000)
+    print(f'Status = {sol.status}, alpha = {alpha_CR}, logp= {logp}')
     return sol
 
-def cosmic_ray_reacceleration(k):
+def cosmic_ray_reacceleration(k, logp):
     r=4.
     x0=-1.
-    for alpha_CR in np.linspace(3, 5, num=50):
+    min_alpha=3
+    max_alpha=5
+    da = max_alpha - min_alpha
+    
+    for alpha_CR in np.linspace(min_alpha, max_alpha, num=50):
         
-        sol = solve_beta_bvp(r=r, alpha_CR=alpha_CR, x0=x0, k=k)
-        plt.plot(sol.x * k, sol.y[0], c=cmap((alpha_CR-3)/2))
+        sol = solve_beta_bvp(r=r, alpha_CR=alpha_CR, x0=x0, k=k, logp=logp)
+        plt.plot(sol.x * k, sol.y[0], c=cmap((alpha_CR-min_alpha)/da))
         plt.axhline(3 * r / (r-1), ls=':', c='black', lw=.8)
     plt.xlabel('Rescaled position $X = x u_1 / D$')
     plt.ylabel(r'spectral index $\beta$')
-    plt.title(f'$X_0$ = {x0 * k}')
+    plt.title(r'$D/u_1= $ ' + str(1/(x0 * k)) + r'$\abs{x_0}$, $\log (p / p_{\text{min}})= $ ' + str(logp))
+
+def show_alpha_spectrum(alpha_CR=3.):
+    num = 30
+    k_range = np.logspace(-1, 1, num=num)
+    logp_range = np.linspace(.3, 2, num=num)
+    
+    K, LOGP = np.meshgrid(k_range, logp_range)
+    
+    beta0 = np.zeros_like(K)
+    
+    for ind, k in np.ndenumerate(K):
+        logp = LOGP[ind]
+        print(f'{k=}, {logp=}')
+        
+        sol = solve_beta_bvp(k=k, logp=logp, alpha_CR=alpha_CR)
+        if sol.status == 0:
+            beta0[ind] = sol.y[0][-1]
+    
+    c = plt.contourf(K, LOGP, beta0, levels=100)
+    # plt.clim(alpha_CR, 4)
+    plt.xlabel('$k |x_0| = |x_0| u_1 / D$')
+    plt.xscale('log')
+    plt.ylabel(r'$\log (p / p _{\text{min}})$')
+    cbar = plt.colorbar(c, label=r'$\beta (x=0)$: $\alpha_{CR}$ = ' + f'{alpha_CR}')
+
+def show_low_alpha_spectrum():
+    show_alpha_spectrum(alpha_CR=3.)
+def show_high_alpha_spectrum():
+    show_alpha_spectrum(alpha_CR=5.)
 
 def cosmic_ray_reacceleration_far():
-    cosmic_ray_reacceleration(5.)
+    cosmic_ray_reacceleration(k=.5, logp=2.)
 
 def cosmic_ray_reacceleration_near():
-    cosmic_ray_reacceleration(.2)
+    cosmic_ray_reacceleration(k=4., logp=.5)
 
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
-    plot_and_save(shock_acceleration_distribution)
-    plot_and_save(cosmic_ray_reacceleration_far)
-    plot_and_save(cosmic_ray_reacceleration_near)
-    
+    # plot_and_save(shock_acceleration_distribution)
+    # plot_and_save(cosmic_ray_reacceleration_far)
+    # plot_and_save(cosmic_ray_reacceleration_near)
+    plot_and_save(show_low_alpha_spectrum)
+    plot_and_save(show_high_alpha_spectrum)

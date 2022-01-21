@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+import matplotlib as mpl
 
 cmap = plt.get_cmap('plasma')
 
@@ -79,10 +80,10 @@ def cosmic_ray_reacceleration(k, logp):
     plt.ylabel(r'spectral index $\beta$')
     plt.title(r'$D/u_1= $ ' + str(1/(x0 * k)) + r'$\abs{x_0}$, $\log (p / p_{\text{min}})= $ ' + str(logp))
 
-def show_alpha_spectrum(alpha_CR=3.):
-    num = 30
-    k_range = np.logspace(-1, 1, num=num)
-    logp_range = np.linspace(.3, 2, num=num)
+def beta0_grid(alpha_CR):
+    num = 50
+    k_range = np.logspace(-1.2, .7, num=num)
+    logp_range = np.linspace(.2, 3, num=num)
     
     K, LOGP = np.meshgrid(k_range, logp_range)
     
@@ -96,12 +97,44 @@ def show_alpha_spectrum(alpha_CR=3.):
         if sol.status == 0:
             beta0[ind] = sol.y[0][-1]
     
-    c = plt.contourf(K, LOGP, beta0, levels=100)
+    return K, LOGP, beta0    
+
+def show_alpha_spectrum(alpha_CR=3.):
+            
+    c = plt.contourf(*beta0_grid(alpha_CR), levels=100)
     # plt.clim(alpha_CR, 4)
     plt.xlabel('$k |x_0| = |x_0| u_1 / D$')
     plt.xscale('log')
     plt.ylabel(r'$\log (p / p _{\text{min}})$')
     cbar = plt.colorbar(c, label=r'$\beta (x=0)$: $\alpha_{CR}$ = ' + f'{alpha_CR}')
+
+def show_two_alpha_spectrums():
+        
+    K, LOGP, beta0_3 = beta0_grid(3.)
+    K, LOGP, beta0_5 = beta0_grid(5.)
+    
+    norm = mpl.colors.Normalize(vmin=3, vmax=5)
+    cmap = plt.get_cmap('seismic')
+    
+    lab = 'varying $p$'
+    for k0 in [.5, 1, 2]:
+        p = np.logspace(.1, 1)
+        k = k0 / np.sqrt(p)
+        plt.plot(k, np.log(p), c='black', ls=':', label=lab)
+        lab=None
+    
+    levels = np.linspace(3, 5, num=30)
+    
+    plt.contour(K, LOGP, beta0_3, cmap=cmap, norm=norm, levels=levels)
+    plt.contour(K, LOGP, beta0_5, cmap=cmap, norm=norm, levels=levels)
+
+    plt.legend()
+    plt.xlabel('$k |x_0| = |x_0| u_1 / D$')
+    plt.xscale('log')
+    plt.ylabel(r'$\log (p / p _{\text{min}})$')
+    plt.title(r'Final value of $\beta$')
+    cbar = plt.colorbar(mpl.cm.ScalarMappable(cmap=cmap, norm=norm), label=r'$\beta (x=0)$')
+
 
 def show_low_alpha_spectrum():
     show_alpha_spectrum(alpha_CR=3.)
@@ -120,5 +153,6 @@ if __name__ == "__main__":
     # plot_and_save(shock_acceleration_distribution)
     # plot_and_save(cosmic_ray_reacceleration_far)
     # plot_and_save(cosmic_ray_reacceleration_near)
-    plot_and_save(show_low_alpha_spectrum)
-    plot_and_save(show_high_alpha_spectrum)
+    # plot_and_save(show_low_alpha_spectrum)
+    # plot_and_save(show_high_alpha_spectrum)
+    plot_and_save(show_two_alpha_spectrums)

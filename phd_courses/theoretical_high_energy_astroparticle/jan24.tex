@@ -1,4 +1,262 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Nonlinear effects}
+
+\marginpar{Monday\\ 2022-1-24}
+
+The example of a gun shooting particles which then diffuse 
+does not conserve momentum: when we were thinking about it, 
+we were considering them as test particles.
+A term in the diffusion in the form of \(\nabla P \sim \partial (D \partial f)\) 
+appears: this corresponds to a force on the plasma. 
+
+What does isotropization imply? 
+We have a distribution function in the form \(f(p, z)\): 
+the lowest-ordere contribution isotropic one, 
+to which we add a dipole term in the form 
+%
+\begin{align}
+f(p, z) = f_0 (p) \left(1 + \frac{v_D}{c} \mu \right)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\expval{v} = \frac{1}{\int_0^{\infty} \dd{p} 2 \pi p^2 \int_{-1}^{1} \dd{\mu } f_0 } \int \dd{p} 2 \pi p^2 \int_{-1}^{1} \dd{\mu } f_0 \left(1 + \frac{v_D}{c} c \mu \right)
+\,.
+\end{align}
+
+What this allows us to describe is the fact that, on average, particles 
+are moving with velocity \(v_D\), where \(D\) is for ``drift''. 
+
+The momentum along the \(z\) axis can be computed as 
+%
+\begin{align}
+\int_{-1}^{1} 4 \pi p^3 f p \mu \left(1 + \frac{v_D \mu }{c} \right)
+&= \underbrace{4 \pi p^3 f_0}_{\text{total particles with momentum \(\geq p\)}} p \frac{v_D}{c} \frac{2}{3}  \\
+&= n(> p) m_p c \gamma \frac{v_D}{c} \frac{2}{3} 
+\,.
+\end{align}
+
+This means that there is a momentum change of the order of 
+%
+\begin{align}
+\Delta p = n(>p) m_p \gamma (v_D - v_A)
+\,.
+\end{align}
+
+The diffusion happens with a coefficient 
+%
+\begin{align}
+D = \frac{1}{3} r_L v \frac{1}{\mathscr{F}(k)} = \frac{1}{3} v \lambda (p)
+\,,
+\end{align}
+%
+therefore the path length is \(\lambda (p) = r_L / \mathscr{F}(k) \gg r_L\). 
+The timescale can also be guessed as 
+%
+\begin{align}
+\Delta t = \frac{r_L}{\mathscr{F} v} = \frac{m_p v \gamma c}{q B_0} \frac{1}{v} \frac{1}{\mathscr{F}}
+= \frac{\gamma }{\Omega _{\text{Larmor}} \mathscr{F}}
+\,.
+\end{align}
+
+The change in momentum per unit time is therefore 
+%
+\begin{align}
+\frac{\Delta p}{\Delta t} = n(>p) m_p  \gamma (v_D - v_A) \frac{\Omega _L}{\gamma } \mathscr{F}
+\,.
+\end{align}
+
+The Alfén waves which were sitting there are fueled with more energy; 
+this is the only thing which can happen apart from bulk-moving the plasma. 
+
+The change in momentum of the waves is 
+%
+\begin{align}
+\left(\frac{\Delta p}{\Delta t}\right) _{\text{Alfvén}} = \frac{ \delta B^2}{8 \pi } \Gamma _w \frac{1}{v_A}
+\,,
+\end{align}
+%
+where \(\Gamma _w\) is the rate of momentum transfer to the waves. 
+Equating these two rates of momentum transfer we get 
+%
+\begin{align}
+\Gamma _w &= n(>p) m_p (v_D - v_A) \frac{\Omega _{\text{Larmor}}}{B_0} \frac{\sqrt{4 \pi \rho }}{4 \pi \rho }  \\
+&= \frac{n(>p)}{n_i} \Omega _{\text{Larmor}} \frac{v_D - v_A}{v_A}
+\,,
+\end{align}
+%
+where \(n_i\) is the plasma density. 
+
+The current along the \(z\) direction is \(J_z = \int \dd[3]{p} f v \mu  = v_D f\), which also equals \(D \partial_z f\), so the diffusion velocity is 
+%
+\begin{align}
+v_D = \frac{D}{f} \pdv{f}{z}
+\,.
+\end{align}
+
+Let us try to estimate the quantity \(\Gamma _w\) at a shock front. 
+There, \(v_D \) will almost be the shock velocity. 
+
+How do we estimate \(n(>p) / n_i\)? 
+We can work with the energy or mass fraction of particles 
+which are accelerated at a shock. 
+
+If the particle spectrum is \(p^{-4}\), the fraction of cosmic rays can be estimated as 
+%
+\begin{align}
+\epsilon _{\text{CR}} = A \int \dd{p} 4 \pi p^2 p c (p / p_0)^{-4} = A 4 \pi p_0^{4} \underbrace{\log (p / p_0 )}_{\Lambda }
+\,,
+\end{align}
+%
+which must also be \(\epsilon _{\text{CR}} = \xi _{\text{CR}} \rho v^2\) 
+since the energy budget is finite; 
+\todo[inline]{we are taking the velocity to be \(c\) and therefore neglecting non-relativistic particles, this is typically an error of a factor \(2\)}
+therefore we get the normalization
+%
+\begin{align}
+A = \frac{\xi _{\text{CR}} n_i m_p v_S^2}{4 \pi p_0^{4} \Lambda }
+\,,
+\end{align}
+%
+so in the end the fraction is 
+%
+\begin{align}
+\frac{n(>p)}{n_i} = \frac{4 \pi p^3 \xi  _{\text{cr}} n_i m_p v_S^2}{4 \pi p_0^4 \Lambda c} \left(\frac{p}{p_0 }\right)^{-4} = \xi _{\text{CR}} n_i \left(\frac{p}{p_0 }\right)^{-1} \frac{m_p v_s^2}{p_0 c}
+\,,
+\end{align}
+%
+so the \(\Gamma _w\) term reads 
+%
+\begin{align}
+\Gamma _w = \xi _{\text{CR}} \Omega _{\text{Larmor }} M_A \frac{m_p v_Ss q}{p_0 c}
+\,,
+\end{align}
+%
+where \(\Omega _{\text{Larmor}} = q B_0 / m_p c \sim \SI{e-2}{s^{-1}}\), 
+\(\xi _{\text{CR}} \approx 0.1\), \(M_A \sim 1000\), \((v_S /c)^2 \sim \num{e-4}\). 
+
+This is more important at low energies, since there is 
+a \(p_0 / p\) term. 
+
+This term is still very effective, 
+it gives a growth timescale of the waves on the order of years. 
+
+\todo[inline]{Are we increasing the energy of only waves with \(k \sim 1/r_L (p)\)?}
+
+The dispersion relation for particles interacting with a wave is 
+%
+\begin{align}
+\frac{k^2 c^2}{ \omega^2} = 1 + \sum _{\alpha } \frac{4 \pi^2 q_\alpha^2}{\omega }
+\int \dd{p} 
+\int \dd{\mu }
+\frac{p^2 v (1 - \mu^2)}{\omega - k v \Omega \alpha } \left(
+\pdv{f_\alpha }{p}
++ \frac{1}{p} 
+\pdv{f_\alpha }{\mu } 
+\left(
+    \frac{kv}{\omega } - \mu 
+\right)
+\right)
+\,.
+\end{align}
+
+Earlier in the course, from this we found Alfvén waves with cold electrons and protons; 
+now we add in cosmic rays with 
+%
+\begin{align}
+f _{\text{CR}} (p) = A \left(\frac{p}{p_0 }\right)^{-4}
+\,,
+\end{align}
+%
+and now we take a plasma with protons satisfying
+%n_p
+\begin{align}
+f_P (p) = \frac{n_P}{4 \pi p^2} \delta (p - m_P v_P) \delta (\mu - 1)
+\,,
+\end{align}
+%
+and the same thing for electrons: 
+we use this as opposed to \(\delta (p)\) since we are thinking 
+of a shock scenario. 
+
+Because of charge neutrality we must have \(n_P + n _{\text{CR}} = n_e\).
+Both electrons and protons will be cold, but their distributions 
+can be a bit different; 
+this imposes 
+%
+\begin{align}
+v_e = \frac{n_P}{n_P + n _{\text{CR}}} v_S \approx \left(1 - \frac{n _{\text{CR}}}{n_p}\right) v_S
+\,.
+\end{align}
+
+The presence of the cosmic rays forces the electrons and ions to not move in the exact same way. 
+
+The sum of the densities \(\chi _p\) and \(\chi _e\) must equal 
+%
+\begin{align}
+\chi _e + \chi _p = \left(\frac{c}{v_A}\right)^2 \left(\frac{\widetilde{\omega}}{\omega }\right)^{2} \pm \left(\frac{c}{v_A}\right)^2 \frac{\Omega _p}{\omega } \frac{n _{\text{CR}}}{m_p}
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\widetilde{\omega} = \omega + k v_s
+\,.
+\end{align}
+
+If there are no cosmic rays, this is of the order 
+%
+\begin{align}
+\frac{k^2 c^2}{\omega^2} \approx 
+\left(\frac{c}{v_A}\right)^2 
+\frac{\widetilde{\omega}^2}{\omega^2} 
+\,,
+\end{align}
+%
+so once again we get \(v_A^2 k^2 = \widetilde{\omega}^2\): 
+Alfvén waves moving at \(v_S + v_A\). 
+
+If we introduce \(n _{\text{CR}}\), we can get complex solutions to the dispersion relation. 
+
+The integrals are then in the form 
+%
+\begin{align}
+\int \dd{\mu } \frac{1 - \mu^2}{\omega - kv \mu \pm \Omega _{\text{CR}}}
+\,,
+\end{align}
+%
+where, if \(\omega \) has an imaginary component, the integral has a 
+pole and must be computed with contour integration. 
+
+It comes out to 
+%
+\begin{align}
+k^2 v_A^2 = \widetilde{\omega}^2 - \frac{i \pi }{4} \frac{n _{\text{CR}}}{m_p} k v_S \Omega _p \left(\frac{p _{\text{CR}}}{p_0 }\right)^{-1} 
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+\omega _I = \frac{\pi }{8} \frac{n _{\text{CR}}(>p)}{n_p} \frac{v_S}{v_A} \Omega _{\text{Larmor}}
+\,.
+\end{align}
+
+There is a \emph{non-resonant} instability. 
+When there is a very small-wavelength Alfvén wave, 
+even if it does not resonate we can get a stretching force for the plasma. 
+
+With the \(p^{-1}\) CR spectrum, we get a \(k\)-independent Alfvén wave spectrum, which yields Bohm diffusion! 
+
+\section{What the group does}
+
+A connection between micro-physics and large-scale physics. 
+
+
+
 \end{document}

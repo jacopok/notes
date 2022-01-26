@@ -9,7 +9,8 @@ revised notes for the course ``Fundamentals of Astrophysics and Cosmology'' held
 
 They are based on the notes I took during lectures, complemented with notes from the previous years.
 
-They will be revised by the professor in the future, as of yet they have not.
+Also, they are being reviewed and integrated as part of the Cosmology course given by professor Matarrese at GSSI.
+% They will be revised by the professor in the future, they have not.
 
 The exam is a traditional oral exam, there are fixed dates but they do not matter: on an individual basis we should write an email to the professor to set a date and time.
 
@@ -75,10 +76,11 @@ The word ``time'' in \textbf{fixed time} refers to the proper time of a comoving
 
 \paragraph{On the validity of the cosmological principle}
 
-The principle is expected to hold only on very large\footnote{Larger than \(260 h^{-1} \SI{}{Mpc} \approx \SI{380}{Mpc} \approx \SI{1.2e25}{m}\) \cite[]{yadavFractalDimensionMeasure2010}, where \(h \approx \num{.68}\) \cite[]{adePlanck2015Results2016}: this will be made clearer in later sections, but is meant to give an idea of the length scales involved . The portion of Universe we can see is of order \SI{10}{Gpc}.} scales:
+The principle is expected to hold only on very large\footnote{
+    The specific length scale above which homogeneity is expected to hold has been the subject of much debate: decades ago taking lengths above \SI{5}{Mpc} was thought to be enough nowadays instead the universe is believed to be inhomogeneous up to a few hundreds of Megaparsecs.
+    % Is there a good citation we could add here?
+    } scales:
 at small scales we see structures, such as galaxies or our Solar System, so we surely do not have homogeneity.
-
-\todo[inline]{Change citation for homogeneity length scale?}
 
 How can we talk about homogeneity if we can only look at the universe from a single point?
 We must \emph{assume} that any other observer would also see isotropy as we do: this is precisely what the Copernican principle tells us.
@@ -94,9 +96,11 @@ In the end, this assumption is the basis of modern cosmology: it has to be made 
 \section{The geometry of spacetime}
 
 The best description for gravity we have so far is given by the general theory of relativity (GR).
-In it, spacetime is modelled as a 3+1-dimensional semi-Riemannian manifold with a line element which is  generally given by the expression \(\dd{s^2} = g_{ab} \dd{x^a} \dd{x^b} \) and which.
+The treatment in this chapter does not require in-depth knowledge of GR, but we will use some of its formalism, which should be understandable for someone who has studied Special Relativity.
 
-Latin indices can take values from 0 to 3, and we adopt the ``mostly minus'' metric signature.
+Spacetime is modelled as a 3+1-dimensional semi-Riemannian manifold with a line element which is given in terms of the metric tensor \(g_{ab}\) by the expression \(\dd{s^2} = g_{ab} \dd{x^a} \dd{x^b}\).
+
+In our conventions Latin indices can take values from 0 to 3, and we adopt the ``mostly minus'' metric signature.
 
 Such a spacetime can have up to \(4(4+1) / 2 = 10\) global continuous symmetries, which can be classified into:
 \begin{enumerate}[label=(\alph*)]
@@ -110,20 +114,26 @@ The metric of Minkowski spacetime, which has all of these 10 symmetries, reads:
 %
 \begin{subequations}
 \begin{align}
-\dd{s^2} &= c^2 \dd{t^2} - \dd{\vec{x}^2} && \text{(Cartesian coordinates)} \\
+\dd{s^2} &= c^2 \dd{t^2} - \dd{x^2} - \dd{y^2}- \dd{z^2}    && \text{(Cartesian coordinates)} \\
 &= c^2 \dd{t^2} - \dd{r^2} - r^2 \dd{\Omega^2} && \text{(spherical coordinates)}
 \,,
 \end{align}
 \end{subequations}
 %
-where \(r = \abs{x}\), while \(\theta \) and \(\varphi \) are the spherical angles and \(\dd{\Omega^2} = \dd{\theta^2} + \sin^2\theta \dd{\varphi^2 }\).\\
-Minkowski space is \emph{maximally symmetric}, which means we could not have more symmetries than these. It is not the only possibility, there are three maximally symmetric spacetimes: Minkowski, de Sitter, anti-de Sitter.
+where \(r = \abs{x}\) is a radial coordinate from some arbitrarily chosen center point, while \(\theta \) and \(\varphi \) are the spherical angles and \(\dd{\Omega^2} = \dd{\theta^2} + \sin^2\theta \dd{\varphi^2 }\).\\
 
-In cosmology we lose time translation symmetry, since the universe is expanding, and Lorentz boost symmetry, since as we saw in the previous section we can tell at which speed we are moving with respect to the CMB.
+Minkowski space is \emph{maximally symmetric}: it has all the possible
+symmetries a spacetime can have. 
+It is not the only possibility, there are three distinct maximally symmetric spacetimes: Minkowski, de Sitter, Anti-de Sitter.
+De Sitter spacetime is relevant in the context of inflation in the early universe, while Anti-De Sitter spacetime is relevant for theoretical physics, despite not describing the geometry of the Universe.
+
+We know from observations of the redshift of far-away galaxies (which will be discussed in section \ref{sec:hubble-law}), combined with the assumption of homogeneity, that the universe is expanding; this means that in cosmology we will not have time translation symmetry.\footnote{An interesting consequence of this is that in cosmology there will be no energy conservation equation: in technical terms, this is due to the lack of a timelike Killing vector. Alternatively, one can think of this as a consequence of (the inapplicability of) Nöther's theorem.}
+
+Also, we will not have Lorentz boost symmetry, since --- as we saw in the previous section --- we can tell at which speed we are moving with respect to the CMB, meaning that our description of the large-scale metric of the universe cannot be unchanged if we move an arbitrary velocity.
 
 We keep the purely spatial symmetries: so, our description of spacetime will be as a 3+1-dimensional manifold which, if we fix the temporal coordinate for a comoving observer, reduces to a \emph{maximally symmetric} 3-dimensional space --- for 3 dimensions the maximum number of symmetries is \(3(3+1) / 2 = 6\), which correspond to \ref{item:spatial-translation} and \ref{item:spatial-rotation}. 
 
-It can be shown that the most general form of a metric satisfying these conditions is the \textbf{Friedmann-Lemaître-Robertson-Walker line element},\footnote{This is sometimes called just ``Robertson-Walker'', or RW, or FLRW.} which, in the comoving frame, reads
+It can be shown that the most general form of a metric satisfying these conditions is the \textbf{Friedmann-Lemaître-Robertson-Walker line element},\footnote{This is sometimes called just ``Robertson-Walker'', or RW, or FLRW. Friedmann and Lemaître mostly worked on the treatment of the dynamics, as opposed to this purely geometric part.} which, in the comoving frame, reads
 %
 \boxalign{
 \begin{align} \label{eq:robertson-walker}
@@ -134,9 +144,9 @@ It can be shown that the most general form of a metric satisfying these conditio
 
 % The angular part is the same (just rescaled) as the Minkowski one.
 
-The coordinate \(r\) does not have the dimensions of a length: we choose our variables so that \(a(t)\) is a length, while \(r\) is dimensionless.\footnote{This is a matter of convention: if we normalize \(\abs{k}=1\) then we will have \(0 \leq r < 1\); we could also let \(k\) be arbitrarily large; then \(r\) would also be.}
+The coordinate \(r\), called the \emph{comoving radius}, does not have the dimensions of a length: we choose our variables so that \(a(t)\) is a length, while \(r\) is dimensionless.\footnote{This is a matter of convention: if we normalize \(\abs{k}=1\) then we will have \(0 \leq r < 1\); we could also let \(k\) be arbitrarily large; then \(r\) would also be.}
 
-The parameter \(a(t)\) is called the \emph{scale factor}: varying it amounts to rescaling all of space.
+The parameter \(a(t)\) is called the \emph{scale factor}: varying it amounts to rescaling all space. For reference, note that some old books denote it as \(R(t)\).
 It has the dimensions of a length, and it depends on the cosmic time \(t\).
 
 The parameter \(k\) is a constant describing the spatial curvature, which can always be normalized to \(\pm 1\) or \(0\).
@@ -144,12 +154,14 @@ Universes with:
 \begin{itemize}
     \item \(k=1\) are called closed universes;
     \item \(k=-1\) are called open universes;
-    \item \(k=0\) are called flat universes.
+    \item \(k=0\) are called (spatially\footnote{This is an important distinction: this kind of flatness only refers to the spacelike 3D hypersurfaces, which at any fixed time will have a flat metric; however, this flatness does \emph{not} equate to overall flatness of the 4D universe: the Riemann tensor of the universe is nonvanishing, and there is curvature corresponding to the fact that the universe is expanding.}) flat universes.
 \end{itemize}
 
 We can choose the normalization of \(k\), but its sign is a constant.
 Positive values correspond to \(k=1\), negative values to \(k=-1\).
-When computing probability distributions for \(k\), we must not consider it to be a discrete variable but a continuous variable instead: so, the set of flat universes with \(k=0\) has zero measure, and thus zero probability with any probability density function.
+When computing probability distributions for \(k\), we must not consider it to be a discrete variable but a continuous variable instead: so, the set of flat universes with \(k=0\) has zero measure, and thus zero probability with any non-singular probability density function.
+
+More details will be given on this aspect in section \ref{sec:energy-budget}. 
 
 % In a 4D flat spacetime we have the 10 degrees of freedom of Lorentz transformations: Minkowski spacetime is \emph{maximally symmetric}.
 
@@ -164,15 +176,15 @@ When computing probability distributions for \(k\), we must not consider it to b
 
 We consider surfaces: these are the simplest manifolds which can have intrinsic curvature.
 
-\begin{bluebox}
-Intrinsic curvature is described by the Riemann tensor, which has 20 independent components in 4D and 6 in 3D, so it is difficult to visualize.
+% \begin{bluebox}
+% Intrinsic curvature is described by the Riemann tensor, which has 20 independent components in 4D and 6 in 3D, so it is difficult to visualize.
 
-On the other hand, in 2D has only 1 independent component: \(R_{1212} = R \det g_{ab}\), where \(R\) is the scalar curvature. 
+% On the other hand, in 2D has only 1 independent component: \(R_{1212} = R \det g_{ab}\), where \(R\) is the scalar curvature. 
 
-The scalar curvature \(R\) has an immediate geometric interpretation: it is equal to \(2/(r_1 r_2)\), where \(r_i\) are the radii of the osculating circles at the point; it is positive if the circles are in the same direction, as they are for a sphere, and negative if they are in different directions, as they are for a hyperboloid.
-For a flat surface we cannot define an osculating circle (at least not in both directions): its radius diverges, so the curvature vanishes. 
-% If we have a direction in which the surface is flat, such as in a cylinder, then \(R=0\): it is intrinsically flat.
-\end{bluebox}
+% The scalar curvature \(R\) has an immediate geometric interpretation: it is equal to \(2/(r_1 r_2)\), where \(r_i\) are the radii of the osculating circles at the point; it is positive if the circles are in the same direction, as they are for a sphere, and negative if they are in different directions, as they are for a hyperboloid.
+% For a flat surface we cannot define an osculating circle (at least not in both directions): its radius diverges, so the curvature vanishes. 
+% % If we have a direction in which the surface is flat, such as in a cylinder, then \(R=0\): it is intrinsically flat.
+% \end{bluebox}
 
 The metric for a Cartesian flat 2D plane is \(\dd{l^2} = a^2 (\dd{r^2} + r^2 \dd{\theta^2}) \).
 The constant \(a\) is included since we want \(r\) to be dimensionless.
@@ -218,7 +230,9 @@ So, the line elements become respectively:
 
 We have a striking similarity to the Robertson-Walker metric: we only need to make the substitution \(\dd{\varphi } \rightarrow \dd{\Omega }\) in order to recover it.
 
-We can also work backwards and rewrite the RW line element in sphere- or hyperboloid-like coordinates:
+\subsection{Other forms of the RW metric}
+
+We can also work backwards from the results of the last section and rewrite the RW line element in sphere- or hyperboloid-like coordinates:
 \begin{equation}
   \dd{l^2} = c^2 \dd{t^2} - a^2 \begin{cases}
       \dd{\chi^2} + \sin^2 \chi \dd{\Omega^2} \\
@@ -229,9 +243,7 @@ We can also work backwards and rewrite the RW line element in sphere- or hyperbo
 %
 where we introduce a variable \(\chi \) defined so that if \(k = +1\) then \(r = \sin \chi\), if \(k=0\)  then \(r=\chi\), and if \(k = -1\) then \(r = \sinh \chi\).
 
-The properties of the sphere and of the hyperboloid actually carry over to the 3D case: a spacetime with positive curvature is bounded, while if it is flat or hyperbolic it is unbounded.
-
-\subsection{Other forms of the RW metric}
+The properties of the sphere and of the hyperboloid carry over to the 3D case: a spacetime with positive curvature is bounded, while if it is flat or hyperbolic it is unbounded.
 
 If we wish to use Cartesian coordinates the RW metric takes the following expression:
 %
@@ -241,43 +253,52 @@ If we wish to use Cartesian coordinates the RW metric takes the following expres
 
 Universes in which \(a\) is a constant are called \emph{Einstein spaces}.
 
-We can also change time variable: the \emph{conformal time} \(\eta \) is such that \(\dd{t} = a(\eta) \dd{\eta} \), where \(a(\eta) \defeq a(t(\eta))\): so, we will have
+We can also change time variable: the \emph{conformal time} \(\eta \) is such that \(\dd{t} = a(\eta) \dd{\eta} \), where \(a(\eta) \defeq a(t(\eta))\), meaning that we can compute it by integrating 
+%
+\begin{align}
+\eta (t) = \int \dd{\eta } = \int \frac{ \dd{t}}{a(t)}
+\,.
+\end{align}
+%
 
+This is useful since it allows us to rewrite the whole metric as a time-dependent rescaling of a constant one: 
 \begin{equation}
   \dd{s^2} = a^2 (\eta) \qty(c^2 \dd{\eta^2} - \qty(\frac{\dd{r^2}}{1 - kr^2} + r^2 \dd{\Omega})) \,.
 \end{equation}
 
 % The parameter \(\eta\) is called \emph{conformal time}: RW is said to be \emph{conformal} to Minkowski.
 
-\todo[inline]{Clarify distinction on different types of conformal transformations and dependence on spatial curvature.}
+% \todo[inline]{Clarify distinction on different types of conformal transformations and dependence on spatial curvature.}
 
-\begin{bluebox}
-Weyl transformations are defined to be those which preserve angles locally; since angles are defined through the metric but the angle between two vectors does not change if they are rescaled, this can be translated into the condition that the metric is rescaled by a generic function:
-%
-\begin{align}
-g_{ab} \rightarrow a^2(x^{i}) g_{ab}
-\,.
-\end{align}
+% \begin{bluebox}
+% Weyl transformations are defined to be those which preserve angles locally; since angles are defined through the metric but the angle between two vectors does not change if they are rescaled, this can be translated into the condition that the metric is rescaled by a generic function:
+% %
+% \begin{align}
+% g_{ab} \rightarrow a^2(x^{i}) g_{ab}
+% \,.
+% \end{align}
 
-If two metric are mapped into each other by a Weyl transformation, they are said to be in the same \emph{conformal class}. 
+% If two metric are mapped into each other by a Weyl transformation, they are said to be in the same \emph{conformal class}. 
 
-In our case, the dependence on the point in spacetime is reduced to a dependence on the cosmic time only since we have symmetry with respect to spatial translations.
+% In our case, the dependence on the point in spacetime is reduced to a dependence on the cosmic time only since we have symmetry with respect to spatial translations.
 
-The conformal time is called that because if we use it we can map our spacetime at any time to spacetime at another time using a Weyl transformation. 
-If there is no spatial curvature, we can also map it to flat Minkowski spacetime. 
-\end{bluebox}
+% The conformal time is called that because if we use it we can map our spacetime at any time to spacetime at another time using a Weyl transformation. 
+% If there is no spatial curvature, we can also map it to flat Minkowski spacetime. 
+% \end{bluebox}
 
 The universe we inhabit does not have conformal symmetry: a generic massive particle in it has a Compton wavelength \(\lambda = h / (mc)\) which defines its interaction cross section, so if the spacetime expands an ensemble of these particles will have different dynamics.
 
 However, conformal geometry is useful for the description of particles which have no characteristic length, such as photons. Particles with no characteristic length are insensitive to dilation, since they do not have a ``meter'' to probe the expansion of spacetime.
 The photons of the CMB look like they are thermal: they were thermal in the early universe, since they were in thermal equilibrium with matter (photons and matter particles were constantly Compton-scattering off each other); when matter and radiation decoupled the photons scattered for the last time and then kept travelling.
-The universe has since expanded by a factor \(\approx 1090\), but because of the fact that the photons do not have a characteristic length their distribution can still be modelled as a blackbody distribution for an appropriately rescaled temperature. However, strictly speaking, we are not allowed to say that they are thermal, since keeping thermal equilibrium implies that interactions are occurring.
+The universe has since expanded by a factor \(\approx 1090\), but because the photons do not have a characteristic length their distribution can still be modelled as a blackbody distribution for an appropriately rescaled temperature. However, strictly speaking, we are not allowed to say that they are thermal, since keeping thermal equilibrium implies that interactions are occurring.
 
-Notice that we have made no use of dynamics so far: we wrote the line element, the solution of the Einstein equations, without the Einstein equations themselves! Of course we can obtain the Robertson-Walker metric starting from the field equations as well, but here we have only based our considerations on geometrical assumptions. This approach is called \textbf{Cosmography}.
+Notice that we have made no use of dynamics so far: we wrote the line element, the solution of the Einstein equations, without the Einstein equations themselves! Of course, we can obtain the Robertson-Walker metric starting from the field equations as well, but here we have only based our considerations on geometrical assumptions. This approach is called \textbf{Cosmography}.
 
-\section{The energy budget of the universe}
+\section{The energy budget of the universe} \label{sec:energy-budget}
 
-Up until now we did not consider any dynamics in our spacetime. We will discuss this topic in more detail in later sections, but for now we give the result: the dynamics of the universe are described by the Friedmann equations:
+Up until now we did not consider any dynamics in our spacetime.
+
+We will discuss this topic in more detail in later sections, providing two different derivations in sections \ref{sec:friedmann-equations-newtonian} and \ref{sec:friedmann-equations-relativistic} respectively, but for now we give the result: the dynamics of the universe are described by the \textbf{Friedmann equations},
 %
 \begin{subequations} \label{eq:friedmann-equations} 
 \begin{align}
@@ -287,12 +308,12 @@ Up until now we did not consider any dynamics in our spacetime. We will discuss 
 \end{align}
 \end{subequations}
 %
-where dots denote differentiation with respect to the \emph{cosmic time} \(t\), \(G_N\) is Newton's gravitational constant, \(\rho = \rho( t) \) is the energy density, and \(P = P(t)\) is  the isotropic pressure.
+where dots denote differentiation with respect to the \emph{cosmic time} \(t\), \(G_N\) is Newton's gravitational constant, \(\rho = \rho( t) \) is the energy density, and \(P = P(t)\) is the isotropic pressure.
 
 The curvature \(k\) appears in the first equation: so we can try to measure it by comparing the other two terms in the equations.
 This way, we can determine whether the universe is flat or curved.
 
-In order to discuss this problem, let us establish some notation: an important parameter is \(H(t) \defeq \dot{a} / a\), the \emph{Hubble parameter}.
+In order to discuss this problem, let us establish some notation: an important parameter is \(H(t) \defeq \dot{a} / a = \dv*{\log a}{t}\), the \emph{Hubble parameter}.
 We can write an equation for it from the first Friedmann one:
 %
 \begin{equation} \label{eq:hubble-parameter-evolution}
@@ -302,7 +323,7 @@ We can write an equation for it from the first Friedmann one:
 If \(k=0\), then there we must have a critical energy density 
 %
 \begin{align}
-  \rho_C (t) = 3 H^2 (t) / (8 \pi G)
+  \rho_C (t) = \frac{3 H^2 (t)}{8 \pi G}
 \,,
 \end{align}
 %
@@ -344,6 +365,8 @@ where \(h \approx \num{.7}\) is a number, and \(t_0\) just means \emph{now}.\foo
 %
 where the angle is to be interpreted as dimensionless (in radians), and \SI{}{AU} is an astronomical unit, the Earth-Sun average distance. 
 The definition is as such because of a way we have to measure the distances to nearby objects, by measuring their parallax between winter and summer: if they are close enough, they will have apparently moved with respect to further objects, because of the movement of the Earth around the Sun.}
+The peculiar way to write this is due to the historical origin of the quantity, which measured the apparent recession velocity of distant galaxies, at several \SI{}{Mpc} of distance, in \SI{}{km/s}.
+In terms of base units, \(H_0 \) is an inverse time, and \(H_0^{-1} \approx \SI{14}{Gyr}\) is close to the currently accepted value for the age of the Universe; in later sections we will discuss why this is and what is the precise connection between the two.
 
 The reason for this peculiar way to write the constant is that historically it has been difficult to determine the value of \(H_0 \) precisely, and it affects many astronomical conversions: keeping it indeterminate in this way allows us to quickly update our old estimates if we measure \(H_0 \) more precisely later.
 Historically, in the American school, the pupils of Hubble thought \(h \sim 0.5\), while the French school thought \(h \sim 1\).

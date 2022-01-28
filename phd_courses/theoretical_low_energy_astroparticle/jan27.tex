@@ -1,4 +1,323 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{The WIMP paradigm}
+
+\marginpar{Thursday\\ 2022-1-27}
+
+We will be assuming homogeneity and isotropy, without considering 
+perturbations at any point. 
+
+The fluids used in the standard model of cosmology can be written in terms of 
+their microstates; in order to this however we need a very large number of particles. 
+
+Because of this, instead of a microphysical description we will use a thermodynamic one.
+
+The thermodynamics here will, however, be quite different from what we use classically, 
+in lab conditions: for the universe, there can be no concept of an infinite thermalizer,
+or of global equilibrium. 
+
+However, we can talk of \emph{local} equilibrium: we introduce a notion of entropy \(S\),
+and discuss when it reaches a stable maximum. 
+The physical interpretation of this is to say that the local patch of microstates ``talk''
+to each other more effectively than the patches' ``change rate''. 
+
+The collision rate is denoted as \(\Gamma = \sigma v n\), and it defines a collision timescale \(t_c = 1 / \Gamma \). 
+Also, we have an expansion timescale \(t_U = H^{-1}\). 
+
+We will have local equilibrium when \(t_c \ll t_U\), or \(\Gamma \gg H\). 
+
+Suppose we have a particle \(\chi \) with a mass \(m_\chi \), 
+a number of internal degrees of freedom \(g_\chi \),
+and a set of statistics, either Fermi-Dirac or Bose-Einstein. 
+
+The phase space distribution function at equilibrium will be given by 
+%
+\begin{align}
+\dv[3]{n^{\text{eq}}_\chi }{k} = f^{\text{eq}}_\chi (x^\mu , k^\mu) = f^{\text{eq}}_\chi (t, E)
+\,,
+\end{align}
+%
+where \(E^2 = m^2_\chi + \abs{\vec{k}}^2\). 
+This will be given by 
+%
+\begin{align}
+f^{\text{eq}}_\chi (t, E) = \frac{g_\chi }{(2 \pi )^3} \left(
+    \exp(\frac{E_\chi - \mu }{T}) \mp 1
+\right)^{-1}
+\,,
+\end{align}
+%
+where we have a \(-\) for bosons, and a \(+\) for fermions. 
+Also, \(T(t)\) is the temperature, and \(\mu _\chi (t)\) is the chemical potential for \(\chi \). 
+
+Since there can be reactions in the form \(e^- + \gamma \to e^- + 2 \gamma \), the chemical 
+potential of the photon must be zero.
+
+If we were to observe \(\mu _\gamma \) to be different from zero (for example, in the CMB)
+we should think that the assumption of local equilibrium is the one which was violated. 
+
+The number density as a function of time is given by 
+%
+\begin{align}
+n^{\text{eq}}_\chi  (t) = \int \dd[3]{k} f^{\text{eq}}_\chi 
+\,.
+\end{align}
+
+The integral can be computed analytically in the \(m_\chi \ll T\) and \(m_\chi \gg T\) limits.
+If \(m_\chi \ll T \), we have 
+%
+\begin{align}
+n^{\text{eq}}_\chi = f \frac{\zeta (3)}{\pi^2} g_\chi T^3
+\,,
+\end{align}
+%
+where the factor \(f\) is equal to 1 for bosons, and \(3/4\) for fermions. 
+
+If, on the other hand, \(m_\chi \gtrsim T\), as well as larger than \(\abs{\mu _\chi - T}\), we get 
+%
+\begin{align}
+n^{text{eq}}_\chi = g_\chi \left(\frac{m_\chi T}{2 \pi }\right)^{3/2} \exp(- \frac{m_\chi - \mu _\chi }{T})
+\,.
+\end{align}
+
+For the energy density we integrate \(\int \dd[3]{k} E f\), so we get 
+%
+\begin{align}
+\rho^{\text{eq}}_\chi (t) = 
+\begin{cases}
+f_2 \frac{\pi^2}{30} g_\chi T^4  \qquad \text{ if } m_\chi \ll T \\
+n^{\text{eq}}_\chi (m_\chi + \frac{3}{2} T) \qquad \text{ if } m_\chi \gg T
+\,.
+\end{cases}
+\end{align}
+
+The coefficient \(f_2\) is \(1\) for bosons and \(7/8\) for fermions. 
+
+The mean value of the energy per particle, \(\expval{E}\), in the relativistic case 
+is about \(2.70\) (bosons) or \(3.15\) (fermions) times \(T\). 
+
+Within the Standard Model, we expect \(\mu _\gamma = 0\) and that is indeed what we see. 
+
+\begin{extracontent}
+A little exercise: consider any SM state, charged under any group with a structure constant \(\alpha \),
+and look at its relativistic limit. 
+
+From dimensional analysis, we can show that local equilibrium happens when 
+%
+\begin{align}
+T \lesssim \frac{\alpha^2 M _{\text{Pl}}}{g_*^{1/2}}
+\,.
+\end{align}
+
+The idea is to use \(t_U = H^{-1}\), where \(H = \sqrt{8 \pi G \rho / 3 M _{\text{Pl}}^2}\), 
+where \(\rho \sim g_* T^4\), with 
+%
+\begin{align}
+g_* = \sum _{i \in \text{BE}} g_i + \frac{7}{8} \sum _{i \in \text{FD}} g_i
+\,.
+\end{align}
+
+The sum is taken over all relativistic degrees of freedom. 
+
+For the SM at the highest temperatures we find \(g_* \approx 106.75\). 
+\end{extracontent}
+
+In practice, we do not use the full phase space distribution function but 
+only describe its moments, which account for its normalization and shape. 
+
+We will work in the \emph{dilute limit}: only considering 2-body scatterings. 
+Really, we should be thinking of ensembles of particles. 
+
+We think of a situation in which we have a stable DM particle \(\chi \), and 
+some SM particle \(p\) in a ``thermal bath'' state. 
+Stability means we do not have processes in the form \(\chi \to 2 p\). 
+
+Instead, we will have processes in the form \(\chi + \overline{\chi} \leftrightarrow p + \overline{p} \)
+as well as \(\chi + p \leftrightarrow \chi + p\). 
+
+The first are number-changing for \(\chi \), the second are not. 
+The first, therefore, affect \emph{chemical equilibrium},
+while the second only affect the energy and the \emph{kinetic equilibrium}. 
+
+Equilibrium for the first process is corresponds to \(\Gamma _{\text{ann}} > H\), 
+equilibrium for the second corresponds to \(\Gamma _{\text{scatt}} > H\). 
+
+The cross-sections for scattering and annihilation could be different, 
+but crossing symmetry makes them similar; on the other hand in the scattering
+rate the number density will account for all the particles in the heat bath, 
+therefore we typically have \(\Gamma _{\text{scatt}} \gg \Gamma _{\text{ann}}\). 
+
+This implies that chemical equilibrium is lost a long time before 
+kinetic equilibrium is. 
+
+\subsection{The Boltzmann equation}
+
+Its basic structure, for a particle \(\chi \) with all its properties, reads
+%
+\begin{align}
+\hat{L} [f_\chi ] = \hat{C} [f_\chi ]
+\,.
+\end{align}
+
+The Liouville operator \(\hat{L}\) describes the free, geodesic propagation of 
+the particle: it will read 
+%
+\begin{align}
+\hat{L} = k^\alpha \pdv{}{x^\alpha } \underbrace{- \Gamma^\alpha_{\beta \gamma} k^\beta k^\gamma}_{= \dv*[2]{x^\alpha }{\tau }} \pdv{}{k^\alpha }
+\,.
+\end{align}
+
+Since we are only looking at the time dependence we only need the \(\alpha = 0\) component, 
+and the relevant Christoffel symbols read 
+%
+\begin{align}
+\Gamma^0_{ij} = \frac{\dot{a}}{a} \gamma_{ij}
+\,,
+\end{align}
+%
+where \(\gamma_{ij}\) is a flat 3D metric. 
+
+Then, the Liouville operator applied to \(f_\chi \) reads 
+%
+\begin{align}
+\hat{L}[f_\chi ] = E \pdv{f_\chi }{t} - H \abs{\vec{k}}^2 \pdv{f_\chi }{E}
+\,.
+\end{align}
+
+In order to track chemical equilibrium we just need the normalization 
+of this equation: 
+%
+\begin{align}
+n_\chi = \int \dd[3]{k} f_\chi  
+\,,
+\end{align}
+%
+and the kinetic integral 
+%
+\begin{align}
+T_\chi = \frac{2}{3} \frac{1}{n_\chi } \int \dd[3]{k} \frac{\abs{\vec{k}}^2}{2 m_\chi } f_\chi 
+\,.
+\end{align}
+
+We will always assume that this temperature is equal to the overall temperature 
+of the thermal bath \(T\). 
+
+Integrating the Boltzmann equation over \(\dd[3]{k}\) we find 
+%
+\begin{align}
+\dv{n_\chi }{t} - H \int \dd[3]{k} \frac{k^2}{E} \pdv{f_\chi }{E}  
+\,,
+\end{align}
+%
+and we can integrate by parts to get, since \(E \dd{E} = k \dd{k}\):
+%
+\begin{align}
+4 \pi \int \dd{k} k^2 \frac{k^2}{E} \pdv{f_\chi }{E} &= 4 \pi \int \dd{E} k^3 \pdv{f_\chi }{E}  \\
+&= \eval{4 \pi k^3 f_\chi }_{k=0}^{k \to \infty} - \int \dd{E} f_\chi 3 k^2 \pdv{k}{E}  \\
+&= - 3 H n_\chi 
+\,.
+\end{align}
+
+Therefore, the equation reads 
+%
+\begin{align}
+\dv{n_\chi }{t} + 3 H n_\chi = \int \frac{ \dd[3]{k}}{E} \hat{C}[f_\chi ]
+\,.
+\end{align}
+
+If there are no collisions then \(n_\chi a^3\), the number of particles in a comoving volume, 
+is conserved.
+
+The collisional term is written as 
+%
+\begin{align}
+\int \frac{\dd[3]{k}}{E} \hat{C}[f_\chi ] 
+= - \int \dd{\Pi _\chi } \dd{\Pi _{\overline{\chi}} }
+\dd{\Pi _p } \dd{\Pi _{\overline{p}} }
+\left(
+    \abs{M_{ \text{forward} }}^2  h_\chi h_{\overline{\chi}} (1 \mp h_p) (1 \mp h_{\overline{p}})
+    - \abs{M_{\text{reverse}}}^2 h_p h_{\overline{p}} (1 \mp h_\chi ) (1 \mp h_{\overline{\chi}})
+\right)
+(2 \pi )^{4} \delta^{(4)} (k_\chi^{\mu } + k_{\overline{\chi}}^{\mu } - k_p^\mu - k_{\overline{p}}^\mu )
+\,.
+\end{align}
+
+Here, \(h_i = f_i / (g_i / (2 \pi )^3)\), while 
+%
+\begin{align}
+\dd{\Pi _i} = \frac{g_i}{(2 \pi )^3} \frac{ \dd[3]{k_i}}{2 E_i}
+\,.
+\end{align}
+
+The minus signs refer to fermions, the plus signs to bosons. 
+
+Why to include two different matrix elements? 
+Well, if we have CP symmetry we will get 
+%
+\begin{align}
+\abs{M_{ \text{forward}}}^2 = \abs{M _{\text{backward}}}^2
+\,.
+\end{align}
+
+It is not a given that this will be the case.
+
+In the dilute limit, besides considering only two body interactions we also assume 
+\(h_i \ll 1\), therefore \(1 \pm h_i \approx 1\). 
+
+We can approximate these \(h_i\) as 
+%
+\begin{align}
+h_i^{\text{eq}} \approx \exp(- \frac{E_i - \mu _i}{T})
+\,,
+\end{align}
+%
+so with all this we get 
+%
+\begin{align}
+\int \frac{ \dd[3]{k}}{E} \hat{C}[f_\chi ] - \int \left\lbrace \dd{\Pi _i}\right\rbrace_i
+\abs{M}^2 \left( h_\chi h_{\overline{\chi}} - h_p^{\text{eq}} h_{\overline{p}}^{\text{eq}} \right)
+(2 \pi )^{4} \delta^{(4)} (\dots)
+\,.
+\end{align}
+
+Further, we will have kinetic equilibrium, thereby 
+%
+\begin{align}
+h_\chi (E, t) = \frac{n_\chi (t) }{n_\chi^{\text{eq}} (t)}  h_\chi^{\text{eq}} (t, E)
+\,:
+\end{align}
+%
+the shape of the distribution is the same at all times. 
+
+The product of these two distribution functions will read 
+%
+\begin{align}
+h_p^{\text{eq}}
+h_{\overline{p}}^{\text{eq}}
+= 
+\exp(- \frac{E_p + E_{\overline{p}}}{T}) = \exp(- \frac{E_\chi + E_{\overline{\chi}}}{T}) = 
+h_\chi^{\text{eq}}
+h_{\overline{\chi}}^{\text{eq}}
+\,.
+\end{align}
+
+Thanks to this, we get the full Boltzmann equation: 
+%
+\begin{align}
+\dv{n_\chi }{t} + 3H n_\chi = - \expval{\sigma v}_T \left(n_\chi n_{\overline{\chi}} - n_\chi^{\text{eq}} n_{\overline{\chi}}^{\text{eq}}\right) 
+\,, 
+\end{align}
+%
+where 
+%
+\begin{align}
+\expval{\sigma v}_T = \frac{1}{n^{\text{eq}}_\chi n^{\text{eq}}_{\overline{\chi}}} 
+\int \left\lbrace \dd{\Pi _i}\right\rbrace_i
+\abs{M}^2 
+\exp(- \frac{E_\chi + E_{\overline{\chi}}}{T})
+(2 \pi )^{4} \delta^{(4)} (\dots)
+\,.
+\end{align}
+
 \end{document}

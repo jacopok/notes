@@ -1,4 +1,193 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Friday\\ 2022-1-28}
+
+We reached an expression for the evolution of the number density of particle \(\chi \).
+
+We now want to heuristically follow it up until the moment of decoupling. 
+
+When \(\mu _\chi = 0\), we get 
+%
+\begin{align}
+n_\chi^{\text{eq}} - n_{\overline{\chi}}^{\text{eq}} = 2 g_\chi 
+\left(\frac{m_\chi T}{2 \pi }\right)^{3/2}
+\exp( - \frac{m_\chi}{T}) \sinh(\frac{\mu_\chi }{T})
+\,.
+\end{align}
+
+If \(\mu _\chi = \mu _{\overline{\chi}}\), we get \(n_\chi = n_{\overline{\chi}}\). 
+
+The situation in which \(\mu _\chi \neq 0\) is called \emph{asymmetric DM}. 
+
+With this requirement, our equation simplifies to 
+%
+\begin{align}
+\dv{n_\chi }{t}
++ 3 H n_\chi 
+= - \expval{\sigma v}_T 
+\left( n_\chi^2 - \left(n_\chi^{\text{eq}}\right)^2\right)
+\,.
+\end{align}
+
+We want to remove the expansion rate of the universe from the equation: 
+therefore, we try to normalize \(n_\chi \) to something which 
+is conserved in a comoving volume. 
+
+It's convenient to normalize to the entropy density: 
+%
+\begin{align}
+s 
+= \frac{\rho + P}{T} 
+\approx \frac{\rho _{\text{rel}} + P _{\text{rel}}}{T} 
+= \frac{4}{3} \frac{ \rho _{\text{rel}}}{T}
+= \frac{4}{3} \frac{\pi^2 }{45} g_* T^3 
+\,.
+\end{align}
+
+We can compute this at any time: right now we have \(s_0 \approx \SI{2900}{cm^{-3}}\). 
+
+The quantity is called \(Y_\chi = n_\chi /s\), whose derivative is 
+%
+\begin{align}
+\dv{Y_\chi }{t} = \frac{1}{s} \dv{n_\chi }{t} - \frac{1}{s^2} n_\chi \dv{s}{t}
+\,.
+\end{align}
+
+Since \(a^3s\) is constant, we get 
+%
+\begin{align}
+\dv{s}{t} = - 3H ss
+\,.
+\end{align}
+
+This  means that 
+%
+\begin{align}
+\dv{Y_\chi }{t} = \frac{1}{s} \left( \dv{n_\chi }{t} + 3H n_\chi \right)
+\,.
+\end{align}
+
+The variation of \(s\) with temperature reads 
+%
+\begin{align}
+\dv{s}{T} = \frac{3s}{T} \left(1 + \frac{1}{3} \frac{T}{g_*} \dv{g_*}{T} \right) = \frac{3s}{TZ}
+\,,
+\end{align}
+%
+where \(Z \approx 1 \) takes account of the correction by the variation of \(g_*\). 
+
+Therefore, the variation of \(Y_\chi \) with temperature reads 
+%
+\begin{align}
+\dv{Y_\chi }{T} 
+= \dv{Y_\chi }{t} \dv{s}{T} \left(\dv{s}{t}\right)^{-1}
+= \frac{\expval{\sigma v}_T}{s H T} \left( n_\chi^2 - \left( n_\chi^{\text{eq}}\right)^2 \right)
+\,.
+\end{align}
+
+In the end, therefore, the Boltzmann equation reads 
+%
+\begin{align}
+\dv{Y_\chi }{T} 
+&= \frac{ \expval{\sigma v}_T s}{HT} \left( Y_\chi^2 - \left( Y_\chi^{\text{eq}}\right)^2\right) \\
+\frac{T}{Y_\chi^{\text{eq}}}  \dv{Y_\chi }{T} &= \frac{ \expval{\sigma v}_T n_\chi^{\text{eq}}}{HT} \left( \frac{Y_\chi^2}{(Y_\chi^{\text{eq}})^2} - 1\right)  \\
+&= \frac{\Gamma}{H} \left( \frac{Y_\chi^2}{(Y_\chi^{\text{eq}})^2} - 1\right)
+\,.
+\end{align}
+
+This clarifies what is meant by \(\Gamma \) when comparing \(\Gamma \) and \(H\): 
+\(\Gamma (T) = \expval{\sigma v}_T n_\chi^{\text{eq}}\). 
+
+On the other hand, 
+%
+\begin{align}
+H = \sqrt{\frac{8 \pi }{3 m _{\text{Pl}}^2} g_* \frac{\pi^2}{30} T^4}
+\,.
+\end{align}
+
+While the species is relativistic, \(\Gamma \propto T^3\) while \(H \propto T^2 / M _{\text{Pl}}\). 
+Therefore, there will be a configuration at high \(T\) such that \(\Gamma (T) \gg H(T)\). 
+
+The opposite is true at low temperatures. 
+So, at high temperatures \(Y_\chi \approx Y_\chi^{\text{eq}}\). 
+On the other hand, there will be a freeze-out temperature \(T _{\text{freeze}}\) such that 
+\(\Gamma \approx H\), 
+and at smaller \(T\) we will remain at \(Y_\chi (T) \approx Y_\chi(T _{\text{freeze}})\). 
+
+This will also be the case up until the current time. 
+
+We can use this to compute the current relic density \(\Omega _\chi \) for a cold relic,
+such that \(T _{\text{freeze}} \lesssim m_\chi \). 
+
+Cold relic is not a synonym for CDM: that means that \(\chi \) is non-relativistic at the time 
+of matter-radiation equality, which is much smaller than the freezeout temperature typically. 
+
+Cold relic implies CDM, but not the other way around. 
+
+We get: 
+%
+\begin{align}
+\Omega _\chi h^2 &= \frac{\rho _\chi (T_0 )}{\rho _{\text{crit}}(T_0 ) h^{-2}} \\
+&= \frac{m_\chi n_\chi (T_0 )}{\rho _{\text{crit}}^0 h^{-2}}  \\
+&= \frac{m_\chi Y_\chi (T_0 ) s_0 }{\rho _{\text{crit}} h^{-2}}
+\,.
+\end{align}
+
+However, we also know that \(\Gamma (T _{\text{freeze}}) = \expval{\sigma v}_T Y_\chi^{\text{eq}} (T _{\text{freeze}}) s( T _{\text{freeze}}) \). 
+This all yields 
+%
+\begin{align}
+\Omega _\chi h^2 &= \frac{m_\chi s_0 }{\rho _{\text{crit}}^0 h^{-2}}   \\
+&\approx \frac{m_\chi s_0}{\rho _{\text{crit}}^0} \frac{H (T _{\text{freeze}})}{s(65536T _{\text{freeze}}) \expval{\sigma v}_T}  
+\,.
+\end{align}
+
+This comes out to be 
+%
+\begin{align}
+\Omega _\chi h^2 = \frac{1}{g_*^{1/2} (T _{\text{freeze}})} \frac{m_\chi}{T _{\text{freeze}}}
+\frac{\SI{e-27}{cm^3 s^{-1}}}{\expval{\sigma v}_{T _{\text{freeze}}}}
+\,.
+\end{align}
+
+What is the value of the thermally-averaged cross-section \(\expval{\sigma v}\)? 
+
+We get 
+%
+\begin{align}
+\exp( \frac{m_\chi}{T _{\text{freeze}}}) \left(\frac{m_\chi }{T _{\text{freeze}}}\right)^{-1/2}
+= K = \frac{3 \sqrt{5}}{4 \sqrt{2} \pi^3} \frac{g_\chi }{g_*^{1/2}} \sigma_0 m_\chi m _{\text{Pl}} 
+\,.
+\end{align}
+
+This can be solved iteratively. 
+For a mass \(m_\chi \approx \SI{100}{GeV}\), and a cross-section \(\sigma_0 \approx \SI{2.5e-27}{cm^3 s^{-1}}\), 
+with \(g_* \approx 60\), we find \(m_\chi / T _{\text{freeze}} \approx 20\).
+
+This yields 
+%
+\begin{align}
+\Omega _\chi h^2 \approx \frac{\SI{3e-27}{cm^3 s^{-1}}}{\expval{\sigma v}_{T _{\text{freeze}}}}
+\,.
+\end{align}
+
+That's the WIMP miracle: we get \(\Omega _{\text{DM}} h^2 \approx 0.1\)
+with a value for \(\sigma v\) compatible with the weak interaction. 
+
+The recipe for WIMPs is 
+\begin{enumerate}
+    \item we need a massive particle, which is non-relativistic at freeze-out;
+    \item we need it to be stable (within the current lifetime of the universe);
+    \item we need it to have a weak-interaction-like coupling to the SM.
+\end{enumerate}
+
+This third point also implicitly constrains the mass scale: 
+a lower limit comes from the fact that the reaction \(\chi \overline{\chi} \leftrightarrow F \overline{F}\)
+must be at equilibrium for some SM particle. 
+This typically does not work within the SM unless \(m_\chi \gtrsim \SI{1}{GeV}\);
+if there is a beyond-the-standard model thermalizer, we could go down to \(m_\chi \gtrsim \SI{1}{MeV}\). 
+
+
+
 \end{document}

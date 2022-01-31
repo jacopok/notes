@@ -28,11 +28,11 @@ folder_names = {
 }
 
 schedule = {
-    0: ["HE-TH", "GC-TH"],
-    1: ["GC-EXP", "GC-TH", "LE-TH"],
-    2: ["LE-TH", "GC-TH"],
-    3: ["LE-TH", "GC-TH"],
-    4: ["GC-TH", "LE-TH"]
+    0: ["LE-TH", "GC-TH"],
+    1: ["GC-TH", "LE-TH"],
+    2: ["LE-TH", "GC-TH", "GC-EXP"],
+    3: ["LE-TH", "GC-EXP"],
+    # 4: ["GC-TH", "LE-TH"]
 }
 
 def next_monday():

@@ -1,4 +1,204 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Monday\\ 2022-1-31}
+
+The Lagrangian therefore reads 
+%
+\begin{align}
+\mathscr{L} = \mathscr{L} _{\text{SM}} + \frac{1}{2} \partial_\mu S \partial^\mu S - \frac{1}{2} m_S^2 S^2 - \lambda v _{\text{EW}} h S^2 - \frac{\lambda}{2} h^2 S^2
+\,.
+\end{align}
+
+We have a coupling \(\lambda \) between a Higgs \(h\) and two \(S\)s, 
+then this \(h\) can couple to two fermions like \(h F \overline{F}\)
+with a coupling constant \(y_F\).
+
+What happens with thermal equilibrium? 
+We need to consider the cases \(T \gg m_h\) and \(T \ll m_h\). 
+
+If \(T \gg m_h\), the Higgs mass is irrelevant, so 
+when we estimate \(\Gamma = n_T \sigma _{\text{ann}} v\) we get something proportional to \(\Gamma \propto T^3 \times \lambda^2 / T^2 \times 1 = \lambda^2 T\). 
+
+On the other hand, if \(T \ll m_H\) we get \(\Gamma \sim T^3 \lambda^2 T^2/m_h^4 \times 1 \sim \lambda^2 T^5 / m_h^4\). 
+
+The velocity is still relativistic, therefore we are assuming that \(m_S \ll T \ll  m_h\). 
+
+The expansion of the Universe scales like 
+%
+\begin{align}
+H \sim g_*^{1/2} \frac{T^2}{m _{\text{Pl}}}
+\,.
+\end{align}
+
+We get decoupling when \(\max (\Gamma /H) \gtrsim 1\): 
+this means 
+%
+\begin{align}
+\eval{\frac{\Gamma}{H} }_{T \sim m_P} \sim \lambda^2 \frac{M_p}{m_h} g_*^{-1/2}
+\,.
+\end{align}
+
+This requires \(\lambda \gtrsim g_*^{1/4} \sqrt{ m_h / M_p} \sim \num{e-8}\).
+
+Therefore, we can have thermalization as long as \(\lambda \gtrsim \num{e-8}\) --- the coupling can be rather weak while still yielding thermalization.
+
+We now want to compute the relic density: we get 
+%
+\begin{align}
+\Omega _S h^2 \sim \frac{\SI{3e-27}{cm^3 s^{-1}}}{\expval{\sigma _s v}_T}
+\,.
+\end{align}
+
+Let us make an estimate for this thermally averaged cross-section: 
+%
+\begin{align}
+\expval{\sigma _S v} = \frac{g \lambda^2 v _{\text{EW}}^2}{(4 m_S^2 - m_h^2)^2 + m_h^2 \Gamma^2_h} F_h(m_s)
+\,,
+\end{align}
+%
+where we split the initial Feynman diagram in two. 
+
+The width for the Higgs transition is roughly \(\Gamma _h \sim \SI{4.2}{MeV}\). 
+
+The factor \(F_h(m_s)\) is given by 
+%
+\begin{align}
+F_h (m_s) = \sum _{X} \lim_{m_{\widetilde{h}} \to 2 m_s} \frac{\Gamma (\widetilde{h} \to X )}{m_{ \widetilde{h}}}
+\,,
+\end{align}
+%
+where \(X\) is any allowed final state. 
+
+Since \(m_S \ll m_h\), we will have 
+%
+\begin{align}
+\sigma _s v \sim \frac{\lambda^2 m_s^2}{m_h^2}
+\,.
+\end{align}
+
+Since this is constrained by observation of \(\Omega _S\), we must have \(\lambda m_s\) equal to some fixed value. 
+
+When, however, we reach \(m_s \approx m_h/2\) we get a huge enhancement due to resonance. 
+
+In a \(\log \lambda \) against \(\log m_s\) plot this corresponds to a large \emph{dip}, since we need a much smaller value of \(\lambda \) in order to balance such a natively high cross-section. 
+
+The width of this dip will not just be \(\Gamma _h \sim \SI{4.2}{MeV}\) because of Doppler broadening. 
+
+After the dip, more final states will open up. 
+So, if \(m_s \gg m_h\) then the term \(\lambda h^2S^2\) in the Lagrangian also starts to become relevant. 
+
+Then, we get \(\sigma _S v \approx \lambda^2 / m_S^2\). 
+
+This leads to a high-energy regime where, roughly, \(\lambda / m_s\) is constant. 
+Before that, we get a region of roughly constant \(\lambda \). 
+
+This curve corresponds to a fixed value of \(\Omega _s h^2\); above it we get under-production and below it we get over-production.
+
+Can we get other constraints? 
+If \(m_S < m_h / 2\), we could have \(h \to SS\) decay: this would contribute to the ``invisible width'' in Higgs decay. 
+
+The rest of the invisible width is accounted for with neutrinos. 
+
+This excludes a portion of the parameter space in the low \(m_s\) region. 
+
+Most of the rest of the line is excluded by other reasons, what remains as a viable candidate is only the resonance dip. 
+
+\subsection{Supersymmetric WIMPs}
+
+Just a sketch. 
+
+A supersymmetric version of the Standard Model can be given, for example, by the Minimal SUSY SM, in which to any SM degree of freedom
+we associate one degree of freedom in such a way that the setup is symmetric under the exchange of fermionic and bosonic degrees of freedom. 
+
+R-parity is in the form \(R = (-1)^{3(B-L) + 2S}\). 
+SM particles have \(R = +1\), and the SUSY partners have \(R = -1\). 
+
+SUSY particles appear in pairs in scatterings and annihilations, 
+the result of this is that the lightest SUSY particle is stable. 
+
+Is this LSP a WIMP DM candidate? 
+We want it to have no electric charge, no \(SU(3)_c\) charge, and no \(SU(2)_L\) charge. 
+
+One possibility is the neutrino's couterpart: this has been excluded by direct detection. 
+
+Another possibility is to look at \(SU(2)_L \times U(1)_Y\) gauge, Higgs with 0 electric charge.
+The gluino, on the other hand, is excluded because it would be too strongly interacting. 
+
+We could have the SUSY \(U(1)_Y\) partner \(\widetilde{B}\), 
+the neutral partner of the \(SU(2)\) gauge bosons \(\widetilde{W}^3\), 
+the SUSY partner of the Higgs doublet \(\widetilde{H}_u\) or \(\widetilde{H}_d\). 
+
+These are 4 spin \(1/2\) particles which are Majorana fermions and 
+which are collectively called \emph{neutralinos}. 
+
+There must be some soft SUSY breaking, since we didn't observe any of them yet. 
+So, there must be a mass matrix with off-diagonal terms. 
+
+Depending on the hierarchy between these masses, the LSP could be 
+the Higgsino (an \(SU(2)_L\) doublet),
+the Wino (an \(SU(2)_L\) triplet), or
+the Bino (an \(SU(2)_L\) singlet).
+
+The states \(\widetilde{\chi}^0\) and \(\widetilde{\chi}^{\pm}\) are nearly degenerate in mass, but it's hard to measure this at LHC. 
+
+These particles \(\chi _i\) are all sharing a quantum number, so 
+they all ``talk'' to each other. 
+Suppose that the masses are ordered such that \(M_1 < M_2 < \dots\); 
+then if the temperature of freeze-out is given by 
+%
+\begin{align}
+T _{\text{FO}} \sim \frac{M_1}{20}
+\,
+\end{align}
+%
+the particles with \(M_i - M_1 \lesssim T _{\text{FO}} \) will remain non-relativistic until they decouple. 
+
+There are many processes causing a change in \(\chi _i\) abundance. 
+
+The full Boltzmann equation will read 
+%
+\begin{align}
+\dv{n_i}{t} + 3 H n_i = - \sum _{j} \expval{\sigma _{ij} v} \left(
+    n_i n_j - n_i^{\text{eq}} n_j^{\text{eq}}
+\right)
+- \sum _{j, P, P'} \expval{\sigma_{ij}' v} \left(
+    n_i n_P^{\text{eq}} 
+    - n_j n_{P'}^{\text{eq}}
+\right)
+- \sum _{j< i} \Gamma_{i \to j} n_i 
++ \sum _{j > i} \Gamma_{j \to i} n_j
+\,.
+\end{align}
+
+This will be the case for any \(i\) between \(1\) and \(N\). 
+At late times, however, all the \(i > 1\) will have decayed into \(1\):  
+therefore, the relic density will be given by \(n _{\text{tot}} = \sum _{i} n_i\), which constrains \(\Omega _1\). 
+
+The result is then 
+%
+\begin{align}
+\dv{n}{t} + 3 H n = - \sum _{i, j} \expval{\sigma _{ij} v} \left(
+    n_i n_j - n_i^{\text{eq}} n_j^{\text{eq}}
+\right)
+\,.
+\end{align}
+
+We still have the individual densities on the right, but we 
+can give an estimate for \(\Gamma \sim n_j \expval{ \sigma_{ij} v}\), while \(\Gamma _{\text{scatt}} \sim n_P^{\text{eq}} \expval{\sigma_{ij}' v}\). 
+
+Since \(n_i^{\text{eq}} \gg n_j\), we expect \(n_i / n\) to scale like \(n_i^{\text{eq}} / n^{\text{eq}}\). 
+
+This then yields an equation in the form 
+%
+\begin{align}
+\dv{n}{t} + 3 H n &= - \expval{\sigma _{\text{eff}} v} \left(
+    n^2 - n^2 _{\text{eq}}
+\right)  \\
+\expval{\sigma _{\text{eff}} v} &= \sum _{ij} \expval{\sigma_{ij} v} \frac{n_i^{\text{eq}} n_j^{\text{eq}}}{(n^{\text{eq}})^2}
+\,.
+\end{align}
+
+
+
 \end{document}

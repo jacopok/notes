@@ -1,4 +1,234 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Tuesday\\ 2022-2-1}
+
+We were discussing the Boltzmann equation for a set of \(N\) particles \(\chi _i\),
+which satisfy a collective Boltzmann equation for \(n = \sum _{i} n_i\). 
+
+The ratio of the equilibrium density of each species to the overall equilibrium density 
+appears: what will be its value? 
+%
+\begin{align}
+\frac{n_i^{\text{eq}}}{n^{\text{eq}}} 
+&= \frac{
+    g_i (M_i / M_1) ^{3/2} \exp(- M_i / T) \exp(M_1 / T)
+}{
+    \sum _{j} g_j (M_i / M_j)^{3/2} \exp(- M_j / T) \exp(M_1 / T)
+}  \\
+&= 
+\frac{
+    g_i (1 + \Delta _i)^{3/2} \exp(- M_1 \Delta _i / T )
+}{
+    \sum _{j} g_j (1 + \Delta _i)^{3/2} \exp(- M_1 \Delta _j / T)
+}
+\,,
+\end{align}
+%
+where we added the exponential of \(M_1 / T\) since we want to 
+get factors of \(\Delta _i = (M_i - M_1 ) / M_1\). 
+
+We can call the denominator \(g _{\text{eff}}\): then, 
+%
+\begin{align}
+\expval{\sigma _{\text{eff}} v} &= \sum _{i, j} \expval{\sigma _{ij} v} \frac{n_i^{\text{eq}} n_j^{\text{eq}}}{(n^{\text{eq}})^2}   \\
+&= \sum _{ij} \expval{\sigma_{ij} v} \frac{g_i g_j}{g _{\text{eff}}^2} 
+(1 + \Delta _i)^{3/2} (1 + \Delta _j)^{3/2} 
+\exp(- \frac{M_1}{T} (\Delta _i + \Delta _j))
+\,.
+\end{align}
+
+Suppose we only have two particles. 
+Then, we can denote 
+%
+\begin{align}
+g _{\text{eff}} = g_1 + g_2  (1 + \Delta )^{3/2} \exp(- \frac{M_1}{T} \Delta )= g_1 (1 + w )  
+\,.
+\end{align}
+
+The annihilation cross-sections will read 
+%
+\begin{align}
+\sigma_{22} = \alpha \sigma_{21} = \alpha^2 \sigma_{11} 
+\,.
+\end{align}
+
+Then, we get 
+%
+\begin{align}
+\sigma _{\text{eff}} = \sigma_{11} \frac{g_1^2}{g_1^2 (1 + w)^2}
++ 2 \sigma_{12} \frac{w}{(1+ w)^2} + \sigma_{22} \frac{w^2}{(1+w)^2} 
+\approx \sigma_{11} \frac{(1 + \alpha w)^2}{(1 + w)^2}
+\,.
+\end{align}
+
+In the limit where \(\Delta \to 0\), we get \(w \to g_2 / g_1 \) and so 
+%
+\begin{align}
+\sigma _{\text{eff}} \to \sigma_{11} \frac{(1 + \alpha (g_2 /g_1)^2}{(1 + g_2 / g_1 )}
+\,,
+\end{align}
+%
+therefore, assuming \(\Delta \sim 1/20\), if \(\alpha \gtrsim 1\) we reduce \(\Omega \), while if \(\alpha \lesssim 1\) we enhance it! 
+
+Consider the case of a pure Higgsino: \(\widetilde{\chi}^0_{1, 2}\) and \(\widetilde{\chi}^+\). 
+
+Some considerations are then made regarding the possibility of the lightest 
+DM particle being a Bino or a Higgsino. 
+
+Indirect detection is disfavored in this case, since today we only have \(\sigma_0 v\) 
+for the lightest state.
+
+Could we have the opposite scenario, \(\sigma_0 v \gg \expval{\sigma _{\text{eff}} v} \)? 
+
+This is the case for Sommerfeld enhancement. 
+
+Now, the cross-section is computed in the context of empty space! 
+If we compare the ``size'' of the particle, \(\sim \sqrt{\sigma }\), to the separation
+of the particles, \(1/\sqrt[3]{n}\), we still get that they are quite 
+far away from each other.
+
+In the regime where long-range forces become active, the range of interaction 
+will not be \(\sqrt{\sigma }\) anymore! 
+
+The Coulomb potential, for example, can be written as \(V = - \alpha _{\text{em}} / r\). 
+It has an infinite range! 
+
+Really, we should solve the Schrödinger equation in the non-relativistic limit, 
+%
+\begin{align}
+\left( \frac{1}{2m_\chi  } \dv[2]{}{r} 
++ \frac{\abs{k}^2}{2 m_\chi }
+- V_\phi (r) \right)
+\psi _k (r) = 0
+\,.
+\end{align}
+
+There is then an enhancement for the annihilation rate in the form 
+%
+\begin{align}
+S = \frac{\sigma _{\text{ann}}}{\sigma_0 } = \frac{\abs{\psi _k(0)}^2}{\abs{\psi _k^{(0)}(0)}}
+\,,
+\end{align}
+%
+where \(V_\phi = - \alpha / r\) and the denominator in \(S\) is in the case 
+where we have no field.
+
+In the Coulomb case, this can be computed exactly: 
+%
+\begin{align}
+S = \frac{\pi \alpha _\phi }{v} \frac{1}{1 - \exp(- \pi \alpha _\phi / v)}
+\,,
+\end{align}
+%
+where \(v\) is the relative velocity. 
+
+In the case where \(m_\phi \neq 0\) we get a Yukawa interaction, 
+suppressed by \(\exp(- m_\phi r)\); there, we can also compute \(S\) analytically. 
+%
+\begin{align}
+S = \frac{\pi \alpha _\phi }{v} \frac{\sinh (12 v / \pi \alpha _\phi \xi )}{\cosh (12v / \pi \alpha _\phi \xi )
+- \cos(2 \pi \sqrt{6 / \pi^2\xi - (6 v / \pi^2 \alpha _\phi \xi )^2})}
+\,,
+\end{align}
+%
+
+
+If \(v \) is large, or if \(m_\phi \gtrsim m_\chi \), 
+we can expand in \(1 / \xi \). 
+
+If, on the other hand, \(\xi \ll 1\), then \(S = \pi \alpha _\phi / v\). 
+
+There are resonances when \(\xi = 6 / \pi^2 n^2\): 
+then, \(S = \alpha _\phi^2 / v^2 n^2\), for \(n \in \mathbb{Z}\). 
+
+We can plot different curves for \(\log S\) as a function of \(\xi \), with different 
+values of \(v\). 
+
+\subsection{Feebly Interacting Massive Particles}
+
+This is DM which is not in thermal equilibrium in the Early Universe. 
+
+For example, these could be sterile neutrinos. 
+These would be SM singlets, but which mix with SM neutrinos. 
+
+Let us look at the 1+1 configuration: we have \(\ket{\nu _\alpha }\) 
+with \(\alpha \in \left\lbrace e, \mu , \tau \right\rbrace\), plus a 
+\(\ket{\nu _s}\). 
+Further suppose that 
+%
+\begin{align}
+\ket{\nu _\alpha } &= \cos \theta _\alpha \ket{\nu _1} + \sin \theta _\alpha \ket{\nu _2} \\
+\ket{\nu _s } &= -\sin \theta _\alpha \ket{\nu _1} + \cos \theta _\alpha \ket{\nu _2}
+\,,
+\end{align}
+%
+and we assume that \(m_2 \gg m_1\). 
+Since we want these neutrinos on the order of the \SI{}{keV} at least, 
+but we know that the masses of SM neutrinos are very small, 
+therefore we need \(\theta _\alpha \ll 1\). 
+
+How do neutrino oscillations work in the early universe? we get 
+a transition amplitude in the form 
+%
+\begin{align}
+A(\nu \alpha \to \nu _s) = c_s \bra{\nu _s} e^{-i \frac{m_i^2t}{2 E_i}} \ket{\nu _\alpha }
+\,.
+\end{align}
+
+Therefore, the final probability reads 
+%
+\begin{align}
+\mathbb{P}(\nu _\alpha \to \nu _s ) = \sin^2(2 \theta _\alpha )
+\sin^2 (\frac{\Delta m^2}{2E_i} \frac{L}{2}) 
+\,.
+\end{align}
+
+We can write a similar expression in the Early Universe 
+with \(t_\alpha = 2 E_\nu / \Delta m^2\). 
+
+The evolution can be described by a Hamiltonian  
+%
+\begin{align}
+H = U \operatorname{diag} (\frac{m_1^2}{2 E_\nu }, \frac{m_j^2}{2 E_\nu }) U ^\dag + V _{\text{int}}
+\,.
+\end{align}
+
+The interaction potential only has a single nonzero component \(V_{\alpha \alpha}\), 
+which accounts for the interactions with the heat bath. 
+
+The relevant interaction rate is \(\Gamma \sim \SI{100}{MeV}\), 
+so we get 
+%
+\begin{align}
+V_{\alpha \alpha } \approx C_\alpha \times 25 G_F^2 T^4 E_\nu 
+\,,
+\end{align}
+%
+where \(C_e \approx 3.5\). 
+
+The probability of a \(\nu _\alpha \) becoming a \(\nu _s\) is therefore 
+%
+\begin{align}
+P(\nu _\alpha \to \nu _s) = \sin^2(2 \theta _\alpha^m) \sin^2(t / 2 t_\alpha^m)
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+t_\alpha^m = \frac{t_\alpha^{\text{vac}}}{\sqrt{\sin^2 2 \theta _\alpha + (\cos(2 \theta _\alpha ) - V_{\alpha \alpha } t_\alpha^{\text{vac}})^2}}
+\,,
+\end{align}
+%
+and 
+%
+\begin{align}
+\sin^2(2 \theta _\alpha^m) &= \left(\frac{t_\alpha^m}{t_\alpha^{\text{vac}}} \right)^2
+\sin^2 (2 \theta _\alpha )
+\,.
+\end{align}
+
+
+
 \end{document}

@@ -1,4 +1,181 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\marginpar{Wednesday\\ 2022-2-2}
+
+Sterile neutrinos as DM! 
+
+We assume to be at a temperature \(T \sim \SI{100}{MeV}\), 
+and take \(m_1 \ll m_s \lesssim T\).
+
+We can approximate 
+%
+\begin{align}
+t_\alpha^m \approx \min (t_\alpha^{\text{vac}}, V_{\alpha \alpha }^{-1}) = 
+\min \left(
+    \frac{2T}{m_s^2}, \num{0.04} G_F^{-2} T^{-5}
+\right)
+\,.
+\end{align}
+
+Is it true that \(t_\alpha^m \ll t_H = H^{-1}\)? 
+
+\(H(T)\) is roughly \(\sqrt{g_*} T^2 / m _{\text{Pl}}\).
+
+The interaction timescale will be given by 
+%
+\begin{align}
+\tau _\nu = \Gamma_\nu^{-1} = ( \sigma _\nu v n_T)^{-1} \approx (G_F^2 T^2 1 T^3)^{-1} \sim G_F^{-2} T^{-5}
+\,.
+\end{align}
+
+If it is the case that \(t_\alpha^m \lesssim \tau _\nu \), then 
+%
+\begin{align}
+\mathbb{P}(\nu _\alpha \to \nu _s) = \frac{1}{4} \sin^2 (2 \theta _\alpha^m) \approx \left( \frac{t_\alpha^m}{t_\alpha^{\text{vac}}}\right)^2 \theta _\alpha^m
+\,.
+\end{align}
+
+This will be the source term in our Boltzmann equation: 
+%
+\begin{align}
+\dv{n_s}{t} + 3H n_s = \frac{\expval{P(\nu _\alpha \to \nu _s)}}{\tau _\nu } n_{\nu _\alpha }
+\,.
+\end{align}
+
+We can combine two terms by writing them as 
+%
+\begin{align}
+\frac{1}{n_{\nu _\alpha }} \frac{1}{a^3} \dv{}{t} \left( n_{\nu _\alpha } a^3 \right)
+= \dv{}{t} \left( \frac{n_{\nu _s}}{n_{\nu _\alpha }}\right) \approx 
+- HT \dv{}{T} \left( \frac{n_{\nu _s}}{n_{\nu _\alpha }}\right)
+\,,
+\end{align}
+%
+where we used the fact that \(- \dd{T} / T = \dd{a} / a = H \dd{t}\). 
+
+What is this term? 
+%
+\begin{align}
+T \dv{}{T} \left( \frac{n_{\nu _s}}{n_{\nu _\alpha }}\right)
+= - \frac{\expval{P(\nu _\alpha \to \nu _s)}}{H \tau _\nu }
+= - \frac{m_{\text{Pl}} G_F^2 T^5}{\sqrt{g_*} T^2} 
+\begin{cases}
+    \theta _\alpha^2 & \text{low } T\\
+    \theta _\alpha^2 \left(\frac{V_{\alpha \alpha }^{-1}}{t_\alpha^{\text{vac}}}\right)^2 & \text{high } T
+\end{cases}
+\,,
+\end{align}
+%
+where the factor inside the brackets squared is roughly 
+%
+\begin{align}
+0.02 \frac{m_s^2}{T^6 G_F^2} 
+\,.
+\end{align}
+
+We can then make a plot of \(\expval{P} / H \tau \) against \(\log 1/T\); 
+at first this quantity rises up like \(T^{-9}\), and then it falls like \(T^3\). 
+
+The joining temperature between two regions is roughly \(T_* \approx \SI{200}{MeV}\). 
+
+The maximum value of \(n_{\nu _s} / n _{\nu _\alpha } \) is therefore concentrated around 
+\(T \approx T_*\); it comes out to be 
+%
+\begin{align}
+\eval{\frac{G_F M _{\text{Pl}} \theta _\alpha^2}{\sqrt{g_*}} T^3}_{T_*}
+\,,
+\end{align}
+%
+so the number density scales with \(m_s \theta _\alpha^2\). 
+
+Doing things more carefully, we get something on the order of 
+%
+\begin{align}
+\frac{n_{\nu _s}}{n_{\nu _\alpha }} \approx \num{e-2} \left(\frac{m_s}{\SI{}{keV}}\right) \left(\frac{\sin 2 \theta _\alpha }{\num{e-4}}\right)^2
+\,.
+\end{align}
+
+There is a further consideration to do: 
+we were always assuming that the inverse process, sterile neutrinos
+becoming regular ones, was negligible; 
+we need to check that the sterile neutrinos are not thermal 
+so that this makes sense. 
+
+Indeed, \(\Gamma / H \sim n_{\nu _s} / n_{\nu _\alpha } \ll 1\) at all times. 
+
+The relic density is then given by 
+%
+\begin{align}
+\Omega _{\nu _s} \approx \frac{m_s n_{\nu _\alpha }}{\rho _c} \frac{n_{\nu _s}}{n_{\nu _\alpha }}  \\
+&\approx \num{0.2}
+\left(
+    \frac{\sin(2 \theta _\alpha )}{\num{e-4}}
+\right)^2
+\left(
+    \frac{m_s}{\SI{}{keV}}
+\right)^2
+\,.
+\end{align}
+
+This would be Warm DM. 
+
+It can be tested indirectly:
+we could have processes in the form \(\nu _s \to \nu _\alpha + \gamma \), 
+where \(E_\gamma = m_s / 2\) because of kinematics; 
+this would mean that DM halos would emit monochromatic X-rays. 
+
+The decay rate of this process is in the form 
+%
+\begin{align}
+\Gamma \approx \frac{\rho }{256} \alpha _{\text{em}} \frac{G_F^2}{4 \pi ^4} \sin^2 (2 \theta _\alpha ) m_s^5
+\,,
+\end{align}
+%
+so the lifetime of a sterile neutrino is \(\tau _{\nu _s} \sim \SI{1.8e29}{s} \approx \SI{5.7e21}{yr}\). 
+
+There was a claim of some people who would have seen a line at \SI{3.5}{keV}. 
+
+Of course, it could be from standard nuclear astrophysics processes.
+
+\section{Production of DM and Freeze-in}
+
+This is the case of a Feebly-interacting particle, 
+which is never in thermal equilibrium but ``communicates'' with 
+the thermal bath somewhat. 
+
+The Boltzmann equation will read 
+%
+\begin{align}
+\dv{n_\chi }{t} + 3H n_\chi 
+= \int \dd[3]{p}_{B_1} 
+\frac{g_{B_L}}{(2 \pi )^3}
+\frac{\Gamma {B_L}}{E_{B_1} / m_{B_1}} 
+h_{B_1}
+\approx \frac{\Gamma _{B_1}}{\gamma _{B_L}(T)} n_B^q (T)
+\,.
+\end{align}
+
+After some calculations, we get that the relic density of the FIMP is 
+%
+\begin{align}
+\Omega _\chi h^2 \approx \frac{\num{1.1e27} \widetilde{g}_{B_1}}{(g_*)^{3/2}}  \frac{m_\chi \Gamma _{B_1}}{m^2_{B_1}}
+\,,
+\end{align}
+%
+which means that 
+%
+\begin{align}
+\Gamma^{-1}_{B_1} \approx \SI{7e-3}{s} \frac{m_\chi }{\SI{100}{GeV}} \left(\frac{\SI{300}{GeV}}{m_{B_1}}\right)^2
+\left(\frac{100}{g_*}\right)^{3/2}
+\,.
+\end{align}
+
+This requires us to have a coupling like \(\lambda \chi B_1 B_2 \), where \(\lambda \sim \num{e-12}\). 
+
+We see the classic plot of \(Y\) against \(- \log T\) for the freeze-out.
+We also see the plot of \(Y\) against \(- \log T\) for the freeze-in. 
+
+Tomorrow we will do condensates and axion-like dark matter. 
+
 \end{document}

@@ -1,4 +1,415 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
+\section{Misalignment production for ultra-light scalars}
+
+\marginpar{Thursday\\ 2022-2-3}
+
+We have some scalar \(\phi \) which is spatially constant over some length scale. 
+
+We will evolve this classical configuration, ignoring perturbations, in the \(o\)-mode. 
+However, we will account for the FLRW background. 
+
+The Klein-Gordon equation reads 
+%
+\begin{align}
+\ddot{\phi}_0 (t) + 3H \dot{\phi}_0 + \pdv{V}{\phi_0 } = 0
+\,.
+\end{align}
+
+We will assume that 
+%
+\begin{align}
+V(\phi_0 ) \approx \frac{1}{2} m_\phi^2 \phi_0^2
+\,,
+\end{align}
+%
+neglecting all corrections, where \(m_\phi \) is assumed to be tiny.
+If this field is associated with some phase transition, the parameter \(m_\phi \) 
+might be time-dependent: \(m_\phi (t)\). 
+
+The equation then reads 
+%
+\begin{align}
+\ddot{\phi}_0 (t) + 3H \dot{\phi}_0 + m_\phi^2 \phi_0  = 0
+\,.
+\end{align}
+
+We need to distinguish different regimes: in the friction-dominated
+regime, \(H \gg m_\phi \), so \(\phi_0 \sim \text{const}\).
+ 
+Since \(H \sim \sqrt{g_*} T^2 / m_P\), this will happen at early times. 
+
+On the other hand, when \(H \ll m_\phi \) we get oscillations 
+with frequency \(m_\phi \). 
+
+In between, at time \(t_*\) and temperature \(T_*\), we will have \(H(t_*) \approx m_P(t_*)\). 
+
+At that time, the energy density of the field reads 
+\(\rho _\phi = m_\phi^2 \phi_0^2 / 2 + \dot{\phi}^2/2\). 
+How does that change with time?
+
+Its derivative reads 
+%
+\begin{align}
+\dot{\rho}_\phi = m_\phi^2 \phi_0 \dot{\phi}_0 
++ m_\phi \dot{m}_\phi \phi_0^2 + \dot{\phi}_0 \ddot{\phi}_0
+\,,
+\end{align}
+%
+where we recognize some terms which were appearing in the EoM, so we can 
+replace them: 
+%
+\begin{align}
+\dot{\rho}_\phi = 
+-3H \dot{\phi}^2_0 
++ m_\phi \dot{m}_\phi \phi_0^2 
+\,.
+\end{align}
+
+If we have fast oscillations, we will have \(\expval{V} = \expval{K} = \expval{\rho _\phi } / 2\):
+the expectation value of the derivative of the energy density, therefore, will be 
+%
+\begin{align}
+\expval{ \dot{\rho}_\phi } &= - 3 H \expval{ \dot{\phi}_0^2} + \frac{\dot{m}_\phi }{m_\phi }
+\expval{m_\phi^2 \phi_0^2}  \\
+&= \expval{\rho _\phi } \left(\frac{\dot{m}_\phi }{m_\phi } - 3H\right)
+\,,
+\end{align}
+%
+which we can solve: \(\expval{ \rho_\phi } \propto m_\phi / a^3\) works. 
+When \(m_\phi \) is constant, this is just the equation of state for matter. 
+
+When the transition happens from \(t_*\) to the regime in which \(H \ll m_\phi \), 
+we can use the WKB approximation and find a solution in the form 
+%
+\begin{align}
+\phi_0 (t) = A \cos \alpha 
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+A(t) \approx \phi_0^* \sqrt{\frac{m_\phi^* a^3_*}{m_\phi (t) a^3(t)}}
+\,,
+\end{align}
+%
+while 
+%
+\begin{align}
+\alpha (t) = \int_{t_*}^t \dd{t'} m_\phi (t')
+\,.
+\end{align}
+
+Then, the energy density reads 
+%
+\begin{align}
+\expval{\rho _\phi } = \frac{m_\phi^2}{2} A^2
+\,,
+\end{align}
+%
+while the pressure reads 
+%
+\begin{align}
+\expval{P_\phi } = \expval{ \frac{\dot{\phi}^2}{2} - \frac{m_\phi^2}{2} \phi_0^2} = \frac{\dot{A}^2}{2}
+\,,
+\end{align}
+%
+which is much smaller than \(\expval{\rho _\phi }\). 
+
+Why is this dubbed ``misalignment'' production? 
+The potential energy the field had in the beginning is now translated
+to kinetic and potential energy in the oscillations. 
+
+What is the relic density for this kind of DM? 
+%
+\begin{align}
+\Omega _\phi = \frac{1}{\rho _c (t_0 )} \frac{m_\phi^2}{2} A^2
+= \sqrt{\frac{m_\phi^2}{m_\phi^* \SI{}{eV}}} \left(\frac{\phi_0^*}{\SI{e11}{GeV}}\right)^2
+\,.
+\end{align}
+
+The reason for that denominator is that \(H(T_*) = 1/2t_* = m_\phi^*\) in the
+radiation domination phase.
+Also, \(a_* \propto \sqrt{t_*} \propto (m_\phi^*)^{-1/2}\).
+
+We are assuming that \(t_* < t _{\text{eq}}\): this means that \(m_\phi^* > \SI{e-28}{eV}\). 
+
+So, this is an ultralight \emph{classical} scalar; 
+we need to worry about quantum corrections, specifically to the mass. 
+
+We need the mass to be protected by a symmetry.
+\(\phi \) might be the Goldstone boson of some SSB. 
+
+In that case, we could have 
+%
+\begin{align}
+V(\phi ) \approx m_\phi^2 F_\phi^2 (1 - \cos(\phi_0^* / F_\phi ))
+\,,
+\end{align}
+%
+where \(F_\phi \) is some breaking scale. 
+
+This field will also have some interactions: 
+%
+\begin{align}
+\mathscr{L}_\phi \sim \frac{1}{F_\phi } J_\mu \partial^{\mu } \phi_0 
+\,,
+\end{align}
+%
+where \(J_\mu \) is some Nöther current associated with the breaking. 
+
+The most popular example in this class of models is the QCD axion. 
+
+This comes in connection to the \emph{strong CP} problem: 
+the QCD Lagrangian, in general, looks like 
+%
+\begin{align}
+\mathscr{L} _{\text{QCD}} = \sum \overline{q} \left(
+    i \slashed{D} - m_q e^{i \theta q}
+\right)
+q
++ \frac{1}{4}
+G_{\mu \nu }^{a} G^{\mu \nu a} 
++ \theta \frac{g^2_s}{32 \pi^2} G_{\mu \nu }^a \widetilde{G}^{\mu \nu a}
+\,,
+\end{align}
+%
+where \(\widetilde{G} = * G\) is the Hodge dual of the gluon field strength tensor. 
+
+CP violation comes in from the phase added to the mass, 
+as well as in the \(G \widetilde{G}\) term. 
+This term is in the form \(\vec{E} \cdot \vec{B}\): it chooses a direction. 
+
+We can write this term as a total derivative: \(G_{\mu \nu }^{a} \widetilde{G}^{\mu \nu a} = \partial_\mu K^\mu \), 
+where 
+%
+\begin{align}
+K^\mu = \epsilon^{\mu \nu \alpha \beta } \left(
+    A_\alpha^a G^a_{\beta \gamma } 
+    - \frac{g_s}{3} f^{abc} A_\alpha^a A_\beta^b A_\gamma^c
+\right)
+\,.
+\end{align}
+
+Therefore, at the perturbative level this term does not come in: 
+when integrating out we get something like \(\int \dd{\sigma _\mu } K^\mu \)
+on a boundary surface; but can we take \(A^a_\mu  = 0\) at infinity? 
+
+A gauge transformation for \(A\) looks like 
+%
+\begin{align}
+A_\mu \to U^{-1} A_\mu U + i g_s^{-1} U^{-1} \partial_\mu U
+\,,
+\end{align}
+%
+where the second term might not vanish at the boundary. 
+
+The integral 
+%
+\begin{align}
+\frac{g_s^2}{32 \pi^2} \int \dd[4]{x} G_{\mu \nu}^a \widetilde{G}^{\mu \nu a}
+\,
+\end{align}
+%
+takes on different integer values called \emph{winding numbers}, 
+which identify various vacua.
+
+To map between these vacua, we can use 
+a chiral transformation in the form \(q \to e^{i \gamma _5 \alpha } q \), 
+which means \(\theta _q \to \theta _q + 2 \alpha \). 
+We might then simply eliminate the CP-violating term! 
+
+This transformation, however, is associated to a current in the form 
+%
+\begin{align}
+J_\mu^5 = \overline{q} \gamma _\mu \gamma _5 q
+\,,
+\end{align}
+%
+which however is not conserved in the full Lagrangian: 
+%
+\begin{align}
+\partial^\mu J_\mu^5 = \frac{g_s^2}{32 \pi^2}  G_{\mu \nu}^a \widetilde{G}^{\mu \nu a}
+\,,
+\end{align}
+%
+which is still negligible at the perturbative level. 
+
+Therefore, we define 
+%
+\begin{align}
+\overline{\theta} = \theta + \arg \det (Y_u Y_d)
+\,.
+\end{align}
+
+The neutron electric dipole moment can be exploited to 
+measure this CP violation: it is a term in the Hamiltonian in the form
+%
+\begin{align}
+H = d_n \vec{E} \cdot \vec{S}
+\,,
+\end{align}
+%
+where \(\vec{E}\) is the external electric field and \(\vec{S}\) is the spin of the neutron. 
+
+Experimentally, neutrons don't seem to care about the electric field at all, 
+so we can put a bound like 
+%
+\begin{align}
+\abs{d_n } \lesssim \SI{3e-26}{cm} e
+\,.
+\end{align}
+
+From a microphysical point of view, this comes from a
+CP-violating operator in the form 
+%
+\begin{align}
+\mathscr{L} = d_n \frac{i}{2} \overline{n} \sigma_{\mu \nu} \gamma _5 n
+\,,
+\end{align}
+%
+where 
+%
+\begin{align}
+\sigma_{\mu \nu } = \frac{i}{2} \qty{\gamma _\mu , \gamma _\nu } 
+= \frac{i}{2} \left(
+    \gamma _\mu \gamma _\nu + \gamma _\nu \gamma _\mu 
+\right)
+\,.
+\end{align}
+
+With this, we get 
+%
+\begin{align}
+d_n \approx \frac{\overline{\theta}}{(4 \pi )^2} e \frac{m_\pi }{m_n^2} 
+\approx \SI{2.4e-16}{cm } e \overline{\theta}
+\,,
+\end{align}
+%
+which means that \(\overline{\theta} \lesssim \num{e-10}\). 
+This is the \emph{strong CP problem}, because physicists 
+like some numbers better than others. 
+
+The idea of the Peccei-Quinn mechanism is to have a symmetry in the form 
+%
+\begin{align}
+q_L &\to e^{i \beta } q_L  \\
+q_R &\to e^{-i \beta } q_R
+\,,
+\end{align}
+%
+which gets spontaneously broken with a Goldstone boson \(a(x)\):
+the \emph{axion}! 
+The axion transforms like \(a(x) \to a(x) + \beta F _{\text{PQ}}\). 
+
+This sources a term 
+%
+\begin{align}
+\mathscr{L}_a = \frac{g_s^2}{32 \pi^2} \frac{a(x)}{F _{\text{PQ}}} G_{\mu \nu}^a \widetilde{G}^{\mu \nu a}
+\,
+\end{align}
+%
+in the Lagrangian. 
+
+At this level, the axion is massless, but depending on the 
+implementation of the symmetry is might gain mass: 
+after the QCD phase transition we gain a potential for the axion in the form 
+%
+\begin{align}
+V(a) = g^2 _{\text{PQ}} m_a^2 \left(1 - \cos(a / F _{\text{PQ}})\right)
+\,.
+\end{align}
+
+The calculation of the axion mass is similar to that of the pion mass, 
+and it comes out to be 
+%
+\begin{align}
+m_a^2 = \frac{m_u m_d}{(m_u + m_d)^2} \frac{m_\pi^2 f_\pi^2}{F _{\text{PQ}}^2}
+\approx \frac{\SI{e12}{GeV}}{F _{\text{PQ}}} \SI{5}{ \micro eV}
+\,.
+\end{align}
+
+The axion field is then expected to fall into its minimum, 
+and the mean value \(\expval{a(x)}\) is then a parameter which can tune 
+\(\overline{\theta}\) and explain the strong CP problem. 
+
+The variation of the axion mass at \(T _{\text{QCD}}\) is difficult to model, 
+since it involves nonperturbative effects which need to be accounted for. 
+An approach which works is that of lattice QCD. 
+%
+\begin{align}
+f _{\text{PQ}}^2 m_a^2(T) \approx f _{\text{PQ}}^2 
+\left( 
+    \beta m_a(T_0 ) \left(\frac{T _{\text{QCD}}}{T}\right)^\gamma 
+\right)^2
+\,,
+\end{align}
+%
+where \(\gamma \approx 4 \) while \(\beta \approx 0.02\). 
+
+There are two cases for the misalignment \(\Omega _a\): 
+a possibility is that \(f _{\text{PQ}} > \max (H_I, T _{\text{rh}})\)
+in which case 
+\(U(1)_{PQ}\) is broken at the end of inflation, 
+and it is not restored by reheating. 
+
+A single mode for the axion is therefore stretched to a huge size. 
+
+The axion mass increases to its final value around \(T _{\text{QCD}}\), which occurs right after \(T_*\). 
+At the phase transition, it is 
+%
+\begin{align}
+m_a (T_*) &= \beta m_a (t_0 ) \left(\frac{T _{\text{QCD}}}{T_*}\right)^{\gamma }  \\
+&\approx H(T_*)
+\,,
+\end{align}
+%
+so we get 
+%
+\begin{align}
+T_*^{2+\gamma } \left(\frac{\beta T _{\text{QCD}}^\gamma M_P}{1.66 \sqrt{g_*}}\right) m_a (t_0 )
+\,.
+\end{align}
+
+Using this formula, together with 
+%
+\begin{align}
+\Omega _a = \frac{m_a n_a (t_0 )}{\rho _c (t_0 )}
+\,,
+\end{align}
+%
+yields, for a patch in the universe:
+%
+\begin{align}
+\Omega _a = \num{.1} \left(\frac{\theta_a^*}{\num{2.15}}\right)^2 \left( \frac{F_{PQ}}{\SI{e12}{GeV}} \right)^{1+1/(2+\gamma )} 
+\left(\frac{60}{g_*}\right)^{1/2 - 1/(4 + 2 \gamma )}
+\,.
+\end{align}
+
+The axion mass comes out to a few \SI{}{\micro eV}. 
+There is fine-tuning, but we have isocurvature, adiabatic perturbations \(\delta \rho _a = 0\)! 
+
+In the opposite regime, \(F_{PQ} < \max(H_I, T _{\text{rh}})\): 
+then, we are either restoring the PQ symmetry during reheating 
+or it was never broken in the first place. 
+
+Then, \(\theta _\alpha \in [- \pi , \pi ]\), and we will get the same formula but 
+%
+\begin{align}
+\Omega _a \approx \int_{-\pi }^{\pi } \dd{\theta _a^*} \Omega _a^{\text{1 patch}}
+\,,
+\end{align}
+%
+so the expression is as if we only had a single averaged angle
+%
+\begin{align}
+\expval{\theta _a^{*2}} = \frac{1}{2 \pi } \int \dd{\theta _a^*} \theta _a^{* 2} 
+\,,
+\end{align}
+%
+so we get \(\pi^2 /3\), and we cannot play around with the angle anymore. 
+
+
 \end{document}

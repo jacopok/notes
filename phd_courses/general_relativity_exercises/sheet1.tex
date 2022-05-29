@@ -112,11 +112,11 @@ The metric reads %
 Therefore, we can compute the norm of this Killing vector: it's 
 %
 \begin{align}
-\xi^2 = 2\xi^U \xi^V g_{UV} = - \frac{64 M^3}{r} e^{-r/2M} (-UV) = 32 M^2 \left( \frac{2M}{r} - 1\right)
+\xi^2 = 2\xi^U \xi^V g_{UV} = - \frac{32 M^3}{r} e^{-r/2M} (-UV) = 16 M^2 \left( \frac{2M}{r} - 1\right)
 \,,
 \end{align}
 %
-which is, up to a constant factor of \(32 M^2\), the same as the norm of the Killing vector \(\partial_t\) 
+which is, up to a constant factor of \(16 M^2\), the same as the norm of the Killing vector \(\partial_t\) 
 in regular Schwarzschild coordinates.
 Since there is only one timelike Killing vector in the Schwarzschild exterior, 
 the two must correspond to one another. Let us, however, show this explicitly.
@@ -185,9 +185,9 @@ Now we can go about writing down \(\xi\) in terms of Schwarzschild coordinates: 
 \,.
 \end{align}
 
-We also recover the normalization: now, we can see that \(\xi^2 = \xi^t \xi^t g_{tt} = 64M^2 (1 - r/ 2M)\). 
+We also recover the normalization: now, we can see that \(\xi^2 = \xi^t \xi^t g_{tt} = - 64M^2 (1 - 2M/r)\).
 
-\todo[inline]{Wait! Why is it 64 here and 32 before?!}
+\todo[inline]{Wait! Why is it 64 here and 16 before?!}
 
 A vector field \(\xi\) is a Killing vector field if \(\mathscr{L}_\xi g_{ab} = 0\), let's show this in \(U\), \(V\) coordinates: %
 \begin{align}
@@ -249,36 +249,64 @@ with \(v = t + r + 2 M \log(r / 2M - 1)\), this relation reads
 %
 where \(\dot{v}\) and \(\dot{r}\) are derivatives with respect to proper time, and we are using the assumption of radial motion together with spherical symmetry to see that \(\dot{\theta} = \dot{\varphi} = 0\) at all times.
 
-A conserved quantity throughout this motion will be \(e = - \xi \cdot u\), since \(\xi = \partial_t\) is a Killing vector. 
+A conserved quantity throughout this motion will be \(e = - \xi \cdot u\), since \(\xi = \partial_v\) is a Killing vector.\footnote{It is because we are just transforming \(\partial_t = (\pdv*{v}{t}) \partial_v = \partial_v\).} 
 This reads %
 \begin{align}
-e = - \xi^t g_{tt} u^t = \left(1 - \frac{2M}{r}\right) \dot{v}
+e = - \xi^v g_{vv} u^v - \xi^v g_{vr} u^r = \left(1 - \frac{2M}{r}\right) \dot{v} - \dot{r}
 \,.
 \end{align}
 
 
 Using this, we can write the normalization of the four-velocity as %
 \begin{align}
-    -1 &= - \left( 1 - \frac{2M}{r}\right)^{-1} e^2 - \frac{2 e \dot{r}}{1 - 2M / r}  \\
-    \frac{2M}{r} - 1 &= -e^2 - 2 e \dot{r}  \\
-    \dot{r} = \dv{r}{ \tau } &= - \frac{1}{2e} \left( \frac{2M}{r} + e^2 - 1 \right)
-    \,.
-\end{align}
-
-
-This also helps us in computing the value of \(e\): we can simply compute it at the starting point, since we know that there \(\dot{r} = 0\): \(e = 1 / \sqrt{1 - 2M / r} = \sqrt{2}\). 
-Note that we will surely have \(1< e < + \infty \) for motion starting outside the horizon. 
-
-We can integrate this relation to compute the proper time required to go from \(r=4M\) to \(r= 2M\) or \(r=0\): %
-\begin{align}
-\tau_{4 \to 2} &= \int_{r=4M}^{r=2M} \dv{\tau }{r} \dd{r}  \\
-&= \int_{r=2M}^{r=4M} \frac{2e}{2M /r + e^2 - 1} \dd{r}  \\
-&= M \int_2^4 \frac{2 \sqrt{2} \widetilde{r}}{2 + \widetilde{r}} \dd{\widetilde{r}}  \\
-&=2 \sqrt{2} M \left[\widetilde{r} - 2 \log(\widetilde{r} + 2) \right]_2^4 \approx 3.36 M
+-1 &= -\dot{v} \left( \left(1 - \frac{2M}{r}\right) \dot{v} - 2 \dot{r}\right) = - \dot{v} \left( e  - \dot{r}\right)  \\
+1 &= \dot{v} (e - \dot{r}) = \frac{e + \dot{r}}{1 - 2M / r} (e - \dot{r}) = \frac{e^2 - \dot{r}^2}{1 - 2M / r}  \\
+1 - \frac{2M}{r} &= e^2 - \dot{r}^2 
 \,.
 \end{align}
 
-The calculation to go to \(0\) is identical, and yields \(\tau _{4 \to 0} \approx 5.1 M\).
+
+This also helps us in computing the value of \(e\): we can simply evaluate this expression at the starting point \(r_0 = 4M\), since we know that there \(\dot{r} = 0\): \(e = \sqrt{1 - 2M / r_0} = 1/\sqrt{2}\).
+
+We get an expression for \(r\) with a \(\pm\) ambiguity, but since we're describing infall we will select %
+\begin{align}
+\dot{r} = - \sqrt{ e^2 + \frac{2M}{r} -1 }
+\,.
+\end{align}
+
+We can integrate this relation to compute the proper time required to go from \(r=4M\) to \(r= 2M\) or \(r=0\): %
+\begin{align}
+\tau_{4 \to 2} &= \int_{4M}^{2M} \dv{\tau }{r} \dd{r}  \\
+&= \int_{2M}^{4M} \left(e^2 + \frac{2M}{r} - 1\right)^{-1/2} \dd{r}  \\
+&= M \int_{2}^{4} \left(\frac{2}{\widetilde{r}} - \frac{1}{2}\right)^{-1/2} \dd{\widetilde{r}} \approx 7.3 M
+\,.
+\end{align}
+
+The integrand is perfectly regular at \(\widetilde{r} = r / M = 2\) and \(\widetilde{r} = 0\), but it diverges at \(\widetilde{r} = 4\), since it is \(\sqrt{2 \widetilde{r} / (4-\widetilde{r})}\). 
+
+However, this divergence is as \(x^{-1/2}\), where \(x = 4 - \widetilde{r}\), which has a finite integral.
+This divergence is due to the initial condition we have set, \(\dot{r} = 0\) at \(r = 4M\). 
+
+The calculation to go to \(r = 0\) is identical, and yields \(\tau _{4 \to 0} \approx 8.9 M\).
+
+If, instead, we want to compute the coordinate time \(v_{4 \to 2}\) or \(v_{4 \to 0}\), we have to insert an extra ``conversion factor'' \(\dot{v}\) into the integral: %
+\begin{align}
+v_{4 \to 2} &= \int_{4M}^{2M} \dv{v}{\tau } \dv{\tau }{r} \dd{r}  \\
+&= 
+\int_{2M}^{4M} \frac{\dot{v}}{\dot{r}} \dd{r} = 
+\int_{2M}^{4M} \frac{1}{\dot{r}(e - \dot{r})} \dd{r}  \\
+&= M \int _2^4 \left( \sqrt{ \frac{2}{\widetilde{r}} - \frac{1}{2}} \left( \frac{1}{\sqrt{2}} + \sqrt{ \frac{2}{\widetilde{r}} - \frac{1}{2}}\right)  \right)^{-1} \dd{\widetilde{r}} \approx 7.7M
+\,,
+\end{align}
+%
+and similarly for \(v_{4 \to 0} \approx 8.6M\).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\textwidth]{figures/ef_infall}
+\caption{The filled lines correspond to the time for an observer to fall to the given radius starting from \(r = 4M\). The dashed lines are the corresponding integrands.}
+\label{fig:ef_infall}
+\end{figure}
 
 \subsection{Exercise 5}
 
@@ -292,5 +320,28 @@ R = 6 \left( \frac{\ddot{a}}{a} + \frac{\dot{a}^2}{a^2}\right)
 and since \(\dot{a} = 1 / 2 \sqrt{t \alpha }\) and \(\ddot{a} = - 1 / 4 \sqrt{\alpha t^3}\) we will have \(R \propto t^{-2}\), which diverges as \(t \to 0\). This is sufficient to show that the spacetime is singular: it is not geodesically complete in the past.
 
 \subsection{Exercise 6}
+
+I already did this exercise, so here's the solution: the critical angle is 
+%
+\begin{align}
+\alpha = \arcsin \sqrt{\frac{27M}{r} \left(1 - \frac{2M}{r}\right)}
+\,.
+\end{align}
+
+The procedure is as follows: one can write out an equation in which the only quantities appearing are \(\dot{r}\) (derivative of \(r\) with respect to the affine parameter \(\lambda \)) and the two integrals of motion \(e = -u \cdot \partial_t\) and \(l = u \cdot \partial_\varphi \). 
+
+This is in the form of a kinetic term plus a potential \(V _{\text{eff}}\), and the total ``effective energy'' depends on \(l\) and \(e\): \(E = e^2 / l^2\). 
+The potential has a maximum at \(r= 3M\), \(V _{\text{max}} = 1/ 27 M^2\), so if starting at \(r < 3M\) the photon must overcome a potential barrier to get out.
+
+So, all that's left is to relate \(l\) and \(e\) to the emission angle \(\alpha \). 
+
+By performing a frame transformation, we find that %
+\begin{align}
+l = r \sin \alpha \qquad \text{and} \qquad
+e = \sqrt{1 - 2M / r}
+\,,
+\end{align}
+%
+where the angle is interpreted as that which would be measured by a Schwarzchild-stationary observer.
 
 \end{document}

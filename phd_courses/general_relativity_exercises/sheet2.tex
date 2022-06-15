@@ -1,0 +1,96 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Sheet 2}
+
+\subsection{Exercise 1}
+
+The motion of a photon in Schwarzschild spacetime can be described, 
+assuming without of generality it lies in the \(\theta = \pi / 2\) plane, 
+by the normalization of its 4-velocity %
+\begin{align} \label{eq:photon-velocity-normalization}
+0 = u^2 = - \left(1 - \frac{2M}{r}\right) \dot{t}^2 + \left(1 - \frac{2M}{r}\right)^{-1} \dot{r}^2 + r^2 \dot{\varphi}^2
+\,,
+\end{align}
+%
+where dots denote derivatives with respect to an affine parameter \(\lambda\). 
+
+We can use two Killing vectors of this spacetime, \(\partial_t\) and \(\partial_\varphi\), 
+to compute integrals of motion: %
+\begin{align}
+e &= - u \cdot \partial_t = \left(1 - \frac{2M}{r}\right) \dot{t}  \\
+l &= u \cdot \partial_\varphi = r^2 \dot{\varphi}
+\,.
+\end{align}
+
+These are conserved across the photon's motion, therefore it is convenient to use them to 
+eliminate the functions \(t(\lambda )\) and \(\varphi (\lambda )\) in equation \eqref{eq:photon-velocity-normalization}, 
+so that we get a differential equation for \(r(\lambda )\) only, parametrized by \(e\) and \(l\).
+
+The computation goes as follows; let us denote \(A =1 - 2M/r\) for brevity: 
+%
+\begin{align}
+0 &= - A \left( \frac{e}{A}\right)^2 + \frac{\dot{r}^2}{A} + r^2 \left( \frac{l}{r^2}\right)^2   \\
+0 &= - \frac{e^2}{A} + \frac{\dot{r}^2}{A} + \frac{l^2}{r^2}  \\
+e^2 &= \dot{r}^2 + \frac{l^2}{r^2} A \\
+\underbrace{\frac{\dot{r}^2}{2}}_{\text{kinetic}} 
+\underbrace{+ \frac{l^2}{2r^2} - \frac{l^2M}{r^3}}_{\text{potential}} &= \underbrace{\frac{e^2}{2}}_{\text{total}}
+\,.
+\end{align}
+
+We found something in the form of an energy conservation equation, 
+with a kinetic term \(\dot{r}^2 / 2\) and an effective potential. 
+
+For large \(r\) the potential will approach 0 from above, like \(1/r^2\), 
+while for small \(r\) it will approach negative infinity like \(- 1/ r^3\).
+Therefore, it will have a maximum, which is easily computed to lie at \(r = 3M\). 
+There, the value of the potential \(V _{\text{eff}}\) is 
+%
+\begin{align}
+l^2 \left( \frac{1}{2 (3M)^2} - \frac{M}{(3M)^3}\right) 
+= \frac{l^2}{M^2} \left( \frac{1}{18} - \frac{1}{27} \right) = \frac{l^2}{54M^2}
+\,.
+\end{align}
+%
+
+For photons starting at \(\mathscr{I}^-\), 
+this potential barrier might be insurmountable depending on \(M\), \(l\) and \(e\): 
+the condition to check for insourmountability is whether 
+%
+\begin{align}
+\frac{e^2}{2} < \frac{l^2}{54 M^2}
+\,,
+\end{align}
+%
+which means %
+\begin{align}
+\frac{l^2}{e^2} > 27M^2
+\,.
+\end{align}
+
+What is the physical meaning of the ratio \(l/e\)?
+it can be shown to correspond (up to a \(\pm\) sign) to the impact parameter \(b\), 
+the distance between the asymptotic trajectory of the photon and the 
+center of the black hole. 
+The proof goes as follows: %
+\begin{align}
+\frac{l}{e} = r^2 \frac{\dot{\varphi}}{\dot{t}} = r^2 \dv{\varphi}{t}
+\,,
+\end{align}
+%
+which we can compute at radial infinity: %
+\begin{align}
+\dv{\varphi}{t} = \dv{\varphi}{r} \underbrace{\dv{r}{t}}_{= -1 } = 
+- \dv{r} \arcsin (b / r) \approx - \dv{r} (b/r) = + \frac{b}{r^2}
+\,,
+\end{align}
+%
+therefore \(l/e = b\) --- the linear order approximation is justified since
+we are only interested in the asymptotic behaviour. 
+
+\subsection{Exercise 2}
+\subsection{Exercise 3}
+\subsection{Exercise 4}
+\subsection{Exercise 5}
+
+\end{document}

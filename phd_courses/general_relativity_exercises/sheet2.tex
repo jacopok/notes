@@ -102,8 +102,127 @@ orbit at \(r = 3M\); and finally photons which reach the singularity at
 some finite time after having orbited since past infinity. 
 
 \subsection{Exercise 2}
+
+We discuss negative-mass Schwarzschild spacetime, and define a radial coordinate %
+\begin{align}
+\rho = r + 2M \log (1 - r / 2M) = r - 2 \abs{M} \log (1 + r / 2 \abs{M})
+\,.
+\end{align}
+
+The \(r \to \infty \) limit corresponds to \(\rho \to \infty\); 
+at \(r = -2M\) we have \(\rho = -2M(1 - \log 2) \approx - 0.6 M\) (\(>0\)), 
+and finally for \(r \to 0^+\) we get \(\rho \to 0^+\). 
+Thus, the range of \(\rho\) is \((0, + \infty )\) just like \(r\)'s, 
+although their relation is nonlinear. 
+
+The differential of \(\rho\) will read %
+\begin{align}
+\dd{\rho } &= \pdv{\rho }{r} \dd{r} = \left( 1 + \frac{2M}{1 - r / 2M} \left(- 2M\right)\right) \dd{r}  \\
+&= \left( 1 - \frac{2M}{2M - r} \right) \dd{r} = - \frac{r \dd{r}}{2M - r}
+\,,
+\end{align}
+%
+therefore %
+\begin{align}
+\dd{\rho}^2 = \left(\frac{r}{r-2M}\right)^2 \dd{r}^2 = \left(\frac{r}{r + 2 \abs{M}}\right)^2 \dd{r}^2
+\,.
+\end{align}
+
+The metric will read as follows, in terms of \(\rho\) (and denoting \(r = r(\rho )\)): 
+%
+\begin{align}
+\dd{s^2} &= - \left( 1 - \frac{2M}{r}\right) \dd{t^2} + \frac{1}{(1 - 2M/r) (r/(r-2M))^2} \dd{\rho^2} 
++ r^2 \dd{\Omega^2}  \\
+&= - \left( 1 - \frac{2M}{r}\right) \dd{t^2} + \left( 1 - \frac{2M}{r}\right) \dd{\rho^2} 
++ r^2 \dd{\Omega^2}  \\
+&= \underbrace{\left(1 + \frac{2 \abs{M}}{r} \right)}_{>0} \left(- \dd{t}^2 + \dd{\rho }^2\right) + r^2 \dd{\Omega}^2
+\,.
+\end{align}
+
+We can see that the \((t, \rho)\) section of the metric is conformally related 
+to flat spacetime, since the prefactor in front of it is always positive. 
+
+The angular section is not the same as the one of the corresponding flat spacetime, 
+since the prefactor in front of it is 
+%
+\begin{align}
+\frac{r^2}{1 - 2M/r} \neq \rho^2
+\,,
+\end{align}
+%
+but this only means that we cannot interpret \(\rho\) as the radius defined 
+by the area of a sphere: \(\rho \neq \sqrt{A / 4 \pi }\).
+
+The conformal diagram for this spacetime will therefore look the same as Minkowski, 
+with the caveat that the prefactor diverges for \(r \to 0\): so, the 
+\(r = 0 \) line will not be a reflective boundary in this case. 
+Indeed, just like in positive-mass Schwarzschild the Kretschmann scalar diverges there, 
+so it is a singularity.
+
+
+
 \subsection{Exercise 3}
 \subsection{Exercise 4}
+
+The Kerr metric in Boyer-Lindquist coordinates reads %
+\begin{align}
+\mathrm{d}s^2 = - \frac{\Delta}{\rho^2} 
+\left(\mathrm{d}t^2 - a \sin^2 \theta \mathrm{d}\varphi \right)^2
++ \frac{\sin^2 \theta}{\rho^2}
+\left( (r^2 + a^2) \mathrm{d}\varphi - a \mathrm{d}t\right)^2
++ \frac{\rho^2}{\Delta } \mathrm{d}r^2 + \rho^2 \mathrm{d}\theta^2
+\,,
+\end{align}
+%
+where \(\Delta = r^2 - 2Mr + a^2\) and \(\rho = r^2 + a^2 \cos \theta \).
+
+We have the Killing vectors \(\partial_t\) and \(\partial_\varphi \), which determine two integrals of motion of the trajectory we can associate with energy and angular momentum respectively. 
+
+The angle \(\theta\) is measured from the ``north pole'', so the equatorial plane corresponds to \(\theta = \pi / 2\). Since \(\dot{\theta} = 0\) initially, this will hold for the whole trajectory (by the \(\theta \to \pi - \theta \), \(\varphi \to - \varphi \) symmetry of the metric): therefore, we can use the reduced equatorial metric %
+\begin{align}
+\mathrm{d}s^2 &= - \frac{\Delta}{\rho^2} 
+\left(\mathrm{d}t^2 - a \mathrm{d}\varphi \right)^2
++ \frac{1}{\rho^2}
+\left( \rho^2 \mathrm{d}\varphi - a \mathrm{d}t\right)^2
++ \frac{\rho^2}{\Delta } \mathrm{d}r^2   \\
+&= 
+- \frac{\Delta}{\rho^2} \dd{t^2} 
++ 2 \frac{a \Delta }{\rho^2} \dd{t} \dd{\varphi } 
+- \frac{a^2\Delta }{\rho^2} \dd{\varphi^2} 
++ \rho^2 \dd{\varphi^2} 
+- 2a \dd{\varphi } \dd{t} + \frac{a^2}{\rho^2} \dd{t}^2 + \frac{\rho^2}{\Delta } \dd{r^2}  \\
+&= - \left( \frac{a^2 - \Delta }{\rho^2}\right) \dd{t^2} 
++ 2a \left( \frac{\Delta}{\rho^2} - 1 \right) \dd{t} \dd{\varphi } 
++ \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dd{\varphi^2} + \frac{\rho^2}{\Delta } \dd{r^2}
+\,,
+\end{align}
+%
+with \(\rho^2 = r^2 + a^2\). 
+
+Denoting the components of the four-velocity \(u^\mu = (\dot{t}, \dot{r}, 0, \dot{\varphi})\), the angular momentum will read %
+\begin{align}
+l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}  \\
+&= \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dot{\varphi}
++ a  \left( \frac{\Delta}{\rho^2} - 1 \right) \dot{t}
+\,.
+\end{align}
+
+We are assuming that this quantity is zero at the start of the trajectory (which means it remains so thereafter). 
+This allows us to directly relate \(\dot{t}\) and \(\dot{\varphi}\) at each moment of the trajectory, as long as we know \(r\).
+An alternative way to write this is as %
+\begin{align}
+\dv{\varphi }{t} = \frac{a (  \rho^2 - \Delta )}{\rho^4 - a^2 \Delta } 
+= \frac{2Ma}{r^3 + ra^2 + 2Ma^2}
+\,.
+\end{align}
+
+The physical meaning of this is computation is to figure out by how much the particle is ``dragged along'' by the black hole's rotation. 
+As expected, this quantity is concordant in sign with \(a\), and always positive; further, it never diverges, not even for \(r \to 0\). 
+
+
+
 \subsection{Exercise 5}
+\subsection{Exercise 6}
+\subsection{Exercise 7}
 
 \end{document}

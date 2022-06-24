@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section{Sheet 2}
+\section*{Sheet 2}
 
 \subsection{Exercise 1}
 
@@ -34,7 +34,7 @@ The computation goes as follows; let us denote \(A =1 - 2M/r\) for brevity:
 0 &= - \frac{e^2}{A} + \frac{\dot{r}^2}{A} + \frac{l^2}{r^2}  \\
 e^2 &= \dot{r}^2 + \frac{l^2}{r^2} A \\
 \underbrace{\frac{\dot{r}^2}{2}}_{\text{kinetic}} 
-\underbrace{+ \frac{l^2}{2r^2} - \frac{l^2M}{r^3}}_{\text{potential}} &= \underbrace{\frac{e^2}{2}}_{\text{total}}
+\underbrace{+ \frac{l^2}{2r^2} - \frac{l^2M}{r^3}}_{\text{potential}} &= \underbrace{\frac{e^2}{2}}_{\text{total}} \label{eq:photon-trajectory-schwarzschild}
 \,.
 \end{align}
 
@@ -74,15 +74,16 @@ it can be shown to correspond
 to the impact parameter \(b\), 
 the distance between the asymptotic trajectory of the photon and the 
 center of the black hole. 
-The proof goes as follows: %
+The proof goes as follows: 
+%
 \begin{align}
-\frac{l}{e} = r^2 \frac{\dot{\varphi}}{\dot{t}} = r^2 \dv{\varphi}{t}
+\frac{l}{e} \approx r^2 \frac{\dot{\varphi}}{\dot{t}} = r^2 \dv{\varphi}{t}
 \,,
 \end{align}
 %
-which we can compute at radial infinity: %
+where we used the fact that \(e = (1-2M/r) \dot{t} \approx \dot{t}\) at radial infinity; then, 
 \begin{align}
-\dv{\varphi}{t} = \dv{\varphi}{r} \underbrace{\dv{r}{t}}_{= -1 } = 
+\dv{\varphi}{t} = \dv{\varphi}{r} \underbrace{\dv{r}{t}}_{\approx -1 } = 
 - \dv{r} \arcsin (b / r) \approx - \dv{r} ( \pm b/r) = \mp \frac{b}{r^2}
 \,,
 \end{align}
@@ -159,10 +160,98 @@ with the caveat that the prefactor diverges for \(r \to 0\): so, the
 Indeed, just like in positive-mass Schwarzschild the Kretschmann scalar diverges there, 
 so it is a singularity.
 
+However, there are no horizons --- this spacetime is conformally related to Minkowski which has no horizons; 
+alternatively, we can see that the whole spacetime is in the causal past of future null infinity.
+This means that the singularity is naked!
 
+\subsection{Exercise 4}
+
+(I switched the order since this exercise is related to exercise 2)
+
+The trajectories in negative mass Schwarzschild can be computed in the same manner as in positive mass Schwarzschild, the difference will be in the asymptotics of the potential. 
+For photons we have the same result as in equation \eqref{eq:photon-trajectory-schwarzschild}: the effective potential is %
+\begin{align}
+V _{\text{phot}} = l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
+\,,
+\end{align}
+%
+and a total ``energy'' of \(E = e^2 /2\),
+while for massive particles the same calculation, but with \(u^2 = -1\), yields 
+%
+\begin{align}
+V _{\text{mass}} = - \frac{M}{r} + l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
+\,,
+\end{align}
+%
+but now the total ``energy'' is \(E = (e^2- 1) / 2\).
+
+In both cases, the equation of motion reads %
+\begin{align}
+\frac{\dot{r}^2}{2} + V = E
+\,.
+\end{align}
+
+This holds for positive and negative-mass Schwarzschild alike, since no assumptions are made about the sign of \(M\). 
+However, the asymptotics will change depending on its sign. 
+
+In the photon case, the potential will read 
+%
+\begin{align}
+V _{\text{phot}} = l^2 \left( \frac{1}{2r^2} + \frac{\abs{M}}{r^3}\right)
+\,,
+\end{align}
+%
+which is monotonic (it's the sum of two monotonic terms) and strictly positive, as long as \(l \neq 0\). 
+It approaches 0 at \(r \to + \infty \) like \(l^2 / 2 r^2\), just like the positive-mass case, but as \(r \to 0^+\) it goes like \(l^2 \abs{M} / r^3 \to + \infty\). 
+
+So, any photon with nonzero \(l\) will not be able to reach the singularity, since it will have a finite \(e\) (recall from exercise 1 that the impact parameter is \(l / e\)). 
+
+On the other hand, photons with \(l = 0\) exactly will move according to \(\dot{r}^2 = e^2 = \text{const}\). 
+This means that they will reach the singularity \(r = 0\) in a finite amount of time, and their trajectories cannot be extended beyond this point: the spacetime is null geodesically incomplete. 
+
+For massive particles, the potential looks like 
+%
+\begin{align}
+V _{\text{mass}} = + \frac{\abs{M}}{r} + \frac{l^2}{2 r^2} + \frac{l^2 \abs{M}}{r^3}
+\,,
+\end{align}
+%
+which is fully repulsive, regardess of whether the angular momentum is vanishing or not! 
+
+This might be expected: we are looking at a negative-mass object, the effect of gravity is reversed. 
+This potential approaches 0 like \(1 / r\) for \(r \to +\infty \), and it approaches \(+ \infty \) like \(1 / r^3\) for \(r \to 0^+\) if the angular momentum is nonzero, like \(1/ r\) if the angular momentum is zero. 
+
+Any timelike geodesic will have a finite \(E\), therefore at some radius it will invert: specifically, when \(E = \abs{M} / r\), we must have \(\dot{r} = 0\), and the trajectory going back away from the black hole.
+
+This means that no timelike trajectory can actually approach \(r = 0\), they all can be extended arbitrarily: the spacetime is timelike geodesically complete! 
+
+This feature is hard to represent in a conformal diagram, since it is spefically about the properties of timelike geodesics, which are not faithfully rendered in such diagrams.
 
 \subsection{Exercise 3}
-\subsection{Exercise 4}
+
+The conformal diagram for Minkowski spacetime is constructed by setting 
+%
+\begin{align}
+t - r &= u = \tan U  \\
+t + r &= v = \tan V
+\,,
+\end{align}
+%
+transforming the non-angular section of the metric as 
+%
+\begin{align}
+\dd{s^2} &= - \dd{t^2} + \dd{r^2}  \\
+&= - \dd{u} \dd{v}  \\
+&= \frac{- \dd{U} \dd{V}}{(\cos U \cos V)^2}
+\,,
+\end{align}
+%
+and relating this to the new metric \(\dd{\widetilde{s}}^2 = - \dd{U} \dd{V}\), which has the same null geodesics as \(\dd{s}^2\) since they are conformally related. 
+
+The ranges of these new coordinates are \(U, V \in (- \pi /2, \pi /2)\), 
+and \(V \geq U\). 
+
+\subsection{Exercise 5}
 
 The Kerr metric in Boyer-Lindquist coordinates reads %
 \begin{align}
@@ -191,7 +280,7 @@ The angle \(\theta\) is measured from the ``north pole'', so the equatorial plan
 - \frac{a^2\Delta }{\rho^2} \dd{\varphi^2} 
 + \rho^2 \dd{\varphi^2} 
 - 2a \dd{\varphi } \dd{t} + \frac{a^2}{\rho^2} \dd{t}^2 + \frac{\rho^2}{\Delta } \dd{r^2}  \\
-&= - \left( \frac{a^2 - \Delta }{\rho^2}\right) \dd{t^2} 
+&= \left( \frac{a^2 - \Delta }{\rho^2}\right) \dd{t^2} 
 + 2a \left( \frac{\Delta}{\rho^2} - 1 \right) \dd{t} \dd{\varphi } 
 + \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dd{\varphi^2} + \frac{\rho^2}{\Delta } \dd{r^2}
 \,,
@@ -201,7 +290,7 @@ with \(\rho^2 = r^2 + a^2\).
 
 Denoting the components of the four-velocity \(u^\mu = (\dot{t}, \dot{r}, 0, \dot{\varphi})\), the angular momentum will read %
 \begin{align}
-l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}  \\
+0 = l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}  \\
 &= \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dot{\varphi}
 + a  \left( \frac{\Delta}{\rho^2} - 1 \right) \dot{t}
 \,.
@@ -210,8 +299,8 @@ l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varph
 We are assuming that this quantity is zero at the start of the trajectory (which means it remains so thereafter). 
 This allows us to directly relate \(\dot{t}\) and \(\dot{\varphi}\) at each moment of the trajectory, as long as we know \(r\).
 An alternative way to write this is as %
-\begin{align}
-\dv{\varphi }{t} = \frac{a (  \rho^2 - \Delta )}{\rho^4 - a^2 \Delta } 
+\begin{align} \label{eq:angular-velocity-zero-l}
+\dv{\varphi }{t} = - \frac{g_{t \varphi }}{g_{tt}} = \frac{a (  \rho^2 - \Delta )}{\rho^4 - a^2 \Delta } 
 = \frac{2Ma}{r^3 + ra^2 + 2Ma^2}
 \,.
 \end{align}
@@ -219,10 +308,123 @@ An alternative way to write this is as %
 The physical meaning of this is computation is to figure out by how much the particle is ``dragged along'' by the black hole's rotation. 
 As expected, this quantity is concordant in sign with \(a\), and always positive; further, it never diverges, not even for \(r \to 0\). 
 
+The other integral of motion is %
+\begin{align} \label{eq:tdot-from-r}
+e &= - u \cdot \partial_t = - g_{tt } \dot{t} - g_{t \varphi } \dot{\varphi}  \\
+&= + \frac{a^2 - \Delta }{\rho^2} \dot{t} - 2a \left(\frac{\Delta }{\rho^2} - 1\right) \dot{\varphi}  \\
+&= - g_{tt} \dot{t} + \frac{g_{t \varphi }^2}{g_{\varphi \varphi}} \dot{t}  \\
+&= \left(\frac{a^2 - \Delta }{\rho^2} - \frac{4 a^2 (\Delta / \rho^2 - 1)^2}{\rho^2 - a^2 \Delta / \rho^2} \right) \dot{t}
+\,,
+\end{align}
+%
+
+The equation of motion will arise from the normalization of the 4-velocity: %
+\begin{align}
+u^2 &= -1 = g_{tt} \dot{t}^2 + 2g_{t \varphi } \dot{t} \dot{\varphi} + g_{\varphi \varphi } \dot{\varphi}^2 + g_{rr} \dot{r}^2  \\
+&= \dot{t} \underbrace{\left( g_{tt} \dot{t} + g_{t \varphi } \dot{\varphi}\right)}_{- e}
++ \dot{\varphi} \underbrace{\left( g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}\right)}_{l = 0} + g_{rr} \dot{r}^2  \\
+-1 &= -e \dot{t} + \frac{\rho^2}{\Delta } \dot{r}^2
+\,.
+\end{align}
 
 
-\subsection{Exercise 5}
+In general, this can be reframed as an equation for \(\dot{r}^2\) only, since \(\dot{t}\) and \(\dot{\varphi}\) are uniquely determined by \(e\), \(l\) and \(r\).
+
+What is the value of \(e\)? We can compute it if we know \(r_0\).
+Initially, since \(\dot{r} = 0\), we have \(\dot{t}(0) = 1 / e\).
+Also, \(e = (g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}) \dot{t}(0)\). This gives us an equation: %
+\begin{align}
+e^2 = \frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}
+\,,
+\end{align}
+%
+where the metric coefficients should be computed at \(r = r_0\). 
+
+In our case, \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; \(\dot{\varphi}\) is given from \(\dot{t}\) by equation \eqref{eq:angular-velocity-zero-l}. 
+
+
 \subsection{Exercise 6}
 \subsection{Exercise 7}
+
+Hawking's area teorem states that the area of a BH can never increase; the area is related to the irreducible mass by 
+%
+\begin{align}
+A \propto M _{\text{irr}}^2 = \frac{1}{2} M^2\left(1 + \sqrt{1 - \chi^2}\right)
+\,,
+\end{align}
+%
+where we are using \(c = G = 1\) units, as well as defining \(\chi = a / M = J / M^2\).  
+
+We are taking two identical Kerr black holes with mass \(M\) and spin \(\chi\) and making them merge. 
+
+We must then have %
+\begin{align}
+M_{\text{irr}}^{2, \text{ final}} &\geq 
+M^{2, \text{ (1)}} _{\text{irr}}  +
+M^{2, \text{ (2)}} _{\text{irr}}  
+\\
+M_f^2 \left( 1+ \sqrt{1 - \chi _f^2}\right) &\geq 2 M^2\left(1 + \sqrt{1 - \chi^2}\right)
+\,,
+\end{align}
+%
+where quantities labelled with an index \(f\) characterize the final BH. 
+
+If the inital BHs were nonspinning, the equation states that %
+\begin{align}
+M_f^2 \left(1 + \sqrt{1 - \chi _f^2}\right) \geq 4 M^2
+\,,
+\end{align}
+%
+and we know that %
+\begin{align}
+M_f = 2M - E
+\,,
+\end{align}
+%
+where \(E\) is the energy lost by GW emission. 
+
+This means we have a constraint on \(E\) and \(\chi _f\) as such: %
+\begin{align}
+\left(1 - \frac{E}{2M}\right)^2 \left(1 + \sqrt{1 - \chi _f^2}\right) \geq 1
+\,.
+\end{align}
+
+If the black holes, instead, were initially spinning with \(\chi \neq 0\), the inequality becomes %
+\begin{align}
+\left(1 - \frac{E}{2M}\right)^2 \left(1 + \sqrt{1 - \chi _f^2}\right) \geq \frac{1 + \sqrt{1 - \chi^2}}{2}
+\,,
+\end{align}
+%
+which means that, if they were instead maximally spinning (\(\chi = 1\)) we will have 
+%
+\begin{align}
+\left(1 - \frac{E}{2M}\right)^2 \left(1 + \sqrt{1 - \chi _f^2}\right) \geq \frac{1}{2}
+\,.
+\end{align}
+
+The way to attain the maximum possible value for \(E\), in all these cases, is when \(\chi _f\) is as large as possible. 
+A large \(\chi _f\) is indeed rather likely, since the product BH will be spinning due to the orbital angular momentum. 
+
+If \(\chi _f = 1\), the general inequality reads: 
+%
+\begin{align}
+\left(1 - \frac{E}{2M}\right)^2 \geq \frac{1 + \sqrt{1 - \chi^2}}{2} 
+\,,
+\end{align}
+%
+so in the \(\chi = 0\) case (nonspinning initial BHs, maximally spinning product) \emph{no} energy can be emitted; if the initial BHs are instead maximally spinning we have \(E \leq 2M ( 1 - 1/\sqrt{2}) \approx 0.59 M\).
+
+Let us also look at a realistic situation: the best-fit values for the parameters of GW150914 are \(M_1 \approx 36M_{\odot}\), \(M_2 \approx 29M_{\odot}\); the initial spins are not well constrained but the effective spin parameter is \(\chi _{\text{eff}} \sim 0.05\), so let's assume the two BHs both had \(\chi = 0.05\). 
+
+The final BH spin is quite large, \(\chi _f \sim 0.68\). 
+Using all these, we can write the inequality: %
+\begin{align}
+(M_1 + M_2 - E)^2 \left(1 + \sqrt{1 - \chi_f^2}\right) &\geq (M_1^2 + M_2^2 ) \left(1 + \sqrt{1 - \chi^2}\right)  \\
+(65 M_{\odot} - E)^2 \times 1.73 &\geq (49 M_{\odot})^2 \times 1.998  \\
+E &\leq 65M_{\odot} - 49 M_{\odot} \sqrt{\frac{1.998}{1.73}} \approx 15 M_{\odot}
+\,.
+\end{align}
+
+The emitted energy, \(E \sim 3M_{\odot}\), estimated through other means, is well within this constraint.
 
 \end{document}

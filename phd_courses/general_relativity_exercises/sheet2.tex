@@ -249,7 +249,34 @@ transforming the non-angular section of the metric as
 and relating this to the new metric \(\dd{\widetilde{s}}^2 = - \dd{U} \dd{V}\), which has the same null geodesics as \(\dd{s}^2\) since they are conformally related. 
 
 The ranges of these new coordinates are \(U, V \in (- \pi /2, \pi /2)\), 
-and \(V \geq U\). 
+and \(V \geq U\); the \(V = U\) line corresponds to \(r = 0\). 
+
+Our second trajectory is parametrized as \(t = \sinh(a \lambda ) / a\) and \(r = \cosh(a \lambda ) / a\) 
+for some real number \(a\).
+
+This means that %
+\begin{align}
+U &= \arctan(t-r) = \arctan(\frac{\sinh(a \lambda ) - \cosh(a \lambda )}{a})  \\
+V &= \arctan(t+r) = \arctan(\frac{\sinh(a \lambda ) + \cosh(a \lambda )}{a})
+\,.
+\end{align}
+
+Now, we have the following identities: %
+\begin{align}
+\sinh x - \cosh x &= \frac{e^x - e^{-x}}{2} - \frac{e^x + e^{-x}}{2} = - e^{-x}  \\
+\sinh x + \cosh x &= \frac{e^x - e^{-x}}{2} + \frac{e^x + e^{-x}}{2} = e^{x}  
+\,.
+\end{align}
+
+Therefore, %
+\begin{align}
+U &= \arctan(- \frac{e^{-a \lambda }}{a}) \\
+V &= \arctan(\frac{e^{a \lambda }}{a})
+\,.
+\end{align}
+
+So, \(U' = 1/(1 + (e^{-a \lambda } / a)^2) \) and 
+
 
 \subsection{Exercise 5}
 
@@ -344,6 +371,112 @@ In our case, \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:t
 
 
 \subsection{Exercise 6}
+
+\subsubsection{Constant-$t$ hypersurfaces}
+
+Three linearly independent vectors tangent to the \(t = \text{const}\) surface are \(\partial_r\), \(\partial_\theta \), \(\partial_\varphi \). 
+They are orthogonal amongst themselves, since the only cross-terms in the metric are the \(g_{t \varphi }\) ones, but also because of that the \(\partial_\varphi \) vector is not orthogonal to \(\partial_t\): their product is %
+\begin{align}
+\partial_\varphi \cdot \partial_t = g_{t \varphi} \neq 0
+\,.
+\end{align}
+
+This does not yet show that \(\partial_t\) is not hypersurface orthogonal: locally, we can find three vectors in the form \(\partial_r\), 
+\(\partial_\theta \), \(v = \alpha \partial_t + \beta \partial_\varphi\) such that \(\partial_t\) is orthogonal to all of them. 
+What should \(\alpha \) and \(\beta \) be? 
+We are setting 
+%
+\begin{align}
+0 &= v \cdot \partial_t \\
+&= \alpha g_{tt} + \beta g_{t \varphi }  \\
+- \beta g_{t \varphi } &= \alpha g_{tt}   \\
+\frac{\beta }{\alpha} &= - \frac{ g_{t t }}{g_{t \varphi }}
+\,.
+\end{align}
+
+The combination of metric coefficients appearing there is %
+\begin{align}
+\frac{g_{tt}}{g_{t \varphi }} &= 
+\frac{- (1 - 2Mr / \rho^2)}{2Mar \sin^2 \theta / \rho^2} = \frac{2Mr - \rho^2}{2Mar \sin^2\theta } = \frac{2Mr - r^2 - a^2 \cos \theta }{2Mar \sin^2 \theta }  \\
+\frac{\beta }{\alpha} &= \frac{ -2Mr + r^2 + a^2 \cos \theta}{2Mar \sin^2 \theta }
+\,.
+\end{align}
+
+Locally, this works perfectly well; \(\partial_t\) not being hypersurface-orthogonal 
+means that these surfaces cannot be extended to a global foliation of the spacetime. 
+
+Let us set \(\theta = \pi /2\) for simplicity: then, 
+%
+\begin{align}
+\frac{\beta }{\alpha} = \frac{r - 2M}{2Ma}
+\,.
+\end{align}
+
+Now, we can see that at \(r = 2M\) (which is where the border of the ergosphere lies) this ratio approaches 0, therefore the 
+solution must be \(\beta = 0\), or \(v = \alpha \partial_t\).
+
+Any component along \(\partial_\varphi\) is not allowed at this boundary, although it is allowed at smaller and larger \(r\)s.
+Also, the component along \(\varphi \) has an opposite sign above and below the ergosphere boundary. 
+
+What this tells us is that the surfaces orthogonal to \(\partial_t\) cannot be extended through the ergosphere boundary.
+
+\subsubsection{Killing vectors at infinity}
+
+Let us show that the only Killing vectors which are timelike at \(r \to \infty \) are multiples of \(\partial_t\): if we take a linear combination \(v = \alpha \partial_t + \beta \partial_\varphi\), its norm will be 
+%
+\begin{align}
+v^2 = \alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\varphi \varphi }
+\,.
+\end{align}
+
+We want to ask that \(v^2 < 0\) in the \(r \to \infty \) limit: what constraint does this pose for \(\alpha \) and \(\beta \)? 
+
+Well, as \(r \to \varphi \), the metric component \(g_{\varphi \varphi } \sim r^2 \), while \(g_{t \varphi } \sim 1 /r\) and \(g_{tt} \sim -1\).
+
+Since \(\alpha\) and \(\beta\) are constants, the only way for \(v\) to be asymptotically timelike is if \(\beta = 0\) exactly, otherwise the \(\beta^2 g_{\varphi \varphi }\) term will mean \(v^2 \to + \infty \): therefore, \(v = \alpha \partial_t\) is a multiple of \(\partial_t\). 
+
+\subsubsection{Timelike Killing vectors in the ergoregion}
+
+We want to show that, given a point in the ergoregion \(r_+ < r < r_E\), it has a neighbourhood in which there is a timelike Killing vector.
+
+This region is characterized by \(g_{tt} > 0\), while \(\Delta > 0\).
+Also, \(g_{t \varphi } < 0\) and \(g_{\varphi \varphi } > 0\). 
+
+This means that both the "regular" Killing vectors \(\partial_t\) and \(\partial_\varphi \) are spacelike. 
+
+Can we make \(v = \alpha \partial_t + \beta \partial_\varphi \) timelike?
+Its norm is 
+%
+\begin{align}
+v^2 = g_{tt} \alpha^2 + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\varphi \varphi }
+\,,
+\end{align}
+%
+so we just need to show that there is a, possibly local, choice of \(\alpha \) and \(\beta \) such that \(v^2 < 0\).
+
+Suppose it did not exist: so, at some coordinate point in the ergosphere, for all \(\alpha \) and \(\beta \), we would have \(v^2 \geq 0\). 
+Then, consider an arbitrary vector \(u = \alpha \partial_t + \beta \partial_\varphi + \gamma \partial_r + \delta \partial_\theta \) at that point. 
+Its norm will be  
+%
+\begin{align}
+u^2 = \underbrace{\alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\varphi \varphi }}_{\geq 0} \underbrace{+ \gamma^2 g_{rr} + \delta^2 g_{\theta \theta }}_{\geq 0} \geq 0
+\,.
+\end{align}
+
+Thus, we have shown that assuming this we can prove that all vectors in the ergosphere are either null or spacelike: 
+this is impossible, since the metric can be always be cast into its diagonal, Minkowski 3+1 form by an appropriate local coordinate transformation.
+Therefore, we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) everywhere.
+
+In figure \ref{fig:kerr_killing} we show what this choice might actually look like.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/kerr_killing}
+\caption{Optimal value for \(\alpha \) as a function of position, for a BH with spin \(\chi = 0.99\). This is the value for \(\alpha \) which minimizes the norm of \(v\), assuming that \(\beta = 1 - \alpha \) (as well as \(M = 1\)); in all cases this minimum is negative.
+Note that this is the locus of the minimum, but there is a range of acceptable values for \(\alpha \): this is why even at the ergosphere edge we don't have \(\alpha \to 1\). }
+\label{fig:kerr_killing}
+\end{figure}
+
 \subsection{Exercise 7}
 
 Hawking's area teorem states that the area of a BH can never increase; the area is related to the irreducible mass by 
@@ -425,6 +558,8 @@ E &\leq 65M_{\odot} - 49 M_{\odot} \sqrt{\frac{1.998}{1.73}} \approx 15 M_{\odot
 \,.
 \end{align}
 
-The emitted energy, \(E \sim 3M_{\odot}\), estimated through other means, is well within this constraint.
+The best-fit value for the emitted energy, \(E \sim 3M_{\odot}\), estimated through other means, is well within this constraint.
+
+A more complete analysis can actually give us a posterior distribution for the total variation in area \(\Delta A\); the posterior probability of \(\Delta A < 0\) can then be computed, with GW150814 this comes out to be \(< 5\%\) \cite{isiTestingBlackholeArea2021}.
 
 \end{document}

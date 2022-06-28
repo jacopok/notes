@@ -251,6 +251,15 @@ and relating this to the new metric \(\dd{\widetilde{s}}^2 = - \dd{U} \dd{V}\), 
 The ranges of these new coordinates are \(U, V \in (- \pi /2, \pi /2)\), 
 and \(V \geq U\); the \(V = U\) line corresponds to \(r = 0\). 
 
+All relevant trajectories are shown in figure \ref{fig:conformal_trajectory}. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.35\textwidth]{figures/conformal_trajectory}
+\caption{Conformal diagram for the trajectories parametrized by \(\lambda \), as well as (in green) a trajectory starting off at \(r = 0\), accelerating (dotted), then moving geodesically from then on.}
+\label{fig:conformal_trajectory}
+\end{figure}
+
 Our second trajectory is parametrized as \(t = \sinh(a \lambda ) / a\) and \(r = \cosh(a \lambda ) / a\) 
 for some real number \(a\).
 
@@ -275,8 +284,70 @@ V &= \arctan(\frac{e^{a \lambda }}{a})
 \,.
 \end{align}
 
-So, \(U' = 1/(1 + (e^{-a \lambda } / a)^2) \) and 
+Now, \(\arctan(-x) = - \arctan{x}\), and also \(\arctan(1 / x) = \pi /2 - \arctan{x}\). 
 
+This means that, for example, if \(a = 1\) we get 
+%
+\begin{align}
+U + V = \pi / 2
+\,,
+\end{align}
+%
+a straight line going from a point in \(\mathscr{I}^{-}\) to a point 
+in \(\mathscr{I^{+}}\). 
+
+If \(a \neq 1\) the line is not straight, but its endpoints are the same ones. 
+
+This curve is timelike: its tangent vector is \(u = (\cosh(a \lambda ), \sinh(a \lambda ), 0, 0)\), whose modulus is 
+%
+\begin{align}
+u^2 = - \cosh^2(a \lambda ) + \sinh^2(a \lambda ) = -1 
+\,.
+\end{align}
+
+The proper time is computed as 
+%
+\begin{align}
+\tau = \int \frac{ \dd{t}}{\gamma }
+\,,
+\end{align}
+%
+where \(\gamma = 1/ \sqrt{1 - v^2}\), \(v\) being the coordinate velocity:
+what is it? 
+%
+\begin{align}
+v = \dv{x}{t} = \dv{\cosh(a \lambda )}{\sinh(a \lambda )} = \dv{\sqrt{T^2 + 1}}{T} = \frac{T}{\sqrt{T^2 + 1}} = \frac{\sinh(a \lambda )}{\cosh(a \lambda )} = \frac{t}{x} 
+\,,
+\end{align}
+%
+where \(T = a t = \sinh(a \lambda )\); therefore 
+%
+\begin{align}
+\frac{1}{\gamma } = \sqrt{1 - \frac{T^2}{T^2 +1}} = \sqrt{\frac{T^2 +1 - T^2}{T^2 + 1}} = \frac{1}{\sqrt{T^2 + 1}}
+\,,
+\end{align}
+%
+meaning that 
+%
+\begin{align}
+\tau = \int \frac{ \dd{T}/a}{\sqrt{T^2 +1}} = \frac{1}{a}\operatorname{arcsinh}
+(T) = \lambda 
+\,.
+\end{align}
+
+The proper acceleration is then easily computed: the proper-time derivative of the velocity is \(\dv*{u}{\tau } = A = (a \sinh(a \lambda ), a \cosh(a \lambda ), 0, 0) \), so 
+%
+\begin{align}
+A^2 = - a^2 \sinh(a \lambda ) + a^2 \cosh(a \lambda ) = a^2
+\,.
+\end{align}
+
+Thus, \(a\) is the (constant) proper acceleration of this curve, and \(\lambda = \tau \) is its proper time parameter.
+
+Now: how can this timelike curve start and end at \(\mathscr{I}^{\pm}\)? 
+It's accelerating forever, so it asymptotes to lightlike
+
+\todo[inline]{say this better}
 
 \subsection{Exercise 5}
 
@@ -366,9 +437,50 @@ e^2 = \frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}
 \end{align}
 %
 where the metric coefficients should be computed at \(r = r_0\). 
+If we assume that \(r_0 \gg M\), this will be 
+%
+\begin{align}
+e^2 \approx \frac{(1 / r_0 )^2}{r_0^2} + 1 - \frac{2M}{r_0} \approx 1 - \frac{2M}{r_0 }
+\,,
+\end{align}
+%
+therefore \(e\) will be only slightly smaller than \(1\). 
 
-In our case, \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; \(\dot{\varphi}\) is given from \(\dot{t}\) by equation \eqref{eq:angular-velocity-zero-l}. 
+The quantity \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; \(\dot{\varphi}\) is given from \(\dot{t}\) by equation \eqref{eq:angular-velocity-zero-l}. 
 
+So, from an initial radius \(r_0 \) we can compute the proper time required to reach the horizon: 
+%
+\begin{align}
+\tau _{\text{tot}} &= \int_{r_0}^{r_+} \frac{ \dd{r}}{\dot{r}}  \\
+&= \int_{r_+}^{r_0} \left(e^2 \left(\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}\right)^{-1} - 1\right)^{-1/2} \dd{r} 
+\,.
+\end{align}
+
+Now the question is: is this integral finite? 
+There is a divergence at \(r \to r_0 \) as we might expect: the object is stationary in the \(r\) direction so it has to get moving, but we should not worry, since it scales like 
+%
+\begin{align}
+\int \left(\frac{1 - 2M / r_0 }{1 - 2M / r} -1 \right)^{-1/2} \dd{r} &\approx \int \left(\frac{C }{C+ \epsilon } -1 \right)^{-1/2} \dd{r}  \\
+&\approx \int \left(\frac{C - C - \epsilon }{C + \epsilon } \right)^{-1/2} \dd{r}  \\
+&\sim \int \epsilon^{-1/2} \dd{\epsilon } < \infty 
+\,,
+\end{align}
+%
+with \(2M/r = 2M/r_0 + \epsilon \), and \(C = 1 - 2M/r_0 \).
+This means that the integral is finite at that boundary: this is expected, since there is nothing relativistic about this end of the trajectory.
+
+Beyond this point and down to the horizon \(r_+\), \(\dot{r}\) is finite and larger than zero, so the integral is finite: our particle starts from \(\dot{r} = 0\) at \(r_0 \), and crosses the horizon in finite subjective time.
+
+\todo[inline]{\(\dv*{\varphi}{\tau}\) seems to diverge at the ergosphere though! }
+
+The numerical solutions to this kind of motion are shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), in order to have everything conveniently visible inside the figure.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.9\textwidth]{figures/kerr_infall}
+\caption{EXPLAIN}
+\label{fig:kerr_infall}
+\end{figure}
 
 \subsection{Exercise 6}
 

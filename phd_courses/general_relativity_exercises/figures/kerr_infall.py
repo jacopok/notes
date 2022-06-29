@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+cmap = plt.get_cmap('plasma')
 
 def kerr_infall():
     l = 0
@@ -30,14 +31,14 @@ def kerr_infall():
 
     rdotsq = ( -1 + e * tdot) / g_rr
 
-    plt.semilogy(r, tdot, label=r'$\dot{t}$')
+    plt.semilogy(r, tdot, label=r'$\dot{t}$', c=cmap(.9))
     # plt.semilogy(r, abs(pdot) / tdot, label=r'$\dot{\varphi} / \dot{t}$')
-    plt.semilogy(r, np.sqrt(rdotsq), label=r'$\dot{r}$')
+    plt.semilogy(r, np.sqrt(rdotsq), label=r'$\dot{r}$', c=cmap(.5))
     
     tau = (np.cumsum(np.sqrt(rdotsq)[::-1]) * np.gradient(r))[::-1]
-    plt.semilogy(r, tau, label=r'$\tau$ (proper time from $r_0$)')
+    plt.semilogy(r, tau, label=r'$\tau$ (proper time from $r_0$)', c=cmap(.1))
     
-    plt.ylabel('Various quantities')
+    plt.ylabel('Various quantities, [dimensionless or in units of $M$]')
     plt.xlabel('$r$ [units of $M$]')
     plt.legend()
 

@@ -47,7 +47,7 @@ def conformal_trajectory():
     V = np.arctan(v)    
     plt.plot(V, U, **kwargs_curve)
 
-    t = np.linspace(0, 1, num=200)
+    t = np.linspace(0, 1, num=1000)
     r = np.sqrt(1 + t**2) - 1
     u = t - r
     v = t + r    
@@ -55,7 +55,7 @@ def conformal_trajectory():
     V = np.arctan(v)
     plt.plot(V, U, **kwargs_curve, ls=':')
 
-    t = np.linspace(1, 100, num=200)
+    t = np.linspace(1, 100, num=2000)
     r = t / np.sqrt(2) - 1/ np.sqrt(2) + np.sqrt(2) - 1
     u = t - r
     v = t + r    
@@ -71,6 +71,7 @@ def conformal_trajectory():
     # plt.plot(UV_range, ph * np.ones_like(UV_range), **kwargs)
     # plt.plot(-ph*np.ones_like(UV_range), UV_range, **kwargs)
     plt.gca().set_aspect('equal')
+    plt.xlim(-.1, 2.5)
     plt.legend()
 
 if __name__ == "__main__":

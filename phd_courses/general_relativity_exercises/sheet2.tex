@@ -23,7 +23,7 @@ l &= u \cdot \partial_\varphi = r^2 \dot{\varphi}
 \,.
 \end{align}
 
-These are conserved across the photon's motion, therefore it is convenient to use them to 
+These are conserved during the photon's motion, therefore it is convenient to use them to 
 eliminate the functions \(t(\lambda )\) and \(\varphi (\lambda )\) in equation \eqref{eq:photon-velocity-normalization}, 
 so that we get a differential equation for \(r(\lambda )\) only, parametrized by \(e\) and \(l\).
 
@@ -39,12 +39,22 @@ e^2 &= \dot{r}^2 + \frac{l^2}{r^2} A \\
 \end{align}
 
 We found something in the form of an energy conservation equation, 
-with a kinetic term \(\dot{r}^2 / 2\) and an effective potential. 
+with a kinetic term \(\dot{r}^2 / 2\) and an effective potential \(V _{\text{eff}}\). 
 
-For large \(r\) the potential will approach 0 from above, like \(1/r^2\), 
-while for small \(r\) it will approach negative infinity like \(- 1/ r^3\).
-Therefore, it will have a maximum, which is easily computed to lie at \(r = 3M\). 
-There, the value of the potential \(V _{\text{eff}}\) is 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/effective_potential}
+\caption{Potential and some constant-energy trajectories for photon motion in Schwarzschild spacetime. }
+\label{fig:effective_potential}
+\end{figure}
+    
+
+For large \(r\) the potential will approach 0 from above, with \( V _{\text{eff}} \sim + 1/r^2\), 
+while for small \(r\) it will approach negative infinity with \( V _{\text{eff}} \sim - 1/ r^3\).
+Therefore, it must have a maximum, which is easily computed to lie at \(r = 3M\). 
+The potential is graphically shown in figure \ref{fig:effective_potential}.
+
+There, the value of the potential is
 %
 \begin{align}
 l^2 \left( \frac{1}{2 (3M)^2} - \frac{M}{(3M)^3}\right) 
@@ -164,69 +174,6 @@ However, there are no horizons --- this spacetime is conformally related to Mink
 alternatively, we can see that the whole spacetime is in the causal past of future null infinity.
 This means that the singularity is naked!
 
-\subsection{Exercise 4}
-
-(I switched the order since this exercise is related to exercise 2)
-
-The trajectories in negative mass Schwarzschild can be computed in the same manner as in positive mass Schwarzschild, the difference will be in the asymptotics of the potential. 
-For photons we have the same result as in equation \eqref{eq:photon-trajectory-schwarzschild}: the effective potential is %
-\begin{align}
-V _{\text{phot}} = l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
-\,,
-\end{align}
-%
-and a total ``energy'' of \(E = e^2 /2\),
-while for massive particles the same calculation, but with \(u^2 = -1\), yields 
-%
-\begin{align}
-V _{\text{mass}} = - \frac{M}{r} + l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
-\,,
-\end{align}
-%
-but now the total ``energy'' is \(E = (e^2- 1) / 2\).
-
-In both cases, the equation of motion reads %
-\begin{align}
-\frac{\dot{r}^2}{2} + V = E
-\,.
-\end{align}
-
-This holds for positive and negative-mass Schwarzschild alike, since no assumptions are made about the sign of \(M\). 
-However, the asymptotics will change depending on its sign. 
-
-In the photon case, the potential will read 
-%
-\begin{align}
-V _{\text{phot}} = l^2 \left( \frac{1}{2r^2} + \frac{\abs{M}}{r^3}\right)
-\,,
-\end{align}
-%
-which is monotonic (it's the sum of two monotonic terms) and strictly positive, as long as \(l \neq 0\). 
-It approaches 0 at \(r \to + \infty \) like \(l^2 / 2 r^2\), just like the positive-mass case, but as \(r \to 0^+\) it goes like \(l^2 \abs{M} / r^3 \to + \infty\). 
-
-So, any photon with nonzero \(l\) will not be able to reach the singularity, since it will have a finite \(e\) (recall from exercise 1 that the impact parameter is \(l / e\)). 
-
-On the other hand, photons with \(l = 0\) exactly will move according to \(\dot{r}^2 = e^2 = \text{const}\). 
-This means that they will reach the singularity \(r = 0\) in a finite amount of time, and their trajectories cannot be extended beyond this point: the spacetime is null geodesically incomplete. 
-
-For massive particles, the potential looks like 
-%
-\begin{align}
-V _{\text{mass}} = + \frac{\abs{M}}{r} + \frac{l^2}{2 r^2} + \frac{l^2 \abs{M}}{r^3}
-\,,
-\end{align}
-%
-which is fully repulsive, regardess of whether the angular momentum is vanishing or not! 
-
-This might be expected: we are looking at a negative-mass object, the effect of gravity is reversed. 
-This potential approaches 0 like \(1 / r\) for \(r \to +\infty \), and it approaches \(+ \infty \) like \(1 / r^3\) for \(r \to 0^+\) if the angular momentum is nonzero, like \(1/ r\) if the angular momentum is zero. 
-
-Any timelike geodesic will have a finite \(E\), therefore at some radius it will invert: specifically, when \(E = \abs{M} / r\), we must have \(\dot{r} = 0\), and the trajectory going back away from the black hole.
-
-This means that no timelike trajectory can actually approach \(r = 0\), they all can be extended arbitrarily: the spacetime is timelike geodesically complete! 
-
-This feature is hard to represent in a conformal diagram, since it is spefically about the properties of timelike geodesics, which are not faithfully rendered in such diagrams.
-
 \subsection{Exercise 3}
 
 The conformal diagram for Minkowski spacetime is constructed by setting 
@@ -251,12 +198,24 @@ and relating this to the new metric \(\dd{\widetilde{s}}^2 = - \dd{U} \dd{V}\), 
 The ranges of these new coordinates are \(U, V \in (- \pi /2, \pi /2)\), 
 and \(V \geq U\); the \(V = U\) line corresponds to \(r = 0\). 
 
-All relevant trajectories are shown in figure \ref{fig:conformal_trajectory}. 
+This conformal diagram is shown in figure 
+\ref{fig:conformal_trajectory}, together with the trajectories discussed in the exercise. 
+
+An example satisfying the criteria given for the first trajectory can be parametrized in its three stages as: 
+\begin{enumerate}
+    \item \(t \in (- \infty , 0)\), \(r = 0\);
+    \item \(t \in [0, 1]\), \(r = \sqrt{1 + t^2} - 1\);
+    \item \(t \in (1, + \infty )\), \(r = t / \sqrt{2} + \sqrt{2} - 1 - 1 / \sqrt{2}\).
+\end{enumerate}
+
+This is the green curve in figure \ref{fig:conformal_trajectory}.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.35\textwidth]{figures/conformal_trajectory}
-\caption{Conformal diagram for the trajectories parametrized by \(\lambda \), as well as (in green) a trajectory starting off at \(r = 0\), accelerating (dotted), then moving geodesically from then on.}
+\includegraphics[width=.5\textwidth]{figures/conformal_trajectory}
+\caption{Conformal diagram for the trajectories parametrized by \(\lambda \), as well as (in green) a trajectory starting off at \(r = 0\), accelerating (dotted), then moving geodesically from then on.
+Future null infinity should be labelled as \(\mathscr{I}^+\). 
+}
 \label{fig:conformal_trajectory}
 \end{figure}
 
@@ -327,7 +286,7 @@ where \(T = a t = \sinh(a \lambda )\); therefore
 \,,
 \end{align}
 %
-meaning that 
+meaning that, up to an additive constant,
 %
 \begin{align}
 \tau = \int \frac{ \dd{T}/a}{\sqrt{T^2 +1}} = \frac{1}{a}\operatorname{arcsinh}
@@ -345,9 +304,82 @@ A^2 = - a^2 \sinh(a \lambda ) + a^2 \cosh(a \lambda ) = a^2
 Thus, \(a\) is the (constant) proper acceleration of this curve, and \(\lambda = \tau \) is its proper time parameter.
 
 Now: how can this timelike curve start and end at \(\mathscr{I}^{\pm}\)? 
-It's accelerating forever, so it asymptotes to lightlike
+It's accelerating forever, so it's "asymptotically lightlike"; 
+more specifically, its limit is \(r \to \infty \) and \(t \to \infty \) with \(t/r \to 1\) (since \(\sinh x \sim \cosh x \sim e^x / 2\) for large \(x\)).
 
-\todo[inline]{say this better}
+This is future null infinity! Similarly, the curve starts from past null infinity.
+
+\subsection{Exercise 4}
+
+Geodesics in negative mass Schwarzschild can be computed in the same manner as in positive mass Schwarzschild, the difference will be in the asymptotics of the potential.
+For null geodesics we have the same result as in equation \eqref{eq:photon-trajectory-schwarzschild}: the effective potential is %
+\begin{align}
+V _{\text{phot}} = l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
+\,,
+\end{align}
+%
+and a total ``energy'' of \(E = e^2 /2\),
+while for massive particles the same calculation, but with \(u^2 = -1\), yields 
+%
+\begin{align}
+V _{\text{mass}} = - \frac{M}{r} + l^2 \left( \frac{1}{2r^2} - \frac{M}{r^3}\right)
+\,,
+\end{align}
+%
+but now the total ``energy'' is \(E = (e^2- 1) / 2\).
+
+In both cases, the equation of motion reads %
+\begin{align}
+\frac{\dot{r}^2}{2} + V = E
+\,.
+\end{align}
+
+This holds for positive- and negative-mass Schwarzschild alike, since no assumptions are made about the sign of \(M\). 
+However, the asymptotics will change depending on its sign. 
+
+In the null case, the potential will read 
+%
+\begin{align} \label{eq:null-potential}
+V _{\text{null}} = l^2 \left( \frac{1}{2r^2} + \frac{\abs{M}}{r^3}\right)
+\,,
+\end{align}
+%
+which is monotonic (it's the sum of two monotonic terms) and strictly positive, as long as \(l \neq 0\). 
+It approaches 0 at \(r \to + \infty \) like \(l^2 / 2 r^2\), just like the positive-mass case, but as \(r \to 0^+\) it goes like \(l^2 \abs{M} / r^3 \to + \infty\). 
+
+So, any photon with nonzero \(l\) will not be able to reach the singularity, since it will have a finite \(e\) (recall from exercise 1 that the impact parameter is \(l / e\)). 
+
+On the other hand, photons with \(l = 0\) exactly will move according to \(\dot{r}^2 = e^2 = \text{const}\). 
+This means that they will reach the singularity \(r = 0\) in a finite amount of time, and their trajectories cannot be extended beyond this point: the spacetime is null geodesically incomplete. 
+
+For massive particles, the potential looks like 
+%
+\begin{align}\label{eq:massive-potential}
+V _{\text{mass}} = + \frac{\abs{M}}{r} + \frac{l^2}{2 r^2} + \frac{l^2 \abs{M}}{r^3}
+\,,
+\end{align}
+%
+which is fully repulsive, regardess of whether the angular momentum is vanishing or not! 
+These potentials are shown in figure \ref{fig:negative_mass_geodesics}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.9\textwidth]{figures/negative_mass_geodesics}
+\caption{We show the potentials in equations \eqref{eq:null-potential} and \eqref{eq:massive-potential}, with the zero and nonzero \(l\). The null, zero angular momentum case is not shown: the potential is identically zero there.}
+\label{fig:negative_mass_geodesics}
+\end{figure}
+
+This might be expected: we are looking at a negative-mass object, the effect of gravity is reversed. 
+This potential approaches 0 like \(1 / r\) for \(r \to +\infty \), and it approaches \(+ \infty \) like \(1 / r^3\) for \(r \to 0^+\) if the angular momentum is nonzero, like \(1/ r\) if the angular momentum is zero. 
+
+Any timelike geodesic will have a finite \(E\), therefore at some radius it will invert: specifically, when \(E = \abs{M} / r\), we must have \(\dot{r} = 0\), and the trajectory going back away from the black hole.
+
+This means that no timelike trajectory can actually approach \(r = 0\), they all can be extended arbitrarily: the spacetime is timelike geodesically complete, but null geodesically incomplete! 
+
+In the conformal diagram for this spacetime, which looks the same as Minkowski spacetime in figure \ref{fig:conformal_trajectory} except for the fact that \(r = 0\) is a singularity, we can see that a lightlike trajectory coming from past null infinity can reach the horizon (and will always do so --- suppressing the angular coordinates means we are only considering the \(l = 0\) case).
+
+On the other hand, a timelike trajectory coming from \(\iota^-\) can never actually reach \(r = 0\). 
+This is hard to see in the diagram, but we can think of the distortion in the metric around that area being strong enough to "repel" those geodesics --- after all, the scaling factor for the conformal metric diverges there.
 
 \subsection{Exercise 5}
 
@@ -365,32 +397,33 @@ where \(\Delta = r^2 - 2Mr + a^2\) and \(\rho = r^2 + a^2 \cos \theta \).
 
 We have the Killing vectors \(\partial_t\) and \(\partial_\varphi \), which determine two integrals of motion of the trajectory we can associate with energy and angular momentum respectively. 
 
-The angle \(\theta\) is measured from the ``north pole'', so the equatorial plane corresponds to \(\theta = \pi / 2\). Since \(\dot{\theta} = 0\) initially, this will hold for the whole trajectory (by the \(\theta \to \pi - \theta \), \(\varphi \to - \varphi \) symmetry of the metric): therefore, we can use the reduced equatorial metric %
-\begin{align}
-\mathrm{d}s^2 &= - \frac{\Delta}{\rho^2} 
-\left(\mathrm{d}t^2 - a \mathrm{d}\varphi \right)^2
-+ \frac{1}{\rho^2}
-\left( \rho^2 \mathrm{d}\varphi - a \mathrm{d}t\right)^2
-+ \frac{\rho^2}{\Delta } \mathrm{d}r^2   \\
-&= 
-- \frac{\Delta}{\rho^2} \dd{t^2} 
-+ 2 \frac{a \Delta }{\rho^2} \dd{t} \dd{\varphi } 
-- \frac{a^2\Delta }{\rho^2} \dd{\varphi^2} 
-+ \rho^2 \dd{\varphi^2} 
-- 2a \dd{\varphi } \dd{t} + \frac{a^2}{\rho^2} \dd{t}^2 + \frac{\rho^2}{\Delta } \dd{r^2}  \\
-&= \left( \frac{a^2 - \Delta }{\rho^2}\right) \dd{t^2} 
-+ 2a \left( \frac{\Delta}{\rho^2} - 1 \right) \dd{t} \dd{\varphi } 
-+ \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dd{\varphi^2} + \frac{\rho^2}{\Delta } \dd{r^2}
-\,,
-\end{align}
-%
-with \(\rho^2 = r^2 + a^2\). 
+% The angle \(\theta\) is measured from the ``north pole'', so the equatorial plane corresponds to \(\theta = \pi / 2\). Since \(\dot{\theta} = 0\) initially, this will hold for the whole trajectory (by the \(\theta \to \pi - \theta \), \(\varphi \to - \varphi \) symmetry of the metric): therefore, we can use the reduced equatorial metric %
+% \begin{align}
+% \mathrm{d}s^2 &= - \frac{\Delta}{\rho^2} 
+% \left(\mathrm{d}t^2 - a \mathrm{d}\varphi \right)^2
+% + \frac{1}{\rho^2}
+% \left( \rho^2 \mathrm{d}\varphi - a \mathrm{d}t\right)^2
+% + \frac{\rho^2}{\Delta } \mathrm{d}r^2   \\
+% &= 
+% - \frac{\Delta}{\rho^2} \dd{t^2} 
+% + 2 \frac{a \Delta }{\rho^2} \dd{t} \dd{\varphi } 
+% - \frac{a^2\Delta }{\rho^2} \dd{\varphi^2} 
+% + \rho^2 \dd{\varphi^2} 
+% - 2a \dd{\varphi } \dd{t} + \frac{a^2}{\rho^2} \dd{t}^2 + \frac{\rho^2}{\Delta } \dd{r^2}  \\
+% &= \left( \frac{a^2 - \Delta }{\rho^2}\right) \dd{t^2} 
+% + 2a \left( \frac{\Delta}{\rho^2} - 1 \right) \dd{t} \dd{\varphi } 
+% + \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dd{\varphi^2} + \frac{\rho^2}{\Delta } \dd{r^2}
+% \,,
+% \end{align}
+% %
+% with \(\rho^2 = r^2 + a^2\). 
 
 Denoting the components of the four-velocity \(u^\mu = (\dot{t}, \dot{r}, 0, \dot{\varphi})\), the angular momentum will read %
 \begin{align}
-0 = l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}  \\
-&= \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dot{\varphi}
-+ a  \left( \frac{\Delta}{\rho^2} - 1 \right) \dot{t}
+0 = l &= u \cdot \partial_\varphi = g_{\varphi \varphi } \dot{\varphi} + g_{t \varphi } \dot{t}  
+% \\
+% &= \left(\rho^2 - \frac{a^2 \Delta }{\rho^2}\right) \dot{\varphi}
+% + a  \left( \frac{\Delta}{\rho^2} - 1 \right) \dot{t}
 \,.
 \end{align}
 
@@ -409,9 +442,10 @@ As expected, this quantity is concordant in sign with \(a\), and always positive
 The other integral of motion is %
 \begin{align} \label{eq:tdot-from-r}
 e &= - u \cdot \partial_t = - g_{tt } \dot{t} - g_{t \varphi } \dot{\varphi}  \\
-&= + \frac{a^2 - \Delta }{\rho^2} \dot{t} - 2a \left(\frac{\Delta }{\rho^2} - 1\right) \dot{\varphi}  \\
-&= - g_{tt} \dot{t} + \frac{g_{t \varphi }^2}{g_{\varphi \varphi}} \dot{t}  \\
-&= \left(\frac{a^2 - \Delta }{\rho^2} - \frac{4 a^2 (\Delta / \rho^2 - 1)^2}{\rho^2 - a^2 \Delta / \rho^2} \right) \dot{t}
+% &= + \frac{a^2 - \Delta }{\rho^2} \dot{t} - 2a \left(\frac{\Delta }{\rho^2} - 1\right) \dot{\varphi}  \\
+&= \left(- g_{tt} + \frac{g_{t \varphi }^2}{g_{\varphi \varphi}}\right) \dot{t}  
+% \\
+% &= \left(\frac{a^2 - \Delta }{\rho^2} - \frac{4 a^2 (\Delta / \rho^2 - 1)^2}{\rho^2 - a^2 \Delta / \rho^2} \right) \dot{t}
 \,,
 \end{align}
 %
@@ -457,7 +491,7 @@ So, from an initial radius \(r_0 \) we can compute the proper time required to r
 \end{align}
 
 Now the question is: is this integral finite? 
-There is a divergence at \(r \to r_0 \) as we might expect: the object is stationary in the \(r\) direction so it has to get moving, but we should not worry, since it scales like 
+There is a divergence at \(r \to r_0 \): the object is stationary in the \(r\) direction so it has to get moving, but we should not worry, since the contribution of this to the integral scales like 
 %
 \begin{align}
 \int \left(\frac{1 - 2M / r_0 }{1 - 2M / r} -1 \right)^{-1/2} \dd{r} &\approx \int \left(\frac{C }{C+ \epsilon } -1 \right)^{-1/2} \dd{r}  \\
@@ -471,14 +505,14 @@ This means that the integral is finite at that boundary: this is expected, since
 
 Beyond this point and down to the horizon \(r_+\), \(\dot{r}\) is finite and larger than zero, so the integral is finite: our particle starts from \(\dot{r} = 0\) at \(r_0 \), and crosses the horizon in finite subjective time.
 
-\todo[inline]{\(\dv*{\varphi}{\tau}\) seems to diverge at the ergosphere though! }
+% \todo[inline]{\(\dv*{\varphi}{\tau}\) seems to diverge at the ergosphere though! }
 
-The numerical solutions to this kind of motion are shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), in order to have everything conveniently visible inside the figure.
+An example numerical solution for this kind of motion are shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), not really far but a good choice in order to have everything conveniently visible inside the figure.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.9\textwidth]{figures/kerr_infall}
-\caption{EXPLAIN}
+\caption{Quantities describing the infall of a particle in the Kerr spacetime, starting off at \(r = 10M\) with \(\dot{r} = l = 0\) and reaching the horizon.}
 \label{fig:kerr_infall}
 \end{figure}
 
@@ -530,7 +564,7 @@ solution must be \(\beta = 0\), or \(v = \alpha \partial_t\).
 Any component along \(\partial_\varphi\) is not allowed at this boundary, although it is allowed at smaller and larger \(r\)s.
 Also, the component along \(\varphi \) has an opposite sign above and below the ergosphere boundary. 
 
-What this tells us is that the surfaces orthogonal to \(\partial_t\) cannot be extended through the ergosphere boundary.
+What this tells us is that the surfaces orthogonal to \(\partial_t\) cannot be extended through the ergosphere boundary, and therefore cannot make up a global foliation of the spacetime.
 
 \subsubsection{Killing vectors at infinity}
 
@@ -543,7 +577,7 @@ v^2 = \alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\varphi \varp
 
 We want to ask that \(v^2 < 0\) in the \(r \to \infty \) limit: what constraint does this pose for \(\alpha \) and \(\beta \)? 
 
-Well, as \(r \to \varphi \), the metric component \(g_{\varphi \varphi } \sim r^2 \), while \(g_{t \varphi } \sim 1 /r\) and \(g_{tt} \sim -1\).
+Well, as \(r \to \infty \), the metric component \(g_{\varphi \varphi } \sim r^2 \), while \(g_{t \varphi } \sim 1 /r\) and \(g_{tt} \sim -1\).
 
 Since \(\alpha\) and \(\beta\) are constants, the only way for \(v\) to be asymptotically timelike is if \(\beta = 0\) exactly, otherwise the \(\beta^2 g_{\varphi \varphi }\) term will mean \(v^2 \to + \infty \): therefore, \(v = \alpha \partial_t\) is a multiple of \(\partial_t\). 
 
@@ -576,8 +610,10 @@ u^2 = \underbrace{\alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\
 \end{align}
 
 Thus, we have shown that assuming this we can prove that all vectors in the ergosphere are either null or spacelike: 
-this is impossible, since the metric can be always be cast into its diagonal, Minkowski 3+1 form by an appropriate local coordinate transformation.
+this is impossible, since the metric can be always be cast into its diagonal, Minkowski 3+1 form by an appropriate local coordinate transformation (by the equivalence principle).
 Therefore, we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) everywhere.
+
+Note that \(v\) will indeed be a Killing vector: by the linearity of the Lie derivative, a linear combination of Killing vectors is a Killing vector, as long as the coefficients are constant; since \(v^2 < 0\) is a strict inequality we will be able to find a neighbourhood around each point such that \(v^2 < 0\) for that specific choice of \(\alpha \) and \(\beta\) in the whole neighbourhood. 
 
 In figure \ref{fig:kerr_killing} we show what this choice might actually look like.
 
@@ -604,7 +640,7 @@ We are taking two identical Kerr black holes with mass \(M\) and spin \(\chi\) a
 
 We must then have %
 \begin{align}
-M_{\text{irr}}^{2, \text{ final}} &\geq 
+M_{\text{irr}}^{2, \text{ rem}} &\geq 
 M^{2, \text{ (1)}} _{\text{irr}}  +
 M^{2, \text{ (2)}} _{\text{irr}}  
 \\
@@ -612,7 +648,7 @@ M_f^2 \left( 1+ \sqrt{1 - \chi _f^2}\right) &\geq 2 M^2\left(1 + \sqrt{1 - \chi^
 \,,
 \end{align}
 %
-where quantities labelled with an index \(f\) characterize the final BH. 
+where quantities labelled with an index \(f\) characterize the remnant  (final) BH. 
 
 If the inital BHs were nonspinning, the equation states that %
 \begin{align}
@@ -648,7 +684,7 @@ which means that, if they were instead maximally spinning (\(\chi = 1\)) we will
 \end{align}
 
 The way to attain the maximum possible value for \(E\), in all these cases, is when \(\chi _f\) is as large as possible. 
-A large \(\chi _f\) is indeed rather likely, since the product BH will be spinning due to the orbital angular momentum. 
+A large \(\chi _f\) is indeed rather likely, since the remnant BH will be spinning due to the orbital angular momentum. 
 
 If \(\chi _f = 1\), the general inequality reads: 
 %

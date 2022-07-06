@@ -27,7 +27,7 @@ def kerr_infall():
     l = 0
     a = .9
 
-    r = np.linspace(0, 10, num=10000)
+    r = np.linspace(0, 10, num=100000)
     # r = np.linspace(M + np.sqrt(M**2 - a**2)+1e-2, 10, num=10000)
 
     theta = np.pi / 2
@@ -110,10 +110,10 @@ def potential_barrier():
     l = 0
     a = .9
 
-    r0 = 10
+    r0 = 1.5
     rmin = M + np.sqrt(M**2 - a**2)+1e-2
-    r = rmin + np.geomspace(1e-3, r0 - rmin, num=10000)
-    # r = np.linspace(rmin, r0, num=10000)
+    # r = rmin + np.geomspace(1e-3, r0 - rmin, num=10000)
+    r = np.linspace(1e-3, r0, num=10000)
     # r = np.linspace(1, 10, num=10000)
 
     theta = np.pi / 2
@@ -125,11 +125,15 @@ def potential_barrier():
 
     tdot = e / (g_tp**2 / g_pp - g_tt)
 
-    # plt.plot(r, e * tdot - 1)
-    plt.plot(r, g_tp**2 / g_pp - g_tt)
-    plt.plot(r, e**2*np.ones_like(r))
+    plt.semilogy(r, (e * tdot - 1) / g_rr)
+    # plt.plot(r, g_tp**2 / g_pp - g_tt)
+    # plt.plot(r, g_tp**2 / g_pp)
+    # plt.plot(r, -g_tt)
+    
+    # plt.plot(r, e**2*np.ones_like(r))
 
 if __name__ == "__main__":
     from make_all_figures import plot_and_save
     plot_and_save(kerr_infall)
     plot_and_save(kerr_trajectory)
+    # plot_and_save(potential_barrier)

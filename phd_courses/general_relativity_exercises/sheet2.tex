@@ -5,6 +5,8 @@
 
 \subsection{Exercise 1}
 
+We wish to determine the conditions under which a photon is able to fall into a nonspinning black hole.
+
 The motion of a photon in Schwarzschild spacetime can be described, 
 assuming without of generality it lies in the \(\theta = \pi / 2\) plane, 
 by the normalization of its 4-velocity %
@@ -27,7 +29,7 @@ These are conserved during the photon's motion, therefore it is convenient to us
 eliminate the functions \(t(\lambda )\) and \(\varphi (\lambda )\) in equation \eqref{eq:photon-velocity-normalization}, 
 so that we get a differential equation for \(r(\lambda )\) only, parametrized by \(e\) and \(l\).
 
-The computation goes as follows; let us denote \(A =1 - 2M/r\) for brevity: 
+The computation goes as follows (denoting \(A =1 - 2M/r\) for brevity): 
 %
 \begin{align}
 0 &= - A \left( \frac{e}{A}\right)^2 + \frac{\dot{r}^2}{A} + r^2 \left( \frac{l}{r^2}\right)^2   \\
@@ -44,7 +46,7 @@ with a kinetic term \(\dot{r}^2 / 2\) and an effective potential \(V _{\text{eff
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/effective_potential}
-\caption{Potential and some constant-energy trajectories for photon motion in Schwarzschild spacetime. }
+\caption{Potential (black) and some constant-energy trajectories for photon motion in Schwarzschild spacetime, parametrized by \(l/e = b\). }
 \label{fig:effective_potential}
 \end{figure}
     
@@ -167,7 +169,8 @@ by the area of a sphere: \(\rho \neq \sqrt{A / 4 \pi }\).
 The conformal diagram for this spacetime will therefore look the same as Minkowski, 
 with the caveat that the prefactor diverges for \(r \to 0\): so, the 
 \(r = 0 \) line will not be a reflective boundary in this case. 
-Indeed, just like in positive-mass Schwarzschild the Kretschmann scalar diverges there, 
+Indeed, just like in positive-mass Schwarzschild the Kretschmann scalar
+\(R_{\mu \nu \rho \sigma } R^{\mu \nu \rho \sigma } \sim M^2 / r^6\) diverges there, 
 so it is a singularity.
 
 However, there are no horizons --- this spacetime is conformally related to Minkowski which has no horizons; 
@@ -203,9 +206,9 @@ This conformal diagram is shown in figure
 
 An example satisfying the criteria given for the first trajectory can be parametrized in its three stages as: 
 \begin{enumerate}
-    \item \(t \in (- \infty , 0)\), \(r = 0\);
-    \item \(t \in [0, 1]\), \(r = \sqrt{1 + t^2} - 1\);
-    \item \(t \in (1, + \infty )\), \(r = t / \sqrt{2} + \sqrt{2} - 1 - 1 / \sqrt{2}\).
+    \item \(t \in (- \infty , 0)\), \(r = 0\): the observer rests at \(r = 0\) for \(t \leq 0\);
+    \item \(t \in [0, 1]\), \(r = \sqrt{1 + t^2} - 1\): the observer accelerates (increasing \(x\) and therefore \(r\)) for \(0 < t < t_1 = 1\) --- specifically, this trajectory has constant acceleration;
+    \item \(t \in (1, + \infty )\), \(r = t / \sqrt{2} + \sqrt{2} - 1 - 1 / \sqrt{2}\): the observer moves geodesically, so with constant velocity, for \(t \geq t_1 = 1\).
 \end{enumerate}
 
 This is the green curve in figure \ref{fig:conformal_trajectory}.
@@ -229,22 +232,23 @@ V &= \arctan(t+r) = \arctan(\frac{\sinh(a \lambda ) + \cosh(a \lambda )}{a})
 \,.
 \end{align}
 
-Now, we have the following identities: %
+Now, we have the following identities for hyperbolic functions: 
+%
 \begin{align}
 \sinh x - \cosh x &= \frac{e^x - e^{-x}}{2} - \frac{e^x + e^{-x}}{2} = - e^{-x}  \\
 \sinh x + \cosh x &= \frac{e^x - e^{-x}}{2} + \frac{e^x + e^{-x}}{2} = e^{x}  
 \,.
 \end{align}
 
-Therefore, %
+Therefore, the conformal coordinates of our trajectory will evolve like: 
+%
 \begin{align}
 U &= \arctan(- \frac{e^{-a \lambda }}{a}) \\
 V &= \arctan(\frac{e^{a \lambda }}{a})
 \,.
 \end{align}
 
-Now, \(\arctan(-x) = - \arctan{x}\), and also \(\arctan(1 / x) = \pi /2 - \arctan{x}\). 
-
+Now, in general we also have the identities \(\arctan(-x) = - \arctan{x}\) and \(\arctan(1 / x) = \pi /2 - \arctan{x}\). 
 This means that, for example, if \(a = 1\) we get 
 %
 \begin{align}
@@ -252,10 +256,10 @@ U + V = \pi / 2
 \,,
 \end{align}
 %
-a straight line going from a point in \(\mathscr{I}^{-}\) to a point 
+a straight line going from a point in (the middle of) \(\mathscr{I}^{-}\) to a point 
 in \(\mathscr{I^{+}}\). 
 
-If \(a \neq 1\) the line is not straight, but its endpoints are the same ones. 
+If \(a \neq 1\) the line is not straight, but its endpoints are the same ones: this is shown in figure \ref{fig:conformal_trajectory}. 
 
 This curve is timelike: its tangent vector is \(u = (\cosh(a \lambda ), \sinh(a \lambda ), 0, 0)\), whose modulus is 
 %
@@ -350,7 +354,7 @@ It approaches 0 at \(r \to + \infty \) like \(l^2 / 2 r^2\), just like the posit
 So, any photon with nonzero \(l\) will not be able to reach the singularity, since it will have a finite \(e\) (recall from exercise 1 that the impact parameter is \(l / e\)). 
 
 On the other hand, photons with \(l = 0\) exactly will move according to \(\dot{r}^2 = e^2 = \text{const}\). 
-This means that they will reach the singularity \(r = 0\) in a finite amount of time, and their trajectories cannot be extended beyond this point: the spacetime is null geodesically incomplete. 
+This means that they will reach the singularity \(r = 0\) for a finite value of their conformal parameter, and their trajectories cannot be extended beyond this point: the spacetime is null geodesically incomplete. 
 
 For massive particles, the potential looks like 
 %
@@ -369,7 +373,7 @@ These potentials are shown in figure \ref{fig:negative_mass_geodesics}.
 \label{fig:negative_mass_geodesics}
 \end{figure}
 
-This might be expected: we are looking at a negative-mass object, the effect of gravity is reversed. 
+Repulsivity might be expected: we are looking at a negative-mass object, the effect of gravity is reversed. 
 This potential approaches 0 like \(1 / r\) for \(r \to +\infty \), and it approaches \(+ \infty \) like \(1 / r^3\) for \(r \to 0^+\) if the angular momentum is nonzero, like \(1/ r\) if the angular momentum is zero. 
 
 Any timelike geodesic will have a finite \(E\), therefore at some radius it will invert: specifically, when \(E = \abs{M} / r\), we must have \(\dot{r} = 0\), and the trajectory going back away from the black hole.
@@ -379,7 +383,7 @@ This means that no timelike trajectory can actually approach \(r = 0\), they all
 In the conformal diagram for this spacetime, which looks the same as Minkowski spacetime in figure \ref{fig:conformal_trajectory} except for the fact that \(r = 0\) is a singularity, we can see that a lightlike trajectory coming from past null infinity can reach the horizon (and will always do so --- suppressing the angular coordinates means we are only considering the \(l = 0\) case).
 
 On the other hand, a timelike trajectory coming from \(\iota^-\) can never actually reach \(r = 0\). 
-This is hard to see in the diagram, but we can think of the distortion in the metric around that area being strong enough to "repel" those geodesics --- after all, the scaling factor for the conformal metric diverges there.
+This is hard to see in the diagram, but we can think of the distortion in the metric around that area being strong enough to "repel" those geodesics --- after all, the scaling factor for the conformal metric diverges there, so we cannot expect the conformal diagram to be a faithful representation of what's possible for timelike geodesics.
 
 \subsection{Exercise 5}
 
@@ -395,10 +399,10 @@ g_{rr} &= \frac{\rho^2}{\Delta }
 %
 where \(\Delta = r^2 - 2Mr + a^2\) and \(\rho^2 = r^2 + a^2 \cos^2 \theta \).
 
-For us, \(\dot{\theta} = 0\) and \(\theta = \pi /2\) throughout the 
-trajectory, so we will have \(\sin \theta = 1\) and \(\cos \theta = 0\).
+Because of \(z \to -z\) symmetry, the particle will remain in the equatorial plane, so we will have \(\dot{\theta} = 0\) and \(\theta = \pi /2\) throughout the 
+trajectory.
 
-We have the Killing vectors \(\partial_t\) and \(\partial_\varphi \), which determine two integrals of motion of the trajectory we can associate with energy and angular momentum respectively. 
+The Killing vectors \(\partial_t\) and \(\partial_\varphi \) determine two integrals of motion of the trajectory we can associate with energy and angular momentum respectively. 
 
 % The angle \(\theta\) is measured from the ``north pole'', so the equatorial plane corresponds to \(\theta = \pi / 2\). Since \(\dot{\theta} = 0\) initially, this will hold for the whole trajectory (by the \(\theta \to \pi - \theta \), \(\varphi \to - \varphi \) symmetry of the metric): therefore, we can use the reduced equatorial metric %
 % \begin{align}
@@ -449,9 +453,10 @@ e &= - u \cdot \partial_t = - g_{tt } \dot{t} - g_{t \varphi } \dot{\varphi}  \\
 &= \left(- g_{tt} + \frac{g_{t \varphi }^2}{g_{\varphi \varphi}}\right) \dot{t} = (\Omega g_{t \varphi } - g_{tt}) \dot{t}
 % \\
 % &= \left(\frac{a^2 - \Delta }{\rho^2} - \frac{4 a^2 (\Delta / \rho^2 - 1)^2}{\rho^2 - a^2 \Delta / \rho^2} \right) \dot{t}
-\,,
+\,.
 \end{align}
-%
+
+Combining these means that, as long as we know the radial coordinate \(r\) and the integrals of motion \(l\) and \(e\), we can explicitly compute \(\dot{t}\) and \(\dot{\varphi}\). 
 
 The equation of motion will arise from the normalization of the 4-velocity: %
 \begin{align}
@@ -462,17 +467,20 @@ u^2 &= -1 = g_{tt} \dot{t}^2 + 2g_{t \varphi } \dot{t} \dot{\varphi} + g_{\varph
 \,.
 \end{align}
 
-In general, this can be reframed as an equation for \(\dot{r}^2\) only, since \(\dot{t}\) and \(\dot{\varphi}\) are uniquely determined by \(e\), \(l\) and \(r\).
+This can be reframed as an equation for \(\dot{r}^2\) only, since as mentioned before \(\dot{t}\) can be explicitly computed from \(r\) and \(e\).
 
-What is the value of \(e\)? We can compute it if we know \(r_0\).
-Initially, since \(\dot{r} = 0\), we have \(\dot{t}(0) = 1 / e\).
-Also, \(e = (g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}) \dot{t}(0)\). This gives us an equation: %
+What is the value of \(e\)? 
+We can compute it if we know the initial radius \(r_0\), which is assumed to be large.
+Initially, since \(\dot{r} = 0\), we have \(\dot{t}(0) = 1 / e\) from the equation of motion, but
+also \(e = (g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}) \dot{t}(0)\) from the definition of \(e\). 
+
+This gives us an equation: %
 \begin{align}
-e^2 = \frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}
-\,,
+e^2 = \eval{\left(\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}\right)}_{r= r_0 }
+\,.
 \end{align}
-%
-where the metric coefficients should be computed at \(r = r_0\). 
+
+
 If we assume that \(r_0 \gg M\), this will be 
 %
 \begin{align}
@@ -482,42 +490,109 @@ e^2 \approx \frac{(1 / r_0 )^2}{r_0^2} + 1 - \frac{2M}{r_0} \approx 1 - \frac{2M
 %
 therefore \(e\) will be only slightly smaller than \(1\). 
 
-The particle will be able to fall into the black hole as long as it encounters no "potential barrier": this is equivalent to asking that the quantity we are setting as equal to \(g_{rr}\dot{r}^2\) is positive.
+The particle will be able to fall into the black hole as long as it encounters no "potential barrier": this is equivalent to asking that the quantity we are setting as equal to \(\dot{r}^2\) is positive.
 
-Is it actually true that \(e \dot{t} - 1 \geq 0\) for the whole trajectory, though? That's equivalent to %
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.9\textwidth]{figures/kerr_infall}
+\caption{Quantities describing the infall of a particle in the Kerr spacetime, starting off at \(r = 10M\) with \(\dot{r} = l = 0\) and reaching the horizon. In this case, the spin of the BH is set to \(\chi = 0.9\).}
+\label{fig:kerr_infall}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/kerr_trajectory}
+\caption{Trajectory of the particle in the \(xy\) (equatorial) plane; i.\ e.\ the evolution of \(\varphi (r)\). In this case, the spin of the BH is set to \(\chi = 0.35\).}
+\label{fig:kerr_trajectory}
+\end{figure}
+    
+
+Is it actually true that \((e \dot{t} - 1) / g_{rr} \geq 0\) for the whole trajectory? That's equivalent to 
+%
 \begin{align}
-\frac{e^2}{g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}} &\geq 1  \\
-\eval{\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}}_{r = r_0 } 
-&\geq \frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}  \\
+\frac{f_0 - f }{f} \frac{1}{g_{rr} } \geq 0 
+\,,
+\end{align}
+%
+where we are denoting \(f = g_{t \varphi }^2 / g_{\varphi \varphi} - g_{tt}\), and \(f_0 = e^2\) is its value for \(r = r_0 \).
+
+The behaviour of the three terms is as follows: \(f_0 - f\) is positive for \(r < r_0 \) (and so for the whole trajectory); 
+\(f\) and \(g_{rr}\) both become negative between the two horizons (when \(\Delta < 0\)) and are positive otherwise, so their product is always positive.
+
+Let us prove the first claim: we wish to show that, when \(r < r_0 \),
+%
+\begin{align}
+\left(\frac{2Ma}{r_0 }\right)^2 \frac{1}{r_0 ^2 + a^2 + 2Ma^2 /r_0 } +1 - \frac{2M}{r_0 } 
+\geq 
+\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}
 \,.
 \end{align}
 
-We can split this into two sufficient conditions, which we simplify using \(\rho^2 = r^2\) (true in the equatorial plane): 
+This is not immediately obvious: the \(-2M/r\) term has the behaviour we desire (it's an increasing function of \(r\)), while the rest does not.
+
+The idea is, however, that the \(1/r^4\) term is always suppressed and subdominant with respect to the \(1/r\) one. 
+We know that \(f_0 = e^2\) is only slightly less than \(1\), since \(r_0 \gg M\). 
+
+We will work dividing the range of \(r\) into sections.
+First, suppose that \(r > 2M\):
 %
 \begin{align}
-\eval{g_{tt} }_{r_0 } &\leq g_{tt}  \\
-- 1 + \frac{2M}{r_0 } &\leq -1 + \frac{2M}{r}  \\
-r &\leq r_0
+\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} < 
+\frac{a^2}{r^2 + a^2 + 2Ma^2 /r} = 
+\frac{1}{\underbrace{(r/a)^2}_{>2} + 1 + \underbrace{2M/r}_{<1}} < \frac{1}{3}
 \,,
 \end{align}
 %
-as well as 
+since \(r > 2M > 2a\). 
+
+So, what we are trying to prove is that 
 %
 \begin{align}
-\eval{\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} }_{r_0 }
-\geq 
-\frac{g_{t \varphi }^2}{g_{\varphi \varphi }}  \\
-\frac{(2Ma / r_0 )^2}{r_0 ^2 + a^2 + 2M a^2 / r_0 } 
-&\geq 
-\frac{(2Ma / r )^2}{r ^2 + a^2 + 2M a^2 / r } 
+f_0 \geq \underbrace{\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r}}_{< 1/3} + 1 - \frac{2M}{r}
+\,.
+\end{align}
+
+Now, if \(2M < r < 4M\), then the inequality is satisfied: \(1 - 2M/r < 1/2\), so overall \(f < 5/6\). 
+
+If \(r > 4M\), things are even simpler: the bound for the \(\sim 1/ r^4\) term can be improved to \(< 1/(4 \times 16)\), therefore we can go up to \(r = 32M\) (say) since then \(1 - 2M/r < 15/16\), and so we can still constrain \(f < 15/16 + 1/64 < 1\). 
+
+This line of reasoning can be extended in exponential steps up to \(r_0\), and as \(r\) increases the subdominance of the \(1/r^4 \) term becomes ever clearer.
+
+What happens when \(r < 2M\)? There, we wish to show that 
+%
+\begin{align}
+f_0 \sim 1 &\geq \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} + 1 - \frac{2M}{r}  \\
+&= 1 - \underbrace{\frac{2M}{r}}_{> 1} \underbrace{\left( 1 - \frac{2Ma^2}{r^3 + ra^2 + 2Ma^2}\right)}_{>0, < 1}
 \,,
 \end{align}
 %
-where, once again, we have a manifestly decreasing function of \(r\), evaluated at \(r_0 \) and at some \(r < r_0 \).
+so for sure we have \(f < 1\); all that's left is finding a slightly stricter bound to accomodate the fact that \(f_0 \lesssim 1\).
 
-So, \(e \dot{t} - 1\) (and thus also \(\dot{r}^2\)) is positive as long as \(r < r_0 \): this confirms our intuition that the massive particle starting out stationary in the radial direction cannot move outward, and must fall into the black hole. 
+The risk is that the product be close to 0; for sure this will not happen at \(r = 2M\), since there the expression in parentheses is strictly positive (and \(>5/6\)), while it might for \(r \to 0\) --- there, however, the full expression actually has a finite limit: 
+%
+\begin{align}
+1- \frac{2M}{r} \frac{r^3 + r a^2 + 2Ma^2 - 2Ma^2}{r^3+ r a^2 + 2Ma^2} 
+\sim 1 - 2M \frac{r^2 + a^2}{r^3 + ra^2 + 2Ma^2} \to 1 - 1 = 0
+\,,
+\end{align}
+%
+which is definitely smaller than \(1 - 2M/r_0 \).
 
-The quantity \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; since \(e \dot{t} - 1\) is greater or equal than \(0\) we can explicitly write:
+As for the second point: what is the behaviour of \(f g_{rr}\)? The metric coefficient scales like \(g_{rr} \sim \Delta^{-1}\), and we can reframe \(f\) as: 
+%
+\begin{align}
+f &= \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}  \\
+&= \frac{(2Ma/r)^2 + r^2 +a^2 + 2Ma^2/ r - 2M/r \left(r^2 + a^2 + 2Ma^2 / r\right)}{r^2 + a^2 + 2Ma^2 /r}  \\
+&= \frac{\Delta }{r^2 + a^2 + 2Ma^2 /r}
+\,,
+\end{align}
+%
+meaning that \(f g_{rr} = r^2 / (r^2 + a^2 + 2Ma^2/r)\), which is always positive; further, it does not have any divergence when \(\Delta = 0\).
+
+
+
+So, \(\dot{r}^2\) is positive as long as \(r < r_0 \): this confirms our intuition that the massive particle starting out stationary in the radial direction cannot move outward, and must fall into the black hole.
+We can explicitly write it as:
 %
 \begin{align}
 \dot{r} = \sqrt{\frac{1}{g_{rr}} \left( \frac{e^2}{g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}} - 1\right)}
@@ -527,12 +602,11 @@ The quantity \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:t
 So, from an initial radius \(r_0 \) we can compute the proper time required to reach the horizon: 
 %
 \begin{align}
-\tau _{\text{tot}} &= \int_{r_0}^{r_+} \frac{ \dd{r}}{\dot{r}}  \\
-&= \int_{r_+}^{r_0} \left(e^2 \left(\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}\right)^{-1} - 1\right)^{-1/2} \frac{\rho }{\sqrt{\Delta }}\dd{r} 
+\tau _{\text{tot}} &= \int_{r_0}^{r_+} \frac{ \dd{r}}{\dot{r}} 
 \,.
 \end{align}
 
-There is a divergence at \(r \to r_0 \): the object is stationary in the \(r\) direction so it has to get moving, but we should not worry, since the contribution of this to the integral scales like 
+There is a divergence in the integrand as \(r \to r_0 \): the object is stationary in the \(r\) direction so it has to get moving, but we should not worry, since the contribution of this to the integral scales like 
 %
 \begin{align}
 \int \left(\frac{1 - 2M / r_0 }{1 - 2M / r} -1 \right)^{-1/2} \dd{r} &\approx \int \left(\frac{C }{C+ \epsilon } -1 \right)^{-1/2} \dd{r}  \\
@@ -542,36 +616,21 @@ There is a divergence at \(r \to r_0 \): the object is stationary in the \(r\) d
 \end{align}
 %
 with \(2M/r = 2M/r_0 + \epsilon \), and \(C = 1 - 2M/r_0 \).
-This means that the integral is finite at that boundary: this is expected, since there is nothing relativistic about this end of the trajectory.
+This means that the integral is finite at that boundary: this is expected, since there is nothing especially relativistic about that end of the trajectory.
 
-Beyond this point and down to the horizon \(r_+\), \(\dot{r}\) is finite and larger than zero, so the integral is finite: our particle starts from \(\dot{r} = 0\) at \(r_0 \), and crosses the horizon in finite subjective time.
-
+Beyond this point and down to singularity, \(\dot{r}\) is finite and larger than zero, so the integral is finite: our particle starts from \(\dot{r} = 0\) at \(r_0 \), and reaches the singularity in finite subjective time.
 
 % \todo[inline]{\(\dv*{\varphi}{\tau}\) seems to diverge at the ergosphere though! }
 
-An example numerical solution for this kind of motion are shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), not really far but a good choice in order to have everything conveniently visible inside the figure.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.9\textwidth]{figures/kerr_infall}
-\caption{Quantities describing the infall of a particle in the Kerr spacetime, starting off at \(r = 10M\) with \(\dot{r} = l = 0\) and reaching the horizon.}
-\label{fig:kerr_infall}
-\end{figure}
+An example numerical solution for this kind of motion is shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), not really "far" but a good choice in order to have everything conveniently visible inside the figure.
 
 We can also integrate \(\dot{\varphi} / \dot{r} = \dv*{\varphi }{r}\) in order to get a relation \(\varphi (r)\). 
 The particle starts off moving only in the azimuthal direction, and then (even though \(l = 0\)!) it begins rotating aroung the BH, due to frame dragging.
 This is shown graphically in figure \ref{fig:kerr_trajectory}.
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{figures/kerr_trajectory}
-\caption{Trajectory of the particle in the \(xy\) (equatorial) plane; i.\ e.\ the evolution of \(\varphi (r)\). In this case, the spin of the BH is set to \(\chi = 0.35\).}
-\label{fig:kerr_trajectory}
-\end{figure}
-
 \subsection{Exercise 6}
 
-\subsubsection{Constant-$t$ hypersurfaces}
+\subsubsection{Constant-time hypersurfaces}
 
 Three linearly independent vectors tangent to the \(t = \text{const}\) surface are \(\partial_r\), \(\partial_\theta \), \(\partial_\varphi \). 
 They are orthogonal amongst themselves, since the only cross-terms in the metric are the \(g_{t \varphi }\) ones, but also because of that the \(\partial_\varphi \) vector is not orthogonal to \(\partial_t\): their product is %
@@ -613,6 +672,7 @@ Let us set \(\theta = \pi /2\) for simplicity: then,
 
 Now, we can see that at \(r = 2M\) (which is where the border of the ergosphere lies) this ratio approaches 0, therefore the 
 solution must be \(\beta = 0\), or \(v = \alpha \partial_t\).
+The line of reasoning for \(\theta \neq \pi /2 \) is conceptually identical.
 
 Any component along \(\partial_\varphi\) is not allowed at this boundary, although it is allowed at smaller and larger \(r\)s.
 Also, the component along \(\varphi \) has an opposite sign above and below the ergosphere boundary. 
@@ -628,9 +688,9 @@ v^2 = \alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\varphi \varp
 \,.
 \end{align}
 
-We want to ask that \(v^2 < 0\) in the \(r \to \infty \) limit: what constraint does this pose for \(\alpha \) and \(\beta \)? 
+We want to ask that \(v^2 < 0\) in the \(r \to \infty \) limit: what constraint does this pose for the coefficients \(\alpha \) and \(\beta \)? 
 
-Well, as \(r \to \infty \), the metric component \(g_{\varphi \varphi } \sim r^2 \), while \(g_{t \varphi } \sim 1 /r\) and \(g_{tt} \sim -1\).
+Well, as \(r \to \infty \), the metric coefficients scale as \(g_{\varphi \varphi } \sim r^2 \), while \(g_{t \varphi } \sim 1 /r\) and \(g_{tt} \sim -1\).
 
 Since \(\alpha\) and \(\beta\) are constants, the only way for \(v\) to be asymptotically timelike is if \(\beta = 0\) exactly, otherwise the \(\beta^2 g_{\varphi \varphi }\) term will mean \(v^2 \to + \infty \): therefore, \(v = \alpha \partial_t\) is a multiple of \(\partial_t\). 
 
@@ -665,11 +725,11 @@ u^2 = \underbrace{\alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\
 Thus, we have shown that assuming this we can prove that all vectors at that point in the ergosphere are either null or spacelike: 
 this is impossible, since the metric can be always be cast into its diagonal, Minkowski 3+1 form by an appropriate local coordinate transformation (by the equivalence principle).
 
-Therefore, the assumption must be false, and we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) everywhere.
+Therefore, the assumption must be false, and we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) at each point in the ergosphere.
 
 Note that \(v\) will indeed be a Killing vector: by the linearity of the Lie derivative, a linear combination of Killing vectors is a Killing vector, as long as the coefficients are constant; since \(v^2 < 0\) is a strict inequality we will be able to find a neighbourhood around each point such that \(v^2 < 0\) for that specific choice of \(\alpha \) and \(\beta\) in the whole neighbourhood. 
 
-In figure \ref{fig:kerr_killing} we show what this choice might actually look like.
+In figure \ref{fig:kerr_killing} we show explicitly a choice of \(\alpha \) which makes \(v\) timelike at each point. Smaller values of \(\alpha \) correspond to a larger azimuthal component, and are favored closer to the horizon. 
 
 \begin{figure}[ht]
 \centering

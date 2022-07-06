@@ -484,32 +484,45 @@ therefore \(e\) will be only slightly smaller than \(1\).
 
 The particle will be able to fall into the black hole as long as it encounters no "potential barrier": this is equivalent to asking that the quantity we are setting as equal to \(g_{rr}\dot{r}^2\) is positive.
 
-Is it actually true that \(e \dot{t} - 1 \geq\) for the whole trajectory, though? That's equivalent to %
+Is it actually true that \(e \dot{t} - 1 \geq 0\) for the whole trajectory, though? That's equivalent to %
 \begin{align}
 \frac{e^2}{g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}} &\geq 1  \\
-e^2 &\geq g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}  \\
-&\geq \frac{(2Mra / \rho^2)^2}{r^2 + a^2 + 2Mra / \rho^2} + 1 - \frac{2Mr}{\rho^2}  \\
-e^2 - 1 &\geq \frac{2Mr}{\rho^2} \left(\frac{2Mr a^2}{\rho^2(r^2+ a^2) + 2Mra^2} - 1\right)  \\
-&\geq \frac{2M}{r} \left(\frac{2Mr a^2 - r^4 - r^2 a^2 - 2Mra^2}{r^4 + r^2 a^2 + 2Mra^2}\right)
-\marginnote{Using \(\rho^2= r^2\).}  \\
-- \frac{2M}{r_0} &\gtrsim - \frac{2M}{r} \underbrace{\left(\frac{r^4 + r^2 a^2}{r^4 + r^2 a^2 + 2Mra^2}\right)}_{< 1}  \\
-\frac{2M}{r_0} &\lesssim \frac{2M}{r} C
+\eval{\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}}_{r = r_0 } 
+&\geq \frac{g_{t \varphi }^2}{g_{\varphi \varphi }} - g_{tt}  \\
+\,.
+\end{align}
+
+We can split this into two sufficient conditions, which we simplify using \(\rho^2 = r^2\) (true in the equatorial plane): 
+%
+\begin{align}
+\eval{g_{tt} }_{r_0 } &\leq g_{tt}  \\
+- 1 + \frac{2M}{r_0 } &\leq -1 + \frac{2M}{r}  \\
+r &\leq r_0
 \,,
 \end{align}
 %
-where we used the approximation \(e^2 -1 \approx - 2M/r_0 \), as well as calling \(C\) (\(<1\)) the factor multiplying \(2M/r\). 
+as well as 
+%
+\begin{align}
+\eval{\frac{g_{t \varphi }^2}{g_{\varphi \varphi }} }_{r_0 }
+\geq 
+\frac{g_{t \varphi }^2}{g_{\varphi \varphi }}  \\
+\frac{(2Ma / r_0 )^2}{r_0 ^2 + a^2 + 2M a^2 / r_0 } 
+&\geq 
+\frac{(2Ma / r )^2}{r ^2 + a^2 + 2M a^2 / r } 
+\,,
+\end{align}
+%
+where, once again, we have a manifestly decreasing function of \(r\), evaluated at \(r_0 \) and at some \(r < r_0 \).
 
-The approximation is justified since it only neglects a \(\sim 1/r_0^3\) term, which we know to be neglibible since \(r_0 \gg M\).
+So, \(e \dot{t} - 1\) (and thus also \(\dot{r}^2\)) is positive as long as \(r < r_0 \): this confirms our intuition that the massive particle starting out stationary in the radial direction cannot move outward, and must fall into the black hole. 
 
-The quantity \(\dot{t}\) is therefore given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; therefore, as long as \(e \dot{t} - 1\) is greater or equal than \(0\),
+The quantity \(\dot{t}\) is given as a function of \(r\) by equation \eqref{eq:tdot-from-r}; since \(e \dot{t} - 1\) is greater or equal than \(0\) we can explicitly write:
 %
 \begin{align}
 \dot{r} = \sqrt{\frac{1}{g_{rr}} \left( \frac{e^2}{g_{t \varphi }^2 / g_{\varphi \varphi } - g_{tt}} - 1\right)}
 \,.
 \end{align}
-
-
-Now, since \(r_0 > r\), and \(C < 1\), this inequality will always hold!
 
 So, from an initial radius \(r_0 \) we can compute the proper time required to reach the horizon: 
 %
@@ -533,6 +546,7 @@ This means that the integral is finite at that boundary: this is expected, since
 
 Beyond this point and down to the horizon \(r_+\), \(\dot{r}\) is finite and larger than zero, so the integral is finite: our particle starts from \(\dot{r} = 0\) at \(r_0 \), and crosses the horizon in finite subjective time.
 
+
 % \todo[inline]{\(\dv*{\varphi}{\tau}\) seems to diverge at the ergosphere though! }
 
 An example numerical solution for this kind of motion are shown in figure \ref{fig:kerr_infall} --- starting off the object at \(r = 10M\), not really far but a good choice in order to have everything conveniently visible inside the figure.
@@ -545,13 +559,13 @@ An example numerical solution for this kind of motion are shown in figure \ref{f
 \end{figure}
 
 We can also integrate \(\dot{\varphi} / \dot{r} = \dv*{\varphi }{r}\) in order to get a relation \(\varphi (r)\). 
-The particle starts off moving only in the azimuthal direction, and then (even though \(l = 0\)!) it begins rotating aroung the BH --- this is frame dragging.
+The particle starts off moving only in the azimuthal direction, and then (even though \(l = 0\)!) it begins rotating aroung the BH, due to frame dragging.
 This is shown graphically in figure \ref{fig:kerr_trajectory}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/kerr_trajectory}
-\caption{Trajectory of the particle in the \(xy\) (equatorial) plane; i.\ e.\ the evolution of \(\varphi (r)\). In this case, the spin of the BH is set to \(\chi = 0.1\).}
+\caption{Trajectory of the particle in the \(xy\) (equatorial) plane; i.\ e.\ the evolution of \(\varphi (r)\). In this case, the spin of the BH is set to \(\chi = 0.35\).}
 \label{fig:kerr_trajectory}
 \end{figure}
 
@@ -587,8 +601,8 @@ The combination of metric coefficients appearing there is %
 \,.
 \end{align}
 
-Locally, this works perfectly well; \(\partial_t\) not being hypersurface-orthogonal 
-means that these surfaces cannot be extended to a global foliation of the spacetime. 
+Locally, this works perfectly well; \(\partial_t\) not being hypersurface-orthogonal, however, 
+means that these surfaces cannot be extended to a global foliation of the spacetime: let us see why. 
 
 Let us set \(\theta = \pi /2\) for simplicity: then, 
 %
@@ -648,9 +662,10 @@ u^2 = \underbrace{\alpha^2 g_{tt} + 2 \alpha \beta g_{t \varphi } + \beta^2 g_{\
 \,.
 \end{align}
 
-Thus, we have shown that assuming this we can prove that all vectors in the ergosphere are either null or spacelike: 
+Thus, we have shown that assuming this we can prove that all vectors at that point in the ergosphere are either null or spacelike: 
 this is impossible, since the metric can be always be cast into its diagonal, Minkowski 3+1 form by an appropriate local coordinate transformation (by the equivalence principle).
-Therefore, we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) everywhere.
+
+Therefore, the assumption must be false, and we must be able to make our Killing vector \(v\) timelike for some choice of \(\alpha \) and \(\beta \) everywhere.
 
 Note that \(v\) will indeed be a Killing vector: by the linearity of the Lie derivative, a linear combination of Killing vectors is a Killing vector, as long as the coefficients are constant; since \(v^2 < 0\) is a strict inequality we will be able to find a neighbourhood around each point such that \(v^2 < 0\) for that specific choice of \(\alpha \) and \(\beta\) in the whole neighbourhood. 
 
@@ -666,7 +681,7 @@ Note that this is the locus of the minimum, but there is a range of acceptable v
 
 \subsection{Exercise 7}
 
-Hawking's area teorem states that the area of a BH can never increase; the area is related to the irreducible mass by 
+Hawking's area teorem states that the area of a BH, or of a system of BHs, can never increase; the area is related to the irreducible mass by 
 %
 \begin{align}
 A \propto M _{\text{irr}}^2 = \frac{1}{2} M^2\left(1 + \sqrt{1 - \chi^2}\right)

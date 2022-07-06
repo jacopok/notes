@@ -10,7 +10,11 @@ def conformal_trajectory():
     base = plt.gca().transData
     rot = transforms.Affine2D().rotate_deg(45)
     
-    for a in [1/2, 1, 2]:
+    for a in [ 
+        1/2, 
+        1, 
+        2,
+        ]:
         t = np.sinh(a * lam) / a
         r = np.cosh(a * lam) / a
         

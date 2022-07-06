@@ -27,7 +27,7 @@ def kerr_infall():
     l = 0
     a = .9
 
-    r = np.linspace(0, 10, num=100000)
+    r = np.linspace(3e-3, 10, num=10000)
     # r = np.linspace(M + np.sqrt(M**2 - a**2)+1e-2, 10, num=10000)
 
     theta = np.pi / 2

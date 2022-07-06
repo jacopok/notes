@@ -1,9 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 
-\section*{Sheet 2}
-
-\subsection{Exercise 1}
+\section*{Exercise 1}
 
 We wish to determine the conditions under which a photon is able to fall into a nonspinning black hole.
 
@@ -114,7 +112,7 @@ asymptotically approaching \(r = 3M\); photons stuck in an unstable
 orbit at \(r = 3M\); and finally photons which reach the singularity at
 some finite time after having orbited since past infinity. 
 
-\subsection{Exercise 2}
+\section*{Exercise 2}
 
 We discuss negative-mass Schwarzschild spacetime, and define a radial coordinate %
 \begin{align}
@@ -177,7 +175,7 @@ However, there are no horizons --- this spacetime is conformally related to Mink
 alternatively, we can see that the whole spacetime is in the causal past of future null infinity.
 This means that the singularity is naked!
 
-\subsection{Exercise 3}
+\section*{Exercise 3}
 
 The conformal diagram for Minkowski spacetime is constructed by setting 
 %
@@ -215,7 +213,7 @@ This is the green curve in figure \ref{fig:conformal_trajectory}.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.5\textwidth]{figures/conformal_trajectory}
+\includegraphics[width=.4\textwidth]{figures/conformal_trajectory}
 \caption{Conformal diagram for the trajectories parametrized by \(\lambda \), as well as (in green) a trajectory starting off at \(r = 0\), accelerating (dotted), then moving geodesically from then on.
 Future null infinity should be labelled as \(\mathscr{I}^+\). 
 }
@@ -313,7 +311,7 @@ more specifically, its limit is \(r \to \infty \) and \(t \to \infty \) with \(t
 
 This is future null infinity! Similarly, the curve starts from past null infinity.
 
-\subsection{Exercise 4}
+\section*{Exercise 4}
 
 Geodesics in negative mass Schwarzschild can be computed in the same manner as in positive mass Schwarzschild, the difference will be in the asymptotics of the potential.
 For null geodesics we have the same result as in equation \eqref{eq:photon-trajectory-schwarzschild}: the effective potential is %
@@ -385,7 +383,7 @@ In the conformal diagram for this spacetime, which looks the same as Minkowski s
 On the other hand, a timelike trajectory coming from \(\iota^-\) can never actually reach \(r = 0\). 
 This is hard to see in the diagram, but we can think of the distortion in the metric around that area being strong enough to "repel" those geodesics --- after all, the scaling factor for the conformal metric diverges there, so we cannot expect the conformal diagram to be a faithful representation of what's possible for timelike geodesics.
 
-\subsection{Exercise 5}
+\section*{Exercise 5}
 
 The components of the Kerr metric in Boyer-Lindquist coordinates we will later need are as follows: 
 %
@@ -501,7 +499,7 @@ The particle will be able to fall into the black hole as long as it encounters n
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{figures/kerr_trajectory}
+\includegraphics[width=.9\textwidth]{figures/kerr_trajectory}
 \caption{Trajectory of the particle in the \(xy\) (equatorial) plane; i.\ e.\ the evolution of \(\varphi (r)\). In this case, the spin of the BH is set to \(\chi = 0.35\).}
 \label{fig:kerr_trajectory}
 \end{figure}
@@ -519,77 +517,7 @@ where we are denoting \(f = g_{t \varphi }^2 / g_{\varphi \varphi} - g_{tt}\), a
 The behaviour of the three terms is as follows: \(f_0 - f\) is positive for \(r < r_0 \) (and so for the whole trajectory); 
 \(f\) and \(g_{rr}\) both become negative between the two horizons (when \(\Delta < 0\)) and are positive otherwise, so their product is always positive.
 
-Let us prove the first claim: we wish to show that, when \(r < r_0 \),
-%
-\begin{align}
-\left(\frac{2Ma}{r_0 }\right)^2 \frac{1}{r_0 ^2 + a^2 + 2Ma^2 /r_0 } +1 - \frac{2M}{r_0 } 
-\geq 
-\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}
-\,.
-\end{align}
-
-This is not immediately obvious: the \(-2M/r\) term has the behaviour we desire (it's an increasing function of \(r\)), while the rest does not.
-
-The idea is, however, that the \(1/r^4\) term is always suppressed and subdominant with respect to the \(1/r\) one. 
-We know that \(f_0 = e^2\) is only slightly less than \(1\), since \(r_0 \gg M\). 
-
-We will work dividing the range of \(r\) into sections.
-First, suppose that \(r > 2M\):
-%
-\begin{align}
-\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} < 
-\frac{a^2}{r^2 + a^2 + 2Ma^2 /r} = 
-\frac{1}{\underbrace{(r/a)^2}_{>2} + 1 + \underbrace{2M/r}_{<1}} < \frac{1}{3}
-\,,
-\end{align}
-%
-since \(r > 2M > 2a\). 
-
-So, what we are trying to prove is that 
-%
-\begin{align}
-f_0 \geq \underbrace{\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r}}_{< 1/3} + 1 - \frac{2M}{r}
-\,.
-\end{align}
-
-Now, if \(2M < r < 4M\), then the inequality is satisfied: \(1 - 2M/r < 1/2\), so overall \(f < 5/6\). 
-
-If \(r > 4M\), things are even simpler: the bound for the \(\sim 1/ r^4\) term can be improved to \(< 1/(4 \times 16)\), therefore we can go up to \(r = 32M\) (say) since then \(1 - 2M/r < 15/16\), and so we can still constrain \(f < 15/16 + 1/64 < 1\). 
-
-This line of reasoning can be extended in exponential steps up to \(r_0\), and as \(r\) increases the subdominance of the \(1/r^4 \) term becomes ever clearer.
-
-What happens when \(r < 2M\)? There, we wish to show that 
-%
-\begin{align}
-f_0 \sim 1 &\geq \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} + 1 - \frac{2M}{r}  \\
-&= 1 - \underbrace{\frac{2M}{r}}_{> 1} \underbrace{\left( 1 - \frac{2Ma^2}{r^3 + ra^2 + 2Ma^2}\right)}_{>0, < 1}
-\,,
-\end{align}
-%
-so for sure we have \(f < 1\); all that's left is finding a slightly stricter bound to accomodate the fact that \(f_0 \lesssim 1\).
-
-The risk is that the product be close to 0; for sure this will not happen at \(r = 2M\), since there the expression in parentheses is strictly positive (and \(>5/6\)), while it might for \(r \to 0\) --- there, however, the full expression actually has a finite limit: 
-%
-\begin{align}
-1- \frac{2M}{r} \frac{r^3 + r a^2 + 2Ma^2 - 2Ma^2}{r^3+ r a^2 + 2Ma^2} 
-\sim 1 - 2M \frac{r^2 + a^2}{r^3 + ra^2 + 2Ma^2} \to 1 - 1 = 0
-\,,
-\end{align}
-%
-which is definitely smaller than \(1 - 2M/r_0 \).
-
-As for the second point: what is the behaviour of \(f g_{rr}\)? The metric coefficient scales like \(g_{rr} \sim \Delta^{-1}\), and we can reframe \(f\) as: 
-%
-\begin{align}
-f &= \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}  \\
-&= \frac{(2Ma/r)^2 + r^2 +a^2 + 2Ma^2/ r - 2M/r \left(r^2 + a^2 + 2Ma^2 / r\right)}{r^2 + a^2 + 2Ma^2 /r}  \\
-&= \frac{\Delta }{r^2 + a^2 + 2Ma^2 /r}
-\,,
-\end{align}
-%
-meaning that \(f g_{rr} = r^2 / (r^2 + a^2 + 2Ma^2/r)\), which is always positive; further, it does not have any divergence when \(\Delta = 0\).
-
-
+The proof for these claims is quite lengthy (or at least, I have not been able to find a simpler one), so it can be found in appendix \ref{app:potential-barrier}.
 
 So, \(\dot{r}^2\) is positive as long as \(r < r_0 \): this confirms our intuition that the massive particle starting out stationary in the radial direction cannot move outward, and must fall into the black hole.
 We can explicitly write it as:
@@ -599,10 +527,10 @@ We can explicitly write it as:
 \,.
 \end{align}
 
-So, from an initial radius \(r_0 \) we can compute the proper time required to reach the horizon: 
+So, from an initial radius \(r_0 \) we can compute the proper time required to reach the singularity: 
 %
 \begin{align}
-\tau _{\text{tot}} &= \int_{r_0}^{r_+} \frac{ \dd{r}}{\dot{r}} 
+\tau _{\text{tot}} &= \int_{r_0}^{0} \frac{ \dd{r}}{\dot{r}} 
 \,.
 \end{align}
 
@@ -628,7 +556,7 @@ We can also integrate \(\dot{\varphi} / \dot{r} = \dv*{\varphi }{r}\) in order t
 The particle starts off moving only in the azimuthal direction, and then (even though \(l = 0\)!) it begins rotating aroung the BH, due to frame dragging.
 This is shown graphically in figure \ref{fig:kerr_trajectory}.
 
-\subsection{Exercise 6}
+\section*{Exercise 6}
 
 \subsubsection{Constant-time hypersurfaces}
 
@@ -733,13 +661,13 @@ In figure \ref{fig:kerr_killing} we show explicitly a choice of \(\alpha \) whic
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{figures/kerr_killing}
+\includegraphics[width=.9\textwidth]{figures/kerr_killing}
 \caption{Optimal value for \(\alpha \) as a function of position, for a BH with spin \(\chi = 0.99\). This is the value for \(\alpha \) which minimizes the norm of \(v\), assuming that \(\beta = 1 - \alpha \) (as well as \(M = 1\)); in all cases this minimum is negative.
 Note that this is the locus of the minimum, but there is a range of acceptable values for \(\alpha \): this is why even at the ergosphere edge we don't have \(\alpha \to 1\). }
 \label{fig:kerr_killing}
 \end{figure}
 
-\subsection{Exercise 7}
+\section*{Exercise 7}
 
 Hawking's area teorem states that the area of a BH, or of a system of BHs, can never increase; the area is related to the irreducible mass by 
 %
@@ -823,5 +751,79 @@ E &\leq 65M_{\odot} - 49 M_{\odot} \sqrt{\frac{1.998}{1.73}} \approx 15 M_{\odot
 The best-fit value for the emitted energy, \(E \sim 3M_{\odot}\), estimated through other means, is well within this constraint.
 
 A more complete analysis can actually give us a posterior distribution for the total variation in area \(\Delta A\); the posterior probability of \(\Delta A < 0\) can then be computed, with GW150814 this comes out to be \(< 5\%\) \cite{isiTestingBlackholeArea2021}.
+
+\appendix
+
+\section{There is no potential barrier} \label{app:potential-barrier}
+
+Let us prove the first claim: we wish to show that, when \(r < r_0 \),
+%
+\begin{align}
+\left(\frac{2Ma}{r_0 }\right)^2 \frac{1}{r_0 ^2 + a^2 + 2Ma^2 /r_0 } +1 - \frac{2M}{r_0 } 
+\geq 
+\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}
+\,.
+\end{align}
+
+This is not immediately obvious: the \(-2M/r\) term has the behaviour we desire (it's an increasing function of \(r\)), while the rest does not.
+
+The idea is, however, that the \(1/r^4\) term is always suppressed and subdominant with respect to the \(1/r\) one. 
+We know that \(f_0 = e^2\) is only slightly less than \(1\), since \(r_0 \gg M\). 
+
+We will work dividing the range of \(r\) into sections.
+First, suppose that \(r > 2M\):
+%
+\begin{align}
+\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} < 
+\frac{a^2}{r^2 + a^2 + 2Ma^2 /r} = 
+\frac{1}{\underbrace{(r/a)^2}_{>2} + 1 + \underbrace{2M/r}_{<1}} < \frac{1}{3}
+\,,
+\end{align}
+%
+since \(r > 2M > 2a\). 
+
+So, what we are trying to prove is that 
+%
+\begin{align}
+f_0 \geq \underbrace{\left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r}}_{< 1/3} + 1 - \frac{2M}{r}
+\,.
+\end{align}
+
+Now, if \(2M < r < 4M\), then the inequality is satisfied: \(1 - 2M/r < 1/2\), so overall \(f < 5/6\). 
+
+If \(r > 4M\), things are even simpler: the bound for the \(\sim 1/ r^4\) term can be improved to \(< 1/(4 \times 16)\), therefore we can go up to \(r = 32M\) (say) since then \(1 - 2M/r < 15/16\), and so we can still constrain \(f < 15/16 + 1/64 < 1\). 
+
+This line of reasoning can be extended in exponential steps up to \(r_0\), and as \(r\) increases the subdominance of the \(1/r^4 \) term becomes ever clearer.
+
+What happens when \(r < 2M\)? There, we wish to show that 
+%
+\begin{align}
+f_0 \sim 1 &\geq \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} + 1 - \frac{2M}{r}  \\
+&= 1 - \underbrace{\frac{2M}{r}}_{> 1} \underbrace{\left( 1 - \frac{2Ma^2}{r^3 + ra^2 + 2Ma^2}\right)}_{>0, < 1}
+\,,
+\end{align}
+%
+so for sure we have \(f < 1\); all that's left is finding a slightly stricter bound to accomodate the fact that \(f_0 \lesssim 1\).
+
+The risk is that the product be close to 0; for sure this will not happen at \(r = 2M\), since there the expression in parentheses is strictly positive (and \(>5/6\)), while it might for \(r \to 0\) --- there, however, the full expression actually has a finite limit: 
+%
+\begin{align}
+1- \frac{2M}{r} \frac{r^3 + r a^2 + 2Ma^2 - 2Ma^2}{r^3+ r a^2 + 2Ma^2} 
+\sim 1 - 2M \frac{r^2 + a^2}{r^3 + ra^2 + 2Ma^2} \to 1 - 1 = 0
+\,,
+\end{align}
+%
+which is definitely smaller than \(1 - 2M/r_0 \).
+
+As for the second point: what is the behaviour of \(f g_{rr}\)? The metric coefficient scales like \(g_{rr} \sim \Delta^{-1}\), and we can reframe \(f\) as: 
+%
+\begin{align}
+f &= \left(\frac{2Ma}{r}\right)^2 \frac{1}{r^2 + a^2 + 2Ma^2 /r} +1 - \frac{2M}{r}  \\
+&= \frac{(2Ma/r)^2 + r^2 +a^2 + 2Ma^2/ r - 2M/r \left(r^2 + a^2 + 2Ma^2 / r\right)}{r^2 + a^2 + 2Ma^2 /r}  \\
+&= \frac{\Delta }{r^2 + a^2 + 2Ma^2 /r}
+\,,
+\end{align}
+%
+meaning that \(f g_{rr} = r^2 / (r^2 + a^2 + 2Ma^2/r)\), which is always positive; further, it does not have any divergence when \(\Delta = 0\).
 
 \end{document}

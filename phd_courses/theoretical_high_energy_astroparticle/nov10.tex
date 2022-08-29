@@ -166,6 +166,33 @@ Inserting back our particle boundary condition to fix \(A\), we get
 \,.
 \end{align}
 
+\begin{extracontent}
+Let us show this boundary fixing explicitly: we just need to apply Gauss's law in an infinitesimal sphere around the charge. Its electric field will be radial, so, for \(x\) which we will make tend to zero in the end:
+
+\begin{align}
+\int _{\text{sphere around 0 of radius \(x\)}} \vec{E} \cdot \dd{\vec{A}} = 4 \pi x^2 \abs{E} = - 4 \pi x^2
+\dv{\varphi}{r}
+\,,
+\end{align}
+%
+which must be equal to \(4 \pi \int \zeta \dd{V} = 4 \pi e\).
+
+So, we have 
+%
+\begin{align}
+- 4 \pi A x^2 \eval{\dv{r} (e^{-r/\lambda _D} / r)}_{r=x} &= 4 \pi e  \\
+-A x^2\left( 
+    -\frac{e^{-x / \lambda _D}}{x \lambda _D}
+    - \frac{e^{-x / \lambda _D}}{x^2}
+    \right)
+    &= e  \\
+    A &= e
+\,.
+\end{align}
+%
+
+\end{extracontent}
+
 This is physically meaningful: there is a \textbf{screening effect} on charges, on length scales of \(\lambda _D\). 
 
 For this to happen, however, we need to have enough charges to screen the inserted one: the number of particles in the Debye volume, \(\sim n_0 \lambda _D^3\), must be much larger than 1. 
@@ -225,7 +252,7 @@ J_r = \sigma_{rs} E_s
 \,,
 \end{align}
 %
-where the proportionality constant \(\sigma _{rs}\) is the \emph{conductivity tensor} (whose components are, roughly, 1 over resistance). 
+where the proportionality constant \(\sigma _{rs}\) is the \emph{conductivity tensor} (whose components are, roughly, 1 over resistance).
 
 It is also convenient to define the displacement current \(\vec{D}\) by:
 %
@@ -237,10 +264,11 @@ It is also convenient to define the displacement current \(\vec{D}\) by:
 which means that the current can be recovered by 
 %
 \begin{align}
-\vec{J} = \frac{1}{4 \pi } \qty(\pdv{\vec{D}}{t} + \pdv{\vec{E}}{t})
+\vec{J} = \frac{1}{4 \pi } \qty(\pdv{\vec{D}}{t} - \pdv{\vec{E}}{t})
 \,.
 \end{align}
 
+Can we compute this displacement current explicitly?
 The idea is to decompose the perturbation in Fourier modes:
 %
 \begin{align}
@@ -284,7 +312,7 @@ Now we move to Lenz's law: we take another curl, to get
 \end{align}
 \end{subequations}
 
-We are almost done: the only issue here is that \(\mathbb{K}_{rs}\) contains the conductivity tensor \(\sigma_{rs}\). 
+We are almost done: the only issue here is that \(\mathbb{K}_{rs}\) contains the conductivity tensor \(\sigma_{rs}\), which we do not yet have an expression for. 
 
 Supposing for simplicity  that our plasma is non-relativistic, we have the EoM 
 %
@@ -294,7 +322,7 @@ m_e \dv{v_e}{t} = - e E \implies
 \,,
 \end{align}
 %
-but the current \(\vec{J}\) is \(\vec{J} = - e n_e \vec{v}_e\), so \(\widetilde{J}_r = - (n e^2 / \omega m_e) \widetilde{E}_r\), therefore the conductivity reads 
+but the current \(\vec{J}\) is \(\vec{J} = - e n_e \vec{v}_e\), so \(\widetilde{J}_r = - (i n e^2 / \omega m_e) \widetilde{E}_r\), therefore the conductivity reads 
 %
 \begin{align}
 \sigma_{rs} = \frac{i n e^2}{\omega m_e} \delta_{rs} 
